@@ -204,17 +204,17 @@
     "updateData": "Jeśli wprowadzono zmiany w back office, konieczne jest odświeżenie strony, aby były one widoczne."
   },
   "productFeedCard": {
-    "title": "Kanał produktu",
+    "title": "Plik danych produktu",
     "intro": "Połącz Twoje produkty z katalogu, aby zaprezentować je w formie bezpłatnych informacji. Ceny i dostępność produktów są automatycznie aktualizowane codziennie, dając Twoim klientom dostęp do najbardziej aktualnych i uczciwych cenowo produktów, które masz w ofercie!",
-    "introToConfigure": "Ważne jest, aby podać Twój kanał produktu w prawidłowym formacie, ponieważ Google używa go, aby upewnić się, że Twoje produkty pasują do właściwych zapytań.",
+    "introToConfigure": "Ważne jest, aby podać Twój plik danych produktu w prawidłowym formacie, ponieważ Google używa go, aby upewnić się, że Twoje produkty pasują do właściwych zapytań.",
     "nextSync": "Następna synchronizacja {0}",
     "mappedCategories": "{0}/{1} zmapowane kategorie",
     "alertFeedSettingSubmissionSuccess": "Pomyślnie przesłano dane o Twoich produktach do Merchant Center. Po zatwierdzeniu, dane te będą uwzględnione w usłudze bezpłatnego wyświetlanie informacji o produkcie i w reklamach.",
     "alertFailed": "Synchronizacja danych o produkcie nie powiodła się. Sprawdź możliwe przyczyny w [Merchant Center]({0})[:target=\"_blank\"] lub skontaktuj się z [działem obsługi klienta](mailto:support-google@prestashop.com).",
     "alertShippingSettingsMissing": "Brakuje informacji o wysyłce.",
-    "alertShippingSettingsMissingDescription": "Aby pomyślnie zsynchronizować kanał produktu, należy dodać informacje o wysyłce.",
+    "alertShippingSettingsMissingDescription": "Aby pomyślnie zsynchronizować plik danych produktu, należy dodać informacje o wysyłce.",
     "alertProductFeedDeactivated": "Jeśli synchronizacja danych o produkcie będzie wyłączona, nowe produkty nie zostaną przesłane do Google Merchant Center. Konto nadal będzie istniało, a produkty wygasną po 30 dniach. Spowoduje to zatrzymanie wyświetlania bezpłatnych informacji o Twoich produktach i kampanii produktowych.",
-    "alertProductFeedExists": "**A product feed already exists**  \n<small>Twój kanał produktu już istnieje. Musisz go nadpisać, aby zsynchronizować Twój feed produktu PrestaShop. </small>",
+    "alertProductFeedExists": "**A product feed already exists**  \n<small>Twój plik danych produktu już istnieje. Musisz go nadpisać, aby zsynchronizować Twój plik danych produktu PrestaShop. </small>",
     "googleTaxonomyAssociation": "Związek z taksonomią Produktu Google",
     "optional": "Opcjonalne",
     "attributeDescription": "Dzięki tym atrybutom możesz organizować Twoje kampanie reklamowe w Google Ads i zastępować automatyczną kategoryzację Google w określonych przypadkach.",
@@ -226,8 +226,8 @@
     "alertErrorApi": "W tej chwili nie możesz wysłać danych produktów do Google. Spróbuj ponownie później."
   },
   "productFeedSettings": {
-    "breadcrumb1": "Kanał produktu",
-    "breadcrumb2": "Ustawienia kanału produktu",
+    "breadcrumb1": "Plik danych produktu",
+    "breadcrumb2": "Ustawienia pliku danych produktu",
     "steps": {
       "shippingSetup": "Konfiguracja wysyłki",
       "deliveryTimesAndRates": "Czas i koszt dostawy",
@@ -444,8 +444,8 @@
       "mandatoryAttributesNotMapped": "Jeden atrybut Google nie został zmapowany do pól niestandardowych. {0} atrybutów Google nie zostało zmapowanych do pól niestandardowych.",
       "noticeToCompleteMapping": "Zalecamy mapowanie wszystkich danych. W przeciwnym razie Twoje produkty mogą zostać odrzucone przez Google.",
       "agreementTitle": "Rozumiem i zgadzam się na następujące warunki*.",
-      "agreementCheckboxLabel1Instant": "Synchronizacja mojego kanału produktowego zostanie uruchomiona po kliknięciu na zapisz i wyeksportuj (może to potrwać od 1 do 4 godzin)",
-      "agreementCheckboxLabel1Default": "Synchronizacja mojego kanału produktu zajmie trochę czasu - {time} (Może to potrwać od 1 do 4 godzin)",
+      "agreementCheckboxLabel1Instant": "Synchronizacja mojego pliku danych produktu zostanie uruchomiona po kliknięciu na zapisz i wyeksportuj (może to potrwać od 1 do 4 godzin)",
+      "agreementCheckboxLabel1Default": "Synchronizacja mojego pliku danych produktu zajmie trochę czasu - {time} (Może to potrwać od 1 do 4 godzin)",
       "agreementCheckboxLabel2": "Ocena produktów Google może trwać od 3 do 5 dni roboczych.",
       "disabledButtonTooltip": "Zanim ruszysz dalej, sprawdź nasze warunki",
       "syncScheduledNow": "Dzisiaj, zaraz po zapisaniu i wyeksportowaniu"
