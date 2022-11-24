@@ -93,7 +93,7 @@
   "mcaCard": {
     "title": "Cuenta Merchant Center",
     "introDisabled": "Puedes conectar una cuenta existente Google Merchant Center o crear una en unos sencillos pasos.",
-    "claimCollides": "Tu sitio web ya ha sido solicitado.",
+    "claimCollides": "Tu sitio web ya ha sido reclamado.",
     "claimOverwrite": "Para finalizar la creación de la cuenta de Merchant Center, es necesario sobrescribir la solicitud existente.",
     "footerEU": "Si te encuentras en el Espacio Económico Europeo, en el Reino Unido o en Suiza, tu cuenta Merchant Center debe estar asociada a un [Servicio de comparación de precios (CSS)]({0})[:target=\"_blank\"]  \nSi creas una nueva cuenta Merchant Center a través de esta aplicación, se asociará por defecto a Google Shopping, el CSS de Google. Puedes cambiar el CSS asociado a tu cuenta en cualquier momento. [Encuentra tus partners CSS]({1})[:target=\"_blank\"]  \nUna vez que hayas configurado tu cuenta Merchant Center, podrá utilizar nuestra herramienta independientemente del CSS que utilices.",
     "shopInfoMissing": "Falta información de la tienda",
@@ -211,7 +211,7 @@
     "mappedCategories": "{0}/{1} categorías mapeadas",
     "alertFeedSettingSubmissionSuccess": "Has enviado correctamente los datos de tus productos a Merchant Center. Una vez aprobados, estarán disponibles para fichas gratuitas y anuncios.",
     "alertFailed": "La sincronización del producto no se ha realizado correctamente. Comprueba los posibles motivos en [Merchant Center]({0})[:target=\"_blank\"] o contacta con [atención al cliente](mailto:support-google@prestashop.com).",
-    "alertShippingSettingsMissing": "Shipping settings are missing. Once your shipping settings configured, you will be able to sync your product data. [Add shipping settings]({0})[:target=\\\"_blank\\\"]",
+    "alertShippingSettingsMissing": "Falta la información de envío.",
     "alertShippingSettingsMissingDescription": "Para sincronizar correctamente tu feed de productos, añade la información de envío.",
     "alertProductFeedDeactivated": "Si se desactiva la sincronización de productos, no se introducirán nuevos productos en el GMC. La cuenta en sí seguirá existiendo y los productos expirarán después de 30 días. Esto hace que los artículos del catálogo dejen de mostrarse tanto en los anuncios gratuitos como en las campañas publicitarias.",
     "alertProductFeedExists": "**A product feed already exists**  \n  <small>Your product feed already exists. You need to overwrite it to sync your PrestaShop product feed.</small>",
