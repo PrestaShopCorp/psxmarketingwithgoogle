@@ -119,6 +119,9 @@ export default {
       correlationId,
     );
 
+    const {token} = await dispatch(ActionsTypes.REQUEST_SITE_VERIFICATION_TOKEN, correlationId);
+    dispatch(ActionsTypes.SAVE_WEBSITE_VERIFICATION_META, token);
+
     if (!isVerified || !isClaimed) {
       if (rootState.app.psxMktgWithGoogleModuleIsEnabled === false) {
         commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
