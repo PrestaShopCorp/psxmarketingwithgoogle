@@ -33,7 +33,7 @@
       :rate-chosen="rateChosen"
       :carriers="estimateCarriersToConfigure"
       :countries="selectedCountries"
-      :validation-error="displayValidationErrors"
+      :display-validation-errors="displayValidationErrors"
       @dataUpdated="estimateCarriers = $event;dataUpdated()"
     />
 
@@ -57,7 +57,7 @@ import ShippingSettings from '@/components/product-feed/settings/delivery-time-a
 import {RateType} from '@/enums/product-feed/rate';
 import {OfferType} from '@/enums/product-feed/offer';
 import {validateCarrier, createCustomCarriersTemplate, CustomCarrier} from '@/providers/shipping-rate-provider';
-import {DeliveryDetail, validateDeliveryDetail} from '@/providers/shipping-settings-provider';
+import {DeliveryDetail, validateDeliveryDetail, validateEachCountryHasAtLeastOneCarrier} from '@/providers/shipping-settings-provider';
 import CustomRate from '@/components/product-feed/settings/delivery-time-and-rates/estimate-method/custom-rate.vue';
 import CountriesFormList from './estimate-method/countries-form-list.vue';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
@@ -123,7 +123,7 @@ export default Vue.extend({
   },
   methods: {
     dataUpdated(): void {
-      if (this.selectedCountries.length < 2) {
+      if (this.selectedCountries.length === 1 && this.rateChosen === RateType.RATE_PER_COUNTRY) {
         this.rateChosen = RateType.RATE_ALL_COUNTRIES;
       }
       this.displayValidationErrors = false;
@@ -156,6 +156,10 @@ export default Vue.extend({
           return false;
         }
 
+        if (!this.rateChosen) {
+          return false;
+        }
+
         if (!this.estimateCarriers.every(validateCarrier)) {
           return false;
         }
@@ -180,9 +184,10 @@ export default Vue.extend({
         }
 
         // Each target country has at least one carrier
-        return this.selectedCountries.every((country: string) => enabledDeliveryDetails.find(
-          (deliveryDetail: DeliveryDetail) => deliveryDetail.country === country,
-        ));
+        return validateEachCountryHasAtLeastOneCarrier(
+          this.selectedCountries,
+          enabledDeliveryDetails,
+        );
       }
 
       return false;

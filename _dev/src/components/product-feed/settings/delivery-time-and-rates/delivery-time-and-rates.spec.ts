@@ -196,7 +196,7 @@ describe('delivery-time-and-rates.vue', () => {
         store: new Vuex.Store(store),
       });
 
-      expect(wrapper.vm.validateCarrier(carriers[0])).toBe(null);
+      expect(wrapper.vm.validateCarrier(carriers[0])).toBe(true);
     });
 
     it('should display as many countries as there are blocks when merchant choose RateType.RATE_PER_COUNTRY', () => {

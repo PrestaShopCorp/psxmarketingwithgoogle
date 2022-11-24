@@ -51,7 +51,7 @@
         <b-card-body>
           <custom-carrier-form
             :custom-carrier="carriers[0]"
-            :display-validation-errors="validationError"
+            :display-validation-errors="displayValidationErrors"
             @dataUpdated="$emit('dataUpdated', carriers)"
           />
         </b-card-body>
@@ -106,12 +106,21 @@
         <b-card-body>
           <custom-carrier-form
             :custom-carrier="carrier"
-            :display-validation-errors="validationError"
+            :display-validation-errors="displayValidationErrors"
             @dataUpdated="$emit('dataUpdated', carriers)"
           />
         </b-card-body>
       </b-collapse>
     </b-card>
+
+    <!-- Errors -->
+    <p
+      v-if="!rateChosen && displayValidationErrors"
+      class="text-danger text-small ps_gs-fz-12 d-md-flex justify-content-end"
+    >
+      <!-- eslint-disable-next-line max-len -->
+      {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.validationErrors.missingRateOption') }}
+    </p>
   </div>
 </template>
 <script lang="ts">
@@ -128,7 +137,7 @@ export default Vue.extend({
   props: {
     rateChosen: {
       type: String as PropType<RateType>,
-      required: false,
+      required: true,
     },
     countries: {
       type: Array as PropType<string[]>,
@@ -138,7 +147,7 @@ export default Vue.extend({
       type: Array as PropType<CustomCarrier[]>,
       required: true,
     },
-    validationError: {
+    displayValidationErrors: {
       type: Boolean,
       required: true,
     },
@@ -155,7 +164,7 @@ export default Vue.extend({
   },
   methods: {
     validateCarrier(carrier): boolean|null {
-      if (!this.validationError) {
+      if (!this.displayValidationErrors) {
         return null;
       }
       return validateCarrier(carrier);

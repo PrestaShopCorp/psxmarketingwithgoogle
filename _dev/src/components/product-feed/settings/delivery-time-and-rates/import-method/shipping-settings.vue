@@ -153,12 +153,21 @@
         <i class="material-icons ps_gs-fz-12">call_missed_outgoing</i>
       </b-button>
     </div>
+
+    <!-- Errors -->
     <p
       v-if="!enabledCarriers.length && displayValidationErrors"
       class="text-danger text-small ps_gs-fz-12 d-md-flex justify-content-end"
     >
       <!-- eslint-disable-next-line max-len -->
       {{ $t('productFeedSettings.deliveryTimeAndRates.importOption.validationErrors.needAtLeastOneCarrier') }}
+    </p>
+    <p
+      v-else-if="!targetCountriesAllHaveOneCarrier && displayValidationErrors"
+      class="text-danger text-small ps_gs-fz-12 d-md-flex justify-content-end"
+    >
+      <!-- eslint-disable-next-line max-len -->
+      {{ $t('productFeedSettings.deliveryTimeAndRates.importOption.validationErrors.needAtLeastOneCarrierForEachCountry') }}
     </p>
   </div>
 </template>
@@ -169,7 +178,7 @@ import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-h
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import TableRowCarrier from './table-row-carrier.vue';
-import {DeliveryDetail} from '../../../../../providers/shipping-settings-provider';
+import {DeliveryDetail, validateEachCountryHasAtLeastOneCarrier} from '../../../../../providers/shipping-settings-provider';
 import {ShippingSetupOption} from '../../../../../enums/product-feed/shipping';
 
 export default {
@@ -212,6 +221,12 @@ export default {
     enabledCarriers() {
       return this.carriers.filter(
         (e: DeliveryDetail) => e.enabledCarrier,
+      );
+    },
+    targetCountriesAllHaveOneCarrier() {
+      return validateEachCountryHasAtLeastOneCarrier(
+        this.countries,
+        this.enabledCarriers,
       );
     },
   },
