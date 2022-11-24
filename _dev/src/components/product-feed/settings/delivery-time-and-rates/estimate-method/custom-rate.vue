@@ -6,8 +6,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col col-12 col-md border rounded p-3 mr-1">
-          <div
-          >
+          <div>
             <b-form-radio
               data-test-id="radioButton"
               v-model="rateSelected"
@@ -28,8 +27,7 @@
           </div>
         </div>
         <div class="col col-12 col-md border rounded p-3 mt-1 mt-md-0 ml-md-1">
-          <div
-          >
+          <div>
             <b-form-radio
               v-model="rateSelected"
               name="customRateRadio"
@@ -71,6 +69,7 @@ export default Vue.extend({
     rateTypeChosen: {
       type: String as PropType<RateType>,
       required: false,
+      default: null,
     },
   },
   computed: {

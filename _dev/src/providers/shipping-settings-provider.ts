@@ -233,3 +233,12 @@ export function validateTransitTimes(delivery: DeliveryDetail): boolean {
     && Number(delivery.minTransitTimeInDays) >= 0
     && Number(delivery.maxTransitTimeInDays) >= 0;
 }
+
+export function validateEachCountryHasAtLeastOneCarrier(
+  countries: string[],
+  enabledDeliveryDetails: DeliveryDetail[],
+): boolean {
+  return countries.every((country: string) => enabledDeliveryDetails.find(
+    (deliveryDetail: DeliveryDetail) => deliveryDetail.country === country,
+  ));
+}

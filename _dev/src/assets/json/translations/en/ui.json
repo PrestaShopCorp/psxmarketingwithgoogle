@@ -294,11 +294,15 @@
         "summary": {
           "singleCountry": "Flat rate",
           "multiCountriesFlatRateForAll": "Flat rate for all target countries"
+        },
+        "validationErrors": {
+          "missingRateOption": "To continue, you must select a rating option and indicate your rates and delivery time accordingly"
         }
       },
       "importOption": {
         "validationErrors": {
-          "needAtLeastOneCarrier": "You need to enable at least one carrier to continue"
+          "needAtLeastOneCarrier": "You need to enable at least one carrier to continue",
+          "needAtLeastOneCarrierForEachCountry": "To continue, you need to activate and complete at least one carrier for each selected target country"
         },
         "summary": "Configured carriers from backoffice"
       },
