@@ -26,7 +26,7 @@
           </span>
           <span
             v-if="validateCarrier(carriers[0]) === false"
-            class="text-danger spans-gs_fz-14 d-inline-block"
+            class="text-danger spans-gs_fz-14 d-inline-block ml-2"
           >
             {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.error') }}
           </span>
@@ -81,7 +81,7 @@
           <span>{{ $options.filters.changeCountriesCodesToNames(carrier.countries)[0] }}</span>
           <span
             v-if="validateCarrier(carrier) === false"
-            class="text-danger spans-gs_fz-14 d-inline-block"
+            class="text-danger spans-gs_fz-14 d-inline-block ml-2"
           >
             {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.error') }}
           </span>
