@@ -549,25 +549,25 @@
     "inputAllSyncedProducts": "No se han seleccionado filtros",
     "formHelperTitle": "Activación de la campaña",
     "formHelperDescription": "Tu campaña se ejecutará hasta que la interrumpas o hasta que se cumpla la fecha de finalización. Puedes pausar tu campaña en cualquier momento.",
-    "errorNoProducts": "You want to launch a campaign, but your Google merchant center does not contain any products yet. Your campaign will start only when at least one product has been approved by Google.",
-    "errorApi": "We were not able to publish your campaign, please try again.",
+    "errorNoProducts": "Quieres lanzar una campaña pero Google Merchant Center no contiene aún ningún producto. Tu campaña se iniciará cuando Google haya aprobado, por lo menos, un producto.",
+    "errorApi": "No pudimos publicar tu campaña, vuelve a intentarlo",
     "errorFetchingFilters": "No hemos podido recuperar todos los filtros de Google. Por ahora no puedes modificarlos.",
     "recapTitle": "Resumen de la campaña",
     "recapNoFiltersDescription": "Todos los productos sincronizados aprobados por Google",
     "recapFooter": "Comprueba la información de tu campaña antes de validarla. Siempre puedes modificar algunos parámetros mientras la campaña está en curso.",
     "toggleCreationRemarketingTag": "Activar las etiquetas de remarketing en mi sitio",
-    "toggleCreationNewRemarketingTag": "Crea una nueva etiqueta de remarketing y seguimiento de conversiones para añadirla a tu tienda",
-    "enableCreationRemarketingTag": "Habilitar la etiqueta de remarketing y seguimiento de la conversión",
-    "pauseCampaign": "Tu campaña se ejecutará hasta que la interrumpas o hasta que se cumpla la fecha de finalización. Puedes pausar tu campaña en cualquier momento.",
+    "toggleCreationNewRemarketingTag": "Crea una nueva etiqueta de remarketing y seguimiento de conversiones en tu tienda",
+    "enableCreationRemarketingTag": "Habilitar la etiqueta de remarketing y seguimiento de conversiones",
+    "pauseCampaign": "Tu campaña se ejecutará hasta que la interrumpas o hasta que se cumpla la fecha de finalización. Puedes pausarla en cualquier momento.",
     "switch": {
       "on": "Activado",
       "off": "Desactivado"
     },
     "alerts": {
       "noTag": "Al no añadir la etiqueta automáticamente, Google no podrá enviar los resultados de las campañas",
-      "duplicatedTag": "Parece que ya tienes una etiqueta vinculada a tu cuenta de google, crear una nueva etiqueta puede duplicar los eventos de tus campañas. Le sugerimos que sólo se quede con la que nosotros generamos para usted.",
-      "noConversionActions": "La etiqueta de seguimiento se ha activado, pero no hay ninguna acción de conversión establecida en la tienda. Esto se puede arreglar creando otras nuevas.",
-      "hasUnhandledFilters": "Al menos un filtro de esta campaña no es compatible con este módulo. Para evitar cualquier pérdida en su configuración existente, sólo se pueden modificar los detalles básicos de la campaña.",
+      "duplicatedTag": "Parece que ya tienes una etiqueta vinculada a tu cuenta de Google, crear una nueva etiqueta puede duplicar los eventos de tus campañas. Te sugerimos que solo conserves la que te generamos.",
+      "noConversionActions": "La etiqueta de seguimiento se ha activado, pero no hay ninguna acción de conversión configurada en la tienda. Se puede arreglar creando otras nuevas.",
+      "hasUnhandledFilters": "Al menos un filtro de esta campaña no es compatible con este módulo. Para evitar cualquier pérdida en tu configuración actual, solo se pueden modificar los detalles básicos de la campaña.",
       "PMaxExplanationTitle": "Máximo rendimiento es un tipo de campaña basada en objetivos.",
       "PMaxExplanation": "Máximo rendimiento es un tipo de campaña mejorada con la tecnología inteligente de Google. Puede ayudarte a optimizar tus anuncios en varios canales de Google y obtener mejores resultados para tu negocio.",
       "PMaxExplanationPrecision": "Y lo que es mejor, no pagarás salvo que los clientes hagan clic.",
@@ -576,23 +576,23 @@
     "labelSelectedDimension": "Valor de la dimensión seleccionada",
     "nbDimensionSelected": "Ninguna dimensión seleccionada | {0} dimensión seleccionada | {0} dimensiones seleccionadas",
     "nbValuesSelected": "Ningún valor seleccionado | {0} valor seleccionado | {0} valores seleccionados",
-    "selectProductsTitle": "Elija un filtro de productos",
-    "selectProductsSubtitle": "La campaña sólo puede tener una dimensión con uno o varios valores.",
-    "remarketingNote": "**Tenga en cuenta que si ya tiene configuradas en su sitio acciones de conversión de Google Ads con valores de conversión específicos de la transacción para esta cuenta de Google Ads, no es necesario que configure nuevas etiquetas de conversión en su sitio.",
-    "toggleNewConversionTag": "Establecer nuevas etiquetas de seguimiento de la conversión en mi sitio",
-    "toggleNewConversionTag2": "Crearemos las siguientes etiquetas de conversión : Vista de página, Compra, Añadir a la cesta",
-    "remarketingTagLoading": "Comprobando si tiene etiquetas de remarketing y seguimiento de conversiones para añadir a tu tienda",
+    "selectProductsTitle": "Elegir un filtro de producto",
+    "selectProductsSubtitle": "La campaña solo puede tener una dimensión con uno o varios valores.",
+    "remarketingNote": "*Nota:** si ya tienes configuradas acciones de conversión de Google Ads con valores de conversión específicos en tu sitio web para esta cuenta de Google Ads, no es necesario que configures nuevas etiquetas de conversión en tu sitio.",
+    "toggleNewConversionTag": "Configurar nuevas etiquetas de seguimiento de la conversión en mi sitio",
+    "toggleNewConversionTag2": "Crearemos las siguientes etiquetas de conversión: Página vista, Compra, Añadir a la cesta",
+    "remarketingTagLoading": "Comprobar si tiene etiquetas de remarketing y seguimiento de conversiones para añadir a tu tienda",
     "descriptiveMessage": "Sólo se muestran las campañas Máximo rendimiento y las campañas Shopping inteligentes asociadas a tu cuenta de Google Merchant Center. \nSi deseas ver todas tus campañas, [accede a tu cuenta de Google Ads]({0})[:target=\"\"\"\"_blank\"\"\"\"].",
     "nbProductsFiltersSelected": "Ningún filtro de producto seleccionado | {0} filtro de producto seleccionado | {0} filtros de producto seleccionados",
     "dimensionXFilterSelected": "{0} filtro",
     "categories": "Categoría",
-    "categoriesSubTitle": "Categoría de producto definida por Google para su producto (por ejemplo: Ropa",
+    "categoriesSubTitle": "Categoría de producto definida por Google para tu producto (por ejemplo: Ropa y Accesorios > Ropa > Abrigos y Chaquetas)",
     "brands": "Marca",
     "brandsSubTitle": "Marca del producto",
-    "products": "Identificación del producto",
-    "productsSubTitle": "El identificador único de su producto",
+    "products": "ID del Producto",
+    "productsSubTitle": "El identificador único de tu producto",
     "conditions": "Estado del producto",
-    "conditionsSubTitle": "El estado de su producto en el momento de la venta (por ejemplo: nuevo, usado o reacondicionado)",
+    "conditionsSubTitle": "El estado de tu producto en el momento de la venta (por ejemplo: nuevo, usado o renovado)",
     "popinTitle": "Filtros de productos de la campaña",
     "popinTitleConfirmCancel": "Volver",
     "xProducts": " ({0} producto) | ({0} producto) | ({0} productos)",
@@ -600,7 +600,7 @@
       "unspecified": "Sin especificar",
       "unknown": "Desconocido",
       "new": "Nuevo",
-      "refurbished": "Reacondicionado",
+      "refurbished": "Renovado",
       "used": "Usado"
     },
     "dimensionXFilterSelectedWithXProducts": "{0} filtro | {0} filtro ({1} producto) | {0} filtro ({1} productos)",
@@ -616,8 +616,8 @@
   "productFeedPage": {
     "breadcrumb": "Detalles del estado del producto",
     "alert": {
-      "googleIsReviewing": "Your products are being reviewed  \n It might take 3-5 days to review your products. Once approved, they will be available for free listings and ads.",
-      "alertSuccess": "Ha sido aprobado. Una vez que sus productos son aprobados, pueden aparecer en los resultados de búsqueda de la pestaña Google Shopping."
+      "googleIsReviewing": "Se están revisando tus productos \n La revisión de tus productos puede tardar entre 3 y 5 días. Una vez aprobados, estarán disponibles para fichas de producto y anuncios.",
+      "alertSuccess": "Te has inscrito. Una vez que tus productos sean aprobados, pueden aparecer en los resultados de búsqueda de la pestaña Google Shopping."
     },
     "destinations": {
       "shoppingAds": "Anuncios de Shopping",
@@ -625,19 +625,19 @@
     },
     "syncStatus": {
       "title": "Estado de las sincronizaciones",
-      "readyForExport": "La alimentación del producto está lista para la exportación",
+      "readyForExport": "El feed del producto está listo para exportarse",
       "syncProcessed": "Sincronización en curso / completada",
       "syncFailed": "Sincronización fallida",
       "nextSync": "Siguiente sincronización: {0}",
       "lastSync": "Última sincronización: {0}",
       "prescanTitle": "Próxima sincronización",
       "scheduleOn": "Sincronización programada en {0}",
-      "alert": "La sincronización del producto no se ha realizado correctamente. Compruebe los posibles motivos en [Merchant Center]({0})[:target=\"_blank\"] o póngase en contacto con [atención al cliente](mailto:support-google@prestashop.com)."
+      "alert": "La sincronización del producto no se ha realizado correctamente. Comprueba los posibles motivos en [Merchant Center]({0})[:target=\"_blank\"] o contacta con [atención al cliente](mailto:support-google@prestashop.com)."
     },
     "syncSummary": {
       "syncHistory": {
         "title": {
-          "planned": "Sincronización prevista",
+          "planned": "Sincronización planificada",
           "started": "Sincronización iniciada",
           "failed": "Sincronización fallida",
           "completed": "Sincronización completada",
@@ -653,7 +653,7 @@
     },
     "productStatus": {
       "title": "Estado del producto",
-      "description": "El estado de tu producto te permite saber si tu producto es elegible para aparecer en el destino al que has optado.  \nUn producto pendiente no se mostrará en los anuncios ni en los listados gratuitos porque está siendo revisado por Google.  \nLos productos que caducan lo harán en los próximos 3 días y ya no podrán aparecer en los anuncios ni en los listados gratuitos.",
+      "description": "El estado de tu producto te permite saber si tu producto es elegible para aparecer en el destino al que has optado.  \nUn producto pendiente no se mostrará en los anuncios ni en las fichas de producto porque Google lo está siendo revisado.  \nLos productos que caducan lo harán en los próximos 3 días y ya no podrán aparecer en los anuncios ni en las fichas de producto.",
       "alert": "La revisión de los productos tarda entre 3 y 5 días laborables",
       "approvedProducts": "Aprobado",
       "approvedProductsDescription": "Los productos activos están totalmente aprobados y pueden aparecer en los resultados.",
@@ -662,13 +662,13 @@
       "expiringProducts": "Caducando",
       "expiringProductsDescription": "Los productos que caduquen se eliminarán de Google Merchant Center en los próximos 3 días y ya no podrán aparecer ni en los anuncios ni en las fichas gratuitas.",
       "disapprovedProducts": "No aprobado",
-      "disapprovedProductsDescription": "Su producto está desaprobado para un destino y no está activo.",
+      "disapprovedProductsDescription": "Tu producto no se ha aprobado para un destino y no está activo.",
       "productsSubmittedToGoogle": "Productos activos enviados a Google: {0}",
       "approvalStatusList": "Aprobado, Pendiente, No aprobado"
     },
     "overview": {
       "title": "Productos activos enviados a Google",
-      "description": "El estado de su producto le permite saber si su producto es elegible para aparecer en el destino al que ha optado.",
+      "description": "El estado de tu producto te permite saber si tu producto es elegible para aparecer en el destino al que has optado.",
       "alert": {
         "prescanTitle": "Advertencia {0} producto no se pudo exportar a Google | Advertencia {0} productos no se pudieron exportar a Google",
         "prescanDescription": "Algunos productos no han pasado nuestra verificación, asegúrate de que tus productos contienen la información requerida para aparecer en Google Shopping."
@@ -706,7 +706,7 @@
       "tableHeaderCountry": "País",
       "tableHeaderIssue": "Razón",
       "xResults": "{0} resultados",
-      "perPageLabel": "Muestra:",
+      "perPageLabel": "Mostrar:",
       "goToLabel": "Ir a la página:",
       "editX": "Editar {0}"
     },
@@ -719,7 +719,7 @@
   },
   "syncTimeline": {
     "title1": "Extracción de productos",
-    "subtitle1": "Ahora o más tarde, depende de su configuración de sincronización",
+    "subtitle1": "Ahora o más tarde, depende de tu configuración de sincronización",
     "title2": "Verificación de productos",
     "subtitle2": "Filtrado de productos con falta de información",
     "title3": "Exportar a Google",
@@ -727,11 +727,11 @@
     "title4": "Revisión de Google",
     "subtitle4": "Verificación de la conformidad",
     "title5": "Nueva sincronización",
-    "subtitle5": "Si actualiza sus productos"
+    "subtitle5": "Si actualizas tus productos"
   },
   "campaignCard": {
     "title": "Crea tu campaña Máximo rendimiento en unos pocos clics",
-    "description": "Google A.I. will display ads of the searched products to interested shoppers at the right time increasing your sales.\n\nSet a daily budget and easily launch your ads campaign - you only get billed when the ads are clicked, it\\'s that easy!",
+    "description": "La I.A. de Google mostrará anuncios de los productos buscados a los compradores interesados en el momento oportuno, aumentando tus ventas.\n\nEstablece un presupuesto diario y lanza fácilmente tu campaña, solo se te facturará cuando se haga clic en los anuncios, ¡así de fácil!",
     "footer": "Tendremos que activar las etiquetas de remarketing y de seguimiento de conversiones para que puedas realizar campañas Máximo rendimiento"
   },
   "keymetrics": {
@@ -748,16 +748,16 @@
     "impressions": "Impresiones",
     "impressionsTooltip": "Recuento de las veces que tu anuncio ha aparecido en una página de resultados de búsqueda o en un sitio web de la red de Google.",
     "clicks": "Clics",
-    "clicksTooltip": "Cuando alguien hace clic en su anuncio, por ejemplo en el titular azul o en el número de teléfono de un anuncio de texto, Google Ads lo cuenta como un clic.",
+    "clicksTooltip": "Cuando alguien hace clic en tu anuncio, por ejemplo en el titular azul o en el número de teléfono de un anuncio de texto, Google Ads lo cuenta como un clic.",
     "conversions": "Conversión",
-    "conversionsTooltip": "El número de conversiones. Esto sólo incluye las acciones de conversión en las que el atributo include_in_conversions_metric está establecido en true. Si utiliza la puja basada en la conversión, sus estrategias de puja se optimizarán para estas conversiones.",
+    "conversionsTooltip": "El número de conversiones. Solo incluye las acciones de conversión en las que el atributo include_in_conversions_metric está configurado en verdadero. Si utilizas la puja basada en la conversión, tus estrategias de puja se optimizarán para estas conversiones.",
     "averageCostPerClick": "Coste medio / clic",
     "averageCostPerClickTooltip": "El coste total de todos los clics dividido por el número total de clics recibidos.",
     "costs": "Costes",
     "costsTooltip": "La suma de tus costes por clic (CPC) y coste por mil impresiones (CPM) durante este periodo.",
     "sales": "Ventas",
     "noData": "Todavía no hay datos",
-    "salesTooltip": "El valor de las conversiones. Esto sólo incluye las acciones de conversión cuyo atributo include_in_conversions_metric está establecido en true. Si utiliza la puja basada en la conversión, sus estrategias de puja se optimizarán para estas conversiones."
+    "salesTooltip": "El valor de las conversiones. Solo incluye las acciones de conversión cuyo atributo include_in_conversions_metric está configurado en verdadero. Si utilizas la puja basada en la conversión, tus estrategias de puja se optimizarán para estas conversiones."
   },
   "campaigns": {
     "status": {
@@ -782,7 +782,7 @@
       "sales": "Ventas",
       "id": "ID",
       "products": "Filtros de producto",
-      "click": "Haz clic en",
+      "click": "Hagan clic en",
       "costs": "Costes",
       "averageCostPerClick": "CPC medio",
       "conversions": "Conversiones",
@@ -795,7 +795,7 @@
       "dailyBudget": "Presupuesto diario"
     },
     "tooltipCol": {
-      "status": "Un estado para su campaña publicitaria que describe si sus anuncios pueden ejecutarse o no en este momento.",
+      "status": "Un estado para tu campaña publicitaria que describe si tus anuncios pueden ejecutarse en este momento.",
       "products": "El filtro de producto es lo que ha seleccionado como filtro de la campaña con el número de productos afectados."
     },
     "campaignsPerformanceTable": {
@@ -805,12 +805,12 @@
     },
     "productsPerformanceTable": {
       "title": "Rendimiento de los productos en las campañas activas",
-      "subTitle": "Compruebe qué producto es el más eficaz",
-      "emptyListText": "No tienes ninguna campaña habilitada"
+      "subTitle": "Comprueba qué producto funciona mejor",
+      "emptyListText": "No tienes ningún producto en campañas activas"
     },
     "filtersPerformanceTable": {
       "title": "Rendimiento global de los filtros (top 10)",
-      "subTitle": "Compruebe qué dimensión es la que mejor funciona",
+      "subTitle": "Comprueba qué dimensión funciona mejor",
       "emptyListText": "No tienes ninguna campaña activa con filtros"
     }
   },
@@ -830,20 +830,20 @@
     "text": "Has completado todos los pasos necesarios para sacar el máximo provecho de **Marketing with Google**",
     "cta": "Ir a creación de campaña",
     "firstStep": "Conecta tu tienda con la cuenta PrestaShop",
-    "secondStep": "Inicia sesión o crear tu cuenta Google",
+    "secondStep": "Inicia sesión o crea tu cuenta Google",
     "thirdStep": "Inicia sesión o crea tu cuenta Google Merchant Center",
     "fourthStep": "Exporta y sincroniza tu catálogo de productos",
     "fifthStep": "Inicia sesión o crea tu cuenta Google Ads",
-    "sixthStep": "**Próximo paso** crear tu primera campaña Máximo rendimiento"
+    "sixthStep": "**Próximo paso** crea tu primera campaña Máximo rendimiento"
   },
   "help": {
     "intro": "PrestaShop Marketing with Google facilita la conexión de tu tienda PrestaShop con Google, para que puedas mostrar tus productos a millones de compradores en varios canales de Google. Crea campañas Máximo rendimiento sin salir de tu panel de control de PrestaShop y consigue más tráfico.",
     "allowsYouTo": {
       "title": "Este módulo te permite:",
       "easySync": "Sincroniza fácilmente tu catálogo de productos con Google para mantener actualizados automáticamente los detalles del producto, como el precio y la disponibilidad",
-      "freeListing": "Habilite listados gratuitos y amplíe su alcance mostrando sus productos a los compradores que navegan en la pestaña de Compras, de forma gratuita",
+      "freeListing": "Habilita las fichas de productos y amplía tu alcance mostrando tus productos a los compradores que buscan en la pestaña de Shopping, de forma gratuita",
       "campaigns": "Comienza con las campañas Máximo rendimiento, establece un presupuesto diario y deja que el aprendizaje automático de Google optimice tus campañas",
-      "reporting": "Analice el rendimiento de su campaña sin salir de PrestaShop"
+      "reporting": "Analiza el rendimiento de tu campaña sin salir de PrestaShop"
     },
     "help": {
       "needHelp": "¿Necesitas ayuda? Encuentra aquí la documentación de este módulo.",
@@ -853,11 +853,11 @@
     }
   },
   "faq": {
-    "title": "PREGUNTAS FRECUENTES",
+    "title": "FAQ",
     "noFaq": "No hay preguntas frecuentes disponibles."
   },
   "glass": {
-    "message": "Can't see Google secured browser?  \n  Hit Continue to relaunch the window and finish configuration.  \n  You may need to activate popups in your browser to continue."
+    "message": "¿No puedes ver el navegador seguro de Google?  \nPulsa Continuar para volver a abrir la ventana y terminar la configuración.\n\nEs posible que tengas que activar las ventanas emergentes en tu navegador para continuar."
   },
   "cta": {
     "startConfiguring": "Empezar a configurar",
@@ -875,7 +875,7 @@
     "activateModule": "Activar módulo",
     "enabled": "Activado",
     "agree": "Estoy de acuerdo",
-    "enableFreeListing": "Activar los listados gratuitos",
+    "enableFreeListing": "Activar las fichas de producto gratuitas",
     "connectAccount": "Conecta tu cuenta",
     "connectingAccount": "Conectando la cuenta...",
     "chooseExistingAccount": "Elige una cuenta existente",
