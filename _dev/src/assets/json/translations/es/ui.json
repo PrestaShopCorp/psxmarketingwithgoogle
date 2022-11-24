@@ -82,7 +82,7 @@
   "googleAccountCard": {
     "title": "Cuenta de Google",
     "introDisabled": "Conecta tu cuenta de Google y vincúlala con Google Merchant Center para desbloquear las fichas de producto gratuitas.",
-    "introEnabled": "Acceso a través del módulo PrestaShop asociado con tu cuenta de correo electrónico Google Merchant Center y cuentas de Google Ads.",
+    "introEnabled": "Accede mediante el módulo PrestaShop asociado con tu cuenta de correo electrónico Google Merchant Center y cuentas de Google Ads.",
     "footerDissociating": "PrestaShop utiliza esta cuenta para gestionar y sincronizar las cuentas Merchant Center y Google Ads.",
     "alertCantConnect": "No puedes conectarte a tu cuenta de Google en este momento. Vuelve a intentarlo más tarde.",
     "alertTokenMissing": "No hemos podido autenticar tu cuenta. Inténtalo de nuevo o cambia de cuenta.",
@@ -106,7 +106,7 @@
     "AccountValidationFailed": "Ha fallado la validación de la cuenta.",
     "unlinkFailed": "Desconexión fallida. Por favor, actualiza la página e inténtalo de nuevo.",
     "tryAgainLater": "No podemos verificar o reclamar el sitio actual. **Recomendamos que te asegures de que el sitio es accesible** y lo intentes de nuevo más tarde.",
-    "alertSuspended": "Se ha suspendido tu cuenta.",
+    "alertSuspended": "Se ha desactivado tu cuenta.",
     "alertSuspendedDescription": "Para ver más detalles sobre los motivos de la suspensión, visita tu [cuenta Merchant Center]({0})[:target=\"_blank\"]. Una vez resuelto, deberás solicitar una nueva revisión rellenando [este formulario]({1})[:target=\"_blank\"].",
     "notManaged": "No está asociada a PrestaShop",
     "overwriteFailed": "No se ha podido reclamar la URL del sitio web",
@@ -138,7 +138,7 @@
     "phoneNumber": "Introduce tu número de teléfono",
     "textMethod": "Mensaje de texto",
     "callMethod": "Llamada telefónica",
-    "selectMethod": "Selecciona el método de contacto para verificar tu identidad",
+    "selectMethod": "Selecciona el método de contacto que prefieras para verificar tu identidad",
     "alertTooManyRequests": "Has solicitado este servicio demasiadas veces con este número de teléfono. Tienes que esperar 24 horas para volver a intentarlo o cambiar tu número de teléfono.",
     "alertSomethingHappened": "Ha ocurrido algo. Inténtalo de nuevo.",
     "alertCodeExpired": "El código ha caducado. Pide otro",
@@ -206,7 +206,7 @@
   "productFeedCard": {
     "title": "Feed de productos",
     "intro": "Vincula los productos de tu catálogo para mostrarlos en las fichas gratuitas. Los precios y su disponibilidad se actualizan automáticamente todos los días, con lo que tus clientes accederán a los productos más recientes y con el precio justo que ofertas.",
-    "introToConfigure": "Es importante que envíes tu feed de productos en el formato correcto, ya que Google lo utiliza para asegurarse de que tus productos coinciden con las consultas correctas.",
+    "introToConfigure": "Es importante que envíes tu feed de productos en el formato correcto, ya que Google lo utiliza para asegurarse de que tus productos coinciden con las búsquedas correctas.",
     "nextSync": "Próxima sincronización en {0}",
     "mappedCategories": "{0}/{1} categorías mapeadas",
     "alertFeedSettingSubmissionSuccess": "Has enviado correctamente los datos de tus productos a Merchant Center. Una vez aprobados, estarán disponibles para fichas gratuitas y anuncios.",
@@ -236,16 +236,16 @@
       "summary": "Resumen",
       "exportFeed": "Exportar feed",
       "shippingSettingsErrors": "Este país no es compatible con tu moneda",
-      "syncSchedule": "Programa de sincronización"
+      "syncSchedule": "Sincronizar hora"
     },
-    "noticeDataStored": "Los ajustes se guardan en cada paso, se presentarán sólo en el paso final.",
+    "noticeDataStored": "Los ajustes se guardan en cada paso, se enviarán en el paso final.",
     "submissionExplanation": "Ten en cuenta que los datos se almacenarán en cada paso pero no se enviarán hasta la etapa final",
     "shippingSetup": {
       "title": "Configuración del envío",
       "mandatoryStep": "Para que tus productos se muestren por Google Merchant Centre, la configuración del envío es un paso obligatorio.",
       "stepExplanation": "Esto ayuda a que los clientes que buscan tus productos en Google vean tus tarifas y plazo de entrega.",
       "estimateOption": {
-        "title": "Puedo estimar tarifas y tiempos de envío",
+        "title": "Puedo calcular tarifas y tiempos de envío",
         "description": "Puedes definir fácilmente una tarifa fija de envío y plazos de entrega. No se te pedirá que importes o actualices la información de envío desde el back office de PrestaShop.",
         "summary": "Previsión"
       },
@@ -305,7 +305,7 @@
       "productAvailaibleIn": "Puedes seleccionar los países donde se mostrarán los productos. El menú desplegable se corresponde con los países y monedas que has configurado en PrestaShop.",
       "targetCountries": "País de destino",
       "filterTitle": "Filtrar por país",
-      "ifMultipleCountries": "Si se dirige a varios países, el precio de cada producto se convertirá automáticamente a la moneda correcta en Google. Sin embargo, su tienda debe haber configurado las tasas de envío y de impuestos para cada país seleccionado. Respeta las [políticas de compra específicas de cada país]({0})[:target=\"_blank\"] y la [normativa local]({1})[:target=\"_blank\"].",
+      "ifMultipleCountries": "Si te diriges a varios países, el precio de cada producto se convertirá automáticamente a su divisa en Google. No obstante, deben haberse configurado en tu tienda los gastos de envío e impuestos para cada país seleccionado. Respeta las [políticas de compra específicas de cada país]({0})[:target=\"_blank\"] y la [normativa local]({1})[:target=\"_blank\"]",
       "placeholderSelect": "Selecciona los países en los que están disponibles tus productos",
       "shippingSettingsErrors": "Este país no es compatible con tu moneda",
       "shippingSettings": "Configuración del envío",
@@ -319,10 +319,10 @@
       "taxSettings": "Configuración de los impuestos",
       "taxSettingsDescription": "Para que los usuarios entiendan el precio exacto que tendrán que pagar por un producto, debes presentar los impuestos que cobras. Selecciona cómo quieres configurar los impuestos.",
       "autoImportTax": "Importar automáticamente la configuración de los impuestos",
-      "manualImportTax": "Configurar manualmente los parámetros de impuestos en Google Merchant Center",
+      "manualImportTax": "Configurar manualmente la configuración de impuestos en Google Merchant Center",
       "appliedOnlyForUsa": "(se aplica solo a los Estados Unidos)",
       "alertTaxes": "Debes enviar los impuestos que cobras para que los usuarios entiendan el precio exacto que tendrán que pagar por tus productos.",
-      "carrierDescriptionHeader": "Portador  \n descripción",
+      "carrierDescriptionHeader": "Transportista \n descripción",
       "enableHeader": "Activar / desactivar",
       "shipToCustomerHeader": "Entrega a domicilio  \n",
       "transitTimeHeader": "Plazo de entrega",
@@ -389,7 +389,7 @@
       "variantSetsSubtitle": "es decir, diferentes estampados gráficos, patrones, tejidos o materiales",
       "commonsTitle": "Ninguna de las anteriores",
       "learnRequirementsProductSpecification": "Más información sobre los requisitos y los valores admitidos para la especificación de datos de producto de Shopping",
-      "footerNotice": "Describe los datos de tu producto mediante atributos. Además del mínimo requerido para las fichas de producto, puedes añadir atributos adicionales necesarios para las fichas mejoradas. La regla general es: cuantos más atributos, mejor.",
+      "footerNotice": "Describe los datos de tu producto mediante atributos. Además del mínimo requerido para las fichas de producto, puedes añadir otros atributos necesarios para las fichas mejoradas. La regla general es: cuantos más atributos, mejor.",
       "addNewAttributes": "Añadir nuevos atributos en tu catálogo PrestaShop",
       "refreshAttributes": "Actualiza si has editado tus atributos",
       "requiredForSomeCategories": "Este campo es obligatorio para algunas categorías de productos. [Ver más]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
@@ -423,7 +423,7 @@
     },
     "syncSchedule": {
       "title": "Horario de sincronización",
-      "subTitle": "Elija la hora a la que desea que comience la primera sincronización, la exportación podría ralentizar su tráfico",
+      "subTitle": "Elija la hora a la que deseas que comience la primera sincronización, la exportación podría ralentizar su tráfico",
       "radioLabel1": "Ahora, después de terminar mi configuración (La exportación podría ralentizar tu tienda)",
       "radioLabel2": "Más tarde, aproximadamente a las 2:00 AM (GMT 1) (Cuando tu tienda tenga pocas visitas)"
     },
@@ -447,13 +447,13 @@
       "agreementCheckboxLabel1Instant": "La sincronización de mi feed de productos se ejecutará después de que haga clic en guardar y exportar (puede tardar entre 1 y 4 horas)",
       "agreementCheckboxLabel1Default": "La sincronización de mi feed de productos se producirá a {time} (Puede tardar entre 1 y 4 horas)",
       "agreementCheckboxLabel2": "Las revisiones de productos de Google pueden tardar entre 3 y 5 días laborables",
-      "disabledButtonTooltip": "Compruebe nuestras condiciones antes de continuar",
+      "disabledButtonTooltip": "Comprueba nuestras condiciones antes de continuar",
       "syncScheduledNow": "Hoy, justo después de guardar y exportar"
     }
   },
   "freeListingCard": {
     "title": "Muestra tus productos con fichas gratuitas",
-    "intro": "Muestra tu producto de forma gratuita en el listado de clasificiación orgánica de la pestaña de Shopping.",
+    "intro": "Muestra tu producto de forma gratuita en el listado de clasificación orgánica de la pestaña Shopping.",
     "learnFreeListing": "Más información sobre las fichas de producto gratuitas",
     "seeFreeListing": "Ver mis fichas de producto gratuitas en Merchant Center",
     "googleDelay": "La revisión de los productos tarda entre 3 y 5 días laborables",
@@ -511,7 +511,7 @@
     "introConnected": "Con las campañas Máximo rendimiento, puedes anunciar tus productos y maximizar el rendimiento de tus anuncios en varios canales de Google mediante una sola campaña. Y lo que es mejor, ¡no pagas salvo que tus clientes hagan clic!",
     "footer": "En el Espacio Económico Europeo, Reino Unido o Suiza, las campañas Máximo rendimiento pueden utilizarse con cualquier servicio de comparación de precios (CSS) con el que trabajes. Los anuncios aparecerán en las páginas de resultados de búsqueda generales y en cualquier otra propiedad en la que el CSS se haya inscrito.",
     "titleInfo": "¿Lo sabías?",
-    "contentInfo": "Los anunciantes que actualizan sus campañas de Shopping inteligentes a Máximo rendimiento notan un incremento medio del 12% en el valor de la conversión, con el mismo o mejor retorno de la inversión publicitaria (ROAS)*",
+    "contentInfo": "Los anunciantes que actualizan sus campañas de Shopping inteligentes a Máximo rendimiento notan un incremento medio del 12% en el valor de conversión, con el mismo o mejor retorno de la inversión publicitaria (ROAS)*",
     "footerInfo": "* Datos de Google, Global, Anuncios, Sep-Oct 2021."
   },
   "smartShoppingCampaignCreation": {
@@ -536,7 +536,7 @@
     "inputCountryHelper": "Para dirigirte a varios países debes crear varias campañas.",
     "inputCountryImutable": "No se puede cambiar el país después de la creación, si quieres dirigirte a un país diferente, tendrás que crear una nueva campaña",
     "inputCountryLabel": "País objetivo",
-    "inputCountryTooltip": "Los anuncios de su campaña son elegibles para mostrarse a los clientes en sus ubicaciones geográficas objetivo, o a los clientes que han seleccionado su idioma objetivo como la configuración de idioma de su navegador.",
+    "inputCountryTooltip": "Los anuncios de tu campaña son elegibles para mostrarse a los clientes en tus ubicaciones geográficas objetivo, o a los clientes que han seleccionado tu idioma objetivo al configurar ese idioma en su navegador.",
     "inputFiltersLegend": "Filtros de productos",
     "inputFiltersAllLabel": "Incluir todos los productos sincronizados",
     "inputFiltersPartialLabel": "Seleccionar los productos utilizando los filtros de partición de productos",
@@ -548,7 +548,7 @@
     "inputBudgetPlaceholder": "Cantidad",
     "inputAllSyncedProducts": "No se han seleccionado filtros",
     "formHelperTitle": "Activación de la campaña",
-    "formHelperDescription": "Tu campaña se ejecutará hasta que la interrumpas o hasta que se cumpla la fecha de finalización. Puedes pausar tu campaña en cualquier momento.",
+    "formHelperDescription": "Tu campaña se ejecutará hasta que la interrumpas o hasta que se cumpla la fecha de finalización. Puedes pausarla en cualquier momento.",
     "errorNoProducts": "Quieres lanzar una campaña pero Google Merchant Center no contiene aún ningún producto. Tu campaña se iniciará cuando Google haya aprobado, por lo menos, un producto.",
     "errorApi": "No pudimos publicar tu campaña, vuelve a intentarlo",
     "errorFetchingFilters": "No hemos podido recuperar todos los filtros de Google. Por ahora no puedes modificarlos.",
@@ -617,7 +617,7 @@
     "breadcrumb": "Detalles del estado del producto",
     "alert": {
       "googleIsReviewing": "Se están revisando tus productos \n La revisión de tus productos puede tardar entre 3 y 5 días. Una vez aprobados, estarán disponibles para fichas de producto y anuncios.",
-      "alertSuccess": "Te has inscrito. Una vez que tus productos sean aprobados, pueden aparecer en los resultados de búsqueda de la pestaña Google Shopping."
+      "alertSuccess": "Te has inscrito. Una vez que tus productos sean aprobados, podrán aparecer en los resultados de búsqueda de la pestaña Google Shopping."
     },
     "destinations": {
       "shoppingAds": "Anuncios de Shopping",
@@ -653,7 +653,7 @@
     },
     "productStatus": {
       "title": "Estado del producto",
-      "description": "El estado de tu producto te permite saber si tu producto es elegible para aparecer en el destino al que has optado.  \nUn producto pendiente no se mostrará en los anuncios ni en las fichas de producto porque Google lo está siendo revisado.  \nLos productos que caducan lo harán en los próximos 3 días y ya no podrán aparecer en los anuncios ni en las fichas de producto.",
+      "description": "El estado de tu producto te permite saber si tu producto es elegible para aparecer en el destino al que has optado.  \nUn producto pendiente no se mostrará en los anuncios ni en las fichas de producto porque Google lo está revisadon.  \nLos productos que caducan lo harán en los próximos 3 días y ya no podrán aparecer en los anuncios ni en las fichas de producto.",
       "alert": "La revisión de los productos tarda entre 3 y 5 días laborables",
       "approvedProducts": "Aprobado",
       "approvedProductsDescription": "Los productos activos están totalmente aprobados y pueden aparecer en los resultados.",
