@@ -81,12 +81,12 @@
   },
   "googleAccountCard": {
     "title": "Google account",
-    "introDisabled": "Connetti il tuo account Google e associalo a Google Merchant Center per sbloccare le inserzioni gratuite.",
+    "introDisabled": "Connetti il tuo account Google e associalo a Google Merchant Center per sbloccare le schede di prodotto gratuite.",
     "introEnabled": "Accedi attraverso il modulo PrestaShop associato al tuo account e-mail Google Merchant Center e agli account Google Ads.",
     "footerDissociating": "PrestaShop utilizza questo account per gestire e sincronizzare gli account Merchant Center e Google Ads.",
     "alertCantConnect": "In questo momento non puoi connetterti al tuo account Google. Riprova più tardi.",
     "alertTokenMissing": "Non siamo stati in grado di autenticare il tuo account. Prova di nuovo o passa a un altro account.",
-    "stepIsMandatory": "*Questo step è obbligatorio",
+    "stepIsMandatory": "*Questo passaggio è obbligatorio",
     "alertInfo": "Assicurati di abilitare tutte le autorizzazioni richieste quando autentichi il tuo account Google.  \nQuesta azione è obbligatoria in modo che questo servizio funzioni correttamente.",
     "missingTokenScopes": "Mancano alcuni permessi richiesti.  \nTutti i permessi richiesti sono obbligatori per far funzionare correttamente questo servizio, per favore gestisci il tuo account e assicurati di abilitarli tutti."
   },
