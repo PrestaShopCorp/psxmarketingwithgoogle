@@ -87,18 +87,18 @@
     "alertCantConnect": "In questo momento non puoi connetterti al tuo account Google. Riprova più tardi.",
     "alertTokenMissing": "Non siamo stati in grado di autenticare il tuo account. Prova di nuovo o passa a un altro account.",
     "stepIsMandatory": "*Questo passaggio è obbligatorio",
-    "alertInfo": "Assicurati di abilitare tutte le autorizzazioni richieste quando autentichi il tuo account Google.  \nQuesta azione è obbligatoria in modo che questo servizio funzioni correttamente.",
+    "alertInfo": "Assicurati di abilitare tutte le autorizzazioni richieste durante l'autenticazione del tuo account Google.  \nQuesta azione è obbligatoria per far sì che il servizio funzioni correttamente.",
     "missingTokenScopes": "Mancano alcuni permessi richiesti.  \nTutti i permessi richiesti sono obbligatori per far funzionare correttamente questo servizio, per favore gestisci il tuo account e assicurati di abilitarli tutti."
   },
   "mcaCard": {
     "title": "Account Merchant Center",
-    "introDisabled": "Associa il tuo account Merchant Center a PrestaShop per facilitare la sincronizzazione dei dati del tuo shop e dei prodotti.",
+    "introDisabled": "Puoi collegare un account Google Merchant Center esistente o crearne uno nuovo in pochi semplici passaggi.",
     "claimCollides": "Il tuo sito web è già stato verificato.",
     "claimOverwrite": "Per terminare la creazione dell'account Merchant Center, è necessario sovrascrivere la richiesta esistente.",
-    "footerEU": "Se ti trovi nello Spazio Economico Europeo, nel Regno Unito o in Svizzera, il tuo account Merchant Center deve essere associato a un [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]  \nSe crei un nuovo account Merchant Center attraverso questa applicazione, sarà associato a Google Shopping, il CSS di Google, per default. Puoi cambiare il CSS associato al tuo account in qualsiasi momento. [Trova i tuoi partner CSS]({1})[:target=\"_blank\"]  \nUna volta che hai impostato il tuo account Merchant Center puoi usare il nostro strumento di onboarding indipendentemente dal CSS che usi.",
-    "shopInfoMissing": "Mancano le informazioni sullo shop",
+    "footerEU": "Se ti trovi nello Spazio Economico Europeo, nel Regno Unito o in Svizzera, il tuo account Merchant Center deve essere associato a un [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]  \nSe crei un nuovo account Merchant Center attraverso questa applicazione, sarà associato a Google Shopping, il CSS di Google, di default. Puoi cambiare il CSS associato al tuo account in qualsiasi momento. [Trova i tuoi partner CSS]({1})[:target=\"_blank\"]  \nUna volta che hai impostato il tuo account Merchant Center puoi usare il nostro strumento di onboarding indipendentemente dal CSS che usi.",
+    "shopInfoMissing": "Mancano alcune informazioni sullo shop",
     "shopInfoMissingDescription": "Per completare le informazioni mancanti sullo shop, vai al tuo [account Merchant Center]({0})[:target=\"_blank\"].",
-    "userIsNotAdmin": "Hai bisogno di fare l'accesso come Amministratore",
+    "userIsNotAdmin": "Devi fare l'accesso come Amministratore",
     "userIsTestAccount": "Questo è un account di prova",
     "googleMCA": "Account Google Merchant Center",
     "shopMaintenance": "Non è possibile collegare un account Google Merchant Center mentre la modalità di manutenzione è attiva.  \n Cambia i parametri del tuo negozio.",
@@ -110,8 +110,8 @@
     "alertSuspendedDescription": "Per vedere maggiori dettagli sui motivi della sospensione, visita il tuo [account Merchant Center]({0})[:target=\"_blank\"]. Una volta risolto, dovrai richiedere una nuova revisione compilando [questo modulo]({1})[:target=\"_blank\"].",
     "notManaged": "Non associato a PrestaShop",
     "overwriteFailed": "Richiesta di URL del sito web fallita",
-    "overwriteToBeDoneManually": "Il tuo sito web è già stato rivendicato su un altro account del merchant center. Poiché non siamo amministratori del tuo account, non possiamo sovrascrivere questa richiesta per te. Per favore, vai nel tuo [Google Merchant Center]({0})[:target=\"_blank\"], e cambia l'URL del sito web con questo: {1}",
-    "ineligibleForFreeListing": "Il tuo account non è idoneo per le schede di prodotto gratuite migliorate su Google",
+    "overwriteToBeDoneManually": "Il tuo sito web è già stato verificato con un altro account del merchant center. Dato che non siamo amministratori del tuo account, non possiamo sovrascrivere questa richiesta al tuo posto. Per favore, vai nel tuo [Google Merchant Center]({0})[:target=\"_blank\"], e cambia l'URL del sito web con questo: {1}",
+    "ineligibleForFreeListing": "Il tuo account non è idoneo per le schede di prodotto gratuite perfezionate su Google",
     "ineligibleForFreeListingDescription": "Esamina le mancate approvazioni a livello di prodotto così come l'intero account.",
     "claimOverwriteWithManualAction": "Per terminare la connessione del tuo account Google Merchant Center, è necessario fornire l'URL del tuo sito web ({0}) nel tuo account Google Merchant Center.",
     "noExistingAccount": "Nessun account esistente",
@@ -124,7 +124,7 @@
     "sendCode": "Invia il codice",
     "receiveCall": "Ricevi una chiamata",
     "phoneVerifiedContinue": "Il tuo numero di telefono è stato verificato, puoi continuare a creare il tuo account.",
-    "enterCode": "Inserisci il codice di verifica che abbiamo inviato per sms",
+    "enterCode": "Inserire il codice di verifica",
     "validatingCode": "Convalida il tuo codice",
     "textMessageHasBeenSent": "Abbiamo inviato un messaggio di testo contenente un codice di X cifre a",
     "askAgain60sec": "Potrai chiedere un nuovo codice fra 60 secondi",
@@ -140,7 +140,7 @@
     "callMethod": "Telefonata",
     "selectMethod": "Seleziona il metodo di contatto desiderato per verificare la tua identità",
     "alertTooManyRequests": "Hai richiesto questo servizio troppe volte con questo numero di telefono. Devi aspettare 24 ore per riprovare oppure cambia il numero di telefono.",
-    "alertSomethingHappened": "Qualcosa è andato storto. Il problema è lato nostro, per favore prova nuovamente.",
+    "alertSomethingHappened": "Qualcosa è andato storto. Il problema è lato nostro, per favore riprova.",
     "alertCodeExpired": "Il codice è scaduto. Si prega di chiederne un altro",
     "refreshAfterAddingWebsiteAddress": "Se hai aggiunto nuove informazioni a Google Merchant Center, aggiorna la pagina."
   },
@@ -152,11 +152,11 @@
     },
     "title": "Crea un nuovo account Merchant Center",
     "legend": "Per aderire alle schede di prodotto gratuite e fare pubblicità su Google devi confermare e rispettare i seguenti requisiti:",
-    "legend2": "L'URL del sito web dello shop deve essere verificato e rivendicato prima di poter caricare i dati dei prodotti.  \n[Impara come verificare e rivendicare il tuo sito web]\n(https://support.google.com/merchants/answer/176793?hl=en&ref_topic=3163841)[:target=\"_blank\"].",
+    "legend2": "L'URL del sito web dello shop deve essere verificato e rivendicato prima di poter caricare i dati dei prodotti.  \n[Impara a verificare e rivendicare il tuo sito web]\n(https://support.google.com/merchants/answer/176793?hl=en&ref_topic=3163841)[:target=\"_blank\"].",
     "footer": "Leggi la versione completa dei requisiti per lo shop Google",
     "accurateContactInformation": {
       "title": "Confermo che i miei dati sono corretti e validi",
-      "description": "I merchant devono avere almeno un metodo di contatto elencato sul loro sito web, questo può essere qualsiasi tipo di metodo di contatto.",
+      "description": "I merchant devono avere almeno un metodo di contatto di qualsiasi tipo elencato sul loro sito web.",
       "link": "Scopri come aggiungere informazioni di contatto"
     },
     "secureCheckoutProcess": {
@@ -181,7 +181,7 @@
     },
     "websiteURL": "URL del sito web",
     "websiteURLDescription": "Il sito web utilizzato per creare il tuo account Merchant Center",
-    "storeName": "Nome dello store",
+    "storeName": "Nome dello shop",
     "storeNameDescription": "Questo nome apparirà nelle tue schede di prodotto gratuite e negli annunci Shopping.",
     "businessLocation": "Sede aziendale",
     "businessAddress": "Indirizzo dell'azienda",
@@ -194,12 +194,12 @@
     "changeRegionField": "Puoi [cambiare la tua regione]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informazioni nel tuo back office",
     "changeAddressField": "Puoi [cambiare il tuo indirizzo aziendale]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informazioni nel tuo back office",
     "changeZipCodeField": "Puoi [cambia il tuo CAP]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informazioni nel tuo back office",
-    "changeCityField": "Puoi [cambia la tua città]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informazioni nel tuo back office",
-    "changePhoneNumberField": "Puoi [cambia il tuo numero di telefono aziendale]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informazioni nel tuo back office",
+    "changeCityField": "Puoi [cambiare la tua città]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informazioni nel tuo back office",
+    "changePhoneNumberField": "Puoi [cambiare il tuo numero di telefono aziendale]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informazioni nel tuo back office",
     "siteContainsAdultContent": "Il mio sito web contiene contenuti per adulti",
     "seePolicyAdultContent": "Vedi la politica sui contenuti per adulti",
     "labelReadAndAgree": "Acquistando gli annunci Shopping, ho letto e accetto di rispettare le seguenti condizioni [termini e condizioni di Google]({0})[:target=\"_blank\"], incluso [condizioni d'uso di Google Merchant Center]({1})[:target=\"_blank\"], [norme sugli annunci Shopping]({2})[:target=\"_blank\"], e [i Termini e Condizioni di Google Ads]({3})[:target=\"_blank\"].",
-    "alert": "Il tuo shop sarà esaminato, quindi se uno di questi requisiti manca, il tuo account sarà sospeso.",
+    "alert": "Il tuo shop verrà verificato, quindi se uno di questi requisiti dovesse mancare, il tuo account sarà sospeso.",
     "phoneFormat": "Il tuo numero di telefono aziendale non è in un formato valido (accetta solo numeri) per favore cambialo.",
     "updateData": "Se hai fatto qualche modifica nel tuo back office, aggiorna le tue informazioni per vedere i cambiamenti riprodotti anche qui."
   },
@@ -213,8 +213,8 @@
     "alertFailed": "La sincronizzazione dei prodotti non è riuscita. Controlla le possibili ragioni nel [Merchant Center]({0})[:target=\"_blank\"] o contatta il [supporto clienti](mailto:support-google@prestashop.com).",
     "alertShippingSettingsMissing": "Mancano le informazioni sulla spedizione.",
     "alertShippingSettingsMissingDescription": "Per sincronizzare correttamente il feed dei prodotti, aggiungi le informazioni di spedizione.",
-    "alertProductFeedDeactivated": "Se la sincronizzazione dei prodotti è disattivata, non ci saranno nuovi prodotti nel GMC. L'account stesso continuerà ad esistere e i prodotti scadranno dopo 30 giorni. Questo impedisce agli articoli del catalogo di essere visualizzati sia nelle inserzioni gratuite che nelle campagne pubblicitarie.",
-    "alertProductFeedExists": "**Esiste già un feed di prodotto**  \n  <small>Il tuo feed prodotto esiste già. È necessario sovrascriverlo per sincronizzare il feed prodotti di PrestaShop..</small>",
+    "alertProductFeedDeactivated": "Se la sincronizzazione dei prodotti è disattivata, non ci saranno nuovi prodotti nel GMC. L'account stesso continuerà ad esistere e i prodotti scadranno dopo 30 giorni. Questo impedisce agli articoli del catalogo di essere visualizzati sia nelle schede di prodotto gratuite che nelle campagne pubblicitarie.",
+    "alertProductFeedExists": "**Esiste già un feed di prodotto**  \n  <small>Il tuo feed prodotto esiste già. È necessario sovrascriverlo per sincronizzare il feed prodotti di PrestaShop.</small>",
     "googleTaxonomyAssociation": "Associazione della tassonomia dei prodotti di Google",
     "optional": "Opzionale",
     "attributeDescription": "Con queste funzionalità, puoi organizzare le tue campagne pubblicitarie in Google Ads e sovrascrivere la categoria assegnata automaticamente da Google in alcuni casi.",
@@ -691,7 +691,7 @@
       "labelTooltipBarcode": "Questo attributo corrisponde a quanto configurato nella mappatura degli attributi del prodotto: codice a barre, MPN, GTIN, ISBN, UPC..."
     },
     "approvalTable": {
-      "description": "Questi sono gli stati dei tuoi prodotti che vengono inviati a Google Merchant Center. Alcuni prodotti potrebbero apparire più di una volta a causa della loro variazione linguistica.",
+      "description": "Questi sono gli stati dei tuoi prodotti che vengono inviati a Google Merchant Center. Alcuni prodotti potrebbero apparire più di una volta per via della variazione linguistica.",
       "filterTitle": "Filtra per disponibilità",
       "filterAllStatus": "Tutti",
       "filterOnlyApproved": "Approvato",
@@ -703,7 +703,7 @@
       "tableHeaderName": "Titolo",
       "tableHeaderGoogleValidation": "Disponibilità per Google",
       "tableHeaderLanguage": "Lingua",
-      "tableHeaderCountry": "Nazione",
+      "tableHeaderCountry": "Paese",
       "tableHeaderIssue": "Motivo",
       "xResults": "{0} risultati",
       "perPageLabel": "Mostra:",
@@ -713,13 +713,13 @@
     "errorReason": {
       "fieldXMissing": "Manca un campo obbligatorio: {0}",
       "incorrectInfos": "Errori di battitura e altre informazioni mancanti o errate",
-      "invalidDatafeedLocation": "Posizione del file del feed dei dati non valida",
+      "invalidDatafeedLocation": "Posizione del file del feed di dati non valida",
       "incorrectPrice": "Prezzi mancanti o errati"
     }
   },
   "syncTimeline": {
     "title1": "Estrazione di prodotti",
-    "subtitle1": "Ora o più tardi, dipende dalle tue impostazioni di sincronizzazione",
+    "subtitle1": "Ora o in seguito, dipende dalle tue impostazioni di sincronizzazione",
     "title2": "Verifica dei prodotti",
     "subtitle2": "Filtrare i prodotti con informazioni mancanti",
     "title3": "Esportazione a Google",
@@ -727,17 +727,17 @@
     "title4": "Recensione di Google",
     "subtitle4": "Verifica della conformità",
     "title5": "Nuova sincronizzazione",
-    "subtitle5": "Se aggiornate i vostri prodotti"
+    "subtitle5": "Se aggiorni i tuoi prodotti"
   },
   "campaignCard": {
     "title": "Crea la tua campagna Performance Max in pochi clic",
-    "description": "Google A.I. will display ads of the searched products to interested shoppers at the right time increasing your sales.\n\nSet a daily budget and easily launch your ads campaign - you only get billed when the ads are clicked, it\\'s that easy!",
-    "footer": "Dovremo attivare il remarketing e il tag di tracciamento delle conversioni per consentire l'esecuzione di campagne Performance Max"
+    "description": "L' I.A di Google mostrerà gli annunci dei prodotti ricercati agli acquirenti interessati nel momento giusto, aumentando le tue vendite.\n\nImposta un budget giornaliero e lancia la tua campagna pubblicitaria - riceverai l'addebito solo qualcuno cliccherà sugli annunci, tutto molto semplice!",
+    "footer": "Dovremo attivare il remarketing e il tag di tracciamento delle conversioni per consentire l'esecuzione delle campagne Performance Max"
   },
   "keymetrics": {
-    "title": "Metriche chiave",
+    "title": "Metriche principali",
     "accountTitle": "Performance dell'account",
-    "accountSubtitle": "Guarda questi numeri incredibili",
+    "accountSubtitle": "Dai un'occhiata a questi numeri sorprendenti",
     "dailyResultTitle": "Risultati giornalieri",
     "periods": {
       "yesterday": "Ieri",
@@ -806,19 +806,19 @@
     "productsPerformanceTable": {
       "title": "Performance dei prodotti per le campagne attive",
       "subTitle": "Controlla quale prodotto ha le migliori prestazioni",
-      "emptyListText": "Non hai nessuna campagna attivata"
+      "emptyListText": "Non hai nessun prodotto nelle campagne attivate"
     },
     "filtersPerformanceTable": {
       "title": "Filtro delle performance complessive (prime 10)",
-      "subTitle": "Controlla quale dimensione rende meglio",
+      "subTitle": "Scopri qual è la dimensione più performante",
       "emptyListText": "Non hai campagne attive con filtri"
     }
   },
   "notConfiguredState": {
     "title": "Termina la configurazione",
-    "titleOneLastStep": "Un ultimo passo",
+    "titleOneLastStep": "Un ultimo passaggio",
     "textGoogleMissing": "Continua la configurazione per iniziare a inviare prodotti a Google e creare campagne.",
-    "textOneMoreThing": "Ancora una cosa e sarai pronto per inviare i tuoi prodotti a Google.",
+    "textOneMoreThing": "Ancora una cosa e sarai pronto ad inviare i tuoi prodotti a Google.",
     "textBoostYourSales": "Se vuoi incrementare le tue vendite, collegati e crea campagne con Google Ads.",
     "ctaClassic": "Vai alla pagina di configurazione",
     "ctaLinkMCA": "Collega l'account Google Merchant Center",
@@ -827,26 +827,26 @@
   },
   "configuredState": {
     "title": "Congratulazioni, è tutto pronto!",
-    "text": "Hai completato tutti i passaggi richiesti per ottenere il massimo da **Marketing con Google**",
+    "text": "Hai completato tutti i passaggi richiesti per ottenere il massimo da **Marketing with Google**",
     "cta": "Vai alla creazione della campagna",
-    "firstStep": "Collegate il tuo shop a un account PrestaShop",
+    "firstStep": "Collega il tuo shop a un account PrestaShop",
     "secondStep": "Accedi o crea il tuo account Google",
     "thirdStep": "Crea o collega il tuo account Google Merchant Center",
     "fourthStep": "Esporta e sincronizza il tuo catalogo prodotti",
     "fifthStep": "Accedi o crea il tuo account Google Ads",
-    "sixthStep": "**Passo successivo** creare la tua prima campagna Performance Max"
+    "sixthStep": "**Passo successivo** crea la tua prima campagna Performance Max"
   },
   "help": {
-    "intro": "PrestaShop Marketing semplifica la connessione del tuo negozio con Google e la promozione dei tuoi prodotti a milioni di acquirenti attraverso più canali Google. Crea campagne Performance Max senza lasciare la dashboard di PrestaShop e aumenta il traffico.",
+    "intro": "PrestaShop Marketing semplifica la connessione del tuo shop con Google e la promozione dei tuoi prodotti a milioni di acquirenti attraverso più canali Google. Crea campagne Performance Max senza lasciare la dashboard di PrestaShop e incrementa il tuo traffico.",
     "allowsYouTo": {
       "title": "Questo modulo ti permette di:",
       "easySync": "Sincronizza facilmente il tuo catalogo prodotti con Google per mantenere automaticamente aggiornati i dettagli dei prodotti come il prezzo e la disponibilità",
-      "freeListing": "Abilita le inserzioni gratuite e amplia la tua portata mostrando i tuoi prodotti agli acquirenti che navigano sulla scheda Shopping, gratuitamente",
+      "freeListing": "Abilita le schede di prodotto gratuite e aumenta il tuo giro d'affari mostrando i tuoi prodotti agli acquirenti che navigano sulla scheda Shopping, gratuitamente",
       "campaigns": "Inizia con le campagne Performance Max, imposta un budget giornaliero e lascia che l'apprendimento automatico di Google ottimizzi le campagne",
       "reporting": "Analizza le prestazioni della tua campagna senza lasciare PrestaShop"
     },
     "help": {
-      "needHelp": "Hai bisogno di aiuto? Trovate qui la documentazione di questo modulo.",
+      "needHelp": "Hai bisogno di aiuto? Trova qui la documentazione di questo modulo.",
       "downloadPdf": "Scarica PDF",
       "couldntFindAnyAnswer": "Non hai trovato nessuna risposta alla tua domanda?",
       "contactUs": "Contattaci"
@@ -857,13 +857,13 @@
     "noFaq": "Nessuna FAQ disponibile."
   },
   "glass": {
-    "message": "Can't see Google secured browser?  \n  Hit Continue to relaunch the window and finish configuration.  \n  You may need to activate popups in your browser to continue."
+    "message": "Non riesci a visualizzare il browser protetto di Google?  \nPremi Continua per rilanciare la finestra e terminare la configurazione.\n\nPotrebbe essere necessario attivare i pop-up nel browser per continuare."
   },
   "cta": {
     "startConfiguring": "Inizia a configurare",
     "connect": "Collega",
     "connecting": "In collegamento...",
-    "validating": "In convalidamento...",
+    "validating": "Convalida in corso...",
     "creating": "In creazione...",
     "dissociate": "Dissociati",
     "manageAccount": "Gestisci l'account",
@@ -910,11 +910,11 @@
     "no": "No",
     "disable": "Disattiva",
     "disableProductFeed": "Disattiva il feed dei prodotti",
-    "enableFreeListingAndProductFeed": "Abilita le inserzioni gratuite e il feed dei prodotti",
-    "checkRequirements": "Controlla i requisiti",
-    "storeMeetsRequirements": "Il mio negozio soddisfa tutti i requisiti",
+    "enableFreeListingAndProductFeed": "Abilita le schede di prodotto gratuite e il feed dei prodotti",
+    "checkRequirements": "Controlla i requisiti dello shop",
+    "storeMeetsRequirements": "Il mio shop soddisfa tutti i requisiti",
     "createAccount": "Crea un account",
-    "saveChange": "Salva i cambiamenti",
+    "saveChange": "Salva modifiche",
     "close": "Chiudi",
     "viewDetailedStatuses": "Visualizza lo stato dettagliato dei prodotti",
     "setupTax": "Imposta le tasse",
