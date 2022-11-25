@@ -13,7 +13,6 @@ export type flatShippingRate = {
 export type CustomCarrier = {
   carrierName: string;
   offer: OfferType|null;
-  rate: RateType|null;
   countries: string[];
   currency: string;
   maxDeliveryTime: number|null;
@@ -99,7 +98,6 @@ export function createCustomCarriersTemplate(
     countries.forEach((country) => {
       template.push({
         ...generateEmptyCarrier(
-          rate,
           currency,
           [country],
         ),
@@ -111,7 +109,6 @@ export function createCustomCarriersTemplate(
   if (rate === RateType.RATE_ALL_COUNTRIES) {
     template.push({
       ...generateEmptyCarrier(
-        rate,
         currency,
         countries,
       ),
@@ -121,7 +118,6 @@ export function createCustomCarriersTemplate(
 }
 
 export function generateEmptyCarrier(
-  rate: RateType,
   currency: string,
   countries: string[],
 ): CustomCarrier {
@@ -130,7 +126,6 @@ export function generateEmptyCarrier(
     offer: null,
     countries,
     currency,
-    rate,
     maxDeliveryTime: null,
     minDeliveryTime: null,
     [OfferType.FREE_SHIPPING_OVER_AMOUNT]: {
