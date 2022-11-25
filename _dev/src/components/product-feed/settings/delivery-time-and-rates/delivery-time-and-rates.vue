@@ -56,7 +56,7 @@ import TargetCountries from '@/components/product-feed/settings/delivery-time-an
 import ShippingSettings from '@/components/product-feed/settings/delivery-time-and-rates/import-method/shipping-settings.vue';
 import {RateType} from '@/enums/product-feed/rate';
 import {OfferType} from '@/enums/product-feed/offer';
-import {validateCarrier, createCustomCarriersTemplate, CustomCarrier} from '@/providers/shipping-rate-provider';
+import {validateCarrier, createCustomCarriersTemplate} from '@/providers/shipping-rate-provider';
 import {DeliveryDetail, validateDeliveryDetail, validateEachCountryHasAtLeastOneCarrier} from '@/providers/shipping-settings-provider';
 import CustomRate from '@/components/product-feed/settings/delivery-time-and-rates/estimate-method/custom-rate.vue';
 import CountriesFormList from './estimate-method/countries-form-list.vue';
@@ -200,9 +200,6 @@ export default Vue.extend({
     },
     saveCarriersDetails(): void {
       if (this.getShippingValueSetup === ShippingSetupOption.ESTIMATE) {
-        this.estimateCarriers.forEach((c: CustomCarrier) => {
-          c.rate = this.rateChosen;
-        });
         localStorage.setItem('productFeed-estimateCarriers', JSON.stringify(this.estimateCarriers));
         localStorage.setItem('productFeed-rateChosen', JSON.stringify(this.rateChosen));
       } else if (this.getShippingValueSetup === ShippingSetupOption.IMPORT) {

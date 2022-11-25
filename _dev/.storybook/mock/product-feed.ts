@@ -537,6 +537,7 @@ export const productFeedEstimateConfigured = {
   settings: {
     ...productFeed.settings,
     shippingSetup: "estimate",
+    rate: RateType.RATE_ALL_COUNTRIES,
     estimateCarriers: [
       {
         offer: null,
@@ -544,7 +545,6 @@ export const productFeedEstimateConfigured = {
         minDeliveryTime: null,
         carrierName: '',
         currency: "EUR",
-        rate: RateType.RATE_ALL_COUNTRIES,
         flatShippingRate: {
           shippingCost: null
         },

@@ -31,7 +31,6 @@ import {
   PrevalidationScanSummary,
   PreScanReporting,
 } from './state';
-import {CustomCarrier} from '@/providers/shipping-rate-provider';
 import {RateType} from '../../../enums/product-feed/rate';
 
 type payloadObject = {
