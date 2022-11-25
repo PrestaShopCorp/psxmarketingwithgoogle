@@ -265,10 +265,6 @@
     background-color: $grey_extralight;
     color: inherit;
   }
-
-  &-end [aria-disabled=true] + :not([aria-disabled=true]) .btn {
-    color: $primary !important;
-  }
 }
 
 .ps_gs-v-select {
