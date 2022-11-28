@@ -14,6 +14,10 @@
   }
 }
 
+.custom-radio * {
+  cursor: pointer;
+}
+
 .ps-dropdown {
   transition: 0s transform;
 
@@ -260,10 +264,6 @@
   .btn-light {
     background-color: $grey_extralight;
     color: inherit;
-  }
-
-  &-end [aria-disabled=true] + :not([aria-disabled=true]) .btn {
-    color: $primary !important;
   }
 }
 
