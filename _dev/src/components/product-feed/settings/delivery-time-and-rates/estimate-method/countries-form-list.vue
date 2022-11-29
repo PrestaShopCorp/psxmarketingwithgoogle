@@ -103,7 +103,7 @@
         </b-button>
       </b-card-header>
       <b-collapse
-        visible
+        :visible="(index === 0)"
         :id="`${carrier.rate}-${index}`"
         :accordion="`customCarrierAccordion-${index}`"
         role="tabpanel"
@@ -182,6 +182,13 @@ export default Vue.extend({
         this.$emit('dataUpdated', carriers);
       },
       immediate: true,
+    },
+    countriesNames: {
+      handler(newList) {
+        if (newList.length === 1) {
+          this.$root.$emit('bv::toggle::collapse', 'withAllCountries');
+        }
+      }
     },
   },
 });
