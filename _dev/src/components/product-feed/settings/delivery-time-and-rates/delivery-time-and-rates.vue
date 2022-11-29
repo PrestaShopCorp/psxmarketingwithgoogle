@@ -78,7 +78,7 @@ export default Vue.extend({
       RateType,
       OfferType,
       rateChosen: getDataFromLocalStorage('productFeed-rateChosen') ?? this.$store.state.productFeed.settings.rate,
-      estimateCarriers: [],
+      estimateCarriers: getDataFromLocalStorage('productFeed-estimateCarriers') ?? [],
       // Import Option data
       carriers: [],
     };
@@ -105,7 +105,7 @@ export default Vue.extend({
       return this.$store.getters['app/GET_CURRENT_CURRENCY'];
     },
     estimateCarriersToConfigure() {
-      const carriersFromStore = this.$store.getters['productFeed/GET_ESTIMATE_CARRIERS']?.filter((carrier) => carrier.rate === this.rateChosen);
+      const carriersFromStore = this.estimateCarriers || this.$store.getters['productFeed/GET_ESTIMATE_CARRIERS'];
 
       if (carriersFromStore.length === 0) {
         return createCustomCarriersTemplate(
