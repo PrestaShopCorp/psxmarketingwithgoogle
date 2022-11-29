@@ -17,11 +17,12 @@
           v-b-toggle.withAllCountries
           class="d-flex btn-without-hover"
           variant="invisible"
+          :disabled="countriesNames.length === 1"
         >
           <span class="mr-2">
             {{
               countriesNames.length > 1 ?
-                countriesNames.toString() : countriesNames[0]
+              countriesNames.toString() : countriesNames[0]
             }}
           </span>
           <span
@@ -32,14 +33,16 @@
           </span>
           <i
             aria-hidden="true"
-            class="material-icons ps_gs-fz-20 ml-auto when-open"
+            class="material-icons ps_gs-fz-24 ml-auto when-open"
           >
-            expand_more
+            arrow_drop_down
           </i>
           <i
             aria-hidden="true"
-            class="material-icons ps_gs-fz-20 ml-auto when-closed"
-          >chevron_left</i>
+            class="material-icons ps_gs-fz-24 ml-auto when-closed"
+          >
+            arrow_right
+          </i>
         </b-button>
       </b-card-header>
       <b-collapse
@@ -87,14 +90,16 @@
           </span>
           <i
             aria-hidden="true"
-            class="material-icons ps_gs-fz-20 ml-auto when-closed"
+            class="material-icons ps_gs-fz-24 ml-auto when-closed"
           >
-            expand_more
+            arrow_drop_down
           </i>
           <i
             aria-hidden="true"
-            class="material-icons ps_gs-fz-20 ml-auto when-open"
-          >chevron_left</i>
+            class="material-icons ps_gs-fz-24 ml-auto when-open"
+          >
+            arrow_right
+          </i>
         </b-button>
       </b-card-header>
       <b-collapse
