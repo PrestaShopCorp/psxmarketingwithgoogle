@@ -236,7 +236,8 @@ export default Vue.extend({
   },
   mounted() {
     if (this.getShippingValueSetup === ShippingSetupOption.IMPORT
-    && !this.$store.state.productFeed.settings.deliveryDetails.length) {
+    && (!this.$store.state.productFeed.settings.deliveryDetails.length
+    || !this.$store.state.productFeed.settings.shippingSettings.length)) {
       this.refreshComponent();
     }
 
