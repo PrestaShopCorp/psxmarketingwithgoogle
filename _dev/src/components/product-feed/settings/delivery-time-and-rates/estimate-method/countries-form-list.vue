@@ -22,7 +22,7 @@
           <span class="mr-2">
             {{
               countriesNames.length > 1 ?
-              countriesNames.toString() : countriesNames[0]
+                countriesNames.toString() : countriesNames[0]
             }}
           </span>
           <span
@@ -188,7 +188,7 @@ export default Vue.extend({
         if (newList.length === 1) {
           this.$root.$emit('bv::toggle::collapse', 'withAllCountries');
         }
-      }
+      },
     },
   },
 });
