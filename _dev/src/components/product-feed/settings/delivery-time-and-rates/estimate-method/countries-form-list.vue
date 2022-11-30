@@ -17,6 +17,7 @@
           v-b-toggle.withAllCountries
           class="d-flex btn-without-hover"
           variant="invisible"
+          :disabled="countriesNames.length === 1"
         >
           <span class="mr-2">
             {{
@@ -32,14 +33,16 @@
           </span>
           <i
             aria-hidden="true"
-            class="material-icons ps_gs-fz-20 ml-auto when-open"
+            class="material-icons ps_gs-fz-24 ml-auto when-open"
           >
-            expand_more
+            arrow_drop_down
           </i>
           <i
             aria-hidden="true"
-            class="material-icons ps_gs-fz-20 ml-auto when-closed"
-          >chevron_left</i>
+            class="material-icons ps_gs-fz-24 ml-auto when-closed"
+          >
+            arrow_right
+          </i>
         </b-button>
       </b-card-header>
       <b-collapse
@@ -47,6 +50,7 @@
         id="withAllCountries"
         accordion="customCarrierAccordion"
         role="tabpanel"
+        v-model="cardWithAllCountriesIsVisible"
       >
         <b-card-body>
           <custom-carrier-form
@@ -87,18 +91,20 @@
           </span>
           <i
             aria-hidden="true"
-            class="material-icons ps_gs-fz-20 ml-auto when-closed"
+            class="material-icons ps_gs-fz-24 ml-auto when-closed"
           >
-            expand_more
+            arrow_drop_down
           </i>
           <i
             aria-hidden="true"
-            class="material-icons ps_gs-fz-20 ml-auto when-open"
-          >chevron_left</i>
+            class="material-icons ps_gs-fz-24 ml-auto when-open"
+          >
+            arrow_right
+          </i>
         </b-button>
       </b-card-header>
       <b-collapse
-        visible
+        :visible="(index === 0)"
         :id="`${carrier.rate}-${index}`"
         :accordion="`customCarrierAccordion-${index}`"
         role="tabpanel"
@@ -156,6 +162,7 @@ export default Vue.extend({
   data() {
     return {
       RateType,
+      cardWithAllCountriesIsVisible: true,
     };
   },
   computed: {
@@ -177,6 +184,13 @@ export default Vue.extend({
         this.$emit('dataUpdated', carriers);
       },
       immediate: true,
+    },
+    countriesNames: {
+      handler(newList) {
+        if (newList.length === 1) {
+          this.cardWithAllCountriesIsVisible = true;
+        }
+      },
     },
   },
 });
