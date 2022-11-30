@@ -33,7 +33,11 @@
                   v-model="estimateCarrier.carrierName"
                   @input="$emit('dataUpdated')"
                   :state="validateCarrierName"
-                  :placeholder="$t('productFeedSettings.attributeMapping.description')"
+                  :placeholder="
+                    $t(
+                      'productFeedSettings.deliveryTimeAndRates.estimateStep.estimateInputLabel'
+                    )
+                  "
                   maxlength="90"
                 />
               </div>
