@@ -107,7 +107,9 @@ export default {
     }
   },
 
-  async [ActionsTypes.GET_PRODUCT_FEED_SETTINGS]({commit, rootState}) {
+  async [ActionsTypes.GET_PRODUCT_FEED_SETTINGS](
+    {commit, rootState},
+  ): Promise<ProductFeedSettings|null> {
     const params = {
       lang: window.i18nSettings.isoCode,
       timezone: encodeURI(Intl.DateTimeFormat().resolvedOptions().timeZone),
@@ -155,6 +157,8 @@ export default {
       }
       commit(MutationsTypes.SET_SYNC_SCHEDULE, json?.requestSynchronizationNow || false);
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
+
+      return json;
     } catch (error: any) {
       if (error.code === 404) {
         console.log('Incremental-Sync settings not found: ask user to configure it');
@@ -162,6 +166,7 @@ export default {
         console.error(`HttpClientError: ${error}`);
         commit(MutationsTypes.API_ERROR, true);
       }
+      return null;
     }
   },
 
@@ -497,5 +502,21 @@ export default {
     }
     const json = await response.json();
     commit(MutationsTypes.SET_PREVALIDATION_SUMMARY, json);
+  },
+
+  async [ActionsTypes.SEND_PRODUCT_FEED_FLAGS]({rootState}, flags) {
+    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/debug/migration`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+      },
+      body: JSON.stringify(flags),
+    });
+
+    if (!response.ok) {
+      throw new HttpClientError(response.statusText, response.status);
+    }
   },
 };
