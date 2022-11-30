@@ -180,7 +180,7 @@
               @click="sendMigration(true)"
               :disabled="!GET_PRODUCT_FEED_SETTINGS"
             >
-              Enabled migration
+              Enable migration
             </b-button>
             <b-button
               class="mt-3 mr-3"
@@ -188,10 +188,10 @@
               @click="sendMigration(false)"
               :disabled="!GET_PRODUCT_FEED_SETTINGS"
             >
-              Disabled migration
+              Disable migration
             </b-button>
 
-            <span v-if="productFeed.error">An error occured while migration flags changing</span>
+            <span v-if="productFeed.error">An error occured while modifying migration flag.</span>
           </li>
         </ul>
       </b-card-body>
