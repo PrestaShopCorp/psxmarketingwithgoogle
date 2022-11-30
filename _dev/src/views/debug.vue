@@ -162,6 +162,49 @@
         header-tag="h3"
         header-class="px-3 py-3 font-weight-600 ps_gs-fz-16 mb-0"
       >
+        ProductFeed infos
+      </b-card-header>
+      <b-card-body
+        body-class="p-3"
+      >
+        <ul class="mb-0">
+          <li>
+            <strong>ProductFeed status</strong>:
+            migration : {{ productFeed.migration ?'✅':'❌' }}
+            fullSync : {{ productFeed.fullSync ?'✅':'❌' }}
+          </li>
+          <li>
+            <b-button
+              class="mt-3 mr-3"
+              variant="primary"
+              @click="sendMigration(true)"
+              :disabled="!GET_PRODUCT_FEED_SETTINGS"
+            >
+              Enabled migration
+            </b-button>
+            <b-button
+              class="mt-3 mr-3"
+              variant="primary"
+              @click="sendMigration(false)"
+              :disabled="!GET_PRODUCT_FEED_SETTINGS"
+            >
+              Disabled migration
+            </b-button>
+
+            <span v-if="productFeed.error">An error occured while migration flags changing</span>
+          </li>
+        </ul>
+      </b-card-body>
+    </b-card>
+
+    <b-card
+      no-body
+      class="ps_gs-onboardingcard px-0"
+    >
+      <b-card-header
+        header-tag="h3"
+        header-class="px-3 py-3 font-weight-600 ps_gs-fz-16 mb-0"
+      >
         Remarketing
       </b-card-header>
       <b-card-body
@@ -224,6 +267,7 @@
 import {mapGetters, mapState} from 'vuex';
 import GettersTypes from '@/store/modules/campaigns/getters-types.ts';
 import GettersTypesApp from '@/store/modules/app/getters-types.ts';
+import GettersTypesProductFeed from '@/store/modules/product-feed/getters-types.ts';
 
 export default {
   name: 'Debug',
@@ -233,6 +277,11 @@ export default {
       sync: {
         requested: false,
         loading: false,
+        error: false,
+      },
+      productFeed: {
+        migration: false,
+        fullSync: false,
         error: false,
       },
       appBuildVersion: process.env.VUE_APP_BUILD_VERSION || 'Not provided',
@@ -250,6 +299,9 @@ export default {
     ]),
     ...mapGetters('app', [
       GettersTypesApp.GET_DEBUG_DATA,
+    ]),
+    ...mapGetters('productFeed', [
+      GettersTypesProductFeed.GET_PRODUCT_FEED_SETTINGS,
     ]),
     ...mapState({
       psxMktgWithGoogleApiUrl: (state) => state.app.psxMktgWithGoogleApiUrl,
@@ -297,6 +349,19 @@ export default {
         this.sync.loading = false;
       }
     },
+    async sendMigration(migrationStatus) {
+      this.productFeed.error = true;
+      try {
+        this.productFeed.migration = migrationStatus;
+        this.productFeed.fullSync = migrationStatus;
+        await this.$store.dispatch('productFeed/SEND_PRODUCT_FEED_FLAGS', this.productFeed);
+      } catch (error) {
+        this.productFeed.error = true;
+        console.error(error);
+      } finally {
+        this.getProductFeed();
+      }
+    },
     getHooks() {
       this.$store.dispatch('app/GET_MODULES_VERSIONS', 'psxmarketingwithgoogle')
         .then((res) => {
@@ -319,10 +384,17 @@ export default {
     throwErrorForSentry() {
       throw new Error('Test error for sentry');
     },
+    getProductFeed() {
+      this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS').then((res) => {
+        this.productFeed.migration = res?.migration;
+        this.productFeed.fullSync = res?.fullSync;
+      });
+    },
   },
   mounted() {
     this.$store.dispatch('campaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
     this.$store.dispatch('campaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED');
+    this.getProductFeed();
     this.$store.dispatch('app/REQUEST_DEBUG_DATA');
     this.getHooks();
   },
