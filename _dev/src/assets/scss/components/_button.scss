@@ -86,9 +86,19 @@
   }
 }
 
-.btn.btn-without-hover:not(.disabled) {
+.btn.btn-without-hover {
   &:hover {
     color: inherit!important;
+  }
+  &:focus {
+    color: inherit!important;
+  }
+  &:disabled {
+    background-color: unset!important;
+
+    .material-icons {
+      color: $grey_median;
+    }
   }
 }
 

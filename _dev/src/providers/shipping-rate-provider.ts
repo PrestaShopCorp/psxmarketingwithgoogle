@@ -13,11 +13,11 @@ export type flatShippingRate = {
 export type CustomCarrier = {
   carrierName: string;
   offer: OfferType|null;
-  rate: RateType|null;
   countries: string[];
   currency: string;
   maxDeliveryTime: number|null;
   minDeliveryTime: number|null;
+  validationError?: boolean;
   freeShippingOverAmount: freeShippingOverAmount;
   flatShippingRate: flatShippingRate;
 }
@@ -87,13 +87,45 @@ export function validateOfferChoice(offer: OfferType|null): boolean {
   return false;
 }
 
-export function generateCustomCarrier(): CustomCarrier {
+export function createCustomCarriersTemplate(
+  rate: RateType,
+  countries: string[],
+  currency: string,
+): CustomCarrier[] {
+  const template: CustomCarrier[] = [];
+
+  if (rate === RateType.RATE_PER_COUNTRY) {
+    countries.forEach((country) => {
+      template.push({
+        ...generateEmptyCarrier(
+          currency,
+          [country],
+        ),
+      });
+    });
+    return template;
+  }
+
+  if (rate === RateType.RATE_ALL_COUNTRIES) {
+    template.push({
+      ...generateEmptyCarrier(
+        currency,
+        countries,
+      ),
+    });
+  }
+  return template;
+}
+
+export function generateEmptyCarrier(
+  currency: string,
+  countries: string[],
+): CustomCarrier {
   return {
     carrierName: '',
-    countries: [],
-    currency: '',
-    rate: RateType.RATE_ALL_COUNTRIES,
     offer: null,
+    countries,
+    currency,
     maxDeliveryTime: null,
     minDeliveryTime: null,
     [OfferType.FREE_SHIPPING_OVER_AMOUNT]: {
@@ -127,23 +159,25 @@ export function toApi(customerCarrier: CustomCarrier[]): CustomCarrier[] {
   return toApiFormat;
 }
 
-export function fromApi(customerCarrier: CustomCarrier): CustomCarrier {
-  if (customerCarrier === undefined || Object.keys(customerCarrier).length === 0) {
-    return generateCustomCarrier();
+export function fromApi(customerCarriers: CustomCarrier[]): CustomCarrier[] {
+  if (customerCarriers === null || customerCarriers.length === 0) {
+    return [];
   }
-  const fromApiFormat = {...customerCarrier};
+  const fromApiFormat = [...customerCarriers];
 
-  if (fromApiFormat.flatShippingRate.shippingCost === 0) {
-    fromApiFormat.flatShippingRate.shippingCost = null;
-  }
+  fromApiFormat.forEach((carrier: CustomCarrier) => {
+    if (carrier.flatShippingRate.shippingCost === 0) {
+      carrier.flatShippingRate.shippingCost = null;
+    }
 
-  if (fromApiFormat.freeShippingOverAmount.orderPrice === 0) {
-    fromApiFormat.freeShippingOverAmount.orderPrice = null;
-  }
+    if (carrier.freeShippingOverAmount.orderPrice === 0) {
+      carrier.freeShippingOverAmount.orderPrice = null;
+    }
 
-  if (fromApiFormat.freeShippingOverAmount.shippingCost === 0) {
-    fromApiFormat.freeShippingOverAmount.shippingCost = null;
-  }
+    if (carrier.freeShippingOverAmount.shippingCost === 0) {
+      carrier.freeShippingOverAmount.shippingCost = null;
+    }
+  });
 
   return fromApiFormat;
 }

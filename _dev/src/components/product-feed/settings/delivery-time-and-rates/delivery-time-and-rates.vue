@@ -1,10 +1,34 @@
 <template>
   <div>
+    <p class="h3 mb-2 font-weight-600">
+      {{ $t('productFeedSettings.deliveryTimeAndRates.title') }}
+    </p>
+
     <target-countries
       @countrySelected="countries = $event;dataUpdated()"
       :countries="selectedCountries"
       :shipping-setup-option="getShippingValueSetup"
     />
+
+    <custom-rate
+      v-if="getShippingValueSetup === ShippingSetupOption.ESTIMATE
+        && selectedCountries.length > 0"
+      :is-multiple-countries="selectedCountries.length"
+      :rate-type-chosen="rateChosen"
+      @rateUpdated="rateSelected($event)"
+    />
+
+    <countries-form-list
+      v-if="(getShippingValueSetup === ShippingSetupOption.ESTIMATE
+        && selectedCountries.length > 0
+        && rateChosen)"
+      :rate-chosen="rateChosen"
+      :carriers="estimateCarriersToConfigure"
+      :countries="selectedCountries"
+      :display-validation-errors="displayValidationErrors"
+      @dataUpdated="estimateCarriers = $event;dataUpdated()"
+    />
+
     <shipping-settings
       v-if="getShippingValueSetup === ShippingSetupOption.IMPORT"
       :countries="selectedCountries"
@@ -12,14 +36,6 @@
       :display-validation-errors="displayValidationErrors"
       @dataUpdated="carriers = $event;dataUpdated()"
       @refresh="refreshComponent"
-    />
-
-    <custom-carrier-form
-      v-else-if="getShippingValueSetup === ShippingSetupOption.ESTIMATE
-        && selectedCountries.length > 0"
-      :custom-carrier="customCarrier"
-      :display-validation-errors="displayValidationErrors"
-      @dataUpdated="customCarrier = $event;dataUpdated()"
     />
 
     <actions-buttons
@@ -41,16 +57,19 @@ import TargetCountries from '@/components/product-feed/settings/delivery-time-an
 import ShippingSettings from '@/components/product-feed/settings/delivery-time-and-rates/import-method/shipping-settings.vue';
 import {RateType} from '@/enums/product-feed/rate';
 import {OfferType} from '@/enums/product-feed/offer';
-import {CustomCarrier, validateCarrier} from '@/providers/shipping-rate-provider';
-import {DeliveryDetail, validateDeliveryDetail} from '@/providers/shipping-settings-provider';
-import CustomCarrierForm from '@/components/product-feed/settings/delivery-time-and-rates/estimate-method/custom-carrier-form.vue';
+import {validateCarrier, createCustomCarriersTemplate} from '@/providers/shipping-rate-provider';
+import {DeliveryDetail, validateDeliveryDetail, validateEachCountryHasAtLeastOneCarrier} from '@/providers/shipping-settings-provider';
+import CustomRate from '@/components/product-feed/settings/delivery-time-and-rates/estimate-method/custom-rate.vue';
+import CountriesFormList from './estimate-method/countries-form-list.vue';
+import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 
 export default Vue.extend({
   components: {
     ActionsButtons,
     TargetCountries,
     ShippingSettings,
-    CustomCarrierForm,
+    CustomRate,
+    CountriesFormList,
   },
   data() {
     return {
@@ -59,6 +78,8 @@ export default Vue.extend({
       ShippingSetupOption,
       RateType,
       OfferType,
+      rateChosen: getDataFromLocalStorage('productFeed-rateChosen') ?? this.$store.state.productFeed.settings.rate ?? null,
+      estimateCarriers: getDataFromLocalStorage('productFeed-estimateCarriers') ?? [],
       // Import Option data
       carriers: [],
     };
@@ -73,15 +94,6 @@ export default Vue.extend({
     getShippingValueSetup(): ShippingSetupOption|null {
       return this.$store.getters['productFeed/GET_SHIPPING_SETUP'];
     },
-    // Estimate Option data
-    customCarrier: {
-      get(): CustomCarrier {
-        return this.$store.getters['productFeed/GET_ESTIMATE_CARRIER'];
-      },
-      set(value) {
-        this.$store.state.productFeed.settings.estimateCarrier = value;
-      },
-    },
     carriersToConfigure() {
       const carriers = this.$store.state.productFeed.settings.deliveryDetails
         .filter(
@@ -90,8 +102,21 @@ export default Vue.extend({
 
       return carriers;
     },
-    getCurrency() {
+    getCurrency(): string {
       return this.$store.getters['app/GET_CURRENT_CURRENCY'];
+    },
+    estimateCarriersToConfigure() {
+      const carriersFromStore = this.estimateCarriers || this.$store.getters['productFeed/GET_ESTIMATE_CARRIERS'];
+
+      if (carriersFromStore.length === 0) {
+        return createCustomCarriersTemplate(
+          this.rateChosen,
+          this.selectedCountries,
+          this.getCurrency,
+        );
+      }
+
+      return carriersFromStore;
     },
     selectedCountries(): string[] {
       return this.countries || this.$store.getters['productFeed/GET_TARGET_COUNTRIES'] || [];
@@ -99,6 +124,9 @@ export default Vue.extend({
   },
   methods: {
     dataUpdated(): void {
+      if (this.selectedCountries.length === 1 && this.rateChosen === RateType.RATE_PER_COUNTRY) {
+        this.rateChosen = RateType.RATE_ALL_COUNTRIES;
+      }
       this.displayValidationErrors = false;
     },
     previousStep(): void {
@@ -111,6 +139,10 @@ export default Vue.extend({
       });
       window.scrollTo(0, 0);
     },
+    rateSelected(event) {
+      this.rateChosen = event;
+      this.estimateCarriers = [];
+    },
     validateForm(): boolean {
       this.displayValidationErrors = true;
 
@@ -121,9 +153,18 @@ export default Vue.extend({
 
       // Validation - Estimate option
       if (this.getShippingValueSetup === ShippingSetupOption.ESTIMATE) {
-        if (validateCarrier(this.customCarrier as CustomCarrier) === false) {
+        if (!this.estimateCarriers.length) {
           return false;
         }
+
+        if (!this.rateChosen) {
+          return false;
+        }
+
+        if (!this.estimateCarriers.every(validateCarrier)) {
+          return false;
+        }
+
         return true;
       }
 
@@ -144,9 +185,10 @@ export default Vue.extend({
         }
 
         // Each target country has at least one carrier
-        return this.selectedCountries.every((country: string) => enabledDeliveryDetails.find(
-          (deliveryDetail: DeliveryDetail) => deliveryDetail.country === country,
-        ));
+        return validateEachCountryHasAtLeastOneCarrier(
+          this.selectedCountries,
+          enabledDeliveryDetails,
+        );
       }
 
       return false;
@@ -159,9 +201,8 @@ export default Vue.extend({
     },
     saveCarriersDetails(): void {
       if (this.getShippingValueSetup === ShippingSetupOption.ESTIMATE) {
-        (this.customCarrier as CustomCarrier).currency = this.getCurrency;
-        (this.customCarrier as CustomCarrier).countries = this.selectedCountries;
-        localStorage.setItem('productFeed-estimateCarriers', JSON.stringify([this.customCarrier]));
+        localStorage.setItem('productFeed-estimateCarriers', JSON.stringify(this.estimateCarriers));
+        localStorage.setItem('productFeed-rateChosen', JSON.stringify(this.rateChosen));
       } else if (this.getShippingValueSetup === ShippingSetupOption.IMPORT) {
         localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
       }
@@ -195,7 +236,14 @@ export default Vue.extend({
     },
   },
   mounted() {
-    if (!this.$store.state.productFeed.settings.deliveryDetails.length) {
+    if (this.getShippingValueSetup === ShippingSetupOption.IMPORT
+    && (!this.$store.state.productFeed.settings.deliveryDetails.length
+    || !this.$store.state.productFeed.settings.shippingSettings.length)) {
+      this.refreshComponent();
+    }
+
+    if (this.getShippingValueSetup === ShippingSetupOption.ESTIMATE
+    && !this.$store.state.productFeed.settings.estimateCarriers.length) {
       this.refreshComponent();
     }
   },

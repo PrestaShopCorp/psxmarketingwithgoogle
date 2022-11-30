@@ -31,6 +31,7 @@ import Categories from '@/enums/product-feed/attribute-mapping-categories';
 import {runIf} from '../../../utils/Promise';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {fromApi, toApi} from '@/providers/shipping-rate-provider';
+import {ProductFeedSettings} from './state';
 
 const changeCountriesNamesToCodes = (countries : Array<string>) => countries.map((country) => {
   for (let i = 0; i < countriesSelectionOptions.length; i += 1) {
@@ -145,8 +146,8 @@ export default {
       });
 
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
-        name: 'estimateCarrier',
-        data: fromApi(json?.estimateCarriers?.[0]),
+        name: 'estimateCarriers',
+        data: fromApi(json?.estimateCarriers),
       });
 
       if (json.selectedProductCategories) {
@@ -167,9 +168,10 @@ export default {
   async [ActionsTypes.SEND_PRODUCT_FEED_SETTINGS]({
     state, rootState, getters, commit, dispatch,
   }) {
-    const productFeedSettings = state.settings;
+    const productFeedSettings: ProductFeedSettings = state.settings;
     const targetCountries = changeCountriesNamesToCodes(getters.GET_TARGET_COUNTRIES);
     const attributeMapping = getDataFromLocalStorage('productFeed-attributeMapping') || {};
+    const rate = getDataFromLocalStorage('productFeed-rateChosen') || undefined;
     const estimateCarriers = toApi(getDataFromLocalStorage('productFeed-estimateCarriers'));
     const deliveryFiltered: DeliveryDetail[] = productFeedSettings.deliveryDetails.filter(
       (e) => e.enabledCarrier && validateDeliveryDetail(e),
@@ -192,6 +194,7 @@ export default {
       additionalShippingSettings: {
         deliveryDetails: deliveryFiltered,
       },
+      rate,
       estimateCarriers,
       attributeMapping,
       selectedProductCategories,
@@ -256,12 +259,12 @@ export default {
     const deliveryFromStorage = getDataFromLocalStorage('productFeed-deliveryDetails') ?? [];
 
     if (state.settings.shippingSetup === ShippingSetupOption.ESTIMATE) {
-      const getEstimateCarrier = getDataFromLocalStorage('productFeed-estimateCarriers');
+      const getEstimateCarriers = getDataFromLocalStorage('productFeed-estimateCarriers');
 
-      if (getEstimateCarrier !== null) {
+      if (getEstimateCarriers !== null) {
         commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
-          name: 'estimateCarrier',
-          data: getEstimateCarrier[0],
+          name: 'estimateCarriers',
+          data: getEstimateCarriers,
         });
       }
     }

@@ -1,6 +1,7 @@
 <template>
   <div>
     <ps-select
+      data-test-id="ps-select-country"
       :deselect-from-dropdown="true"
       :multiple="true"
       :options="dropdownOptions"
@@ -50,12 +51,12 @@ export default {
       type: Array,
       required: true,
     },
-    needFilter: {
+    notFullWidth: {
       type: Boolean,
       required: false,
       default: false,
     },
-    notFullWidth: {
+    multipleCountries: {
       type: Boolean,
       required: false,
       default: false,
@@ -83,14 +84,14 @@ export default {
         return this.countriesChosen.length ? this.countriesChosen
           : this.getCountriesFilteredWithList(this.defaultValue);
       },
-      set(value) {
-        if (Array.isArray(value)) {
-          const country = value.length ? [value.pop()] : [];
-          this.countriesChosen = country;
-          this.$emit('countrySelected', country);
+      set(newValuesList) {
+        if (this.multipleCountries) {
+          this.countriesChosen = newValuesList;
+          this.$emit('countrySelected', newValuesList);
         } else {
-          this.countriesChosen = value || '';
-          this.$emit('countrySelected', value);
+          const listOfOneCountry = newValuesList.length ? [newValuesList.pop()] : [];
+          this.countriesChosen = listOfOneCountry;
+          this.$emit('countrySelected', listOfOneCountry);
         }
       },
     },

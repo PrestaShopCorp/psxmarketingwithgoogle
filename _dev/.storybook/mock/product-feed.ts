@@ -1,5 +1,6 @@
 import attributesToMap from "@/store/modules/product-feed/attributes-to-map.json";
 import { OfferType } from "@/enums/product-feed/offer";
+import { RateType } from "@/enums/product-feed/rate";
 import { State, AttributesTypes } from "@/store/modules/product-feed/state";
 import DeliveryType from '@/enums/product-feed/delivery-type';
 
@@ -22,22 +23,8 @@ export const productFeed: State = {
   settings: {
     shippingSettings: [],
     shippingSetup: null,
-    estimateCarrier: {
-      carrierName: "",
-      rate: null,
-      offer: null,
-      maxDeliveryTime: 0,
-      minDeliveryTime: 0,
-      countries: [],
-      currency: '',
-      [OfferType.FREE_SHIPPING_OVER_AMOUNT]: {
-        shippingCost: 0,
-        orderPrice: 0,
-      },
-      [OfferType.FLAT_SHIPPING_RATE]: {
-        shippingCost: 0,
-      },
-    },
+    rate: null,
+    estimateCarriers: [],
     targetCountries: ["FR"],
     deliveryDetails: [
       {
@@ -516,6 +503,60 @@ export const productFeedIsConfigured = {
     shippingSetup: "import",
   },
 };
+
+export const productFeedEstimateConfigured = {
+  ...productFeed,
+  isConfigured: true,
+  status: {
+    ...productFeed.status,
+    jobEndedAt: "2021-10-06T01:00:00.000Z",
+    nextJobAt: new Date("July 22, 2021 03:24:00"),
+    lastUpdatedAt: new Date("July 22, 2021 03:24:00"),
+    success: true,
+  },
+  attributeMapping: {
+    brand: [],
+    color: [],
+    mpn: [],
+    gtin: [
+      {
+        id: "mpn",
+        type: "product",
+      },
+    ],
+    size: [],
+    gender: [],
+    description: [
+      {
+        id: "description",
+        type: "product",
+      },
+    ],
+    ageGroup: [],
+  },
+  settings: {
+    ...productFeed.settings,
+    shippingSetup: "estimate",
+    rate: RateType.RATE_ALL_COUNTRIES,
+    estimateCarriers: [
+      {
+        offer: null,
+        maxDeliveryTime: null,
+        minDeliveryTime: null,
+        carrierName: '',
+        currency: "EUR",
+        flatShippingRate: {
+          shippingCost: null
+        },
+        countries: ["FR"],
+        freeShippingOverAmount: {
+          shippingCost:null,
+          orderPrice:null
+        },
+      }
+    ]
+  }
+}
 
 export const productFeedIsConfiguredWithTax = {
   ...productFeedIsConfigured,

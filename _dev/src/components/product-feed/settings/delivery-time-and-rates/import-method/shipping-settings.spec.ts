@@ -162,6 +162,29 @@ describe('shipping-settings.vue', () => {
 
       expect(wrapper.find('.text-danger').exists()).toBeTruthy();
       expect(wrapper.findAll('.text-danger').length).toBe(1);
+      expect(wrapper.find('.text-danger').text()).toBe('You need to enable at least one carrier to continue');
+    });
+
+    it('displays an error on validation when a country is enabled but has no associated carrier', () => {
+      const carriers = productFeed.settings.deliveryDetails.filter((carrier) => ['FR', 'IT'].includes(carrier.country)).map((carrier) => {
+        // Disable all carriers for Italy to get the error
+        if (carrier.country === 'IT') {
+          carrier.enabledCarrier = false;
+        }
+
+        return carrier;
+      });
+      const wrapper = buildWrapper({
+        propsData: {
+          countries: ['FR', 'IT'],
+          carriers,
+          displayValidationErrors: true,
+        },
+      });
+
+      expect(wrapper.find('.text-danger').exists()).toBeTruthy();
+      expect(wrapper.findAll('.text-danger').length).toBe(1);
+      expect(wrapper.find('.text-danger').text()).toBe('To continue, you need to activate and complete at least one carrier for each selected target country');
     });
   });
 

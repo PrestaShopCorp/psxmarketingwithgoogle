@@ -30,7 +30,7 @@ import {filterCountriesCompatible} from '../../../utils/TargetCountryValidator';
 import {getDataFromLocalStorage} from '../../../utils/LocalStorage';
 import {AttributeResponseFromAPI} from '../../../utils/AttributeMapping';
 import {CustomCarrier} from '@/providers/shipping-rate-provider';
-import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
+import {RateType} from '@/enums/product-feed/rate';
 
 export default {
   [GettersTypes.GET_PRODUCT_FEED_IS_CONFIGURED](state: LocalState): boolean {
@@ -165,8 +165,7 @@ export default {
     return state.settings.shippingSetup === null
       && state.settings.autoImportShippingSettings === false;
   },
-  [GettersTypes.GET_ESTIMATE_CARRIER](state: LocalState): CustomCarrier {
-    return state.settings.estimateCarrier;
+  [GettersTypes.GET_ESTIMATE_CARRIERS](state: LocalState): CustomCarrier[] {
+    return state.settings.estimateCarriers;
   },
-
 };

@@ -1,7 +1,8 @@
 <template>
   <!-- CASE FOR RATE_FOR_ALL_COUNTRIES -->
-  <div>
+  <div class="estimateMultiCountries">
     <b-card
+      id="for_all_countries"
       no-body
       class="mb-1"
       v-if="rateChosen === RateType.RATE_ALL_COUNTRIES"
@@ -16,34 +17,46 @@
           v-b-toggle.withAllCountries
           class="d-flex btn-without-hover"
           variant="invisible"
+          :disabled="countriesNames.length === 1"
         >
-          <span>
+          <span class="mr-2">
             {{
               countriesNames.length > 1 ?
                 countriesNames.toString() : countriesNames[0]
             }}
           </span>
+          <span
+            v-if="validateCarrier(carriers[0]) === false"
+            class="text-danger spans-gs_fz-14 d-inline-block ml-2"
+          >
+            {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.error') }}
+          </span>
           <i
             aria-hidden="true"
-            class="material-icons ps_gs-fz-20 ml-auto when-open"
+            class="material-icons ps_gs-fz-24 ml-auto when-open"
           >
-            expand_more
+            arrow_drop_down
           </i>
           <i
             aria-hidden="true"
-            class="material-icons ps_gs-fz-20 ml-auto when-closed"
-          >chevron_left</i>
+            class="material-icons ps_gs-fz-24 ml-auto when-closed"
+          >
+            arrow_right
+          </i>
         </b-button>
       </b-card-header>
       <b-collapse
+        visible
         id="withAllCountries"
         accordion="customCarrierAccordion"
         role="tabpanel"
+        v-model="cardWithAllCountriesIsVisible"
       >
         <b-card-body>
           <custom-carrier-form
-            :carrier="carrier"
-            :validation-error="validationError"
+            :custom-carrier="carriers[0]"
+            :display-validation-errors="displayValidationErrors"
+            @dataUpdated="$emit('dataUpdated', carriers)"
           />
         </b-card-body>
       </b-collapse>
@@ -52,9 +65,10 @@
     <!-- CASE FOR RATE_PER_COUNTRY -->
     <b-card
       no-body
+      id="card_per_country"
       class="mb-1"
       v-else-if="rateChosen === RateType.RATE_PER_COUNTRY"
-      v-for="(country, index) in countriesNames"
+      v-for="(carrier, index) in carriers"
       :key="index"
     >
       <b-card-header
@@ -64,44 +78,62 @@
       >
         <b-button
           block
-          v-b-toggle="`withAllCountries-${index}`"
+          v-b-toggle="`${carrier.rate}-${index}`"
           class="d-flex btn-without-hover"
           variant="invisible"
         >
-          <span>{{ country }}</span>
+          <span>{{ $options.filters.changeCountriesCodesToNames(carrier.countries)[0] }}</span>
+          <span
+            v-if="validateCarrier(carrier) === false"
+            class="text-danger spans-gs_fz-14 d-inline-block ml-2"
+          >
+            {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.error') }}
+          </span>
           <i
             aria-hidden="true"
-            class="material-icons ps_gs-fz-20 ml-auto when-closed"
+            class="material-icons ps_gs-fz-24 ml-auto when-closed"
           >
-            expand_more
+            arrow_drop_down
           </i>
           <i
             aria-hidden="true"
-            class="material-icons ps_gs-fz-20 ml-auto when-open"
-          >chevron_left</i>
+            class="material-icons ps_gs-fz-24 ml-auto when-open"
+          >
+            arrow_right
+          </i>
         </b-button>
       </b-card-header>
       <b-collapse
-        visible
-        :id="`withAllCountries-${index}`"
-        :accordion="`customCarrierAccordion${index}`"
+        :visible="(index === 0)"
+        :id="`${carrier.rate}-${index}`"
+        :accordion="`customCarrierAccordion-${index}`"
         role="tabpanel"
       >
         <b-card-body>
           <custom-carrier-form
-            :carrier="carrier"
-            :validation-error="validationError"
+            :custom-carrier="carrier"
+            :display-validation-errors="displayValidationErrors"
+            @dataUpdated="$emit('dataUpdated', carriers)"
           />
         </b-card-body>
       </b-collapse>
     </b-card>
+
+    <!-- Errors -->
+    <p
+      v-if="!rateChosen && displayValidationErrors"
+      class="text-danger text-small ps_gs-fz-12 d-md-flex justify-content-end"
+    >
+      <!-- eslint-disable-next-line max-len -->
+      {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.validationErrors.missingRateOption') }}
+    </p>
   </div>
 </template>
 <script lang="ts">
 import Vue, {PropType} from 'vue';
 import CustomCarrierForm from './custom-carrier-form.vue';
 import {RateType} from '@/enums/product-feed/rate';
-import {CustomCarrier} from '@/providers/shipping-rate-provider';
+import {CustomCarrier, validateCarrier} from '@/providers/shipping-rate-provider';
 
 export default Vue.extend({
   name: 'CountriesFormList',
@@ -111,17 +143,18 @@ export default Vue.extend({
   props: {
     rateChosen: {
       type: String as PropType<RateType>,
-      required: true,
+      required: false,
+      default: null,
     },
     countries: {
-      type: Array,
+      type: Array as PropType<string[]>,
       required: true,
     },
-    carrier: {
-      type: Object as PropType<CustomCarrier>,
+    carriers: {
+      type: Array as PropType<CustomCarrier[]>,
       required: true,
     },
-    validationError: {
+    displayValidationErrors: {
       type: Boolean,
       required: true,
     },
@@ -129,6 +162,7 @@ export default Vue.extend({
   data() {
     return {
       RateType,
+      cardWithAllCountriesIsVisible: true,
     };
   },
   computed: {
@@ -137,6 +171,27 @@ export default Vue.extend({
     },
   },
   methods: {
+    validateCarrier(carrier): boolean|null {
+      if (!this.displayValidationErrors) {
+        return null;
+      }
+      return validateCarrier(carrier);
+    },
+  },
+  watch: {
+    carriers: {
+      handler(carriers) {
+        this.$emit('dataUpdated', carriers);
+      },
+      immediate: true,
+    },
+    countriesNames: {
+      handler(newList) {
+        if (newList.length === 1) {
+          this.cardWithAllCountriesIsVisible = true;
+        }
+      },
+    },
   },
 });
 </script>

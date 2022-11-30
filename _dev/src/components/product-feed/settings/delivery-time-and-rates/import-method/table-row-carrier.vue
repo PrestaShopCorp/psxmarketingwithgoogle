@@ -15,8 +15,8 @@
     </td>
     <td class="py-3">
       <b-badge
-          variant="primary"
-        >
+        variant="primary"
+      >
         {{ carrier.country }}
       </b-badge>
     </td>
