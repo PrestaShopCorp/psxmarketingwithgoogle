@@ -50,6 +50,7 @@
         id="withAllCountries"
         accordion="customCarrierAccordion"
         role="tabpanel"
+        v-model="cardWithAllCountriesIsVisible"
       >
         <b-card-body>
           <custom-carrier-form
@@ -161,6 +162,7 @@ export default Vue.extend({
   data() {
     return {
       RateType,
+      cardWithAllCountriesIsVisible: true,
     };
   },
   computed: {
@@ -186,7 +188,7 @@ export default Vue.extend({
     countriesNames: {
       handler(newList) {
         if (newList.length === 1) {
-          this.$root.$emit('bv::toggle::collapse', 'withAllCountries');
+          this.cardWithAllCountriesIsVisible = true;
         }
       },
     },
