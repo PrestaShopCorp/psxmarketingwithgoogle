@@ -32,7 +32,7 @@
               v-model="rateSelected"
               name="customRateRadio"
               :value="RateType.RATE_PER_COUNTRY"
-              :disabled="isMultipleCountries <= 1"
+              :disabled="!isMultipleCountries"
             >
               <div>
                 <span class="font-weight-600 mb-2">
@@ -63,11 +63,11 @@ export default Vue.extend({
   },
   props: {
     isMultipleCountries: {
-      type: Number,
+      type: Boolean,
       required: true,
     },
     rateTypeChosen: {
-      type: String as PropType<RateType>,
+      type: String as PropType<RateType|null>,
       required: false,
       default: null,
     },
@@ -75,7 +75,7 @@ export default Vue.extend({
   computed: {
     rateSelected: {
       get() {
-        return this.$props.rateTypeChosen;
+        return this.rateTypeChosen;
       },
       set(value) {
         this.$emit('rateUpdated', value);
