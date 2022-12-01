@@ -146,7 +146,10 @@ export default {
         name: 'shippingSetup',
         data: json?.shippingSetup || null,
       });
-
+      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+        name: 'rate',
+        data: json?.rate || null,
+      });
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'estimateCarriers',
         data: fromApi(json?.estimateCarriers),
