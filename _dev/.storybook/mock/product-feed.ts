@@ -21,7 +21,9 @@ export const productFeed: State = {
   },
   attributeMapping: {},
   settings: {
-    shippingSettings: [],
+    // Todo: Empty object to avoid trigger of refresh.
+    // To fill with actual data. 
+    shippingSettings: [{}],
     shippingSetup: null,
     rate: null,
     estimateCarriers: [],
