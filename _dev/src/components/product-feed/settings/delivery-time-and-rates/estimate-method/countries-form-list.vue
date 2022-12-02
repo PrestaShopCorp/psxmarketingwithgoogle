@@ -142,7 +142,7 @@ export default Vue.extend({
   },
   props: {
     rateChosen: {
-      type: String as PropType<RateType>,
+      type: String as PropType<RateType|null>,
       required: false,
       default: null,
     },
