@@ -20,10 +20,7 @@
           :disabled="countriesNames.length === 1"
         >
           <span class="mr-2">
-            {{
-              countriesNames.length > 1 ?
-                countriesNames.toString() : countriesNames[0]
-            }}
+            {{ countriesNames.join(', ') }}
           </span>
           <span
             v-if="validateCarrier(carriers[0]) === false"
