@@ -132,8 +132,17 @@ describe('attribute-field.vue', () => {
       stubs: {
         VueShowdown: true,
       },
+      propsData: {
+        field: {
+          label: 'Brand',
+          name: 'brand',
+          tooltip: true,
+          recommended: [],
+          mapped: [],
+          required: true,
+        },
+      },
     });
-    await wrapper.setData({notAvailableSelected: true});
     expect(wrapper.find('.attribute-field__warning').exists()).toBeTruthy();
   });
 });

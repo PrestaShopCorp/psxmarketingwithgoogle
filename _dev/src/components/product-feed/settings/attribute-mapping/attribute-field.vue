@@ -40,7 +40,7 @@
       </b-dropdown-form>
       <b-dropdown-item-button
         button-class="rounded-0 text-dark"
-        @click="selectNotAvailable"
+        @click="attributesChecked = []"
       >
         <span
           class="px-2"
@@ -50,7 +50,7 @@
       </b-dropdown-item-button>
     </b-dropdown>
     <div
-      v-if="notAvailableSelected"
+      v-if="displayEventuallyRequiredMessage"
       class="maxw-sm-250 d-flex text-muted ps_gs-fz-12 mt-1 attribute-field__warning"
     >
       <i class="material-icons-round ps_gs-fz-16 font-weight-normal mr-1">warning_amber</i>
@@ -64,7 +64,6 @@
 
 <script>
 import googleUrl from '@/assets/json/googleUrl.json';
-import Categories from '@/enums/product-feed/attribute-mapping-categories';
 import {arrayEquals} from '../../../../utils/AttributeMapping';
 
 export default {
@@ -114,20 +113,11 @@ export default {
 
       return result.length ? result.join(', ') : this.$t('attributesMapping.options.notAvailable');
     },
+    displayEventuallyRequiredMessage() {
+      return !this.attributesChecked.length && this.field.name !== 'description';
+    },
   },
   methods: {
-    selectNotAvailable() {
-      if (this.field.name === 'description') {
-        this.attributesChecked = [];
-      } else if (this.category === Categories.ELECTRONICS) {
-        this.attributesChecked = [];
-        this.markdown = this.$t('productFeedSettings.attributeMapping.requiredForSomeCategories', [this.$options.googleUrl.learnRequirementsEnergyClass]);
-        this.notAvailableSelected = true;
-      } else {
-        this.attributesChecked = [];
-        this.notAvailableSelected = true;
-      }
-    },
     findAttribute(attr) {
       return !!this.attributesChecked.find((e) => e.name === attr);
     },
