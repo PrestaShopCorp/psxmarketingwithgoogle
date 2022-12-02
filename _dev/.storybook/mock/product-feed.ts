@@ -3,6 +3,7 @@ import { OfferType } from "@/enums/product-feed/offer";
 import { RateType } from "@/enums/product-feed/rate";
 import { State, AttributesTypes } from "@/store/modules/product-feed/state";
 import DeliveryType from '@/enums/product-feed/delivery-type';
+import { shippingPhpExport } from "./shipping-settings";
 
 export const productFeed: State = {
   isSyncSummaryLoadingInProgress: false,
@@ -21,7 +22,9 @@ export const productFeed: State = {
   },
   attributeMapping: {},
   settings: {
-    shippingSettings: [],
+    // Todo: Empty object to avoid trigger of refresh.
+    // To fill with actual data. 
+    shippingSettings: shippingPhpExport,
     shippingSetup: null,
     rate: null,
     estimateCarriers: [],
