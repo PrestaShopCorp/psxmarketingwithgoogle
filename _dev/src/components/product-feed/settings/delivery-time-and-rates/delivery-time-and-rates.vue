@@ -194,15 +194,15 @@ export default Vue.extend({
 
       // Validation - Estimate option
       if (this.getShippingValueSetup === ShippingSetupOption.ESTIMATE) {
-        if (!this.estimateCarriers.length) {
+        if (!this.estimateCarriersToConfigure.length) {
           return false;
         }
 
-        if (!this.rateChosen) {
+        if (!this.selectedRate) {
           return false;
         }
 
-        if (!this.estimateCarriers.every(validateCarrier)) {
+        if (!this.estimateCarriersToConfigure.every(validateCarrier)) {
           return false;
         }
 
@@ -242,8 +242,8 @@ export default Vue.extend({
     },
     saveCarriersDetails(): void {
       if (this.getShippingValueSetup === ShippingSetupOption.ESTIMATE) {
-        localStorage.setItem('productFeed-estimateCarriers', JSON.stringify(this.estimateCarriers));
-        localStorage.setItem('productFeed-rateChosen', JSON.stringify(this.rateChosen));
+        localStorage.setItem('productFeed-estimateCarriers', JSON.stringify(this.estimateCarriersToConfigure));
+        localStorage.setItem('productFeed-rateChosen', JSON.stringify(this.selectedRate));
       } else if (this.getShippingValueSetup === ShippingSetupOption.IMPORT) {
         localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
       }
