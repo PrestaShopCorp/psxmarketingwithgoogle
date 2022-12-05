@@ -133,42 +133,46 @@ export default Vue.extend({
       if (this.selectedCountries.length === 1 && this.selectedRate === RateType.RATE_PER_COUNTRY) {
         this.rateChosen = RateType.RATE_ALL_COUNTRIES;
       }
-      this.updateListOfCarriers();
+      this.updateListOfEstimatedCarriers();
       this.displayValidationErrors = false;
     },
-    updateListOfCarriers(): void {
-      if (this.selectedRate === RateType.RATE_PER_COUNTRY) {
-        // If a country is removed, remove carriers that were linked to it
-        const filteredCarriersFromStoreByCountries = this.estimateCarriers?.filter(
-          (carrier: CustomCarrier) => carrier.countries.some(
-            (carrierCountry: string) => this.selectedCountries.includes(carrierCountry),
-          ),
-        ) || [];
-
-        // If a country is added, we check which one must be added to the carriers list
-        const missingCountriesToConfigure = this.selectedCountries.filter(
-          (country) => !filteredCarriersFromStoreByCountries.find(
-            (carrier: CustomCarrier) => carrier.countries.includes(country),
-          ),
-        );
-
-        // If there is no carrier to add/remove, we stop here to avoid a loop in the event system
-        if (filteredCarriersFromStoreByCountries.length === this.estimateCarriers.length
-          && !missingCountriesToConfigure.length
-        ) {
-          return;
-        }
-
-        // In rate per country, check there is one carrier per country
-        filteredCarriersFromStoreByCountries.push(
-          ...createCustomCarriersTemplate(
-            this.selectedRate,
-            missingCountriesToConfigure,
-            this.getCurrency,
-          ),
-        );
-        this.estimateCarriers = filteredCarriersFromStoreByCountries;
+    updateListOfEstimatedCarriers(): void {
+      if (this.getShippingValueSetup !== ShippingSetupOption.ESTIMATE
+        || this.selectedRate !== RateType.RATE_PER_COUNTRY
+      ) {
+        return;
       }
+
+      // If a country is removed, remove carriers that were linked to it
+      const filteredCarriersFromStoreByCountries = this.estimateCarriers?.filter(
+        (carrier: CustomCarrier) => carrier.countries.some(
+          (carrierCountry: string) => this.selectedCountries.includes(carrierCountry),
+        ),
+      ) || [];
+
+      // If a country is added, we check which one must be added to the carriers list
+      const missingCountriesToConfigure = this.selectedCountries.filter(
+        (country) => !filteredCarriersFromStoreByCountries.find(
+          (carrier: CustomCarrier) => carrier.countries.includes(country),
+        ),
+      );
+
+      // If there is no carrier to add/remove, we stop here to avoid a loop in the event system
+      if (filteredCarriersFromStoreByCountries.length === this.estimateCarriers.length
+        && !missingCountriesToConfigure.length
+      ) {
+        return;
+      }
+
+      // In rate per country, check there is one carrier per country
+      filteredCarriersFromStoreByCountries.push(
+        ...createCustomCarriersTemplate(
+          this.selectedRate,
+          missingCountriesToConfigure,
+          this.getCurrency,
+        ),
+      );
+      this.estimateCarriers = filteredCarriersFromStoreByCountries;
     },
     previousStep(): void {
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 1);
