@@ -15,10 +15,11 @@
       </p>
       <div
         class="p-3 mb-2 border rounded ps_gs-shipping-setup-option"
-        :class="[{'selected':chosenShippingSetup === ShippingSetupOption.ESTIMATE}]"
+        :class="[{'selected':shippingSetup === ShippingSetupOption.ESTIMATE}]"
       >
         <b-form-radio
-          v-model="chosenShippingSetup"
+          v-model="shippingSetup"
+          @input="chosenShippingSetup = $event.target.value"
           name="shippingSettingsRadio"
           :value="ShippingSetupOption.ESTIMATE"
         >
@@ -35,10 +36,11 @@
       </div>
       <div
         class="p-3 mb-2 border rounded ps_gs-shipping-setup-option"
-        :class="[{'selected':chosenShippingSetup === ShippingSetupOption.IMPORT}]"
+        :class="[{'selected':shippingSetup === ShippingSetupOption.IMPORT}]"
       >
         <b-form-radio
-          v-model="chosenShippingSetup"
+          v-model="shippingSetup"
+          @input="chosenShippingSetup = $event.target.value"
           name="shippingSettingsRadio"
           :value="ShippingSetupOption.IMPORT"
         >
@@ -89,7 +91,7 @@ export default defineComponent({
   data() {
     return {
       tax: null,
-      chosenShippingSetup: this.getInitialValueOfShippingSetup(),
+      chosenShippingSetup: null,
       loading: false,
       displayValidationErrors: false,
       ShippingSetupOption,
@@ -97,11 +99,12 @@ export default defineComponent({
   },
   computed: {
     stepIsValid() {
-      return this.chosenShippingSetup !== null;
+      return this.shippingSetup !== null;
     },
-  },
-  methods: {
-    getInitialValueOfShippingSetup(): ShippingSetupOption|null {
+    shippingSetup(): ShippingSetupOption|null {
+      if (this.chosenShippingSetup) {
+        return this.chosenShippingSetup;
+      }
       // Handle potential value from store.
       const initialValue = getDataFromLocalStorage('productFeed-shippingSetup') ?? this.$store.state.productFeed.settings.shippingSetup;
 
@@ -118,6 +121,8 @@ export default defineComponent({
       }
       return null;
     },
+  },
+  methods: {
     validateStep(): boolean {
       this.displayValidationErrors = true;
 
@@ -131,7 +136,7 @@ export default defineComponent({
         return;
       }
       this.loading = true;
-      this.$store.commit('productFeed/SET_SHIPPING_SETUP_SELECTED', this.chosenShippingSetup);
+      this.$store.commit('productFeed/SET_SHIPPING_SETUP_SELECTED', this.shippingSetup);
       this.$segment.track('[GGL] Product feed config - Step 1 with Config my shipping settings now', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
