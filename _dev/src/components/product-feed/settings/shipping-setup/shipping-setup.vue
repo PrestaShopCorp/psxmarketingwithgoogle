@@ -19,7 +19,6 @@
       >
         <b-form-radio
           v-model="shippingSetup"
-          @input="chosenShippingSetup = $event.target.value"
           name="shippingSettingsRadio"
           :value="ShippingSetupOption.ESTIMATE"
         >
@@ -40,7 +39,6 @@
       >
         <b-form-radio
           v-model="shippingSetup"
-          @input="chosenShippingSetup = $event.target.value"
           name="shippingSettingsRadio"
           :value="ShippingSetupOption.IMPORT"
         >
@@ -101,25 +99,31 @@ export default defineComponent({
     stepIsValid() {
       return this.shippingSetup !== null;
     },
-    shippingSetup(): ShippingSetupOption|null {
-      if (this.chosenShippingSetup) {
-        return this.chosenShippingSetup;
-      }
-      // Handle potential value from store.
-      const initialValue = getDataFromLocalStorage('productFeed-shippingSetup') ?? this.$store.state.productFeed.settings.shippingSetup;
+    shippingSetup: {
+      get(): ShippingSetupOption|null {
+        if (this.chosenShippingSetup) {
+          return this.chosenShippingSetup;
+        }
+        // Handle potential value from store.
+        const initialValue = getDataFromLocalStorage('productFeed-shippingSetup') ?? this.$store.state.productFeed.settings.shippingSetup;
 
-      if (initialValue) {
-        return initialValue;
-      }
+        if (initialValue) {
+          return initialValue;
+        }
 
-      // Backward compatibility of data coming from Product Feed funnel
-      // when we only had manuel or automatic import of shipping settings
-      const initialOldValue: boolean = getDataFromLocalStorage('productFeed-autoImportShippingSettings') ?? !!this.$store.state.productFeed.settings.autoImportShippingSettings;
+        // Backward compatibility of data coming from Product Feed funnel
+        // when we only had manuel or automatic import of shipping settings
+        const initialOldValue: boolean = getDataFromLocalStorage('productFeed-autoImportShippingSettings') ?? !!this.$store.state.productFeed.settings.autoImportShippingSettings;
 
-      if (initialOldValue === true) {
-        return ShippingSetupOption.IMPORT;
-      }
-      return null;
+        if (initialOldValue === true) {
+          return ShippingSetupOption.IMPORT;
+        }
+        return null;
+      },
+      set(value: ShippingSetupOption) {
+        console.log(`applying ${value}`);
+        this.chosenShippingSetup = value;
+      },
     },
   },
   methods: {
