@@ -280,17 +280,22 @@ export default Vue.extend({
       this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS');
     },
   },
-  mounted() {
-    if (this.getShippingValueSetup === ShippingSetupOption.IMPORT
-    && (!this.$store.state.productFeed.settings.deliveryDetails.length
-    || !this.$store.state.productFeed.settings.shippingSettings.length)) {
-      this.refreshComponent();
-    }
+  watch: {
+    getShippingValueSetup: {
+      handler(newValue: string[]): void {
+        if (newValue === ShippingSetupOption.IMPORT
+        && (!this.$store.state.productFeed.settings.deliveryDetails.length
+        || !this.$store.state.productFeed.settings.shippingSettings.length)) {
+          this.refreshComponent();
+        }
 
-    if (this.getShippingValueSetup === ShippingSetupOption.ESTIMATE
-    && !this.$store.state.productFeed.settings.estimateCarriers.length) {
-      this.refreshComponent();
-    }
+        if (newValue === ShippingSetupOption.ESTIMATE
+        && !this.$store.state.productFeed.settings.estimateCarriers.length) {
+          this.refreshComponent();
+        }
+      },
+      immediate: true,
+    },
   },
 });
 </script>
