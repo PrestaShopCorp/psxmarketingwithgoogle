@@ -249,7 +249,6 @@ export default {
   },
   methods: {
     previousStep() {
-      localStorage.setItem('productFeed-attributeMapping', JSON.stringify(formatMappingToApi(this.attributesToMap)));
       // Merchants used to be able to configure their carriers later on GMC.
       // For backward compatibility, we need to send them back to the first step
       // if they haven't swtiched on the new version yet.
