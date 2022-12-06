@@ -307,7 +307,7 @@
         },
         "summary": "Configured carriers from backoffice"
       },
-      "productAvailaibleIn": "The country dropdown below would match the country and currency you’ve set up on your shop. You can select the country where you would like your products to be displayed",
+      "productAvailaibleIn": "The dropdown list of countries below would match the countries and currency you’ve set up on your shop. You can select the countries where you would like your products to be displayed.",
       "targetCountries": "Target country|Target countries",
       "filterTitle": "Filter by country",
       "ifMultipleCountries": "If you target multiple countries, each product price will be automatically converted to the correct currency in Google. However your store must have configured shipping and tax rates for each selected country. Please respect [country-specific shopping policies]({0})[:target=\"_blank\"] and [local regulation]({1})[:target=\"_blank\"]",
