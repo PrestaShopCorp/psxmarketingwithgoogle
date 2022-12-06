@@ -105,7 +105,10 @@ export default Vue.extend({
     estimateCarriersToConfigure() {
       return this.estimateCarriers
         || getDataFromLocalStorage('productFeed-estimateCarriers')
-        || this.$store.getters['productFeed/GET_ESTIMATE_CARRIERS']
+        || (this.$store.getters['productFeed/GET_ESTIMATE_CARRIERS']?.length
+          ? this.$store.getters['productFeed/GET_ESTIMATE_CARRIERS']
+          : null
+        )
         || createCustomCarriersTemplate(
           this.selectedRate,
           this.selectedCountries,
