@@ -103,19 +103,14 @@ export default Vue.extend({
       return this.$store.getters['app/GET_CURRENT_CURRENCY'];
     },
     estimateCarriersToConfigure() {
-      const carriersFromStore = this.estimateCarriers
+      return this.estimateCarriers
         || getDataFromLocalStorage('productFeed-estimateCarriers')
         || this.$store.getters['productFeed/GET_ESTIMATE_CARRIERS']
-        || [];
-
-      if (!carriersFromStore.length) {
-        return createCustomCarriersTemplate(
+        || createCustomCarriersTemplate(
           this.selectedRate,
           this.selectedCountries,
           this.getCurrency,
         );
-      }
-      return carriersFromStore;
     },
     selectedRate(): RateType|null {
       return this.rateChosen || getDataFromLocalStorage('productFeed-rateChosen') || this.$store.state.productFeed.settings.rate;
@@ -182,7 +177,11 @@ export default Vue.extend({
     },
     rateSelected(event) {
       this.rateChosen = event;
-      this.estimateCarriers = [];
+      this.estimateCarriers = createCustomCarriersTemplate(
+        this.selectedRate,
+        this.selectedCountries,
+        this.getCurrency,
+      );
     },
     validateForm(): boolean {
       this.displayValidationErrors = true;
