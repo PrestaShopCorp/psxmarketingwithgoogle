@@ -1,5 +1,5 @@
 <template>
-  <b-container>
+  <b-container class="customCarrierForm">
     <b-row class="mb-2 mt-2">
       <b-col>
         <div class="carrierName">
