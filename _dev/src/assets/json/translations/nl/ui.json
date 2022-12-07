@@ -95,7 +95,7 @@
     "introDisabled": "Koppel uw Merchant Center-account aan PrestaShop om de synchronisatie van uw winkel- en productgegevens te vergemakkelijken",
     "claimCollides": "Uw website is al geclaimd.",
     "claimOverwrite": "Om het aanmaken van een Merchant Center account te voltooien, moet u de bestaande vordering overschrijven.",
-    "footerEU": "Als u zich in de Europese Economische Ruimte, het Verenigd Koninkrijk of Zwitserland bevindt, moet uw Merchant Center-account geassocieerd zijn met een [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]  \nAls u een nieuw Merchant Center-account aanmaakt via deze applicatie, wordt deze standaard geassocieerd met Google Shopping, Google's CSS. U kunt de CSS die aan uw account is gekoppeld op elk gewenst moment wijzigen. [Zoek uw CSS-partners]({1})[:target=\"_blank\"]  \nZodra u uw Merchant Center-account hebt ingesteld, kunt u onze onboarding tool gebruiken, ongeacht welke CSS u gebruikt.",
+    "footerEU": "For stores in the European Economic Area, the United Kingdom or Switzerland, your Merchant Center account is required to be associated with to a [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]. For new Merchant Center accounts created through this application, your account would be associated by default with Google Shopping, Google’s CSS. You can change the CSS associated with your account at any time and you can also find CSS Partners here. Once you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.",
     "shopInfoMissing": "Er ontbreekt winkelinformatie",
     "shopInfoMissingDescription": "Om ontbrekende winkel informatie aan te vullen gaat u naar uw [Merchant Center account]({0})[:target=\"_blank\"].",
     "userIsNotAdmin": "Je hebt Admin toegang nodig",
@@ -278,6 +278,7 @@
         "customDesc": "I'd like to set different rates and times for each country"
       },
       "estimateStep": {
+        "estimateInputLabel": "Enter a carrier",
         "error": "Fill in the required information",
         "carrierName": "Carrier name",
         "storeOffersTitle": "My store offers",
@@ -294,16 +295,20 @@
         "summary": {
           "singleCountry": "Flat rate",
           "multiCountriesFlatRateForAll": "Flat rate for all target countries"
+        },
+        "validationErrors": {
+          "missingRateOption": "To continue, you must select a rating option and indicate your rates and delivery time accordingly"
         }
       },
       "importOption": {
         "validationErrors": {
-          "needAtLeastOneCarrier": "You need to enable at least one carrier to continue"
+          "needAtLeastOneCarrier": "You need to enable at least one carrier to continue",
+          "needAtLeastOneCarrierForEachCountry": "To continue, you need to activate and complete at least one carrier for each selected target country"
         },
         "summary": "Configured carriers from backoffice"
       },
-      "productAvailaibleIn": "You can select countries where you would like your products to be displayed. The country dropdown below would match the countries and currency that you’ve set up in PrestaShop.",
-      "targetCountries": "Land van bestemming",
+      "productAvailaibleIn": "The dropdown list of countries below would match the countries and currency you’ve set up on your shop. You can select the countries where you would like your products to be displayed.",
+      "targetCountries": "Target country|Target countries",
       "filterTitle": "Filter op land",
       "ifMultipleCountries": "Als u zich op meerdere landen richt, wordt elke productprijs in Google automatisch omgerekend naar de juiste valuta. Uw winkel moet echter wel verzend- en belastingtarieven hebben geconfigureerd voor elk geselecteerd land. Respecteer [landspecifiek winkelbeleid]({0})[:target=\"_blank\"] en [lokale regelgeving]({1})[:target=\"_blank\"]",
       "placeholderSelect": "Selecteer de landen waar uw producten beschikbaar zijn",
@@ -331,7 +336,7 @@
       "handlingTimeTooltip": "Geef in werkdagen aan hoeveel tijd u nodig hebt om een bestelling voor te bereiden tot het moment waarop de vervoerder de bestelling ophaalt.",
       "transitTimeTooltip": "Voer in hoe lang het duurt voordat uw bestelling naar de klant wordt verzonden zodra deze uw vestiging heeft verlaten.",
       "shippingInformationTitle": "Shipping rates & transit time",
-      "shippingInformationIntro": "You can enable and configure the carriers you want to be displayed on Google Shopping.",
+      "shippingInformationIntro": "Rates from enabled carriers will be displayed to customers who are browsing your products on Google.",
       "shippingTableNotice": "Google cannot support carrier with pick up in store delivery type, please make sure you disable them or switch to another method.",
       "shippingSwitchCarrier": "Schakelaar om drager te activeren/desactiveren",
       "carriersDropdownHeader": "Kopieer verzendinformatie naar",

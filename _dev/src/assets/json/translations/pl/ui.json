@@ -95,7 +95,7 @@
     "introDisabled": "Połącz swoje konto Merchant Center z PrestaShop, aby ułatwić synchronizację danych dotyczących sklepu i produktów",
     "claimCollides": "Twoja strona została już zgłoszona.",
     "claimOverwrite": "Aby zakończyć tworzenie konta Merchant Center, należy nadpisać istniejące zgłoszenie.",
-    "footerEU": "Jeśli jesteś w Europejskim Obszarze Gospodarczym, Wielkiej Brytanii lub Szwajcarii, Twoje konto Merchant Center musi być powiązane z [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]  \nJeśli utworzysz nowe konto Merchant Center poprzez tę aplikację, będzie ono domyślnie powiązane z Google Shopping, CSS Google. Możesz zmienić CSS powiązany z Twoim kontem w dowolnym momencie. [Znajdź swoich Partnerów CSS]({1})[:target=\"_blank\"]  \nPo skonfigurowaniu konta Merchant Center możesz korzystać z naszego narzędzia onboardingowego niezależnie od tego, jakiego CSS używasz.",
+    "footerEU": "For stores in the European Economic Area, the United Kingdom or Switzerland, your Merchant Center account is required to be associated with to a [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]. For new Merchant Center accounts created through this application, your account would be associated by default with Google Shopping, Google’s CSS. You can change the CSS associated with your account at any time and you can also find CSS Partners here. Once you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.",
     "shopInfoMissing": "Informacje o sklepie są niepełne",
     "shopInfoMissingDescription": "Aby uzupełnić brakujące informacje o sklepie, przejdź do Twojego [konta Merchant Center]({0})[:target=\"_blank\"].",
     "userIsNotAdmin": "Musisz mieć uprawnienia administratora",
@@ -278,6 +278,7 @@
         "customDesc": "Chcę ustawić różne stawki i czas dla każdego kraju"
       },
       "estimateStep": {
+        "estimateInputLabel": "Enter a carrier",
         "error": "Wypełnij wymagane informacje",
         "carrierName": "Nazwa przewoźnika",
         "storeOffersTitle": "Mój sklep oferuje",
@@ -294,16 +295,20 @@
         "summary": {
           "singleCountry": "Stała stawka",
           "multiCountriesFlatRateForAll": "Stała stawka dla wszystkich krajów docelowych"
+        },
+        "validationErrors": {
+          "missingRateOption": "To continue, you must select a rating option and indicate your rates and delivery time accordingly"
         }
       },
       "importOption": {
         "validationErrors": {
-          "needAtLeastOneCarrier": "Aby kontynuować, musisz wybrać przynajmniej jednego przewoźnika"
+          "needAtLeastOneCarrier": "Aby kontynuować, musisz wybrać przynajmniej jednego przewoźnika",
+          "needAtLeastOneCarrierForEachCountry": "To continue, you need to activate and complete at least one carrier for each selected target country"
         },
         "summary": "Przewoźnicy skonfigurowani z back office"
       },
-      "productAvailaibleIn": "Możesz wybrać kraje, w których chcesz, aby Twoje produkty były wyświetlane. Poniższa rozwijana lista krajów odpowiada krajom i walucie, które zostały skonfigurowane w Twoim sklepie PrestaShop.",
-      "targetCountries": "Kraj docelowy",
+      "productAvailaibleIn": "The dropdown list of countries below would match the countries and currency you’ve set up on your shop. You can select the countries where you would like your products to be displayed.",
+      "targetCountries": "Target country|Target countries",
       "filterTitle": "Filtrowanie według kraju",
       "ifMultipleCountries": "Jeśli interesuje Cię sprzedaż w wielu krajach, cena każdego produktu będzie automatycznie przekonwertowana do właściwej waluty w Google. Twój sklep musi jednak mieć skonfigurowane informacje o wysyłce i podatkach dla każdego kraju. Przestrzegaj [zasad zakupów obowiązujących w danym kraju]({0})[:target=\"_blank\"] i [lokalnych przepisów]({1})[:target=\"_blank\"]",
       "placeholderSelect": "Wybierz kraje, w których Twoje produkty są dostępne",
@@ -331,7 +336,7 @@
       "handlingTimeTooltip": "Wpisz w dniach roboczych, ile czasu zajmuje Ci przygotowanie zamówienia do momentu odebrania go przez przewoźnika.",
       "transitTimeTooltip": "Wprowadź, ile czasu zajmuje wysłanie zamówienia do klienta, gdy opuści ono Twój magazyn.",
       "shippingInformationTitle": "Koszty wysyłki i czas dostawy",
-      "shippingInformationIntro": "Możesz włączyć i skonfigurować przewoźników, którzy mają być wyświetlani w Google Zakupy.",
+      "shippingInformationIntro": "Rates from enabled carriers will be displayed to customers who are browsing your products on Google.",
       "shippingTableNotice": "Google nie wspiera przewoźników, którzy oferują jedynie dostawę w sklepie. Upewnij się, że są oni wyłączeni lub użyj innej metody, aby skonfigurować sposoby dostawy.",
       "shippingSwitchCarrier": "Przełącz, aby aktywować/dezaktywować przewoźnika",
       "carriersDropdownHeader": "Skopiuj informacje o wysyłce do",
