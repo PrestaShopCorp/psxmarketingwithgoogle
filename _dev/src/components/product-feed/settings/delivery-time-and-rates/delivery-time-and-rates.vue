@@ -152,7 +152,7 @@ export default Vue.extend({
       );
 
       // If there is no carrier to add/remove, we stop here to avoid a loop in the event system
-      if (filteredCarriersFromStoreByCountries.length === this.estimateCarriers.length
+      if (filteredCarriersFromStoreByCountries.length === this.estimateCarriers?.length
         && !missingCountriesToConfigure.length
       ) {
         return;
