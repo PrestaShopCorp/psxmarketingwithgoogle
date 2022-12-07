@@ -20,7 +20,10 @@
         :basic-display="displayAttributeMappingSimpleCard"
         :status="targetCountriesStatus"
         :title="$t('productFeedSettings.deliveryTimeAndRates.title')"
-        :sub-title="$t('productFeedSettings.deliveryTimeAndRates.targetCountries')"
+        :sub-title="$tc(
+          'productFeedSettings.deliveryTimeAndRates.targetCountries',
+          targetCountries.length,
+        )"
         :description="targetCountries.join(', ')"
         :sub-title2="$t('productFeedSettings.deliveryTimeAndRates.title')"
         :description2="deliveryTimeAndRatesDescription"
@@ -64,7 +67,10 @@
         :basic-display="displayAttributeMappingSimpleCard"
         :status="targetCountriesStatus"
         :title="$t('productFeedSettings.deliveryTimeAndRates.title')"
-        :sub-title="$t('productFeedSettings.deliveryTimeAndRates.targetCountries')"
+        :sub-title="$tc(
+          'productFeedSettings.deliveryTimeAndRates.targetCountries',
+          targetCountries.length,
+        )"
         :description="targetCountries.join(', ')"
         :sub-title2="$t('productFeedSettings.deliveryTimeAndRates.title')"
         :description2="deliveryTimeAndRatesDescription"

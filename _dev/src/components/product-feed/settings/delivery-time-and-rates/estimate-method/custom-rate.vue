@@ -10,6 +10,7 @@
             <b-form-radio
               data-test-id="radioButton"
               v-model="rateSelected"
+              @change="rateUpdated($event)"
               name="customRateRadio"
               :value="RateType.RATE_ALL_COUNTRIES"
             >
@@ -30,6 +31,7 @@
           <div>
             <b-form-radio
               v-model="rateSelected"
+              @change="rateUpdated($event)"
               name="customRateRadio"
               :value="RateType.RATE_PER_COUNTRY"
               :disabled="!isMultipleCountries"
@@ -77,9 +79,14 @@ export default Vue.extend({
       get() {
         return this.rateTypeChosen;
       },
-      set(value) {
-        this.$emit('rateUpdated', value);
+      set() {
+        // Do nothing, react only on user interaction
       },
+    },
+  },
+  methods: {
+    rateUpdated(value): void {
+      this.$emit('rateUpdated', value);
     },
   },
 });

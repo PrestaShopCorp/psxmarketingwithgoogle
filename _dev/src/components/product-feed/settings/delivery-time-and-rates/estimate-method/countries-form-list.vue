@@ -180,7 +180,6 @@ export default Vue.extend({
       handler(carriers) {
         this.$emit('dataUpdated', carriers);
       },
-      immediate: true,
     },
     countriesNames: {
       handler(newList) {
