@@ -239,7 +239,7 @@
       "syncSchedule" : "Sync schedule"
     },
     "noticeDataStored": "Settings are saved at each step, will be submitted only at the final step.",
-    "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step",
+    "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step.",
     "shippingSetup": {
       "title": "Shipping setup",
       "mandatoryStep": "For your products to be shown by Google Merchant Center, shipping is a mandatory step.",
@@ -278,7 +278,7 @@
         "customDesc": "I'd like to set different rates and times for each country"
       },
       "estimateStep": {
-        "estimateInputLabel": "Enter a carrier",
+        "estimateInputLabel": "Enter carrier",
         "error": "Fill in the required information",
         "carrierName": "Carrier name",
         "storeOffersTitle": "My store offers",
