@@ -278,7 +278,7 @@
         "customDesc": "Je voudrais définir des tarifs et des délais spécifiques pour chaque pays"
       },
       "estimateStep": {
-        "estimateInputLabel": "Enter a carrier",
+        "estimateInputLabel": "Saisir un transporteur",
         "error": "Veuillez remplir les informations requises",
         "carrierName": "Nom du transporteur",
         "storeOffersTitle": "Ma boutique propose",
@@ -308,7 +308,7 @@
         "summary": "Transporteurs configurés depuis le back-office"
       },
       "productAvailaibleIn": "The dropdown list of countries below would match the countries and currency you’ve set up on your shop. You can select the countries where you would like your products to be displayed.",
-      "targetCountries": "Target country|Target countries",
+      "targetCountries": "Pays cible|Pays cibles",
       "filterTitle": "Filtrer par pays",
       "ifMultipleCountries": "Si vous ciblez plusieurs pays, le prix de chaque produit sera automatiquement converti dans la devise correcte de Google. Cependant, votre boutique doit avoir configuré les frais de port et de taxe pour chaque pays sélectionné. Veuillez respecter [les politiques d'achat propres à chaque pays]({0})[:target=\"_blank\"] et [la réglementation locale]({1})[:target=\"_blank\"]",
       "placeholderSelect": "Sélectionnez les pays où vos produits sont disponibles",
@@ -336,7 +336,7 @@
       "handlingTimeTooltip": "Entrez le temps qu'il vous faut pour préparer une commande jusqu'à ce qu'elle soit prise en charge par le transporteur en jours ouvrés.",
       "transitTimeTooltip": "Entrez le temps qu'il faut pour que votre commande soit expédiée au client une fois qu'il quitte votre entrepôt.",
       "shippingInformationTitle": "Frais d'expédition et délai de livraison",
-      "shippingInformationIntro": "Rates from enabled carriers will be displayed to customers who are browsing your products on Google.",
+      "shippingInformationIntro": "Les tarifs des transporteurs activés seront affichés aux clients qui consultent sur vos produits sur Google.",
       "shippingTableNotice": "Google ne prend pas en charge les transporteurs qui ne propose que la livraison en magasin. Veillez à les désactiver ou à opter pour une autre méthode de configuration de vos modes de livraison.",
       "shippingSwitchCarrier": "Cliquer pour activer / désactiver le transporteur",
       "carriersDropdownHeader": "Copier les informations d'expédition dans",
