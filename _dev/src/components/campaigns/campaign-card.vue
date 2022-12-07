@@ -80,6 +80,9 @@ export default {
     accountHasAtLeastOneCampaign() {
       return !!this.$store.getters['campaigns/GET_ALL_CAMPAIGNS']?.length;
     },
+    remarketingTagIsSet() {
+      return this.$store.getters['campaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
+    },
   },
   methods: {
     openPopinActivateTracking() {
@@ -88,7 +91,7 @@ export default {
         params: SegmentGenericParams,
       });
       // Prevent popin for opening if tracking is a campaign exists
-      if (this.accountHasAtLeastOneCampaign) {
+      if (this.accountHasAtLeastOneCampaign && this.remarketingTagIsSet) {
         this.$router.push({
           name: 'campaign-creation',
         });
