@@ -3,7 +3,7 @@
     <p class="h3 mr-2 mb-2 font-weight-600 d-inline-block">
       {{ $t('productFeedSettings.steps.deliveryTimesAndRates') }}
     </p>
-    <b-card class="mb-2 custom-banner-padding">
+    <b-card class="mb-2 p3">
       <b-container>
         <b-row>
           <b-col>
