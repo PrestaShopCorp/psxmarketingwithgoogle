@@ -3,7 +3,7 @@
     <p class="h3 mr-2 mb-2 font-weight-600 d-inline-block">
       {{ $t('productFeedSettings.steps.deliveryTimesAndRates') }}
     </p>
-    <b-card class="mb-2">
+    <b-card class="mb-2 custom-banner-padding">
       <b-container>
         <b-row>
           <b-col>
@@ -110,7 +110,7 @@
             </b-row>
             <!-- eslint-disable max-len -->
             <b-card
-              class="offer-rates row"
+              class="offer-rates"
               v-if="estimateCarrier.offer === OfferType.FLAT_SHIPPING_RATE
                 || estimateCarrier.offer === OfferType.FREE_SHIPPING_OVER_AMOUNT"
             >
@@ -266,12 +266,12 @@ export default Vue.extend({
       OfferType,
       offers: [
         {
-          text: this.$t('productFeedSettings.deliveryTimeAndRates.estimateStep.storeOffers.flatShippingRateForAllProducts'),
-          value: OfferType.FLAT_SHIPPING_RATE,
-        },
-        {
           text: this.$t('productFeedSettings.deliveryTimeAndRates.estimateStep.storeOffers.freeShippingForAllProducts'),
           value: OfferType.FREE_SHIPPING,
+        },
+        {
+          text: this.$t('productFeedSettings.deliveryTimeAndRates.estimateStep.storeOffers.flatShippingRateForAllProducts'),
+          value: OfferType.FLAT_SHIPPING_RATE,
         },
         {
           text: this.$t('productFeedSettings.deliveryTimeAndRates.estimateStep.storeOffers.freeShippingOverAmount'),
