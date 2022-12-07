@@ -16,8 +16,7 @@
 
     <countries-form-list
       v-if="(getShippingValueSetup === ShippingSetupOption.ESTIMATE
-        && selectedCountries.length > 0
-        && selectedRate)"
+        && selectedCountries.length > 0)"
       :rate-chosen="selectedRate"
       :carriers="estimateCarriersToConfigure"
       :countries="selectedCountries"
