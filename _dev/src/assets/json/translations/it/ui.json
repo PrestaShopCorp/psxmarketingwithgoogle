@@ -95,7 +95,7 @@
     "introDisabled": "Puoi collegare un account Google Merchant Center esistente o crearne uno nuovo in pochi semplici passaggi.",
     "claimCollides": "Il tuo sito web è già stato verificato.",
     "claimOverwrite": "Per terminare la creazione dell'account Merchant Center, è necessario sovrascrivere la richiesta esistente.",
-    "footerEU": "Se ti trovi nello Spazio Economico Europeo, nel Regno Unito o in Svizzera, il tuo account Merchant Center deve essere associato a un [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]  \nSe crei un nuovo account Merchant Center attraverso questa applicazione, sarà associato a Google Shopping, il CSS di Google, di default. Puoi cambiare il CSS associato al tuo account in qualsiasi momento. [Trova i tuoi partner CSS]({1})[:target=\"_blank\"]  \nUna volta che hai impostato il tuo account Merchant Center puoi usare il nostro strumento di onboarding indipendentemente dal CSS che usi.",
+    "footerEU": "For stores in the European Economic Area, the United Kingdom or Switzerland, your Merchant Center account is required to be associated with to a [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]. For new Merchant Center accounts created through this application, your account would be associated by default with Google Shopping, Google’s CSS. You can change the CSS associated with your account at any time and you can also find CSS Partners here. Once you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.",
     "shopInfoMissing": "Mancano alcune informazioni sullo shop",
     "shopInfoMissingDescription": "Per completare le informazioni mancanti sullo shop, vai al tuo [account Merchant Center]({0})[:target=\"_blank\"].",
     "userIsNotAdmin": "Devi fare l'accesso come Amministratore",
@@ -278,6 +278,7 @@
         "customDesc": "Vorrei impostare tariffe e orari diversi per ogni Paese"
       },
       "estimateStep": {
+        "estimateInputLabel": "Enter a carrier",
         "error": "Compila le informazioni richieste",
         "carrierName": "Nome del vettore",
         "storeOffersTitle": "Il mio shop offre",
@@ -294,16 +295,20 @@
         "summary": {
           "singleCountry": "Tariffa fissa",
           "multiCountriesFlatRateForAll": "Tariffa fissa per tutti i Paesi target"
+        },
+        "validationErrors": {
+          "missingRateOption": "To continue, you must select a rating option and indicate your rates and delivery time accordingly"
         }
       },
       "importOption": {
         "validationErrors": {
-          "needAtLeastOneCarrier": "Per continuare devi abilitare almeno un vettore"
+          "needAtLeastOneCarrier": "Per continuare devi abilitare almeno un vettore",
+          "needAtLeastOneCarrierForEachCountry": "To continue, you need to activate and complete at least one carrier for each selected target country"
         },
         "summary": "Vettori configurati dal back office"
       },
-      "productAvailaibleIn": "È possibile selezionare i Paesi nei quali desideri che i tuoi prodotti siano visualizzati. Il menu a tendina dei Paesi qui di seguito corrisponde ai Paesi e alle valute che hai configurato sul tuo negozio PrestaShop.",
-      "targetCountries": "Paese di destinazione",
+      "productAvailaibleIn": "The dropdown list of countries below would match the countries and currency you’ve set up on your shop. You can select the countries where you would like your products to be displayed.",
+      "targetCountries": "Target country|Target countries",
       "filterTitle": "Filtra per Paese",
       "ifMultipleCountries": "Se ti rivolgi a più Paesi, ogni prezzo del prodotto sarà automaticamente convertito nella valuta corretta in Google. Tuttavia il tuo shop deve avere configurato le tariffe di spedizione e le tasse per ogni Paese selezionato. Si prega di rispettare [le politiche di acquisto specifiche del Paese]({0})[:target=\"_blank\"] e [la regolamentazione locale]({1})[:target=\"_blank\"]",
       "placeholderSelect": "Seleziona i Paesi nei quali i tuoi prodotti sono disponibili",
@@ -331,7 +336,7 @@
       "handlingTimeTooltip": "Inserisci il tempo necessario per preparare un ordine fino a quando sarà preso in carico dal vettore nei giorni lavorativi.",
       "transitTimeTooltip": "Inserisci il tempo necessario affinché l'ordine venga spedito al cliente una volta che lascia la tua struttura.",
       "shippingInformationTitle": "Tariffe di spedizione e tempi di consegna",
-      "shippingInformationIntro": "Puoi attivare e configurare i vettori che desideri visualizzare su Google Shopping.",
+      "shippingInformationIntro": "Rates from enabled carriers will be displayed to customers who are browsing your products on Google.",
       "shippingTableNotice": "Google non può supportare i vettori che offrono solo la modalità di consegna \"pick up in store\". Assicurati di disabilitarli o di utilizzare un'altra modalità di consegna.",
       "shippingSwitchCarrier": "Interruttore per abilitare/desiderare il vettore",
       "carriersDropdownHeader": "Copia le informazioni di spedizione a",
