@@ -37,13 +37,12 @@ describe('delivery-time-and-rates.vue', () => {
     describe('validate cases', () => {
       it('is visible', () => {
         const store = cloneStore();
-        const carrier: CustomCarrier = [
-          ...productFeedEstimateConfigured.settings.estimateCarriers,
-        ][0];
-
+        const carrier: CustomCarrier = {
+          ...productFeedEstimateConfigured.settings.estimateCarriers[0],
+        };
         const wrapper = buildWrapper({
           propsData: {
-            customCarrier: carrier,
+            estimateCarrier: carrier,
             displayValidationErrors: false,
           },
           store: new Vuex.Store(store),
@@ -65,7 +64,7 @@ describe('delivery-time-and-rates.vue', () => {
 
         const wrapper = buildWrapper({
           propsData: {
-            customCarrier: carrier,
+            estimateCarrier: carrier,
             displayValidationErrors: false,
           },
           store: new Vuex.Store(store),
@@ -90,7 +89,7 @@ describe('delivery-time-and-rates.vue', () => {
 
         const wrapper = buildWrapper({
           propsData: {
-            customCarrier: carrier,
+            estimateCarrier: carrier,
             displayValidationErrors: false,
           },
           store: new Vuex.Store(store),
@@ -115,7 +114,7 @@ describe('delivery-time-and-rates.vue', () => {
 
         const wrapper = buildWrapper({
           propsData: {
-            customCarrier: carrier,
+            estimateCarrier: carrier,
             displayValidationErrors: true,
           },
           store: new Vuex.Store(store),
@@ -132,7 +131,7 @@ describe('delivery-time-and-rates.vue', () => {
 
         const wrapper = buildWrapper({
           propsData: {
-            customCarrier: carrier,
+            estimateCarrier: carrier,
             displayValidationErrors: true,
           },
           store: new Vuex.Store(store),
@@ -150,7 +149,7 @@ describe('delivery-time-and-rates.vue', () => {
 
         const wrapper = buildWrapper({
           propsData: {
-            customCarrier: carrier,
+            estimateCarrier: carrier,
             displayValidationErrors: true,
           },
           store: new Vuex.Store(store),
