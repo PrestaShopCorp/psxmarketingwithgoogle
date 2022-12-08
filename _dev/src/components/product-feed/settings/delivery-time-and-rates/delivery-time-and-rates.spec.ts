@@ -50,7 +50,7 @@ describe('delivery-time-and-rates.vue', () => {
         });
 
         expect(wrapper.isVisible()).toBe(true);
-        expect(wrapper.find('#customCarrierForm').isVisible()).toBe(true);
+        expect(wrapper.find('.customCarrierForm').isVisible()).toBe(true);
       });
 
       it('should show another block when merchant choose OfferType.FLAT_SHIPPING_RATE', async () => {
@@ -75,7 +75,7 @@ describe('delivery-time-and-rates.vue', () => {
         radios.at(0).trigger('click');
         await wrapper.vm.$nextTick();
 
-        expect(wrapper.find('#customCarrierForm .offer-rates').exists()).toBeTruthy();
+        expect(wrapper.find('.customCarrierForm .offer-rates').exists()).toBeTruthy();
       });
 
       it('should show another block when merchant choose OfferType.FREE_SHIPPING_OVER_AMOUNT', async () => {
@@ -100,7 +100,7 @@ describe('delivery-time-and-rates.vue', () => {
         radios.at(2).trigger('click');
         await wrapper.vm.$nextTick();
 
-        const inputs = wrapper.findAll('#customCarrierForm .offer-rates .freeShippingOverAmount');
+        const inputs = wrapper.findAll('.customCarrierForm .offer-rates .freeShippingOverAmount');
         expect(inputs).toHaveLength(2);
         expect(radios).toHaveLength(3);
       });

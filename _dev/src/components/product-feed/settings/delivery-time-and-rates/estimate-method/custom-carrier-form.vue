@@ -1,241 +1,234 @@
 <template>
-  <div id="customCarrierForm">
-    <p class="h3 mr-2 mb-2 font-weight-600 d-inline-block">
-      {{ $t('productFeedSettings.steps.deliveryTimesAndRates') }}
-    </p>
-    <b-card class="mb-2 p-3">
-      <b-container>
-        <b-row>
-          <b-col>
-            <div class="carrierName">
-              <div class="mb-1">
-                <span
-                  class="font-weight-600"
-                >
-                  {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.carrierName') }}
-                </span>
-                <b-button
-                  class="p-0 ml-1 align-text-top"
-                  variant="text"
-                  v-b-tooltip:psxMktgWithGoogleApp
-                  :title="$t('productFeedSettings.deliveryTimeAndRates.tooltips.carrierName')"
-                >
-                  <span class="material-icons-round text-primary mb-0 ps_gs-fz-16 w-16">
-                    info_outlined
-                  </span>
-                </b-button>
-              </div>
-              <div class="mb-4">
-                <b-form-input
-                  type="text"
-                  class="form-control ps_gs-mw-200"
-                  id="carrierName"
-                  v-model="estimateCarrier.carrierName"
-                  @input="$emit('dataUpdated')"
-                  :state="validateCarrierName"
-                  :placeholder="
-                    $t(
-                      'productFeedSettings.deliveryTimeAndRates.estimateStep.estimateInputLabel'
-                    )
-                  "
-                  maxlength="90"
-                />
-              </div>
-            </div>
+  <b-container class="customCarrierForm">
+    <b-row class="mb-2 mt-2">
+      <b-col>
+        <div class="carrierName">
+          <div class="mb-1">
+            <span
+              class="font-weight-600"
+            >
+              {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.carrierName') }}
+            </span>
+            <b-button
+              class="p-0 ml-1 align-text-top"
+              variant="text"
+              v-b-tooltip:psxMktgWithGoogleApp
+              :title="$t('productFeedSettings.deliveryTimeAndRates.tooltips.carrierName')"
+            >
+              <span class="material-icons-round text-primary mb-0 ps_gs-fz-16 w-16">
+                info_outlined
+              </span>
+            </b-button>
+          </div>
+          <div class="mb-4">
+            <b-form-input
+              type="text"
+              class="form-control ps_gs-mw-200"
+              id="carrierName"
+              v-model="estimateCarrier.carrierName"
+              @input="$emit('dataUpdated')"
+              :state="validateCarrierName"
+              :placeholder="
+                $t(
+                  'productFeedSettings.deliveryTimeAndRates.estimateStep.estimateInputLabel'
+                )
+              "
+              maxlength="90"
+            />
+          </div>
+        </div>
 
-            <div class="offers">
-              <div class="font-weight-600 mb-1">
-                {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.storeOffersTitle') }}
-              </div>
+        <div class="offers">
+          <div class="font-weight-600 mb-1">
+            {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.storeOffersTitle') }}
+          </div>
+          <div
+            class="form-check"
+            v-for="(offer, index) in offers"
+            :key="index"
+          >
+            <b-form-radio
+              :state="validateRadio"
+              class="form-check-input"
+              :name="`offersChoice-${estimateCarrier.countries[0]}`"
+              v-model="estimateCarrier.offer"
+              @input="$emit('dataUpdated', estimateCarrier)"
+              :value="offer.value"
+            >
+              <span class="text-black">{{ offer.text }}</span>
+            </b-form-radio>
+          </div>
+        </div>
+      </b-col>
+      <b-col>
+        <b-row class="mb-4">
+          <b-col>
+            <div class="deliveryTime">
               <div
-                class="form-check"
-                v-for="(offer, index) in offers"
-                :key="index"
+                class="font-weight-600 mb-1"
               >
-                <b-form-radio
-                  :state="validateRadio"
-                  class="form-check-input"
-                  :name="`offersChoice-${estimateCarrier.countries[0]}`"
-                  v-model="estimateCarrier.offer"
-                  @input="$emit('dataUpdated', estimateCarrier)"
-                  :value="offer.value"
-                >
-                  <span class="text-black">{{ offer.text }}</span>
-                </b-form-radio>
+                {{ $t('productFeedSettings.deliveryTimeAndRates.transitTimeHeader') }}
               </div>
+              <p class="ps_gs-fz-10">
+                {{ $t('productFeedSettings.deliveryTimeAndRates.deliveryInfo') }}
+              </p>
             </div>
           </b-col>
           <b-col>
-            <b-row class="mb-4">
-              <b-col>
-                <div class="deliveryTime">
-                  <div
-                    class="font-weight-600 mb-1"
-                  >
-                    {{ $t('productFeedSettings.deliveryTimeAndRates.transitTimeHeader') }}
-                  </div>
-                  <p class="ps_gs-fz-10">
-                    {{ $t('productFeedSettings.deliveryTimeAndRates.deliveryInfo') }}
-                  </p>
-                </div>
-              </b-col>
-              <b-col>
-                <div class="ps_gs-carrier__input-number-wrapper">
+            <div class="ps_gs-carrier__input-number-wrapper">
+              <b-form-input
+                type="number"
+                class="ps_gs-carrier__input-number no-arrows"
+                size="sm"
+                :state="validateTimeDelivery"
+                v-model.number="estimateCarrier.minDeliveryTime"
+                @input="$emit('dataUpdated')"
+                min="0"
+                :placeholder="$t('general.min')"
+              />
+              <b-input-group
+                :append="$t('general.days')"
+                class="ps_gs-carrier__input-number-group flex-nowrap"
+              >
+                <b-form-input
+                  type="number"
+                  v-model.number="estimateCarrier.maxDeliveryTime"
+                  @input="$emit('dataUpdated')"
+                  class="ps_gs-carrier__input-number no-arrows min-input-custom"
+                  size="sm"
+                  :state="validateTimeDelivery"
+                  :placeholder="$t('general.max')"
+                />
+              </b-input-group>
+            </div>
+          </b-col>
+        </b-row>
+        <!-- eslint-disable max-len -->
+        <b-card
+          class="offer-rates"
+          v-if="estimateCarrier.offer === OfferType.FLAT_SHIPPING_RATE
+            || estimateCarrier.offer === OfferType.FREE_SHIPPING_OVER_AMOUNT"
+        >
+          <b-row v-if="estimateCarrier.offer === OfferType.FLAT_SHIPPING_RATE">
+            <b-col>
+              <div
+                class="font-weight-600 mb-1"
+              >
+                {{
+                  $t('productFeedSettings.deliveryTimeAndRates.estimateStep.shippingRate.rate')
+                }}
+              </div>
+              <p class="ps_gs-fz-10">
+                {{
+                  $t('productFeedSettings.deliveryTimeAndRates.estimateStep.shippingRate.rateDesc')
+                }}
+              </p>
+            </b-col>
+            <b-col>
+              <div>
+                <b-input-group
+                  :append="getSymbol"
+                  class="ps_gs-carrier__input-number-group"
+                >
                   <b-form-input
                     type="number"
                     class="ps_gs-carrier__input-number no-arrows"
                     size="sm"
-                    :state="validateTimeDelivery"
-                    v-model.number="estimateCarrier.minDeliveryTime"
-                    @input="$emit('dataUpdated')"
-                    min="0"
-                    :placeholder="$t('general.min')"
+                    step="0.01"
+                    placeholder="5.99"
+                    v-model.number="estimateCarrier[estimateCarrier.offer].shippingCost"
+                    @input="$emit('dataUpdated', estimateCarrier)"
+                    :state="validateAmountRate(estimateCarrier[estimateCarrier.offer].shippingCost)"
                   />
-                  <b-input-group
-                    :append="$t('general.days')"
-                    class="ps_gs-carrier__input-number-group flex-nowrap"
+                </b-input-group>
+              </div>
+            </b-col>
+          </b-row>
+          <div v-else>
+            <b-row class="freeShippingOverAmount">
+              <b-col class="align-self-center">
+                <div class="mb-1 w-75">
+                  <span
+                    class="font-weight-600"
                   >
-                    <b-form-input
-                      type="number"
-                      v-model.number="estimateCarrier.maxDeliveryTime"
-                      @input="$emit('dataUpdated')"
-                      class="ps_gs-carrier__input-number no-arrows min-input-custom"
-                      size="sm"
-                      :state="validateTimeDelivery"
-                      :placeholder="$t('general.max')"
-                    />
-                  </b-input-group>
+                    {{
+                      $t('productFeedSettings.deliveryTimeAndRates.estimateStep.shippingRate.overAmount')
+                    }}
+                  </span>
+                  <b-button
+                    class="p-0 ml-1 align-text-top"
+                    variant="text"
+                    v-b-tooltip:psxMktgWithGoogleApp
+                    :title="$t('productFeedSettings.deliveryTimeAndRates.tooltips.freeShippingOverAmount')"
+                  >
+                    <span class="material-icons-round text-primary mb-0 ps_gs-fz-16 w-16">
+                      info_outlined
+                    </span>
+                  </b-button>
                 </div>
               </b-col>
+              <b-col class="col-auto mb-2">
+                <b-input-group
+                  :append="getSymbol"
+                  class="ps_gs-carrier__input-number-group"
+                >
+                  <b-form-input
+                    type="number"
+                    class="ps_gs-carrier__input-number no-arrows ps_gs-mw-90"
+                    size="sm"
+                    step="0.01"
+                    placeholder="42.99"
+                    v-model.number="estimateCarrier[estimateCarrier.offer].orderPrice"
+                    @input="$emit('dataUpdated', estimateCarrier)"
+                    :state="validateAmountRate(estimateCarrier[estimateCarrier.offer].orderPrice)"
+                  />
+                </b-input-group>
+              </b-col>
             </b-row>
-            <!-- eslint-disable max-len -->
-            <b-card
-              class="offer-rates"
-              v-if="estimateCarrier.offer === OfferType.FLAT_SHIPPING_RATE
-                || estimateCarrier.offer === OfferType.FREE_SHIPPING_OVER_AMOUNT"
-            >
-              <b-row v-if="estimateCarrier.offer === OfferType.FLAT_SHIPPING_RATE">
-                <b-col>
-                  <div
-                    class="font-weight-600 mb-1"
+            <b-row class="freeShippingOverAmount">
+              <b-col class="align-self-center">
+                <div class="mb-1">
+                  <span
+                    class="font-weight-600"
                   >
-                    {{
-                      $t('productFeedSettings.deliveryTimeAndRates.estimateStep.shippingRate.rate')
-                    }}
-                  </div>
-                  <p class="ps_gs-fz-10">
-                    {{
-                      $t('productFeedSettings.deliveryTimeAndRates.estimateStep.shippingRate.rateDesc')
-                    }}
-                  </p>
-                </b-col>
-                <b-col>
-                  <div>
-                    <b-input-group
-                      :append="getSymbol"
-                      class="ps_gs-carrier__input-number-group"
-                    >
-                      <b-form-input
-                        type="number"
-                        class="ps_gs-carrier__input-number no-arrows"
-                        size="sm"
-                        step="0.01"
-                        placeholder="5.99"
-                        v-model.number="estimateCarrier[estimateCarrier.offer].shippingCost"
-                        @input="$emit('dataUpdated', estimateCarrier)"
-                        :state="validateAmountRate(estimateCarrier[estimateCarrier.offer].shippingCost)"
-                      />
-                    </b-input-group>
-                  </div>
-                </b-col>
-              </b-row>
-              <div v-else>
-                <b-row class="freeShippingOverAmount">
-                  <b-col class="align-self-center">
-                    <div class="mb-1 w-75">
-                      <span
-                        class="font-weight-600"
-                      >
-                        {{
-                          $t('productFeedSettings.deliveryTimeAndRates.estimateStep.shippingRate.overAmount')
-                        }}
-                      </span>
-                      <b-button
-                        class="p-0 ml-1 align-text-top"
-                        variant="text"
-                        v-b-tooltip:psxMktgWithGoogleApp
-                        :title="$t('productFeedSettings.deliveryTimeAndRates.tooltips.freeShippingOverAmount')"
-                      >
-                        <span class="material-icons-round text-primary mb-0 ps_gs-fz-16 w-16">
-                          info_outlined
-                        </span>
-                      </b-button>
-                    </div>
-                  </b-col>
-                  <b-col class="col-auto mb-2">
-                    <b-input-group
-                      :append="getSymbol"
-                      class="ps_gs-carrier__input-number-group"
-                    >
-                      <b-form-input
-                        type="number"
-                        class="ps_gs-carrier__input-number no-arrows ps_gs-mw-90"
-                        size="sm"
-                        step="0.01"
-                        placeholder="42.99"
-                        v-model.number="estimateCarrier[estimateCarrier.offer].orderPrice"
-                        @input="$emit('dataUpdated', estimateCarrier)"
-                        :state="validateAmountRate(estimateCarrier[estimateCarrier.offer].orderPrice)"
-                      />
-                    </b-input-group>
-                  </b-col>
-                </b-row>
-                <b-row class="freeShippingOverAmount">
-                  <b-col class="align-self-center">
-                    <div class="mb-1">
-                      <span
-                        class="font-weight-600"
-                      >
-                        {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.shippingRate.rate') }}
-                      </span>
-                      <b-button
-                        class="p-0 ml-1 align-text-top"
-                        variant="text"
-                        v-b-tooltip:psxMktgWithGoogleApp
-                        :title="$t('productFeedSettings.deliveryTimeAndRates.tooltips.shippingRate')"
-                      >
-                        <span class="material-icons-round text-primary mb-0 ps_gs-fz-16 w-16">
-                          info_outlined
-                        </span>
-                      </b-button>
-                    </div>
-                  </b-col>
-                  <b-col class="col-auto">
-                    <b-input-group
-                      :append="getSymbol"
-                      class="ps_gs-carrier__input-number-group"
-                    >
-                      <b-form-input
-                        type="number"
-                        class="ps_gs-carrier__input-number no-arrows ps_gs-mw-90"
-                        size="sm"
-                        step="0.01"
-                        placeholder="5.99"
-                        :state="validateAmountRate(estimateCarrier[estimateCarrier.offer].shippingCost)"
-                        v-model.number="estimateCarrier[estimateCarrier.offer].shippingCost"
-                        @input="$emit('dataUpdated', estimateCarrier)"
-                      />
-                    </b-input-group>
-                  </b-col>
-                </b-row>
-              </div>
-            </b-card>
-            <!-- eslint-enable max-len -->
-          </b-col>
-        </b-row>
-      </b-container>
-    </b-card>
-  </div>
+                    {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.shippingRate.rate') }}
+                  </span>
+                  <b-button
+                    class="p-0 ml-1 align-text-top"
+                    variant="text"
+                    v-b-tooltip:psxMktgWithGoogleApp
+                    :title="$t('productFeedSettings.deliveryTimeAndRates.tooltips.shippingRate')"
+                  >
+                    <span class="material-icons-round text-primary mb-0 ps_gs-fz-16 w-16">
+                      info_outlined
+                    </span>
+                  </b-button>
+                </div>
+              </b-col>
+              <b-col class="col-auto">
+                <b-input-group
+                  :append="getSymbol"
+                  class="ps_gs-carrier__input-number-group"
+                >
+                  <b-form-input
+                    type="number"
+                    class="ps_gs-carrier__input-number no-arrows ps_gs-mw-90"
+                    size="sm"
+                    step="0.01"
+                    placeholder="5.99"
+                    :state="validateAmountRate(estimateCarrier[estimateCarrier.offer].shippingCost)"
+                    v-model.number="estimateCarrier[estimateCarrier.offer].shippingCost"
+                    @input="$emit('dataUpdated', estimateCarrier)"
+                  />
+                </b-input-group>
+              </b-col>
+            </b-row>
+          </div>
+        </b-card>
+        <!-- eslint-enable max-len -->
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 <script lang="ts">
 import Vue, {PropType} from 'vue';
@@ -252,7 +245,7 @@ export default Vue.extend({
   components: {
   },
   props: {
-    customCarrier: {
+    estimateCarrier: {
       type: Object as PropType<CustomCarrier>,
       required: true,
     },
@@ -281,9 +274,6 @@ export default Vue.extend({
     };
   },
   computed: {
-    estimateCarrier() {
-      return this.customCarrier;
-    },
     validateTimeDelivery(): boolean|null {
       if (!this.displayValidationErrors) {
         return null;

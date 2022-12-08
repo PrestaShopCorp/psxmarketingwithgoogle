@@ -1,7 +1,7 @@
 <template>
   <div class="mb-4">
     <p class="h3 mb-3 font-weight-600">
-      {{ $t('productFeedSettings.deliveryTimeAndRates.customRate.title') }}
+      {{ $t('productFeedSettings.steps.deliveryTimesAndRates') }}
     </p>
     <div class="container-fluid">
       <div class="row">

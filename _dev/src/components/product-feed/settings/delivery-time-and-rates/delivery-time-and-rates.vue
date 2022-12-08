@@ -16,8 +16,7 @@
 
     <countries-form-list
       v-if="(getShippingValueSetup === ShippingSetupOption.ESTIMATE
-        && selectedCountries.length > 0
-        && selectedRate)"
+        && selectedCountries.length > 0)"
       :rate-chosen="selectedRate"
       :carriers="estimateCarriersToConfigure"
       :countries="selectedCountries"
@@ -152,7 +151,7 @@ export default Vue.extend({
       );
 
       // If there is no carrier to add/remove, we stop here to avoid a loop in the event system
-      if (filteredCarriersFromStoreByCountries.length === this.estimateCarriers.length
+      if (filteredCarriersFromStoreByCountries.length === this.estimateCarriers?.length
         && !missingCountriesToConfigure.length
       ) {
         return;

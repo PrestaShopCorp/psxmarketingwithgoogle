@@ -18,29 +18,40 @@
  */
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
-import HttpClientError from '../../../utils/HttpClientError';
-import countriesSelectionOptions from '../../../assets/json/countries.json';
-import {getDataFromLocalStorage} from '../../../utils/LocalStorage';
-import {deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
+import HttpClientError from '@/utils/HttpClientError';
+import {getDataFromLocalStorage, deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
 import {
   CarrierIdentifier, DeliveryDetail, getEnabledCarriers,
   mergeShippingDetailsSourcesForProductFeedConfiguration,
   ShopShippingInterface, validateDeliveryDetail,
-} from '../../../providers/shipping-settings-provider';
+} from '@/providers/shipping-settings-provider';
 import Categories from '@/enums/product-feed/attribute-mapping-categories';
-import {runIf} from '../../../utils/Promise';
+import {runIf} from '@/utils/Promise';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {fromApi, toApi} from '@/providers/shipping-rate-provider';
 import {ProductFeedSettings} from './state';
+import {changeCountriesNamesToCodes} from '@/utils/Countries';
 
-const changeCountriesNamesToCodes = (countries : Array<string>) => countries.map((country) => {
-  for (let i = 0; i < countriesSelectionOptions.length; i += 1) {
-    if (country === countriesSelectionOptions[i].country) {
-      return countriesSelectionOptions[i].code;
-    }
-  }
-
-  return country;
+// ToDo: Get DTO type from API sources
+export const createProductFeedApiPayload = (settings:any) => ({
+  autoImportTaxSettings: settings.autoImportTaxSettings,
+  shippingSetup: settings.shippingSetup,
+  targetCountries: settings.targetCountries,
+  ...(
+    (settings.shippingSetup === ShippingSetupOption.ESTIMATE) ? {
+      rate: settings.rate,
+      estimateCarriers: settings.estimateCarriers,
+    } : {}
+  ),
+  ...(
+    (settings.shippingSetup === ShippingSetupOption.IMPORT) ? {
+      shippingSettings: settings.shippingSettings,
+      additionalShippingSettings: settings.additionalShippingSettings,
+    } : {}
+  ),
+  attributeMapping: settings.attributeMapping,
+  selectedProductCategories: settings.selectedProductCategories,
+  requestSynchronizationNow: settings.requestSynchronizationNow,
 });
 
 export default {
@@ -177,10 +188,12 @@ export default {
     state, rootState, getters, commit, dispatch,
   }) {
     const productFeedSettings: ProductFeedSettings = state.settings;
+
+    // Shipping setup
+    //    ...
+    // Delivery times & rates - Common
     const targetCountries = changeCountriesNamesToCodes(getters.GET_TARGET_COUNTRIES);
-    const attributeMapping = getDataFromLocalStorage('productFeed-attributeMapping') || {};
-    const rate = getDataFromLocalStorage('productFeed-rateChosen') || undefined;
-    const estimateCarriers = toApi(getDataFromLocalStorage('productFeed-estimateCarriers'));
+    // Delivery times & rates - Import method
     const deliveryFiltered: DeliveryDetail[] = productFeedSettings.deliveryDetails.filter(
       (e) => e.enabledCarrier && validateDeliveryDetail(e),
     );
@@ -188,13 +201,19 @@ export default {
       .filter(
         (s) => deliveryFiltered.find((d) => s.properties.id_reference === d.carrierId),
       );
+    // Delivery times & rates - Estimate method
+    const rate = getDataFromLocalStorage('productFeed-rateChosen') || undefined;
+    const estimateCarriers = toApi(getDataFromLocalStorage('productFeed-estimateCarriers'));
+    // Attributes mapping
+    const attributeMapping = getDataFromLocalStorage('productFeed-attributeMapping') || {};
+    const selectedProductCategories = getters.GET_PRODUCT_CATEGORIES_SELECTED;
     commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
       name: 'attributeMapping', data: attributeMapping,
     });
-
-    const selectedProductCategories = getters.GET_PRODUCT_CATEGORIES_SELECTED;
+    // Next synchronization request
     const requestSynchronizationNow = getters.GET_SYNC_SCHEDULE;
-    const newSettings = {
+
+    const newSettings = createProductFeedApiPayload({
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
       shippingSetup: productFeedSettings.shippingSetup,
       targetCountries,
@@ -207,7 +226,7 @@ export default {
       attributeMapping,
       selectedProductCategories,
       requestSynchronizationNow,
-    };
+    });
 
     try {
       const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/settings`, {
