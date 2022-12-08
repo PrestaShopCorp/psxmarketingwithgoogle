@@ -52,7 +52,7 @@
               class="form-check-input"
               :name="`offersChoice-${estimateCarrier.countries[0]}`"
               v-model="estimateCarrier.offer"
-              @input="$emit('dataUpdated', estimateCarrier)"
+              @input="$emit('dataUpdated')"
               :value="offer.value"
             >
               <span class="text-black">{{ offer.text }}</span>
@@ -137,7 +137,7 @@
                     step="0.01"
                     placeholder="5.99"
                     v-model.number="estimateCarrier[estimateCarrier.offer].shippingCost"
-                    @input="$emit('dataUpdated', estimateCarrier)"
+                    @input="$emit('dataUpdated')"
                     :state="validateAmountRate(estimateCarrier[estimateCarrier.offer].shippingCost)"
                   />
                 </b-input-group>
@@ -179,7 +179,7 @@
                     step="0.01"
                     placeholder="42.99"
                     v-model.number="estimateCarrier[estimateCarrier.offer].orderPrice"
-                    @input="$emit('dataUpdated', estimateCarrier)"
+                    @input="$emit('dataUpdated')"
                     :state="validateAmountRate(estimateCarrier[estimateCarrier.offer].orderPrice)"
                   />
                 </b-input-group>
@@ -218,7 +218,7 @@
                     placeholder="5.99"
                     :state="validateAmountRate(estimateCarrier[estimateCarrier.offer].shippingCost)"
                     v-model.number="estimateCarrier[estimateCarrier.offer].shippingCost"
-                    @input="$emit('dataUpdated', estimateCarrier)"
+                    @input="$emit('dataUpdated')"
                   />
                 </b-input-group>
               </b-col>
@@ -242,8 +242,6 @@ import {
 
 export default Vue.extend({
   name: 'CustomCarrierForm',
-  components: {
-  },
   props: {
     estimateCarrier: {
       type: Object as PropType<CustomCarrier>,
@@ -309,6 +307,14 @@ export default Vue.extend({
         return false;
       }
       return !Number.isNaN(amount) && amount > 0 ? null : false;
+    },
+  },
+  watch: {
+    estimateCarrier: {
+      handler() {
+        this.$emit('dataUpdated');
+      },
+      deep: true,
     },
   },
 });
