@@ -121,7 +121,6 @@ export default defineComponent({
         return null;
       },
       set(value: ShippingSetupOption) {
-        console.log(`applying ${value}`);
         this.chosenShippingSetup = value;
       },
     },

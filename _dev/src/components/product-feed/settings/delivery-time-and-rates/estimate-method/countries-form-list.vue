@@ -51,7 +51,7 @@
       >
         <b-card-body>
           <custom-carrier-form
-            :custom-carrier="carriers[0]"
+            :estimate-carrier="carriers[0]"
             :display-validation-errors="displayValidationErrors"
             @dataUpdated="$emit('dataUpdated', carriers)"
           />
@@ -108,7 +108,7 @@
       >
         <b-card-body>
           <custom-carrier-form
-            :custom-carrier="carrier"
+            :estimate-carrier="carrier"
             :display-validation-errors="displayValidationErrors"
             @dataUpdated="$emit('dataUpdated', carriers)"
           />

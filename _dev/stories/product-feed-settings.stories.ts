@@ -217,6 +217,7 @@ EstimateDeliveryTimeAndRatesWithUS.args = {
       ShippingSetupOption.ESTIMATE;
     this.$router.history.current.params.step =
       ProductFeedSettingsPages.SHIPPING_SETTINGS;
+    this.$store.state.productFeed.settings.rate = RateType.RATE_ALL_COUNTRIES;
   },
 };
 

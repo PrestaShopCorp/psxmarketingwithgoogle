@@ -245,7 +245,7 @@ export default Vue.extend({
   components: {
   },
   props: {
-    customCarrier: {
+    estimateCarrier: {
       type: Object as PropType<CustomCarrier>,
       required: true,
     },
@@ -274,9 +274,6 @@ export default Vue.extend({
     };
   },
   computed: {
-    estimateCarrier() {
-      return this.customCarrier;
-    },
     validateTimeDelivery(): boolean|null {
       if (!this.displayValidationErrors) {
         return null;

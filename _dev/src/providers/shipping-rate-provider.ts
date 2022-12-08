@@ -96,23 +96,19 @@ export function createCustomCarriersTemplate(
 
   if (rate === RateType.RATE_PER_COUNTRY) {
     countries.forEach((country) => {
-      template.push({
-        ...generateEmptyCarrier(
-          currency,
-          [country],
-        ),
-      });
+      template.push(generateEmptyCarrier(
+        currency,
+        [country],
+      ));
     });
     return template;
   }
 
   if (rate === RateType.RATE_ALL_COUNTRIES) {
-    template.push({
-      ...generateEmptyCarrier(
-        currency,
-        countries,
-      ),
-    });
+    template.push(generateEmptyCarrier(
+      currency,
+      countries,
+    ));
   }
   return template;
 }
