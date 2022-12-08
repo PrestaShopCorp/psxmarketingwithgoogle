@@ -95,7 +95,7 @@
     "introDisabled": "Associez votre compte Merchant Center à PrestaShop pour faciliter la synchronisation des données de votre boutique et de vos produits",
     "claimCollides": "Votre site web a déjà été déclaré.",
     "claimOverwrite": "Pour terminer la création du compte du Centre Marchand, vous devez remplacer la revendication existante.",
-    "footerEU": "For stores in the European Economic Area, the United Kingdom or Switzerland, your Merchant Center account is required to be associated with to a [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]. For new Merchant Center accounts created through this application, your account would be associated by default with Google Shopping, Google’s CSS. You can change the CSS associated with your account at any time and you can also find CSS Partners here. Once you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.",
+    "footerEU": "Si vous êtes dans l'Espace Economique Européen, le Royaume-Uni ou la Suisse, votre compte Merchant Center doit être associé à un [service de Comparaison (CSS)]({0})[:target=\"_blank\"].\nSi vous créez un nouveau compte de Merchant Center via cette application, il sera associé à Google Shopping, le CSS de Google, par défaut. Vous pouvez modifier le CSS associé à votre compte à tout moment et vous pouvez également trouver vos partenaires CSS ici. Une fois que vous avez créé votre compte Merchant Center, vous pouvez utiliser notre outil d'intégration quel que soit le CSS que vous utilisez.",
     "shopInfoMissing": "Informations de la boutique manquantes",
     "shopInfoMissingDescription": "Pour compléter les informations manquantes sur la boutique, veuillez vous rendre sur votre [compte Merchant Center]({0})[:target=\"_blank\"].",
     "userIsNotAdmin": "Vous avez besoin d'un accès Admin",
@@ -297,17 +297,17 @@
           "multiCountriesFlatRateForAll": "Tarif fixe pour tous les pays"
         },
         "validationErrors": {
-          "missingRateOption": "To continue, you must select a rating option and indicate your rates and delivery time accordingly"
+          "missingRateOption": "Pour continuer, vous devez sélectionner une option de tarification et indiquer vos tarifs et délais de livraison en conséquence"
         }
       },
       "importOption": {
         "validationErrors": {
           "needAtLeastOneCarrier": "Vous devez activer au moins un transporteur pour continuer",
-          "needAtLeastOneCarrierForEachCountry": "To continue, you need to activate and complete at least one carrier for each selected target country"
+          "needAtLeastOneCarrierForEachCountry": "Pour continuer, vous devez activer et compléter au moins un transporteur pour chaque pays cible sélectionné"
         },
         "summary": "Transporteurs configurés depuis le back-office"
       },
-      "productAvailaibleIn": "The dropdown list of countries below would match the countries and currency you’ve set up on your shop. You can select the countries where you would like your products to be displayed.",
+      "productAvailaibleIn": "La liste déroulante des pays ci-dessous correspond aux pays et à la devise que vous avez configurés dans votre boutique. Vous pouvez sélectionner les pays dans lesquels vous souhaitez que vos produits soient affichés.",
       "targetCountries": "Pays cible|Pays cibles",
       "filterTitle": "Filtrer par pays",
       "ifMultipleCountries": "Si vous ciblez plusieurs pays, le prix de chaque produit sera automatiquement converti dans la devise correcte de Google. Cependant, votre boutique doit avoir configuré les frais de port et de taxe pour chaque pays sélectionné. Veuillez respecter [les politiques d'achat propres à chaque pays]({0})[:target=\"_blank\"] et [la réglementation locale]({1})[:target=\"_blank\"]",
