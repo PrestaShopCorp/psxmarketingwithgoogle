@@ -92,7 +92,7 @@
   },
   "mcaCard": {
     "title": "Cuenta Merchant Center",
-    "introDisabled": "Puedes conectar una cuenta existente Google Merchant Center o crear una en unos sencillos pasos.",
+    "introDisabled": "Puedes conectar una cuenta existente de Google Merchant Center o crear una en unos sencillos pasos.",
     "claimCollides": "Tu sitio web ya ha sido reclamado.",
     "claimOverwrite": "Para finalizar la creación de la cuenta de Merchant Center, es necesario sobrescribir la solicitud existente.",
     "footerEU": "For stores in the European Economic Area, the United Kingdom or Switzerland, your Merchant Center account is required to be associated with to a [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]. For new Merchant Center accounts created through this application, your account would be associated by default with Google Shopping, Google’s CSS. You can change the CSS associated with your account at any time and you can also find CSS Partners here. Once you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.",
