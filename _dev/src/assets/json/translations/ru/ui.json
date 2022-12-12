@@ -11,7 +11,7 @@
     "versionDoesNotExist": "Похоже, что версия модуля не может быть получена. Это на нашей стороне, пожалуйста, попробуйте еще раз.",
     "moduleNeedActivation": "Marketing with Google is disabled, you will not be able to use any of it's features until you enable your module.",
     "moduleUpdateNeeded": {
-      "ps_eventbus": "Версия модуля PrestaShop EventBus, установленного в этом магазине, старше минимально необходимой.\n\nВы можете использовать PrestaShop Marketing with Google, но некоторые функции (например, синхронизация товаров) будут недоступны, пока вы не обновите PrestaShop EventBus.",
+      "ps_eventbus": "The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync.",
       "psxmarketingwithgoogle": "Пожалуйста, обновите модуль PrestaShop Marketing With Google, чтобы он работал правильно"
     },
     "adblockerActivated": "Пожалуйста, отключите блокировщик рекламы для корректной работы модуля и обновите навигатор.",
@@ -239,7 +239,7 @@
       "syncSchedule": "Расписание синхронизации"
     },
     "noticeDataStored": "Настройки сохраняются на каждом шаге и будут переданы только на последнем шаге.",
-    "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step",
+    "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step.",
     "shippingSetup": {
       "title": "Shipping setup",
       "mandatoryStep": "For your products to be shown by Google Merchant Center, shipping is a mandatory step.",
@@ -278,7 +278,7 @@
         "customDesc": "I'd like to set different rates and times for each country"
       },
       "estimateStep": {
-        "estimateInputLabel": "Enter a carrier",
+        "estimateInputLabel": "Enter carrier",
         "error": "Fill in the required information",
         "carrierName": "Carrier name",
         "storeOffersTitle": "My store offers",
