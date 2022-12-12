@@ -11,7 +11,7 @@
     "versionDoesNotExist": "It seems that the module's version can not be retrieved. It's on our side please try again.",
     "moduleNeedActivation": "Marketing with Google is disabled, you will not be able to use any of it's features until you enable your module.",
     "moduleUpdateNeeded": {
-      "ps_eventbus": "The version of the module PrestaShop EventBus running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop EventBus",
+      "ps_eventbus": "The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync",
       "psxmarketingwithgoogle": "Please update the PrestaShop Marketing With Google module in order to make it work properly"
     },
     "adblockerActivated": "Please deactivate your ad-blocker for the module to work properly and refresh your navigator.",

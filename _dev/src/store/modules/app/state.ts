@@ -38,7 +38,7 @@ export interface State {
   psxMktgWithGoogleOnProductionEnvironment: boolean;
   debugData: DebugData;
   adBlockerExists: boolean;
-  eventbusVersionNeeded: string;
+  cloudsyncVersionNeeded: string;
   psxMktgWithGoogleModuleVersionNeeded: string;
   psxMktgWithGoogleModuleIsEnabled: boolean;
   psxMktgWithGoogleEnableLink: string;
@@ -89,7 +89,7 @@ export const state: State = {
   },
   adBlockerExists: false,
   psxMktgWithGoogleModuleVersion: '',
-  eventbusVersionNeeded: process.env.VUE_APP_MIN_VERSION_NEEDED_EVENT_BUS || '',
+  cloudsyncVersionNeeded: process.env.VUE_APP_MIN_VERSION_NEEDED_CLOUD_SYNC || '',
   psxMktgWithGoogleModuleVersionNeeded: process.env.VUE_APP_MIN_VERSION_NEEDED_MKTG_GOOGLE || '',
   psxMktgWithGoogleModuleIsEnabled: true,
   psxMktgWithGoogleEnableLink: '',
