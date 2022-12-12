@@ -11,7 +11,7 @@
     "versionDoesNotExist": "Parece que a versão do módulo não pode ser recuperada. Está do nosso lado, por favor tente novamente.",
     "moduleNeedActivation": "Marketing with Google is disabled, you will not be able to use any of it's features until you enable your module.",
     "moduleUpdateNeeded": {
-      "ps_eventbus": "A versão do módulo PrestaShop EventBus executado nesta loja é mais antiga do que o mínimo exigido.\n\nVocê pode usar PrestaShop Marketing com o Google mas alguns recursos (ou seja, sincronização de produtos) não estarão disponíveis até que você atualize o PrestaShop EventBus",
+      "ps_eventbus": "The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync.",
       "psxmarketingwithgoogle": "Por favor, atualize o módulo PrestaShop Marketing com o Google para que ele funcione corretamente"
     },
     "adblockerActivated": "Desative o seu ad-blocker (bloqueador de anúncios) para que o módulo funcione corretamente e atualize o seu navegador.",
@@ -239,7 +239,7 @@
       "syncSchedule": "Horário de sincronização"
     },
     "noticeDataStored": "As configurações são guardadas em cada etapa, e serão submetidas apenas na etapa final.",
-    "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step",
+    "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step.",
     "shippingSetup": {
       "title": "Shipping setup",
       "mandatoryStep": "For your products to be shown by Google Merchant Center, shipping is a mandatory step.",
@@ -278,7 +278,7 @@
         "customDesc": "I'd like to set different rates and times for each country"
       },
       "estimateStep": {
-        "estimateInputLabel": "Enter a carrier",
+        "estimateInputLabel": "Enter carrier",
         "error": "Fill in the required information",
         "carrierName": "Carrier name",
         "storeOffersTitle": "My store offers",
