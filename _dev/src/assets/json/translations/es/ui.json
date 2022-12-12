@@ -11,7 +11,7 @@
     "versionDoesNotExist": "Parece que no se puede recuperar la versión del módulo. Es por nuestra parte, por favor, inténtalo de nuevo.",
     "moduleNeedActivation": "Marketing with Google está deshabilitado, no podrás utilizar ninguna de sus funciones hasta que habilites tu módulo.",
     "moduleUpdateNeeded": {
-      "ps_eventbus": "La versión del módulo PrestaShop EventBus que se ejecuta en esta tienda es anterior a la mínima requerida.\n\nPuedes utilizar PrestaShop Marketing with Google, pero algunas funciones (por ejemplo, la sincronización de productos) no estarán disponibles hasta que actualices PrestaShop EventBus",
+      "ps_eventbus": "The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync.",
       "psxmarketingwithgoogle": "Por favor, actualiza el módulo PrestaShop Marketing with Google para que funcione correctamente"
     },
     "adblockerActivated": "Por favor, desactiva tu bloqueador de anuncios para que el módulo funcione correctamente y actualiza tu navegador.",
@@ -88,7 +88,7 @@
     "alertTokenMissing": "No hemos podido autenticar tu cuenta. Inténtalo de nuevo o cambia de cuenta.",
     "stepIsMandatory": "*Este paso es obligatorio",
     "alertInfo": "Asegúrate de autorizar todos los permisos solicitados al autenticar tu cuenta de Google.  \nEsta acción es obligatoria para que este servicio funcione correctamente.",
-    "missingTokenScopes": "Faltan algunos permisos solicitados.  \nTodos los permisos solicitados son obligatorios para que este servicio funcione correctamente, gestiona tu cuenta y asegúrate de autorizarlos todos."
+    "missingTokenScopes": "Faltan algunos permisos solicitados.  \nTodos los permisos solicitados son obligatorios para que este servicio funcione correctamente, gestiona tu cuenta y asegúrate de autorizarlos."
   },
   "mcaCard": {
     "title": "Cuenta Merchant Center",
@@ -239,7 +239,7 @@
       "syncSchedule": "Sincronizar hora"
     },
     "noticeDataStored": "Los ajustes se guardan en cada paso, se enviarán en el paso final.",
-    "submissionExplanation": "Ten en cuenta que los datos se almacenarán en cada paso pero no se enviarán hasta la etapa final",
+    "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step.",
     "shippingSetup": {
       "title": "Configuración del envío",
       "mandatoryStep": "Para que tus productos se muestren por Google Merchant Centre, la configuración del envío es un paso obligatorio.",
@@ -278,7 +278,7 @@
         "customDesc": "Me gustaría establecer diferentes tarifas y horarios para cada país"
       },
       "estimateStep": {
-        "estimateInputLabel": "Enter a carrier",
+        "estimateInputLabel": "Enter carrier",
         "error": "Rellena la información solicitada",
         "carrierName": "Nombre del transportista",
         "storeOffersTitle": "Mi tienda ofrece",
@@ -308,7 +308,7 @@
         "summary": "Transportistas configurados desde el back office"
       },
       "productAvailaibleIn": "The dropdown list of countries below would match the countries and currency you’ve set up on your shop. You can select the countries where you would like your products to be displayed.",
-      "targetCountries": "Target country|Target countries",
+      "targetCountries": "País objetivo|Países objetivo",
       "filterTitle": "Filtrar por país",
       "ifMultipleCountries": "Si te diriges a varios países, el precio de cada producto se convertirá automáticamente a su divisa en Google. No obstante, deben haberse configurado en tu tienda los gastos de envío e impuestos para cada país seleccionado. Respeta las [políticas de compra específicas de cada país]({0})[:target=\"_blank\"] y la [normativa local]({1})[:target=\"_blank\"]",
       "placeholderSelect": "Selecciona los países en los que están disponibles tus productos",
@@ -664,8 +664,8 @@
       "approvedProductsDescription": "Los productos activos están totalmente aprobados y pueden aparecer en los resultados.",
       "pendingProducts": "Pendiente",
       "pendingProductsDescription": "Un producto pendiente no se mostrará ni en los anuncios ni en las fichas de producto porque Google lo está revisando.",
-      "expiringProducts": "Vencen",
-      "expiringProductsDescription": "Los productos que caduquen se eliminarán de Google Merchant Center en los próximos 3 días y ya no podrán aparecer ni en los anuncios ni en las fichas gratuitas.",
+      "expiringProducts": "Vencimiento",
+      "expiringProductsDescription": "Los productos con vencimiento se eliminarán de Google Merchant Center en los próximos 3 días y ya no podrán aparecer ni en los anuncios ni en las fichas gratuitas.",
       "disapprovedProducts": "No aprobado",
       "disapprovedProductsDescription": "Tu producto no se ha aprobado para un destino y no está activo.",
       "productsSubmittedToGoogle": "Productos activos enviados a Google: {0}",
@@ -775,7 +775,7 @@
       "pending": "Pendiente"
     },
     "from": "Desde",
-    "fromXToX": "De {startDate} a {endDate}",
+    "fromXToX": "Desde {startDate} hasta {endDate}",
     "labelCol": {
       "campaign": "Campaña",
       "budget": "Presupuesto",
@@ -787,7 +787,7 @@
       "sales": "Ventas",
       "id": "ID",
       "products": "Filtros de producto",
-      "click": "Hagan clic en",
+      "click": "hagan clic en",
       "costs": "Costes",
       "averageCostPerClick": "CPC medio",
       "conversions": "Conversiones",
@@ -923,7 +923,7 @@
     "close": "Cerrar",
     "viewDetailedStatuses": "Ver el estado del producto en detalle",
     "setupTax": "Configurar impuestos",
-    "understandAndContinue": "Comprender y continuar",
+    "understandAndContinue": "Entender y continuar",
     "reviewProblems": "Revisar problemas",
     "saveAndExport": "Guardar y exportar",
     "go": "Ir a",
