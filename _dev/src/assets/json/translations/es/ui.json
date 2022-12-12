@@ -18,10 +18,10 @@
     "refreshPage": "Actualizar la página",
     "mandatory": "son obligatorios",
     "XIsMandatory": "{0} es obligatorio.",
-    "unableToFetchData": "No pudimos obtener datos, por favor inténtalo más tarde",
+    "unableToFetchData": "No pudimos obtener datos, inténtalo más tarde",
     "searchByX": "Buscar por {0}",
     "search": "Buscar",
-    "createAccount": "crea tu cuenta",
+    "createAccount": "Crea tu cuenta",
     "createNewAccount": "Si no tienes una cuenta, puedes {0} hoy mismo.",
     "notAvailable": "No disponible",
     "min": "Mín.",
@@ -162,16 +162,16 @@
     "secureCheckoutProcess": {
       "title": "Confirmo que tengo un proceso claro de recogida de datos y checkout",
       "description": "No utilizar indebidamente la información sobre el usuario, ni recogerla con fines poco claros o sin las medidas de seguridad adecuadas.",
-      "link": "Saber más sobre la recopilación y el uso irresponsable de datos"
+      "link": "Saber más sobre la recopilación y el uso indebido de datos"
     },
     "returnPolicy": {
       "title": "Confirmo que mi política de devoluciones y reembolsos está configurada en mi sitio web",
-      "description": "La política de devoluciones y reembolsos debe ser clara (incluir requisitos y plazos) y de fácil acceso en tu sitio web.",
+      "description": "La política de devoluciones y reembolsos debe ser clara (incluir requisitos y plazos) y fácilmente accesible en tu sitio web.",
       "link": "Aprender a configurar las políticas de devolución"
     },
     "billingTerms": {
       "title": "Confirmo que mis condiciones de facturación son claras y visibles",
-      "description": "El sitio web debe revelar de forma clara y visible las opciones de pago y todos los gastos que soportará el usuario, antes y después de la compra.",
+      "description": "El sitio web debe publicar de forma clara y visible las opciones de pago y todos los gastos que soportará el usuario, antes y después de la compra.",
       "link": "Leer las directrices de Merchant Center"
     },
     "completeCheckoutProcess": {
@@ -326,9 +326,9 @@
       "autoImportTax": "Importar automáticamente la configuración de los impuestos",
       "manualImportTax": "Configurar manualmente la configuración de impuestos en Google Merchant Center",
       "appliedOnlyForUsa": "(se aplica solo a los Estados Unidos)",
-      "alertTaxes": "Debes enviar los impuestos que cobras para que los usuarios entiendan el precio exacto que tendrán que pagar por tus productos.",
+      "alertTaxes": "Debes mostrar los impuestos que cobras para que los usuarios entiendan el precio exacto que tendrán que pagar por tus productos.",
       "carrierDescriptionHeader": "Transportista \n descripción",
-      "enableHeader": "Activar / desactivar",
+      "enableHeader": "Activar / \ndesactivar",
       "shipToCustomerHeader": "Entrega a domicilio  \n",
       "transitTimeHeader": "Plazo de entrega",
       "countryHeader": "País",
@@ -399,13 +399,13 @@
       "refreshAttributes": "Actualiza si has editado tus atributos",
       "requiredForSomeCategories": "Este campo es obligatorio para algunas categorías de productos. [Ver más]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
       "sellApparelAndAccessories": "Ropa y accesorios",
-      "sellRefurbishedProducts": "Reacondicionado",
+      "sellRefurbishedProducts": "Renovado",
       "description": "Descripción",
       "longDescription": "Descripción larga",
       "description_short": "Descripción corta",
-      "energyEfficiencyClass": "Clase de eficiencia energética",
-      "maxEnergyEfficiencyClass": "Clase de eficiencia máxima",
-      "minEnergyEfficiencyClass": "Clase de eficiencia mínima",
+      "energyEfficiencyClass": "Clasificación energética",
+      "maxEnergyEfficiencyClass": "Máxima calificación energética",
+      "minEnergyEfficiencyClass": "Mínima calificación energética",
       "material": "Material",
       "pattern": "Modelo",
       "gtin": "GTIN",
@@ -413,7 +413,7 @@
       "mpn": "MPN",
       "brand": "Marca",
       "notAvailable": "Sin rellenar",
-      "specificTitle": "Específicos",
+      "specificTitle": "Específico",
       "sellRefurbished": "Vendo productos reacondicionados",
       "sellApparel": "Vendo ropa y accesorios",
       "condition": "Condición",
@@ -424,11 +424,11 @@
       "theXField": "El campo \"{0}\"",
       "thisCustomField": "Este campo personalizado",
       "learnAboutShippingSettings": "Saber más sobre la configuración de los envíos",
-      "learnHowToSetupShippingSettings": "Saber cómo configurar los envíos"
+      "learnHowToSetupShippingSettings": "Aprende a configurar los envíos"
     },
     "syncSchedule": {
       "title": "Horario de sincronización",
-      "subTitle": "Elija la hora a la que deseas que comience la primera sincronización, la exportación podría ralentizar su tráfico",
+      "subTitle": "Elija la hora cuando deseas que comience la primera sincronización, la exportación podría ralentizar tu tráfico",
       "radioLabel1": "Ahora, después de terminar mi configuración (La exportación podría ralentizar tu tienda)",
       "radioLabel2": "Más tarde, aproximadamente a las 2:00 AM (GMT 1) (Cuando tu tienda tenga pocas visitas)"
     },
@@ -445,7 +445,7 @@
       "youSell": "**Vendes** {0}",
       "dataSyncSetUp": "Configuración de la sincronización de los datos",
       "productAttributesMapping": "Mapeo de atributos de categoría y producto",
-      "attributeMapped": "Se ha mapeado una categoría | {0} categorías se han mapeado",
+      "attributeMapped": "Una categoría se ha mapeado | {0} categorías se han mapeado",
       "mandatoryAttributesNotMapped": "No se ha mapeado un atributo de Google a tus campos personalizados | {0} atributos de Google no se han mapeado a tus campos personalizados.",
       "noticeToCompleteMapping": "Te recomendamos mapear todos tus datos, si no Google podría rechazar tus productos.",
       "agreementTitle": "Comprendo y acepto las siguientes condiciones*",
@@ -546,7 +546,7 @@
     "inputFiltersAllLabel": "Incluir todos los productos sincronizados",
     "inputFiltersPartialLabel": "Seleccionar los productos utilizando los filtros de partición de productos",
     "inputFiltersHelper": "Tómate tiempo para [leer las políticas de anuncios de Google Shopping]({0})[:target=\"_blank\"] algunos productos se prohíben o limitan.",
-    "inputBudgetHelper": "Sólo pagarás si alguien hace clic en tu anuncio.",
+    "inputBudgetHelper": "Solo pagarás si alguien hace clic en tu anuncio.",
     "inputBudgetInvalidFeedback": "Tu presupuesto diario debe ser un número válido superior a 1. Para números decimales, utiliza un punto como separador.",
     "inputBudgetFeedback": "Presupuesto diario de la campaña",
     "inputBudgetTooltip": "Tu presupuesto es la cantidad media que te sientes cómodo gastando cada día en tu campaña. El presupuesto que elijas depende totalmente de ti, y puedes ajustarlo en cualquier momento.",
@@ -559,7 +559,7 @@
     "errorFetchingFilters": "No hemos podido recuperar todos los filtros de Google. Por ahora no puedes modificarlos.",
     "recapTitle": "Resumen de la campaña",
     "recapNoFiltersDescription": "Todos los productos sincronizados aprobados por Google",
-    "recapFooter": "Comprueba la información de tu campaña antes de validarla. Siempre puedes modificar algunos parámetros mientras la campaña está en curso.",
+    "recapFooter": "Comprueba la información de tu campaña antes de validarla. Siempre puedes modificar algunos parámetros mientras la campaña se está ejecutando.",
     "toggleCreationRemarketingTag": "Activar las etiquetas de remarketing en mi sitio",
     "toggleCreationNewRemarketingTag": "Crea una nueva etiqueta de remarketing y seguimiento de conversiones en tu tienda",
     "enableCreationRemarketingTag": "Habilitar la etiqueta de remarketing y seguimiento de conversiones",
@@ -636,7 +636,7 @@
       "nextSync": "Siguiente sincronización: {0}",
       "lastSync": "Última sincronización: {0}",
       "prescanTitle": "Próxima sincronización",
-      "scheduleOn": "Sincronización programada en {0}",
+      "scheduleOn": "Sincronización programada el {0}",
       "alert": "La sincronización del producto no se ha realizado correctamente. Comprueba los posibles motivos en [Merchant Center]({0})[:target=\"_blank\"] o contacta con [atención al cliente](mailto:support-google@prestashop.com)."
     },
     "syncSummary": {
@@ -651,20 +651,20 @@
         },
         "subtitle": {
           "willHappenOnDate": "Empezará el {0} a las {1}",
-          "happenedOnDate": "En {date}",
+          "happenedOnDate": "El {date}",
           "error": "Debido a un problema técnico, la sincronización falló el {0} a las {1}. Se realizará otra dentro de unas horas."
         }
       }
     },
     "productStatus": {
       "title": "Estado del producto",
-      "description": "El estado de tu producto te permite saber si tu producto es elegible para aparecer en el destino al que has optado.  \nUn producto pendiente no se mostrará en los anuncios ni en las fichas de producto porque Google lo está revisadon.  \nLos productos que caducan lo harán en los próximos 3 días y ya no podrán aparecer en los anuncios ni en las fichas de producto.",
+      "description": "El estado de tu producto te permite saber si tu producto es elegible para aparecer en el destino al que has optado.  \nUn producto pendiente no se mostrará en los anuncios ni en las fichas de producto porque Google lo está revisando.  \nLos productos que caducan lo harán en los próximos 3 días y ya no podrán aparecer en los anuncios ni en las fichas de producto.",
       "alert": "La revisión de los productos tarda entre 3 y 5 días laborables",
       "approvedProducts": "Aprobado",
       "approvedProductsDescription": "Los productos activos están totalmente aprobados y pueden aparecer en los resultados.",
       "pendingProducts": "Pendiente",
-      "pendingProductsDescription": "Un producto pendiente no se mostrará en los anuncios o listados gratuitos porque está siendo revisado por Google.",
-      "expiringProducts": "Caducando",
+      "pendingProductsDescription": "Un producto pendiente no se mostrará ni en los anuncios ni en las fichas de producto porque Google lo está revisando.",
+      "expiringProducts": "Vencen",
       "expiringProductsDescription": "Los productos que caduquen se eliminarán de Google Merchant Center en los próximos 3 días y ya no podrán aparecer ni en los anuncios ni en las fichas gratuitas.",
       "disapprovedProducts": "No aprobado",
       "disapprovedProductsDescription": "Tu producto no se ha aprobado para un destino y no está activo.",
