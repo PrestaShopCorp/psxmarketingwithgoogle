@@ -11,7 +11,7 @@
     "versionDoesNotExist": "Wygląda na to, że ta wersja modułu nie może zostać pobrana. To kwestia problemu po naszej stronie. Proszę spróbować ponownie.",
     "moduleNeedActivation": "Marketing with Google jest wyłączony. Nie możesz korzystać z żadnych jego funkcji, dopóki nie włączysz tego modułu.",
     "moduleUpdateNeeded": {
-      "ps_eventbus": "Wersja modułu PrestaShop EventBus uruchomiona w tym sklepie jest starsza niż minimalna wymagana.\n\nMożesz używać PrestaShop Marketing with Google, ale niektóre funkcje (np. synchronizacja produktów) nie będą dostępne, dopóki nie zaktualizujesz PrestaShop EventBus.",
+      "ps_eventbus": "The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync.",
       "psxmarketingwithgoogle": "Proszę zaktualizować moduł PrestaShop Marketing With Google, aby działał poprawnie."
     },
     "adblockerActivated": "Aby moduł mógł poprawnie działać, wyłącz ad-blockera i odśwież swoją przeglądarkę.",
@@ -239,7 +239,7 @@
       "syncSchedule": "Harmonogram synchronizacji"
     },
     "noticeDataStored": "Ustawienia są zapisywane na każdym etapie i zostaną przesłane dopiero w ostatnim kroku.",
-    "submissionExplanation": "Dane będą przechowywane na każdym z kolejnych etapów, ale zostaną przesłane dopiero na ostatnim z nich",
+    "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step.",
     "shippingSetup": {
       "title": "Konfiguracja wysyłki",
       "mandatoryStep": "Aby Twoje produkty były widoczne w Google Merchant Centre, wysyłka jest obowiązkowym krokiem.",
@@ -278,7 +278,7 @@
         "customDesc": "Chcę ustawić różne stawki i czas dla każdego kraju"
       },
       "estimateStep": {
-        "estimateInputLabel": "Enter a carrier",
+        "estimateInputLabel": "Enter carrier",
         "error": "Wypełnij wymagane informacje",
         "carrierName": "Nazwa przewoźnika",
         "storeOffersTitle": "Mój sklep oferuje",

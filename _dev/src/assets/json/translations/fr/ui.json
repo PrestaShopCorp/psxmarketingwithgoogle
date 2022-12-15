@@ -11,7 +11,7 @@
     "versionDoesNotExist": "Il semble que la version du module ne puisse être récupérée. C'est de notre côté, veuillez réessayer.",
     "moduleNeedActivation": "Le module Marketing with Google est désactivé. Vous ne pourrez utiliser aucune de ses fonctionnalités tant que vous n'aurez pas activé votre module.",
     "moduleUpdateNeeded": {
-      "ps_eventbus": "La version du module PrestaShop EventBus en cours d'exécution sur cette boutique est plus ancienne que le minimum requis .\n\nVous pouvez utiliser PrestaShop Marketing with Google, mais certaines fonctionnalités (par exemple, la synchronisation des produits) ne seront pas disponibles tant que vous n'aurez pas mis à niveau PrestaShop EventBus.",
+      "ps_eventbus": "The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync.",
       "psxmarketingwithgoogle": "Veuillez mettre à jour le module PrestaShop Marketing With Google afin de le faire fonctionner correctement."
     },
     "adblockerActivated": "Veuillez désactiver votre bloqueur de publicité pour que le module fonctionne correctement et rafraîchir votre navigateur.",
@@ -239,7 +239,7 @@
       "syncSchedule": "Calendrier de synchronisation"
     },
     "noticeDataStored": "Les paramètres sont enregistrés à chaque étape mais ne seront soumis qu'à l'étape finale.",
-    "submissionExplanation": "Veuillez noter que les données seront stockées à chaque étape mais ne seront envoyées qu'à l'étape finale",
+    "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step.",
     "shippingSetup": {
       "title": "Configuration de l'expédition",
       "mandatoryStep": "Pour que vos produits soient affichés par Google Merchant Center, la configuration des paramètres de livraison est une étape obligatoire.",
@@ -278,7 +278,7 @@
         "customDesc": "Je voudrais définir des tarifs et des délais spécifiques pour chaque pays"
       },
       "estimateStep": {
-        "estimateInputLabel": "Saisir un transporteur",
+        "estimateInputLabel": "Enter carrier",
         "error": "Veuillez remplir les informations requises",
         "carrierName": "Nom du transporteur",
         "storeOffersTitle": "Ma boutique propose",
