@@ -347,12 +347,14 @@ describe('delivery-time-and-rates.vue', () => {
       expect(wrapper.vm.validateForm()).toBeFalsy();
     });
 
-    it('forbids to continue if no carrier is enabled', () => {
+    it('forbids to continue if no carrier is enabled', async () => {
       const wrapper = buildWrapper();
 
-      store.modules.productFeed.state.settings.deliveryDetails.map((c) => {
-        c.enabledCarrier = false;
-        return c;
+      await wrapper.setData({
+        carriers: store.modules.productFeed.state.settings.deliveryDetails.map((c) => {
+          c.enabledCarrier = false;
+          return c;
+        }),
       });
       expect(wrapper.vm.validateForm()).toBeFalsy();
     });

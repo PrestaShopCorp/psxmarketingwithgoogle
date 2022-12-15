@@ -239,6 +239,7 @@ export function validateEachCountryHasAtLeastOneCarrier(
   enabledDeliveryDetails: DeliveryDetail[],
 ): boolean {
   return countries.every((country: string) => enabledDeliveryDetails.find(
-    (deliveryDetail: DeliveryDetail) => deliveryDetail.country === country,
+    (deliveryDetail: DeliveryDetail) => deliveryDetail.country === country
+      && deliveryDetail.enabledCarrier,
   ));
 }
