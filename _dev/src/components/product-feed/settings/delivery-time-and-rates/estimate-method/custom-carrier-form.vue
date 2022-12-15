@@ -1,5 +1,5 @@
 <template>
-  <b-container class="customCarrierForm">
+  <b-container class="customCarrierForm p-3">
     <b-row class="mb-2 mt-2">
       <b-col>
         <div class="carrierName">
@@ -105,7 +105,7 @@
         </b-row>
         <!-- eslint-disable max-len -->
         <b-card
-          class="offer-rates"
+          class="offer-rates bg-off-white"
           v-if="estimateCarrier.offer === OfferType.FLAT_SHIPPING_RATE
             || estimateCarrier.offer === OfferType.FREE_SHIPPING_OVER_AMOUNT"
         >
