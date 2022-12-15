@@ -81,7 +81,7 @@
             </div>
           </div>
           <template
-            v-for="group in attributesToMap"
+            v-for="group in mappingAttributes"
           >
             <div
               v-for="field in group.fields"
@@ -191,7 +191,7 @@ export default {
   data() {
     return {
       loading: false,
-
+      mappingAttributes: [],
     };
   },
   computed: {
@@ -279,7 +279,7 @@ export default {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
-      localStorage.setItem('productFeed-attributeMapping', JSON.stringify(formatMappingToApi(this.attributesToMap)));
+      localStorage.setItem('productFeed-attributeMapping', JSON.stringify(formatMappingToApi(this.mappingAttributes)));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 4);
       this.$router.push({
         name: 'product-feed-settings',
@@ -307,6 +307,7 @@ export default {
     this.$store.dispatch('productFeed/REQUEST_SHOP_TO_GET_ATTRIBUTE').then(() => {
       this.$store.dispatch('productFeed/REQUEST_ATTRIBUTE_MAPPING').finally(() => {
         this.loading = false;
+        this.mappingAttributes = JSON.parse(JSON.stringify(this.attributesToMap));
       });
     });
   },

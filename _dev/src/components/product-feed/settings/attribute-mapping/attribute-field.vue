@@ -20,7 +20,6 @@
         <b-form-checkbox-group
           :name="`dropdown-attribute-${field.label}`"
           v-model="attributesChecked"
-          @change="getAttribute"
           stacked
         >
           <b-form-checkbox
@@ -130,12 +129,6 @@ export default {
     },
     findAttribute(attr) {
       return !!this.attributesChecked.find((e) => e.name === attr);
-    },
-    getAttribute() {
-      this.$store.commit('productFeed/SET_ATTRIBUTE_MAPPING_SELECTION', {
-        name: this.field.name,
-        elements: this.attributesChecked,
-      });
     },
     displayAttributeOption(option) {
       return option.name.map((name) => (this.$te(`attributesMapping.options.${name}`)
