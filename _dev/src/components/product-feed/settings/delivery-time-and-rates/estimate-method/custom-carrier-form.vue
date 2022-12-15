@@ -26,7 +26,7 @@
               class="form-control ps_gs-mw-200"
               id="carrierName"
               v-model="estimateCarrier.carrierName"
-              @input="$emit('dataUpdated')"
+              @input="onDataUpdate"
               :state="validateCarrierName"
               :placeholder="
                 $t(
@@ -52,7 +52,7 @@
               class="form-check-input"
               :name="`offersChoice-${estimateCarrier.countries[0]}`"
               v-model="estimateCarrier.offer"
-              @input="$emit('dataUpdated', estimateCarrier)"
+              @input="onDataUpdate"
               :value="offer.value"
             >
               <span class="text-black">{{ offer.text }}</span>
@@ -82,7 +82,7 @@
                 size="sm"
                 :state="validateTimeDelivery"
                 v-model.number="estimateCarrier.minDeliveryTime"
-                @input="$emit('dataUpdated')"
+                @input="onDataUpdate"
                 min="0"
                 :placeholder="$t('general.min')"
               />
@@ -93,7 +93,7 @@
                 <b-form-input
                   type="number"
                   v-model.number="estimateCarrier.maxDeliveryTime"
-                  @input="$emit('dataUpdated')"
+                  @input="onDataUpdate"
                   class="ps_gs-carrier__input-number no-arrows min-input-custom"
                   size="sm"
                   :state="validateTimeDelivery"
@@ -137,7 +137,7 @@
                     step="0.01"
                     placeholder="5.99"
                     v-model.number="estimateCarrier[estimateCarrier.offer].shippingCost"
-                    @input="$emit('dataUpdated', estimateCarrier)"
+                    @input="onDataUpdate"
                     :state="validateAmountRate(estimateCarrier[estimateCarrier.offer].shippingCost)"
                   />
                 </b-input-group>
@@ -179,7 +179,7 @@
                     step="0.01"
                     placeholder="42.99"
                     v-model.number="estimateCarrier[estimateCarrier.offer].orderPrice"
-                    @input="$emit('dataUpdated', estimateCarrier)"
+                    @input="onDataUpdate"
                     :state="validateAmountRate(estimateCarrier[estimateCarrier.offer].orderPrice)"
                   />
                 </b-input-group>
@@ -218,7 +218,7 @@
                     placeholder="5.99"
                     :state="validateAmountRate(estimateCarrier[estimateCarrier.offer].shippingCost)"
                     v-model.number="estimateCarrier[estimateCarrier.offer].shippingCost"
-                    @input="$emit('dataUpdated', estimateCarrier)"
+                    @input="onDataUpdate"
                   />
                 </b-input-group>
               </b-col>
@@ -242,8 +242,6 @@ import {
 
 export default Vue.extend({
   name: 'CustomCarrierForm',
-  components: {
-  },
   props: {
     estimateCarrier: {
       type: Object as PropType<CustomCarrier>,
@@ -310,6 +308,14 @@ export default Vue.extend({
       }
       return !Number.isNaN(amount) && amount > 0 ? null : false;
     },
+    async onDataUpdate(): Promise<void> {
+      this.$emit('dataUpdated');
+      // With the default carrier object, the form does not refresh
+      // automatically so we have to force it.
+      await this.$nextTick();
+      this.$forceUpdate();
+    },
   },
+
 });
 </script>

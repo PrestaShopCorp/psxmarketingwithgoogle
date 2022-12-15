@@ -98,6 +98,11 @@ export default Vue.extend({
 
       return carriers;
     },
+    carriersElligibleToApi() {
+      return this.carriers.filter(
+        (e: DeliveryDetail) => e.enabledCarrier && this.selectedCountries.includes(e.country),
+      );
+    },
     getCurrency(): string {
       return this.$store.getters['app/GET_CURRENT_CURRENCY'];
     },
@@ -212,9 +217,7 @@ export default Vue.extend({
 
       // Validation - Import option
       if (this.getShippingValueSetup === ShippingSetupOption.IMPORT) {
-        const enabledDeliveryDetails: DeliveryDetail[] = this.carriers.filter(
-          (e: DeliveryDetail) => e.enabledCarrier,
-        );
+        const enabledDeliveryDetails: DeliveryDetail[] = this.carriersElligibleToApi;
 
         // No carrier enabled
         if (!enabledDeliveryDetails.length) {
@@ -246,7 +249,7 @@ export default Vue.extend({
         localStorage.setItem('productFeed-estimateCarriers', JSON.stringify(this.estimateCarriersToConfigure));
         localStorage.setItem('productFeed-rateChosen', JSON.stringify(this.selectedRate));
       } else if (this.getShippingValueSetup === ShippingSetupOption.IMPORT) {
-        localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
+        localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriersElligibleToApi));
       }
     },
     nextStep(): void {
