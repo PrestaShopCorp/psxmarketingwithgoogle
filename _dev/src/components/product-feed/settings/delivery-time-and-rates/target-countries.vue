@@ -144,6 +144,7 @@ export default {
           this.countrySelected(validCountries.length ? validCountries : null);
         }
       },
+      immediate: true,
     },
   },
 };
