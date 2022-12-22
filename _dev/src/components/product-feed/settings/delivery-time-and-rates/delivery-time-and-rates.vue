@@ -1,7 +1,7 @@
 <template>
   <div>
     <target-countries
-      @countrySelected="countries = $event;resetCarriers();dataUpdated();"
+      @countrySelected="countrySelected"
       :countries="selectedCountries"
       :shipping-setup-option="getShippingValueSetup"
     />
@@ -27,7 +27,7 @@
     <shipping-settings
       v-if="getShippingValueSetup === ShippingSetupOption.IMPORT"
       :countries="selectedCountries"
-      :carriers="carriers || carriersToConfigure"
+      :carriers="carriersToConfigure"
       :display-validation-errors="displayValidationErrors"
       @dataUpdated="carriers = $event;dataUpdated()"
       @refresh="refreshComponent"
@@ -91,12 +91,21 @@ export default Vue.extend({
       return this.$store.getters['productFeed/GET_SHIPPING_SETUP'];
     },
     carriersToConfigure() {
-      const carriers = this.$store.state.productFeed.settings.deliveryDetails
+      if (this.carriers?.length) {
+        return this.carriers;
+      }
+      return this.carriersFromStore;
+    },
+    carriersFromStore() {
+      const carriers = this.deliveryDetails
         .filter(
           (carrier: DeliveryDetail) => this.selectedCountries.includes(carrier.country),
         );
 
       return carriers;
+    },
+    deliveryDetails(): DeliveryDetail[] {
+      return this.$store.state.productFeed.settings.deliveryDetails;
     },
     getCurrency(): string {
       return this.$store.getters['app/GET_CURRENT_CURRENCY'];
@@ -117,8 +126,11 @@ export default Vue.extend({
     selectedRate(): RateType|null {
       return this.rateChosen || getDataFromLocalStorage('productFeed-rateChosen') || this.$store.state.productFeed.settings.rate;
     },
+    countriesFromStore(): string[] {
+      return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'];
+    },
     selectedCountries(): string[] {
-      return this.countries || this.$store.getters['productFeed/GET_TARGET_COUNTRIES'] || [];
+      return this.countries || getDataFromLocalStorage('productFeed-targetCountries') || this.countriesFromStore || [];
     },
   },
   methods: {
@@ -137,7 +149,7 @@ export default Vue.extend({
         );
       }
       if (this.getShippingValueSetup === ShippingSetupOption.IMPORT) {
-        this.carriers = this.carriersToConfigure.map((carrier: DeliveryDetail) => ({
+        this.carriers = this.carriersFromStore.map((carrier: DeliveryDetail) => ({
           ...carrier,
           enabledCarrier: false,
           minTransitTimeInDays: undefined,
@@ -154,6 +166,11 @@ export default Vue.extend({
         },
       });
       window.scrollTo(0, 0);
+    },
+    async countrySelected(event) {
+      this.countries = event;
+      this.dataUpdated();
+      this.resetCarriers();
     },
     rateSelected(event) {
       this.rateChosen = event;
@@ -190,7 +207,7 @@ export default Vue.extend({
 
       // Validation - Import option
       if (this.getShippingValueSetup === ShippingSetupOption.IMPORT) {
-        const enabledDeliveryDetails: DeliveryDetail[] = this.carriers || this.carriersToConfigure;
+        const enabledDeliveryDetails: DeliveryDetail[] = this.carriersToConfigure;
 
         // No carrier enabled
         if (!enabledDeliveryDetails.length) {
@@ -222,7 +239,7 @@ export default Vue.extend({
         localStorage.setItem('productFeed-estimateCarriers', JSON.stringify(this.estimateCarriersToConfigure));
         localStorage.setItem('productFeed-rateChosen', JSON.stringify(this.selectedRate));
       } else if (this.getShippingValueSetup === ShippingSetupOption.IMPORT) {
-        localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriers));
+        localStorage.setItem('productFeed-deliveryDetails', JSON.stringify(this.carriersToConfigure));
       }
     },
     nextStep(): void {
@@ -268,6 +285,16 @@ export default Vue.extend({
         }
       },
       immediate: true,
+    },
+    deliveryDetails: {
+      handler(): void {
+        this.carriers = null;
+      },
+    },
+    countriesFromStore: {
+      handler(): void {
+        this.countries = null;
+      },
     },
   },
 });

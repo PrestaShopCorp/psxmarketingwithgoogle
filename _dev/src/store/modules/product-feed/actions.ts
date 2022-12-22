@@ -185,14 +185,16 @@ export default {
   },
 
   async [ActionsTypes.SEND_PRODUCT_FEED_SETTINGS]({
-    state, rootState, getters, commit, dispatch,
+    state, rootState, getters, commit,
   }) {
-    const productFeedSettings: ProductFeedSettings = state.settings;
+    const productFeedSettings: ProductFeedSettings = {
+      ...state.settings,
+    };
 
     // Shipping setup
     //    ...
     // Delivery times & rates - Common
-    const targetCountries = changeCountriesNamesToCodes(getters.GET_TARGET_COUNTRIES);
+    const targetCountries = getDataFromLocalStorage('productFeed-targetCountries');
     // Delivery times & rates - Import method
     const deliveryFiltered: DeliveryDetail[] = productFeedSettings.deliveryDetails.filter(
       (e) => e.enabledCarrier && validateDeliveryDetail(e),
@@ -243,12 +245,21 @@ export default {
         commit(MutationsTypes.API_ERROR, true);
         throw new HttpClientError(response.statusText, response.status);
       }
-      const json = await response.json();
+      await response.json();
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
       commit(MutationsTypes.SAVE_CONFIGURATION_CONNECTED_ONCE, true);
       deleteProductFeedDataFromLocalStorage();
-      await dispatch(ActionsTypes.REQUEST_ATTRIBUTE_MAPPING);
-      await dispatch(ActionsTypes.GET_PRODUCT_FEED_SYNC_STATUS);
+
+      // Reset & fill store with data from the configuration we just made.
+      // We could call the API to get a fresh version from it,
+      // but there is a risk to retrieve the old version when it is overloaded.
+      commit(MutationsTypes.REMOVE_PRODUCT_FEED);
+      state.settings = {
+        ...state.settings,
+        ...newSettings,
+        deliveryDetails: productFeedSettings.deliveryDetails,
+        shippingSettings: productFeedSettings.shippingSettings,
+      } as ProductFeedSettings;
     } catch (error) {
       console.error(error);
     }
@@ -272,7 +283,6 @@ export default {
   },
 
   async [ActionsTypes.GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS]({state, commit, dispatch}) {
-    // TODO: These call may be already done, so we might remove them
     await Promise.allSettled([
       dispatch(ActionsTypes.GET_SHOP_SHIPPING_SETTINGS),
       dispatch(ActionsTypes.GET_PRODUCT_FEED_SETTINGS),
