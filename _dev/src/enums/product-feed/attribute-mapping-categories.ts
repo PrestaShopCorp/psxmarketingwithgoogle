@@ -6,4 +6,6 @@ enum Categories {
   NONE = 'none',
 }
 
+export type SelectedProductCategories = [Categories.NONE]|Exclude<Categories, Categories.NONE>[];
+
 export default Categories;

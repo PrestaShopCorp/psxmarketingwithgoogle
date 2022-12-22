@@ -31,7 +31,7 @@ import {
   PrevalidationScanSummary,
   PreScanReporting,
 } from './state';
-import {RateType} from '../../../enums/product-feed/rate';
+import {RateType} from '@/enums/product-feed/rate';
 
 type payloadObject = {
   name: string, data: string

@@ -30,7 +30,6 @@ import {runIf} from '@/utils/Promise';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {fromApi, toApi} from '@/providers/shipping-rate-provider';
 import {ProductFeedSettings} from './state';
-import {changeCountriesNamesToCodes} from '@/utils/Countries';
 
 // ToDo: Get DTO type from API sources
 export const createProductFeedApiPayload = (settings:any) => ({
@@ -185,31 +184,37 @@ export default {
   },
 
   async [ActionsTypes.SEND_PRODUCT_FEED_SETTINGS]({
-    state, rootState, getters, commit, dispatch,
+    state, rootState, getters, commit,
   }) {
-    const productFeedSettings: ProductFeedSettings = state.settings;
+    commit(MutationsTypes.API_ERROR, false);
+
+    const productFeedSettings: ProductFeedSettings = {
+      ...state.settings,
+    };
+
+    // We prepare the new payload by looking in the localstorage (new settings in draft)
+    // and in the API by default.
 
     // Shipping setup
     //    ...
     // Delivery times & rates - Common
-    const targetCountries = changeCountriesNamesToCodes(getters.GET_TARGET_COUNTRIES);
+    const targetCountries = getDataFromLocalStorage('productFeed-targetCountries') || productFeedSettings.targetCountries;
     // Delivery times & rates - Import method
-    const deliveryFiltered: DeliveryDetail[] = productFeedSettings.deliveryDetails.filter(
-      (e) => e.enabledCarrier && validateDeliveryDetail(e),
+    const deliveryFiltered: DeliveryDetail[] = (getDataFromLocalStorage('productFeed-deliveryDetails') || productFeedSettings.deliveryDetails).filter(
+      (e: DeliveryDetail) => e.enabledCarrier && validateDeliveryDetail(e),
     );
-    const shipping: ShopShippingInterface[] = productFeedSettings.shippingSettings
+    const shippingSettingsFromShop: ShopShippingInterface[] = productFeedSettings.shippingSettings
       .filter(
         (s) => deliveryFiltered.find((d) => s.properties.id_reference === d.carrierId),
       );
     // Delivery times & rates - Estimate method
-    const rate = getDataFromLocalStorage('productFeed-rateChosen') || undefined;
-    const estimateCarriers = toApi(getDataFromLocalStorage('productFeed-estimateCarriers'));
+    const rate = getDataFromLocalStorage('productFeed-rateChosen') || productFeedSettings.rate || undefined;
+    const estimateCarriers = toApi(
+      getDataFromLocalStorage('productFeed-estimateCarriers') || productFeedSettings.estimateCarriers,
+    );
     // Attributes mapping
-    const attributeMapping = getDataFromLocalStorage('productFeed-attributeMapping') || {};
+    const attributeMapping = getDataFromLocalStorage('productFeed-attributeMapping') || state.attributeMapping || {};
     const selectedProductCategories = getters.GET_PRODUCT_CATEGORIES_SELECTED;
-    commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
-      name: 'attributeMapping', data: attributeMapping,
-    });
     // Next synchronization request
     const requestSynchronizationNow = getters.GET_SYNC_SCHEDULE;
 
@@ -217,7 +222,7 @@ export default {
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
       shippingSetup: productFeedSettings.shippingSetup,
       targetCountries,
-      shippingSettings: shipping,
+      shippingSettings: shippingSettingsFromShop,
       additionalShippingSettings: {
         deliveryDetails: deliveryFiltered,
       },
@@ -240,16 +245,34 @@ export default {
       });
 
       if (!response.ok) {
-        commit(MutationsTypes.API_ERROR, true);
         throw new HttpClientError(response.statusText, response.status);
       }
-      const json = await response.json();
+      await response.json();
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
       commit(MutationsTypes.SAVE_CONFIGURATION_CONNECTED_ONCE, true);
       deleteProductFeedDataFromLocalStorage();
-      await dispatch(ActionsTypes.REQUEST_ATTRIBUTE_MAPPING);
-      await dispatch(ActionsTypes.GET_PRODUCT_FEED_SYNC_STATUS);
+
+      // Reset & fill store with data from the configuration we just made.
+      // We could call the API to get a fresh version from it,
+      // but there is a risk to retrieve the old version when it is overloaded.
+      commit(MutationsTypes.REMOVE_PRODUCT_FEED);
+      state.settings = {
+        ...state.settings,
+        ...newSettings,
+      } as ProductFeedSettings;
+      // Some data were filtered before being sent to the API, i.e to remove diabled carriers.
+      // However in the store we need all the data.
+      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+        name: 'deliveryDetails',
+        data: productFeedSettings.deliveryDetails,
+      });
+      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+        name: 'shippingSettings',
+        data: productFeedSettings.shippingSettings,
+      });
+      commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, attributeMapping);
     } catch (error) {
+      commit(MutationsTypes.API_ERROR, true);
       console.error(error);
     }
   },
@@ -272,7 +295,6 @@ export default {
   },
 
   async [ActionsTypes.GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS]({state, commit, dispatch}) {
-    // TODO: These call may be already done, so we might remove them
     await Promise.allSettled([
       dispatch(ActionsTypes.GET_SHOP_SHIPPING_SETTINGS),
       dispatch(ActionsTypes.GET_PRODUCT_FEED_SETTINGS),

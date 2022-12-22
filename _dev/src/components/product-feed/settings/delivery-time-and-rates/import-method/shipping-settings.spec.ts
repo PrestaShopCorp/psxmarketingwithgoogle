@@ -34,7 +34,8 @@ describe('shipping-settings.vue', () => {
       },
     });
     expect(wrapper.isVisible()).toBe(true);
-    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(0);
+    // Country selector
+    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
     expect(wrapper.find('#table-carriers').isVisible()).toBe(true);
   });
 
@@ -100,7 +101,8 @@ describe('shipping-settings.vue', () => {
         displayValidationErrors: false,
       },
     });
-    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(0);
+    // Country selector
+    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
     expect(wrapper.findAllComponents(TableRowCarrier)).toHaveLength(4);
     expect(wrapper.findAllComponents(TableRowCarrier).at(0).props('carrier')).toEqual({
       carrierId: '9',
@@ -199,9 +201,10 @@ describe('shipping-settings.vue', () => {
       });
 
       expect(wrapper.find('#filterByCountryDropdown').exists()).toBeTruthy();
+      expect(wrapper.find('#filterByCountryDropdown').attributes('disabled')).toBeFalsy();
     });
 
-    it('is hidden when only one country is chosen', () => {
+    it('is visible but disabled when only one country is chosen', () => {
       const wrapper = buildWrapper({
         propsData: {
           countries: ['FR'],
@@ -210,7 +213,8 @@ describe('shipping-settings.vue', () => {
         },
       });
 
-      expect(wrapper.find('#filterByCountryDropdown').exists()).toBeFalsy();
+      expect(wrapper.find('#filterByCountryDropdown').exists()).toBeTruthy();
+      expect(wrapper.find('#filterByCountryDropdown').attributes('disabled')).toBeTruthy();
     });
 
     it('displays only carriers related to the filtered country', async () => {

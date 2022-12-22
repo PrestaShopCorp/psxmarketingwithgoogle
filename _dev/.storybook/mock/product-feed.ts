@@ -4,6 +4,7 @@ import { RateType } from "@/enums/product-feed/rate";
 import { State, AttributesTypes } from "@/store/modules/product-feed/state";
 import DeliveryType from '@/enums/product-feed/delivery-type';
 import { shippingPhpExport } from "./shipping-settings";
+import Categories from "@/enums/product-feed/attribute-mapping-categories";
 
 export const productFeed: State = {
   isSyncSummaryLoadingInProgress: false,
@@ -416,7 +417,7 @@ export const productFeed: State = {
     { name: ["composition"], type: "feature" as AttributesTypes },
     { name: ["property"], type: "feature" as AttributesTypes },
   ],
-  selectedProductCategories: ["none"],
+  selectedProductCategories: [Categories.NONE],
   preScanDetail: {
     products: [],
     limit: 10,
