@@ -123,8 +123,8 @@ export default Vue.extend({
           this.getCurrency,
         );
     },
-    selectedRate(): RateType|null {
-      return this.rateChosen || getDataFromLocalStorage('productFeed-rateChosen') || this.$store.state.productFeed.settings.rate;
+    selectedRate(): RateType|false|null {
+      return this.rateChosen ?? getDataFromLocalStorage('productFeed-rateChosen') ?? this.$store.state.productFeed.settings.rate;
     },
     countriesFromStore(): string[] {
       return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'];
@@ -135,9 +135,6 @@ export default Vue.extend({
   },
   methods: {
     dataUpdated(): void {
-      if (this.selectedCountries.length === 1 && this.selectedRate === RateType.RATE_PER_COUNTRY) {
-        this.rateChosen = RateType.RATE_ALL_COUNTRIES;
-      }
       this.displayValidationErrors = false;
     },
     resetCarriers(): void {
@@ -169,6 +166,7 @@ export default Vue.extend({
     },
     async countrySelected(event) {
       this.countries = event;
+      this.rateChosen = false;
       this.dataUpdated();
       this.resetCarriers();
     },
