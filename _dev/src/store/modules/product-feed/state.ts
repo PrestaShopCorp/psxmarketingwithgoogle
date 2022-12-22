@@ -24,6 +24,7 @@ import {AttributeResponseFromAPI} from '../../../utils/AttributeMapping';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {CustomCarrier} from '@/providers/shipping-rate-provider';
 import {RateType} from '@/enums/product-feed/rate';
+import Categories, {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
 
 export interface ProductFeedStatus {
   nextJobAt?: string;
@@ -119,12 +120,12 @@ export interface State {
   stepper: number;
   status: ProductFeedStatus;
   settings: ProductFeedSettings;
-  validationSummary : ProductFeedValidationSummary;
+  validationSummary: ProductFeedValidationSummary;
   prevalidationScanSummary: PrevalidationScanSummary;
   productsDatas: ProductsDatas;
   attributesToMap: any;
   attributesFromShop: Array<AttributesInfos>;
-  selectedProductCategories: Array<String>;
+  selectedProductCategories: SelectedProductCategories;
   requestSynchronizationNow: boolean;
   preScanDetail: PreScanDetail;
   attributeMapping: AttributeResponseFromAPI;
@@ -201,7 +202,7 @@ export const state: State = {
   attributesToMap,
   requestSynchronizationNow: false,
   attributesFromShop: [],
-  selectedProductCategories: [],
+  selectedProductCategories: [Categories.NONE],
   preScanDetail: {
     products: [],
     limit: 10,

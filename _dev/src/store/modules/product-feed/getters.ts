@@ -26,10 +26,11 @@ import {
   PreScanReporting,
 } from './state';
 import GettersTypes from './getters-types';
-import {filterCountriesCompatible} from '../../../utils/TargetCountryValidator';
-import {getDataFromLocalStorage} from '../../../utils/LocalStorage';
-import {AttributeResponseFromAPI} from '../../../utils/AttributeMapping';
+import {filterCountriesCompatible} from '@/utils/TargetCountryValidator';
+import {getDataFromLocalStorage} from '@/utils/LocalStorage';
+import {AttributeResponseFromAPI} from '@/utils/AttributeMapping';
 import {CustomCarrier} from '@/providers/shipping-rate-provider';
+import {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
 
 export default {
   [GettersTypes.GET_PRODUCT_FEED_IS_CONFIGURED](state: LocalState): boolean {
@@ -87,7 +88,7 @@ export default {
     }
     return null;
   },
-  [GettersTypes.GET_PRODUCT_CATEGORIES_SELECTED](state: LocalState) : Array<String> {
+  [GettersTypes.GET_PRODUCT_CATEGORIES_SELECTED](state: LocalState) : SelectedProductCategories {
     const getCategoriesFromLocalStorage = getDataFromLocalStorage('selectedProductCategories');
 
     if (getCategoriesFromLocalStorage !== null) {
