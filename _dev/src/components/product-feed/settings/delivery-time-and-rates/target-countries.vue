@@ -12,7 +12,7 @@
       </p>
       <SelectCountry
         @countrySelected="countrySelected"
-        :default-value="countriesNames"
+        :default-value="validCountriesNames"
         :dropdown-options="selectableCountriesList"
         :need-filter="true"
         :not-full-width="true"
@@ -84,6 +84,13 @@ export default {
     countriesNames() {
       return changeCountriesCodesToNames(this.countries);
     },
+    validCountriesNames() {
+      // By loading an existing configuration, we may have some selected that are
+      // not anymore in the list of possible values.
+      return this.countriesNames.filter(
+        (country: string) => this.selectableCountriesList.includes(country),
+      );
+    },
     isUS() {
       return this.countries.includes('US');
     },
@@ -128,23 +135,6 @@ export default {
         return;
       }
       this.$emit('countrySelected', null);
-    },
-  },
-  watch: {
-    countries: {
-      handler(newListOfCountries: string[]): void {
-        // By loading an existing configuration, we may have some selected that are
-        // not anymore in the list of possible values.
-        // When this happens, we remove them and notify the parent.
-        const validCountries: string[] = this.countriesNames.filter(
-          (country: string) => this.selectableCountriesList.includes(country),
-        );
-
-        if (validCountries.length !== newListOfCountries.length) {
-          this.countrySelected(validCountries.length ? validCountries : null);
-        }
-      },
-      immediate: true,
     },
   },
 };

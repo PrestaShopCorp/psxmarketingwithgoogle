@@ -30,13 +30,8 @@ describe('target-countries.vue', () => {
       store: new Vuex.Store(store),
     });
 
-    await wrapper.vm.$nextTick();
-
-    const emittedEvents = wrapper.emitted('countrySelected');
     // The update of the list should be updated to keep only France and United States
-    expect(emittedEvents).toBeTruthy();
-    expect((emittedEvents as any[]).length).toBe(1);
-    expect((emittedEvents as any[])[0]).toEqual([['FR', 'US']]);
+    expect(wrapper.vm.validCountriesNames).toEqual(['France', 'United States']);
   });
 });
 
