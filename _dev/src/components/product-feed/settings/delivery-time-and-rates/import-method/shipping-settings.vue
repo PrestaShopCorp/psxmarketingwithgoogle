@@ -9,13 +9,13 @@
         {{ $t('productFeedSettings.deliveryTimeAndRates.shippingInformationIntro') }}
       </p>
       <b-dropdown
-        v-if="countries.length > 1"
+        :disabled="countries.length < 2"
         id="filterByCountryDropdown"
         variant=" "
         menu-class="ps-dropdown"
         :text="countryChosen ? $options.filters.changeCountriesCodesToNames([countryChosen])[0]
           : $t('productFeedSettings.deliveryTimeAndRates.filterTitle')"
-        class="mb-2 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250"
+        class="mb-2 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250 ml-2"
       >
         <b-dropdown-item
           :disabled="!countryChosen"
