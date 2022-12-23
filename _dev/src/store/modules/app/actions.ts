@@ -20,6 +20,7 @@
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '../../../utils/HttpClientError';
+import call from '@/api/request';
 
 export default {
   async [ActionsTypes.REQUEST_DOC_AND_FAQ](
@@ -29,18 +30,14 @@ export default {
     },
   ) {
     try {
-      const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-        body: JSON.stringify({
+      const response = await call<Object>(
+        'POST',
+        {
           action: 'retrieveFaq',
-        }),
-      });
-
-      if (!response.ok) {
-        throw new HttpClientError(response.statusText, response.status);
-      }
-      commit(MutationsTypes.SAVE_DOC_AND_FAQ, await response.json());
+        },
+        `${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`,
+      );
+      commit(MutationsTypes.SAVE_DOC_AND_FAQ, response);
     } catch (error) {
       console.error(error);
     }
@@ -53,18 +50,14 @@ export default {
     },
   ) {
     try {
-      const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-        body: JSON.stringify({
+      const response = await call<Object>(
+        'POST',
+        {
           action: 'getDebugData',
-        }),
-      });
-
-      if (!response.ok) {
-        throw new HttpClientError(response.statusText, response.status);
-      }
-      commit(MutationsTypes.SAVE_DEBUG_DATA, await response.json());
+        },
+        `${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`,
+      );
+      commit(MutationsTypes.SAVE_DEBUG_DATA, response);
     } catch (error) {
       console.error(error);
     }
@@ -77,15 +70,12 @@ export default {
     },
   ) {
     try {
-      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/check-adblocker`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-          },
-        });
+      await call<Object>(
+        'GET',
+        {},
+        `${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/check-adblocker`,
+        rootState.accounts.tokenPsAccounts,
+      );
     } catch (error) {
       const healthcheck = await dispatch(ActionsTypes.GET_API_HEALTHCHECK);
 
@@ -99,17 +89,12 @@ export default {
   },
   async [ActionsTypes.GET_API_HEALTHCHECK]({rootState}) {
     try {
-      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/healthcheck`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-          },
-        });
-
-      return resp.json();
+      return await call<Object>(
+        'GET',
+        {},
+        `${rootState.app.psxMktgWithGoogleApiUrl}/healthcheck`,
+        rootState.accounts.tokenPsAccounts,
+      );
     } catch (error) {
       console.log(error);
     }
@@ -117,21 +102,14 @@ export default {
   },
   async [ActionsTypes.GET_MODULES_VERSIONS]({rootState}, moduleName) {
     try {
-      const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-        body: JSON.stringify({
+      return await call<Object>(
+        'POST',
+        {
           action: 'getModuleStatus',
           moduleName,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new HttpClientError(response.statusText, response.status);
-      }
-      const json = await response.json();
-
-      return json;
+        },
+        `${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`,
+      );
     } catch (error) {
       console.error(error);
       return error;
