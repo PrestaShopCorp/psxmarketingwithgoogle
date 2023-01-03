@@ -18,7 +18,7 @@
  */
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
-import HttpClientError from '../../../utils/HttpClientError';
+import HttpClientError from '@/api/HttpClientError';
 
 export default {
   async [ActionsTypes.GET_FREE_LISTING_STATUS]({commit, rootState}) {

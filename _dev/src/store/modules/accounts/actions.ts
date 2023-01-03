@@ -22,13 +22,14 @@ import MutationsTypes from './mutations-types';
 import MutationsTypesProductFeed from '../product-feed/mutations-types';
 import MutationsTypesGoogleAds from '../google-ads/mutations-types';
 import ActionsTypes from './actions-types';
-import HttpClientError from '../../../utils/HttpClientError';
+import HttpClientError from '@/api/HttpClientError';
 import NeedOverwriteError from '../../../utils/NeedOverwriteError';
 import CannotOverwriteError from '../../../utils/CannotOverwriteError';
+import {fetchShop} from '@/api/shopClient';
 
 export default {
   async [ActionsTypes.WARMUP_STORE](
-    {dispatch, state, getters},
+    {dispatch, state},
   ) {
     if (state.warmedUp) {
       return;
@@ -170,21 +171,7 @@ export default {
   async [ActionsTypes.TOGGLE_GOOGLE_ACCOUNT_IS_REGISTERED]({
     rootState,
   }, isGoogleAccountLinked: boolean) {
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-      body: JSON.stringify({
-        action: 'toggleGoogleAccountIsRegistered',
-        isGoogleAccountLinked,
-      }),
-    });
-
-    if (!response.ok) {
-      throw new HttpClientError(response.statusText, response.status);
-    }
-    const finished = await response.json();
-
-    return finished;
+    return fetchShop('toggleGoogleAccountIsRegistered', {isGoogleAccountLinked});
   },
 
   async [ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH]({commit, state, rootState}) {
@@ -421,20 +408,9 @@ export default {
     return response.json();
   },
 
-  async [ActionsTypes.SAVE_WEBSITE_VERIFICATION_META]({rootState}, token: string|false) {
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-      body: JSON.stringify({
-        action: 'setWebsiteVerificationMeta',
-        websiteVerificationMeta: token,
-      }),
-    });
-
-    if (!response.ok) {
-      throw new HttpClientError(response.statusText, response.status);
-    }
-    return response.json();
+  // eslint-disable-next-line no-empty-pattern
+  async [ActionsTypes.SAVE_WEBSITE_VERIFICATION_META]({}, token: string|false) {
+    return fetchShop('setWebsiteVerificationMeta', {websiteVerificationMeta: token});
   },
 
   async [ActionsTypes.REQUEST_GOOGLE_TO_VERIFY_WEBSITE](
@@ -512,40 +488,15 @@ export default {
     return response.json();
   },
 
-  async [ActionsTypes.SEND_WEBSITE_REQUIREMENTS](
-    {rootState},
-    payload: Array<String>,
-  ) {
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-      body: JSON.stringify({
-        action: 'setWebsiteRequirementStatus',
-        requirements: payload,
-      }),
-    });
-
-    if (!response.ok) {
-      throw new HttpClientError(response.statusText, response.status);
-    }
-    return response.json();
+  // eslint-disable-next-line no-empty-pattern
+  async [ActionsTypes.SEND_WEBSITE_REQUIREMENTS]({}, payload: Array<String>) {
+    return fetchShop('setWebsiteRequirementStatus', {requirements: payload});
   },
 
-  async [ActionsTypes.REQUEST_WEBSITE_REQUIREMENTS]({rootState, commit}) {
+  async [ActionsTypes.REQUEST_WEBSITE_REQUIREMENTS]({commit}) {
     try {
-      const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-        body: JSON.stringify({
-          action: 'getWebsiteRequirementStatus',
-        }),
-      });
+      const json = await fetchShop('getWebsiteRequirementStatus');
 
-      if (!response.ok) {
-        throw new HttpClientError(response.statusText, response.status);
-      }
-
-      const json = await response.json();
       commit(MutationsTypes.SAVE_WEBSITE_REQUIREMENTS, json);
     } catch (error) {
       console.error(`Could not request website requirements: ${(<any>error)?.message}`);
@@ -554,19 +505,7 @@ export default {
 
   async [ActionsTypes.REQUEST_SHOP_INFORMATIONS]({rootState, commit}) {
     try {
-      const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-        body: JSON.stringify({
-          action: 'getShopConfigurationForGMC',
-        }),
-      });
-
-      if (!response.ok) {
-        throw new HttpClientError(response.statusText, response.status);
-      }
-
-      const json = await response.json();
+      const json = await fetchShop('getShopConfigurationForGMC');
       commit(MutationsTypes.SAVE_SHOP_INFORMATIONS, json);
     } catch (error) {
       console.error(`Could not request shop information: ${(<any>error)?.message}`);
@@ -703,20 +642,7 @@ export default {
     rootState,
   }, gmcInfo) {
     try {
-      const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json', Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          action: 'setGMCInformations',
-          gmcInformations: gmcInfo,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new HttpClientError(response.statusText, response.status);
-      }
+      await fetchShop('setGMCInformations', {gmcInformations: gmcInfo});
     } catch (error) {
       console.error(error);
     }
