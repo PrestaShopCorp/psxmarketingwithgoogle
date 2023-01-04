@@ -18,8 +18,9 @@
  */
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
-import HttpClientError from '../../../utils/HttpClientError';
+import HttpClientError from '@/api/HttpClientError';
 import {runIf} from '../../../utils/Promise';
+import {fetchShop} from '@/api/shopClient';
 
 export default {
   async [ActionsTypes.WARMUP_STORE](
@@ -195,19 +196,8 @@ export default {
     }
   },
 
-  async [ActionsTypes.GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING]({rootState, state, commit}) {
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-      body: JSON.stringify({
-        action: 'getShopConfigurationForAds',
-      }),
-    });
-
-    if (!response.ok) {
-      throw new HttpClientError(response.statusText, response.status);
-    }
-    const result = await response.json();
+  async [ActionsTypes.GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING]({commit}) {
+    const result = await fetchShop('getShopConfigurationForAds');
 
     const shopInfo = {
       currency: result.currency,

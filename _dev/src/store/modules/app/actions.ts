@@ -19,45 +19,24 @@
 
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
-import HttpClientError from '../../../utils/HttpClientError';
-import call from '@/api/request';
+import {fetchShop} from '@/api/shopClient';
 
 export default {
-  async [ActionsTypes.REQUEST_DOC_AND_FAQ](
-    {
-      commit,
-      rootState,
-    },
-  ) {
+  async [ActionsTypes.REQUEST_DOC_AND_FAQ]({commit}) {
     try {
-      const response = await call<Object>(
-        'POST',
-        {
-          action: 'retrieveFaq',
-        },
-        `${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`,
+      commit(MutationsTypes.SAVE_DOC_AND_FAQ,
+        await fetchShop('retrieveFaq'),
       );
-      commit(MutationsTypes.SAVE_DOC_AND_FAQ, response);
     } catch (error) {
       console.error(error);
     }
   },
 
-  async [ActionsTypes.REQUEST_DEBUG_DATA](
-    {
-      commit,
-      rootState,
-    },
-  ) {
+  async [ActionsTypes.REQUEST_DEBUG_DATA]({commit}) {
     try {
-      const response = await call<Object>(
-        'POST',
-        {
-          action: 'getDebugData',
-        },
-        `${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`,
+      commit(MutationsTypes.SAVE_DEBUG_DATA,
+        await fetchShop('getDebugData'),
       );
-      commit(MutationsTypes.SAVE_DEBUG_DATA, response);
     } catch (error) {
       console.error(error);
     }
@@ -70,12 +49,15 @@ export default {
     },
   ) {
     try {
-      await call<Object>(
-        'GET',
-        {},
-        `${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/check-adblocker`,
-        rootState.accounts.tokenPsAccounts,
-      );
+      await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/check-adblocker`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+          },
+        });
     } catch (error) {
       const healthcheck = await dispatch(ActionsTypes.GET_API_HEALTHCHECK);
 
@@ -89,27 +71,26 @@ export default {
   },
   async [ActionsTypes.GET_API_HEALTHCHECK]({rootState}) {
     try {
-      return await call<Object>(
-        'GET',
-        {},
-        `${rootState.app.psxMktgWithGoogleApiUrl}/healthcheck`,
-        rootState.accounts.tokenPsAccounts,
-      );
+      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/healthcheck`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+          },
+        });
+
+      return resp.json();
     } catch (error) {
       console.log(error);
     }
     return null;
   },
-  async [ActionsTypes.GET_MODULES_VERSIONS]({rootState}, moduleName) {
+  // eslint-disable-next-line no-empty-pattern
+  async [ActionsTypes.GET_MODULES_VERSIONS]({}, moduleName: string) {
     try {
-      return await call<Object>(
-        'POST',
-        {
-          action: 'getModuleStatus',
-          moduleName,
-        },
-        `${rootState.app.psxMktgWithGoogleAdminAjaxUrl}`,
-      );
+      return await fetchShop('getModuleStatus', {moduleName});
     } catch (error) {
       console.error(error);
       return error;
