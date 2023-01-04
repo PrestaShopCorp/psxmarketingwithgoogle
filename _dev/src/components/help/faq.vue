@@ -81,7 +81,8 @@
             <div class="mt-2">
               <b-button
                 variant="link"
-                :href="`mailto:` + informations.contactUs"
+                target="_blank"
+                :href="$options.prestashopUrl.contactForm"
               >
                 {{ $t("help.help.contactUs") }}
                 <i class="material-icons">arrow_right_alt</i>
@@ -154,6 +155,7 @@
 <script lang="ts">
 import {defineComponent} from '@vue/composition-api';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import prestashopUrl from '@/assets/json/prestashopUrl.json';
 
 export default defineComponent({
   props: ['informations', 'loading'],
@@ -177,5 +179,6 @@ export default defineComponent({
       return urls[lang] || urls.en;
     },
   },
+  prestashopUrl,
 });
 </script>
