@@ -531,6 +531,7 @@
     "inputNameTooltip": "Choose a name that clearly describes the theme of the campaign so that you can easily find it in your account. Your campaign name isn't visible to your customers.",
     "inputNamePlaceholder": "Type campaign name",
     "inputCampaignNameInvalidFeedback": "The name must be unique.",
+    "inputCampaignNameTooLongFeedback": "The name must be less than 125 characters in length.",
     "inputDurationHelper": "We recommend a minimum duration of 30 days so that Google can optimize your campaign.",
     "inputDurationLabel": "Campaign duration",
     "inputDurationTooltip": "Ad campaigns have no end date by default, so that the ads are able to run indefinitely. You can always add an end date to create a shorter campaign.",
