@@ -1,6 +1,6 @@
 <template>
   <b-container class="customCarrierForm p-3">
-    <b-row class="mb-2 mt-2">
+    <b-row>
       <b-col>
         <div class="carrierName">
           <div class="mb-1">
@@ -74,7 +74,7 @@
               </p>
             </div>
           </b-col>
-          <b-col>
+          <b-col class="ml-3">
             <div class="ps_gs-carrier__input-number-wrapper">
               <b-form-input
                 type="number"
