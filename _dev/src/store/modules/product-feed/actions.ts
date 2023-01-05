@@ -32,7 +32,6 @@ import {runIf} from '@/utils/Promise';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {fromApi, toApi} from '@/providers/shipping-rate-provider';
 import {ProductFeedSettings} from './state';
-import call from '@/api/request';
 import {AttributeResponseFromAPI} from '@/utils/AttributeMapping';
 
 // ToDo: Get DTO type from API sources
@@ -442,13 +441,21 @@ export default {
       return;
     }
     try {
-      const response = await call<AttributeResponseFromAPI>(
-        'GET',
-        {},
-        `${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/attributes`,
-        rootState.accounts.tokenPsAccounts,
-      );
-      commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, response);
+      const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/attributes`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new HttpClientError(response.statusText, response.status);
+      }
+
+      const json = await response.json();
+      commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, json);
     } catch (error) {
       console.log(error);
     }
