@@ -18,7 +18,7 @@
         {{ campaign.name }}
       </span>
       <b-badge
-        variant="type"
+        variant="secondary"
         class="ps_gs-fz-12 m-1"
         v-if="campaignType"
       >
