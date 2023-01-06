@@ -531,6 +531,7 @@
     "inputNameTooltip": "Wybierz nazwę, która jasno opisuje temat kampanii, tak abyś mógł ją łatwo znaleźć na swoim koncie. Nazwa kampanii nie jest widoczna dla Twoich klientów.",
     "inputNamePlaceholder": "Wpisz nazwę kampanii",
     "inputCampaignNameInvalidFeedback": "Nazwa musi być unikalna.",
+    "inputCampaignNameTooLongFeedback": "The name must be less than 125 characters in length.",
     "inputDurationHelper": "Zalecamy, aby kampanie trwały minimum 30 dni tak, aby dać czas Google na jej optymalizację.",
     "inputDurationLabel": "Czas trwania kampanii",
     "inputDurationTooltip": "Kampanie reklamowe domyślnie nie mają daty końcowej, dzięki czemu reklamy mogą być wyświetlane bezterminowo. Zawsze możesz dodać datę zakończenia, aby skrócić czas kampanii.",
