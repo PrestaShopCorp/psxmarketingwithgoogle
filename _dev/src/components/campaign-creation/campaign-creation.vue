@@ -92,9 +92,7 @@
               data-test-id="campaign-name-input"
               label-class="d-flex align-items-center font-weight-600"
               :state="campaignNameFeedback"
-              :invalid-feedback="
-                $t('smartShoppingCampaignCreation.inputCampaignNameInvalidFeedback')
-              "
+              :invalid-feedback="campaignNameFeedbackMessage"
             >
               <template #label>
                 {{ $t("smartShoppingCampaignCreation.inputNameLabel") }}
@@ -443,7 +441,8 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
+import {defineComponent} from 'vue';
 import countriesSelectionOptions from '@/assets/json/countries.json';
 import CampaignCreationPopin from './campaign-creation-filter-popin/campaign-creation-popin.vue';
 import CampaignCreationPopinRecap from './campaign-creation-filter-popin/campaign-creation-popin-recap.vue';
@@ -461,11 +460,11 @@ import {
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import googleUrl from '@/assets/json/googleUrl.json';
 
-export default {
+export default defineComponent({
   name: 'CampaignCreation',
   data() {
     return {
-      campaignName: null,
+      campaignName: null as string|null,
       campaignDurationStartDate: new Date(),
       campaignDurationEndDate: null,
       campaignHasNoProductsFilter: true,
@@ -525,8 +524,7 @@ export default {
     },
     disableCreateCampaign() {
       if (
-        this.campaignName
-        && this.errorCampaignNameExistsAlready === false
+        this.campaignNameFeedback === true
         && this.campaignDurationStartDate
         && (this.targetCountry || this.defaultCountry())
         && this.campaignDailyBudget
@@ -539,22 +537,28 @@ export default {
     minimunEndDate() {
       return new Date(Math.max(new Date(this.campaignDurationStartDate), new Date()));
     },
-    campaignNameFeedback() {
+    campaignNameFeedback(): boolean|null {
       if (
         !this.campaignName?.length
         || this.errorCampaignNameExistsAlready === null
       ) {
         return null;
       }
-      if (
-        this.campaignName
-        && this.campaignName.length <= 125
-        && this.campaignName.length > 0
-        && this.errorCampaignNameExistsAlready === false
-      ) {
-        return true;
+      // No error message? All good
+      return this.campaignNameFeedbackMessage === null;
+    },
+    campaignNameFeedbackMessage(): string|null {
+      if (this.campaignName && this.campaignName.length > 125) {
+        return this.$t('smartShoppingCampaignCreation.inputCampaignNameTooLongFeedback');
       }
-      return false;
+      if (
+        !this.campaignName
+        || this.campaignName.length <= 0
+        || this.errorCampaignNameExistsAlready === true
+      ) {
+        return this.$t('smartShoppingCampaignCreation.inputCampaignNameInvalidFeedback');
+      }
+      return null;
     },
     campaignEndDateFeedback() {
       if (this.campaignDurationEndDate
@@ -648,7 +652,7 @@ export default {
       ])[0];
     },
     debounceName() {
-      if (!this.campaignName.length) {
+      if (!this.campaignName?.length) {
         return;
       }
       clearTimeout(this.timer);
@@ -829,5 +833,5 @@ export default {
   countriesSelectionOptions,
   googleUrl,
   CampaignTypes,
-};
+});
 </script>

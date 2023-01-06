@@ -243,3 +243,22 @@ describe('campaign-creation.vue - Campaign edition - End date validation', () =>
     expect(wrapper.find('[data-test-id="createCampaignButton"]').attributes('disabled')).toBeTruthy();
   });
 });
+
+describe('campaign-creation.vue - Campaign edition - Name validation', () => {
+  it('forbids to continue when the name is too long', () => {
+    // 42 * 3 > 125, will trigger the error
+    const nameTooLong = 'wow'.repeat(42);
+
+    const wrapper = buildWrapper({
+      data() {
+        return {
+          ...campaignWithUnhandledFilters,
+          campaignName: nameTooLong,
+        };
+      },
+    });
+    expect(wrapper.vm.campaignNameFeedback).toBe(false);
+    expect(wrapper.vm.campaignNameFeedbackMessage).toBe('The name must be less than 125 characters in length.');
+    expect(wrapper.find('[data-test-id="createCampaignButton"]').attributes('disabled')).toBeTruthy();
+  });
+});
