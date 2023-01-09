@@ -99,13 +99,16 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
 
         $moduleManager = ModuleManagerBuilder::getInstance()->build();
 
-        if ($moduleManager->isInstalled("ps_eventbus")) {
-            $eventbusModule =  \Module::getInstanceByName("ps_eventbus");
-            $eventbusPresenterService = $eventbusModule->getService('PrestaShop\Module\PsEventbus\Service\PresenterService');
+        if ($moduleManager->isInstalled('ps_eventbus')) {
+            $eventbusModule = \Module::getInstanceByName('ps_eventbus');
+            if ($eventbusModule) {
+                /* @phpstan-ignore-next-line */
+                $eventbusPresenterService = $eventbusModule->getService('PrestaShop\Module\PsEventbus\Service\PresenterService');
 
-            Media::addJsDef([
-                'contextPsEventbus' => $eventbusPresenterService->expose($this->module, ['info', 'modules', 'themes', 'orders'])
-            ]);
+                Media::addJsDef([
+                    'contextPsEventbus' => $eventbusPresenterService->expose($this->module, ['info', 'modules', 'themes', 'orders']),
+                ]);
+            }
         }
 
         Media::addJsDef([
