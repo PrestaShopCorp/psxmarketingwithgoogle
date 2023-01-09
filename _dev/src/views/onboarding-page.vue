@@ -17,7 +17,7 @@
         <prestashop-accounts
           class="ps_gs-ps-account-card"
         />
-        <div id="prestashop-cloudsync"/>
+        <div id="prestashop-cloudsync" class="mb-3"/>
       </div>
 
       <div class="col">
@@ -375,11 +375,9 @@ export default {
   mounted() {
     psAccountsVue.init();
 
-    console.log('global.cloudSyncSharingConsent', global.cloudSyncSharingConsent);
-
-    window?.addEventListener("load", () => {
+    window.addEventListener('load', () => {
       // If CloudSync consent screen is loaded; init its component
-      if (global.cloudSyncSharingConsent) {
+      if (global.cloudSyncSharingConsent && this.psAccountsIsOnboarded) {
         console.log('CloudSync Sharing Consent feature detected. Loading...');
         const msc = global.cloudSyncSharingConsent;
         msc.init();
@@ -391,7 +389,6 @@ export default {
         });
       }
     });
-
 
     // Try to retrieve Google account details. If the merchant is not onboarded,
     // this action will dispatch another one to generate the authentication route.
