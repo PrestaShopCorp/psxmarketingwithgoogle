@@ -382,10 +382,20 @@ export default {
         const msc = global.cloudSyncSharingConsent;
         msc.init();
         msc.on('OnboardingCompleted', (isCompleted) => {
-          console.log('OnboardingCompleted', isCompleted);
+          if (isCompleted) {
+            this.$segment.track('[GGL] Consent to share data of CloudSync', {
+              module: 'psxmarketingwithgoogle',
+              params: SegmentGenericParams,
+            });
+          }
         });
         msc.isOnboardingCompleted((isCompleted) => {
-          console.log('Onboarding is already Completed', isCompleted);
+          // Identify only when we get a valid boolean value
+          if (!!isCompleted === isCompleted) {
+            this.$segment.identify(this.$store.state.accounts.shopIdPsAccounts, {
+              ggl_user_has_given_consent_to_use_cloudsync: isCompleted,
+            });
+          }
         });
       }
     });
