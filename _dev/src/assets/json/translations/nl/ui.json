@@ -531,6 +531,7 @@
     "inputNameTooltip": "Kies een naam die het thema van de campagne duidelijk omschrijft, zodat u deze gemakkelijk kunt terugvinden in uw account. De naam van uw campagne is niet zichtbaar voor uw klanten.",
     "inputNamePlaceholder": "Type naam campagne",
     "inputCampaignNameInvalidFeedback": "De naam moet uniek zijn.",
+    "inputCampaignNameTooLongFeedback": "The name must be less than 125 characters in length.",
     "inputDurationHelper": "Wij raden een minimale duur van 30 dagen aan, zodat Google uw campagne kan optimaliseren.",
     "inputDurationLabel": "Duur van de campagne",
     "inputDurationTooltip": "Advertentiecampagnes hebben standaard geen einddatum, zodat de advertenties voor onbepaalde tijd kunnen lopen. U kunt altijd een einddatum toevoegen om een kortere campagne te maken.",
