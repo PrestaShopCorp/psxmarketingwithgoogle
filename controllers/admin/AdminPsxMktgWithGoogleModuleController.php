@@ -106,7 +106,7 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
                 $eventbusPresenterService = $eventbusModule->getService('PrestaShop\Module\PsEventbus\Service\PresenterService');
 
                 Media::addJsDef([
-                    'contextPsEventbus' => $eventbusPresenterService->expose($this->module, ['info', 'modules', 'themes', 'orders']),
+                    'contextPsEventbus' => $eventbusPresenterService->expose($this->module, ['info', 'products', 'currencies', 'categories']),
                 ]);
             }
         }
