@@ -20,12 +20,12 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <link href="{$pathApp|escape:'htmlall':'UTF-8'}" rel=preload as=script>
-<link href="https://preproduction-assets.prestashop3.com/ext/cloudsync-merchant-sync-consent/latest/cloudsync-cdc.js" rel=preload as=script>
+<link href="https://assets.prestashop3.com/ext/cloudsync-merchant-sync-consent/latest/cloudsync-cdc.js" rel=preload as=script>
 
 <div id="psxMktgWithGoogleApp"></div>
 <script src="{$chunkVendor|escape:'htmlall':'UTF-8'}"></script>
 <script src="{$pathApp|escape:'htmlall':'UTF-8'}"></script>
-<script src="https://preproduction-assets.prestashop3.com/ext/cloudsync-merchant-sync-consent/latest/cloudsync-cdc.js"></script>
+<script src="https://assets.prestashop3.com/ext/cloudsync-merchant-sync-consent/latest/cloudsync-cdc.js"></script>
 
 <style>
   /** Hide native multistore module activation panel, because of visual regressions on non-bootstrap content */
