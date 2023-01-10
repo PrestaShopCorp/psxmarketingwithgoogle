@@ -106,7 +106,7 @@
         :accordion="`customCarrierAccordion-${index}`"
         role="tabpanel"
       >
-        <b-card-body>
+        <b-card-body class="p-3">
           <custom-carrier-form
             :estimate-carrier="carrier"
             :display-validation-errors="displayValidationErrors"

@@ -1,5 +1,5 @@
 <template>
-  <b-container class="customCarrierForm p-3">
+  <div class="customCarrierForm">
     <b-row>
       <b-col>
         <div class="carrierName">
@@ -228,7 +228,7 @@
         <!-- eslint-enable max-len -->
       </b-col>
     </b-row>
-  </b-container>
+  </div>
 </template>
 <script lang="ts">
 import Vue, {PropType} from 'vue';
