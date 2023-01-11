@@ -17,7 +17,10 @@
         <prestashop-accounts
           class="ps_gs-ps-account-card"
         />
-        <div id="prestashop-cloudsync" class="mb-3"/>
+        <div
+          id="prestashop-cloudsync"
+          class="mb-3"
+        />
       </div>
 
       <div class="col">
@@ -193,6 +196,7 @@ export default {
       freeListingIsLoading: false,
       SSCIsLoading: false,
       phoneNumberVerified: false,
+      cloudSyncSharingConsentGiven: false,
     };
   },
   methods: {
@@ -346,7 +350,8 @@ export default {
     },
     stepsAreCompleted() {
       return {
-        step1: this.psAccountsIsOnboarded,
+        step1: this.psAccountsIsOnboarded
+          && (this.cloudSyncSharingConsentGiven || this.googleAccountIsOnboarded),
         step2: this.googleAccountIsOnboarded
           && this.merchantCenterAccountIsChosen
           && this.productFeedIsConfigured,
@@ -387,6 +392,7 @@ export default {
               module: 'psxmarketingwithgoogle',
               params: SegmentGenericParams,
             });
+            this.cloudSyncSharingConsentGiven = isCompleted;
           }
         });
         msc.isOnboardingCompleted((isCompleted) => {
@@ -395,6 +401,7 @@ export default {
             this.$segment.identify(this.$store.state.accounts.shopIdPsAccounts, {
               ggl_user_has_given_consent_to_use_cloudsync: isCompleted,
             });
+            this.cloudSyncSharingConsentGiven = isCompleted;
           }
         });
       }
