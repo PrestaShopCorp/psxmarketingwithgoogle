@@ -434,12 +434,6 @@ export default {
     return json;
   },
   async [ActionsTypes.REQUEST_ATTRIBUTE_MAPPING]({rootState, commit}) {
-    const getMappingFromStorage = getDataFromLocalStorage('productFeed-attributeMapping');
-
-    if (getMappingFromStorage !== null) {
-      commit(MutationsTypes.SET_MAPPING_FROM_STORAGE, getMappingFromStorage);
-      return;
-    }
     try {
       const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/attributes`, {
         method: 'GET',

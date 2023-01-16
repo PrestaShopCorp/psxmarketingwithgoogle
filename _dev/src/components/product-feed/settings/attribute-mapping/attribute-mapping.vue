@@ -166,7 +166,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import {defineComponent} from 'vue';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import AttributeField from './attribute-field.vue';
@@ -179,8 +180,9 @@ import {
   formatMappingToApi,
 } from '../../../../utils/AttributeMapping';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 
-export default {
+export default defineComponent({
   name: 'ProductFeedSettingsAttributeMapping',
   components: {
     SettingsFooter,
@@ -239,8 +241,17 @@ export default {
         },
       ];
     },
+    existingAttributes() {
+      // Either loading from the local storage or the API
+      const getMappingFromStorage = getDataFromLocalStorage('productFeed-attributeMapping');
+
+      if (getMappingFromStorage !== null) {
+        return getMappingFromStorage;
+      }
+      return this.$store.getters['productFeed/GET_FREE_LISTING_ATTRIBUTES_TO_MAP'];
+    },
     attributesToMap() {
-      return this.$store.getters['productFeed/GET_FREE_LISTING_ATTRIBUTES_TO_MAP']
+      return this.existingAttributes
         .filter(
           (attr) => this.selectedProductCategories.includes(attr.category)
             || attr.category === Categories.COMMONS,
@@ -279,7 +290,7 @@ export default {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
-      localStorage.setItem('productFeed-attributeMapping', JSON.stringify(formatMappingToApi(this.mappingAttributes)));
+      localStorage.setItem('productFeed-attributeMapping', JSON.stringify(formatMappingToApi(this.attributesToMap)));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 4);
       this.$router.push({
         name: 'product-feed-settings',
@@ -302,15 +313,25 @@ export default {
       this.$store.dispatch('productFeed/REQUEST_SHOP_TO_GET_ATTRIBUTE');
     },
   },
+  watch: {
+    attributesToMap: {
+      handler(newValue): void {
+        // Reload previously saved data each time the selected categories are updated.
+        // If the merchant mapped a field, then updates the category on products,
+        // configuration will be reset.
+        this.mappingAttributes = JSON.parse(JSON.stringify(newValue));
+      },
+      immediate: true,
+    },
+  },
   mounted() {
     this.loading = true;
     this.$store.dispatch('productFeed/REQUEST_SHOP_TO_GET_ATTRIBUTE').then(() => {
       this.$store.dispatch('productFeed/REQUEST_ATTRIBUTE_MAPPING').finally(() => {
         this.loading = false;
-        this.mappingAttributes = JSON.parse(JSON.stringify(this.attributesToMap));
       });
     });
   },
   googleUrl,
-};
+});
 </script>
