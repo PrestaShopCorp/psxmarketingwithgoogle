@@ -195,10 +195,11 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
 import {
   BAlert,
 } from 'bootstrap-vue';
+import {defineComponent, PropType} from 'vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 
 import MutationsTypes from '../../store/modules/accounts/mutations-types';
@@ -207,17 +208,16 @@ import Glass from '../commons/glass';
 import {GoogleAccountContext} from '../../store/modules/accounts/state';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
-export default {
+export default defineComponent({
   name: 'GoogleAccountCard',
   components: {
     Glass, BAlert,
   },
   data() {
     return {
-      isConnecting: false,
-      popup: null,
-      popupMessageListener: null,
-      popupClosingLooper: null,
+      isConnecting: false as boolean,
+      popup: null as Window|null,
+      popupClosingLooper: null as number|null,
     };
   },
   props: {
@@ -230,7 +230,7 @@ export default {
       default: true,
     },
     user: {
-      type: GoogleAccountContext,
+      type: Object as PropType<GoogleAccountContext>,
       default: null,
     },
   },
@@ -238,6 +238,10 @@ export default {
     if (this.isEnabled && !this.user) {
       this.refreshAccount(false);
     }
+    window.addEventListener('message', this.popupMessageListener);
+  },
+  beforeDestroy() {
+    window.removeEventListener('message', this.popupMessageListener);
   },
   computed: {
     accessToken() {
@@ -272,81 +276,102 @@ export default {
     missingTokenScopes() {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT'].missingTokenScopes?.length;
     },
+    safePopup(): Window|null {
+      // The popup can be unreachable if closed of blocked by CORS policy.
+      // We return it only when it is safe to do so (= allowed by the browser).
+      try {
+        if (!this.popup) {
+          return null;
+        }
+        // This should trigger an error in case of CORS.
+        this.popup.dispatchEvent(new Event('ping'));
+        return this.popup;
+      } catch (error) {
+        console.log('error', error instanceof DOMException);
+        if (error instanceof DOMException) {
+          return null;
+        }
+        throw error;
+      }
+    },
   },
   methods: {
-    changeAccount() {
-      this.$store.dispatch('accounts/REQUEST_ROUTE_TO_GOOGLE_AUTH').then(() => {
-        this.openPopup(true);
+    async changeAccount() {
+      try {
+        if (!this.authenticationUrl) {
+          await this.$store.dispatch('accounts/REQUEST_ROUTE_TO_GOOGLE_AUTH');
+        }
+        this.openPopup();
         this.$segment.track('[GGL] Connect Google Account', {
           module: 'psxmarketingwithgoogle',
           params: SegmentGenericParams,
         });
-      }).catch(() => {
+      } catch {
         // TODO: maybe display alert
-      });
+      }
     },
-    openPopup(changeAccount) {
-      if (this.popupMessageListener) {
-        window.removeEventListener('message', this.popupMessageListener);
-      }
-
-      if (this.popupClosingLooper) {
-        clearInterval(this.popupClosingLooper);
-      }
-
-      this.popupMessageListener = window.addEventListener('message', (event) => {
-        const params = new URLSearchParams(event.data);
-        const paramsFromGoogleCb = ['from', 'message', 'status'];
-        const paramsFound = paramsFromGoogleCb.reduce((acc, x) => {
-          acc[x] = params.get(x);
-          return acc;
-        },
-        {},
-        );
-
-        if (paramsFound.from === 'SVC' && paramsFound.message === 'ok') {
-          this.$store.commit(`accounts/${MutationsTypes.SET_GOOGLE_AUTHENTICATION_RESPONSE}`, paramsFound);
-          if (changeAccount === true) { // don't cast here!
-            // TODO: could be improoved to avoid full reload.
-            //  Need to this.refreshAccount(true) AND refresh GMC details too !
-            this.refresh();
-          } else {
-            this.refreshAccount(true);
-            window.removeEventListener('message', this.popupMessageListener);
+    openPopup() {
+      if (!this.popupClosingLooper) {
+        this.popupClosingLooper = setInterval(() => {
+          if (this.safePopup && this.safePopup.closed === true) {
+            if (this.popupClosingLooper) {
+              clearInterval(this.popupClosingLooper);
+              this.popupClosingLooper = null;
+            }
           }
-        }
-      });
+        }, 750);
+      }
+
       const p = 'scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=450,height=628';
       this.popup = window.open(
         this.user.authenticationUrl,
         'psx_mktg_with_onboarding',
         p,
       );
-      this.popup.focus();
 
-      this.popupClosingLooper = setInterval(() => {
-        if (this.popup && (this.popup.closed === true)) {
-          if (this.popupClosingLooper) {
-            clearInterval(this.popupClosingLooper);
-            this.popupClosingLooper = null;
-          }
-        }
-      }, 750);
+      if (this.safePopup) {
+        this.safePopup.focus();
+      }
     },
     closePopup() {
-      if (this.popup) {
-        this.popup.close();
+      if (this.safePopup) {
+        this.safePopup.close();
+        this.popup = null;
       }
+
       if (this.popupClosingLooper) {
         clearInterval(this.popupClosingLooper);
         this.popupClosingLooper = null;
       }
     },
     focusPopup() {
-      if (this.popup) {
-        this.popup.focus();
+      if (this.safePopup && this.popupClosingLooper) {
+        this.safePopup.focus();
       } else {
         this.openPopup();
+      }
+    },
+    popupMessageListener(event): void {
+      const params = new URLSearchParams(event.data);
+      const paramsFromGoogleCb = ['from', 'message', 'status'];
+      const paramsFound = paramsFromGoogleCb.reduce((acc, x) => {
+        acc[x] = params.get(x);
+        return acc;
+      },
+      {},
+      );
+
+      if (paramsFound.from === 'SVC' && paramsFound.message === 'ok') {
+        this.$store.commit(`accounts/${MutationsTypes.SET_GOOGLE_AUTHENTICATION_RESPONSE}`, paramsFound);
+        // Having a access token means we replace a previously onboarded account
+        if (this.accessToken) {
+          // TODO: could be improved to avoid full reload.
+          //  Need to this.refreshAccount(true) AND refresh GMC details too !
+          this.refresh();
+        } else {
+          this.refreshAccount(true);
+          window.removeEventListener('message', this.popupMessageListener);
+        }
       }
     },
     async refreshAccount(errorIfNot) {
@@ -377,5 +402,5 @@ export default {
     },
   },
   googleUrl,
-};
+});
 </script>
