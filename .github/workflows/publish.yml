@@ -231,4 +231,5 @@ jobs:
         with:
           environment: production
           version: ${{ github.ref }}
-          sourcemaps: _dev/sourcemaps views/js
+          sourcemaps: views/js
+          url_prefix: "~/psxmarketing-cdn/${MAJOR}.x.x/js"
