@@ -25,6 +25,7 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CurrencyRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ModuleRepository;
+use PrestaShop\PrestaShop\Core\Addon\Module\ModuleManagerBuilder;
 use PrestaShop\PsAccountsInstaller\Installer\Facade\PsAccounts;
 
 class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
@@ -94,6 +95,20 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
         } catch (Exception $e) {
             $shopIdPsAccounts = null;
             $tokenPsAccounts = null;
+        }
+
+        $moduleManager = ModuleManagerBuilder::getInstance()->build();
+
+        if ($moduleManager->isInstalled('ps_eventbus')) {
+            $eventbusModule = \Module::getInstanceByName('ps_eventbus');
+            if ($eventbusModule) {
+                /* @phpstan-ignore-next-line */
+                $eventbusPresenterService = $eventbusModule->getService('PrestaShop\Module\PsEventbus\Service\PresenterService');
+
+                Media::addJsDef([
+                    'contextPsEventbus' => $eventbusPresenterService->expose($this->module, ['info', 'products', 'currencies', 'categories']),
+                ]);
+            }
         }
 
         Media::addJsDef([

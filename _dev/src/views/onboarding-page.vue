@@ -17,6 +17,10 @@
         <prestashop-accounts
           class="ps_gs-ps-account-card"
         />
+        <div
+          id="prestashop-cloudsync"
+          class="mb-3"
+        />
       </div>
 
       <div class="col">
@@ -192,6 +196,7 @@ export default {
       freeListingIsLoading: false,
       SSCIsLoading: false,
       phoneNumberVerified: false,
+      cloudSyncSharingConsentGiven: false,
     };
   },
   methods: {
@@ -345,7 +350,8 @@ export default {
     },
     stepsAreCompleted() {
       return {
-        step1: this.psAccountsIsOnboarded,
+        step1: this.psAccountsIsOnboarded
+          && (this.cloudSyncSharingConsentGiven || this.googleAccountIsOnboarded),
         step2: this.googleAccountIsOnboarded
           && this.merchantCenterAccountIsChosen
           && this.productFeedIsConfigured,
@@ -373,6 +379,33 @@ export default {
   },
   mounted() {
     psAccountsVue.init();
+
+    window.addEventListener('load', () => {
+      // If CloudSync consent screen is loaded; init its component
+      if (global.cloudSyncSharingConsent && this.psAccountsIsOnboarded) {
+        console.log('CloudSync Sharing Consent feature detected. Loading...');
+        const msc = global.cloudSyncSharingConsent;
+        msc.init();
+        msc.on('OnboardingCompleted', (isCompleted) => {
+          if (isCompleted) {
+            this.$segment.track('[GGL] Consent to share data of CloudSync', {
+              module: 'psxmarketingwithgoogle',
+              params: SegmentGenericParams,
+            });
+            this.cloudSyncSharingConsentGiven = isCompleted;
+          }
+        });
+        msc.isOnboardingCompleted((isCompleted) => {
+          // Identify only when we get a valid boolean value
+          if (!!isCompleted === isCompleted) {
+            this.$segment.identify(this.$store.state.accounts.shopIdPsAccounts, {
+              ggl_user_has_given_consent_to_use_cloudsync: isCompleted,
+            });
+            this.cloudSyncSharingConsentGiven = isCompleted;
+          }
+        });
+      }
+    });
 
     // Try to retrieve Google account details. If the merchant is not onboarded,
     // this action will dispatch another one to generate the authentication route.
