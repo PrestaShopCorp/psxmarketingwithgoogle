@@ -19,7 +19,7 @@
     "@googleapis/oauth2": "^0.2.0",
     "@segment/analytics-next": "^1.44.0",
     "@sentry/tracing": "^6.19.7",
-    "@sentry/vue": "^6.19.7",
+    "@sentry/vue": "^7.31.1",
     "@vue/composition-api": "^1.7.0",
     "bootstrap": "^4.6.2",
     "bootstrap-vue": "^2.22.0",

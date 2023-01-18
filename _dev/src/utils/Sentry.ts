@@ -14,6 +14,8 @@ if (store.state.app.psxMktgWithGoogleOnProductionEnvironment) {
       'https://storage.googleapis.com/psxmarketing-cdn/',
     ],
     tracesSampleRate: 1.0,
+    replaysSessionSampleRate: 0.1,
+    replaysOnErrorSampleRate: 1.0,
     logErrors: true,
     initialScope: {
       tags: {
@@ -27,6 +29,7 @@ if (store.state.app.psxMktgWithGoogleOnProductionEnvironment) {
         id: window.shopIdPsAccounts ? window.shopIdPsAccounts.toString() : 'unknown',
       },
     },
+    integrations: [new Sentry.Replay()],
     // @ts-ignore
     release: appVersion,
   });
