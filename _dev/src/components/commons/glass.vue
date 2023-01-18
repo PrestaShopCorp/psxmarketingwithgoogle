@@ -1,7 +1,6 @@
 <template>
   <div
     class="ps_gs-glass"
-    @click="forceFocus"
   >
     <div class="ps_gs-glass__content">
       <figure class="ps_gs-glass__img">
@@ -19,6 +18,7 @@
         class="ps_gs-glass__button mt-3"
         variant="outline"
         size="sm"
+        @click="forceFocus"
       >
         {{ $t('cta.continue') }}
       </b-button>
