@@ -115,20 +115,20 @@ export default {
     correlationId: string,
   ) {
     commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.PendingCheck);
-    let {isVerified, isClaimed} = await dispatch(
-      ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS,
-      correlationId,
-    );
+    try {
+      let {isVerified, isClaimed} = await dispatch(
+        ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS,
+        correlationId,
+      );
 
-    const {token} = await dispatch(ActionsTypes.REQUEST_SITE_VERIFICATION_TOKEN, correlationId);
-    dispatch(ActionsTypes.SAVE_WEBSITE_VERIFICATION_META, token);
+      const {token} = await dispatch(ActionsTypes.REQUEST_SITE_VERIFICATION_TOKEN, correlationId);
+      dispatch(ActionsTypes.SAVE_WEBSITE_VERIFICATION_META, token);
 
-    if (!isVerified || !isClaimed) {
-      if (rootState.app.psxMktgWithGoogleModuleIsEnabled === false) {
-        commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
-        return;
-      }
-      try {
+      if (!isVerified || !isClaimed) {
+        if (rootState.app.psxMktgWithGoogleModuleIsEnabled === false) {
+          commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
+          return;
+        }
         const result = await dispatch(
           ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_PROCESS,
           correlationId,
@@ -144,27 +144,27 @@ export default {
           ActionsTypes.TRIGGER_WEBSITE_CLAIMING_PROCESS,
           {overwrite: false, correlationId},
         );
-      } catch (error) {
-        if (error instanceof NeedOverwriteError) {
-          commit(
-            MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
-            WebsiteClaimErrorReason.OverwriteNeeded,
-          );
-        } else {
-          commit(
-            MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
-            WebsiteClaimErrorReason.AccountValidationFailed,
-          );
-        }
+      } else if (state.googleMerchantAccount.isSuspended.status) {
+        commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
+      } else if (state.googleMerchantAccount.isPhoneVerified.status === false) {
+        commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+          WebsiteClaimErrorReason.PhoneVerificationNeeded);
+      } else {
+        commit(MutationsTypes.SAVE_MCA_CONNECTED_ONCE, true);
+        commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
       }
-    } else if (state.googleMerchantAccount.isSuspended.status) {
-      commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
-    } else if (state.googleMerchantAccount.isPhoneVerified.status === false) {
-      commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
-        WebsiteClaimErrorReason.PhoneVerificationNeeded);
-    } else {
-      commit(MutationsTypes.SAVE_MCA_CONNECTED_ONCE, true);
-      commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
+    } catch (error) {
+      if (error instanceof NeedOverwriteError) {
+        commit(
+          MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+          WebsiteClaimErrorReason.OverwriteNeeded,
+        );
+      } else {
+        commit(
+          MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+          WebsiteClaimErrorReason.AccountValidationFailed,
+        );
+      }
     }
   },
 
