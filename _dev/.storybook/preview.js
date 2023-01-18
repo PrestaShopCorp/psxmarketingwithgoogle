@@ -34,6 +34,7 @@ import { withTests } from '@storybook/addon-jest';
 // Test utils
 import {cloneStore} from '@/../tests/store';
 import {initialStateApp} from "../.storybook/mock/state-app";
+import {initShopClient} from '@/api/shopClient';
 
 import { initialize, mswDecorator } from 'msw-storybook-addon';
 // Initialize MSW
@@ -142,6 +143,7 @@ import '../src/utils/Filters';
      }
 
      this.$store.state.app = Object.assign({}, initialStateApp);
+     initShopClient({shopUrl: '/'});
    },
    store: new Vuex.Store(cloneStore()),
    router: new VueRouter(),

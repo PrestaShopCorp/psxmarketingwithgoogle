@@ -325,6 +325,75 @@ AttributeMapping.args = {
       ProductFeedSettingsPages.ATTRIBUTE_MAPPING;
   },
 };
+AttributeMapping.parameters = {
+  msw: {
+    handlers: [
+      rest.post("/", async (req, res, ctx) => {
+        // @ts-ignore
+        if (req?.body?.action === "getShopAttributes") {
+          // Otherwise, always respond with a mocked response.
+          return res(ctx.json(productFeed.attributesFromShop));
+        }
+        // Bypass this request, returning an actual response
+        return undefined;
+      }),
+      rest.get("/product-feeds/attributes", (req, res, ctx) => {
+        return res(
+          ctx.json({
+            description: [
+              {
+                id: "description",
+                type: "product",
+              },
+            ],
+            color: [
+              {
+                id: "Color",
+                type: "custom",
+              },
+            ],
+            ageGroup: [
+              {
+                id: "Size",
+                type: "custom",
+              },
+            ],
+            gender: [
+              {
+                id: "Dimension",
+                type: "custom",
+              },
+            ],
+            size: [
+              {
+                id: "Size",
+                type: "custom",
+              },
+            ],
+            mpn: [
+              {
+                id: "mpn",
+                type: "product",
+              },
+            ],
+            gtin: [
+              {
+                id: "ean",
+                type: "product",
+              },
+            ],
+            brand: [
+              {
+                id: "manufacturer",
+                type: "product",
+              },
+            ],
+          })
+        );
+      }),
+    ],
+  },
+};
 
 export const SyncSchedule: any = Template.bind({});
 SyncSchedule.argTypes = {
