@@ -32,7 +32,7 @@ import {runIf} from '@/utils/Promise';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {fromApi, toApi} from '@/providers/shipping-rate-provider';
 import {ProductFeedSettings} from './state';
-import {AttributeResponseFromAPI} from '@/utils/AttributeMapping';
+import {formatMappingToApi} from '@/utils/AttributeMapping';
 
 // ToDo: Get DTO type from API sources
 export const createProductFeedApiPayload = (settings:any) => ({
@@ -51,7 +51,7 @@ export const createProductFeedApiPayload = (settings:any) => ({
       additionalShippingSettings: settings.additionalShippingSettings,
     } : {}
   ),
-  attributeMapping: settings.attributeMapping,
+  attributeMapping: formatMappingToApi(settings.attributeMapping),
   selectedProductCategories: settings.selectedProductCategories,
   requestSynchronizationNow: settings.requestSynchronizationNow,
 });

@@ -231,6 +231,7 @@ import ProductFeedCardNextSyncCard from '@/components/product-feed/product-feed-
 import TableRowMapping from '@/components/product-feed/commons/table-row-mapping.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import ProductFeedSummaryCards from '@/components/product-feed/summary/product-feed-summary-cards.vue';
+import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 
 dayjs.extend(duration);
 
@@ -309,9 +310,10 @@ export default defineComponent({
       return mapped;
     },
     getMapping() {
-      return this.$store.getters[
-        'productFeed/GET_FREE_LISTING_ATTRIBUTES_TO_MAP'
-      ]
+      return (getDataFromLocalStorage('productFeed-attributeMapping')
+        || this.$store.getters[
+          'productFeed/GET_FREE_LISTING_ATTRIBUTES_TO_MAP'
+        ])
         .filter(
           (item) => this.selectedProductCategories.includes(item.category)
             || item.category === 'commons',

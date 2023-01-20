@@ -175,10 +175,6 @@ import CategoryButton from './category-button.vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 import Categories from '@/enums/product-feed/attribute-mapping-categories';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
-
-import {
-  formatMappingToApi,
-} from '../../../../utils/AttributeMapping';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 
@@ -242,13 +238,8 @@ export default defineComponent({
       ];
     },
     existingAttributes() {
-      // Either loading from the local storage or the API
-      const getMappingFromStorage = getDataFromLocalStorage('productFeed-attributeMapping');
-
-      if (getMappingFromStorage !== null) {
-        return getMappingFromStorage;
-      }
-      return this.$store.getters['productFeed/GET_FREE_LISTING_ATTRIBUTES_TO_MAP'];
+      return getDataFromLocalStorage('productFeed-attributeMapping')
+        || this.$store.getters['productFeed/GET_FREE_LISTING_ATTRIBUTES_TO_MAP'];
     },
     attributesToMap() {
       return this.existingAttributes
@@ -290,7 +281,7 @@ export default defineComponent({
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
-      localStorage.setItem('productFeed-attributeMapping', JSON.stringify(formatMappingToApi(this.attributesToMap)));
+      localStorage.setItem('productFeed-attributeMapping', JSON.stringify(this.mappingAttributes));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 4);
       this.$router.push({
         name: 'product-feed-settings',
