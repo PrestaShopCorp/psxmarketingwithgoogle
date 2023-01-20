@@ -101,7 +101,7 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
 
         if ($moduleManager->isInstalled('ps_eventbus')) {
             $eventbusModule = \Module::getInstanceByName('ps_eventbus');
-            if ($eventbusModule) {
+            if ($eventbusModule && version_compare($eventbusModule->version, '1.9.0', '>=')) {
                 /* @phpstan-ignore-next-line */
                 $eventbusPresenterService = $eventbusModule->getService('PrestaShop\Module\PsEventbus\Service\PresenterService');
 
