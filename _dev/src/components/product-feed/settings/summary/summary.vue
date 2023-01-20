@@ -285,7 +285,7 @@ export default defineComponent({
       },
     },
     selectedProductCategories() {
-      return this.$store.getters['productFeed/GET_PRODUCT_CATEGORIES_SELECTED'];
+      return getDataFromLocalStorage('productFeed-selectedProductCategories') || this.$store.getters['productFeed/GET_PRODUCT_CATEGORIES_SELECTED'];
     },
     mandatoryAttributesNotMapped() {
       let getNumberAttrNotMapped = 0;

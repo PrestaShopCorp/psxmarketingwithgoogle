@@ -32,12 +32,10 @@ import {
   PreScanReporting,
 } from './state';
 import {RateType} from '@/enums/product-feed/rate';
+import {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
 
 type payloadObject = {
   name: string, data: string
-}
-type payloadAttribute = {
-  prestashop: string, google: string
 }
 
 export default {
@@ -178,8 +176,10 @@ export default {
       });
     });
   },
-  [MutationsTypes.SET_SELECTED_PRODUCT_CATEGORIES](state: LocalState, payload) {
-    localStorage.setItem('selectedProductCategories', JSON.stringify(payload));
+  [MutationsTypes.SET_SELECTED_PRODUCT_CATEGORIES](
+    state: LocalState,
+    payload: SelectedProductCategories,
+  ) {
     state.selectedProductCategories = payload;
   },
   [MutationsTypes.SET_SYNC_SCHEDULE](state: LocalState, payload: boolean) {

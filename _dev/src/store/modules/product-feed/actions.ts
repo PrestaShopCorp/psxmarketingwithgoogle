@@ -217,7 +217,7 @@ export default {
     );
     // Attributes mapping
     const attributeMapping = getDataFromLocalStorage('productFeed-attributeMapping') || state.attributeMapping || {};
-    const selectedProductCategories = getters.GET_PRODUCT_CATEGORIES_SELECTED;
+    const selectedProductCategories = getDataFromLocalStorage('productFeed-selectedProductCategories') || getters.GET_PRODUCT_CATEGORIES_SELECTED;
     // Next synchronization request
     const requestSynchronizationNow = getters.GET_SYNC_SCHEDULE;
 

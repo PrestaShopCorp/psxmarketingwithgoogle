@@ -173,7 +173,7 @@ import ActionsButtons from '@/components/product-feed/settings/commons/actions-b
 import AttributeField from './attribute-field.vue';
 import CategoryButton from './category-button.vue';
 import googleUrl from '@/assets/json/googleUrl.json';
-import Categories from '@/enums/product-feed/attribute-mapping-categories';
+import Categories, {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
@@ -189,6 +189,7 @@ export default defineComponent({
   data() {
     return {
       loading: false,
+      selectedProductCategories: [Categories.NONE] as SelectedProductCategories,
       mappingAttributes: [],
     };
   },
@@ -202,13 +203,8 @@ export default defineComponent({
     disableContinue() {
       return this.selectedProductCategories.length === 0;
     },
-    selectedProductCategories: {
-      get() {
-        return this.$store.getters['productFeed/GET_PRODUCT_CATEGORIES_SELECTED'];
-      },
-      set(value) {
-        this.$store.commit('productFeed/SET_SELECTED_PRODUCT_CATEGORIES', value);
-      },
+    previouslySelectedProductCategories(): SelectedProductCategories {
+      return getDataFromLocalStorage('productFeed-selectedProductCategories') || this.$store.getters['productFeed/GET_PRODUCT_CATEGORIES_SELECTED'];
     },
     categories() {
       return [
@@ -282,6 +278,7 @@ export default defineComponent({
         params: SegmentGenericParams,
       });
       localStorage.setItem('productFeed-attributeMapping', JSON.stringify(this.mappingAttributes));
+      localStorage.setItem('productFeed-selectedProductCategories', JSON.stringify(this.selectedProductCategories));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 4);
       this.$router.push({
         name: 'product-feed-settings',
@@ -305,6 +302,12 @@ export default defineComponent({
     },
   },
   watch: {
+    previouslySelectedProductCategories: {
+      handler(newValue: SelectedProductCategories): void {
+        this.selectedProductCategories = newValue;
+      },
+      immediate: true,
+    },
     attributesToMap: {
       handler(newValue): void {
         // Reload previously saved data each time the selected categories are updated.

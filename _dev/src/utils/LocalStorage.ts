@@ -24,6 +24,8 @@ export function deleteProductFeedDataFromLocalStorage() {
   localStorage.removeItem('productFeed-shippingSetup');
   localStorage.removeItem('productFeed-estimateCarriers');
   localStorage.removeItem('productFeed-requestSynchronizationNow');
+  localStorage.removeItem('productFeed-selectedProductCategories');
+  // Cleanup old name of product categories
   localStorage.removeItem('selectedProductCategories');
 }
 
