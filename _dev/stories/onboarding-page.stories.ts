@@ -2,6 +2,7 @@ import OnboardingPage from '../src/views/onboarding-page.vue'
 import {initialStateApp} from '../.storybook/mock/state-app';
 import {productFeedIsConfiguredOnce, productFeedEnabled} from '../.storybook/mock/product-feed';
 import {contextPsAccountsNotConnected, contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
+import {contextPsEventBus} from "../.storybook/mock/ps-event-bus";
 import {googleAccountNotConnected, googleAccountConnected, googleAccountConnectedOnce} from "../.storybook/mock/google-account";
 import {merchantCenterAccountNotConnected, merchantCenterAccountConnected, merchantCenterAccountConnectedOnce} from "../.storybook/mock/merchant-center-account";
 import {googleAdsAccountChosen, adsAccountStatus} from "../.storybook/mock/google-ads";
@@ -38,6 +39,7 @@ GoogleAccount.args = {
       initialStateApp
     );
     window.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
+    window.contextPsEventBus = Object.assign({}, contextPsEventBus);
     this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
     this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountNotConnected);
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountNotConnected);
@@ -53,6 +55,7 @@ MerchantCenterAccount.args = {
       initialStateApp
     );
     window.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
+    window.contextPsEventBus = Object.assign({}, contextPsEventBus);
     this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
     this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountConnectedOnce);
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountNotConnected);
@@ -68,6 +71,7 @@ ProductFeed.args = {
       initialStateApp
     );
     window.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
+    window.contextPsEventBus = Object.assign({}, contextPsEventBus);
     this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
     this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountConnected);
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountConnectedOnce);
@@ -84,6 +88,7 @@ FreeListing.args = {
       initialStateApp
     );
     window.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
+    window.contextPsEventBus = Object.assign({}, contextPsEventBus);
     this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
     this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountConnected);
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountConnected);
@@ -100,6 +105,7 @@ GoogleAds.args = {
       initialStateApp
     );
     window.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
+    window.contextPsEventBus = Object.assign({}, contextPsEventBus);
     this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
     this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountConnected);
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountConnected);
@@ -117,6 +123,7 @@ campaigns.args = {
       initialStateApp
     );
     window.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
+    window.contextPsEventBus = Object.assign({}, contextPsEventBus);
     this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
     this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountConnected);
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountConnected);
@@ -134,6 +141,7 @@ Completed.args = {
       initialStateApp
     );
     window.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
+    window.contextPsEventBus = Object.assign({}, contextPsEventBus);
     this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
     this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountConnected);
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountConnected);

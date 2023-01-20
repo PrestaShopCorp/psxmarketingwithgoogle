@@ -196,6 +196,7 @@ export default {
       freeListingIsLoading: false,
       SSCIsLoading: false,
       phoneNumberVerified: false,
+      cloudSyncSharingConsentScreenStarted: false,
       cloudSyncSharingConsentGiven: false,
     };
   },
@@ -284,6 +285,40 @@ export default {
         .finally(() => {
           this.googleAdsIsLoading = false;
         }));
+    },
+    initCloudSyncConsent() {
+      // If data related to CloudSync consent screen is available...
+      if (!global.cloudSyncSharingConsent || !this.psAccountsIsOnboarded) {
+        return;
+      }
+
+      // ... and the component is not already loaded
+      if (this.cloudSyncSharingConsentScreenStarted) {
+        return;
+      }
+      this.cloudSyncSharingConsentScreenStarted = true;
+
+      console.log('CloudSync Sharing Consent feature detected. Loading...');
+      const msc = global.cloudSyncSharingConsent;
+      msc.init();
+      msc.on('OnboardingCompleted', (isCompleted) => {
+        if (isCompleted) {
+          this.$segment.track('[GGL] Consent to share data of CloudSync', {
+            module: 'psxmarketingwithgoogle',
+            params: SegmentGenericParams,
+          });
+          this.cloudSyncSharingConsentGiven = isCompleted;
+        }
+      });
+      msc.isOnboardingCompleted((isCompleted) => {
+        // Identify only when we get a valid boolean value
+        if (!!isCompleted === isCompleted) {
+          this.$segment.identify(this.$store.state.accounts.shopIdPsAccounts, {
+            ggl_user_has_given_consent_to_use_cloudsync: isCompleted,
+          });
+          this.cloudSyncSharingConsentGiven = isCompleted;
+        }
+      });
     },
   },
   computed: {
@@ -379,32 +414,10 @@ export default {
   },
   mounted() {
     psAccountsVue.init();
+    this.initCloudSyncConsent();
 
     window.addEventListener('load', () => {
-      // If CloudSync consent screen is loaded; init its component
-      if (global.cloudSyncSharingConsent && this.psAccountsIsOnboarded) {
-        console.log('CloudSync Sharing Consent feature detected. Loading...');
-        const msc = global.cloudSyncSharingConsent;
-        msc.init();
-        msc.on('OnboardingCompleted', (isCompleted) => {
-          if (isCompleted) {
-            this.$segment.track('[GGL] Consent to share data of CloudSync', {
-              module: 'psxmarketingwithgoogle',
-              params: SegmentGenericParams,
-            });
-            this.cloudSyncSharingConsentGiven = isCompleted;
-          }
-        });
-        msc.isOnboardingCompleted((isCompleted) => {
-          // Identify only when we get a valid boolean value
-          if (!!isCompleted === isCompleted) {
-            this.$segment.identify(this.$store.state.accounts.shopIdPsAccounts, {
-              ggl_user_has_given_consent_to_use_cloudsync: isCompleted,
-            });
-            this.cloudSyncSharingConsentGiven = isCompleted;
-          }
-        });
-      }
+      this.initCloudSyncConsent();
     });
 
     // Try to retrieve Google account details. If the merchant is not onboarded,
