@@ -89,11 +89,6 @@ export default {
     return null;
   },
   [GettersTypes.GET_PRODUCT_CATEGORIES_SELECTED](state: LocalState) : SelectedProductCategories {
-    const getCategoriesFromLocalStorage = getDataFromLocalStorage('selectedProductCategories');
-
-    if (getCategoriesFromLocalStorage !== null) {
-      state.selectedProductCategories = getCategoriesFromLocalStorage;
-    }
     return state.selectedProductCategories;
   },
   [GettersTypes.GET_SYNC_SCHEDULE](state: LocalState) : boolean {

@@ -55,6 +55,26 @@ export function formatMappingToApi(attributes: AttributeToMap[]): AttributeRespo
     }, {});
 }
 
+export const mergeAttributeMappings = (
+  source: AttributeToMap[],
+  anotherSource: AttributeToMap[]|null,
+): AttributeToMap[] => source.map((attributeCategory) => {
+  const attributeCategoryInAnotherSource = anotherSource?.find(
+    (acInAnotherSource) => attributeCategory.category === acInAnotherSource.category,
+  );
+
+  if (!attributeCategoryInAnotherSource) {
+    return attributeCategory;
+  }
+  attributeCategory.fields.map((attribute) => {
+    attribute.mapped = attributeCategoryInAnotherSource.fields.find(
+      (aias) => attribute.label === aias.label,
+    )?.mapped || attribute.mapped;
+    return attribute;
+  });
+  return attributeCategory;
+});
+
 const fixUnusedAttributeNames = (source: string) => {
   if (source === 'ean13') {
     return 'ean';

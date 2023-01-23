@@ -56,15 +56,49 @@ const allDetailsFromState = {
     ],
   },
   estimateCarriers: [],
-  attributeMapping: {
-    description: [
-      {ids: ['description_short'], type: 'product'},
-      {ids: ['description'], type: 'product'},
-    ],
-    gtin: [],
-    mpn: [{ids: ['mpn'], type: 'product'}],
-    brand: [{ids: ['manufacturer'], type: 'product'}],
-  },
+  attributeMapping: [
+    {
+      category: 'commons',
+      fields: [
+        {
+          label: 'Description',
+          name: 'description',
+          tooltip: true,
+          recommended: [{name: ['description'], type: 'product'}],
+          mapped: [{name: ['description_short'], type: 'product'}, {name: ['description'], type: 'product'}],
+          required: true,
+        },
+        {
+          label: 'GTIN* (EAN, JAN, ISBN, UPC, ITF-14)',
+          name: 'gtin',
+          tooltip: true,
+          recommended: [],
+          mapped: [],
+          required: false,
+        },
+        {
+          label: 'MPN (Manufacturer Part Number)',
+          name: 'mpn',
+          tooltip: true,
+          recommended: [{name: ['mpn'], type: 'product'}],
+          mapped: [
+            {name: ['mpn'], type: 'product'},
+          ],
+          required: true,
+        },
+        {
+          label: 'Brand',
+          name: 'brand',
+          tooltip: false,
+          recommended: [{name: ['manufacturer'], type: 'product'}],
+          mapped: [
+            {name: ['manufacturer'], type: 'product'},
+          ],
+          required: true,
+        },
+      ],
+    },
+  ],
   selectedProductCategories: ['none'],
   requestSynchronizationNow: false,
 };

@@ -32,7 +32,7 @@ import {runIf} from '@/utils/Promise';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {fromApi, toApi} from '@/providers/shipping-rate-provider';
 import {ProductFeedSettings} from './state';
-import {AttributeResponseFromAPI} from '@/utils/AttributeMapping';
+import {formatMappingToApi} from '@/utils/AttributeMapping';
 
 // ToDo: Get DTO type from API sources
 export const createProductFeedApiPayload = (settings:any) => ({
@@ -51,7 +51,7 @@ export const createProductFeedApiPayload = (settings:any) => ({
       additionalShippingSettings: settings.additionalShippingSettings,
     } : {}
   ),
-  attributeMapping: settings.attributeMapping,
+  attributeMapping: formatMappingToApi(settings.attributeMapping),
   selectedProductCategories: settings.selectedProductCategories,
   requestSynchronizationNow: settings.requestSynchronizationNow,
 });
@@ -217,7 +217,7 @@ export default {
     );
     // Attributes mapping
     const attributeMapping = getDataFromLocalStorage('productFeed-attributeMapping') || state.attributeMapping || {};
-    const selectedProductCategories = getters.GET_PRODUCT_CATEGORIES_SELECTED;
+    const selectedProductCategories = getDataFromLocalStorage('productFeed-selectedProductCategories') || getters.GET_PRODUCT_CATEGORIES_SELECTED;
     // Next synchronization request
     const requestSynchronizationNow = getters.GET_SYNC_SCHEDULE;
 
@@ -453,17 +453,6 @@ export default {
     } catch (error) {
       console.log(error);
     }
-  },
-  async [ActionsTypes.REQUEST_PRODUCT_CATEGORIES_CHANGED]({rootState, commit}, category) {
-    let getSelectedCtg = rootState.productFeed.selectedProductCategories;
-
-    if (category === Categories.NONE) {
-      getSelectedCtg = getSelectedCtg.filter((cat) => cat === Categories.NONE);
-    }
-    if (category !== Categories.NONE && getSelectedCtg.includes(Categories.NONE)) {
-      getSelectedCtg = getSelectedCtg.filter((cat) => cat !== Categories.NONE);
-    }
-    commit(MutationsTypes.SET_SELECTED_PRODUCT_CATEGORIES, getSelectedCtg);
   },
   async [ActionsTypes.GET_PREVALIDATION_PRODUCTS]({rootState, commit, state}) {
     const {limit} = state.preScanDetail;

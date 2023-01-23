@@ -173,14 +173,11 @@ import ActionsButtons from '@/components/product-feed/settings/commons/actions-b
 import AttributeField from './attribute-field.vue';
 import CategoryButton from './category-button.vue';
 import googleUrl from '@/assets/json/googleUrl.json';
-import Categories from '@/enums/product-feed/attribute-mapping-categories';
+import Categories, {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
-
-import {
-  formatMappingToApi,
-} from '../../../../utils/AttributeMapping';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
+import {AttributeToMap, mergeAttributeMappings} from '@/utils/AttributeMapping';
 
 export default defineComponent({
   name: 'ProductFeedSettingsAttributeMapping',
@@ -193,7 +190,8 @@ export default defineComponent({
   data() {
     return {
       loading: false,
-      mappingAttributes: [],
+      selectedProductCategories: [Categories.NONE] as SelectedProductCategories,
+      mappingAttributes: [] as AttributeToMap[],
     };
   },
   computed: {
@@ -206,13 +204,8 @@ export default defineComponent({
     disableContinue() {
       return this.selectedProductCategories.length === 0;
     },
-    selectedProductCategories: {
-      get() {
-        return this.$store.getters['productFeed/GET_PRODUCT_CATEGORIES_SELECTED'];
-      },
-      set(value) {
-        this.$store.commit('productFeed/SET_SELECTED_PRODUCT_CATEGORIES', value);
-      },
+    previouslySelectedProductCategories(): SelectedProductCategories {
+      return getDataFromLocalStorage('productFeed-selectedProductCategories') || this.$store.getters['productFeed/GET_PRODUCT_CATEGORIES_SELECTED'];
     },
     categories() {
       return [
@@ -242,18 +235,15 @@ export default defineComponent({
       ];
     },
     existingAttributes() {
-      // Either loading from the local storage or the API
-      const getMappingFromStorage = getDataFromLocalStorage('productFeed-attributeMapping');
-
-      if (getMappingFromStorage !== null) {
-        return getMappingFromStorage;
-      }
-      return this.$store.getters['productFeed/GET_FREE_LISTING_ATTRIBUTES_TO_MAP'];
+      return mergeAttributeMappings(
+        this.$store.getters['productFeed/GET_FREE_LISTING_ATTRIBUTES_TO_MAP'],
+        getDataFromLocalStorage('productFeed-attributeMapping'),
+      );
     },
     attributesToMap() {
       return this.existingAttributes
         .filter(
-          (attr) => this.selectedProductCategories.includes(attr.category)
+          (attr: AttributeToMap) => this.selectedProductCategories.includes(attr.category)
             || attr.category === Categories.COMMONS,
         );
     },
@@ -290,7 +280,8 @@ export default defineComponent({
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
-      localStorage.setItem('productFeed-attributeMapping', JSON.stringify(formatMappingToApi(this.attributesToMap)));
+      localStorage.setItem('productFeed-attributeMapping', JSON.stringify(this.mappingAttributes));
+      localStorage.setItem('productFeed-selectedProductCategories', JSON.stringify(this.selectedProductCategories));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 4);
       this.$router.push({
         name: 'product-feed-settings',
@@ -303,17 +294,32 @@ export default defineComponent({
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
-    categoryProductsChanged(category, isSelected) {
+    categoryProductsChanged(clickedCategory: Categories, isSelected: boolean) {
       if (!isSelected) {
         return;
       }
-      this.$store.dispatch('productFeed/REQUEST_PRODUCT_CATEGORIES_CHANGED', category);
+      // At this moment, we can have all the possible values in the array
+      let getSelectedCtg = this.selectedProductCategories;
+
+      if (clickedCategory === Categories.NONE) {
+        getSelectedCtg = getSelectedCtg.filter((cat: Categories) => cat === Categories.NONE);
+      }
+      if (clickedCategory !== Categories.NONE) {
+        getSelectedCtg = getSelectedCtg.filter((cat: Categories) => cat !== Categories.NONE);
+      }
+      this.selectedProductCategories = getSelectedCtg;
     },
     refreshComponent() {
       this.$store.dispatch('productFeed/REQUEST_SHOP_TO_GET_ATTRIBUTE');
     },
   },
   watch: {
+    previouslySelectedProductCategories: {
+      handler(newValue: SelectedProductCategories): void {
+        this.selectedProductCategories = newValue;
+      },
+      immediate: true,
+    },
     attributesToMap: {
       handler(newValue): void {
         // Reload previously saved data each time the selected categories are updated.
