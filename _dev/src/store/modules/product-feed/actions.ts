@@ -454,17 +454,6 @@ export default {
       console.log(error);
     }
   },
-  async [ActionsTypes.REQUEST_PRODUCT_CATEGORIES_CHANGED]({rootState, commit}, category) {
-    let getSelectedCtg = rootState.productFeed.selectedProductCategories;
-
-    if (category === Categories.NONE) {
-      getSelectedCtg = getSelectedCtg.filter((cat) => cat === Categories.NONE);
-    }
-    if (category !== Categories.NONE && getSelectedCtg.includes(Categories.NONE)) {
-      getSelectedCtg = getSelectedCtg.filter((cat) => cat !== Categories.NONE);
-    }
-    commit(MutationsTypes.SET_SELECTED_PRODUCT_CATEGORIES, getSelectedCtg);
-  },
   async [ActionsTypes.GET_PREVALIDATION_PRODUCTS]({rootState, commit, state}) {
     const {limit} = state.preScanDetail;
     const offset = ((state.preScanDetail.currentPage - 1) * limit).toString();

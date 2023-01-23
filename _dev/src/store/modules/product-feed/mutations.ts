@@ -157,25 +157,6 @@ export default {
 
     state.attributesToMap.splice(0, result.length, ...result);
   },
-  [MutationsTypes.SET_MAPPING_FROM_STORAGE](state: LocalState, payload:AttributeResponseFromAPI[]) {
-    if (payload.length) {
-      return;
-    }
-
-    Object.keys(payload).forEach((key) => {
-      state.attributesToMap.forEach((attribute) => {
-        const findAttribute = attribute.fields.find((field) => key === field.name);
-        const formatObj = payload[key].map((value) => ({
-          name: value.ids,
-          type: value.type,
-        }));
-
-        if (findAttribute) {
-          findAttribute.mapped = formatObj;
-        }
-      });
-    });
-  },
   [MutationsTypes.SET_SELECTED_PRODUCT_CATEGORIES](
     state: LocalState,
     payload: SelectedProductCategories,
