@@ -44,6 +44,26 @@ PreScanTableDetailWithAllLangs.parameters = {
   },
 };
 
+export const PreScanLangConflict:any = Template.bind({});
+PreScanLangConflict.args = {
+  beforeMount(this: any) {
+    this.$store.state.productFeed = Object.assign({}, productFeed);
+    this.$store.state.app = Object.assign({}, initialStateApp);
+  },
+}
+PreScanLangConflict.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/product-feeds/prevalidation-scan/errors', (req, res, ctx) => {
+        return res(
+          ctx.status(409),
+          ctx.json([])
+        );
+      }),
+    ],
+  },
+};
+
 export const PreScanApiError:any = Template.bind({});
 PreScanApiError.parameters = {
   msw: {

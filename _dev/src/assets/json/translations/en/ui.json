@@ -352,6 +352,7 @@
     "preScan": {
       "selectLanguage": "Filter by language",
       "apiError": "An error occurred while fetching data, please try again later.",
+      "langConflict": "Sorry, but we are unable to synchronise and analyse your product at this time. The target country: {0} for your shop does not match the language of the product. Please ensure that the language of your product matches the target country of your shop and try again.",
       "noElement": "You don't have any products."
     },
     "export": {
