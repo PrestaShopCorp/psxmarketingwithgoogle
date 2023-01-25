@@ -206,6 +206,14 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.release.prerelease == false
     steps:
+      - name: Get tag
+        id: get_tag
+        run: |
+          echo ::set-output name=TAG::$(echo $GITHUB_REF | cut -d / -f 3)
+          echo ::set-output name=MAJOR::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 1)
+          echo ::set-output name=MINOR::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 2)
+          echo ::set-output name=PATCH::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 3)
+
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
@@ -232,4 +240,4 @@ jobs:
           environment: production
           version: ${{ github.ref }}
           sourcemaps: views/js
-          url_prefix: "~/psxmarketing-cdn/${MAJOR}.x.x/js"
+          url_prefix: "~/psxmarketing-cdn/{{ steps.get_tag.outputs.MAJOR }}.x.x/js"
