@@ -320,7 +320,7 @@ export default {
     },
     targetCountries() {
       return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'];
-    }
+    },
   },
   methods: {
     filterByLang(row, filter) {
