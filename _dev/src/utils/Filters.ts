@@ -61,6 +61,7 @@ Vue.filter(
     return Intl.NumberFormat(window.i18nSettings.languageLocale, {
       style: 'currency',
       currency: currencyCode,
+      currencyDisplay: 'narrowSymbol',
     }).format(value);
   });
 

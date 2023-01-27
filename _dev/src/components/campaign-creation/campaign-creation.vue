@@ -591,11 +591,7 @@ export default defineComponent({
       ];
     },
     currency() {
-      return (
-        this.campaignToEditFromList?.currencyCode
-        || this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']
-          ?.currencyCode || ''
-      );
+      return this.$store.getters['app/GET_CURRENT_CURRENCY'];
     },
     finalCampaignFilters() {
       // IMPORTANT: Do not send the filters property if the campaign has unhandled filters
