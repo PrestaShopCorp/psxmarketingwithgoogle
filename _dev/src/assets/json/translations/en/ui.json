@@ -352,6 +352,7 @@
     "preScan": {
       "selectLanguage": "Filter by language",
       "apiError": "An error occurred while fetching data, please try again later.",
+      "langConflict": "Your product language does not match the target country {0}. Please ensure that the language of your products matches the target country spoken languages, by translating your product or changing the target country. | Your product language does not match the target countries {0}. Please ensure that the language of your products matches the target countries spoken languages, by translating your product or changing the target countries. ",
       "noElement": "You don't have any products."
     },
     "export": {

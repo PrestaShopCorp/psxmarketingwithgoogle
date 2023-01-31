@@ -104,6 +104,21 @@
               </td>
             </tr>
           </template>
+          <template v-if="langConflict">
+            <tr>
+              <td
+                class="text-center"
+                :colspan="fields.length"
+              >
+                {{
+                  $tc('productFeedSettings.preScan.langConflict',
+                      countries.length,
+                      [$options.filters.changeCountriesCodesToNames(countries)]
+                  )
+                }}
+              </td>
+            </tr>
+          </template>
           <template v-else-if="fields.length === 0 && loading === false">
             <tr>
               <td
@@ -136,7 +151,7 @@
               <b-td class="align-top">
                 <b-badge
                   variant="primary"
-                  class="mr-1 ps_gs-fz-12 text-capitalize badge-prescan"
+                  class="mr-1 ps_gs-fz-12 badge-prescan"
                   v-for="(language, index) in getProductLangs(product.titleByLang)"
                   :key="index"
                 >
@@ -202,7 +217,7 @@
   </b-card>
 </template>
 
-<script>
+<script lang="ts">
 import TablePageControls from '../commons/table-page-controls.vue';
 
 export default {
@@ -247,6 +262,7 @@ export default {
         },
       ],
       apiError: false,
+      langConflict: false,
     };
   },
   computed: {
@@ -326,13 +342,17 @@ export default {
       return products[0].title;
     },
     getProductLangs(products) {
-      return products.map((k) => k?.lang?.toUpperCase());
+      return products.map((k) => k?.lang);
     },
     getPreScanProducts() {
       this.loading = true;
       this.$store.dispatch('productFeed/GET_PREVALIDATION_PRODUCTS')
-        .catch(() => {
-          this.apiError = true;
+        .catch((error: any) => {
+          if (error.code === 409) {
+            this.langConflict = true;
+          } else {
+            this.apiError = true;
+          }
         })
         .finally(() => {
           this.loading = false;
