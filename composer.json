@@ -13,7 +13,7 @@
     },
     "require": {
         "php": ">=7.2",
-        "vlucas/phpdotenv": "3.4",
+        "vlucas/phpdotenv": "^3.4",
         "segmentio/analytics-php": "^1.5",
         "prestashop/module-lib-faq": "^2.0",
         "prestashop/module-lib-service-container": "^2.0",
