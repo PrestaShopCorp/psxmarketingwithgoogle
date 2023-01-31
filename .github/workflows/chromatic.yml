@@ -29,20 +29,20 @@ jobs:
         with:
           node-version: '14'
           cache: npm
-          cache-dependency-path: '_dev/package-lock.json'
+          cache-dependency-path: '_dev/apps/ui/package-lock.json'
       - name: Install dependencies
-        working-directory: ./_dev
+        working-directory: ./_dev/apps/ui
         run: npm install
         # Tests are mandatory to build storybook
       - name: Run tests
-        working-directory: ./_dev
+        working-directory: ./_dev/apps/ui
         run: npm run test:generate-output
         # 👇 Adds Chromatic as a step in the workflow
       - name: Publish to Chromatic
         uses: chromaui/action@v1
         # Chromatic GitHub Action options
         with:
-          workingDir: ./_dev
+          workingDir: ./_dev/apps/ui
           token: ${{ secrets.GITHUB_TOKEN }}
           # 👇 Chromatic projectToken
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}

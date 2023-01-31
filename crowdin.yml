@@ -1,4 +1,4 @@
-base_path: /_dev/src/assets/json/translations
+base_path: /_dev/apps/ui/src/assets/json/translations
 preserve_hierarchy: false
 files:
   - source: /en/**/ui.json

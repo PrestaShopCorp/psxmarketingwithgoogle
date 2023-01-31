@@ -24,10 +24,10 @@ jobs:
         with:
           node-version: '14'
           cache: npm
-          cache-dependency-path: '_dev/package-lock.json'
+          cache-dependency-path: '_dev/apps/ui/package-lock.json'
 
       - name: Install & build
-        working-directory: _dev
+        working-directory: _dev/apps/ui
         env:
           VUE_APP_BUILD_VERSION: ${{ steps.get_tag.outputs.MAJOR }}.${{ steps.get_tag.outputs.MINOR }}.${{ steps.get_tag.outputs.PATCH }}
         run: |
@@ -219,10 +219,10 @@ jobs:
         with:
           node-version: '14'
           cache: npm
-          cache-dependency-path: '_dev/package-lock.json'
+          cache-dependency-path: '_dev/apps/ui/package-lock.json'
 
       - name: Install & build
-        working-directory: _dev
+        working-directory: _dev/apps/ui
         env:
           GENERATE_SOURCEMAPS: true
         run: |

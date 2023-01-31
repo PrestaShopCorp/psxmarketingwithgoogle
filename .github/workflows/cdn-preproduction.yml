@@ -8,7 +8,7 @@ on:
 env:
   WORKFLOW: googleshopping-storage.yml
   NODE_VERSION: 14
-  VUE_PATH: _dev
+  VUE_PATH: _dev/apps/ui
   BUILD_PATH: views
 
 jobs:

@@ -54,7 +54,7 @@ When a class is added or deleted, it is required to rerun the above command.
 
 ### VueJS
 
-The following commands need to be run in the `_dev/` folder.
+The following commands need to be run in the `_dev/apps/ui/` folder.
 
 To build the application in production mode:
 
@@ -123,7 +123,7 @@ PSX_MKTG_WITH_GOOGLE_API_KEY=API_KEY
 USE_LOCAL_VUE_APP=1
 ```
 
-Some values are managed by the Vue.js application and are provided in the [`_dev/.env` file](_dev/.env).
+Some values are managed by the Vue.js application and are provided in the [`_dev/apps/ui/.env` file](_dev/apps/ui/.env).
 
 
 ## Releasing

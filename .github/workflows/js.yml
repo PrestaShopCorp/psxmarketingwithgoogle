@@ -12,10 +12,10 @@ jobs:
         with:
           node-version: '14'
           cache: npm
-          cache-dependency-path: '_dev/package-lock.json'
+          cache-dependency-path: '_dev/apps/ui/package-lock.json'
 
       - name: Lint JS files
-        working-directory: _dev
+        working-directory: _dev/apps/ui
         run: |
           npm install
           npm run lint
@@ -31,10 +31,10 @@ jobs:
         with:
           node-version: '14'
           cache: npm
-          cache-dependency-path: '_dev/package-lock.json'
+          cache-dependency-path: '_dev/apps/ui/package-lock.json'
 
       - name: Install & run
-        working-directory: _dev
+        working-directory: _dev/apps/ui
         run: |
           npm install
           npm run test:unit
