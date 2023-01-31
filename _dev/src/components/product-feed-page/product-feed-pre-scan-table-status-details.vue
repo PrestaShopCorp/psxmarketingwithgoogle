@@ -110,7 +110,7 @@
                 class="text-center"
                 :colspan="fields.length"
               >
-                {{ $t('productFeedSettings.preScan.langConflict', [targetCountries.toString()]) }}
+                {{ $tc('productFeedSettings.preScan.langConflict', countries.length, [$options.filters.changeCountriesCodesToNames(countries)]) }}
               </td>
             </tr>
           </template>
@@ -317,9 +317,6 @@ export default {
     },
     getDefaultLang() {
       return this.$store.state.app.psxMtgWithGoogleDefaultShopCountry;
-    },
-    targetCountries() {
-      return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'];
     },
   },
   methods: {
