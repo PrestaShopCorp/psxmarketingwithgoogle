@@ -110,7 +110,12 @@
                 class="text-center"
                 :colspan="fields.length"
               >
-                {{ $tc('productFeedSettings.preScan.langConflict', countries.length, [$options.filters.changeCountriesCodesToNames(countries)]) }}
+                {{
+                  $tc('productFeedSettings.preScan.langConflict',
+                      countries.length,
+                      [$options.filters.changeCountriesCodesToNames(countries)]
+                  )
+                }}
               </td>
             </tr>
           </template>
