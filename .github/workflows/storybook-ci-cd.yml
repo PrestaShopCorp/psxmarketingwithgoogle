@@ -27,9 +27,9 @@ jobs:
         uses: aurelien-baudet/workflow-dispatch@v2
         with:
           workflow: googleshopping-storybook.yml
-          repo: PrestaShopCorp/services-deployment
+          repo: Quetzacoalt91/services-deployment
           token: ${{ secrets.ACCESS_TOKEN }}
-          ref: 'refs/heads/main'
+          ref: 'refs/heads/introduce-pnpm-for-google'
           inputs: '{ "branch": "${{ steps.branch.outputs.current_branch }}", "nodeVersion": "${{ env.NODE_VERSION }}", "pnpmVersion": "${{ env.PNPM_VERSION }}", "path": "${{ env.PATH }}", "issue": "${{ github.event.number }}" }'
 
   stable:
@@ -46,7 +46,7 @@ jobs:
         uses: aurelien-baudet/workflow-dispatch@v2
         with:
           workflow: googleshopping-storybook.yml
-          repo: PrestaShopCorp/services-deployment
+          repo: Quetzacoalt91/services-deployment
           token: ${{ secrets.ACCESS_TOKEN }}
-          ref: 'refs/heads/main'
+          ref: 'refs/heads/introduce-pnpm-for-google'
           inputs: '{ "branch": "${{ steps.branch.outputs.current_branch }}", "nodeVersion": "${{ env.NODE_VERSION }}", "pnpmVersion": "${{ env.PNPM_VERSION }}", "path": "${{ env.PATH }}", "environment": "stable" }'

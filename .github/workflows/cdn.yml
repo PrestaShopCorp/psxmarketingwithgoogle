@@ -41,7 +41,7 @@ jobs:
         uses: aurelien-baudet/workflow-dispatch@v2
         with:
           workflow: ${{ env.WORKFLOW }}
-          repo: PrestaShopCorp/services-deployment
+          repo: Quetzacoalt91/services-deployment
           token: ${{ secrets.ACCESS_TOKEN }}
-          ref: 'refs/heads/main'
+          ref: 'refs/heads/introduce-pnpm-for-google'
           inputs: '{ "version": "${{ steps.get_tag.outputs.TAG }}", "nodeVersion": "${{ env.NODE_VERSION }}", "pnpmVersion": "${{ env.PNPM_VERSION }}", "vuejsPath": "${{ env.VUE_PATH }}", "vuejsBuildPath": "${{ env.BUILD_PATH }}", "isRelease": "${{ !github.event.release.prerelease && true || false }}" , "assetsUrl": "${{ steps.get_assets_url.outputs.URL }}" }'
