@@ -30,7 +30,7 @@ jobs:
           repo: PrestaShopCorp/services-deployment
           token: ${{ secrets.ACCESS_TOKEN }}
           ref: 'refs/heads/main'
-          inputs: '{ "branch": "${{ steps.branch.outputs.current_branch }}", "nodeVersion": "${{ env.NODE_VERSION }}", "path": "${{ env.PATH }}", "issue": "${{ github.event.number }}" }'
+          inputs: '{ "branch": "${{ steps.branch.outputs.current_branch }}", "nodeVersion": "${{ env.NODE_VERSION }}", "pnpmVersion": "${{ env.PNPM_VERSION }}", "path": "${{ env.PATH }}", "issue": "${{ github.event.number }}" }'
 
   stable:
     name: Stable - Storybook
@@ -49,4 +49,4 @@ jobs:
           repo: PrestaShopCorp/services-deployment
           token: ${{ secrets.ACCESS_TOKEN }}
           ref: 'refs/heads/main'
-          inputs: '{ "branch": "${{ steps.branch.outputs.current_branch }}", "nodeVersion": "${{ env.NODE_VERSION }}", "path": "${{ env.PATH }}", "environment": "stable" }'
+          inputs: '{ "branch": "${{ steps.branch.outputs.current_branch }}", "nodeVersion": "${{ env.NODE_VERSION }}", "pnpmVersion": "${{ env.PNPM_VERSION }}", "path": "${{ env.PATH }}", "environment": "stable" }'
