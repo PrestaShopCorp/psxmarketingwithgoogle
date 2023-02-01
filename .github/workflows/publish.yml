@@ -4,6 +4,10 @@ on:
   release:
     types: [published]
 
+env:
+  PNPM_VERSION: 7
+  NODE_VERSION: 14
+
 jobs:
   build:
     name: build dependencies & create artifact
@@ -20,9 +24,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
       - uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
           cache-dependency-path: '_dev/pnpm-lock.yaml'
 
@@ -215,9 +223,14 @@ jobs:
           echo ::set-output name=PATCH::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 3)
 
       - uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
       - uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
           cache-dependency-path: '_dev/pnpm-lock.yaml'
 
