@@ -1,4 +1,4 @@
-import * as Sentry from '@sentry/vue';
+import {captureException} from '@sentry/vue';
 
 export function getDataFromLocalStorage(key: string) {
   try {
@@ -10,7 +10,7 @@ export function getDataFromLocalStorage(key: string) {
     return null;
   } catch (error: any) {
     localStorage.removeItem(key);
-    Sentry.captureException(new Error(error));
+    captureException(new Error(error));
     return null;
   }
 }

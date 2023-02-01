@@ -54,13 +54,13 @@ When a class is added or deleted, it is required to rerun the above command.
 
 ### VueJS
 
-The following commands need to be run in the `_dev/apps/ui/` folder.
+The following commands need to be run in the `_dev/` folder.
 
 To build the application in production mode:
 
 ```
-npm install --n
-npm run build
+pnpm install
+pnpm -r build
 
 # or 
 
@@ -70,9 +70,9 @@ make vuejs
 To compiles and watch for new changes (development mode):
 
 ```
-npm install --n
+pnpm install
 
-npm run dev
+pnpm -r dev
 ```
 
 ## Testing
@@ -82,8 +82,8 @@ Tests will be run at each commit on this repository or any pull-request. These c
 * JS checks: Unit tests & coding standards
 
 ```
-npm run lint
-npm run test:unit
+pnpm -r lint
+pnpm -r test:unit
 
 # or
 

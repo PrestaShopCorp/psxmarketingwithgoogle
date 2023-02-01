@@ -24,8 +24,8 @@ build: ./vendor vuejs
 
 # target: vuejs                                  - Install node deps and build vuejs
 vuejs: 
-	npm --prefix=./_dev/apps/ui install
-	npm --prefix=./_dev/apps/ui run build
+	pnpm --prefix=./_dev install
+	pnpm --prefix=./_dev -r build
 
 composer.phar:
 ifndef PHP
@@ -60,13 +60,13 @@ test-back:
 
 # target: test-front                   	 - Launch the tests front (does not work linter is not configured)
 test-front:
-	docker-compose run --rm node sh -c "npm --prefix=./_dev/apps/ui run lint"
-	docker-compose run --rm node sh -c "npm --prefix=./_dev/apps/ui run test"
+	docker-compose run --rm node sh -c "pnpm --prefix=./_dev -r lint"
+	docker-compose run --rm node sh -c "pnpm --prefix=./_dev -r test"
 
 # target: fix-lint			             - Launch php cs fixer and npm run lint
 fix-lint:
 	docker-compose run --rm php sh -c "vendor/bin/php-cs-fixer fix --using-cache=no"
-	docker-compose run --rm node sh -c "npm --prefix=./_dev/apps/ui run lint-fix"
+	docker-compose run --rm node sh -c "pnpm --prefix=./_dev -r lint-fix"
 
 # target: docker-build|db              	 - Setup PHP & Node.js with docker
 db: docker-build
@@ -74,12 +74,11 @@ docker-build: docker-build-front docker-build-composer
 
 # target: docker-build-front             - Build front for prod with docker
 docker-build-front:
-	docker-compose run --rm node sh -c "npm --prefix=./_dev/apps/ui ci"
-	docker-compose run --rm node sh -c "npm --prefix=./_dev/apps/ui run build"
+	docker-compose run --rm node sh -c "pnpm --prefix=./_dev -r build"
 
 # target: docker-watch-front             - Watch VueJS files and compile when saved
 docker-watch-front:
-	docker-compose run --rm node sh -c "npm --prefix=./_dev/apps/ui run dev"
+	docker-compose run --rm node sh -c "pnpm --prefix=./_dev -r dev"
 
 # target: docker-up|du                 	 - Start docker containers
 du: docker-up

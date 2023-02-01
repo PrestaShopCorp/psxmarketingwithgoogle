@@ -13,14 +13,14 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '14'
-          cache: npm
-          cache-dependency-path: '_dev/apps/ui/package-lock.json'
+          cache: pnpm
+          cache-dependency-path: '_dev/pnpm-lock.yaml'
 
       - name: Install & build
-        working-directory: _dev/apps/ui
+        working-directory: _dev
         run: |
-          npm install
-          npm run build
+          pnpm install
+          pnpm -r build
 
       - name: Install dev composer dependencies
         run: composer install

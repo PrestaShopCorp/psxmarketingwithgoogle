@@ -2,6 +2,12 @@
   "name": "dev",
   "version": "1.4.4",
   "private": true,
+  "engines": {
+    "pnpm": ">=7.14.2",
+    "node": ">=14",
+    "npm": "please use pnpm",
+    "yarn": "please use pnpm"
+  },
   "scripts": {
     "build": "vue-cli-service build --no-clean",
     "lint": "vue-cli-service lint --no-fix",
@@ -83,6 +89,7 @@
     "babel-loader": "^8.2.5",
     "babel-preset-vue": "^2.0.2",
     "chromatic": "^5.10.1",
+    "core-js": "^3.27.2",
     "eslint": "^6.7.2",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prestashop": "^0.2.1",
@@ -92,6 +99,7 @@
     "eslint-plugin-storybook": "^0.5.13",
     "eslint-plugin-vue": "^6.2.2",
     "jest": "^28.1.3",
+    "jest-environment-jsdom": "^29.4.1",
     "msw": "^0.36.3",
     "msw-storybook-addon": "^1.6.3",
     "node-sass": "^4.14.1",

@@ -28,11 +28,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '14'
-          cache: npm
-          cache-dependency-path: '_dev/apps/ui/package-lock.json'
+          cache: pnpm
+          cache-dependency-path: '_dev/pnpm-lock.yaml'
       - name: Install dependencies
         working-directory: ./_dev/apps/ui
-        run: npm install
+        run: pnpm install
         # Tests are mandatory to build storybook
       - name: Run tests
         working-directory: ./_dev/apps/ui
