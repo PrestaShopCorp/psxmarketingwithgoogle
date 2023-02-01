@@ -53,7 +53,7 @@ module.exports = {
   runtimeCompiler: true,
   productionSourceMap: !!process.env.GENERATE_SOURCEMAPS,
   filenameHashing: false,
-  outputDir: '../views/',
+  outputDir: '../../../views/',
   assetsDir: '',
   publicPath: process.env.VUE_APP_ASSETS_URL || '../modules/psxmarketingwithgoogle/views/',
 };
