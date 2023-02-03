@@ -1,7 +1,24 @@
 <template>
   <div>
+
+    <div v-if="langConflict">
+      <b-alert
+        variant="danger"
+        show
+      >
+        <p class="mb-0">
+          {{
+            $tc('productFeedSettings.preScan.langConflict',
+                countries.length,
+                [$options.filters.changeCountriesCodesToNames(countries)]
+            )
+
+          }}
+        </p>
+      </b-alert>
+    </div>
     <div
-      v-if="nbProductsFailingPrescan > 0"
+      v-else-if="nbProductsFailingPrescan > 0"
       class="pb-2"
     >
       <b-alert
@@ -33,6 +50,7 @@
         </div>
       </b-alert>
     </div>
+
     <div class="d-flex mb-3">
       <div>
         <h2 class="ps_gs-fz-16 font-weight-600">
@@ -50,7 +68,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   props: {
     inNeedOfConfiguration: {
@@ -58,9 +76,17 @@ export default {
       default: false,
     },
   },
+  data() {
+    return {
+      langConflict: false,
+    };
+  },
   computed: {
     nbProductsFailingPrescan() {
       return this.$store.state.productFeed.prevalidationScanSummary.invalidItems;
+    },
+    countries() {
+      return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'];
     },
     validationSummary() {
       return this.inNeedOfConfiguration
@@ -96,6 +122,14 @@ export default {
         },
       ];
     },
+  },
+  created() {
+    this.$store.dispatch('productFeed/GET_PREVALIDATION_SUMMARY')
+      .catch((error: any) => {
+      if (error.code === 409) {
+        this.langConflict = true;
+      }
+    });
   },
 };
 </script>
