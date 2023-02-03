@@ -53,3 +53,10 @@ services:
     arguments:
       - '@psxmarketingwithgoogle.db'
       - '@psxmarketingwithgoogle.context'
+
+  PrestaShop\Module\PsxMarketingWithGoogle\Repository\VerificationTagRepository:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\VerificationTagRepository
+    public: true
+    arguments:
+      - '@psxmarketingwithgoogle.db'
+      - '@psxmarketingwithgoogle.context'
