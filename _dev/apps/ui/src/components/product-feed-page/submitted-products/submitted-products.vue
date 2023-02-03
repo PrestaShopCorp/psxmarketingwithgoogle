@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div v-if="langConflict">
       <b-alert
         variant="danger"
@@ -126,10 +125,10 @@ export default {
   created() {
     this.$store.dispatch('productFeed/GET_PREVALIDATION_SUMMARY')
       .catch((error: any) => {
-      if (error.code === 409) {
-        this.langConflict = true;
-      }
-    });
+        if (error.code === 409) {
+          this.langConflict = true;
+        }
+      });
   },
 };
 </script>
