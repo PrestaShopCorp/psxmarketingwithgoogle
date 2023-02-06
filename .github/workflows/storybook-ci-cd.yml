@@ -10,6 +10,7 @@ on:
 env:
   WORKFLOW: googleshopping-storybook.yml
   NODE_VERSION: 14
+  PNPM_VERSION: 7
   PATH: _dev/apps/ui/
 
 jobs:
