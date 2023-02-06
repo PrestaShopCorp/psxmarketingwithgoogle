@@ -2,6 +2,10 @@ name: Build module artifact & deploy
 
 on: [push, pull_request]
 
+env:
+  PNPM_VERSION: 7
+  NODE_VERSION: 14
+
 jobs:
   build:
     name: Build dependencies & create artifact
@@ -10,17 +14,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
       - uses: actions/setup-node@v3
         with:
-          node-version: '14'
-          cache: npm
-          cache-dependency-path: '_dev/package-lock.json'
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+          cache-dependency-path: '_dev/pnpm-lock.yaml'
 
       - name: Install & build
         working-directory: _dev
         run: |
-          npm install
-          npm run build
+          pnpm install
+          pnpm -r build
 
       - name: Install dev composer dependencies
         run: composer install

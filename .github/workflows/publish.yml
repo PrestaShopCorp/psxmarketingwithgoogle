@@ -4,6 +4,10 @@ on:
   release:
     types: [published]
 
+env:
+  PNPM_VERSION: 7
+  NODE_VERSION: 14
+
 jobs:
   build:
     name: build dependencies & create artifact
@@ -20,19 +24,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
       - uses: actions/setup-node@v3
         with:
-          node-version: '14'
-          cache: npm
-          cache-dependency-path: '_dev/package-lock.json'
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+          cache-dependency-path: '_dev/pnpm-lock.yaml'
 
       - name: Install & build
         working-directory: _dev
         env:
           VUE_APP_BUILD_VERSION: ${{ steps.get_tag.outputs.MAJOR }}.${{ steps.get_tag.outputs.MINOR }}.${{ steps.get_tag.outputs.PATCH }}
         run: |
-          npm install
-          npm run build
+          pnpm install
+          pnpm -r build
 
       - name: Install dev composer dependencies
         run: composer install
@@ -215,19 +223,24 @@ jobs:
           echo ::set-output name=PATCH::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 3)
 
       - uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
       - uses: actions/setup-node@v3
         with:
-          node-version: '14'
-          cache: npm
-          cache-dependency-path: '_dev/package-lock.json'
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+          cache-dependency-path: '_dev/pnpm-lock.yaml'
 
       - name: Install & build
         working-directory: _dev
         env:
           GENERATE_SOURCEMAPS: true
         run: |
-          npm install
-          npm run build
+          pnpm install
+          pnpm -r build
 
       - name: Sentry Release JS
         uses: getsentry/action-release@v1

@@ -31,6 +31,6 @@ tests/integration/config.json
 microcks/
 
 # Generated jest test result
-_dev/.jest-test-results.json
-_dev/storybook-static
+_dev/apps/ui/.jest-test-results.json
+_dev/apps/ui/storybook-static
 .vscode/launch.json

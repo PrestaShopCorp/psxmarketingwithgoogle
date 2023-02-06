@@ -12,6 +12,10 @@ on:
     branches:
       - master
 
+env:
+  PNPM_VERSION: 7
+  NODE_VERSION: 14
+
 # List of jobs
 jobs:
   chromatic-deployment:
@@ -25,24 +29,27 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0 # 👈 Required to retrieve git history
+      - uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
       - uses: actions/setup-node@v3
         with:
-          node-version: '14'
-          cache: npm
-          cache-dependency-path: '_dev/package-lock.json'
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+          cache-dependency-path: '_dev/pnpm-lock.yaml'
       - name: Install dependencies
-        working-directory: ./_dev
-        run: npm install
+        working-directory: ./_dev/apps/ui
+        run: pnpm install
         # Tests are mandatory to build storybook
       - name: Run tests
-        working-directory: ./_dev
+        working-directory: ./_dev/apps/ui
         run: npm run test:generate-output
         # 👇 Adds Chromatic as a step in the workflow
       - name: Publish to Chromatic
         uses: chromaui/action@v1
         # Chromatic GitHub Action options
         with:
-          workingDir: ./_dev
+          workingDir: ./_dev/apps/ui
           token: ${{ secrets.GITHUB_TOKEN }}
           # 👇 Chromatic projectToken
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}

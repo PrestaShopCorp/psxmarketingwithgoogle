@@ -59,8 +59,8 @@ The following commands need to be run in the `_dev/` folder.
 To build the application in production mode:
 
 ```
-npm install --n
-npm run build
+pnpm install
+pnpm -r build
 
 # or 
 
@@ -70,9 +70,9 @@ make vuejs
 To compiles and watch for new changes (development mode):
 
 ```
-npm install --n
+pnpm install
 
-npm run dev
+pnpm -r dev
 ```
 
 ## Testing
@@ -82,8 +82,8 @@ Tests will be run at each commit on this repository or any pull-request. These c
 * JS checks: Unit tests & coding standards
 
 ```
-npm run lint
-npm run test:unit
+pnpm -r lint
+pnpm -r test:unit
 
 # or
 
@@ -123,7 +123,7 @@ PSX_MKTG_WITH_GOOGLE_API_KEY=API_KEY
 USE_LOCAL_VUE_APP=1
 ```
 
-Some values are managed by the Vue.js application and are provided in the [`_dev/.env` file](_dev/.env).
+Some values are managed by the Vue.js application and are provided in the [`_dev/apps/ui/.env` file](_dev/apps/ui/.env).
 
 
 ## Releasing
