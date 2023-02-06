@@ -34,3 +34,4 @@ microcks/
 _dev/apps/ui/.jest-test-results.json
 _dev/apps/ui/storybook-static
 .vscode/launch.json
+.pnpm-store
