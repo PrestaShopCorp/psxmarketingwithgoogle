@@ -38,7 +38,7 @@ jobs:
           cache: pnpm
           cache-dependency-path: '_dev/pnpm-lock.yaml'
       - name: Install dependencies
-        working-directory: ./_dev/apps/ui
+        working-directory: ./_dev
         run: pnpm install
         # Tests are mandatory to build storybook
       - name: Run tests
