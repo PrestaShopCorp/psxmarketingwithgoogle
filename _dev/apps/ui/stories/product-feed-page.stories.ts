@@ -30,7 +30,7 @@ const ProductFeed = (args, { argTypes }) => ({
   beforeCreate(this :any){
     this.$store.state.productFeed.isConfigured = Object.assign({}, true);
   },
- 
+
 });
 
 export const NeedConfiguration:any = ProductFeed.bind({});
@@ -158,6 +158,61 @@ InProgress.parameters = {
         return res(
           ctx.json({
             ...productFeed.prevalidationScanSummary
+          })
+        );
+      }),
+      rest.get('/shopping-campaigns/list', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...campaignsListResponse,
+          })
+        );
+      }),
+    ],
+  },
+};
+
+export const SuccessWithoutPrescan:any = ProductFeed.bind({});
+SuccessWithoutPrescan.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/incremental-sync/status/*', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...productFeedStatusSyncSuccess.status,
+          })
+        );
+      }),
+      rest.get('/incremental-sync/settings/*', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...productFeedStatusSyncSuccess.settings,
+          })
+        );
+      }),
+      rest.get('/product-feeds/validation/summary', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...productFeedStatusSyncSuccess.validationSummary
+          })
+        );
+      }),
+      rest.get('/product-feeds/prevalidation-scan/summary', (req, res, ctx) => {
+        return res(
+          ctx.status(409)
+        );
+      }),
+      rest.get('/ads-accounts/list', (req, res, ctx) => {
+        return res(
+          ctx.json(
+            googleAdsNotChosen.list
+          )
+        );
+      }),
+      rest.get('/ads-accounts/status', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...adsAccountStatus,
           })
         );
       }),
