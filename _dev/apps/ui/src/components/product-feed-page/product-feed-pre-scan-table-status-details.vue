@@ -136,7 +136,7 @@
               <b-td class="align-top">
                 <b-badge
                   variant="primary"
-                  class="mr-1 ps_gs-fz-12 text-capitalize badge-prescan"
+                  class="mr-1 ps_gs-fz-12 badge-prescan"
                   v-for="(language, index) in getProductLangs(product.titleByLang)"
                   :key="index"
                 >
@@ -326,7 +326,7 @@ export default {
       return products[0].title;
     },
     getProductLangs(products) {
-      return products.map((k) => k?.lang?.toUpperCase());
+      return products.map((k) => k?.lang);
     },
     getPreScanProducts() {
       this.loading = true;
