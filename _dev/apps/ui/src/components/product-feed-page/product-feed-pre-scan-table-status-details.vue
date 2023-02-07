@@ -326,7 +326,7 @@ export default {
       return products[0].title;
     },
     getProductLangs(products) {
-      return products.map((k) => k?.lang?.toUpperCase());
+      return products.map((k) => k?.lang);
     },
     getPreScanProducts() {
       this.loading = true;
