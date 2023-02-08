@@ -5,6 +5,7 @@ import timezone from 'dayjs/plugin/timezone'; // dependent on utc plugin
 import utc from 'dayjs/plugin/utc';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import {changeCountriesCodesToNames} from './Countries';
+import {formatPrice} from './Price';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -51,19 +52,7 @@ Vue.filter(
 
 Vue.filter('changeCountriesCodesToNames', changeCountriesCodesToNames);
 
-Vue.filter(
-  'formatPrice', (value: number, currencyCode?: string): string => {
-    if (!currencyCode?.length) {
-      console.warn('No currency code provided when formating price');
-      return value;
-    }
-
-    return Intl.NumberFormat(window.i18nSettings.languageLocale, {
-      style: 'currency',
-      currency: currencyCode,
-      currencyDisplay: 'narrowSymbol',
-    }).format(value);
-  });
+Vue.filter('formatPrice', formatPrice);
 
 Vue.filter(
   'slugify', (...args: (string | number)[]): string => {

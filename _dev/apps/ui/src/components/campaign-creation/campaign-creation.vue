@@ -341,6 +341,7 @@
                 </b-button>
               </template>
               <b-input-group
+                data-test-id="campaign-dailyBudget-input-group"
                 :prepend="currencySymbol"
                 :append="currency"
                 class="maxw-sm-420"
@@ -592,7 +593,7 @@ export default defineComponent({
         ?.currencyCode;
     },
     currencySymbol(): string {
-      return this.$options.filters.formatPrice(0, this.currency).replace(/[ .,0]*/g, '');
+      return this.$options.filters.formatPrice(0, this.currency).replace(/[\s.,0]*/g, '');
     },
     finalCampaignFilters() {
       // IMPORTANT: Do not send the filters property if the campaign has unhandled filters
