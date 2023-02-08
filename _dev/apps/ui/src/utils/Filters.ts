@@ -52,7 +52,7 @@ Vue.filter(
 Vue.filter('changeCountriesCodesToNames', changeCountriesCodesToNames);
 
 Vue.filter(
-  'formatPrice', (value: number, currencyCode?: string) => {
+  'formatPrice', (value: number, currencyCode?: string): string => {
     if (!currencyCode?.length) {
       console.warn('No currency code provided when formating price');
       return value;
