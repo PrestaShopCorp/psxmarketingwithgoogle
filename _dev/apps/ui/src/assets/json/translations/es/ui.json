@@ -28,7 +28,8 @@
         "max": "Máx.",
         "helpPage": "Página de ayuda",
         "noResultsFoundForX": " No se han encontrado resultados para \"{0}\"",
-        "days": "Días"
+        "days": "Días",
+        "readMore": "Read more"
     },
     "landingPage": {
         "header": {
@@ -611,7 +612,11 @@
             "used": "Usado"
         },
         "dimensionXFilterSelectedWithXProducts": "{0} filtro | {0} filtro ({1} producto) | {0} filtro ({1} productos)",
-        "filtersWithxValues": "{0} filtros | {0} filtros con {1} producto afectado | {0} filtros con {1} productos afectados"
+        "filtersWithxValues": "{0} filtros | {0} filtros con {1} producto afectado | {0} filtros con {1} productos afectados",
+        "budgetTip": {
+            "content": "It is generally recommended to start with a **minimum budget of {0} per day for your daily ad spend**. This allows you to reach a larger audience & potentially see better results.",
+            "readMore": "This recommended minimum budget will allow you to test the effectiveness\n  of your ads and make adjustments as needed. Of course, every business is\n  different, and the actual budget that is best for you may vary depending\n  on your specific goals and target audience. We recommend experimenting\n  with different budgets to determine what works best for your business."
+        }
     },
     "smartShoppingCampaignList": {
         "tableTitle": "Rendimiento de la campaña",
@@ -1124,5 +1129,10 @@
         "legendWithoutTC": "*Crea una nueva cuenta de Google Ads, el bono se aplicará automáticamente una vez que coincida con el gasto y tendrás 60 días para utilizar los créditos.",
         "ctaCreateFirstCampaign": "Crear tu primera campaña",
         "textCampaignsBanner": "Máximo rendimiento es la nueva generación de campañas Shopping inteligentes. Es un tipo de campaña mejorada proporcionada por la tecnología inteligente de Google. Funciona en segundo plano para optimizar automáticamente tus anuncios a lo largo del proceso de compra con el fin de maximizar el rendimiento."
+    },
+    "tipsAndTricks": {
+        "title": "PrestaShop Tips and Tricks",
+        "advisorPicture": "{0}'s profile picture",
+        "advisorRole": "PrestaShop eCommerce Expert"
     }
 }
