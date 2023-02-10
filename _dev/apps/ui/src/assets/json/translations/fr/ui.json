@@ -28,7 +28,8 @@
         "max": "Max",
         "helpPage": "Page d'aide",
         "noResultsFoundForX": " Aucun résultat trouvé pour {0}",
-        "days": "Jours"
+        "days": "Jours",
+        "readMore": "Read more"
     },
     "landingPage": {
         "header": {
@@ -611,7 +612,11 @@
             "used": "Utilisé"
         },
         "dimensionXFilterSelectedWithXProducts": "Filtre {0} | Filtre {0} ({1} produit) | Filtre {0} ({1} produits)",
-        "filtersWithxValues": "{0} filtres | {0} filtres avec {1} produit affecté | {0} filtres avec {1} produits affectés"
+        "filtersWithxValues": "{0} filtres | {0} filtres avec {1} produit affecté | {0} filtres avec {1} produits affectés",
+        "budgetTip": {
+            "content": "It is generally recommended to start with a **minimum budget of {0} per day for your daily ad spend**. This allows you to reach a larger audience & potentially see better results.",
+            "readMore": "This recommended minimum budget will allow you to test the effectiveness\n  of your ads and make adjustments as needed. Of course, every business is\n  different, and the actual budget that is best for you may vary depending\n  on your specific goals and target audience. We recommend experimenting\n  with different budgets to determine what works best for your business."
+        }
     },
     "smartShoppingCampaignList": {
         "tableTitle": "Performance de la campagne",
@@ -1124,5 +1129,10 @@
         "legendWithoutTC": "* Créez un nouveau compte Google Ads, le bon d'achat sera appliqué automatiquement dès que vous aurez atteint le montant des dépenses et vous aurez 60 jours pour les dépenser.",
         "ctaCreateFirstCampaign": "Créer votre première campagne",
         "textCampaignsBanner": "Performance Max est la nouvelle génération de campagnes shopping intelligentes. Il s'agit d'un type de campagne optimisé, utilisant la technologie intelligente de Google. Elle fonctionne en arrière-plan pour optimiser automatiquement vos annonces tout au long du parcours d'achat afin d'obtenir des performances maximales."
+    },
+    "tipsAndTricks": {
+        "title": "PrestaShop Tips and Tricks",
+        "advisorPicture": "{0}'s profile picture",
+        "advisorRole": "PrestaShop eCommerce Expert"
     }
 }
