@@ -357,6 +357,12 @@
                 />
               </b-input-group>
             </b-form-group>
+            <TipsAndTricksCard
+              class="col-8"
+              :content="$t('smartShoppingCampaignCreation.budgetTip.content', ['15GBP'])"
+              :readMore="$t('smartShoppingCampaignCreation.budgetTip.readMore')"
+            />
+            
             <span class="font-weight-600">
               {{ $t("smartShoppingCampaignCreation.formHelperTitle") }}
             </span>
@@ -450,6 +456,7 @@ import CampaignCreationPopinRecap from './campaign-creation-filter-popin/campaig
 import SelectCountry from '../commons/select-country.vue';
 import CampaignStatus, {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import BannerAds from '@/components/commons/banner-ads.vue';
+import TipsAndTricksCard from '@/components/commons/tips-and-tricks-card.vue';
 import {
   findAndCheckFilter,
   returnChildrenIds,
@@ -486,6 +493,7 @@ export default defineComponent({
     CampaignCreationPopinRecap,
     SelectCountry,
     BannerAds,
+    TipsAndTricksCard,
   },
   props: {
     editMode: {

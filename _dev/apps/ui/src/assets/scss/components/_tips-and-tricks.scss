@@ -1,0 +1,9 @@
+.ps_gs-alert-tips-and-tricks {
+  padding: rem(10);
+  border-radius: rem(3);
+  border-width: 1px;
+}
+
+.ps_gs-alert-tips-and-tricks::before {
+  display: none;
+}
