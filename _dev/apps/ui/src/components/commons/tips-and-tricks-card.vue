@@ -1,5 +1,9 @@
 <template>
-  <b-alert show variant="secondary" class="ps_gs-alert-tips-and-tricks p-0 pt-2 pb-2">
+  <b-alert
+    show
+    variant="secondary"
+    class="ps_gs-alert-tips-and-tricks p-0 pt-2 pb-2"
+  >
     <div class="d-flex ps_gs-fz-16 font-weight-bold text-primary">
       <i class="material-icons-outlined ps_gs-fz-20 mr-1 mb-0 align-center">
         lightbulb
@@ -47,22 +51,21 @@
         width="38"
         height="38"
         :alt="$t('tipsAndTricks.advisorPicture', [advisorName])"
-      />
+      >
       <div>
         <span class="text-primary font-weight-bold">{{ advisorName }}</span>
-        <br />{{ $t('tipsAndTricks.advisorRole') }}
+        <br>{{ $t('tipsAndTricks.advisorRole') }}
       </div>
     </div>
   </b-alert>
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
-import {PropType} from 'vue';
+import {defineComponent, PropType} from 'vue';
 import {VBToggle, BCollapse} from 'bootstrap-vue';
 
 export default defineComponent({
-  name: "TipsAndTricksCard",
+  name: 'TipsAndTricksCard',
   components: {
     BCollapse,
     VBToggle,
@@ -81,7 +84,7 @@ export default defineComponent({
   },
   data() {
     return {
-      advisorName: "Christophe",
+      advisorName: 'Christophe',
     };
   },
   methods: {},

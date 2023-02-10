@@ -236,7 +236,7 @@
               <SelectCountry
                 v-if="!editMode"
                 @countrySelected="saveCountrySelected"
-                :default-value="defaultCountry()"
+                :default-value="defaultCountry"
                 :need-filter="false"
                 :dropdown-options="activeCountries"
               />
@@ -349,7 +349,7 @@
                 <b-form-input
                   data-test-id="campaign-dailyBudget-input"
                   id="campaign-dailyBudget-input"
-                  v-model="campaignDailyBudget"
+                  :value="campaignDailyBudget || recommendedBudget?.value"
                   :placeholder="
                     $t('smartShoppingCampaignCreation.inputBudgetPlaceholder')
                   "
@@ -358,11 +358,14 @@
               </b-input-group>
             </b-form-group>
             <TipsAndTricksCard
+              v-if="recommendedBudget"
               class="col-8"
-              :content="$t('smartShoppingCampaignCreation.budgetTip.content', ['15GBP'])"
-              :readMore="$t('smartShoppingCampaignCreation.budgetTip.readMore')"
+              :content="$t('smartShoppingCampaignCreation.budgetTip.content', [
+                formattedRecommendedBudget,
+              ])"
+              :read_more="$t('smartShoppingCampaignCreation.budgetTip.readMore')"
             />
-            
+
             <span class="font-weight-600">
               {{ $t("smartShoppingCampaignCreation.formHelperTitle") }}
             </span>
@@ -467,6 +470,9 @@ import {
 } from '../../utils/SSCFilters';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import googleUrl from '@/assets/json/googleUrl.json';
+import {formatPrice} from '@/utils/Price';
+import {RecommendedBudget} from '@/utils/CampaignsBudget';
+import {changeCountryNameToCode} from '@/utils/Countries';
 
 export default defineComponent({
   name: 'CampaignCreation',
@@ -476,16 +482,17 @@ export default defineComponent({
       campaignDurationStartDate: new Date(),
       campaignDurationEndDate: null,
       campaignHasNoProductsFilter: true,
-      campaignDailyBudget: process.env.VUE_APP_SSC_DEFAULT_BUDGET,
+      campaignDailyBudget: null,
       timer: null,
       displayError: false,
       campaignIsActive: true,
-      targetCountry: null,
+      targetCountry: null as string|null,
       loader: true,
       hasUnhandledFilters: false,
       totalProducts: 0,
       searchLoader: false,
       isBanner: true,
+      recommendedBudget: null as RecommendedBudget|null,
     };
   },
   components: {
@@ -532,7 +539,7 @@ export default defineComponent({
       if (
         this.campaignNameFeedback === true
         && this.campaignDurationStartDate
-        && (this.targetCountry || this.defaultCountry())
+        && (this.targetCountry || this.defaultCountry)
         && this.campaignDailyBudget
         && this.campaignEndDateFeedback !== false
       ) {
@@ -626,7 +633,7 @@ export default defineComponent({
         currencyCode: this.currency,
         startDate: this.campaignDurationStartDate,
         endDate: this.campaignDurationEndDate,
-        targetCountry: this.targetCountry || this.defaultCountry(),
+        targetCountry: this.targetCountry || this.defaultCountry,
         productFilters: this.finalCampaignFilters,
       };
     },
@@ -647,9 +654,7 @@ export default defineComponent({
     activeCountries() {
       return this.$store.getters['app/GET_ACTIVE_COUNTRIES'];
     },
-  },
-  methods: {
-    defaultCountry() {
+    defaultCountry(): string {
       if (!this.$store.state.app.psxMtgWithGoogleDefaultShopCountry) {
         return '';
       }
@@ -657,6 +662,11 @@ export default defineComponent({
         this.$store.state.app.psxMtgWithGoogleDefaultShopCountry,
       ])[0];
     },
+    formattedRecommendedBudget() {
+      return formatPrice(this.recommendedBudget.value, this.recommendedBudget.currency);
+    },
+  },
+  methods: {
     debounceName() {
       if (!this.campaignName?.length) {
         return;
@@ -686,8 +696,9 @@ export default defineComponent({
         this.$refs.CampaignCreationPopinRecap.$refs.modal.id,
       );
     },
-    saveCountrySelected(value) {
-      this.targetCountry = value.toString();
+    saveCountrySelected(values: string[]) {
+      this.targetCountry = values.length ? values[0] : this.defaultCountry;
+      this.getRecommendedBudget(this.targetCountry);
     },
     openFilterPopin() {
       this.$bvModal.show(
@@ -786,6 +797,11 @@ export default defineComponent({
       }
       this.loader = false;
     },
+
+    async getRecommendedBudget(countryName: string): Promise<void> {
+      const countryIsoCode = changeCountryNameToCode(countryName);
+      this.recommendedBudget = await this.$store.dispatch('campaigns/GET_RECOMMENDED_BUDGET', countryIsoCode) as RecommendedBudget;
+    },
   },
   watch: {
     campaignName(oldVal, newVal) {
@@ -832,6 +848,8 @@ export default defineComponent({
     } else {
       this.loader = false;
     }
+    await this.$store.dispatch('googleAds/WARMUP_STORE');
+    this.getRecommendedBudget(this.targetCountry || this.defaultCountry);
   },
   created() {
     this.$root.$on('filterByName', this.getDatasFiltersDimensions);
