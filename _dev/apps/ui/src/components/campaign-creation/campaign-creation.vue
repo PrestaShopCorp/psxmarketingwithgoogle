@@ -363,7 +363,7 @@
               :content="$t('smartShoppingCampaignCreation.budgetTip.content', [
                 formattedRecommendedBudget,
               ])"
-              :read_more="$t('smartShoppingCampaignCreation.budgetTip.readMore')"
+              :read-more="$t('smartShoppingCampaignCreation.budgetTip.readMore')"
             />
 
             <span class="font-weight-600">
