@@ -349,7 +349,7 @@
                 <b-form-input
                   data-test-id="campaign-dailyBudget-input"
                   id="campaign-dailyBudget-input"
-                  :value="campaignDailyBudget || recommendedBudget?.value"
+                  :value="budgetInput"
                   :placeholder="
                     $t('smartShoppingCampaignCreation.inputBudgetPlaceholder')
                   "
@@ -540,7 +540,7 @@ export default defineComponent({
         this.campaignNameFeedback === true
         && this.campaignDurationStartDate
         && (this.targetCountry || this.defaultCountry)
-        && this.campaignDailyBudget
+        && (this.campaignDailyBudget || this.recommendedBudget?.value)
         && this.campaignEndDateFeedback !== false
       ) {
         return false;
@@ -629,7 +629,7 @@ export default defineComponent({
       return {
         id: this.campaignToEditFromList?.id ?? 0,
         campaignName: this.campaignName,
-        dailyBudget: Number(this.campaignDailyBudget),
+        dailyBudget: Number(this.campaignDailyBudget) || this.recommendedBudget?.value,
         currencyCode: this.currency,
         startDate: this.campaignDurationStartDate,
         endDate: this.campaignDurationEndDate,
@@ -664,6 +664,9 @@ export default defineComponent({
     },
     formattedRecommendedBudget() {
       return formatPrice(this.recommendedBudget.value, this.recommendedBudget.currency);
+    },
+    budgetInput(): string|number {
+      return this.campaignDailyBudget || this.recommendedBudget?.value || '';
     },
   },
   methods: {
@@ -848,7 +851,9 @@ export default defineComponent({
     } else {
       this.loader = false;
     }
-    await this.$store.dispatch('googleAds/WARMUP_STORE');
+    if (!this.currency) {
+      await this.$store.dispatch('googleAds/WARMUP_STORE');
+    }
     this.getRecommendedBudget(this.targetCountry || this.defaultCountry);
   },
   created() {

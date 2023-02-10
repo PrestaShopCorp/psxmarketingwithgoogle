@@ -216,7 +216,7 @@ describe('campaign-creation.vue - Campaign edition - Unhandled filters', () => {
 });
 
 describe('campaign-creation.vue - Campaign edition - End date validation', () => {
-  it('allows to continue when end date is not set', () => {
+  it('allows to continue when end date is not set', async () => {
     const wrapper = buildWrapper({
       data() {
         return {
@@ -226,11 +226,17 @@ describe('campaign-creation.vue - Campaign edition - End date validation', () =>
         };
       },
     });
+    await wrapper.setData({
+      recommendedBudget: {
+        value: 10,
+        currency: 'EUR',
+      },
+    });
     expect(wrapper.vm.campaignEndDateFeedback).toBe(null);
     expect(wrapper.find('[data-test-id="createCampaignButton"]').attributes('disabled')).toBeFalsy();
   });
 
-  it('allows to continue when end date is acceptable', () => {
+  it('allows to continue when end date is acceptable', async () => {
     const wrapper = buildWrapper({
       data() {
         return {
@@ -239,6 +245,12 @@ describe('campaign-creation.vue - Campaign edition - End date validation', () =>
           // Year 3999 to make sure it always in the future
           campaignDurationEndDate: 'Fri Oct 11 3999 01:00:00 GMT+0100 (heure d’été britannique)',
         };
+      },
+    });
+    await wrapper.setData({
+      recommendedBudget: {
+        value: 10,
+        currency: 'EUR',
       },
     });
     expect(wrapper.vm.campaignEndDateFeedback).toBe(null);

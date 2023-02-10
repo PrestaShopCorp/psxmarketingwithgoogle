@@ -188,6 +188,14 @@ export default {
             ]
         }));
         }),
+        rest.get("/shopping-campaigns/recommended-budget", (req, res, ctx) => {
+          return res(ctx.json({
+            budget: {
+              value: 125,
+              currency: 'EUR'
+            }
+          }));
+        }),
       ],
     },
   },
