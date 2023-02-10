@@ -28,7 +28,8 @@
         "max": "Max",
         "helpPage": "Страница помощи",
         "noResultsFoundForX": " No results found for {0}",
-        "days": "Days"
+        "days": "Days",
+        "readMore": "Read more"
     },
     "landingPage": {
         "header": {
@@ -611,7 +612,11 @@
             "used": "Используется"
         },
         "dimensionXFilterSelectedWithXProducts": "{0} filter | {0} filter ({1} product) | {0} filter ({1} products)",
-        "filtersWithxValues": "{0} filters | {0} filters with {1} affected product | {0} filters with {1} affected products"
+        "filtersWithxValues": "{0} filters | {0} filters with {1} affected product | {0} filters with {1} affected products",
+        "budgetTip": {
+            "content": "It is generally recommended to start with a **minimum budget of {0} per day for your daily ad spend**. This allows you to reach a larger audience & potentially see better results.",
+            "readMore": "This recommended minimum budget will allow you to test the effectiveness\n  of your ads and make adjustments as needed. Of course, every business is\n  different, and the actual budget that is best for you may vary depending\n  on your specific goals and target audience. We recommend experimenting\n  with different budgets to determine what works best for your business."
+        }
     },
     "smartShoppingCampaignList": {
         "tableTitle": "Эффективность кампании",
@@ -1124,5 +1129,10 @@
         "legendWithoutTC": "* Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits.",
         "ctaCreateFirstCampaign": "Create your first campaign",
         "textCampaignsBanner": "Performance Max is the next generation of Smart Shopping campaigns. It is an enhanced campaign type powered by Google's smart technology. It works behind the scene to automatically optimise your ads across the shopping journey to drive maximum performance."
+    },
+    "tipsAndTricks": {
+        "title": "PrestaShop Tips and Tricks",
+        "advisorPicture": "{0}'s profile picture",
+        "advisorRole": "PrestaShop eCommerce Expert"
     }
 }
