@@ -28,7 +28,8 @@
         "max": "max.",
         "helpPage": "Strona pomocy",
         "noResultsFoundForX": "Nie znaleziono wyników dla {0}",
-        "days": "dni"
+        "days": "dni",
+        "readMore": "Read more"
     },
     "landingPage": {
         "header": {
@@ -611,7 +612,11 @@
             "used": "Używany"
         },
         "dimensionXFilterSelectedWithXProducts": " {0} filtr | {0} filtr ({1} produkt) | {0} filtr ({1} produkty/-ów)",
-        "filtersWithxValues": "{0} filtrów | {0} filtry/-ów z {1} odpowiadającym produktem | {0} filtry/-ów z {1} odpowiadającymi produktami"
+        "filtersWithxValues": "{0} filtrów | {0} filtry/-ów z {1} odpowiadającym produktem | {0} filtry/-ów z {1} odpowiadającymi produktami",
+        "budgetTip": {
+            "content": "It is generally recommended to start with a **minimum budget of {0} per day for your daily ad spend**. This allows you to reach a larger audience & potentially see better results.",
+            "readMore": "This recommended minimum budget will allow you to test the effectiveness\n  of your ads and make adjustments as needed. Of course, every business is\n  different, and the actual budget that is best for you may vary depending\n  on your specific goals and target audience. We recommend experimenting\n  with different budgets to determine what works best for your business."
+        }
     },
     "smartShoppingCampaignList": {
         "tableTitle": "Wyniki kampanii",
@@ -1124,5 +1129,10 @@
         "legendWithoutTC": "* Utwórz nowe konto Google Ads. Kupony promocyjne zostaną przyznane automatycznie po spełnieniu kryterium wydatków. Będziesz mieć 60 dni na wykorzystanie kuponów. ",
         "ctaCreateFirstCampaign": "Utwórz pierwszą kampanię",
         "textCampaignsBanner": "Performance Max to nowa generacja inteligentnych kampanii produktowych. Jest to rozszerzony typ kampanii oparty na inteligentnej technologii Google. Działa za kulisami, aby automatycznie optymalizować reklamy na całej ścieżce zakupowej i zapewnić ich maksymalną skuteczność."
+    },
+    "tipsAndTricks": {
+        "title": "PrestaShop Tips and Tricks",
+        "advisorPicture": "{0}'s profile picture",
+        "advisorRole": "PrestaShop eCommerce Expert"
     }
 }
