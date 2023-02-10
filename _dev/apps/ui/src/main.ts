@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import {BootstrapVue} from 'bootstrap-vue';
-import VueCollapse from 'vue2-collapse';
 import VueShowdown from 'vue-showdown';
 import router from './router';
 import store from './store';
@@ -17,7 +16,6 @@ import VueSegment from '@/lib/segment';
 Vue.config.productionTip = false;
 Vue.config.ignoredElements = ['prestashop-accounts'];
 Vue.use(BootstrapVue);
-Vue.use(VueCollapse);
 Vue.use(VueShowdown);
 Vue.use(VueSegment, {
   // @ts-ignore

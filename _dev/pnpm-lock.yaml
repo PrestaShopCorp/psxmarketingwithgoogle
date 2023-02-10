@@ -90,7 +90,6 @@ importers:
       vue-select: ^3.20.0
       vue-showdown: ^2.4.1
       vue-template-compiler: ^2.7.10
-      vue2-collapse: ^1.0.15
       vuex: ^3.6.0
       vuex-module-decorators: ^0.17.0
       vuex-persistedstate: ^4.1.0
@@ -127,7 +126,6 @@ importers:
       vue-router: 3.6.5_vue@2.7.10
       vue-select: 3.20.0_vue@2.7.10
       vue-showdown: 2.4.1_vue@2.7.10
-      vue2-collapse: 1.0.15
       vuex: 3.6.2_vue@2.7.10
       vuex-module-decorators: 0.17.0_vue@2.7.10+vuex@3.6.2
       vuex-persistedstate: 4.1.0_vuex@3.6.2
@@ -19468,10 +19466,6 @@ packages:
     dependencies:
       '@vue/compiler-sfc': 2.7.10
       csstype: 3.1.0
-
-  /vue2-collapse/1.0.15:
-    resolution: {integrity: sha512-XLzUxkYKVZqmHRSdirgqXyUYeytsAKNJSjP1dLcVtEIhgP4xUHSbzU7ycuQm/egRgjMCsDzILv5wr0uhS9cXvQ==}
-    dev: false
 
   /vuex-module-decorators/0.17.0_vue@2.7.10+vuex@3.6.2:
     resolution: {integrity: sha512-EFzrR3oyRMTHwpIgYzhW0BVKD71+FBs2U5Mn/ZQwlsaPyROZexDXTZTSYOYeuwg0kqQsK/YBkG4sQ8B4jmVMPg==}

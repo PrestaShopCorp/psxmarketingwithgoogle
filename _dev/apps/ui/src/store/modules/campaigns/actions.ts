@@ -29,6 +29,7 @@ import {deepUpdateDimensionVisibility} from '@/utils/SSCFilters';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import {runIf} from '../../../utils/Promise';
 import {fetchShop} from '@/api/shopClient';
+import {RecommendedBudget} from '@/utils/CampaignsBudget';
 
 export default {
   async [ActionsTypes.WARMUP_STORE](
@@ -546,5 +547,31 @@ export default {
         }
       });
     }
+  },
+  async [ActionsTypes.GET_RECOMMENDED_BUDGET](
+    {rootState}, targetCountry: string,
+  ): Promise<RecommendedBudget> {
+    type RecommendedBudgetResponse = {
+      budget: RecommendedBudget,
+    };
+    const query = new URLSearchParams({
+      country_code: targetCountry,
+      currency_code: rootState.googleAds.accountChosen.currencyCode,
+    });
+    const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/recommended-budget?${query}`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+        },
+      });
+
+    if (!resp.ok) {
+      throw new HttpClientError(resp.statusText, resp.status);
+    }
+    const json = await resp.json() as RecommendedBudgetResponse;
+
+    return json.budget;
   },
 };
