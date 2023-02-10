@@ -78,7 +78,7 @@ export default {
         currency: currentCurrency,
       });
 
-      return currencyFormatted.replace(/[ .,0]*/, '');
+      return currencyFormatted.replace(/[\s.,0]*/, '');
     } catch (error) {
       const currency = symbols.find((c) => c.currency === currentCurrency);
 

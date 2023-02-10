@@ -341,7 +341,8 @@
                 </b-button>
               </template>
               <b-input-group
-                :prepend="getSymbol"
+                data-test-id="campaign-dailyBudget-input-group"
+                :prepend="currencySymbol"
                 :append="currency"
                 class="maxw-sm-420"
               >
@@ -494,9 +495,6 @@ export default defineComponent({
     },
   },
   computed: {
-    getSymbol() {
-      return this.$store.getters['app/GET_SYMBOL_OF_CURRENT_CURRENCY'];
-    },
     formTitle() {
       // Edition
       if (this.campaignToEditFromList) {
@@ -591,7 +589,11 @@ export default defineComponent({
       ];
     },
     currency() {
-      return this.$store.getters['app/GET_CURRENT_CURRENCY'];
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']
+        ?.currencyCode;
+    },
+    currencySymbol(): string {
+      return this.$options.filters.formatPrice(0, this.currency).replace(/[\s.,0]*/g, '');
     },
     finalCampaignFilters() {
       // IMPORTANT: Do not send the filters property if the campaign has unhandled filters

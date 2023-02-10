@@ -6,13 +6,13 @@ import Vuex from 'vuex';
 // Import this file first to init mock on window
 import cloneDeep from 'lodash.clonedeep';
 import {MountOptions, shallowMount} from '@vue/test-utils';
-import {BButton} from 'bootstrap-vue';
-import config, {localVue, cloneStore, addBootstrapToVue} from '@/../tests/init';
+import config, {localVue, cloneStore} from '@/../tests/init';
 
 import {initialStateApp} from '../../../.storybook/mock/state-app';
 import {googleAdsAccountChosen} from '../../../.storybook/mock/google-ads';
 import {campaignWithUnhandledFilters, campaignWithoutUnhandledFilters, availableFilters} from '../../../.storybook/mock/campaigns';
 import CampaignCreation from './campaign-creation.vue';
+import {formatPrice} from '@/utils/Price';
 
 const VBTooltip = jest.fn();
 const buildWrapper = (
@@ -25,6 +25,9 @@ const buildWrapper = (
 
   store.modules.campaigns.state.sscAvailableFilters = availableFilters;
   store.modules.campaigns.state.errorCampaignNameExists = false;
+  store.modules.googleAds.state = googleAdsAccountChosen;
+
+  localVue.filter('formatPrice', formatPrice);
 
   return shallowMount(CampaignCreation, {
     localVue,
@@ -66,6 +69,19 @@ describe('campaign-creation.vue - Campaign creation', () => {
   it('should have all inputs to null', () => {
     expect(wrapper.find('[data-test-id="campaign-name-input"]').text()).toEqual('');
     expect(wrapper.find('[data-test-id="campaign-dailyBudget-input"]').text()).toEqual('');
+  });
+
+  it('should display the proper currency', async () => {
+    const inputGroup = wrapper.find('[data-test-id="campaign-dailyBudget-input-group"]');
+    expect(inputGroup.attributes('prepend')).toEqual('€');
+    expect(inputGroup.attributes('append')).toEqual('EUR');
+
+    wrapper.vm.$store.state.googleAds.accountChosen.currencyCode = 'USD';
+    await wrapper.vm.$nextTick();
+
+    const inputGroupWithDollars = wrapper.find('[data-test-id="campaign-dailyBudget-input-group"]');
+    expect(inputGroupWithDollars.attributes('prepend')).toEqual('$');
+    expect(inputGroupWithDollars.attributes('append')).toEqual('USD');
   });
 });
 

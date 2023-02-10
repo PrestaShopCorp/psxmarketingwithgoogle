@@ -13,6 +13,11 @@ let filters; // eslint-disable-line
 let VBTooltip;
 
 beforeAll(() => {
+  localVue = createLocalVue();
+  localVue.use(Vuex);
+});
+
+beforeEach(() => {
   windowSpy = jest.spyOn(window, 'window', 'get');
   windowSpy.mockImplementation(() => ({
     // add data needed in window
@@ -20,11 +25,6 @@ beforeAll(() => {
     addEventListener: jest.fn(),
     i18nSettings: {isoCode: 'fr', languageLocale: 'fr'},
   }));
-  localVue = createLocalVue();
-  localVue.use(Vuex);
-});
-
-beforeEach(() => {
   VBTooltip = jest.fn();
   filters = {
     timeConverterToDate: jest.fn(),
