@@ -351,9 +351,7 @@
                   id="campaign-dailyBudget-input"
                   :value="budgetInput"
                   @input="campaignDailyBudget = $event"
-                  :placeholder="
-                    $t('smartShoppingCampaignCreation.inputBudgetPlaceholder')
-                  "
+                  :placeholder="getRecommendedBudgetValue"
                   :state="campaignDailyBudgetFeedback"
                 />
               </b-input-group>
@@ -668,6 +666,9 @@ export default defineComponent({
     },
     budgetInput(): string|number {
       return this.campaignDailyBudget || this.recommendedBudget?.value || '';
+    },
+    getRecommendedBudgetValue() {
+      return this.recommendedBudget?.value ?? '10';
     },
   },
   methods: {
