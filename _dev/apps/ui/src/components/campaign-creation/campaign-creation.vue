@@ -350,7 +350,7 @@
                   data-test-id="campaign-dailyBudget-input"
                   id="campaign-dailyBudget-input"
                   :value="budgetInput"
-                  @input="campaignDailyBudget = $event"
+                  @change="campaignDailyBudget = $event"
                   :placeholder="getRecommendedBudgetValue"
                   :state="campaignDailyBudgetFeedback"
                 />
