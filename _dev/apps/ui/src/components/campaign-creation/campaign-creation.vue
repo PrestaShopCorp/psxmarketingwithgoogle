@@ -668,7 +668,7 @@ export default defineComponent({
       return this.campaignDailyBudget || this.recommendedBudget?.value || '';
     },
     getRecommendedBudgetValue() {
-      return this.recommendedBudget?.value;
+      return this.recommendedBudget?.value ?? '10';
     },
   },
   methods: {
