@@ -351,9 +351,7 @@
                   id="campaign-dailyBudget-input"
                   :value="budgetInput"
                   @input="campaignDailyBudget = $event"
-                  :placeholder="
-                    $t('smartShoppingCampaignCreation.inputBudgetPlaceholder')
-                  "
+                  :placeholder="budgetInput"
                   :state="campaignDailyBudgetFeedback"
                 />
               </b-input-group>
