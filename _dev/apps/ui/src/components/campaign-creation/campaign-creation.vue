@@ -351,7 +351,7 @@
                   id="campaign-dailyBudget-input"
                   :value="budgetInput"
                   @input="campaignDailyBudget = $event"
-                  :placeholder="budgetInput"
+                  :placeholder="recommendedBudget?.value"
                   :state="campaignDailyBudgetFeedback"
                 />
               </b-input-group>
