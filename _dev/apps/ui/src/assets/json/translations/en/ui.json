@@ -618,7 +618,7 @@
         "readMore": "This recommended minimum budget will allow you to test the effectiveness\n  of your ads and make adjustments as needed. Of course, every business is\n  different, and the actual budget that is best for you may vary depending\n  on your specific goals and target audience. We recommend experimenting\n  with different budgets to determine what works best for your business."
       }
      },
-  
+
     "smartShoppingCampaignList": {
       "tableTitle": "Campaign performance",
       "xCampaign": "No campaigns | {0} campaign | {0} campaigns",
@@ -695,13 +695,13 @@
           "language": "Language",
           "image": "Image",
           "description": "Description",
-          "barcode": "MPN",
+          "barcode": "GTIN/Brand",
           "price": "Price"
         },
         "xHasFailedPreValidation" : "\"{0}\": has failed the pre-validation.",
         "xHasPassedPreValidation" : "\"{0}\": has passed the pre-validation.",
         "labelTooltipDescription": "This attribute matches what you have configured in your product attribute mapping : short description, description...",
-        "labelTooltipBarcode": "This attribute matches what you have configured in your product attribute mapping : barcode, MPN, GTIN, ISBN, UPC..."
+        "labelTooltipBarcode": "GTIN is a unique identifier used to identify products. it can be UPC or EAN or JAN or ISBN. If you don't have a GTIN for your product, in this case add a Brand (of the product or your company) AND a MPN (Manufacturer Part Number) which is a unique identifier different from the GTIN, assigned by a manufacturer to identify a specific product or part"
       },
       "approvalTable": {
         "description": "These are the status of your products that are sent to Google Merchant Center. Some products might appear more than once because of their language variation.",
@@ -1049,7 +1049,7 @@
       "PmaxTextLink": "Learn more about Performance Max",
       "textPmaxReleased": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max Campaigns now. [Learn more]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
     },
-  
+
     "tooltip" : {
       "googleAccountRequired" : "Requires Google account configuration",
       "merchantCenterAccountRequired" : "Requires Merchant Center account configuration",
