@@ -279,7 +279,7 @@
                 "customDesc": "Je voudrais définir des tarifs et des délais spécifiques pour chaque pays"
             },
             "estimateStep": {
-                "estimateInputLabel": "Enter carrier",
+                "estimateInputLabel": "Saisir un transporteur",
                 "error": "Veuillez remplir les informations requises",
                 "carrierName": "Nom du transporteur",
                 "storeOffersTitle": "Ma boutique propose",
