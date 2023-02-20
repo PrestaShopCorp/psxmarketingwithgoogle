@@ -695,7 +695,7 @@
                 "image": "Bild",
                 "description": "Beschreibung",
                 "price": "PREIS",
-                "barcode": "GTIN/Brand"
+                "barcode": "GTIN/Marke"
             },
             "xHasFailedPreValidation": "\"{0}\": has failed the pre-validation.",
             "xHasPassedPreValidation": "\"{0}\": has passed the pre-validation.",
