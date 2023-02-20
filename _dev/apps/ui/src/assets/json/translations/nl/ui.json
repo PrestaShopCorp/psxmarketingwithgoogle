@@ -694,7 +694,6 @@
                 "language": "Taal",
                 "image": "Afbeelding",
                 "description": "Beschrijving",
-                "barcode": "MPN",
                 "price": "Prijs"
             },
             "xHasFailedPreValidation": "\"{0}\": has failed the pre-validation.",
