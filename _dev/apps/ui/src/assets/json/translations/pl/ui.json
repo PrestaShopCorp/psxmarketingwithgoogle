@@ -694,8 +694,8 @@
                 "language": "Język",
                 "image": "Obraz",
                 "description": "Opis",
-                "barcode": "MPN",
-                "price": "Cena"
+                "price": "Cena",
+                "barcode": "GTIN/Brand"
             },
             "xHasFailedPreValidation": "\"{0}\": proces wstępnej walidacji nie powiódł się.",
             "xHasPassedPreValidation": "\"{0}\": proces wstępnej walidacji powiódł się.",
