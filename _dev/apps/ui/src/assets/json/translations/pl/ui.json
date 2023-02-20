@@ -694,7 +694,6 @@
                 "language": "Język",
                 "image": "Obraz",
                 "description": "Opis",
-                "barcode": "MPN",
                 "price": "Cena"
             },
             "xHasFailedPreValidation": "\"{0}\": proces wstępnej walidacji nie powiódł się.",
