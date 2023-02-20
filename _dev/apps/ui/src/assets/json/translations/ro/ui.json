@@ -694,7 +694,6 @@
                 "language": "Language",
                 "image": "Image",
                 "description": "Description",
-                "barcode": "MPN",
                 "price": "Price"
             },
             "xHasFailedPreValidation": "\"{0}\": has failed the pre-validation.",
