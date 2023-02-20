@@ -28,8 +28,8 @@
         "max": "Max",
         "helpPage": "Página de Ajuda",
         "noResultsFoundForX": "Sem resultados para {0}",
-        "days": "Days",
-        "readMore": "Read more"
+        "days": "Dias",
+        "readMore": "Leia mais"
     },
     "landingPage": {
         "header": {
@@ -695,7 +695,7 @@
                 "image": "Imagem",
                 "description": "Descrição",
                 "price": "Prémio",
-                "barcode": "GTIN/Brand"
+                "barcode": "GTIN/Marca"
             },
             "xHasFailedPreValidation": "\"{0}\": has failed the pre-validation.",
             "xHasPassedPreValidation": "\"{0}\": has passed the pre-validation.",
