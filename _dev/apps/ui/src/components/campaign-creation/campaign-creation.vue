@@ -351,7 +351,9 @@
                   id="campaign-dailyBudget-input"
                   :value="budgetInput"
                   @change="campaignDailyBudget = $event"
-                  :placeholder="getRecommendedBudgetValue"
+                  :placeholder="
+                    $t('smartShoppingCampaignCreation.inputBudgetPlaceholder')
+                  "
                   :state="campaignDailyBudgetFeedback"
                 />
               </b-input-group>
@@ -481,7 +483,7 @@ export default defineComponent({
       campaignDurationStartDate: new Date(),
       campaignDurationEndDate: null,
       campaignHasNoProductsFilter: true,
-      campaignDailyBudget: null,
+      campaignDailyBudget: null as string|null,
       timer: null,
       displayError: false,
       campaignIsActive: true,
@@ -539,7 +541,7 @@ export default defineComponent({
         this.campaignNameFeedback === true
         && this.campaignDurationStartDate
         && (this.targetCountry || this.defaultCountry)
-        && (this.campaignDailyBudget || this.recommendedBudget?.value)
+        && this.campaignDailyBudgetFeedback === true
         && this.campaignEndDateFeedback !== false
       ) {
         return false;
@@ -587,15 +589,15 @@ export default defineComponent({
       const regex = /^[0-9]+([.][0-9]{0,2})?$/g;
 
       if (
-        this.campaignDailyBudget === null
-        || this.campaignDailyBudget === ''
+        this.budgetInput === null
+        || this.budgetInput === ''
       ) {
         return null;
       }
-      if (this.campaignDailyBudget < 1) {
+      if (this.budgetInput < 1) {
         return false;
       }
-      return !!regex.test(this.campaignDailyBudget);
+      return !!regex.test(this.budgetInput);
     },
     errorCampaignNameExistsAlready() {
       return this.$store.getters[
@@ -665,10 +667,7 @@ export default defineComponent({
       return formatPrice(this.recommendedBudget.value, this.recommendedBudget.currency);
     },
     budgetInput(): string|number {
-      return this.campaignDailyBudget || this.recommendedBudget?.value || '';
-    },
-    getRecommendedBudgetValue() {
-      return this.recommendedBudget?.value ?? '10';
+      return this.campaignDailyBudget ?? this.recommendedBudget?.value ?? '';
     },
   },
   methods: {
@@ -704,6 +703,9 @@ export default defineComponent({
     saveCountrySelected(values: string[]) {
       this.targetCountry = values.length ? values[0] : this.defaultCountry;
       this.getRecommendedBudget(this.targetCountry);
+      if (!Number(this.campaignDailyBudget)) {
+        this.campaignDailyBudget = null;
+      }
     },
     openFilterPopin() {
       this.$bvModal.show(
