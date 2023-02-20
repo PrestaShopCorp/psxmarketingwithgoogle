@@ -694,8 +694,8 @@
                 "language": "Taal",
                 "image": "Afbeelding",
                 "description": "Beschrijving",
-                "barcode": "MPN",
-                "price": "Prijs"
+                "price": "Prijs",
+                "barcode": "GTIN/Brand"
             },
             "xHasFailedPreValidation": "\"{0}\": has failed the pre-validation.",
             "xHasPassedPreValidation": "\"{0}\": has passed the pre-validation.",
