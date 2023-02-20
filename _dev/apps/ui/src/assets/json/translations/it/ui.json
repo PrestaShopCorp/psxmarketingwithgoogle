@@ -694,8 +694,8 @@
                 "language": "Lingua",
                 "image": "Immagine",
                 "description": "Descrizione",
-                "barcode": "MPN",
-                "price": "Prezzo"
+                "price": "Prezzo",
+                "barcode": "GTIN/Brand"
             },
             "xHasFailedPreValidation": "{0}: preconvalida fallita.",
             "xHasPassedPreValidation": "{0}: preconvalida accettata.",
