@@ -694,7 +694,6 @@
                 "language": "Lingua",
                 "image": "Immagine",
                 "description": "Descrizione",
-                "barcode": "MPN",
                 "price": "Prezzo"
             },
             "xHasFailedPreValidation": "{0}: preconvalida fallita.",
