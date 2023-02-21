@@ -168,9 +168,8 @@ export default {
     }
   },
 
-  async [ActionsTypes.TOGGLE_GOOGLE_ACCOUNT_IS_REGISTERED]({
-    rootState,
-  }, isGoogleAccountLinked: boolean) {
+  // eslint-disable-next-line no-empty-pattern
+  async [ActionsTypes.TOGGLE_GOOGLE_ACCOUNT_IS_REGISTERED]({}, isGoogleAccountLinked: boolean) {
     return fetchShop('toggleGoogleAccountIsRegistered', {isGoogleAccountLinked});
   },
 
@@ -222,8 +221,7 @@ export default {
         });
       }
       if (json.google_ads_account_id) {
-        commit(`googleAds/${MutationsTypesGoogleAds.SET_GOOGLE_ADS_ACCOUNT_ID}`, json.google_ads_account_id,
-          {root: true},
+        commit(`googleAds/${MutationsTypesGoogleAds.SET_GOOGLE_ADS_ACCOUNT_ID}`, json.google_ads_account_id, {root: true},
         );
       }
       // If GMC is already linked, must start by requesting GMC list, then look after the link GMC.
@@ -435,7 +433,7 @@ export default {
 
   async [ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS](
     {
-      rootState, state, commit, dispatch,
+      rootState, state, commit,
     },
     correlationId: string,
   ) {
@@ -503,7 +501,7 @@ export default {
     }
   },
 
-  async [ActionsTypes.REQUEST_SHOP_INFORMATIONS]({rootState, commit}) {
+  async [ActionsTypes.REQUEST_SHOP_INFORMATIONS]({commit}) {
     try {
       const json = await fetchShop('getShopConfigurationForGMC');
       commit(MutationsTypes.SAVE_SHOP_INFORMATIONS, json);
@@ -638,9 +636,8 @@ export default {
     return response.json();
   },
 
-  async [ActionsTypes.SEND_GMC_INFORMATION_TO_SHOP]({
-    rootState,
-  }, gmcInfo) {
+  // eslint-disable-next-line no-empty-pattern
+  async [ActionsTypes.SEND_GMC_INFORMATION_TO_SHOP]({}, gmcInfo) {
     try {
       await fetchShop('setGMCInformations', {gmcInformations: gmcInfo});
     } catch (error) {

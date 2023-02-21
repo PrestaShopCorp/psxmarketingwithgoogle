@@ -51,7 +51,7 @@
         v-if="$route.params.step === ProductFeedSettingsPages.SYNC_SCHEDULE"
         @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
       />
-      <Summary
+      <summary-block
         v-bind="$attrs"
         v-if="$route.params.step === ProductFeedSettingsPages.SUMMARY"
         @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
@@ -68,7 +68,7 @@ import ShippingSetup from './settings/shipping-setup/shipping-setup.vue';
 import DeliveryTimeAndRates from './settings/delivery-time-and-rates/delivery-time-and-rates.vue';
 import AttributeMapping from './settings/attribute-mapping/attribute-mapping.vue';
 import SyncSchedule from './settings/sync-schedule/sync-schedule.vue';
-import Summary from './settings/summary/summary';
+import SummaryBlock from './settings/summary/summary-block.vue';
 
 export default {
   name: 'ProductFeedSettings',
@@ -78,7 +78,7 @@ export default {
     DeliveryTimeAndRates,
     AttributeMapping,
     SyncSchedule,
-    Summary,
+    SummaryBlock,
   },
   data() {
     return {

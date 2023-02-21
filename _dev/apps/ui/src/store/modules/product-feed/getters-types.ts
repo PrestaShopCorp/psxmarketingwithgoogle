@@ -24,4 +24,4 @@ enum GetterTypes {
   GET_ESTIMATE_CARRIERS = 'GET_ESTIMATE_CARRIERS',
 }
 
-export {GetterTypes as default};
+export default GetterTypes;

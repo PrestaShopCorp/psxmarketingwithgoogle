@@ -220,7 +220,6 @@
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 import {BTableSimple} from 'bootstrap-vue';
-import {VueShowdown} from 'vue-showdown';
 import {defineComponent} from 'vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import googleUrl from '@/assets/json/googleUrl.json';
@@ -236,14 +235,13 @@ import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 dayjs.extend(duration);
 
 export default defineComponent({
-  name: 'ProductFeedSettingsSummary',
+  name: 'SummaryBlock',
   components: {
     SettingsFooter,
     ActionsButtons,
     ProductFeedCardReportCard,
     ProductFeedCardNextSyncCard,
     BTableSimple,
-    VueShowdown,
     TableRowMapping,
     ProductFeedSummaryCards,
   },
@@ -364,7 +362,7 @@ export default defineComponent({
       });
       window.scrollTo(0, 0);
     },
-    postDatas() {
+    postDatas(): void {
       this.$store.dispatch('productFeed/SEND_PRODUCT_FEED_SETTINGS');
       this.$router.push({
         name: 'configuration',

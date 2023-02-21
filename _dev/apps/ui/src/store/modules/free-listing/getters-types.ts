@@ -4,4 +4,4 @@ enum GetterTypes {
   GET_FREE_LISTING_IS_ACTIVATED_ONCE = 'GET_FREE_LISTING_IS_ACTIVATED_ONCE'
 }
 
-export {GetterTypes as default};
+export default GetterTypes;

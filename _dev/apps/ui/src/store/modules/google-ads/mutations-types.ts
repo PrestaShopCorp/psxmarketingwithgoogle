@@ -28,4 +28,4 @@ enum MutationsTypes {
 
 }
 
-export {MutationsTypes as default};
+export default MutationsTypes;

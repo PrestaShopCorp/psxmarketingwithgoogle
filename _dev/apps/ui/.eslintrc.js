@@ -38,5 +38,8 @@ module.exports = {
     'import/no-extraneous-dependencies': ['error', {devDependencies: ['**/*.spec.ts', '**/tests/*.ts']}],
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': ['error'],
+    // To enable later, this has been disabled to ease the migration
+    // to the latest versions of our dependencies
+    'vue/no-mutating-props': 'off',
   },
 };

@@ -48,4 +48,4 @@ enum ActionsTypes {
   GET_RECOMMENDED_BUDGET = 'GET_RECOMMENDED_BUDGET',
 }
 
-export {ActionsTypes as default};
+export default ActionsTypes;

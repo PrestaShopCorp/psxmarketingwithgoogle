@@ -50,4 +50,4 @@ enum ActionsTypes {
   SEND_GMC_INFORMATION_TO_SHOP = 'SEND_GMC_INFORMATION_TO_SHOP',
 }
 
-export {ActionsTypes as default};
+export default ActionsTypes;

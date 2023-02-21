@@ -23,10 +23,6 @@ import {
   AccountInformations,
 } from './state';
 
-type payloadObject = {
-  name: string, data: string
-}
-
 export default {
   [MutationsTypes.SET_GOOGLE_ADS_LIST](state: LocalState, payload: Array<AccountInformations>) {
     state.list = payload;

@@ -24,4 +24,4 @@ enum ActionsTypes {
   GET_FREE_LISTING_STATUS = 'GET_FREE_LISTING_STATUS',
 }
 
-export {ActionsTypes as default};
+export default ActionsTypes;

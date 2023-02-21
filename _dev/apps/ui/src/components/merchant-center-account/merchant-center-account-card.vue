@@ -528,7 +528,6 @@
 
 <script>
 import uniqBy from 'lodash.uniqby';
-import {VueShowdown} from 'vue-showdown';
 import {BAlert} from 'bootstrap-vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 import {
@@ -545,7 +544,6 @@ export default {
   components: {
     MerchantCenterAccountPopinOverwriteClaim,
     MerchantCenterAccountPopinWebsiteRequirements,
-    VueShowdown,
     PhoneVerificationPopin,
     BAlert,
     AlertModuleDisabled,

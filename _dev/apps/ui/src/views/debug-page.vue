@@ -270,7 +270,7 @@ import GettersTypesApp from '@/store/modules/app/getters-types.ts';
 import GettersTypesProductFeed from '@/store/modules/product-feed/getters-types.ts';
 
 export default {
-  name: 'Debug',
+  name: 'DebugPage',
   data() {
     return {
       hooks: [],

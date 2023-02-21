@@ -61,7 +61,7 @@ export default {
     }
   },
   async [ActionsTypes.GET_GOOGLE_ADS_ACCOUNT]({
-    commit, rootState, dispatch, state,
+    commit, rootState, state,
   }) {
     try {
       commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, '');
@@ -107,7 +107,7 @@ export default {
   },
 
   async [ActionsTypes.SAVE_NEW_GOOGLE_ADS_ACCOUNT](
-    {commit, rootState, dispatch}, payload,
+    {commit, rootState}, payload,
   ) {
     const newUser = {
       name: payload.name,
@@ -149,7 +149,7 @@ export default {
       console.error(error);
     }
   },
-  async [ActionsTypes.DISSOCIATE_GOOGLE_ADS_ACCOUNT]({commit, rootState, dispatch},
+  async [ActionsTypes.DISSOCIATE_GOOGLE_ADS_ACCOUNT]({commit, rootState},
     correlationId: string) {
     commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, '');
     // eslint-disable-next-line no-param-reassign
@@ -173,7 +173,7 @@ export default {
   },
 
   async [ActionsTypes.SAVE_SELECTED_GOOGLE_ADS_ACCOUNT]({
-    commit, rootState, dispatch,
+    commit, rootState,
   }, payload) {
     try {
       const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/${payload.id}/link`,
@@ -190,7 +190,7 @@ export default {
         commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
         throw new HttpClientError(resp.statusText, resp.status);
       }
-      const json = await resp.json();
+      await resp.json();
     } catch (error) {
       console.error(error);
     }

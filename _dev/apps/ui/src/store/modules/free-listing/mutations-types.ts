@@ -23,4 +23,4 @@ enum MutationsTypes {
     SAVE_ACTIVATED_ONCE = 'SAVE_ACTIVATED_ONCE',
 }
 
-export {MutationsTypes as default};
+export default MutationsTypes;

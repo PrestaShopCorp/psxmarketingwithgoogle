@@ -40,4 +40,4 @@ enum ActionsTypes {
 
 }
 
-export {ActionsTypes as default};
+export default ActionsTypes;

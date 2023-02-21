@@ -4,7 +4,6 @@
     "apps/ui"
   ],
   "engines": {
-    "node": ">=14",
-    "pnpm": ">=7"
+    "node": ">=14"
   }
 }

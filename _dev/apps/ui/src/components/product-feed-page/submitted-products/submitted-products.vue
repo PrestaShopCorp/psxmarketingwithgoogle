@@ -63,7 +63,7 @@
         {{ nbProductsTotal }}
       </span>
     </div>
-    <slot :productStatuses="productStatuses" />
+    <slot :product-statuses="productStatuses" />
   </div>
 </template>
 

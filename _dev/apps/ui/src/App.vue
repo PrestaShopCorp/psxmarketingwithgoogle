@@ -18,7 +18,7 @@
         id="head_tabs"
         class="ps_gs-sticky-head page-head-tabs"
       >
-        <Menu>
+        <menu-bar>
           <MenuItem
             v-if="!currentlyOnLandingPage"
             @click.native="throwSegmentEvent"
@@ -49,7 +49,7 @@
           >
             {{ $t('general.tabs.help') }}
           </MenuItem>
-        </Menu>
+        </menu-bar>
         <b-toaster
           name="b-toaster-top-right"
           class="ps_gs-toaster-top-right"
@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import Menu from '@/components/menu/menu.vue';
+import MenuBar from '@/components/menu/menu-bar.vue';
 import MenuItem from '@/components/menu/menu-item.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import AlertModuleUpdate from '@/components/commons/alert-update-module';
@@ -99,7 +99,7 @@ const headerFull = document.querySelector('#header_infos');
 export default {
   name: 'Home',
   components: {
-    Menu,
+    MenuBar,
     MenuItem,
     AlertModuleUpdate,
   },

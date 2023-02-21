@@ -53,4 +53,4 @@ enum MutationsTypes {
     SET_RATE_CHOSEN = 'SET_RATE_CHOSEN',
 }
 
-export {MutationsTypes as default};
+export default MutationsTypes;

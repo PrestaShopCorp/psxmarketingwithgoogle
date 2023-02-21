@@ -57,7 +57,7 @@
 </template>
 
 <script lang="ts">
-import {PropType} from '@vue/composition-api';
+import {PropType} from 'vue';
 import SelectCountry from '@/components/commons/select-country.vue';
 import {DeliveryDetail} from '@/providers/shipping-settings-provider';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';

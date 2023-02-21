@@ -27,4 +27,4 @@ enum ActionsTypes {
   GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING = 'GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING',
 }
 
-export {ActionsTypes as default};
+export default ActionsTypes;

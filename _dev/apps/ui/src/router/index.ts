@@ -5,9 +5,9 @@ import CampaignPage from '../views/campaign-page.vue';
 import CampaignForm from '../views/campaign-form.vue';
 import CampaignList from '../views/campaign-list.vue';
 import LandingPage from '../views/landing-page.vue';
-import Debug from '../views/debug.vue';
+import DebugPage from '../views/debug-page.vue';
 import Help from '../views/help.vue';
-import Configuration from '../views/configuration.vue';
+import ConfigurationPage from '../views/configuration-page.vue';
 import ProductFeedPage from '../views/product-feed-page.vue';
 import ReportingPage from '../views/reporting-page.vue';
 import TunnelProductFeed from '../views/tunnel-product-feed.vue';
@@ -43,7 +43,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/configuration',
     name: 'configuration',
-    component: Configuration,
+    component: ConfigurationPage,
     beforeEnter: landingExistsInLocalstorage,
   },
   {
@@ -89,7 +89,7 @@ const routes: Array<RouteConfig> = [
       {
         path: 'creation',
         name: 'campaign-creation',
-        redirect: (to) => ({
+        redirect: () => ({
           name: 'campaign-creation-typed',
           params: {
             type: CampaignTypes.PERFORMANCE_MAX,
@@ -110,8 +110,8 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/debug',
-    name: 'Debug',
-    component: Debug,
+    name: 'DebugPage',
+    component: DebugPage,
   },
   {
     path: '/',

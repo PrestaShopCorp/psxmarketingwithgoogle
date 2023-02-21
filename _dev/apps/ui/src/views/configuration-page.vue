@@ -1,20 +1,20 @@
 <template>
   <div id="configuration">
-    <multistore v-if="!psAccountsContext.isShopContext && shops.length" />
+    <multistore-page v-if="!psAccountsContext.isShopContext && shops.length" />
     <onboarding-page v-else />
   </div>
 </template>
 
 <script>
-import {defineComponent} from '@vue/composition-api';
-import Multistore from './multistore.vue';
+import {defineComponent} from 'vue';
+import MultistorePage from './multistore-page.vue';
 import OnboardingPage from './onboarding-page.vue';
 
 export default defineComponent({
-  name: 'configuration',
+  name: 'ConfigurationPage',
   components: {
     OnboardingPage,
-    Multistore,
+    MultistorePage,
   },
 
   props: {

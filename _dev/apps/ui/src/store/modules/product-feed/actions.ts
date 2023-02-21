@@ -20,14 +20,12 @@ import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import HttpClientError from '@/api/HttpClientError';
 import {fetchShop} from '@/api/shopClient';
-import countriesSelectionOptions from '../../../assets/json/countries.json';
 import {getDataFromLocalStorage, deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
 import {
   CarrierIdentifier, DeliveryDetail, getEnabledCarriers,
   mergeShippingDetailsSourcesForProductFeedConfiguration,
   ShopShippingInterface, validateDeliveryDetail,
 } from '@/providers/shipping-settings-provider';
-import Categories from '@/enums/product-feed/attribute-mapping-categories';
 import {runIf} from '@/utils/Promise';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {fromApi, toApi} from '@/providers/shipping-rate-provider';
@@ -336,6 +334,7 @@ export default {
       );
 
     const {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       name, delay, country, carrierId, ...sourceCarrierData
     } = carriersList[indexToCopy];
 
@@ -372,7 +371,7 @@ export default {
     }
   },
 
-  async [ActionsTypes.GET_TOTAL_PRODUCTS_READY_TO_SYNC]({rootState, commit}) {
+  async [ActionsTypes.GET_TOTAL_PRODUCTS_READY_TO_SYNC]({commit}) {
     const result = await fetchShop('getProductsReadyToSync');
     commit(MutationsTypes.SAVE_TOTAL_PRODUCTS_READY_TO_SYNC, Number(result.total));
     return result;

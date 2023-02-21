@@ -395,7 +395,8 @@ export default {
       this.$emit('stepStoreInfoValidation',
         !(this.acceptsGoogleTerms
         && (this.containsAdultContent != null)
-        && this.allFieldsAreFilled()), this.containsAdultContent,
+        && this.allFieldsAreFilled()),
+        this.containsAdultContent,
       );
     },
     refreshDatas() {

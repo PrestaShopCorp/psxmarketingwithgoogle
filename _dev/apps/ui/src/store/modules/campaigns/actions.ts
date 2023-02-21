@@ -147,7 +147,7 @@ export default {
   async [ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_IF_ALREADY_EXISTS](
     {commit, rootState},
   ) {
-    const regex = new RegExp('AW-[0-9]+');
+    const regex = /AW-[0-9]+/;
     const remarketingSnippet = rootState.googleAds.accountChosen?.remarketingSnippet;
     const idTag = regex.exec(remarketingSnippet);
 
@@ -200,7 +200,7 @@ export default {
   },
 
   async [ActionsTypes.UPDATE_ALL_REPORTING_DATA](
-    {dispatch, commit},
+    {dispatch},
   ) {
     dispatch('GET_REPORTING_CAMPAIGNS_PERFORMANCES', {isNewRequest: true});
     dispatch('GET_REPORTING_KPIS');
@@ -483,7 +483,7 @@ export default {
     commit(MutationsTypes.UPDATE_CAMPAIGN_STATUS, payload);
     return json;
   },
-  async [ActionsTypes.UPDATE_CAMPAIGN]({commit, rootState, state}, payload: CampaignObject) {
+  async [ActionsTypes.UPDATE_CAMPAIGN]({commit, rootState}, payload: CampaignObject) {
     const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/${payload.id}`,
       {
         method: 'POST',

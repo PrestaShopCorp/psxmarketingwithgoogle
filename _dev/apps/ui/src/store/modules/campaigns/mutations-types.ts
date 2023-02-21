@@ -61,4 +61,4 @@ enum MutationsTypes {
     SET_SSC_LIST_ORDERING = 'SET_SSC_LIST_ORDERING'
 }
 
-export {MutationsTypes as default};
+export default MutationsTypes;

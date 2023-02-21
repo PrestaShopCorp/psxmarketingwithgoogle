@@ -16,8 +16,6 @@ import {
   EnabledConnected,
   CantConnect,
   Suspended,
-  BillingSettingsMissing,
-  NeedRefreshAfterBilling,
   Canceled,
 } from '@/../stories/google-ads-account-card.stories';
 import {GoogleAdsErrorReason} from '@/store/modules/google-ads/state';

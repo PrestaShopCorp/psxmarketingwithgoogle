@@ -5,8 +5,8 @@ import Vuex from 'vuex';
 
 // Import this file first to init mock on window
 import {shallowMount} from '@vue/test-utils';
-import {cloneStore, filters, localVue} from '@/../tests/init';
-import ProductFeedSettingsSummary from '@/components/product-feed/settings/summary/summary.vue';
+import {cloneStore, localVue} from '@/../tests/init';
+import ProductFeedSettingsSummary from '@/components/product-feed/settings/summary/summary-block.vue';
 import ProductFeedCardNextSyncCard from '@/components/product-feed/product-feed-card-next-sync-card.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
@@ -16,7 +16,7 @@ import {
 } from '@/../stories/product-feed-settings.stories';
 import productFeedSummaryCards from '../../summary/product-feed-summary-cards.vue';
 
-describe('summary', () => {
+describe('summary block', () => {
   const mockRoute = {
     name: 'product-feed-settings',
     params: {

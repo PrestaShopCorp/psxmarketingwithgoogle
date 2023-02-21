@@ -83,19 +83,15 @@
 </template>
 
 <script lang="ts">
-import {VueShowdown} from 'vue-showdown';
 import {defineComponent} from 'vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
-import ProductFeedStepper from '@/components/product-feed/product-feed-stepper.vue';
 import ProductFeedCardReportCard from '@/components/product-feed/product-feed-card-report-card.vue';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 
 export default defineComponent({
   name: 'ProductFeedSummaryCards',
   components: {
-    ProductFeedStepper,
     ProductFeedCardReportCard,
-    VueShowdown,
   },
   data() {
     return {

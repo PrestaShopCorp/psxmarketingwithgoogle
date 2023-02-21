@@ -24,7 +24,7 @@
 
 <script lang="ts">
 export default {
-  name: 'Menu',
+  name: 'MenuBar',
   props: {
   },
   computed: {

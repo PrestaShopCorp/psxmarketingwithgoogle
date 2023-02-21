@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 // Import this file first to init mock on window
-import {mount, MountOptions, shallowMount} from '@vue/test-utils';
+import {mount, MountOptions} from '@vue/test-utils';
 import config from '@/../tests/init';
 
 import tableRowCarrierVue from './table-row-carrier.vue';

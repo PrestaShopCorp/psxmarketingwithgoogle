@@ -47,12 +47,7 @@
 </template>
 
 <script>
-import {VueShowdown} from 'vue-showdown';
-
 export default {
   name: 'LandingPageHeader',
-  components: {
-    VueShowdown,
-  },
 };
 </script>

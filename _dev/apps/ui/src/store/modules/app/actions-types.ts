@@ -25,4 +25,4 @@ enum ActionsTypes {
   GET_MODULES_VERSIONS = 'GET_MODULES_VERSIONS',
 }
 
-export {ActionsTypes as default};
+export default ActionsTypes;

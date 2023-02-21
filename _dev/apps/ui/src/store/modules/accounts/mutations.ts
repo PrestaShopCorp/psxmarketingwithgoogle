@@ -17,7 +17,6 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
 import MutationsTypes from './mutations-types';
 import {
   State as LocalState,

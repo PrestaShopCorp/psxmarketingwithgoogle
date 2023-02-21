@@ -69,7 +69,6 @@
 </template>
 
 <script lang="ts">
-import {VueShowdown} from 'vue-showdown';
 import {BFormRadio, BFormGroup} from 'bootstrap-vue';
 import {defineComponent} from 'vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
@@ -82,7 +81,6 @@ export default defineComponent({
   name: 'ShippingSetup',
   components: {
     ActionsButtons,
-    VueShowdown,
     BFormRadio,
     BFormGroup,
   },

@@ -23,4 +23,4 @@ enum MutationsTypes {
   AD_BLOCKER_EXISTS = 'AD_BLOCKER_EXISTS',
 }
 
-export {MutationsTypes as default};
+export default MutationsTypes;

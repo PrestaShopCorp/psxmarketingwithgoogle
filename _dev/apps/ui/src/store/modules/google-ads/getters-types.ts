@@ -7,4 +7,4 @@ enum GetterTypes {
   GET_BILLING_SHOP_INFORMATIONS = 'GET_BILLING_SHOP_INFORMATIONS',
 }
 
-export {GetterTypes as default};
+export default GetterTypes;

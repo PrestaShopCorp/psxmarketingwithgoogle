@@ -14,4 +14,4 @@ enum GetterTypes {
   GET_SYMBOL_OF_CURRENT_CURRENCY = 'GET_SYMBOL_OF_CURRENT_CURRENCY',
 }
 
-export {GetterTypes as default};
+export default GetterTypes;

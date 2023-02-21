@@ -44,4 +44,4 @@ enum MutationsTypes {
     ADD_NEW_GMC = 'ADD_NEW_GMC',
 }
 
-export {MutationsTypes as default};
+export default MutationsTypes;

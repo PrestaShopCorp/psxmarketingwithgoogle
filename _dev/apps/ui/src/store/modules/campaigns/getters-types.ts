@@ -60,4 +60,4 @@ enum GettersTypes {
   GET_REPORTING_FILTERS_PERFORMANCES = 'GET_REPORTING_FILTERS_PERFORMANCES',
 }
 
-export {GettersTypes as default};
+export default  GettersTypes;

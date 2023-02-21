@@ -76,7 +76,7 @@ export default Vue.extend({
   },
   computed: {
     rateSelected: {
-      get() {
+      get(): RateType|false|null {
         return this.rateTypeChosen;
       },
       set() {
