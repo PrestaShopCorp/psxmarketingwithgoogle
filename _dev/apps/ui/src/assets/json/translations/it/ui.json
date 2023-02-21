@@ -695,7 +695,7 @@
                 "image": "Immagine",
                 "description": "Descrizione",
                 "price": "Prezzo",
-                "barcode": "GTIN/Brand"
+                "barcode": "GTIN/Marca"
             },
             "xHasFailedPreValidation": "{0}: preconvalida fallita.",
             "xHasPassedPreValidation": "{0}: preconvalida accettata.",
@@ -1131,7 +1131,7 @@
         "textCampaignsBanner": "Performance Max è la nuova generazione di campagne Smart Shopping. Si tratta di un tipo di campagna potenziata grazie alla tecnologia intelligente di Google. Lavora dietro le quinte per ottimizzare automaticamente i tuoi annunci lungo tutto il percorso dello shopping per ottenere il massimo delle prestazioni."
     },
     "tipsAndTricks": {
-        "title": "PrestaShop Tips and Tricks",
+        "title": "Consigli e trucchi di PrestaShop",
         "advisorPicture": "{0}'s profile picture",
         "advisorRole": "PrestaShop eCommerce Expert"
     }

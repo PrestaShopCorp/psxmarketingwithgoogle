@@ -9,7 +9,7 @@
             "help": "Ajuda"
         },
         "versionDoesNotExist": "Parece que a versão do módulo não pode ser recuperada. Está do nosso lado, por favor tente novamente.",
-        "moduleNeedActivation": "Marketing with Google is disabled, you will not be able to use any of it's features until you enable your module.",
+        "moduleNeedActivation": "O marketing com Google está desactivado, não poderá utilizar nenhuma das suas funcionalidades até que active o seu módulo.",
         "moduleUpdateNeeded": {
             "ps_eventbus": "The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync.",
             "psxmarketingwithgoogle": "Por favor, atualize o módulo PrestaShop Marketing com o Google para que ele funcione corretamente"
@@ -21,20 +21,20 @@
         "unableToFetchData": "Não conseguimos obter dados, por favor tente novamente mais tarde.",
         "searchByX": "Pesquisar por {0}",
         "search": "Pesquisa",
-        "createAccount": "create your account",
-        "createNewAccount": "If you don't have an account, you can {0} today.",
+        "createAccount": "Criar a sua conta",
+        "createNewAccount": "Se não tiver uma conta, pode {0} hoje.",
         "notAvailable": "Não disponível",
-        "min": "Min",
-        "max": "Max",
+        "min": "Mín.",
+        "max": "Máx",
         "helpPage": "Página de Ajuda",
         "noResultsFoundForX": "Sem resultados para {0}",
-        "days": "Days",
-        "readMore": "Read more"
+        "days": "Dias",
+        "readMore": "Leia mais"
     },
     "landingPage": {
         "header": {
             "title": "Marketing com Google",
-            "text": "With Prestashop Marketing, you can reach potential buyers who are searching online for products like the ones you offer! Use this module to reach them on Google in 3 easy steps.",
+            "text": "Com Prestashop Marketing, pode chegar a potenciais compradores que estão à procura online de produtos como os que oferece! Utilize este módulo para chegar a eles no Google em 3 passos simples.",
             "reinsurance": "- Fácil configuração \n- Cancelar a qualquer momento"
         },
         "content": {
@@ -66,7 +66,7 @@
                 "lastTitle": "Businesses using free listings and ads on the Shopping tab together have seen an average >50% increase in clicks and >100% increase in impressions. (Google Internal Data, July 2020)"
             },
             "smartShoppingCampaign": {
-                "title": "Advertise on Google with Performance Max",
+                "title": "Anunciar no Google com o Performance Max",
                 "subtitle": "Connect or create your Google Ads account and launch a Performance Max campaign for your products. Maximize your campaign performance across multiple Google channels through one single campaign. Show your ads where they have higher chances of driving conversion.\n\n Even better, you don't pay unless your customers click."
             }
         },
@@ -125,13 +125,13 @@
         "sendCode": "Enviar código",
         "receiveCall": "Receber chamada",
         "phoneVerifiedContinue": "O seu número de telefone foi verificado. Pode continuar a criação da sua conta.",
-        "enterCode": "Please enter your verification code",
+        "enterCode": "Por favor introduza o seu código de verificação",
         "validatingCode": "A validar o seu código",
         "textMessageHasBeenSent": "A text message containing an X-digit code has been sent",
         "askAgain60sec": "Poderá pedir um novo código em 60 segundos",
         "needPhoneVerification": "We need to verify your identity with your phone number",
         "fillInputs": "Preencha o seu número de telefone e selecione o seu prefixo internacional",
-        "invalidCode": "Code is not valid",
+        "invalidCode": "Código inválido",
         "phoneNumberNotValid": "Your phone number is incorrect, please only put numbers",
         "code": "Código",
         "contactMethod": "Choose your preferred contact method",
@@ -268,8 +268,8 @@
                 "freeShippingOverAmount": "Enter the value of minimum spend required for free shipping",
                 "shippingRate": "Enter the shipping rate that applies below the minimum set amount spend required for free shipping"
             },
-            "title": "Delivery time & rates",
-            "rateAndDelivery": "Rate & delivery timeline",
+            "title": "Prazo e taxas de entrega",
+            "rateAndDelivery": "Preço e tempo de entrega",
             "deliveryInfo": "Enter the minimum and maximum days required for delivery",
             "customRate": {
                 "title": "Choose a flat or custom rate for your target countries",
@@ -329,7 +329,7 @@
             "appliedOnlyForUsa": "(aplicado apenas para os EUA)",
             "alertTaxes": "Você deve enviar os impostos que você recolhe, para que os usuários entendam o preço exato que terão que pagar por seus produtos.",
             "carrierDescriptionHeader": "Portador  \n descrição",
-            "enableHeader": "Enable /  \n disable",
+            "enableHeader": "Activar /  \n desactivar",
             "shipToCustomerHeader": "Passo das portas  \n entrega",
             "transitTimeHeader": "Delivery time",
             "countryHeader": "País de Origem",
@@ -695,7 +695,7 @@
                 "image": "Imagem",
                 "description": "Descrição",
                 "price": "Prémio",
-                "barcode": "GTIN/Brand"
+                "barcode": "GTIN/Marca"
             },
             "xHasFailedPreValidation": "\"{0}\": has failed the pre-validation.",
             "xHasPassedPreValidation": "\"{0}\": has passed the pre-validation.",

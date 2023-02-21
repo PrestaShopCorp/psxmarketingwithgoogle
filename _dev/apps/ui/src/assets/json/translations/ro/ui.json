@@ -1,117 +1,117 @@
 {
     "general": {
         "tabs": {
-            "exportStatus": "Export status",
-            "campaign": "Campaign",
-            "reporting": "Reporting",
-            "configuration": "Configure",
-            "catalog": "Product catalog",
-            "help": "Help"
+            "exportStatus": "Stare export",
+            "campaign": "Campanie",
+            "reporting": "Raportare",
+            "configuration": "Configurare",
+            "catalog": "Catalog produse",
+            "help": "Ajutor"
         },
-        "versionDoesNotExist": "It seems that the module's version can not be retrieved. It's on our side please try again.",
-        "moduleNeedActivation": "Marketing with Google is disabled, you will not be able to use any of it's features until you enable your module.",
+        "versionDoesNotExist": "Se pare că versiunea modulului nu poate fi recuperată. Este din partea noastră, vă rugăm să încercați din nou.",
+        "moduleNeedActivation": "Marketing with Google este dezactivat, nu veți putea utiliza niciuna dintre caracteristicile sale până când nu activați modulul.",
         "moduleUpdateNeeded": {
-            "ps_eventbus": "The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync.",
-            "psxmarketingwithgoogle": "Please update the PrestaShop Marketing With Google module in order to make it work properly"
+            "ps_eventbus": "Versiunea modulului PrestaShop CloudSync care rulează pe acest magazin este mai veche decât cea minimă necesară.\n\nPuteți utiliza PrestaShop Marketing with Google, dar unele caracteristici (de exemplu, sincronizarea produselor) nu vor fi disponibile până când nu veți actualiza PrestaShop CloudSync.",
+            "psxmarketingwithgoogle": "Vă rugăm să actualizați modulul PrestaShop Marketing With Google pentru a-l face să funcționeze corect"
         },
-        "adblockerActivated": "Please deactivate your ad-blocker for the module to work properly and refresh your navigator.",
-        "refreshPage": "Refresh page",
-        "mandatory": "are mandatory",
-        "XIsMandatory": "{0} is mandatory.",
-        "unableToFetchData": "We were unable to fetch datas, please try again later",
-        "searchByX": "Search by {0}",
-        "search": "Search",
-        "createAccount": "create your account",
-        "createNewAccount": "If you don't have an account, you can {0} today.",
-        "notAvailable": "Not available",
+        "adblockerActivated": "Te rugăm să dezactivezi ad-blocker-ul pentru ca modulul să funcționeze corect și să reîmprospătezi navigatorul.",
+        "refreshPage": "Reîncarcă pagina",
+        "mandatory": "sunt obligatorii",
+        "XIsMandatory": "{0} este obligatorie.",
+        "unableToFetchData": "Nu am reușit să preluăm datele, te rugăm să încerci din nou mai târziu",
+        "searchByX": "Căutare după {0}",
+        "search": "Caută",
+        "createAccount": "creează un cont",
+        "createNewAccount": "Dacă nu ai un cont, poți {0} astăzi.",
+        "notAvailable": "Indisponibil",
         "min": "Min",
         "max": "Max",
-        "helpPage": "Help Page",
-        "noResultsFoundForX": " No results found for {0}",
-        "days": "Days",
-        "readMore": "Read more"
+        "helpPage": "Pagina de ajutor",
+        "noResultsFoundForX": " Nu s-au găsit rezultate pentru {0}",
+        "days": "Zile",
+        "readMore": "Citește mai mult"
     },
     "landingPage": {
         "header": {
-            "title": "Marketing With Google",
-            "text": "With Prestashop Marketing, you can reach potential buyers who are searching online for products like the ones you offer! Use this module to reach them on Google in 3 easy steps.",
-            "reinsurance": "- Easy setup \n- Cancel anytime"
+            "title": "Marketing with Google",
+            "text": "Cu Prestashop Marketing, poți ajunge la potențialii cumpărători care caută online produse precum cele pe care le oferi! Folosiți acest modul pentru a ajunge la ei cu Google în 3 pași simpli.",
+            "reinsurance": "- Configurare ușoară \n- Anulează oricând"
         },
         "content": {
             "content1": {
-                "title": "Sync your product catalog with Google",
-                "text": "Connect your store to Google Merchant Center and synchronize your entire product catalog in a few clicks. Product attributes such as price and availability will be automatically updated everyday."
+                "title": "Sincronizează catalogul de produse cu Google",
+                "text": "Conecteaza-ti magazinul la Google Merchant Center si sincronizeaza intregul catalog de produse in cateva clicuri. Atributele produsului, cum ar fi prețul și disponibilitatea vor fi actualizate automat în fiecare zi."
             },
             "content2": {
-                "title": "Enable free listings for your products",
-                "text": "Free listings allow to show your product attributes, including image and price in organically-ranked listings on the Shopping tab.  \n \n Once your catalog has been synchronised, enable free listings on your dashboard and start showing your products on the Shopping tab for free.",
-                "footer": "Create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing one.  \nTo show your products on Google you’ll need to meet the [eligibility requirements]({1})[:target=\"_blank\"]"
+                "title": "Activează listările gratuite pentru produsele tale",
+                "text": "Listările gratuite permit afișarea atributelor tale de produs, inclusiv a imaginii și a prețului în listările clasificate în mod organic în fila de cumpărături.  \n \n Odată ce catalogul a fost sincronizat, activează listările gratuite pe tabloul de bord și începe să afișezi produsele în fila de cumpărături gratuit.",
+                "footer": "Creați un nou cont [Merchant Center account]({0})[:target=\"_blank\"] sau conectați unul existent.  \nPentru a vă afișa produsele pe Google, va trebui să îndepliniți [eligibility requirements]({1})[:target=\"_blank\"]"
             },
             "content3": {
-                "title": "Boost your reach and sales with Performance Max",
-                "text": "Want to maximize your campaign performance and find the right customers wherever they are?  From one single campaign, Performance Max collects data across different Google channels, and optimises your campaign performance by showing where your ads have higher chances of driving conversion."
+                "title": "Stimulează-ți creșterea numărului de clienți și a vânzărilor cu Performance Max",
+                "text": "Vrei să maximizezi performanțele campaniei tale și să găsești clienții potriviți oriunde ar fi? Dintr-o singură campanie, Performance Max colectează date pentru diferite canale Google, și optimizează performanța campaniei dvs. arătând unde reclamele dvs. au șanse mai mari de a conduce conversia."
             }
         },
         "footer": {
-            "text": "Get your products found on Google with PS Marketing with Google",
-            "explanation": "In the European Economic Area, the United Kingdom or Switzerland, Performance Max campaigns can be used with any Comparison Shopping Service (CSS) you work with. The ads will show on general search results pages and on any other surfaces the CSS has opted in to."
+            "text": "Obține produsele tale găsite pe Google cu PS Marketing cu Google",
+            "explanation": "În Spațiul Economic European, Regatul Unit sau Elveția, campaniile Performance Max pot fi utilizate cu orice serviciu de comparare a cumpărăturilor (CSS) cu care lucrezi. Anunțurile vor fi afișate pe paginile de rezultate generale de căutare și pe orice alte suprafețe pentru care CSS a optat."
         }
     },
     "onboarding": {
         "sectionTitle": {
-            "psAccount": "Link your shop to your PrestaShop account",
+            "psAccount": "Asociază magazinul tău la contul PrestaShop",
             "freeListing": {
-                "title": "Reach more people on Google with free listings",
-                "subtitle": "Free listings give you access to millions of shoppers searching for products similar to yours. Display your products for free in organically ranked listings on the Shopping tab when you connect your Google account to Google Merchant Center.",
-                "lastTitle": "Businesses using free listings and ads on the Shopping tab together have seen an average >50% increase in clicks and >100% increase in impressions. (Google Internal Data, July 2020)"
+                "title": "Atinge mai multe persoane pe Google cu listări gratuite",
+                "subtitle": "Listările gratuite îți oferă acces la milioane de cumpărători care caută produse similare cu ale tale. Afișează produsele tale gratuite în listele clasate organic pe fila de cumpărături atunci când conectezi contul Google la Google Merchant Center.",
+                "lastTitle": "Companiile care au folosit anunțuri gratuite și anunțuri în fila Shopping au înregistrat o creștere medie de peste 50% a numărului de clicuri și de peste 100% a numărului de impresii. (Date interne Google, iulie 2020)"
             },
             "smartShoppingCampaign": {
-                "title": "Advertise on Google with Performance Max",
-                "subtitle": "Connect or create your Google Ads account and launch a Performance Max campaign for your products. Maximize your campaign performance across multiple Google channels through one single campaign. Show your ads where they have higher chances of driving conversion.\n\n Even better, you don't pay unless your customers click."
+                "title": "Publicitate pe Google cu Performance Max",
+                "subtitle": "Conectează-te sau creează-ți contul Google Ads și lansează o campanie Performance Max pentru produsele tale. Maximizează performanța campaniei tale prin mai multe canale Google printr-o singură campanie. Arată reclamele tale acolo unde au șanse mai mari de a conduce conversia.\n\n Și mai bine, nu plătești dacă clienții nu dau click."
             }
         },
-        "productFeedNotice": "Help customers to find your products more easily on Google and list them for free with free listings. Free listings help reach more customers and get them to visit your site."
+        "productFeedNotice": "Ajută clienții să găsească mai ușor produsele tale pe Google și listează-le gratuit cu listări gratuite. Listările gratuite ajută la accesarea mai multor clienți și îi fac să viziteze site-ul dvs."
     },
     "multiShopSelector": {
-        "title": "Multi-store mode activated",
-        "subtitle": "You must configure your stores one by one for this service but you will be able to use the same account.",
-        "selectStore": "Please select the first store to configure from the list below",
-        "tips": "After you are done with the first shop, you can configure the others by selecting them one by one in the shop selector, in the horizontal menu",
-        "configure": "Configure",
-        "group": "Shop group"
+        "title": "Modul multimagazin activat",
+        "subtitle": "Trebuie să configurezi magazinele unul câte unul pentru acest serviciu, dar vei putea utiliza același cont.",
+        "selectStore": "Te rugăm să selectezi primul magazin de configurat din lista de mai jos",
+        "tips": "După ce ai terminat cu primul magazin, le poți configura pe celelalte, selectându-le unul câte unul din selectorul magazinului, în meniul orizontal",
+        "configure": "Configurare",
+        "group": "Grup de magazine"
     },
     "googleAccountCard": {
-        "title": "Google account",
-        "introDisabled": "Connect your Google account and associated with it Google Merchant Center to unlock free listings.",
-        "introEnabled": "Access through PrestaShop module associated with your email account Google Merchant Center and Google Ads accounts.",
-        "footerDissociating": "PrestaShop uses this account to manage and sync Merchant Center and Google Ads accounts.",
-        "alertCantConnect": "You can't connect to your Google account right now. Try again later.",
-        "alertTokenMissing": "We weren't able to authenticate your account. Try again or switch to another account.",
-        "stepIsMandatory": "*This step is mandatory",
-        "alertInfo": "Make sure to allow all requested permissions when authenticating your Google account.  \nThis action is mandatory for this service to work properly.",
-        "missingTokenScopes": "Some requested permissions are missing.  \nAll requested permissions are mandatory for this service to work properly, please manage your account and make sure to allow all of them."
+        "title": "Cont Google",
+        "introDisabled": "Conectează-ți contul Google și asociază-l cu Google Merchant Center pentru a debloca listările gratuite.",
+        "introEnabled": "Accesul prin modulul PrestaShop asociat cu contul de e-mail Google Merchant Center și conturile Google Ads.",
+        "footerDissociating": "PrestaShop utilizează acest cont pentru a gestiona și sincroniza conturile Merchant Center și Google Ads.",
+        "alertCantConnect": "Nu te poți conecta la contul tău Google acum. Încearcă din nou mai târziu.",
+        "alertTokenMissing": "Nu am reușit să autentificăm contul. Încearcă din nou sau treci la un alt cont.",
+        "stepIsMandatory": "*Acest pas este obligatoriu",
+        "alertInfo": "Asigură-te că acorzi toate permisiunile solicitate atunci când autentifici contul Google.  \nAceastă acțiune este obligatorie pentru ca acest serviciu să funcționeze corect.",
+        "missingTokenScopes": "Unele permisiuni solicitate lipsesc.  \nToate permisiunile solicitate sunt obligatorii pentru ca acest serviciu să funcționeze corect, te rugăm să gestionezi contul și să te asiguri că le permiți pe toate."
     },
     "mcaCard": {
-        "title": "Merchant Center account",
-        "introDisabled": "You can connect an existing Google Merchant Center account, or create a new one in a few easy steps.",
-        "claimCollides": "Your website has been already claimed.",
-        "claimOverwrite": "To finish Merchant Center account creation, you need to overwrite the existing claim.",
-        "footerEU": "For stores in the European Economic Area, the United Kingdom or Switzerland, your Merchant Center account is required to be associated with to a [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]. For new Merchant Center accounts created through this application, your account would be associated by default with Google Shopping, Google’s CSS. You can change the CSS associated with your account at any time and you can also find CSS Partners here. Once you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.",
-        "shopInfoMissing": "Store information is missing",
-        "shopInfoMissingDescription": "To complete missing store information please go to your [Merchant Center account]({0})[:target=\"_blank\"].",
-        "userIsNotAdmin": "You need Admin access",
-        "userIsTestAccount": "This is a test account",
-        "googleMCA": "Google Merchant Center account",
-        "shopMaintenance": "You cannot connect a Google Merchant Center account while Maintenance mode is active.  \n Please change your shop parameters.",
-        "linkingFailed": "You can't connect to your Merchant Center account right now. Try again later.",
-        "AccountValidationFailed": "Account validation failed",
-        "unlinkFailed": "Disconnection failed. Please refresh the page and try again.",
-        "tryAgainLater": "We can’t verify or claim the current site. **We recommend that you ensure that the site is accessible** and try again later.",
-        "alertSuspended": "Your account has been deactivated.",
-        "alertSuspendedDescription": "To see more details on the reasons for suspension, please visit your [Merchant Center account]({0})[:target=\"_blank\"]. Once resolved you will need to request a new review by filling out [this form]({1})[:target=\"_blank\"].",
-        "notManaged": "Not associated with PrestaShop",
-        "overwriteFailed": "Website URL claim failed",
-        "overwriteToBeDoneManually": "Your website has been already claimed on another merchant center account. As we are not administrator of your account, we cannot overwrite this claim for you. Please go to your [Google Merchant Center]({0})[:target=\"_blank\"] , and change the Website URL with this one : {1}",
+        "title": "Contul Merchant Center",
+        "introDisabled": "Poți conecta un cont Google Merchant Center existent sau poți crea unul nou în câțiva pași simpli.",
+        "claimCollides": "Site-ul tău a fost deja revendicat.",
+        "claimOverwrite": "Pentru a finaliza crearea contului Merchant Center, trebuie să suprascrii cererea existentă.",
+        "footerEU": "Pentru magazinele din Spațiul Economic European, Regatul Unit sau Elveția, contul tău Merchant Center trebuie să fie asociat cu un [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]]. Pentru noile conturi Merchant Center create prin intermediul acestei aplicații, contul tău va fi asociat în mod implicit cu Google Shopping, CSS al Google. Poți schimba în orice moment CSS-ul asociat contului și poți găsi, de asemenea, partenerii CSS aici. După ce ai configurat contul Merchant Center, poți utiliza instrumentul nostru de integrare, indiferent de CSS-ul pe care îl utilizezi.",
+        "shopInfoMissing": "Lipsesc informațiile despre magazin",
+        "shopInfoMissingDescription": "Pentru a completa informațiile lipsă ale magazinului, te rugăm să accesezi [Merchant Center account]({0})[:target=\"_blank\"]].",
+        "userIsNotAdmin": "Ai nevoie de acces de la administrator",
+        "userIsTestAccount": "Acesta este un cont de test",
+        "googleMCA": "Contul Google Merchant Center",
+        "shopMaintenance": "Nu poți conecta un cont Google Merchant Center în timp ce modul de întreținere este activ.  \nTe rugăm să modifici parametrii magazinului.",
+        "linkingFailed": "Nu te poți conecta la contul tău Merchant Center acum. Încearcă din nou mai târziu.",
+        "AccountValidationFailed": "Validarea contului a eșuat",
+        "unlinkFailed": "Eroare neașteptată. Reîncarcă pagina și încearcă din nou.",
+        "tryAgainLater": "Nu putem verifica sau revendica site-ul actual. **Recomandăm să te asiguri că site-ul este accesibil** și să încerci din nou mai târziu.",
+        "alertSuspended": "Contul tău a fost dezactivat.",
+        "alertSuspendedDescription": "Pentru a vedea mai multe detalii despre motivele suspendării, te rugăm să vizitezi [Merchant Center account]({0})[:target=\"_blank\"]]. Odată rezolvată, va trebui să soliciți o nouă revizuire prin completarea [this form]({1})[:target=\"_blank\"].",
+        "notManaged": "Nu este asociat cu PrestaShop",
+        "overwriteFailed": "URL-ul site-ului a eșuat",
+        "overwriteToBeDoneManually": "Site-ul tău a fost deja revendicat pe un alt cont de merchant center. Deoarece nu suntem administratorul contului tău., nu putem suprascrie această cerere pentru tine. Te rugăm să mergi la [Google Merchant Center]({0})[:target=\"_blank\"] , și schimbă URL-ul site-ului web cu acesta : {1}",
         "ineligibleForFreeListing": "Your account is ineligible for free enhanced listings on Google",
         "ineligibleForFreeListingDescription": "Please examine product-level disapprovals as well as your overall account.",
         "claimOverwriteWithManualAction": "To finalize your Google Merchant Center account connection, you need to provide your website URL ({0}) in your Google Merchant Center account.",
@@ -132,70 +132,70 @@
         "needPhoneVerification": "We need to verify your identity with your phone number",
         "fillInputs": "Please fill in your phone number and select your international prefix",
         "invalidCode": "Code is not valid",
-        "phoneNumberNotValid": "Your phone number is incorrect, please only put numbers",
-        "code": "Code",
-        "contactMethod": "Choose your preferred contact method",
-        "dialCode": "Dial code",
-        "phoneNumber": "Enter your phone number",
-        "textMethod": "Text message",
-        "callMethod": "Phone call",
-        "selectMethod": "Please select the desired method of contact to verify your identity",
-        "alertTooManyRequests": "You have requested this service too many times with this phone number. You need to wait 24 hours to try again or change your phone number.",
-        "alertSomethingHappened": "Something happened. It's on our side please try again.",
-        "alertCodeExpired": "The code has expired. Please ask for another one",
-        "refreshAfterAddingWebsiteAddress": "If you added a new information on Google Merchant Center, please refresh your page."
+        "phoneNumberNotValid": "Numărul tău de telefon este incorect, te rugăm să pui doar numere",
+        "code": "Cod",
+        "contactMethod": "Alege metoda preferată de contact",
+        "dialCode": "Formați codul",
+        "phoneNumber": "Introdu-ți numărul de telefon",
+        "textMethod": "Mesaj text",
+        "callMethod": "Apel telefon",
+        "selectMethod": "Te rugăm să selectezi metoda de contact dorită pentru a putea verifica identitatea",
+        "alertTooManyRequests": "Ai solicitat acest serviciu de prea multe ori cu acest număr de telefon. Trebuie să aștepți 24 de ore pentru a încerca din nou sau pentru a schimba numărul de telefon.",
+        "alertSomethingHappened": "S-a întâmplat ceva. Este din partea noastră, te rugăm să încerci din nou.",
+        "alertCodeExpired": "Codul a expirat. Te rugăm să ceri altul",
+        "refreshAfterAddingWebsiteAddress": "Dacă ai adăugat o nouă informație în Google Merchant Center, te rugăm să reîmprospătezi pagina."
     },
     "mcaRequirements": {
         "steps": {
-            "websiteRequirements": "Online store requirements",
-            "shopInfo": "Store information",
-            "phoneValidation": "Phone validation"
+            "websiteRequirements": "Cerințe pentru magazinul online",
+            "shopInfo": "Informații magazin",
+            "phoneValidation": "Validare telefon"
         },
-        "title": "Create new Merchant Center account",
-        "legend": "To participate in free listings and advertise on Google you must acknowledge and comply with below requirements:",
-        "legend2": "Store's website URL needs to be verified and claimed before you can upload products data.  \n[Learn how to verify and claim your website](https://support.google.com/merchants/answer/176793?hl=en&ref_topic=3163841)[:target=\"_blank\"].",
-        "footer": "Read full version of Google store requirements",
+        "title": "Creeaza un cont nou la Merchant Center",
+        "legend": "Pentru a participa la listele gratuite și pentru a face publicitate pe Google, trebuie să recunoști și să respecți cerințele de mai jos:",
+        "legend2": "URL-ul site-ului web al magazinului trebuie să fie verificat și revendicat înainte de a putea încărca datele despre produse.  \n[Află cum să verifici și să revendici site-ul web](https://support.google.com/merchants/answer/176793?hl=en&ref_topic=3163841)[:target=\"_blank\"].",
+        "footer": "Citește versiunea completă a cerințelor Magazinului Google",
         "accurateContactInformation": {
-            "title": "I confirm that my contact information are correct and valid",
-            "description": "Merchants need to have at least one contact method listed on their website, this can be any type of contact method.",
-            "link": "Discover how to add contact information"
+            "title": "Confirm că datele mele de contact sunt corecte și valide",
+            "description": "Comercianții trebuie să aibă cel puțin o metodă de contact listată pe site-ul lor web, care poate fi orice tip de metodă de contact.",
+            "link": "Descoperă cum să adaugi informații de contact"
         },
         "secureCheckoutProcess": {
-            "title": "I confirm that I have a clear checkout & data collection",
-            "description": "Do not misuse information about user, nor collect it for unclear purposes or without appropriate security measures.",
-            "link": "Learn about irresponsible data collection & use"
+            "title": "Confirm că am o procedură clară de verificare și colectare a datelor",
+            "description": "Nu folosi în mod abuziv informațiile despre utilizator și nici nu le colecta în scopuri neclare sau fără măsuri de securitate adecvate.",
+            "link": "Află despre colectarea și utilizarea iresponsabilă a datelor"
         },
         "returnPolicy": {
-            "title": "I confirm that my return & refund policy are setup on my website",
-            "description": "Return and refund policy needs to be clear (include requirement and timelines) and easy to access on your website.",
-            "link": "Learn how to set up return policies"
+            "title": "Confirm că politica mea de returnare și rambursare este configurată pe site-ul meu",
+            "description": "Politica de returnare și rambursare trebuie să fie clară (să includă cerințe și termene) și ușor de accesat pe site-ul tău web.",
+            "link": "Află cum să configurezi politicile de returnare"
         },
         "billingTerms": {
-            "title": "I confirm that my billing terms and conditions are clear and visible",
-            "description": "Website needs to clearly and visibly disclose payment options and all expenses that user will bare, before and after purchase.",
-            "link": "Read Merchant Center guidelines"
+            "title": "Confirm că termenii și condițiile de facturare sunt clare și vizibile",
+            "description": "Site-ul trebuie să prezinte în mod clar și vizibil opțiunile de plată și toate cheltuielile pe care le va suporta utilizatorul, înainte și după cumpărare.",
+            "link": "Citește ghidurile Centrului Comerciant"
         },
         "completeCheckoutProcess": {
-            "title": "I confirm that I have a complete checkout process",
-            "description": "Users need to be able to successully complete purchase process.",
-            "link": "Learn about checkout requirements"
+            "title": "Confirm că am un proces de finalizare a comenzii",
+            "description": "Utilizatorii trebuie să poată finaliza cu succes procesul de cumpărare.",
+            "link": "Află mai multe despre cerințele pentru finalizarea comenzii"
         },
-        "websiteURL": "Website URL",
-        "websiteURLDescription": "The website used to create your Merchant Center account",
-        "storeName": "Store name",
-        "storeNameDescription": "This name will appear in your free listings and Shopping ads.",
-        "businessLocation": "Business location",
-        "businessAddress": "Business address",
-        "businessPhone": "Business phone number",
-        "businessZipCode": "Zipcode",
-        "businessCity": "City",
-        "businessRegion": "Region",
-        "businessCountry": "Country",
-        "changeCountryField": "You can [change your country]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
-        "changeRegionField": "You can [change your region]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
-        "changeAddressField": "You can [change your business address]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
-        "changeZipCodeField": "You can [change your zipcode]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
-        "changeCityField": "You can [change your city]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
+        "websiteURL": "URL-ul site-ului web",
+        "websiteURLDescription": "Website-ul folosit pentru a crea contul Merchant Center",
+        "storeName": "Denumire magazin",
+        "storeNameDescription": "Acest nume va apărea în anunțurile gratuite și în anunțurile de cumpărături.",
+        "businessLocation": "Locația afacerii",
+        "businessAddress": "Adresa principală a companiei",
+        "businessPhone": "Numărul de telefon al companiei",
+        "businessZipCode": "Cod poștal",
+        "businessCity": "Oraş",
+        "businessRegion": "Regiune",
+        "businessCountry": "Ţara",
+        "changeCountryField": "Poți [change your country]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informații în back office",
+        "changeRegionField": "Poți [change your country]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informații în back office",
+        "changeAddressField": "Poți [change your country]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informații în back office",
+        "changeZipCodeField": "Poți [change your zipcode]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informații în back office",
+        "changeCityField": "Poți [change your city]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informații în back office",
         "changePhoneNumberField": "You can [change your business phone number]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informations in your back office",
         "siteContainsAdultContent": "My website contains adult content",
         "seePolicyAdultContent": "See policy on adult-oriented content",
@@ -264,63 +264,63 @@
         },
         "deliveryTimeAndRates": {
             "tooltips": {
-                "carrierName": "The carrier name will help you identify the carriers when it is created with the estimation method. It is limited to 90 characters",
-                "freeShippingOverAmount": "Enter the value of minimum spend required for free shipping",
-                "shippingRate": "Enter the shipping rate that applies below the minimum set amount spend required for free shipping"
+                "carrierName": "Numele transportatorului te va ajuta să identifici transportatorii atunci când este creat cu metoda de estimare. Acesta este limitat la 90 de caractere",
+                "freeShippingOverAmount": "Introdu valoarea cheltuielilor minime necesare pentru transportul gratuit",
+                "shippingRate": "Introdu tariful de expediere care se aplică sub suma minimă de cheltuire necesară pentru expediere gratuită"
             },
-            "title": "Delivery time & rates",
-            "rateAndDelivery": "Rate & delivery timeline",
-            "deliveryInfo": "Enter the minimum and maximum days required for delivery",
+            "title": "Timpul de livrare & tarifele",
+            "rateAndDelivery": "Tarif & termen de livrare",
+            "deliveryInfo": "Introdu numărul minim și maxim de zile necesare pentru livrare",
             "customRate": {
-                "title": "Choose a flat or custom rate for your target countries",
-                "rateTitle": "Same rates for target countries",
-                "rateDesc": "I can estimate the same shipping rate and delivery time for all countries",
-                "customTitle": "Custom rates by country",
-                "customDesc": "I'd like to set different rates and times for each country"
+                "title": "Alege o rată fixă sau personalizată pentru ţările ţintă",
+                "rateTitle": "Aceleași rate pentru țările țintă",
+                "rateDesc": "Pot estima aceeași rată de expediere și timp de livrare pentru toate țările",
+                "customTitle": "Tarife personalizate în funcție de țară",
+                "customDesc": "Aş dori să stabilesc rate şi timpi diferiti pentru fiecare ţară"
             },
             "estimateStep": {
-                "estimateInputLabel": "Enter carrier",
-                "error": "Fill in the required information",
-                "carrierName": "Carrier name",
-                "storeOffersTitle": "My store offers",
+                "estimateInputLabel": "Introdui transportatorul",
+                "error": "Completează informațiile necesare",
+                "carrierName": "Numele transportatorului",
+                "storeOffersTitle": "Magazinul meu oferă",
                 "storeOffers": {
-                    "flatShippingRateForAllProducts": "Flat shipping rate for all products",
-                    "freeShippingForAllProducts": "Free shipping for all products",
-                    "freeShippingOverAmount": "Free shipping over a set amount"
+                    "flatShippingRateForAllProducts": "Tarif fix de transport pentru toate produsele",
+                    "freeShippingForAllProducts": "Transport gratuit pentru toate produsele",
+                    "freeShippingOverAmount": "Transport gratuit peste o anumită sumă"
                 },
                 "shippingRate": {
-                    "rate": "Shipping rate",
-                    "rateDesc": "Enter the shipping rate for all target countries",
-                    "overAmount": "Free shipping applies over"
+                    "rate": "Taxe de transport",
+                    "rateDesc": "Introdu tariful de expediere pentru toate țările țintă",
+                    "overAmount": "Transportul gratuit se aplică peste"
                 },
                 "summary": {
-                    "singleCountry": "Flat rate",
-                    "multiCountriesFlatRateForAll": "Flat rate for all target countries"
+                    "singleCountry": "Taxă fixă",
+                    "multiCountriesFlatRateForAll": "Rata fixă pentru toate țările țintă"
                 },
                 "validationErrors": {
-                    "missingRateOption": "To continue, you must select a rating option and indicate your rates and delivery time accordingly"
+                    "missingRateOption": "Pentru a continua, trebuie să selectezi o opțiune de rating și să indici tarifele și timpul de livrare în mod corespunzător"
                 }
             },
             "importOption": {
                 "validationErrors": {
-                    "needAtLeastOneCarrier": "You need to enable at least one carrier to continue",
-                    "needAtLeastOneCarrierForEachCountry": "To continue, you need to activate and complete at least one carrier for each selected target country"
+                    "needAtLeastOneCarrier": "Trebuie să activezi cel puțin un operator pentru a continua",
+                    "needAtLeastOneCarrierForEachCountry": "Pentru a continua, trebuie să activezi și să completezi cel puțin un operator pentru fiecare țară țintă selectată"
                 },
-                "summary": "Configured carriers from backoffice"
+                "summary": "Transportatori configurați din backoffice"
             },
-            "productAvailaibleIn": "The dropdown list of countries below would match the countries and currency you’ve set up on your shop. You can select the countries where you would like your products to be displayed.",
-            "targetCountries": "Target country|Target countries",
-            "filterTitle": "Filter by country",
-            "ifMultipleCountries": "If you target multiple countries, each product price will be automatically converted to the correct currency in Google. However your store must have configured shipping and tax rates for each selected country. Please respect [country-specific shopping policies]({0})[:target=\"_blank\"] and [local regulation]({1})[:target=\"_blank\"]",
-            "placeholderSelect": "Select the countries where your products are available",
-            "shippingSettingsErrors": "This country is not compatible with your currency",
-            "shippingSettings": "Shipping settings",
-            "shippingSettingsTitle": "Products shipping settings",
-            "shippingLabel1": "Setup my shipping settings now (recommended)",
-            "shippingDescription1": "PrestaShop will import your carriers list from your store settings and allow you to provide additional information.",
-            "manually": "Manually",
-            "shippingLabel2": "Skip and setup later in Google Merchant Center",
-            "shippingDescription2": "You will have to enter your product shipping information yourself in Google Merchant center. ",
+            "productAvailaibleIn": "Lista dropdown de țări de mai jos se va potrivi cu țările și moneda pe care le-ai configurat în magazinul tău. Poți selecta țările în care dorești ca produsele tale să fie afișate.",
+            "targetCountries": "Țară țintă|Țări țintă",
+            "filterTitle": "Filtrează după țară",
+            "ifMultipleCountries": "Dacă țintești mai multe țări, fiecare preț de produs va fi convertit automat în moneda corectă în Google. Cu toate acestea, magazinul tău trebuie să aibă livrări și rate de impozitare configurate pentru fiecare țară selectată. Te rugăm să respecți [country specific shopping policies]({0})[:target=\"_blank\"] și [local regulation] ({1})[:target=\"_blank\"]",
+            "placeholderSelect": "Selectează țările în care produsele tale sunt disponibile",
+            "shippingSettingsErrors": "Această țară nu este compatibilă cu moneda ta",
+            "shippingSettings": "Setări livrare",
+            "shippingSettingsTitle": "Setări de livrare produse",
+            "shippingLabel1": "Configurează acum setările de expediere (recomandat)",
+            "shippingDescription1": "PrestaShop va importa lista de transportatori din setările magazinului tău și îți va permite să furnizezi informații suplimentare.",
+            "manually": "Manual",
+            "shippingLabel2": "Omite și instalează mai târziu în Google Merchant Center",
+            "shippingDescription2": "Va trebui să introduci informaţii despre transportul produsului tău în Google Merchant Center. ",
             "noticeSetupShipping": "Your products won’t sync until you setup your products shipping information.",
             "taxSettings": "Tax settings",
             "taxSettingsDescription": "So that users understand the exact price that they’ll have to pay for a product, you must submit the taxes that you collect. Select how you want to set up tax settings.",

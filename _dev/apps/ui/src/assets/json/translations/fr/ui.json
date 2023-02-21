@@ -29,7 +29,7 @@
         "helpPage": "Page d'aide",
         "noResultsFoundForX": " Aucun résultat trouvé pour {0}",
         "days": "Jours",
-        "readMore": "Read more"
+        "readMore": "Plus d’infos"
     },
     "landingPage": {
         "header": {
@@ -240,7 +240,7 @@
             "syncSchedule": "Calendrier de synchronisation"
         },
         "noticeDataStored": "Les paramètres sont enregistrés à chaque étape mais ne seront soumis qu'à l'étape finale.",
-        "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step.",
+        "submissionExplanation": "Veuillez noter que les données seront stockées à chaque étape mais ne seront envoyées qu'à l'étape finale.",
         "shippingSetup": {
             "title": "Configuration de l'expédition",
             "mandatoryStep": "Pour que vos produits soient affichés par Google Merchant Center, la configuration des paramètres de livraison est une étape obligatoire.",
@@ -279,7 +279,7 @@
                 "customDesc": "Je voudrais définir des tarifs et des délais spécifiques pour chaque pays"
             },
             "estimateStep": {
-                "estimateInputLabel": "Enter carrier",
+                "estimateInputLabel": "Saisir un transporteur",
                 "error": "Veuillez remplir les informations requises",
                 "carrierName": "Nom du transporteur",
                 "storeOffersTitle": "Ma boutique propose",
@@ -353,7 +353,7 @@
         "preScan": {
             "selectLanguage": "Filtrer par langue",
             "apiError": "Une erreur s'est produite lors de la récupération des données. Veuillez réessayer plus tard.",
-            "langConflict": "Your product language does not match the target country {0}. Please ensure that the language of your products matches the target country spoken languages, by translating your product or changing the target country. | Your product language does not match the target countries {0}. Please ensure that the language of your products matches the target countries spoken languages, by translating your product or changing the target countries. ",
+            "langConflict": "La langue de votre produit ne correspond pas à celle du pays cible {0}. Veuillez vous assurer que la langue de vos produits correspond aux langues parlées dans le pays cible, en traduisant votre produit ou en changeant le pays cible. | La langue de votre produit ne correspond pas aux pays cibles {0}. Veuillez vous assurer que la langue de vos produits correspond aux langues parlées des pays cibles, en traduisant votre produit ou en modifiant les pays cibles. ",
             "noElement": "Vous n'avez pas encore de produit."
         },
         "export": {
@@ -518,7 +518,7 @@
         "introConnected": "Avec les campagnes Performance Max, vous pouvez faire la publicité et maximiser la performance de vos annonces sur plusieurs canaux Google à travers une seule campagne. Mieux encore, vous ne payez que si vos clients cliquent !",
         "footer": "Dans l'Espace économique européen, au Royaume-Uni ou en Suisse, les campagnes Performance Max peuvent être utilisées avec n'importe quel service de comparaison de prix (CSS) avec lequel vous travaillez. Les publicités apparaîtront sur les pages de résultats de recherche généraux et sur toutes les autres propriétés auxquelles le CSS a adhéré.",
         "titleInfo": "Le saviez-vous ?",
-        "contentInfo": "Advertisers who upgrade Smart Shopping campaigns to Performance Max see an average increase of 12% in conversion value at the same or better return on ad spend (ROAS)*",
+        "contentInfo": "Les annonceurs qui mettent à niveau leurs campagnes Smart Shopping vers Performance Max constatent une augmentation moyenne de 12 % de leurs conversions pour un retour sur investissement (ROAS) identique ou supérieur",
         "footerInfo": "* Données Google, Global, Ads, Sep-Oct 2021."
     },
     "smartShoppingCampaignCreation": {
@@ -533,7 +533,7 @@
         "inputNameTooltip": "Choisissez un nom qui décrit clairement le thème de la campagne afin que vous puissiez la retrouver facilement dans votre compte. Le nom de votre campagne n'est pas visible par vos clients.",
         "inputNamePlaceholder": "Tapez le nom de la campagne",
         "inputCampaignNameInvalidFeedback": "Le nom doit être unique.",
-        "inputCampaignNameTooLongFeedback": "The name must be less than 125 characters in length.",
+        "inputCampaignNameTooLongFeedback": "Le nom doit comporter moins de 125 caractères.",
         "inputDurationHelper": "Nous recommandons une durée minimale de 30 jours afin que Google puisse optimiser votre campagne.",
         "inputDurationLabel": "Durée de la campagne",
         "inputDurationTooltip": "Les campagnes publicitaires n'ont pas de date de fin par défaut, de sorte que les publicités puissent s'exécuter indéfiniment. Vous pouvez toujours ajouter une date de fin pour créer une campagne plus courte.",
@@ -614,8 +614,8 @@
         "dimensionXFilterSelectedWithXProducts": "Filtre {0} | Filtre {0} ({1} produit) | Filtre {0} ({1} produits)",
         "filtersWithxValues": "{0} filtres | {0} filtres avec {1} produit affecté | {0} filtres avec {1} produits affectés",
         "budgetTip": {
-            "content": "It is generally recommended to start with a **minimum budget of {0} per day for your daily ad spend**. This allows you to reach a larger audience & potentially see better results.",
-            "readMore": "This recommended minimum budget will allow you to test the effectiveness\n  of your ads and make adjustments as needed. Of course, every business is\n  different, and the actual budget that is best for you may vary depending\n  on your specific goals and target audience. We recommend experimenting\n  with different budgets to determine what works best for your business."
+            "content": "Il est généralement recommandé de commencer avec un **budget minimum de {0} par jour pour vos dépenses publicitaires quotidiennes**. Cela vous permet de toucher un public plus large et d'obtenir potentiellement de meilleurs résultats.",
+            "readMore": "Ce budget minimum recommandé vous permettra de tester l'efficacité de vos annonces et de procéder à des ajustements si nécessaire. Bien entendu, chaque entreprise est différente et le budget réel qui vous convient le mieux peut varier en fonction de vos objectifs spécifiques et de votre public cible. Nous vous recommandons d'expérimenter avec différents budgets pour déterminer ce qui fonctionne le mieux pour votre entreprise."
         }
     },
     "smartShoppingCampaignList": {
@@ -695,7 +695,7 @@
                 "image": "Image",
                 "description": "Description",
                 "price": "Prix",
-                "barcode": "GTIN/Brand"
+                "barcode": "GTIN / Marque"
             },
             "xHasFailedPreValidation": "\"{0}\" : a échoué à la pré-validation.",
             "xHasPassedPreValidation": "\"{0}\" : a passé la pré-validation.",
@@ -1131,8 +1131,8 @@
         "textCampaignsBanner": "Performance Max est la nouvelle génération de campagnes shopping intelligentes. Il s'agit d'un type de campagne optimisé, utilisant la technologie intelligente de Google. Elle fonctionne en arrière-plan pour optimiser automatiquement vos annonces tout au long du parcours d'achat afin d'obtenir des performances maximales."
     },
     "tipsAndTricks": {
-        "title": "PrestaShop Tips and Tricks",
-        "advisorPicture": "{0}'s profile picture",
-        "advisorRole": "PrestaShop eCommerce Expert"
+        "title": "Conseils et astuces de PrestaShop",
+        "advisorPicture": "Image de profil de {0}",
+        "advisorRole": "PrestaShop Expert en eCommerce"
     }
 }
