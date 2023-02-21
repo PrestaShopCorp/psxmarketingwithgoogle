@@ -1,6 +1,10 @@
 {
+  "name": "marketing-with-google",
+  "workspaces": [
+    "apps/ui"
+  ],
   "engines": {
-      "node": ">=14",
-      "pnpm": ">=7"
+    "node": ">=14",
+    "pnpm": ">=7"
   }
 }

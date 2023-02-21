@@ -18,7 +18,7 @@
  */
 
 import { addDecorator } from '@storybook/vue';
-import { select } from '@storybook/addon-knobs';
+import { select } from '@storybook/addon-controls';
 import Vue from 'vue';
 import Vuex from 'vuex';
 
