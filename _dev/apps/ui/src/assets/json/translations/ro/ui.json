@@ -1,50 +1,50 @@
 {
     "general": {
         "tabs": {
-            "exportStatus": "Export status",
-            "campaign": "Campaign",
-            "reporting": "Reporting",
-            "configuration": "Configure",
-            "catalog": "Product catalog",
-            "help": "Help"
+            "exportStatus": "Stare export",
+            "campaign": "Campanie",
+            "reporting": "Raportare",
+            "configuration": "Configurare",
+            "catalog": "Catalog produse",
+            "help": "Ajutor"
         },
-        "versionDoesNotExist": "It seems that the module's version can not be retrieved. It's on our side please try again.",
-        "moduleNeedActivation": "Marketing with Google is disabled, you will not be able to use any of it's features until you enable your module.",
+        "versionDoesNotExist": "Se pare că versiunea modulului nu poate fi recuperată. Este din partea noastră, vă rugăm să încercați din nou.",
+        "moduleNeedActivation": "Marketing with Google este dezactivat, nu veți putea utiliza niciuna dintre caracteristicile sale până când nu activați modulul.",
         "moduleUpdateNeeded": {
-            "ps_eventbus": "The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync.",
-            "psxmarketingwithgoogle": "Please update the PrestaShop Marketing With Google module in order to make it work properly"
+            "ps_eventbus": "Versiunea modulului PrestaShop CloudSync care rulează pe acest magazin este mai veche decât cea minimă necesară.\n\nPuteți utiliza PrestaShop Marketing with Google, dar unele caracteristici (de exemplu, sincronizarea produselor) nu vor fi disponibile până când nu veți actualiza PrestaShop CloudSync.",
+            "psxmarketingwithgoogle": "Vă rugăm să actualizați modulul PrestaShop Marketing With Google pentru a-l face să funcționeze corect"
         },
-        "adblockerActivated": "Please deactivate your ad-blocker for the module to work properly and refresh your navigator.",
-        "refreshPage": "Refresh page",
-        "mandatory": "are mandatory",
-        "XIsMandatory": "{0} is mandatory.",
-        "unableToFetchData": "We were unable to fetch datas, please try again later",
-        "searchByX": "Search by {0}",
-        "search": "Search",
-        "createAccount": "create your account",
-        "createNewAccount": "If you don't have an account, you can {0} today.",
-        "notAvailable": "Not available",
+        "adblockerActivated": "Te rugăm să dezactivezi ad-blocker-ul pentru ca modulul să funcționeze corect și să reîmprospătezi navigatorul.",
+        "refreshPage": "Reîncarcă pagina",
+        "mandatory": "sunt obligatorii",
+        "XIsMandatory": "{0} este obligatorie.",
+        "unableToFetchData": "Nu am reușit să preluăm datele, te rugăm să încerci din nou mai târziu",
+        "searchByX": "Căutare după {0}",
+        "search": "Caută",
+        "createAccount": "creează un cont",
+        "createNewAccount": "Dacă nu ai un cont, poți {0} astăzi.",
+        "notAvailable": "Indisponibil",
         "min": "Min",
         "max": "Max",
-        "helpPage": "Help Page",
-        "noResultsFoundForX": " No results found for {0}",
-        "days": "Days",
-        "readMore": "Read more"
+        "helpPage": "Pagina de ajutor",
+        "noResultsFoundForX": " Nu s-au găsit rezultate pentru {0}",
+        "days": "Zile",
+        "readMore": "Citește mai mult"
     },
     "landingPage": {
         "header": {
-            "title": "Marketing With Google",
-            "text": "With Prestashop Marketing, you can reach potential buyers who are searching online for products like the ones you offer! Use this module to reach them on Google in 3 easy steps.",
-            "reinsurance": "- Easy setup \n- Cancel anytime"
+            "title": "Marketing with Google",
+            "text": "Cu Prestashop Marketing, poți ajunge la potențialii cumpărători care caută online produse precum cele pe care le oferi! Folosiți acest modul pentru a ajunge la ei cu Google în 3 pași simpli.",
+            "reinsurance": "- Configurare ușoară \n- Anulează oricând"
         },
         "content": {
             "content1": {
-                "title": "Sync your product catalog with Google",
-                "text": "Connect your store to Google Merchant Center and synchronize your entire product catalog in a few clicks. Product attributes such as price and availability will be automatically updated everyday."
+                "title": "Sincronizează catalogul de produse cu Google",
+                "text": "Conecteaza-ti magazinul la Google Merchant Center si sincronizeaza intregul catalog de produse in cateva clicuri. Atributele produsului, cum ar fi prețul și disponibilitatea vor fi actualizate automat în fiecare zi."
             },
             "content2": {
-                "title": "Enable free listings for your products",
-                "text": "Free listings allow to show your product attributes, including image and price in organically-ranked listings on the Shopping tab.  \n \n Once your catalog has been synchronised, enable free listings on your dashboard and start showing your products on the Shopping tab for free.",
+                "title": "Activează listările gratuite pentru produsele tale",
+                "text": "Listările gratuite permit afișarea atributelor tale de produs, inclusiv a imaginii și a prețului în listările clasificate în mod organic în fila de cumpărături.  \n \n Odată ce catalogul a fost sincronizat, activează listările gratuite pe tabloul de bord și începe să afișezi produsele în fila de cumpărături gratuit.",
                 "footer": "Create a new [Merchant Center account]({0})[:target=\"_blank\"] or link an existing one.  \nTo show your products on Google you’ll need to meet the [eligibility requirements]({1})[:target=\"_blank\"]"
             },
             "content3": {
