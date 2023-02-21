@@ -78,12 +78,12 @@
         "selectStore": "Te rugăm să selectezi primul magazin de configurat din lista de mai jos",
         "tips": "După ce ai terminat cu primul magazin, le poți configura pe celelalte, selectându-le unul câte unul din selectorul magazinului, în meniul orizontal",
         "configure": "Configurare",
-        "group": "Shop group"
+        "group": "Grup de magazine"
     },
     "googleAccountCard": {
-        "title": "Google account",
-        "introDisabled": "Connect your Google account and associated with it Google Merchant Center to unlock free listings.",
-        "introEnabled": "Access through PrestaShop module associated with your email account Google Merchant Center and Google Ads accounts.",
+        "title": "Cont Google",
+        "introDisabled": "Conectează-ți contul Google și asociază-l cu Google Merchant Center pentru a debloca listările gratuite.",
+        "introEnabled": "Accesul prin modulul PrestaShop asociat cu contul de e-mail Google Merchant Center și conturile Google Ads.",
         "footerDissociating": "PrestaShop uses this account to manage and sync Merchant Center and Google Ads accounts.",
         "alertCantConnect": "You can't connect to your Google account right now. Try again later.",
         "alertTokenMissing": "We weren't able to authenticate your account. Try again or switch to another account.",
