@@ -161,7 +161,7 @@ export interface DailyresultChart {
 }
 
 export interface CampaignsPerformancesSection {
-  campaignsPerformanceList: Array<CampaignPerformances>;
+  campaignsPerformanceList: CampaignPerformances[];
   limitCampaignPerformanceList: number;
   activePage: number,
   totalCampaigns: number,
@@ -194,6 +194,7 @@ export interface CampaignPerformances {
   adSpend: number;
   conversions: number;
   sales: number;
+  type: CampaignTypes;
 }
 
 export interface ProductPerformances {
