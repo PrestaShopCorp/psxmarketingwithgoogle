@@ -26,7 +26,7 @@
         "notAvailable": "Niedostępne",
         "min": "min.",
         "max": "max.",
-        "helpPage": "Strona pomocy",
+        "helpPage": "Pomoc",
         "noResultsFoundForX": "Nie znaleziono wyników dla {0}",
         "days": "dni",
         "readMore": "Czytaj dalej"
@@ -285,8 +285,8 @@
                 "storeOffersTitle": "Mój sklep oferuje",
                 "storeOffers": {
                     "flatShippingRateForAllProducts": "Stałą stawkę wysyłki dla wszystkich produktów",
-                    "freeShippingForAllProducts": "Bezpłatną wysyłkę wszystkich produktów",
-                    "freeShippingOverAmount": "Bezpłatną wysyłkę powyżej określonej kwoty"
+                    "freeShippingForAllProducts": "Darmową wysyłkę dla wszystkich produktów",
+                    "freeShippingOverAmount": "Darmową wysyłkę powyżej określonej kwoty"
                 },
                 "shippingRate": {
                     "rate": "Koszt wysyłki",
