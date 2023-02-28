@@ -20,7 +20,8 @@
 import dayjs, {ManipulateType} from 'dayjs';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
-import HttpClientError from '@/api/HttpClientError';
+import { fetchShop } from "mktg-with-google-common/api/shopClient";
+import HttpClientError from "mktg-with-google-common/api/HttpClientError";
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import {
   CampaignObject, CampaignStatusPayload, ConversionAction,
@@ -28,7 +29,6 @@ import {
 import {deepUpdateDimensionVisibility} from '@/utils/SSCFilters';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import {runIf} from '../../../utils/Promise';
-import {fetchShop} from '@/api/shopClient';
 import {RecommendedBudget} from '@/utils/CampaignsBudget';
 
 export default {

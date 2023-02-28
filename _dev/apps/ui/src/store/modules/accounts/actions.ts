@@ -22,10 +22,10 @@ import MutationsTypes from './mutations-types';
 import MutationsTypesProductFeed from '../product-feed/mutations-types';
 import MutationsTypesGoogleAds from '../google-ads/mutations-types';
 import ActionsTypes from './actions-types';
-import HttpClientError from '@/api/HttpClientError';
+import { fetchShop } from "mktg-with-google-common/api/shopClient";
+import HttpClientError from "mktg-with-google-common/api/HttpClientError";
 import NeedOverwriteError from '../../../utils/NeedOverwriteError';
 import CannotOverwriteError from '../../../utils/CannotOverwriteError';
-import {fetchShop} from '@/api/shopClient';
 
 export default {
   async [ActionsTypes.WARMUP_STORE](

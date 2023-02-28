@@ -1,0 +1,29 @@
+{
+  "name": "marketing-with-google-verification-tag",
+  "private": true,
+  "engines": {
+    "pnpm": ">=7.14.2",
+    "node": ">=14",
+    "npm": "please use pnpm",
+    "yarn": "please use pnpm"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w",
+    "lint": "eslint --no-fix",
+    "lint-fix": "eslint --fix",
+    "test:unit": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.54.0",
+    "@typescript-eslint/parser": "^5.54.0",
+    "eslint": "^8.35.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prestashop": "^0.2.1",
+    "eslint-plugin-import": "^2.25.3",
+    "typescript": "^4.8.2"
+  },
+  "dependencies": {
+    "mktg-with-google-common": "workspace:*"
+  }
+}

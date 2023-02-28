@@ -89,7 +89,7 @@ import MenuItem from '@/components/menu/menu-item.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import AlertModuleUpdate from '@/components/commons/alert-update-module';
 import googleUrl from '@/assets/json/googleUrl.json';
-import {initShopClient} from '@/api/shopClient';
+import {initShopClient} from "mktg-with-google-common/api/shopClient";
 
 let resizeEventTimer;
 const root = document.documentElement;

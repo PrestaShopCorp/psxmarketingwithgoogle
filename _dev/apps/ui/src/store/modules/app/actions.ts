@@ -19,7 +19,7 @@
 
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
-import {fetchShop} from '@/api/shopClient';
+import { fetchShop } from "mktg-with-google-common/api/shopClient";
 
 export default {
   async [ActionsTypes.REQUEST_DOC_AND_FAQ]({commit}) {

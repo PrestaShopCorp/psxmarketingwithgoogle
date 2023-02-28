@@ -18,9 +18,9 @@
  */
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
-import HttpClientError from '@/api/HttpClientError';
+import { fetchShop } from "mktg-with-google-common/api/shopClient";
+import HttpClientError from "mktg-with-google-common/api/HttpClientError";
 import {runIf} from '../../../utils/Promise';
-import {fetchShop} from '@/api/shopClient';
 
 export default {
   async [ActionsTypes.WARMUP_STORE](

@@ -18,16 +18,14 @@
  */
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
-import HttpClientError from '@/api/HttpClientError';
-import {fetchShop} from '@/api/shopClient';
-import countriesSelectionOptions from '../../../assets/json/countries.json';
+import { fetchShop } from "mktg-with-google-common/api/shopClient";
+import HttpClientError from "mktg-with-google-common/api/HttpClientError";
 import {getDataFromLocalStorage, deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
 import {
   CarrierIdentifier, DeliveryDetail, getEnabledCarriers,
   mergeShippingDetailsSourcesForProductFeedConfiguration,
   ShopShippingInterface, validateDeliveryDetail,
 } from '@/providers/shipping-settings-provider';
-import Categories from '@/enums/product-feed/attribute-mapping-categories';
 import {runIf} from '@/utils/Promise';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {fromApi, toApi} from '@/providers/shipping-rate-provider';
