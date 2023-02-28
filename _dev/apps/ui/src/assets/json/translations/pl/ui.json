@@ -26,10 +26,10 @@
         "notAvailable": "Niedostępne",
         "min": "min.",
         "max": "max.",
-        "helpPage": "Strona pomocy",
+        "helpPage": "Pomoc",
         "noResultsFoundForX": "Nie znaleziono wyników dla {0}",
         "days": "dni",
-        "readMore": "Read more"
+        "readMore": "Czytaj dalej"
     },
     "landingPage": {
         "header": {
@@ -285,8 +285,8 @@
                 "storeOffersTitle": "Mój sklep oferuje",
                 "storeOffers": {
                     "flatShippingRateForAllProducts": "Stałą stawkę wysyłki dla wszystkich produktów",
-                    "freeShippingForAllProducts": "Bezpłatną wysyłkę wszystkich produktów",
-                    "freeShippingOverAmount": "Bezpłatną wysyłkę powyżej określonej kwoty"
+                    "freeShippingForAllProducts": "Darmową wysyłkę dla wszystkich produktów",
+                    "freeShippingOverAmount": "Darmową wysyłkę powyżej określonej kwoty"
                 },
                 "shippingRate": {
                     "rate": "Koszt wysyłki",
@@ -353,7 +353,7 @@
         "preScan": {
             "selectLanguage": "Filtruj według języka",
             "apiError": "Podczas pobierania danych wystąpił błąd. Spróbuj ponownie później.",
-            "langConflict": "Your product language does not match the target country {0}. Please ensure that the language of your products matches the target country spoken languages, by translating your product or changing the target country. | Your product language does not match the target countries {0}. Please ensure that the language of your products matches the target countries spoken languages, by translating your product or changing the target countries. ",
+            "langConflict": "Język produktu nie jest zgodny z krajem docelowym {0}. Upewnij się, że język Twoich produktów jest zgodny z językiem kraju docelowego, dodając tłumaczenie produktu lub zmieniając kraj docelowy. | Język produktu nie jest zgodny z krajami docelowymi {0}. Upewnij się, że język Twoich produktów jest zgodny z językiem krajów docelowych, dodając tłumaczenie produktu lub zmieniając kraje docelowe. ",
             "noElement": "Nie masz żadnych produktów."
         },
         "export": {
@@ -533,7 +533,7 @@
         "inputNameTooltip": "Wybierz nazwę, która jasno opisuje temat kampanii, tak abyś mógł ją łatwo znaleźć na swoim koncie. Nazwa kampanii nie jest widoczna dla Twoich klientów.",
         "inputNamePlaceholder": "Wpisz nazwę kampanii",
         "inputCampaignNameInvalidFeedback": "Nazwa musi być unikalna.",
-        "inputCampaignNameTooLongFeedback": "The name must be less than 125 characters in length.",
+        "inputCampaignNameTooLongFeedback": "Nazwa musi mieć mniej niż 125 znaków.",
         "inputDurationHelper": "Zalecamy, aby kampanie trwały minimum 30 dni tak, aby dać czas Google na jej optymalizację.",
         "inputDurationLabel": "Czas trwania kampanii",
         "inputDurationTooltip": "Kampanie reklamowe domyślnie nie mają daty końcowej, dzięki czemu reklamy mogą być wyświetlane bezterminowo. Zawsze możesz dodać datę zakończenia, aby skrócić czas kampanii.",
@@ -614,8 +614,8 @@
         "dimensionXFilterSelectedWithXProducts": " {0} filtr | {0} filtr ({1} produkt) | {0} filtr ({1} produkty/-ów)",
         "filtersWithxValues": "{0} filtrów | {0} filtry/-ów z {1} odpowiadającym produktem | {0} filtry/-ów z {1} odpowiadającymi produktami",
         "budgetTip": {
-            "content": "It is generally recommended to start with a **minimum budget of {0} per day for your daily ad spend**. This allows you to reach a larger audience & potentially see better results.",
-            "readMore": "This recommended minimum budget will allow you to test the effectiveness\n  of your ads and make adjustments as needed. Of course, every business is\n  different, and the actual budget that is best for you may vary depending\n  on your specific goals and target audience. We recommend experimenting\n  with different budgets to determine what works best for your business."
+            "content": "Zazwyczaj zaleca się, aby zacząć od **minimalnego budżetu {0} dziennie na reklamę**. To pozwala na dotarcie do większej liczby osób i potencjalnie uzyskanie lepszych wyników.",
+            "readMore": "Ten zalecany minimalny budżet pozwoli Ci przetestować skuteczność\n  Twoich reklam i, w razie potrzeby, dokonać korekty. Oczywiście, każdy biznes jest\n  inny, a rzeczywisty budżet, który jest najlepszy dla Ciebie, może się różnić w zależności\n  od konkretnych celów i grupy docelowej. Zalecamy eksperymentowanie\n  z różnymi budżetami, aby określić, co działa najlepiej dla Twojej firmy."
         }
     },
     "smartShoppingCampaignList": {
@@ -695,7 +695,7 @@
                 "image": "Obraz",
                 "description": "Opis",
                 "price": "Cena",
-                "barcode": "GTIN/Brand"
+                "barcode": "GTIN/Marka"
             },
             "xHasFailedPreValidation": "\"{0}\": proces wstępnej walidacji nie powiódł się.",
             "xHasPassedPreValidation": "\"{0}\": proces wstępnej walidacji powiódł się.",
@@ -1131,8 +1131,8 @@
         "textCampaignsBanner": "Performance Max to nowa generacja inteligentnych kampanii produktowych. Jest to rozszerzony typ kampanii oparty na inteligentnej technologii Google. Działa za kulisami, aby automatycznie optymalizować reklamy na całej ścieżce zakupowej i zapewnić ich maksymalną skuteczność."
     },
     "tipsAndTricks": {
-        "title": "PrestaShop Tips and Tricks",
-        "advisorPicture": "{0}'s profile picture",
-        "advisorRole": "PrestaShop eCommerce Expert"
+        "title": "Porady i wskazówki PrestaShop",
+        "advisorPicture": "Zdjęcie profilowe użytkownika {0}",
+        "advisorRole": "Ekspert PrestaShop E-commerce"
     }
 }

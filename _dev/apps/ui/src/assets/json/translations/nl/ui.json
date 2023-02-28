@@ -9,9 +9,9 @@
             "help": "Help"
         },
         "versionDoesNotExist": "Het lijkt erop dat de versie van de module niet kan worden opgehaald. Het is aan onze kant probeer het opnieuw.",
-        "moduleNeedActivation": "Marketing with Google is disabled, you will not be able to use any of it's features until you enable your module.",
+        "moduleNeedActivation": "Marketing met Google is uitgeschakeld. Je kunt geen van de functies gebruiken totdat je je module inschakelt.",
         "moduleUpdateNeeded": {
-            "ps_eventbus": "The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync.",
+            "ps_eventbus": "De versie van de module PrestaShop CloudSync die op deze winkel draait, is ouder dan de vereiste minimumversie.\n\nJe kunt PrestaShop Marketing met Google gebruiken, maar sommige functies (zoals product synchronisatie) zijn niet beschikbaar totdat je PrestaShop CloudSync upgrade.",
             "psxmarketingwithgoogle": "Gelieve de PrestaShop Marketing met Google module bij te werken om het goed te laten werken"
         },
         "adblockerActivated": "Deactiveer uw ad-blocker om de module goed te laten werken en vernieuw uw navigator.",
@@ -21,20 +21,20 @@
         "unableToFetchData": "We konden geen gegevens ophalen, probeer het later nog eens",
         "searchByX": "Zoek op {0}",
         "search": "Zoeken op",
-        "createAccount": "create your account",
-        "createNewAccount": "If you don't have an account, you can {0} today.",
+        "createAccount": "je account aanmaken",
+        "createNewAccount": "Als je geen account hebt, kun je nu {0}.",
         "notAvailable": "Niet beschikbaar",
         "min": "Min",
         "max": "Max",
         "helpPage": "Help pagina",
         "noResultsFoundForX": "Geen resultaten gevonden voor {0}",
-        "days": "Days",
-        "readMore": "Read more"
+        "days": "Dagen",
+        "readMore": "Meer lezen"
     },
     "landingPage": {
         "header": {
             "title": "Marketing met Google",
-            "text": "With Prestashop Marketing, you can reach potential buyers who are searching online for products like the ones you offer! Use this module to reach them on Google in 3 easy steps.",
+            "text": "Met Prestashop Marketing bereik je potentiële kopers die online zoeken naar producten die jij aanbiedt. Gebruik deze module om hen op Google te bereiken in 3 eenvoudige stappen.",
             "reinsurance": "- Eenvoudige installatie \n- Annuleren wanneer u wilt"
         },
         "content": {
@@ -61,13 +61,13 @@
         "sectionTitle": {
             "psAccount": "Koppel uw Prestashop account",
             "freeListing": {
-                "title": "Reach more people on Google with free listings",
-                "subtitle": "Free listings give you access to millions of shoppers searching for products similar to yours. Display your products for free in organically ranked listings on the Shopping tab when you connect your Google account to Google Merchant Center.",
-                "lastTitle": "Businesses using free listings and ads on the Shopping tab together have seen an average >50% increase in clicks and >100% increase in impressions. (Google Internal Data, July 2020)"
+                "title": "Bereik meer mensen op Google door je producten gratis aan te bieden",
+                "subtitle": "Gratis advertenties geven je toegang tot miljoenen shoppers die op zoek zijn naar producten die vergelijkbaar zijn met de jouwe. Toon je producten gratis in organisch gerangschikte advertenties op het tabblad Winkelen wanneer je je Google-account koppelt aan Google Merchant Center.",
+                "lastTitle": "Bedrijven die zowel gratis advertenties als gepromote advertenties op het tabblad Winkelen gebruiken, kregen gemiddeld >50% meer klikken en >100% meer weergaven. (Interne gegevens van Google, juli 2020)"
             },
             "smartShoppingCampaign": {
-                "title": "Advertise on Google with Performance Max",
-                "subtitle": "Connect or create your Google Ads account and launch a Performance Max campaign for your products. Maximize your campaign performance across multiple Google channels through one single campaign. Show your ads where they have higher chances of driving conversion.\n\n Even better, you don't pay unless your customers click."
+                "title": "Adverteer op Google met Performance Max",
+                "subtitle": "Koppel of maak je Google Ads-account aan en start een Performance Max-campagne voor je producten. Maximaliseer je campagneprestaties op meerdere Google-kanalen via één enkele campagne. Laat je advertenties zien op plaatsen waar ze meer kans hebben om conversies te genereren.\n\n Nog beter, je betaalt pas wanneer jouw klanten klikken."
             }
         },
         "productFeedNotice": "Help klanten om uw producten gemakkelijker te vinden op Google en vermeld ze gratis met gratis vermeldingen. Gratis vermeldingen helpen om meer klanten te bereiken en ze uw site te laten bezoeken."
@@ -96,7 +96,7 @@
         "introDisabled": "Koppel uw Merchant Center-account aan PrestaShop om de synchronisatie van uw winkel- en productgegevens te vergemakkelijken",
         "claimCollides": "Uw website is al geclaimd.",
         "claimOverwrite": "Om het aanmaken van een Merchant Center account te voltooien, moet u de bestaande vordering overschrijven.",
-        "footerEU": "For stores in the European Economic Area, the United Kingdom or Switzerland, your Merchant Center account is required to be associated with to a [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]. For new Merchant Center accounts created through this application, your account would be associated by default with Google Shopping, Google’s CSS. You can change the CSS associated with your account at any time and you can also find CSS Partners here. Once you have set up your Merchant Center account you can use our onboarding tool regardless of which CSS you use.",
+        "footerEU": "Voor winkels in de Europese Economische Ruimte, het Verenigd Koninkrijk of Zwitserland is het vereist dat jouw Merchant Center-account wordt gekoppeld aan een [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]. Voor nieuwe Merchant Center-accounts die via deze applicatie worden aangemaakt, wordt je account automatisch gekoppeld aan Google Shopping, de CSS van Google. Je kunt op elk moment de CSS van je account wijzigen. Hier kun je CSS-partners vinden. Zodra je jouw Merchant Center account hebt opgezet, kun je onze onboarding tool gebruiken, ongeacht welke CSS je gebruikt.",
         "shopInfoMissing": "Er ontbreekt winkelinformatie",
         "shopInfoMissingDescription": "Om ontbrekende winkel informatie aan te vullen gaat u naar uw [Merchant Center account]({0})[:target=\"_blank\"].",
         "userIsNotAdmin": "Je hebt Admin toegang nodig",
@@ -106,7 +106,7 @@
         "linkingFailed": "U kunt nu geen verbinding maken met uw Merchant Center-account. Probeer het later opnieuw.",
         "AccountValidationFailed": "Account validatie mislukt",
         "unlinkFailed": "Verbinding verbroken. Vernieuw de pagina en probeer het opnieuw.",
-        "tryAgainLater": "We can’t verify or claim the current site. **We recommend that you ensure that the site is accessible** and try again later.",
+        "tryAgainLater": "We kunnen de huidige website niet verifiëren of claimen. **We raden je aan ervoor te zorgen dat de website toegankelijk is** en het later opnieuw te proberen.",
         "alertSuspended": "Uw account is gedeactiveerd.",
         "alertSuspendedDescription": "Ga naar uw [Merchant Center-account]({0})[:target=\"_blank\"] voor meer informatie over de redenen voor opschorting. Eenmaal opgelost zult u een nieuwe beoordeling moeten aanvragen door [dit formulier]({1})[:target=\"_blank\"] in te vullen.",
         "notManaged": "Niet verbonden met PrestaShop",
@@ -125,16 +125,16 @@
         "sendCode": "Stuur code",
         "receiveCall": "Oproep ontvangen",
         "phoneVerifiedContinue": "Uw telefoonnummer is geverifieerd, u kunt doorgaan met het aanmaken van uw account.",
-        "enterCode": "Please enter your verification code",
+        "enterCode": "Voer je sms-verificatiecode in",
         "validatingCode": "Uw code valideren",
-        "textMessageHasBeenSent": "A text message containing an X-digit code has been sent",
+        "textMessageHasBeenSent": "Er is een sms met een X-cijferige code verzonden",
         "askAgain60sec": "U zult in staat zijn om een nieuwe code te vragen in 60 seconden",
-        "needPhoneVerification": "We need to verify your identity with your phone number",
+        "needPhoneVerification": "We moeten je identiteit verifiëren met je telefoonnummer",
         "fillInputs": "Vul uw telefoonnummer in en selecteer uw internationaal kengetal",
-        "invalidCode": "Code is not valid",
-        "phoneNumberNotValid": "Your phone number is incorrect, please only put numbers",
+        "invalidCode": "Code is ongeldig",
+        "phoneNumberNotValid": "Je telefoonnummer is onjuist, voer alleen nummers in",
         "code": "Code",
-        "contactMethod": "Choose your preferred contact method",
+        "contactMethod": "Kies je gewenste contactmethode",
         "dialCode": "Kies code",
         "phoneNumber": "Vul het telefoonnummer in",
         "textMethod": "Tekstbericht",
@@ -143,7 +143,7 @@
         "alertTooManyRequests": "Je hebt deze dienst al te vaak aangevraagd met dit telefoonnummer. Je moet 24 uur wachten om het opnieuw te proberen of je telefoonnummer te veranderen.",
         "alertSomethingHappened": "Er is iets gebeurd. Het ligt aan onze kant, probeer het nog eens.",
         "alertCodeExpired": "De code is verlopen. Vraag alstublieft om een andere",
-        "refreshAfterAddingWebsiteAddress": "If you added a new information on Google Merchant Center, please refresh your page."
+        "refreshAfterAddingWebsiteAddress": "Als je nieuwe informatie hebt toegevoegd aan Google Merchant Center, ververs dan de pagina."
     },
     "mcaRequirements": {
         "steps": {
@@ -156,27 +156,27 @@
         "legend2": "De URL van de website van de winkel moet worden geverifieerd en geclaimd voordat u productgegevens kunt uploaden.  \n[Leer hoe u uw website kunt verifiëren en claimen](https://support.google.com/merchants/answer/176793?hl=en",
         "footer": "Lees de volledige versie van Google store vereisten",
         "accurateContactInformation": {
-            "title": "I confirm that my contact information are correct and valid",
+            "title": "Ik bevestig dat mijn contactgegevens correct en geldig zijn",
             "description": "Handelaren moeten ten minste één contactmethode op hun website hebben vermeld, dit kan om het even welk type contactmethode zijn.",
             "link": "Ontdek hoe u contactinformatie kunt toevoegen"
         },
         "secureCheckoutProcess": {
-            "title": "I confirm that I have a clear checkout & data collection",
+            "title": "Ik bevestig dat ik een duidelijk afrekenproces en duidelijke gegevensverzameling heb",
             "description": "Informatie over de gebruiker niet misbruiken, noch verzamelen voor onduidelijke doeleinden of zonder passende veiligheidsmaatregelen.",
             "link": "Meer informatie over het onverantwoordelijk verzamelen en gebruiken van gegevens"
         },
         "returnPolicy": {
-            "title": "I confirm that my return & refund policy are setup on my website",
+            "title": "Ik bevestig dat mijn retour- en terugbetalingsbeleid is ingesteld op mijn website",
             "description": "Het retour- en terugbetalingsbeleid moet duidelijk zijn (inclusief vereisten en tijdschema's) en gemakkelijk toegankelijk op uw website.",
             "link": "Leer hoe u een retourbeleid opzet"
         },
         "billingTerms": {
-            "title": "I confirm that my billing terms and conditions are clear and visible",
+            "title": "Ik bevestig dat mijn factureringsvoorwaarden duidelijk en zichtbaar zijn",
             "description": "De website moet duidelijk en zichtbaar de betalingsmogelijkheden vermelden en alle kosten die de gebruiker zal dragen, zowel voor als na de aankoop.",
             "link": "Lees de richtlijnen van het Merchant Center"
         },
         "completeCheckoutProcess": {
-            "title": "I confirm that I have a complete checkout process",
+            "title": "Ik bevestig dat ik een volledig afrekenproces heb",
             "description": "Gebruikers moeten het aankoopproces succesvol kunnen afronden.",
             "link": "Meer informatie over kassavereisten"
         },
@@ -208,12 +208,12 @@
         "title": "Product voer",
         "intro": "Stuur uw productgegevens rechtstreeks naar uw Merchant Center en houd ze altijd up-to-date voor gratis vermeldingen en advertenties.",
         "introToConfigure": "Het is belangrijk dat u uw productfeed in het juiste formaat indient, omdat Google dit gebruikt om er zeker van te zijn dat uw producten overeenkomen met de juiste zoekopdrachten.",
-        "nextSync": "Next synchronization on {0}",
+        "nextSync": "Volgende synchronisatie op {0}",
         "mappedCategories": "{0}/{1} gemapte categorieën",
         "alertFeedSettingSubmissionSuccess": "U heeft met succes uw productgegevens ingediend bij Merchant Center. Eenmaal goedgekeurd, zullen ze beschikbaar zijn voor gratis advertenties.",
         "alertFailed": "Product sync was niet succesvol. Controleer mogelijke redenen in [Merchant Center]({0})[:target=\"_blank\"] of neem contact op met [klantenservice](mailto:support-google@prestashop.com).",
         "alertShippingSettingsMissing": "Uw verzendgegevens ontbreken.",
-        "alertShippingSettingsMissingDescription": "In order to successfully synchronize your product feed, please add shipping information.",
+        "alertShippingSettingsMissingDescription": "Voeg verzendgegevens toe om je productfeed te kunnen synchroniseren.",
         "alertProductFeedDeactivated": "Als de productsynchronisatie is gedeactiveerd, zullen er geen nieuwe producten naar de GMC worden gepushed. De rekening zelf blijft bestaan en de producten vervallen na 30 dagen. Hierdoor worden de catalogusitems niet meer getoond op zowel de Vrije Advertenties als de advertentiecampagnes.",
         "alertProductFeedExists": "**Er bestaat al een productfeed**  \n<small>Uw productfeed bestaat al. U moet het overschrijven om uw PrestaShop-productfeed te synchroniseren. </small>",
         "googleTaxonomyAssociation": "Google Product taxonomie associatie",
@@ -230,8 +230,8 @@
         "breadcrumb1": "Product voer",
         "breadcrumb2": "Instellingen productaanvoer",
         "steps": {
-            "shippingSetup": "Shipping setup",
-            "deliveryTimesAndRates": "Delivery time & rates",
+            "shippingSetup": "Verzendinstellingen",
+            "deliveryTimesAndRates": "Levertijd en -tarieven",
             "attributeMapping": "Attribuut in kaart brengen",
             "categoryMapping": "Categorie in kaart brengen",
             "summary": "Samenvatting",
@@ -240,76 +240,76 @@
             "syncSchedule": "Synchronisatie schema"
         },
         "noticeDataStored": "Instellingen worden bij elke stap opgeslagen en pas bij de laatste stap ingediend.",
-        "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step.",
+        "submissionExplanation": "Houd er rekening mee dat gegevens bij elke stap worden opgeslagen, maar alleen bij de laatste stap worden ingediend.",
         "shippingSetup": {
-            "title": "Shipping setup",
-            "mandatoryStep": "For your products to be shown by Google Merchant Center, shipping is a mandatory step.",
-            "stepExplanation": "This can help customers who are browsing your products on Google see your delivery rates and times.",
+            "title": "Verzendinstellingen",
+            "mandatoryStep": "Om ervoor te zorgen dat Google Merchant Center jouw producten laat zien, is verzending een verplichte stap.",
+            "stepExplanation": "Dit helpt klanten die je producten op Google bekijken om je bezorgtarieven en -tijden te zien.",
             "estimateOption": {
-                "title": "I can estimate shipping rates & times",
-                "description": "You can easily set flat shipping rate and delivery times. You will not be required to import or update your shipping information from Prestashop back office.",
-                "summary": "Estimated method"
+                "title": "Ik kan de verzendtarieven en levertijden schatten",
+                "description": "Je kunt eenvoudig vaste verzendtarieven en levertijden instellen. Je hoeft je verzendgegevens niet te importeren of bij te werken vanuit de back-office van Prestashop.",
+                "summary": "Schattingsmethode"
             },
             "importOption": {
-                "title": "I’d like to import my shipping setup from PrestaShop back office",
-                "description": "Prestashop will import shipping settings that are already set up in your back office. You can choose which shipping service provider you’d like to use per target country.",
-                "summary": "Imported from backoffice"
+                "title": "Ik wil mijn verzendinstellingen importeren vanuit de back-office van PrestaShop",
+                "description": "Prestashop importeert verzendinstellingen die al zijn ingesteld in je back-office. Je kunt zelf bepalen welke verzendservice provider je wilt gebruiken voor elk land van bestemming.",
+                "summary": "Importeren vanuit back-office"
             },
             "laterOption": {
-                "summary": "Setup later"
+                "summary": "Later instellen"
             },
             "validationErrors": {
-                "needOptionToBeChosen": "You need to select one option to continue"
+                "needOptionToBeChosen": "Je moet één optie selecteren om door te gaan"
             }
         },
         "deliveryTimeAndRates": {
             "tooltips": {
-                "carrierName": "The carrier name will help you identify the carriers when it is created with the estimation method. It is limited to 90 characters",
-                "freeShippingOverAmount": "Enter the value of minimum spend required for free shipping",
-                "shippingRate": "Enter the shipping rate that applies below the minimum set amount spend required for free shipping"
+                "carrierName": "De naam van de vervoerder helpt je bij het identificeren van de vervoerders wanneer deze wordt aangemaakt met de schattingsmethode. Deze is beperkt tot 90 tekens",
+                "freeShippingOverAmount": "Voer de waarde in van het minimale bestedingsbedrag dat nodig is voor gratis verzending",
+                "shippingRate": "Voer de verzendkosten in die gelden onder het vereiste minimumbedrag voor gratis verzending"
             },
-            "title": "Delivery time & rates",
-            "rateAndDelivery": "Rate & delivery timeline",
-            "deliveryInfo": "Enter the minimum and maximum days required for delivery",
+            "title": "Levertijd en -tarieven",
+            "rateAndDelivery": "Tarief en leveringstijdlijn",
+            "deliveryInfo": "Voer het minimum- en maximumaantal dagen in dat nodig is voor de levering",
             "customRate": {
-                "title": "Choose a flat or custom rate for your target countries",
-                "rateTitle": "Same rates for target countries",
-                "rateDesc": "I can estimate the same shipping rate and delivery time for all countries",
-                "customTitle": "Custom rates by country",
-                "customDesc": "I'd like to set different rates and times for each country"
+                "title": "Kies een vast of aangepast tarief voor je doellanden",
+                "rateTitle": "Zelfde tarieven voor doellanden",
+                "rateDesc": "Ik kan hetzelfde verzendtarief en dezelfde levertijd voor alle landen schatten",
+                "customTitle": "Aangepaste tarieven per land",
+                "customDesc": "Ik wil verschillende verzendtarieven en levertijden instellen voor elk land"
             },
             "estimateStep": {
-                "estimateInputLabel": "Enter carrier",
-                "error": "Fill in the required information",
-                "carrierName": "Carrier name",
-                "storeOffersTitle": "My store offers",
+                "estimateInputLabel": "Vervoerdersnaam invoeren",
+                "error": "Vul de benodigde gegevens in",
+                "carrierName": "Vervoerdersnaam",
+                "storeOffersTitle": "Mijn winkelaanbiedingen",
                 "storeOffers": {
-                    "flatShippingRateForAllProducts": "Flat shipping rate for all products",
-                    "freeShippingForAllProducts": "Free shipping for all products",
-                    "freeShippingOverAmount": "Free shipping over a set amount"
+                    "flatShippingRateForAllProducts": "Vast verzendtarief voor alle producten",
+                    "freeShippingForAllProducts": "Gratis verzending voor alle producten",
+                    "freeShippingOverAmount": "Gratis verzending boven een bepaald bedrag"
                 },
                 "shippingRate": {
-                    "rate": "Shipping rate",
-                    "rateDesc": "Enter the shipping rate for all target countries",
-                    "overAmount": "Free shipping applies over"
+                    "rate": "Verzendtarief",
+                    "rateDesc": "Voer het verzendtarief in voor alle doellanden",
+                    "overAmount": "Gratis verzending is van toepassing vanaf"
                 },
                 "summary": {
-                    "singleCountry": "Flat rate",
-                    "multiCountriesFlatRateForAll": "Flat rate for all target countries"
+                    "singleCountry": "Vast tarief",
+                    "multiCountriesFlatRateForAll": "Vast tarief voor alle doellanden"
                 },
                 "validationErrors": {
-                    "missingRateOption": "To continue, you must select a rating option and indicate your rates and delivery time accordingly"
+                    "missingRateOption": "Om door te gaan, moet je een tariefoptie selecteren en je bijbehorende verzendtarieven en levertijden aangeven"
                 }
             },
             "importOption": {
                 "validationErrors": {
-                    "needAtLeastOneCarrier": "You need to enable at least one carrier to continue",
-                    "needAtLeastOneCarrierForEachCountry": "To continue, you need to activate and complete at least one carrier for each selected target country"
+                    "needAtLeastOneCarrier": "Je moet ten minste één vervoerder inschakelen om door te gaan",
+                    "needAtLeastOneCarrierForEachCountry": "Om door te gaan, moet je ten minste één vervoerder activeren en voltooien voor elk geselecteerd doelland"
                 },
-                "summary": "Configured carriers from backoffice"
+                "summary": "Geconfigureerde vervoerders vanuit back-office"
             },
-            "productAvailaibleIn": "The dropdown list of countries below would match the countries and currency you’ve set up on your shop. You can select the countries where you would like your products to be displayed.",
-            "targetCountries": "Target country|Target countries",
+            "productAvailaibleIn": "De vervolgkeuzelijst met landen hieronder komt overeen met de landen en valuta die je in je winkel hebt ingesteld. Je kunt de landen selecteren waar je wilt dat je producten worden weergegeven.",
+            "targetCountries": "Doelland|Doellanden",
             "filterTitle": "Filter op land",
             "ifMultipleCountries": "Als u zich op meerdere landen richt, wordt elke productprijs in Google automatisch omgerekend naar de juiste valuta. Uw winkel moet echter wel verzend- en belastingtarieven hebben geconfigureerd voor elk geselecteerd land. Respecteer [landspecifiek winkelbeleid]({0})[:target=\"_blank\"] en [lokale regelgeving]({1})[:target=\"_blank\"]",
             "placeholderSelect": "Selecteer de landen waar uw producten beschikbaar zijn",
@@ -329,32 +329,32 @@
             "appliedOnlyForUsa": "(alleen van toepassing voor de VS)",
             "alertTaxes": "U moet de belastingen opgeven die u int, zodat de gebruikers de exacte prijs begrijpen die zij voor uw producten moeten betalen.",
             "carrierDescriptionHeader": "Drager  \n beschrijving",
-            "enableHeader": "Enable /  \n disable",
+            "enableHeader": "Inschakelen /\n uitschakelen",
             "shipToCustomerHeader": "Levering aan huis  \n",
-            "transitTimeHeader": "Delivery time",
+            "transitTimeHeader": "Levertijd",
             "countryHeader": "Land",
             "shipToCustomerTooltip": "Selecteer of deze vervoerder op het adres van een klant levert of niet (servicepunt, afhalen in de winkel). Google staat alleen vervoerders toe die op een adres leveren.",
             "handlingTimeTooltip": "Geef in werkdagen aan hoeveel tijd u nodig hebt om een bestelling voor te bereiden tot het moment waarop de vervoerder de bestelling ophaalt.",
             "transitTimeTooltip": "Voer in hoe lang het duurt voordat uw bestelling naar de klant wordt verzonden zodra deze uw vestiging heeft verlaten.",
-            "shippingInformationTitle": "Shipping rates & transit time",
-            "shippingInformationIntro": "Rates from enabled carriers will be displayed to customers who are browsing your products on Google.",
-            "shippingTableNotice": "Google cannot support carrier with pick up in store delivery type, please make sure you disable them or switch to another method.",
+            "shippingInformationTitle": "Verzendtarieven en levertijden",
+            "shippingInformationIntro": "Tarieven van ingeschakelde vervoerders worden weergegeven aan klanten die je producten op Google bekijken.",
+            "shippingTableNotice": "Google kan de vervoerder niet ondersteunen bij ophalen in de winkel. Zorg ervoor dat je dit uitschakelt of overschakelt naar een andere methode.",
             "shippingSwitchCarrier": "Schakelaar om drager te activeren/desactiveren",
             "carriersDropdownHeader": "Kopieer verzendinformatie naar",
             "carriersDropdownHiddenLabel": "Kopieer informatie van de vervoerder naar andere vervoerders",
             "noCarriersTitle": "Je hebt geen vervoerders",
             "noCarriersDescription": "Ga naar de vervoerders pagina om vervoerders toe te voegen",
-            "countryNeededTitle": "Select your target country",
-            "countryNeededDescription": "Please enter target countries to display relevant shipping settings in the table",
+            "countryNeededTitle": "Selecteer je doelland",
+            "countryNeededDescription": "Voer doellanden in om relevante verzendinstellingen in de tabel weer te geven",
             "addNewCarriers": "Vervoerders toevoegen of bijwerken",
             "refreshCarriers": "Vernieuwen als u uw dragers hebt bewerkt",
-            "switchToFlatRate": "Switch to estimation shipping’s set-up"
+            "switchToFlatRate": "Overschakelen naar geschatte verzendkosten"
         },
         "preScan": {
-            "selectLanguage": "Filter by language",
+            "selectLanguage": "Filteren op taal",
             "apiError": "Er ging iets mis tijdens het ophalen van data., probeer het later nog eens.",
-            "langConflict": "Your product language does not match the target country {0}. Please ensure that the language of your products matches the target country spoken languages, by translating your product or changing the target country. | Your product language does not match the target countries {0}. Please ensure that the language of your products matches the target countries spoken languages, by translating your product or changing the target countries. ",
-            "noElement": "You don't have any products."
+            "langConflict": "Je producttaal komt niet overeen met het doelland {0}. Zorg ervoor dat de taal van je producten overeenkomt met de taal van het doelland door je product te vertalen of het doelland te wijzigen. | Je producttaal komt niet overeen met de doellanden {0}. Zorg ervoor dat de taal van je producten overeenkomt met de gesproken talen in de doellanden. Dit doe je door je product te vertalen of de doellanden te wijzigen. ",
+            "noElement": "Je hebt geen producten."
         },
         "export": {
             "summarySyncDailyAt": "Synchroniseer dagelijks op {0}",
@@ -387,7 +387,7 @@
             "title1": "1. Kies alle kenmerken die van toepassing zijn op uw producten",
             "description1": "Dit zal u toelaten om verplichte Google product attributen in kaart te brengen bij de volgende stap, afhankelijk van uw catalogus.",
             "title2": "2. Verplichte Google-attributen toewijzen aan uw aangepaste velden",
-            "description2": "Fill in all values to ensure your products are validated. If a value is missing in your catalog, we recommend you create it and complete the setup later. Keep in mind that Google will favor first filled values.",
+            "description2": "Vul alle waarden in om ervoor te zorgen dat je producten worden gevalideerd. Als er een waarde ontbreekt in je catalogus, raden we je aan deze aan te maken en de installatie later te voltooien. Houd er rekening mee dat Google de voorkeur geeft aan de eerste ingevulde waarden.",
             "apparelAndAccessoriesTitle": "Ik verkoop kleding en/of accessoires",
             "apparelAndAccessoriesSubtitle": "d.w.z. kleding, tassen, schoenen of hoeden",
             "electronicsTitle": "Ik verkoop huishoudelijke en/of keukenapparatuur",
@@ -414,7 +414,7 @@
             "ean": "EAN13",
             "mpn": "MPN",
             "brand": "Merk",
-            "notAvailable": "Not filled",
+            "notAvailable": "Niet ingevuld",
             "specificTitle": "Specifiek",
             "sellRefurbished": "Ik verkoop gereviseerde producten",
             "sellApparel": "Ik verkoop kleding en accessoires",
@@ -446,10 +446,10 @@
             "time": "Tijd",
             "youSell": "**U verkoopt** {0}",
             "dataSyncSetUp": "Gegevenssynchronisatie ingesteld",
-            "productAttributesMapping": "Category & product attribute mapping",
-            "attributeMapped": "One category have been mapped | {0} categories have been mapped",
-            "mandatoryAttributesNotMapped": "One Google attributes haven't been mapped to your custom fields | {0} Google attributes haven't been mapped to your custom fields.",
-            "noticeToCompleteMapping": "We recommend mapping all your data otherwise your products might be rejected by Google.",
+            "productAttributesMapping": "Categorie- en productattribuuttoewijzing",
+            "attributeMapped": "Eén categorie is toegewezen| {0} categorieën zijn toegewezen",
+            "mandatoryAttributesNotMapped": "Eén Google-attribuut is niet toegewezen aan je aangepaste velden | {0} Google-attributen zijn niet toegewezen aan je aangepaste velden.",
+            "noticeToCompleteMapping": "We raden je aan al je gegevens toe te wijzen, anders kunnen je producten door Google worden afgewezen.",
             "agreementTitle": "Ik begrijp en ga akkoord met de volgende voorwaarden*",
             "agreementCheckboxLabel1Instant": "De synchronisatie van mijn product feed zal lopen nadat ik op opslaan en exporteren heb geklikt (Dit kan tussen de 1 tot 4 uur duren)",
             "agreementCheckboxLabel1Default": "De synchronisatie van mijn product feed zal tijd kosten bij {time} (Het kan tussen 1 tot 4 uur duren)",
@@ -469,8 +469,8 @@
         "alertCountryNotEligible": "Het doelland dat u hebt geselecteerd, komt niet in aanmerking voor gratis advertenties."
     },
     "googleAdsAccountCard": {
-        "title": "Google Ads account",
-        "intro": "Create adverstising campaigns for your products: find the right audience at the right time.",
+        "title": "Google Ads-account",
+        "intro": "Reclamecampagnes aanmaken voor je producten: vind de juiste doelgroep op het juiste moment.",
         "text": "Eenmaal verbonden moet u mogelijk uw factureringsinstellingen configureren in uw Google Ads account.",
         "labelSelect": "Sluit een bestaande Google Ads account aan",
         "id": "Google Ads account-ID",
@@ -494,12 +494,12 @@
         },
         "email": {
             "title": "Uw Google e-mail adres",
-            "description": "The email address below is the one provided during your Google account connection"
+            "description": "Het onderstaande e-mailadres is het e-mailadres dat is opgegeven tijdens het koppelen met je Google-account"
         },
         "business": {
             "name": "Bedrijfsnaam",
             "title": "Zakelijke informatie",
-            "description": "The currency you choose for your account will be fixed after, so choose it carefully.",
+            "description": "De valuta die je voor je account kiest staat daarna vast. Kies deze dan ook zorgvuldig.",
             "labelCountry": "Land van facturering",
             "placeholderCountry": "Land",
             "labelTimeZone": "Tijdzone",
@@ -509,17 +509,17 @@
         },
         "terms": {
             "title": "Servicevoorwaarden voor Google Programma",
-            "label": "I have read and agree with [Google Ads terms and conditions]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]"
+            "label": "Ik heb de [voorwaarden van Google Ads]({0})[:target=\"_blank\" class=\"ps_gs-fz-12text-muted\"] gelezen en ga hiermee akkoord"
         }
     },
     "smartShoppingCampaignCard": {
         "title": "Verhoog uw verkoop met Maximale prestaties-campagnes",
-        "introNotConnected": "Connect or create your Google Ads account and launch a Performance Max campaign for your products. Maximize your campaign performance across multiple Google channels through one single campaign. Show your ads where they have higher chances of driving conversion. Even better, you don't pay unless your customers click.",
+        "introNotConnected": "Koppel of maak je Google Ads-account aan en start een Performance Max-campagne voor je producten. Maximaliseer je campagneprestaties op meerdere Google-kanalen via één enkele campagne. Laat je advertenties zien waar ze een hogere kans hebben om the converteren. Nog beter, je betaalt pas wanneer jouw klanten klikken.",
         "introConnected": "Met Maximale prestaties-campagnes kunt u uw producten adverteren en de prestaties van uw advertenties maximaliseren op meerdere Google-kanalen via één enkele campagne. Nog beter, u betaalt niet tenzij uw klanten klikken!",
         "footer": "In de Europese Economische Ruimte, het Verenigd Koninkrijk of Zwitserland kunnen maximale prestaties-campagnes worden gebruikt met elke Comparison Shopping Service (CSS) waarmee u werkt. De advertenties worden getoond op algemene zoekresultatenpagina's en op alle andere oppervlakken waar de CSS zich voor heeft opgegeven.",
         "titleInfo": "Wist je dat?",
-        "contentInfo": "Advertisers who upgrade Smart Shopping campaigns to Performance Max see an average increase of 12% in conversion value at the same or better return on ad spend (ROAS)*",
-        "footerInfo": "* Google Data, Global, Ads, Sep–Oct 2021."
+        "contentInfo": "Adverteerders die Smart Shopping-campagnes upgraden naar Performance Max zien een gemiddelde stijging van 12% in conversiewaarde bij hetzelfde of beter rendement op advertentie-uitgaven (ROAS)*",
+        "footerInfo": "* Google Data, Global, Ads, sep-okt 2021."
     },
     "smartShoppingCampaignCreation": {
         "allFilters": "Alle filters",
@@ -533,19 +533,19 @@
         "inputNameTooltip": "Kies een naam die het thema van de campagne duidelijk omschrijft, zodat u deze gemakkelijk kunt terugvinden in uw account. De naam van uw campagne is niet zichtbaar voor uw klanten.",
         "inputNamePlaceholder": "Type naam campagne",
         "inputCampaignNameInvalidFeedback": "De naam moet uniek zijn.",
-        "inputCampaignNameTooLongFeedback": "The name must be less than 125 characters in length.",
+        "inputCampaignNameTooLongFeedback": "De naam moet minder dan 125 tekens lang zijn.",
         "inputDurationHelper": "Wij raden een minimale duur van 30 dagen aan, zodat Google uw campagne kan optimaliseren.",
         "inputDurationLabel": "Duur van de campagne",
         "inputDurationTooltip": "Advertentiecampagnes hebben standaard geen einddatum, zodat de advertenties voor onbepaalde tijd kunnen lopen. U kunt altijd een einddatum toevoegen om een kortere campagne te maken.",
         "inputDurationLabel1": "Begindatum",
         "inputDurationLabel2": "Einddatum (facultatief)",
-        "inputDurationInvalidFeedback": "The end date must be set in the future.",
+        "inputDurationInvalidFeedback": "De einddatum moet in de toekomst liggen.",
         "inputDatePickerHelper": "Gebruik de cursortoetsen om door de kalenderdata te navigeren",
         "inputCountryHelper": "Om meerdere landen te targeten, moet u meerdere campagnes aanmaken.",
         "inputCountryImutable": "Het land kan niet worden gewijzigd na het aanmaken, als u een ander land wilt targeten, moet u een nieuwe campagne aanmaken",
         "inputCountryLabel": "Land van bestemming",
         "inputCountryTooltip": "De advertenties van uw campagne kunnen worden getoond aan klanten in uw geografische doelgebieden, of aan klanten die uw doeltaal hebben geselecteerd als taalinstelling van hun browser.",
-        "inputFiltersLegend": "Products filters",
+        "inputFiltersLegend": "Productfilters",
         "inputFiltersAllLabel": "Inclusief alle gesynchroniseerde producten",
         "inputFiltersPartialLabel": "Selecteer producten met behulp van productverdelingsfilters",
         "inputFiltersHelper": "Neem even de tijd om [het beleid van Google Shopping-advertenties te lezen]({0})[:target=\"_blank\"] sommige producten zijn verboden of beperkt.",
@@ -554,7 +554,7 @@
         "inputBudgetFeedback": "Dagelijks campagnebudget",
         "inputBudgetTooltip": "Uw budget is het gemiddelde bedrag dat u per dag aan uw campagne wilt besteden. Het budget dat u kiest, bepaalt u helemaal zelf, en u kunt het op elk moment aanpassen.",
         "inputBudgetPlaceholder": "Bedrag",
-        "inputAllSyncedProducts": "No filters selected",
+        "inputAllSyncedProducts": "Geen filters geselecteerd",
         "formHelperTitle": "Activering van de campagne",
         "formHelperDescription": "Uw campagne blijft lopen totdat u deze pauzeert of zodra de einddatum is bereikt. Je kunt het op elk moment pauzeren.",
         "errorNoProducts": "U wilt een campagne starten, maar uw Google-handelscentrum bevat nog geen producten. Uw campagne wordt pas gestart als ten minste één product door Google is goedgekeurd.",
@@ -568,29 +568,29 @@
         "enableCreationRemarketingTag": "Schakel remarketing en conversie tracking tag in",
         "pauseCampaign": "Uw campagne blijft lopen totdat u deze pauzeert of zodra de einddatum is bereikt. Je kunt het op elk moment pauzeren.",
         "switch": {
-            "on": "On",
-            "off": "Off"
+            "on": "Aan",
+            "off": "Uit"
         },
         "alerts": {
             "noTag": "Door de tag niet automatisch toe te voegen zal Google niet in staat zijn om campagnes resultaten te sturen",
             "duplicatedTag": "Het lijkt erop dat u al een tag hebt gekoppeld aan uw google-account, het maken van een nieuwe tag kan gebeurtenissen dupliceren voor uw campagnes. Wij stellen voor om alleen degene te houden die wij voor u genereren.",
             "noConversionActions": "De tracking tag is ingeschakeld, maar er is geen conversie actie ingesteld op de winkel. Dit kan worden verholpen door nieuwe te maken.",
             "hasUnhandledFilters": "Tenminste één filter van deze campagne wordt niet ondersteund door deze module. Om verlies op uw bestaande configuratie te voorkomen, kunnen alleen de basisdetails van de campagne worden gewijzigd.",
-            "PMaxExplanationTitle": "Performance Max is a new goal-based campaign.",
+            "PMaxExplanationTitle": "Performance Max is een nieuwe doelgerichte campagne.",
             "PMaxExplanation": "Maximale prestaties is een verbeterd campagnetype dat wordt aangestuurd door de slimme technologie van Google. Het kan u helpen uw advertenties over meerdere Google-kanalen te optimaliseren en betere resultaten voor uw bedrijf te behalen.",
-            "PMaxExplanationPrecision": "Even better, you won't pay unless customers click.",
+            "PMaxExplanationPrecision": "Nog beter, je betaalt pas als klanten klikken.",
             "PMaxExplanationLink": "Kom meer te weten over Maximale prestaties"
         },
         "labelSelectedDimension": "Geselecteerde dimensie waarde",
         "nbDimensionSelected": "Geen dimensie geselecteerd | {0} dimensie geselecteerd | {0} dimensies geselecteerd",
         "nbValuesSelected": "Geen waarde geselecteerd | {0} waarde geselecteerd | {0} waarden geselecteerd",
         "selectProductsTitle": "Kies een productfilter",
-        "selectProductsSubtitle": "The campaign can only have one dimension with one or multiple values.",
+        "selectProductsSubtitle": "De campagne kan slechts één dimensie hebben met één of meerdere waarden.",
         "remarketingNote": "**Let op:** Als u al Google Ads Conversion Actions met transactiespecifieke conversiewaarden op uw site hebt geconfigureerd voor dit Google Ads-account, dan hoeft u geen nieuwe conversietags op uw site in te stellen.",
         "toggleNewConversionTag": "Nieuwe conversie tracking tags instellen op mijn site",
         "toggleNewConversionTag2": "We zullen de volgende conversie tags maken: Pagina bekijken, Kopen, Toevoegen aan mandje",
         "remarketingTagLoading": "Controleren of u remarketing- en conversietracking-tags aan uw winkel kunt toevoegen",
-        "descriptiveMessage": "Only the Performance Max campaigns and Smart Shopping campaigns associated to your Google Merchant Center account are listed. \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].",
+        "descriptiveMessage": "Alleen de Performance Max-campagnes en Smart Shopping-campagnes die zijn gekoppeld aan je Google Merchant Center-account worden weergegeven. \nAls je al je campagnes wilt zien, ga dan naar je [Google Ads-account]({0})[:target=\"_blank\"].",
         "nbProductsFiltersSelected": "Geen product filter geselecteerd | {0} product filter geselecteerd | {0} product filters geselecteerd",
         "dimensionXFilterSelected": "{0} filter",
         "categories": "Categorie",
@@ -602,8 +602,8 @@
         "conditions": "Product Toestand",
         "conditionsSubTitle": "De conditie van uw product op het moment van verkoop (ex: nieuw, gebruikt of gereviseerd)",
         "popinTitle": "Campagne's producten filters",
-        "popinTitleConfirmCancel": "Go Back",
-        "xProducts": " ({0} product) | ({0} product) | ({0} products)",
+        "popinTitleConfirmCancel": "Terug",
+        "xProducts": " ({0} product) | ({0} product) | ({0} producten)",
         "productConditions": {
             "unspecified": "Ongespecificeerd",
             "unknown": "Onbekend",
@@ -611,18 +611,18 @@
             "refurbished": "Gerenoveerd",
             "used": "Gebruikt"
         },
-        "dimensionXFilterSelectedWithXProducts": "{0} filter | {0} filter ({1} product) | {0} filter ({1} products)",
-        "filtersWithxValues": "{0} filters | {0} filters with {1} affected product | {0} filters with {1} affected products",
+        "dimensionXFilterSelectedWithXProducts": "{0} filter | {0} filter ({1} product) | {0} filter ({1} producten)",
+        "filtersWithxValues": "{0} filters | {0} filters met {1} betreffend product | {0} filters met {1} betreffende producten",
         "budgetTip": {
-            "content": "It is generally recommended to start with a **minimum budget of {0} per day for your daily ad spend**. This allows you to reach a larger audience & potentially see better results.",
-            "readMore": "This recommended minimum budget will allow you to test the effectiveness\n  of your ads and make adjustments as needed. Of course, every business is\n  different, and the actual budget that is best for you may vary depending\n  on your specific goals and target audience. We recommend experimenting\n  with different budgets to determine what works best for your business."
+            "content": "Het wordt over het algemeen aanbevolen om te beginnen met een **minimumbudget van {0} per dag voor je dagelijkse advertentie-uitgaven**. Hiermee kun je een groter publiek bereiken en mogelijk betere resultaten zien.",
+            "readMore": "Met dit aanbevolen minimumbudget kun je de effectiviteit\n  van je advertenties testen en indien nodig aanpassingen aanbrengen. Natuurlijk is elk bedrijf\n  anders, en het budget dat daadwerkelijk het beste voor je is kan variëren,\n  afhankelijk van je specifieke doelen en doelgroep. We raden aan om te experimenteren\n  met verschillende budgetten om te bepalen wat het beste werkt voor jouw bedrijf."
         }
     },
     "smartShoppingCampaignList": {
         "tableTitle": "Prestaties van de campagne",
         "xCampaign": "Geen campagnes | {0} campagne | {0} campagnes",
         "performanceMax": "Maximale prestaties",
-        "smartShoppingCampaign": "Smart Shopping Campaign",
+        "smartShoppingCampaign": "Smart Shopping-campagne",
         "campaignType": "Type: {0}"
     },
     "productFeedPage": {
@@ -632,8 +632,8 @@
             "alertSuccess": "U bent succesvol aangemeld. Zodra uw producten zijn goedgekeurd, kunnen ze verschijnen in de zoekresultaten van het Google Shopping-tabblad."
         },
         "destinations": {
-            "shoppingAds": "Shopping Ads",
-            "enhancedFreeListing": "Enhanced Free Listings"
+            "shoppingAds": "Shopreclames",
+            "enhancedFreeListing": "Verbeterde gratis aanbiedingen"
         },
         "syncStatus": {
             "title": "Synchronisatie status",
@@ -654,12 +654,12 @@
                     "failed": "Synchronisatie mislukt",
                     "completed": "Synchronisatie voltooid",
                     "next": "Volgende synchronisatie",
-                    "notPlanned": "No planned synchronisation"
+                    "notPlanned": "Geen geplande synchronisatie"
                 },
                 "subtitle": {
-                    "willHappenOnDate": "Will start on {0} at {1}",
+                    "willHappenOnDate": "Begint op {0} om {1}",
                     "happenedOnDate": "Op {date}",
-                    "error": "Due to a technical issue, the sync failed on {0} at {1}. A new one will run in a few hours."
+                    "error": "Door een technisch probleem is de synchronisatie mislukt op {0} om {1}. Over een paar uur zal er een nieuwe synchronisatie plaatsvinden."
                 }
             }
         },
@@ -672,7 +672,7 @@
             "pendingProducts": "In afwachting van",
             "pendingProductsDescription": "Een product dat nog in behandeling is, wordt niet getoond in advertenties of gratis vermeldingen omdat het nog wordt beoordeeld door Google.",
             "expiringProducts": "Aflopend",
-            "expiringProductsDescription": "Expiring products will be removed from your Google merchant center in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
+            "expiringProductsDescription": "Vervallen producten worden in de komende drie dagen uit je Google Merchant Center verwijderd. Deze producten komen niet langer in aanmerking om te worden weergegeven in gepromote of gratis aanbiedingen.",
             "disapprovedProducts": "Niet goedgekeurd",
             "disapprovedProductsDescription": "Uw product is afgekeurd voor een bestemming en is niet actief.",
             "productsSubmittedToGoogle": "Actieve producten ingediend bij Google: {0}",
@@ -682,13 +682,13 @@
             "title": "Actieve producten ingediend bij Google",
             "description": "De status van uw product laat u weten of uw product in aanmerking komt om te verschijnen in de bestemming waarvoor u hebt gekozen.",
             "alert": {
-                "prescanTitle": "Warning {0} product couldn’t be exported to Google | Warning {0} products couldn’t be exported to Google",
-                "prescanDescription": "Some of your products didn’t pass our verification, make sure that your products have the required information to be listed on Google Shopping."
+                "prescanTitle": "Waarschuwing: {0} product kan niet naar Google worden geëxporteerd | Waarschuwing: {0} producten kunnen niet naar Google worden geëxporteerd",
+                "prescanDescription": "Sommige van je producten hebben onze verificatie niet doorstaan. Zorg ervoor dat je producten de vereiste gegevens hebben om op Google Shopping te worden opgenomen."
             }
         },
         "preScan": {
-            "xProducts": " {0} product | {0} product | {0} products",
-            "description": "{0} with problems that couldn't be synced are listed below.",
+            "xProducts": " {0} product | {0} product | {0} producten",
+            "description": "{0} producten met problemen die niet kunnen worden gesynchroniseerd staan hieronder vermeld.",
             "fields": {
                 "name": "Naam",
                 "language": "Taal",
@@ -697,13 +697,13 @@
                 "price": "Prijs",
                 "barcode": "GTIN/Brand"
             },
-            "xHasFailedPreValidation": "\"{0}\": has failed the pre-validation.",
-            "xHasPassedPreValidation": "\"{0}\": has passed the pre-validation.",
-            "labelTooltipDescription": "This attribute matches what you have configured in your product attribute mapping : short description, description...",
-            "labelTooltipBarcode": "This attribute matches what you have configured in your product attribute mapping : barcode, MPN, GTIN, ISBN, UPC..."
+            "xHasFailedPreValidation": "‘{0}’: heeft de pre-validatie niet doorstaan.",
+            "xHasPassedPreValidation": "‘{0}’: heeft de pre-validatie doorstaan.",
+            "labelTooltipDescription": "Dit kenmerk komt overeen met wat je hebt geconfigureerd in je productattribuuttoewijzing: korte beschrijving, beschrijving...",
+            "labelTooltipBarcode": "Dit kenmerk komt overeen met wat je hebt geconfigureerd in je productattribuuttoewijzing: streepjescode, MPN, GTIN, ISBN, UPC..."
         },
         "approvalTable": {
-            "description": "These are the status of your products that are sent to Google Merchant Center. Some products might appear more than once because of their language variation.",
+            "description": "Dit is de status van je producten die naar Google Merchant Center worden verzonden. Sommige producten kunnen meer dan één keer verschijnen vanwege hun taalvariatie.",
             "filterTitle": "Filter op beschikbaarheid",
             "filterAllStatus": "Alle",
             "filterOnlyApproved": "Goedgekeurd",
@@ -712,7 +712,7 @@
             "tableHeaderID": "ID",
             "tableHeaderAttributeID": "Attribuut",
             "tableHeaderDestination": "Bestemming",
-            "tableHeaderName": "Title",
+            "tableHeaderName": "Titel",
             "tableHeaderGoogleValidation": "Beschikbaarheid voor Google",
             "tableHeaderLanguage": "Taal",
             "tableHeaderCountry": "Land",
@@ -744,7 +744,7 @@
     "campaignCard": {
         "title": "Maak uw Maximale prestaties-campagne in een paar klikken",
         "description": "Google A.I. toont advertenties van de gezochte producten aan geïnteresseerde shoppers op het juiste moment, waardoor uw omzet stijgt.\n\nStel een dagelijks budget in en start eenvoudig uw advertentiecampagne - u wordt alleen gefactureerd wanneer er op de advertenties wordt geklikt, zo eenvoudig is het!",
-        "footer": "We'll need to activate remarketing and conversion tracking tag for you to run Peformance Max campaigns"
+        "footer": "We moeten de remarketing- en conversietrackingtag activeren om Peformance Max-campagnes uit te voeren"
     },
     "keymetrics": {
         "title": "Belangrijkste gegevens",
@@ -793,7 +793,7 @@
             "conversion": "Conversie",
             "sales": "Verkoop",
             "id": "ID",
-            "products": "Product Filters",
+            "products": "Productfilters",
             "click": "Klik op",
             "costs": "Kosten",
             "averageCostPerClick": "Gemiddelde CPC",
@@ -808,7 +808,7 @@
         },
         "tooltipCol": {
             "status": "Een status voor uw advertentiecampagne die beschrijft of de advertenties al dan niet kunnen worden uitgevoerd op dit moment.",
-            "products": "Product filter is what you selected as your campaign filter with the number of affected products."
+            "products": "Productfilter is wat je hebt geselecteerd als je campagnefilter met het aantal betrokken producten."
         },
         "campaignsPerformanceTable": {
             "title": "Prestaties van de campagne",
@@ -827,25 +827,25 @@
         }
     },
     "notConfiguredState": {
-        "title": "Finish your configuration",
-        "titleOneLastStep": "One last step",
-        "textGoogleMissing": "Continue your configuration to start sending products to Google and creating campaigns.",
-        "textOneMoreThing": "One more thing and you are all set to send your products to Google.",
-        "textBoostYourSales": "If you want to boost your sales; connect and create campaigns with Google Ads.",
-        "ctaClassic": "Go to configuration page",
-        "ctaLinkMCA": "Link your Google Merchant Center Account",
-        "ctaExportFeed": "Sync your products with Google",
+        "title": "Voltooi je configuratie",
+        "titleOneLastStep": "Eén laatste stap",
+        "textGoogleMissing": "Ga door met je configuratie om producten naar Google te verzenden en campagnes aan te maken.",
+        "textOneMoreThing": "Nog één ding en je bent helemaal klaar om je producten naar Google te sturen.",
+        "textBoostYourSales": "Koppel en maak campagnes aan met Google Ads als jij je verkopen wilt stimuleren.",
+        "ctaClassic": "Naar de configuratiepagina",
+        "ctaLinkMCA": "Je Google Merchant Center-account koppelen",
+        "ctaExportFeed": "Je producten synchroniseren met Google",
         "ctaLinkGoogleAds": "Sluit uw Google Ads account aan"
     },
     "configuredState": {
         "title": "Gefeliciteerd! Je bent er helemaal klaar voor !",
-        "text": "You finished all the required steps to get the most out of **Marketing with Google**",
-        "cta": "Go to campaign creation",
-        "firstStep": "Link your store to a PrestaShop account",
-        "secondStep": "Sign in or create your Google Account",
-        "thirdStep": "Sign in or create your Google Merchant Center account",
-        "fourthStep": "Export and synchronize your product catalog",
-        "fifthStep": "Sign in or create your Google Ads account",
+        "text": "Je hebt alle vereiste stappen voltooid om het meeste uit **Marketing met Google** te halen",
+        "cta": "Naar aanmaken van campagnes",
+        "firstStep": "Je winkel koppelen aan een PrestaShop-account",
+        "secondStep": "Meld je aan of maak je Google-account aan",
+        "thirdStep": "Meld je aan of maak je Google Merchant Center-account aan",
+        "fourthStep": "Je productcatalogus exporteren en synchroniseren",
+        "fifthStep": "Meld je aan of maak je Google Ads-account aan",
         "sixthStep": "**Volgende stap** maak uw eerste Maximale prestaties Campagne"
     },
     "help": {
@@ -884,19 +884,19 @@
         "acceptInvitation": "Uitnodiging accepteren",
         "continue": "Ga verder",
         "disabled": "Uitgeschakeld",
-        "activateModule": "Enable module",
+        "activateModule": "Module inschakelen",
         "enabled": "Ingeschakeld",
         "agree": "Mee eens.",
         "enableFreeListing": "Schakel gratis vermeldingen in",
-        "connectAccount": "Connect your account",
+        "connectAccount": "Je account koppelen",
         "connectingAccount": "Verbindende rekening...",
         "chooseExistingAccount": "Kies een bestaand account",
         "createNewAccount": "Nieuw account aanmaken",
         "learnAboutAccountSuspension": "Meer informatie over accountopschorting",
         "learnAboutSiteClaiming": "Meer informatie over het claimen van sites",
         "learnMoreAboutSmartShoppingCampaigns": "Meer informatie over Smart Shopping-campagnes",
-        "configureAndExportProductFeed": "Start your configuration",
-        "continueProductFeed": "Resume configuration",
+        "configureAndExportProductFeed": "Je configuratie starten",
+        "continueProductFeed": "Configuratie hervatten",
         "chooseAccount": "Kies uw account",
         "supportedCountries": "Ondersteunde landen",
         "cancel": "Annuleer",
@@ -912,7 +912,7 @@
         "editSettings": "Instellingen bewerken",
         "editRules": "Regels bewerken",
         "shopMaintenanceBtn": "Ga naar onderhoudsinstellingen",
-        "editProductAttributes": "Edit categories & attributes",
+        "editProductAttributes": "Categorieën en attributen bewerken",
         "forceSync": "Forceer synchronisatie",
         "createNewGoogleAdsAccount": "Nieuwe Google Ads account aanmaken",
         "back": "Terug naar",
@@ -978,14 +978,14 @@
         "validateSelection": "Selectie bevestigen",
         "googleProductStatusDefinitions": "Google productstatus definities",
         "visitThe": "Bezoek de {0} voor meer informatie",
-        "investigate": "Investigate",
+        "investigate": "Onderzoeken",
         "createPmax": "Maximale prestaties-campagne aanmaken",
         "understand": "Ik begrijp het.",
-        "moreActions": "More Actions"
+        "moreActions": "Meer acties"
     },
     "badge": {
         "free": "Gratis",
-        "connected": "Connected",
+        "connected": "Gekoppeld",
         "active": "Actief",
         "disapproved": "Afgekeurd",
         "pendingCreation": "In afwachting van",
@@ -1011,7 +1011,7 @@
         "canceled": "Geannuleerd",
         "testAccount": "Test",
         "loading": "Laden",
-        "new": "New"
+        "new": "Nieuw"
     },
     "modal": {
         "titleDisconnectionMerchantCenter": "Uw Merchant Center afsluiten?",
@@ -1043,7 +1043,7 @@
         "upgradeSCCToPmaxText": "Smart Shopping-campagnes zullen worden geüpgraded naar maximale prestaties op {0}\n\nU hoeft geen actie te ondernemen aangezien uw Smart Shopping-campagne-instellingen en -budget hetzelfde zullen blijven. Alleen uw campagnetype zal automatisch worden bijgewerkt naar maximale prestaties.\n\nVanaf begin juli kunt u alleen nog Performance Max-campagnes aanmaken.",
         "PMaxLiveTitle": "Maximale prestaties is hier",
         "PMaxLiveText": "Vanaf vandaag kunt u Maximale prestaties-campagnes maken, de volgende generatie van Smart Shopping-campagnes.\n\nMaximale prestaties is een verbeterd campagnetype dat wordt aangestuurd door de slimme technologie van Google. Het werkt achter de schermen om uw advertenties tijdens het shoppingtraject automatisch te optimaliseren voor maximale prestaties. ",
-        "PMaxMigrationTitle": "Important News",
+        "PMaxMigrationTitle": "Belangrijk nieuws",
         "PMaxMigrationText": "Uw Smart Shopping-campagnes worden nu automatisch geüpgraded naar Maximale prestaties-campagnes. \n\n- Uw campagne-instellingen en budget blijven hetzelfde. \n\n- De functionaliteit is gelijk aan die van Smart Shopping-campagnes.\n\n- Vanaf dit moment kunt u alleen nog Maximale prestaties-campagnes aanmaken.",
         "PmaxTextLink": "Meer informatie over campagnes voor maximale prestaties",
         "textPmaxReleased": "Uw Smart Shopping-campagnes worden nu automatisch geüpgraded naar Maximale prestaties-campagnes. [Leer meer]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
@@ -1060,10 +1060,10 @@
         "approvalStatusLang": "placeholder",
         "approvalStatusIssues": "Reden waarom uw product niet is goedgekeurd voor Google",
         "attributeMapping": {
-            "description": "The description will be cropped automatically if it is longer than 5000",
-            "ageGroup": "The demographic for which your product is targeted.",
-            "gtin": "A code printed on product packaging to aid in identify a particular item.",
-            "mpn": "A unique number that is issued by manufacturers to identify individual products. It is a series of numbers and letters.",
+            "description": "De beschrijving wordt automatisch ingekort als deze langer is dan 5000 tekens",
+            "ageGroup": "De doelgroep van jouw product.",
+            "gtin": "Een code die wordt afgedrukt op de verpakking van het product om te helpen bij het identificeren van een bepaald artikel.",
+            "mpn": "Een uniek nummer dat wordt uitgegeven door fabrikanten om individuele producten te identificeren. Het is een reeks cijfers en letters.",
             "pattern": "Het patroon of de grafische print van uw product"
         },
         "GMCForm": {
@@ -1111,7 +1111,7 @@
             "ean": "EAN",
             "mpn": "MPN",
             "description": "Beschrijving",
-            "description_short": "Short Description",
+            "description_short": "Korte omschrijving",
             "longDescription": "Lange beschrijving",
             "notAvailable": "Niet beschikbaar"
         },
@@ -1121,18 +1121,18 @@
         "sellApparel": "Ik verkoop kleding en accessoires"
     },
     "banner": {
-        "titleAdsbanner": "Just starting out in Google advertising?",
-        "textAdsBannerLong": "Get {0} of Google Ads credits* when you spend at least {0} to create your first campaigns on PrestaShop or directly via your [Google Ads Account]({1})[:target=\\\"_blank\\\"].",
-        "textAdsBanner": "Get {0} of Google Ads credits* when you spend at least {0} to create your first campaigns.",
-        "legendLong": "*Your voucher will be applied automatically from the moment you start spending! *The amount needs to be spent within 60 days of the first campaign spend and credits will be valid for 60 days once credited. [Read T&C]({0})[:target=\\\"_blank\\\"]",
-        "legend": "*Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits. [Read T&C]({0})[:target=\\\"_blank\\\"]",
-        "legendWithoutTC": "* Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits.",
-        "ctaCreateFirstCampaign": "Create your first campaign",
+        "titleAdsbanner": "Net begonnen met Google Ads?",
+        "textAdsBannerLong": "Ontvang {0} aan Google Ads-tegoed* wanneer je ten minste {0} besteedt aan het aanmaken van je eerste campagnes op PrestaShop of rechtstreeks via je [Google Ads-account]({1})[:target=\\\"_blank\\\"].",
+        "textAdsBanner": "Ontvang {0} aan Google Ads-tegoed* wanneer je ten minste {0} besteedt aan het aanmaken van je eerste campagnes.",
+        "legendLong": "*De aanbieding wordt automatisch toegepast vanaf het moment dat je begint met uitgeven! *Het bedrag moet binnen 60 dagen na de eerste campagne-uitgaven worden besteed. Het tegoed is 60 dagen geldig nadat het is bijgeschreven. [Voorwaarden lezen]({0})[:target=\\\"_blank\\\"]",
+        "legend": "*Maak een nieuw Google Ads-account aan. De aanbieding wordt automatisch toegepast zodra je de uitgaven hebt gematcht. Je hebt 60 dagen om het tegoed uit te geven. [Voorwaarden lezen]({0})[:target=\\\"_blank\\\"]",
+        "legendWithoutTC": "*Maak een nieuw Google Ads-account aan. De aanbieding wordt automatisch toegepast zodra je de uitgavendrempel hebt bereikt. Je hebt 60 dagen om het tegoed uit te geven.",
+        "ctaCreateFirstCampaign": "Je eerste campagne aanmaken",
         "textCampaignsBanner": "Maximale prestaties is de volgende generatie van Smart Shopping-campagnes. Het is een verbeterd campagnetype dat wordt aangestuurd door de slimme technologie van Google. Het werkt achter de schermen om uw advertenties tijdens het shoppingtraject automatisch te optimaliseren voor maximale prestaties."
     },
     "tipsAndTricks": {
-        "title": "PrestaShop Tips and Tricks",
-        "advisorPicture": "{0}'s profile picture",
+        "title": "Tips en trucs voor PrestaShop",
+        "advisorPicture": "Profielfoto van {0}",
         "advisorRole": "PrestaShop eCommerce Expert"
     }
 }

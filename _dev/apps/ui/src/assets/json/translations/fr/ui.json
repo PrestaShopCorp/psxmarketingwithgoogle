@@ -11,10 +11,10 @@
         "versionDoesNotExist": "Il semble que la version du module ne puisse être récupérée. C'est de notre côté, veuillez réessayer.",
         "moduleNeedActivation": "Le module Marketing with Google est désactivé. Vous ne pourrez utiliser aucune de ses fonctionnalités tant que vous n'aurez pas activé votre module.",
         "moduleUpdateNeeded": {
-            "ps_eventbus": "The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync.",
+            "ps_eventbus": "La version du module PrestaShop CloudSync exécutée sur cette boutique est plus ancienne que le minimum requis.\n\nVous pouvez utiliser PrestaShop Marketing with Google, mais certaines fonctionnalités (par exemple, la synchronisation des produits) ne seront pas disponibles tant que vous n'aurez pas mis à niveau PrestaShop CloudSync.",
             "psxmarketingwithgoogle": "Veuillez mettre à jour le module PrestaShop Marketing With Google afin de le faire fonctionner correctement."
         },
-        "adblockerActivated": "Veuillez désactiver votre bloqueur de publicité pour que le module fonctionne correctement et rafraîchir votre navigateur.",
+        "adblockerActivated": "Veuillez désactiver votre bloqueur de publicité pour que le module fonctionne correctement, et rafraîchir votre navigateur.",
         "refreshPage": "Rafraîchir la page",
         "mandatory": "sont obligatoires",
         "XIsMandatory": "{0} est obligatoire.",
@@ -29,7 +29,7 @@
         "helpPage": "Page d'aide",
         "noResultsFoundForX": " Aucun résultat trouvé pour {0}",
         "days": "Jours",
-        "readMore": "Plus d’infos"
+        "readMore": "En savoir plus"
     },
     "landingPage": {
         "header": {
@@ -240,7 +240,7 @@
             "syncSchedule": "Calendrier de synchronisation"
         },
         "noticeDataStored": "Les paramètres sont enregistrés à chaque étape mais ne seront soumis qu'à l'étape finale.",
-        "submissionExplanation": "Veuillez noter que les données seront stockées à chaque étape mais ne seront envoyées qu'à l'étape finale.",
+        "submissionExplanation": "Veuillez noter que les données seraient stockées à chaque étape, mais ne seraient soumises qu'à la dernière étape.",
         "shippingSetup": {
             "title": "Configuration de l'expédition",
             "mandatoryStep": "Pour que vos produits soient affichés par Google Merchant Center, la configuration des paramètres de livraison est une étape obligatoire.",
@@ -279,7 +279,7 @@
                 "customDesc": "Je voudrais définir des tarifs et des délais spécifiques pour chaque pays"
             },
             "estimateStep": {
-                "estimateInputLabel": "Saisir un transporteur",
+                "estimateInputLabel": "Entrez le nom du transporteur",
                 "error": "Veuillez remplir les informations requises",
                 "carrierName": "Nom du transporteur",
                 "storeOffersTitle": "Ma boutique propose",
@@ -330,7 +330,7 @@
             "alertTaxes": "Vous devez soumettre les taxes que vous percevez, afin que les utilisateurs comprennent le prix exact qu'ils devront payer pour vos produits.",
             "carrierDescriptionHeader": "Description du transporteur",
             "enableHeader": "Activer/désactiver",
-            "shipToCustomerHeader": "Livraison à la porte  ",
+            "shipToCustomerHeader": "Livraison à la porte ",
             "transitTimeHeader": "Délai de livraison",
             "countryHeader": "Pays",
             "shipToCustomerTooltip": "Sélectionnez si ce transporteur livre à l'adresse d'un client ou non (point relais, retrait en magasin). Google autorise uniquement les transporteurs qui livrent à l'adresse d'un client.",
@@ -353,7 +353,7 @@
         "preScan": {
             "selectLanguage": "Filtrer par langue",
             "apiError": "Une erreur s'est produite lors de la récupération des données. Veuillez réessayer plus tard.",
-            "langConflict": "La langue de votre produit ne correspond pas à celle du pays cible {0}. Veuillez vous assurer que la langue de vos produits correspond aux langues parlées dans le pays cible, en traduisant votre produit ou en changeant le pays cible. | La langue de votre produit ne correspond pas aux pays cibles {0}. Veuillez vous assurer que la langue de vos produits correspond aux langues parlées des pays cibles, en traduisant votre produit ou en modifiant les pays cibles. ",
+            "langConflict": "La langue de votre produit ne correspond pas au pays cible {0}. Veuillez vous assurer que la langue de vos produits correspond aux langues parlées dans le pays cible, en traduisant votre produit ou en changeant le pays cible. | La langue de votre produit ne correspond pas aux pays cibles {0}. Veuillez vous assurer que la langue de vos produits correspond aux langues parlées dans les pays cibles, en traduisant votre produit ou en modifiant les pays cibles. ",
             "noElement": "Vous n'avez pas encore de produit."
         },
         "export": {
@@ -518,8 +518,8 @@
         "introConnected": "Avec les campagnes Performance Max, vous pouvez faire la publicité et maximiser la performance de vos annonces sur plusieurs canaux Google à travers une seule campagne. Mieux encore, vous ne payez que si vos clients cliquent !",
         "footer": "Dans l'Espace économique européen, au Royaume-Uni ou en Suisse, les campagnes Performance Max peuvent être utilisées avec n'importe quel service de comparaison de prix (CSS) avec lequel vous travaillez. Les publicités apparaîtront sur les pages de résultats de recherche généraux et sur toutes les autres propriétés auxquelles le CSS a adhéré.",
         "titleInfo": "Le saviez-vous ?",
-        "contentInfo": "Les annonceurs qui mettent à niveau leurs campagnes Smart Shopping vers Performance Max constatent une augmentation moyenne de 12 % de leurs conversions pour un retour sur investissement (ROAS) identique ou supérieur",
-        "footerInfo": "* Données Google, Global, Ads, Sep-Oct 2021."
+        "contentInfo": "Les annonceurs qui mettent à niveau les campagnes Smart Shopping vers Performance Max constatent une augmentation moyenne de 12 % de la valeur de conversion avec un retour sur investissement (ROAS) identique ou supérieur*",
+        "footerInfo": "* Données Google, Global, Ads, Sep-Oct 2021."
     },
     "smartShoppingCampaignCreation": {
         "allFilters": "Tous les filtres",
@@ -533,8 +533,8 @@
         "inputNameTooltip": "Choisissez un nom qui décrit clairement le thème de la campagne afin que vous puissiez la retrouver facilement dans votre compte. Le nom de votre campagne n'est pas visible par vos clients.",
         "inputNamePlaceholder": "Tapez le nom de la campagne",
         "inputCampaignNameInvalidFeedback": "Le nom doit être unique.",
-        "inputCampaignNameTooLongFeedback": "Le nom doit comporter moins de 125 caractères.",
-        "inputDurationHelper": "Nous recommandons une durée minimale de 30 jours afin que Google puisse optimiser votre campagne.",
+        "inputCampaignNameTooLongFeedback": "Le nom doit comporter moins de 125 caractères.",
+        "inputDurationHelper": "Nous recommandons une durée minimale de 30 jours afin que Google puisse optimiser votre campagne.",
         "inputDurationLabel": "Durée de la campagne",
         "inputDurationTooltip": "Les campagnes publicitaires n'ont pas de date de fin par défaut, de sorte que les publicités puissent s'exécuter indéfiniment. Vous pouvez toujours ajouter une date de fin pour créer une campagne plus courte.",
         "inputDurationLabel1": "Date de début",
@@ -568,11 +568,11 @@
         "enableCreationRemarketingTag": "Activez la balise de remarketing et de suivi des conversions",
         "pauseCampaign": "Votre campagne se poursuivra jusqu'à ce que vous la mettiez en pause ou dès que la date de fin sera atteinte. Vous pouvez interrompre votre campagne à tout moment.",
         "switch": {
-            "on": "On",
-            "off": "Off"
+            "on": "Activé",
+            "off": "Désactivé"
         },
         "alerts": {
-            "noTag": "En n'ajoutant pas automatiquement la balise, Google ne sera pas en mesure d'envoyer les résultats des campagnes",
+            "noTag": "En n'ajoutant pas automatiquement la balise, Google ne sera pas en mesure d'envoyer les résultats des campagnes.",
             "duplicatedTag": "Il semble que vous avez déjà un tag lié à votre compte Google, la création d'un nouveau tag peut dupliquer des événements pour vos campagnes. Nous vous suggérons de ne conserver que celui que nous générons pour vous.",
             "noConversionActions": "La balise de suivi a été activée, mais il n'y a aucune action de conversion définie dans la boutique. Cela peut être corrigé en créant de nouvelles.",
             "hasUnhandledFilters": "Au moins un filtre de cette campagne n'est pas supporté par ce module. Pour éviter toute perte sur votre configuration existante, seuls les détails de base de la campagne peuvent être modifiés.",
@@ -614,8 +614,8 @@
         "dimensionXFilterSelectedWithXProducts": "Filtre {0} | Filtre {0} ({1} produit) | Filtre {0} ({1} produits)",
         "filtersWithxValues": "{0} filtres | {0} filtres avec {1} produit affecté | {0} filtres avec {1} produits affectés",
         "budgetTip": {
-            "content": "Il est généralement recommandé de commencer avec un **budget minimum de {0} par jour pour vos dépenses publicitaires quotidiennes**. Cela vous permet de toucher un public plus large et d'obtenir potentiellement de meilleurs résultats.",
-            "readMore": "Ce budget minimum recommandé vous permettra de tester l'efficacité de vos annonces et de procéder à des ajustements si nécessaire. Bien entendu, chaque entreprise est différente et le budget réel qui vous convient le mieux peut varier en fonction de vos objectifs spécifiques et de votre public cible. Nous vous recommandons d'expérimenter avec différents budgets pour déterminer ce qui fonctionne le mieux pour votre entreprise."
+            "content": "Il est généralement recommandé de commencer avec un **budget minimum de {0} par jour pour vos dépenses publicitaires quotidiennes**. Cela vous permet d'atteindre un public plus large et de voir potentiellement de meilleurs résultats.",
+            "readMore": "Ce budget minimum recommandé vous permettra de tester l'efficacité\n  de vos annonces et d'effectuer les ajustements nécessaires. Bien sûr, chaque entreprise est\n  différente, et le budget réel qui vous convient le mieux peut varier en fonction\n  de vos objectifs spécifiques et de votre public cible. Nous vous recommandons d'expérimenter\n  différents budgets pour déterminer ce qui fonctionne le mieux pour votre entreprise."
         }
     },
     "smartShoppingCampaignList": {
@@ -736,9 +736,9 @@
         "subtitle2": "Filtrage des produits avec des informations manquantes",
         "title3": "Exporter vers Google",
         "subtitle3": "Envoi de produits filtrés",
-        "title4": "Google Review",
+        "title4": "Avis Google",
         "subtitle4": "Vérification de la conformité",
-        "title5": "New Sync",
+        "title5": "Nouvelle synchronisation",
         "subtitle5": "Si vous mettez à jour vos produits"
     },
     "campaignCard": {
@@ -1018,7 +1018,7 @@
         "titleDisconnection": "Confirmer la déconnexion ?",
         "titleoverwrite": "Écraser la demande existante ?",
         "textDisconnectGoogleAccount": "Vous êtes sur le point de vous déconnecter de votre compte Google. Cela supprimera l'accès aux comptes Google, Google Merchant Center et Google Ads.",
-        "textDisconnectMCA": "La déconnexion de votre Merchant Center supprimera l'accès à vos annonces Google dans ce module et mettra en pause toute campagne en cours.",
+        "textDisconnectMCA": "La déconnexion de votre Merchant Center supprimera l'accès à vos annonces Google dans ce module et mettra en pause toute campagne en cours. ",
         "textoverwrite": "Écraser la demande existante désactivera votre compte précédent et mettra en pause les campagnes et les fiches gratuites existantes liées à ce compte.  \nSi vous lancez une autre campagne Shopping, nous vous recommandons de la mettre en pause.",
         "titleDisableFreeListing": "Désactiver les fiches gratuites ?",
         "textDisableFreeListing": "En désactivant les fiches gratuites, vos produits ne seront plus disponibles pour le référencement organique sur l'onglet Shopping.  \nCependant vos produits seront toujours visibles dans votre Merchant Center.",
@@ -1057,7 +1057,7 @@
         "mustAgreeGoogleTerms": "Vous devez accepter les conditions d'utilisation de Google",
         "mustAgreeGoogleAdsTerms": "Vous devez accepter les conditions générales",
         "approvalStatusStatus": "Disponibilité de vos produits pour les annonces et fiches gratuites",
-        "approvalStatusLang": "placeholder",
+        "approvalStatusLang": "texte intégré",
         "approvalStatusIssues": "Raison pour laquelle votre produit n'est pas approuvé par Google",
         "attributeMapping": {
             "description": "La description sera automatiquement rognée si elle est plus longue que 5000",
@@ -1131,8 +1131,8 @@
         "textCampaignsBanner": "Performance Max est la nouvelle génération de campagnes shopping intelligentes. Il s'agit d'un type de campagne optimisé, utilisant la technologie intelligente de Google. Elle fonctionne en arrière-plan pour optimiser automatiquement vos annonces tout au long du parcours d'achat afin d'obtenir des performances maximales."
     },
     "tipsAndTricks": {
-        "title": "Conseils et astuces de PrestaShop",
-        "advisorPicture": "Image de profil de {0}",
-        "advisorRole": "PrestaShop Expert en eCommerce"
+        "title": "Conseils et astuces PrestaShop",
+        "advisorPicture": "Photo de profil de {0}",
+        "advisorRole": "Expert e-commerce PrestaShop"
     }
 }

@@ -1,20 +1,20 @@
 {
     "general": {
         "tabs": {
-            "exportStatus": "Esportare stato",
+            "exportStatus": "Esportazione stato",
             "campaign": "Campagna",
             "reporting": "Segnalazione",
-            "configuration": "Configura",
-            "catalog": "Catalogo dei prodotti",
+            "configuration": "Configurazione",
+            "catalog": "Catalogo prodotti",
             "help": "Assistenza"
         },
-        "versionDoesNotExist": "Sembra che la versione del modulo non possa essere recuperata. Il problema è nostro, per favore riprova.",
-        "moduleNeedActivation": "Il modulo Marketing with Google è disabilitato. Non potrai utilizzare nessuna delle sue funzionalità finché non abiliterai il modulo.",
+        "versionDoesNotExist": "A quanto pare, per un problema del nostro software, la versione del modulo non può essere recuperata. Ti preghiamo di riprovare.",
+        "moduleNeedActivation": "Il modulo Marketing con Google è disabilitato. Non potrai utilizzare alcuna delle sue funzionalità finché non lo abiliterai.",
         "moduleUpdateNeeded": {
-            "ps_eventbus": "La versione del modulo PrestaShop CloudSync in esecuzione su questo negozio è precedente al minimo richiesto.\n\nÈ possibile utilizzare PrestaShop Marketing con Google, ma alcune funzioni (come la sincronizzazione dei prodotti, ad esempio) non saranno disponibili fino a quando non si aggiornerà PrestaShop CloudSync.",
-            "psxmarketingwithgoogle": "Ti preghiamo di aggiornare il modulo PrestaShop Marketing With Google per farlo funzionare correttamente"
+            "ps_eventbus": "La versione del modulo PrestaShop CloudSync in esecuzione su questo store è precedente al minimo richiesto.\n\nPuoi utilizzare PrestaShop Marketing con Google, ma alcune funzionalità (come la sincronizzazione dei prodotti, ad esempio) non saranno disponibili fino a quando non aggiornerai PrestaShop CloudSync.",
+            "psxmarketingwithgoogle": "Aggiorna il modulo PrestaShop Marketing con Google per farlo funzionare correttamente"
         },
-        "adblockerActivated": "Per favore, disattiva il tuo ad-blocker affinché il modulo funzioni correttamente e aggiorna il tuo browser.",
+        "adblockerActivated": "Per far sì che il modulo funzioni correttamente, disattiva il tuo ad-blocker e aggiorna il browser.",
         "refreshPage": "Aggiorna la pagina",
         "mandatory": "sono obbligatori",
         "XIsMandatory": "{0} è obbligatorio.",
@@ -23,17 +23,17 @@
         "search": "Cerca",
         "createAccount": "crea il tuo account",
         "createNewAccount": "Se non hai un account, puoi {0} oggi.",
-        "notAvailable": "Non Disponibile",
+        "notAvailable": "Non disponibile",
         "min": "Min",
         "max": "Max",
         "helpPage": "Pagina di assistenza",
         "noResultsFoundForX": "Nessun risultato trovato per {0}",
         "days": "Giorni",
-        "readMore": "Read more"
+        "readMore": "Scopri di più"
     },
     "landingPage": {
         "header": {
-            "title": "Marketing With Google",
+            "title": "Marketing con Google",
             "text": "Con Prestashop Marketing, puoi raggiungere i potenziali acquirenti che cercano online prodotti come quelli che offri! Utilizza questo modulo per raggiungerli su Google in 3 semplici passi.",
             "reinsurance": "- Facile configurazione\n- Annullamento in qualsiasi momento"
         },
@@ -53,7 +53,7 @@
             }
         },
         "footer": {
-            "text": "Mostra i tuoi prodotti su Google con PS Marketing con Google",
+            "text": "Mostra i tuoi prodotti su Google con PrestaShop Marketing con Google",
             "explanation": "Nello Spazio Economico Europeo, nel Regno Unito o in Svizzera, le campagne Performance Max possono essere utilizzate con qualsiasi Servizio di Comparison Shopping (CSS) con cui lavori. Gli annunci verranno visualizzati sulle pagine dei risultati di ricerca generali e su qualsiasi altra piattaforma per la quale il CSS abbia optato."
         }
     },
@@ -81,7 +81,7 @@
         "group": "Gruppo degli shop"
     },
     "googleAccountCard": {
-        "title": "Google account",
+        "title": "Account Google",
         "introDisabled": "Connetti il tuo account Google e associalo a Google Merchant Center per sbloccare le schede di prodotto gratuite.",
         "introEnabled": "Accedi attraverso il modulo PrestaShop associato al tuo account e-mail Google Merchant Center e agli account Google Ads.",
         "footerDissociating": "PrestaShop utilizza questo account per gestire e sincronizzare gli account Merchant Center e Google Ads.",
@@ -205,12 +205,12 @@
         "updateData": "Se hai fatto qualche modifica nel tuo back office, aggiorna le tue informazioni per vedere i cambiamenti riprodotti anche qui."
     },
     "productFeedCard": {
-        "title": "Feed dei prodotti",
+        "title": "Feed prodotti",
         "intro": "Invia i dati dei tuoi prodotti direttamente al tuo Merchant Center e tienili sempre aggiornati per inserzioni e annunci gratuiti.",
         "introToConfigure": "È importante inviare il tuo feed di prodotti nel formato corretto, perché Google lo usa per assicurarsi che i tuoi prodotti corrispondano alle query giuste.",
         "nextSync": "Prossima sincronizzazione su {0}",
         "mappedCategories": "{0}/{1} categorie mappate",
-        "alertFeedSettingSubmissionSuccess": "Hai inviato con successo i dati dei tuoi prodotti al Merchant Center. Una volta approvati, saranno disponibili per inserzioni e annunci gratuiti.",
+        "alertFeedSettingSubmissionSuccess": "Hai presentato con successo i dati dei tuoi prodotti al Merchant Center. Una volta approvati, saranno disponibili per le schede di prodotto gratuite e annunci gratuiti.",
         "alertFailed": "La sincronizzazione dei prodotti non è riuscita. Controlla le possibili ragioni nel [Merchant Center]({0})[:target=\"_blank\"] o contatta il [supporto clienti](mailto:support-google@prestashop.com).",
         "alertShippingSettingsMissing": "Mancano le informazioni sulla spedizione.",
         "alertShippingSettingsMissingDescription": "Per sincronizzare correttamente il feed dei prodotti, aggiungi le informazioni di spedizione.",
@@ -353,7 +353,7 @@
         "preScan": {
             "selectLanguage": "Filtra per lingua",
             "apiError": "Si è verificato un errore durante il recupero dei dati. Riprova più tardi.",
-            "langConflict": "Your product language does not match the target country {0}. Please ensure that the language of your products matches the target country spoken languages, by translating your product or changing the target country. | Your product language does not match the target countries {0}. Please ensure that the language of your products matches the target countries spoken languages, by translating your product or changing the target countries. ",
+            "langConflict": "La lingua del prodotto non corrisponde al paese di destinazione {0}. Verifica che la lingua dei tuoi prodotti corrisponda alle lingue parlate nel paese di destinazione, traducendo il tuo prodotto o cambiando il paese di destinazione. | La lingua del prodotto non corrisponde ai paesi di destinazione {0}. Verifica che la lingua dei tuoi prodotti corrisponda alle lingue parlate nei paesi di destinazione, traducendo il tuo prodotto o cambiando i paesi di destinazione. ",
             "noElement": "Non hai ancora alcun prodotto."
         },
         "export": {
@@ -463,7 +463,7 @@
         "intro": "Metti in mostra il tuo prodotto gratuitamente in un elenco classificato organicamente nella scheda Shopping.",
         "learnFreeListing": "Per saperne di più sulle schede di prodotto gratuite",
         "seeFreeListing": "Guarda le mie schede di prodotto gratuite nel Merchant Center",
-        "googleDelay": "Ci vogliono 3-5 giorni lavorativi per rivedere i prodotti",
+        "googleDelay": "Sono necessari da 3 a 5 giorni lavorativi per rivedere i prodotti",
         "alertEnableFreeListing": "Abilita le schede di prodotto gratuite per mostrare i tuoi prodotti sulla scheda Shopping gratuitamente.",
         "alertCantEnableFreeListing": "Non puoi abilitare le schede di prodotto gratuite in questo momento. Riprova più tardi.",
         "alertCountryNotEligible": "Il Paese di destinazione che hai selezionato non è idoneo per le schede di prodotto e gli annunci gratuiti."
@@ -533,7 +533,7 @@
         "inputNameTooltip": "Scegli un nome che descriva chiaramente il tema della campagna in modo da poterlo trovare facilmente nel tuo account. Il nome della tua campagna non è visibile ai tuoi clienti.",
         "inputNamePlaceholder": "Scrivi il nome della campagna",
         "inputCampaignNameInvalidFeedback": "Il nome deve essere univoco.",
-        "inputCampaignNameTooLongFeedback": "The name must be less than 125 characters in length.",
+        "inputCampaignNameTooLongFeedback": "Il nome deve contenere meno di 125 caratteri.",
         "inputDurationHelper": "Raccomandiamo una durata minima di 30 giorni in modo che Google possa ottimizzare la tua campagna.",
         "inputDurationLabel": "Durata della campagna",
         "inputDurationTooltip": "Le campagne pubblicitarie non hanno una data di fine di default, in modo che gli annunci siano in grado di funzionare illimitatamente. Puoi sempre aggiungere una data di fine per creare una campagna più breve.",
@@ -614,8 +614,8 @@
         "dimensionXFilterSelectedWithXProducts": "Filtro {0} | Filtro {0} ({1} prodotto) | Filtro {0} ({1} prodotti)",
         "filtersWithxValues": "{0} filtri | {0} filtri con {1} prodotto interessato | {0} filtri con {1} prodotto interessato",
         "budgetTip": {
-            "content": "It is generally recommended to start with a **minimum budget of {0} per day for your daily ad spend**. This allows you to reach a larger audience & potentially see better results.",
-            "readMore": "This recommended minimum budget will allow you to test the effectiveness\n  of your ads and make adjustments as needed. Of course, every business is\n  different, and the actual budget that is best for you may vary depending\n  on your specific goals and target audience. We recommend experimenting\n  with different budgets to determine what works best for your business."
+            "content": "In genere si consiglia di iniziare con un ** budget minimo di {0} al giorno per la spesa pubblicitaria giornaliera **. Ciò ti consente di raggiungere un pubblico più ampio e potenzialmente di ottenere risultati migliori.",
+            "readMore": "Questo budget minimo consigliato ti consentirà di testare l'efficacia\n  dei tuoi annunci e di apportare le modifiche necessarie. Naturalmente, ogni attività è\n  diversa e il budget effettivo più idoneo a te può variare a seconda\n  degli obiettivi specifici che ti poni e del pubblico di destinazione. Ti consigliamo di provare\n  con budget diversi per stabilire cosa funziona meglio per la tua attività."
         }
     },
     "smartShoppingCampaignList": {
@@ -666,7 +666,7 @@
         "productStatus": {
             "title": "Stato del prodotto",
             "description": "Lo stato del tuo prodotto ti permette di sapere se il tuo prodotto è idoneo a comparire nella destinazione che hai scelto.  \nUn prodotto in sospeso non apparirà negli annunci o nelle schede di prodotto gratuite perché è in fase di revisione da parte di Google.  \nI prodotti in scadenza scadranno nei prossimi 3 giorni, e non saranno più idonei a comparire negli annunci o nelle schede di prodotto gratuite.",
-            "alert": "Per rivedere i prodotto ci vogliono 3-5 giorni lavorativi",
+            "alert": "Sono necessari da 3 a 5 giorni lavorativi per rivedere i prodotti",
             "approvedProducts": "Approvato",
             "approvedProductsDescription": "I prodotti attivi sono completamente approvati e idonei ad apparire nei risultati.",
             "pendingProducts": "In attesa",
@@ -757,7 +757,7 @@
             "last30Days": "Ultimi 30 giorni",
             "3Months": "3 mesi"
         },
-        "impressions": "Impressions",
+        "impressions": "Impression",
         "impressionsTooltip": "Conteggio di quante volte il tuo annuncio è apparso su una pagina di risultati di ricerca o su un sito web della rete di Google.",
         "clicks": "Clic",
         "clicksTooltip": "Quando qualcuno fa clic sul tuo annuncio, come sul titolo blu o sul numero di telefono di un annuncio di testo, Google Ads lo conta come un clic.",
@@ -784,10 +784,10 @@
         "from": "Da",
         "fromXToX": "Da {startDate} a {endDate}",
         "labelCol": {
-            "campaign": "Campagna pubblicitaria",
+            "campaign": "Campagna",
             "budget": "Budget",
             "status": "Stato",
-            "impressions": "Impressions",
+            "impressions": "Impression",
             "clicks": "Clic",
             "adSpend": "Spesa pubblicitaria",
             "conversion": "Conversione",
@@ -831,7 +831,7 @@
         "titleOneLastStep": "Un ultimo passaggio",
         "textGoogleMissing": "Continua la configurazione per iniziare a inviare prodotti a Google e creare campagne.",
         "textOneMoreThing": "Ancora una cosa e sarai pronto ad inviare i tuoi prodotti a Google.",
-        "textBoostYourSales": "Se vuoi incrementare le tue vendite, collegati e crea campagne con Google Ads.",
+        "textBoostYourSales": "Se vuoi incrementare le vendite, collegati e crea campagne con Google Ads.",
         "ctaClassic": "Vai alla pagina di configurazione",
         "ctaLinkMCA": "Collega l'account Google Merchant Center",
         "ctaExportFeed": "Sincronizza i tuoi prodotti con Google",
@@ -839,7 +839,7 @@
     },
     "configuredState": {
         "title": "Congratulazioni, è tutto pronto!",
-        "text": "Hai completato tutti i passaggi richiesti per ottenere il massimo da **Marketing with Google**",
+        "text": "Hai completato tutti i passaggi richiesti per ottenere il massimo da **Marketing con Google**",
         "cta": "Vai alla creazione della campagna",
         "firstStep": "Collega il tuo shop a un account PrestaShop",
         "secondStep": "Accedi o crea il tuo account Google",
@@ -998,7 +998,7 @@
         "productFeed": "Feed di prodotto",
         "productFeedSettings": "Impostazioni del feed di prodotto",
         "merchantCenterAccount": "Account Merchant Center",
-        "googleAccount": "Google account",
+        "googleAccount": "Account Google",
         "paid": "Pagato",
         "googleAdsAccount": "Account Google Ads",
         "readyToSync": "Pronto per la sincronizzazione",
@@ -1113,7 +1113,7 @@
             "description": "Descrizione",
             "description_short": "Descrizione breve",
             "longDescription": "Descrizione lunga",
-            "notAvailable": "Non Disponibile"
+            "notAvailable": "Non disponibile"
         },
         "condition": "Condizioni",
         "specificTitle": "Specifica",
@@ -1131,8 +1131,8 @@
         "textCampaignsBanner": "Performance Max è la nuova generazione di campagne Smart Shopping. Si tratta di un tipo di campagna potenziata grazie alla tecnologia intelligente di Google. Lavora dietro le quinte per ottimizzare automaticamente i tuoi annunci lungo tutto il percorso dello shopping per ottenere il massimo delle prestazioni."
     },
     "tipsAndTricks": {
-        "title": "Consigli e trucchi di PrestaShop",
-        "advisorPicture": "{0}'s profile picture",
-        "advisorRole": "PrestaShop eCommerce Expert"
+        "title": "Suggerimenti e consigli di PrestaShop",
+        "advisorPicture": "Immagine del profilo di {0}",
+        "advisorRole": "Esperto di e-commerce PrestaShop"
     }
 }
