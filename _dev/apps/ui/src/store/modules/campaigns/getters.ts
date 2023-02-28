@@ -194,7 +194,7 @@ export default {
   },
   [GettersTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES_LIST](
     state: LocalState,
-  ): Array<CampaignPerformances> {
+  ): CampaignPerformances[] {
     return state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList;
   },
   [GettersTypes.GET_TOTAL_CAMPAIGNS_PERFORMANCES](

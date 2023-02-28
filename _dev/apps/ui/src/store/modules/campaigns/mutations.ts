@@ -172,7 +172,7 @@ export default {
   },
   [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_RESULTS](
     state: LocalState,
-    payload: Array<CampaignPerformances>,
+    payload: CampaignPerformances[],
   ) {
     state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList.push(
       ...payload,
@@ -180,7 +180,7 @@ export default {
   },
   [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_RESULTS](
     state: LocalState,
-    payload: Array<CampaignPerformances>,
+    payload: CampaignPerformances[],
   ) {
     state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList.push(
       ...payload,

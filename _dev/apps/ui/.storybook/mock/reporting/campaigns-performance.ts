@@ -1,8 +1,11 @@
-exports.campaignsPerformanceListEmpty = {
+import { CampaignsPerformancesSection } from "@/store/modules/campaigns/state";
+import { CampaignTypes } from "@/enums/reporting/CampaignStatus";
+
+export const campaignsPerformanceListEmpty: Partial<CampaignsPerformancesSection> = {
   campaignsPerformanceList: []
 };
 
-exports.campaignsPerformanceList = {
+export const campaignsPerformanceList: Partial<CampaignsPerformancesSection> = {
   campaignsPerformanceList: [
     {
       "name": "Zboo Qualitern",
@@ -12,7 +15,8 @@ exports.campaignsPerformanceList = {
       "clicks": 596,
       "conversions": 22,
       "adSpend": 197,
-      "sales": 26280
+      "sales": 26280,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Bitrex Grupoli",
@@ -22,7 +26,8 @@ exports.campaignsPerformanceList = {
       "clicks": 289,
       "conversions": 29,
       "adSpend": 160,
-      "sales": 30856
+      "sales": 30856,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Oatfarm Ovation",
@@ -32,7 +37,8 @@ exports.campaignsPerformanceList = {
       "clicks": 2868,
       "conversions": 34,
       "adSpend": 79,
-      "sales": 33666
+      "sales": 33666,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Pharmex Gink",
@@ -42,7 +48,8 @@ exports.campaignsPerformanceList = {
       "clicks": 1781,
       "conversions": 22,
       "adSpend": 97,
-      "sales": 36781
+      "sales": 36781,
+      "type": CampaignTypes.SMART_SHOPPING,
     },
     {
       "name": "Hydrocom Zensor",
@@ -52,7 +59,8 @@ exports.campaignsPerformanceList = {
       "clicks": 232,
       "conversions": 26,
       "adSpend": 199,
-      "sales": 12852
+      "sales": 12852,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Lumbrex Zilidium",
@@ -62,7 +70,8 @@ exports.campaignsPerformanceList = {
       "clicks": 2261,
       "conversions": 39,
       "adSpend": 88,
-      "sales": 19823
+      "sales": 19823,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Bolax Exoplode",
@@ -72,7 +81,8 @@ exports.campaignsPerformanceList = {
       "clicks": 1376,
       "conversions": 29,
       "adSpend": 298,
-      "sales": 3091
+      "sales": 3091,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Boink Calcula",
@@ -82,7 +92,8 @@ exports.campaignsPerformanceList = {
       "clicks": 2751,
       "conversions": 23,
       "adSpend": 314,
-      "sales": 10838
+      "sales": 10838,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Navir Kengen",
@@ -92,7 +103,8 @@ exports.campaignsPerformanceList = {
       "clicks": 2798,
       "conversions": 38,
       "adSpend": 294,
-      "sales": 37133
+      "sales": 37133,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Applica Ozean",
@@ -102,7 +114,8 @@ exports.campaignsPerformanceList = {
       "clicks": 1143,
       "conversions": 36,
       "adSpend": 29,
-      "sales": 4179
+      "sales": 4179,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Skyplex Blurrybus",
@@ -112,7 +125,8 @@ exports.campaignsPerformanceList = {
       "clicks": 2887,
       "conversions": 20,
       "adSpend": 396,
-      "sales": 38545
+      "sales": 38545,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Insurety Pholio",
@@ -122,7 +136,8 @@ exports.campaignsPerformanceList = {
       "clicks": 2720,
       "conversions": 22,
       "adSpend": 210,
-      "sales": 19643
+      "sales": 19643,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Prosure Telequiet",
@@ -132,7 +147,8 @@ exports.campaignsPerformanceList = {
       "clicks": 1319,
       "conversions": 37,
       "adSpend": 33,
-      "sales": 8435
+      "sales": 8435,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Assistia Comveyor",
@@ -142,7 +158,8 @@ exports.campaignsPerformanceList = {
       "clicks": 726,
       "conversions": 36,
       "adSpend": 65,
-      "sales": 38020
+      "sales": 38020,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Xplor Talkola",
@@ -152,7 +169,8 @@ exports.campaignsPerformanceList = {
       "clicks": 1901,
       "conversions": 33,
       "adSpend": 195,
-      "sales": 5221
+      "sales": 5221,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Tersanki Renovize",
@@ -162,7 +180,8 @@ exports.campaignsPerformanceList = {
       "clicks": 1804,
       "conversions": 30,
       "adSpend": 54,
-      "sales": 3505
+      "sales": 3505,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Uniworld Jamnation",
@@ -172,7 +191,8 @@ exports.campaignsPerformanceList = {
       "clicks": 1592,
       "conversions": 31,
       "adSpend": 330,
-      "sales": 36904
+      "sales": 36904,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Dogtown Slax",
@@ -182,7 +202,8 @@ exports.campaignsPerformanceList = {
       "clicks": 2211,
       "conversions": 31,
       "adSpend": 138,
-      "sales": 28478
+      "sales": 28478,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Bleeko Farmex",
@@ -192,7 +213,8 @@ exports.campaignsPerformanceList = {
       "clicks": 1342,
       "conversions": 27,
       "adSpend": 346,
-      "sales": 17278
+      "sales": 17278,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Comcubine Cosmetex",
@@ -202,7 +224,8 @@ exports.campaignsPerformanceList = {
       "clicks": 564,
       "conversions": 35,
       "adSpend": 126,
-      "sales": 39851
+      "sales": 39851,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Canopoly Springbee",
@@ -212,7 +235,8 @@ exports.campaignsPerformanceList = {
       "clicks": 2336,
       "conversions": 21,
       "adSpend": 330,
-      "sales": 4675
+      "sales": 4675,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Buzzworks Dragbot",
@@ -222,7 +246,8 @@ exports.campaignsPerformanceList = {
       "clicks": 2754,
       "conversions": 30,
       "adSpend": 141,
-      "sales": 18060
+      "sales": 18060,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Zillidium Magnina",
@@ -232,7 +257,8 @@ exports.campaignsPerformanceList = {
       "clicks": 1878,
       "conversions": 40,
       "adSpend": 337,
-      "sales": 23877
+      "sales": 23877,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Orbean Zytrex",
@@ -242,7 +268,8 @@ exports.campaignsPerformanceList = {
       "clicks": 686,
       "conversions": 24,
       "adSpend": 336,
-      "sales": 21852
+      "sales": 21852,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Comverges Polarium",
@@ -252,7 +279,8 @@ exports.campaignsPerformanceList = {
       "clicks": 1069,
       "conversions": 21,
       "adSpend": 147,
-      "sales": 33687
+      "sales": 33687,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Ceprene Entogrok",
@@ -262,7 +290,8 @@ exports.campaignsPerformanceList = {
       "clicks": 2319,
       "conversions": 20,
       "adSpend": 129,
-      "sales": 36580
+      "sales": 36580,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Balooba Earwax",
@@ -272,7 +301,8 @@ exports.campaignsPerformanceList = {
       "clicks": 1542,
       "conversions": 35,
       "adSpend": 261,
-      "sales": 17313
+      "sales": 17313,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Comtours Rodemco",
@@ -282,7 +312,8 @@ exports.campaignsPerformanceList = {
       "clicks": 2790,
       "conversions": 39,
       "adSpend": 236,
-      "sales": 17947
+      "sales": 17947,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Cinaster Makingway",
@@ -292,7 +323,8 @@ exports.campaignsPerformanceList = {
       "clicks": 1538,
       "conversions": 35,
       "adSpend": 217,
-      "sales": 10993
+      "sales": 10993,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Thredz Kaggle",
@@ -302,7 +334,8 @@ exports.campaignsPerformanceList = {
       "clicks": 942,
       "conversions": 35,
       "adSpend": 375,
-      "sales": 5921
+      "sales": 5921,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Songbird Pawnagra",
@@ -312,7 +345,8 @@ exports.campaignsPerformanceList = {
       "clicks": 1819,
       "conversions": 22,
       "adSpend": 37,
-      "sales": 25446
+      "sales": 25446,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Chillium Oceanica",
@@ -322,7 +356,8 @@ exports.campaignsPerformanceList = {
       "clicks": 379,
       "conversions": 36,
       "adSpend": 264,
-      "sales": 16485
+      "sales": 16485,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Gadtron Quadeebo",
@@ -332,7 +367,8 @@ exports.campaignsPerformanceList = {
       "clicks": 1828,
       "conversions": 31,
       "adSpend": 391,
-      "sales": 33732
+      "sales": 33732,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Geekola Vidto",
@@ -342,7 +378,8 @@ exports.campaignsPerformanceList = {
       "clicks": 2199,
       "conversions": 34,
       "adSpend": 303,
-      "sales": 4370
+      "sales": 4370,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Waab Zoxy",
@@ -352,7 +389,8 @@ exports.campaignsPerformanceList = {
       "clicks": 2476,
       "conversions": 21,
       "adSpend": 197,
-      "sales": 27701
+      "sales": 27701,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Datagen Nurali",
@@ -362,7 +400,8 @@ exports.campaignsPerformanceList = {
       "clicks": 2475,
       "conversions": 33,
       "adSpend": 218,
-      "sales": 28680
+      "sales": 28680,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Interodeo Zepitope",
@@ -372,7 +411,8 @@ exports.campaignsPerformanceList = {
       "clicks": 2337,
       "conversions": 21,
       "adSpend": 100,
-      "sales": 8443
+      "sales": 8443,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Xleen Teraprene",
@@ -382,7 +422,8 @@ exports.campaignsPerformanceList = {
       "clicks": 1321,
       "conversions": 34,
       "adSpend": 7,
-      "sales": 2569
+      "sales": 2569,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Netbook Nebulean",
@@ -392,7 +433,8 @@ exports.campaignsPerformanceList = {
       "clicks": 2138,
       "conversions": 26,
       "adSpend": 60,
-      "sales": 30756
+      "sales": 30756,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     },
     {
       "name": "Evidends Lotron",
@@ -402,7 +444,8 @@ exports.campaignsPerformanceList = {
       "clicks": 259,
       "conversions": 21,
       "adSpend": 339,
-      "sales": 22903
+      "sales": 22903,
+      "type": CampaignTypes.PERFORMANCE_MAX,
     }
   ],
 };
