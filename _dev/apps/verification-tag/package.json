@@ -8,8 +8,8 @@
     "yarn": "please use pnpm"
   },
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc -w",
+    "build": "webpack",
+    "dev": "webpack -w",
     "lint": "eslint --no-fix",
     "lint-fix": "eslint --fix",
     "test:unit": "echo \"Error: no test specified\" && exit 1"
@@ -21,7 +21,10 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prestashop": "^0.2.1",
     "eslint-plugin-import": "^2.25.3",
-    "typescript": "^4.8.2"
+    "ts-loader": "^8.4.0",
+    "typescript": "^4.8.2",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   },
   "dependencies": {
     "mktg-with-google-common": "workspace:*"
