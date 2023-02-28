@@ -1,2 +1,3 @@
-export * from './api/shopClient';
 export * from './api/HttpClientError';
+export * from './api/onboardingClient';
+export * from './api/shopClient';

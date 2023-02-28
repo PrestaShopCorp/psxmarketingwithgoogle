@@ -201,11 +201,16 @@ class PsxMarketingWithGoogle extends Module
 
         if ($this->context->controller->controller_name === 'AdminDashboard' && $this->getService(VerificationTagDataProvider::class)->isUpdateRequested()) {
             $env = $this->getService(Env::class);
+            try {
+                $psAccountsService = $this->getService(PsAccounts::class)->getPsAccountsService();
+                $tokenPsAccounts = $psAccountsService->getOrRefreshToken();
+            } catch (Exception $e) {
+                $tokenPsAccounts = null;
+            }
             Media::addJsDef([
+                'psxMktgWithGoogleApiUrl' => $env->get('PSX_MKTG_WITH_GOOGLE_API_URL'),
                 'psxMktgWithGoogleControllerLink' => $this->context->link->getAdminLink('AdminAjaxPsxMktgWithGoogle'),
-                'contextPsAccounts' => (object) $this->getService(PsAccounts::class)
-                    ->getPsAccountsPresenter()
-                    ->present($this->name),
+                'tokenPsAccounts' => $tokenPsAccounts,
             ]);
             $jsPath = (bool) $env->get('USE_LOCAL_VUE_APP') ? $this->getPathUri() . 'views/js/fetchVerificationTag.js' : $env->get('PSX_MKTG_WITH_GOOGLE_CDN_URL') . 'fetchVerificationTag.js';
             $this->context->controller->addJs($jsPath);

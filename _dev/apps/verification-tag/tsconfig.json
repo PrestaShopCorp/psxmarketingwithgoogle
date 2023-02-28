@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
     "module": "CommonJS",
-    "rootDir": "src"
+    "lib": ["es2015", "dom"],
   }  
 }

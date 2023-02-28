@@ -119,6 +119,7 @@ export default {
     this.$store.dispatch('app/CHECK_FOR_AD_BLOCKER');
     this.setCustomProperties();
     initShopClient({shopUrl: this.$store.state.app.psxMktgWithGoogleAdminAjaxUrl});
+    initOnboardingClient({apiUrl: this.$store.state.app.psxMktgWithGoogleApiUrl, token: this.$store.state.accounts.tokenPsAccounts});
     window.addEventListener('resize', this.resizeEventHandler);
   },
   destroyed() {
