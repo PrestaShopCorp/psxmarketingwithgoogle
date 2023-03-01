@@ -42,8 +42,7 @@ class VerificationTagDataProvider
     public function __construct(
         ConfigurationAdapter $configurationAdapter,
         VerificationTagRepository $verificationTagRepository
-    )
-    {
+    ) {
         $this->configurationAdapter = $configurationAdapter;
         $this->verificationTagRepository = $verificationTagRepository;
     }
@@ -57,9 +56,9 @@ class VerificationTagDataProvider
 
         $configuration = $this->verificationTagRepository->getConfiguration();
 
-        return (!$configuration || (
+        return !$configuration || (
             (new DateTimeImmutable($configuration['date_upd'], new DateTimeZone('UTC'))) <
             (new DateTimeImmutable('now', new DateTimeZone('UTC')))->sub(new DateInterval('P30D'))
-        ));
+        );
     }
 }

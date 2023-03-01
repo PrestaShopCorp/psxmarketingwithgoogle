@@ -56,8 +56,8 @@ class VerificationTagDataProviderTest extends TestCase
 
         $stubVerificationTagRepository->method('getConfiguration')
                 ->willReturn([
-                    "value" => base64_encode('some verification tag'),
-                    "date_upd" => "2023-01-02 15:16:31",
+                    'value' => base64_encode('some verification tag'),
+                    'date_upd' => '2023-01-02 15:16:31',
                 ]);
 
         $provider = new VerificationTagDataProvider(
@@ -78,8 +78,8 @@ class VerificationTagDataProviderTest extends TestCase
 
         $stubVerificationTagRepository->method('getConfiguration')
                 ->willReturn([
-                    "value" => base64_encode('some verification tag'),
-                    "date_upd" => (new DateTimeImmutable('now', new DateTimeZone('UTC')))->sub(new DateInterval('P2D'))->format('Y-m-d H:i:s'),
+                    'value' => base64_encode('some verification tag'),
+                    'date_upd' => (new DateTimeImmutable('now', new DateTimeZone('UTC')))->sub(new DateInterval('P2D'))->format('Y-m-d H:i:s'),
                 ]);
 
         $provider = new VerificationTagDataProvider(
