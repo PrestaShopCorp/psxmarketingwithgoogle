@@ -695,7 +695,7 @@
                 "image": "Image",
                 "description": "Descriere",
                 "price": "Price",
-                "barcode": "GTIN/Brand"
+                "barcode": "GTIN/marcă"
             },
             "xHasFailedPreValidation": "\"{0}\": nu a trecut de validarea preliminară.",
             "xHasPassedPreValidation": "\"{0}\": a trecut de validarea preliminară.",
