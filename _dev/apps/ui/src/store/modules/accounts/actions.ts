@@ -17,14 +17,14 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
+import {fetchShop} from 'mktg-with-google-common/api/shopClient';
+import {fetchOnboarding} from 'mktg-with-google-common/api/onboardingClient';
+import HttpClientError from 'mktg-with-google-common/api/HttpClientError';
 import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 import MutationsTypes from './mutations-types';
 import MutationsTypesProductFeed from '../product-feed/mutations-types';
 import MutationsTypesGoogleAds from '../google-ads/mutations-types';
 import ActionsTypes from './actions-types';
-import {fetchShop} from "mktg-with-google-common/api/shopClient";
-import {fetchOnboarding} from "mktg-with-google-common/api/onboardingClient";
-import HttpClientError from "mktg-with-google-common/api/HttpClientError";
 import NeedOverwriteError from '../../../utils/NeedOverwriteError';
 import CannotOverwriteError from '../../../utils/CannotOverwriteError';
 
@@ -223,8 +223,7 @@ export default {
         });
       }
       if (json.google_ads_account_id) {
-        commit(`googleAds/${MutationsTypesGoogleAds.SET_GOOGLE_ADS_ACCOUNT_ID}`, json.google_ads_account_id,
-          {root: true},
+        commit(`googleAds/${MutationsTypesGoogleAds.SET_GOOGLE_ADS_ACCOUNT_ID}`, json.google_ads_account_id, {root: true},
         );
       }
       // If GMC is already linked, must start by requesting GMC list, then look after the link GMC.
@@ -395,7 +394,7 @@ export default {
   },
 
   async [ActionsTypes.REQUEST_SITE_VERIFICATION_TOKEN]({rootState, state}, correlationId: string) {
-    return await fetchOnboarding(
+    return fetchOnboarding(
       'GET',
       'shopping-websites/site-verification/token',
       correlationId,
@@ -411,7 +410,7 @@ export default {
     {rootState, state},
     correlationId: string,
   ) {
-    return await fetchOnboarding(
+    return fetchOnboarding(
       'POST',
       'shopping-websites/site-verification/verify',
       correlationId,

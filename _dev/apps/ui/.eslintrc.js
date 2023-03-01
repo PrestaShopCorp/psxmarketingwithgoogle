@@ -38,5 +38,7 @@ module.exports = {
     'import/no-extraneous-dependencies': ['error', {devDependencies: ['**/*.spec.ts', '**/tests/*.ts']}],
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': ['error'],
+    // Need some help to handle this error
+    'no-restricted-exports': 'off',
   },
 };

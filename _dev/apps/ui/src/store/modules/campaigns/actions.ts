@@ -18,10 +18,10 @@
  */
 
 import dayjs, {ManipulateType} from 'dayjs';
+import {fetchShop} from 'mktg-with-google-common/api/shopClient';
+import HttpClientError from 'mktg-with-google-common/api/HttpClientError';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
-import { fetchShop } from "mktg-with-google-common/api/shopClient";
-import HttpClientError from "mktg-with-google-common/api/HttpClientError";
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import {
   CampaignObject, CampaignStatusPayload, ConversionAction,
@@ -147,7 +147,7 @@ export default {
   async [ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_IF_ALREADY_EXISTS](
     {commit, rootState},
   ) {
-    const regex = new RegExp('AW-[0-9]+');
+    const regex = /AW-[0-9]+/;
     const remarketingSnippet = rootState.googleAds.accountChosen?.remarketingSnippet;
     const idTag = regex.exec(remarketingSnippet);
 
