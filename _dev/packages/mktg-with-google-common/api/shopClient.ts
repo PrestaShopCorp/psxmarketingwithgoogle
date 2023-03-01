@@ -1,4 +1,4 @@
-import HttpClientError from "./HttpClientError";
+import HttpClientError from './HttpClientError';
 
 type Options = {
   shopUrl: string,

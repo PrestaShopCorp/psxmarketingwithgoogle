@@ -1,8 +1,9 @@
 const path = require('path');
+const { DefinePlugin } = require('webpack');
 
 module.exports = {
-  mode: "development",
-  devtool: "inline-source-map",
+  mode: "production",
+  devtool: !!process.env.GENERATE_SOURCEMAPS ? "source-map": false,
   entry: {
     main: "./src/index.ts",
   },
@@ -13,6 +14,11 @@ module.exports = {
   resolve: {
     extensions: [".ts", ".tsx", ".js"],
   },
+  plugins: [
+    new DefinePlugin({
+      'process.env.VUE_APP_BUILD_VERSION': JSON.stringify(process.env.VUE_APP_BUILD_VERSION || 'dev')
+    }),
+  ],
   module: {
     rules: [
       { 

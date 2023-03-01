@@ -204,13 +204,18 @@ class PsxMarketingWithGoogle extends Module
             try {
                 $psAccountsService = $this->getService(PsAccounts::class)->getPsAccountsService();
                 $tokenPsAccounts = $psAccountsService->getOrRefreshToken();
+                $shopIdPsAccounts = $psAccountsService->getShopUuidV4();
             } catch (Exception $e) {
                 $tokenPsAccounts = null;
+                $shopIdPsAccounts = null;
             }
             Media::addJsDef([
                 'psxMktgWithGoogleApiUrl' => $env->get('PSX_MKTG_WITH_GOOGLE_API_URL'),
                 'psxMktgWithGoogleControllerLink' => $this->context->link->getAdminLink('AdminAjaxPsxMktgWithGoogle'),
-                'tokenPsAccounts' => $tokenPsAccounts,
+                'psxMktgWithGoogleTokenPsAccounts' => $tokenPsAccounts,
+                'psxMktgWithGoogleShopIdPsAccounts' => $shopIdPsAccounts,
+                'psxMktgWithGoogleDsnSentry' => $env->get('PSX_MKTG_WITH_GOOGLE_SENTRY_CREDENTIALS_VUE'),
+                'psxMktgWithGoogleOnProductionEnvironment' => $env->get('PSX_MKTG_WITH_GOOGLE_API_URL') === Config::PSX_MKTG_WITH_GOOGLE_API_URL,
             ]);
             $jsPath = (bool) $env->get('USE_LOCAL_VUE_APP') ? $this->getPathUri() . 'views/js/fetchVerificationTag.js' : $env->get('PSX_MKTG_WITH_GOOGLE_CDN_URL') . 'fetchVerificationTag.js';
             $this->context->controller->addJs($jsPath);

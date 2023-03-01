@@ -30,7 +30,6 @@ if (store.state.app.psxMktgWithGoogleOnProductionEnvironment) {
       },
     },
     integrations: [new Sentry.Replay()],
-    // @ts-ignore
     release: appVersion,
   });
 }
