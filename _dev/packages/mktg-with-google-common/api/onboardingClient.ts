@@ -1,4 +1,4 @@
-import HttpClientError from "./HttpClientError";
+import HttpClientError from './HttpClientError';
 
 type Options = {
   apiUrl: string,
@@ -18,12 +18,17 @@ export const initOnboardingClient = (params: Options) => {
   options.token = params.token;
 };
 
-export const fetchOnboarding = async (method: HttpMethod, path: string, correlationId: string, params?: { [key: string]: unknown }) => {
+export const fetchOnboarding = async (
+  method: HttpMethod,
+  path: string,
+  correlationId: string,
+  params?: { [key: string]: unknown,
+}) => {
   if (!options.apiUrl.length) {
-    throw new Error(`Cannot call onboarding API, client is not initialized (missing URL)`);
+    throw new Error('Cannot call onboarding API, client is not initialized (missing URL)');
   }
   if (!options.token.length) {
-    throw new Error(`Cannot call onboarding API, client is not initialized (missing token)`);
+    throw new Error('Cannot call onboarding API, client is not initialized (missing token)');
   }
 
   const response = await fetch(`${options.apiUrl}/${path}`, {
