@@ -18,7 +18,7 @@
  */
 
 import dayjs, {ManipulateType} from 'dayjs';
-import {fetchShop} from 'mktg-with-google-common/api/shopClient';
+import {fetchShop, fetchOnboarding} from 'mktg-with-google-common';
 import HttpClientError from 'mktg-with-google-common/api/HttpClientError';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
@@ -67,23 +67,14 @@ export default {
       ),
     ]);
   },
-  async [ActionsTypes.SAVE_NEW_CAMPAIGN]({commit, rootState}, payload : CampaignObject) {
+  async [ActionsTypes.SAVE_NEW_CAMPAIGN]({commit}, payload: CampaignObject) {
     try {
-      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/create`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-          },
-          body: JSON.stringify(payload),
-        });
-
-      if (!resp.ok) {
-        throw new HttpClientError(resp.statusText, resp.status);
-      }
-      const json = await resp.json();
+      const json = await fetchOnboarding(
+        'POST',
+        'shopping-campaigns/create',
+        undefined,
+        payload,
+      );
       commit(MutationsTypes.SAVE_NEW_CAMPAIGN, payload);
       return {
         error: false,
@@ -103,20 +94,10 @@ export default {
     try {
       commit(MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS, false);
       const campaignFinalName = btoa(payload.name);
-      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns?campaign_name=${campaignFinalName}`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-          },
-        });
-
-      if (!resp.ok) {
-        throw new HttpClientError(resp.statusText, resp.status);
-      }
-      const json = await resp.json();
+      const json = await fetchOnboarding(
+        'GET',
+        `shopping-campaigns?campaign_name=${campaignFinalName}`,
+      );
 
       if (json && json.campaignName && payload.id !== json.id) {
         commit(MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS, true);
@@ -173,19 +154,11 @@ export default {
     {dispatch, rootState},
   ) {
     try {
-      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/conversion-actions`,
-        {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-          },
-        });
-
-      if (!resp.ok) {
-        throw new HttpClientError(resp.statusText, resp.status);
-      }
-      dispatch(ActionsTypes.SAVE_REMARKETING_CONVERSION_ACTION_ON_SHOP, await resp.json());
+      const json = await fetchOnboarding(
+        'POST',
+        'conversion-actions',
+      );
+      dispatch(ActionsTypes.SAVE_REMARKETING_CONVERSION_ACTION_ON_SHOP, json);
     } catch (error) {
       // commit(...);
       console.error(error);
@@ -256,21 +229,19 @@ export default {
       startDate: state.reporting.request.dateRange.startDate,
       endDate: state.reporting.request.dateRange.endDate,
     });
-
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-reporting/kpis?${query}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+    const result = await fetchOnboarding(
+      'GET',
+      `ads-reporting/kpis?${query}`,
+      undefined,
+      undefined,
+      (response) => {
+        if (!response.ok) {
+          commit(MutationsTypes.SET_REPORTING_KPIS_ERROR, true);
+          throw new HttpClientError(response.statusText, response.status);
+        }
+        return response.json();
       },
-    });
-
-    if (!response.ok) {
-      commit(MutationsTypes.SET_REPORTING_KPIS_ERROR, true);
-      throw new HttpClientError(response.statusText, response.status);
-    }
-
-    const result = await response.json();
+    );
 
     commit(MutationsTypes.SET_REPORTING_KPIS_ERROR, false);
     commit(MutationsTypes.SET_REPORTING_KPIS, result);
@@ -283,19 +254,20 @@ export default {
       startDate: state.reporting.request.dateRange.startDate,
       endDate: state.reporting.request.dateRange.endDate,
     });
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-reporting/daily-results?${query}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
+    const result = await fetchOnboarding(
+      'GET',
+      `ads-reporting/daily-results?${query}`,
+      undefined,
+      undefined,
+      (response) => {
+        if (!response.ok) {
+          commit(MutationsTypes.SET_REPORTING_KPIS_ERROR, true);
+          throw new HttpClientError(response.statusText, response.status);
+        }
+        return response.json();
       },
-    });
+    );
 
-    if (!response.ok) {
-      commit(MutationsTypes.SET_REPORTING_KPIS_ERROR, true);
-      throw new HttpClientError(response.statusText, response.status);
-    }
-    const result = await response.json();
     commit(MutationsTypes.SET_REPORTING_KPIS_ERROR, false);
     commit(MutationsTypes.SET_REPORTING_DAILY_RESULTS, result);
   },
@@ -316,22 +288,19 @@ export default {
     query.append('limit', limit);
     query.append('offset', offset);
 
-    const response = await fetch(
-      `${rootState.app.psxMktgWithGoogleApiUrl}/ads-reporting/campaigns-performances?${query}`, {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-        },
+    const result = await fetchOnboarding(
+      'GET',
+      `ads-reporting/campaigns-performances?${query}`,
+      undefined,
+      undefined,
+      (response) => {
+        if (!response.ok) {
+          commit(MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_SECTION_ERROR, true);
+          throw new HttpClientError(response.statusText, response.status);
+        }
+        return response.json();
       },
     );
-
-    if (!response.ok) {
-      commit(MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_SECTION_ERROR, true);
-      throw new HttpClientError(response.statusText, response.status);
-    }
-
-    const result = await response.json();
     commit(MutationsTypes.RESET_REPORTING_CAMPAIGNS_PERFORMANCES);
     commit(
       MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_SECTION_ERROR,
@@ -358,22 +327,19 @@ export default {
     // add order in array format
     query.append('order[clicks]', state.reporting.request.ordering.productsPerformances.clicks);
 
-    const response = await fetch(
-      `${rootState.app.psxMktgWithGoogleApiUrl}/ads-reporting/products-performances?${query}`, {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-        },
+    const result = await fetchOnboarding(
+      'GET',
+      `ads-reporting/products-performances?${query}`,
+      undefined,
+      undefined,
+      (response) => {
+        if (!response.ok) {
+          commit(MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES_SECTION_ERROR, true);
+          throw new HttpClientError(response.statusText, response.status);
+        }
+        return response.json();
       },
     );
-
-    if (!response.ok) {
-      commit(MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES_SECTION_ERROR, true);
-      throw new HttpClientError(response.statusText, response.status);
-    }
-
-    const result = await response.json();
 
     commit(MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES_SECTION_ERROR, false);
     commit(MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES, result);
@@ -391,22 +357,20 @@ export default {
     // add order in array format
     query.append('order[clicks]', state.reporting.request.ordering.filtersPerformances.clicks);
 
-    const response = await fetch(
-      `${rootState.app.psxMktgWithGoogleApiUrl}/ads-reporting/products-partitions-performances?${query}`, {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-        },
+    const result = await fetchOnboarding(
+      'GET',
+      `ads-reporting/products-partitions-performances?${query}`,
+      undefined,
+      undefined,
+      (response) => {
+        if (!response.ok) {
+          commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES_SECTION_ERROR, true);
+          throw new HttpClientError(response.statusText, response.status);
+        }
+        return response.json();
       },
     );
 
-    if (!response.ok) {
-      commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES_SECTION_ERROR, true);
-      throw new HttpClientError(response.statusText, response.status);
-    }
-
-    const result = await response.json();
     commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES_SECTION_ERROR, false);
     commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES,
       result);
@@ -433,19 +397,10 @@ export default {
       query.append('nextPageToken', nextPageToken);
     }
     try {
-      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/list?${query}&type=${typeChosen}`,
-        {
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-          },
-        });
-
-      if (!resp.ok) {
-        throw new HttpClientError(resp.statusText, resp.status);
-      }
-      const json = await resp.json();
+      const json = await fetchOnboarding(
+        'GET',
+        `shopping-campaigns/list?${query}&type=${typeChosen}`,
+      );
 
       if (isNewRequest) {
         commit(MutationsTypes.RESET_CAMPAIGNS_LIST, typeChosen);
@@ -462,43 +417,23 @@ export default {
       console.error(error);
     }
   },
-  async [ActionsTypes.CHANGE_STATUS_OF_SSC]({commit, rootState}, payload: CampaignStatusPayload) {
-    const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/${payload.id}/status`,
-      {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-        },
-        body: JSON.stringify({
-          status: payload.status,
-        }),
-      });
-
-    if (!resp.ok) {
-      throw new HttpClientError(resp.statusText, resp.status);
-    }
-    const json = await resp.json();
+  async [ActionsTypes.CHANGE_STATUS_OF_SSC]({commit}, payload: CampaignStatusPayload) {
+    const json = await fetchOnboarding(
+      'POST',
+      `shopping-campaigns/${payload.id}/status`,
+      undefined,
+      {status: payload.status},
+    );
     commit(MutationsTypes.UPDATE_CAMPAIGN_STATUS, payload);
     return json;
   },
-  async [ActionsTypes.UPDATE_CAMPAIGN]({commit, rootState, state}, payload: CampaignObject) {
-    const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/${payload.id}`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-        },
-        body: JSON.stringify(payload),
-      });
-
-    if (!resp.ok) {
-      throw new HttpClientError(resp.statusText, resp.status);
-    }
-    const json = await resp.json();
+  async [ActionsTypes.UPDATE_CAMPAIGN]({commit, rootState}, payload: CampaignObject) {
+    const json = await fetchOnboarding(
+      'POST',
+      `shopping-campaigns/${payload.id}`,
+      undefined,
+      payload,
+    );
     commit(MutationsTypes.UPDATE_CAMPAIGN, payload);
     return json;
   },
@@ -517,23 +452,22 @@ export default {
       query.append('search_query', search);
     }
 
-    const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/dimensions/filters?${query}`,
-      {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-        },
-      });
-
-    if (resp.status > 299) {
-      commit(MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS, {list: [], error: true});
-      return;
-    }
-    if (!resp.ok) {
-      throw new HttpClientError(resp.statusText, resp.status);
-    }
-    const json = await resp.json();
+    const json = await fetchOnboarding(
+      'GET',
+      `shopping-campaigns/dimensions/filters?${query}`,
+      undefined,
+      undefined,
+      async (reponse) => {
+        if (reponse.status > 299) {
+          commit(MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS, {list: [], error: true});
+          return {};
+        }
+        if (!reponse.ok) {
+          throw new HttpClientError(reponse.statusText, reponse.status);
+        }
+        return reponse.json();
+      },
+    );
 
     if (!search) {
       // Basic mutation storing all possible dimensions and filters
@@ -558,19 +492,10 @@ export default {
       country_code: targetCountry,
       currency_code: rootState.googleAds.accountChosen.currencyCode,
     });
-    const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-campaigns/recommended-budget?${query}`,
-      {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-        },
-      });
-
-    if (!resp.ok) {
-      throw new HttpClientError(resp.statusText, resp.status);
-    }
-    const json = await resp.json() as RecommendedBudgetResponse;
+    const json: RecommendedBudgetResponse = await fetchOnboarding(
+      'GET',
+      `shopping-campaigns/recommended-budget?${query}`,
+    );
 
     return json.budget;
   },

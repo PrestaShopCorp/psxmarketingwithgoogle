@@ -18,6 +18,7 @@
  */
 import {fetchShop} from 'mktg-with-google-common/api/shopClient';
 import HttpClientError from 'mktg-with-google-common/api/HttpClientError';
+import {fetchOnboarding} from 'mktg-with-google-common';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import {runIf} from '../../../utils/Promise';
@@ -39,45 +40,35 @@ export default {
       dispatch(ActionsTypes.GET_GOOGLE_ADS_ACCOUNT),
     ));
   },
-  async [ActionsTypes.GET_GOOGLE_ADS_LIST]({commit, rootState}) {
+  async [ActionsTypes.GET_GOOGLE_ADS_LIST]({commit}) {
     try {
-      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/list`,
-        {
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-          },
-        });
-
-      if (!resp.ok) {
-        commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
-        throw new HttpClientError(resp.statusText, resp.status);
-      }
-      const json = await resp.json();
+      const json = fetchOnboarding(
+        'GET',
+        'ads-accounts/list',
+        undefined,
+        undefined,
+        (response) => {
+          if (!response.ok) {
+            commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
+            throw new HttpClientError(response.statusText, response.status);
+          }
+          return response.json();
+        },
+      );
       commit(MutationsTypes.SET_GOOGLE_ADS_LIST, json);
     } catch (error) {
       console.error(error);
     }
   },
   async [ActionsTypes.GET_GOOGLE_ADS_ACCOUNT]({
-    commit, rootState, dispatch, state,
+    commit, state,
   }) {
     try {
       commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, '');
-      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/status`,
-        {
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-          },
-        });
-
-      if (!resp.ok) {
-        throw new HttpClientError(resp.statusText, resp.status);
-      }
-      const json = await resp.json();
+      const json = await fetchOnboarding(
+        'GET',
+        'ads-accounts/status',
+      );
       const customer = {
         ...json.customer,
         invitationLink: json.customer.invitationLink,
@@ -115,22 +106,19 @@ export default {
       timeZone: payload.timeZone,
     };
     try {
-      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/create`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-          },
-          body: JSON.stringify(newUser),
-        });
-
-      if (!resp.ok) {
-        commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
-        throw new HttpClientError(resp.statusText, resp.status);
-      }
-      const json = await resp.json();
+      const json = await fetchOnboarding(
+        'POST',
+        'ads-accounts/create',
+        undefined,
+        newUser,
+        (response) => {
+          if (!response.ok) {
+            commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
+            throw new HttpClientError(response.statusText, response.status);
+          }
+          return response.json();
+        },
+      );
       const newUserBis = {
         id: json.adsAccountId,
         name: payload.name,
@@ -152,45 +140,33 @@ export default {
   async [ActionsTypes.DISSOCIATE_GOOGLE_ADS_ACCOUNT]({commit, rootState, dispatch},
     correlationId: string) {
     commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, '');
-    // eslint-disable-next-line no-param-reassign
-    correlationId = `${rootState.accounts.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts`, {
-      method: 'DELETE',
-      headers: {
-        Accept: 'application/json',
-        Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-        'x-correlation-id': correlationId,
-      },
-    });
-
-    if (!response.ok) {
-      console.log('dissociate failed');
+    await fetchOnboarding(
+      'DELETE',
+      'ads-accounts',
+      correlationId || `${rootState.accounts.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`,
+    ).finally(() => {
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, null);
-      throw new HttpClientError(response.statusText, response.status);
-    }
-    commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, null);
+    });
     return true;
   },
 
   async [ActionsTypes.SAVE_SELECTED_GOOGLE_ADS_ACCOUNT]({
-    commit, rootState, dispatch,
+    commit,
   }, payload) {
     try {
-      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/${payload.id}/link`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-          },
-        });
-
-      if (!resp.ok) {
-        commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
-        throw new HttpClientError(resp.statusText, resp.status);
-      }
-      const json = await resp.json();
+      await fetchOnboarding(
+        'POST',
+        `ads-accounts/${payload.id}/link`,
+        undefined,
+        undefined,
+        (response) => {
+          if (!response.ok) {
+            commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
+            throw new HttpClientError(response.statusText, response.status);
+          }
+          return response.json();
+        },
+      );
     } catch (error) {
       console.error(error);
     }
