@@ -1,6 +1,6 @@
 <?php
 
-namespace Carrier;
+namespace Builder;
 
 use Carrier;
 use PHPUnit\Framework\MockObject\MockObject;

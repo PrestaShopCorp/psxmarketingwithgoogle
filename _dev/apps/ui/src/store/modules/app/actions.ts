@@ -17,9 +17,9 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
+import {fetchShop} from 'mktg-with-google-common/api/shopClient';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
-import {fetchShop} from '@/api/shopClient';
 
 export default {
   async [ActionsTypes.REQUEST_DOC_AND_FAQ]({commit}) {

@@ -21,13 +21,16 @@
 use Dotenv\Dotenv;
 use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
+use PrestaShop\Module\PsxMarketingWithGoogle\Config\Env;
 use PrestaShop\Module\PsxMarketingWithGoogle\Database\Installer;
 use PrestaShop\Module\PsxMarketingWithGoogle\Database\Uninstaller;
 use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler;
 use PrestaShop\Module\PsxMarketingWithGoogle\Handler\RemarketingHookHandler;
+use PrestaShop\Module\PsxMarketingWithGoogle\Provider\VerificationTagDataProvider;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\TabRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Tracker\Segment;
 use PrestaShop\ModuleLibServiceContainer\DependencyInjection\ServiceContainer;
+use PrestaShop\PsAccountsInstaller\Installer\Facade\PsAccounts;
 
 if (!defined('_PS_VERSION_')) {
     exit;
@@ -194,6 +197,28 @@ class PsxMarketingWithGoogle extends Module
                 'moduleLink' => $this->context->link->getAdminLink('AdminPsxMktgWithGoogleModule'),
             ]);
             $this->context->controller->addJs($this->getPathUri() . 'views/js/hook/shippingWarning.js');
+        }
+
+        if ($this->context->controller->controller_name === 'AdminDashboard' && $this->getService(VerificationTagDataProvider::class)->isUpdateRequested()) {
+            $env = $this->getService(Env::class);
+            try {
+                $psAccountsService = $this->getService(PsAccounts::class)->getPsAccountsService();
+                $tokenPsAccounts = $psAccountsService->getOrRefreshToken();
+                $shopIdPsAccounts = $psAccountsService->getShopUuidV4();
+            } catch (Exception $e) {
+                $tokenPsAccounts = null;
+                $shopIdPsAccounts = null;
+            }
+            Media::addJsDef([
+                'psxMktgWithGoogleApiUrl' => $env->get('PSX_MKTG_WITH_GOOGLE_API_URL'),
+                'psxMktgWithGoogleControllerLink' => $this->context->link->getAdminLink('AdminAjaxPsxMktgWithGoogle'),
+                'psxMktgWithGoogleTokenPsAccounts' => $tokenPsAccounts,
+                'psxMktgWithGoogleShopIdPsAccounts' => $shopIdPsAccounts,
+                'psxMktgWithGoogleDsnSentry' => $env->get('PSX_MKTG_WITH_GOOGLE_SENTRY_CREDENTIALS_VUE'),
+                'psxMktgWithGoogleOnProductionEnvironment' => $env->get('PSX_MKTG_WITH_GOOGLE_API_URL') === Config::PSX_MKTG_WITH_GOOGLE_API_URL,
+            ]);
+            $jsPath = (bool) $env->get('USE_LOCAL_VUE_APP') ? $this->getPathUri() . 'views/js/fetchVerificationTag.js' : $env->get('PSX_MKTG_WITH_GOOGLE_CDN_URL') . 'fetchVerificationTag.js';
+            $this->context->controller->addJs($jsPath);
         }
 
         $this->context->controller->addCSS($this->getPathUri() . 'views/css/admin/menu.css');

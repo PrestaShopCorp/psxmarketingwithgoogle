@@ -16,9 +16,9 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
+import HttpClientError from 'mktg-with-google-common/api/HttpClientError';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
-import HttpClientError from '@/api/HttpClientError';
 
 export default {
   async [ActionsTypes.GET_FREE_LISTING_STATUS]({commit, rootState}) {

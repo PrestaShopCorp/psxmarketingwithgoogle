@@ -162,9 +162,9 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             ]));
         }
         $websiteVerificationMeta = $inputs['websiteVerificationMeta'];
+        $this->configurationAdapter->deleteByName(Config::PSX_MKTG_WITH_GOOGLE_WEBSITE_VERIFICATION_META);
 
         if ($websiteVerificationMeta === false) {
-            $this->configurationAdapter->deleteByName(Config::PSX_MKTG_WITH_GOOGLE_WEBSITE_VERIFICATION_META);
             $this->ajaxDie(json_encode(['success' => true, 'method' => 'delete']));
         } else {
             // base64 encoded to avoid prestashop sanitization

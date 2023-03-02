@@ -34,7 +34,7 @@ import { withTests } from '@storybook/addon-jest';
 // Test utils
 import {cloneStore} from '@/../tests/store';
 import {initialStateApp} from "../.storybook/mock/state-app";
-import {initShopClient} from '@/api/shopClient';
+import {initShopClient} from "mktg-with-google-common/api/shopClient";
 
 import { initialize, mswDecorator } from 'msw-storybook-addon';
 // Initialize MSW

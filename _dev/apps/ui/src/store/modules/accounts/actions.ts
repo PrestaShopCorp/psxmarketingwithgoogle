@@ -17,15 +17,16 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
+import {fetchShop} from 'mktg-with-google-common/api/shopClient';
+import {fetchOnboarding} from 'mktg-with-google-common/api/onboardingClient';
+import HttpClientError from 'mktg-with-google-common/api/HttpClientError';
 import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 import MutationsTypes from './mutations-types';
 import MutationsTypesProductFeed from '../product-feed/mutations-types';
 import MutationsTypesGoogleAds from '../google-ads/mutations-types';
 import ActionsTypes from './actions-types';
-import HttpClientError from '@/api/HttpClientError';
 import NeedOverwriteError from '../../../utils/NeedOverwriteError';
 import CannotOverwriteError from '../../../utils/CannotOverwriteError';
-import {fetchShop} from '@/api/shopClient';
 
 export default {
   async [ActionsTypes.WARMUP_STORE](
@@ -222,8 +223,7 @@ export default {
         });
       }
       if (json.google_ads_account_id) {
-        commit(`googleAds/${MutationsTypesGoogleAds.SET_GOOGLE_ADS_ACCOUNT_ID}`, json.google_ads_account_id,
-          {root: true},
+        commit(`googleAds/${MutationsTypesGoogleAds.SET_GOOGLE_ADS_ACCOUNT_ID}`, json.google_ads_account_id, {root: true},
         );
       }
       // If GMC is already linked, must start by requesting GMC list, then look after the link GMC.
@@ -371,11 +371,11 @@ export default {
   async [ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_PROCESS]({dispatch, state}) {
     const correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
     try {
-      // 1- Get site verification token from Nest
+      // 1- Get site verification token from onboarding API
       const {token} = await dispatch(ActionsTypes.REQUEST_SITE_VERIFICATION_TOKEN, correlationId);
       // 2- Store token in shop
       await dispatch(ActionsTypes.SAVE_WEBSITE_VERIFICATION_META, token);
-      // 3- Request verification to Google via Nest
+      // 3- Request verification to Google via onboarding API
       await dispatch(ActionsTypes.REQUEST_GOOGLE_TO_VERIFY_WEBSITE, correlationId);
       // 4- Retrieve verification results
       const {isVerified, isClaimed} = await dispatch(
@@ -394,18 +394,11 @@ export default {
   },
 
   async [ActionsTypes.REQUEST_SITE_VERIFICATION_TOKEN]({rootState, state}, correlationId: string) {
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-websites/site-verification/token`, {
-      headers: {
-        Accept: 'application/json',
-        Authorization: `Bearer ${state.tokenPsAccounts}`,
-        'x-correlation-id': correlationId,
-      },
-    });
-
-    if (!response.ok) {
-      throw new HttpClientError(response.statusText, response.status);
-    }
-    return response.json();
+    return fetchOnboarding(
+      'GET',
+      'shopping-websites/site-verification/token',
+      correlationId,
+    );
   },
 
   // eslint-disable-next-line no-empty-pattern
@@ -417,20 +410,11 @@ export default {
     {rootState, state},
     correlationId: string,
   ) {
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/shopping-websites/site-verification/verify`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: `Bearer ${state.tokenPsAccounts}`,
-        'x-correlation-id': correlationId,
-      },
-    });
-
-    if (!response.ok) {
-      throw new HttpClientError(response.statusText, response.status);
-    }
-    return response.json();
+    return fetchOnboarding(
+      'POST',
+      'shopping-websites/site-verification/verify',
+      correlationId,
+    );
   },
 
   async [ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS](
