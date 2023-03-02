@@ -41,7 +41,7 @@ const runRetrievalOfVerificationTag = async (): Promise<void> => {
       correlationId
     );
   
-    console.log('Marketing with Google - Google Verification tag has been refreshed.');
+    console.info('Marketing with Google - Google Verification tag has been refreshed.');
   } catch (e) {
     console.error('Marketing with Google - Google Verification tag refresh failed.', e);
     Sentry.captureException(e);
