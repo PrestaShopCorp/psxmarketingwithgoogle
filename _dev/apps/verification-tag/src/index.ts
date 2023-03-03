@@ -7,6 +7,7 @@ import {
   initShopClient,
 } from "mktg-with-google-common/api/shopClient";
 import * as Sentry from "@sentry/browser";
+import { runRetrievalOfVerificationTag } from "./verification-tag-retriever";
 declare global {
   interface Window {
     psxMktgWithGoogleControllerLink: string;
@@ -17,36 +18,6 @@ declare global {
     psxMktgWithGoogleOnProductionEnvironment: boolean;
   }
 }
-
-const runRetrievalOfVerificationTag = async (): Promise<void> => {
-  const correlationId = `${Math.floor(Date.now() / 1000)}`;
-    
-  try {
-    // 1- Get site verification token from onboarding API
-    const {token} = await fetchOnboarding(
-      "GET",
-      "shopping-websites/site-verification/token",
-      correlationId
-    );
-      
-    // 2- Store token in shop
-    await fetchShop("setWebsiteVerificationMeta", {
-      websiteVerificationMeta: token,
-    });
-
-    // 3- Request verification to Google via onboarding API
-    await fetchOnboarding(
-      "POST",
-      "shopping-websites/site-verification/verify",
-      correlationId
-    );
-  
-    console.info('Marketing with Google - Google Verification tag has been refreshed.');
-  } catch (e) {
-    console.error('Marketing with Google - Google Verification tag refresh failed.', e);
-    Sentry.captureException(e);
-  }
-};
 
 const init = (): void => {
   const appVersion = process.env.VUE_APP_BUILD_VERSION || 'dev';
@@ -76,4 +47,4 @@ const init = (): void => {
 }
 
 init();
-runRetrievalOfVerificationTag();
+runRetrievalOfVerificationTag(fetchOnboarding, fetchShop);
