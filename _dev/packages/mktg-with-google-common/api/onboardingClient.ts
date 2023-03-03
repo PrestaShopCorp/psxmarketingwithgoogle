@@ -4,21 +4,24 @@ type Options = {
   apiUrl: string,
   token: string,
 };
+// ToDo: Check if the updated TS linter works after migrating to Vue3
+// eslint-disable-next-line no-unused-vars
+type ResponseHandler = (response: Response) => Promise<any>;
+
+// Allowed methods with the API
+export type HttpMethod = 'GET'|'POST'|'DELETE';
+export const noCorrelationIdValue: string = 'no-correlation-id-provided';
 
 const options: Options = {
   apiUrl: '',
   token: '',
 };
-
-// Allowed methods with the API
-export type HttpMethod = 'GET'|'POST'|'DELETE';
-export const noCorrelationIdValue: string = 'no-correlation-id-provided'; 
 export const initOnboardingClient = (params: Options) => {
   options.apiUrl = params.apiUrl;
   options.token = params.token;
 };
 
-const onResponseDefault = async (response: Response) => {
+const onResponseDefault: ResponseHandler = async (response) => {
   if (!response.ok) {
     throw new HttpClientError(response.statusText, response.status);
   }
@@ -29,9 +32,9 @@ const onResponseDefault = async (response: Response) => {
 export const fetchOnboarding = async (
   method: HttpMethod,
   path: string,
-  correlationId: string = noCorrelationIdValue,
+  correlationId?: string,
   params?: { [key: string]: unknown},
-  onResponse?: (response: Response) => Promise<any>,
+  onResponse?: ResponseHandler,
 ) => {
   if (!options.apiUrl.length) {
     throw new Error('Cannot call onboarding API, client is not initialized (missing URL)');
@@ -46,12 +49,12 @@ export const fetchOnboarding = async (
       'Content-Type': 'application/json',
       Accept: 'application/json',
       Authorization: `Bearer ${options.token}`,
-      'x-correlation-id': correlationId,
+      'x-correlation-id': correlationId || noCorrelationIdValue,
     },
     body: params && JSON.stringify(params),
   });
 
-  return onResponse ? await onResponse(response) : await onResponseDefault(response);
+  return onResponse ? onResponse(response) : onResponseDefault(response);
 };
 
 export default {

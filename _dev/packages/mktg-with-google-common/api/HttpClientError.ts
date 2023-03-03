@@ -6,3 +6,7 @@ export class HttpClientError extends Error implements Error {
     this.code = code;
   }
 }
+
+export default {
+  HttpClientError,
+};
