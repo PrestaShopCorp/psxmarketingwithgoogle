@@ -1,4 +1,5 @@
 import fetchMock from 'jest-fetch-mock';
+import {initOnboardingClient} from 'mktg-with-google-common/api/onboardingClient';
 import actions from '@/store/modules/accounts/actions';
 import ActionsTypes from '@/store/modules/accounts/actions-types';
 import MutationsTypes from '@/store/modules/accounts/mutations-types';
@@ -10,8 +11,6 @@ fetchMock.enableMocks();
 
 let commit;
 let dispatch;
-let rootState;
-let state;
 let payload;
 
 beforeEach(() => {
@@ -19,14 +18,10 @@ beforeEach(() => {
 
   commit = jest.fn();
   dispatch = jest.fn();
-  rootState = {
-    app: {
-      psxMktgWithGoogleApiUrl: 'http://perdu.com',
-    },
-  };
-  state = {
-    tokenPsAccounts: 'token',
-  };
+  initOnboardingClient({
+    apiUrl: 'http://perdu.com',
+    token: 'token',
+  });
   payload = {
     selectedAccount: {
       aggregatorId: '1',
@@ -44,8 +39,6 @@ describe('Action SAVE_SELECTED_GOOGLE_MERCHANT_ACCOUNT', () => {
       {
         dispatch,
         commit,
-        rootState,
-        state,
       },
       payload,
     );
@@ -59,10 +52,8 @@ describe('Action SAVE_SELECTED_GOOGLE_MERCHANT_ACCOUNT', () => {
     try {
       await actions[ActionsTypes.SAVE_SELECTED_GOOGLE_MERCHANT_ACCOUNT](
         {
-          commit,
-          rootState,
-          state,
           dispatch,
+          commit,
         },
         payload,
       );

@@ -17,9 +17,7 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-import {fetchShop} from 'mktg-with-google-common/api/shopClient';
-import {fetchOnboarding} from 'mktg-with-google-common/api/onboardingClient';
-import HttpClientError from 'mktg-with-google-common/api/HttpClientError';
+import {fetchOnboarding, fetchShop, HttpClientError} from 'mktg-with-google-common';
 import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 import MutationsTypes from './mutations-types';
 import MutationsTypesProductFeed from '../product-feed/mutations-types';

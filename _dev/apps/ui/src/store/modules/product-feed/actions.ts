@@ -16,9 +16,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
-import {fetchShop} from 'mktg-with-google-common/api/shopClient';
-import HttpClientError from 'mktg-with-google-common/api/HttpClientError';
-import {fetchOnboarding} from 'mktg-with-google-common';
+import {fetchOnboarding, fetchShop, HttpClientError} from 'mktg-with-google-common';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import {getDataFromLocalStorage, deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';

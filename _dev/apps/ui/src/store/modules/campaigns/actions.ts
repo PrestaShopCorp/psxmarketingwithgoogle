@@ -18,8 +18,7 @@
  */
 
 import dayjs, {ManipulateType} from 'dayjs';
-import {fetchShop, fetchOnboarding} from 'mktg-with-google-common';
-import HttpClientError from 'mktg-with-google-common/api/HttpClientError';
+import {fetchShop, fetchOnboarding, HttpClientError} from 'mktg-with-google-common';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
