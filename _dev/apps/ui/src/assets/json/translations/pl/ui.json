@@ -694,13 +694,13 @@
                 "language": "Język",
                 "image": "Obraz",
                 "description": "Opis",
-                "price": "Cena",
-                "barcode": "GTIN/Marka"
+                "barcode": "GTIN/Marka",
+                "price": "Cena"
             },
             "xHasFailedPreValidation": "\"{0}\": proces wstępnej walidacji nie powiódł się.",
             "xHasPassedPreValidation": "\"{0}\": proces wstępnej walidacji powiódł się.",
             "labelTooltipDescription": "Ten atrybut odpowiada temu, co zostało skonfigurowane w mapowaniu atrybutów produktu: krótki opis, opis...",
-            "labelTooltipBarcode": "Ten atrybut odpowiada temu, co zostało skonfigurowane w mapowaniu atrybutów produktu: kod kreskowy, MPN, GTIN, ISBN, UPC..."
+            "labelTooltipBarcode": "GTIN is a unique identifier used to identify products. it can be UPC or EAN or JAN or ISBN. If you don't have a GTIN for your product, in this case add a Brand (of the product or your company) AND a MPN (Manufacturer Part Number) which is a unique identifier different from the GTIN, assigned by a manufacturer to identify a specific product or part"
         },
         "approvalTable": {
             "description": "Są to statusy Twoich produktów, które są wysyłane do Google Merchant Center. Ze względu na zmianę języka, niektóre produkty mogą pojawić się więcej niż raz.",
@@ -887,7 +887,6 @@
         "activateModule": "Aktywuj moduł",
         "enabled": "Włączono",
         "agree": "Zgadzam się",
-        "enableFreeListing": "Włącz wyświetlanie bezpłatnych informacji o produkcie",
         "connectAccount": "Połącz Twoje konta",
         "connectingAccount": "Podłączanie konta...",
         "chooseExistingAccount": "Wybierz istniejące konto",
@@ -922,7 +921,6 @@
         "no": "Nie",
         "disable": "Wyłącz",
         "disableProductFeed": "Wyłącz plik danych produktu",
-        "enableFreeListingAndProductFeed": "Włącz wyświetlanie bezpłatnych informacji o produkcie i pliku danych produktu",
         "checkRequirements": "Zobacz wymagania dotyczące sklepu",
         "storeMeetsRequirements": "Mój sklep spełnia wszystkie wymagania",
         "createAccount": "Utwórz konto",
@@ -1020,10 +1018,6 @@
         "textDisconnectGoogleAccount": "Zamierzasz odłączyć konto Google. Spowoduje to usunięcie dostępu do kont Google, Google Merchant Center i Google Ads.",
         "textDisconnectMCA": "Odłączenie Twojego konta Merchant Center spowoduje usunięcie dostępu do Google Ads w tym module i wstrzymanie każdej uruchomionej kampanii.",
         "textoverwrite": "Nadpisanie istniejącego roszczenia spowoduje dezaktywację poprzedniego konta i wstrzymanie istniejących kampanii powiązanych z tym kontem - bezpłatnych informacji i kampanii Zakupy.  \nJeśli prowadzisz inną kampanię Zakupy, zalecamy jej wstrzymanie.",
-        "titleDisableFreeListing": "Wyłączyć wyświetlanie bezpłatnych informacji o produkcie?",
-        "textDisableFreeListing": "Poprzez wyłączenie bezpłatnych informacji, Twoje produkty nie będą już dostępne dla organicznych list w zakładce Zakupy.  \n Jednakże Twój kanał produktowy pozostanie dostępny.",
-        "titleEnableFreeListing": "Włączyć wyświetlanie bezpłatnych informacji o produkcie?",
-        "textEnableFreeListing": "Działanie to spowoduje również ponowną aktywację pliku danych produktu.",
         "titleCancelWithoutSaving": "Anulować bez zapisywania?",
         "textCancelProductFeed": "Stracisz wszystkie niezapisane zmiany jeśli wybierzesz Kontynuuj. Aby pomyślnie wysłać dane o produktach do Google, musisz wykonać wszystkie kroki.",
         "titleQuitWithoutSaving": "Wyjść bez zapisywania?",
