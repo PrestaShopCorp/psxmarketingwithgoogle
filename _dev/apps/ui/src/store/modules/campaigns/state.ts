@@ -88,18 +88,18 @@ export interface CampaignStatusPayload {
   id: number,
   status: CampaignStatusToggle,
 }
-export interface CampaignObject {
-  id: number,
+export type CampaignObject = {
+  id: number;
   campaignName: string;
-  startDate: string,
-  endDate?: string,
+  startDate: string;
+  endDate?: string;
   targetCountry: string;
-  dailyBudget : number,
-  currencyCode: string,
-  productFilters?: ProductsFilteredObject[],
-  status?: CampaignStatus|CampaignStatusToggle,
-  hasUnhandledFilters?: boolean,
-  type: CampaignTypes
+  dailyBudget : number;
+  currencyCode: string;
+  productFilters?: ProductsFilteredObject[];
+  status?: CampaignStatus|CampaignStatusToggle;
+  hasUnhandledFilters?: boolean;
+  type: CampaignTypes;
 }
 
 export interface Reporting {

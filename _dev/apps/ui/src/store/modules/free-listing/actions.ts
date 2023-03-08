@@ -16,56 +16,20 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
-import HttpClientError from 'mktg-with-google-common/api/HttpClientError';
+import {fetchOnboarding} from 'mktg-with-google-common';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 
 export default {
-  async [ActionsTypes.GET_FREE_LISTING_STATUS]({commit, rootState}) {
+  async [ActionsTypes.GET_FREE_LISTING_STATUS]({commit}) {
     try {
-      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/free-listings/settings`,
-        {
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-          },
-        });
-
-      if (!resp.ok) {
-        throw new HttpClientError(resp.statusText, resp.status);
-      }
-      const json = await resp.json();
+      const json = await fetchOnboarding(
+        'GET',
+        'free-listings/settings',
+      );
       commit(MutationsTypes.SET_FREE_LISTING_STATUS, json.enabled);
     } catch (error) {
       console.error(error);
     }
   },
-  async [ActionsTypes.SEND_FREE_LISTING_STATUS]({commit, rootState}, enabled: boolean) {
-    try {
-      const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/free-listings/toggle`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-          },
-          body: JSON.stringify({
-            enabled,
-          }),
-        });
-
-      if (!resp.ok) {
-        commit(MutationsTypes.SET_ERROR_API, true);
-        throw new HttpClientError(resp.statusText, resp.status);
-      }
-      const json = await resp.json();
-      commit(MutationsTypes.SET_ERROR_API, false);
-      commit(MutationsTypes.SET_FREE_LISTING_STATUS, json.enabled);
-    } catch (error) {
-      console.error(error);
-    }
-  },
-
 };

@@ -16,8 +16,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
-import {fetchShop} from 'mktg-with-google-common/api/shopClient';
-import HttpClientError from 'mktg-with-google-common/api/HttpClientError';
+import {fetchOnboarding, fetchShop, HttpClientError} from 'mktg-with-google-common';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import {getDataFromLocalStorage, deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
@@ -91,23 +90,8 @@ export default {
       lang: window.i18nSettings.isoCode,
       timezone: encodeURI(Intl.DateTimeFormat().resolvedOptions().timeZone),
     };
-    const url = `${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/status/?lang=${params.lang}&timezone=${params.timezone}`;
-
     try {
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-        },
-      },
-      );
-
-      if (!response.ok) {
-        throw new HttpClientError(response.statusText, response.status);
-      }
-      const json = await response.json();
+      const json = await fetchOnboarding('GET', `incremental-sync/status/?lang=${params.lang}&timezone=${params.timezone}`);
       commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'jobEndedAt', data: json.jobEndedAt});
       commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'lastUpdatedAt', data: json.lastUpdatedAt});
       commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'nextJobAt', data: json.nextJobAt});
@@ -119,27 +103,14 @@ export default {
   },
 
   async [ActionsTypes.GET_PRODUCT_FEED_SETTINGS](
-    {commit, rootState},
+    {commit},
   ): Promise<ProductFeedSettings|null> {
     const params = {
       lang: window.i18nSettings.isoCode,
       timezone: encodeURI(Intl.DateTimeFormat().resolvedOptions().timeZone),
     };
-    const url = `${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/settings/?lang=${params.lang}&timezone=${params.timezone}`;
     try {
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-        },
-      });
-
-      if (!response.ok) {
-        throw new HttpClientError(response.statusText, response.status);
-      }
-      const json = await response.json();
+      const json = await fetchOnboarding('GET', `incremental-sync/settings/?lang=${params.lang}&timezone=${params.timezone}`);
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'autoImportShippingSettings', data: json.autoImportShippingSettings,
       });
@@ -235,20 +206,12 @@ export default {
     });
 
     try {
-      const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/settings`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-        },
-        body: JSON.stringify(newSettings),
-      });
-
-      if (!response.ok) {
-        throw new HttpClientError(response.statusText, response.status);
-      }
-      await response.json();
+      await fetchOnboarding(
+        'POST',
+        'incremental-sync/settings',
+        undefined,
+        newSettings,
+      );
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
       commit(MutationsTypes.SAVE_CONFIGURATION_CONNECTED_ONCE, true);
       deleteProductFeedDataFromLocalStorage();
@@ -346,22 +309,13 @@ export default {
     commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
   },
 
-  async [ActionsTypes.GET_PRODUCT_FEED_SYNC_SUMMARY]({rootState, commit}) {
+  async [ActionsTypes.GET_PRODUCT_FEED_SYNC_SUMMARY]({commit}) {
     commit(MutationsTypes.SET_SYNC_SUMMARY_LOADING, true);
     try {
-      const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/validation/summary`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-        },
-      });
-
-      if (!response.ok) {
-        throw new HttpClientError(response.statusText, response.status);
-      }
-      const result = await response.json();
+      const result = await fetchOnboarding(
+        'GET',
+        'product-feeds/validation/summary',
+      );
       commit(MutationsTypes.SET_VALIDATION_SUMMARY, result);
     } catch (error) {
       console.error(error);
@@ -377,19 +331,10 @@ export default {
   },
   async [ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES]({rootState, commit}, nextPage) {
     const nextToken = nextPage ? `?next_token=${nextPage}` : '';
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/validation/list${nextToken}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-      },
-    });
-
-    if (!response.ok) {
-      throw new HttpClientError(response.statusText, response.status);
-    }
-    const result = await response.json();
+    const result = await fetchOnboarding(
+      'GET',
+      `product-feeds/validation/list${nextToken}`,
+    );
     commit(MutationsTypes.SAVE_ALL_PRODUCTS, result.results);
     return result;
   },
@@ -412,19 +357,11 @@ export default {
     dispatch(ActionsTypes.REQUEST_SYNCHRONISATION, true);
   },
 
-  async [ActionsTypes.REQUEST_GOOGLE_SYNCHRONISATION]({rootState}) {
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/incremental-sync/force-now`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-      },
-    });
-
-    if (!response.ok) {
-      throw new HttpClientError(response.statusText, response.status);
-    }
+  async [ActionsTypes.REQUEST_GOOGLE_SYNCHRONISATION]() {
+    await fetchOnboarding(
+      'POST',
+      'incremental-sync/force-now',
+    );
   },
   async [ActionsTypes.REQUEST_SHOP_TO_GET_ATTRIBUTE]({commit}) {
     const json = await fetchShop('getShopAttributes');
@@ -433,20 +370,10 @@ export default {
   },
   async [ActionsTypes.REQUEST_ATTRIBUTE_MAPPING]({rootState, commit}) {
     try {
-      const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/attributes`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-          Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-        },
-      });
-
-      if (!response.ok) {
-        throw new HttpClientError(response.statusText, response.status);
-      }
-
-      const json = await response.json();
+      const json = await fetchOnboarding(
+        'GET',
+        'product-feeds/attributes',
+      );
       commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, json);
     } catch (error) {
       console.log(error);
@@ -461,19 +388,10 @@ export default {
     if (lang) {
       query += `&lang=${lang.toLowerCase()}`;
     }
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/prevalidation-scan/errors${query}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-      },
-    });
-
-    if (!response.ok) {
-      throw new HttpClientError(response.statusText, response.status);
-    }
-    const json = await response.json();
+    const json = await fetchOnboarding(
+      'GET',
+      `product-feeds/prevalidation-scan/errors${query}`,
+    );
 
     commit(MutationsTypes.SET_PRESCAN_TOTAL_PRODUCT, json.totalErrors);
     commit(MutationsTypes.SET_PRESCAN_PRODUCTS, json.errors);
@@ -482,35 +400,19 @@ export default {
   },
 
   async [ActionsTypes.GET_PREVALIDATION_SUMMARY]({rootState, commit}) {
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/product-feeds/prevalidation-scan/summary`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-      },
-    });
-
-    if (!response.ok) {
-      throw new HttpClientError(response.statusText, response.status);
-    }
-    const json = await response.json();
+    const json = await fetchOnboarding(
+      'GET',
+      'product-feeds/prevalidation-scan/summary',
+    );
     commit(MutationsTypes.SET_PREVALIDATION_SUMMARY, json);
   },
 
   async [ActionsTypes.SEND_PRODUCT_FEED_FLAGS]({rootState}, flags) {
-    const response = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/debug/migration`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-      },
-      body: JSON.stringify(flags),
-    });
-
-    if (!response.ok) {
-      throw new HttpClientError(response.statusText, response.status);
-    }
+    await fetchOnboarding(
+      'POST',
+      'debug/migration',
+      undefined,
+      flags,
+    );
   },
 };

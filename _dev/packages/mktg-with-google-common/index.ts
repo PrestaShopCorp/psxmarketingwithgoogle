@@ -1,3 +1,3 @@
-export * from './api/HttpClientError';
-export * from './api/onboardingClient';
-export * from './api/shopClient';
+export {HttpClientError} from './api/HttpClientError';
+export {fetchOnboarding} from './api/onboardingClient';
+export {fetchShop} from './api/shopClient';
