@@ -694,13 +694,13 @@
                 "language": "Limbă",
                 "image": "Image",
                 "description": "Descriere",
-                "price": "Price",
-                "barcode": "GTIN/marcă"
+                "barcode": "GTIN/marcă",
+                "price": "Price"
             },
             "xHasFailedPreValidation": "\"{0}\": nu a trecut de validarea preliminară.",
             "xHasPassedPreValidation": "\"{0}\": a trecut de validarea preliminară.",
             "labelTooltipDescription": "Această caracteristică se potrivește cu ceea ce ai configurat în maparea caracteristicile produsului: descriere scurtă, descriere...",
-            "labelTooltipBarcode": "Această caracteristică se potrivește cu ceea ce ai configurat în maparea caracteristicilor produsului: cod de bare, MPN, GTIN, ISBN, UPC..."
+            "labelTooltipBarcode": "GTIN is a unique identifier used to identify products. it can be UPC or EAN or JAN or ISBN. If you don't have a GTIN for your product, in this case add a Brand (of the product or your company) AND a MPN (Manufacturer Part Number) which is a unique identifier different from the GTIN, assigned by a manufacturer to identify a specific product or part"
         },
         "approvalTable": {
             "description": "Acestea sunt stările produselor trimise la Google Merchant Center. Unele produse pot apărea de mai multe ori din cauza variațiilor de limbă.",
@@ -887,7 +887,6 @@
         "activateModule": "Activează modulul",
         "enabled": "Activat",
         "agree": "Sunt de acord",
-        "enableFreeListing": "Activează listările gratuite",
         "connectAccount": "Conectează-ți contul",
         "connectingAccount": "Contul se conectează...",
         "chooseExistingAccount": "Alege contul existent",
@@ -922,7 +921,6 @@
         "no": "Nu",
         "disable": "Dezactivează",
         "disableProductFeed": "Dezactivează fluxul produselor",
-        "enableFreeListingAndProductFeed": "Activează listările gratuite și fluxul produselor",
         "checkRequirements": "Vezi cerințele magazinului",
         "storeMeetsRequirements": "Magazinul meu îndeplinește toate cerințele",
         "createAccount": "Creare cont",
@@ -1020,10 +1018,6 @@
         "textDisconnectGoogleAccount": "Ești pe cale să deconectezi contul Google. Acest lucru va elimina accesul la conturile Google, Google Merchant Center și Google Ads.",
         "textDisconnectMCA": "Deconectarea Merchant Center va elimina accesul la Google Ads din acest modul și va întrerupe orice campanie în desfășurare. ",
         "textoverwrite": "Suprascrierea revendicării existente îți va dezactiva contul anterior și va întrerupe campaniile existente legate de acel cont: listările gratuite și campaniile pentru Shopping.  \nDacă desfășori o altă campanie pentru Shopping, îți recomandăm să o întrerupi.",
-        "titleDisableFreeListing": "Dezactivezi listările gratuite?",
-        "textDisableFreeListing": "Prin dezactivarea listărilor gratuite, produsele nu vor mai fi disponibile pentru listarea SEO în fila Shopping.  \n Cu toate acestea, fluxul tău de produse va rămâne disponibil.",
-        "titleEnableFreeListing": "Activezi listările gratuite?",
-        "textEnableFreeListing": "Această acțiune va determina, de asemenea, reactivarea fluxului de produse.",
         "titleCancelWithoutSaving": "Anulezi fără să salvezi?",
         "textCancelProductFeed": "Vei pierde toate modificările nesalvate dacă vei continua. Pentru a trimite cu succes datele despre produse la Google, trebuie să parcurgi toți pașii.",
         "titleQuitWithoutSaving": "Ieși fără a salva?",
