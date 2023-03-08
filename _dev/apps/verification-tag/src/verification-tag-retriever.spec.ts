@@ -1,4 +1,4 @@
-import { HttpClientError } from "mktg-with-google-common";
+import { fetchOnboarding, HttpClientError } from "mktg-with-google-common";
 import { runRetrievalOfVerificationTag } from "./verification-tag-retriever";
 
 describe('runRetrievalOfVerificationTag', () => {
@@ -17,19 +17,31 @@ describe('runRetrievalOfVerificationTag', () => {
     );
 
     // assert
-    expect(fetchOnboardingMock).toBeCalledTimes(2);
+    expect(fetchOnboardingMock).toBeCalledTimes(3);
     expect(fetchShopMock).toBeCalledTimes(1);
 
     expect(fetchOnboardingMock).toHaveBeenNthCalledWith(1,
       'GET',
       'shopping-websites/site-verification/token',
       expect.any(String),
+      undefined,
+      expect.any(Function),
     );
 
     expect(fetchOnboardingMock).toHaveBeenNthCalledWith(2,
       'POST',
       'shopping-websites/site-verification/verify',
       expect.any(String),
+      undefined,
+      expect.any(Function),
+    );
+
+    expect(fetchOnboardingMock).toHaveBeenNthCalledWith(3,
+      'POST',
+      'shopping-websites/site-verification/claim?overwrite=false',
+      expect.any(String),
+      undefined,
+      expect.any(Function),
     );
 
     expect(fetchShopMock).toHaveBeenNthCalledWith(1,
@@ -47,10 +59,14 @@ describe('runRetrievalOfVerificationTag', () => {
     fetchOnboardingMock.mockImplementationOnce(() => {throw new HttpClientError('oh no', 404)});
 
     // act
-    await runRetrievalOfVerificationTag(
-      fetchOnboardingMock,
-      fetchShopMock,
-    );
+    try {
+      await runRetrievalOfVerificationTag(
+        fetchOnboardingMock,
+        fetchShopMock,
+      );
+    } catch {
+      // Do nothing
+    }
 
     // assert
     expect(fetchOnboardingMock).toBeCalledTimes(1);
