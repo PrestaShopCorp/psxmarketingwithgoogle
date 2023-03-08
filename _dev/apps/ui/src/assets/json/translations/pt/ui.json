@@ -694,13 +694,13 @@
                 "language": "Idioma",
                 "image": "Imagem",
                 "description": "Descrição",
-                "price": "Prémio",
-                "barcode": "GTIN/Marca"
+                "barcode": "GTIN/Marca",
+                "price": "Prémio"
             },
             "xHasFailedPreValidation": "\"{0}\": falhou na pré-validação.",
             "xHasPassedPreValidation": "\"{0}\": passou na pré-validação.",
             "labelTooltipDescription": "Este atributo corresponde ao que você configurou no mapeamento de atributos do seu produto: descrição curta, descrição etc.",
-            "labelTooltipBarcode": "Este atributo corresponde ao que você configurou no mapeamento de atributos do seu produto: código de barras, MPN, GTIN, ISBN, UPC etc."
+            "labelTooltipBarcode": "GTIN is a unique identifier used to identify products. it can be UPC or EAN or JAN or ISBN. If you don't have a GTIN for your product, in this case add a Brand (of the product or your company) AND a MPN (Manufacturer Part Number) which is a unique identifier different from the GTIN, assigned by a manufacturer to identify a specific product or part"
         },
         "approvalTable": {
             "description": "Estes são os status dos seus produtos que são enviados para o Google Merchant Center. Alguns produtos podem aparecer mais de uma vez devido à sua variação de idioma.",
@@ -887,7 +887,6 @@
         "activateModule": "Habilitar o módulo",
         "enabled": "Ativado",
         "agree": "concordo",
-        "enableFreeListing": "Ativar listagens gratuitas?",
         "connectAccount": "Conectar a sua conta",
         "connectingAccount": "A conectar conta...",
         "chooseExistingAccount": "Escolha uma conta existente",
@@ -922,7 +921,6 @@
         "no": "Não",
         "disable": "Desativar",
         "disableProductFeed": "Desativar o feed de produtos",
-        "enableFreeListingAndProductFeed": "Ativar listagens gratuitas e feed de produtos",
         "checkRequirements": "Ver requisitos da loja",
         "storeMeetsRequirements": "A minha loja preenche todos os requisitos",
         "createAccount": "Criar conta",
@@ -1020,10 +1018,6 @@
         "textDisconnectGoogleAccount": "Está prestes a desconectar a conta Google. Isto irá remover o acesso às contas Google, Google Merchant Center e Google Ads.",
         "textDisconnectMCA": "Desconectar o seu Merchant Center irá remover o acesso ao seu Google Ads neste módulo e fazer uma pausa em qualquer campanha em curso. ",
         "textoverwrite": "A sobre-escritura de reclamações existentes irá desativar sua conta anterior e pausar as campanhas existentes vinculadas a essa conta - listagens gratuitas e campanhas de compras.  \nSe estiver a executar uma campanha de Compras diferente, recomendamos que a faça uma pausa.",
-        "titleDisableFreeListing": "Desativar listagens gratuitas?",
-        "textDisableFreeListing": "Ao desativar as listagens gratuitas, seus produtos não estarão mais disponíveis para listagem orgânica na guia Compras.  \n No entanto, a alimentação do seu produto permanecerá disponível.",
-        "titleEnableFreeListing": "Permitir listagens gratuitas?",
-        "textEnableFreeListing": "Esta ação também provocará a reativação do feed do produto.",
         "titleCancelWithoutSaving": "Cancelar sem poupar?",
         "textCancelProductFeed": "Você perderá todas as alterações não guardadas se continuar. Para enviar com sucesso os dados do seu produto para o Google, necessita concluir todos os passos.",
         "titleQuitWithoutSaving": "Desistir sem guardar?",

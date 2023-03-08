@@ -694,13 +694,13 @@
                 "language": "Язык",
                 "image": "Изображение",
                 "description": "Описание",
-                "price": "Цена",
-                "barcode": "GTIN/Brand"
+                "barcode": "GTIN/Brand",
+                "price": "Цена"
             },
             "xHasFailedPreValidation": "\"{0}\": предварительная проверка не пройдена.",
             "xHasPassedPreValidation": "\"{0}\": предварительная проверка пройдена.",
             "labelTooltipDescription": "Данное свойство соответствует настроенному при сопоставлении свойств товара: краткое описание, описание...",
-            "labelTooltipBarcode": "Данное свойство соответствует настроенному при сопоставлении атрибутов товара: штрих-код, MPN, GTIN, ISBN, UPC..."
+            "labelTooltipBarcode": "GTIN is a unique identifier used to identify products. it can be UPC or EAN or JAN or ISBN. If you don't have a GTIN for your product, in this case add a Brand (of the product or your company) AND a MPN (Manufacturer Part Number) which is a unique identifier different from the GTIN, assigned by a manufacturer to identify a specific product or part"
         },
         "approvalTable": {
             "description": "Здесь отображены статусы товаров, данные которых отправлены в Google Merchant Center. Товары с описаниями на разных языках могут быть указаны более одного раза.",
@@ -887,7 +887,6 @@
         "activateModule": "Включить модуль",
         "enabled": "Включено",
         "agree": "Я согласен",
-        "enableFreeListing": "Включить бесплатные объявления",
         "connectAccount": "Подключить учетную запись",
         "connectingAccount": "Подключение счета...",
         "chooseExistingAccount": "Выберите существующий счет",
@@ -922,7 +921,6 @@
         "no": "Нет",
         "disable": "Отключить",
         "disableProductFeed": "Отключить подачу продуктов",
-        "enableFreeListingAndProductFeed": "Включить бесплатные объявления и ленту товаров",
         "checkRequirements": "Посмотреть требования к магазину",
         "storeMeetsRequirements": "Мой магазин отвечает всем требованиям",
         "createAccount": "Создать учетную запись",
@@ -1020,10 +1018,6 @@
         "textDisconnectGoogleAccount": "Вы собираетесь отключить аккаунт Google. Это приведет к удалению доступа к аккаунтам Google, Google Merchant Center и Google Ads.",
         "textDisconnectMCA": "Отключение Merchant Center приведет к удалению доступа к объявлениям Google Ads в этом модуле и приостановке любой запущенной кампании.",
         "textoverwrite": "Перезапись существующего заявления приведет к деактивации вашей предыдущей учетной записи и приостановке существующих кампаний, связанных с этой учетной записью - бесплатных объявлений и кампаний Shopping.  \nЕсли вы запускаете другую кампанию Shopping, мы рекомендуем приостановить ее.",
-        "titleDisableFreeListing": "Отключить бесплатные объявления?",
-        "textDisableFreeListing": "При отключении бесплатных объявлений ваши товары больше не будут доступны для органического листинга на вкладке Shopping.  \n Однако ваша лента товаров останется доступной.",
-        "titleEnableFreeListing": "Включить бесплатные объявления?",
-        "textEnableFreeListing": "Это действие также приведет к повторной активации подачи продукта.",
         "titleCancelWithoutSaving": "Отменить без сохранения?",
         "textCancelProductFeed": "Если вы продолжите, то потеряете все несохраненные изменения. Чтобы успешно отправить данные о своем продукте в Google, необходимо выполнить все шаги.",
         "titleQuitWithoutSaving": "Выйти из игры без сохранения?",

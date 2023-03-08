@@ -694,13 +694,13 @@
                 "language": "Sprache",
                 "image": "Bild",
                 "description": "Beschreibung",
-                "price": "PREIS",
-                "barcode": "GTIN/Marke"
+                "barcode": "GTIN/Marke",
+                "price": "PREIS"
             },
             "xHasFailedPreValidation": "„{0}“: hat die Vorvalidierung nicht bestanden.",
             "xHasPassedPreValidation": "„{0}“: hat die Vorvalidierung bestanden.",
             "labelTooltipDescription": "Dieses Attribut stimmt mit dem überein, was Sie in der Zuweisung der Produktattribute angegeben haben: Kurzbeschreibung, Beschreibung …",
-            "labelTooltipBarcode": "Dieses Attribut stimmt mit dem überein, was Sie in der Zuweisung der Produktattribute angegeben haben: Barcode, MPN, GTIN, ISBN, UPC …"
+            "labelTooltipBarcode": "GTIN is a unique identifier used to identify products. it can be UPC or EAN or JAN or ISBN. If you don't have a GTIN for your product, in this case add a Brand (of the product or your company) AND a MPN (Manufacturer Part Number) which is a unique identifier different from the GTIN, assigned by a manufacturer to identify a specific product or part"
         },
         "approvalTable": {
             "description": "Der folgende Status Ihrer Produkte wurde ans Google Merchant Center gesendet. Einige Produkte werden aufgrund ihrer Sprachvariation möglicherweise öfter angezeigt als andere.",
@@ -887,7 +887,6 @@
         "activateModule": "Module aktivieren",
         "enabled": "Aktiviert",
         "agree": "Ich stimme zu",
-        "enableFreeListing": "Kostenlose Inserate aktivieren",
         "connectAccount": "Ihr Konto verbinden",
         "connectingAccount": "Konto wird verbunden …",
         "chooseExistingAccount": "Vorhandenes Konto auswählen",
@@ -922,7 +921,6 @@
         "no": "Nein",
         "disable": "Deaktivieren Sie",
         "disableProductFeed": "Produktzufuhr deaktivieren",
-        "enableFreeListingAndProductFeed": "Kostenlose Inserate und Produkt-Feed aktivieren",
         "checkRequirements": "Anforderungen der Filiale anzeigen",
         "storeMeetsRequirements": "Mein Geschäft erfüllt alle Anforderungen",
         "createAccount": "Konto erstellen",
@@ -1020,10 +1018,6 @@
         "textDisconnectGoogleAccount": "Sie sind dabei, die Verbindung zu Ihrem Google-Konto zu trennen. Dadurch wird der Zugriff auf Google, Google-Merchant-Center- und Google-Ads-Konten entfernt.",
         "textDisconnectMCA": "Wenn Sie die Verbindung zu Ihrem Merchant Center unterbrechen, wird der Zugriff auf Ihre Google-Anzeigen in diesem Modul entfernt und alle laufenden Kampagnen werden angehalten. ",
         "textoverwrite": "Durch das Überschreiben eines bestehenden Anspruchs wird Ihr vorheriges Konto deaktiviert und bestehende Kampagnen, die mit diesem Konto verknüpft sind - kostenlose Inserate und Shopping-Kampagnen - werden pausiert.  \nWenn Sie eine andere Shopping-Kampagne durchführen, empfehlen wir, diese zu pausieren.",
-        "titleDisableFreeListing": "Kostenlose Inserate deaktivieren?",
-        "textDisableFreeListing": "Durch die Deaktivierung kostenloser Angebote werden Ihre Produkte nicht mehr für organische Angebote auf der Registerkarte \"Einkaufen\" verfügbar sein.  \n Ihr Produkt-Feed bleibt jedoch verfügbar.",
-        "titleEnableFreeListing": "Kostenlose Inserate aktivieren?",
-        "textEnableFreeListing": "Dies führt auch zur Reaktivierung der Produktzufuhr.",
         "titleCancelWithoutSaving": "Abbrechen ohne zu speichern?",
         "textCancelProductFeed": "Wenn Sie fortfahren, gehen alle nicht gespeicherten Änderungen verloren. Damit Sie Ihre Produktdaten erfolgreich an Google übermitteln können, müssen Sie alle Schritte ausführen.",
         "titleQuitWithoutSaving": "Beenden ohne zu speichern?",

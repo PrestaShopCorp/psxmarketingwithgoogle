@@ -694,13 +694,13 @@
                 "language": "Taal",
                 "image": "Afbeelding",
                 "description": "Beschrijving",
-                "price": "Prijs",
-                "barcode": "GTIN/Brand"
+                "barcode": "GTIN/Brand",
+                "price": "Prijs"
             },
             "xHasFailedPreValidation": "‘{0}’: heeft de pre-validatie niet doorstaan.",
             "xHasPassedPreValidation": "‘{0}’: heeft de pre-validatie doorstaan.",
             "labelTooltipDescription": "Dit kenmerk komt overeen met wat je hebt geconfigureerd in je productattribuuttoewijzing: korte beschrijving, beschrijving...",
-            "labelTooltipBarcode": "Dit kenmerk komt overeen met wat je hebt geconfigureerd in je productattribuuttoewijzing: streepjescode, MPN, GTIN, ISBN, UPC..."
+            "labelTooltipBarcode": "GTIN is a unique identifier used to identify products. it can be UPC or EAN or JAN or ISBN. If you don't have a GTIN for your product, in this case add a Brand (of the product or your company) AND a MPN (Manufacturer Part Number) which is a unique identifier different from the GTIN, assigned by a manufacturer to identify a specific product or part"
         },
         "approvalTable": {
             "description": "Dit is de status van je producten die naar Google Merchant Center worden verzonden. Sommige producten kunnen meer dan één keer verschijnen vanwege hun taalvariatie.",
@@ -887,7 +887,6 @@
         "activateModule": "Module inschakelen",
         "enabled": "Ingeschakeld",
         "agree": "Mee eens.",
-        "enableFreeListing": "Schakel gratis vermeldingen in",
         "connectAccount": "Je account koppelen",
         "connectingAccount": "Verbindende rekening...",
         "chooseExistingAccount": "Kies een bestaand account",
@@ -922,7 +921,6 @@
         "no": "Geen",
         "disable": "Uitschakelen",
         "disableProductFeed": "Producttoevoer uitschakelen",
-        "enableFreeListingAndProductFeed": "Gratis vermeldingen en productfeeds mogelijk maken",
         "checkRequirements": "Winkelvereisten bekijken",
         "storeMeetsRequirements": "Mijn winkel voldoet aan alle eisen",
         "createAccount": "Account aanmaken",
@@ -1020,10 +1018,6 @@
         "textDisconnectGoogleAccount": "U staat op het punt uw Google-account af te sluiten. Dit zal de toegang tot Google, Google Merchant Center en Google Ads accounts verwijderen.",
         "textDisconnectMCA": "Als u uw Merchant Center loskoppelt, hebt u geen toegang meer tot uw Google-advertenties in deze module en wordt een lopende campagne onderbroken.",
         "textoverwrite": "Het overschrijven van bestaande claim zal uw vorige account deactiveren en bestaande campagnes pauzeren die aan die account gekoppeld zijn- gratis listings en Shopping campagnes.  \nAls u een andere Shopping-campagne voert, raden wij u aan deze te pauzeren.",
-        "titleDisableFreeListing": "Gratis vermeldingen uitschakelen?",
-        "textDisableFreeListing": "Door het uitschakelen van gratis vermeldingen zullen uw producten niet langer beschikbaar zijn voor organische vermelding op het tabblad Shopping.  \n Uw productfeed blijft echter wel beschikbaar.",
-        "titleEnableFreeListing": "Gratis vermeldingen inschakelen?",
-        "textEnableFreeListing": "Deze actie zal ook leiden tot de reactivering van de producttoevoer.",
         "titleCancelWithoutSaving": "Annuleren zonder op te slaan?",
         "textCancelProductFeed": "U verliest alle niet-opgeslagen wijzigingen als u Doorgaat. Om uw productgegevens succesvol bij Google in te dienen, dient u alle stappen te doorlopen.",
         "titleQuitWithoutSaving": "Gestopt zonder te sparen?",
