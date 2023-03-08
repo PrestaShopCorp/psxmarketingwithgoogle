@@ -744,12 +744,18 @@ export default defineComponent({
         this.campaignToEditFromList.productFilters = filtersForAPI;
       }
     },
-    async getDatasFiltersDimensions(search) {
+    getDatasFiltersDimensions(search) {
+      if (!this.productsHaveBeenApprovedByGoogle) {
+        return;
+      }
       this.searchLoader = true;
-      await this.$store
+      this.$store
         .dispatch('campaigns/GET_DIMENSIONS_FILTERS', search).finally(() => {
           this.searchLoader = false;
         });
+    },
+    getValidationSummary() {
+      return this.$store.dispatch('productFeed/GET_PREVALIDATION_SUMMARY');
     },
     setInterfaceForCreation() {
       this.$store.commit('campaigns/SET_DIMENSION_CHOSEN', {});
@@ -837,9 +843,7 @@ export default defineComponent({
   },
   async mounted() {
     window.scrollTo(0, 0);
-    if (this.productsHaveBeenApprovedByGoogle) {
-      await this.getDatasFiltersDimensions();
-    }
+
     if (this.editMode === true) {
       if (!this.campaignsList.length) {
         await this.$store.dispatch('campaigns/GET_CAMPAIGNS_LIST',
@@ -858,6 +862,10 @@ export default defineComponent({
     if (!this.currency) {
       await this.$store.dispatch('googleAds/WARMUP_STORE');
     }
+    this.getValidationSummary().finally(() => {
+      this.getDatasFiltersDimensions();
+    });
+
     this.getRecommendedBudget(this.targetCountry || this.defaultCountry);
   },
   created() {
