@@ -694,13 +694,13 @@
                 "language": "Idioma",
                 "image": "Imagen",
                 "description": "Descripción",
-                "price": "Precio",
-                "barcode": "GTIN/Marca"
+                "barcode": "GTIN/Marca",
+                "price": "Precio"
             },
             "xHasFailedPreValidation": "\"{0}\": ha fallado la prevalidación.",
             "xHasPassedPreValidation": "\"{0}\": ha pasado la prevalidación.",
             "labelTooltipDescription": "Este atributo coincide con lo que has configurado en el mapeo de atributos de tu producto: descripción corta, descripción...",
-            "labelTooltipBarcode": "Este atributo coincide con lo que has configurado en el mapeo de atributos de tu producto: código de barras, MPN, GTIN, ISBN, UPC..."
+            "labelTooltipBarcode": "GTIN is a unique identifier used to identify products. it can be UPC or EAN or JAN or ISBN. If you don't have a GTIN for your product, in this case add a Brand (of the product or your company) AND a MPN (Manufacturer Part Number) which is a unique identifier different from the GTIN, assigned by a manufacturer to identify a specific product or part"
         },
         "approvalTable": {
             "description": "Este es el estado de tus productos que se envían a Google Merchant Center. Algunos productos pueden aparecer más de una vez debido a su variación idiomática.",
@@ -887,7 +887,6 @@
         "activateModule": "Activar módulo",
         "enabled": "Activado",
         "agree": "Estoy de acuerdo",
-        "enableFreeListing": "Activar las fichas de producto gratuitas",
         "connectAccount": "Conecta tu cuenta",
         "connectingAccount": "Conectando la cuenta...",
         "chooseExistingAccount": "Elige una cuenta existente",
@@ -922,7 +921,6 @@
         "no": "No",
         "disable": "Desactivar",
         "disableProductFeed": "Desactivar el feed de productos",
-        "enableFreeListingAndProductFeed": "Habilitar las fichas de producto gratuitas y el feed de productos",
         "checkRequirements": "Comprobar los requisitos",
         "storeMeetsRequirements": "Mi tienda cumple con todos los requisitos",
         "createAccount": "Crear una cuenta",
@@ -1020,10 +1018,6 @@
         "textDisconnectGoogleAccount": "Estás a punto de desconectar la cuenta de Google. Se eliminará el acceso a las cuentas de Google, Google Merchant Center y Google Ads.",
         "textDisconnectMCA": "Al desconectarte de tu Merchant Center, se eliminará el acceso a tus anuncios de Google en este módulo y pondrá en pausa cualquier campaña en curso. ",
         "textoverwrite": "Sobreescribir la reclamación existente desactivará tu cuenta anterior y pondrá en pausa las campañas existentes vinculadas a esa cuenta: fichas de producto gratuitas y campañas de Shopping.  \nSi estás ejecutando una campaña de Shopping diferente, te recomendamos que la interrumpas.",
-        "titleDisableFreeListing": "¿Desactivar las fichas de producto gratuitas?",
-        "textDisableFreeListing": "Al desactivar las fichas de producto gratuitas, tus productos ya no estarán disponibles para el listado orgánico en la pestaña Shopping.  \n Sin embargo, tu feed de productos seguirá estando disponible.",
-        "titleEnableFreeListing": "¿Activar las fichas de producto gratuitas?",
-        "textEnableFreeListing": "Esta acción también provocará la reactivación del feed de productos.",
         "titleCancelWithoutSaving": "¿Cancelar sin guardar?",
         "textCancelProductFeed": "Si continúas, perderás todos los cambios no guardados. Para enviar bien los datos de tus productos a Google, debes completar todos los pasos.",
         "titleQuitWithoutSaving": "¿Salir sin guardar?",
