@@ -209,16 +209,19 @@ class PsxMarketingWithGoogle extends Module
                 $tokenPsAccounts = null;
                 $shopIdPsAccounts = null;
             }
-            Media::addJsDef([
-                'psxMktgWithGoogleApiUrl' => $env->get('PSX_MKTG_WITH_GOOGLE_API_URL'),
-                'psxMktgWithGoogleControllerLink' => $this->context->link->getAdminLink('AdminAjaxPsxMktgWithGoogle'),
-                'psxMktgWithGoogleTokenPsAccounts' => $tokenPsAccounts,
-                'psxMktgWithGoogleShopIdPsAccounts' => $shopIdPsAccounts,
-                'psxMktgWithGoogleDsnSentry' => $env->get('PSX_MKTG_WITH_GOOGLE_SENTRY_CREDENTIALS_VUE'),
-                'psxMktgWithGoogleOnProductionEnvironment' => $env->get('PSX_MKTG_WITH_GOOGLE_API_URL') === Config::PSX_MKTG_WITH_GOOGLE_API_URL,
-            ]);
-            $jsPath = (bool) $env->get('USE_LOCAL_VUE_APP') ? $this->getPathUri() . 'views/js/fetchVerificationTag.js' : $env->get('PSX_MKTG_WITH_GOOGLE_CDN_URL') . 'fetchVerificationTag.js';
-            $this->context->controller->addJs($jsPath);
+
+            if (!empty($tokenPsAccounts) && !empty($shopIdPsAccounts)) {
+                Media::addJsDef([
+                    'psxMktgWithGoogleApiUrl' => $env->get('PSX_MKTG_WITH_GOOGLE_API_URL'),
+                    'psxMktgWithGoogleControllerLink' => $this->context->link->getAdminLink('AdminAjaxPsxMktgWithGoogle'),
+                    'psxMktgWithGoogleTokenPsAccounts' => $tokenPsAccounts,
+                    'psxMktgWithGoogleShopIdPsAccounts' => $shopIdPsAccounts,
+                    'psxMktgWithGoogleDsnSentry' => $env->get('PSX_MKTG_WITH_GOOGLE_SENTRY_CREDENTIALS_VUE'),
+                    'psxMktgWithGoogleOnProductionEnvironment' => $env->get('PSX_MKTG_WITH_GOOGLE_API_URL') === Config::PSX_MKTG_WITH_GOOGLE_API_URL,
+                ]);
+                $jsPath = (bool) $env->get('USE_LOCAL_VUE_APP') ? $this->getPathUri() . 'views/js/fetchVerificationTag.js' : $env->get('PSX_MKTG_WITH_GOOGLE_CDN_URL') . 'fetchVerificationTag.js';
+                $this->context->controller->addJs($jsPath);
+            }
         }
 
         $this->context->controller->addCSS($this->getPathUri() . 'views/css/admin/menu.css');

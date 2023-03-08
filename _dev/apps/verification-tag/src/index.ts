@@ -34,7 +34,8 @@ const init = (): void => {
       allowUrls: [
         'https://storage.googleapis.com/psxmarketing-cdn/',
       ],
-      tracesSampleRate: 1.0,
+      sampleRate: 0.5,
+      tracesSampleRate: 1,
       initialScope: {
         user: {
           id: window.psxMktgWithGoogleShopIdPsAccounts ? window.psxMktgWithGoogleShopIdPsAccounts.toString() : 'unknown',
