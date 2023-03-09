@@ -21,6 +21,8 @@ import { addDecorator } from '@storybook/vue';
 import { select } from '@storybook/addon-knobs';
 import Vue from 'vue';
 import Vuex from 'vuex';
+import {initShopClient} from "mktg-with-google-common/api/shopClient";
+import {initOnboardingClient} from "mktg-with-google-common/api/onboardingClient";
 
 // import vue plugins
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
@@ -34,7 +36,6 @@ import { withTests } from '@storybook/addon-jest';
 // Test utils
 import {cloneStore} from '@/../tests/store';
 import {initialStateApp} from "../.storybook/mock/state-app";
-import {initShopClient} from "mktg-with-google-common/api/shopClient";
 
 import { initialize, mswDecorator } from 'msw-storybook-addon';
 // Initialize MSW
@@ -144,6 +145,7 @@ import '../src/utils/Filters';
 
      this.$store.state.app = Object.assign({}, initialStateApp);
      initShopClient({shopUrl: '/'});
+     initOnboardingClient({token: 'token', apiUrl: `${window.location.protocol}//${window.location.host}`});
    },
    store: new Vuex.Store(cloneStore()),
    router: new VueRouter(),
