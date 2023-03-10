@@ -23,10 +23,10 @@ import ActionsTypes from './actions-types';
 export default {
   async [ActionsTypes.GET_FREE_LISTING_STATUS]({commit}) {
     try {
-      const json = await fetchOnboarding(
+      const json = await (await fetchOnboarding(
         'GET',
         'free-listings/settings',
-      );
+      )).json();
       commit(MutationsTypes.SET_FREE_LISTING_STATUS, json.enabled);
     } catch (error) {
       console.error(error);

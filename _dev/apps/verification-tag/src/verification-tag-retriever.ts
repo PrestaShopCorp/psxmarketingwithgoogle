@@ -13,9 +13,10 @@ export const runRetrievalOfVerificationTag = async (
     const {token} = await fetchOnboarding(
       "GET",
       "shopping-websites/site-verification/token",
-      correlationId,
-      undefined,
-      responseHandler,
+      {
+        correlationId,
+        onResponse: responseHandler,
+      },
     );
       
     // 2- Store token in shop
@@ -27,9 +28,10 @@ export const runRetrievalOfVerificationTag = async (
     await fetchOnboarding(
       "POST",
       "shopping-websites/site-verification/verify",
-      correlationId,
-      undefined,
-      responseHandler,
+      {
+        correlationId,
+        onResponse: responseHandler,
+      },
     );
 
     // 4- Claim website without overwrite
@@ -37,9 +39,10 @@ export const runRetrievalOfVerificationTag = async (
     await fetchOnboarding(
       'POST',
       `shopping-websites/site-verification/claim${overwriteParam}`,
-      correlationId,
-      undefined,
-      responseHandler,
+      {
+        correlationId,
+        onResponse: responseHandler,
+      },
     );
   
     console.info('Marketing with Google - Google Verification tag has been refreshed.');
@@ -64,6 +67,5 @@ const responseHandler = async (response: Response) => {
     scope.setTransactionName(response.url);
     throw error;
   }
-  return response.json();
 };
 

@@ -8,6 +8,12 @@ type Options = {
 // eslint-disable-next-line no-unused-vars
 type ResponseHandler = (response: Response) => Promise<any>;
 
+type QueryParams = {
+  correlationId?: string,
+  body?: { [key: string]: unknown},
+  onResponse?: ResponseHandler,
+}
+
 // Allowed methods with the API
 export type HttpMethod = 'GET'|'POST'|'DELETE';
 export const noCorrelationIdValue: string = 'no-correlation-id-provided';
@@ -25,16 +31,13 @@ const onResponseDefault: ResponseHandler = async (response) => {
   if (!response.ok) {
     throw new HttpClientError(response.statusText, response.status);
   }
-
-  return response.json();
+  return response;
 };
 
 export const fetchOnboarding = async (
   method: HttpMethod,
   path: string,
-  correlationId?: string,
-  params?: { [key: string]: unknown},
-  onResponse?: ResponseHandler,
+  queryParams?: QueryParams,
 ) => {
   if (!options.apiUrl.length) {
     throw new Error('Cannot call onboarding API, client is not initialized (missing URL)');
@@ -49,12 +52,12 @@ export const fetchOnboarding = async (
       'Content-Type': 'application/json',
       Accept: 'application/json',
       Authorization: `Bearer ${options.token}`,
-      'x-correlation-id': correlationId || noCorrelationIdValue,
+      'x-correlation-id': queryParams?.correlationId || noCorrelationIdValue,
     },
-    body: params && JSON.stringify(params),
+    body: queryParams?.body && JSON.stringify(queryParams?.body),
   });
 
-  return onResponse ? onResponse(response) : onResponseDefault(response);
+  return queryParams?.onResponse ? queryParams?.onResponse(response) : onResponseDefault(response);
 };
 
 export default {

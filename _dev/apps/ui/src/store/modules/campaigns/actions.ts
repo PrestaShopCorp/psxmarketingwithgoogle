@@ -68,12 +68,11 @@ export default {
   },
   async [ActionsTypes.SAVE_NEW_CAMPAIGN]({commit}, payload: CampaignObject) {
     try {
-      const json = await fetchOnboarding(
+      const json = await (await fetchOnboarding(
         'POST',
         'shopping-campaigns/create',
-        undefined,
-        payload,
-      );
+        {body: payload},
+      )).json();
       commit(MutationsTypes.SAVE_NEW_CAMPAIGN, payload);
       return {
         error: false,
@@ -93,10 +92,10 @@ export default {
     try {
       commit(MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS, false);
       const campaignFinalName = btoa(payload.name);
-      const json = await fetchOnboarding(
+      const json = await (await fetchOnboarding(
         'GET',
         `shopping-campaigns?campaign_name=${campaignFinalName}`,
-      );
+      )).json();
 
       if (json && json.campaignName && payload.id !== json.id) {
         commit(MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS, true);
@@ -153,10 +152,10 @@ export default {
     {dispatch, rootState},
   ) {
     try {
-      const json = await fetchOnboarding(
+      const json = await (await fetchOnboarding(
         'POST',
         'conversion-actions',
-      );
+      )).json();
       dispatch(ActionsTypes.SAVE_REMARKETING_CONVERSION_ACTION_ON_SHOP, json);
     } catch (error) {
       // commit(...);
@@ -231,14 +230,14 @@ export default {
     const result = await fetchOnboarding(
       'GET',
       `ads-reporting/kpis?${query}`,
-      undefined,
-      undefined,
-      (response) => {
-        if (!response.ok) {
-          commit(MutationsTypes.SET_REPORTING_KPIS_ERROR, true);
-          throw new HttpClientError(response.statusText, response.status);
-        }
-        return response.json();
+      {
+        onResponse: async (response) => {
+          if (!response.ok) {
+            commit(MutationsTypes.SET_REPORTING_KPIS_ERROR, true);
+            throw new HttpClientError(response.statusText, response.status);
+          }
+          return response.json();
+        },
       },
     );
 
@@ -256,14 +255,14 @@ export default {
     const result = await fetchOnboarding(
       'GET',
       `ads-reporting/daily-results?${query}`,
-      undefined,
-      undefined,
-      (response) => {
-        if (!response.ok) {
-          commit(MutationsTypes.SET_REPORTING_KPIS_ERROR, true);
-          throw new HttpClientError(response.statusText, response.status);
-        }
-        return response.json();
+      {
+        onResponse: async (response) => {
+          if (!response.ok) {
+            commit(MutationsTypes.SET_REPORTING_KPIS_ERROR, true);
+            throw new HttpClientError(response.statusText, response.status);
+          }
+          return response.json();
+        },
       },
     );
 
@@ -290,14 +289,14 @@ export default {
     const result = await fetchOnboarding(
       'GET',
       `ads-reporting/campaigns-performances?${query}`,
-      undefined,
-      undefined,
-      (response) => {
-        if (!response.ok) {
-          commit(MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_SECTION_ERROR, true);
-          throw new HttpClientError(response.statusText, response.status);
-        }
-        return response.json();
+      {
+        onResponse: async (response) => {
+          if (!response.ok) {
+            commit(MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_SECTION_ERROR, true);
+            throw new HttpClientError(response.statusText, response.status);
+          }
+          return response.json();
+        },
       },
     );
     commit(MutationsTypes.RESET_REPORTING_CAMPAIGNS_PERFORMANCES);
@@ -329,14 +328,14 @@ export default {
     const result = await fetchOnboarding(
       'GET',
       `ads-reporting/products-performances?${query}`,
-      undefined,
-      undefined,
-      (response) => {
-        if (!response.ok) {
-          commit(MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES_SECTION_ERROR, true);
-          throw new HttpClientError(response.statusText, response.status);
-        }
-        return response.json();
+      {
+        onResponse: async (response) => {
+          if (!response.ok) {
+            commit(MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES_SECTION_ERROR, true);
+            throw new HttpClientError(response.statusText, response.status);
+          }
+          return response.json();
+        },
       },
     );
 
@@ -359,14 +358,14 @@ export default {
     const result = await fetchOnboarding(
       'GET',
       `ads-reporting/products-partitions-performances?${query}`,
-      undefined,
-      undefined,
-      (response) => {
-        if (!response.ok) {
-          commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES_SECTION_ERROR, true);
-          throw new HttpClientError(response.statusText, response.status);
-        }
-        return response.json();
+      {
+        onResponse: async (response) => {
+          if (!response.ok) {
+            commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES_SECTION_ERROR, true);
+            throw new HttpClientError(response.statusText, response.status);
+          }
+          return response.json();
+        },
       },
     );
 
@@ -396,10 +395,10 @@ export default {
       query.append('nextPageToken', nextPageToken);
     }
     try {
-      const json = await fetchOnboarding(
+      const json = await (await fetchOnboarding(
         'GET',
         `shopping-campaigns/list?${query}&type=${typeChosen}`,
-      );
+      )).json();
 
       if (isNewRequest) {
         commit(MutationsTypes.RESET_CAMPAIGNS_LIST, typeChosen);
@@ -417,22 +416,22 @@ export default {
     }
   },
   async [ActionsTypes.CHANGE_STATUS_OF_SSC]({commit}, payload: CampaignStatusPayload) {
-    const json = await fetchOnboarding(
+    const json = await (await fetchOnboarding(
       'POST',
       `shopping-campaigns/${payload.id}/status`,
-      undefined,
-      {status: payload.status},
-    );
+      {
+        body: {status: payload.status},
+      },
+    )).json();
     commit(MutationsTypes.UPDATE_CAMPAIGN_STATUS, payload);
     return json;
   },
   async [ActionsTypes.UPDATE_CAMPAIGN]({commit, rootState}, payload: CampaignObject) {
-    const json = await fetchOnboarding(
+    const json = await (await fetchOnboarding(
       'POST',
       `shopping-campaigns/${payload.id}`,
-      undefined,
-      payload,
-    );
+      {body: payload},
+    )).json();
     commit(MutationsTypes.UPDATE_CAMPAIGN, payload);
     return json;
   },
@@ -451,22 +450,22 @@ export default {
       query.append('search_query', search);
     }
 
-    const json = await fetchOnboarding(
+    const json = await (await fetchOnboarding(
       'GET',
       `shopping-campaigns/dimensions/filters?${query}`,
-      undefined,
-      undefined,
-      async (reponse) => {
-        if (reponse.status > 299) {
-          commit(MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS, {list: [], error: true});
-          return {};
-        }
-        if (!reponse.ok) {
-          throw new HttpClientError(reponse.statusText, reponse.status);
-        }
-        return reponse.json();
+      {
+        onResponse: async (reponse) => {
+          if (reponse.status > 299) {
+            commit(MutationsTypes.SET_SSC_DIMENSIONS_AND_FILTERS, {list: [], error: true});
+            return {};
+          }
+          if (!reponse.ok) {
+            throw new HttpClientError(reponse.statusText, reponse.status);
+          }
+          return reponse.json();
+        },
       },
-    );
+    )).json();
 
     if (!search) {
       // Basic mutation storing all possible dimensions and filters
@@ -491,10 +490,10 @@ export default {
       country_code: targetCountry,
       currency_code: rootState.googleAds.accountChosen.currencyCode,
     });
-    const json: RecommendedBudgetResponse = await fetchOnboarding(
+    const json: RecommendedBudgetResponse = await (await fetchOnboarding(
       'GET',
       `shopping-campaigns/recommended-budget?${query}`,
-    );
+    )).json();
 
     return json.budget;
   },
