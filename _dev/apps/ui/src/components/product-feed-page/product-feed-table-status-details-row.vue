@@ -1,11 +1,11 @@
 <template>
-  <b-tr v-if="getIssues(status.destination).length">
+  <b-tr>
     <b-td
       class="align-top"
       :rowspan="product.statuses.length"
       v-if="!indexStatus"
     >
-      {{ product.id }}{{ product.attribute > 0 ? '&#8209;' + product.attribute : '' }}
+      {{ product.id }}{{ +product.attribute > 0 ? '&#8209;' + product.attribute : '' }}
     </b-td>
     <b-td
       class="align-top b-table-sticky-column"
@@ -14,8 +14,8 @@
     >
       <a
         class="external_link-no_icon"
-        :href="!isNaN(product.id)
-          ? getProductBaseUrl.replace('/1?', `/${product.id}?`) : null"
+        :href="!isNaN(+product.id)
+          ? getProductBaseUrl.replace('/1?', `/${product.id}?`) : undefined"
         target="_blank"
         :title="$t('productFeedPage.approvalTable.editX', [product.name])"
       >
@@ -41,6 +41,8 @@
     </b-td>
     <b-td
       class="align-top"
+      :rowspan="countriesAndStatusAreTheSame ? product.statuses.length : 0"
+      v-if="!indexStatus || !countriesAndStatusAreTheSame"
     >
       <span>
         <b-badge
@@ -71,7 +73,7 @@
     >
       <ul
         class="pl-0 mb-0 ml-3"
-        v-if="status.status === ProductStatues.Disapproved"
+        v-if="getIssues(status.destination).length"
       >
         <li
           v-for="(issue, indexIssues) in getIssues(status.destination)"
@@ -87,33 +89,45 @@
           </a>
         </li>
       </ul>
+      <VueShowdown
+        v-else
+        tag="span"
+        class="mb-0"
+        :markdown="
+          $t(
+            'productFeedPage.approvalTable.noReasonFallback',
+            [merchantCenterWebsitePageUrl.accountIssues],
+          )
+        "
+        :extensions="['extended-link', 'no-p-tag']"
+      />
     </b-td>
     <b-td>
       {{ renameDestination(status.destination) }}
     </b-td>
   </b-tr>
-  <!-- Needed for the rowspan -->
-  <b-tr v-else />
 </template>
 
-<script>
-import {ProductStatues} from '../../store/modules/product-feed/state';
+<script lang="ts">
+import {defineComponent, PropType} from 'vue';
+import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
+import {ProductStatus, ProductInfos, ProductInfosStatus} from '@/store/modules/product-feed/state';
 
-export default {
+export default defineComponent({
   name: 'ProductFeedTableStatusDetailsRow',
   components: {},
   data() {
     return {
-      ProductStatues,
+      ProductStatus,
     };
   },
   props: {
     product: {
-      type: Object,
+      type: Object as PropType<ProductInfos>,
       required: true,
     },
     status: {
-      type: Object,
+      type: Object as PropType<ProductInfosStatus>,
       required: true,
     },
     indexStatus: {
@@ -122,39 +136,46 @@ export default {
     },
   },
   computed: {
-    getProductBaseUrl() {
+    getProductBaseUrl(): string {
       return this.$store.getters['app/GET_PRODUCT_DETAIL_BASE_URL'];
     },
-    getShoppingIssues() {
+    getShoppingIssues(): contentApi.Schema$ProductStatusItemLevelIssue[] {
       if (!this.product.issues) {
         return [];
       }
       return this.product.issues.filter((issue) => issue.resolution === 'merchant_action' && issue.destination === 'Shopping');
     },
-    getSurfacesAcrossGoogleIssues() {
+    getSurfacesAcrossGoogleIssues(): contentApi.Schema$ProductStatusItemLevelIssue[] {
       if (!this.product.issues) {
         return [];
       }
       return this.product.issues.filter((issue) => issue.resolution === 'merchant_action' && issue.destination === 'SurfacesAcrossGoogle');
     },
-    countriesAndStatusAreTheSame() {
+    countriesAndStatusAreTheSame(): boolean {
       return this.product.statuses
         .every((anotherStatus) => anotherStatus.status === this.status.status
           && JSON.stringify(anotherStatus.countries) === JSON.stringify(this.status.countries),
         );
     },
+    merchantCenterWebsitePageUrl() {
+      const {id} = this.$store.state.accounts.googleMerchantAccount;
+
+      return {
+        accountIssues: `hhttps://merchants.google.com/mc/products/diagnostics?a=${id}&tab=account_issues`,
+      };
+    },
   },
   methods: {
-    badgeColor(status) {
-      if (status === ProductStatues.Approved) {
+    badgeColor(status: ProductStatus): string {
+      if (status === ProductStatus.Approved) {
         return 'success';
       }
-      if (status === ProductStatues.Pending) {
+      if (status === ProductStatus.Pending) {
         return 'warning';
       }
       return 'danger';
     },
-    getIssues(destination) {
+    getIssues(destination: string): contentApi.Schema$ProductStatusItemLevelIssue[] {
       if (destination === 'Shopping') {
         return this.getShoppingIssues;
       }
@@ -163,7 +184,7 @@ export default {
       }
       return [];
     },
-    renameDestination(destination) {
+    renameDestination(destination: string): string {
       if (destination === 'Shopping') {
         return this.$t('productFeedPage.destinations.shoppingAds');
       }
@@ -173,5 +194,5 @@ export default {
       return destination;
     },
   },
-};
+});
 </script>

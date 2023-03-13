@@ -1,7 +1,6 @@
 import attributesToMap from "@/store/modules/product-feed/attributes-to-map.json";
-import { OfferType } from "@/enums/product-feed/offer";
 import { RateType } from "@/enums/product-feed/rate";
-import { State, AttributesTypes } from "@/store/modules/product-feed/state";
+import { State, AttributesTypes, ProductStatus } from "@/store/modules/product-feed/state";
 import DeliveryType from '@/enums/product-feed/delivery-type';
 import { shippingPhpExport } from "./shipping-settings";
 import Categories from "@/enums/product-feed/attribute-mapping-categories";
@@ -120,12 +119,12 @@ export const productFeed: State = {
         statuses: [
           {
             destination: "Shopping",
-            status: "disapproved",
+            status: ProductStatus.Disapproved,
             countries: ["FR", "IT", "BE"],
           },
           {
             destination: "SurfacesAcrossGoogle",
-            status: "disapproved",
+            status: ProductStatus.Disapproved,
             countries: ["FR", "IT", "BE"],
           },
         ],
@@ -164,12 +163,12 @@ export const productFeed: State = {
         statuses: [
           {
             destination: "Shopping",
-            status: "disapproved",
+            status: ProductStatus.Disapproved,
             countries: ["GB"],
           },
           {
             destination: "SurfacesAcrossGoogle",
-            status: "disapproved",
+            status: ProductStatus.Disapproved,
             countries: ["GB"],
           },
         ],
@@ -245,12 +244,12 @@ export const productFeed: State = {
         statuses: [
           {
             destination: "Shopping",
-            status: "approved",
+            status: ProductStatus.Approved,
             countries: ["FR"],
           },
           {
             destination: "SurfacesAcrossGoogle",
-            status: "approved",
+            status: ProductStatus.Approved,
             countries: ["FR"],
           },
         ],
@@ -289,12 +288,12 @@ export const productFeed: State = {
         statuses: [
           {
             destination: "Shopping",
-            status: "disapproved",
+            status: ProductStatus.Disapproved,
             countries: ["BE"],
           },
           {
             destination: "SurfacesAcrossGoogle",
-            status: "disapproved",
+            status: ProductStatus.Disapproved,
             countries: ["BE"],
           },
         ],
@@ -345,12 +344,12 @@ export const productFeed: State = {
         statuses: [
           {
             destination: "Shopping",
-            status: "disapproved",
+            status: ProductStatus.Disapproved,
             countries: ["BE"],
           },
           {
             destination: "SurfacesAcrossGoogle",
-            status: "disapproved",
+            status: ProductStatus.Disapproved,
             countries: ["BE"],
           },
         ],
@@ -670,7 +669,7 @@ export const productFeedWithDisapprovedProductsButNoIssues = {
         statuses: [
           {
             destination: "SurfacesAcrossGoogle",
-            status: "disapproved",
+            status: ProductStatus.Disapproved,
             countries: ["FR"],
           },
         ],

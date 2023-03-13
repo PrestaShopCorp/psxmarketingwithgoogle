@@ -60,9 +60,16 @@ export interface ProductInfos {
  name: string;
  attribute: string;
  language: string;
- issues? : contentApi.Schema$ProductStatusItemLevelIssue[];
- statuses? : Array<object>;
+ statuses: ProductInfosStatus[];
+ issues?: contentApi.Schema$ProductStatusItemLevelIssue[];
 }
+
+export type ProductInfosStatus = {
+  destination: string;
+  status: ProductStatus;
+  countries: string[];
+}
+
 export interface ProductsDatas {
   items: ProductInfos[];
 }
@@ -131,7 +138,7 @@ export interface State {
   attributeMapping: AttributeResponseFromAPI;
 }
 
-export enum ProductStatues {
+export enum ProductStatus {
   Disapproved = 'disapproved',
   Pending = 'pending',
   Approved = 'approved',

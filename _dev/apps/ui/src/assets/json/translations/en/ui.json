@@ -721,7 +721,8 @@
         "xResults": "{0} results",
         "perPageLabel": "Show:",
         "goToLabel": "Go to page:",
-        "editX": "Edit {0}"
+        "editX": "Edit {0}",
+        "noReasonFallback": "*Not provided, check [account errors on Merchant Center]({0})[:target=\"_blank\"].*"
       },
       "errorReason": {
         "fieldXMissing": "A required field is missing: {0}",
