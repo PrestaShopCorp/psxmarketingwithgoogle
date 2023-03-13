@@ -23,25 +23,28 @@ describe('runRetrievalOfVerificationTag', () => {
     expect(fetchOnboardingMock).toHaveBeenNthCalledWith(1,
       'GET',
       'shopping-websites/site-verification/token',
-      expect.any(String),
-      undefined,
-      expect.any(Function),
+      {
+        correlationId: expect.any(String),
+        onResponse: expect.any(Function),
+      },
     );
 
     expect(fetchOnboardingMock).toHaveBeenNthCalledWith(2,
       'POST',
       'shopping-websites/site-verification/verify',
-      expect.any(String),
-      undefined,
-      expect.any(Function),
+      {
+        correlationId: expect.any(String),
+        onResponse: expect.any(Function),
+      },
     );
 
     expect(fetchOnboardingMock).toHaveBeenNthCalledWith(3,
       'POST',
       'shopping-websites/site-verification/claim?overwrite=false',
-      expect.any(String),
-      undefined,
-      expect.any(Function),
+      {
+        correlationId: expect.any(String),
+        onResponse: expect.any(Function),
+      },
     );
 
     expect(fetchShopMock).toHaveBeenNthCalledWith(1,

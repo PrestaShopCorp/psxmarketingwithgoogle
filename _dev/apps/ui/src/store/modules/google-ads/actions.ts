@@ -40,17 +40,17 @@ export default {
   },
   async [ActionsTypes.GET_GOOGLE_ADS_LIST]({commit}) {
     try {
-      const json = fetchOnboarding(
+      const json = await fetchOnboarding(
         'GET',
         'ads-accounts/list',
-        undefined,
-        undefined,
-        (response) => {
-          if (!response.ok) {
-            commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
-            throw new HttpClientError(response.statusText, response.status);
-          }
-          return response.json();
+        {
+          onResponse: async (response) => {
+            if (!response.ok) {
+              commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
+              throw new HttpClientError(response.statusText, response.status);
+            }
+            return response.json();
+          },
         },
       );
       commit(MutationsTypes.SET_GOOGLE_ADS_LIST, json);
@@ -63,10 +63,10 @@ export default {
   }) {
     try {
       commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, '');
-      const json = await fetchOnboarding(
+      const json = await (await fetchOnboarding(
         'GET',
         'ads-accounts/status',
-      );
+      )).json();
       const customer = {
         ...json.customer,
         invitationLink: json.customer.invitationLink,
@@ -107,14 +107,15 @@ export default {
       const json = await fetchOnboarding(
         'POST',
         'ads-accounts/create',
-        undefined,
-        newUser,
-        (response) => {
-          if (!response.ok) {
-            commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
-            throw new HttpClientError(response.statusText, response.status);
-          }
-          return response.json();
+        {
+          body: newUser,
+          onResponse: async (response) => {
+            if (!response.ok) {
+              commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
+              throw new HttpClientError(response.statusText, response.status);
+            }
+            return response.json();
+          },
         },
       );
       const newUserBis = {
@@ -141,7 +142,9 @@ export default {
     await fetchOnboarding(
       'DELETE',
       'ads-accounts',
-      correlationId || `${rootState.accounts.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`,
+      {
+        correlationId: correlationId || `${rootState.accounts.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`,
+      },
     ).finally(() => {
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, null);
     });
@@ -155,14 +158,13 @@ export default {
       await fetchOnboarding(
         'POST',
         `ads-accounts/${payload.id}/link`,
-        undefined,
-        undefined,
-        (response) => {
-          if (!response.ok) {
-            commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
-            throw new HttpClientError(response.statusText, response.status);
-          }
-          return response.json();
+        {
+          onResponse: async (response) => {
+            if (!response.ok) {
+              commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, 'CantConnect');
+              throw new HttpClientError(response.statusText, response.status);
+            }
+          },
         },
       );
     } catch (error) {

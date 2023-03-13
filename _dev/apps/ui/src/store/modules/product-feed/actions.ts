@@ -91,7 +91,9 @@ export default {
       timezone: encodeURI(Intl.DateTimeFormat().resolvedOptions().timeZone),
     };
     try {
-      const json = await fetchOnboarding('GET', `incremental-sync/status/?lang=${params.lang}&timezone=${params.timezone}`);
+      const json = await (
+        await fetchOnboarding('GET', `incremental-sync/status/?lang=${params.lang}&timezone=${params.timezone}`)
+      ).json();
       commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'jobEndedAt', data: json.jobEndedAt});
       commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'lastUpdatedAt', data: json.lastUpdatedAt});
       commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'nextJobAt', data: json.nextJobAt});
@@ -110,7 +112,7 @@ export default {
       timezone: encodeURI(Intl.DateTimeFormat().resolvedOptions().timeZone),
     };
     try {
-      const json = await fetchOnboarding('GET', `incremental-sync/settings/?lang=${params.lang}&timezone=${params.timezone}`);
+      const json = await (await fetchOnboarding('GET', `incremental-sync/settings/?lang=${params.lang}&timezone=${params.timezone}`)).json();
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'autoImportShippingSettings', data: json.autoImportShippingSettings,
       });
@@ -209,8 +211,7 @@ export default {
       await fetchOnboarding(
         'POST',
         'incremental-sync/settings',
-        undefined,
-        newSettings,
+        {body: newSettings},
       );
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
       commit(MutationsTypes.SAVE_CONFIGURATION_CONNECTED_ONCE, true);
@@ -312,10 +313,10 @@ export default {
   async [ActionsTypes.GET_PRODUCT_FEED_SYNC_SUMMARY]({commit}) {
     commit(MutationsTypes.SET_SYNC_SUMMARY_LOADING, true);
     try {
-      const result = await fetchOnboarding(
+      const result = await (await fetchOnboarding(
         'GET',
         'product-feeds/validation/summary',
-      );
+      )).json();
       commit(MutationsTypes.SET_VALIDATION_SUMMARY, result);
     } catch (error) {
       console.error(error);
@@ -331,10 +332,10 @@ export default {
   },
   async [ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES]({rootState, commit}, nextPage) {
     const nextToken = nextPage ? `?next_token=${nextPage}` : '';
-    const result = await fetchOnboarding(
+    const result = await (await fetchOnboarding(
       'GET',
       `product-feeds/validation/list${nextToken}`,
-    );
+    )).json();
     commit(MutationsTypes.SAVE_ALL_PRODUCTS, result.results);
     return result;
   },
@@ -370,10 +371,10 @@ export default {
   },
   async [ActionsTypes.REQUEST_ATTRIBUTE_MAPPING]({rootState, commit}) {
     try {
-      const json = await fetchOnboarding(
+      const json = await (await fetchOnboarding(
         'GET',
         'product-feeds/attributes',
-      );
+      )).json();
       commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, json);
     } catch (error) {
       console.log(error);
@@ -388,10 +389,10 @@ export default {
     if (lang) {
       query += `&lang=${lang.toLowerCase()}`;
     }
-    const json = await fetchOnboarding(
+    const json = await (await fetchOnboarding(
       'GET',
       `product-feeds/prevalidation-scan/errors${query}`,
-    );
+    )).json();
 
     commit(MutationsTypes.SET_PRESCAN_TOTAL_PRODUCT, json.totalErrors);
     commit(MutationsTypes.SET_PRESCAN_PRODUCTS, json.errors);
@@ -400,10 +401,10 @@ export default {
   },
 
   async [ActionsTypes.GET_PREVALIDATION_SUMMARY]({rootState, commit}) {
-    const json = await fetchOnboarding(
+    const json = await (await fetchOnboarding(
       'GET',
       'product-feeds/prevalidation-scan/summary',
-    );
+    )).json();
     commit(MutationsTypes.SET_PREVALIDATION_SUMMARY, json);
   },
 
@@ -411,8 +412,7 @@ export default {
     await fetchOnboarding(
       'POST',
       'debug/migration',
-      undefined,
-      flags,
+      {body: flags},
     );
   },
 };

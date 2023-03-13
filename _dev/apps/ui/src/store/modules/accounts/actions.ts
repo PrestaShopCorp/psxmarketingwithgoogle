@@ -52,17 +52,17 @@ export default {
     await fetchOnboarding(
       'POST',
       route,
-      correlationId,
-      undefined,
-      async (response) => {
-        if (!response.ok) {
-          commit(
-            MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
-            WebsiteClaimErrorReason.LinkingFailed,
-          );
-          throw new HttpClientError(response.statusText, response.status);
-        }
-        return response.json();
+      {
+        correlationId,
+        onResponse: async (response) => {
+          if (!response.ok) {
+            commit(
+              MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+              WebsiteClaimErrorReason.LinkingFailed,
+            );
+            throw new HttpClientError(response.statusText, response.status);
+          }
+        },
       },
     );
 
@@ -147,10 +147,10 @@ export default {
       shopUrl: rootState.app.psxMktgWithGoogleShopUrl,
     }));
     try {
-      const json = await fetchOnboarding(
+      const json = await (await fetchOnboarding(
         'GET',
         `oauth/authorized-url?state=${urlState}`,
-      );
+      )).json();
 
       commit(MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL, json.authorizedUrl);
     } catch (error) {
@@ -163,7 +163,7 @@ export default {
     commit, dispatch,
   }) {
     try {
-      const json = await fetchOnboarding('GET', 'oauth');
+      const json = await (await fetchOnboarding('GET', 'oauth')).json();
 
       commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, json);
       commit(MutationsTypes.SET_GOOGLE_ACCOUNT, json);
@@ -196,10 +196,10 @@ export default {
     commit, state, dispatch,
   }) {
     try {
-      const json = await fetchOnboarding(
+      const json = await (await fetchOnboarding(
         'GET',
         'merchant-accounts',
-      );
+      )).json();
       commit(MutationsTypes.SAVE_GMC_LIST, json);
 
       // Now we have the GMC merchant's list, if he already linked one, then must fill it now
@@ -225,7 +225,7 @@ export default {
     commit, rootState, state, dispatch,
   }) {
     const correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
-    await fetchOnboarding('DELETE', 'oauth', correlationId);
+    await fetchOnboarding('DELETE', 'oauth', {correlationId});
 
     commit(MutationsTypes.REMOVE_GMC);
     commit(MutationsTypes.SAVE_MCA_CONNECTED_ONCE, false);
@@ -250,16 +250,17 @@ export default {
       await fetchOnboarding(
         'DELETE',
         'merchant-accounts',
-        correlationId,
-        undefined,
-        async (response) => {
-          if (!response.ok) {
-            commit(
-              MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
-              WebsiteClaimErrorReason.UnlinkFailed,
-            );
-            throw new HttpClientError(response.statusText, response.status);
-          }
+        {
+          correlationId,
+          onResponse: async (response) => {
+            if (!response.ok) {
+              commit(
+                MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+                WebsiteClaimErrorReason.UnlinkFailed,
+              );
+              throw new HttpClientError(response.statusText, response.status);
+            }
+          },
         },
       );
     }
@@ -323,12 +324,13 @@ export default {
     }
   },
 
-  async [ActionsTypes.REQUEST_SITE_VERIFICATION_TOKEN]({rootState, state}, correlationId: string) {
-    return fetchOnboarding(
+  // eslint-disable-next-line no-empty-pattern
+  async [ActionsTypes.REQUEST_SITE_VERIFICATION_TOKEN]({}, correlationId: string) {
+    return (await fetchOnboarding(
       'GET',
       'shopping-websites/site-verification/token',
-      correlationId,
-    );
+      {correlationId},
+    )).json();
   },
 
   // eslint-disable-next-line no-empty-pattern
@@ -338,11 +340,11 @@ export default {
 
   // eslint-disable-next-line no-empty-pattern
   async [ActionsTypes.REQUEST_GOOGLE_TO_VERIFY_WEBSITE]({}, correlationId: string) {
-    return fetchOnboarding(
+    return (await fetchOnboarding(
       'POST',
       'shopping-websites/site-verification/verify',
-      correlationId,
-    );
+      {correlationId},
+    )).json();
   },
 
   async [ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS](
@@ -351,11 +353,11 @@ export default {
     },
     correlationId: string,
   ) {
-    const json = await fetchOnboarding(
+    const json = await (await fetchOnboarding(
       'GET',
       'shopping-websites/site-verification/status',
-      correlationId,
-    );
+      {correlationId},
+    )).json();
 
     commit(MutationsTypes.SAVE_WEBSITE_VERIFICATION_AND_CLAIMING_STATUS, json);
     return json;
@@ -371,21 +373,22 @@ export default {
     const json = await fetchOnboarding(
       'POST',
       url,
-      correlationId,
-      undefined,
-      async (response: Response) => {
-        if (!response.ok) {
-          const error = await response.json();
+      {
+        correlationId,
+        onResponse: async (response: Response) => {
+          if (!response.ok) {
+            const error = await response.json();
 
-          if (error.fromGoogle?.needOverwrite) {
-            throw new NeedOverwriteError(error, error.fromGoogle.error.code);
+            if (error.fromGoogle?.needOverwrite) {
+              throw new NeedOverwriteError(error, error.fromGoogle.error.code);
+            }
+            if (error.fromGoogle?.cannotOverwrite) {
+              throw new CannotOverwriteError(error, error.fromGoogle.error.code);
+            }
+            throw new HttpClientError(response.statusText, response.status);
           }
-          if (error.fromGoogle?.cannotOverwrite) {
-            throw new CannotOverwriteError(error, error.fromGoogle.error.code);
-          }
-          throw new HttpClientError(response.statusText, response.status);
-        }
-        return response.json();
+          return response.json();
+        },
       },
     );
 
@@ -422,12 +425,11 @@ export default {
     rootState, dispatch, commit,
   }, payload) {
     try {
-      const json = await fetchOnboarding(
+      const json = await (await fetchOnboarding(
         'POST',
         'merchant-accounts/',
-        undefined,
-        payload,
-      );
+        {body: payload},
+      )).json();
 
       const accountId = json.account_id;
       const newGmc = {
@@ -470,10 +472,10 @@ export default {
     commit, rootState, state, dispatch,
   }) {
     try {
-      const linkedGmc = await fetchOnboarding(
+      const linkedGmc = await (await fetchOnboarding(
         'GET',
         `merchant-accounts/${state.googleMerchantAccount.id}`,
-      );
+      )).json();
 
       if (linkedGmc) {
         commit(MutationsTypes.SAVE_GMC, linkedGmc);
@@ -494,22 +496,20 @@ export default {
 
   // eslint-disable-next-line no-empty-pattern
   async [ActionsTypes.REQUEST_VERIFICATION_CODE]({}, payload) {
-    return fetchOnboarding(
+    return (await fetchOnboarding(
       'POST',
       'merchant-accounts/phone-verification/request-code',
-      undefined,
-      payload,
-    );
+      {body: payload},
+    )).json();
   },
 
   // eslint-disable-next-line no-empty-pattern
   async [ActionsTypes.SEND_VERIFICATION_CODE]({}, payload) {
-    return fetchOnboarding(
+    return (await fetchOnboarding(
       'POST',
       'merchant-accounts/phone-verification/verify',
-      undefined,
-      payload,
-    );
+      {body: payload},
+    )).json();
   },
 
   // eslint-disable-next-line no-empty-pattern
