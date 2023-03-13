@@ -27,17 +27,14 @@
       :rowspan="countriesAndStatusAreTheSame ? product.statuses.length : 0"
       v-if="!indexStatus || !countriesAndStatusAreTheSame"
     >
-      <span
+      <b-badge
         v-for="(country, indexCountry) in status.countries"
         :key="indexCountry"
+        variant="primary"
+        class="ps_gs-fz-12 mb-1 mr-1"
       >
-        <b-badge
-          variant="primary"
-          class="ps_gs-fz-12 mb-1 mr-1"
-        >
-          {{ country }}
-        </b-badge>
-      </span>
+        {{ country }}
+      </b-badge>
     </b-td>
     <b-td
       class="align-top"
