@@ -135,11 +135,6 @@ export default {
     }
   },
 
-  // eslint-disable-next-line no-empty-pattern
-  async [ActionsTypes.TOGGLE_GOOGLE_ACCOUNT_IS_REGISTERED]({}, isGoogleAccountLinked: boolean) {
-    return fetchShop('toggleGoogleAccountIsRegistered', {isGoogleAccountLinked});
-  },
-
   async [ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH]({commit, state, rootState}) {
     const urlState = btoa(JSON.stringify({
       redirectUri: rootState.app.psxMktgWithGoogleAdminUrl,
@@ -233,7 +228,6 @@ export default {
     commit(MutationsTypes.REMOVE_GOOGLE_ACCOUNT);
     commit(MutationsTypes.SET_GOOGLE_ACCOUNT, null);
     dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
-    dispatch(ActionsTypes.TOGGLE_GOOGLE_ACCOUNT_IS_REGISTERED, false);
     return true;
   },
 
