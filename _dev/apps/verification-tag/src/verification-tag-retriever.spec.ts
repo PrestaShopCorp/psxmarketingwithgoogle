@@ -1,4 +1,4 @@
-import { fetchOnboarding, HttpClientError } from "mktg-with-google-common";
+import { HttpClientError } from "mktg-with-google-common";
 import { runRetrievalOfVerificationTag } from "./verification-tag-retriever";
 
 describe('runRetrievalOfVerificationTag', () => {
@@ -6,9 +6,18 @@ describe('runRetrievalOfVerificationTag', () => {
     // prepare
     const fetchOnboardingMock = jest.fn();
     const fetchShopMock = jest.fn();
-    fetchOnboardingMock.mockResolvedValueOnce({token: '<meta name="google-site-verification" content="...">'});
-    fetchShopMock.mockResolvedValueOnce({"success":true,"method":"insert"});
-    fetchOnboardingMock.mockResolvedValueOnce({"status":200,"message":"ok"});
+    fetchOnboardingMock.mockResolvedValueOnce({
+      status: 200,
+      json: async () => ({token: '<meta name="google-site-verification" content="...">'})
+    } as Response);
+    fetchShopMock.mockResolvedValueOnce({
+      status: 200,
+      json: async () => ({"success":true,"method":"insert"})
+    } as Response);
+    fetchOnboardingMock.mockResolvedValueOnce({
+      status: 200,
+      json: async () => ({"status":200,"message":"ok"})
+    } as Response);
 
     // act
     await runRetrievalOfVerificationTag(

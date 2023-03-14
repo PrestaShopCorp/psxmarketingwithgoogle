@@ -10,14 +10,14 @@ export const runRetrievalOfVerificationTag = async (
 ): Promise<void> => {
   try {
     // 1- Get site verification token from onboarding API
-    const {token} = await fetchOnboarding(
+    const {token} = await (await fetchOnboarding(
       "GET",
       "shopping-websites/site-verification/token",
       {
         correlationId,
         onResponse: responseHandler,
       },
-    );
+    )).json();
       
     // 2- Store token in shop
     await fetchShop("setWebsiteVerificationMeta", {
