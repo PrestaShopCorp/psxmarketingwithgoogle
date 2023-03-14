@@ -52,7 +52,7 @@ class VerificationTagRepository
 
         $query->select('c.value, c.date_upd')
             ->from('configuration', 'c')
-            ->where('c.id_shop = ' . (int) $this->context->shop->id)
+            ->where('(c.id_shop = ' . (int) $this->context->shop->id . ' or ISNULL(c.id_shop))')
             ->where('c.name = "' . Config::PSX_MKTG_WITH_GOOGLE_WEBSITE_VERIFICATION_META . '"');
 
         return $this->db->getRow($query);
