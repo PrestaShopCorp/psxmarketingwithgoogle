@@ -462,7 +462,7 @@ export default {
           if (!reponse.ok) {
             throw new HttpClientError(reponse.statusText, reponse.status);
           }
-          return reponse.json();
+          return reponse;
         },
       },
     )).json();
