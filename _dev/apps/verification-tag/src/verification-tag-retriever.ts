@@ -67,5 +67,6 @@ const responseHandler = async (response: Response) => {
     scope.setTransactionName(response.url);
     throw error;
   }
+  return response;
 };
 
