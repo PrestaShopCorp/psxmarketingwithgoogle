@@ -5,6 +5,8 @@
     hide-footer
     hide-header
     ref="modal"
+    @shown="startCountdown"
+    @hidden="reload()"
   >
     <b-card
       style="max-width: 40rem"
@@ -43,15 +45,24 @@ export default {
   components: {
     PsModal,
   },
-  props: {
-    countdown: {
-      type: Number,
-      default: 15,
-    },
+  data() {
+    return {
+      countdown: 15,
+    };
   },
   methods: {
     reload() {
-      this.$emit('userClickedOnReload');
+      this.$emit('redirectToLoginBo');
+    },
+    startCountdown() {
+      if (this.countdown > 0) {
+        setTimeout(() => {
+          this.countdown -= 1;
+          this.startCountdown();
+        }, 1000);
+      } else {
+        this.reload();
+      }
     },
   },
 };

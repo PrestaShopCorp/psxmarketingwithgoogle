@@ -1,7 +1,7 @@
 import UserNotConnectedToBoPopin from '../src/components/commons/user-not-connected-to-bo-popin.vue';
 
 export default {
-  title: 'Popins/UserNotConnectedToBo',
+  title: 'Onboarding/Popins',
   component: UserNotConnectedToBoPopin,
 };
 

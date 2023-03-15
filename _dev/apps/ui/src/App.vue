@@ -82,8 +82,8 @@
     </template>
 
     <PopinUserNotConnectedToBo
-      :countdown="countdown"
-      @userClickedOnReload="reload"
+      :visible="!backOfficeUserIsLoggedIn"
+      @redirectToLoginBo="reload"
       ref="userBoNotConnected"
     />
   </div>
@@ -164,16 +164,6 @@ export default {
     reload() {
       window.location.reload();
     },
-    startCountdown() {
-      if (this.countdown > 0) {
-        setTimeout(() => {
-          this.countdown -= 1;
-          this.startCountdown();
-        }, 1000);
-      } else {
-        this.reload();
-      }
-    },
     throwSegmentEvent() {
       this.$segment.track('[GGL] Clicked on reporting tab', {
         module: 'psxmarketingwithgoogle',
@@ -189,14 +179,6 @@ export default {
   watch: {
     $route() {
       this.$root.identifySegment();
-    },
-    backOfficeUserIsLoggedIn(newVal, oldVal) {
-      if (oldVal === true && newVal === false) {
-        this.$bvModal.show(
-          this.$refs.userBoNotConnected.$refs.modal.id,
-        );
-        this.startCountdown();
-      }
     },
   },
   googleUrl,
