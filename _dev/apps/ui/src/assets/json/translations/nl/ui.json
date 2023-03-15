@@ -720,7 +720,8 @@
             "xResults": "{0} resultaten",
             "perPageLabel": "Laat zien:",
             "goToLabel": "Ga naar pagina:",
-            "editX": "Bewerk {0}"
+            "editX": "Bewerk {0}",
+            "noReasonFallback": "*Not provided, check [account errors on your Merchant Center]({0})[:target=\"_blank\"].*"
         },
         "errorReason": {
             "fieldXMissing": "Een verplicht veld ontbreekt: {0}",
