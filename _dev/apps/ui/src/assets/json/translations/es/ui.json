@@ -700,7 +700,7 @@
             "xHasFailedPreValidation": "\"{0}\": ha fallado la prevalidación.",
             "xHasPassedPreValidation": "\"{0}\": ha pasado la prevalidación.",
             "labelTooltipDescription": "Este atributo coincide con lo que has configurado en el mapeo de atributos de tu producto: descripción corta, descripción...",
-            "labelTooltipBarcode": "GTIN is a unique identifier used to identify products. it can be UPC or EAN or JAN or ISBN. If you don't have a GTIN for your product, in this case add a Brand (of the product or your company) AND a MPN (Manufacturer Part Number) which is a unique identifier different from the GTIN, assigned by a manufacturer to identify a specific product or part"
+            "labelTooltipBarcode": "El GTIN es un identificador único utilizado para identificar productos. Puede ser UPC, EAN, JAN o ISBN. Si no tienes un GTIN para tu producto, añade una Marca (del producto o de tu empresa) y un NPF (Número de pieza del fabricante) que es un identificador único diferente del GTIN, asignado por un fabricante para identificar un producto o pieza específicos."
         },
         "approvalTable": {
             "description": "Este es el estado de tus productos que se envían a Google Merchant Center. Algunos productos pueden aparecer más de una vez debido a su variación idiomática.",
@@ -721,7 +721,7 @@
             "perPageLabel": "Mostrar:",
             "goToLabel": "Ir a la página:",
             "editX": "Editar {0}",
-            "noReasonFallback": "*Not provided, check [account errors on your Merchant Center]({0})[:target=\"_blank\"].*"
+            "noReasonFallback": "*No facilitado, comprueba [errores de cuenta en tu Merchant Center]({0})[:target=\"_blank\"].*"
         },
         "errorReason": {
             "fieldXMissing": "Falta un campo obligatorio: {0}",
