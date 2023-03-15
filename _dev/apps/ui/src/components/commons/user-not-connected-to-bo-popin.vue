@@ -9,8 +9,8 @@
     @hidden="reload()"
   >
     <b-card
-      style="max-width: 40rem"
-      class="card border-0"
+      style=""
+      class="card border-0 card-maxwidth-400"
     >
       <b-card-body align="left">
         <h2
