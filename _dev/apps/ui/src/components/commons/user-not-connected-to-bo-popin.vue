@@ -10,7 +10,7 @@
   >
     <b-card
       style=""
-      class="card border-0 card-maxwidth-400"
+      class="card border-0"
     >
       <b-card-body align="left">
         <h2
