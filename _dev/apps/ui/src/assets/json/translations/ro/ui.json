@@ -720,7 +720,8 @@
             "xResults": "{0} rezultate",
             "perPageLabel": "Afișează:",
             "goToLabel": "Mergi la pagina:",
-            "editX": "Editează {0}"
+            "editX": "Editează {0}",
+            "noReasonFallback": "*Not provided, check [account errors on your Merchant Center]({0})[:target=\"_blank\"].*"
         },
         "errorReason": {
             "fieldXMissing": "Lipsește un câmp obligatoriu: {0}",
