@@ -720,7 +720,8 @@
             "xResults": "{0} resultados",
             "perPageLabel": "Mostrar:",
             "goToLabel": "Ir para a página:",
-            "editX": "Editar {0}"
+            "editX": "Editar {0}",
+            "noReasonFallback": "*Not provided, check [account errors on your Merchant Center]({0})[:target=\"_blank\"].*"
         },
         "errorReason": {
             "fieldXMissing": "Falta um campo obrigatório: {0}",
