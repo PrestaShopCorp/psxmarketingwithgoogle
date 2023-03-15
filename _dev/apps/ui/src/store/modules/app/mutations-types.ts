@@ -21,6 +21,7 @@ enum MutationsTypes {
   SAVE_DOC_AND_FAQ = 'SAVE_DOC_AND_FAQ',
   SAVE_DEBUG_DATA = 'SAVE_DEBUG_DATA',
   AD_BLOCKER_EXISTS = 'AD_BLOCKER_EXISTS',
+  SAVE_USER_IS_LOGGED_OUT = 'SAVE_USER_IS_LOGGED_OUT',
 }
 
 export {MutationsTypes as default};

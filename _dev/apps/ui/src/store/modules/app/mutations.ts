@@ -34,4 +34,7 @@ export default {
   [MutationsTypes.AD_BLOCKER_EXISTS](state: LocalState) {
     state.adBlockerExists = !state.adBlockerExists;
   },
+  [MutationsTypes.SAVE_USER_IS_LOGGED_OUT](state: LocalState) {
+    state.backOfficeUserIsLoggedIn = false;
+  },
 };
