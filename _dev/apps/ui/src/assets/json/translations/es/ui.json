@@ -700,7 +700,7 @@
             "xHasFailedPreValidation": "\"{0}\": ha fallado la prevalidación.",
             "xHasPassedPreValidation": "\"{0}\": ha pasado la prevalidación.",
             "labelTooltipDescription": "Este atributo coincide con lo que has configurado en el mapeo de atributos de tu producto: descripción corta, descripción...",
-            "labelTooltipBarcode": "GTIN is a unique identifier used to identify products. it can be UPC or EAN or JAN or ISBN. If you don't have a GTIN for your product, in this case add a Brand (of the product or your company) AND a MPN (Manufacturer Part Number) which is a unique identifier different from the GTIN, assigned by a manufacturer to identify a specific product or part"
+            "labelTooltipBarcode": "El GTIN es un identificador único utilizado para identificar productos. Puede ser UPC, EAN, JAN o ISBN. Si no tienes un GTIN para tu producto, añade una Marca (del producto o de tu empresa) y un NPF (Número de pieza del fabricante) que es un identificador único diferente del GTIN, asignado por un fabricante para identificar un producto o pieza específicos."
         },
         "approvalTable": {
             "description": "Este es el estado de tus productos que se envían a Google Merchant Center. Algunos productos pueden aparecer más de una vez debido a su variación idiomática.",
@@ -721,7 +721,7 @@
             "perPageLabel": "Mostrar:",
             "goToLabel": "Ir a la página:",
             "editX": "Editar {0}",
-            "noReasonFallback": "*Not provided, check [account errors on your Merchant Center]({0})[:target=\"_blank\"].*"
+            "noReasonFallback": "*No facilitado, comprueba [errores de cuenta en tu Merchant Center]({0})[:target=\"_blank\"].*"
         },
         "errorReason": {
             "fieldXMissing": "Falta un campo obligatorio: {0}",
@@ -965,6 +965,7 @@
         "openActionsMenu": "Abrir el menú de acciones para la campaña {0}",
         "viewInGoogleAds": "Ver en tu cuenta de Google Ads",
         "previous": "Anterior",
+        "loginPage": "Go to login page",
         "next": "Siguiente",
         "goToPage": "Ir a la primera página | Ir a la página: {0} Ir a la última página",
         "noEndDate": "Sin fecha de finalización",
@@ -1041,7 +1042,9 @@
         "PMaxMigrationTitle": "Noticias importantes",
         "PMaxMigrationText": "Tus campañas Shopping inteligentes comenzarán a actualizarse automáticamente a campañas Máximo rendimiento.\n\n- La configuración y el presupuesto de tu campaña no varían. \n\n- La funcionalidad es equiparable a las campañas Shopping inteligentes.\n\n- A partir de este momento sólo podrás crear campañas Máximo rendimiento.",
         "PmaxTextLink": "Saber más sobre las campañas Máximo rendimiento",
-        "textPmaxReleased": "Ahora, tus campañas Shopping inteligentes comenzarán a actualizarse automáticamente a campañas Máximo rendimiento. [Más información.]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
+        "textPmaxReleased": "Ahora, tus campañas Shopping inteligentes comenzarán a actualizarse automáticamente a campañas Máximo rendimiento. [Más información.]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]",
+        "disconnectedUserBo": "You have been disconnected from the backoffice. You will be automatically redirected to the login page in {0} seconds.",
+        "titleDisconnectedUserBo": "Connection lost"
     },
     "tooltip": {
         "googleAccountRequired": "Requiere la configuración de la cuenta de Google",
