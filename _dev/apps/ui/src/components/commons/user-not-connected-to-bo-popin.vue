@@ -2,38 +2,26 @@
   <ps-modal
     id="PopinUserNotConnectedToBo"
     v-bind="$attrs"
-    hide-footer
-    hide-header
-    ref="modal"
+    :title="$t('modal.titleDisconnectedUserBo')"
     @shown="startCountdown"
-    @hidden="reload()"
+    hide-header-close
+    no-close-on-backdrop
+    no-close-on-esc
+    ref="modal"
   >
-    <b-card
-      style=""
-      class="card border-0"
-    >
-      <b-card-body align="left">
-        <h2
-          class="font-weight-600 text-align-center"
-        >
-          {{ $t('modal.titleDisconnectedUserBo') }}
-        </h2>
-
-        <VueShowdown
-          class="my-1"
-          :markdown="$t('modal.disconnectedUserBo', [countdown])"
-        />
-        <div align="right">
-          <b-button
-            @click="reload()"
-            class="align-left"
-            variant="primary"
-          >
-            {{ $t('cta.loginPage') }}
-          </b-button>
-        </div>
-      </b-card-body>
-    </b-card>
+    <VueShowdown
+      class="my-1"
+      :markdown="$t('modal.disconnectedUserBo', [countdown])"
+    />
+    <template #modal-footer>
+      <b-button
+        @click="reload()"
+        class="align-left"
+        variant="primary"
+      >
+        {{ $t('cta.loginPage') }}
+      </b-button>
+    </template>
   </ps-modal>
 </template>
 
