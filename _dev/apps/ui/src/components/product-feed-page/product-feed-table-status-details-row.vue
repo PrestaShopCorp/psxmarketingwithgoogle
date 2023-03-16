@@ -158,7 +158,7 @@ export default defineComponent({
       const {id} = this.$store.state.accounts.googleMerchantAccount;
 
       return {
-        accountIssues: `hhttps://merchants.google.com/mc/products/diagnostics?a=${id}&tab=account_issues`,
+        accountIssues: `https://merchants.google.com/mc/products/diagnostics?a=${id}&tab=account_issues`,
       };
     },
   },
