@@ -965,6 +965,7 @@
         "openActionsMenu": "Abrir el menú de acciones para la campaña {0}",
         "viewInGoogleAds": "Ver en tu cuenta de Google Ads",
         "previous": "Anterior",
+        "loginPage": "Go to login page",
         "next": "Siguiente",
         "goToPage": "Ir a la primera página | Ir a la página: {0} Ir a la última página",
         "noEndDate": "Sin fecha de finalización",
@@ -1041,7 +1042,9 @@
         "PMaxMigrationTitle": "Noticias importantes",
         "PMaxMigrationText": "Tus campañas Shopping inteligentes comenzarán a actualizarse automáticamente a campañas Máximo rendimiento.\n\n- La configuración y el presupuesto de tu campaña no varían. \n\n- La funcionalidad es equiparable a las campañas Shopping inteligentes.\n\n- A partir de este momento sólo podrás crear campañas Máximo rendimiento.",
         "PmaxTextLink": "Saber más sobre las campañas Máximo rendimiento",
-        "textPmaxReleased": "Ahora, tus campañas Shopping inteligentes comenzarán a actualizarse automáticamente a campañas Máximo rendimiento. [Más información.]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
+        "textPmaxReleased": "Ahora, tus campañas Shopping inteligentes comenzarán a actualizarse automáticamente a campañas Máximo rendimiento. [Más información.]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]",
+        "disconnectedUserBo": "You have been disconnected from the backoffice. You will be automatically redirected to the login page in {0} seconds.",
+        "titleDisconnectedUserBo": "Connection lost"
     },
     "tooltip": {
         "googleAccountRequired": "Requiere la configuración de la cuenta de Google",
