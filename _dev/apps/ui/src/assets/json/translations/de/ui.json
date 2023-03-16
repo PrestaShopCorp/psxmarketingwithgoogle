@@ -700,7 +700,7 @@
             "xHasFailedPreValidation": "„{0}“: hat die Vorvalidierung nicht bestanden.",
             "xHasPassedPreValidation": "„{0}“: hat die Vorvalidierung bestanden.",
             "labelTooltipDescription": "Dieses Attribut stimmt mit dem überein, was Sie in der Zuweisung der Produktattribute angegeben haben: Kurzbeschreibung, Beschreibung …",
-            "labelTooltipBarcode": "GTIN is a unique identifier used to identify products. it can be UPC or EAN or JAN or ISBN. If you don't have a GTIN for your product, in this case add a Brand (of the product or your company) AND a MPN (Manufacturer Part Number) which is a unique identifier different from the GTIN, assigned by a manufacturer to identify a specific product or part"
+            "labelTooltipBarcode": "Die GTIN ist eine eindeutige Kennung, die zur Identifizierung von Produkten verwendet wird. Sie kann UPC oder EAN oder JAN oder ISBN lauten. Wenn Ihnen keine GTIN für Ihr Produkt zur Verfügung steht, fügen Sie in diesem Fall eine Marke (des Produkts oder Ihres Unternehmens) UND eine MPN (Hersteller-Teilenummer) hinzu, die sich von der GTIN unterscheidet und von einem Hersteller zur Identifizierung eines bestimmten Produkts oder Teils vergeben wird."
         },
         "approvalTable": {
             "description": "Der folgende Status Ihrer Produkte wurde ans Google Merchant Center gesendet. Einige Produkte werden aufgrund ihrer Sprachvariation möglicherweise öfter angezeigt als andere.",
