@@ -700,7 +700,7 @@
             "xHasFailedPreValidation": "\"{0}\": nu a trecut de validarea preliminară.",
             "xHasPassedPreValidation": "\"{0}\": a trecut de validarea preliminară.",
             "labelTooltipDescription": "Această caracteristică se potrivește cu ceea ce ai configurat în maparea caracteristicile produsului: descriere scurtă, descriere...",
-            "labelTooltipBarcode": "GTIN is a unique identifier used to identify products. it can be UPC or EAN or JAN or ISBN. If you don't have a GTIN for your product, in this case add a Brand (of the product or your company) AND a MPN (Manufacturer Part Number) which is a unique identifier different from the GTIN, assigned by a manufacturer to identify a specific product or part"
+            "labelTooltipBarcode": "GTIN este un identificator unic utilizat pentru identificarea produselor. Poate fi UPC sau EAN sau JAN sau ISBN. Dacă nu ai un GTIN pentru produsul tău, în acest caz adaugă o marcă (a produsului sau a companiei tale) ȘI un MPN (numărul de producător al piesei), care este un identificator unic diferit de GTIN, atribuit de un producător pentru a identifica un anumit produs sau piesă."
         },
         "approvalTable": {
             "description": "Acestea sunt stările produselor trimise la Google Merchant Center. Unele produse pot apărea de mai multe ori din cauza variațiilor de limbă.",
