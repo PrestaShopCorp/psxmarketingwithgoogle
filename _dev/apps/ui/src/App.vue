@@ -80,6 +80,12 @@
         {{ shopId }}
       </div>
     </template>
+
+    <PopinUserNotConnectedToBo
+      :visible="!backOfficeUserIsLoggedIn"
+      @redirectToLoginBo="reload"
+      ref="userBoNotConnected"
+    />
   </div>
 </template>
 
@@ -91,6 +97,7 @@ import MenuItem from '@/components/menu/menu-item.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import AlertModuleUpdate from '@/components/commons/alert-update-module';
 import googleUrl from '@/assets/json/googleUrl.json';
+import PopinUserNotConnectedToBo from '@/components/commons/user-not-connected-to-bo-popin.vue';
 
 let resizeEventTimer;
 const root = document.documentElement;
@@ -103,6 +110,12 @@ export default {
     Menu,
     MenuItem,
     AlertModuleUpdate,
+    PopinUserNotConnectedToBo,
+  },
+  data() {
+    return {
+      countdown: 15,
+    };
   },
   computed: {
     shopId() {
@@ -114,12 +127,20 @@ export default {
     currentlyOnLandingPage() {
       return this.$route.name === 'landing-page';
     },
+    backOfficeUserIsLoggedIn() {
+      return this.$store.state.app.backOfficeUserIsLoggedIn;
+    },
   },
   created() {
     this.$root.identifySegment();
     this.$store.dispatch('app/CHECK_FOR_AD_BLOCKER');
     this.setCustomProperties();
-    initShopClient({shopUrl: this.$store.state.app.psxMktgWithGoogleAdminAjaxUrl});
+    initShopClient({
+      shopUrl: this.$store.state.app.psxMktgWithGoogleAdminAjaxUrl,
+      onShopSessionLoggedOut: () => {
+        this.$store.commit('app/SAVE_USER_IS_LOGGED_OUT');
+      },
+    });
     initOnboardingClient({
       apiUrl: this.$store.state.app.psxMktgWithGoogleApiUrl,
       token: this.$store.state.accounts.tokenPsAccounts,
@@ -139,6 +160,9 @@ export default {
     setCustomProperties() {
       root.style.setProperty('--header-height', `${header.clientHeight}px`);
       root.style.setProperty('--header-height-full', `${header.clientHeight + headerFull.clientHeight}px`);
+    },
+    reload() {
+      window.location.reload();
     },
     throwSegmentEvent() {
       this.$segment.track('[GGL] Clicked on reporting tab', {

@@ -966,6 +966,7 @@
       "openActionsMenu": "Open actions menu for campaign {0}",
       "viewInGoogleAds": "View in your Google Ads account",
       "previous": "Previous",
+      "loginPage": "Go to login page",
       "next": "Next",
       "goToPage": "Go to first page | Go to page: {0} | Go to last page",
       "noEndDate": "No end date",
@@ -1042,7 +1043,9 @@
       "PMaxMigrationTitle": "Important News",
       "PMaxMigrationText": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max campaigns now.\n\n- Your campaign settings and budget remain the same. \n\n- The functionality is at parity to Smart Shopping campaigns. \n\n- From this point on you can only create Performance Max campaigns.",
       "PmaxTextLink": "Learn more about Performance Max",
-      "textPmaxReleased": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max Campaigns now. [Learn more]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
+      "textPmaxReleased": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max Campaigns now. [Learn more]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]",
+      "disconnectedUserBo": "You have been disconnected from the backoffice. You will be automatically redirected to the login page in {0} seconds.",
+      "titleDisconnectedUserBo": "Connection lost"
     },
 
     "tooltip" : {
