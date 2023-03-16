@@ -965,6 +965,7 @@
         "openActionsMenu": "Open acties menu voor campagne {0}",
         "viewInGoogleAds": "Bekijk in uw Google Ads account",
         "previous": "Vorige",
+        "loginPage": "Go to login page",
         "next": "Volgende",
         "goToPage": "Ga naar de eerste pagina | Ga naar pagina: {0} | Ga naar laatste pagina",
         "noEndDate": "Geen einddatum",
@@ -1041,7 +1042,9 @@
         "PMaxMigrationTitle": "Belangrijk nieuws",
         "PMaxMigrationText": "Uw Smart Shopping-campagnes worden nu automatisch geüpgraded naar Maximale prestaties-campagnes. \n\n- Uw campagne-instellingen en budget blijven hetzelfde. \n\n- De functionaliteit is gelijk aan die van Smart Shopping-campagnes.\n\n- Vanaf dit moment kunt u alleen nog Maximale prestaties-campagnes aanmaken.",
         "PmaxTextLink": "Meer informatie over campagnes voor maximale prestaties",
-        "textPmaxReleased": "Uw Smart Shopping-campagnes worden nu automatisch geüpgraded naar Maximale prestaties-campagnes. [Leer meer]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
+        "textPmaxReleased": "Uw Smart Shopping-campagnes worden nu automatisch geüpgraded naar Maximale prestaties-campagnes. [Leer meer]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]",
+        "disconnectedUserBo": "You have been disconnected from the backoffice. You will be automatically redirected to the login page in {0} seconds.",
+        "titleDisconnectedUserBo": "Connection lost"
     },
     "tooltip": {
         "googleAccountRequired": "Vereist configuratie Google-account",
