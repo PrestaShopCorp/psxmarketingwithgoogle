@@ -965,6 +965,7 @@
         "openActionsMenu": "Aktionsmenü für Kampagne öffnen {0}",
         "viewInGoogleAds": "Ansicht in Ihrem Google-Ads-Konto",
         "previous": "Vorherige",
+        "loginPage": "Go to login page",
         "next": "Weiter",
         "goToPage": "Gehe zur ersten Seite | Gehe zur Seite: {0} | Gehe zur letzten Seite",
         "noEndDate": "Kein Enddatum",
@@ -1041,7 +1042,9 @@
         "PMaxMigrationTitle": "Wichtige Neuigkeiten",
         "PMaxMigrationText": "Ihre Smart Shopping-Kampagnen werden ab sofort automatisch zu Leistung max. Kampagnen aktualisiert. \n\n- Ihre Kampagneneinstellungen und Ihr Budget bleiben unverändert. \n\n- Die Funktionalität ist mit der von Smart-Shopping-Kampagnen identisch.\n\n- Ab diesem Zeitpunkt können Sie nur noch Leistung max. Kampagnen erstellen.",
         "PmaxTextLink": "Hier mehr über für maximale Performance erfahren",
-        "textPmaxReleased": "Ihre Smart Shopping-Kampagnen werden ab sofort automatisch zu Leistung max. Kampagnen aktualisiert. [Mehr erfahren]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]"
+        "textPmaxReleased": "Ihre Smart Shopping-Kampagnen werden ab sofort automatisch zu Leistung max. Kampagnen aktualisiert. [Mehr erfahren]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]",
+        "disconnectedUserBo": "You have been disconnected from the backoffice. You will be automatically redirected to the login page in {0} seconds.",
+        "titleDisconnectedUserBo": "Connection lost"
     },
     "tooltip": {
         "googleAccountRequired": "Erfordert die Konfiguration eines Google-Kontos",
