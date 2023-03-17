@@ -301,7 +301,8 @@
                 <div
                   v-if="!campaignHasNoProductsFilter
                     && filtersChosen.length
-                    && !hasUnhandledFilters"
+                    && !hasUnhandledFilters
+                    && dimensionName"
                   class="align-self-center ml-2 font-weight-600"
                 >
                   {{ $tc(
@@ -464,11 +465,10 @@ import TipsAndTricksCard from '@/components/commons/tips-and-tricks-card.vue';
 import {
   findAndCheckFilter,
   returnChildrenIds,
-  returnCountProducts,
   deepCheckDimension,
-  retrieveProductNumberFromFiltersIds,
+  returnCountProducts,
 
-} from '../../utils/SSCFilters';
+} from '@/utils/SSCFilters';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import googleUrl from '@/assets/json/googleUrl.json';
 import {formatPrice} from '@/utils/Price';
@@ -490,7 +490,6 @@ export default defineComponent({
       targetCountry: null as string|null,
       loader: true,
       hasUnhandledFilters: false,
-      totalProducts: 0,
       searchLoader: false,
       isBanner: true,
       recommendedBudget: null as RecommendedBudget|null,
@@ -669,6 +668,11 @@ export default defineComponent({
     budgetInput(): string|number {
       return this.campaignDailyBudget ?? this.recommendedBudget?.value ?? '';
     },
+    totalProducts(): number {
+      return returnCountProducts(
+        this.$store.state.campaigns.dimensionChosen,
+      );
+    },
   },
   methods: {
     debounceName() {
@@ -711,6 +715,8 @@ export default defineComponent({
       this.$bvModal.show(
         this.$refs.CampaignCreationPopin.$refs.modal.id,
       );
+
+      this.getDatasFiltersDimensions();
     },
     onCampaignCreated() {
       this.$emit('campaignCreated');
@@ -729,7 +735,6 @@ export default defineComponent({
     },
 
     setDimensionFiltered(dimension) {
-      this.totalProducts = returnCountProducts(dimension);
       const filtersForAPI = [
         {
           dimension: dimension.id,
@@ -745,14 +750,34 @@ export default defineComponent({
       }
     },
     getDatasFiltersDimensions(search) {
-      if (!this.productsHaveBeenApprovedByGoogle) {
-        return;
-      }
       this.searchLoader = true;
       this.$store
-        .dispatch('campaigns/GET_DIMENSIONS_FILTERS', search).finally(() => {
+        .dispatch('campaigns/GET_DIMENSIONS_FILTERS', search).then(() => {
+          this.updateDimensionCheckedValuesFromFiltersChosen();
+        }).finally(() => {
           this.searchLoader = false;
         });
+    },
+    updateDimensionCheckedValuesFromFiltersChosen(): void {
+      if (
+        !this.filtersChosen.length
+          || !this.$store.state.campaigns.sscAvailableFilters.length
+      ) {
+        return;
+      }
+
+      let dimensionToEdit = this.$store.state.campaigns.sscAvailableFilters.find(
+        (dim) => dim.id === this.filtersChosen[0].dimension,
+      );
+
+      dimensionToEdit = findAndCheckFilter(
+        dimensionToEdit,
+        this.filtersChosen[0].values,
+      );
+      this.$store.commit(
+        'campaigns/SET_DIMENSION_CHOSEN',
+        dimensionToEdit,
+      );
     },
     getValidationSummary() {
       return this.$store.dispatch('productFeed/GET_PREVALIDATION_SUMMARY');
@@ -788,26 +813,6 @@ export default defineComponent({
         'campaigns/SET_FILTERS_CHOSEN',
         this.filtersChosen,
       );
-      if (
-        this.filtersChosen.length
-            && this.$store.state.campaigns.sscAvailableFilters.length
-      ) {
-        let dimensionToEdit = this.$store.state.campaigns.sscAvailableFilters.find(
-          (dim) => dim.id === this.filtersChosen[0].dimension,
-        );
-        dimensionToEdit = findAndCheckFilter(
-          dimensionToEdit,
-          this.filtersChosen[0].values,
-        );
-        this.$store.commit(
-          'campaigns/SET_DIMENSION_CHOSEN',
-          dimensionToEdit,
-        );
-        this.totalProducts = retrieveProductNumberFromFiltersIds(
-          this.filtersChosen,
-          this.$store.state.campaigns.sscAvailableFilters,
-        );
-      }
       this.loader = false;
     },
 
@@ -835,11 +840,6 @@ export default defineComponent({
       deep: true,
       immediate: true,
     },
-    dimensionName(oldVal, newVal) {
-      if (newVal && newVal !== oldVal) {
-        this.totalProducts = 0;
-      }
-    },
   },
   async mounted() {
     window.scrollTo(0, 0);
@@ -862,9 +862,8 @@ export default defineComponent({
     if (!this.currency) {
       await this.$store.dispatch('googleAds/WARMUP_STORE');
     }
-    this.getValidationSummary().finally(() => {
-      this.getDatasFiltersDimensions();
-    });
+    this.getValidationSummary();
+    this.getDatasFiltersDimensions();
 
     this.getRecommendedBudget(this.targetCountry || this.defaultCountry);
   },

@@ -1143,7 +1143,7 @@ describe("SSC filters - deepUpdateDimensionVisibilityFromTree()", () => {
 
   it("hides all filters missing in search results", () => {
     const searchResults = [{
-      name: "smartShoppingCampaignCreation.categories",
+      name: "categories",
       id: "categories",
       checked: false,
       indeterminate: true,
@@ -1177,7 +1177,7 @@ describe("SSC filters - deepUpdateDimensionVisibilityFromTree()", () => {
     }];
     deepUpdateDimensionVisibilityFromTree(tree, searchResults);
     expect(tree).toEqual({
-      name: "smartShoppingCampaignCreation.categories",
+      name: "categories",
       id: "categories",
       checked: false,
       indeterminate: true,

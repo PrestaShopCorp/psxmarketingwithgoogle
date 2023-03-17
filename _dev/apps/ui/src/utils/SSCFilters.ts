@@ -86,7 +86,7 @@ export function checkAndUpdateDimensionStatus(source: Dimension) {
   return source;
 }
 
-export function deepCheckDimension(source: Dimension, checkboxClicked) {
+export function deepCheckDimension(source: Dimension, checkboxClicked: false) {
   source.checked = checkboxClicked;
   if (source.children) {
     source.children.forEach((child) => {

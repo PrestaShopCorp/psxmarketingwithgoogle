@@ -34,7 +34,7 @@ export const conversionTagAlreadyExists = {
 
 export const availableFilters: Dimension[] = [
   {
-    name: "smartShoppingCampaignCreation.categories",
+    name: "categories",
     id: "categories",
     checked: false,
     indeterminate: true,

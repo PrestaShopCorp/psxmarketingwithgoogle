@@ -13,6 +13,7 @@ import {googleAdsAccountChosen} from '../../../.storybook/mock/google-ads';
 import {campaignWithUnhandledFilters, campaignWithoutUnhandledFilters, availableFilters} from '../../../.storybook/mock/campaigns';
 import CampaignCreation from './campaign-creation.vue';
 import {formatPrice} from '@/utils/Price';
+import {deepCheckDimension} from '@/utils/SSCFilters';
 
 const VBTooltip = jest.fn();
 const buildWrapper = (
@@ -23,7 +24,12 @@ const buildWrapper = (
   store.modules.app.state = cloneDeep(initialStateApp);
   store.modules.googleAds.state = cloneDeep(googleAdsAccountChosen);
 
-  store.modules.campaigns.state.sscAvailableFilters = availableFilters;
+  store.modules.campaigns.state.sscAvailableFilters = cloneDeep(availableFilters)
+    .map((dim) => deepCheckDimension(dim, false));
+  store.modules.campaigns.state.dimensionChosen = deepCheckDimension(
+    cloneDeep(availableFilters[0]),
+    false,
+  );
   store.modules.campaigns.state.errorCampaignNameExists = false;
   store.modules.googleAds.state = googleAdsAccountChosen;
 
@@ -109,7 +115,7 @@ describe('campaign-creation.vue - Campaign edition', () => {
           return [
             {
               dimension: 'categories',
-              values: ['42'],
+              values: ['ab'],
             },
           ];
         },
@@ -127,6 +133,11 @@ describe('campaign-creation.vue - Campaign edition', () => {
   it('shows the button "Select filters" as filters are chosen', () => {
     expect(wrapper.find('#campaign-products-filter-fieldset b-button').isVisible()).toBe(true);
     expect(wrapper.find('#campaign-products-filter-fieldset b-button').attributes('disabled')).toBeFalsy();
+  });
+
+  it('shows how many products are elligible to the filter', async () => {
+    wrapper.vm.updateDimensionCheckedValuesFromFiltersChosen();
+    expect(wrapper.vm.totalProducts).toBe(10);
   });
 });
 
