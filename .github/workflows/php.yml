@@ -47,14 +47,14 @@ jobs:
     strategy:
       matrix:
         prestashop_version: [
-          "https://github.com/PrestaShop/PrestaShop/releases/download/8.0.0/prestashop_8.0.0.zip",
-          "https://github.com/PrestaShop/PrestaShop/releases/download/1.7.7.0/prestashop_1.7.7.0.zip",
-          "https://github.com/PrestaShop/PrestaShop/releases/download/1.7.5.0/prestashop_1.7.5.0.zip",
+          "8.0.0",
+          "1.7.7.0",
+          "1.7.5.0",
         ]
     steps:
       - name: Download PrestaShop code source
         run: |
-          wget -O /tmp/prestashop.zip ${{ matrix.prestashop_version }}
+          wget -O /tmp/prestashop.zip https://github.com/PrestaShop/PrestaShop/releases/download/${{ matrix.prestashop_version }}/prestashop_${{ matrix.prestashop_version }}.zip
           unzip -o /tmp/prestashop.zip -d /tmp
           unzip -o /tmp/prestashop.zip -d /tmp/prestashop
       - name: Setup PHP with tools
@@ -82,7 +82,7 @@ jobs:
       - name: Run PHPStan
         env:
           _PS_ROOT_DIR_: /tmp/prestashop
-        run: vendor/bin/phpstan analyze -c tests/phpstan/phpstan.neon
+        run: vendor/bin/phpstan analyze -c tests/phpstan/phpstan.neon --error-format github
 
   phpunit:
     name: PHPUnit
