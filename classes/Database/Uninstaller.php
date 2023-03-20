@@ -32,13 +32,6 @@ class Uninstaller
     public const CLASS_NAME = 'Uninstaller';
 
     /**
-     * @var array
-     */
-    private $errors = [];
-
-    private $module;
-
-    /**
      * @var TabRepository
      */
     private $tabRepository;
@@ -54,12 +47,10 @@ class Uninstaller
     private $errorHandler;
 
     public function __construct(
-        \PsxMarketingWithGoogle $module,
         TabRepository $tabRepository,
         Segment $segment,
         ErrorHandler $errorHandler
     ) {
-        $this->module = $module;
         $this->tabRepository = $tabRepository;
         $this->segment = $segment;
         $this->errorHandler = $errorHandler;
@@ -113,7 +104,6 @@ class Uninstaller
                 $e->getCode(),
                 false
             );
-            $this->errors[] = $this->module->l('Failed to uninstall database tables', self::CLASS_NAME);
 
             return false;
         }
@@ -155,7 +145,6 @@ class Uninstaller
                 $e->getCode(),
                 false
             );
-            $this->errors[] = $this->module->l('Failed to uninstall database tables', self::CLASS_NAME);
 
             return false;
         }

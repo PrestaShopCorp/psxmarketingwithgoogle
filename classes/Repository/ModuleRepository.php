@@ -42,7 +42,7 @@ class ModuleRepository
      */
     public function getModuleVersion()
     {
-        /** @var Module $module */
+        /** @var Module|null $module */
         $module = Module::getInstanceByName($this->moduleName);
 
         if (!empty($module)) {
@@ -105,7 +105,7 @@ class ModuleRepository
     {
         $context = Context::getContext();
         $hooks = [];
-        /** @var Module $moduleInstance */
+        /** @var Module|null $moduleInstance */
         $moduleInstance = Module::getInstanceByName($this->moduleName);
 
         if (empty($moduleInstance)) {

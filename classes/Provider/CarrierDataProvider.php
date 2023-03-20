@@ -26,7 +26,6 @@ use Language;
 use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Builder\CarrierBuilder;
 use PrestaShop\Module\PsxMarketingWithGoogle\DTO\Carrier as DTOCarrier;
-use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CarrierRepository;
 use RangePrice;
 use RangeWeight;
 
@@ -42,19 +41,12 @@ class CarrierDataProvider
      */
     private $carrierBuilder;
 
-    /**
-     * @var CarrierRepository
-     */
-    private $carrierRepository;
-
     public function __construct(
         ConfigurationAdapter $configurationAdapter,
-        CarrierBuilder $carrierBuilder,
-        CarrierRepository $carrierRepository
+        CarrierBuilder $carrierBuilder
     ) {
         $this->configurationAdapter = $configurationAdapter;
         $this->carrierBuilder = $carrierBuilder;
-        $this->carrierRepository = $carrierRepository;
     }
 
     public function getFormattedData(): array
