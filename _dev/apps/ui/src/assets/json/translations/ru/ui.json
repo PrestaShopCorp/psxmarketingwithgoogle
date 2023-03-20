@@ -694,13 +694,13 @@
                 "language": "Язык",
                 "image": "Изображение",
                 "description": "Описание",
-                "barcode": "GTIN/Brand",
+                "barcode": "GTIN/бренд",
                 "price": "Цена"
             },
             "xHasFailedPreValidation": "\"{0}\": предварительная проверка не пройдена.",
             "xHasPassedPreValidation": "\"{0}\": предварительная проверка пройдена.",
             "labelTooltipDescription": "Данное свойство соответствует настроенному при сопоставлении свойств товара: краткое описание, описание...",
-            "labelTooltipBarcode": "GTIN is a unique identifier used to identify products. it can be UPC or EAN or JAN or ISBN. If you don't have a GTIN for your product, in this case add a Brand (of the product or your company) AND a MPN (Manufacturer Part Number) which is a unique identifier different from the GTIN, assigned by a manufacturer to identify a specific product or part"
+            "labelTooltipBarcode": "GTIN — это уникальный идентификатор продукта. Вместо него можно также использовать UPC, EAN, JAN или ISBN. Если вашему продукту не присвоен номер GTIN, укажите бренд (продукта или вашей компании) и MPN (код производителя товара). Этот уникальный номер, отличный от GTIN, используется производителем для идентификации конкретного продукта или детали."
         },
         "approvalTable": {
             "description": "Здесь отображены статусы товаров, данные которых отправлены в Google Merchant Center. Товары с описаниями на разных языках могут быть указаны более одного раза.",
