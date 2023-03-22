@@ -41,7 +41,7 @@
     "lodash.uniqby": "^4.7.0",
     "mktg-with-google-common": "workspace:*",
     "prestakit": "^1.2.5",
-    "prestashop_accounts_vue_components": "^4.2.2",
+    "prestashop_accounts_vue_components": "^4.2.7",
     "secure-ls": "^1.2.6",
     "semver": "^7.3.7",
     "showdown": "^1.9.1",
