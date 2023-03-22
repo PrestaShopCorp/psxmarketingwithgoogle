@@ -17,9 +17,11 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 import {fetchOnboarding, fetchShop, HttpClientError} from 'mktg-with-google-common';
+import MutationsTypesCampaigns from '../campaigns/mutations-types';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import {runIf} from '../../../utils/Promise';
+import {CampaignTypes} from '../../../enums/reporting/CampaignStatus';
 
 export default {
   async [ActionsTypes.WARMUP_STORE](
@@ -147,6 +149,9 @@ export default {
       },
     ).finally(() => {
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, null);
+      commit(`campaigns/${MutationsTypesCampaigns.RESET_CAMPAIGNS_LIST}`, CampaignTypes.PERFORMANCE_MAX, {root: true});
+      commit(`campaigns/${MutationsTypesCampaigns.RESET_CAMPAIGNS_LIST}`, CampaignTypes.SMART_SHOPPING, {root: true});
+      commit(`campaigns/${MutationsTypesCampaigns.RESET_REPORTING_CAMPAIGNS_PERFORMANCES}`, null, {root: true});
     });
     return true;
   },
