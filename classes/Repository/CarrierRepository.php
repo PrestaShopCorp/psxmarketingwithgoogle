@@ -21,29 +21,11 @@
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Repository;
 
 use Carrier;
-use Context;
-use Db;
 use RangePrice;
 use RangeWeight;
 
 class CarrierRepository
 {
-    /**
-     * @var Db
-     */
-    private $db;
-
-    /**
-     * @var Context
-     */
-    private $context;
-
-    public function __construct(Db $db, Context $context)
-    {
-        $this->db = $db;
-        $this->context = $context;
-    }
-
     public function getCarriers(int $langId): array
     {
         $carriers = Carrier::getCarriers($langId, false, false, false, null, Carrier::ALL_CARRIERS);

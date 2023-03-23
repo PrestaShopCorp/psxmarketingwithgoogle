@@ -167,7 +167,6 @@ class PsxMarketingWithGoogle extends Module
         // $uninstaller = $this->getService(Uninstaller::class);
 
         $uninstaller = new Uninstaller(
-            $this,
             $this->getService(TabRepository::class),
             $this->getService(Segment::class),
             $this->getService(ErrorHandler::class)

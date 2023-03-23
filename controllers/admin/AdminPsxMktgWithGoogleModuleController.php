@@ -182,5 +182,6 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
 
     public function postProcess()
     {
+        return false;
     }
 }
