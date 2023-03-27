@@ -165,7 +165,7 @@ TableStatusDetails.parameters = {
                 statuses: [
                   {
                     destination: "Shopping",
-                    status: "disapproved",
+                    status: "approved",
                     countries: ["GB"],
                   },
                   {

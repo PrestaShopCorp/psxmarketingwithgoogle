@@ -2,14 +2,14 @@
   <b-tr>
     <b-td
       class="align-top"
-      :rowspan="product.statuses.length"
+      :rowspan="numberOfDisapprovedDestinations"
       v-if="!indexStatus"
     >
       {{ product.id }}{{ +product.attribute > 0 ? '&#8209;' + product.attribute : '' }}
     </b-td>
     <b-td
       class="align-top b-table-sticky-column"
-      :rowspan="product.statuses.length"
+      :rowspan="numberOfDisapprovedDestinations"
       v-if="!indexStatus"
     >
       <a
@@ -24,7 +24,7 @@
     </b-td>
     <b-td
       class="align-top"
-      :rowspan="countriesAndStatusAreTheSame ? product.statuses.length : 0"
+      :rowspan="countriesAndStatusAreTheSame ? numberOfDisapprovedDestinations : 0"
       v-if="!indexStatus || !countriesAndStatusAreTheSame"
     >
       <b-badge
@@ -38,7 +38,7 @@
     </b-td>
     <b-td
       class="align-top"
-      :rowspan="countriesAndStatusAreTheSame ? product.statuses.length : 0"
+      :rowspan="countriesAndStatusAreTheSame ? numberOfDisapprovedDestinations : 0"
       v-if="!indexStatus || !countriesAndStatusAreTheSame"
     >
       <span>
@@ -53,7 +53,7 @@
 
     <b-td
       class="align-top"
-      :rowspan="countriesAndStatusAreTheSame ? product.statuses.length : 0"
+      :rowspan="countriesAndStatusAreTheSame ? numberOfDisapprovedDestinations : 0"
       v-if="!indexStatus || !countriesAndStatusAreTheSame"
     >
       <b-badge
@@ -153,6 +153,9 @@ export default defineComponent({
         .every((anotherStatus) => anotherStatus.status === this.status.status
           && JSON.stringify(anotherStatus.countries) === JSON.stringify(this.status.countries),
         );
+    },
+    numberOfDisapprovedDestinations(): number {
+      return this.product.statuses.filter((s) => s.status === ProductStatus.Disapproved).length;
     },
     merchantCenterWebsitePageUrl() {
       const {id} = this.$store.state.accounts.googleMerchantAccount;
