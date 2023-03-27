@@ -72,11 +72,6 @@ export default {
       ],
     };
   },
-  computed: {
-    accountHasAtLeastOneCampaign() {
-      return !!this.$store.getters['campaigns/GET_ALL_CAMPAIGNS']?.length;
-    },
-  },
   methods: {
     cancel() {
       this.$refs.modal.hide();
@@ -86,15 +81,9 @@ export default {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
-      // Prevent popin for opening if tracking is a campaign exists
-      if (this.accountHasAtLeastOneCampaign) {
-        this.$router.push({
-          name: 'campaign-creation',
-        });
-      } else {
-        this.$refs.modal.hide();
-        this.$emit('openPopinRemarketingTag');
-      }
+
+      this.$refs.modal.hide();
+      this.$emit('openPopinRemarketingTag');
     },
   },
 };
