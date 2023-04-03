@@ -41,20 +41,18 @@ new Vue({
       const campaigns = this.$store.getters['campaigns/GET_ALL_CAMPAIGNS'];
       const isActiveCamp = campaigns.some((camp) => camp.status === CampaignStatus.ELIGIBLE);
 
-      if (userId) {
-        // @ts-ignore
-        this.$segment.identify(userId, {
-          name: psAccountContext.currentShop.domainSsl,
-          email: psAccountContext.user.email,
-          language: this.$i18n.locale,
-          version_ps: this.$store.state.app.psVersion,
-          ggl_module_version: this.$store.state.app.psxMktgWithGoogleModuleVersion,
-          ggl_api_endpoint: this.$store.state.app.psxMktgWithGoogleApiUrl,
-          ggl_user_has_enabled_campaign: isActiveCamp,
-          ggl_user_has_googleAds_connected: !!this.$store.state.googleAds.accountChosen,
-          ggl_user_has_productFeed_exported: this.$store.state.productFeed.isConfigured,
-        });
-      }
+      // @ts-ignore
+      this.$segment.identify(userId || btoa(window.location.host).slice(0, -1), {
+        name: psAccountContext?.currentShop?.domainSsl,
+        email: psAccountContext?.user?.email,
+        language: this.$i18n.locale,
+        version_ps: this.$store.state.app.psVersion,
+        ggl_module_version: this.$store.state.app.psxMktgWithGoogleModuleVersion,
+        ggl_api_endpoint: this.$store.state.app.psxMktgWithGoogleApiUrl,
+        ggl_user_has_enabled_campaign: isActiveCamp,
+        ggl_user_has_googleAds_connected: !!this.$store.state.googleAds.accountChosen,
+        ggl_user_has_productFeed_exported: this.$store.state.productFeed.isConfigured,
+      });
     },
   },
   render: (h) => h(App),
