@@ -33,7 +33,7 @@
   "dependencies": {
     "@sentry/browser": "^7.39.0",
     "@sentry/tracing": "^7.39.0",
-    "i18n-js": "^4.2.3",
-    "mktg-with-google-common": "workspace:*"
+    "mktg-with-google-common": "workspace:*",
+    "vue-i18n": "^9.2.2"
   }
 }

@@ -8,7 +8,7 @@ import pl from "mktg-with-google-common/translations/pl/warnings.json";
 import pt from "mktg-with-google-common/translations/pt/warnings.json";
 import ru from "mktg-with-google-common/translations/ru/warnings.json";
 import {WarningElement} from "./WarningElement";
-import { I18n } from "i18n-js";
+import {createI18n} from "vue-i18n";
 
 export const messages = {
   de,
@@ -22,21 +22,23 @@ export const messages = {
   ru,
 };
 
-const i18n = new I18n(messages, {
-  defaultLocale: 'en',
+const i18n = createI18n({
+  messages,
+  fallbackLocale: 'en',
 });
 
 export const buildWarningMessages = (messageKeys: string[], settings: {isoCode: string, link: string}) => {
   
-  i18n.locale = settings.isoCode;
+  // @ts-ignore
+  i18n.global.locale = settings.isoCode;
   const elements = messageKeys.map((messageKey) => 
     new WarningElement({
-      message: i18n.t(`${messageKey}.message`, {
-        'link': `<a href="${settings.link}" target="_blank">`,
-        '/link': '</a>',
-      }),
+      message: i18n.global.t(`${messageKey}.message`, {
+        link: `<a href="${settings.link}" target="_blank">`,
+        endLink: '</a>',
+      }).toString(),
       cta: {
-        buttonContent: i18n.t(`${messageKey}.ctaContent`),
+        buttonContent: i18n.global.t(`${messageKey}.ctaContent`).toString(),
         link: settings.link,
       },
       onClose: () => {
