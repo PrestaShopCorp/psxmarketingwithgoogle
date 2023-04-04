@@ -198,7 +198,7 @@ class PsxMarketingWithGoogle extends Module
             $this->context->controller->addJs($this->getPathUri() . 'views/js/hook/shippingWarning.js');
         }
 
-        if ($this->context->controller->controller_name === 'AdminDashboard' && $this->getService(VerificationTagDataProvider::class)->isUpdateRequested()) {
+        if ($this->context->controller->controller_name === 'AdminDashboard') {
             $env = $this->getService(Env::class);
             try {
                 $psAccountsService = $this->getService(PsAccounts::class)->getPsAccountsService();
@@ -213,13 +213,22 @@ class PsxMarketingWithGoogle extends Module
                 Media::addJsDef([
                     'psxMktgWithGoogleApiUrl' => $env->get('PSX_MKTG_WITH_GOOGLE_API_URL'),
                     'psxMktgWithGoogleControllerLink' => $this->context->link->getAdminLink('AdminAjaxPsxMktgWithGoogle'),
+                    'psxMktgWithGoogleAdminUrl' => $this->context->link->getAdminLink('AdminPsxMktgWithGoogleModule'),
                     'psxMktgWithGoogleTokenPsAccounts' => $tokenPsAccounts,
                     'psxMktgWithGoogleShopIdPsAccounts' => $shopIdPsAccounts,
                     'psxMktgWithGoogleDsnSentry' => $env->get('PSX_MKTG_WITH_GOOGLE_SENTRY_CREDENTIALS_VUE'),
                     'psxMktgWithGoogleOnProductionEnvironment' => $env->get('PSX_MKTG_WITH_GOOGLE_API_URL') === Config::PSX_MKTG_WITH_GOOGLE_API_URL,
+                    'i18nSettings' => [
+                        'isoCode' => $this->context->language->iso_code,
+                        'languageLocale' => $this->context->language->language_code,
+                    ],
                 ]);
-                $jsPath = (bool) $env->get('USE_LOCAL_VUE_APP') ? $this->getPathUri() . 'views/js/fetchVerificationTag.js' : $env->get('PSX_MKTG_WITH_GOOGLE_CDN_URL') . 'fetchVerificationTag.js';
-                $this->context->controller->addJs($jsPath);
+                if ($this->getService(VerificationTagDataProvider::class)->isUpdateRequested()) {
+                    $verificationTagJsPath = (bool) $env->get('USE_LOCAL_VUE_APP') ? $this->getPathUri() . 'views/js/fetchVerificationTag.js' : $env->get('PSX_MKTG_WITH_GOOGLE_CDN_URL') . 'fetchVerificationTag.js';
+                    $this->context->controller->addJs($verificationTagJsPath);
+                }
+                $warningMessageJsPath = (bool) $env->get('USE_LOCAL_VUE_APP') ? $this->getPathUri() . 'views/js/fetchWarningMessage.js' : $env->get('PSX_MKTG_WITH_GOOGLE_CDN_URL') . 'fetchWarningMessage.js';
+                $this->context->controller->addJs($warningMessageJsPath);
             }
         }
 

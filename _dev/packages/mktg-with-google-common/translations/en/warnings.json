@@ -1,0 +1,10 @@
+{
+    "NOT_ONBOARDED": {
+        "message": "%{link}PS Marketing with Google%{/link} is not configured. You are missing out on a lot of opportunities and visibility. It is highly recommended that you configure your synchronisation settings to maximise your benefits and enhance your online presence. Take action now to avoid missing out on valuable opportunities!",
+        "ctaContent": "Start the configuration"
+    },
+    "NOT_COMPLETED": {
+        "message": "It appears that you have not finalised your configuration with %{link}PS Marketing with Google%{/link}. This may result in limited functionality and missed opportunities. To ensure that you are fully set up and able to take advantage of all available features, please complete the configuration process as soon as possible.",
+        "ctaContent": "Finalise the configuration"
+    }
+}
