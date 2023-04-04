@@ -45,7 +45,7 @@ if (window.psxMktgWithGoogleOnProductionEnvironment) {
 document.addEventListener('DOMContentLoaded', function () {
 
   // ToDo: Plug with API
-  const messagesToDisplay = ['NOT_ONBOARDED', 'NOT_COMPLETED'];
+  const messagesToDisplay = ['NOT_ONBOARDED', 'ONBOARDING_INCOMPLETE'];
 
   buildWarningMessages(messagesToDisplay, {
     isoCode: window.i18nSettings.isoCode,

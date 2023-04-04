@@ -38,12 +38,16 @@ export const buildWarningMessages = (messageKeys: string[], settings: {isoCode: 
       cta: {
         buttonContent: i18n.t(`${messageKey}.ctaContent`),
         link: settings.link,
-      }
+      },
+      onClose: () => {
+        console.log(`Message ${messageKey} has been acknowledged.`);
+      },
     }).build(),
   );
 
 
   return {
+    elements,
     attachBefore: (target: Element): void => {
       target.before(...elements);
     },

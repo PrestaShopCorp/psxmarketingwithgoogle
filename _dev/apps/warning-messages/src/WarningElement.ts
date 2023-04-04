@@ -5,6 +5,7 @@ export type WarningElementOptions = {
         buttonContent: string;
     };
     id?: string;
+    onClose?: (this: Element, ev: MouseEvent) => any, options?: boolean | EventListenerOptions;
 }
 
 export class WarningElement {
@@ -32,6 +33,9 @@ export class WarningElement {
             </div>
         `;
         this.warning.innerHTML = content;
+        if (this.options.onClose) {
+            this.warning.getElementsByClassName('close').item(0).addEventListener('click', this.options.onClose);
+        }
         return this.warning;
     }
 }
