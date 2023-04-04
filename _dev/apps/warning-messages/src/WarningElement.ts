@@ -19,7 +19,7 @@ export class WarningElement {
         };
     }
 
-    build(): Node {
+    build(): Element {
         const ctaContent = this.options.cta ? `<a href="${this.options.cta.link}" target="_blank">${this.options.cta.buttonContent}</a>` : '';
 
         this.warning = document.createElement('div');
@@ -31,7 +31,7 @@ export class WarningElement {
                     ${this.options.message} ${ctaContent}
                 </div>
             </div>
-        `;
+`;
         this.warning.innerHTML = content;
         if (this.options.onClose) {
             this.warning.getElementsByClassName('close').item(0).addEventListener('click', this.options.onClose);
