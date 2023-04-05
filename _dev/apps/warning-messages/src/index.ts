@@ -1,6 +1,7 @@
 import * as Sentry from "@sentry/browser";
-import {initOnboardingClient} from "mktg-with-google-common/api/onboardingClient";
+import {fetchOnboarding, initOnboardingClient} from "mktg-with-google-common/api/onboardingClient";
 import {buildWarningMessages} from "./warning-messages-generator";
+import {getListOfWarnings} from "./wanings-list-retriever";
 
 
 declare global {
@@ -42,10 +43,9 @@ if (window.psxMktgWithGoogleOnProductionEnvironment) {
   });
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async () => {
 
-  // ToDo: Plug with API
-  const messagesToDisplay = ['NOT_ONBOARDED', 'ONBOARDING_INCOMPLETE'];
+  const messagesToDisplay = await getListOfWarnings(fetchOnboarding);
 
   buildWarningMessages(messagesToDisplay, {
     isoCode: window.i18nSettings.isoCode,

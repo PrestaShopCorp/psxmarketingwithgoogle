@@ -7,8 +7,10 @@ import nl from "mktg-with-google-common/translations/nl/warnings.json";
 import pl from "mktg-with-google-common/translations/pl/warnings.json";
 import pt from "mktg-with-google-common/translations/pt/warnings.json";
 import ru from "mktg-with-google-common/translations/ru/warnings.json";
-import {WarningElement} from "./WarningElement";
 import {createI18n} from "vue-i18n";
+import {fetchOnboarding} from "mktg-with-google-common";
+import {WarningElement} from "./WarningElement";
+import {aknowledgeWarning} from "./wanings-list-retriever";
 
 export const messages = {
   de,
@@ -42,6 +44,7 @@ export const buildWarningMessages = (messageKeys: string[], settings: {isoCode: 
         link: settings.link,
       },
       onClose: () => {
+        aknowledgeWarning(messageKey, fetchOnboarding);
         console.log(`Message ${messageKey} has been acknowledged.`);
       },
     }).build(),
