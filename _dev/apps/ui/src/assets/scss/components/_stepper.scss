@@ -112,8 +112,8 @@ $stepWidthMobile: rem(42);
     &.active,
     &.complete {
       #{$root}__step {
-        background-color: $blue;
-        border-color: $blue;
+        background-color: $primary;
+        border-color: $primary;
         color: #fff;
         font-weight: 600;
       }
@@ -168,7 +168,7 @@ $stepWidthMobile: rem(42);
         content: '';
         display: block;
         position: absolute;
-        background: $blue;
+        background: $primary;
         z-index: -1;
         height: 2px;
         width: 50%;

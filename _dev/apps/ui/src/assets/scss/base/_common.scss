@@ -1,3 +1,7 @@
+a {
+  color: $blue;
+}
+
 a[target="_blank"]:not(.external_link-no_icon) {
 
   &:not(.btn) {
@@ -13,7 +17,7 @@ a[target="_blank"]:not(.external_link-no_icon) {
 
     &:hover,
     &:focus {
-      color: $blue !important;
+      color: rgba($blue, 0.65) !important;
     }
     &::after {
       content: "\e895"; // "launch" icon
@@ -29,12 +33,12 @@ a[target="_blank"]:not(.external_link-no_icon) {
 
 .text-muted a[target="_blank"]:not(.external_link-no_icon),
 a[target="_blank"].text-muted:not(.external_link-no_icon) {
-  color: $grey_muted !important;
+  color: $blue !important;
 }
 
 .text-muted a.with-hover,
 a.text-muted.with-hover {
-  color: $grey_muted !important;
+  color: $blue !important;
 
   &:hover, &:focus {
     color: $blue !important;
@@ -79,10 +83,10 @@ a.without-hover {
   animation: rotating 2s linear infinite;
 
   &--dark {
-    border-top-color: $blue;
+    border-top-color: $primary;
     border-right-color: $purple-050;
     border-bottom-color: $purple-050;
-    border-left-color: $blue;
+    border-left-color: $primary;
   }
 
   &--big {

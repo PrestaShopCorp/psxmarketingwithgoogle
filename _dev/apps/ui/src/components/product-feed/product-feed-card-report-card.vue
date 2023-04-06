@@ -22,7 +22,7 @@
     </div>
     <b-link
       @click="goTo(linkTo)"
-      class="text-right"
+      class="text-right font-weight-600"
     >
       {{ basicDisplay ? $t('cta.edit') : link }}
     </b-link>

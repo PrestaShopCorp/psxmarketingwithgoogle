@@ -18,7 +18,7 @@
         </p>
       </div>
       <span
-        class="font-weight-600 ml-auto text-dark text-nowrap"
+        class="font-weight-700 ml-auto text-dark text-nowrap"
         v-if="syncStatus === 'success' || syncStatus === 'planned' || syncStatus === 'failed'"
       >
         <b-button
@@ -26,7 +26,7 @@
             && productStatus.statusOfProducts === ProductsStatusType.DISAPPROVED "
           variant="invisible"
           :to="{name: 'product-feed-status'}"
-          class="text-primary bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13 mr-2"
+          class="text-primary bg-transparent p-0 border-0 font-weight-700 ps_gs-fz-13 mr-2"
         >
           {{ productStatus.numberOfProducts }}
         </b-button>
@@ -34,7 +34,7 @@
         <span
           v-else-if="syncStatus === 'success'"
         >
-          <p class="bg-transparent p-0 border-0 font-weight-600 ps_gs-fz-13 mr-2">
+          <p class="bg-transparent p-0 border-0 font-weight-700 ps_gs-fz-13 mr-2">
             {{ productStatus.numberOfProducts }}
           </p>
         </span>
