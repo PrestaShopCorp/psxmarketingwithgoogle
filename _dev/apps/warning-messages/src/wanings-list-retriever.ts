@@ -35,7 +35,7 @@ export const aknowledgeWarning = async (
 ): Promise<void> => {
   await fetchOnboarding(
     "POST",
-    `shop-warning/${message}/ack`,
+    `shop-warnings/${message}/ack`,
     {
       correlationId,
       onResponse: responseHandler,
