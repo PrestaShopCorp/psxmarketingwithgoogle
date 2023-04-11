@@ -20,7 +20,6 @@
 
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Repository;
 
-use Context;
 use Db;
 use DbQuery;
 
@@ -31,17 +30,11 @@ class StateRepository
      */
     private $db;
 
-    /**
-     * @var Context
-     */
-    private $context;
-
     private $stateIsoCodeCache = [];
 
-    public function __construct(Db $db, Context $context)
+    public function __construct(Db $db)
     {
         $this->db = $db;
-        $this->context = $context;
     }
 
     private function getBaseQuery(): DbQuery

@@ -11,7 +11,6 @@ services:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Database\Uninstaller
     public: true
     arguments:
-      - '@psxmarketingwithgoogle'
       - '@PrestaShop\Module\PsxMarketingWithGoogle\Repository\TabRepository'
       - '@PrestaShop\Module\PsxMarketingWithGoogle\Tracker\Segment'
       - '@PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler'

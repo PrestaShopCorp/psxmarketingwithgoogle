@@ -98,11 +98,11 @@
           v-if="stepsAreCompleted.step2"
           :is-enabled="stepsAreCompleted.step3"
           :loading="SSCIsLoading"
-          @openPopin="onOpenPopinActivateTracking"
+          @openPopin="proceedToCampaignCreation"
           @remarketingTagHasBeenActivated="checkAndOpenPopinConfigrationDone"
         />
         <CampaignTracking
-          v-if="getRemarketingTag !== null && accountHasAtLeastOneCampaign"
+          v-if="remarketingTagIsSet !== null && accountHasAtLeastOneCampaign"
         />
         <PromoCard />
       </div>
@@ -132,7 +132,7 @@
     />
     <PopinModuleConfigured
       ref="PopinModuleConfigured"
-      @openPopinRemarketingTag="onOpenPopinActivateTracking"
+      @openPopinRemarketingTag="proceedToCampaignCreation"
     />
     <!-- Toasts -->
     <PsToast
@@ -254,10 +254,17 @@ export default {
         this.$refs.GoogleAdsAccountPopinNew.$refs.modal.id,
       );
     },
-    onOpenPopinActivateTracking() {
-      this.$bvModal.show(
-        this.$refs.SSCPopinActivateTrackingOnboardingPage.$refs.modal.id,
-      );
+    proceedToCampaignCreation() {
+      // If the remarketing tag is not set yet, open the modal
+      if (!this.accountHasAtLeastOneCampaign || !this.remarketingTagIsSet) {
+        this.$bvModal.show(
+          this.$refs.SSCPopinActivateTrackingOnboardingPage.$refs.modal.id,
+        );
+        return;
+      }
+      this.$router.push({
+        name: 'campaign-creation',
+      });
     },
     toastIsClosed() {
       if (this.googleAccountConnectedOnce) {
@@ -379,7 +386,7 @@ export default {
     accountHasAtLeastOneCampaign() {
       return !!this.$store.getters['campaigns/GET_ALL_CAMPAIGNS']?.length;
     },
-    getRemarketingTag() {
+    remarketingTagIsSet() {
       return this.$store.getters['campaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
     },
     stepsAreCompleted() {

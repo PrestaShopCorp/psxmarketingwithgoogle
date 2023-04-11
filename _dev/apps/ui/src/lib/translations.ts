@@ -1,12 +1,12 @@
-import de from '@/assets/json/translations/de/ui.json';
-import en from '@/assets/json/translations/en/ui.json';
-import es from '@/assets/json/translations/es/ui.json';
-import fr from '@/assets/json/translations/fr/ui.json';
-import it from '@/assets/json/translations/it/ui.json';
-import nl from '@/assets/json/translations/nl/ui.json';
-import pl from '@/assets/json/translations/pl/ui.json';
-import pt from '@/assets/json/translations/pt/ui.json';
-import ru from '@/assets/json/translations/ru/ui.json';
+import de from 'mktg-with-google-common/translations/de/ui.json';
+import en from 'mktg-with-google-common/translations/en/ui.json';
+import es from 'mktg-with-google-common/translations/es/ui.json';
+import fr from 'mktg-with-google-common/translations/fr/ui.json';
+import it from 'mktg-with-google-common/translations/it/ui.json';
+import nl from 'mktg-with-google-common/translations/nl/ui.json';
+import pl from 'mktg-with-google-common/translations/pl/ui.json';
+import pt from 'mktg-with-google-common/translations/pt/ui.json';
+import ru from 'mktg-with-google-common/translations/ru/ui.json';
 
 export const messages = {
   de,

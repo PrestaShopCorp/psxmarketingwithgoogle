@@ -235,7 +235,7 @@ export default {
         name: 'shippingSettings',
         data: productFeedSettings.shippingSettings,
       });
-      commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, attributeMapping);
+      commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, newSettings.attributeMapping);
     } catch (error) {
       commit(MutationsTypes.API_ERROR, true);
       console.error(error);

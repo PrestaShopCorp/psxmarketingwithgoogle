@@ -76,28 +76,14 @@ export default {
       default: true,
     },
   },
-  computed: {
-    accountHasAtLeastOneCampaign() {
-      return !!this.$store.getters['campaigns/GET_ALL_CAMPAIGNS']?.length;
-    },
-    remarketingTagIsSet() {
-      return this.$store.getters['campaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
-    },
-  },
   methods: {
     openPopinActivateTracking() {
       this.$segment.track('[GGL] Create SSC Config tab', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
-      // Prevent popin for opening if tracking is a campaign exists
-      if (this.accountHasAtLeastOneCampaign && this.remarketingTagIsSet) {
-        this.$router.push({
-          name: 'campaign-creation',
-        });
-      } else {
-        this.$emit('openPopin');
-      }
+
+      this.$emit('openPopin');
     },
   },
 };

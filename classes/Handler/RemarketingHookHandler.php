@@ -103,7 +103,7 @@ class RemarketingHookHandler
                 ]);
 
                 $this->templateBuffer->add(
-                    $this->module->display($this->module->getfilePath(), '/views/templates/hook/gtagEvent.tpl')
+                    $this->module->display($this->module->getfilePath(), 'views/templates/hook/gtagEvent.tpl')
                 );
                 break;
             case 'hookDisplayOrderConfirmation':
@@ -115,7 +115,7 @@ class RemarketingHookHandler
                     'eventData' => $this->module->getService(PurchaseEventDataProvider::class)->getEventData($sendTo, $data['order']),
                 ]);
                 $this->templateBuffer->add(
-                    $this->module->display($this->module->getfilePath(), '/views/templates/hook/gtagEvent.tpl')
+                    $this->module->display($this->module->getfilePath(), 'views/templates/hook/gtagEvent.tpl')
                 );
                 break;
 
@@ -131,7 +131,7 @@ class RemarketingHookHandler
                     'eventData' => $this->module->getService(CartEventDataProvider::class)->getEventData($sendTo, $data),
                 ]);
                 $this->templateBuffer->add(
-                    $this->module->display($this->module->getfilePath(), '/views/templates/hook/gtagEvent.tpl')
+                    $this->module->display($this->module->getfilePath(), 'views/templates/hook/gtagEvent.tpl')
                 );
                 break;
         }
