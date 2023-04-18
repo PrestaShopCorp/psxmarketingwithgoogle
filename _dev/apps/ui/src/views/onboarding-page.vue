@@ -19,7 +19,6 @@
         />
         <div
           id="prestashop-cloudsync"
-          class="mb-3"
         />
       </div>
 
@@ -326,6 +325,15 @@ export default {
         }
       });
     },
+    initAccountsComponent() {
+      if (!window.psaccountsVue) {
+        console.log('Init PS Accounts component locally (deprecated method)');
+        psAccountsVue.init();
+        return;
+      }
+      console.log('Init PS Accounts component from CDN');
+      window.psaccountsVue.init();
+    },
   },
   computed: {
     shops() {
@@ -423,10 +431,11 @@ export default {
     },
   },
   mounted() {
-    psAccountsVue.init();
+    this.initAccountsComponent();
     this.initCloudSyncConsent();
 
     window.addEventListener('load', () => {
+      this.initAccountsComponent();
       this.initCloudSyncConsent();
     });
 
