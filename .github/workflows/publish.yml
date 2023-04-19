@@ -253,4 +253,4 @@ jobs:
           environment: production
           version: ${{ github.ref }}
           sourcemaps: views/js
-          url_prefix: "~/psxmarketing-cdn/{{ steps.get_tag.outputs.MAJOR }}.x.x/js"
+          url_prefix: "~/psxmarketing-cdn/${{ steps.get_tag.outputs.MAJOR }}.x.x/js"
