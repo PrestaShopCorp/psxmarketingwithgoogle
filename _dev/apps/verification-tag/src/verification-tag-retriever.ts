@@ -60,6 +60,13 @@ const responseHandler = async (response: Response) => {
     try {
       const content = await response.text();
       scope.setExtra('responseContent', content);
+
+      // Allow call to fails when the overwrite is requested by Google.
+      if (response.url.includes('shopping-websites/site-verification/claim')
+        && content.includes('"needOverwrite":true')
+      ) {
+        return response;
+      }
     } catch {
       // Do nothing
     }
