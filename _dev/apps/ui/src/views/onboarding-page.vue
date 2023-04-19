@@ -147,7 +147,6 @@
 </template>
 
 <script>
-import psAccountsVue from 'prestashop_accounts_vue_components';
 import SectionTitle from '../components/onboarding/section-title';
 import GoogleAccountCard from '../components/google-account/google-account-card';
 import GoogleAdsAccountCard from '../components/google-ads-account/google-ads-account-card';
@@ -327,11 +326,8 @@ export default {
     },
     initAccountsComponent() {
       if (!window.psaccountsVue) {
-        console.log('Init PS Accounts component locally (deprecated method)');
-        psAccountsVue.init();
         return;
       }
-      console.log('Init PS Accounts component from CDN');
       window.psaccountsVue.init();
     },
   },
