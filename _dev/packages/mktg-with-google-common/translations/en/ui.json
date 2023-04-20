@@ -627,81 +627,52 @@
       "campaignType": "Type: {0}"
     },
     "productFeedPage": {
-      "breadcrumb": "Product status details",
+      "breadcrumb": {
+        "productStatusDetails": "Product status details",
+        "nonCompliantProducts": "Non-compliant products"
+      },
       "alert": {
         "googleIsReviewing": "Your products are being reviewed.  \n It might take 3-5 days to review your products. Once approved, your products will be available for free listings and ads.",
         "alertSuccess": "You are successfully opted in. Once your products are approved, they can appear in Google Shopping tab search results."
       },
-      "destinations" : {
-        "shoppingAds" : "Shopping Ads",
-        "enhancedFreeListing":  "Enhanced Free Listings"
-      },
-      "syncStatus": {
-        "title": "Synchronization status",
-        "readyForExport": "Product feed is ready for export",
-        "syncProcessed": "Sync in progress / completed",
-        "syncFailed": "Sync not successful",
-        "nextSync": "Next sync: {0}",
-        "lastSync": "Last sync: {0}",
-        "prescanTitle": "Coming up next synchronization",
-        "scheduleOn": "Synchronization scheduled on {0}",
-        "alert": "Product sync was not successful. Check possible reasons in [Merchant Center]({0})[:target=\"_blank\"] or contact [customer support](mailto:support-google@prestashop.com)."
-      },
-      "syncSummary" : {
-        "syncHistory" : {
-          "title" : {
-            "planned" : "Synchronisation planned",
-            "started" : "Synchronisation started",
-            "failed" : "Synchronisation failed",
-            "completed" : "Synchronisation completed",
-            "next" : "Next synchronisation",
-            "notPlanned" : "No planned synchronisation"
-          },
-          "subtitle" : {
-            "willHappenOnDate" : "Will start on {0} at {1}",
-            "happenedOnDate" : "On {date}",
-            "error" : "Due to a technical issue, the sync failed on {0} at {1}. A new one will run in a few hours."
+      "dashboardPage": {
+        "timeline": {},
+        "productFeedConfiguration": {
+          "title": "Your product feed's configuration",
+          "lastConfigurationDate": "Last configuration {0}",
+          "targetCountries": "Se are the languages from the shop configuration. If the user click on it, he will be redirected (new tab) to the International > Localisation > languages+ area of his shop parameters.lected target countries:",
+          "languages": "Languages:"
+        },
+        "productVerification": {
+          "stepTitle": "Products verified by Prestashop before sent to Google",
+          "stepDetails": "Before sending all your products (including variations), we ensure their compliance with Google's Merchant center policies. We verify the products **every time a change is detected**, and if there are any non-compliant products, we provide guidance on what needs to be done. Click on non-compliant products for more information.\n\nAfter submission, Google assigns each product a status: **Approved, Expiring, Pending, or Disapproved**.",
+          "reportCards": {
+            "productsInCatalog": "My product catalog",
+            "productsinCatalogDescription": "Number of products (variations included) available on your shop",
+            "verified": "Verfied products",
+            "verifiedDescription": "Products that have been verified by Prestashop and are ready to be sent to Google.",
+            "nonCompliant": "Non-compliant products",
+            "nonCompliantDescription": "Products that do not meet Google's requirements"
+          }
+        },
+        "productsSentToGoogle": {
+          "stepTitle": "Product sent to Google",
+          "stepDetails": "This report displays the status of all your products that have been sent to Google Merchant Center. Please note that it may take a few days for Google to review your products. You can use this report to track the progress of each product and ensure that they are approved and active on Google Shopping.\n‘Approved’ products are fully approved and eligible to appear in free listings on Google.\n‘Pending’ products are being processed by Google. They will not appear in listings until they are approved.\n‘Expiring’ products will become inactive and no longer appear in Google listings in the next days.\n‘Disapproved’ products are inactive and do not appear in Google listings. You can click on Disapproved box for more information.",
+          "reportCards": {
+            "approved": "Approved",
+            "approvedDescription": "Products (variations included) successfully synced with Google",
+            "pending": "Pending",
+            "pendingDescription": "Products being reviewed by Google",
+            "expiring": "Expiring",
+            "expiringDescription": "Products no longer valid and that will soon be removed from Google",
+            "disapproved": "Disapproved",
+            "disapprovedDescription": "Products that are disapproved by Google"
           }
         }
       },
-      "productStatus": {
-        "title": "Products status",
-        "description": "The status of your product lets you know if your product is eligible to appear in the destination you’ve opted into.  \nA pending product won't show in ads or free listings because it's being reviewed by Google.  \nExpiring products will expire in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
-        "alert": "It takes 3-5 business days to review products",
-        "approvedProducts": "Approved",
-        "approvedProductsDescription": "Active products are fully approved and eligible to appear in results.",
-        "pendingProducts": "Pending",
-        "pendingProductsDescription": "A pending product won't show in ads or free listings because it's being reviewed by Google.",
-        "expiringProducts": "Expiring",
-        "expiringProductsDescription": "Expiring products will be removed from your Google merchant center in the next 3 days, and will no longer be eligible to appear in ads or free listings.",
-        "disapprovedProducts": "Not approved",
-        "disapprovedProductsDescription": "Your product is disapproved for a destination and isn't active.",
-        "productsSubmittedToGoogle": "Active products submitted to Google: {0}",
-        "approvalStatusList": "Approved, Pending, Not approved"
-      },
-      "overview": {
-        "title" : "Active products submitted to Google",
-        "description" : "The status of your product lets you know if your product is eligible to appear in the destination you’ve opted into.",
-        "alert" : {
-          "prescanTitle": "Warning {0} product couldn’t be exported to Google | Warning {0} products couldn’t be exported to Google",
-          "prescanDescription": "Some of your products didn’t pass our verification, make sure that your products have the required information to be listed on Google Shopping."
-        }
-      },
-      "preScan": {
-        "xProducts" : " {0} product | {0} product | {0} products",
-        "description": "{0} with problems that couldn't be synced are listed below.",
-        "fields": {
-          "name": "Name",
-          "language": "Language",
-          "image": "Image",
-          "description": "Description",
-          "barcode": "GTIN/Brand",
-          "price": "Price"
-        },
-        "xHasFailedPreValidation" : "\"{0}\": has failed the pre-validation.",
-        "xHasPassedPreValidation" : "\"{0}\": has passed the pre-validation.",
-        "labelTooltipDescription": "This attribute matches what you have configured in your product attribute mapping : short description, description...",
-        "labelTooltipBarcode": "GTIN is a unique identifier used to identify products. it can be UPC or EAN or JAN or ISBN. If you don't have a GTIN for your product, in this case add a Brand (of the product or your company) AND a MPN (Manufacturer Part Number) which is a unique identifier different from the GTIN, assigned by a manufacturer to identify a specific product or part"
+      "destinations" : {
+        "shoppingAds" : "Shopping Ads",
+        "enhancedFreeListing":  "Enhanced Free Listings"
       },
       "approvalTable": {
         "description": "These are the status of your products that are sent to Google Merchant Center. Some products might appear more than once because of their language variation.",
@@ -723,25 +694,7 @@
         "goToLabel": "Go to page:",
         "editX": "Edit {0}",
         "noReasonFallback": "*Not provided, check [account errors on your Merchant Center]({0})[:target=\"_blank\"].*"
-      },
-      "errorReason": {
-        "fieldXMissing": "A required field is missing: {0}",
-        "incorrectInfos": "Typos and other missing or incorrect information",
-        "invalidDatafeedLocation": "Invalid data feed file location",
-        "incorrectPrice": "Missing or incorrect prices"
       }
-    },
-    "syncTimeline": {
-      "title1" : "Products Extraction",
-      "subtitle1" : "Now or later, depends on your sync settings",
-      "title2" : "Products Verification",
-      "subtitle2" : "Filtering products with missing information",
-      "title3" : "Export to Google",
-      "subtitle3" : "Sending filtered products",
-      "title4" : "Google Review",
-      "subtitle4" : "Compliance verification",
-      "title5" : "New Sync",
-      "subtitle5" : "If you update your products"
     },
     "campaignCard": {
       "title": "Create your Performance Max campaign in a few clicks",
