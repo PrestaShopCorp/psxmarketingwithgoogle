@@ -146,6 +146,9 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             case 'getModuleStatus':
                 $this->getModuleStatus($inputs);
                 break;
+            case 'registerHook':
+                $this->registerHook($inputs);
+                break;
             default:
                 http_response_code(400);
                 $this->ajaxDie(json_encode(['success' => false, 'message' => $this->l('Action is missing or incorrect.')]));
@@ -510,6 +513,23 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         }
 
         return $baseUrl . '/user_guide_' . $isoCode . '.pdf';
+    }
+
+    private function registerHook(array $inputs)
+    {
+        if (!isset($inputs['hookName'])) {
+            http_response_code(400);
+            $this->ajaxDie(json_encode([
+                'success' => false,
+                'message' => 'Missing hookName key',
+            ]));
+        }
+
+        $this->ajaxDie(
+            json_encode([
+                'success' => $this->module->registerHook($inputs['hookName']),
+            ])
+        );
     }
 
     /**

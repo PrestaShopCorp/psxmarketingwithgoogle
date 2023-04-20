@@ -96,4 +96,8 @@ export default {
       return error;
     }
   },
+  // eslint-disable-next-line no-empty-pattern
+  async [ActionsTypes.TRIGGER_REGISTER_HOOK]({}, hookName: string) {
+    return fetchShop('registerHook', {hookName});
+  },
 };

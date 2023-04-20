@@ -69,10 +69,19 @@
             <strong>Hook list</strong>:
             <ul>
               <li
-                v-for="(type, hookName) in hooks"
+                v-for="(registered, hookName) in hooks"
                 :key="hookName"
               >
-                {{ hookName }} - {{ type ? '✅':'❌' }}
+                {{ hookName }} - {{ registered ? '✅':'❌' }}
+                <b-button
+                  v-if="!registered"
+                  class="ml-3"
+                  variant="primary"
+                  size="sm"
+                  @click="registerHook(hookName)"
+                >
+                  🩹 Register hook
+                </b-button>
               </li>
             </ul>
           </li>
@@ -263,13 +272,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import {defineComponent} from 'vue';
 import {mapGetters, mapState} from 'vuex';
-import GettersTypes from '@/store/modules/campaigns/getters-types.ts';
-import GettersTypesApp from '@/store/modules/app/getters-types.ts';
-import GettersTypesProductFeed from '@/store/modules/product-feed/getters-types.ts';
+import GettersTypes from '@/store/modules/campaigns/getters-types';
+import GettersTypesApp from '@/store/modules/app/getters-types';
+import GettersTypesProductFeed from '@/store/modules/product-feed/getters-types';
 
-export default {
+export default defineComponent({
   name: 'Debug',
   data() {
     return {
@@ -362,11 +372,13 @@ export default {
         this.getProductFeed();
       }
     },
-    getHooks() {
-      this.$store.dispatch('app/GET_MODULES_VERSIONS', 'psxmarketingwithgoogle')
-        .then((res) => {
-          this.hooks = res.hooks;
-        });
+    async getHooks() {
+      const res = await this.$store.dispatch('app/GET_MODULES_VERSIONS', 'psxmarketingwithgoogle');
+      this.hooks = res.hooks;
+    },
+    async registerHook(hookName: string) {
+      await this.$store.dispatch('app/TRIGGER_REGISTER_HOOK', hookName);
+      await this.getHooks();
     },
     async triggerGoogleSync() {
       this.sync.loading = true;
@@ -398,5 +410,5 @@ export default {
     this.$store.dispatch('app/REQUEST_DEBUG_DATA');
     this.getHooks();
   },
-};
+});
 </script>
