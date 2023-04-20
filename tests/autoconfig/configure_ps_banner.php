@@ -4,7 +4,7 @@ use PrestaShop\PrestaShop\Adapter\Module\Configuration\ModuleComplexConfiguratio
 
 class configure_ps_banner implements ModuleComplexConfigurationInterface
 {
-    public function run()
+    public function run(PrestaShop\PrestaShop\Core\Module\ModuleInterface $module, array $params)
     {
         $languages = Language::getLanguages(false);
 

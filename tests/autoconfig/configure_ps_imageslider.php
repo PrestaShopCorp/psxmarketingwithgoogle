@@ -49,7 +49,7 @@ class configure_ps_imageslider implements ModuleComplexConfigurationInterface
         ],
     ];
 
-    public function run()
+    public function run(PrestaShop\PrestaShop\Core\Module\ModuleInterface $module, array $params)
     {
         include_once _PS_ROOT_DIR_ . '/modules/ps_imageslider/Ps_HomeSlide.php';
 

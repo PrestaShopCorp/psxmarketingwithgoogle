@@ -5,14 +5,14 @@ configuration:
 files:
   - source: "robots.txt"
     dest: "../../../../robots.txt"
-  # - source: "logo.png"
-  #   dest: "../../../../img/logo.png"
+  - source: "logo.png"
+    dest: "../../../../img/logo.png"
 
 sql:
-  - "customtext.sql"
   - "psgdpr.sql"
   - legaltexts.sql
 
 php:
   - "configure_ps_banner.php"
   - "configure_ps_imageslider.php"
+  - "configure_customtext.php"
