@@ -17,7 +17,7 @@
           </a>
         </li>
         <li class="list-inline-item ps_gs-breadcrumb__item">
-          {{ $t('productFeedPage.breadcrumb') }}
+          {{ $t('productFeedPage.breadcrumb.productStatusDetails') }}
         </li>
       </ol>
     </b-card-header>
