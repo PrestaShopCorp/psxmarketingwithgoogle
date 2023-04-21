@@ -5,15 +5,7 @@ a {
 a[target="_blank"]:not(.external_link-no_icon) {
 
   &:not(.btn) {
-    color: inherit !important;
     text-decoration: underline;
-
-    &:active,
-    &:visited {
-      // TODO:
-      // Need to discuss about this, it's bad for UX at the moment
-      color: inherit !important;
-    }
 
     &:hover,
     &:focus {

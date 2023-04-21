@@ -4,7 +4,7 @@ import {rest} from 'msw';
 import { CampaignTypes } from '@/enums/reporting/CampaignStatus';
 
 export default {
-  title: 'Campaign/Campaigns\'s list',
+  title: 'Campaign/Campaigns\' list',
   component: CampaignTableList,
 };
 

@@ -9,7 +9,7 @@ import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import cloneDeep from "lodash.clonedeep";
 
 export default {
-  title: "Campaign/Creation",
+  title: "Campaign/Form",
   component: CampaignCreation,CampaignPopin,
   parameters: {
     msw: {
