@@ -47,41 +47,23 @@ afterEach(() => {
   windowSpy.mockRestore();
 });
 
-config.mocks.$t = (key) => {
+const mockedi18n = (key) => {
   const parts = key.split('.');
   const {length} = parts;
   let property = messages[defaultLocale];
 
-  for (let i = 0; i < length; i += 1) {
+  for (let i = 0; i < length && property; i += 1) {
     property = property[parts[i]];
   }
 
-  return property;
+  return property || key;
 };
 
-config.mocks.$tc = (key) => {
-  const parts = key.split('.');
-  const {length} = parts;
-  let property = messages[defaultLocale];
+config.mocks.$t = mockedi18n;
 
-  for (let i = 0; i < length; i += 1) {
-    property = property[parts[i]];
-  }
+config.mocks.$tc = mockedi18n;
 
-  return property;
-};
-
-config.mocks.$te = (key) => {
-  const parts = key.split('.');
-  const {length} = parts;
-  let property = messages[defaultLocale];
-
-  for (let i = 0; i < length; i += 1) {
-    property = property[parts[i]];
-  }
-
-  return property;
-};
+config.mocks.$te = mockedi18n;
 
 config.mocks.$segment = {
   track: () => null,
