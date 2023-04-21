@@ -92,7 +92,8 @@ const TemplateCampaignsCreation = (args, { argTypes }) => ({
 export const BannerOnCreationCampaign:any = TemplateCampaignsCreation.bind({});
 BannerOnCreationCampaign.args = {
   mounted(this: any) {
-  this.$refs.bannerAds.$data.isBanner = true
+    this.$refs.bannerAds.$data.isBanner = true
+    this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
   }
 
 };
