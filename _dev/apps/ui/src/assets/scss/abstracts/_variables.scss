@@ -8,7 +8,13 @@ $grey_median: #B6B7B4;
 $grey-disabled: #dadada;
 $red-light: #F77B72;
 
-$blue: #174EEF;
+$blue-050: #E8EDFD;
+$blue-100: #D1DCFC;
+$blue-300: #A2B8F9;
+$blue-500: #174EEF;
+$blue-700: #2942CC;
+
+$blue: $blue-500;
 $black: #000000;
 $green: #207F4B;
 $red: #BA151A;
@@ -51,6 +57,12 @@ $theme-colors-hover: (
 );
 $theme-colors-active: (
   "primary": $primary-active,
+);
+$alerts-second-colors: (
+  "success": $green,
+  "info": $blue-700,
+  "warning": $yellow,
+  "danger": $red,
 );
 
 // Colors background
