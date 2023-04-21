@@ -26,7 +26,7 @@
             && productStatus.statusOfProducts === ProductsStatusType.DISAPPROVED "
           variant="invisible"
           :to="{name: 'product-feed-status'}"
-          class="text-primary bg-transparent p-0 border-0 font-weight-700 ps_gs-fz-13 mr-2"
+          class="bg-transparent p-0 border-0 font-weight-700 ps_gs-fz-13 mr-2"
         >
           {{ productStatus.numberOfProducts }}
         </b-button>

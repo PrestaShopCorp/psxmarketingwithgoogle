@@ -10,7 +10,7 @@
 
   option:hover,
   option:focus {
-    background-color: $purple-100;
+    background-color: $light-blue-900;
   }
 }
 
@@ -60,7 +60,7 @@
   .dropdown-item:hover,
   .dropdown-item:focus {
     color: #fff !important;
-    background-color: $purple-100;
+    background-color: $light-blue-900;
     border-radius: 0;
   }
 
@@ -128,7 +128,7 @@
 .v-select {
   &.vs--open .vs__dropdown-toggle,
   &.vs--open .vs__dropdown-menu {
-    border-color: $purple-100;
+    border-color: $light-blue-900;
   }
 
   &.has-selection {

@@ -61,7 +61,7 @@
                 <b-button
                   variant="invisible"
                   class="bg-transparent p-0 border-0
-                    font-weight-600 ps_gs-fz-13 ml-auto text-primary"
+                    font-weight-600 ps_gs-fz-13 ml-auto"
                   @click="goToProductFeed()"
                 >
                   {{ nextSyncTime }}
