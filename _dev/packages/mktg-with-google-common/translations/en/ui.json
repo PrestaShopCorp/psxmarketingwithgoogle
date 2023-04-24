@@ -640,8 +640,8 @@
         "productFeedConfiguration": {
           "title": "Your product feed's configuration",
           "lastConfigurationDate": "Last configuration {date}",
-          "targetCountries": "Se are the languages from the shop configuration. If the user click on it, he will be redirected (new tab) to the International > Localisation > languages+ area of his shop parameters.lected target countries:",
-          "languages": "Languages:"
+          "targetCountries": "Selected target country:|Selected target countries:",
+          "languages": "Language:|Languages:"
         },
         "productVerification": {
           "stepTitle": "Products verified by Prestashop before sent to Google",
@@ -656,7 +656,7 @@
           }
         },
         "productsSentToGoogle": {
-          "stepTitle": "Product sent to Google",
+          "stepTitle": "Products sent to Google",
           "stepDetails": "This report displays the status of all your products that have been sent to Google Merchant Center. Please note that it may take a few days for Google to review your products. You can use this report to track the progress of each product and ensure that they are approved and active on Google Shopping.\n**‘Approved’ products** are fully approved and eligible to appear in free listings on Google.\n**‘Pending’ products** are being processed by Google. They will not appear in listings until they are approved.\n**‘Expiring’ products** will become inactive and no longer appear in Google listings in the next days.\n**‘Disapproved’ products** are inactive and do not appear in Google listings. You can click on Disapproved box for more information.",
           "reportCards": {
             "approved": "Approved",
@@ -692,7 +692,7 @@
           "languages": "Languages",
           "actions": "Actions"
         },
-        "productId": "{id} ({variantsCount} variant) | {id} ({variantsCount} variants)"
+        "productId": "{variantsCount} variant|{variantsCount} variants"
       },
       "compliancyIssues": {
         "nameMissing": "Provide a name",
