@@ -60,16 +60,23 @@ const routes: Array<RouteConfig> = [
     path: '/product-feed',
     name: 'product-feed',
     component: ProductFeedPage,
-  },
-  {
-    path: '/product-feed/status',
-    name: 'product-feed-status',
-    component: ProductFeedPage,
-  },
-  {
-    path: '/product-feed/pre-scan',
-    name: 'product-feed-pre-scan',
-    component: ProductFeedPage,
+    children: [
+      {
+        path: 'status',
+        name: 'product-feed-status',
+        component: ProductFeedPage,
+      },
+      {
+        path: 'non-compliant-products/:error',
+        name: 'product-feed-verification-error-products',
+        component: ProductFeedPage,
+      },
+      {
+        path: 'non-compliant-products',
+        name: 'product-feed-verification-errors',
+        component: ProductFeedPage,
+      },
+    ],
   },
   {
     path: '/campaign',
