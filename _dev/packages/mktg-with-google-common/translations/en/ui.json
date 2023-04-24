@@ -1,7 +1,7 @@
 {
     "general": {
       "tabs": {
-        "exportStatus": "Export status",
+        "productFeed": "Product feed",
         "campaign": "Campaign",
         "reporting": "Reporting",
         "configuration": "Configure",

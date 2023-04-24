@@ -4,6 +4,15 @@
     <product-feed-pre-scan-table-status-details
       v-else-if="$route.path === '/product-feed/pre-scan'"
     />
+    <!--
+      New routes to implement:
+      - product-feed-verification-error-products
+      - product-feed-verification-errors
+
+    <component
+      v-else-if="$route.name === 'product-feed-verification-error-products'"
+    />
+    -->
     <template v-else>
       <PsToast
         v-if="allDataLoaded && syncStatus === 'schedule' && !inNeedOfConfiguration"
