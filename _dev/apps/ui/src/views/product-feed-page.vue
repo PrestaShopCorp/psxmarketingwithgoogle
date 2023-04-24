@@ -22,9 +22,6 @@
       >
         <p> {{ $t('productFeedPage.alert.alertSuccess') }}</p>
       </PsToast>
-      <sync-timeline
-        v-if="!inNeedOfConfiguration"
-      />
       <sync-overview
         :in-need-of-configuration="inNeedOfConfiguration"
       />
@@ -35,7 +32,6 @@
 <script>
 import ProductFeedTableStatusDetails from '@/components/product-feed-page/product-feed-table-status-details';
 import ProductFeedPreScanTableStatusDetails from '@/components/product-feed-page/product-feed-pre-scan-table-status-details';
-import SyncTimeline from '@/components/sync-timeline/sync-timeline';
 import SyncOverview from '@/components/product-feed-page/sync-overview.vue';
 import PsToast from '../components/commons/ps-toast';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
@@ -49,7 +45,6 @@ export default {
   components: {
     ProductFeedTableStatusDetails,
     ProductFeedPreScanTableStatusDetails,
-    SyncTimeline,
     SyncOverview,
     PsToast,
   },
