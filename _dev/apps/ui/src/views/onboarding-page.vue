@@ -19,7 +19,6 @@
         />
         <div
           id="prestashop-cloudsync"
-          class="mb-3"
         />
       </div>
 
@@ -148,7 +147,6 @@
 </template>
 
 <script>
-import psAccountsVue from 'prestashop_accounts_vue_components';
 import SectionTitle from '../components/onboarding/section-title';
 import GoogleAccountCard from '../components/google-account/google-account-card';
 import GoogleAdsAccountCard from '../components/google-ads-account/google-ads-account-card';
@@ -326,6 +324,12 @@ export default {
         }
       });
     },
+    initAccountsComponent() {
+      if (!window.psaccountsVue) {
+        return;
+      }
+      window.psaccountsVue.init();
+    },
   },
   computed: {
     shops() {
@@ -423,10 +427,11 @@ export default {
     },
   },
   mounted() {
-    psAccountsVue.init();
+    this.initAccountsComponent();
     this.initCloudSyncConsent();
 
     window.addEventListener('load', () => {
+      this.initAccountsComponent();
       this.initCloudSyncConsent();
     });
 

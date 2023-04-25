@@ -21,11 +21,13 @@
 
 <link href="{$pathApp|escape:'htmlall':'UTF-8'}" rel=preload as=script>
 <link href="https://assets.prestashop3.com/ext/cloudsync-merchant-sync-consent/latest/cloudsync-cdc.js" rel=preload as=script>
+<link href="https://unpkg.com/prestashop_accounts_vue_components@4.2" rel=preload as=script>
 
 <div id="psxMktgWithGoogleApp"></div>
 <script src="{$chunkVendor|escape:'htmlall':'UTF-8'}"></script>
 <script src="{$pathApp|escape:'htmlall':'UTF-8'}"></script>
 <script src="https://assets.prestashop3.com/ext/cloudsync-merchant-sync-consent/latest/cloudsync-cdc.js"></script>
+<script src="https://unpkg.com/prestashop_accounts_vue_components@4.2"></script>
 
 <style>
   /** Hide native multistore module activation panel, because of visual regressions on non-bootstrap content */
