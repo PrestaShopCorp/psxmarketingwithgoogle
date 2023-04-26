@@ -1,5 +1,4 @@
 import { cloneDeep } from 'lodash';
-import psAccountsVue from 'prestashop_accounts_vue_components';
 import {
   contextPsAccountsNotConnected,
   contextPsAccountsConnected,
@@ -16,11 +15,21 @@ const Template = (args, { argTypes }) => ({
   mounted: args.mounted,
 });
 
+const initAccountsComponent = () => {
+  if (!window.psaccountsVue) {
+    return;
+  }
+  window.psaccountsVue.init();
+};
+
 export const NotConnected:any = Template.bind({});
 NotConnected.args = {
   mounted: function () {
     window.contextPsAccounts = cloneDeep(contextPsAccountsNotConnected),
-    psAccountsVue.init();
+    initAccountsComponent();
+    window.addEventListener('load', () => {
+      initAccountsComponent();
+    });
   }
 }
 
@@ -28,7 +37,10 @@ export const Connected:any = Template.bind({});
 Connected.args = {
   mounted: function () {
     window.contextPsAccounts = cloneDeep(contextPsAccountsConnected),
-    psAccountsVue.init();
+    initAccountsComponent();
+    window.addEventListener('load', () => {
+      initAccountsComponent();
+    });
   }
 }
 
@@ -36,6 +48,9 @@ export const ConnectedAndValidated:any = Template.bind({});
 ConnectedAndValidated.args = {
   mounted: function () {
     window.contextPsAccounts = cloneDeep(contextPsAccountsConnectedAndValidated),
-    psAccountsVue.init();
+    initAccountsComponent();
+    window.addEventListener('load', () => {
+      initAccountsComponent();
+    });
   }
 }
