@@ -56,7 +56,7 @@
               no-caret
               size="sm"
               right
-              variant="outline-primary"
+              variant="primary"
               menu-class="ps-dropdown__menu-small rounded"
               toggle-class="px-1"
               boundary="window"

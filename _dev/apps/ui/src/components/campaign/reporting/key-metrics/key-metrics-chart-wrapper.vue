@@ -80,8 +80,8 @@ export default {
           {
             label: this.$t(`keymetrics.${this.dailyResultTypeSelected}`),
             data: this.getMetrics.map((a) => a[this.dailyResultTypeSelected]),
-            backgroundColor: '#442CC7',
-            borderColor: '#442CC7',
+            backgroundColor: '#000000',
+            borderColor: '#000000',
             borderWidth: 1,
             maxBarThickness: 100,
           },

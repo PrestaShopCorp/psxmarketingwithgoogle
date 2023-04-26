@@ -1,5 +1,14 @@
+.btn {
+  border-radius: 0;
+}
+
 .btn-sm {
   font-size: rem(14);
+}
+
+.alert {
+  border-width: 0px;
+  border-radius: 0px;
 }
 
 .alert .btn-outline-secondary {
@@ -21,14 +30,18 @@
 }
 
 .btn-invisible {
+  &:not(.disabled) {
+    color: $blue;
+  }
+
   &:hover:not(.disabled), &:focus:not(.disabled) {
-    color: $primary !important;
+    color: rgba($blue, 0.65) !important;
   }
 }
 
 .text-secondary.btn-invisible {
   &:hover, &:focus {
-    color: $primary !important;
+    color: rgba($blue, 0.65) !important;
   }
 }
 

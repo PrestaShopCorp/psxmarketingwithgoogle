@@ -100,9 +100,6 @@ import googleUrl from '@/assets/json/googleUrl.json';
 import PopinUserNotConnectedToBo from '@/components/commons/user-not-connected-to-bo-popin.vue';
 
 let resizeEventTimer;
-const root = document.documentElement;
-const header = document.querySelector('#content .page-head');
-const headerFull = document.querySelector('#header_infos');
 
 export default {
   name: 'Home',
@@ -131,7 +128,7 @@ export default {
       return this.$store.state.app.backOfficeUserIsLoggedIn;
     },
   },
-  created() {
+  mounted() {
     this.$root.identifySegment();
     this.$store.dispatch('app/CHECK_FOR_AD_BLOCKER');
     this.setCustomProperties();
@@ -158,6 +155,10 @@ export default {
       }, 250);
     },
     setCustomProperties() {
+      const root = document.documentElement;
+
+      const header = document.querySelector('#content .page-head');
+      const headerFull = document.querySelector('#header_infos');
       root.style.setProperty('--header-height', `${header.clientHeight}px`);
       root.style.setProperty('--header-height-full', `${header.clientHeight + headerFull.clientHeight}px`);
     },

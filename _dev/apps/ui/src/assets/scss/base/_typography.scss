@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400&display=swap');
 #psxMktgWithGoogleApp {
-  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-family: $font-family-sans-serif;
   line-height: 1.4em;
 }
 
@@ -71,6 +72,10 @@
 
 .ps_gs-fz-10 {
   font-size: rem(10) !important;
+}
+
+.font-weight-700 {
+  font-weight: 700;
 }
 
 .font-weight-600 {

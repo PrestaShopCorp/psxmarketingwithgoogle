@@ -64,6 +64,7 @@ import '../src/utils/Filters';
  // jest results file
  import results from '../.jest-test-results.json';
  import VueRouter from 'vue-router';
+ import router from '@/router';
 
  Vue.config.ignoredElements = ['prestashop-accounts'];
  Vue.use(BootstrapVue, BootstrapVueIcons);
@@ -80,38 +81,34 @@ import '../src/utils/Filters';
 });
 
  addDecorator((story, context) => ({
-   template: context.parameters.component === "OnboardingPage" ?
-   `
-     <div
-       class='nobootstrap'
-       style='
-         background: none;
-         padding: 0;
-         min-width: 0;
-     '>
-       <div id='psxMktgWithGoogleApp'>
-         <story />
-       </div>
-     </div>
+   template: 
      `
-     :
-     `
-     <div
-       class='nobootstrap'
-       style='
-         background: none;
-         padding: 0;
-         min-width: 0;
-     '>
-       <div id='psxMktgWithGoogleApp'>
-         <div class='ps_gs-sticky-head'>
-           <b-toaster
-             name='b-toaster-top-right'
-             class='ps_gs-toaster-top-right'
-           />
-         </div>
-         <story />
-       </div>
+     <div>
+      <div
+        id="header_infos"
+        style="display:none;"
+      >
+      </div>
+      <div
+        class='nobootstrap'
+        id="content"
+        style='
+          background: none;
+          padding: 0;
+          min-width: 0;
+      '>
+        <div class="page-head">
+        </div>
+        <div id='psxMktgWithGoogleApp'>
+          <div class='ps_gs-sticky-head'>
+            <b-toaster
+              name='b-toaster-top-right'
+              class='ps_gs-toaster-top-right'
+            />
+          </div>
+          <story />
+        </div>
+      </div>
      </div>
      `
      ,
@@ -144,11 +141,12 @@ import '../src/utils/Filters';
      }
 
      this.$store.state.app = Object.assign({}, initialStateApp);
+     this.$root.identifySegment = () => {};
      initShopClient({shopUrl: '/'});
      initOnboardingClient({token: 'token', apiUrl: `${window.location.protocol}//${window.location.host}`});
    },
    store: new Vuex.Store(cloneStore()),
-   router: new VueRouter(),
+   router,
  }));
 
  addDecorator(
@@ -212,11 +210,20 @@ export const parameters = {
         'Product feed',
         'Free listing',
         'Google Ads Account',
-        'Smart Shopping Campaign',
         'Product Feed Page',
+        'Campaign',
+        [
+          'Card',
+          'Tracking Card',
+          'Campaigns\' list',
+          'Form',
+          'Popins',
+        ],
         'Reporting',
         ['Key Metrics'],
         'Basic Components',
+        'Whole application',
+        ['Overview'],
       ],
     },
   },

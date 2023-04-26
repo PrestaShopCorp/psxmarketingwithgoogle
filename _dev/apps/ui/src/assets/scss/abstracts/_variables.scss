@@ -8,12 +8,22 @@ $grey_median: #B6B7B4;
 $grey-disabled: #dadada;
 $red-light: #F77B72;
 
-$blue: #442CC7;
+$blue-050: #E8EDFD;
+$blue-100: #D1DCFC;
+$blue-300: #A2B8F9;
+$blue-500: #174EEF;
+$blue-700: #2942CC;
+
+$blue: $blue-500;
+$black: #000000;
+$green: #207F4B;
+$red: #BA151A;
+$yellow: #FFA000;
 
 $purple-050: #E9E6F8;
 $purple-100: #C7C0EE;
 $purple-200: #A296E3;
-$purple-500: #442CC7;
+$purple-500: #000000;
 $purple-700: #3521BA;
 $purple-900: #1F10A6;
 
@@ -28,24 +38,31 @@ $light-blue-900: #A7BED1;
 $off-white: #FBFEFF;
 
 $purple: $purple-500;
-$green: #21834D;
-$primary: $purple;
+$primary: $black;
 $info: $purple;
 $success: $green;
+$danger: $red;
+$warning: $yellow;
 $primary-lighten: $light-blue-050;
 
 
 // Because !default is missing in the ui-kit variables,
 // we have to reset some theme colors.
-$primary-hover: #3521BA;
-$primary-active: $purple;
+$primary-hover: rgba($primary, 0.65);
+$primary-active: $primary;
 $btn-primary-bg: $primary-hover;
-$primary-disabled: $purple-050;
+$primary-disabled: $grey-disabled;
 $theme-colors-hover: (
   "primary": $primary-hover,
 );
 $theme-colors-active: (
   "primary": $primary-active,
+);
+$alerts-second-colors: (
+  "success": $green,
+  "info": $blue-700,
+  "warning": $yellow,
+  "danger": $red,
 );
 
 // Colors background
@@ -55,7 +72,11 @@ $bg-grey_light: #D8D8D8;
 $bg-green_light: #D4E9D9;
 
 // Overlays
-$overlay-popin: rgba(black, 0.65);
+$overlay-popin: rgba($black, 0.65);
 
 // Inputs
 $custom-control-indicator-focus-border-color: $purple-200;
+
+// Fonts
+$font-family-sans-serif: "IBM Plex Sans","Open Sans",Helvetica,Arial,sans-serif;
+$headings-font-family: $font-family-sans-serif;
