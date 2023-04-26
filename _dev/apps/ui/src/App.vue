@@ -128,10 +128,7 @@ export default {
       return this.$store.state.app.backOfficeUserIsLoggedIn;
     },
   },
-  mounted() {
-    this.$root.identifySegment();
-    this.$store.dispatch('app/CHECK_FOR_AD_BLOCKER');
-    this.setCustomProperties();
+  created() {
     initShopClient({
       shopUrl: this.$store.state.app.psxMktgWithGoogleAdminAjaxUrl,
       onShopSessionLoggedOut: () => {
@@ -142,6 +139,12 @@ export default {
       apiUrl: this.$store.state.app.psxMktgWithGoogleApiUrl,
       token: this.$store.state.accounts.tokenPsAccounts,
     });
+  },
+  mounted() {
+    this.$root.identifySegment();
+    this.$store.dispatch('app/CHECK_FOR_AD_BLOCKER');
+    this.setCustomProperties();
+
     window.addEventListener('resize', this.resizeEventHandler);
   },
   destroyed() {
