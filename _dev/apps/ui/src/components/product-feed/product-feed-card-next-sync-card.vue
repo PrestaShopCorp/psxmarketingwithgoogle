@@ -8,7 +8,6 @@
       <div class="d-flex align-items-center font-weight-600 ps_gs-fz-13">
         <i
           class="material-icons ps_gs-fz-20 mr-2"
-          :class="`text-purple`"
         >
           {{ icon }}
         </i>
