@@ -1,0 +1,10 @@
+//
+// Pills
+//
+
+.nav-pills {
+  .nav-link.active,
+  .show > .nav-link {
+    font-weight: 600;
+  }
+}
