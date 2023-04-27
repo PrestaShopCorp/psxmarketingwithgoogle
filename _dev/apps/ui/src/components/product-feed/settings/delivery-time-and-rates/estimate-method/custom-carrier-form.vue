@@ -15,7 +15,7 @@
               v-b-tooltip:psxMktgWithGoogleApp
               :title="$t('productFeedSettings.deliveryTimeAndRates.tooltips.carrierName')"
             >
-              <span class="material-icons-round text-primary mb-0 ps_gs-fz-16 w-16">
+              <span class="material-icons-round text-secondary mb-0 ps_gs-fz-16 w-16">
                 info_outlined
               </span>
             </b-button>
@@ -161,7 +161,7 @@
                     v-b-tooltip:psxMktgWithGoogleApp
                     :title="$t('productFeedSettings.deliveryTimeAndRates.tooltips.freeShippingOverAmount')"
                   >
-                    <span class="material-icons-round text-primary mb-0 ps_gs-fz-16 w-16">
+                    <span class="material-icons-round text-secondary mb-0 ps_gs-fz-16 w-16">
                       info_outlined
                     </span>
                   </b-button>
@@ -199,7 +199,7 @@
                     v-b-tooltip:psxMktgWithGoogleApp
                     :title="$t('productFeedSettings.deliveryTimeAndRates.tooltips.shippingRate')"
                   >
-                    <span class="material-icons-round text-primary mb-0 ps_gs-fz-16 w-16">
+                    <span class="material-icons-round text-secondary mb-0 ps_gs-fz-16 w-16">
                       info_outlined
                     </span>
                   </b-button>

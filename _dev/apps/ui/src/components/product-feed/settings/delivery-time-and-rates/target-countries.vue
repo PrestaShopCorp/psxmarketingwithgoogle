@@ -44,7 +44,7 @@
           <b-button
             target="_blank"
             :href="taxSettingsWithMerchantId"
-            variant="secondary"
+            variant="outline-secondary"
             class="mt-2"
             data-test-id="configureTax"
           >

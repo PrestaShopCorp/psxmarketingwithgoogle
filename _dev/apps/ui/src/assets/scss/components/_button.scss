@@ -11,12 +11,18 @@
   border-radius: 0px;
 }
 
-.alert .btn-outline-secondary {
-  color: $secondary;
+.btn-outline-secondary {
+  color: $primary;
   text-decoration: none;
+  background-color: $white;
 
   &:hover {
-    color: $white;
+    background-color: $primary-300;
+    color: $primary;
+  }
+
+  &:focus {
+    color: $primary;
   }
 }
 
@@ -38,12 +44,6 @@
 .text-secondary.btn-invisible {
   &:hover, &:focus {
     color: rgba($blue, 0.65) !important;
-  }
-}
-
-.btn-outline-secondary{
-  &:focus {
-    color: unset;
   }
 }
 

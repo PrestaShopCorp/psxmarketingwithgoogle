@@ -46,6 +46,7 @@ $light-blue-900: #A7BED1;
 $off-white: #FBFEFF;
 
 $primary: $primary-800;
+$secondary: $primary-500;
 $info: $blue-700;
 $success: $green;
 $danger: $red;
@@ -65,6 +66,9 @@ $primary-hover: $primary-500;
 $primary-active: $primary;
 $btn-primary-bg: $primary-hover;
 $primary-disabled: $grey-disabled;
+$theme-colors: (
+  "secondary": $secondary,
+);
 $theme-colors-hover: (
   "primary": $primary-hover,
 );
