@@ -134,6 +134,18 @@ EnabledButNoAccount.args = {
   }
 };
 
+export const EnabledWithOneAccountFromModule:any = Template.bind({});
+EnabledWithOneAccountFromModule.args = {
+  isEnabled: true,
+  loading: false,
+  initialMcaStatus: Object.assign({},
+    merchantCenterAccountNotConnected,
+    {
+      aggregatorId: '123456'
+    }
+  ),
+};
+
 export const EnabledLinkingFailed:any = Template.bind({});
 EnabledLinkingFailed.args = {
   isEnabled: true,
