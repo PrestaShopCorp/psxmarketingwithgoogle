@@ -1,14 +1,3 @@
-a {
-  color: $blue;
-
-  &:not(.btn) {
-    &:hover,
-    &:focus {
-      color: $blue-700 !important;
-    }
-  }
-}
-
 a[target="_blank"]:not(.external_link-no_icon) {
 
   &:not(.btn) {
