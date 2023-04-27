@@ -193,6 +193,7 @@
           </b-form>
           <div class="mt-3">
             <i18n
+              v-if="!hasMcaCreatedFromModule"
               path="general.createNewAccount"
               class="ps_gs-fz-12 mt-3 mt-md-0"
               tag="div"
@@ -713,6 +714,11 @@ export default {
         && this.selectedMcaDetails.name !== null
         && this.selectedMcaDetails.name !== undefined;
     },
+    hasMcaCreatedFromModule() {
+      const isFromModule = this.mcaSelectionOptions?.findIndex((option) => 'aggregatorId' in option);
+
+      return isFromModule >= 0;
+    }
   },
   methods: {
     selectMerchantCenterAccount() {
