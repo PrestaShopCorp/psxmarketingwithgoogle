@@ -21,7 +21,7 @@
         class="font-weight-700 ml-auto text-dark text-nowrap"
         v-if="syncStatus === 'success' || syncStatus === 'planned' || syncStatus === 'failed'"
       >
-        <b-button
+        <b-link
           v-if="syncStatus === 'success'
             && productStatus.statusOfProducts === ProductsStatusType.DISAPPROVED "
           variant="invisible"
@@ -29,7 +29,7 @@
           class="bg-transparent p-0 border-0 font-weight-700 ps_gs-fz-13 mr-2"
         >
           {{ productStatus.numberOfProducts }}
-        </b-button>
+        </b-link>
 
         <span
           v-else-if="syncStatus === 'success'"

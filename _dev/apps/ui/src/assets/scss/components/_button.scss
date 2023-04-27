@@ -30,10 +30,6 @@
 }
 
 .btn-invisible {
-  &:not(.disabled) {
-    color: $blue;
-  }
-
   &:hover:not(.disabled), &:focus:not(.disabled) {
     color: rgba($blue, 0.65) !important;
   }

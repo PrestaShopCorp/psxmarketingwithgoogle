@@ -4,14 +4,14 @@
       class="b-table-sticky-column text-primary pl-2
       justify-content-between align-items-baseline"
     >
-      <b-button
+      <b-link
         variant="link"
         class="font-weight-normal ps_gs-fz-12 p-0 m-0 btn-max-width"
         :title="campaign.campaignName"
         @click="goToCampaignPage(campaign.campaignName)"
       >
         {{ campaign.campaignName }}
-      </b-button>
+      </b-link>
     </b-td>
     <b-td class="ps_gs-fz-12 text-nowrap">
       {{ campaignDuration }}
