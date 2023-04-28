@@ -61,7 +61,7 @@ describe('merchant-center-account-card.vue', () => {
     // Check enabled state
     expect(wrapper.find('.ps_gs-onboardingcard').classes('ps_gs-onboardingcard--disabled')).toBe(false);
     // Check button to create an account exists
-    expect(wrapper.find('.with-hover').text()).toBe('create your account');
+    expect(wrapper.find('.text-decoration-underline').text()).toBe('create your account');
   });
 });
 
