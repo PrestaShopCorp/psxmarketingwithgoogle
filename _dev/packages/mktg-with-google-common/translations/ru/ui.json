@@ -191,12 +191,12 @@
         "businessCity": "Город",
         "businessRegion": "Регион",
         "businessCountry": "Страна",
-        "changeCountryField": "Вы можете [изменить страну]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] информации в вашем бэк-офисе",
-        "changeRegionField": "Вы можете [изменить регион]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] информации в вашем бэк-офисе",
-        "changeAddressField": "Вы можете [изменить свой бизнес-адрес]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] информацию в своем бэк-офисе",
-        "changeZipCodeField": "Вы можете [изменить свой почтовый индекс]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] информации в вашем бэк-офисе",
-        "changeCityField": "Вы можете [изменить свой город]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] информацию в своем бэк-офисе",
-        "changePhoneNumberField": "Вы можете [изменить номер телефона вашего предприятия]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] информацию в вашем бэк-офисе",
+        "changeCountryField": "Вы можете [изменить страну]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] информации в вашем бэк-офисе",
+        "changeRegionField": "Вы можете [изменить регион]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] информации в вашем бэк-офисе",
+        "changeAddressField": "Вы можете [изменить свой бизнес-адрес]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] информацию в своем бэк-офисе",
+        "changeZipCodeField": "Вы можете [изменить свой почтовый индекс]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] информации в вашем бэк-офисе",
+        "changeCityField": "Вы можете [изменить свой город]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] информацию в своем бэк-офисе",
+        "changePhoneNumberField": "Вы можете [изменить номер телефона вашего предприятия]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] информацию в вашем бэк-офисе",
         "siteContainsAdultContent": "Мой сайт содержит материалы для взрослых",
         "seePolicyAdultContent": "См. политику в отношении контента, ориентированного на взрослых",
         "labelReadAndAgree": "Приобретая рекламу в магазинах, я прочитал и согласен соблюдать условия и правила [Google]({0})[:target=\"_blank\"], включая условия обслуживания [Google Merchant Center]({1})[:target=\"_blank\"], [Правила размещения рекламы в магазинах]({2})[:target=\"_blank\"] и [Условия и положения Google Ads]({3})[:target=\"_blank\"].",
@@ -509,7 +509,7 @@
         },
         "terms": {
             "title": "Условия обслуживания для программы Google",
-            "label": "Я прочитал(-а) и принимаю [условия Google Рекламы]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]"
+            "label": "Я прочитал(-а) и принимаю [условия Google Рекламы]({0})[:target=\"_blank\" class=\"ps_gs-fz-12\"]"
         }
     },
     "smartShoppingCampaignCard": {
@@ -1032,7 +1032,7 @@
         "removeTag": "Удалите тег \"Ремаркетинг и конверсия\" из моего магазина",
         "removeTagExplainations": "Удаление тега означает, что Google больше не сможет отслеживать ваши кампании. Мы рекомендуем удалять тег только в том случае, если вы планируете полностью удалить модуль или изменить учетную запись. Вы всегда можете добавить его самостоятельно в код вашего сайта.",
         "titleActivateTrackingSSC": "Активируйте тег ремаркетинга и отслеживания конверсий.",
-        "textActivateTrackingSSC": "Для запуска кампании Performance Max сервис Google Ads должен иметь возможность создавать [список ремаркетинга]({0})[:target=\"_blank\" class= \"text-decoration-underline text-muted\"] и [тег отслеживания конверсий]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] на вашем сайте.   \n PrestaShop автоматически установит эти фрагменты кода в вашем магазине.",
+        "textActivateTrackingSSC": "Для запуска кампании Performance Max сервис Google Ads должен иметь возможность создавать [список ремаркетинга]({0})[:target=\"_blank\" class= \"text-decoration-underline\"] и [тег отслеживания конверсий]({1})[:target=\"_blank\" class=\"text-decoration-underline\"] на вашем сайте.   \n PrestaShop автоматически установит эти фрагменты кода в вашем магазине.",
         "textConfirmCancel": "Если вы вернетесь назад, то потеряете выбранные значения.",
         "upgradeSCCToPmaxTitle": "Встречайте улучшенные кампании",
         "upgradeSCCToPmaxTextWithoutCampaign": "Начиная с {0} вы сможете создавать кампании Performance Max для своего магазина. \n\n Performance Max — это умные торговые кампании следующего поколения. Это оптимизированные кампании, основанные на интеллектуальной технологии Google. Она автоматически оптимизирует ваши объявления в различных каналах, чтобы вы получали максимальную отдачу от рекламы.",
@@ -1042,7 +1042,7 @@
         "PMaxMigrationTitle": "Важные новости",
         "PMaxMigrationText": "Теперь ваши кампании Smart Shopping начнут автоматически обновляться до кампаний Performance Max.\n\n- Настройки кампании и бюджет остаются прежними. \n\n- Функциональные возможности соответствуют кампаниям Smart Shopping. \n\n- С этого момента вы можете создавать только кампании Performance Max.",
         "PmaxTextLink": "Узнайте больше о Performance Max",
-        "textPmaxReleased": "Today, you can start creating Performance Max campaigns, the next generation of Smart Shopping campaigns. [Learn more]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]",
+        "textPmaxReleased": "Today, you can start creating Performance Max campaigns, the next generation of Smart Shopping campaigns. [Learn more]({0})[:target=\"_blank\" class=\"text-decoration-underline\"]",
         "disconnectedUserBo": "You have been disconnected from the backoffice. You will be automatically redirected to the login page in {0} seconds.",
         "titleDisconnectedUserBo": "Connection lost"
     },
@@ -1120,10 +1120,10 @@
     },
     "banner": {
         "titleAdsbanner": "Только начинаете пользоваться рекламой в Google?",
-        "textAdsBannerLong": "Получите {0} в кредитах Google Рекламы*, потратив не менее {0} на создание первых кампаний в PrestaShop или напрямую через [аккаунт Google Рекламы]({1})[:target=\\\"_blank\\\"].",
+        "textAdsBannerLong": "Получите {0} в кредитах Google Рекламы*, потратив не менее {0} на создание первых кампаний в PrestaShop или напрямую через [аккаунт Google Рекламы]({1})[:target=\"_blank\"].",
         "textAdsBanner": "Получите {0} в кредитах Google Рекламы*, потратив не менее {0} на создание первых кампаний.",
-        "legendLong": "*Купон будет применен автоматически, как только вы начнете инвестировать в рекламу! *Указанная сумма должна быть потрачена в течение 60 дней с момента создания первой кампании. Срок действия кредитов также составляет 60 дней. [Ознакомьтесь с Условиями]({0})[:target=\\\"_blank\\\"]",
-        "legend": "*Создайте новый аккаунт в Google Рекламе. Как только вы потратите необходимую сумму, купон будет применен автоматически. Кредиты действительны в течение 60 дней. [Ознакомьтесь с Условиями]({0})[:target=\\\"_blank\\\"]",
+        "legendLong": "*Купон будет применен автоматически, как только вы начнете инвестировать в рекламу! *Указанная сумма должна быть потрачена в течение 60 дней с момента создания первой кампании. Срок действия кредитов также составляет 60 дней. [Ознакомьтесь с Условиями]({0})[:target=\"_blank\"]",
+        "legend": "*Создайте новый аккаунт в Google Рекламе. Как только вы потратите необходимую сумму, купон будет применен автоматически. Кредиты действительны в течение 60 дней. [Ознакомьтесь с Условиями]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "*Создайте новый аккаунт в Google Рекламе. Как только вы потратите необходимую сумму, купон будет применен автоматически. Кредиты действительны в течение 60 дней.",
         "ctaCreateFirstCampaign": "Создать первую кампанию",
         "textCampaignsBanner": "Performance Max — это умные торговые кампании следующего поколения. Это оптимизированные кампании, основанные на интеллектуальной технологии Google. Она автоматически оптимизирует ваши объявления в различных каналах, чтобы вы получали максимальную отдачу от рекламы."

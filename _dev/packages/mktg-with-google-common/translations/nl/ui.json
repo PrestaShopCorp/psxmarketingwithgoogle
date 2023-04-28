@@ -191,12 +191,12 @@
         "businessCity": "Stad",
         "businessRegion": "Regio",
         "businessCountry": "Land",
-        "changeCountryField": "U kunt [uw land wijzigen]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informatie in uw backoffice",
-        "changeRegionField": "U kunt [uw regio wijzigen]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informatie in uw backoffice",
-        "changeAddressField": "U kunt [uw bedrijfsadres wijzigen]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informatie in uw backoffice",
-        "changeZipCodeField": "U kunt [uw postcode wijzigen]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informatie in uw backoffice",
-        "changeCityField": "U kunt [uw stad wijzigen]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informatie in uw backoffice",
-        "changePhoneNumberField": "U kunt [uw bedrijfstelefoonnummer wijzigen]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informatie in uw backoffice",
+        "changeCountryField": "U kunt [uw land wijzigen]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informatie in uw backoffice",
+        "changeRegionField": "U kunt [uw regio wijzigen]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informatie in uw backoffice",
+        "changeAddressField": "U kunt [uw bedrijfsadres wijzigen]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informatie in uw backoffice",
+        "changeZipCodeField": "U kunt [uw postcode wijzigen]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informatie in uw backoffice",
+        "changeCityField": "U kunt [uw stad wijzigen]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informatie in uw backoffice",
+        "changePhoneNumberField": "U kunt [uw bedrijfstelefoonnummer wijzigen]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informatie in uw backoffice",
         "siteContainsAdultContent": "Mijn website bevat inhoud voor volwassenen",
         "seePolicyAdultContent": "Zie het beleid inzake op volwassenen gerichte inhoud",
         "labelReadAndAgree": "Door de aankoop van Shopping-advertenties heb ik de [Google's voorwaarden en beleid]({0})[:target=\"_blank\"] gelezen en ga ik ermee akkoord dat ik deze naleef, inclusief [Google's Merchant Center servicevoorwaarden]({1})[:target=\"_blank\"], [Beleid voor winkeladvertenties]({2})[:target=\"_blank\"], en [Algemene voorwaarden Google Ads]({3})[:target=\"_blank\"].",
@@ -509,7 +509,7 @@
         },
         "terms": {
             "title": "Servicevoorwaarden voor Google Programma",
-            "label": "Ik heb de [voorwaarden van Google Ads]({0})[:target=\"_blank\" class=\"ps_gs-fz-12text-muted\"] gelezen en ga hiermee akkoord"
+            "label": "Ik heb de [voorwaarden van Google Ads]({0})[:target=\"_blank\" class=\"ps_gs-fz-12\"] gelezen en ga hiermee akkoord"
         }
     },
     "smartShoppingCampaignCard": {
@@ -1032,7 +1032,7 @@
         "removeTag": "Verwijder de tag \"Remarketing en conversie\" uit mijn winkel",
         "removeTagExplainations": "Het verwijderen van de tag betekent dat Google niet langer in staat zal zijn om uw campagnes te volgen. Wij raden u aan de tag alleen te verwijderen als u van plan bent de module volledig te verwijderen of uw account te wijzigen. U kunt het altijd zelf toevoegen in de code van uw site.",
         "titleActivateTrackingSSC": "Activeer remarketing en conversie tracking tag.",
-        "textActivateTrackingSSC": "Om Maximale prestaties-campagnes te kunnen uitvoeren, moet Google Ads in staat zijn om [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] en [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] op uw site aan te maken. \n  PrestaShop zal deze code snippets automatisch instellen op uw winkel.",
+        "textActivateTrackingSSC": "Om Maximale prestaties-campagnes te kunnen uitvoeren, moet Google Ads in staat zijn om [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] en [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline\"] op uw site aan te maken. \n  PrestaShop zal deze code snippets automatisch instellen op uw winkel.",
         "textConfirmCancel": "Als u teruggaat zult u uw geselecteerde waarden verliezen",
         "upgradeSCCToPmaxTitle": "Campagnes upgrade komt binnenkort",
         "upgradeSCCToPmaxTextWithoutCampaign": "Vanaf {0} kunt u Performance Max-campagnes voor uw winkel maken. \n\n Performance Max is de volgende generatie van Smart Shopping-campagnes. Het is een verbeterd campagnetype dat wordt aangedreven door de slimme technologie van Google. Het werkt achter de schermen om uw advertenties automatisch te optimaliseren tijdens het shoppingtraject om maximale prestaties te leveren.",
@@ -1042,7 +1042,7 @@
         "PMaxMigrationTitle": "Belangrijk nieuws",
         "PMaxMigrationText": "Uw Smart Shopping-campagnes worden nu automatisch geüpgraded naar Maximale prestaties-campagnes. \n\n- Uw campagne-instellingen en budget blijven hetzelfde. \n\n- De functionaliteit is gelijk aan die van Smart Shopping-campagnes.\n\n- Vanaf dit moment kunt u alleen nog Maximale prestaties-campagnes aanmaken.",
         "PmaxTextLink": "Meer informatie over campagnes voor maximale prestaties",
-        "textPmaxReleased": "Uw Smart Shopping-campagnes worden nu automatisch geüpgraded naar Maximale prestaties-campagnes. [Leer meer]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]",
+        "textPmaxReleased": "Uw Smart Shopping-campagnes worden nu automatisch geüpgraded naar Maximale prestaties-campagnes. [Leer meer]({0})[:target=\"_blank\" class=\"text-decoration-underline\"]",
         "disconnectedUserBo": "You have been disconnected from the backoffice. You will be automatically redirected to the login page in {0} seconds.",
         "titleDisconnectedUserBo": "Connection lost"
     },
@@ -1120,10 +1120,10 @@
     },
     "banner": {
         "titleAdsbanner": "Net begonnen met Google Ads?",
-        "textAdsBannerLong": "Ontvang {0} aan Google Ads-tegoed* wanneer je ten minste {0} besteedt aan het aanmaken van je eerste campagnes op PrestaShop of rechtstreeks via je [Google Ads-account]({1})[:target=\\\"_blank\\\"].",
+        "textAdsBannerLong": "Ontvang {0} aan Google Ads-tegoed* wanneer je ten minste {0} besteedt aan het aanmaken van je eerste campagnes op PrestaShop of rechtstreeks via je [Google Ads-account]({1})[:target=\"_blank\"].",
         "textAdsBanner": "Ontvang {0} aan Google Ads-tegoed* wanneer je ten minste {0} besteedt aan het aanmaken van je eerste campagnes.",
-        "legendLong": "*De aanbieding wordt automatisch toegepast vanaf het moment dat je begint met uitgeven! *Het bedrag moet binnen 60 dagen na de eerste campagne-uitgaven worden besteed. Het tegoed is 60 dagen geldig nadat het is bijgeschreven. [Voorwaarden lezen]({0})[:target=\\\"_blank\\\"]",
-        "legend": "*Maak een nieuw Google Ads-account aan. De aanbieding wordt automatisch toegepast zodra je de uitgaven hebt gematcht. Je hebt 60 dagen om het tegoed uit te geven. [Voorwaarden lezen]({0})[:target=\\\"_blank\\\"]",
+        "legendLong": "*De aanbieding wordt automatisch toegepast vanaf het moment dat je begint met uitgeven! *Het bedrag moet binnen 60 dagen na de eerste campagne-uitgaven worden besteed. Het tegoed is 60 dagen geldig nadat het is bijgeschreven. [Voorwaarden lezen]({0})[:target=\"_blank\"]",
+        "legend": "*Maak een nieuw Google Ads-account aan. De aanbieding wordt automatisch toegepast zodra je de uitgaven hebt gematcht. Je hebt 60 dagen om het tegoed uit te geven. [Voorwaarden lezen]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "*Maak een nieuw Google Ads-account aan. De aanbieding wordt automatisch toegepast zodra je de uitgavendrempel hebt bereikt. Je hebt 60 dagen om het tegoed uit te geven.",
         "ctaCreateFirstCampaign": "Je eerste campagne aanmaken",
         "textCampaignsBanner": "Maximale prestaties is de volgende generatie van Smart Shopping-campagnes. Het is een verbeterd campagnetype dat wordt aangestuurd door de slimme technologie van Google. Het werkt achter de schermen om uw advertenties tijdens het shoppingtraject automatisch te optimaliseren voor maximale prestaties."
