@@ -150,7 +150,7 @@
 
   .vs__selected {
     border: none;
-    background-color: $light-blue-200;
+    background-color: $primary-300;
     color: $purple-500;
     font-size: rem(12);
     padding-left: 6px;
@@ -207,10 +207,6 @@
 
   .custom-control-label:after, .custom-control-label:before {
     left: 0;
-  }
-
-  .custom-control-input:checked~.custom-control-label:before {
-    border-color: $blue;
   }
 
   .custom-control-input:checked~.custom-control-label:after {
@@ -329,6 +325,6 @@ input[type=number].no-arrows {
 }
 
 /* Color could not be redefined in a clean way */
-input.form-control:focus {
-  border-color: $primary-hover;
+.form-control:focus {
+  border-color: $primary-hover !important;
 }

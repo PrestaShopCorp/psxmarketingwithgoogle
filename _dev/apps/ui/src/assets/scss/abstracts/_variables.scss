@@ -1,11 +1,19 @@
 // Colors
-$grey_dark: #363A41;
-$grey_muted: #6C868E;
-$grey_darklight: #757575;
+$primary-800: #1D1D1B;
+$primary-700: #3f3f3d;
+$primary-600: #5E5E5E;
+$primary-500: #bbbbbb;
+$primary-400: #dddddd;
+$primary-300: #eeeeee;
+$primary-200: #f7f7f7;
+
+$grey_dark: $primary-700;
+$grey_muted: $primary-700;
+$grey_darklight: $primary-500;
 $grey_light: #E1E0EB;
-$grey_extralight: #f6f6f6;
-$grey_median: #B6B7B4;
-$grey-disabled: #dadada;
+$grey_extralight: $primary-200;
+$grey_median: $primary-400;
+$grey-disabled: $primary-300;
 $red-light: #F77B72;
 
 $blue-050: #E8EDFD;
@@ -37,21 +45,30 @@ $light-blue-900: #A7BED1;
 
 $off-white: #FBFEFF;
 
-$purple: $purple-500;
-$primary: $black;
-$info: $purple;
+$primary: $primary-800;
+$secondary: $primary-500;
+$info: $blue-700;
 $success: $green;
 $danger: $red;
 $warning: $yellow;
 $primary-lighten: $light-blue-050;
+$text-muted: $grey_muted;
+
+$link-color: $blue;
+$link-hover-color: $blue-700;
+
+$nav-pills-link-active-bg: transparent;
 
 
 // Because !default is missing in the ui-kit variables,
 // we have to reset some theme colors.
-$primary-hover: rgba($primary, 0.65);
+$primary-hover: $primary-500;
 $primary-active: $primary;
 $btn-primary-bg: $primary-hover;
 $primary-disabled: $grey-disabled;
+$theme-colors: (
+  "secondary": $secondary,
+);
 $theme-colors-hover: (
   "primary": $primary-hover,
 );
@@ -68,14 +85,14 @@ $alerts-second-colors: (
 // Colors background
 $bg-grey_disabled: #F6F6F6;
 $violet_extralight: #FAF9FE;
-$bg-grey_light: #D8D8D8;
+$bg-grey_light: $primary-400;
 $bg-green_light: #D4E9D9;
 
 // Overlays
 $overlay-popin: rgba($black, 0.65);
 
 // Inputs
-$custom-control-indicator-focus-border-color: $purple-200;
+$custom-control-indicator-focus-border-color: $primary-600;
 
 // Fonts
 $font-family-sans-serif: "IBM Plex Sans","Open Sans",Helvetica,Arial,sans-serif;

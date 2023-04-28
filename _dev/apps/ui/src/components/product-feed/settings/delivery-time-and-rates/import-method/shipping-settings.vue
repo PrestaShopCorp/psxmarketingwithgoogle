@@ -72,7 +72,7 @@
               <span
                 v-if="hasToolTip(type)"
                 variant="invisible"
-                class="p-1 ml-1 mr-n1 border-0 d-inline-flex align-items-center"
+                class="pt-1 ml-1 mr-n1 border-0 d-inline-flex align-items-center"
               >
                 <i class="material-icons ps_gs-fz-14 text-secondary">info_outlined</i>
               </span>
@@ -122,7 +122,7 @@
       class="text-primary text-center pb-3"
     >
       <a
-        class="ps_gs-fz-12 mb-0 text-primary"
+        class="ps_gs-fz-12 mb-0"
         :href="$store.getters['app/GET_CARRIERS_URL']"
         target="_blank"
       >

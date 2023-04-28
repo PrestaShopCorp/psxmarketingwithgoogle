@@ -136,7 +136,7 @@
       class="text-primary"
     >
       <a
-        class="mb-0 ps_gs-fz-12 text-primary"
+        class="mb-0 ps_gs-fz-12"
         :href="$store.getters['app/GET_ATTRIBUTES_URL']"
         target="_blank"
       >

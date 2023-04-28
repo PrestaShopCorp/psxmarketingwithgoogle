@@ -51,7 +51,7 @@
               v-b-tooltip:psxMktgWithGoogleApp
               :title="tooltipFormat(requirement)"
             >
-              <span class="material-icons-round mb-1 ml-0 ps_gs-fz-12 text-primary">
+              <span class="material-icons-round mb-1 ml-0 ps_gs-fz-12 text-secondary">
                 info_outlined
               </span>
             </b-button>

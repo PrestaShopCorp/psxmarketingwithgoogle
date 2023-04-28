@@ -1,16 +1,8 @@
-a {
-  color: $blue;
-}
-
 a[target="_blank"]:not(.external_link-no_icon) {
 
   &:not(.btn) {
     text-decoration: underline;
 
-    &:hover,
-    &:focus {
-      color: rgba($blue, 0.65) !important;
-    }
     &::after {
       content: "\e895"; // "launch" icon
       font-family: 'Material Icons';
@@ -25,12 +17,12 @@ a[target="_blank"]:not(.external_link-no_icon) {
 
 .text-muted a[target="_blank"]:not(.external_link-no_icon),
 a[target="_blank"].text-muted:not(.external_link-no_icon) {
-  color: $blue !important;
+  color: $grey_muted !important;
 }
 
 .text-muted a.with-hover,
 a.text-muted.with-hover {
-  color: $blue !important;
+  color: $grey_muted !important;
 
   &:hover, &:focus {
     color: $blue !important;

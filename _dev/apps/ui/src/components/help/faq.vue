@@ -79,14 +79,13 @@
           <div class="contact mt-4">
             <div>{{ $t("help.help.couldntFindAnyAnswer") }}</div>
             <div class="mt-2">
-              <b-button
+              <b-link
                 variant="link"
                 target="_blank"
                 :href="$options.prestashopUrl.contactForm"
               >
                 {{ $t("help.help.contactUs") }}
-                <i class="material-icons">arrow_right_alt</i>
-              </b-button>
+              </b-link>
             </div>
           </div>
         </b-col>

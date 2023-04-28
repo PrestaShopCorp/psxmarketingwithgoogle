@@ -16,7 +16,7 @@
       />
       <b-button
         class="ps_gs-glass__button mt-3"
-        variant="outline"
+        variant="outline-secondary"
         size="sm"
         @click="forceFocus"
       >
