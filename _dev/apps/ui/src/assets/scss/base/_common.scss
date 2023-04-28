@@ -15,20 +15,6 @@ a[target="_blank"]:not(.external_link-no_icon) {
   }
 }
 
-.text-muted a[target="_blank"]:not(.external_link-no_icon),
-a[target="_blank"].text-muted:not(.external_link-no_icon) {
-  color: $grey_muted !important;
-}
-
-.text-muted a.with-hover,
-a.text-muted.with-hover {
-  color: $grey_muted !important;
-
-  &:hover, &:focus {
-    color: $blue !important;
-  }
-}
-
 a.without-hover {
   &:hover, &:focus {
     text-decoration: none;

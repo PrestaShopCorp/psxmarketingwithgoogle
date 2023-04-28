@@ -55,7 +55,7 @@
             >
               <b-link
                 :to="{ name: 'help' }"
-                class="with-hover text-decoration-underline"
+                class="text-decoration-underline"
               >
                 {{ $t("general.helpPage") }}
               </b-link>

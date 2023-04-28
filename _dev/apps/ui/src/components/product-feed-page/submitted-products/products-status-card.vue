@@ -13,7 +13,7 @@
         <h3 class="ps_gs-fz-13 font-weight-600 mb-1 line-height-15">
           {{ card.title }}
         </h3>
-        <p class="mb-0 ps_gs-fz-12 line-height-13 text-secondary">
+        <p class="mb-0 ps_gs-fz-12 line-height-13">
           {{ card.description }}
         </p>
       </div>
