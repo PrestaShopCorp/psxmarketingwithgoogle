@@ -311,7 +311,7 @@
         <a
           :href="$options.googleUrl.policyAdultContent"
           target="_blank"
-          class="d-inline-block text-muted ps_gs-fz-12 mb-2 mb-sm-0"
+          class="d-inline-block ps_gs-fz-12 mb-2 mb-sm-0"
         >
           {{ $t('mcaRequirements.seePolicyAdultContent') }}
         </a>
