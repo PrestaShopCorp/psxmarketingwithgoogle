@@ -700,7 +700,7 @@
             "xHasFailedPreValidation": "\"{0}\" : a échoué à la pré-validation.",
             "xHasPassedPreValidation": "\"{0}\" : a passé la pré-validation.",
             "labelTooltipDescription": "Cet attribut correspond à ce que vous avez configuré dans la cartographie des attributs de vos produits : description courte, description...",
-            "labelTooltipBarcode": "GTIN is a unique identifier used to identify products. it can be UPC or EAN or JAN or ISBN. If you don't have a GTIN for your product, in this case add a Brand (of the product or your company) AND a MPN (Manufacturer Part Number) which is a unique identifier different from the GTIN, assigned by a manufacturer to identify a specific product or part"
+            "labelTooltipBarcode": "Le GTIN est un identifiant unique utilisé pour identifier les produits. Il peut être UPC, EAN, JAN ou ISBN. Si vous n'avez pas de GTIN pour votre produit, dans ce cas, ajoutez une marque (du produit ou de votre entreprise) ET un numéro de référence du fabricant (MPN), qui est un identifiant unique différent du GTIN, attribué par un fabricant pour identifier un produit ou une pièce spécifique."
         },
         "approvalTable": {
             "description": "Ce sont les statuts de vos produits qui sont envoyés au Google Merchant Center. Certains produits peuvent apparaître plus d'une fois en raison de leur variation de langue.",
@@ -1043,8 +1043,8 @@
         "PMaxMigrationText": "Dès aujourd'hui, vos campagnes Shopping Intelligentes vont automatiquement démarrer leur mise à niveau vers Peformance Max.\n\n- La configuration et le budget de votre campagne restent les mêmes.\n\n- Le fonctionnement est le même que celui des campagnes Smart Shopping.\n\n- À partir de maintenant, vous pouvez uniquement créer des campagnes Performance Max.",
         "PmaxTextLink": "En savoir plus sur Performance Max",
         "textPmaxReleased": "Dès aujourd'hui, vos campagnes Shopping Intelligentes vont automatiquement démarrer leur mise à niveau vers Peformance Max. [En savoir plus]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]",
-        "disconnectedUserBo": "You have been disconnected from the backoffice. You will be automatically redirected to the login page in {0} seconds.",
-        "titleDisconnectedUserBo": "Connection lost"
+        "disconnectedUserBo": "Vous avez été déconnecté du backoffice. Vous serez automatiquement redirigé vers la page de connexion dans {0} secondes.",
+        "titleDisconnectedUserBo": "Connexion perdue"
     },
     "tooltip": {
         "googleAccountRequired": "Nécessite la configuration d'un compte Google",
