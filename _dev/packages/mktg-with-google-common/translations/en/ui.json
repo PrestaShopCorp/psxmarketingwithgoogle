@@ -776,10 +776,10 @@
     "campaigns": {
       "status": {
         "eligible": "Eligible",
-        "eligibleLimited": "Eligible (limited)",
+        "eligiblelimited": "Eligible (limited)",
         "ended": "Ended",
         "paused": "Paused",
-        "notEligible": "Not Eligible",
+        "noteligible": "Not Eligible",
         "draft": "Draft",
         "pending": "Pending"
       },
