@@ -4,7 +4,7 @@
   // Available icons
   $icons: 'check_circle', 'schedule', 'cancel', 'change_circle', 'info';
   // Available colors
-  $lineColors: ('danger' : $danger, 'info': $info);
+  $lineColors: ('danger' : $danger, 'info': $primary);
 
   width: 280px;
   max-width: 100%;
@@ -24,7 +24,7 @@
       -webkit-font-feature-settings: 'liga';
       margin-right: rem(10);
       margin-top: -#{rem(2)};
-      color: $info;
+      color: $primary;
     }
 
     @each $icon in $icons {
