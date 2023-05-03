@@ -509,7 +509,7 @@
         },
         "terms": {
             "title": "Условия обслуживания для программы Google",
-            "label": "I have read and agree with [Google Ads terms and conditions]({0})[:target=\"_blank\" class=\"ps_gs-fz-12\"]"
+            "label": "Я прочитал(-а) и принимаю [условия Google Рекламы]({0})[:target=\"_blank\" class=\"ps_gs-fz-12\"]"
         }
     },
     "smartShoppingCampaignCard": {
@@ -775,10 +775,10 @@
     "campaigns": {
         "status": {
             "eligible": "Подходящий",
-            "eligiblelimited": "Eligible (limited)",
+            "eligiblelimited": "Допустимый (ограниченный)",
             "ended": "Завершено",
             "paused": "Приостановлено",
-            "noteligible": "Not Eligible",
+            "noteligible": "Не имеет права",
             "draft": "Проект",
             "pending": "В ожидании"
         },
@@ -965,7 +965,7 @@
         "openActionsMenu": "Открыть меню действий для кампании {0}",
         "viewInGoogleAds": "Просмотр в аккаунте Google Ads",
         "previous": "Предыдущий",
-        "loginPage": "Go to login page",
+        "loginPage": "Перейти на страницу входа",
         "next": "Следующий",
         "goToPage": "Перейти на первую страницу | Перейти на страницу: {0} | Перейти на последнюю страницу",
         "noEndDate": "Нет даты окончания",
@@ -1032,7 +1032,7 @@
         "removeTag": "Удалите тег \"Ремаркетинг и конверсия\" из моего магазина",
         "removeTagExplainations": "Удаление тега означает, что Google больше не сможет отслеживать ваши кампании. Мы рекомендуем удалять тег только в том случае, если вы планируете полностью удалить модуль или изменить учетную запись. Вы всегда можете добавить его самостоятельно в код вашего сайта.",
         "titleActivateTrackingSSC": "Активируйте тег ремаркетинга и отслеживания конверсий.",
-        "textActivateTrackingSSC": "In order to run Performance Max campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop.",
+        "textActivateTrackingSSC": "Для запуска кампании Performance Max сервис Google Ads должен иметь возможность создавать [список ремаркетинга]({0})[:target=\"_blank\" class= \"text-decoration-underline\"] и [тег отслеживания конверсий]({1})[:target=\"_blank\" class=\"text-decoration-underline\"] на вашем сайте.   \n PrestaShop автоматически установит эти фрагменты кода в вашем магазине.",
         "textConfirmCancel": "Если вы вернетесь назад, то потеряете выбранные значения.",
         "upgradeSCCToPmaxTitle": "Встречайте улучшенные кампании",
         "upgradeSCCToPmaxTextWithoutCampaign": "Начиная с {0} вы сможете создавать кампании Performance Max для своего магазина. \n\n Performance Max — это умные торговые кампании следующего поколения. Это оптимизированные кампании, основанные на интеллектуальной технологии Google. Она автоматически оптимизирует ваши объявления в различных каналах, чтобы вы получали максимальную отдачу от рекламы.",
@@ -1042,9 +1042,9 @@
         "PMaxMigrationTitle": "Важные новости",
         "PMaxMigrationText": "Теперь ваши кампании Smart Shopping начнут автоматически обновляться до кампаний Performance Max.\n\n- Настройки кампании и бюджет остаются прежними. \n\n- Функциональные возможности соответствуют кампаниям Smart Shopping. \n\n- С этого момента вы можете создавать только кампании Performance Max.",
         "PmaxTextLink": "Узнайте больше о Performance Max",
-        "textPmaxReleased": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max Campaigns now. [Learn more]({0})[:target=\"_blank\" class=\"text-decoration-underline\"]",
+        "textPmaxReleased": "Today, you can start creating Performance Max campaigns, the next generation of Smart Shopping campaigns. [Learn more]({0})[:target=\"_blank\" class=\"text-decoration-underline\"]",
         "disconnectedUserBo": "You have been disconnected from the backoffice. You will be automatically redirected to the login page in {0} seconds.",
-        "titleDisconnectedUserBo": "Connection lost"
+        "titleDisconnectedUserBo": "Соединение потеряно"
     },
     "tooltip": {
         "googleAccountRequired": "Требуется настройка аккаунта Google",
@@ -1120,10 +1120,10 @@
     },
     "banner": {
         "titleAdsbanner": "Только начинаете пользоваться рекламой в Google?",
-        "textAdsBannerLong": "Get {0} of Google Ads credits* when you spend at least {0} to create your first campaigns on PrestaShop or directly via your [Google Ads Account]({1})[:target=\"_blank\"].",
+        "textAdsBannerLong": "Получите {0} в кредитах Google Рекламы*, потратив не менее {0} на создание первых кампаний в PrestaShop или напрямую через [аккаунт Google Рекламы]({1})[:target=\"_blank\"].",
         "textAdsBanner": "Получите {0} в кредитах Google Рекламы*, потратив не менее {0} на создание первых кампаний.",
-        "legendLong": "*Your voucher will be applied automatically from the moment you start spending! *The amount needs to be spent within 60 days of the first campaign spend and credits will be valid for 60 days once credited. [Read T&C]({0})[:target=\"_blank\"]",
-        "legend": "*Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits. [Read T&C]({0})[:target=\"_blank\"]",
+        "legendLong": "*Купон будет применен автоматически, как только вы начнете инвестировать в рекламу! *Указанная сумма должна быть потрачена в течение 60 дней с момента создания первой кампании. Срок действия кредитов также составляет 60 дней. [Ознакомьтесь с Условиями]({0})[:target=\"_blank\"]",
+        "legend": "*Создайте новый аккаунт в Google Рекламе. Как только вы потратите необходимую сумму, купон будет применен автоматически. Кредиты действительны в течение 60 дней. [Ознакомьтесь с Условиями]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "*Создайте новый аккаунт в Google Рекламе. Как только вы потратите необходимую сумму, купон будет применен автоматически. Кредиты действительны в течение 60 дней.",
         "ctaCreateFirstCampaign": "Создать первую кампанию",
         "textCampaignsBanner": "Performance Max — это умные торговые кампании следующего поколения. Это оптимизированные кампании, основанные на интеллектуальной технологии Google. Она автоматически оптимизирует ваши объявления в различных каналах, чтобы вы получали максимальную отдачу от рекламы."
