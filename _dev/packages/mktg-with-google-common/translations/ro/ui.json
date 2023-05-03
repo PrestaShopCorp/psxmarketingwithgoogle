@@ -775,10 +775,10 @@
     "campaigns": {
         "status": {
             "eligible": "Eligibil",
-            "eligibleLimited": "Eligibil (limitat)",
+            "eligiblelimited": "Eligibil (limitat)",
             "ended": "Încheiată",
             "paused": "În pauză",
-            "notEligible": "Nu este eligibil",
+            "noteligible": "Nu este eligibil",
             "draft": "Ciornă",
             "pending": "În așteptare"
         },
@@ -965,7 +965,7 @@
         "openActionsMenu": "Deschide meniul de acțiuni pentru campania {0}",
         "viewInGoogleAds": "Vizualizează în contul tău Google Ads",
         "previous": "Înapoi",
-        "loginPage": "Go to login page",
+        "loginPage": "Mergi la pagina de conectare",
         "next": "Înainte",
         "goToPage": "Mergi la prima pagină | Mergi la pagina: {0} | Mergi la ultima pagină",
         "noEndDate": "Fără dată de sfârșit",
@@ -1044,7 +1044,7 @@
         "PmaxTextLink": "Află mai multe despre Performance Max",
         "textPmaxReleased": "Campaniile Smart Shopping vor începe să fie actualizate automat la campaniile Performance Max. [Află mai multe]({0})[:target=\"_blank\" class=\"text-decoration-underline\"]",
         "disconnectedUserBo": "You have been disconnected from the backoffice. You will be automatically redirected to the login page in {0} seconds.",
-        "titleDisconnectedUserBo": "Connection lost"
+        "titleDisconnectedUserBo": "Conexiune pierdută"
     },
     "tooltip": {
         "googleAccountRequired": "Necesită configurarea contului Google",

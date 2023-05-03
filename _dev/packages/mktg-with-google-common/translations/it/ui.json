@@ -775,10 +775,10 @@
     "campaigns": {
         "status": {
             "eligible": "Idonea",
-            "eligibleLimited": "Idonea (limitato)",
+            "eligiblelimited": "Idonea (limitato)",
             "ended": "Terminato",
             "paused": "Pausa",
-            "notEligible": "Non idonea",
+            "noteligible": "Non idonea",
             "draft": "Bozza",
             "pending": "In attesa"
         },
@@ -965,7 +965,7 @@
         "openActionsMenu": "Apri il menu delle azioni per la campagna {0}",
         "viewInGoogleAds": "Visualizza nel tuo account Google Ads",
         "previous": "Precedente",
-        "loginPage": "Go to login page",
+        "loginPage": "Vai alla pagina di login",
         "next": "Prossimo",
         "goToPage": "Vai alla prima pagina | Vai alla pagina: {0} Vai all'ultima pagina",
         "noEndDate": "Nessuna data di fine",

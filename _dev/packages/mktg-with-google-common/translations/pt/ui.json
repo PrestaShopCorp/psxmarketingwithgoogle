@@ -775,10 +775,10 @@
     "campaigns": {
         "status": {
             "eligible": "Elegível",
-            "eligibleLimited": "Elegível (limitado)",
+            "eligiblelimited": "Elegível (limitado)",
             "ended": "Terminado",
             "paused": "Pausado",
-            "notEligible": "Não Elegíveis",
+            "noteligible": "Não Elegíveis",
             "draft": "Rascunho",
             "pending": "Pendente"
         },
@@ -1044,7 +1044,7 @@
         "PmaxTextLink": "Saiba mais sobre as Campanhas de máximo desempenho",
         "textPmaxReleased": "As suas campanhas de Compras Inteligentes começarão agora automaticamente a actualizar para as Campanhas de máximo desempenho mais. [Saiba mais]({0})[:target=\"_blank\" class=\"text-decoration-underline\"]",
         "disconnectedUserBo": "You have been disconnected from the backoffice. You will be automatically redirected to the login page in {0} seconds.",
-        "titleDisconnectedUserBo": "Connection lost"
+        "titleDisconnectedUserBo": "Ligação Perdida"
     },
     "tooltip": {
         "googleAccountRequired": "Requer a configuração da conta Google",

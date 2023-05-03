@@ -775,10 +775,10 @@
     "campaigns": {
         "status": {
             "eligible": "Kwalifikowalny",
-            "eligibleLimited": "Kwalifikowalny (w ograniczonym zakresie)",
+            "eligiblelimited": "Kwalifikowalny (w ograniczonym zakresie)",
             "ended": "Zakończony",
             "paused": "Wstrzymany",
-            "notEligible": "Niekwalifikowalny",
+            "noteligible": "Niekwalifikowalny",
             "draft": "Projekt",
             "pending": "W toku"
         },
@@ -965,7 +965,7 @@
         "openActionsMenu": "Otwórz menu działań dla kampanii {0}",
         "viewInGoogleAds": "Zobacz na Twoim koncie Google Ads",
         "previous": "Poprzednie",
-        "loginPage": "Go to login page",
+        "loginPage": "Przejdź do strony logowania",
         "next": "Następne",
         "goToPage": "Przejdź do pierwszej strony | Przejdź do strony: {0} | Przejdź do ostatniej strony",
         "noEndDate": "Brak daty końcowej",
@@ -1044,7 +1044,7 @@
         "PmaxTextLink": "Dowiedz się więcej o Performance Max",
         "textPmaxReleased": "Twoje Inteligentne kampanie produktowe zaczną się teraz automatycznie przekształcać w kampanie Performance Max. Dowiedz się więcej. [Dowiedz się więcej]({0})[:target=\"_blank\" class=\"text-decoration-underline\"]",
         "disconnectedUserBo": "You have been disconnected from the backoffice. You will be automatically redirected to the login page in {0} seconds.",
-        "titleDisconnectedUserBo": "Connection lost"
+        "titleDisconnectedUserBo": "Utracono połączenie"
     },
     "tooltip": {
         "googleAccountRequired": "Wymaga to konfiguracji konta Google",

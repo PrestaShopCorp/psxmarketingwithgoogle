@@ -775,10 +775,10 @@
     "campaigns": {
         "status": {
             "eligible": "Förderfähig",
-            "eligibleLimited": "Förderfähig (begrenzt)",
+            "eligiblelimited": "Förderfähig (begrenzt)",
             "ended": "Beendet",
             "paused": "Pausiert",
-            "notEligible": "Nicht zutreffend",
+            "noteligible": "Nicht zutreffend",
             "draft": "Entwurf",
             "pending": "Anhängig"
         },
@@ -965,7 +965,7 @@
         "openActionsMenu": "Aktionsmenü für Kampagne öffnen {0}",
         "viewInGoogleAds": "Ansicht in Ihrem Google-Ads-Konto",
         "previous": "Vorherige",
-        "loginPage": "Go to login page",
+        "loginPage": "Zur Login-Seite gehen",
         "next": "Weiter",
         "goToPage": "Gehe zur ersten Seite | Gehe zur Seite: {0} | Gehe zur letzten Seite",
         "noEndDate": "Kein Enddatum",
@@ -1044,7 +1044,7 @@
         "PmaxTextLink": "Hier mehr über für maximale Performance erfahren",
         "textPmaxReleased": "Ihre Smart Shopping-Kampagnen werden ab sofort automatisch zu Leistung max. Kampagnen aktualisiert. [Mehr erfahren]({0})[:target=\"_blank\" class=\"text-decoration-underline\"]",
         "disconnectedUserBo": "You have been disconnected from the backoffice. You will be automatically redirected to the login page in {0} seconds.",
-        "titleDisconnectedUserBo": "Connection lost"
+        "titleDisconnectedUserBo": "Verbindung unterbrochen"
     },
     "tooltip": {
         "googleAccountRequired": "Erfordert die Konfiguration eines Google-Kontos",

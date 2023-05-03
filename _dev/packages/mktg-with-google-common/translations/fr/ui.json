@@ -191,12 +191,12 @@
         "businessCity": "Ville",
         "businessRegion": "Région",
         "businessCountry": "Pays",
-        "changeCountryField": "Vous pouvez [changer votre pays]({0})[:target=\"_blank\" class=\"text-decoration-highlight\"] dans votre back office",
-        "changeRegionField": "Vous pouvez [changer votre région]({0})[:target=\"_blank\" class=\"text-decoration-highlight\"] dans votre back office",
-        "changeAddressField": "Vous pouvez [changer l'adresse de votre entreprise]({0})[:target=\"_blank\" class=\"text-decoration-highlight\"] dans votre back office",
-        "changeZipCodeField": "Vous pouvez [modifier votre code zip]({0})[:target=\"_blank\" class=\"text-decoration-highlight\"] dans votre back-office",
-        "changeCityField": "Vous pouvez [changer votre ville]({0})[:target=\"_blank\" class=\"text-decoration-highlight\"] dans votre back office",
-        "changePhoneNumberField": "Vous pouvez [changer votre numéro de téléphone professionnel]({0})[:target=\"_blank\" class=\"text-decoration-highlight\"] dans votre back-office",
+        "changeCountryField": "Vous pouvez [changer votre pays]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] dans votre back office",
+        "changeRegionField": "Vous pouvez [changer votre région]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] dans votre back office",
+        "changeAddressField": "Vous pouvez [changer l'adresse de votre entreprise] ({0})[:target=\"_blank\" class=\"text-decoration-underline\"] dans votre back office",
+        "changeZipCodeField": "Vous pouvez [modifier votre code zip]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] dans votre back-office",
+        "changeCityField": "Vous pouvez [changer votre ville]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] dans votre back office",
+        "changePhoneNumberField": "Vous pouvez [changer votre numéro de téléphone professionnel]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] dans votre back-office",
         "siteContainsAdultContent": "Mon site web contient du contenu pour adultes",
         "seePolicyAdultContent": "Voir la politique relative aux contenus destinés aux adultes",
         "labelReadAndAgree": "En faisant des annonces Shopping, j'ai lu et j'accepte de respecter les [conditions et politiques de Google]({0})[:target=\"_blank\"], y compris [les conditions d'utilisation du Merchant center Google]({1})[:target=\"_blank\"], [Règles relatives aux annonces Shopping]({2})[:target=\"_blank\"], et [Conditions d'utilisation de Google Ads]({3})[:target=\"_blank\"].",
@@ -721,7 +721,7 @@
             "perPageLabel": "Montrer :",
             "goToLabel": "Aller à la page :",
             "editX": "Editer {0}",
-            "noReasonFallback": "*Not provided, check [account errors on your Merchant Center]({0})[:target=\"_blank\"].*"
+            "noReasonFallback": "*Non fourni, vérifiez [les erreurs de compte sur Merchant Center]({0})[:target=\"_blank\"].*"
         },
         "errorReason": {
             "fieldXMissing": "Un champ obligatoire est manquant : {0}",
@@ -775,10 +775,10 @@
     "campaigns": {
         "status": {
             "eligible": "Éligible",
-            "eligibleLimited": "Eligible (limité)",
+            "eligiblelimited": "Eligible (limité)",
             "ended": "Terminé",
             "paused": "En pause",
-            "notEligible": "Non éligible",
+            "noteligible": "Non éligible",
             "draft": "Brouillon",
             "pending": "En attente"
         },
@@ -965,7 +965,7 @@
         "openActionsMenu": "Ouvrir le menu d'actions pour la campagne {0}",
         "viewInGoogleAds": "Voir dans votre compte Google Ads",
         "previous": "Précédent",
-        "loginPage": "Go to login page",
+        "loginPage": "Aller à la page de connexion",
         "next": "Suivant",
         "goToPage": "Aller à la première page | Aller à la page : {0} Aller à la dernière page",
         "noEndDate": "Pas de date de fin",
