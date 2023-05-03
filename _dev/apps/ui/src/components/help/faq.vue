@@ -22,8 +22,8 @@
     class="ps_gs-onboardingcard"
   >
     <template #header>
-      <div class="d-flex align-items-center ps_gs-breadcrumb__item">
-        <span>{{ $t("general.tabs.help") }}</span>
+      <div class="d-flex align-items-center ps_gs-onboardingcard__title">
+        {{ $t("general.tabs.help") }}
       </div>
     </template>
 
