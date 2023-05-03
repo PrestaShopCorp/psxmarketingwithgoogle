@@ -7,6 +7,28 @@ $primary-400: #dddddd;
 $primary-300: #eeeeee;
 $primary-200: #f7f7f7;
 
+$green-500: #207F4B;
+$green-300: #59AF70;
+$green-100: #98D9A9;
+$green-50: #EAF8EF;
+
+$red-700: #A41913;
+$red-500: #BA151A;
+$red-300: #D63F3C;
+$red-100: #FDBFBF;
+$red-50: #FFE4E6;
+
+$yellow-500: #FFA000;
+$yellow-300: #FFD999;
+$yellow-100: #FFECCC;
+$yellow-50: #FFF5E5;
+
+$blue-700: #2942CC;
+$blue-500: #174EEF;
+$blue-300: #A2B8F9;
+$blue-100: #D1DCFC;
+$blue-50: #E8EDFD;
+
 $grey_dark: $primary-700;
 $grey_muted: $primary-700;
 $grey_darklight: $primary-500;
@@ -16,24 +38,11 @@ $grey_median: $primary-400;
 $grey-disabled: $primary-300;
 $red-light: #F77B72;
 
-$blue-050: #E8EDFD;
-$blue-100: #D1DCFC;
-$blue-300: #A2B8F9;
-$blue-500: #174EEF;
-$blue-700: #2942CC;
-
 $blue: $blue-500;
 $black: #000000;
-$green: #207F4B;
-$red: #BA151A;
-$yellow: #FFA000;
-
-$purple-050: #E9E6F8;
-$purple-100: #C7C0EE;
-$purple-200: #A296E3;
-$purple-500: #000000;
-$purple-700: #3521BA;
-$purple-900: #1F10A6;
+$green: $green-500;
+$red: $red-500;
+$yellow: $yellow-500;
 
 $light-blue-050: #F8FAFC;
 $light-blue-100: #EFF3F7;
@@ -47,7 +56,7 @@ $off-white: #FBFEFF;
 
 $primary: $primary-800;
 $secondary: $primary-500;
-$info: $blue-700;
+$info: $blue;
 $success: $green;
 $danger: $red;
 $warning: $yellow;
@@ -77,9 +86,15 @@ $theme-colors-active: (
 );
 $alerts-second-colors: (
   "success": $green,
-  "info": $blue-700,
+  "info": $blue,
   "warning": $yellow,
   "danger": $red,
+);
+$alerts-background-colors: (
+  "success": $green-50,
+  "info": $blue-50,
+  "warning": $yellow-50,
+  "danger": $red-50,
 );
 
 // Colors background

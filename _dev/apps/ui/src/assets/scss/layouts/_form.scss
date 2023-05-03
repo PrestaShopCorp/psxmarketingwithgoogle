@@ -38,8 +38,8 @@
     font-weight: 400;
 
     &:focus {
-      box-shadow: 0 0 0 0.2rem rgba($purple-500, 0.5);
-      border-color: $purple-500;
+      box-shadow: 0 0 0 0.2rem rgba($black, 0.5);
+      border-color: $black;
     }
   }
 
@@ -151,14 +151,14 @@
   .vs__selected {
     border: none;
     background-color: $primary-300;
-    color: $purple-500;
+    color: $black;
     font-size: rem(12);
     padding-left: 6px;
     padding-right: 6px;
   }
   .vs__deselect {
     text-shadow: none;
-    color: $purple-500;
+    color: $black;
 
     i {
       font-size: rem(16);

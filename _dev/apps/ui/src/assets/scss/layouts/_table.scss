@@ -95,8 +95,8 @@
     font-size: 0;
     overflow: hidden;
     outline: none;
-    border-left-color: $purple-050;
-    border-top-color: $purple-050;
+    border-left-color: $light-blue-200;
+    border-top-color: $light-blue-200;
     animation: rotating 2s linear infinite;
   }
 }
@@ -283,13 +283,13 @@
 }
 
 $statusColors: (
-  'eligible': encodecolor($green),
-  'eligibleLimited': encodecolor($green),
+  'eligible': encodecolor($success),
+  'eligibleLimited': encodecolor($success),
   'ended': encodecolor($black),
   'paused': encodecolor($info),
   'noteligible': encodecolor($danger),
   'draft': encodecolor($primary-600),
-  'pending': encodecolor($yellow),
+  'pending': encodecolor($warning),
 );
 
 .ps_gs-cell-status {

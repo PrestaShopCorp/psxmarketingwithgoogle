@@ -44,8 +44,8 @@ a.without-hover {
   border-style: solid;
   border-width: 0.15rem;
   border-top-color: #FFFFFF;
-  border-right-color: $purple-050;
-  border-bottom-color: $purple-050;
+  border-right-color: $light-blue-200;
+  border-bottom-color: $light-blue-200;
   border-left-color: #FFFFFF;
   border-radius: 1rem;
   outline: none;
@@ -54,8 +54,8 @@ a.without-hover {
 
   &--dark {
     border-top-color: $primary;
-    border-right-color: $purple-050;
-    border-bottom-color: $purple-050;
+    border-right-color: $light-blue-200;
+    border-bottom-color: $light-blue-200;
     border-left-color: $primary;
   }
 
