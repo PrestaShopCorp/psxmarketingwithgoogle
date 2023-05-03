@@ -590,7 +590,7 @@
         "toggleNewConversionTag": "Definir novos separadores de rastreio de conversão no meu site",
         "toggleNewConversionTag2": "Iremos criar os seguintes separadores de conversão: Vista da página, Comprar, Adicionar ao cesto",
         "remarketingTagLoading": "Verifique se tem separadores de rastreio de remarketing e conversão para adicionar à sua loja",
-        "descriptiveMessage": "Apenas as campanhas de Máximo desempenho e Smart Shopping associadas à sua conta no Google Merchant Center são listadas. \nSe quiser ver todas as suas campanhas, [por favor vá à sua conta de anúncios Google]({0})[:target=\"\"_blank\"\"\"].",
+        "descriptiveMessage": "Apenas as campanhas de Máximo desempenho e Smart Shopping associadas à sua conta no Google Merchant Center são listadas. \nSe quiser ver todas as suas campanhas, [por favor vá à sua conta de anúncios Google]({0})[:target=\"_blank\"].",
         "nbProductsFiltersSelected": "Nenhum filtro de produto selecionado | {0} filtro de produto selecionado | {0} filtros de produtos selecionados",
         "dimensionXFilterSelected": "{0} filtro",
         "categories": "Categoria",
