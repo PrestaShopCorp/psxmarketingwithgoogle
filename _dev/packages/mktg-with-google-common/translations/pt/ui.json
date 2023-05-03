@@ -191,12 +191,12 @@
         "businessCity": "Cidade",
         "businessRegion": "Região",
         "businessCountry": "País",
-        "changeCountryField": "You can [change your country]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informations in your back office",
-        "changeRegionField": "You can [change your region]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informations in your back office",
-        "changeAddressField": "You can [change your business address]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informations in your back office",
-        "changeZipCodeField": "You can [change your zipcode]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informations in your back office",
-        "changeCityField": "You can [change your city]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informations in your back office",
-        "changePhoneNumberField": "You can [change your business phone number]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informations in your back office",
+        "changeCountryField": "Você pode [mudar o seu país]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informações no seu back office",
+        "changeRegionField": "Você pode [mudar a sua região]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informações no seu back office",
+        "changeAddressField": "Você pode [mudar o seu endereço comercial]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informações no seu back office",
+        "changeZipCodeField": "Você pode [mudar seu código postal]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informações no seu back office",
+        "changeCityField": "Você pode [mudar a sua cidade]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informações no seu back office",
+        "changePhoneNumberField": "Você pode [mudar o seu número de telefone comercial]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informações no seu back office",
         "siteContainsAdultContent": "O meu site contém conteúdo adulto",
         "seePolicyAdultContent": "Ver política sobre conteúdo orientado para adultos",
         "labelReadAndAgree": "Ao comprar anúncios de compras, li e concordo em cumprir [termos e políticas do Google]({0})[:target=\"_blank\"], incluindo [termos de serviço do Google Merchant Center]({1})[:target=\"_blank\"], [Políticas de anúncios de compras]({2})[:target=\"_blank\"], e [Termos e condições dos anúncios do Google]({3})[:target=\"_blank\"].",
@@ -509,7 +509,7 @@
         },
         "terms": {
             "title": "Termos de serviço do Programa Google",
-            "label": "I have read and agree with [Google Ads terms and conditions]({0})[:target=\"_blank\" class=\"ps_gs-fz-12\"]"
+            "label": "Li e concordo com os [Termos e condições do Google Ads]({0})[:target=\"_blank\" class=\"ps_gs-fz-12\"]"
         }
     },
     "smartShoppingCampaignCard": {
@@ -775,10 +775,10 @@
     "campaigns": {
         "status": {
             "eligible": "Elegível",
-            "eligiblelimited": "Eligible (limited)",
+            "eligiblelimited": "Elegível (limitado)",
             "ended": "Terminado",
             "paused": "Pausado",
-            "noteligible": "Not Eligible",
+            "noteligible": "Não Elegíveis",
             "draft": "Rascunho",
             "pending": "Pendente"
         },
@@ -1032,7 +1032,7 @@
         "removeTag": "Remover o separador \"Remarketing e conversão\" da minha loja",
         "removeTagExplainations": "A remoção do separador significa que o Google deixará de ser capaz de rastrear as suas campanhas. Nós recomendamos que só remova o separador se planear remover completamente o módulo ou mudar a sua conta. Pode sempre adicioná-lo no código do seu site.",
         "titleActivateTrackingSSC": "Ative o separador de rastreio de remarketing e conversão.",
-        "textActivateTrackingSSC": "In order to run Performance Max campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop.",
+        "textActivateTrackingSSC": "A fim de executar campanhas de Máximo desempenho, o Google Ads precisa de ser capaz de criar [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] e [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline\"] no seu site. \nA PrestaShop definirá automaticamente estes trechos de código na sua loja.",
         "textConfirmCancel": "Se você voltar, perderá os valores selecionados.",
         "upgradeSCCToPmaxTitle": "Atualização da campanha em breve",
         "upgradeSCCToPmaxTextWithoutCampaign": "A partir de {0}, poderá criar campanhas de Máximo desempenho para a sua loja. \n\n Máximo desempenho é a próxima geração de campanhas de Smart Shopping. É um tipo de campanha melhorada alimentada pela tecnologia inteligente do Google. Funciona por detrás do cenário para optimizar automaticamente os seus anúncios ao longo do percurso de compras, de modo a obter o máximo desempenho.",
@@ -1042,9 +1042,9 @@
         "PMaxMigrationTitle": "Notícias importantes",
         "PMaxMigrationText": "As suas campanhas de Compras Inteligentes começarão agora automaticamente a actualizar para as campanhas Máximo desempenho.\n\n- As definições e orçamento da sua campanha permanecem os mesmos. \n\n- A funcionalidade está em paridade com as campanhas de Smart Shopping.\n\n- A partir deste ponto, só pode criar campanhas Máximo desempenho.",
         "PmaxTextLink": "Saiba mais sobre as Campanhas de máximo desempenho",
-        "textPmaxReleased": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max Campaigns now. [Learn more]({0})[:target=\"_blank\" class=\"text-decoration-underline\"]",
+        "textPmaxReleased": "As suas campanhas de Compras Inteligentes começarão agora automaticamente a actualizar para as Campanhas de máximo desempenho mais. [Saiba mais]({0})[:target=\"_blank\" class=\"text-decoration-underline\"]",
         "disconnectedUserBo": "You have been disconnected from the backoffice. You will be automatically redirected to the login page in {0} seconds.",
-        "titleDisconnectedUserBo": "Connection lost"
+        "titleDisconnectedUserBo": "Ligação Perdida"
     },
     "tooltip": {
         "googleAccountRequired": "Requer a configuração da conta Google",
@@ -1120,10 +1120,10 @@
     },
     "banner": {
         "titleAdsbanner": "Você está apenas começando a anunciar no Google?",
-        "textAdsBannerLong": "Get {0} of Google Ads credits* when you spend at least {0} to create your first campaigns on PrestaShop or directly via your [Google Ads Account]({1})[:target=\"_blank\"].",
+        "textAdsBannerLong": "Obtenha {0} de créditos do Google Ads* quando gastar pelo menos {0} para criar as suas primeiras campanhas no PrestaShop ou diretamente através da sua [Conta do Google Ads]({1})[:target=\"_blank\"].",
         "textAdsBanner": "Obtenha {0} de créditos do Google Ads* quando gastar pelo menos {0} para criar suas primeiras campanhas.",
-        "legendLong": "*Your voucher will be applied automatically from the moment you start spending! *The amount needs to be spent within 60 days of the first campaign spend and credits will be valid for 60 days once credited. [Read T&C]({0})[:target=\"_blank\"]",
-        "legend": "*Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits. [Read T&C]({0})[:target=\"_blank\"]",
+        "legendLong": "*Seu voucher será aplicado automaticamente a partir do momento em que você começar a gastar! *O valor precisa ser gasto dentro de 60 dias após o primeiro gasto da campanha e os créditos serão válidos por 60 dias após serem resgatados. [Ler T&C]({0})[:target=\"_blank\"]",
+        "legend": "*Crie uma nova conta do Google Ads. O voucher será aplicado automaticamente assim que corresponder ao gasto e você terá 60 dias para gastar os créditos. [Ler T&C]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "* Crie uma nova conta do Google Ads. O voucher será aplicado automaticamente assim que corresponder ao gasto e você terá 60 dias para gastar os créditos.",
         "ctaCreateFirstCampaign": "Criar sua primeira campanha",
         "textCampaignsBanner": "Performance Max é a próxima geração de campanhas Smart Shopping. É um tipo de campanha aprimorada alimentada pela tecnologia inteligente do Google. Ela funciona silencionamente para otimizar automaticamente seus anúncios em toda a jornada de compras para obter o máximo desempenho."
