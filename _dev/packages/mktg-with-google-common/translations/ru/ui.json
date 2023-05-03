@@ -775,10 +775,10 @@
     "campaigns": {
         "status": {
             "eligible": "Подходящий",
-            "eligibleLimited": "Допустимый (ограниченный)",
+            "eligiblelimited": "Eligible (limited)",
             "ended": "Завершено",
             "paused": "Приостановлено",
-            "notEligible": "Не имеет права",
+            "noteligible": "Not Eligible",
             "draft": "Проект",
             "pending": "В ожидании"
         },
