@@ -509,7 +509,7 @@
         },
         "terms": {
             "title": "Nutzungsbedingungen für das Google-Programm",
-            "label": "Ich habe die [Agb von Google Ads]({0})[:target=\"_blank\" class=\"ps_gs-fz-12\"] gelesen und stimme ihnen zu"
+            "label": "Ich habe die [AGB von Google Ads]({0})[:target=\"_blank\" class=\"ps_gs-fz-12\"] gelesen und stimme ihnen zu"
         }
     },
     "smartShoppingCampaignCard": {
