@@ -775,10 +775,10 @@
     "campaigns": {
         "status": {
             "eligible": "Eligible",
-            "eligibleLimited": "In aanmerking komend (beperkt)",
+            "eligiblelimited": "Eligible (limited)",
             "ended": "Beëindigd",
             "paused": "Gepauzeerd",
-            "notEligible": "Niet in aanmerking",
+            "noteligible": "Not Eligible",
             "draft": "Ontwerp",
             "pending": "In afwachting van"
         },
