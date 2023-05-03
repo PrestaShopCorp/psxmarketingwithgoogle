@@ -775,10 +775,10 @@
     "campaigns": {
         "status": {
             "eligible": "Eligibil",
-            "eligibleLimited": "Eligibil (limitat)",
+            "eligiblelimited": "Eligible (limited)",
             "ended": "Încheiată",
             "paused": "În pauză",
-            "notEligible": "Nu este eligibil",
+            "noteligible": "Not Eligible",
             "draft": "Ciornă",
             "pending": "În așteptare"
         },
