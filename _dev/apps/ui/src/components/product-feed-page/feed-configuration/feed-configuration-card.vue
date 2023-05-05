@@ -1,5 +1,20 @@
 <template>
   <section>
+    <b-alert
+      variant="danger"
+      show
+      v-if="!loading && !languages.length"
+    >
+      <p class="mb-0">
+        {{
+          $tc('productFeedSettings.preScan.langConflict',
+              targetCountries.length,
+              [targetCountriesNames.join(', ')]
+          )
+
+        }}
+      </p>
+    </b-alert>
     <div
       class="d-flex flex-column border border-600-20 rounded mb-2 px-3 py-2 d-flex bg-prestashop-bg"
     >
