@@ -18,7 +18,7 @@ import {
 import { rest } from 'msw';
 
 export default {
-  title: 'Product-Feed-Page/ProductFeedPage',
+  title: 'Product-Feed-Page/Product Feed Page',
 };
 
 const ProductFeed = (args, { argTypes }) => ({
