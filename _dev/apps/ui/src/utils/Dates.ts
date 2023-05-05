@@ -1,12 +1,12 @@
-import dayjs from "dayjs";
-import timezone from "dayjs/plugin/timezone"; // dependent on utc plugin
-import utc from "dayjs/plugin/utc";
-import localizedFormat from "dayjs/plugin/localizedFormat";
+import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone'; // dependent on utc plugin
+import utc from 'dayjs/plugin/utc';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.extend(localizedFormat);
-dayjs.tz.setDefault("Europe/London");
+dayjs.tz.setDefault('Europe/London');
 
 export const timeConverterToDate = (timestamp: string) => {
   if (timestamp) {
@@ -20,16 +20,16 @@ export const timeConverterToDate = (timestamp: string) => {
 
     return time;
   }
-  return "-";
+  return '-';
 };
 
 export const timeConverterToStringifiedDate = (date?: string|Date) => {
   if (date) {
     return dayjs(date)
       .locale(window.i18nSettings.languageLocale)
-      .format("LLLL");
+      .format('LLLL');
   }
-  return "-";
+  return '-';
 };
 
 export const timeConverterToHour = (date?: string|Date) => {
@@ -37,10 +37,10 @@ export const timeConverterToHour = (date?: string|Date) => {
     return new Date(date).toLocaleTimeString(
       window.i18nSettings.languageLocale,
       {
-        hour: "2-digit",
-        minute: "2-digit",
-      }
+        hour: '2-digit',
+        minute: '2-digit',
+      },
     );
   }
-  return "-";
+  return '-';
 };
