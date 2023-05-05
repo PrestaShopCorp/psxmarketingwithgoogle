@@ -32,8 +32,9 @@
         "
       >
         <feed-configuration-card
-          v-if="productFeedConfiguration"
+          v-if="loading || productFeedConfiguration"
           :productFeedConfiguration="productFeedConfiguration"
+          :loading="loading"
         />
         <SubmittedProducts
           v-slot="{ productStatuses }"
@@ -58,6 +59,7 @@ import SubmittedProducts from './submitted-products/submitted-products';
 import ProductsStatusCard from './submitted-products/products-status-card';
 import SyncHistory from './sync-history/sync-history';
 import SyncState from './sync-history/sync-state';
+import { ProductFeedReport } from '../../store/modules/product-feed/state';
 
 export default defineComponent({
   components: {
@@ -73,14 +75,18 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    loading: {
+      type: Boolean,
+    },
   },
   computed: {
+    productFeedReport(): ProductFeedReport {
+      console.log('productFeedReport', this.$store.getters['productFeed/GET_PRODUCT_FEED_REPORT']);
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_REPORT'];
+    },
     productFeedConfiguration() {
-      return {
-        lastModificationDate: new Date(),
-        targetCountries: ['FR', 'UK', 'IT'], 
-        languages: ['it', 'fr', 'de'],
-      };
+      console.log('productFeedConfiguration', this.productFeedReport.lastConfigurationUsed);
+      return this.productFeedReport.lastConfigurationUsed;
     }
   }
 });

@@ -24,6 +24,7 @@
       </PsToast>
       <sync-overview
         :in-need-of-configuration="inNeedOfConfiguration"
+        :loading="!allDataLoaded"
       />
     </template>
   </div>

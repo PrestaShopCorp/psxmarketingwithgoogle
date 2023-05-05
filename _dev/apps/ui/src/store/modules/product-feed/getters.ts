@@ -24,6 +24,7 @@ import {
   ProductFeedValidationSummary,
   AttributesInfos,
   PreScanReporting,
+  ProductFeedReport,
 } from './state';
 import GettersTypes from './getters-types';
 import {filterCountriesCompatible} from '@/utils/TargetCountryValidator';
@@ -157,4 +158,7 @@ export default {
   [GettersTypes.GET_ESTIMATE_CARRIERS](state: LocalState): CustomCarrier[] {
     return state.settings.estimateCarriers;
   },
+  [GettersTypes.GET_PRODUCT_FEED_REPORT](state: LocalState): ProductFeedReport {
+    return state.report;
+  }
 };
