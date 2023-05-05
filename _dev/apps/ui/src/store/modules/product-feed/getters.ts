@@ -160,5 +160,5 @@ export default {
   },
   [GettersTypes.GET_PRODUCT_FEED_REPORT](state: LocalState): ProductFeedReport {
     return state.report;
-  }
+  },
 };
