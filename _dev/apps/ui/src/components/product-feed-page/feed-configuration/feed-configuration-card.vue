@@ -29,6 +29,7 @@
           <span
             class="ps_gs-fz-12"
             v-if="productFeedConfiguration"
+            data-test-id="pf-config-date"
           >
             {{ lastModificationDate }}, {{ lastModificationTime }}
           </span>
@@ -37,7 +38,7 @@
         <div class="d-flex justify-content-between">
           <div class="flex-grow-1">
             <i class="material-icons ps_gs-fz-20">language</i>
-            <span class="font-weight-600">
+            <span class="font-weight-600 mr-1">
               {{ $tc(
                 'productFeedPage.dashboardPage.productFeedConfiguration.targetCountries',
                 localizationListLengths.countries) }}
@@ -47,6 +48,7 @@
               border-variant="primary"
               class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13"
               :key="index"
+              data-test-id="pf-config-country"
             >
               {{ country }}
             </b-card>
@@ -54,19 +56,31 @@
 
           <div class="flex-grow-1">
             <i class="material-icons ps_gs-fz-20">translate</i>
-            <span class="font-weight-600">
+            <span class="font-weight-600 mr-1">
               {{ $tc(
                 'productFeedPage.dashboardPage.productFeedConfiguration.languages',
                 localizationListLengths.languages) }}
             </span>
-            <b-card
-              v-for="(language, index) in languages"
-              border-variant="primary"
-              class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13"
-              :key="index"
+            <span
+              v-if="!languages.length"
+              data-test-id="pf-config-no-lang"
+              class="text-danger"
             >
-              {{ language }}
-            </b-card>
+              {{ $t('productFeedPage.dashboardPage.productFeedConfiguration.noLanguage') }}
+            </span>
+            <template
+              v-else
+            >
+              <b-card
+                v-for="(language, index) in languages"
+                border-variant="primary"
+                class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13"
+                :key="index"
+                data-test-id="pf-config-lang"
+              >
+                {{ language }}
+              </b-card>
+            </template>
           </div>
         </div>
       </b-skeleton-wrapper>
