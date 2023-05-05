@@ -7,11 +7,17 @@
         :loading="loading"
       >
         <template #loading>
-          <b-skeleton width="30%" class="mb-3" />
+          <b-skeleton
+            width="30%"
+            class="mb-3"
+          />
           <div
             class="d-flex"
           >
-            <b-skeleton width="50%" class="mr-3"/>
+            <b-skeleton
+              width="50%"
+              class="mr-3"
+            />
             <b-skeleton width="50%" />
           </div>
         </template>
@@ -27,31 +33,37 @@
             {{ lastModificationDate }}, {{ lastModificationTime }}
           </span>
         </div>
-  
+
         <div class="d-flex justify-content-between">
           <div class="flex-grow-1">
             <i class="material-icons ps_gs-fz-20">language</i>
             <span class="font-weight-600">
-              {{ $tc('productFeedPage.dashboardPage.productFeedConfiguration.targetCountries', localizationListLengths.countries) }}
+              {{ $tc(
+                'productFeedPage.dashboardPage.productFeedConfiguration.targetCountries',
+                localizationListLengths.countries) }}
             </span>
             <b-card
-              v-for="country in targetCountriesNames"
+              v-for="(country, index) in targetCountriesNames"
               border-variant="primary"
               class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13"
+              :key="index"
             >
               {{ country }}
             </b-card>
           </div>
-  
+
           <div class="flex-grow-1">
             <i class="material-icons ps_gs-fz-20">translate</i>
             <span class="font-weight-600">
-              {{ $tc('productFeedPage.dashboardPage.productFeedConfiguration.languages', localizationListLengths.languages) }}
+              {{ $tc(
+                'productFeedPage.dashboardPage.productFeedConfiguration.languages',
+                localizationListLengths.languages) }}
             </span>
             <b-card
-              v-for="language in languages"
+              v-for="(language, index) in languages"
               border-variant="primary"
               class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13"
+              :key="index"
             >
               {{ language }}
             </b-card>
@@ -63,10 +75,10 @@
 </template>
 
 <script lang="ts">
-import { PropType } from '@vue/composition-api';
-import { defineComponent } from 'vue';
+import {PropType} from '@vue/composition-api';
+import {defineComponent} from 'vue';
 
-import {ProductFeedConfiguration} from './feed-configuration'
+import {ProductFeedConfiguration} from './feed-configuration';
 import {timeConverterToDate, timeConverterToHour} from '@/utils/Dates';
 import {changeCountriesCodesToNames} from '@/utils/Countries';
 
