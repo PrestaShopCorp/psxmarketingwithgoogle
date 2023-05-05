@@ -33,7 +33,7 @@
       >
         <feed-configuration-card
           v-if="loading || productFeedConfiguration"
-          :productFeedConfiguration="productFeedConfiguration"
+          :product-feed-configuration="productFeedConfiguration"
           :loading="loading"
         />
         <SubmittedProducts
@@ -52,14 +52,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import {defineComponent} from 'vue';
 import NotConfiguredCard from '@/components/commons/not-configured-card';
 import FeedConfigurationCard from './feed-configuration/feed-configuration-card.vue';
 import SubmittedProducts from './submitted-products/submitted-products';
 import ProductsStatusCard from './submitted-products/products-status-card';
 import SyncHistory from './sync-history/sync-history';
 import SyncState from './sync-history/sync-state';
-import { ProductFeedReport } from '../../store/modules/product-feed/state';
+import {ProductFeedReport} from '../../store/modules/product-feed/state';
 
 export default defineComponent({
   components: {
@@ -87,7 +87,7 @@ export default defineComponent({
     productFeedConfiguration() {
       console.log('productFeedConfiguration', this.productFeedReport.lastConfigurationUsed);
       return this.productFeedReport.lastConfigurationUsed;
-    }
-  }
+    },
+  },
 });
 </script>
