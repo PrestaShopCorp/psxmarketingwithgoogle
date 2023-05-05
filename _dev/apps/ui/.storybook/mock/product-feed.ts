@@ -424,6 +424,7 @@ export const productFeed: State = {
     total: 0,
     langChosen: '',
   },
+  report: {},
 };
 export const productFeedNoCarriers = {
   ...productFeed,
@@ -505,6 +506,13 @@ export const productFeedIsConfigured = {
     targetCountries: ["FR"],
     shippingSetup: "import",
   },
+  report: {
+    lastConfigurationUsed: {
+      lastModificationDate: new Date(2023, 6, 31, 13, 37),
+      targetCountries: ['FR', 'UK', 'IT'], 
+      languages: ['it', 'fr', 'de'],
+    },
+  }
 };
 
 export const productFeedEstimateConfigured = {

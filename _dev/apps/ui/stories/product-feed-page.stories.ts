@@ -1,3 +1,4 @@
+import cloneDeep from 'lodash.clonedeep';
 import ProductFeedPage from '../src/views/product-feed-page.vue'
 import {
   productFeed,
@@ -5,6 +6,7 @@ import {
   productFeedSyncSummaryInProgress,
   productFeedStatusSyncSuccess,
   productFeedStatusSyncFailed,
+  productFeedIsConfigured,
 } from '../.storybook/mock/product-feed';
 import {
   googleAdsNotChosen,
@@ -30,7 +32,6 @@ const ProductFeed = (args, { argTypes }) => ({
   beforeCreate(this :any){
     this.$store.state.productFeed.isConfigured = Object.assign({}, true);
   },
-
 });
 
 export const NeedConfiguration:any = ProductFeed.bind({});
@@ -39,6 +40,18 @@ NeedConfiguration.args = {
     this.$store.state.productFeed.isConfigured = false;
   }
 };
+
+export const Loading:any = ProductFeed.bind({});
+Loading.args = {
+  beforeMount() {
+    this.$store.state.productFeed.isConfigured = true;
+  },
+  mounted(this: any) {
+    setTimeout(() => {
+      this.$refs.ProductFeedPage.$data.allDataLoaded = false;
+    }, 500);
+  }
+}
 
 export const Planned:any = ProductFeed.bind({});
 Planned.args = {
@@ -111,6 +124,7 @@ InProgress.args = {
   allDataLoaded : true,
   beforeMount() {
     this.$store.state.productFeed.isConfigured = false;
+    this.$store.state.productFeed.report = cloneDeep(productFeedIsConfigured.report);
   },
   mounted(this: any) {
     this.$refs.ProductFeedPage.$data.allDataLoaded = true
@@ -173,6 +187,11 @@ InProgress.parameters = {
 };
 
 export const SuccessWithoutPrescan:any = ProductFeed.bind({});
+SuccessWithoutPrescan.args = {
+  beforeMount() {
+    this.$store.state.productFeed.report = cloneDeep(productFeedIsConfigured.report);
+  },
+}
 SuccessWithoutPrescan.parameters = {
   msw: {
     handlers: [
@@ -228,6 +247,11 @@ SuccessWithoutPrescan.parameters = {
 };
 
 export const Success:any = ProductFeed.bind({});
+Success.args = {
+  beforeMount() {
+    this.$store.state.productFeed.report = cloneDeep(productFeedIsConfigured.report);
+  },
+}
 Success.parameters = {
   msw: {
     handlers: [
@@ -285,6 +309,11 @@ Success.parameters = {
 };
 
 export const Failed:any = ProductFeed.bind({});
+Failed.args = {
+  beforeMount() {
+    this.$store.state.productFeed.report = cloneDeep(productFeedIsConfigured.report);
+  },
+}
 Failed.parameters = {
   msw: {
     handlers: [

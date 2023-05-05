@@ -25,7 +25,12 @@ import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {CustomCarrier} from '@/providers/shipping-rate-provider';
 import {RateType} from '@/enums/product-feed/rate';
 import Categories, {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
+import { ProductFeedConfiguration } from '../../../components/product-feed-page/feed-configuration/feed-configuration';
 
+/**
+ * @deprecated
+ * To be replaced by ProductFeedReport
+ */
 export interface ProductFeedStatus {
   nextJobAt?: string;
   jobEndedAt?: string|null;
@@ -34,6 +39,9 @@ export interface ProductFeedStatus {
   syncSchedule?: string;
 }
 
+export type ProductFeedReport = {
+  lastConfigurationUsed?: ProductFeedConfiguration;
+}
 export interface ProductFeedSettings {
   shippingSetup: ShippingSetupOption|null;
   estimateCarriers: CustomCarrier[];
@@ -136,6 +144,7 @@ export interface State {
   requestSynchronizationNow: boolean;
   preScanDetail: PreScanDetail;
   attributeMapping: AttributeResponseFromAPI;
+  report: ProductFeedReport;
 }
 
 export enum ProductStatus {
@@ -218,4 +227,5 @@ export const state: State = {
     langChosen: '',
   },
   attributeMapping: {},
+  report: {},
 };
