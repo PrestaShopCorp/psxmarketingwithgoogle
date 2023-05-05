@@ -639,7 +639,6 @@
         "timeline": {},
         "productFeedConfiguration": {
           "title": "Your product feed's configuration",
-          "lastConfigurationDate": "Last configuration {date}",
           "targetCountries": "Selected target country:|Selected target countries:",
           "languages": "Language:|Languages:"
         },
@@ -970,9 +969,7 @@
       "editContact": "Edit contact information",
       "update": "Update",
       "validateSelection" : "Validate Selection",
-      "googleProductStatusDefinitions" : "Google product status definitions",
       "visitThe" : "Visit the {0} for more information",
-      "investigate" : "Investigate",
       "createPmax": "Create Performance Max campaign",
       "understand": "I understand",
       "moreActions": "More Actions"

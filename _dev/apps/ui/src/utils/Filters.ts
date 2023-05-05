@@ -1,54 +1,14 @@
 import Vue from 'vue';
 
-import dayjs from 'dayjs';
-import timezone from 'dayjs/plugin/timezone'; // dependent on utc plugin
-import utc from 'dayjs/plugin/utc';
-import localizedFormat from 'dayjs/plugin/localizedFormat';
 import {changeCountriesCodesToNames} from './Countries';
 import {formatPrice} from './Price';
+import {timeConverterToDate, timeConverterToHour, timeConverterToStringifiedDate} from './Dates';
 
-dayjs.extend(utc);
-dayjs.extend(timezone);
-dayjs.extend(localizedFormat);
-dayjs.tz.setDefault('Europe/London');
+Vue.filter('timeConverterToDate', timeConverterToDate);
 
-Vue.filter(
-  'timeConverterToDate', (timestamp : string) => {
-    if (timestamp) {
-      const a = new Date(timestamp);
-      const year = a.getFullYear();
-      const month = a.getMonth() + 1;
-      const finalMonth = month < 10 ? `0${month}` : month;
-      const day = a.getDate();
-      const finalDay = day < 10 ? `0${day}` : day;
-      const time = `${finalDay}/${finalMonth}/${year}`;
+Vue.filter('timeConverterToStringifiedDate', timeConverterToStringifiedDate);
 
-      return time;
-    }
-    return '-';
-  });
-
-Vue.filter(
-  'timeConverterToStringifiedDate', (date : string) => {
-    if (date) {
-      return dayjs(date).locale(window.i18nSettings.languageLocale).format('LLLL');
-    }
-    return '-';
-  });
-
-Vue.filter(
-  'timeConverterToHour', (timestamp : string) => {
-    if (timestamp) {
-      return new Date(timestamp).toLocaleTimeString(
-        window.i18nSettings.languageLocale,
-        {
-          hour: '2-digit',
-          minute: '2-digit',
-        },
-      );
-    }
-    return '-';
-  });
+Vue.filter('timeConverterToHour', timeConverterToHour);
 
 Vue.filter('changeCountriesCodesToNames', changeCountriesCodesToNames);
 

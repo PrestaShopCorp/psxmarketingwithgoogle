@@ -23,19 +23,6 @@
             :sync-state="syncState"
           />
         </SyncHistory>
-        <i18n
-          v-if="!inNeedOfConfiguration"
-          path="cta.visitThe"
-          tag="div"
-          class="mt-4 ps_gs-fz-13 text-left text-muted"
-        >
-          <b-link
-            :to="{ name: 'help' }"
-            class="with-hover text-decoration-underline"
-          >
-            {{ $t("general.helpPage") }}
-          </b-link>
-        </i18n>
       </div>
       <div
         class="
@@ -44,6 +31,10 @@
           border-top border-md-top-0 border-md-left border-600-20
         "
       >
+        <feed-configuration-card
+          v-if="productFeedConfiguration"
+          :productFeedConfiguration="productFeedConfiguration"
+        />
         <SubmittedProducts
           v-slot="{ productStatuses }"
           :in-need-of-configuration="inNeedOfConfiguration"
@@ -54,28 +45,23 @@
             :product-status="productStatus"
           />
         </SubmittedProducts>
-        <div class="mt-4 text-muted ps_gs-fz-13 d-flex justify-content-between flex-wrap">
-          <a
-            :href="$options.googleUrl.learnRequirementsProductSpecification"
-            target="_blank"
-            class="d-inline-block"
-          >{{ $t("cta.googleProductStatusDefinitions") }}</a>
-        </div>
       </div>
     </div>
   </b-card>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import NotConfiguredCard from '@/components/commons/not-configured-card';
+import FeedConfigurationCard from './feed-configuration/feed-configuration-card.vue';
 import SubmittedProducts from './submitted-products/submitted-products';
 import ProductsStatusCard from './submitted-products/products-status-card';
 import SyncHistory from './sync-history/sync-history';
 import SyncState from './sync-history/sync-state';
-import googleUrl from '@/assets/json/googleUrl.json';
 
-export default {
+export default defineComponent({
   components: {
+    FeedConfigurationCard,
     NotConfiguredCard,
     SubmittedProducts,
     ProductsStatusCard,
@@ -89,20 +75,13 @@ export default {
     },
   },
   computed: {
-    validationSummary() {
-      return this.$store.getters[
-        'productFeed/GET_PRODUCT_FEED_VALIDATION_SUMMARY'
-      ];
-    },
-    productsSent() {
-      return (
-        this.validationSummary.pendingItems !== null
-        || this.validationSummary.activeItems !== null
-        || this.validationSummary.expiringItems !== null
-        || this.validationSummary.disapprovedItems !== null
-      );
-    },
-  },
-  googleUrl,
-};
+    productFeedConfiguration() {
+      return {
+        lastModificationDate: new Date(),
+        targetCountries: ['FR', 'UK', 'IT'], 
+        languages: ['it', 'fr', 'de'],
+      };
+    }
+  }
+});
 </script>
