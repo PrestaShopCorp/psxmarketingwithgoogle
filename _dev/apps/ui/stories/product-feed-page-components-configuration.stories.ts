@@ -38,3 +38,13 @@ Loading.args = {
   productFeedConfiguration: null,
   loading: true,
 };
+
+export const NoEligibleLanguage: any = ProductFeed.bind({});
+NoEligibleLanguage.args = {
+  productFeedConfiguration: {
+    lastModificationDate: new Date(2023, 6, 31, 13, 37),
+    targetCountries: ['FR', 'UK', 'IT'], 
+    languages: [],
+  },
+  loading: false,
+};

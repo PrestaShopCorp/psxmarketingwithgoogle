@@ -640,7 +640,10 @@
         "productFeedConfiguration": {
           "title": "Your product feed's configuration",
           "targetCountries": "Selected target country:|Selected target countries:",
-          "languages": "Language:|Languages:"
+          "languages": "Language:|Languages:",
+          "currencies": "Currency:|Currencies:",
+          "noLanguage": "No eligible language",
+          "noCurrency": "No eligible currency"
         },
         "productVerification": {
           "stepTitle": "Products verified by Prestashop before sent to Google",
