@@ -1,10 +1,10 @@
 /**
  * @jest-environment jsdom
  */
-import {mount} from "@vue/test-utils";
+import {mount} from '@vue/test-utils';
+import {BCard, BSkeleton} from 'bootstrap-vue';
 import config, {localVue, addBootstrapToVue} from '@/../tests/init';
-import feedConfigurationCardVue from "./feed-configuration-card.vue";
-import { BSkeleton } from "bootstrap-vue";
+import feedConfigurationCardVue from './feed-configuration-card.vue';
 
 describe('feed-configuration-card.vue', () => {
   it('displays the configuration details used during the sync', () => {
@@ -61,7 +61,7 @@ describe('feed-configuration-card.vue', () => {
     expect(loadingTags).toHaveLength(3);
   });
 
-  it('displays a specific message when no language is used', () => {
+  it('displays an alert message when no language is used', () => {
     addBootstrapToVue();
     const wrapper = mount(feedConfigurationCardVue, {
       localVue,
@@ -77,10 +77,14 @@ describe('feed-configuration-card.vue', () => {
     });
     const countriesFound = wrapper.findAll('[data-test-id="pf-config-country"]');
     const noElligibleLang = wrapper.find('[data-test-id="pf-config-no-lang"]');
+    const languagesAlert = wrapper.find('.alert-danger');
+
     expect(countriesFound).toHaveLength(1);
     expect(countriesFound.at(0).text()).toEqual('France');
 
     expect(noElligibleLang.exists()).toBeTruthy();
     expect(noElligibleLang.text()).toEqual('No eligible language');
+
+    expect(languagesAlert.text()).toEqual('Your product language does not match the target country {0}. Please ensure that the language of your products matches the target country spoken languages, by translating your product or changing the target country. | Your product language does not match the target countries {0}. Please ensure that the language of your products matches the target countries spoken languages, by translating your product or changing the target countries.');
   });
 });

@@ -190,6 +190,7 @@ export const SuccessWithoutPrescan:any = ProductFeed.bind({});
 SuccessWithoutPrescan.args = {
   beforeMount() {
     this.$store.state.productFeed.report = cloneDeep(productFeedIsConfigured.report);
+    this.$store.state.productFeed.report.lastConfigurationUsed.languages = [];
   },
 }
 SuccessWithoutPrescan.parameters = {
