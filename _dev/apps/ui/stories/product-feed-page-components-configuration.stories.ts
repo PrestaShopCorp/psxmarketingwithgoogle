@@ -20,6 +20,7 @@ Default.args = {
     targetCountries: ['FR', 'UK', 'IT'], 
     languages: ['it', 'fr', 'de'],
   },
+  loading: false,
 };
 
 export const ComplexConfiguration:any = ProductFeed.bind({});
@@ -29,6 +30,7 @@ ComplexConfiguration.args = {
     targetCountries: ['FR', 'UK', 'IT', 'DE', 'NL', 'PT', 'PL'], 
     languages: ['it', 'fr', 'de', 'en', 'nl', 'pt', 'pl'],
   },
+  loading: false,
 };
 
 export const Loading:any = ProductFeed.bind({});
