@@ -141,7 +141,7 @@ EnabledWithOneAccountFromModule.args = {
   initialMcaStatus: Object.assign({},
     merchantCenterAccountNotConnected,
     {
-      aggregatorId: '123456'
+      aggregatorId: '381504106'
     }
   ),
 };

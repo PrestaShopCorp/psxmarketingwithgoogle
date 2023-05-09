@@ -193,7 +193,7 @@
           </b-form>
           <div class="mt-3">
             <i18n
-              v-if="!hasMcaCreatedFromModule"
+              v-if="!hasGmcCreatedFromModule"
               path="general.createNewAccount"
               class="ps_gs-fz-12 mt-3 mt-md-0"
               tag="div"
@@ -578,6 +578,7 @@ export default {
   },
   computed: {
     mcaSelectionOptions() {
+      console.log('*******************************************');
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_MCA_LIST'];
     },
     mcaSelectionOptionsAndGroups() {
@@ -714,11 +715,11 @@ export default {
         && this.selectedMcaDetails.name !== null
         && this.selectedMcaDetails.name !== undefined;
     },
-    hasMcaCreatedFromModule() {
-      const isFromModule = this.mcaSelectionOptions?.findIndex((option) => 'aggregatorId' in option);
-
+    hasGmcCreatedFromModule() {
+      const isFromModule = this.mcaSelectionOptions?.findIndex((option) => 'aggregatorId' in option && option.aggregatorId !== null);
+      console.log('isFromModule', isFromModule);
       return isFromModule >= 0;
-    }
+    },
   },
   methods: {
     selectMerchantCenterAccount() {
