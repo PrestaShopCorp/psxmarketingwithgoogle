@@ -578,7 +578,6 @@ export default {
   },
   computed: {
     mcaSelectionOptions() {
-      console.log('*******************************************');
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_MCA_LIST'];
     },
     mcaSelectionOptionsAndGroups() {
@@ -717,7 +716,7 @@ export default {
     },
     hasGmcCreatedFromModule() {
       const isFromModule = this.mcaSelectionOptions?.findIndex((option) => 'aggregatorId' in option && option.aggregatorId !== null);
-      console.log('isFromModule', isFromModule);
+
       return isFromModule >= 0;
     },
   },
