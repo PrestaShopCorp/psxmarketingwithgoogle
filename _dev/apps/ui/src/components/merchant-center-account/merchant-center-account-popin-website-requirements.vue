@@ -31,7 +31,7 @@
       v-if="stepActiveData === 1"
     >
       <a
-        class="ps_gs-fz-12 text-muted mr-sm-auto"
+        class="ps_gs-fz-12 mr-sm-auto"
         :href="$options.googleUrl.googleWebsiteRequirements"
         target="_blank"
       >

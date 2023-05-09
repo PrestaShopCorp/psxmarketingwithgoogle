@@ -191,12 +191,12 @@
         "businessCity": "Oraș",
         "businessRegion": "Regiune",
         "businessCountry": "Țară",
-        "changeCountryField": "Poți [schimba țara]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informații în back-office",
-        "changeRegionField": "Poți [schimba regiunea]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informații în back-office",
-        "changeAddressField": "Poți [schimba adresa firmei]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informații în back-office",
-        "changeZipCodeField": "Poți [schimba codul poștal]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informații în back-office",
-        "changeCityField": "Poți [schimba orașul]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informații în back-office",
-        "changePhoneNumberField": "Poți [schimba numărul de telefon al companiei]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] informații în back-office",
+        "changeCountryField": "Poți [schimba țara]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informații în back-office",
+        "changeRegionField": "Poți [schimba regiunea]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informații în back-office",
+        "changeAddressField": "Poți [schimba adresa firmei]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informații în back-office",
+        "changeZipCodeField": "Poți [schimba codul poștal]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informații în back-office",
+        "changeCityField": "Poți [schimba orașul]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informații în back-office",
+        "changePhoneNumberField": "Poți [schimba numărul de telefon al companiei]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informații în back-office",
         "siteContainsAdultContent": "Site-ul meu conține conținut pentru adulți",
         "seePolicyAdultContent": "Consultă politica privind conținutul pentru adulți",
         "labelReadAndAgree": "Prin achiziționarea reclamelor de Shopping, am citit și sunt de acord să respect [Termenii și politicile Google]({0})[:target=\"_blank\"], inclusiv [Termenii și condițiile Google Merchant Center]({1})[:target=\"_blank\"], [Politicile privind reclamele pentru Shopping]({2})[:target=\"_blank\"] și [Termenii și condițiile Google Ads]({3})[:target=\"_blank\"].",
@@ -509,7 +509,7 @@
         },
         "terms": {
             "title": "Condiții de utilizare pentru Google Program",
-            "label": "Am citit și sunt de acord cu [termenii și condițiile Google Ads]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]"
+            "label": "Am citit și sunt de acord cu [termenii și condițiile Google Ads]({0})[:target=\"_blank\" class=\"ps_gs-fz-12\"]"
         }
     },
     "smartShoppingCampaignCard": {
@@ -775,10 +775,10 @@
     "campaigns": {
         "status": {
             "eligible": "Eligibil",
-            "eligibleLimited": "Eligibil (limitat)",
+            "eligiblelimited": "Eligibil (limitat)",
             "ended": "Încheiată",
             "paused": "În pauză",
-            "notEligible": "Nu este eligibil",
+            "noteligible": "Nu este eligibil",
             "draft": "Ciornă",
             "pending": "În așteptare"
         },
@@ -965,7 +965,7 @@
         "openActionsMenu": "Deschide meniul de acțiuni pentru campania {0}",
         "viewInGoogleAds": "Vizualizează în contul tău Google Ads",
         "previous": "Înapoi",
-        "loginPage": "Go to login page",
+        "loginPage": "Mergi la pagina de conectare",
         "next": "Înainte",
         "goToPage": "Mergi la prima pagină | Mergi la pagina: {0} | Mergi la ultima pagină",
         "noEndDate": "Fără dată de sfârșit",
@@ -1032,7 +1032,7 @@
         "removeTag": "Elimină eticheta „Remarketing și conversie” din magazinul meu",
         "removeTagExplainations": "Eliminarea etichetei înseamnă că Google nu va mai putea urmări campaniile tale. Recomandăm să elimini eticheta numai dacă intenționezi să elimini complet modulul sau să schimbi contul. Poți oricând să-l adaugi singur în codul site-ului tău.",
         "titleActivateTrackingSSC": "Activează eticheta de remarketing și de urmărire a conversiilor.",
-        "textActivateTrackingSSC": "Pentru a rula campanii Performance Max, Google Ads trebuie să poată crea pe site-ul tău [lista de remarketing]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] și [eticheta de urmărire a conversiilor]({1})[:target=\"_blank\" class= \"text-decoration-underline text-muted\"].   \n PrestaShop va seta automat aceste fragmente de cod în magazinul tău.",
+        "textActivateTrackingSSC": "Pentru a rula campanii Performance Max, Google Ads trebuie să poată crea pe site-ul tău [lista de remarketing]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] și [eticheta de urmărire a conversiilor]({1})[:target=\"_blank\" class= \"text-decoration-underline\"].   \n PrestaShop va seta automat aceste fragmente de cod în magazinul tău.",
         "textConfirmCancel": "Dacă revii, vei pierde valorile selectate",
         "upgradeSCCToPmaxTitle": "Actualizarea campaniei va avea loc în curând",
         "upgradeSCCToPmaxTextWithoutCampaign": "Începând cu {0}, vei putea crea campanii Performance Max pentru magazinul tău. \n\n Performance Max este următoarea generație de campanii Smart Shopping. Este un tip de campanie avansat, alimentat de tehnologia inteligentă Google. Aceasta funcționează în culise pentru a optimiza automat reclamele pe parcursul traseului de cumpărături pentru a obține performanțe maxime.",
@@ -1042,9 +1042,9 @@
         "PMaxMigrationTitle": "Știri importante",
         "PMaxMigrationText": "Campaniile Smart Shopping vor începe să fie actualizate automat la campaniile Performance Max.\n\n— Setările campaniei și bugetul rămân aceleași. \n\n— Funcționalitatea este la egalitate cu campaniile Smart Shopping. \n\n— Din acest moment, poți crea doar campanii Performance Max.",
         "PmaxTextLink": "Află mai multe despre Performance Max",
-        "textPmaxReleased": "Campaniile Smart Shopping vor începe să fie actualizate automat la campaniile Performance Max. [Află mai multe]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]",
+        "textPmaxReleased": "Campaniile Smart Shopping vor începe să fie actualizate automat la campaniile Performance Max. [Află mai multe]({0})[:target=\"_blank\" class=\"text-decoration-underline\"]",
         "disconnectedUserBo": "You have been disconnected from the backoffice. You will be automatically redirected to the login page in {0} seconds.",
-        "titleDisconnectedUserBo": "Connection lost"
+        "titleDisconnectedUserBo": "Conexiune pierdută"
     },
     "tooltip": {
         "googleAccountRequired": "Necesită configurarea contului Google",
@@ -1120,10 +1120,10 @@
     },
     "banner": {
         "titleAdsbanner": "Ești la început în publicitatea Google?",
-        "textAdsBannerLong": "Obține {0} credite Google Ads* atunci când cheltuiești cel puțin {0} pentru a crea primele campanii în PrestaShop sau direct prin [contul Google Ads]({1})[:target=\\\"_blank\\\"].",
+        "textAdsBannerLong": "Obține {0} credite Google Ads* atunci când cheltuiești cel puțin {0} pentru a crea primele campanii în PrestaShop sau direct prin [contul Google Ads]({1})[:target=\"_blank\"].",
         "textAdsBanner": "Obține {0} credite Google Ads* atunci când cheltuiești cel puțin {0} pentru a crea primele campanii.",
-        "legendLong": "*Voucherul tău va fi aplicat automat din momentul în care începi să cheltuiești! *Suma trebuie cheltuită în termen de 60 de zile de la prima cheltuială a campaniei, iar creditele vor fi valabile timp de 60 de zile după ce au fost creditate. [Citește termenii și condițiile]({0})[:target=\\\"_blank\\\"]",
-        "legend": "*Creează un nou cont Google Ads, voucherul va fi aplicat automat după ce ai acumulat suficient cheltuieli și vei avea la dispoziție 60 de zile pentru a cheltui creditele. [Citește termenii și condițiile]({0})[:target=\\\"_blank\\\"]",
+        "legendLong": "*Voucherul tău va fi aplicat automat din momentul în care începi să cheltuiești! *Suma trebuie cheltuită în termen de 60 de zile de la prima cheltuială a campaniei, iar creditele vor fi valabile timp de 60 de zile după ce au fost creditate. [Citește termenii și condițiile]({0})[:target=\"_blank\"]",
+        "legend": "*Creează un nou cont Google Ads, voucherul va fi aplicat automat după ce ai acumulat suficient cheltuieli și vei avea la dispoziție 60 de zile pentru a cheltui creditele. [Citește termenii și condițiile]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "* Creează un nou cont Google Ads, voucherul va fi aplicat automat după ce ai acumulat suficiente cheltuieli și vei avea la dispoziție 60 de zile pentru a cheltui creditele.",
         "ctaCreateFirstCampaign": "Creează-ți prima campanie",
         "textCampaignsBanner": "Performance Max este următoarea generație de campanii Smart Shopping. Este un tip de campanie avansat, alimentat de tehnologia inteligentă Google. Aceasta funcționează în culise pentru a optimiza automat reclamele pe parcursul traseului de cumpărături pentru a obține performanțe maxime."

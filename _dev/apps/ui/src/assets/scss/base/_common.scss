@@ -1,16 +1,8 @@
-a {
-  color: $blue;
-}
-
 a[target="_blank"]:not(.external_link-no_icon) {
 
   &:not(.btn) {
     text-decoration: underline;
 
-    &:hover,
-    &:focus {
-      color: rgba($blue, 0.65) !important;
-    }
     &::after {
       content: "\e895"; // "launch" icon
       font-family: 'Material Icons';
@@ -20,20 +12,6 @@ a[target="_blank"]:not(.external_link-no_icon) {
       margin-left: 0.18em;
       text-decoration: none;
     }
-  }
-}
-
-.text-muted a[target="_blank"]:not(.external_link-no_icon),
-a[target="_blank"].text-muted:not(.external_link-no_icon) {
-  color: $blue !important;
-}
-
-.text-muted a.with-hover,
-a.text-muted.with-hover {
-  color: $blue !important;
-
-  &:hover, &:focus {
-    color: $blue !important;
   }
 }
 
@@ -66,8 +44,8 @@ a.without-hover {
   border-style: solid;
   border-width: 0.15rem;
   border-top-color: #FFFFFF;
-  border-right-color: $purple-050;
-  border-bottom-color: $purple-050;
+  border-right-color: $light-blue-200;
+  border-bottom-color: $light-blue-200;
   border-left-color: #FFFFFF;
   border-radius: 1rem;
   outline: none;
@@ -76,8 +54,8 @@ a.without-hover {
 
   &--dark {
     border-top-color: $primary;
-    border-right-color: $purple-050;
-    border-bottom-color: $purple-050;
+    border-right-color: $light-blue-200;
+    border-bottom-color: $light-blue-200;
     border-left-color: $primary;
   }
 

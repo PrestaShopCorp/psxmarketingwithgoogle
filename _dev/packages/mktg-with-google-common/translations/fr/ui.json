@@ -191,12 +191,12 @@
         "businessCity": "Ville",
         "businessRegion": "Région",
         "businessCountry": "Pays",
-        "changeCountryField": "Vous pouvez [changer votre pays]({0})[:target=\"_blank\" class=\"text-decoration-highlight text-muted\"] dans votre back office",
-        "changeRegionField": "Vous pouvez [changer votre région]({0})[:target=\"_blank\" class=\"text-decoration-highlight text-muted\"] dans votre back office",
-        "changeAddressField": "Vous pouvez [changer l'adresse de votre entreprise]({0})[:target=\"_blank\" class=\"text-decoration-highlight text-muted\"] dans votre back office",
-        "changeZipCodeField": "Vous pouvez [modifier votre code zip]({0})[:target=\"_blank\" class=\"text-decoration-highlight text-muted\"] dans votre back-office",
-        "changeCityField": "Vous pouvez [changer votre ville]({0})[:target=\"_blank\" class=\"text-decoration-highlight text-muted\"] dans votre back office",
-        "changePhoneNumberField": "Vous pouvez [changer votre numéro de téléphone professionnel]({0})[:target=\"_blank\" class=\"text-decoration-highlight text-muted\"] dans votre back-office",
+        "changeCountryField": "Vous pouvez [changer votre pays]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] dans votre back office",
+        "changeRegionField": "Vous pouvez [changer votre région]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] dans votre back office",
+        "changeAddressField": "Vous pouvez [changer l'adresse de votre entreprise] ({0})[:target=\"_blank\" class=\"text-decoration-underline\"] dans votre back office",
+        "changeZipCodeField": "Vous pouvez [modifier votre code zip]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] dans votre back-office",
+        "changeCityField": "Vous pouvez [changer votre ville]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] dans votre back office",
+        "changePhoneNumberField": "Vous pouvez [changer votre numéro de téléphone professionnel]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] dans votre back-office",
         "siteContainsAdultContent": "Mon site web contient du contenu pour adultes",
         "seePolicyAdultContent": "Voir la politique relative aux contenus destinés aux adultes",
         "labelReadAndAgree": "En faisant des annonces Shopping, j'ai lu et j'accepte de respecter les [conditions et politiques de Google]({0})[:target=\"_blank\"], y compris [les conditions d'utilisation du Merchant center Google]({1})[:target=\"_blank\"], [Règles relatives aux annonces Shopping]({2})[:target=\"_blank\"], et [Conditions d'utilisation de Google Ads]({3})[:target=\"_blank\"].",
@@ -509,7 +509,7 @@
         },
         "terms": {
             "title": "Conditions d'utilisation du programme Google",
-            "label": "J'ai lu et j'accepte les [conditions générales de Google Ads]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]"
+            "label": "J'ai lu et j'accepte les [conditions générales de Google Ads]({0})[:target=\"_blank\" class=\"ps_gs-fz-12\"]"
         }
     },
     "smartShoppingCampaignCard": {
@@ -700,7 +700,7 @@
             "xHasFailedPreValidation": "\"{0}\" : a échoué à la pré-validation.",
             "xHasPassedPreValidation": "\"{0}\" : a passé la pré-validation.",
             "labelTooltipDescription": "Cet attribut correspond à ce que vous avez configuré dans la cartographie des attributs de vos produits : description courte, description...",
-            "labelTooltipBarcode": "GTIN is a unique identifier used to identify products. it can be UPC or EAN or JAN or ISBN. If you don't have a GTIN for your product, in this case add a Brand (of the product or your company) AND a MPN (Manufacturer Part Number) which is a unique identifier different from the GTIN, assigned by a manufacturer to identify a specific product or part"
+            "labelTooltipBarcode": "Le GTIN est un identifiant unique utilisé pour identifier les produits. Il peut être UPC, EAN, JAN ou ISBN. Si vous n'avez pas de GTIN pour votre produit, dans ce cas, ajoutez une marque (du produit ou de votre entreprise) ET un numéro de référence du fabricant (MPN), qui est un identifiant unique différent du GTIN, attribué par un fabricant pour identifier un produit ou une pièce spécifique."
         },
         "approvalTable": {
             "description": "Ce sont les statuts de vos produits qui sont envoyés au Google Merchant Center. Certains produits peuvent apparaître plus d'une fois en raison de leur variation de langue.",
@@ -721,7 +721,7 @@
             "perPageLabel": "Montrer :",
             "goToLabel": "Aller à la page :",
             "editX": "Editer {0}",
-            "noReasonFallback": "*Not provided, check [account errors on your Merchant Center]({0})[:target=\"_blank\"].*"
+            "noReasonFallback": "*Non fourni, vérifiez [les erreurs de compte sur Merchant Center]({0})[:target=\"_blank\"].*"
         },
         "errorReason": {
             "fieldXMissing": "Un champ obligatoire est manquant : {0}",
@@ -775,10 +775,10 @@
     "campaigns": {
         "status": {
             "eligible": "Éligible",
-            "eligibleLimited": "Eligible (limité)",
+            "eligiblelimited": "Eligible (limité)",
             "ended": "Terminé",
             "paused": "En pause",
-            "notEligible": "Non éligible",
+            "noteligible": "Non éligible",
             "draft": "Brouillon",
             "pending": "En attente"
         },
@@ -965,7 +965,7 @@
         "openActionsMenu": "Ouvrir le menu d'actions pour la campagne {0}",
         "viewInGoogleAds": "Voir dans votre compte Google Ads",
         "previous": "Précédent",
-        "loginPage": "Go to login page",
+        "loginPage": "Aller à la page de connexion",
         "next": "Suivant",
         "goToPage": "Aller à la première page | Aller à la page : {0} Aller à la dernière page",
         "noEndDate": "Pas de date de fin",
@@ -1032,7 +1032,7 @@
         "removeTag": "Supprimer la balise \"Remarketing et conversion\" de ma boutique",
         "removeTagExplainations": "La suppression de la balise signifie que Google ne sera plus en mesure de suivre vos campagnes. Nous vous recommandons de ne supprimer la balise que si vous envisagez de supprimer complètement le module ou de modifier votre compte. Vous pouvez toujours l'ajouter vous-même dans le code de votre site.",
         "titleActivateTrackingSSC": "Activez la balise de remarketing et de suivi des conversions",
-        "textActivateTrackingSSC": "Afin de lancer des campagnes Performance Max, Google Ads doit pouvoir créer une [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] et [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] sur votre site. \n PrestaShop va automatiquement définir ces extraits de code dans votre boutique.",
+        "textActivateTrackingSSC": "Afin de lancer des campagnes Performance Max, Google Ads doit pouvoir créer une [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] et [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline\"] sur votre site. \n PrestaShop va automatiquement définir ces extraits de code dans votre boutique.",
         "textConfirmCancel": "Si vous revenez en arrière, vous perdrez les valeurs sélectionnées.",
         "upgradeSCCToPmaxTitle": "Nouvelle campagne bientôt disponible",
         "upgradeSCCToPmaxTextWithoutCampaign": "A compter du {0}, vous pourrez créer des campagnes Performance Max pour votre boutique.\n\nPerformance Max est la nouvelle génération de campagnes shopping intelligentes. Il s'agit d'un type de campagne optimisé, utilisant la technologie intelligente de Google. Elle fonctionne en arrière-plan pour optimiser automatiquement vos annonces tout au long du parcours d'achat afin d'obtenir des performances maximales.",
@@ -1042,9 +1042,9 @@
         "PMaxMigrationTitle": "Actualités importantes",
         "PMaxMigrationText": "Dès aujourd'hui, vos campagnes Shopping Intelligentes vont automatiquement démarrer leur mise à niveau vers Peformance Max.\n\n- La configuration et le budget de votre campagne restent les mêmes.\n\n- Le fonctionnement est le même que celui des campagnes Smart Shopping.\n\n- À partir de maintenant, vous pouvez uniquement créer des campagnes Performance Max.",
         "PmaxTextLink": "En savoir plus sur Performance Max",
-        "textPmaxReleased": "Dès aujourd'hui, vos campagnes Shopping Intelligentes vont automatiquement démarrer leur mise à niveau vers Peformance Max. [En savoir plus]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]",
-        "disconnectedUserBo": "You have been disconnected from the backoffice. You will be automatically redirected to the login page in {0} seconds.",
-        "titleDisconnectedUserBo": "Connection lost"
+        "textPmaxReleased": "Dès aujourd'hui, vos campagnes Shopping Intelligentes vont automatiquement démarrer leur mise à niveau vers Peformance Max. [En savoir plus]({0})[:target=\"_blank\" class=\"text-decoration-underline\"]",
+        "disconnectedUserBo": "Vous avez été déconnecté du backoffice. Vous serez automatiquement redirigé vers la page de connexion dans {0} secondes.",
+        "titleDisconnectedUserBo": "Connexion perdue"
     },
     "tooltip": {
         "googleAccountRequired": "Nécessite la configuration d'un compte Google",
@@ -1120,10 +1120,10 @@
     },
     "banner": {
         "titleAdsbanner": "Vous débutez dans la publicité sur Google ?",
-        "textAdsBannerLong": "Obtenez {0} de crédits Google Ads* lorsque vous dépensez au moins {0} pour créer vos premières campagnes sur PrestaShop ou directement via votre [compte Google Ads]({1})[:target=\\\"_blank\\\"].",
+        "textAdsBannerLong": "Obtenez {0} de crédits Google Ads* lorsque vous dépensez au moins {0} pour créer vos premières campagnes sur PrestaShop ou directement via votre [compte Google Ads]({1})[:target=\"_blank\"].",
         "textAdsBanner": "Obtenez {0} de crédits Google Ads* lorsque vous dépensez au moins {0} pour créer vos premières campagnes.",
-        "legendLong": "*Votre bon de réduction sera automatiquement appliqué à partir du moment où vous commencez à dépenser ! *Le montant doit être dépensé dans les 60 jours suivant la première dépense de campagne et les crédits seront valides pendant 60 jours après avoir été crédités. [Lire T&C]({0})[:target=\\\"_blank\\\"]",
-        "legend": "* Créez un nouveau compte Google Ads, le bon d'achat sera appliqué automatiquement dès que vous aurez atteint le montant des dépenses et vous aurez 60 jours pour les dépenser. [Lire les conditions d'utilisation]({0})[:target=\\\"_blank\\\"]",
+        "legendLong": "*Votre bon de réduction sera automatiquement appliqué à partir du moment où vous commencez à dépenser ! *Le montant doit être dépensé dans les 60 jours suivant la première dépense de campagne et les crédits seront valides pendant 60 jours après avoir été crédités. [Lire T&C]({0})[:target=\"_blank\"]",
+        "legend": "* Créez un nouveau compte Google Ads, le bon d'achat sera appliqué automatiquement dès que vous aurez atteint le montant des dépenses et vous aurez 60 jours pour les dépenser. [Lire les conditions d'utilisation]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "* Créez un nouveau compte Google Ads, le bon d'achat sera appliqué automatiquement dès que vous aurez atteint le montant des dépenses et vous aurez 60 jours pour les dépenser.",
         "ctaCreateFirstCampaign": "Créer votre première campagne",
         "textCampaignsBanner": "Performance Max est la nouvelle génération de campagnes shopping intelligentes. Il s'agit d'un type de campagne optimisé, utilisant la technologie intelligente de Google. Elle fonctionne en arrière-plan pour optimiser automatiquement vos annonces tout au long du parcours d'achat afin d'obtenir des performances maximales."

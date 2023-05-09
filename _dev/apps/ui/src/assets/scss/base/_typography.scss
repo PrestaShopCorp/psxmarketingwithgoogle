@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600;700;800;900&display=swap');
 #psxMktgWithGoogleApp {
   font-family: $font-family-sans-serif;
   line-height: 1.4em;
@@ -16,7 +16,7 @@
   font-weight: 600;
 
   &--disabled {
-    color: $grey_muted;
+    color: $grey_darklight;
   }
 
   &__step {

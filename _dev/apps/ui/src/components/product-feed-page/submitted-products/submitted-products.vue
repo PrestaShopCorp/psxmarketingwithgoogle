@@ -55,7 +55,7 @@
         <h2 class="ps_gs-fz-16 font-weight-600">
           {{ $t('productFeedPage.overview.title') }}
         </h2>
-        <p class="text-secondary ps_gs-fz-13 mb-2">
+        <p class="ps_gs-fz-13 mb-2">
           {{ $t('productFeedPage.overview.description') }}
         </p>
       </div>

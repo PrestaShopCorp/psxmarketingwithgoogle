@@ -22,8 +22,8 @@
     class="ps_gs-onboardingcard"
   >
     <template #header>
-      <div class="d-flex align-items-center ps_gs-breadcrumb__item">
-        <span>{{ $t("general.tabs.help") }}</span>
+      <div class="d-flex align-items-center ps_gs-onboardingcard__title">
+        {{ $t("general.tabs.help") }}
       </div>
     </template>
 
@@ -79,14 +79,13 @@
           <div class="contact mt-4">
             <div>{{ $t("help.help.couldntFindAnyAnswer") }}</div>
             <div class="mt-2">
-              <b-button
+              <b-link
                 variant="link"
                 target="_blank"
                 :href="$options.prestashopUrl.contactForm"
               >
                 {{ $t("help.help.contactUs") }}
-                <i class="material-icons">arrow_right_alt</i>
-              </b-button>
+              </b-link>
             </div>
           </div>
         </b-col>

@@ -55,7 +55,7 @@
             >
               <b-link
                 :to="{ name: 'help' }"
-                class="with-hover text-decoration-underline"
+                class="text-decoration-underline"
               >
                 {{ $t("general.helpPage") }}
               </b-link>
@@ -102,7 +102,7 @@
                   v-b-tooltip:psxMktgWithGoogleApp
                   :title="$t('smartShoppingCampaignCreation.inputNameTooltip')"
                 >
-                  <span class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
+                  <span class="material-icons-round mb-0 ps_gs-fz-16 text-secondary">
                     info_outlined
                   </span>
                 </b-button>
@@ -132,7 +132,7 @@
                   v-b-tooltip:psxMktgWithGoogleApp
                   :title="$t('smartShoppingCampaignCreation.inputDurationTooltip')"
                 >
-                  <span class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
+                  <span class="material-icons-round mb-0 ps_gs-fz-16 text-secondary">
                     info_outlined
                   </span>
                 </b-button>
@@ -228,7 +228,7 @@
                   v-b-tooltip:psxMktgWithGoogleApp
                   :title="$t('smartShoppingCampaignCreation.inputCountryTooltip')"
                 >
-                  <span class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
+                  <span class="material-icons-round mb-0 ps_gs-fz-16 text-secondary">
                     info_outlined
                   </span>
                 </b-button>
@@ -336,7 +336,7 @@
                   v-b-tooltip:psxMktgWithGoogleApp
                   :title="$t('smartShoppingCampaignCreation.inputBudgetTooltip')"
                 >
-                  <i class="material-icons-round mb-0 ps_gs-fz-16 text-primary">
+                  <i class="material-icons-round mb-0 ps_gs-fz-16 text-secondary">
                     info_outlined
                   </i>
                 </b-button>

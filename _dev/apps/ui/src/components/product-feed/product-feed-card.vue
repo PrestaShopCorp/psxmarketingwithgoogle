@@ -59,7 +59,7 @@
                 tag="div"
               >
                 <b-button
-                  variant="invisible"
+                  variant="link"
                   class="bg-transparent p-0 border-0
                     font-weight-600 ps_gs-fz-13 ml-auto"
                   @click="goToProductFeed()"

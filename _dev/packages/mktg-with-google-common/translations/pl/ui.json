@@ -191,12 +191,12 @@
         "businessCity": "Miasto",
         "businessRegion": "Region",
         "businessCountry": "Kraj",
-        "changeCountryField": "Możesz [zmienić Twój kraj]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] w back office",
-        "changeRegionField": "Możesz [zmienić Twój region]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] w back office",
-        "changeAddressField": "Możesz [zmienić Twój adres firmowy]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] w back office",
-        "changeZipCodeField": "Możesz [zmienić Twój kod pocztowy]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] w back office",
-        "changeCityField": "Możesz [zmienić Twoje miasto]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] w back office",
-        "changePhoneNumberField": "Możesz [zmienić Twój służbowy numer telefonu]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] w back office",
+        "changeCountryField": "Możesz [zmienić Twój kraj]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] w back office",
+        "changeRegionField": "Możesz [zmienić Twój region]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] w back office",
+        "changeAddressField": "Możesz [zmienić Twój adres firmowy]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] w back office",
+        "changeZipCodeField": "Możesz [zmienić Twój kod pocztowy]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] w back office",
+        "changeCityField": "Możesz [zmienić Twoje miasto]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] w back office",
+        "changePhoneNumberField": "Możesz [zmienić Twój służbowy numer telefonu]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] w back office",
         "siteContainsAdultContent": "Moja strona zawiera treści dla dorosłych",
         "seePolicyAdultContent": "Zobacz politykę dotyczącą treści skierowanych do dorosłych",
         "labelReadAndAgree": "Wykupując reklamy Zakupy, przeczytałem(-am) i zgadzam się przestrzegać [Warunki i zasady Google]({0})[:target=\"_blank\"], w tym [Warunki korzystania z usługi Google Merchant Center]({1})[:target=\"_blank\"], [Zasady dotyczące reklam w sklepie]({2})[:target=\"_blank\"] oraz [Warunki korzystania z reklam Google]({3})[:target=\"_blank\"].",
@@ -509,7 +509,7 @@
         },
         "terms": {
             "title": "Warunki korzystania z programu Google",
-            "label": "Zapoznałem(-am) się i zgadzam się z [Warunkami korzystania z Google Ads]({0})[:target=\"_blank\" class=\"ps_gs-fz-12 text-muted\"]"
+            "label": "Zapoznałem(-am) się i zgadzam się z [Warunkami korzystania z Google Ads]({0})[:target=\"_blank\" class=\"ps_gs-fz-12\"]"
         }
     },
     "smartShoppingCampaignCard": {
@@ -775,10 +775,10 @@
     "campaigns": {
         "status": {
             "eligible": "Kwalifikowalny",
-            "eligibleLimited": "Kwalifikowalny (w ograniczonym zakresie)",
+            "eligiblelimited": "Kwalifikowalny (w ograniczonym zakresie)",
             "ended": "Zakończony",
             "paused": "Wstrzymany",
-            "notEligible": "Niekwalifikowalny",
+            "noteligible": "Niekwalifikowalny",
             "draft": "Projekt",
             "pending": "W toku"
         },
@@ -965,7 +965,7 @@
         "openActionsMenu": "Otwórz menu działań dla kampanii {0}",
         "viewInGoogleAds": "Zobacz na Twoim koncie Google Ads",
         "previous": "Poprzednie",
-        "loginPage": "Go to login page",
+        "loginPage": "Przejdź do strony logowania",
         "next": "Następne",
         "goToPage": "Przejdź do pierwszej strony | Przejdź do strony: {0} | Przejdź do ostatniej strony",
         "noEndDate": "Brak daty końcowej",
@@ -1032,7 +1032,7 @@
         "removeTag": "Usunięcie tagu „Remarketing i konwersja” z mojego sklepu",
         "removeTagExplainations": "Usunięcie tego tagu oznacza, że Google nie będzie już śledzić Twoich kampanii. Rekomendujemy usunięcie tego tagu tylko jeśli planujesz całkowicie usunąć moduł lub zmienić konto. Zawsze możesz dodać go samodzielnie do kodu na swojej stronie.",
         "titleActivateTrackingSSC": "Aktywuj tag remarketingu i śledzenia konwersji.",
-        "textActivateTrackingSSC": "Aby uruchomić kampanie Performance Max, Google Ads musi być w stanie stworzyć [listę remarketingową]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"] na Twojej stronie. \nPrestaShop automatycznie ustawi te fragmenty kodu w Twoim sklepie.",
+        "textActivateTrackingSSC": "Aby uruchomić kampanie Performance Max, Google Ads musi być w stanie stworzyć [listę remarketingową]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline\"] na Twojej stronie. \nPrestaShop automatycznie ustawi te fragmenty kodu w Twoim sklepie.",
         "textConfirmCancel": "Jeśli się cofniesz, stracisz wybrane wartości.",
         "upgradeSCCToPmaxTitle": "Aktualizacja kampanii już wkrótce",
         "upgradeSCCToPmaxTextWithoutCampaign": "Począwszy od {0}, będziesz mieć możliowść tworzenia kampanii Performance Max dla Twojego sklepu. \n\nPerformance Max to nowa generacja inteligentnych kampanii produktowych. Jest to rozszerzony typ kampanii oparty na inteligentnej technologii Google. Działa za kulisami, aby automatycznie optymalizować reklamy na całej ścieżce zakupowej i zapewnić maksymalną skuteczność.",
@@ -1042,9 +1042,9 @@
         "PMaxMigrationTitle": "Ważne aktualności",
         "PMaxMigrationText": "Twoje Inteligentne kampanie produktowe będą się teraz automatycznie aktualizować do kampanii Performance Max.\n\n- Ustawienia kampanii i budżet pozostają bez zmian;\n\n- Funkcjonalności są takie same jak w inteligentnych kampaniach produktowych;\n\n- Od tego momentu możesz tworzyć tylko kampanie Performance Max.",
         "PmaxTextLink": "Dowiedz się więcej o Performance Max",
-        "textPmaxReleased": "Twoje Inteligentne kampanie produktowe zaczną się teraz automatycznie przekształcać w kampanie Performance Max. Dowiedz się więcej. [Dowiedz się więcej]({0})[:target=\"_blank\" class=\"text-decoration-underline text-muted\"]",
+        "textPmaxReleased": "Twoje Inteligentne kampanie produktowe zaczną się teraz automatycznie przekształcać w kampanie Performance Max. Dowiedz się więcej. [Dowiedz się więcej]({0})[:target=\"_blank\" class=\"text-decoration-underline\"]",
         "disconnectedUserBo": "You have been disconnected from the backoffice. You will be automatically redirected to the login page in {0} seconds.",
-        "titleDisconnectedUserBo": "Connection lost"
+        "titleDisconnectedUserBo": "Utracono połączenie"
     },
     "tooltip": {
         "googleAccountRequired": "Wymaga to konfiguracji konta Google",
@@ -1120,10 +1120,10 @@
     },
     "banner": {
         "titleAdsbanner": "Dopiero zaczynasz przygodę z reklamami w Google?",
-        "textAdsBannerLong": "Zdobądź {0} kuponów promocyjnych Google Ads*, jeśli wydasz co najmniej {0} na stworzenie Twoich pierwszych kampanii na PrestaShop lub bezpośrednio przez Twoje [Google Ads Account]({1})[:target=\\\"_blank\\\"].",
+        "textAdsBannerLong": "Zdobądź {0} kuponów promocyjnych Google Ads*, jeśli wydasz co najmniej {0} na stworzenie Twoich pierwszych kampanii na PrestaShop lub bezpośrednio przez Twoje [Google Ads Account]({1})[:target=\"_blank\"].",
         "textAdsBanner": "Zdobądź {0} kuponów promocyjnych Google Ads* po wydaniu co najmniej {0} na stworzenie Twoich pierwszych kampanii.",
-        "legendLong": "*Twój voucher zostanie zastosowany automatycznie od momentu rozpoczęcia wydatków! *Kwota musi zostać wydana w ciągu 60 dni od daty pierwszej kampanii, a kupony promocyjne będą ważne przez 60 dni po ich przyznaniu. [Przeczytaj Warunki]({0})[:target=\\\"_blank\\\"]",
-        "legend": "* Utwórz nowe konto Google Ads. Kupony promocyjne zostaną przyznane automatycznie po spełnieniu kryterium wydatków. Będziesz mieć 60 dni na wykorzystanie kuponów. [Przeczytaj Warunki]({0})[:target=\\\"_blank\\\"]",
+        "legendLong": "*Twój voucher zostanie zastosowany automatycznie od momentu rozpoczęcia wydatków! *Kwota musi zostać wydana w ciągu 60 dni od daty pierwszej kampanii, a kupony promocyjne będą ważne przez 60 dni po ich przyznaniu. [Przeczytaj Warunki]({0})[:target=\"_blank\"]",
+        "legend": "* Utwórz nowe konto Google Ads. Kupony promocyjne zostaną przyznane automatycznie po spełnieniu kryterium wydatków. Będziesz mieć 60 dni na wykorzystanie kuponów. [Przeczytaj Warunki]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "* Utwórz nowe konto Google Ads. Kupony promocyjne zostaną przyznane automatycznie po spełnieniu kryterium wydatków. Będziesz mieć 60 dni na wykorzystanie kuponów. ",
         "ctaCreateFirstCampaign": "Utwórz pierwszą kampanię",
         "textCampaignsBanner": "Performance Max to nowa generacja inteligentnych kampanii produktowych. Jest to rozszerzony typ kampanii oparty na inteligentnej technologii Google. Działa za kulisami, aby automatycznie optymalizować reklamy na całej ścieżce zakupowej i zapewnić ich maksymalną skuteczność."
