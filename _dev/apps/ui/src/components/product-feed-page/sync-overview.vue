@@ -55,6 +55,7 @@
 import {defineComponent} from 'vue';
 import NotConfiguredCard from '@/components/commons/not-configured-card';
 import FeedConfigurationCard from './feed-configuration/feed-configuration-card.vue';
+import MerchantCenterAccountAlertSuspended from '@/components/merchant-center-account/merchant-center-account-alert-suspended.vue';
 import SubmittedProducts from './submitted-products/submitted-products';
 import ProductsStatusCard from './submitted-products/products-status-card';
 import SyncHistory from './sync-history/sync-history';
@@ -64,9 +65,10 @@ import {IncrementalSyncContext} from './feed-configuration/feed-configuration';
 export default defineComponent({
   components: {
     FeedConfigurationCard,
+    MerchantCenterAccountAlertSuspended,
     NotConfiguredCard,
-    SubmittedProducts,
     ProductsStatusCard,
+    SubmittedProducts,
     SyncHistory,
     SyncState,
   },
