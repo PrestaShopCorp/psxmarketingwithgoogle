@@ -306,41 +306,11 @@
             </div>
           </div>
         </div>
-        <b-alert
+        <merchant-center-account-alert-suspended 
           v-if="error === WebsiteClaimErrorReason.Suspended"
-          show
-          variant="danger"
-          class="mb-0 mt-3"
-        >
-          <strong>{{ $t('mcaCard.alertSuspended') }}</strong><br>
-          <VueShowdown
-            :markdown="$t('mcaCard.alertSuspendedDescription', [
-              merchantCenterWebsitePageUrl.overview,
-              $options.googleUrl.requestiongReReview
-            ])"
-            :extensions="['extended-link']"
-          />
-          <span class="text-muted d-block">
-            <template
-              v-for="(issue, index) in selectedMcaDetails.isSuspended.issues"
-            ><!--
-            comment is necessary to have the comma next to the link
-          --><span
-          v-if="index !== 0"
-          class="mr-2"
-          :key="'span-' + index"
-              >, </span><!--
-            comment is necessary to have the comma next to the link
-          --><a
-            :key="index"
-            :href="issue.documentation"
-            target="_blank"
-            class="text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
-            v-html="$t('mcaCard.linkLearnMoreAbout', [issue.title])"
-          />
-            </template>
-          </span>
-        </b-alert>
+          :issues="selectedMcaDetails.isSuspended.issues"
+          :account-overview-url="merchantCenterWebsitePageUrl.overview"
+        />
         <b-alert
           v-else-if="error === WebsiteClaimErrorReason.OverwriteNeeded"
           show
@@ -535,6 +505,7 @@ import googleUrl from '@/assets/json/googleUrl.json';
 import {
   WebsiteClaimErrorReason,
 } from '../../store/modules/accounts/state';
+import MerchantCenterAccountAlertSuspended from '@/components/merchant-center-account/merchant-center-account-alert-suspended.vue';
 import MerchantCenterAccountPopinOverwriteClaim from './merchant-center-account-popin-overwrite-claim';
 import MerchantCenterAccountPopinWebsiteRequirements from './merchant-center-account-popin-website-requirements.vue';
 import PhoneVerificationPopin from './phone-verification/phone-verification-popin.vue';
@@ -544,6 +515,7 @@ import AlertModuleDisabled from '@/components/commons/alert-module-disabled';
 export default {
   name: 'MerchantCenterAccountCard',
   components: {
+    MerchantCenterAccountAlertSuspended,
     MerchantCenterAccountPopinOverwriteClaim,
     MerchantCenterAccountPopinWebsiteRequirements,
     VueShowdown,
