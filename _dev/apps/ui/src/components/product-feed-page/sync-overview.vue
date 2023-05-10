@@ -81,11 +81,9 @@ export default defineComponent({
   },
   computed: {
     productFeedReport(): ProductFeedReport {
-      console.log('productFeedReport', this.$store.getters['productFeed/GET_PRODUCT_FEED_REPORT']);
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_REPORT'];
     },
     productFeedConfiguration() {
-      console.log('productFeedConfiguration', this.productFeedReport.lastConfigurationUsed);
       return this.productFeedReport.lastConfigurationUsed;
     },
   },
