@@ -186,14 +186,14 @@ InProgress.parameters = {
   },
 };
 
-export const SuccessWithoutPrescan:any = ProductFeed.bind({});
-SuccessWithoutPrescan.args = {
+export const ScanFailedBecauseOfLanguages:any = ProductFeed.bind({});
+ScanFailedBecauseOfLanguages.args = {
   beforeMount() {
     this.$store.state.productFeed.report = cloneDeep(productFeedIsConfigured.report);
     this.$store.state.productFeed.report.lastConfigurationUsed.languages = [];
   },
 }
-SuccessWithoutPrescan.parameters = {
+ScanFailedBecauseOfLanguages.parameters = {
   msw: {
     handlers: [
       rest.get('/incremental-sync/status/*', (req, res, ctx) => {
@@ -309,13 +309,13 @@ Success.parameters = {
   },
 };
 
-export const Failed:any = ProductFeed.bind({});
-Failed.args = {
+export const SyncFailed:any = ProductFeed.bind({});
+SyncFailed.args = {
   beforeMount() {
     this.$store.state.productFeed.report = cloneDeep(productFeedIsConfigured.report);
   },
 }
-Failed.parameters = {
+SyncFailed.parameters = {
   msw: {
     handlers: [
       rest.get('/incremental-sync/status/*', (req, res, ctx) => {
