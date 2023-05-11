@@ -31,6 +31,11 @@
           border-top border-md-top-0 border-md-left border-600-20
         "
       >
+        <merchant-center-account-alert-suspended
+          v-if="gmcAccountIsSuspended"
+          :issues="gmcAccountDetails.isSuspended.issues"
+          :account-overview-url="gmcAccountOverviewPage"
+        />
         <feed-configuration-card
           v-if="loading || incrementalSyncContext"
           :product-feed-configuration="incrementalSyncContext"
@@ -61,6 +66,8 @@ import ProductsStatusCard from './submitted-products/products-status-card';
 import SyncHistory from './sync-history/sync-history';
 import SyncState from './sync-history/sync-state';
 import {IncrementalSyncContext} from './feed-configuration/feed-configuration';
+import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
+import {getMerchantCenterWebsiteUrls} from '@/components/merchant-center-account/merchant-center-account-links';
 
 export default defineComponent({
   components: {
@@ -84,6 +91,16 @@ export default defineComponent({
   computed: {
     incrementalSyncContext(): IncrementalSyncContext|undefined {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_SYNC_CONTEXT'];
+    },
+    gmcAccountDetails() {
+      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'];
+    },
+    gmcAccountIsSuspended() {
+      return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_WEBSITE_CLAIMING_OVERRIDE_STATUS']
+      === WebsiteClaimErrorReason.Suspended;
+    },
+    gmcAccountOverviewPage() {
+      return getMerchantCenterWebsiteUrls(this.gmcAccountDetails.id).overview;
     },
   },
 });
