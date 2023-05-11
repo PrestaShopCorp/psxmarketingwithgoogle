@@ -715,7 +715,7 @@ export default {
         && this.selectedMcaDetails.name !== undefined;
     },
     hasGmcCreatedFromModule() {
-      const isFromModule = this.mcaSelectionOptions?.findIndex((option) => 'aggregatorId' in option && option.aggregatorId === process.env.VUE_APP_AGGREGATOR_ID);
+      const isFromModule = this.mcaSelectionOptions?.findIndex((option) => 'aggregatorId' in option && option.aggregatorId === this.$store.state.accounts.mcaPrestashopId);
 
       return isFromModule >= 0;
     },

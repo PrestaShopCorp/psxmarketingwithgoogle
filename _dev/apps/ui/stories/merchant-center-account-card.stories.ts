@@ -108,7 +108,9 @@ Enabled.args = {
   loading: false,
   initialMcaStatus: Object.assign({}, merchantCenterAccountNotConnected),
   mounted: function(this: any) {
-    this.$store.state.accounts.googleAccount.details.email = "jean.peuplu@prestashop.com"
+    this.$store.state.accounts.googleAccount.details.email = "jean.peuplu@prestashop.com";
+    const filteredSelectOptions = this.$store.state.accounts.googleAccount.mcaSelectionOptions.filter(account => account.aggregatorId !== "381504106");
+    this.$store.state.accounts.googleAccount.mcaSelectionOptions = filteredSelectOptions;
   }
 };
 
@@ -119,7 +121,7 @@ EnabledSpinner.args = {
   initialMcaStatus: Object.assign({}, merchantCenterAccountNotConnected),
   mounted: function(this: any) {
     // This is not the correct state to show spinner but it works...
-    this.$store.state.accounts.googleAccount.mcaSelectionOptions = null
+    this.$store.state.accounts.googleAccount.mcaSelectionOptions = null;
   }
 };
 
@@ -138,12 +140,7 @@ export const EnabledWithOneAccountFromModule:any = Template.bind({});
 EnabledWithOneAccountFromModule.args = {
   isEnabled: true,
   loading: false,
-  initialMcaStatus: Object.assign({},
-    merchantCenterAccountNotConnected,
-    {
-      aggregatorId: '381504106'
-    }
-  ),
+  initialMcaStatus: Object.assign({}, merchantCenterAccountNotConnected),
 };
 
 export const EnabledLinkingFailed:any = Template.bind({});
