@@ -2,7 +2,7 @@
   <b-alert
     show
     variant="danger"
-    class="mb-0 mt-3"
+    class="mt-3"
   >
     <strong>{{ $t('mcaCard.alertSuspended') }}</strong><br>
     <VueShowdown
@@ -37,8 +37,8 @@
 
 <script lang="ts">
 import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
-import googleUrl from '@/assets/json/googleUrl.json';
 import {PropType, defineComponent} from 'vue';
+import googleUrl from '@/assets/json/googleUrl.json';
 
 export default defineComponent({
   name: 'MerchantCenterAccountAlertSuspended',
