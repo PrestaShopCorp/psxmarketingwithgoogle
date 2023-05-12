@@ -111,6 +111,7 @@ export interface State {
   tokenPsAccounts: string;
   googleAccount: GoogleAccountContext;
   googleMerchantAccount: MerchantCenterAccountContext;
+  mcaPrestashopId: string;
 }
 
 export enum WebsiteClaimErrorReason {
@@ -178,4 +179,5 @@ export const state: State = {
       },
     },
   },
+  mcaPrestashopId: process.env.VUE_APP_AGGREGATOR_ID || '',
 };

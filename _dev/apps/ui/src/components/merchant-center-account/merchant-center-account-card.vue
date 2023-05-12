@@ -193,6 +193,7 @@
           </b-form>
           <div class="mt-3">
             <i18n
+              v-if="!hasGmcCreatedFromModule"
               path="general.createNewAccount"
               class="ps_gs-fz-12 mt-3 mt-md-0"
               tag="div"
@@ -712,6 +713,11 @@ export default {
         && !this.mcaListLoading
         && this.selectedMcaDetails.name !== null
         && this.selectedMcaDetails.name !== undefined;
+    },
+    hasGmcCreatedFromModule() {
+      const isFromModule = this.mcaSelectionOptions?.findIndex((option) => 'aggregatorId' in option && option.aggregatorId === this.$store.state.accounts.mcaPrestashopId);
+
+      return isFromModule >= 0;
     },
   },
   methods: {
