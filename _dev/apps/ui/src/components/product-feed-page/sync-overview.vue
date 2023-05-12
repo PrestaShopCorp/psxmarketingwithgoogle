@@ -32,8 +32,8 @@
         "
       >
         <feed-configuration-card
-          v-if="loading || productFeedConfiguration"
-          :product-feed-configuration="productFeedConfiguration"
+          v-if="loading || incrementalSyncContext"
+          :product-feed-configuration="incrementalSyncContext"
           :loading="loading"
         />
         <SubmittedProducts
@@ -59,7 +59,7 @@ import SubmittedProducts from './submitted-products/submitted-products';
 import ProductsStatusCard from './submitted-products/products-status-card';
 import SyncHistory from './sync-history/sync-history';
 import SyncState from './sync-history/sync-state';
-import {ProductFeedReport} from '../../store/modules/product-feed/state';
+import {IncrementalSyncContext} from '../../store/modules/product-feed/state';
 
 export default defineComponent({
   components: {
@@ -80,11 +80,8 @@ export default defineComponent({
     },
   },
   computed: {
-    productFeedReport(): ProductFeedReport {
-      return this.$store.getters['productFeed/GET_PRODUCT_FEED_REPORT'];
-    },
-    productFeedConfiguration() {
-      return this.productFeedReport.lastConfigurationUsed;
+    incrementalSyncContext(): IncrementalSyncContext|undefined {
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_SYNC_CONTEXT'];
     },
   },
 });

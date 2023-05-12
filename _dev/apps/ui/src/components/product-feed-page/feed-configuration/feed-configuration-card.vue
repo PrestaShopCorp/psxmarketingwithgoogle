@@ -107,14 +107,14 @@
 import {PropType} from '@vue/composition-api';
 import {defineComponent} from 'vue';
 
-import {ProductFeedConfiguration} from './feed-configuration';
+import {IncrementalSyncContext} from './feed-configuration';
 import {timeConverterToDate, timeConverterToHour} from '@/utils/Dates';
 import {changeCountriesCodesToNames} from '@/utils/Countries';
 
 export default defineComponent({
   props: {
     productFeedConfiguration: {
-      type: [Object, null] as PropType<ProductFeedConfiguration>,
+      type: [Object, null] as PropType<IncrementalSyncContext>,
       required: false,
       default: null,
     },
