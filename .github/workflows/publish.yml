@@ -16,10 +16,10 @@ jobs:
       - name: Get tag
         id: get_tag
         run: |
-          echo ::set-output name=TAG::$(echo $GITHUB_REF | cut -d / -f 3)
-          echo ::set-output name=MAJOR::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 1)
-          echo ::set-output name=MINOR::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 2)
-          echo ::set-output name=PATCH::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 3)
+          echo TAG::$(echo $GITHUB_REF | cut -d / -f 3) >> $GITHUB_OUTPUT
+          echo MAJOR::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 1) >> $GITHUB_OUTPUT
+          echo MINOR::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 2) >> $GITHUB_OUTPUT
+          echo PATCH::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 3) >> $GITHUB_OUTPUT
 
       - name: Checkout
         uses: actions/checkout@v3
@@ -217,10 +217,10 @@ jobs:
       - name: Get tag
         id: get_tag
         run: |
-          echo ::set-output name=TAG::$(echo $GITHUB_REF | cut -d / -f 3)
-          echo ::set-output name=MAJOR::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 1)
-          echo ::set-output name=MINOR::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 2)
-          echo ::set-output name=PATCH::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 3)
+          echo TAG::$(echo $GITHUB_REF | cut -d / -f 3) >> $GITHUB_OUTPUT
+          echo MAJOR::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 1) >> $GITHUB_OUTPUT
+          echo MINOR::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 2) >> $GITHUB_OUTPUT
+          echo PATCH::$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 3) >> $GITHUB_OUTPUT
 
       - uses: actions/checkout@v3
 
