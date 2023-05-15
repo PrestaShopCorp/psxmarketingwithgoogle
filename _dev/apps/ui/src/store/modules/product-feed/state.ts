@@ -25,11 +25,11 @@ import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {CustomCarrier} from '@/providers/shipping-rate-provider';
 import {RateType} from '@/enums/product-feed/rate';
 import Categories, {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
-import {IncrementalSyncContext} from '../../../components/product-feed-page/feed-configuration/feed-configuration';
+import {IncrementalSyncContext} from '@/components/product-feed-page/feed-configuration/feed-configuration';
 
 /**
  * @deprecated
- * To be replaced by IncrementalSyncContext
+ * To be replaced by ProductFeedReport
  */
 export interface ProductFeedStatus {
   nextJobAt?: string;

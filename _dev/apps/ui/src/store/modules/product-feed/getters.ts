@@ -24,7 +24,6 @@ import {
   ProductFeedValidationSummary,
   AttributesInfos,
   PreScanReporting,
-  IncrementalSyncContext,
 } from './state';
 import GettersTypes from './getters-types';
 import {filterCountriesCompatible} from '@/utils/TargetCountryValidator';
@@ -32,6 +31,7 @@ import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 import {AttributeResponseFromAPI} from '@/utils/AttributeMapping';
 import {CustomCarrier} from '@/providers/shipping-rate-provider';
 import {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
+import {IncrementalSyncContext} from '@/components/product-feed-page/feed-configuration/feed-configuration';
 
 export default {
   [GettersTypes.GET_PRODUCT_FEED_IS_CONFIGURED](state: LocalState): boolean {
@@ -158,7 +158,9 @@ export default {
   [GettersTypes.GET_ESTIMATE_CARRIERS](state: LocalState): CustomCarrier[] {
     return state.settings.estimateCarriers;
   },
-  [GettersTypes.GET_PRODUCT_FEED_SYNC_CONTEXT](state: LocalState): IncrementalSyncContext {
+  [GettersTypes.GET_PRODUCT_FEED_SYNC_CONTEXT](
+    state: LocalState,
+  ): IncrementalSyncContext|undefined {
     return state.report.lastConfigurationUsed;
   },
 };
