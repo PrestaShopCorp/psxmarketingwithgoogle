@@ -18,6 +18,7 @@ import {
 } from '../.storybook/mock/campaigns-list';
 
 import { rest } from 'msw';
+import merchantCenterAccountConnected from '../.storybook/mock/merchant-center-account';
 
 export default {
   title: 'Product-Feed-Page/Product Feed Page',
@@ -357,6 +358,96 @@ SyncFailed.parameters = {
         return res(
           ctx.json({
             ...productFeed.prevalidationScanSummary
+          })
+        );
+      }),
+      rest.get('/shopping-campaigns/list', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...campaignsListResponse,
+          })
+        );
+      }),
+    ],
+  },
+};
+
+export const AccountSuspended:any = ProductFeed.bind({});
+AccountSuspended.args = {
+  beforeMount() {
+    this.$store.state.accounts.googleMerchantAccount = cloneDeep(Object.assign({},
+      merchantCenterAccountConnected,
+      {
+        isSuspended: {
+          status: true,
+          issues: [
+            {
+              id: 'editorial_and_professional_standards_destination_url_down_policy',
+              title:
+                'Account suspended due to policy violation: landing page not working',
+              country: 'US',
+              severity: 'critical',
+              documentation:
+                'https://google.com/first-link',
+            },
+            {
+              id: 'editorial_and_professional_standards_destination_url_down_policy',
+              title:
+                'Account suspended due to policy violation: Oh no',
+              country: 'US',
+              severity: 'critical',
+              documentation:
+                'https://google.com/second-link',
+            },
+          ]
+        },
+      },
+    ));
+    this.$store.state.productFeed.report = cloneDeep(productFeedIsConfigured.report);
+  },
+}
+AccountSuspended.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/incremental-sync/status/*', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...productFeedStatusSyncSuccess.status,
+          })
+        );
+      }),
+      rest.get('/incremental-sync/settings/*', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...productFeedStatusSyncSuccess.settings,
+          })
+        );
+      }),
+      rest.get('/product-feeds/validation/summary', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...productFeedStatusSyncSuccess.validationSummary
+          })
+        );
+      }),
+      rest.get('/product-feeds/prevalidation-scan/summary', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...productFeed.prevalidationScanSummary
+          })
+        );
+      }),
+      rest.get('/ads-accounts/list', (req, res, ctx) => {
+        return res(
+          ctx.json(
+            googleAdsNotChosen.list
+          )
+        );
+      }),
+      rest.get('/ads-accounts/status', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...adsAccountStatus,
           })
         );
       }),

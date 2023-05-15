@@ -85,7 +85,7 @@ export type GoogleAccountContext = GoogleAccount
 
 export type ShoppingWebsiteStatusFlag = {
   status: boolean;
-  issues?: Array<contentApi.Schema$AccountStatusAccountLevelIssue>;
+  issues?: contentApi.Schema$AccountStatusAccountLevelIssue[];
 }
 
 export type MerchantCenterAccountContext = GoogleMerchantAccount & {
