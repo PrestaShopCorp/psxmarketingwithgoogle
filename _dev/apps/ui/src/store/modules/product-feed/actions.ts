@@ -30,6 +30,7 @@ import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {fromApi, toApi} from '@/providers/shipping-rate-provider';
 import {ProductFeedSettings} from './state';
 import {formatMappingToApi} from '@/utils/AttributeMapping';
+import {IncrementalSyncContext} from '@/components/product-feed-page/feed-configuration/feed-configuration';
 
 // ToDo: Get DTO type from API sources
 export const createProductFeedApiPayload = (settings:any) => ({
@@ -82,6 +83,10 @@ export default {
       runIf(
         getters.GET_PRODUCT_FEED_VALIDATION_SUMMARY.activeItems === null,
         dispatch(ActionsTypes.GET_PRODUCT_FEED_SYNC_SUMMARY),
+      ),
+      runIf(
+        !getters.GET_PRODUCT_FEED_SYNC_CONTEXT,
+        dispatch(ActionsTypes.REQUEST_PRODUCT_FEED_SYNC_CONTEXT),
       ),
     ]);
   },
@@ -414,5 +419,14 @@ export default {
       'debug/migration',
       {body: flags},
     );
+  },
+
+  async [ActionsTypes.REQUEST_PRODUCT_FEED_SYNC_CONTEXT]({commit}) {
+    const json: IncrementalSyncContext = await (await fetchOnboarding(
+      'GET',
+      'incremental-sync/context/',
+    )).json();
+
+    commit(MutationsTypes.SAVE_PRODUCT_FEED_SYNC_CONTEXT, json);
   },
 };

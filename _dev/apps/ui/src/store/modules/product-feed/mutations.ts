@@ -33,6 +33,7 @@ import {
 } from './state';
 import {RateType} from '@/enums/product-feed/rate';
 import {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
+import {IncrementalSyncContext} from '@/components/product-feed-page/feed-configuration/feed-configuration';
 
 type payloadObject = {
   name: string, data: string
@@ -190,5 +191,11 @@ export default {
   [MutationsTypes.SET_SHIPPING_SETUP_SELECTED](state: LocalState, payload) {
     localStorage.setItem('productFeed-shippingSetup', JSON.stringify(payload));
     state.settings.shippingSetup = payload;
+  },
+  [MutationsTypes.SAVE_PRODUCT_FEED_SYNC_CONTEXT](
+    state: LocalState,
+    syncContext: IncrementalSyncContext,
+  ) {
+    state.report.lastConfigurationUsed = syncContext;
   },
 };

@@ -25,7 +25,7 @@ import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {CustomCarrier} from '@/providers/shipping-rate-provider';
 import {RateType} from '@/enums/product-feed/rate';
 import Categories, {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
-import {ProductFeedConfiguration} from '../../../components/product-feed-page/feed-configuration/feed-configuration';
+import {IncrementalSyncContext} from '@/components/product-feed-page/feed-configuration/feed-configuration';
 
 /**
  * @deprecated
@@ -40,7 +40,7 @@ export interface ProductFeedStatus {
 }
 
 export type ProductFeedReport = {
-  lastConfigurationUsed?: ProductFeedConfiguration;
+  lastConfigurationUsed?: IncrementalSyncContext;
 }
 export interface ProductFeedSettings {
   shippingSetup: ShippingSetupOption|null;
