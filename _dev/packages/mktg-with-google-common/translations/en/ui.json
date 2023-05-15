@@ -635,6 +635,23 @@
         "googleIsReviewing": "Your products are being reviewed.  \n It might take 3-5 days to review your products. Once approved, your products will be available for free listings and ads.",
         "alertSuccess": "You are successfully opted in. Once your products are approved, they can appear in Google Shopping tab search results."
       },
+      "syncSummary" : {
+        "syncHistory" : {
+          "title" : {
+            "planned" : "Synchronisation planned",
+            "started" : "Synchronisation started",
+            "failed" : "Synchronisation failed",
+            "completed" : "Synchronisation completed",
+            "next" : "Next synchronisation",
+            "notPlanned" : "No planned synchronisation"
+          },
+          "subtitle" : {
+            "willHappenOnDate" : "Will start on {0} at {1}",
+            "happenedOnDate" : "On {date}",
+            "error" : "Due to a technical issue, the sync failed on {0} at {1}. A new one will run in a few hours."
+          }
+        }
+      },
       "dashboardPage": {
         "timeline": {},
         "productFeedConfiguration": {
