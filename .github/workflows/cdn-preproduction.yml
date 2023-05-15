@@ -35,7 +35,7 @@ jobs:
           PATCH: ${{ steps.get_tag.outputs.PATCH }}
 
       - name: Trigger storage preproduction
-        uses: aurelien-baudet/workflow-dispatch@v2
+        uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: ${{ env.WORKFLOW }}
           repo: PrestaShopCorp/services-deployment

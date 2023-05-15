@@ -24,7 +24,7 @@ jobs:
         uses: tj-actions/branch-names@v5.1
 
       - name: Trigger build and deploy
-        uses: aurelien-baudet/workflow-dispatch@v2
+        uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: googleshopping-storybook.yml
           repo: PrestaShopCorp/services-deployment
@@ -43,7 +43,7 @@ jobs:
         uses: tj-actions/branch-names@v5.1
 
       - name: Trigger build and deploy
-        uses: aurelien-baudet/workflow-dispatch@v2
+        uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: googleshopping-storybook.yml
           repo: PrestaShopCorp/services-deployment

@@ -82,10 +82,9 @@ jobs:
           zip -r ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}.zip ${{ github.event.repository.name }} -x '*.git*'
 
       - name: Publish the production zip
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: shogo82148/actions-upload-release-asset@v1
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./${{ github.event.repository.name }}/${{ github.event.repository.name }}-${{ github.event.release.tag_name }}.zip
           asset_name: ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}.zip
@@ -121,10 +120,9 @@ jobs:
           zip -r ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_preproduction.zip ${{ github.event.repository.name }} -x '*.git*'
 
       - name: Publish the preproduction zip
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: shogo82148/actions-upload-release-asset@v1
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./${{ github.event.repository.name }}/${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_preproduction.zip
           asset_name: ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_preproduction.zip
@@ -160,10 +158,9 @@ jobs:
           zip -r ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_integration.zip ${{ github.event.repository.name }}  -x '*.git*'
 
       - name: Publish the integration zip
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: shogo82148/actions-upload-release-asset@v1
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./${{ github.event.repository.name }}/${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_integration.zip
           asset_name: ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_integration.zip
