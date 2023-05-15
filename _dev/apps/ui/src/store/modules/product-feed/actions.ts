@@ -28,8 +28,9 @@ import {
 import {runIf} from '@/utils/Promise';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {fromApi, toApi} from '@/providers/shipping-rate-provider';
-import {IncrementalSyncContext, ProductFeedSettings} from './state';
+import {ProductFeedSettings} from './state';
 import {formatMappingToApi} from '@/utils/AttributeMapping';
+import {IncrementalSyncContext} from '@/components/product-feed-page/feed-configuration/feed-configuration';
 
 // ToDo: Get DTO type from API sources
 export const createProductFeedApiPayload = (settings:any) => ({

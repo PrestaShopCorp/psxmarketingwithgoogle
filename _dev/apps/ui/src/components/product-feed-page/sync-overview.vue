@@ -59,7 +59,7 @@ import SubmittedProducts from './submitted-products/submitted-products';
 import ProductsStatusCard from './submitted-products/products-status-card';
 import SyncHistory from './sync-history/sync-history';
 import SyncState from './sync-history/sync-state';
-import {IncrementalSyncContext} from '../../store/modules/product-feed/state';
+import {IncrementalSyncContext} from './feed-configuration/feed-configuration';
 
 export default defineComponent({
   components: {
