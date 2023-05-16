@@ -160,7 +160,7 @@ export default {
   },
   [GettersTypes.GET_PRODUCT_FEED_SYNC_CONTEXT](
     state: LocalState,
-  ): IncrementalSyncContext|undefined {
+  ): IncrementalSyncContext|null {
     return state.report.lastConfigurationUsed;
   },
 };
