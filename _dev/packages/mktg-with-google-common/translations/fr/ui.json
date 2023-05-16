@@ -193,7 +193,7 @@
         "businessCountry": "Pays",
         "changeCountryField": "Vous pouvez [changer votre pays]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] dans votre back office",
         "changeRegionField": "Vous pouvez [changer votre région]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] dans votre back office",
-        "changeAddressField": "Vous pouvez [changer l'adresse de votre entreprise] ({0})[:target=\"_blank\" class=\"text-decoration-underline\"] dans votre back office",
+        "changeAddressField": "Vous pouvez [changer l'adresse de votre entreprise]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] dans votre back office",
         "changeZipCodeField": "Vous pouvez [modifier votre code zip]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] dans votre back-office",
         "changeCityField": "Vous pouvez [changer votre ville]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] dans votre back office",
         "changePhoneNumberField": "Vous pouvez [changer votre numéro de téléphone professionnel]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] dans votre back-office",
