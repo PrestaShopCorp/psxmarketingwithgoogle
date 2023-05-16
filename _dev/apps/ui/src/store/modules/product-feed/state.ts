@@ -40,7 +40,7 @@ export interface ProductFeedStatus {
 }
 
 export type ProductFeedReport = {
-  lastConfigurationUsed?: IncrementalSyncContext;
+  lastConfigurationUsed: IncrementalSyncContext|null;
 }
 export interface ProductFeedSettings {
   shippingSetup: ShippingSetupOption|null;
@@ -227,5 +227,7 @@ export const state: State = {
     langChosen: '',
   },
   attributeMapping: {},
-  report: {},
+  report: {
+    lastConfigurationUsed: null,
+  },
 };

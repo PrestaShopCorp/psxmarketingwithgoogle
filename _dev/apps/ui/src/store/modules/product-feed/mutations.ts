@@ -196,6 +196,7 @@ export default {
     state: LocalState,
     syncContext: IncrementalSyncContext,
   ) {
+    console.log('syncContext', syncContext);
     state.report.lastConfigurationUsed = syncContext;
   },
 };
