@@ -424,7 +424,9 @@ export const productFeed: State = {
     total: 0,
     langChosen: '',
   },
-  report: {},
+  report: {
+    lastConfigurationUsed: null,
+  },
 };
 export const productFeedNoCarriers = {
   ...productFeed,
