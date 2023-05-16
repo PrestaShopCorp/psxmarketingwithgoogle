@@ -89,7 +89,7 @@ export default defineComponent({
     },
   },
   computed: {
-    incrementalSyncContext(): IncrementalSyncContext|undefined {
+    incrementalSyncContext(): IncrementalSyncContext|null {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_SYNC_CONTEXT'];
     },
     gmcAccountDetails() {
