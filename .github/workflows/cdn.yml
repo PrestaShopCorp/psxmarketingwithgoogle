@@ -39,7 +39,7 @@ jobs:
 
 
       - name: Trigger storage production
-        uses: aurelien-baudet/workflow-dispatch@v2
+        uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: ${{ env.WORKFLOW }}
           repo: PrestaShopCorp/services-deployment
