@@ -1,17 +1,27 @@
 <template>
   <div>
-    <div class="d-flex mb-3">
-      <div>
-        <h2 class="ps_gs-fz-16 font-weight-600">
-          {{ $t('productFeedPage.overview.title') }}
-        </h2>
-        <p class="ps_gs-fz-13 mb-2">
-          {{ $t('productFeedPage.overview.description') }}
-        </p>
-      </div>
-      <span class="ps_gs-fz-20 font-weight-600 ml-auto pl-2">
-        {{ nbProductsTotal }}
-      </span>
+    <div class="d-flex align-items-center mb-3">
+      <h2 class="ps_gs-fz-16 font-weight-600">
+        {{ $t('productFeedPage.dashboardPage.productsSentToGoogle.stepTitle') }}
+      </h2>
+      <b-button
+        id="tooltip-submitted-product"
+        class="ml-1 p-0 d-flex"
+        variant="text"
+      >
+        <span class="material-icons-round ps_gs-fz-20 mb-1 ml-0 text-secondary">
+          info_outlined
+        </span>
+      </b-button>
+      <b-tooltip
+        target="tooltip-submitted-product"
+        triggers="hover"
+        container="#psxMktgWithGoogleApp"
+      >
+        <VueShowdown
+          :markdown="$t('productFeedPage.dashboardPage.productsSentToGoogle.stepDetails')"
+        />
+      </b-tooltip>
     </div>
     <slot :productStatuses="productStatuses" />
   </div>
@@ -43,10 +53,6 @@ export default defineComponent({
           expiringItems: 0,
         }
         : this.$store.getters['productFeed/GET_PRODUCT_FEED_VALIDATION_SUMMARY'];
-    },
-    nbProductsTotal() {
-      return this.validationSummary.activeItems + this.validationSummary.pendingItems
-      + this.validationSummary.disapprovedItems;
     },
     productStatuses() {
       return [
