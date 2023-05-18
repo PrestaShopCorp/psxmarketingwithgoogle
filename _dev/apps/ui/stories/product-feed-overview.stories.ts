@@ -1,4 +1,4 @@
-import SyncOverview from '../src/components/product-feed-page/sync-overview.vue';
+import SyncOverview from '../src/components/product-feed-page/dashboard/sync-overview.vue';
 import {
   productFeedStatusSyncSuccess,
 } from '../.storybook/mock/product-feed';

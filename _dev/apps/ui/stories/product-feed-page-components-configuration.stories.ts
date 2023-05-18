@@ -1,4 +1,4 @@
-import FeedConfigurationCard from '@/components/product-feed-page/feed-configuration/feed-configuration-card.vue';
+import FeedConfigurationCard from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration-card.vue';
 
 export default {
   title: 'Product-Feed-Page/Product Feed Page/Components/Feed Configuration',

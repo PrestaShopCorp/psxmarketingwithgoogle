@@ -69,12 +69,25 @@
 
 <script lang="ts">
 import {PropType, defineComponent} from 'vue';
-import {StatusCard} from './verified-products';
+
+export type StatusCardParameters = {
+  title: string;
+  description: string;
+  value: string | null;
+  reverseColors: boolean;
+  variant: string;
+  link?: {
+    to?: {
+      name: string;
+    };
+    href?: string;
+  };
+};
 
 export default defineComponent({
   props: {
     status: {
-      type: Object as PropType<StatusCard>,
+      type: Object as PropType<StatusCardParameters>,
       required: true,
     },
     loading: {
