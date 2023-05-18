@@ -4,10 +4,10 @@
 
 import {BCard, BSkeleton} from 'bootstrap-vue';
 import {mount, shallowMount} from '@vue/test-utils';
-import StatusCardVue from './verified-products-status-card.vue';
+import StatusCardVue from './status-card.vue';
 import config, {addBootstrapToVue, localVue} from '@/../tests/init';
 
-describe('verified-products-status-card.vue', () => {
+describe('status-card.vue', () => {
   it('displays the texts & number', () => {
     addBootstrapToVue();
     const wrapper = shallowMount(StatusCardVue, {

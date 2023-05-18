@@ -25,7 +25,7 @@ import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {CustomCarrier} from '@/providers/shipping-rate-provider';
 import {RateType} from '@/enums/product-feed/rate';
 import Categories, {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
-import {IncrementalSyncContext} from '@/components/product-feed-page/feed-configuration/feed-configuration';
+import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
 import {VerificationStats} from '@/components/product-feed-page/verified-products/verified-products';
 
 /**

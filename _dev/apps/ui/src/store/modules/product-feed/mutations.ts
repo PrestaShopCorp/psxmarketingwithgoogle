@@ -33,7 +33,7 @@ import {
 } from './state';
 import {RateType} from '@/enums/product-feed/rate';
 import {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
-import {IncrementalSyncContext} from '@/components/product-feed-page/feed-configuration/feed-configuration';
+import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
 
 type payloadObject = {
   name: string, data: string

@@ -1,4 +1,4 @@
-import VerifiedProductsPanel from '@/components/product-feed-page/verified-products/verified-products-panel.vue';
+import VerifiedProducts from '@/components/product-feed-page/dashboard/verified-products/verified-products.vue';
 
 export default {
   title: 'Product-Feed-Page/Product Feed Page/Components/Verified Products',
@@ -6,9 +6,9 @@ export default {
 
 const ProductFeed = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { VerifiedProductsPanel },
-  template: `<VerifiedProductsPanel
-    ref="VerifiedProductsPanel"
+  components: { VerifiedProducts },
+  template: `<VerifiedProducts
+    ref="VerifiedProducts"
     v-bind="$props"
   />`,
 });
