@@ -17,7 +17,7 @@ import {
 
 fetchMock.enableMocks();
 
-describe('product-feed-status-details.vue', () => {
+describe('product-feed-table-status-details.vue', () => {
   let storeConfigured;
   let storeConfiguredButNoIssued;
   beforeEach(() => {
