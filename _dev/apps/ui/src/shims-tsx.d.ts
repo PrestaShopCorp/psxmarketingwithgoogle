@@ -9,8 +9,8 @@ declare global {
   //   interface ElementClass extends Vue {}
 
     interface Window {
-      psxMtgWithGoogleDefaultShopCountry: Array<string>,
-      psxMktgWithGoogleActiveCountries: String[],
+      psxMtgWithGoogleDefaultShopCountry: string,
+      psxMktgWithGoogleActiveCountries: string[],
       contextPsAccounts: any;
       contextPsEventBus: any
       translations: any;
@@ -18,25 +18,26 @@ declare global {
         isoCode: string,
         languageLocale: string,
       };
-      psxMktgWithGoogleApiUrl: String;
-      psxMktgWithGoogleAdminUrl: String;
-      psxMktgWithGoogleShopUrl: String;
-      shopIdPsAccounts: String;
-      tokenPsAccounts: String;
-      psxMktgWithGoogleModuleVersion: String,
-      psVersion: String,
-      psxMktgWithGoogleSegmentId: String,
-      psxMktgWithGoogleAdminAjaxUrl: String,
+      psxMktgWithGoogleApiUrl: string;
+      psxMktgWithGoogleAdminUrl: string;
+      psxMktgWithGoogleShopUrl: string;
+      shopIdPsAccounts: string;
+      tokenPsAccounts: string;
+      psxMktgWithGoogleModuleVersion: string,
+      psVersion: string,
+      psxMktgWithGoogleSegmentId: string,
+      psxMktgWithGoogleAdminAjaxUrl: string,
       isCountryMemberOfEuropeanUnion: boolean,
       psxMktgWithGoogleShopCurrency: ShopCurrency,
-      psxMktgWithGoogleMaintenanceSettingsUrl: String,
-      psxMktgWithGoogleCarriersUrl?: String,
-      psxMktgWithGoogleAttributesUrl?: String,
-      psxMktgWithGoogleProductDetailUrl: String,
-      psxMktgWithGoogleStoreSettingsUrl: String,
+      psxMktgWithGoogleMaintenanceSettingsUrl: string,
+      psxMktgWithGoogleCarriersUrl?: string,
+      psxMktgWithGoogleAttributesUrl?: string,
+      psxMktgWithGoogleProductsUrl?: string,
+      psxMktgWithGoogleProductDetailUrl: string,
+      psxMktgWithGoogleStoreSettingsUrl: string,
       psxMktgWithGoogleOnProductionEnvironment:boolean,
       psxMktgWithGoogleModuleIsEnabled: boolean,
-      psxMktgWithGoogleEnableLink: String,
+      psxMktgWithGoogleEnableLink: string,
     }
   //   interface IntrinsicElements {
   //     [elem: string]: any;

@@ -16,6 +16,7 @@ const {
   psxMktgWithGoogleMaintenanceSettingsUrl,
   psxMktgWithGoogleCarriersUrl,
   psxMktgWithGoogleAttributesUrl,
+  psxMktgWithGoogleProductsUrl,
   psxMktgWithGoogleProductDetailUrl,
   psxMktgWithGoogleStoreSettingsUrl,
   psxMtgWithGoogleDefaultShopCountry,
@@ -23,7 +24,7 @@ const {
   psxMktgWithGoogleOnProductionEnvironment,
   psxMktgWithGoogleEnableLink,
   psxMktgWithGoogleModuleIsEnabled,
-}: any = window;
+} = window;
 
 const state: State = {
   ...initialState,
@@ -37,15 +38,16 @@ const state: State = {
   phpVersion: phpVersion || '',
   psxMktgWithGoogleModuleVersion: psxMktgWithGoogleModuleVersion || '',
   psxMktgWithGoogleMaintenanceSettingsUrl: psxMktgWithGoogleMaintenanceSettingsUrl || '',
+  psxMktgWithGoogleProductsUrl: psxMktgWithGoogleProductsUrl || document.querySelector('#subtab-AdminProducts a')?.getAttribute('href') || '',
   psxMktgWithGoogleProductDetailUrl: psxMktgWithGoogleProductDetailUrl || '',
   psxMktgWithGoogleStoreSettingsUrl: psxMktgWithGoogleStoreSettingsUrl || '',
-  psxMtgWithGoogleDefaultShopCountry: psxMtgWithGoogleDefaultShopCountry || {},
+  psxMtgWithGoogleDefaultShopCountry: psxMtgWithGoogleDefaultShopCountry || '',
   psxMktgWithGoogleActiveCountries: psxMktgWithGoogleActiveCountries || [],
   psxMktgWithGoogleEnableLink: psxMktgWithGoogleEnableLink || '',
   psxMktgWithGoogleModuleIsEnabled: psxMktgWithGoogleModuleIsEnabled || true,
   psxMktgWithGoogleOnProductionEnvironment: psxMktgWithGoogleOnProductionEnvironment || false,
-  psxMktgWithGoogleCarriersUrl: psxMktgWithGoogleCarriersUrl || document.querySelector('#subtab-AdminCarriers a')?.getAttribute('href'),
-  psxMktgWithGoogleAttributesUrl: psxMktgWithGoogleAttributesUrl || document.querySelector('#subtab-AdminParentAttributesGroups a')?.getAttribute('href'),
+  psxMktgWithGoogleCarriersUrl: psxMktgWithGoogleCarriersUrl || document.querySelector('#subtab-AdminCarriers a')?.getAttribute('href') || '',
+  psxMktgWithGoogleAttributesUrl: psxMktgWithGoogleAttributesUrl || document.querySelector('#subtab-AdminParentAttributesGroups a')?.getAttribute('href') || '',
 };
 
 /**

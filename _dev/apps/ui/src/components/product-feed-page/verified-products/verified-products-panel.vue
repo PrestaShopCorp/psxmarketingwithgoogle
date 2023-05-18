@@ -67,6 +67,11 @@ export default defineComponent({
         variant: 'info',
         icon: 'redeem',
         reverseColors: false,
+        ...(+(this.verificationsStats?.nonCompliantProducts || 0) && {
+          link: {
+            href: this.$store.getters['app/GET_PRODUCTS_CATALOG_URL'],
+          },
+        }),
       },
       {
         title: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.verified'),
