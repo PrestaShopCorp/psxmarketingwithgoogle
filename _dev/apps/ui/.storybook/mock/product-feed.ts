@@ -514,6 +514,7 @@ export const productFeedIsConfigured = {
       targetCountries: ['FR', 'UK', 'IT'], 
       languages: ['it', 'fr', 'de'],
     },
+    verificationStats: null,
   }
 };
 
@@ -657,6 +658,18 @@ export const productFeedStatusSyncSuccess = {
     pendingItems: 7,
     disapprovedItems: 1,
   },
+  report: {
+    lastConfigurationUsed: {
+      lastModificationDate: new Date(2023, 6, 31, 13, 37),
+      targetCountries: ['FR', 'UK', 'IT'], 
+      languages: ['it', 'fr', 'de'],
+    },
+    verificationStats: {
+      productsInCatalog: '1362452',
+      verifiedProducts: '1362392',
+      nonCompliantProducts: '60',
+    },
+  }
 };
 
 export const productFeedIsConfiguredOnce = {

@@ -4,6 +4,12 @@ export type StatusCard = {
   value: string | null;
   reverseColors: boolean;
   variant: string;
+  link?: {
+    to?: {
+      name: string;
+    };
+    href?: string;
+  };
 };
 
 export type VerificationStats = null|{

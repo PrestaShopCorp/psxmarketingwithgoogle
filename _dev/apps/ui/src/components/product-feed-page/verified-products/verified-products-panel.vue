@@ -61,29 +61,35 @@ export default defineComponent({
   computed: {
     statusCards(): StatusCard[] {
       return [{
-          title: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.productsInCatalog'),
-          description: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.productsInCatalogDescription'),
-          value: this.verificationsStats?.productsInCatalog,
-          variant: 'info',
-          icon: 'redeem',
-          reverseColors: false,
-        },
-        {
-          title: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.verified'),
-          description: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.verifiedDescription'),
-          value: this.verificationsStats?.verifiedProducts,
-          variant: 'success',
-          icon: 'send',
-          reverseColors: false,
-        },
-        {
-          title: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.nonCompliant'),
-          description: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.nonCompliantDescription'),
-          value: this.verificationsStats?.nonCompliantProducts,
-          variant: 'danger',
-          icon: 'remove_shopping_cart',
-          reverseColors: !!+this.verificationsStats?.nonCompliantProducts,
-        },
+        title: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.productsInCatalog'),
+        description: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.productsInCatalogDescription'),
+        value: this.verificationsStats?.productsInCatalog,
+        variant: 'info',
+        icon: 'redeem',
+        reverseColors: false,
+      },
+      {
+        title: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.verified'),
+        description: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.verifiedDescription'),
+        value: this.verificationsStats?.verifiedProducts,
+        variant: 'success',
+        icon: 'send',
+        reverseColors: false,
+      },
+      {
+        title: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.nonCompliant'),
+        description: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.nonCompliantDescription'),
+        value: this.verificationsStats?.nonCompliantProducts,
+        variant: 'danger',
+        icon: 'remove_shopping_cart',
+        reverseColors: false,
+        ...(+(this.verificationsStats?.nonCompliantProducts || 0) && {
+          link: {
+            to: {name: 'product-feed-verification-errors'},
+          },
+          reverseColors: true,
+        }),
+      },
       ];
     },
   },

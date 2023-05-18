@@ -43,6 +43,7 @@
         />
         <verified-products-panel
           :loading="loading"
+          :verifications-stats="productFeedReport.verificationStats"
         />
         <SubmittedProducts
           v-slot="{ productStatuses }"
@@ -94,6 +95,9 @@ export default defineComponent({
     },
   },
   computed: {
+    productFeedReport() {
+      return this.$store.state.productFeed.report;
+    },
     incrementalSyncContext(): IncrementalSyncContext|null {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_SYNC_CONTEXT'];
     },

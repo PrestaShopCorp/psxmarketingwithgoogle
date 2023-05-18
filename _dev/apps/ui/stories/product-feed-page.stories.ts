@@ -251,7 +251,7 @@ ScanFailedBecauseOfLanguages.parameters = {
 export const Success:any = ProductFeed.bind({});
 Success.args = {
   beforeMount() {
-    this.$store.state.productFeed.report = cloneDeep(productFeedIsConfigured.report);
+    this.$store.state.productFeed.report = cloneDeep(productFeedStatusSyncSuccess.report);
   },
 }
 Success.parameters = {
@@ -403,7 +403,7 @@ AccountSuspended.args = {
         },
       },
     ));
-    this.$store.state.productFeed.report = cloneDeep(productFeedIsConfigured.report);
+    this.$store.state.productFeed.report = cloneDeep(productFeedStatusSyncSuccess.report);
   },
 }
 AccountSuspended.parameters = {

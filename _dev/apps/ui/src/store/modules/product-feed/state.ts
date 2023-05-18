@@ -26,6 +26,7 @@ import {CustomCarrier} from '@/providers/shipping-rate-provider';
 import {RateType} from '@/enums/product-feed/rate';
 import Categories, {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
 import {IncrementalSyncContext} from '@/components/product-feed-page/feed-configuration/feed-configuration';
+import {VerificationStats} from '@/components/product-feed-page/verified-products/verified-products';
 
 /**
  * @deprecated
@@ -41,6 +42,7 @@ export interface ProductFeedStatus {
 
 export type ProductFeedReport = {
   lastConfigurationUsed: IncrementalSyncContext|null;
+  verificationStats: VerificationStats;
 }
 export interface ProductFeedSettings {
   shippingSetup: ShippingSetupOption|null;
