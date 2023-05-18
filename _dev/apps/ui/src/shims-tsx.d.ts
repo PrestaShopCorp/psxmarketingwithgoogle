@@ -24,6 +24,7 @@ declare global {
       shopIdPsAccounts: string;
       tokenPsAccounts: string;
       psxMktgWithGoogleModuleVersion: string,
+      phpVersion: string,
       psVersion: string,
       psxMktgWithGoogleSegmentId: string,
       psxMktgWithGoogleAdminAjaxUrl: string,

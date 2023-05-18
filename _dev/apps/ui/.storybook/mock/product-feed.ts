@@ -426,6 +426,7 @@ export const productFeed: State = {
   },
   report: {
     lastConfigurationUsed: null,
+    verificationStats: null,
   },
 };
 export const productFeedNoCarriers = {

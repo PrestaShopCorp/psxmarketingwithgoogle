@@ -231,5 +231,6 @@ export const state: State = {
   attributeMapping: {},
   report: {
     lastConfigurationUsed: null,
+    verificationStats: null,
   },
 };
