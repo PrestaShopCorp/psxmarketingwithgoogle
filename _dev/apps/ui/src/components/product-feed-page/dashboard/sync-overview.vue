@@ -46,15 +46,9 @@
           :verifications-stats="productFeedReport.verificationStats"
         />
         <SubmittedProducts
-          v-slot="{ productStatuses }"
           :in-need-of-configuration="inNeedOfConfiguration"
-        >
-          <ProductsStatusCard
-            v-for="(productStatus, i) in productStatuses"
-            :key="i"
-            :product-status="productStatus"
-          />
-        </SubmittedProducts>
+          :loading="loading"
+        />
       </div>
     </div>
   </b-card>
@@ -67,7 +61,6 @@ import FeedConfigurationCard from './feed-configuration/feed-configuration-card.
 import MerchantCenterAccountAlertSuspended from '@/components/merchant-center-account/merchant-center-account-alert-suspended.vue';
 import SubmittedProducts from './panel/submitted-products.vue';
 import VerifiedProducts from './panel/verified-products.vue';
-import ProductsStatusCard from './submitted-products/products-status-card';
 import SyncHistory from './sync-history/sync-history';
 import SyncState from './sync-history/sync-state';
 import {IncrementalSyncContext} from './feed-configuration/feed-configuration';
@@ -79,7 +72,6 @@ export default defineComponent({
     FeedConfigurationCard,
     MerchantCenterAccountAlertSuspended,
     NotConfiguredCard,
-    ProductsStatusCard,
     SubmittedProducts,
     SyncHistory,
     SyncState,
