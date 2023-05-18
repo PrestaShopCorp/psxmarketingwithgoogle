@@ -667,8 +667,8 @@
           "stepDetails": "Before sending all your products (including variations), we ensure their compliance with Google's Merchant center policies. We verify the products **every time a change is detected**, and if there are any non-compliant products, we provide guidance on what needs to be done. Click on non-compliant products for more information.\n\nAfter submission, Google assigns each product a status: **Approved, Expiring, Pending, or Disapproved**.",
           "reportCards": {
             "productsInCatalog": "My product catalog",
-            "productsinCatalogDescription": "Number of products (variations included) available on your shop",
-            "verified": "Verfied products",
+            "productsInCatalogDescription": "Number of products (variations included) available on your shop",
+            "verified": "Verified products",
             "verifiedDescription": "Products that have been verified by Prestashop and are ready to be sent to Google.",
             "nonCompliant": "Non-compliant products",
             "nonCompliantDescription": "Products that do not meet Google's requirements"

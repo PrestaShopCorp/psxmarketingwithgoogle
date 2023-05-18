@@ -16,7 +16,7 @@
       </p>
     </b-alert>
     <div
-      class="d-flex flex-column border border-600-20 rounded mb-3 px-3 py-2 d-flex bg-prestashop-bg"
+      class="d-flex flex-column border border-600-20 rounded mb-4 px-3 py-2 d-flex bg-prestashop-bg"
     >
       <b-skeleton-wrapper
         :loading="loading"
@@ -120,6 +120,7 @@ export default defineComponent({
     },
     loading: {
       type: Boolean,
+      required: true,
     },
   },
   computed: {

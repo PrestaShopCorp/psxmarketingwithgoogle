@@ -41,7 +41,7 @@
           :product-feed-configuration="incrementalSyncContext"
           :loading="loading"
         />
-        <verified-products
+        <verified-products-panel
           :loading="loading"
         />
         <SubmittedProducts
@@ -65,7 +65,7 @@ import NotConfiguredCard from '@/components/commons/not-configured-card';
 import FeedConfigurationCard from './feed-configuration/feed-configuration-card.vue';
 import MerchantCenterAccountAlertSuspended from '@/components/merchant-center-account/merchant-center-account-alert-suspended.vue';
 import SubmittedProducts from './submitted-products/submitted-products';
-import VerifiedProducts from './verified-products/verified-products';
+import VerifiedProductsPanel from './verified-products/verified-products-panel';
 import ProductsStatusCard from './submitted-products/products-status-card';
 import SyncHistory from './sync-history/sync-history';
 import SyncState from './sync-history/sync-state';
@@ -82,7 +82,7 @@ export default defineComponent({
     SubmittedProducts,
     SyncHistory,
     SyncState,
-    VerifiedProducts,
+    VerifiedProductsPanel,
   },
   props: {
     inNeedOfConfiguration: {
