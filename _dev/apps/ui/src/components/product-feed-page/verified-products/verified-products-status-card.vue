@@ -32,6 +32,7 @@
       >
         <span
           class="d-flex align-items-center ps_gs-fz-18 font-weight-600 text-center pt-1 pb-2"
+          data-test-id="pf-status-title"
         >
           <span
             class="material-icons-round ps_gs-fz-20 mr-1"
@@ -43,6 +44,7 @@
         </span>
         <span
           class="text-center pb-1"
+          data-test-id="pf-status-description"
         >
           {{ status.description }}
         </span>
