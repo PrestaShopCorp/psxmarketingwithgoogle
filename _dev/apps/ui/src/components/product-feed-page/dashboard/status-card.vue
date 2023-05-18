@@ -34,7 +34,15 @@
           class="d-flex align-items-center ps_gs-fz-18 font-weight-600 text-center pt-1 pb-2"
           data-test-id="pf-status-title"
         >
+          <img
+            v-if="status.icon === 'google'"
+            class="mr-2 rounded-circle"
+            src="@/assets/images/google-icon.svg"
+            width="20"
+            height="20"
+          >
           <span
+            v-else
             class="material-icons-round ps_gs-fz-20 mr-1"
             :class="`text-${status.variant}`"
           >

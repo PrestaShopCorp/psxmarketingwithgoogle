@@ -654,7 +654,7 @@ export const productFeedStatusSyncSuccess = {
     nextJobAt: new Date("July 22, 2021 03:24:00"),
   },
   validationSummary: {
-    activeItems: 5,
+    activeItems: 1362382,
     expiringItems: 2,
     pendingItems: 7,
     disapprovedItems: 1,
