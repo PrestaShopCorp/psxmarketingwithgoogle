@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="d-flex align-items-center mb-3">
+  <div class="mb-5">
+    <div class="d-flex align-items-center mb-2">
       <h2 class="ps_gs-fz-16 font-weight-600">
         {{ $t('productFeedPage.dashboardPage.productsSentToGoogle.stepTitle') }}
       </h2>
@@ -95,7 +95,7 @@ export default defineComponent({
         description: this.$t('productFeedPage.dashboardPage.productsSentToGoogle.reportCards.approvedDescription'),
         value: this.validationSummary.activeItems,
         variant: 'primary',
-        icon: 'check',
+        icon: 'google',
         reverseColors: false,
         link: {
           href: getMerchantCenterWebsiteUrls(this.gmcAccountDetails.id).diagnostics,
