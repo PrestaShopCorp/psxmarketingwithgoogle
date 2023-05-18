@@ -46,6 +46,9 @@ export default {
   [GettersTypes.GET_PRODUCT_DETAIL_BASE_URL](state: LocalState): string {
     return state.psxMktgWithGoogleProductDetailUrl;
   },
+  [GettersTypes.GET_PRODUCTS_CATALOG_URL](state: LocalState): string {
+    return state.psxMktgWithGoogleProductsUrl;
+  },
   [GettersTypes.GET_STORE_INFORMATION_URL](state: LocalState): string {
     return state.psxMktgWithGoogleStoreSettingsUrl;
   },
