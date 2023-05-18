@@ -132,7 +132,7 @@ export default defineComponent({
         reverseColors: false,
         link: {
           to: {name: 'product-feed-status'},
-        }
+        },
       }];
     },
   },
