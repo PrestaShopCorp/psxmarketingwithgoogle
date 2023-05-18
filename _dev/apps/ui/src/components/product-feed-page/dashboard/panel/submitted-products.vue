@@ -23,26 +23,41 @@
         />
       </b-tooltip>
     </div>
-    <slot :productStatuses="productStatuses" />
+    <div class="p-0 container-fluid">
+      <div class="row mx-n1 no-gutters mb-3">
+        <status-card-component
+          v-for="(status, index) in statusCards"
+          :key="index"
+          :status="status"
+          :loading="loading"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
+import StatusCardComponent, {StatusCardParameters} from '../status-card.vue';
+import {getMerchantCenterWebsiteUrls} from '@/components/merchant-center-account/merchant-center-account-links';
 
 export default defineComponent({
+  components: {
+    StatusCardComponent,
+  },
   props: {
     inNeedOfConfiguration: {
       type: Boolean,
       default: false,
     },
+    loading: {
+      type: Boolean,
+      required: true,
+    },
   },
   computed: {
-    nbProductsFailingPrescan() {
-      return this.$store.state.productFeed.prevalidationScanSummary.invalidItems;
-    },
-    countries() {
-      return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'];
+    gmcAccountDetails() {
+      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'];
     },
     validationSummary() {
       return this.inNeedOfConfiguration
@@ -73,6 +88,52 @@ export default defineComponent({
           numberOfProducts: this.validationSummary.activeItems,
         },
       ];
+    },
+    statusCards(): StatusCardParameters[] {
+      return [{
+        title: this.$t('productFeedPage.dashboardPage.productsSentToGoogle.reportCards.approved'),
+        description: this.$t('productFeedPage.dashboardPage.productsSentToGoogle.reportCards.approvedDescription'),
+        value: this.validationSummary.activeItems,
+        variant: 'primary',
+        icon: 'check',
+        reverseColors: false,
+        link: {
+          href: getMerchantCenterWebsiteUrls(this.gmcAccountDetails.id).diagnostics,
+        },
+      },
+      {
+        title: this.$t('productFeedPage.dashboardPage.productsSentToGoogle.reportCards.pending'),
+        description: this.$t('productFeedPage.dashboardPage.productsSentToGoogle.reportCards.pendingDescription'),
+        value: this.validationSummary.pendingItems,
+        variant: 'info',
+        icon: 'autorenew',
+        reverseColors: false,
+        link: {
+          href: getMerchantCenterWebsiteUrls(this.gmcAccountDetails.id).diagnostics,
+        },
+      },
+      {
+        title: this.$t('productFeedPage.dashboardPage.productsSentToGoogle.reportCards.expiring'),
+        description: this.$t('productFeedPage.dashboardPage.productsSentToGoogle.reportCards.expiringDescription'),
+        value: this.validationSummary.expiringItems,
+        variant: 'warning',
+        icon: 'warning',
+        reverseColors: false,
+        link: {
+          href: getMerchantCenterWebsiteUrls(this.gmcAccountDetails.id).diagnostics,
+        },
+      },
+      {
+        title: this.$t('productFeedPage.dashboardPage.productsSentToGoogle.reportCards.disapproved'),
+        description: this.$t('productFeedPage.dashboardPage.productsSentToGoogle.reportCards.disapprovedDescription'),
+        value: this.validationSummary.disapprovedItems,
+        variant: 'danger',
+        icon: 'cancel',
+        reverseColors: false,
+        link: {
+          to: {name: 'product-feed-status'},
+        }
+      }];
     },
   },
   created() {

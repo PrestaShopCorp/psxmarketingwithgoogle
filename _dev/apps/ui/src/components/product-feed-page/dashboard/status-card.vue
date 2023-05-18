@@ -97,7 +97,7 @@ export default defineComponent({
   },
   computed: {
     badgeValue(): string {
-      return this.status.value || '--';
+      return this.status.value ?? '--';
     },
     badgeBorderVariant(): string|null {
       if (this.status.reverseColors) {
