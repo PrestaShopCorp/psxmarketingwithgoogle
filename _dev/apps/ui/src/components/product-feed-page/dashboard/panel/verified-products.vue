@@ -40,7 +40,7 @@
 import {PropType, defineComponent} from 'vue';
 import {VueShowdown} from 'vue-showdown';
 import StatusCardComponent, {StatusCardParameters} from '../status-card.vue';
-import {VerificationStats} from './verified-products';
+import {VerificationStats} from '@/store/modules/product-feed/state';
 
 export default defineComponent({
   components: {

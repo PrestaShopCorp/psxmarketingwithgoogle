@@ -1,4 +1,4 @@
-import VerifiedProducts from '@/components/product-feed-page/dashboard/verified-products/verified-products.vue';
+import VerifiedProducts from '@/components/product-feed-page/dashboard/panel/verified-products.vue';
 
 export default {
   title: 'Product-Feed-Page/Product Feed Page/Components/Verified Products',
