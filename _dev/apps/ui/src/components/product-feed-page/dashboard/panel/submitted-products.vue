@@ -99,6 +99,7 @@ export default defineComponent({
         reverseColors: false,
         link: {
           href: getMerchantCenterWebsiteUrls(this.gmcAccountDetails.id).diagnostics,
+          target: '_blank',
         },
       },
       {
@@ -110,6 +111,7 @@ export default defineComponent({
         reverseColors: false,
         link: {
           href: getMerchantCenterWebsiteUrls(this.gmcAccountDetails.id).diagnostics,
+          target: '_blank',
         },
       },
       {
@@ -121,6 +123,7 @@ export default defineComponent({
         reverseColors: false,
         link: {
           href: getMerchantCenterWebsiteUrls(this.gmcAccountDetails.id).diagnostics,
+          target: '_blank',
         },
       },
       {

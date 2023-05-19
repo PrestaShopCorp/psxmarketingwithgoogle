@@ -70,6 +70,7 @@ export default defineComponent({
         ...(+(this.verificationsStats?.nonCompliantProducts || 0) && {
           link: {
             href: this.$store.getters['app/GET_PRODUCTS_CATALOG_URL'],
+            target: '_blank',
           },
         }),
       },

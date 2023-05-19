@@ -68,7 +68,7 @@
         <b-link
           v-if="status.link"
           v-bind="status.link"
-          class="stretched-link"
+          class="stretched-link external_link-no_icon"
         />
       </div>
     </b-skeleton-wrapper>
@@ -89,6 +89,7 @@ export type StatusCardParameters = {
       name: string;
     };
     href?: string;
+    target?: string;
   };
 };
 
