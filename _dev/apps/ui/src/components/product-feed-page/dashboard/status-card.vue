@@ -1,6 +1,6 @@
 <template>
   <div
-    class="ps_gs-productfeed__products-status border border-600-20 rounded col mx-1"
+    class="ps_gs-productfeed__products-status border border-600-20 rounded col mx-1 mb-1"
   >
     <b-skeleton-wrapper
       :loading="loading"
@@ -31,7 +31,8 @@
         class="d-flex flex-column align-items-center p-2"
       >
         <span
-          class="d-flex align-items-center ps_gs-fz-18 font-weight-600 text-center pt-1 pb-2"
+          class="d-flex align-items-center flex-column flex-sm-row
+          ps_gs-fz-18 font-weight-600 text-center pt-1 pb-2"
           data-test-id="pf-status-title"
         >
           <img
