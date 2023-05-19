@@ -426,6 +426,7 @@ export const productFeed: State = {
   },
   report: {
     lastConfigurationUsed: null,
+    verificationStats: null,
   },
 };
 export const productFeedNoCarriers = {
@@ -514,6 +515,7 @@ export const productFeedIsConfigured = {
       targetCountries: ['FR', 'UK', 'IT'], 
       languages: ['it', 'fr', 'de'],
     },
+    verificationStats: null,
   }
 };
 
@@ -652,11 +654,23 @@ export const productFeedStatusSyncSuccess = {
     nextJobAt: new Date("July 22, 2021 03:24:00"),
   },
   validationSummary: {
-    activeItems: 5,
+    activeItems: 1362382,
     expiringItems: 2,
     pendingItems: 7,
     disapprovedItems: 1,
   },
+  report: {
+    lastConfigurationUsed: {
+      lastModificationDate: new Date(2023, 6, 31, 13, 37),
+      targetCountries: ['FR', 'UK', 'IT'], 
+      languages: ['it', 'fr', 'de'],
+    },
+    verificationStats: {
+      productsInCatalog: '1362452',
+      verifiedProducts: '1362392',
+      nonCompliantProducts: '60',
+    },
+  }
 };
 
 export const productFeedIsConfiguredOnce = {

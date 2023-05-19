@@ -25,7 +25,7 @@ import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {CustomCarrier} from '@/providers/shipping-rate-provider';
 import {RateType} from '@/enums/product-feed/rate';
 import Categories, {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
-import {IncrementalSyncContext} from '@/components/product-feed-page/feed-configuration/feed-configuration';
+import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
 
 /**
  * @deprecated
@@ -39,8 +39,15 @@ export interface ProductFeedStatus {
   syncSchedule?: string;
 }
 
+export type VerificationStats = null|{
+  productsInCatalog: string;
+  verifiedProducts: string;
+  nonCompliantProducts: string;
+};
+
 export type ProductFeedReport = {
   lastConfigurationUsed: IncrementalSyncContext|null;
+  verificationStats: VerificationStats;
 }
 export interface ProductFeedSettings {
   shippingSetup: ShippingSetupOption|null;
@@ -229,5 +236,6 @@ export const state: State = {
   attributeMapping: {},
   report: {
     lastConfigurationUsed: null,
+    verificationStats: null,
   },
 };

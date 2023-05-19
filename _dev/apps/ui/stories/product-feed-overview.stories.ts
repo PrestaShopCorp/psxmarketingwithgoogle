@@ -1,8 +1,8 @@
-import SyncOverview from '../src/components/product-feed-page/sync-overview.vue';
-import {googleAccountConnected} from '../.storybook/mock/google-account';
+import SyncOverview from '../src/components/product-feed-page/dashboard/sync-overview.vue';
 import {
   productFeedStatusSyncSuccess,
 } from '../.storybook/mock/product-feed';
+import merchantCenterAccountConnected from '../.storybook/mock/merchant-center-account';
 
 export default {
   title: 'Product Feed Page/Overview',
@@ -23,6 +23,7 @@ export const Overview:any = Template.bind({});
 Overview.args = {
   beforeMount(this: any) {
     this.$store.state.productFeed = Object.assign({}, productFeedStatusSyncSuccess);
-    this.$store.state.accounts.googleMerchantAccount = Object.assign({}, googleAccountConnected);
+    this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountConnected);
   },
+  loading: false,
 };

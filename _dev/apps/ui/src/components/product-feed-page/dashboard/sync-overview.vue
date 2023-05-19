@@ -41,16 +41,14 @@
           :product-feed-configuration="incrementalSyncContext"
           :loading="loading"
         />
+        <verified-products
+          :loading="loading"
+          :verifications-stats="productFeedReport.verificationStats"
+        />
         <SubmittedProducts
-          v-slot="{ productStatuses }"
           :in-need-of-configuration="inNeedOfConfiguration"
-        >
-          <ProductsStatusCard
-            v-for="(productStatus, i) in productStatuses"
-            :key="i"
-            :product-status="productStatus"
-          />
-        </SubmittedProducts>
+          :loading="loading"
+        />
       </div>
     </div>
   </b-card>
@@ -61,8 +59,8 @@ import {defineComponent} from 'vue';
 import NotConfiguredCard from '@/components/commons/not-configured-card';
 import FeedConfigurationCard from './feed-configuration/feed-configuration-card.vue';
 import MerchantCenterAccountAlertSuspended from '@/components/merchant-center-account/merchant-center-account-alert-suspended.vue';
-import SubmittedProducts from './submitted-products/submitted-products';
-import ProductsStatusCard from './submitted-products/products-status-card';
+import SubmittedProducts from './panel/submitted-products.vue';
+import VerifiedProducts from './panel/verified-products.vue';
 import SyncHistory from './sync-history/sync-history';
 import SyncState from './sync-history/sync-state';
 import {IncrementalSyncContext} from './feed-configuration/feed-configuration';
@@ -74,10 +72,10 @@ export default defineComponent({
     FeedConfigurationCard,
     MerchantCenterAccountAlertSuspended,
     NotConfiguredCard,
-    ProductsStatusCard,
     SubmittedProducts,
     SyncHistory,
     SyncState,
+    VerifiedProducts,
   },
   props: {
     inNeedOfConfiguration: {
@@ -89,6 +87,9 @@ export default defineComponent({
     },
   },
   computed: {
+    productFeedReport() {
+      return this.$store.state.productFeed.report;
+    },
     incrementalSyncContext(): IncrementalSyncContext|null {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_SYNC_CONTEXT'];
     },

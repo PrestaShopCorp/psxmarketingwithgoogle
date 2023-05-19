@@ -33,7 +33,7 @@
 <script>
 import ProductFeedTableStatusDetails from '@/components/product-feed-page/product-feed-table-status-details';
 import ProductFeedPreScanTableStatusDetails from '@/components/product-feed-page/product-feed-pre-scan-table-status-details';
-import SyncOverview from '@/components/product-feed-page/sync-overview.vue';
+import SyncOverview from '@/components/product-feed-page/dashboard/sync-overview.vue';
 import PsToast from '../components/commons/ps-toast';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 

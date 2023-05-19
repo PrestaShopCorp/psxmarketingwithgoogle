@@ -31,7 +31,7 @@ import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 import {AttributeResponseFromAPI} from '@/utils/AttributeMapping';
 import {CustomCarrier} from '@/providers/shipping-rate-provider';
 import {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
-import {IncrementalSyncContext} from '@/components/product-feed-page/feed-configuration/feed-configuration';
+import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
 
 export default {
   [GettersTypes.GET_PRODUCT_FEED_IS_CONFIGURED](state: LocalState): boolean {
