@@ -123,7 +123,7 @@ PSX_MKTG_WITH_GOOGLE_API_KEY=API_KEY
 USE_LOCAL_VUE_APP=1
 ```
 
-Some values are managed by the Vue.js application and are provided in the [`_dev/apps/ui/.env` file](_dev/apps/ui/.env).
+Additional values are managed by the Vue.js application and are provided in the [`_dev/apps/ui/.env` file](_dev/apps/ui/.env), different from the optional `.env` in the root folder.
 
 
 ## Releasing
@@ -145,7 +145,27 @@ All components and pages of this module are available on a dedicated website run
 It is updated on each push to the `master` branch.  
 [Integration Storybook](https://google-storybook-integration.prestashop.com/)  
 [Preproduction Storybook](https://google-storybook-preproduction.prestashop.com/)  
-[Production Storybook](https://google-storybook.prestashop.com/)  
+[Production Storybook](https://google-storybook.prestashop.com/)
+
+### Hook
+
+The module registers itself to several hooks and add the following features:
+
+* actionCartUpdateQuantityBefore
+  * Remarketing: Trigger the Conversion Action "Add to Cart"
+* displayBackOfficeHeader
+  * Menu: Fix the display of the Marketing tab
+  * Website Verification: Trigger the verification & claim process every 30 days in the background of the BO dashboard.
+  * Warning Messages: Display alerts on the BO dashboard about Marketing With Google
+  * Warning Messages: Display a notice after the edition of a carrier advising to reconfigure shipping settings on the module
+* displayHeader
+  * Website verification: Display the Google Verification Tag
+  * Remarketing: Display the Google Remarketing Tag to init gtag()
+  * Remarketing: Purge & display events that could not be displayed (i.e triggered from Ajax requests)
+* displayOrderConfirmation
+  * Remarketing: Trigger the Conversion Action "Purchase"
+* displayTop
+  * Remarketing: Trigger the Conversion Action "Page view"
 
 
 ## Contributing
