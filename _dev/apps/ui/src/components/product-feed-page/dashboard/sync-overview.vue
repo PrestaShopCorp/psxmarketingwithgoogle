@@ -12,7 +12,7 @@
       >
         <NotConfiguredCard />
       </div>
-      <div class="flex-shrink-0 d-flex flex-column p-3">
+      <div class="flex-shrink-0 d-flex flex-column p-3 pt-4">
         <SyncHistory
           v-slot="{ syncStates }"
           :in-need-of-configuration="inNeedOfConfiguration"
@@ -27,7 +27,7 @@
       <div
         class="
           flex-grow-1
-          p-3
+          p-3 pt-4
           border-top border-md-top-0 border-md-left border-600-20
         "
       >

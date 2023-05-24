@@ -78,7 +78,7 @@ export default {
               },
             ),
             icon: 'check_circle',
-            lineColor: 'danger',
+            lineColor: 'info',
           },
           {
             title: this.$i18n.t(
@@ -92,7 +92,8 @@ export default {
                 ?? this.syncInfos.jobEndedAt),
               ],
             ),
-            icon: 'cancel',
+            icon: 'error',
+            lineColor: 'danger',
           },
 
         ];
