@@ -66,6 +66,11 @@
               data-test-id="pf-config-country"
             >
               {{ country }}
+              <b-link
+                :link-to="{ name: 'product-feed-settings',
+                  step: 2, params: ProductFeedSettingsPages.SHIPPING_SETTINGS}"
+                class="stretched-link external_link-no_icon"
+              />
             </b-card>
           </div>
 
@@ -94,6 +99,11 @@
                 data-test-id="pf-config-lang"
               >
                 {{ language }}
+                <b-link
+                  target="_blank"
+                  :href="$store.getters['app/GET_LANGUAGES_URL']"
+                  class="stretched-link external_link-no_icon"
+                />
               </b-card>
             </template>
           </div>
@@ -110,6 +120,7 @@ import {defineComponent} from 'vue';
 import {IncrementalSyncContext} from './feed-configuration';
 import {timeConverterToDate, timeConverterToHour} from '@/utils/Dates';
 import {changeCountriesCodesToNames} from '@/utils/Countries';
+import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 
 export default defineComponent({
   props: {
@@ -122,6 +133,11 @@ export default defineComponent({
       type: Boolean,
       required: true,
     },
+  },
+  data() {
+    return {
+      ProductFeedSettingsPages,
+    };
   },
   computed: {
     targetCountries(): string[] {

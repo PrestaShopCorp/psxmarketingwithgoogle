@@ -34,6 +34,8 @@ export interface State {
   psxMktgWithGoogleCarriersUrl: string;
   psxMktgWithGoogleAttributesUrl: string;
   psxMktgWithGoogleProductsUrl: string;
+  psxMktgWithGoogleCurrenciesUrl: string;
+  psxMktgWithGoogleLanguagesUrl: string;
   psxMktgWithGoogleProductDetailUrl: string;
   psxMktgWithGoogleStoreSettingsUrl: string;
   psxMktgWithGoogleOnProductionEnvironment: boolean;
@@ -84,6 +86,8 @@ export const state: State = {
   psxMktgWithGoogleCarriersUrl: '',
   psxMktgWithGoogleAttributesUrl: '',
   psxMktgWithGoogleProductsUrl: '',
+  psxMktgWithGoogleCurrenciesUrl: '',
+  psxMktgWithGoogleLanguagesUrl: '',
   psxMktgWithGoogleProductDetailUrl: '',
   psxMktgWithGoogleStoreSettingsUrl: '',
   psxMktgWithGoogleOnProductionEnvironment: false,
