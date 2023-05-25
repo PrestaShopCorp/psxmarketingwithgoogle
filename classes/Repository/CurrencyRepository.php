@@ -54,4 +54,17 @@ class CurrencyRepository
             'isoCode' => $this->currency->iso_code,
         ];
     }
+
+    public function getActiveCurrencies(): array
+    {
+        $isoCodes = [];
+        foreach (Currency::getCurrencies(false, true, false) as $currency) {
+            if ((int) $this->context->shop->id !== (int) $currency['id_shop']) {
+                continue;
+            }
+            $isoCodes[] = $currency['iso_code'];
+        }
+
+        return $isoCodes;
+    }
 }

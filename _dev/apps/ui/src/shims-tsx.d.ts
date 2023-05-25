@@ -11,6 +11,7 @@ declare global {
     interface Window {
       psxMtgWithGoogleDefaultShopCountry: string,
       psxMktgWithGoogleActiveCountries: string[],
+      psxMktgWithGoogleActiveCurrencies: string[],
       contextPsAccounts: any;
       contextPsEventBus: any
       translations: any;

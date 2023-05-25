@@ -70,7 +70,9 @@ export default {
     );
 
     return filterByActiveCountriesOnShop.reduce((ids : string[], obj) => {
-      if (obj.currency === state.psxMktgWithGoogleShopCurrency.isoCode) {
+      if (obj.currency === state.psxMktgWithGoogleShopCurrency.isoCode
+        || state.psxMktgWithGoogleActiveCurrencies.includes(obj.currency)
+      ) {
         ids.push(obj.country);
       }
       return ids;
