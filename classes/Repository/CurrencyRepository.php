@@ -20,6 +20,7 @@
 
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Repository;
 
+use Context;
 use Currency;
 
 class CurrencyRepository
@@ -29,9 +30,15 @@ class CurrencyRepository
      */
     private $currency;
 
-    public function __construct(Currency $currency)
+    /**
+     * @var Context
+     */
+    private $context;
+
+    public function __construct(Currency $currency, Context $context)
     {
         $this->currency = $currency;
+        $this->context = $context;
     }
 
     /**
