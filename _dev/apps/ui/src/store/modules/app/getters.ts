@@ -70,7 +70,10 @@ export default {
     );
 
     return filterByActiveCountriesOnShop.reduce((ids : string[], obj) => {
-      if (obj.currency === state.psxMktgWithGoogleShopCurrency.isoCode
+      if (
+        // PHP Module providing ONLY default currency
+        obj.currency === state.psxMktgWithGoogleShopCurrency.isoCode
+        // PHP Module providing all shop currencies
         || state.psxMktgWithGoogleActiveCurrencies.includes(obj.currency)
       ) {
         ids.push(obj.country);
