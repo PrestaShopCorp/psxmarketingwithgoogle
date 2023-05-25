@@ -54,7 +54,11 @@ When a class is added or deleted, it is required to rerun the above command.
 
 ### VueJS
 
-The following commands need to be run in the `_dev/` folder.
+The following commands need to be run in the `_dev/` folder and requires pnpm v7 to be installed. If you do not have it:
+
+```
+npm install -g pnpm@7
+```
 
 To build the application in production mode:
 
