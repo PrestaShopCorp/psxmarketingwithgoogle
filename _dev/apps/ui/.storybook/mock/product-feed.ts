@@ -106,8 +106,8 @@ export const productFeed: State = {
     disapprovedItems: null,
   },
   prevalidationScanSummary: {
-    scannedItems: 13456,
-    invalidItems: 140,
+    scannedItems: 1362392,
+    invalidItems: 5489,
   },
   productsDatas: {
     items: [
@@ -426,7 +426,7 @@ export const productFeed: State = {
   },
   report: {
     lastConfigurationUsed: null,
-    verificationStats: null,
+    productsInCatalog: null,
   },
 };
 export const productFeedNoCarriers = {
@@ -667,8 +667,6 @@ export const productFeedStatusSyncSuccess = {
     },
     verificationStats: {
       productsInCatalog: '1362452',
-      verifiedProducts: '1362392',
-      nonCompliantProducts: '60',
     },
   }
 };

@@ -24,6 +24,7 @@ import {
   ProductFeedValidationSummary,
   AttributesInfos,
   PreScanReporting,
+  VerificationStats,
 } from './state';
 import GettersTypes from './getters-types';
 import {filterCountriesCompatible} from '@/utils/TargetCountryValidator';
@@ -49,7 +50,21 @@ export default {
   [GettersTypes.GET_TOTAL_PRODUCTS_READY_TO_SYNC](state: LocalState): number {
     return state.totalProducts;
   },
+  [GettersTypes.GET_PRODUCT_FEED_VERIFICATION_STATS](state: LocalState) :
+  VerificationStats {
+    const {prevalidationScanSummary} = state;
+    const verifiedProducts = prevalidationScanSummary.scannedItems !== null
+      && prevalidationScanSummary.invalidItems !== null
+      ? prevalidationScanSummary.scannedItems - prevalidationScanSummary.invalidItems
+      : null;
 
+    return {
+      productsInCatalog: state.report.productsInCatalog,
+
+      nonCompliantProducts: state.prevalidationScanSummary.invalidItems,
+      verifiedProducts,
+    };
+  },
   [GettersTypes.GET_PRODUCT_FEED_VALIDATION_SUMMARY](state: LocalState) :
   ProductFeedValidationSummary {
     return state.validationSummary;
