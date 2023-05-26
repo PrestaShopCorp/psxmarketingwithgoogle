@@ -66,9 +66,9 @@
               data-test-id="pf-config-country"
             >
               {{ country }}
-              <b-link
-                :link-to="{ name: 'product-feed-settings',
-                  step: 2, params: ProductFeedSettingsPages.SHIPPING_SETTINGS}"
+              <router-link
+                :to="{ name: 'product-feed-settings',
+                  params: { step: ProductFeedSettingsPages.SHIPPING_SETTINGS}}"
                 class="stretched-link external_link-no_icon"
               />
             </b-card>
