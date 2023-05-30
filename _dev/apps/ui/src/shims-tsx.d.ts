@@ -34,6 +34,8 @@ declare global {
       psxMktgWithGoogleCarriersUrl?: string,
       psxMktgWithGoogleAttributesUrl?: string,
       psxMktgWithGoogleProductsUrl?: string,
+      psxMktgWithGoogleCurrenciesUrl?: string,
+      psxMktgWithGoogleLanguagesUrl?: string,
       psxMktgWithGoogleProductDetailUrl: string,
       psxMktgWithGoogleStoreSettingsUrl: string,
       psxMktgWithGoogleOnProductionEnvironment:boolean,

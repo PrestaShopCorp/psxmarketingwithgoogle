@@ -1,9 +1,10 @@
 /**
  * @jest-environment jsdom
  */
+import Vuex from 'vuex';
 import {mount} from '@vue/test-utils';
 import {BCard, BSkeleton} from 'bootstrap-vue';
-import config, {localVue, addBootstrapToVue} from '@/../tests/init';
+import config, {localVue, addBootstrapToVue, cloneStore} from '@/../tests/init';
 import feedConfigurationCardVue from './feed-configuration-card.vue';
 
 describe('feed-configuration-card.vue', () => {
@@ -19,6 +20,7 @@ describe('feed-configuration-card.vue', () => {
         },
         loading: false,
       },
+      store: new Vuex.Store(cloneStore()),
     });
 
     const countriesFound = wrapper.findAll('[data-test-id="pf-config-country"]');

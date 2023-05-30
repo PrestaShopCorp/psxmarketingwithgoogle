@@ -49,6 +49,12 @@ export default {
   [GettersTypes.GET_PRODUCTS_CATALOG_URL](state: LocalState): string {
     return state.psxMktgWithGoogleProductsUrl;
   },
+  [GettersTypes.GET_CURRENCIES_URL](state: LocalState): string {
+    return state.psxMktgWithGoogleCurrenciesUrl;
+  },
+  [GettersTypes.GET_LANGUAGES_URL](state: LocalState): string {
+    return state.psxMktgWithGoogleLanguagesUrl;
+  },
   [GettersTypes.GET_STORE_INFORMATION_URL](state: LocalState): string {
     return state.psxMktgWithGoogleStoreSettingsUrl;
   },

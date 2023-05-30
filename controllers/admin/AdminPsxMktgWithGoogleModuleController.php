@@ -161,6 +161,8 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
             'psxMktgWithGoogleAttributesUrl' => $this->context->link->getAdminLink('AdminAttributesGroups'),
             'psxMktgWithGoogleStoreSettingsUrl' => $this->context->link->getAdminLink('AdminStores'),
             'psxMktgWithGoogleProductsUrl' => $this->context->link->getAdminLink('AdminProducts'),
+            'psxMktgWithGoogleCurrenciesUrl' => $this->context->link->getAdminLink('AdminCurrencies'),
+            'psxMktgWithGoogleLanguagesUrl' => $this->context->link->getAdminLink('AdminLanguages'),
             'psxMktgWithGoogleProductDetailUrl' => $this->context->link->getAdminLink(
                 'AdminProducts',
                 true,
