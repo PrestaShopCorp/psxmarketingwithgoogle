@@ -440,7 +440,7 @@ export const productFeedIsReadyForExport: State = {
     ...productFeed.status,
     jobEndedAt: "2021-10-06T01:00:00.000Z",
     lastUpdatedAt: null,
-    nextJobAt: new Date("July 22, 2021 03:24:00"),
+    nextJobAt: new Date("July 22, 2021 03:24:00").toString(),
     success: false,
     syncSchedule: "2021-10-06T01:00:00.000Z",
   },
@@ -477,8 +477,8 @@ export const productFeedIsConfigured: State = {
   status: {
     ...productFeed.status,
     jobEndedAt: "2021-10-06T01:00:00.000Z",
-    nextJobAt: new Date("July 22, 2021 03:24:00"),
-    lastUpdatedAt: new Date("July 22, 2021 03:24:00"),
+    nextJobAt: new Date("July 22, 2021 03:24:00").toString(),
+    lastUpdatedAt: new Date("July 22, 2021 03:24:00").toString(),
     success: true,
   },
   attributeMapping: {
@@ -522,8 +522,8 @@ export const productFeedEstimateConfigured: State = {
   status: {
     ...productFeed.status,
     jobEndedAt: "2021-10-06T01:00:00.000Z",
-    nextJobAt: new Date("July 22, 2021 03:24:00"),
-    lastUpdatedAt: new Date("July 22, 2021 03:24:00"),
+    nextJobAt: new Date("July 22, 2021 03:24:00").toString(),
+    lastUpdatedAt: new Date("July 22, 2021 03:24:00").toString(),
     success: true,
   },
   attributeMapping: {
@@ -592,9 +592,9 @@ export const productFeedStatusSyncFailed: State = {
   status: {
     ...productFeedIsConfigured.status,
     success: false,
-    jobEndedAt: new Date("July 22, 2021 03:24:00"),
-    lastUpdatedAt: new Date("July 22, 2021 03:24:00"),
-    nextJobAt: new Date("July 22, 2021 03:24:00"),
+    jobEndedAt: new Date("July 22, 2021 03:24:00").toString(),
+    lastUpdatedAt: new Date("July 22, 2021 03:24:00").toString(),
+    nextJobAt: new Date("July 22, 2021 03:24:00").toString(),
   },
   validationSummary: {
     activeItems: 0,
@@ -615,8 +615,8 @@ export const productFeedSyncSummaryInProgress: State = {
   isSyncSummaryLoadingInProgress: true,
   status: {
     success: false,
-    nextJobAt: null,
-    lastUpdatedAt: new Date("July 22, 2021 03:24:00"),
+    nextJobAt: undefined,
+    lastUpdatedAt: new Date("July 22, 2021 03:24:00").toString(),
     jobEndedAt: null,
   },
   validationSummary: {
@@ -628,10 +628,11 @@ export const productFeedSyncSummaryInProgress: State = {
 };
 
 export const productFeedStatusSyncScheduled: State = {
+  ...productFeedIsConfigured,
   status: {
     success: false,
-    nextJobAt: new Date("July 22, 2022 03:24:00"),
-    lastUpdatedAt: new Date("July 22, 2021 03:24:00"),
+    nextJobAt: new Date("July 22, 2022 03:24:00").toString(),
+    lastUpdatedAt: new Date("July 22, 2021 03:24:00").toString(),
     jobEndedAt: null,
   },
   validationSummary: {
@@ -646,9 +647,9 @@ export const productFeedStatusSyncSuccess: State = {
   ...productFeedIsConfigured,
   status: {
     success: true,
-    jobEndedAt: new Date("July 22, 2021 03:24:00"),
-    lastUpdatedAt: new Date("July 22, 2021 03:24:00"),
-    nextJobAt: new Date("July 22, 2021 03:24:00"),
+    jobEndedAt: new Date("July 22, 2021 03:24:00").toString(),
+    lastUpdatedAt: new Date("July 22, 2021 03:24:00").toString(),
+    nextJobAt: new Date("July 22, 2021 03:24:00").toString(),
   },
   validationSummary: {
     activeItems: 1362382,
@@ -675,7 +676,7 @@ export const productFeedSyncScheduleNow: State = {
   ...productFeedIsConfigured,
   requestSynchronizationNow: true,
 };
-export const productFeedWithDisapprovedProductsButNoIssues: State = {
+export const productFeedWithDisapprovedProductsButNoIssues = {
   ...productFeed,
   productsDatas: {
     items: [
