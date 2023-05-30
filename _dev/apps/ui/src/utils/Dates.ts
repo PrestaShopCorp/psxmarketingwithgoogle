@@ -35,7 +35,7 @@ export const timeConverterToStringifiedDate = (date?: string|Date) => {
 export const timeConverterToHour = (date?: string|Date) => {
   if (date) {
     return new Date(date).toLocaleTimeString(
-      window.i18nSettings.languageLocale,
+      window.i18nSettings.languageLocale.substring(0, 2),
       {
         hour: '2-digit',
         minute: '2-digit',

@@ -4,6 +4,7 @@ import { State, AttributesTypes, ProductStatus } from "@/store/modules/product-f
 import DeliveryType from '@/enums/product-feed/delivery-type';
 import { shippingPhpExport } from "./shipping-settings";
 import Categories from "@/enums/product-feed/attribute-mapping-categories";
+import { ShippingSetupOption } from "../../src/enums/product-feed/shipping";
 
 export const productFeed: State = {
   isSyncSummaryLoadingInProgress: false,
@@ -104,10 +105,6 @@ export const productFeed: State = {
     expiringItems: null,
     pendingItems: null,
     disapprovedItems: null,
-  },
-  prevalidationScanSummary: {
-    scannedItems: 1362392,
-    invalidItems: 5489,
   },
   productsDatas: {
     items: [
@@ -429,14 +426,14 @@ export const productFeed: State = {
     productsInCatalog: null,
   },
 };
-export const productFeedNoCarriers = {
+export const productFeedNoCarriers: State = {
   ...productFeed,
   settings: {
     ...productFeed.settings,
     deliveryDetails: [],
   },
 };
-export const productFeedIsReadyForExport = {
+export const productFeedIsReadyForExport: State = {
   ...productFeed,
   isConfigured: true,
   status: {
@@ -470,11 +467,11 @@ export const productFeedIsReadyForExport = {
   settings: {
     ...productFeed.settings,
     targetCountries: ["FR"],
-    shippingSetup: "import",
+    shippingSetup: ShippingSetupOption.IMPORT,
   },
 };
 
-export const productFeedIsConfigured = {
+export const productFeedIsConfigured: State = {
   ...productFeed,
   isConfigured: true,
   status: {
@@ -507,7 +504,7 @@ export const productFeedIsConfigured = {
   settings: {
     ...productFeed.settings,
     targetCountries: ["FR"],
-    shippingSetup: "import",
+    shippingSetup: ShippingSetupOption.IMPORT,
   },
   report: {
     lastConfigurationUsed: {
@@ -515,11 +512,11 @@ export const productFeedIsConfigured = {
       targetCountries: ['FR', 'UK', 'IT'], 
       languages: ['it', 'fr', 'de'],
     },
-    verificationStats: null,
+    productsInCatalog: null,
   }
 };
 
-export const productFeedEstimateConfigured = {
+export const productFeedEstimateConfigured: State = {
   ...productFeed,
   isConfigured: true,
   status: {
@@ -551,7 +548,7 @@ export const productFeedEstimateConfigured = {
   },
   settings: {
     ...productFeed.settings,
-    shippingSetup: "estimate",
+    shippingSetup: ShippingSetupOption.ESTIMATE,
     rate: RateType.RATE_ALL_COUNTRIES,
     estimateCarriers: [
       {
@@ -573,7 +570,7 @@ export const productFeedEstimateConfigured = {
   }
 }
 
-export const productFeedIsConfiguredWithTax = {
+export const productFeedIsConfiguredWithTax: State = {
   ...productFeedIsConfigured,
   settings: {
     ...productFeedIsConfigured.settings,
@@ -581,7 +578,7 @@ export const productFeedIsConfiguredWithTax = {
   },
 };
 
-export const productFeedMissingFields = {
+export const productFeedMissingFields: State = {
   ...productFeedIsConfigured,
   settings: {
     ...productFeedIsConfigured.settings,
@@ -590,7 +587,7 @@ export const productFeedMissingFields = {
   },
 };
 
-export const productFeedStatusSyncFailed = {
+export const productFeedStatusSyncFailed: State = {
   ...productFeedIsConfigured,
   status: {
     ...productFeedIsConfigured.status,
@@ -607,12 +604,12 @@ export const productFeedStatusSyncFailed = {
   },
 };
 
-export const productFeedErrorAPI = {
+export const productFeedErrorAPI: State = {
   ...productFeed,
   errorAPI: true,
 };
 
-export const productFeedSyncSummaryInProgress = {
+export const productFeedSyncSummaryInProgress: State = {
   ...productFeed,
   isConfigured: true,
   isSyncSummaryLoadingInProgress: true,
@@ -630,7 +627,7 @@ export const productFeedSyncSummaryInProgress = {
   },
 };
 
-export const productFeedStatusSyncScheduled = {
+export const productFeedStatusSyncScheduled: State = {
   status: {
     success: false,
     nextJobAt: new Date("July 22, 2022 03:24:00"),
@@ -645,7 +642,7 @@ export const productFeedStatusSyncScheduled = {
   },
 };
 
-export const productFeedStatusSyncSuccess = {
+export const productFeedStatusSyncSuccess: State = {
   ...productFeedIsConfigured,
   status: {
     success: true,
@@ -665,22 +662,20 @@ export const productFeedStatusSyncSuccess = {
       targetCountries: ['FR', 'UK', 'IT'], 
       languages: ['it', 'fr', 'de'],
     },
-    verificationStats: {
-      productsInCatalog: '1362452',
-    },
+    productsInCatalog: '1362452',
   }
 };
 
-export const productFeedIsConfiguredOnce = {
+export const productFeedIsConfiguredOnce: State = {
   ...productFeedIsConfigured,
   isConfiguredOnce: true,
 };
 
-export const productFeedSyncScheduleNow = {
+export const productFeedSyncScheduleNow: State = {
   ...productFeedIsConfigured,
   requestSynchronizationNow: true,
 };
-export const productFeedWithDisapprovedProductsButNoIssues = {
+export const productFeedWithDisapprovedProductsButNoIssues: State = {
   ...productFeed,
   productsDatas: {
     items: [

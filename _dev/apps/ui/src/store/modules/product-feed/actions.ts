@@ -69,10 +69,6 @@ export default {
         dispatch(ActionsTypes.GET_TOTAL_PRODUCTS_READY_TO_SYNC),
       ),
       runIf(
-        state.prevalidationScanSummary.scannedItems === null,
-        dispatch(ActionsTypes.GET_PREVALIDATION_SUMMARY),
-      ),
-      runIf(
         !getters.GET_PRODUCT_FEED_STATUS.syncSchedule?.length,
         dispatch(ActionsTypes.GET_PRODUCT_FEED_SYNC_STATUS),
       ),
@@ -415,14 +411,6 @@ export default {
     commit(MutationsTypes.SET_PRESCAN_PRODUCTS, json.errors);
 
     return json.errors;
-  },
-
-  async [ActionsTypes.GET_PREVALIDATION_SUMMARY]({rootState, commit}) {
-    const json = await (await fetchOnboarding(
-      'GET',
-      'product-feeds/prevalidation-scan/summary',
-    )).json();
-    commit(MutationsTypes.SET_PREVALIDATION_SUMMARY, json);
   },
 
   async [ActionsTypes.SEND_PRODUCT_FEED_FLAGS]({rootState}, flags) {

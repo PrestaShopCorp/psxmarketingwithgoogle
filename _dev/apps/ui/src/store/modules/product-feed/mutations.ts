@@ -167,9 +167,6 @@ export default {
   [MutationsTypes.SET_SYNC_SCHEDULE](state: LocalState, payload: boolean) {
     state.requestSynchronizationNow = payload;
   },
-  [MutationsTypes.SET_PREVALIDATION_SUMMARY](state: LocalState, payload: PrevalidationScanSummary) {
-    state.prevalidationScanSummary = payload;
-  },
   [MutationsTypes.SET_PRESCAN_LIMIT_PAGE](state: LocalState, payload: number) {
     state.preScanDetail.limit = payload;
   },

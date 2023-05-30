@@ -162,13 +162,6 @@ InProgress.parameters = {
           })
         );
       }),
-      rest.get('/product-feeds/prevalidation-scan/summary', (req, res, ctx) => {
-        return res(
-          ctx.json({
-            ...productFeed.prevalidationScanSummary
-          })
-        );
-      }),
       rest.get('/shopping-campaigns/list', (req, res, ctx) => {
         return res(
           ctx.json({
@@ -274,14 +267,7 @@ Success.parameters = {
       rest.get('/product-feeds/cloud-sync-info', (req, res, ctx) => {
         return res(
           ctx.json({
-            totalProducts: productFeedStatusSyncSuccess.report.verificationStats.productsInCatalog
-          })
-        );
-      }),
-      rest.get('/product-feeds/prevalidation-scan/summary', (req, res, ctx) => {
-        return res(
-          ctx.json({
-            ...productFeed.prevalidationScanSummary
+            totalProducts: productFeedStatusSyncSuccess.report.productsInCatalog
           })
         );
       }),
@@ -361,13 +347,6 @@ SyncFailed.parameters = {
           })
         );
       }),
-      rest.get('/product-feeds/prevalidation-scan/summary', (req, res, ctx) => {
-        return res(
-          ctx.json({
-            ...productFeed.prevalidationScanSummary
-          })
-        );
-      }),
       rest.get('/shopping-campaigns/list', (req, res, ctx) => {
         return res(
           ctx.json({
@@ -441,13 +420,6 @@ AccountSuspended.parameters = {
         return res(
           ctx.json({
             totalProducts: productFeedStatusSyncSuccess.report.verificationStats.productsInCatalog
-          })
-        );
-      }),
-      rest.get('/product-feeds/prevalidation-scan/summary', (req, res, ctx) => {
-        return res(
-          ctx.json({
-            ...productFeed.prevalidationScanSummary
           })
         );
       }),
