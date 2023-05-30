@@ -49,9 +49,8 @@ export default defineComponent({
   },
   props: {
     verificationsStats: {
-      type: [Object, null] as PropType<VerificationStats>,
-      required: false,
-      default: null,
+      type: Object as PropType<VerificationStats>,
+      required: true,
     },
     loading: {
       type: Boolean,
@@ -63,11 +62,11 @@ export default defineComponent({
       return [{
         title: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.productsInCatalog'),
         description: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.productsInCatalogDescription'),
-        value: this.verificationsStats?.productsInCatalog,
+        value: this.verificationsStats.productsInCatalog,
         variant: 'info',
         icon: 'redeem',
         reverseColors: false,
-        ...(+(this.verificationsStats?.nonCompliantProducts || 0) && {
+        ...(+(this.verificationsStats.nonCompliantProducts || 0) && {
           link: {
             href: this.$store.getters['app/GET_PRODUCTS_CATALOG_URL'],
             target: '_blank',
@@ -77,7 +76,7 @@ export default defineComponent({
       {
         title: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.verified'),
         description: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.verifiedDescription'),
-        value: this.verificationsStats?.verifiedProducts,
+        value: this.verificationsStats.verifiedProducts,
         variant: 'success',
         icon: 'send',
         reverseColors: false,
@@ -85,11 +84,11 @@ export default defineComponent({
       {
         title: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.nonCompliant'),
         description: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.nonCompliantDescription'),
-        value: this.verificationsStats?.nonCompliantProducts,
+        value: this.verificationsStats.nonCompliantProducts,
         variant: 'danger',
         icon: 'remove_shopping_cart',
         reverseColors: false,
-        ...(+(this.verificationsStats?.nonCompliantProducts || 0) && {
+        ...(+(this.verificationsStats.nonCompliantProducts || 0) && {
           link: {
             to: {name: 'product-feed-verification-errors'},
           },

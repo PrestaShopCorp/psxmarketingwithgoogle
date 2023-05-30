@@ -198,4 +198,10 @@ export default {
   ) {
     state.report.lastConfigurationUsed = syncContext;
   },
+  [MutationsTypes.SAVE_NUMBER_OF_PRODUCTS_ON_CLOUDSYNC](
+    state: LocalState,
+    productsInCatalog: string,
+  ) {
+    state.report.productsInCatalog = productsInCatalog;
+  },
 };

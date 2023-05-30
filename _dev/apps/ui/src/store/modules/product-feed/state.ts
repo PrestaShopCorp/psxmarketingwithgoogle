@@ -39,15 +39,15 @@ export interface ProductFeedStatus {
   syncSchedule?: string;
 }
 
-export type VerificationStats = null|{
-  productsInCatalog: string;
-  verifiedProducts: string;
-  nonCompliantProducts: string;
+export type VerificationStats = {
+  productsInCatalog: string|null;
+  verifiedProducts: number|null;
+  nonCompliantProducts: number|null;
 };
 
 export type ProductFeedReport = {
   lastConfigurationUsed: IncrementalSyncContext|null;
-  verificationStats: VerificationStats;
+  productsInCatalog: string|null;
 }
 export interface ProductFeedSettings {
   shippingSetup: ShippingSetupOption|null;
@@ -236,6 +236,6 @@ export const state: State = {
   attributeMapping: {},
   report: {
     lastConfigurationUsed: null,
-    verificationStats: null,
+    productsInCatalog: null,
   },
 };

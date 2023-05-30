@@ -88,6 +88,10 @@ export default {
         !getters.GET_PRODUCT_FEED_SYNC_CONTEXT,
         dispatch(ActionsTypes.REQUEST_PRODUCT_FEED_SYNC_CONTEXT),
       ),
+      runIf(
+        state.report.productsInCatalog,
+        dispatch(ActionsTypes.GET_PRODUCTS_ON_CLOUDSYNC),
+      ),
     ]);
   },
   async [ActionsTypes.GET_PRODUCT_FEED_SYNC_STATUS]({commit, rootState}) {
@@ -384,6 +388,14 @@ export default {
     } catch (error) {
       console.log(error);
     }
+  },
+  async [ActionsTypes.GET_PRODUCTS_ON_CLOUDSYNC]({commit}) {
+    const json: {totalProducts: string} = await (await fetchOnboarding(
+      'GET',
+      'product-feeds/cloud-sync-info',
+    )).json();
+
+    commit(MutationsTypes.SAVE_NUMBER_OF_PRODUCTS_ON_CLOUDSYNC, json.totalProducts);
   },
   async [ActionsTypes.GET_PREVALIDATION_PRODUCTS]({rootState, commit, state}) {
     const {limit} = state.preScanDetail;

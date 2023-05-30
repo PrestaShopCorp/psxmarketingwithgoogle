@@ -43,7 +43,7 @@
         />
         <verified-products
           :loading="loading"
-          :verifications-stats="productFeedReport.verificationStats"
+          :verifications-stats="verificationStats"
         />
         <SubmittedProducts
           :in-need-of-configuration="inNeedOfConfiguration"
@@ -66,6 +66,7 @@ import SyncState from './sync-history/sync-state';
 import {IncrementalSyncContext} from './feed-configuration/feed-configuration';
 import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 import {getMerchantCenterWebsiteUrls} from '@/components/merchant-center-account/merchant-center-account-links';
+import {VerificationStats} from '@/store/modules/product-feed/state';
 
 export default defineComponent({
   components: {
@@ -87,8 +88,8 @@ export default defineComponent({
     },
   },
   computed: {
-    productFeedReport() {
-      return this.$store.state.productFeed.report;
+    verificationStats(): VerificationStats {
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_VERIFICATION_STATS'];
     },
     incrementalSyncContext(): IncrementalSyncContext|null {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_SYNC_CONTEXT'];
