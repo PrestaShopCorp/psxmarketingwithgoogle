@@ -28,6 +28,9 @@ export default {
   [GettersTypes.GET_CURRENT_CURRENCY](state: LocalState): string {
     return state.psxMktgWithGoogleShopCurrency.isoCode;
   },
+  [GettersTypes.GET_SHOP_CURRENCIES](state: LocalState): string[] {
+    return state.psxMktgWithGoogleActiveCurrencies;
+  },
   [GettersTypes.GET_DOC_AND_FAQ](state: LocalState): HelpInformations {
     return state.psxMktgWithGoogleDocumentAndFaq;
   },

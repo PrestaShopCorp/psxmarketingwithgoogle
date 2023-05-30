@@ -29,7 +29,8 @@
       "helpPage" : "Help Page",
       "noResultsFoundForX": " No results found for {0}",
       "days": "Days",
-      "readMore": "Read more"
+      "readMore": "Read more",
+      "countryWithCurrencyFormat": "{country} ({currency})"
     },
     "landingPage": {
       "header": {

@@ -1,4 +1,4 @@
-import { getCurrencyFromCountry } from "./Countries";
+import {getCurrencyFromCountry} from "./Countries";
 
 describe('Countries utility functions', () => {
   describe('getCurrencyFromCountry()', () => {
