@@ -30,8 +30,8 @@ describe('feed-configuration-card.vue', () => {
     expect(lastConfigurationDateFound.text()).toEqual('25/12/2022, 23:55');
 
     expect(countriesFound).toHaveLength(2);
-    expect(countriesFound.at(0).text()).toEqual('France');
-    expect(countriesFound.at(1).text()).toEqual('Italy');
+    expect(countriesFound.at(0).text()).toEqual('France (EUR)');
+    expect(countriesFound.at(1).text()).toEqual('Italy (EUR)');
 
     expect(languagesFound).toHaveLength(3);
     expect(languagesFound.at(0).text()).toEqual('it');
@@ -48,6 +48,7 @@ describe('feed-configuration-card.vue', () => {
         productFeedConfiguration: null,
         loading: true,
       },
+      store: new Vuex.Store(cloneStore()),
     });
 
     const countriesFound = wrapper.findAll('[data-test-id="pf-config-country"]');
@@ -76,13 +77,14 @@ describe('feed-configuration-card.vue', () => {
         },
         loading: false,
       },
+      store: new Vuex.Store(cloneStore()),
     });
     const countriesFound = wrapper.findAll('[data-test-id="pf-config-country"]');
     const noElligibleLang = wrapper.find('[data-test-id="pf-config-no-lang"]');
     const languagesAlert = wrapper.find('.alert-danger');
 
     expect(countriesFound).toHaveLength(1);
-    expect(countriesFound.at(0).text()).toEqual('France');
+    expect(countriesFound.at(0).text()).toEqual('France (EUR)');
 
     expect(noElligibleLang.exists()).toBeTruthy();
     expect(noElligibleLang.text()).toEqual('No eligible language');

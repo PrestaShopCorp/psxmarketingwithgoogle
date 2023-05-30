@@ -512,7 +512,7 @@ export const productFeedIsConfigured: State = {
   report: {
     lastConfigurationUsed: {
       lastModificationDate: new Date(2023, 6, 31, 13, 37),
-      targetCountries: ['FR', 'UK', 'IT'],
+      targetCountries: ['FR', 'GB', 'IT'], 
       languages: ['it', 'fr', 'de'],
     },
     productsInCatalog: null,
@@ -665,7 +665,7 @@ export const productFeedStatusSyncSuccess: State = {
   report: {
     lastConfigurationUsed: {
       lastModificationDate: new Date(2023, 6, 31, 13, 37),
-      targetCountries: ['FR', 'UK', 'IT'],
+      targetCountries: ['FR', 'GB', 'IT'],
       languages: ['it', 'fr', 'de'],
     },
     productsInCatalog: "1362452",
