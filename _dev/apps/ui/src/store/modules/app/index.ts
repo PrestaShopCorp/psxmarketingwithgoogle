@@ -42,7 +42,7 @@ const state: State = {
   psxMktgWithGoogleMaintenanceSettingsUrl: psxMktgWithGoogleMaintenanceSettingsUrl || '',
   psxMktgWithGoogleProductsUrl: psxMktgWithGoogleProductsUrl || document.querySelector('#subtab-AdminProducts a')?.getAttribute('href') || '',
   psxMktgWithGoogleCurrenciesUrl: psxMktgWithGoogleCurrenciesUrl || document.querySelector('#subtab-AdminCurrencies a')?.getAttribute('href') || '',
-  psxMktgWithGoogleLanguagesUrl: psxMktgWithGoogleLanguagesUrl || document.querySelector('#subtab-AdminLanguages a')?.getAttribute('href') || '',
+  psxMktgWithGoogleLanguagesUrl: psxMktgWithGoogleLanguagesUrl || document.querySelector('#subtab-AdminLocalization a')?.getAttribute('href') || '',
   psxMktgWithGoogleProductDetailUrl: psxMktgWithGoogleProductDetailUrl || '',
   psxMktgWithGoogleStoreSettingsUrl: psxMktgWithGoogleStoreSettingsUrl || '',
   psxMtgWithGoogleDefaultShopCountry: psxMtgWithGoogleDefaultShopCountry || '',
