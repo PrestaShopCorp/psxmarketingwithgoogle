@@ -66,7 +66,7 @@ export default defineComponent({
         variant: 'info',
         icon: 'redeem',
         reverseColors: false,
-        ...(+(this.verificationsStats.nonCompliantProducts || 0) && {
+        ...(+(this.verificationsStats.productsInCatalog || 0) && {
           link: {
             href: this.$store.getters['app/GET_PRODUCTS_CATALOG_URL'],
             target: '_blank',
