@@ -200,7 +200,9 @@ export default defineComponent({
     },
     nextSyncTime(): string {
       if (this.getProductFeedStatus.nextJobAt) {
-        return new Date(this.getProductFeedStatus.nextJobAt).toLocaleString();
+        return new Date(this.getProductFeedStatus.nextJobAt).toLocaleString(
+          window.i18nSettings.languageLocale.substring(0, 2),
+        );
       }
       return '--';
     },
