@@ -139,8 +139,5 @@ export default defineComponent({
       }];
     },
   },
-  created() {
-    this.$store.dispatch('productFeed/GET_PREVALIDATION_SUMMARY');
-  },
 });
 </script>

@@ -779,9 +779,6 @@ export default defineComponent({
         dimensionToEdit,
       );
     },
-    getValidationSummary() {
-      return this.$store.dispatch('productFeed/GET_PREVALIDATION_SUMMARY');
-    },
     setInterfaceForCreation() {
       this.$store.commit('campaigns/SET_DIMENSION_CHOSEN', {});
       this.$store.state.campaigns.sscAvailableFilters.forEach(
@@ -862,7 +859,6 @@ export default defineComponent({
     if (!this.currency) {
       await this.$store.dispatch('googleAds/WARMUP_STORE');
     }
-    this.getValidationSummary();
     this.getDatasFiltersDimensions();
 
     this.getRecommendedBudget(this.targetCountry || this.defaultCountry);

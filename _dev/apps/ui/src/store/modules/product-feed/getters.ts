@@ -52,17 +52,11 @@ export default {
   },
   [GettersTypes.GET_PRODUCT_FEED_VERIFICATION_STATS](state: LocalState) :
   VerificationStats {
-    const {prevalidationScanSummary} = state;
-    const verifiedProducts = prevalidationScanSummary.scannedItems !== null
-      && prevalidationScanSummary.invalidItems !== null
-      ? prevalidationScanSummary.scannedItems - prevalidationScanSummary.invalidItems
-      : null;
-
     return {
       productsInCatalog: state.report.productsInCatalog,
 
-      nonCompliantProducts: state.prevalidationScanSummary.invalidItems,
-      verifiedProducts,
+      nonCompliantProducts: null,
+      verifiedProducts: null,
     };
   },
   [GettersTypes.GET_PRODUCT_FEED_VALIDATION_SUMMARY](state: LocalState) :
