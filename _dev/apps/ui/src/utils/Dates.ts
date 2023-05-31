@@ -8,17 +8,11 @@ dayjs.extend(timezone);
 dayjs.extend(localizedFormat);
 dayjs.tz.setDefault('Europe/London');
 
-export const timeConverterToDate = (timestamp: string) => {
-  if (timestamp) {
-    const a = new Date(timestamp);
-    const year = a.getFullYear();
-    const month = a.getMonth() + 1;
-    const finalMonth = month < 10 ? `0${month}` : month;
-    const day = a.getDate();
-    const finalDay = day < 10 ? `0${day}` : day;
-    const time = `${finalDay}/${finalMonth}/${year}`;
-
-    return time;
+export const timeConverterToDate = (date?: string|Date) => {
+  if (date) {
+    return new Date(date).toLocaleDateString(
+      window.i18nSettings.languageLocale.substring(0, 2),
+    );
   }
   return '-';
 };
