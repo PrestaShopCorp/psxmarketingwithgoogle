@@ -38,8 +38,7 @@ export const changeCountriesNamesToCodes = (countries: string[]) => countries.ma
   changeCountryNameToCode,
 );
 
-export const getCurrencyFromCountry = (countryCode: string): string|undefined => {
-  return countriesSelectionOptions.find((someCountry: Country) => (
+export const getCurrencyFromCountry = (countryCode: string) => countriesSelectionOptions.find(
+  (someCountry: Country) => (
     someCountry.code === countryCode
   ))?.currency;
-};

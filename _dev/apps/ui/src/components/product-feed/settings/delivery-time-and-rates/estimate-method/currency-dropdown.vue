@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { PropType, defineComponent } from 'vue';
+import {PropType, defineComponent} from 'vue';
 
 export default defineComponent({
   name: 'CurrencyDropdown',

@@ -89,7 +89,7 @@ import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings
 import ProductFeedStepper from '@/components/product-feed/product-feed-stepper.vue';
 import ProductFeedCardReportCard from '@/components/product-feed/product-feed-card-report-card.vue';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
-import { changeCountryCodeToName, getCurrencyFromCountry } from '@/utils/Countries';
+import {changeCountryCodeToName, getCurrencyFromCountry} from '@/utils/Countries';
 
 export default defineComponent({
   name: 'ProductFeedSummaryCards',
@@ -131,7 +131,7 @@ export default defineComponent({
         {
           country: changeCountryCodeToName(country),
           currency: getCurrencyFromCountry(country),
-        }
+        },
       ));
     },
     shippingSetupDescription() {

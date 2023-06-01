@@ -330,7 +330,7 @@ export default Vue.extend({
     },
     currencies(): string[] {
       return this.$store.getters['app/GET_SHOP_CURRENCIES'];
-    }
+    },
   },
   methods: {
     validateAmountRate(amount: number|null): boolean|null {
