@@ -388,7 +388,7 @@ export default {
   async [ActionsTypes.GET_PRODUCTS_ON_CLOUDSYNC]({commit}) {
     const json: {totalProducts: string} = await (await fetchOnboarding(
       'GET',
-      'product-feeds/cloud-sync-info',
+      'product-feeds/stats/shop',
     )).json();
 
     commit(MutationsTypes.SAVE_NUMBER_OF_PRODUCTS_ON_CLOUDSYNC, json.totalProducts);

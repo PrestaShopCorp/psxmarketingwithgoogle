@@ -264,7 +264,7 @@ Success.parameters = {
           })
         );
       }),
-      rest.get('/product-feeds/cloud-sync-info', (req, res, ctx) => {
+      rest.get('/product-feeds/stats/shop', (req, res, ctx) => {
         return res(
           ctx.json({
             totalProducts: productFeedStatusSyncSuccess.report.productsInCatalog
@@ -319,7 +319,7 @@ SyncFailed.parameters = {
           })
         );
       }),
-      rest.get('/product-feeds/cloud-sync-info', (req, res, ctx) => {
+      rest.get('/product-feeds/stats/shop', (req, res, ctx) => {
         return res(
           ctx.json({
             totalProducts: productFeedStatusSyncSuccess.report.verificationStats.productsInCatalog
@@ -416,7 +416,7 @@ AccountSuspended.parameters = {
           })
         );
       }),
-      rest.get('/product-feeds/cloud-sync-info', (req, res, ctx) => {
+      rest.get('/product-feeds/stats/shop', (req, res, ctx) => {
         return res(
           ctx.json({
             totalProducts: productFeedStatusSyncSuccess.report.verificationStats.productsInCatalog
