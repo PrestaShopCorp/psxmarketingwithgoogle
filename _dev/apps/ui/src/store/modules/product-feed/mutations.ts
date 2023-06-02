@@ -28,7 +28,6 @@ import {
   ProductFeedValidationSummary,
   AttributesInfos,
   commonAttributes,
-  PrevalidationScanSummary,
   PreScanReporting,
 } from './state';
 import {RateType} from '@/enums/product-feed/rate';
@@ -200,5 +199,15 @@ export default {
     productsInCatalog: string,
   ) {
     state.report.productsInCatalog = productsInCatalog;
+  },
+  [MutationsTypes.SAVE_VERIFICATION_STATS](
+    state: LocalState,
+    verificationStats: {
+      validProducts: number;
+      invalidProducts: number;
+    },
+  ) {
+    state.report.invalidProducts = verificationStats.invalidProducts;
+    state.report.validProducts = verificationStats.validProducts;
   },
 };

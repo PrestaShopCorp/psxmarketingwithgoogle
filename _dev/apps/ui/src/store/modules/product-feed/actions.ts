@@ -85,8 +85,12 @@ export default {
         dispatch(ActionsTypes.REQUEST_PRODUCT_FEED_SYNC_CONTEXT),
       ),
       runIf(
-        state.report.productsInCatalog,
-        dispatch(ActionsTypes.GET_PRODUCTS_ON_CLOUDSYNC),
+        !state.report.productsInCatalog,
+        dispatch(ActionsTypes.REQUEST_PRODUCTS_ON_CLOUDSYNC),
+      ),
+      runIf(
+        !state.report.invalidProducts,
+        dispatch(ActionsTypes.REQUEST_VERIFICATION_STATS),
       ),
     ]);
   },
@@ -385,7 +389,7 @@ export default {
       console.log(error);
     }
   },
-  async [ActionsTypes.GET_PRODUCTS_ON_CLOUDSYNC]({commit}) {
+  async [ActionsTypes.REQUEST_PRODUCTS_ON_CLOUDSYNC]({commit}) {
     const json: {totalProducts: string} = await (await fetchOnboarding(
       'GET',
       'product-feeds/stats/shop',
@@ -428,5 +432,14 @@ export default {
     )).json();
 
     commit(MutationsTypes.SAVE_PRODUCT_FEED_SYNC_CONTEXT, json);
+  },
+
+  async [ActionsTypes.REQUEST_VERIFICATION_STATS](commit) {
+    const json = await (await fetchOnboarding(
+      'GET',
+      'product-feeds/stats/verification',
+    )).json();
+
+    commit(MutationsTypes.SAVE_VERIFICATION_STATS, json);
   },
 };

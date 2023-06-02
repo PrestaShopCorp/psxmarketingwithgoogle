@@ -39,15 +39,16 @@ export interface ProductFeedStatus {
   syncSchedule?: string;
 }
 
-export type VerificationStats = {
-  productsInCatalog: string|null;
-  verifiedProducts: number|null;
-  nonCompliantProducts: number|null;
-};
+export type VerificationStats = Pick<
+  ProductFeedReport,
+  'productsInCatalog' | 'invalidProducts' | 'validProducts'
+>;
 
 export type ProductFeedReport = {
   lastConfigurationUsed: IncrementalSyncContext|null;
   productsInCatalog: string|null;
+  invalidProducts: number|null;
+  validProducts: number|null;
 }
 export interface ProductFeedSettings {
   shippingSetup: ShippingSetupOption|null;
@@ -65,10 +66,6 @@ export interface ProductFeedValidationSummary {
   expiringProducts: number|null;
   pendingProducts: number|null;
   disapprovedProducts: number|null;
-}
-export interface PrevalidationScanSummary {
-  scannedItems: number|null;
-  invalidItems: number|null;
 }
 export interface ProductInfos {
  id: string;
@@ -232,5 +229,7 @@ export const state: State = {
   report: {
     lastConfigurationUsed: null,
     productsInCatalog: null,
+    invalidProducts: null,
+    validProducts: null,
   },
 };

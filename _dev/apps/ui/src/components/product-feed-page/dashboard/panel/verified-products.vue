@@ -76,7 +76,7 @@ export default defineComponent({
       {
         title: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.verified'),
         description: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.verifiedDescription'),
-        value: this.verificationsStats.verifiedProducts,
+        value: this.verificationsStats.validProducts,
         variant: 'success',
         icon: 'send',
         reverseColors: false,
@@ -84,11 +84,11 @@ export default defineComponent({
       {
         title: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.nonCompliant'),
         description: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.nonCompliantDescription'),
-        value: this.verificationsStats.nonCompliantProducts,
+        value: this.verificationsStats.invalidProducts,
         variant: 'danger',
         icon: 'remove_shopping_cart',
         reverseColors: false,
-        ...(+(this.verificationsStats.nonCompliantProducts || 0) && {
+        ...(+(this.verificationsStats.invalidProducts || 0) && {
           link: {
             to: {name: 'product-feed-verification-errors'},
           },

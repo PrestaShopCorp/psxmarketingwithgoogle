@@ -424,6 +424,8 @@ export const productFeed: State = {
   report: {
     lastConfigurationUsed: null,
     productsInCatalog: null,
+    invalidProducts: null,
+    validProducts: null,
   },
 };
 export const productFeedNoCarriers: State = {
@@ -513,6 +515,8 @@ export const productFeedIsConfigured: State = {
       languages: ['it', 'fr', 'de'],
     },
     productsInCatalog: null,
+    invalidProducts: null,
+    validProducts: null,
   }
 };
 
@@ -664,6 +668,8 @@ export const productFeedStatusSyncSuccess: State = {
       languages: ['it', 'fr', 'de'],
     },
     productsInCatalog: '1362452',
+    invalidProducts: 60,
+    validProducts: 1362392,
   }
 };
 

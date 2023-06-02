@@ -55,8 +55,8 @@ export default {
     return {
       productsInCatalog: state.report.productsInCatalog,
 
-      nonCompliantProducts: null,
-      verifiedProducts: null,
+      invalidProducts: state.report.invalidProducts,
+      validProducts: state.report.validProducts,
     };
   },
   [GettersTypes.GET_PRODUCT_FEED_VALIDATION_SUMMARY](state: LocalState) :
