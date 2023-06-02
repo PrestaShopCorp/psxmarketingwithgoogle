@@ -1,6 +1,6 @@
 <template>
   <div
-    class="ps_gs-productfeed__products-status border border-600-20 rounded col mx-1 mb-1"
+    class="ps_gs-productfeed__products-status border border-600-20 col mx-1 mb-1"
   >
     <b-skeleton-wrapper
       :loading="loading"
@@ -32,7 +32,7 @@
       >
         <span
           class="d-flex align-items-center flex-column flex-sm-row
-          ps_gs-fz-18 font-weight-600 text-center pt-1 pb-2"
+          ps_gs-fz-16 font-weight-500 text-center pt-1 pb-2"
           data-test-id="pf-status-title"
         >
           <img
@@ -61,8 +61,8 @@
           :border-variant="badgeBorderVariant"
           :text-variant="badgeTextVariant"
           :bg-variant="badgeBackgroundVariant"
-          class="ps_gs-productfeed__badge ps_gs-fz-20 mt-auto"
-          body-class="py-0 px-3"
+          class="ps_gs-productfeed__badge mt-auto"
+          body-class="px-3"
         >
           {{ badgeValue }}
         </b-card>
