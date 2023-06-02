@@ -140,8 +140,8 @@
                     @input="onDataUpdate"
                     :state="validateAmountRate(estimateCarrier[estimateCarrier.offer].shippingCost)"
                   />
-                  <template
-                    #append
+                  <slot
+                    name="append"
                     v-if="currencies.length > 1"
                   >
                     <currency-dropdown
@@ -149,7 +149,7 @@
                       :selected-currency="estimateCarrier.currency"
                       @update:selectedCurrency="newValue => estimateCarrier.currency = newValue"
                     />
-                  </template>
+                  </slot>
                 </b-input-group>
               </div>
             </b-col>
@@ -192,8 +192,8 @@
                     @input="onDataUpdate"
                     :state="validateAmountRate(estimateCarrier[estimateCarrier.offer].orderPrice)"
                   />
-                  <template
-                    #append
+                  <slot
+                    name="append"
                     v-if="currencies.length > 1"
                   >
                     <currency-dropdown
@@ -201,7 +201,7 @@
                       :selected-currency="estimateCarrier.currency"
                       @update:selectedCurrency="newValue => estimateCarrier.currency = newValue"
                     />
-                  </template>
+                  </slot>
                 </b-input-group>
               </b-col>
             </b-row>
@@ -240,8 +240,8 @@
                     v-model.number="estimateCarrier[estimateCarrier.offer].shippingCost"
                     @input="onDataUpdate"
                   />
-                  <template
-                    #append
+                  <slot
+                    name="append"
                     v-if="currencies.length > 1"
                   >
                     <currency-dropdown
@@ -249,7 +249,7 @@
                       :selected-currency="estimateCarrier.currency"
                       @update:selectedCurrency="newValue => estimateCarrier.currency = newValue"
                     />
-                  </template>
+                  </slot>
                 </b-input-group>
               </b-col>
             </b-row>
