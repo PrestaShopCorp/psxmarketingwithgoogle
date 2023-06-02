@@ -20,6 +20,7 @@
 
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Repository;
 
+use Context;
 use Currency;
 
 class CurrencyRepository
@@ -29,9 +30,15 @@ class CurrencyRepository
      */
     private $currency;
 
-    public function __construct(Currency $currency)
+    /**
+     * @var Context
+     */
+    private $context;
+
+    public function __construct(Currency $currency, Context $context)
     {
         $this->currency = $currency;
+        $this->context = $context;
     }
 
     /**
@@ -46,5 +53,18 @@ class CurrencyRepository
         return [
             'isoCode' => $this->currency->iso_code,
         ];
+    }
+
+    public function getActiveCurrencies(): array
+    {
+        $isoCodes = [];
+        foreach (Currency::getCurrencies(false, true, false) as $currency) {
+            if ((int) $this->context->shop->id !== (int) $currency['id_shop']) {
+                continue;
+            }
+            $isoCodes[] = $currency['iso_code'];
+        }
+
+        return $isoCodes;
     }
 }

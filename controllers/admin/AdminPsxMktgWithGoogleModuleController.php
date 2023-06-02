@@ -173,6 +173,7 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
             'isCountryMemberOfEuropeanUnion' => $this->countryRepository->isCompatibleForCSS(),
             'psxMktgWithGoogleShopUrl' => $this->context->link->getBaseLink($this->context->shop->id),
             'psxMktgWithGoogleActiveCountries' => $this->countryRepository->getActiveCountries(),
+            'psxMktgWithGoogleActiveCurrencies' => $this->currencyRepository->getActiveCurrencies(),
             'psxMtgWithGoogleDefaultShopCountry' => $this->countryRepository->getShopDefaultCountry()['iso_code'],
             'psxMktgWithGoogleShopCurrency' => $this->currencyRepository->getShopCurrency(),
             'psxMktgWithGoogleRemarketingTagsStatus' => (bool) $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS),

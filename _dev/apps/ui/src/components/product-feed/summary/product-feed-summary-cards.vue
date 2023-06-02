@@ -89,6 +89,7 @@ import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings
 import ProductFeedStepper from '@/components/product-feed/product-feed-stepper.vue';
 import ProductFeedCardReportCard from '@/components/product-feed/product-feed-card-report-card.vue';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
+import {changeCountryCodeToName, getCurrencyFromCountry} from '@/utils/Countries';
 
 export default defineComponent({
   name: 'ProductFeedSummaryCards',
@@ -124,10 +125,14 @@ export default defineComponent({
     getSyncSchedule() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].syncSchedule;
     },
-    targetCountries() {
-      return this.$options.filters.changeCountriesCodesToNames(
-        this.$store.getters['productFeed/GET_TARGET_COUNTRIES'],
-      );
+    targetCountries(): string[] {
+      return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'].map((country: string) => this.$t(
+        'general.countryWithCurrencyFormat',
+        {
+          country: changeCountryCodeToName(country),
+          currency: getCurrencyFromCountry(country),
+        },
+      ));
     },
     shippingSetupDescription() {
       if (this.$store.getters['productFeed/GET_PRODUCT_FEED_REQUIRED_RECONFIGURATION']) {
