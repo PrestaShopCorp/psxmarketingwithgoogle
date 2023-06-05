@@ -434,7 +434,7 @@ export default {
     commit(MutationsTypes.SAVE_PRODUCT_FEED_SYNC_CONTEXT, json);
   },
 
-  async [ActionsTypes.REQUEST_VERIFICATION_STATS](commit) {
+  async [ActionsTypes.REQUEST_VERIFICATION_STATS]({commit}) {
     const json = await (await fetchOnboarding(
       'GET',
       'product-feeds/stats/verification',
