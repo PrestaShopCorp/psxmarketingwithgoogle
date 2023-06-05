@@ -58,8 +58,8 @@ class CurrencyRepository
     public function getActiveCurrencies(): array
     {
         $isoCodes = [];
-        foreach (Currency::getCurrencies(false, true, false) as $currency) {
-            if ((int) $this->context->shop->id !== (int) $currency['id_shop']) {
+        foreach (Currency::getCurrenciesByIdShop((int) $this->context->shop->id) as $currency) {
+            if (!$currency['active'] || $currency['deleted']) {
                 continue;
             }
             $isoCodes[] = $currency['iso_code'];
