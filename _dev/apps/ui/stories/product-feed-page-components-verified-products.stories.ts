@@ -17,8 +17,8 @@ export const ProductsAllVerified:any = ProductFeed.bind({});
 ProductsAllVerified.args = {
   verificationsStats: {
     productsInCatalog: '12562',
-    verifiedProducts: 12562,
-    nonCompliantProducts: 0,
+    validProducts: 12562,
+    invalidProducts: 0,
   },
   loading: false,
 };
@@ -27,8 +27,8 @@ export const ProductsWithIssues:any = ProductFeed.bind({});
 ProductsWithIssues.args = {
   verificationsStats: {
     productsInCatalog: '1362452',
-    verifiedProducts: 1362392,
-    nonCompliantProducts: 60,
+    validProducts: 1362392,
+    invalidProducts: 60,
   },
   loading: false,
 };
@@ -37,8 +37,8 @@ export const NoData:any = ProductFeed.bind({});
 NoData.args = {
   verificationsStats: {
     productsInCatalog: null,
-    verifiedProducts: null,
-    nonCompliantProducts: null,
+    validProducts: null,
+    invalidProducts: null,
   },
   loading: false,
 };
@@ -47,8 +47,8 @@ export const Loading:any = ProductFeed.bind({});
 Loading.args = {
   verificationsStats: {
     productsInCatalog: null,
-    verifiedProducts: null,
-    nonCompliantProducts: null,
+    validProducts: null,
+    invalidProducts: null,
   },
   loading: true,
 };
