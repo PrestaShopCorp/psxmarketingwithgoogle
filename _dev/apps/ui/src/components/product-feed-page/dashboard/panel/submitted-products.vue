@@ -62,10 +62,10 @@ export default defineComponent({
     validationSummary() {
       return this.inNeedOfConfiguration
         ? {
-          activeItems: 0,
-          pendingItems: 0,
-          disapprovedItems: 0,
-          expiringItems: 0,
+          activeProducts: 0,
+          pendingProducts: 0,
+          disapprovedProducts: 0,
+          expiringProducts: 0,
         }
         : this.$store.getters['productFeed/GET_PRODUCT_FEED_VALIDATION_SUMMARY'];
     },
@@ -73,19 +73,19 @@ export default defineComponent({
       return [
         {
           statusOfProducts: 'disapproved',
-          numberOfProducts: this.validationSummary.disapprovedItems,
+          numberOfProducts: this.validationSummary.disapprovedProducts,
         },
         {
           statusOfProducts: 'pending',
-          numberOfProducts: this.validationSummary.pendingItems,
+          numberOfProducts: this.validationSummary.pendingProducts,
         },
         {
           statusOfProducts: 'expiring',
-          numberOfProducts: this.validationSummary.expiringItems,
+          numberOfProducts: this.validationSummary.expiringProducts,
         },
         {
           statusOfProducts: 'approved',
-          numberOfProducts: this.validationSummary.activeItems,
+          numberOfProducts: this.validationSummary.activeProducts,
         },
       ];
     },
@@ -93,7 +93,7 @@ export default defineComponent({
       return [{
         title: this.$t('productFeedPage.dashboardPage.productsSentToGoogle.reportCards.approved'),
         description: this.$t('productFeedPage.dashboardPage.productsSentToGoogle.reportCards.approvedDescription'),
-        value: this.validationSummary.activeItems,
+        value: this.validationSummary.activeProducts,
         variant: 'primary',
         icon: 'google',
         reverseColors: false,
@@ -105,7 +105,7 @@ export default defineComponent({
       {
         title: this.$t('productFeedPage.dashboardPage.productsSentToGoogle.reportCards.pending'),
         description: this.$t('productFeedPage.dashboardPage.productsSentToGoogle.reportCards.pendingDescription'),
-        value: this.validationSummary.pendingItems,
+        value: this.validationSummary.pendingProducts,
         variant: 'info',
         icon: 'autorenew',
         reverseColors: false,
@@ -117,7 +117,7 @@ export default defineComponent({
       {
         title: this.$t('productFeedPage.dashboardPage.productsSentToGoogle.reportCards.expiring'),
         description: this.$t('productFeedPage.dashboardPage.productsSentToGoogle.reportCards.expiringDescription'),
-        value: this.validationSummary.expiringItems,
+        value: this.validationSummary.expiringProducts,
         variant: 'warning',
         icon: 'warning',
         reverseColors: false,
@@ -129,7 +129,7 @@ export default defineComponent({
       {
         title: this.$t('productFeedPage.dashboardPage.productsSentToGoogle.reportCards.disapproved'),
         description: this.$t('productFeedPage.dashboardPage.productsSentToGoogle.reportCards.disapprovedDescription'),
-        value: this.validationSummary.disapprovedItems,
+        value: this.validationSummary.disapprovedProducts,
         variant: 'danger',
         icon: 'cancel',
         reverseColors: false,

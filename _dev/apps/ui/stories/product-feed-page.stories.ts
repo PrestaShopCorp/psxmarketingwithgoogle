@@ -80,7 +80,7 @@ Planned.parameters = {
           })
         );
       }),
-      rest.get('/product-feeds/validation/summary', (req, res, ctx) => {
+      rest.get('/product-feeds/stats/gmc', (req, res, ctx) => {
         return res(
           ctx.json({
             ...productFeedStatusSyncScheduled.validationSummary
@@ -141,7 +141,7 @@ InProgress.parameters = {
           })
         );
       }),
-      rest.get('/product-feeds/validation/summary', (req, res, ctx) => {
+      rest.get('/product-feeds/stats/gmc', (req, res, ctx) => {
         return res(
           ctx.json({
             ...productFeedSyncSummaryInProgress.validationSummary
@@ -197,7 +197,7 @@ ScanFailedBecauseOfLanguages.parameters = {
           })
         );
       }),
-      rest.get('/product-feeds/validation/summary', (req, res, ctx) => {
+      rest.get('/product-feeds/stats/gmc', (req, res, ctx) => {
         return res(
           ctx.json({
             ...productFeedStatusSyncSuccess.validationSummary
@@ -257,7 +257,7 @@ Success.parameters = {
           })
         );
       }),
-      rest.get('/product-feeds/validation/summary', (req, res, ctx) => {
+      rest.get('/product-feeds/stats/gmc', (req, res, ctx) => {
         return res(
           ctx.json({
             ...productFeedStatusSyncSuccess.validationSummary
@@ -326,7 +326,7 @@ SyncFailed.parameters = {
           })
         );
       }),
-      rest.get('/product-feeds/validation/summary', (req, res, ctx) => {
+      rest.get('/product-feeds/stats/gmc', (req, res, ctx) => {
         return res(
           ctx.json({
             ...productFeedStatusSyncFailed.validationSummary
@@ -409,7 +409,7 @@ AccountSuspended.parameters = {
           })
         );
       }),
-      rest.get('/product-feeds/validation/summary', (req, res, ctx) => {
+      rest.get('/product-feeds/stats/gmc', (req, res, ctx) => {
         return res(
           ctx.json({
             ...productFeedStatusSyncSuccess.validationSummary

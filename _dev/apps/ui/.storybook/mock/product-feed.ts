@@ -101,10 +101,10 @@ export const productFeed: State = {
     autoImportTaxSettings: false,
   },
   validationSummary: {
-    activeItems: null,
-    expiringItems: null,
-    pendingItems: null,
-    disapprovedItems: null,
+    activeProducts: null,
+    expiringProducts: null,
+    pendingProducts: null,
+    disapprovedProducts: null,
   },
   productsDatas: {
     items: [
@@ -597,10 +597,10 @@ export const productFeedStatusSyncFailed: State = {
     nextJobAt: new Date("July 22, 2021 03:24:00").toString(),
   },
   validationSummary: {
-    activeItems: 0,
-    expiringItems: 0,
-    pendingItems: 0,
-    disapprovedItems: 0,
+    activeProducts: 0,
+    expiringProducts: 0,
+    pendingProducts: 0,
+    disapprovedProducts: 0,
   },
 };
 
@@ -620,10 +620,10 @@ export const productFeedSyncSummaryInProgress: State = {
     jobEndedAt: null,
   },
   validationSummary: {
-    activeItems: null,
-    expiringItems: null,
-    pendingItems: null,
-    disapprovedItems: null,
+    activeProducts: null,
+    expiringProducts: null,
+    pendingProducts: null,
+    disapprovedProducts: null,
   },
 };
 
@@ -636,10 +636,10 @@ export const productFeedStatusSyncScheduled: State = {
     jobEndedAt: null,
   },
   validationSummary: {
-    activeItems: null,
-    expiringItems: null,
-    pendingItems: null,
-    disapprovedItems: null,
+    activeProducts: null,
+    expiringProducts: null,
+    pendingProducts: null,
+    disapprovedProducts: null,
   },
 };
 
@@ -652,10 +652,10 @@ export const productFeedStatusSyncSuccess: State = {
     nextJobAt: new Date("July 22, 2021 03:24:00").toString(),
   },
   validationSummary: {
-    activeItems: 1362382,
-    expiringItems: 2,
-    pendingItems: 7,
-    disapprovedItems: 1,
+    activeProducts: 1362382,
+    expiringProducts: 2,
+    pendingProducts: 7,
+    disapprovedProducts: 1,
   },
   report: {
     lastConfigurationUsed: {
