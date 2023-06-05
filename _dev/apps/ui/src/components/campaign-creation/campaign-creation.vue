@@ -638,7 +638,7 @@ export default defineComponent({
       };
     },
     productsHaveBeenApprovedByGoogle() {
-      return this.$store.state.productFeed.validationSummary.activeItems > 0;
+      return this.$store.state.productFeed.validationSummary.activeProducts > 0;
     },
     errorFetchingFilters() {
       return this.$store.getters[

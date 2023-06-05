@@ -61,10 +61,10 @@ export interface ProductFeedSettings {
   targetCountries: string[]|null;
 }
 export interface ProductFeedValidationSummary {
-  activeItems: number|null;
-  expiringItems: number|null;
-  pendingItems: number|null;
-  disapprovedItems: number|null;
+  activeProducts: number|null;
+  expiringProducts: number|null;
+  pendingProducts: number|null;
+  disapprovedProducts: number|null;
 }
 export interface PrevalidationScanSummary {
   scannedItems: number|null;
@@ -209,10 +209,10 @@ export const state: State = {
     targetCountries: null,
   },
   validationSummary: {
-    activeItems: null,
-    expiringItems: null,
-    pendingItems: null,
-    disapprovedItems: null,
+    activeProducts: null,
+    expiringProducts: null,
+    pendingProducts: null,
+    disapprovedProducts: null,
   },
   productsDatas: {
     items: [],

@@ -77,7 +77,7 @@ export default {
         dispatch(ActionsTypes.GET_PRODUCT_FEED_SETTINGS),
       ),
       runIf(
-        getters.GET_PRODUCT_FEED_VALIDATION_SUMMARY.activeItems === null,
+        getters.GET_PRODUCT_FEED_VALIDATION_SUMMARY.activeProducts === null,
         dispatch(ActionsTypes.GET_PRODUCT_FEED_SYNC_SUMMARY),
       ),
       runIf(
@@ -320,7 +320,7 @@ export default {
     try {
       const result = await (await fetchOnboarding(
         'GET',
-        'product-feeds/validation/summary',
+        'product-feeds/stats/gmc',
       )).json();
       commit(MutationsTypes.SET_VALIDATION_SUMMARY, result);
     } catch (error) {

@@ -23,10 +23,10 @@ ProductsAllSubmitted.args = {
       productFeedIsConfigured,
       {
         validationSummary: {
-          activeItems: 359850012,
-          expiringItems: 50,
-          pendingItems: 0,
-          disapprovedItems: 0,
+          activeProducts: 359850012,
+          expiringProducts: 50,
+          pendingProducts: 0,
+          disapprovedProducts: 0,
         }
       },
     );
@@ -41,10 +41,10 @@ ProductsWithIssues.args = {
       productFeedIsConfigured,
       {
         validationSummary: {
-          activeItems: 359812,
-          expiringItems: 0,
-          pendingItems: 3,
-          disapprovedItems: 45230,
+          activeProducts: 359812,
+          expiringProducts: 0,
+          pendingProducts: 3,
+          disapprovedProducts: 45230,
         }
       },
     );
