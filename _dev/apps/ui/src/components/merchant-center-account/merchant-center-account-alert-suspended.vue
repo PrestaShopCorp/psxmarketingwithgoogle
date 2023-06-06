@@ -2,7 +2,6 @@
   <b-alert
     show
     variant="danger"
-    class="mt-3"
   >
     <strong>{{ $t('mcaCard.alertSuspended') }}</strong><br>
     <VueShowdown
