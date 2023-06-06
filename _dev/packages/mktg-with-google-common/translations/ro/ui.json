@@ -1,7 +1,7 @@
 {
     "general": {
         "tabs": {
-            "exportStatus": "Stare export",
+            "productFeed": "Fluxul de produse",
             "campaign": "Campanie",
             "reporting": "Raportare",
             "configuration": "Configurare",
@@ -29,7 +29,8 @@
         "helpPage": "Pagina Ajutor",
         "noResultsFoundForX": " Nu s-au găsit rezultate pentru {0}",
         "days": "Zile",
-        "readMore": "Citește mai mult"
+        "readMore": "Citește mai mult",
+        "countryWithCurrencyFormat": "{country} ({currency})"
     },
     "landingPage": {
         "header": {
@@ -626,25 +627,13 @@
         "campaignType": "Tip: {0}"
     },
     "productFeedPage": {
-        "breadcrumb": "Detalii despre starea produsului",
+        "breadcrumb": {
+            "productStatusDetails": "Detalii despre starea produsului",
+            "nonCompliantProducts": "Non-compliant products"
+        },
         "alert": {
             "googleIsReviewing": "Produsele tale sunt în curs de examinare.  \n Este posibil să dureze 3-5 zile pentru a ți se revizui produsele. Odată aprobate, produsele vor fi disponibile pentru listări și reclame gratuite.",
             "alertSuccess": "Înscrierea a fost înregistrată cu succes. După ce produsele sunt aprobate, acestea pot apărea în rezultatele căutării în fila Google Shopping."
-        },
-        "destinations": {
-            "shoppingAds": "Reclame pe Shopping",
-            "enhancedFreeListing": "Listări gratuite avansate"
-        },
-        "syncStatus": {
-            "title": "Stare sincronizare",
-            "readyForExport": "Fluxul de produse este gata pentru export",
-            "syncProcessed": "Sincronizare în curs/finalizată",
-            "syncFailed": "Sincronizarea nu a reușit",
-            "nextSync": "Următoarea sincronizare: {0}",
-            "lastSync": "Ultima sincronizare: {0}",
-            "prescanTitle": "Urmează următoarea sincronizare",
-            "scheduleOn": "Sincronizare programată pe {0}",
-            "alert": "Sincronizarea produsului nu a reușit. Verifică motivele posibile în [Merchant Center]({0})[:target=\"_blank\"] sau contactează [suport clienți](mailto:support-google@prestashop.com)."
         },
         "syncSummary": {
             "syncHistory": {
@@ -663,44 +652,86 @@
                 }
             }
         },
-        "productStatus": {
-            "title": "Starea produselor",
-            "description": "Starea produsului îți permite să afli dacă produsul este eligibil să apară în destinația pentru care ai optat.  \nUn produs în așteptare nu va fi afișat în reclame sau listări gratuite, deoarece este încă examinat de Google.  \nProdusele expirate vor expira în următoarele 3 zile și nu vor mai fi eligibile pentru a apărea în reclame sau listări gratuite.",
-            "alert": "Este nevoie de 3-5 zile lucrătoare pentru a revizui produsele",
-            "approvedProducts": "Aprobat",
-            "approvedProductsDescription": "Produsele active sunt pe deplin aprobate și eligibile pentru a apărea în rezultate.",
-            "pendingProducts": "În așteptare",
-            "pendingProductsDescription": "Un produs în așteptare nu va fi afișat în reclame sau listări gratuite, deoarece este încă examinat de Google. ",
-            "expiringProducts": "Expiră",
-            "expiringProductsDescription": "Produsele care expiră vor fi eliminate din Google Merchant Center în următoarele 3 zile și nu vor mai fi eligibile pentru a apărea în reclame sau listări gratuite.",
-            "disapprovedProducts": "Neaprobate",
-            "disapprovedProductsDescription": "Produsul tău este respins pentru o destinație și nu este activ.",
-            "productsSubmittedToGoogle": "Produse active trimise la Google: {0}",
-            "approvalStatusList": "Aprobate, În așteptare, Neaprobate"
-        },
-        "overview": {
-            "title": "Produse active trimise la Google",
-            "description": "Starea produsului îți permite să afli dacă produsul este eligibil să apară în destinația pentru care ai optat.",
-            "alert": {
-                "prescanTitle": "Avertisment {0} produs nu a putut fi exportat în Google | Avertisment {0} produse nu au putut fi exportate în Google",
-                "prescanDescription": "Unele dintre produse nu au trecut de verificarea noastră, asigură-te că produsele au informațiile necesare pentru a fi afișate în Google Shopping."
+        "dashboardPage": {
+            "timeline": {},
+            "productFeedConfiguration": {
+                "title": "Your product feed's configuration",
+                "targetCountries": "Selected target country:|Selected target countries:",
+                "languages": "Language:|Languages:",
+                "currencies": "Currency:|Currencies:",
+                "noLanguage": "No eligible language",
+                "noCurrency": "No eligible currency"
+            },
+            "productVerification": {
+                "stepTitle": "Products verified by Prestashop before sent to Google",
+                "stepDetails": "Before sending all your products (including variations), we ensure their compliance with Google's Merchant center policies. We verify the products **every time a change is detected**, and if there are any non-compliant products, we provide guidance on what needs to be done. Click on non-compliant products for more information.\n\nAfter submission, Google assigns each product a status: **Approved, Expiring, Pending, or Disapproved**.",
+                "reportCards": {
+                    "productsInCatalog": "My product catalog",
+                    "productsInCatalogDescription": "Number of products (variations included) available on your shop.",
+                    "verified": "Verified products",
+                    "verifiedDescription": "Products that have been verified by Prestashop and are ready to be sent to Google.",
+                    "nonCompliant": "Non-compliant products",
+                    "nonCompliantDescription": "Products that do not meet Google's requirements."
+                }
+            },
+            "productsSentToGoogle": {
+                "stepTitle": "Products sent to Google",
+                "stepDetails": "This report displays the status of all your products that have been sent to Google Merchant Center. Please note that it may take a few days for Google to review your products. You can use this report to track the progress of each product and ensure that they are approved and active on Google Shopping.\n**‘Approved’ products** are fully approved and eligible to appear in free listings on Google.\n**‘Pending’ products** are being processed by Google. They will not appear in listings until they are approved.\n**‘Expiring’ products** will become inactive and no longer appear in Google listings in the next days.\n**‘Disapproved’ products** are inactive and do not appear in Google listings. You can click on Disapproved box for more information.",
+                "reportCards": {
+                    "approved": "Aprobat",
+                    "approvedDescription": "Products (variations included) successfully synced with Google.",
+                    "pending": "În așteptare",
+                    "pendingDescription": "Products being reviewed by Google.",
+                    "expiring": "Expiră",
+                    "expiringDescription": "Products no longer valid and that will soon be removed from Google.",
+                    "disapproved": "Respins",
+                    "disapprovedDescription": "Products that are disapproved by Google."
+                }
             }
         },
-        "preScan": {
-            "xProducts": "{0} produs | {0} produs | {0} produse",
-            "description": "{0} cu probleme care nu au putut fi sincronizate sunt enumerate mai jos.",
-            "fields": {
-                "name": "Name",
-                "language": "Limbă",
-                "image": "Image",
-                "description": "Descriere",
-                "barcode": "GTIN/marcă",
-                "price": "Price"
+        "compliancyIssuesPage": {
+            "details": "To ensure a successful pre-scan with Google, please fix the issues outlined in the table below. Taking care of these issues will help your list your product on Google’s surfaces.",
+            "languageSelection": "Filtrează după limbă",
+            "noResults": "No data found",
+            "columns": {
+                "issues": "Issues",
+                "suggestedActions": "Suggested actions",
+                "affectedProducts": "Affected products",
+                "languages": "Languages"
             },
-            "xHasFailedPreValidation": "\"{0}\": nu a trecut de validarea preliminară.",
-            "xHasPassedPreValidation": "\"{0}\": a trecut de validarea preliminară.",
-            "labelTooltipDescription": "Această caracteristică se potrivește cu ceea ce ai configurat în maparea caracteristicile produsului: descriere scurtă, descriere...",
-            "labelTooltipBarcode": "GTIN este un identificator unic utilizat pentru identificarea produselor. Poate fi UPC sau EAN sau JAN sau ISBN. Dacă nu ai un GTIN pentru produsul tău, în acest caz adaugă o marcă (a produsului sau a companiei tale) ȘI un MPN (numărul de producător al piesei), care este un identificator unic diferit de GTIN, atribuit de un producător pentru a identifica un anumit produs sau piesă."
+            "actions": {
+                "listProducts": "View products"
+            }
+        },
+        "compliancyIssueProductsPage": {
+            "details": "**Suggested action:** {action}",
+            "columns": {
+                "productsId": "Product’s ID",
+                "productsTitle": "Product’s title",
+                "languages": "Languages",
+                "actions": "Acțiuni"
+            },
+            "productId": "{variantsCount} variant|{variantsCount} variants"
+        },
+        "compliancyIssues": {
+            "nameMissing": "Provide a name",
+            "nameMissingAction": "A product name is a unique identifier used to describe a product, and it is important because it helps improves visibility in search engine results. In PrestaShop, product names can be entered in the Catalog > Product > in the \"Product Name\" section.",
+            "imageMissing": "Provide an image",
+            "imageMissingAction": "A product image is a visual representation of a product that helps customers understand what the product looks like. It is important to have product images because it can help increase product appeal and sales, and can enhance the overall shopping experience. Product images can be added or edited in Catalog > Product > in the \"Images\" section.",
+            "linkMissing": "Provide a link",
+            "linkMissingAction": "Product link are mandatory. Please update your product page to generate a product link.",
+            "descriptionMissing": "Provide a description",
+            "descriptionMissingAction": "Add a description in your products. If you already have a description, check the attribute picked for description in the Attribute mapping configuration of the module.",
+            "brandMissing": "Provide a brand",
+            "brandMissingAction": "Please provide the Brand of the product. You can add a Brand in Catalog > Products > Basic settings in the Brand section for each product.",
+            "gtinMissing": "Provide a GTIN",
+            "gtinMssingAction": "A GTIN (Global Trade Item Number) is a unique identifier used to identify products. The GTIN include UPC (in North America), EAN (in Europe), JAN (in Japan), and ISBN (for books). You can add a GTIN in Catalog > Products > Options > in the Condition & References for each product.\n\nThe GTIN identifier can usually be found on the product's barcode label, packaging, or documentation, or contacting the manufacturer.\n\nGTIN is a unique identifier used to identify products. it can be UPC or EAN or JAN or ISBN. Brand is the Brand of the product or your company.",
+            "priceMissing": "Provide a Price",
+            "priceMissingAction": "Please provide a price for the product."
+        },
+        "destinations": {
+            "shoppingAds": "Reclame pe Shopping",
+            "enhancedFreeListing": "Listări gratuite avansate"
         },
         "approvalTable": {
             "description": "Acestea sunt stările produselor trimise la Google Merchant Center. Unele produse pot apărea de mai multe ori din cauza variațiilor de limbă.",
@@ -722,25 +753,7 @@
             "goToLabel": "Mergi la pagina:",
             "editX": "Editează {0}",
             "noReasonFallback": "*Not provided, check [account errors on your Merchant Center]({0})[:target=\"_blank\"].*"
-        },
-        "errorReason": {
-            "fieldXMissing": "Lipsește un câmp obligatoriu: {0}",
-            "incorrectInfos": "Greșeli de ortografie și alte informații lipsă sau incorecte",
-            "invalidDatafeedLocation": "Locație de fișier cu flux de date nevalidă",
-            "incorrectPrice": "Prețuri lipsă sau incorecte"
         }
-    },
-    "syncTimeline": {
-        "title1": "Extracția produselor",
-        "subtitle1": "Acum sau mai târziu, depinde de setările de sincronizare",
-        "title2": "Verificarea produselor",
-        "subtitle2": "Filtrarea produselor cu informații lipsă",
-        "title3": "Export în Google",
-        "subtitle3": "Trimiterea produselor filtrate",
-        "title4": "Recenzie Google",
-        "subtitle4": "Verificarea conformității",
-        "title5": "Sincronizare nouă",
-        "subtitle5": "Dacă îți actualizezi produsele"
     },
     "campaignCard": {
         "title": "Creează-ți campania Performance Max cu câteva clicuri",
@@ -976,9 +989,7 @@
         "editContact": "Modificare informații de contact",
         "update": "Actualizare",
         "validateSelection": "Validează selecția",
-        "googleProductStatusDefinitions": "Definiții stări de produse Google",
         "visitThe": "Vizitează {0} pentru mai multe informații",
-        "investigate": "Investigație",
         "createPmax": "Creează o campanie Performance Max",
         "understand": "I understand",
         "moreActions": "Mai multe acțiuni"
