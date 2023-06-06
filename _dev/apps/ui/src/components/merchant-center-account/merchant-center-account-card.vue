@@ -310,7 +310,7 @@
           v-if="error === WebsiteClaimErrorReason.Suspended"
           :issues="gmcAccountDetails.isSuspended.issues"
           :account-overview-url="merchantCenterWebsitePageUrl.overview"
-          class="mb-0"
+          class="mb-0 mt-3"
         />
         <b-alert
           v-else-if="error === WebsiteClaimErrorReason.OverwriteNeeded"

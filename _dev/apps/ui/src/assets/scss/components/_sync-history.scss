@@ -14,7 +14,7 @@
     align-items: start;
 
     &:not(:last-child) {
-      padding-bottom: rem(40);
+      padding-bottom: rem(32);
     }
 
     &[class*="icon"]::before {
