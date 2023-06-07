@@ -1,0 +1,13 @@
+.tooltip {
+  &.tooltip-lg {
+    .tooltip-inner {
+      max-width: calc(#{$tooltip-max-width} * 2);
+    }
+  }
+
+  &.tooltip-xl {
+    .tooltip-inner {
+      max-width: calc(#{$tooltip-max-width} * 3);
+    }
+  }
+}

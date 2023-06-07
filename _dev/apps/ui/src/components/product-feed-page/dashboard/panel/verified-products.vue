@@ -17,6 +17,7 @@
         target="tooltip-verified-product"
         triggers="hover"
         container="#psxMktgWithGoogleApp"
+        custom-class="tooltip-lg"
       >
         <VueShowdown
           :markdown="$t('productFeedPage.dashboardPage.productVerification.stepDetails')"
