@@ -17,6 +17,7 @@
         target="tooltip-submitted-product"
         triggers="hover"
         container="#psxMktgWithGoogleApp"
+        custom-class="tooltip-xl"
       >
         <VueShowdown
           :markdown="$t('productFeedPage.dashboardPage.productsSentToGoogle.stepDetails')"
