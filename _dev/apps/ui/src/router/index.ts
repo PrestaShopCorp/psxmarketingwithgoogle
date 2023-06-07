@@ -72,6 +72,11 @@ const routes: Array<RouteConfig> = [
     component: ProductFeedPage,
   },
   {
+    path: '/product-feed/non-compliant',
+    name: 'product-feed-non-compliant',
+    component: ProductFeedPage,
+  },
+  {
     path: '/campaign',
     name: 'campaign',
     component: CampaignPage,

@@ -729,6 +729,10 @@
         "incorrectInfos": "Typos and other missing or incorrect information",
         "invalidDatafeedLocation": "Invalid data feed file location",
         "incorrectPrice": "Missing or incorrect prices"
+      },
+      "nonCompliant": {
+        "breadcrumb": "Non-compliant products",
+        "selectPlaceholder": "Filter by language"
       }
     },
     "syncTimeline": {

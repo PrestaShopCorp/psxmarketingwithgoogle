@@ -4,6 +4,9 @@
     <product-feed-pre-scan-table-status-details
       v-else-if="$route.path === '/product-feed/pre-scan'"
     />
+    <product-feed-non-compliant
+      v-else-if="$route.path === '/product-feed/non-compliant'"
+    />
     <template v-else>
       <PsToast
         v-if="allDataLoaded && syncStatus === 'schedule' && !inNeedOfConfiguration"
@@ -26,6 +29,7 @@
 <script>
 import ProductFeedTableStatusDetails from '@/components/product-feed-page/product-feed-table-status-details';
 import ProductFeedPreScanTableStatusDetails from '@/components/product-feed-page/product-feed-pre-scan-table-status-details';
+import ProductFeedNonCompliant from '@/components/product-feed-page/product-feed-non-compliant/product-feed-non-compliant';
 import SyncTimeline from '@/components/sync-timeline/sync-timeline';
 import SyncOverview from '@/components/product-feed-page/sync-overview.vue';
 import PsToast from '../components/commons/ps-toast';
@@ -40,6 +44,7 @@ export default {
   components: {
     ProductFeedTableStatusDetails,
     ProductFeedPreScanTableStatusDetails,
+    ProductFeedNonCompliant,
     SyncTimeline,
     SyncOverview,
     PsToast,
