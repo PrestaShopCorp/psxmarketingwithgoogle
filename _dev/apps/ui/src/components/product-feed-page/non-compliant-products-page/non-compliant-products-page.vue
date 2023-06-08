@@ -20,28 +20,44 @@
         </ol>
       </template>
       <b-card-body>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <div class="mb-0">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div>
             {{ $t('productFeedPage.compliancyIssuesPage.details') }}
           </div>
           <b-dropdown
-            :text="$t('productFeedPage.compliancyIssuesPage.languageSelection')"
+            :text="languageSelectionDropdownText"
+            class="ml-5"
             variant="outline-primary"
-            class="psxmarketingwithgoogle-dropdown flex-grow-1"
+            toggle-class="text-nowrap"
             :disabled="loading || !issues || !issues.length"
           >
-            <b-dropdown-item
+            <b-dropdown-form>
+              <b-form-radio
+                v-model="selectedLanguage"
+                :value="null"
+                name="campaignType"
+              >
+                {{ $t('productFeedPage.approvalTable.filterAllStatus') }}
+              </b-form-radio>
+            </b-dropdown-form>
+            <b-dropdown-form
               v-for="lang in languages"
               :key="lang"
             >
-              {{ lang }}
-            </b-dropdown-item>
+              <b-form-radio
+                v-model="selectedLanguage"
+                :value="lang"
+                name="campaignType"
+              >
+                {{ changeLanguageCodeToName(lang) }}
+              </b-form-radio>
+            </b-dropdown-form>
           </b-dropdown>
         </div>
 
         <b-table-simple
           id="table-non-compliant-products"
-          class="mb-3"
+          class="mb-3 card"
           responsive="xl"
         >
           <b-thead>
@@ -136,12 +152,21 @@ export default defineComponent({
   },
   data() {
     return {
-      loading: false,
+      loading: false as boolean,
+      selectedLanguage: null as string|null,
     };
   },
   computed: {
     issues(): ProductVerificationIssueOverall[] {
-      return this.$store.getters['productFeed/GET_PRODUCT_FEED_VERIFICATION_ISSUES'];
+      if (!this.selectedLanguage) {
+        return this.$store.getters['productFeed/GET_PRODUCT_FEED_VERIFICATION_ISSUES'];
+      }
+
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_VERIFICATION_ISSUES'].filter(
+        (issue: ProductVerificationIssueOverall) => {
+          return Object.keys(issue.affected).includes(this.selectedLanguage);
+        }
+      );
     },
     filtersHeaderList(): string[] {
       return [
@@ -159,16 +184,28 @@ export default defineComponent({
           return prev;
         }, [])),
       ];
-    }
+    },
+    languageSelectionDropdownText() {
+      if (this.selectedLanguage) {
+        return this.$t('productFeedPage.compliancyIssuesPage.languageSelected', {lang: this.changeLanguageCodeToName(this.selectedLanguage)});
+      }
+      return this.$t('productFeedPage.compliancyIssuesPage.languageSelection');
+    },
   },
   methods: {
-    getIssues() {
+    getIssues(): void {
       this.loading = true;
       this.$store.dispatch('productFeed/REQUEST_VERIFICATION_ISSUES')
         .then(() => {
           this.loading = false;
         });
     },
+    changeLanguageCodeToName(langIsoCode: string): string {
+      return new Intl.DisplayNames(
+        [window.i18nSettings.languageLocale],
+        { type: 'language' },
+      ).of(langIsoCode) || langIsoCode;
+    }
   },
   mounted() {
     if (!this.issues?.length) {

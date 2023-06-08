@@ -115,6 +115,7 @@ export default {
 
     return state.requestSynchronizationNow;
   },
+  // TODO: Remove
   [GettersTypes.GET_PRESCAN_LIMIT_PAGE](state: LocalState): number {
     return state.preScanDetail.limit;
   },
@@ -130,6 +131,7 @@ export default {
   [GettersTypes.GET_PRESCAN_PRODUCTS](state: LocalState): PreScanReporting[] {
     return state.preScanDetail.products;
   },
+  // End of TODO
   [GettersTypes.GET_ATTRIBUTE_MAPPING](state: LocalState): AttributeResponseFromAPI {
     return state.attributeMapping;
   },
