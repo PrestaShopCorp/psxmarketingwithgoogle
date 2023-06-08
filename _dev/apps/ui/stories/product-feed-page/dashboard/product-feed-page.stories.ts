@@ -1,5 +1,5 @@
 import cloneDeep from 'lodash.clonedeep';
-import ProductFeedPage from '../src/views/product-feed-page.vue'
+import ProductFeedPage from '@/views/product-feed-page.vue'
 import {
   productFeed,
   productFeedStatusSyncScheduled,
@@ -7,18 +7,18 @@ import {
   productFeedStatusSyncSuccess,
   productFeedStatusSyncFailed,
   productFeedIsConfigured,
-} from '../.storybook/mock/product-feed';
+} from '@/../.storybook/mock/product-feed';
 import {
   googleAdsNotChosen,
   adsAccountStatus,
-} from '../.storybook/mock/google-ads';
+} from '@/../.storybook/mock/google-ads';
 
 import {
   campaignsListResponse
-} from '../.storybook/mock/campaigns-list';
+} from '@/../.storybook/mock/campaigns-list';
 
 import { rest } from 'msw';
-import merchantCenterAccountConnected from '../.storybook/mock/merchant-center-account';
+import merchantCenterAccountConnected from '@/../.storybook/mock/merchant-center-account';
 
 export default {
   title: 'Product-Feed-Page/Product Feed Page',
