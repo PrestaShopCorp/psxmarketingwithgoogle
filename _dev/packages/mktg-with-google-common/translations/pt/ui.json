@@ -667,9 +667,9 @@
                 "stepDetails": "Before sending all your products (including variations), we ensure their compliance with Google's Merchant center policies. We verify the products **every time a change is detected**, and if there are any non-compliant products, we provide guidance on what needs to be done. Click on non-compliant products for more information.\n\nAfter submission, Google assigns each product a status: **Approved, Expiring, Pending, or Disapproved**.",
                 "reportCards": {
                     "productsInCatalog": "My product catalog",
-                    "productsInCatalogDescription": "Number of products (variations included) available on your shop.",
-                    "verified": "Verified products",
-                    "verifiedDescription": "Products that have been verified by Prestashop and are ready to be sent to Google.",
+                    "productsInCatalogDescription": "Active products with variations in product feed languages.",
+                    "verified": "Compliant products",
+                    "verifiedDescription": "PrestaShop-approved products ready to be sent to Google.",
                     "nonCompliant": "Non-compliant products",
                     "nonCompliantDescription": "Products that do not meet Google's requirements."
                 }
@@ -679,11 +679,11 @@
                 "stepDetails": "This report displays the status of all your products that have been sent to Google Merchant Center. Please note that it may take a few days for Google to review your products. You can use this report to track the progress of each product and ensure that they are approved and active on Google Shopping.\n\n**‘Approved’ products** are fully approved and eligible to appear in free listings on Google.\n\n**‘Pending’ products** are being processed by Google. They will not appear in listings until they are approved.\n\n**‘Expiring’ products** will become inactive and no longer appear in Google listings in the next days.\n\n**‘Disapproved’ products** are inactive and do not appear in Google listings. You can click on Disapproved box for more information.",
                 "reportCards": {
                     "approved": "Aprovado",
-                    "approvedDescription": "Products (variations included) successfully synced with Google.",
+                    "approvedDescription": "Products with variations successfully synced.",
                     "pending": "Pendente",
                     "pendingDescription": "Products being reviewed by Google.",
                     "expiring": "A expirar em",
-                    "expiringDescription": "Products no longer valid and that will soon be removed from Google.",
+                    "expiringDescription": "Invalid products to be removed from Google soon.",
                     "disapproved": "Não aprovado",
                     "disapprovedDescription": "Products that are disapproved by Google."
                 }
