@@ -1,6 +1,6 @@
 import attributesToMap from "@/store/modules/product-feed/attributes-to-map.json";
 import { RateType } from "@/enums/product-feed/rate";
-import { State, AttributesTypes, ProductStatus } from "@/store/modules/product-feed/state";
+import { State, AttributesTypes, ProductStatus, ProductVerificationIssue } from "@/store/modules/product-feed/state";
 import DeliveryType from '@/enums/product-feed/delivery-type';
 import { shippingPhpExport } from "./shipping-settings";
 import Categories from "@/enums/product-feed/attribute-mapping-categories";
@@ -427,6 +427,7 @@ export const productFeed: State = {
     invalidProducts: null,
     validProducts: null,
   },
+  verificationIssues: null,
 };
 export const productFeedNoCarriers: State = {
   ...productFeed,
@@ -670,7 +671,46 @@ export const productFeedStatusSyncSuccess: State = {
     productsInCatalog: '1362452',
     invalidProducts: 60,
     validProducts: 1362392,
-  }
+  },
+  verificationIssues: [
+    {
+      affected: {
+        en: 5,
+      },
+      name: ProductVerificationIssue.MISSING_NAME,
+    },
+    {
+      affected: {
+        en: 5,
+        fr: 11,
+      },
+      name: ProductVerificationIssue.MISSING_DESCRIPTION,
+    },
+    {
+      affected: {
+        en: 1455,
+      },
+      name: ProductVerificationIssue.MISSING_IDENTIFIER,
+    },
+    {
+      affected: {
+        en: 5,
+      },
+      name: ProductVerificationIssue.MISSING_IMAGE,
+    },
+    {
+      affected: {
+        fr: 3,
+      },
+      name: ProductVerificationIssue.MISSING_LINK,
+    },
+    {
+      affected: {
+        en: 5,
+      },
+      name: ProductVerificationIssue.MISSING_PRICE,
+    },
+  ],
 };
 
 export const productFeedIsConfiguredOnce: State = {

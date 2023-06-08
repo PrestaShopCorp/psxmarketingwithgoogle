@@ -25,6 +25,7 @@ import {
   AttributesInfos,
   PreScanReporting,
   VerificationStats,
+  ProductVerificationIssueOverall,
 } from './state';
 import GettersTypes from './getters-types';
 import {filterCountriesCompatible} from '@/utils/TargetCountryValidator';
@@ -59,6 +60,10 @@ export default {
       validProducts: state.report.validProducts,
     };
   },
+  [GettersTypes.GET_PRODUCT_FEED_VERIFICATION_ISSUES](state: LocalState) :
+    ProductVerificationIssueOverall[]|null {
+      return state.verificationIssues;
+    },
   [GettersTypes.GET_PRODUCT_FEED_VALIDATION_SUMMARY](state: LocalState) :
   ProductFeedValidationSummary {
     return state.validationSummary;

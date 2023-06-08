@@ -442,4 +442,13 @@ export default {
 
     commit(MutationsTypes.SAVE_VERIFICATION_STATS, json);
   },
+
+  async [ActionsTypes.REQUEST_VERIFICATION_ISSUES]({commit}) {
+    const json = await (await fetchOnboarding(
+      'GET',
+      'product-feeds/verification/issues',
+    )).json();
+
+    commit(MutationsTypes.SAVE_VERIFICATION_ISSUES, json);
+  },
 };

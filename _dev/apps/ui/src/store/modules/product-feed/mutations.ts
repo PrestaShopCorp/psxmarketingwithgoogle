@@ -29,6 +29,7 @@ import {
   AttributesInfos,
   commonAttributes,
   PreScanReporting,
+  ProductVerificationIssueOverall,
 } from './state';
 import {RateType} from '@/enums/product-feed/rate';
 import {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
@@ -209,5 +210,12 @@ export default {
   ) {
     state.report.invalidProducts = verificationStats.invalidProducts;
     state.report.validProducts = verificationStats.validProducts;
+  },
+
+  [MutationsTypes.SAVE_VERIFICATION_ISSUES](
+    state: LocalState,
+    verificationIssues: ProductVerificationIssueOverall[],
+  ) {
+    state.verificationIssues = verificationIssues;
   },
 };

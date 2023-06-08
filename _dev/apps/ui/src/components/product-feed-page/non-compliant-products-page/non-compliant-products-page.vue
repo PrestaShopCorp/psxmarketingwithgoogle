@@ -83,7 +83,7 @@
               </div>
             </template>
             <b-card-body class="container p-0">
-              <template v-if="!items.length">
+              <template v-if="!items || !items.length">
                 <div>
                   No data
                 </div>
@@ -91,25 +91,25 @@
               <template v-else>
                 <div
                   v-for="product in items"
-                  :key="product.attribute"
+                  :key="product.name"
                   class="row align-items-center m-0 py-3 border-right border-bottom border-left"
                 >
                   <div class="col mb-0 px-3">
-                    {{ product.id }}
+                    {{ $t(`productFeedPage.compliancyIssues.${ProductVerificationIssueTranslation[product.name]}`) }}
                   </div>
                   <div class="col-5 mb-0 px-3">
-                    <pre>{{ product.issues }}</pre>
+                    {{ $t(`productFeedPage.compliancyIssues.${ProductVerificationIssueTranslation[product.name]}Action`) }}
                   </div>
                   <div class="col mb-0 px-3">
                     <a>View product</a>
                   </div>
                   <div class="col mb-0 px-3">
                     <span
-                      v-for="lang in product.affected"
-                      :key="lang"
+                      v-for="(numberOfProducts, langIso) in product.affected"
+                      :key="langIso"
                       class="p-1 border"
                     >
-                      {{ product.language }}
+                      {{ langIso }}
                     </span>
                   </div>
                 </div>
@@ -125,7 +125,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 
-import {changeCountryCodeToName} from '@/utils/Countries';
+import {ProductVerificationIssueTranslation} from '@/store/modules/product-feed/state';
 
 /*
  id: string;
@@ -143,71 +143,26 @@ export default defineComponent({
       loading: false,
       nextToken: null,
       langs: ['first', 'second', 'third'],
-      issues: [
-        {
-          affected: {
-            en: 5,
-          },
-          name: 'MISSING_NAME',
-        },
-        {
-          affected: {
-            en: 5,
-            fr: 11,
-          },
-          name: 'MISSING_DESCRIPTION',
-        },
-        {
-          affected: {
-            en: 5,
-          },
-          name: 'MISSING_IMAGE',
-        },
-        {
-          affected: {
-            fr: 3,
-          },
-          name: 'MISSING_LINK',
-        },
-        {
-          affected: {
-            en: 5,
-          },
-          name: 'MISSING_PRICE',
-        },
-      ],
+      ProductVerificationIssueTranslation,
     };
   },
   computed: {
     items() {
-      console.log(this.$store.state.productFeed.productsDatas.items);
-      return this.$store.state.productFeed.productsDatas.items
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_VERIFICATION_ISSUES'];
     },
   },
   methods: {
-    getItems(token) {
+    getItems() {
       this.loading = true;
-      this.$store.dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUSES', token)
-        .then((res) => {
-          if (res.nextToken) {
-            this.nextToken = res.nextToken;
-          }
-        }).catch((error) => {
-          console.error(error);
-        })
+      this.$store.dispatch('productFeed/REQUEST_VERIFICATION_ISSUES')
         .then(() => {
-          setTimeout(() => {
-            this.loading = false;
-          }, 500);
+          this.loading = false;
         });
-    },
-    onlyDisapproved(product) {
-      return product.filter((stat) => stat.status === ProductsStatusType.DISAPPROVED);
     },
   },
   mounted() {
-    if (!this.items.length) {
-      this.getItems(null);
+    if (!this.items?.length) {
+      this.getItems();
     }
   },
 });
