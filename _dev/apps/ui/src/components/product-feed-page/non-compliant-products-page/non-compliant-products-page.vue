@@ -21,102 +21,102 @@
       </template>
       <b-card-body>
         <div class="d-flex justify-content-between align-items-center mb-2">
-          <div class="w-70 mb-0">
+          <div class="mb-0">
             {{ $t('productFeedPage.compliancyIssuesPage.details') }}
           </div>
           <b-dropdown
             :text="$t('productFeedPage.compliancyIssuesPage.languageSelection')"
-            variant=" "
-            class="min-w-25 psxmarketingwithgoogle-dropdown border rounded"
+            variant="outline-primary"
+            class="psxmarketingwithgoogle-dropdown flex-grow-1"
+            :disabled="loading || !issues || !issues.length"
           >
             <b-dropdown-item
-              v-for="item in items"
-              :key="item"
+              v-for="lang in languages"
+              :key="lang"
             >
-              {{ item }}
+              {{ lang }}
             </b-dropdown-item>
           </b-dropdown>
         </div>
-        <b-card
-          no-body
+
+        <b-table-simple
+          id="table-non-compliant-products"
+          class="mb-3"
+          responsive="xl"
         >
-          <b-card-header class="container">
-            <div class="row">
-              <div class=" font-weight-600">
-                {{ $t('productFeedPage.compliancyIssuesPage.columns.issues')}}
-              </div>
-              <div class="col-5 font-weight-600">
-                {{ $t('productFeedPage.compliancyIssuesPage.columns.suggestedActions')}}
-              </div>
-              <div class="col font-weight-600">
-                {{ $t('productFeedPage.compliancyIssuesPage.columns.affectedProducts')}}
-              </div>
-              <div class="col font-weight-600">
-                {{ $t('productFeedPage.compliancyIssuesPage.columns.languages')}}
-              </div>
-            </div>
-          </b-card-header>
-          <b-skeleton-wrapper :loading="loading">
-            <template #loading>
-              <div
-                v-for="index in 7"
+          <b-thead>
+            <b-tr class="bg-prestashop-bg">
+              <b-th
+                v-for="(columnText, index) in filtersHeaderList"
                 :key="index"
-                class="d-flex justify-content-between align-items-center py-3
-                border-right border-bottom border-left"
+                class="font-weight-600"
               >
-                <b-skeleton
-                  class="mb-0 mx-1"
-                  width="20%"
-                />
-                <b-skeleton
-                  class="mb-0 mx-1"
-                  width="40%"
-                />
-                <b-skeleton
-                  class="mb-0 mx-1"
-                  width="20%"
-                />
-                <b-skeleton
-                  class="mb-0 mx-1"
-                  width="20%"
-                />
-              </div>
-            </template>
-            <b-card-body class="container p-0">
-              <template v-if="!items || !items.length">
-                <div>
-                  No data
+                <div class="flex align-items-center text-nowrap">
+                  <span>
+                    {{ columnText }}
+                  </span>
                 </div>
+              </b-th>
+            </b-tr>
+          </b-thead>
+          <b-tbody class="bg-white">
+              <template
+                v-if="loading"
+              >
+                <b-tr
+                  v-for="index in 5"
+                  :key="index"
+                  class="justify-content-between align-items-center py-3
+                  border-right border-bottom border-left"
+                >
+                  <b-td
+                    v-for="(text, index) in filtersHeaderList"
+                    :key="index"
+                  >
+                    <b-skeleton
+                      class="mb-0 mx-1"
+                      width="100%"
+                      :height="`${(index===1 ? '5em' : undefined)}`"
+                    />
+                  </b-td>
+                </b-tr>
+              </template>
+
+              <template v-else-if="0">
+                <tr>
+                  <td :colspan="filtersHeaderList.length">
+                    <KeyMetricsErrorMessage />
+                  </td>
+                </tr>
+              </template>
+
+              <template v-else-if="!issues || !issues.length">
+                <tr>
+                  <td
+                    :colspan="filtersHeaderList.length"
+                    class="py-5 text-center text-secondary"
+                  >
+                    <div>
+                      <i class="material-icons ps_gs-fz-48">layers_clear</i>
+                    </div>
+                    <div
+                      class="ps_gs-fz-16 font-weight-600"
+                    >
+                      {{ $t('productFeedPage.compliancyIssuesPage.noResults') }}
+                    </div>
+                  </td>
+                </tr>
               </template>
               <template v-else>
-                <div
-                  v-for="product in items"
-                  :key="product.name"
-                  class="row align-items-center m-0 py-3 border-right border-bottom border-left"
-                >
-                  <div class="col mb-0 px-3">
-                    {{ $t(`productFeedPage.compliancyIssues.${ProductVerificationIssueTranslation[product.name]}`) }}
-                  </div>
-                  <div class="col-5 mb-0 px-3">
-                    {{ $t(`productFeedPage.compliancyIssues.${ProductVerificationIssueTranslation[product.name]}Action`) }}
-                  </div>
-                  <div class="col mb-0 px-3">
-                    <a>View product</a>
-                  </div>
-                  <div class="col mb-0 px-3">
-                    <span
-                      v-for="(numberOfProducts, langIso) in product.affected"
-                      :key="langIso"
-                      class="p-1 border"
-                    >
-                      {{ langIso }}
-                    </span>
-                  </div>
-                </div>
+                <non-compliant-products-row
+                  v-for="issue in issues"
+                  :key="issue.name"
+                  :verification-issue="issue"
+                />
+                
               </template>
-            </b-card-body>
-          </b-skeleton-wrapper>
-        </b-card>
+          </b-tbody>
+        </b-table-simple>
       </b-card-body>
     </b-card>
   </section>
@@ -125,34 +125,44 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 
-import {ProductVerificationIssueTranslation} from '@/store/modules/product-feed/state';
+import NonCompliantProductsRow from './non-compliant-products-row.vue';
+import { ProductVerificationIssueOverall } from '../../../store/modules/product-feed/state';
 
-/*
- id: string;
- name: string;
- attribute: string;
- language: string;
- statuses: ProductInfosStatus[];
- issues?: contentApi.Schema$ProductStatusItemLevelIssue[];
- */
 
 export default defineComponent({
-  name: 'ProductFeedNonCompliant',
+  name: 'NonCompliantProductsPage',
+  components: {
+    NonCompliantProductsRow,
+  },
   data() {
     return {
       loading: false,
-      nextToken: null,
-      langs: ['first', 'second', 'third'],
-      ProductVerificationIssueTranslation,
     };
   },
   computed: {
-    items() {
+    issues(): ProductVerificationIssueOverall[] {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_VERIFICATION_ISSUES'];
     },
+    filtersHeaderList(): string[] {
+      return [
+        this.$t('productFeedPage.compliancyIssuesPage.columns.issues'),
+        this.$t('productFeedPage.compliancyIssuesPage.columns.suggestedActions'),
+        this.$t('productFeedPage.compliancyIssuesPage.columns.affectedProducts'),
+        this.$t('productFeedPage.compliancyIssuesPage.columns.languages'),
+      ];
+    },
+    languages(): string[] {
+      // Get all languages and make the array unique
+      return [
+        ...new Set(this.issues?.reduce((prev: string[], issue) => {
+          prev.push(...Object.keys(issue.affected));
+          return prev;
+        }, [])),
+      ];
+    }
   },
   methods: {
-    getItems() {
+    getIssues() {
       this.loading = true;
       this.$store.dispatch('productFeed/REQUEST_VERIFICATION_ISSUES')
         .then(() => {
@@ -161,8 +171,8 @@ export default defineComponent({
     },
   },
   mounted() {
-    if (!this.items?.length) {
-      this.getItems();
+    if (!this.issues?.length) {
+      this.getIssues();
     }
   },
 });
