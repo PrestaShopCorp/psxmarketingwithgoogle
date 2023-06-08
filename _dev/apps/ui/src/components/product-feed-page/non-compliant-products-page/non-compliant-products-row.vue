@@ -3,12 +3,16 @@
     class="align-items-center m-0 py-3 border-right border-bottom border-left"
   >
     <b-td>
-      {{ $t(`productFeedPage.compliancyIssues.${ProductVerificationIssueTranslation[verificationIssue.name]}`) }}
+      {{ $t(`productFeedPage.compliancyIssues.${
+        ProductVerificationIssueTranslation[verificationIssue.name
+        ]}`) }}
     </b-td>
     <b-td
       class="col-md-5"
     >
-      {{ $t(`productFeedPage.compliancyIssues.${ProductVerificationIssueTranslation[verificationIssue.name]}Action`) }}
+      {{ $t(`productFeedPage.compliancyIssues.${
+        ProductVerificationIssueTranslation[verificationIssue.name
+        ]}Action`) }}
     </b-td>
     <b-td>
       {{ numberOfAffectedProducts }}
@@ -45,7 +49,7 @@ export default defineComponent({
     verificationIssue: {
       type: Object as PropType<ProductVerificationIssueOverall>,
       required: true,
-    }
+    },
   },
   data() {
     return {
@@ -54,9 +58,7 @@ export default defineComponent({
   },
   computed: {
     numberOfAffectedProducts(): number {
-      return Object.values(this.verificationIssue.affected).reduce((prev, curr) => {
-        return prev + curr;
-      }, 0);
+      return Object.values(this.verificationIssue.affected).reduce((prev, curr) => prev + curr, 0);
     },
   },
 });

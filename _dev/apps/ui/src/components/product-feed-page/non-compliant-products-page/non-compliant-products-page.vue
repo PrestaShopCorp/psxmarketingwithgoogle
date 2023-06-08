@@ -76,61 +76,60 @@
             </b-tr>
           </b-thead>
           <b-tbody class="bg-white">
-              <template
-                v-if="loading"
-              >
-                <b-tr
-                  v-for="index in 5"
-                  :key="index"
-                  class="justify-content-between align-items-center py-3
+            <template
+              v-if="loading"
+            >
+              <b-tr
+                v-for="index in 5"
+                :key="index"
+                class="justify-content-between align-items-center py-3
                   border-right border-bottom border-left"
+              >
+                <b-td
+                  v-for="(text, textIndex) in filtersHeaderList"
+                  :key="textIndex"
                 >
-                  <b-td
-                    v-for="(text, index) in filtersHeaderList"
-                    :key="index"
-                  >
-                    <b-skeleton
-                      class="mb-0 mx-1"
-                      width="100%"
-                      :height="`${(index===1 ? '5em' : undefined)}`"
-                    />
-                  </b-td>
-                </b-tr>
-              </template>
+                  <b-skeleton
+                    class="mb-0 mx-1"
+                    width="100%"
+                    :height="`${(textIndex===1 ? '5em' : undefined)}`"
+                  />
+                </b-td>
+              </b-tr>
+            </template>
 
-              <template v-else-if="0">
-                <tr>
-                  <td :colspan="filtersHeaderList.length">
-                    <KeyMetricsErrorMessage />
-                  </td>
-                </tr>
-              </template>
+            <template v-else-if="0">
+              <tr>
+                <td :colspan="filtersHeaderList.length">
+                  <KeyMetricsErrorMessage />
+                </td>
+              </tr>
+            </template>
 
-              <template v-else-if="!issues || !issues.length">
-                <tr>
-                  <td
-                    :colspan="filtersHeaderList.length"
-                    class="py-5 text-center text-secondary"
+            <template v-else-if="!issues || !issues.length">
+              <tr>
+                <td
+                  :colspan="filtersHeaderList.length"
+                  class="py-5 text-center text-secondary"
+                >
+                  <div>
+                    <i class="material-icons ps_gs-fz-48">layers_clear</i>
+                  </div>
+                  <div
+                    class="ps_gs-fz-16 font-weight-600"
                   >
-                    <div>
-                      <i class="material-icons ps_gs-fz-48">layers_clear</i>
-                    </div>
-                    <div
-                      class="ps_gs-fz-16 font-weight-600"
-                    >
-                      {{ $t('productFeedPage.compliancyIssuesPage.noResults') }}
-                    </div>
-                  </td>
-                </tr>
-              </template>
-              <template v-else>
-                <non-compliant-products-row
-                  v-for="issue in issues"
-                  :key="issue.name"
-                  :verification-issue="issue"
-                />
-                
-              </template>
+                    {{ $t('productFeedPage.compliancyIssuesPage.noResults') }}
+                  </div>
+                </td>
+              </tr>
+            </template>
+            <template v-else>
+              <non-compliant-products-row
+                v-for="issue in issues"
+                :key="issue.name"
+                :verification-issue="issue"
+              />
+            </template>
           </b-tbody>
         </b-table-simple>
       </b-card-body>
@@ -142,8 +141,7 @@
 import {defineComponent} from 'vue';
 
 import NonCompliantProductsRow from './non-compliant-products-row.vue';
-import { ProductVerificationIssueOverall } from '../../../store/modules/product-feed/state';
-
+import {ProductVerificationIssueOverall} from '../../../store/modules/product-feed/state';
 
 export default defineComponent({
   name: 'NonCompliantProductsPage',
@@ -163,9 +161,9 @@ export default defineComponent({
       }
 
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_VERIFICATION_ISSUES'].filter(
-        (issue: ProductVerificationIssueOverall) => {
-          return Object.keys(issue.affected).includes(this.selectedLanguage);
-        }
+        (issue: ProductVerificationIssueOverall) => Object.keys(
+          issue.affected,
+        ).includes(this.selectedLanguage),
       );
     },
     filtersHeaderList(): string[] {
@@ -203,9 +201,9 @@ export default defineComponent({
     changeLanguageCodeToName(langIsoCode: string): string {
       return new Intl.DisplayNames(
         [window.i18nSettings.languageLocale],
-        { type: 'language' },
+        {type: 'language'},
       ).of(langIsoCode) || langIsoCode;
-    }
+    },
   },
   mounted() {
     if (!this.issues?.length) {

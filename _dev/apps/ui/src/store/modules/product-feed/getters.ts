@@ -62,8 +62,8 @@ export default {
   },
   [GettersTypes.GET_PRODUCT_FEED_VERIFICATION_ISSUES](state: LocalState) :
     ProductVerificationIssueOverall[]|null {
-      return state.verificationIssues;
-    },
+    return state.verificationIssues;
+  },
   [GettersTypes.GET_PRODUCT_FEED_VALIDATION_SUMMARY](state: LocalState) :
   ProductFeedValidationSummary {
     return state.validationSummary;
