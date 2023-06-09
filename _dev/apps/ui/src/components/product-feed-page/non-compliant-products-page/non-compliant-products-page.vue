@@ -2,7 +2,6 @@
   <section>
     <b-card
       no-body
-      class="ps_gs-onboardingcard"
     >
       <template #header>
         <ol class="mb-0 list-inline d-flex align-items-center ps_gs-breadcrumb">
