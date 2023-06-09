@@ -8,7 +8,7 @@
         ]}`) }}
     </b-td>
     <b-td
-      class="col-md-5"
+      class="col-md-4"
     >
       {{ $t(`productFeedPage.compliancyIssues.${
         ProductVerificationIssueTranslation[verificationIssue.name

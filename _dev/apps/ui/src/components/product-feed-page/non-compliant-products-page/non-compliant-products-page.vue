@@ -98,10 +98,20 @@
               </b-tr>
             </template>
 
-            <template v-else-if="0">
+            <template v-else-if="apiFailed">
               <tr>
-                <td :colspan="filtersHeaderList.length">
-                  <KeyMetricsErrorMessage />
+                <td
+                  :colspan="filtersHeaderList.length"
+                  class="py-5 text-center text-secondary"
+                >
+                  <div>
+                    <i class="material-icons ps_gs-fz-48">error</i>
+                  </div>
+                  <div
+                    class="ps_gs-fz-16 font-weight-600"
+                  >
+                    {{ $t('general.unableToFetchData') }}
+                  </div>
                 </td>
               </tr>
             </template>
@@ -151,6 +161,7 @@ export default defineComponent({
   data() {
     return {
       loading: false as boolean,
+      apiFailed: false as boolean,
       selectedLanguage: null as string|null,
     };
   },
@@ -193,8 +204,13 @@ export default defineComponent({
   methods: {
     getIssues(): void {
       this.loading = true;
+      this.apiFailed = false;
+
       this.$store.dispatch('productFeed/REQUEST_VERIFICATION_ISSUES')
-        .then(() => {
+        .catch(() => {
+          this.apiFailed = true;
+        })
+        .finally(() => {
           this.loading = false;
         });
     },

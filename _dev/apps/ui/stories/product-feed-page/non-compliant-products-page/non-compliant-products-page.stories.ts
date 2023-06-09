@@ -16,9 +16,6 @@ const Template = (args, { argTypes }) => ({
 });
 
 export const Default: any = Template.bind({});
-Default.args = {
-  loading: false,
-};
 Default.parameters = {
   msw: {
     handlers: [
@@ -32,9 +29,6 @@ Default.parameters = {
 };
 
 export const NoData: any = Template.bind({});
-NoData.args = {
-  loading: false,
-};
 NoData.parameters = {
   msw: {
     handlers: [
@@ -49,7 +43,6 @@ NoData.parameters = {
 
 export const Loading: any = Template.bind({});
 Loading.args = {
-  loading: true,
   mounted(this: any) {
     setTimeout(() => {
       this.$refs.page.$data.loading = true;
@@ -62,6 +55,19 @@ Loading.parameters = {
       rest.get('/product-feeds/verification/issues', (req, res, ctx) => {
         return res(
           ctx.json([])
+        );
+      }),
+    ],
+  },
+};
+
+export const ErrorApi: any = Template.bind({});
+ErrorApi.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/product-feeds/verification/issues', (req, res, ctx) => {
+        return res(
+          ctx.status(500)
         );
       }),
     ],
