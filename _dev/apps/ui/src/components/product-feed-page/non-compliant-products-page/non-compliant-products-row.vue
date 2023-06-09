@@ -1,6 +1,6 @@
 <template>
   <b-tr
-    class="align-items-center m-0 py-3 border-right border-bottom border-left"
+    class="align-items-center m-0 py-3"
   >
     <b-td>
       {{ $t(`productFeedPage.compliancyIssues.${
@@ -21,6 +21,7 @@
           name: 'product-feed-verification-error-products',
           params: {error: verificationIssue.name},
         }"
+        class="text-nowrap"
       >
         {{ $t('productFeedPage.compliancyIssuesPage.actions.listProducts') }}
       </b-link>

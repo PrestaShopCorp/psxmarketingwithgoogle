@@ -61,8 +61,8 @@
           class="mb-3 card"
           responsive="xl"
         >
-          <b-thead>
-            <b-tr class="bg-prestashop-bg">
+          <b-thead class="card-header">
+            <b-tr>
               <b-th
                 v-for="(columnText, index) in filtersHeaderList"
                 :key="index"
@@ -83,8 +83,7 @@
               <b-tr
                 v-for="index in 5"
                 :key="index"
-                class="justify-content-between align-items-center py-3
-                  border-right border-bottom border-left"
+                class="justify-content-between align-items-center py-3"
               >
                 <b-td
                   v-for="(text, textIndex) in filtersHeaderList"
@@ -152,7 +151,7 @@
 import {defineComponent} from 'vue';
 
 import NonCompliantProductsRow from './non-compliant-products-row.vue';
-import {ProductVerificationIssueOverall} from '../../../store/modules/product-feed/state';
+import {ProductVerificationIssueOverall} from '@/store/modules/product-feed/state';
 
 export default defineComponent({
   name: 'NonCompliantProductsPage',
@@ -167,7 +166,7 @@ export default defineComponent({
     };
   },
   computed: {
-    issues(): ProductVerificationIssueOverall[] {
+    issues(): ProductVerificationIssueOverall[]|null {
       if (!this.selectedLanguage) {
         return this.$store.getters['productFeed/GET_PRODUCT_FEED_VERIFICATION_ISSUES'];
       }
@@ -204,7 +203,9 @@ export default defineComponent({
   },
   methods: {
     getIssues(): void {
-      this.loading = true;
+      if (!this.issues?.length) {
+        this.loading = true;
+      }
       this.apiFailed = false;
 
       this.$store.dispatch('productFeed/REQUEST_VERIFICATION_ISSUES')
@@ -223,9 +224,7 @@ export default defineComponent({
     },
   },
   mounted() {
-    if (!this.issues?.length) {
-      this.getIssues();
-    }
+    this.getIssues();
   },
 });
 </script>

@@ -336,3 +336,18 @@ $statusColors: (
 .default-width-column {
   width: 150px;
 }
+
+.card > table {
+  border-bottom: unset;
+  .card-header {
+    th {
+      border-bottom: unset;
+      font-weight: 500;
+      font-size: rem(16);
+      line-height: rem(22);
+    }
+  }
+  th, td {
+    padding: rem(16);
+  }
+}
