@@ -26,6 +26,8 @@ import {
   PreScanReporting,
   VerificationStats,
   ProductVerificationIssueOverall,
+  ProductVerificationIssueProduct,
+  ProductVerificationIssue,
 } from './state';
 import GettersTypes from './getters-types';
 import {filterCountriesCompatible} from '@/utils/TargetCountryValidator';
@@ -63,6 +65,23 @@ export default {
   [GettersTypes.GET_PRODUCT_FEED_VERIFICATION_ISSUES](state: LocalState) :
     ProductVerificationIssueOverall[]|null {
     return state.verificationIssues;
+  },
+  [GettersTypes.GET_PRODUCT_FEED_VERIFICATION_ISSUE_PRODUCTS](state: LocalState) {
+    return (
+      verificationIssue: ProductVerificationIssue,
+      numberOfProducts: number,
+      offset: number,
+    ): ProductVerificationIssueProduct[]|null => {
+
+      const startOfArray = numberOfProducts * offset;
+      if (!state.verificationIssuesProducts[verificationIssue]) {
+        return null;
+      }
+      if (state.verificationIssuesProducts[verificationIssue].length < startOfArray) {
+        return null;
+      }
+      return state.verificationIssuesProducts[verificationIssue].slice(startOfArray, startOfArray + numberOfProducts) || null;
+    }
   },
   [GettersTypes.GET_PRODUCT_FEED_VALIDATION_SUMMARY](state: LocalState) :
   ProductFeedValidationSummary {

@@ -44,7 +44,7 @@ enum ActionsTypes {
 
   // Product feed non-compliant products
   REQUEST_VERIFICATION_ISSUES = 'REQUEST_VERIFICATION_ISSUES',
-
+  REQUEST_VERIFICATION_ISSUE_PRODUCTS = 'REQUEST_VERIFICATION_ISSUE_PRODUCTS',
 }
 
 export {ActionsTypes as default};

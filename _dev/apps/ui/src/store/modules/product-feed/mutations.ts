@@ -30,6 +30,8 @@ import {
   commonAttributes,
   PreScanReporting,
   ProductVerificationIssueOverall,
+  ProductVerificationIssueProduct,
+  ProductVerificationIssue,
 } from './state';
 import {RateType} from '@/enums/product-feed/rate';
 import {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
@@ -217,5 +219,30 @@ export default {
     verificationIssues: ProductVerificationIssueOverall[],
   ) {
     state.verificationIssues = verificationIssues;
+  },
+
+  [MutationsTypes.SAVE_VERIFICATION_ISSUE_PRODUCTS](
+    state: LocalState,
+    data: {
+      originalPayload: {
+        verificationIssue: ProductVerificationIssue,
+        limit: number,
+        offset: number,
+      },
+      verificationIssueProducts: ProductVerificationIssueProduct[],
+    },
+  ) {
+    if (!state.verificationIssuesProducts[data.originalPayload.verificationIssue]) {
+      state.verificationIssuesProducts[data.originalPayload.verificationIssue] = [];
+    }
+    state.verificationIssuesProducts[data.originalPayload.verificationIssue].splice(
+      data.originalPayload.offset * data.originalPayload.limit,
+      data.originalPayload.limit,
+      ...data.verificationIssueProducts,
+    );
+    state.verificationIssuesProducts = Object.assign(
+      {},
+      state.verificationIssuesProducts,
+    );
   },
 };
