@@ -1,5 +1,8 @@
 <template>
-  <b-card body-class="p-0">
+  <b-card
+    body-class="p-0"
+    class="ps_gs-onboardingcard"
+  >
     <template #header>
       <h1 class="mb-0 ps_gs-onboardingcard__title">
         {{ $t("productFeedSettings.breadcrumb1") }}
