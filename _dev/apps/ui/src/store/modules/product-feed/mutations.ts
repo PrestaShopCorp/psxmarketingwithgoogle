@@ -245,4 +245,21 @@ export default {
       state.verificationIssuesProducts,
     );
   },
+
+  [MutationsTypes.SAVE_VERIFICATION_ISSUE_NB_OF_PRODUCTS](
+    state: LocalState,
+    data: {
+      originalPayload: {
+        verificationIssue: ProductVerificationIssue,
+      },
+      verificationIssueNumberOfProducts: number,
+    },
+  ) {
+    console.log(data.originalPayload.verificationIssue, data.verificationIssueNumberOfProducts);
+    state.verificationIssuesNumberOfProducts[data.originalPayload.verificationIssue] = data.verificationIssueNumberOfProducts;
+    state.verificationIssuesNumberOfProducts = Object.assign(
+      {},
+      state.verificationIssuesNumberOfProducts,
+    );
+  },
 };

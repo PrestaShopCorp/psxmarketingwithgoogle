@@ -129,6 +129,11 @@
             </template>
           </b-tbody>
         </b-table-simple>
+        <TablePageControls
+          :total-pages="totalPages"
+          :active-page="activePage+1"
+          :selected-filter-quantity-to-show="pageSize"
+        />
       </b-card-body>
     </b-card>
   </section>
@@ -139,18 +144,20 @@ import {defineComponent} from 'vue';
 
 import NonCompliantProductsDetailsRow from './non-compliant-products-details-row.vue';
 import {ProductVerificationIssue, ProductVerificationIssueProduct, ProductVerificationIssueTranslation} from '@/store/modules/product-feed/state';
+import TablePageControls from '@/components/commons/table-page-controls.vue';
 
 export default defineComponent({
   name: 'NonCompliantProductsDetailsPage',
   components: {
     NonCompliantProductsDetailsRow,
+    TablePageControls,
   },
   data() {
     return {
       loading: false as boolean,
       apiFailed: false as boolean,
       pageSize: 50 as number,
-      offset: 0 as number,
+      activePage: 0 as number,
       ProductVerificationIssueTranslation,
     };
   },
@@ -158,11 +165,19 @@ export default defineComponent({
     verificationIssueName(): ProductVerificationIssue {
       return ProductVerificationIssue.MISSING_DESCRIPTION;
     },
+    totalPages(): number {
+      return Math.ceil(
+        (this.$store.getters['productFeed/GET_PRODUCT_FEED_VERIFICATION_ISSUE_NB_OF_PRODUCTS'](
+            this.verificationIssueName,
+          ) || 0)
+        / this.pageSize
+      );
+    },
     issueProducts(): ProductVerificationIssueProduct[]|null {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_VERIFICATION_ISSUE_PRODUCTS'](
         this.verificationIssueName,
         this.pageSize,
-        this.offset,
+        this.activePage,
       );
     },
     filtersHeaderList(): string[] {
@@ -185,7 +200,7 @@ export default defineComponent({
         type: 'productFeed/REQUEST_VERIFICATION_ISSUE_PRODUCTS',
         verificationIssue: this.verificationIssueName,
         limit: this.pageSize,
-        offset: this.offset,
+        offset: this.activePage,
       }).catch((e) => {
         this.apiFailed = true;
         throw e;
@@ -194,9 +209,17 @@ export default defineComponent({
         this.loading = false;
       });
     },
+    pageChanged(newPageNumber: number): void {
+      this.activePage = newPageNumber-1;
+      this.getIssues();
+    },
   },
   mounted() {
     this.getIssues();
+    this.$root.$on('changePage', this.pageChanged);
+  },
+  beforeDestroy() {
+    this.$root.$off('changePage', this.pageChanged);
   },
 });
 </script>

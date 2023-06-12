@@ -472,5 +472,9 @@ export default {
       originalPayload: payload,
       verificationIssueProducts: json.products,
     });
+    commit(MutationsTypes.SAVE_VERIFICATION_ISSUE_NB_OF_PRODUCTS, {
+      originalPayload: payload,
+      verificationIssueNumberOfProducts: json.totalCount,
+    });
   },
 };

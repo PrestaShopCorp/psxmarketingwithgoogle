@@ -151,6 +151,9 @@ export interface State {
   verificationIssues: ProductVerificationIssueOverall[]|null;
   verificationIssuesProducts: {
     [verificationIssue in ProductVerificationIssue]: ProductVerificationIssueProduct[];
+  },
+  verificationIssuesNumberOfProducts: {
+    [verificationIssue in ProductVerificationIssue]: number;
   }
 }
 
@@ -270,4 +273,5 @@ export const state: State = {
   },
   verificationIssues: null,
   verificationIssuesProducts: {},
+  verificationIssuesNumberOfProducts: {},
 };
