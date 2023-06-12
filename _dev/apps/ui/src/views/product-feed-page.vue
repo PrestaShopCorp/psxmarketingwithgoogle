@@ -4,15 +4,9 @@
     <product-feed-pre-scan-table-status-details
       v-else-if="$route.path === '/product-feed/pre-scan'"
     />
-    <!--
-      New routes to implement:
-      - product-feed-verification-error-products
-      - product-feed-verification-errors
-
-    <component
+    <non-compliant-products-details-page
       v-else-if="$route.name === 'product-feed-verification-error-products'"
     />
-    -->
     <non-compliant-products-page
       v-else-if="$route.name === 'product-feed-verification-errors'"
     />
@@ -33,15 +27,17 @@
   </div>
 </template>
 
-<script>
-import ProductFeedTableStatusDetails from '@/components/product-feed-page/product-feed-table-status-details';
-import ProductFeedPreScanTableStatusDetails from '@/components/product-feed-page/product-feed-pre-scan-table-status-details';
+<script lang="ts">
+import {defineComponent} from 'vue';
+import ProductFeedTableStatusDetails from '@/components/product-feed-page/product-feed-table-status-details.vue';
+import ProductFeedPreScanTableStatusDetails from '@/components/product-feed-page/product-feed-pre-scan-table-status-details.vue';
 import SyncOverview from '@/components/product-feed-page/dashboard/sync-overview.vue';
-import NonCompliantProductsPage from '@/components/product-feed-page/non-compliant-products-page/non-compliant-products-page';
-import PsToast from '../components/commons/ps-toast';
+import NonCompliantProductsPage from '@/components/product-feed-page/non-compliant-products-page/non-compliant-products-page.vue';
+import NonCompliantProductsDetailsPage from '@/components/product-feed-page/non-compliant-products-details-page/non-compliant-products-details-page.vue';
+import PsToast from '@/components/commons/ps-toast.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
-export default {
+export default defineComponent({
   data() {
     return {
       allDataLoaded: false,
@@ -51,6 +47,7 @@ export default {
     ProductFeedTableStatusDetails,
     ProductFeedPreScanTableStatusDetails,
     NonCompliantProductsPage,
+    NonCompliantProductsDetailsPage,
     SyncOverview,
     PsToast,
   },
@@ -77,5 +74,5 @@ export default {
     });
   },
   CampaignTypes,
-};
+});
 </script>
