@@ -713,7 +713,7 @@
           "languages": "Languages",
           "actions": "Actions"
         },
-        "productId": "{variantsCount} variant|{variantsCount} variants"
+        "productVariants": "{variantsCount} variant|{variantsCount} variants"
       },
       "compliancyIssues": {
         "nameMissing": "Provide a name",

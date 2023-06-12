@@ -149,6 +149,9 @@ export interface State {
   attributeMapping: AttributeResponseFromAPI;
   report: ProductFeedReport;
   verificationIssues: ProductVerificationIssueOverall[]|null;
+  verificationIssuesProducts: {
+    [verificationIssue in ProductVerificationIssue]: ProductVerificationIssueProduct[];
+  }
 }
 
 export enum ProductStatus {
@@ -207,6 +210,13 @@ export type ProductVerificationIssueOverall = {
   };
 }
 
+export type ProductVerificationIssueProduct = {
+  id: string,
+  variationCount: string,
+  name: string,
+  langs: string[],
+}
+
 export const state: State = {
   warmedUp: false,
   isSyncSummaryLoadingInProgress: false,
@@ -259,4 +269,5 @@ export const state: State = {
     validProducts: null,
   },
   verificationIssues: null,
+  verificationIssuesProducts: {},
 };

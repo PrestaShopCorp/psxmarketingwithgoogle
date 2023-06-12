@@ -3,32 +3,30 @@
     class="align-items-center m-0 py-3"
   >
     <b-td>
-      {{ $t(`productFeedPage.compliancyIssues.${
-        ProductVerificationIssueTranslation[verificationIssue.name
-        ]}`) }}
+      <b-link
+        :href="getProductBaseUrl.replace('/1?', `/${verificationIssueProduct.id}?`)"
+        target="_blank"
+        class="external_link-no_icon"
+      >
+        {{ verificationIssueProduct.id }}
+      </b-link>
+      <div
+        v-if="+verificationIssueProduct.variationCount"
+      >
+        {{ $tc('productFeedPage.compliancyIssueProductsPage.productVariants',
+          +verificationIssueProduct.variationCount,
+          {variantsCount: verificationIssueProduct.variationCount
+        }) }}
+      </div>
     </b-td>
     <b-td
       class="col-md-4"
     >
-      {{ $t(`productFeedPage.compliancyIssues.${
-        ProductVerificationIssueTranslation[verificationIssue.name
-        ]}Action`) }}
-    </b-td>
-    <b-td>
-      {{ numberOfAffectedProducts }}
-      <b-link
-        :to="{
-          name: 'product-feed-verification-error-products',
-          params: {error: verificationIssue.name},
-        }"
-        class="text-nowrap"
-      >
-        {{ $t('productFeedPage.compliancyIssuesPage.actions.listProducts') }}
-      </b-link>
+      {{ verificationIssueProduct.name }}
     </b-td>
     <b-td>
       <b-card
-        v-for="(numberOfProducts, langIso) in verificationIssue.affected"
+        v-for="langIso in verificationIssueProduct.langs"
         :key="langIso"
         border-variant="primary"
         class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13"
@@ -36,19 +34,31 @@
         {{ langIso }}
       </b-card>
     </b-td>
+    <b-td
+      class="text-right"
+    >
+      <b-button
+        variant="invisible"
+        :href="getProductBaseUrl.replace('/1?', `/${verificationIssueProduct.id}?`)"
+        target="_blank"
+        class="external_link-no_icon"
+      >
+        <i class="material-icons ps_gs-fz-18">create</i>
+      </b-button>
+    </b-td>
   </b-tr>
 </template>
 
 <script lang="ts">
 import {PropType, defineComponent} from 'vue';
 
-import {ProductVerificationIssueOverall, ProductVerificationIssueTranslation} from '@/store/modules/product-feed/state';
+import {ProductVerificationIssueProduct, ProductVerificationIssueTranslation} from '@/store/modules/product-feed/state';
 
 export default defineComponent({
   name: 'NonCompliantProductsDetailsRow',
   props: {
-    verificationIssue: {
-      type: Object as PropType<ProductVerificationIssueOverall>,
+    verificationIssueProduct: {
+      type: Object as PropType<ProductVerificationIssueProduct>,
       required: true,
     },
   },
@@ -58,8 +68,8 @@ export default defineComponent({
     };
   },
   computed: {
-    numberOfAffectedProducts(): number {
-      return Object.values(this.verificationIssue.affected).reduce((prev, curr) => prev + curr, 0);
+    getProductBaseUrl() {
+      return this.$store.getters['app/GET_PRODUCT_DETAIL_BASE_URL'];
     },
   },
 });
