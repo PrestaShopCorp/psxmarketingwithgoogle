@@ -259,7 +259,6 @@ export default {
       verificationIssueNumberOfProducts: number,
     },
   ) {
-    console.log(data.originalPayload.verificationIssue, data.verificationIssueNumberOfProducts);
     state.verificationIssuesNumberOfProducts[
       data.originalPayload.verificationIssue
     ] = data.verificationIssueNumberOfProducts;

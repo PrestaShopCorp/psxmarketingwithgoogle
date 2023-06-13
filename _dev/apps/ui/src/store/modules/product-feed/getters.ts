@@ -70,9 +70,9 @@ export default {
     return (
       verificationIssue: ProductVerificationIssue,
       numberOfProducts: number,
-      offset: number,
+      activePage: number,
     ): ProductVerificationIssueProduct[]|null => {
-      const startOfArray = numberOfProducts * offset;
+      const startOffset = numberOfProducts * activePage;
 
       if (!state.verificationIssuesProducts[verificationIssue]) {
         return null;
@@ -83,11 +83,11 @@ export default {
         verificationIssue
       ] as ProductVerificationIssueProduct[];
 
-      if (listOfProducts.length < startOfArray) {
+      if (listOfProducts.length < startOffset) {
         return null;
       }
       return listOfProducts.slice(
-        startOfArray, startOfArray + numberOfProducts,
+        startOffset, startOffset + numberOfProducts,
       ) || null;
     };
   },
