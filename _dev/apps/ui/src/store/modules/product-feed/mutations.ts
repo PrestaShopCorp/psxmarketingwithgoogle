@@ -235,7 +235,11 @@ export default {
     if (!state.verificationIssuesProducts[data.originalPayload.verificationIssue]) {
       state.verificationIssuesProducts[data.originalPayload.verificationIssue] = [];
     }
-    state.verificationIssuesProducts[data.originalPayload.verificationIssue].splice(
+
+    // Force type after undefined check
+    (state.verificationIssuesProducts[
+      data.originalPayload.verificationIssue
+    ] as ProductVerificationIssueProduct[]).splice(
       data.originalPayload.offset * data.originalPayload.limit,
       data.originalPayload.limit,
       ...data.verificationIssueProducts,
