@@ -428,6 +428,8 @@ export const productFeed: State = {
     validProducts: null,
   },
   verificationIssues: null,
+  verificationIssuesNumberOfProducts: {},
+  verificationIssuesProducts: {},
 };
 export const productFeedNoCarriers: State = {
   ...productFeed,

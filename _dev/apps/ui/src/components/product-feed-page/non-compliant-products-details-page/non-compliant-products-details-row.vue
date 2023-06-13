@@ -6,7 +6,8 @@
       <b-link
         :href="getProductBaseUrl.replace('/1?', `/${verificationIssueProduct.id}?`)"
         target="_blank"
-        class="external_link-no_icon"
+        class="external_link-no_icon font-weight-600"
+
       >
         {{ verificationIssueProduct.id }}
       </b-link>
