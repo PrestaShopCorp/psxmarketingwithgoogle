@@ -77,10 +77,14 @@ export default {
       if (!state.verificationIssuesProducts[verificationIssue]) {
         return null;
       }
-      if (state.verificationIssuesProducts[verificationIssue].length < startOfArray) {
+
+      // Force type after undefined check
+      const listOfProducts = state.verificationIssuesProducts[verificationIssue] as ProductVerificationIssueProduct[];
+
+      if (listOfProducts.length < startOfArray) {
         return null;
       }
-      return state.verificationIssuesProducts[verificationIssue].slice(
+      return listOfProducts.slice(
         startOfArray, startOfArray + numberOfProducts,
       ) || null;
     };
