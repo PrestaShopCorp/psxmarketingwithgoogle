@@ -72,23 +72,23 @@ export default {
       numberOfProducts: number,
       offset: number,
     ): ProductVerificationIssueProduct[]|null => {
-
       const startOfArray = numberOfProducts * offset;
+
       if (!state.verificationIssuesProducts[verificationIssue]) {
         return null;
       }
       if (state.verificationIssuesProducts[verificationIssue].length < startOfArray) {
         return null;
       }
-      return state.verificationIssuesProducts[verificationIssue].slice(startOfArray, startOfArray + numberOfProducts) || null;
-    }
+      return state.verificationIssuesProducts[verificationIssue].slice(
+        startOfArray, startOfArray + numberOfProducts,
+      ) || null;
+    };
   },
   [GettersTypes.GET_PRODUCT_FEED_VERIFICATION_ISSUE_NB_OF_PRODUCTS](state: LocalState) {
     return (
       verificationIssue: ProductVerificationIssue,
-    ): number|null => {
-      return state.verificationIssuesNumberOfProducts[verificationIssue]|| null;
-    }
+    ): number|null => state.verificationIssuesNumberOfProducts[verificationIssue] || null;
   },
   [GettersTypes.GET_PRODUCT_FEED_VALIDATION_SUMMARY](state: LocalState) :
   ProductFeedValidationSummary {

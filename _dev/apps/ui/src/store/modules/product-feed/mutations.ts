@@ -240,10 +240,10 @@ export default {
       data.originalPayload.limit,
       ...data.verificationIssueProducts,
     );
-    state.verificationIssuesProducts = Object.assign(
-      {},
-      state.verificationIssuesProducts,
-    );
+    state.verificationIssuesProducts = {
+
+      ...state.verificationIssuesProducts,
+    };
   },
 
   [MutationsTypes.SAVE_VERIFICATION_ISSUE_NB_OF_PRODUCTS](
@@ -256,10 +256,13 @@ export default {
     },
   ) {
     console.log(data.originalPayload.verificationIssue, data.verificationIssueNumberOfProducts);
-    state.verificationIssuesNumberOfProducts[data.originalPayload.verificationIssue] = data.verificationIssueNumberOfProducts;
-    state.verificationIssuesNumberOfProducts = Object.assign(
-      {},
-      state.verificationIssuesNumberOfProducts,
-    );
+    state.verificationIssuesNumberOfProducts[
+      data.originalPayload.verificationIssue
+    ] = data.verificationIssueNumberOfProducts;
+
+    // Force refresh of state
+    state.verificationIssuesNumberOfProducts = {
+      ...state.verificationIssuesNumberOfProducts,
+    };
   },
 };

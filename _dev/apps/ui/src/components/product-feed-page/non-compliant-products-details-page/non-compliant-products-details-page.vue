@@ -35,8 +35,8 @@
           <VueShowdown
             :markdown="$t('productFeedPage.compliancyIssueProductsPage.details', {
               action: $t(`productFeedPage.compliancyIssues.${
-              ProductVerificationIssueTranslation[verificationIssueName
-              ]}Action`),
+                ProductVerificationIssueTranslation[verificationIssueName
+                ]}Action`),
             })"
           />
         </div>
@@ -168,9 +168,9 @@ export default defineComponent({
     totalPages(): number {
       return Math.ceil(
         (this.$store.getters['productFeed/GET_PRODUCT_FEED_VERIFICATION_ISSUE_NB_OF_PRODUCTS'](
-            this.verificationIssueName,
-          ) || 0)
-        / this.pageSize
+          this.verificationIssueName,
+        ) || 0)
+        / this.pageSize,
       );
     },
     issueProducts(): ProductVerificationIssueProduct[]|null {
@@ -205,12 +205,12 @@ export default defineComponent({
         this.apiFailed = true;
         throw e;
       })
-      .finally(() => {
-        this.loading = false;
-      });
+        .finally(() => {
+          this.loading = false;
+        });
     },
     pageChanged(newPageNumber: number): void {
-      this.activePage = newPageNumber-1;
+      this.activePage = newPageNumber - 1;
       this.getIssues();
     },
   },

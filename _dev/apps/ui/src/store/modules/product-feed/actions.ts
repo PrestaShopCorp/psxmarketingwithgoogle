@@ -458,7 +458,7 @@ export default {
       verificationIssue: ProductVerificationIssue,
       limit: number,
       offset: number,
-    }
+    },
   ) {
     const json: {
       products: ProductVerificationIssueProduct[],

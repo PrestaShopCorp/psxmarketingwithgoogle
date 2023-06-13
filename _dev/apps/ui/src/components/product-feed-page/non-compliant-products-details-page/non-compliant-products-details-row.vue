@@ -14,9 +14,9 @@
         v-if="+verificationIssueProduct.variationCount"
       >
         {{ $tc('productFeedPage.compliancyIssueProductsPage.productVariants',
-          +verificationIssueProduct.variationCount,
-          {variantsCount: verificationIssueProduct.variationCount
-        }) }}
+               +verificationIssueProduct.variationCount,
+               {variantsCount: verificationIssueProduct.variationCount
+               }) }}
       </div>
     </b-td>
     <b-td
