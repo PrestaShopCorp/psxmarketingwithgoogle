@@ -72,8 +72,8 @@
     "@types/jest": "^28.1.8",
     "@types/lodash.clonedeep": "^4.5.7",
     "@types/showdown": "^1.9.4",
-    "@typescript-eslint/eslint-plugin": "^5.36.2",
-    "@typescript-eslint/parser": "^5.36.2",
+    "@typescript-eslint/eslint-plugin": "^5.59.9",
+    "@typescript-eslint/parser": "^5.59.9",
     "@vue/babel-preset-jsx": "^1.4.0",
     "@vue/cli-plugin-babel": "^4.5.19",
     "@vue/cli-plugin-eslint": "~4.4.0",
@@ -107,7 +107,7 @@
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
     "ts-jest": "^28.0.8",
-    "typescript": "^4.8.2",
+    "typescript": "^4.9.5",
     "vue-template-compiler": "^2.7.10"
   },
   "msw": {
