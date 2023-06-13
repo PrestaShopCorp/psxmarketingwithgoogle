@@ -79,7 +79,9 @@ export default {
       }
 
       // Force type after undefined check
-      const listOfProducts = state.verificationIssuesProducts[verificationIssue] as ProductVerificationIssueProduct[];
+      const listOfProducts = state.verificationIssuesProducts[
+        verificationIssue
+      ] as ProductVerificationIssueProduct[];
 
       if (listOfProducts.length < startOfArray) {
         return null;

@@ -15,7 +15,7 @@
           </li>
           <li class="list-inline-item ps_gs-breadcrumb__item">
             <b-link
-              :to="{name: 'product-feed'}"
+              :to="{name: 'product-feed-verification-errors'}"
               class="d-flex align-items-center ps_gs-breadcrumb__link"
             >
               {{ $t('productFeedPage.breadcrumb.nonCompliantProducts') }}
@@ -156,7 +156,7 @@ export default defineComponent({
     return {
       loading: false as boolean,
       apiFailed: false as boolean,
-      pageSize: 50 as number,
+      pageSize: 10 as number,
       activePage: 0 as number,
       ProductVerificationIssueTranslation,
     };
@@ -213,13 +213,19 @@ export default defineComponent({
       this.activePage = newPageNumber - 1;
       this.getIssues();
     },
+    limitChanged(newLimit: number): void {
+      this.pageSize = newLimit;
+      this.getIssues();
+    },
   },
   mounted() {
     this.getIssues();
     this.$root.$on('changePage', this.pageChanged);
+    this.$root.$on('changeLimit', this.limitChanged);
   },
   beforeDestroy() {
     this.$root.$off('changePage', this.pageChanged);
+    this.$root.$off('changeLimit', this.limitChanged);
   },
 });
 </script>
