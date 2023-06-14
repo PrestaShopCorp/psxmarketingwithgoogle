@@ -69,7 +69,7 @@
               v-if="loading"
             >
               <b-tr
-                v-for="index in 5"
+                v-for="index in pageSize"
                 :key="index"
                 class="justify-content-between align-items-center py-3"
               >
