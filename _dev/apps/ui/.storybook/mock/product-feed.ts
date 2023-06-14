@@ -675,7 +675,7 @@ export const productFeedStatusSyncSuccess: State = {
   verificationIssues: [
     {
       affected: {
-        en: 5,
+        en: 1,
       },
       name: ProductVerificationIssue.MISSING_NAME,
     },

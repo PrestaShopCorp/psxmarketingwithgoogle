@@ -6,13 +6,13 @@
     <template #header>
       <ol class="mb-0 list-inline d-flex align-items-center ps_gs-breadcrumb">
         <li class="list-inline-item ps_gs-breadcrumb__item">
-            <b-link
-              :to="{name: 'product-feed'}"
-              class="d-flex align-items-center ps_gs-breadcrumb__link"
-            >
-              {{ $t('productFeedSettings.breadcrumb1') }}
-            </b-link>
-          </li>
+          <b-link
+            :to="{name: 'product-feed'}"
+            class="d-flex align-items-center ps_gs-breadcrumb__link"
+          >
+            {{ $t('productFeedSettings.breadcrumb1') }}
+          </b-link>
+        </li>
         <li class="list-inline-item ps_gs-breadcrumb__item">
           {{ $t('productFeedPage.breadcrumb.productStatusDetails') }}
         </li>
