@@ -692,6 +692,7 @@
         "compliancyIssuesPage": {
             "details": "To ensure a successful pre-scan with Google, please fix the issues outlined in the table below. Taking care of these issues will help your list your product on Google’s surfaces.",
             "languageSelection": "Filtrează după limbă",
+            "languageSelected": "Filter by: {lang}",
             "noResults": "No data found",
             "columns": {
                 "issues": "Issues",
