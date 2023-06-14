@@ -71,7 +71,7 @@ export default {
       verificationIssue: ProductVerificationIssue,
       numberOfProducts: number,
       activePage: number,
-    ): ProductVerificationIssueProduct[]|null => {
+    ): (ProductVerificationIssueProduct|null)[]|null => {
       const startOffset = numberOfProducts * activePage;
 
       if (!state.verificationIssuesProducts[verificationIssue]) {

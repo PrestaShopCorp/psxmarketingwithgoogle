@@ -123,6 +123,7 @@
             <template v-else>
               <non-compliant-products-details-row
                 v-for="product in issueProducts"
+                v-if="product"
                 :key="product.name"
                 :verification-issue-product="product"
               />
@@ -176,7 +177,7 @@ export default defineComponent({
         / this.pageSize,
       );
     },
-    issueProducts(): ProductVerificationIssueProduct[]|null {
+    issueProducts(): (ProductVerificationIssueProduct|null)[]|null {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_VERIFICATION_ISSUE_PRODUCTS'](
         this.verificationIssueName,
         this.pageSize,
@@ -203,7 +204,7 @@ export default defineComponent({
         type: 'productFeed/REQUEST_VERIFICATION_ISSUE_PRODUCTS',
         verificationIssue: this.verificationIssueName,
         limit: this.pageSize,
-        offset: this.activePage,
+        offset: this.activePage * this.pageSize,
       }).catch((e) => {
         this.apiFailed = true;
         throw e;
