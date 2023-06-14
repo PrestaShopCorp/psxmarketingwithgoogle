@@ -140,7 +140,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {PropType, defineComponent} from 'vue';
 
 import NonCompliantProductsDetailsRow from './non-compliant-products-details-row.vue';
 import {ProductVerificationIssue, ProductVerificationIssueProduct, ProductVerificationIssueTranslation} from '@/store/modules/product-feed/state';
@@ -161,10 +161,13 @@ export default defineComponent({
       ProductVerificationIssueTranslation,
     };
   },
+  props: {
+    verificationIssueName: {
+      type: String as PropType<ProductVerificationIssue>,
+      required: true,
+    }
+  },
   computed: {
-    verificationIssueName(): ProductVerificationIssue {
-      return ProductVerificationIssue.MISSING_DESCRIPTION;
-    },
     totalPages(): number {
       return Math.ceil(
         (this.$store.getters['productFeed/GET_PRODUCT_FEED_VERIFICATION_ISSUE_NB_OF_PRODUCTS'](

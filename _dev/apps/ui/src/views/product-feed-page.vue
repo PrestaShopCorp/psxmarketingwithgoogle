@@ -6,6 +6,7 @@
     />
     <non-compliant-products-details-page
       v-else-if="$route.name === 'product-feed-verification-error-products'"
+      :verification-issue-name="$route.params.error"
     />
     <non-compliant-products-page
       v-else-if="$route.name === 'product-feed-verification-errors'"
