@@ -701,7 +701,7 @@
                 "languages": "Languages"
             },
             "actions": {
-                "listProducts": "View products"
+                "listProducts": "View product|View products"
             }
         },
         "compliancyIssueProductsPage": {
@@ -712,7 +712,7 @@
                 "languages": "Languages",
                 "actions": "Acties"
             },
-            "productId": "{variantsCount} variant|{variantsCount} variants"
+            "productVariants": "{variantsCount} variant|{variantsCount} variants"
         },
         "compliancyIssues": {
             "nameMissing": "Provide a name",
