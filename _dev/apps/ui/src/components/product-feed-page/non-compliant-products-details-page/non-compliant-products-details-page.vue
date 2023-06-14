@@ -165,7 +165,7 @@ export default defineComponent({
     verificationIssueName: {
       type: String as PropType<ProductVerificationIssue>,
       required: true,
-    }
+    },
   },
   computed: {
     totalPages(): number {

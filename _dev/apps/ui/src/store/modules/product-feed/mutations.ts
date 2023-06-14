@@ -243,7 +243,7 @@ export default {
 
     // Fill intermediate indexes with null values
     const emptyValues: null[] = Array(
-      Math.max(0, data.originalPayload.offset - productsList.length)
+      Math.max(0, data.originalPayload.offset - productsList.length),
     ).fill(null);
 
     productsList.splice(
