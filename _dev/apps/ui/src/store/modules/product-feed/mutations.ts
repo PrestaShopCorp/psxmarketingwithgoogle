@@ -28,7 +28,6 @@ import {
   ProductFeedValidationSummary,
   AttributesInfos,
   commonAttributes,
-  PreScanReporting,
   ProductVerificationIssueOverall,
   ProductVerificationIssueProduct,
   ProductVerificationIssue,

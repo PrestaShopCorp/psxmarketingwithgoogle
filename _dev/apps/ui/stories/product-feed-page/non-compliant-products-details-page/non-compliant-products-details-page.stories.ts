@@ -347,7 +347,10 @@ NoData.parameters = {
       rest.get(
         `product-feeds/verification/issues/*/products?*`,
         (req, res, ctx) => {
-          return res(ctx.json([]));
+          return res(ctx.json({
+            "products": [],
+            "totalCount": 0
+          }));
         }
       ),
     ],
