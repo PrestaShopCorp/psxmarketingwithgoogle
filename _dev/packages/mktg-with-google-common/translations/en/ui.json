@@ -702,7 +702,7 @@
           "languages": "Languages"
         },
         "actions": {
-          "listProducts": "View products"
+          "listProducts": "View product|View products"
         }
       },
       "compliancyIssueProductsPage": {
