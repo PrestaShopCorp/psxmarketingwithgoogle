@@ -145,10 +145,15 @@ export interface State {
   attributesFromShop: Array<AttributesInfos>;
   selectedProductCategories: SelectedProductCategories;
   requestSynchronizationNow: boolean;
-  preScanDetail: PreScanDetail;
   attributeMapping: AttributeResponseFromAPI;
   report: ProductFeedReport;
   verificationIssues: ProductVerificationIssueOverall[]|null;
+  verificationIssuesProducts: {
+    [verificationIssue in ProductVerificationIssue]?: (ProductVerificationIssueProduct|null)[];
+  },
+  verificationIssuesNumberOfProducts: {
+    [verificationIssue in ProductVerificationIssue]?: number;
+  }
 }
 
 export enum ProductStatus {
@@ -156,30 +161,6 @@ export enum ProductStatus {
   Pending = 'pending',
   Approved = 'approved',
   Expiring = 'expiring',
-}
-
-export interface PreScanProductLang {
-  title: string;
-  lang: string;
-}
-export interface PreScanReporting {
-  productId: number;
-  attributeId?: number;
-  lastValidationDate: number;
-  titleByLang: PreScanProductLang[];
-  isMissingName: Boolean;
-  isMissingLink: Boolean;
-  isMissingImage: Boolean;
-  isMissingPrice: Boolean;
-  isMissingDescription: Boolean;
-  isMissingBrandOrBarcode: Boolean;
-}
-export interface PreScanDetail {
-  products: PreScanReporting[];
-  limit: number;
-  currentPage: number;
-  total: number;
-  langChosen: string;
 }
 
 export enum ProductVerificationIssue {
@@ -197,7 +178,7 @@ export enum ProductVerificationIssueTranslation {
   MISSING_IMAGE = 'imageMissing',
   MISSING_LINK = 'linkMissing',
   MISSING_PRICE = 'priceMissing',
-  MISSING_IDENTIFIER = 'idfentifierMissing',
+  MISSING_IDENTIFIER = 'identifierMissing',
 }
 
 export type ProductVerificationIssueOverall = {
@@ -205,6 +186,13 @@ export type ProductVerificationIssueOverall = {
   affected: {
     [isoCodeLanguage: string]: number;
   };
+}
+
+export type ProductVerificationIssueProduct = {
+  id: string,
+  variationCount: string,
+  name: string,
+  langs: string[],
 }
 
 export const state: State = {
@@ -244,13 +232,6 @@ export const state: State = {
   requestSynchronizationNow: false,
   attributesFromShop: [],
   selectedProductCategories: [Categories.NONE],
-  preScanDetail: {
-    products: [],
-    limit: 10,
-    currentPage: 1,
-    total: 0,
-    langChosen: '',
-  },
   attributeMapping: {},
   report: {
     lastConfigurationUsed: null,
@@ -259,4 +240,6 @@ export const state: State = {
     validProducts: null,
   },
   verificationIssues: null,
+  verificationIssuesProducts: {},
+  verificationIssuesNumberOfProducts: {},
 };

@@ -23,9 +23,10 @@ import {
   ProductFeedStatus,
   ProductFeedValidationSummary,
   AttributesInfos,
-  PreScanReporting,
   VerificationStats,
   ProductVerificationIssueOverall,
+  ProductVerificationIssueProduct,
+  ProductVerificationIssue,
 } from './state';
 import GettersTypes from './getters-types';
 import {filterCountriesCompatible} from '@/utils/TargetCountryValidator';
@@ -63,6 +64,36 @@ export default {
   [GettersTypes.GET_PRODUCT_FEED_VERIFICATION_ISSUES](state: LocalState) :
     ProductVerificationIssueOverall[]|null {
     return state.verificationIssues;
+  },
+  [GettersTypes.GET_PRODUCT_FEED_VERIFICATION_ISSUE_PRODUCTS](state: LocalState) {
+    return (
+      verificationIssue: ProductVerificationIssue,
+      numberOfProducts: number,
+      activePage: number,
+    ): (ProductVerificationIssueProduct|null)[]|null => {
+      const startOffset = numberOfProducts * activePage;
+
+      if (!state.verificationIssuesProducts[verificationIssue]) {
+        return null;
+      }
+
+      // Force type after undefined check
+      const listOfProducts = state.verificationIssuesProducts[
+        verificationIssue
+      ] as ProductVerificationIssueProduct[];
+
+      if (listOfProducts.length < startOffset) {
+        return null;
+      }
+      return listOfProducts.slice(
+        startOffset, startOffset + numberOfProducts,
+      ) || null;
+    };
+  },
+  [GettersTypes.GET_PRODUCT_FEED_VERIFICATION_ISSUE_NB_OF_PRODUCTS](state: LocalState) {
+    return (
+      verificationIssue: ProductVerificationIssue,
+    ): number|null => state.verificationIssuesNumberOfProducts[verificationIssue] || null;
   },
   [GettersTypes.GET_PRODUCT_FEED_VALIDATION_SUMMARY](state: LocalState) :
   ProductFeedValidationSummary {
@@ -115,23 +146,6 @@ export default {
 
     return state.requestSynchronizationNow;
   },
-  // TODO: Remove
-  [GettersTypes.GET_PRESCAN_LIMIT_PAGE](state: LocalState): number {
-    return state.preScanDetail.limit;
-  },
-  [GettersTypes.GET_PRESCAN_NEXT_PAGE](state: LocalState): number {
-    return state.preScanDetail.currentPage;
-  },
-  [GettersTypes.GET_PRESCAN_TOTAL_ERROR](state: LocalState): number {
-    return state.preScanDetail.total;
-  },
-  [GettersTypes.GET_PRESCAN_LANGUAGE_CHOSEN](state: LocalState): string {
-    return state.preScanDetail.langChosen;
-  },
-  [GettersTypes.GET_PRESCAN_PRODUCTS](state: LocalState): PreScanReporting[] {
-    return state.preScanDetail.products;
-  },
-  // End of TODO
   [GettersTypes.GET_ATTRIBUTE_MAPPING](state: LocalState): AttributeResponseFromAPI {
     return state.attributeMapping;
   },

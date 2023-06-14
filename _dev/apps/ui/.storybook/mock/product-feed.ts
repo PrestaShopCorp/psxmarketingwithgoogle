@@ -1,7 +1,12 @@
 import attributesToMap from "@/store/modules/product-feed/attributes-to-map.json";
 import { RateType } from "@/enums/product-feed/rate";
-import { State, AttributesTypes, ProductStatus, ProductVerificationIssue } from "@/store/modules/product-feed/state";
-import DeliveryType from '@/enums/product-feed/delivery-type';
+import {
+  State,
+  AttributesTypes,
+  ProductStatus,
+  ProductVerificationIssue,
+} from "@/store/modules/product-feed/state";
+import DeliveryType from "@/enums/product-feed/delivery-type";
 import { shippingPhpExport } from "./shipping-settings";
 import Categories from "@/enums/product-feed/attribute-mapping-categories";
 import { ShippingSetupOption } from "../../src/enums/product-feed/shipping";
@@ -24,7 +29,7 @@ export const productFeed: State = {
   attributeMapping: {},
   settings: {
     // Todo: Empty object to avoid trigger of refresh.
-    // To fill with actual data. 
+    // To fill with actual data.
     shippingSettings: shippingPhpExport,
     shippingSetup: null,
     rate: null,
@@ -414,13 +419,6 @@ export const productFeed: State = {
     { name: ["property"], type: "feature" as AttributesTypes },
   ],
   selectedProductCategories: [Categories.NONE],
-  preScanDetail: {
-    products: [],
-    limit: 10,
-    currentPage: 1,
-    total: 0,
-    langChosen: '',
-  },
   report: {
     lastConfigurationUsed: null,
     productsInCatalog: null,
@@ -428,6 +426,8 @@ export const productFeed: State = {
     validProducts: null,
   },
   verificationIssues: null,
+  verificationIssuesNumberOfProducts: {},
+  verificationIssuesProducts: {},
 };
 export const productFeedNoCarriers: State = {
   ...productFeed,
@@ -512,13 +512,13 @@ export const productFeedIsConfigured: State = {
   report: {
     lastConfigurationUsed: {
       lastModificationDate: new Date(2023, 6, 31, 13, 37),
-      targetCountries: ['FR', 'UK', 'IT'], 
+      targetCountries: ['FR', 'UK', 'IT'],
       languages: ['it', 'fr', 'de'],
     },
     productsInCatalog: null,
     invalidProducts: null,
     validProducts: null,
-  }
+  },
 };
 
 export const productFeedEstimateConfigured: State = {
@@ -563,17 +563,17 @@ export const productFeedEstimateConfigured: State = {
         carrierName: '',
         currency: "EUR",
         flatShippingRate: {
-          shippingCost: null
+          shippingCost: null,
         },
         countries: ["FR"],
         freeShippingOverAmount: {
-          shippingCost:null,
-          orderPrice:null
+          shippingCost: null,
+          orderPrice: null,
         },
-      }
-    ]
-  }
-}
+      },
+    ],
+  },
+};
 
 export const productFeedIsConfiguredWithTax: State = {
   ...productFeedIsConfigured,
@@ -665,10 +665,10 @@ export const productFeedStatusSyncSuccess: State = {
   report: {
     lastConfigurationUsed: {
       lastModificationDate: new Date(2023, 6, 31, 13, 37),
-      targetCountries: ['FR', 'UK', 'IT'], 
+      targetCountries: ['FR', 'UK', 'IT'],
       languages: ['it', 'fr', 'de'],
     },
-    productsInCatalog: '1362452',
+    productsInCatalog: "1362452",
     invalidProducts: 60,
     validProducts: 1362392,
   },
@@ -1234,4 +1234,201 @@ export const prevalidationScan = {
     },
   ],
   totalErrors: 24,
+};
+
+export const partialStateForVerificationIssuesProducts: Pick<
+  State,
+  "verificationIssuesProducts"
+> = {
+  verificationIssuesProducts: {
+    MISSING_DESCRIPTION: [
+      // page 0
+      { id: "7938", variationCount: "2", name: "Ivysaur", langs: ["en", "fr"] },
+      {
+        id: "7939",
+        variationCount: "2",
+        name: "Venusaur",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7941",
+        variationCount: "2",
+        name: "Charmeleon",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7944",
+        variationCount: "2",
+        name: "Wartortle",
+        langs: ["en", "fr"],
+      },
+      { id: "7947", variationCount: "2", name: "Metapod", langs: ["en", "fr"] },
+      // page 1
+      { id: "7948", variationCount: "1", name: "Butterfree", langs: ["en"] },
+      { id: "7949", variationCount: "2", name: "Weedle", langs: ["en", "fr"] },
+      { id: "7950", variationCount: "2", name: "Kakuna", langs: ["en", "fr"] },
+      {
+        id: "7951",
+        variationCount: "2",
+        name: "Beedrill",
+        langs: ["en", "fr"],
+      },
+      { id: "7952", variationCount: "2", name: "Pidgey", langs: ["en", "fr"] },
+      // page 2
+      {
+        id: "7953",
+        variationCount: "2",
+        name: "Pidgeotto",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7954",
+        variationCount: "2",
+        name: "Pidgeot",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7955",
+        variationCount: "2",
+        name: "Rattata",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7956",
+        variationCount: "2",
+        name: "Raticate",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7957",
+        variationCount: "2",
+        name: "Spearow",
+        langs: ["en", "fr"],
+      },
+      // page 3
+      {
+        id: "7958",
+        variationCount: "2",
+        name: "Fearow",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7959",
+        variationCount: "2",
+        name: "Ekans",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7960",
+        variationCount: "2",
+        name: "Arbok",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7962",
+        variationCount: "2",
+        name: "Raichu",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7963",
+        variationCount: "2",
+        name: "Sandshrew",
+        langs: ["en", "fr"],
+      },
+      // page 4
+      {
+        id: "7964",
+        variationCount: "2",
+        name: "Sandslash",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7965",
+        variationCount: "2",
+        name: "Nidoran-f",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7966",
+        variationCount: "2",
+        name: "Nidorina",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7967",
+        variationCount: "2",
+        name: "Nidoqueen",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7968",
+        variationCount: "2",
+        name: "Nidoran-m",
+        langs: ["en", "fr"],
+      },
+      // page 5
+      {
+        id: "7969",
+        variationCount: "2",
+        name: "Nidorino",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7970",
+        variationCount: "2",
+        name: "Nidoking",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7971",
+        variationCount: "2",
+        name: "Clefairy",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7972",
+        variationCount: "2",
+        name: "Clefable",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7973",
+        variationCount: "2",
+        name: "Vulpix",
+        langs: ["en", "fr"],
+      },
+      // page 6
+      {
+        id: "7969",
+        variationCount: "2",
+        name: "Nidorino",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7970",
+        variationCount: "2",
+        name: "Nidoking",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7971",
+        variationCount: "2",
+        name: "Clefairy",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7972",
+        variationCount: "2",
+        name: "Clefable",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7973",
+        variationCount: "2",
+        name: "Vulpix",
+        langs: ["en", "fr"],
+      },
+    ],
+  },
 };
