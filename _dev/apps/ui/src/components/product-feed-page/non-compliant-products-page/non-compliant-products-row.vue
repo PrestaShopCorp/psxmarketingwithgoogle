@@ -23,7 +23,10 @@
         }"
         class="text-nowrap"
       >
-        {{ $tc('productFeedPage.compliancyIssuesPage.actions.listProducts', numberOfAffectedProducts) }}
+        {{ $tc(
+          'productFeedPage.compliancyIssuesPage.actions.listProducts',
+          numberOfAffectedProducts,
+        ) }}
       </b-link>
     </b-td>
     <b-td>

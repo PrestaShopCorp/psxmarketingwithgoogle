@@ -218,10 +218,14 @@ export default defineComponent({
         });
     },
     changeLanguageCodeToName(langIsoCode: string): string {
-      return new Intl.DisplayNames(
+      const languageName = new Intl.DisplayNames(
         [window.i18nSettings.languageLocale],
         {type: 'language'},
       ).of(langIsoCode) || langIsoCode;
+
+      return languageName.replace(
+        /^\p{CWU}/u, (char) => char.toLocaleUpperCase(window.i18nSettings.languageLocale),
+      );
     },
   },
   mounted() {
