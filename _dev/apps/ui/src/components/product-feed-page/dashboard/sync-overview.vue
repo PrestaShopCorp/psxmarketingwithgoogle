@@ -59,13 +59,13 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import NotConfiguredCard from '@/components/commons/not-configured-card';
+import NotConfiguredCard from '@/components/commons/not-configured-card.vue';
 import FeedConfigurationCard from './feed-configuration/feed-configuration-card.vue';
 import MerchantCenterAccountAlertSuspended from '@/components/merchant-center-account/merchant-center-account-alert-suspended.vue';
 import SubmittedProducts from './panel/submitted-products.vue';
 import VerifiedProducts from './panel/verified-products.vue';
-import SyncHistory from './sync-history/sync-history';
-import SyncState from './sync-history/sync-state';
+import SyncHistory from './sync-history/sync-history.vue';
+import SyncState from './sync-history/sync-state.vue';
 import {IncrementalSyncContext} from './feed-configuration/feed-configuration';
 import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 import {getMerchantCenterWebsiteUrls} from '@/components/merchant-center-account/merchant-center-account-links';
@@ -100,7 +100,7 @@ export default defineComponent({
     gmcAccountDetails() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'];
     },
-    gmcAccountIsSuspended() {
+    gmcAccountIsSuspended(): boolean {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_WEBSITE_CLAIMING_OVERRIDE_STATUS']
       === WebsiteClaimErrorReason.Suspended;
     },

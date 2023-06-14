@@ -667,6 +667,7 @@ export const productFeedStatusSyncSuccess: State = {
       lastModificationDate: new Date(2023, 6, 31, 13, 37),
       targetCountries: ['FR', 'GB', 'IT'],
       languages: ['it', 'fr', 'de'],
+      currencies: ['EUR'],
     },
     productsInCatalog: "1362452",
     invalidProducts: 60,

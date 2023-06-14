@@ -149,7 +149,7 @@ export default defineComponent({
       return this.productFeedConfiguration?.languages || [];
     },
     currencies(): string[] {
-      return this.$store.getters['app/GET_SHOP_CURRENCIES'];
+      return this.productFeedConfiguration?.currencies || [];
     },
     localizationListLengths() {
       return {
