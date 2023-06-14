@@ -70,6 +70,7 @@
           v-if="status.link"
           v-bind="status.link"
           class="stretched-link external_link-no_icon"
+          @click="onLinkClick"
         />
       </div>
     </b-skeleton-wrapper>
@@ -126,6 +127,14 @@ export default defineComponent({
         return this.status.variant;
       }
       return 'white';
+    },
+  },
+  methods: {
+    onLinkClick(): void {
+      this.$segment.track(`[GGL] Product feed - Click on Status card "${this.status.title}"`, {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
     },
   },
 });

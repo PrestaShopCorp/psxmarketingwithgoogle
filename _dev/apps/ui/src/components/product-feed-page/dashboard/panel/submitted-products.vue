@@ -41,6 +41,7 @@
 import {defineComponent} from 'vue';
 import StatusCardComponent, {StatusCardParameters} from '../status-card.vue';
 import {getMerchantCenterWebsiteUrls} from '@/components/merchant-center-account/merchant-center-account-links';
+import {ProductFeedValidationSummary} from '@/store/modules/product-feed/state';
 
 export default defineComponent({
   components: {
@@ -60,7 +61,7 @@ export default defineComponent({
     gmcAccountDetails() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'];
     },
-    validationSummary() {
+    validationSummary(): ProductFeedValidationSummary {
       return this.inNeedOfConfiguration
         ? {
           activeProducts: 0,
@@ -138,6 +139,16 @@ export default defineComponent({
           to: {name: 'product-feed-status'},
         },
       }];
+    },
+  },
+  watch: {
+    loading(newVal, oldVal) {
+      if (oldVal === true && newVal === false) {
+        this.$segment.identify(this.$store.state.accounts.shopIdPsAccounts, {
+          ggl_user_has_approved_products_on_gmc: !!this.validationSummary.activeProducts,
+          ggl_user_has_disapproved_products_on_gmc: !!this.validationSummary.disapprovedProducts,
+        });
+      }
     },
   },
 });

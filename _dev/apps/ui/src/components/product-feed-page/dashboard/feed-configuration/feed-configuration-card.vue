@@ -70,6 +70,7 @@
                 :to="{ name: 'product-feed-settings',
                        params: { step: ProductFeedSettingsPages.SHIPPING_SETTINGS}}"
                 class="stretched-link external_link-no_icon"
+                @click="targetCountryClicked"
               />
             </b-card>
           </div>
@@ -104,6 +105,7 @@
                     target="_blank"
                     :href="$store.getters['app/GET_LANGUAGES_URL']"
                     class="stretched-link external_link-no_icon"
+                    @click="languageClicked"
                   />
                 </b-card>
               </template>
@@ -173,6 +175,20 @@ export default defineComponent({
           currency: currency || '?',
           currencyIsFound: currency && this.currencies.includes(currency),
         };
+      });
+    },
+  },
+  methods: {
+    targetCountryClicked(): void {
+      this.$segment.track('[GGL] Edit target countries from Product Feed Tab', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
+    },
+    languageClicked(): void {
+      this.$segment.track('[GGL] Edit languages from Product Feed Tab', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
       });
     },
   },
