@@ -23,7 +23,6 @@ import {
   ProductFeedStatus,
   ProductFeedValidationSummary,
   AttributesInfos,
-  PreScanReporting,
   VerificationStats,
   ProductVerificationIssueOverall,
   ProductVerificationIssueProduct,
@@ -147,23 +146,6 @@ export default {
 
     return state.requestSynchronizationNow;
   },
-  // TODO: Remove
-  [GettersTypes.GET_PRESCAN_LIMIT_PAGE](state: LocalState): number {
-    return state.preScanDetail.limit;
-  },
-  [GettersTypes.GET_PRESCAN_NEXT_PAGE](state: LocalState): number {
-    return state.preScanDetail.currentPage;
-  },
-  [GettersTypes.GET_PRESCAN_TOTAL_ERROR](state: LocalState): number {
-    return state.preScanDetail.total;
-  },
-  [GettersTypes.GET_PRESCAN_LANGUAGE_CHOSEN](state: LocalState): string {
-    return state.preScanDetail.langChosen;
-  },
-  [GettersTypes.GET_PRESCAN_PRODUCTS](state: LocalState): PreScanReporting[] {
-    return state.preScanDetail.products;
-  },
-  // End of TODO
   [GettersTypes.GET_ATTRIBUTE_MAPPING](state: LocalState): AttributeResponseFromAPI {
     return state.attributeMapping;
   },

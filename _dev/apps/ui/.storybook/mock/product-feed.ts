@@ -419,13 +419,6 @@ export const productFeed: State = {
     { name: ["property"], type: "feature" as AttributesTypes },
   ],
   selectedProductCategories: [Categories.NONE],
-  preScanDetail: {
-    products: [],
-    limit: 10,
-    currentPage: 1,
-    total: 0,
-    langChosen: '',
-  },
   report: {
     lastConfigurationUsed: null,
     productsInCatalog: null,

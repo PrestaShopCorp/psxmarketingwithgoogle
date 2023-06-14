@@ -397,25 +397,6 @@ export default {
 
     commit(MutationsTypes.SAVE_NUMBER_OF_PRODUCTS_ON_CLOUDSYNC, json.totalProducts);
   },
-  async [ActionsTypes.GET_PREVALIDATION_PRODUCTS]({rootState, commit, state}) {
-    const {limit} = state.preScanDetail;
-    const offset = ((state.preScanDetail.currentPage - 1) * limit).toString();
-    const lang = state.preScanDetail.langChosen;
-    let query = `?limit=${limit}&offset=${offset}`;
-
-    if (lang) {
-      query += `&lang=${lang.toLowerCase()}`;
-    }
-    const json = await (await fetchOnboarding(
-      'GET',
-      `product-feeds/prevalidation-scan/errors${query}`,
-    )).json();
-
-    commit(MutationsTypes.SET_PRESCAN_TOTAL_PRODUCT, json.totalErrors);
-    commit(MutationsTypes.SET_PRESCAN_PRODUCTS, json.errors);
-
-    return json.errors;
-  },
 
   async [ActionsTypes.SEND_PRODUCT_FEED_FLAGS]({rootState}, flags) {
     await fetchOnboarding(

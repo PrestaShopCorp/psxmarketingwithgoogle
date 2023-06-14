@@ -145,7 +145,6 @@ export interface State {
   attributesFromShop: Array<AttributesInfos>;
   selectedProductCategories: SelectedProductCategories;
   requestSynchronizationNow: boolean;
-  preScanDetail: PreScanDetail;
   attributeMapping: AttributeResponseFromAPI;
   report: ProductFeedReport;
   verificationIssues: ProductVerificationIssueOverall[]|null;
@@ -164,30 +163,6 @@ export enum ProductStatus {
   Expiring = 'expiring',
 }
 
-export interface PreScanProductLang {
-  title: string;
-  lang: string;
-}
-export interface PreScanReporting {
-  productId: number;
-  attributeId?: number;
-  lastValidationDate: number;
-  titleByLang: PreScanProductLang[];
-  isMissingName: Boolean;
-  isMissingLink: Boolean;
-  isMissingImage: Boolean;
-  isMissingPrice: Boolean;
-  isMissingDescription: Boolean;
-  isMissingBrandOrBarcode: Boolean;
-}
-export interface PreScanDetail {
-  products: PreScanReporting[];
-  limit: number;
-  currentPage: number;
-  total: number;
-  langChosen: string;
-}
-
 export enum ProductVerificationIssue {
   MISSING_NAME = 'MISSING_NAME',
   MISSING_DESCRIPTION = 'MISSING_DESCRIPTION',
@@ -203,7 +178,7 @@ export enum ProductVerificationIssueTranslation {
   MISSING_IMAGE = 'imageMissing',
   MISSING_LINK = 'linkMissing',
   MISSING_PRICE = 'priceMissing',
-  MISSING_IDENTIFIER = 'idfentifierMissing',
+  MISSING_IDENTIFIER = 'identifierMissing',
 }
 
 export type ProductVerificationIssueOverall = {
@@ -257,13 +232,6 @@ export const state: State = {
   requestSynchronizationNow: false,
   attributesFromShop: [],
   selectedProductCategories: [Categories.NONE],
-  preScanDetail: {
-    products: [],
-    limit: 10,
-    currentPage: 1,
-    total: 0,
-    langChosen: '',
-  },
   attributeMapping: {},
   report: {
     lastConfigurationUsed: null,

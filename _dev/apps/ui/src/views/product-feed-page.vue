@@ -31,7 +31,6 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import ProductFeedTableStatusDetails from '@/components/product-feed-page/product-feed-table-status-details.vue';
-import ProductFeedPreScanTableStatusDetails from '@/components/product-feed-page/product-feed-pre-scan-table-status-details.vue';
 import SyncOverview from '@/components/product-feed-page/dashboard/sync-overview.vue';
 import NonCompliantProductsPage from '@/components/product-feed-page/non-compliant-products-page/non-compliant-products-page.vue';
 import NonCompliantProductsDetailsPage from '@/components/product-feed-page/non-compliant-products-details-page/non-compliant-products-details-page.vue';
@@ -46,7 +45,6 @@ export default defineComponent({
   },
   components: {
     ProductFeedTableStatusDetails,
-    ProductFeedPreScanTableStatusDetails,
     NonCompliantProductsPage,
     NonCompliantProductsDetailsPage,
     SyncOverview,

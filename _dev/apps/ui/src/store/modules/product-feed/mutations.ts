@@ -169,21 +169,6 @@ export default {
   [MutationsTypes.SET_SYNC_SCHEDULE](state: LocalState, payload: boolean) {
     state.requestSynchronizationNow = payload;
   },
-  [MutationsTypes.SET_PRESCAN_LIMIT_PAGE](state: LocalState, payload: number) {
-    state.preScanDetail.limit = payload;
-  },
-  [MutationsTypes.SET_PRESCAN_NEXT_PAGE](state: LocalState, payload: number) {
-    state.preScanDetail.currentPage = payload;
-  },
-  [MutationsTypes.SET_PRESCAN_PRODUCTS](state: LocalState, payload: PreScanReporting[]) {
-    state.preScanDetail.products = payload;
-  },
-  [MutationsTypes.SET_PRESCAN_LANGUAGE_CHOSEN](state: LocalState, payload: string) {
-    state.preScanDetail.langChosen = payload;
-  },
-  [MutationsTypes.SET_PRESCAN_TOTAL_PRODUCT](state: LocalState, payload: number) {
-    state.preScanDetail.total = payload;
-  },
   [MutationsTypes.SET_RATE_CHOSEN](state: LocalState, payload: RateType) {
     state.settings.rate = payload;
   },
