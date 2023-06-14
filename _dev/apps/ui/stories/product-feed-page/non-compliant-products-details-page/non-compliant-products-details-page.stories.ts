@@ -1,6 +1,7 @@
 import { rest } from "msw";
 
 import NonCompliantProductsDetailsPage from "@/components/product-feed-page/non-compliant-products-details-page/non-compliant-products-details-page.vue";
+import { ProductVerificationIssue } from "@/store/modules/product-feed/state";
 
 export default {
   title: "Product-Feed-Page/Non compliant products details Page",
@@ -14,6 +15,9 @@ const Template = (args, { argTypes }) => ({
 });
 
 export const Default: any = Template.bind({});
+Default.args = {
+  verificationIssueName: ProductVerificationIssue.MISSING_DESCRIPTION,
+};
 Default.parameters = {
   msw: {
     handlers: [
@@ -334,6 +338,9 @@ Default.parameters = {
 };
 
 export const NoData: any = Template.bind({});
+NoData.args = {
+  verificationIssueName: ProductVerificationIssue.MISSING_IDENTIFIER,
+};
 NoData.parameters = {
   msw: {
     handlers: [
@@ -349,6 +356,7 @@ NoData.parameters = {
 
 export const Loading: any = Template.bind({});
 Loading.args = {
+  verificationIssueName: ProductVerificationIssue.MISSING_PRICE,
   mounted(this: any) {
     setTimeout(() => {
       this.$refs.page.$data.loading = true;
@@ -369,6 +377,9 @@ Loading.parameters = {
 };
 
 export const ErrorApi: any = Template.bind({});
+ErrorApi.args = {
+  verificationIssueName: ProductVerificationIssue.MISSING_LINK,
+};
 ErrorApi.parameters = {
   msw: {
     handlers: [

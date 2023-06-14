@@ -237,11 +237,19 @@ export default {
     }
 
     // Force type after undefined check
-    (state.verificationIssuesProducts[
+    const productsList = state.verificationIssuesProducts[
       data.originalPayload.verificationIssue
-    ] as ProductVerificationIssueProduct[]).splice(
-      data.originalPayload.offset * data.originalPayload.limit,
+    ] as (ProductVerificationIssueProduct|null)[];
+
+    // Fill intermediate indexes with null values
+    const emptyValues: null[] = Array(
+      Math.max(0, data.originalPayload.offset - productsList.length)
+    ).fill(null);
+
+    productsList.splice(
+      data.originalPayload.offset,
       data.originalPayload.limit,
+      ...emptyValues,
       ...data.verificationIssueProducts,
     );
     state.verificationIssuesProducts = {

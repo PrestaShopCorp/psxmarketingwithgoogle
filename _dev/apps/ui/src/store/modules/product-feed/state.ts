@@ -150,7 +150,7 @@ export interface State {
   report: ProductFeedReport;
   verificationIssues: ProductVerificationIssueOverall[]|null;
   verificationIssuesProducts: {
-    [verificationIssue in ProductVerificationIssue]?: ProductVerificationIssueProduct[];
+    [verificationIssue in ProductVerificationIssue]?: (ProductVerificationIssueProduct|null)[];
   },
   verificationIssuesNumberOfProducts: {
     [verificationIssue in ProductVerificationIssue]?: number;
