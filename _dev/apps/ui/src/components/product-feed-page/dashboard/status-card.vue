@@ -80,6 +80,8 @@
 <script lang="ts">
 import {PropType, defineComponent} from 'vue';
 
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
+
 export type StatusCardParameters = {
   title: string;
   description: string;

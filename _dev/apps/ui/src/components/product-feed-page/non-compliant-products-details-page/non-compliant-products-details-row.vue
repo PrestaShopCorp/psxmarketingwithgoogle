@@ -54,6 +54,7 @@
 <script lang="ts">
 import {PropType, defineComponent} from 'vue';
 
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {ProductVerificationIssueProduct, ProductVerificationIssueTranslation} from '@/store/modules/product-feed/state';
 
 export default defineComponent({

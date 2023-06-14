@@ -113,8 +113,10 @@ export default defineComponent({
       if (oldVal === true && newVal === false) {
         this.$segment.identify(this.$store.state.accounts.shopIdPsAccounts, {
           ggl_gmc_account_is_suspended: this.gmcAccountIsSuspended,
-          ggl_sync_is_multi_target_countries: (this.incrementalSyncContext?.targetCountries.length || 0) > 1,
-          ggl_sync_is_multi_languages: (this.incrementalSyncContext?.targetCountries.length || 0) > 1,
+          ggl_sync_is_multi_target_countries:
+            (this.incrementalSyncContext?.targetCountries.length || 0) > 1,
+          ggl_sync_is_multi_languages:
+            (this.incrementalSyncContext?.targetCountries.length || 0) > 1,
           ggl_sync_is_multi_currencies: (this.incrementalSyncContext?.currencies.length || 0) > 1,
           ggl_user_has_compliant_products: !!this.verificationStats.validProducts,
           ggl_user_has_non_compliant_products: !!this.verificationStats.validProducts,

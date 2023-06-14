@@ -125,6 +125,7 @@ import {IncrementalSyncContext} from './feed-configuration';
 import {timeConverterToDate, timeConverterToHour} from '@/utils/Dates';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import {changeCountryCodeToName, getCurrencyFromCountry} from '@/utils/Countries';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default defineComponent({
   props: {

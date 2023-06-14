@@ -514,6 +514,7 @@ export const productFeedIsConfigured: State = {
       lastModificationDate: new Date(2023, 6, 31, 13, 37),
       targetCountries: ['FR', 'GB', 'IT'], 
       languages: ['it', 'fr', 'de'],
+      currencies: ['EUR', 'GBP'],
     },
     productsInCatalog: null,
     invalidProducts: null,
