@@ -9,9 +9,8 @@
         {{
           $tc('productFeedSettings.preScan.langConflict',
               targetCountries.length,
-              [targetCountriesNames.join(', ')]
+              [targetCountriesDetails.map((country) => country.countryName).join(', ')]
           )
-
         }}
       </p>
     </b-alert>
@@ -51,7 +50,7 @@
         </div>
 
         <div class="d-flex justify-content-between">
-          <div class="flex-grow-1">
+          <div class="mr-1 mb-1">
             <i class="material-icons ps_gs-fz-20">language</i>
             <span class="font-weight-600 mr-1">
               {{ $tc(
@@ -59,13 +58,14 @@
                 localizationListLengths.countries) }}
             </span>
             <b-card
-              v-for="(country, index) in targetCountriesNames"
-              border-variant="primary"
+              v-for="(country, index) in targetCountriesDetails"
+              :border-variant="country.currencyIsFound ? 'primary' : 'danger'"
+              :text-variant="country.currencyIsFound ? 'primary' : 'danger'"
               class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13"
               :key="index"
               data-test-id="pf-config-country"
             >
-              {{ country }}
+              {{ country.countryName }} ({{ country.currency }})
               <router-link
                 :to="{ name: 'product-feed-settings',
                        params: { step: ProductFeedSettingsPages.SHIPPING_SETTINGS}}"
@@ -74,38 +74,40 @@
             </b-card>
           </div>
 
-          <div class="flex-grow-1">
-            <i class="material-icons ps_gs-fz-20">translate</i>
-            <span class="font-weight-600 mr-1">
-              {{ $tc(
-                'productFeedPage.dashboardPage.productFeedConfiguration.languages',
-                localizationListLengths.languages) }}
-            </span>
-            <span
-              v-if="!languages.length"
-              data-test-id="pf-config-no-lang"
-              class="text-danger"
-            >
-              {{ $t('productFeedPage.dashboardPage.productFeedConfiguration.noLanguage') }}
-            </span>
-            <template
-              v-else
-            >
-              <b-card
-                v-for="(language, index) in languages"
-                border-variant="primary"
-                class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13"
-                :key="index"
-                data-test-id="pf-config-lang"
+          <div class="flex d-flex-column flex-grow-1">
+            <div class="mb-1">
+              <i class="material-icons ps_gs-fz-20">translate</i>
+              <span class="font-weight-600 mr-1">
+                {{ $tc(
+                  'productFeedPage.dashboardPage.productFeedConfiguration.languages',
+                  localizationListLengths.languages) }}
+              </span>
+              <span
+                v-if="!languages.length"
+                data-test-id="pf-config-no-lang"
+                class="text-danger"
               >
-                {{ language }}
-                <b-link
-                  target="_blank"
-                  :href="$store.getters['app/GET_LANGUAGES_URL']"
-                  class="stretched-link external_link-no_icon"
-                />
-              </b-card>
-            </template>
+                {{ $t('productFeedPage.dashboardPage.productFeedConfiguration.noLanguage') }}
+              </span>
+              <template
+                v-else
+              >
+                <b-card
+                  v-for="(language, index) in languages"
+                  border-variant="primary"
+                  class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13"
+                  :key="index"
+                  data-test-id="pf-config-lang"
+                >
+                  {{ language }}
+                  <b-link
+                    target="_blank"
+                    :href="$store.getters['app/GET_LANGUAGES_URL']"
+                    class="stretched-link external_link-no_icon"
+                  />
+                </b-card>
+              </template>
+            </div>
           </div>
         </div>
       </b-skeleton-wrapper>
@@ -119,8 +121,8 @@ import {defineComponent} from 'vue';
 
 import {IncrementalSyncContext} from './feed-configuration';
 import {timeConverterToDate, timeConverterToHour} from '@/utils/Dates';
-import {changeCountriesCodesToNames} from '@/utils/Countries';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
+import {changeCountryCodeToName, getCurrencyFromCountry} from '@/utils/Countries';
 
 export default defineComponent({
   props: {
@@ -146,10 +148,14 @@ export default defineComponent({
     languages(): string[] {
       return this.productFeedConfiguration?.languages || [];
     },
+    currencies(): string[] {
+      return this.$store.getters['app/GET_SHOP_CURRENCIES'];
+    },
     localizationListLengths() {
       return {
         countries: this.targetCountries.length,
         languages: this.languages.length,
+        currencies: this.currencies.length,
       };
     },
     lastModificationDate() {
@@ -158,8 +164,16 @@ export default defineComponent({
     lastModificationTime() {
       return timeConverterToHour(this.productFeedConfiguration?.lastModificationDate);
     },
-    targetCountriesNames() {
-      return changeCountriesCodesToNames(this.targetCountries);
+    targetCountriesDetails() {
+      return this.targetCountries.map((country) => {
+        const currency = getCurrencyFromCountry(country);
+
+        return {
+          countryName: changeCountryCodeToName(country),
+          currency: currency || '?',
+          currencyIsFound: currency && this.currencies.includes(currency),
+        };
+      });
     },
   },
 });
