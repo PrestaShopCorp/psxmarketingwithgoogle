@@ -1,5 +1,5 @@
 import SubmittedProducts from '@/components/product-feed-page/dashboard/panel/submitted-products.vue';
-import { productFeedIsConfigured } from '../.storybook/mock/product-feed';
+import { productFeedIsConfigured } from '../../../.storybook/mock/product-feed';
 
 export default {
   title: 'Product-Feed-Page/Product Feed Page/Components/Submitted Products',

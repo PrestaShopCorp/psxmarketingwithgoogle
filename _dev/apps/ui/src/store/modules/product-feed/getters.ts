@@ -25,6 +25,7 @@ import {
   AttributesInfos,
   PreScanReporting,
   VerificationStats,
+  ProductVerificationIssueOverall,
 } from './state';
 import GettersTypes from './getters-types';
 import {filterCountriesCompatible} from '@/utils/TargetCountryValidator';
@@ -58,6 +59,10 @@ export default {
       invalidProducts: state.report.invalidProducts,
       validProducts: state.report.validProducts,
     };
+  },
+  [GettersTypes.GET_PRODUCT_FEED_VERIFICATION_ISSUES](state: LocalState) :
+    ProductVerificationIssueOverall[]|null {
+    return state.verificationIssues;
   },
   [GettersTypes.GET_PRODUCT_FEED_VALIDATION_SUMMARY](state: LocalState) :
   ProductFeedValidationSummary {
@@ -110,6 +115,7 @@ export default {
 
     return state.requestSynchronizationNow;
   },
+  // TODO: Remove
   [GettersTypes.GET_PRESCAN_LIMIT_PAGE](state: LocalState): number {
     return state.preScanDetail.limit;
   },
@@ -125,6 +131,7 @@ export default {
   [GettersTypes.GET_PRESCAN_PRODUCTS](state: LocalState): PreScanReporting[] {
     return state.preScanDetail.products;
   },
+  // End of TODO
   [GettersTypes.GET_ATTRIBUTE_MAPPING](state: LocalState): AttributeResponseFromAPI {
     return state.attributeMapping;
   },

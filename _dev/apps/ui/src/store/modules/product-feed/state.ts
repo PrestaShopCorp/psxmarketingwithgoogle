@@ -148,6 +148,7 @@ export interface State {
   preScanDetail: PreScanDetail;
   attributeMapping: AttributeResponseFromAPI;
   report: ProductFeedReport;
+  verificationIssues: ProductVerificationIssueOverall[]|null;
 }
 
 export enum ProductStatus {
@@ -179,6 +180,31 @@ export interface PreScanDetail {
   currentPage: number;
   total: number;
   langChosen: string;
+}
+
+export enum ProductVerificationIssue {
+  MISSING_NAME = 'MISSING_NAME',
+  MISSING_DESCRIPTION = 'MISSING_DESCRIPTION',
+  MISSING_IMAGE = 'MISSING_IMAGE',
+  MISSING_LINK = 'MISSING_LINK',
+  MISSING_PRICE = 'MISSING_PRICE',
+  MISSING_IDENTIFIER = 'MISSING_IDENTIFIER',
+}
+
+export enum ProductVerificationIssueTranslation {
+  MISSING_NAME = 'nameMissing',
+  MISSING_DESCRIPTION = 'descriptionMissing',
+  MISSING_IMAGE = 'imageMissing',
+  MISSING_LINK = 'linkMissing',
+  MISSING_PRICE = 'priceMissing',
+  MISSING_IDENTIFIER = 'idfentifierMissing',
+}
+
+export type ProductVerificationIssueOverall = {
+  name: ProductVerificationIssue;
+  affected: {
+    [isoCodeLanguage: string]: number;
+  };
 }
 
 export const state: State = {
@@ -232,4 +258,5 @@ export const state: State = {
     invalidProducts: null,
     validProducts: null,
   },
+  verificationIssues: null,
 };

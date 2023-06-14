@@ -13,6 +13,9 @@
       v-else-if="$route.name === 'product-feed-verification-error-products'"
     />
     -->
+    <non-compliant-products-page
+      v-else-if="$route.name === 'product-feed-verification-errors'"
+    />
     <template v-else>
       <PsToast
         v-if="allDataLoaded && syncStatus === 'schedule' && !inNeedOfConfiguration"
@@ -34,6 +37,7 @@
 import ProductFeedTableStatusDetails from '@/components/product-feed-page/product-feed-table-status-details';
 import ProductFeedPreScanTableStatusDetails from '@/components/product-feed-page/product-feed-pre-scan-table-status-details';
 import SyncOverview from '@/components/product-feed-page/dashboard/sync-overview.vue';
+import NonCompliantProductsPage from '@/components/product-feed-page/non-compliant-products-page/non-compliant-products-page';
 import PsToast from '../components/commons/ps-toast';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
@@ -46,6 +50,7 @@ export default {
   components: {
     ProductFeedTableStatusDetails,
     ProductFeedPreScanTableStatusDetails,
+    NonCompliantProductsPage,
     SyncOverview,
     PsToast,
   },
