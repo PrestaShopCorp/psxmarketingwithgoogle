@@ -664,7 +664,7 @@
             },
             "productVerification": {
                 "stepTitle": "Produits vérifiés par PrestaShop avant d'être envoyés à Google",
-                "stepDetails": "Avant d'envoyer tous vos produits (y compris les déclinaisons), nous nous assurons qu'ils sont conformes aux règles de Google Merchant Center. Nous vérifions les produits **à chaque fois qu'un changement est détecté**, et s'il y a des produits non conformes, nous vous indiquons ce qu'il faut faire. Cliquez sur les produits non conformes pour plus d'informations.\n\nAprès la soumission, Google attribue un statut à chaque produit : **Actif, Expirant, En attente ou Refusé**.",
+                "stepDetails": "Before sending all your products (including variations), we ensure their compliance with Google's Merchant center policies. We verify the products **every time a change is detected**, and if there are any non-compliant products, we provide guidance on what needs to be done. Click on non-compliant products for more information.\n\nAfter submission, Google assigns each product a status: **Approved, Expiring, Pending** or **Disapproved**.",
                 "reportCards": {
                     "productsInCatalog": "Mon catalogue produit",
                     "productsInCatalogDescription": "Produits actifs avec des déclinaisons dans les langues du flux de produits.",
@@ -707,9 +707,9 @@
         "compliancyIssueProductsPage": {
             "details": "**Action proposée :** {action}",
             "columns": {
-                "productsId": "Product’s ID",
-                "productsTitle": "Product’s title",
-                "languages": "Languages",
+                "productsId": "ID du produit",
+                "productsTitle": "Titre du produit",
+                "languages": "Langues",
                 "actions": "Actions"
             },
             "productVariants": "{variantsCount} variant|{variantsCount} variants"
@@ -722,11 +722,13 @@
             "linkMissing": "Ajouter un lien",
             "linkMissingAction": "Product link are mandatory. Please update your product page to generate a product link.",
             "descriptionMissing": "Renseignez une description",
-            "descriptionMissingAction": "Add a description in your products. If you already have a description, check the attribute picked for description in the Attribute mapping configuration of the module.",
+            "descriptionMissingAction": "Ajoutez une description à vos produits. Si vous avez déjà une description, vérifiez l'attribut choisi pour la description dans la cartographie des attributs de votre flux produit.",
             "brandMissing": "Renseignez une marque",
             "brandMissingAction": "Veuillez renseigner la marque du produit. Vous pouvez ajouter une marque dans Catalogue > Produits > Essentiel dans la section Marque pour chaque produit.",
+            "identifierMissing": "Provide a brand/GTIN",
+            "identifierMissingAction": "Please provide either brand or GTIN for the product.\n\nBrand is the brand of the product or your company. You can add a brand in Catalog > Products > Basic settings in the Brand section for each product.\n\nGTIN is a unique identifier used to identify products. It can be UPC or EAN or JAN or ISBN. You can add a GTIN in Catalog > Products > Options > in the Condition & References for each product.",
             "gtinMissing": "Renseignez un GTIN",
-            "gtinMssingAction": "A GTIN (Global Trade Item Number) is a unique identifier used to identify products. The GTIN include UPC (in North America), EAN (in Europe), JAN (in Japan), and ISBN (for books). You can add a GTIN in Catalog > Products > Options > in the Condition & References for each product.\n\nThe GTIN identifier can usually be found on the product's barcode label, packaging, or documentation, or contacting the manufacturer.\n\nGTIN is a unique identifier used to identify products. it can be UPC or EAN or JAN or ISBN. Brand is the Brand of the product or your company.",
+            "gtinMssingAction": "Un GTIN (Global Trade Item Number) est un identifiant unique utilisé pour identifier les produits. Les GTIN comprennent l'UPC (en Amérique du Nord), l'EAN (en Europe), le JAN (au Japon) et l'ISBN (pour les livres). Vous pouvez ajouter un GTIN dans Catalogue > Produits > Options > dans les Conditions et références pour chaque produit.\n\nL'identifiant GTIN se trouve généralement sur l'étiquette du code-barres du produit, sur l'emballage, dans la documentation ou en contactant le fabricant.\n\nLe GTIN est un identifiant unique utilisé pour identifier les produits. Il peut s'agir d'un code UPC, d'un code EAN, d'un code JAN ou d'un code ISBN. La marque est la marque du produit ou de votre entreprise.",
             "priceMissing": "Renseignez un prix",
             "priceMissingAction": "Veuillez renseigner le prix du produit."
         },
