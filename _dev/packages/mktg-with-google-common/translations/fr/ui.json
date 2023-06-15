@@ -628,8 +628,8 @@
     },
     "productFeedPage": {
         "breadcrumb": {
-            "productStatusDetails": "Product status details",
-            "nonCompliantProducts": "Non-compliant products"
+            "productStatusDetails": "Détails du statut du produit",
+            "nonCompliantProducts": "Produits non conformes"
         },
         "alert": {
             "googleIsReviewing": "Vos produits sont en cours de révision  \nCela peut prendre 3 à 5 jours pour examiner vos produits. Une fois approuvés, ils seront disponibles pour les fiches gratuites et campagnes publicitaires.",
@@ -656,15 +656,15 @@
             "timeline": {},
             "productFeedConfiguration": {
                 "title": "Votre configuration de flux produit",
-                "targetCountries": "Selected target country:|Selected target countries:",
-                "languages": "Language:|Languages:",
-                "currencies": "Currency:|Currencies:",
+                "targetCountries": "Pays cible sélectionné:|Pays cibles sélectionnés:",
+                "languages": "Langue :|Langues :",
+                "currencies": "Devise :|Devises :",
                 "noLanguage": "Aucune langue éligible",
                 "noCurrency": "Aucune devise éligible"
             },
             "productVerification": {
                 "stepTitle": "Produits vérifiés par PrestaShop avant d'être envoyés à Google",
-                "stepDetails": "Before sending all your products (including variations), we ensure their compliance with Google's Merchant center policies. We verify the products **every time a change is detected**, and if there are any non-compliant products, we provide guidance on what needs to be done. Click on non-compliant products for more information.\n\nAfter submission, Google assigns each product a status: **Approved, Expiring, Pending** or **Disapproved**.",
+                "stepDetails": "Avant d'envoyer tous vos produits (y compris les déclinaisons), nous nous assurons qu'ils sont conformes aux règles de Google Merchant Center. Nous vérifions les produits **à chaque fois qu'un changement est détecté**, et s'il y a des produits non conformes, nous vous indiquons ce qu'il faut faire. Cliquez sur les produits non conformes pour plus d'informations.\n\nAprès la soumission, Google attribue un statut à chaque produit : **Actif, Expirant, En attente ou Refusé**.",
                 "reportCards": {
                     "productsInCatalog": "Mon catalogue produit",
                     "productsInCatalogDescription": "Produits actifs avec des déclinaisons dans les langues du flux de produits.",
@@ -676,14 +676,14 @@
             },
             "productsSentToGoogle": {
                 "stepTitle": "Produits envoyés à Google",
-                "stepDetails": "This report displays the status of all your products that have been sent to Google Merchant Center. Please note that it may take a few days for Google to review your products. You can use this report to track the progress of each product and ensure that they are approved and active on Google Shopping.\n\n**‘Approved’ products** are fully approved and eligible to appear in free listings on Google.\n\n**‘Pending’ products** are being processed by Google. They will not appear in listings until they are approved.\n\n**‘Expiring’ products** will become inactive and no longer appear in Google listings in the next days.\n\n**‘Disapproved’ products** are inactive and do not appear in Google listings. You can click on Disapproved box for more information.",
+                "stepDetails": "Ce rapport affiche l'état de tous vos produits qui ont été envoyés au Google Merchant Center. Veuillez noter que l'évaluation de vos produits par Google peut prendre quelques jours. Vous pouvez utiliser ce rapport pour suivre la progression de chaque produit et vous assurer qu'ils sont approuvés et actifs sur Google Shopping.\n\n**Les produits \"actifs\"** sont entièrement approuvés et peuvent apparaître dans les listes gratuites de Google.\n\n**Les produits \"en attente\"** sont en cours de traitement par Google. Ils n'apparaîtront pas dans les listes tant qu'ils n'auront pas été approuvés.\n\n**Les produits \"expirants\"** deviendront inactifs et n'apparaîtront plus dans les listes de Google dans les prochains jours.\n\n**Les produits \"refusés\"** sont inactifs et n'apparaissent pas dans les listes de Google. Vous pouvez cliquer sur la case \"Refusés\" pour plus d'informations.",
                 "reportCards": {
                     "approved": "Actifs",
-                    "approvedDescription": "Products with variations successfully synced.",
+                    "approvedDescription": "Produits avec déclinaisons synchronisés avec succès.",
                     "pending": "En attente",
                     "pendingDescription": "Produits en cours d'évaluation par Google.",
                     "expiring": "Expirants",
-                    "expiringDescription": "Invalid products to be removed from Google soon.",
+                    "expiringDescription": "Produits non mis à jour qui seront bientôt supprimés de Google.",
                     "disapproved": "Refusés",
                     "disapprovedDescription": "Produits refusés par Google."
                 }
@@ -712,21 +712,21 @@
                 "languages": "Langues",
                 "actions": "Actions"
             },
-            "productVariants": "{variantsCount} variant|{variantsCount} variants"
+            "productVariants": "{variantsCount} déclinaison|{variantsCount} déclinaisons"
         },
         "compliancyIssues": {
             "nameMissing": "Renseignez un nom",
-            "nameMissingAction": "A product name is a unique identifier used to describe a product, and it is important because it helps improves visibility in search engine results. In PrestaShop, product names can be entered in the Catalog > Product > in the \"Product Name\" section.",
+            "nameMissingAction": "Un nom de produit est un identifiant unique utilisé pour décrire un produit, et il est important car il aide à améliorer la visibilité dans les résultats des moteurs de recherche. Dans PrestaShop, les noms de produits peuvent être saisis dans le Catalogue > Produit > dans la section \"Nom du produit\".",
             "imageMissing": "Ajoutez une image",
-            "imageMissingAction": "A product image is a visual representation of a product that helps customers understand what the product looks like. It is important to have product images because it can help increase product appeal and sales, and can enhance the overall shopping experience. Product images can be added or edited in Catalog > Product > in the \"Images\" section.",
+            "imageMissingAction": "Une image de produit est une représentation visuelle d'un produit qui aide les clients à comprendre à quoi ressemble le produit. Il est important d'avoir des images de produits car elles peuvent contribuer à augmenter l'attrait du produit et les ventes, et peuvent améliorer l'expérience globale d'achat. Les images de produits peuvent être ajoutées ou modifiées dans Catalogue > Produit > dans la section \"Images\".",
             "linkMissing": "Ajouter un lien",
-            "linkMissingAction": "Product link are mandatory. Please update your product page to generate a product link.",
+            "linkMissingAction": "Les liens vers les produits sont obligatoires. Veuillez mettre à jour votre page produit pour générer un lien produit.",
             "descriptionMissing": "Renseignez une description",
             "descriptionMissingAction": "Ajoutez une description à vos produits. Si vous avez déjà une description, vérifiez l'attribut choisi pour la description dans la cartographie des attributs de votre flux produit.",
             "brandMissing": "Renseignez une marque",
             "brandMissingAction": "Veuillez renseigner la marque du produit. Vous pouvez ajouter une marque dans Catalogue > Produits > Essentiel dans la section Marque pour chaque produit.",
-            "identifierMissing": "Provide a brand/GTIN",
-            "identifierMissingAction": "Please provide either brand or GTIN for the product.\n\nBrand is the brand of the product or your company. You can add a brand in Catalog > Products > Basic settings in the Brand section for each product.\n\nGTIN is a unique identifier used to identify products. It can be UPC or EAN or JAN or ISBN. You can add a GTIN in Catalog > Products > Options > in the Condition & References for each product.",
+            "identifierMissing": "Renseignez une marque/GTIN",
+            "identifierMissingAction": "Veuillez indiquer la marque ou le GTIN du produit.\n\nLa marque peut être la marque du produit ou votre entreprise. Vous pouvez ajouter une marque dans Catalogue > Produits > Essentiel dans la section Marque pour chaque produit.\n\nLe GTIN est un identifiant unique utilisé pour identifier les produits. Il peut s'agir d'un code UPC, d'un code EAN, d'un code JAN ou d'un code ISBN. Vous pouvez ajouter un GTIN dans Catalogue > Produits > Options > dans la section Conditions et références pour chaque produit.",
             "gtinMissing": "Renseignez un GTIN",
             "gtinMssingAction": "Un GTIN (Global Trade Item Number) est un identifiant unique utilisé pour identifier les produits. Les GTIN comprennent l'UPC (en Amérique du Nord), l'EAN (en Europe), le JAN (au Japon) et l'ISBN (pour les livres). Vous pouvez ajouter un GTIN dans Catalogue > Produits > Options > dans les Conditions et références pour chaque produit.\n\nL'identifiant GTIN se trouve généralement sur l'étiquette du code-barres du produit, sur l'emballage, dans la documentation ou en contactant le fabricant.\n\nLe GTIN est un identifiant unique utilisé pour identifier les produits. Il peut s'agir d'un code UPC, d'un code EAN, d'un code JAN ou d'un code ISBN. La marque est la marque du produit ou de votre entreprise.",
             "priceMissing": "Renseignez un prix",
@@ -994,7 +994,7 @@
         "validateSelection": "Valider la sélection",
         "visitThe": "Visitez la page {0} pour plus d'informations.",
         "createPmax": "Créez une campagne Performance Max",
-        "understand": "Je comprends",
+        "understand": "I understand",
         "moreActions": "Plus d'Actions"
     },
     "badge": {
