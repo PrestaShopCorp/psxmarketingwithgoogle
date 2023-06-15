@@ -28,6 +28,7 @@ services:
     public: true
     arguments:
       - '@psxmarketingwithgoogle.currency'
+      - '@psxmarketingwithgoogle.context'
 
   PrestaShop\Module\PsxMarketingWithGoogle\Repository\LanguageRepository:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\LanguageRepository

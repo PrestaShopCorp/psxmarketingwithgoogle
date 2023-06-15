@@ -28,6 +28,9 @@ export default {
   [GettersTypes.GET_CURRENT_CURRENCY](state: LocalState): string {
     return state.psxMktgWithGoogleShopCurrency.isoCode;
   },
+  [GettersTypes.GET_SHOP_CURRENCIES](state: LocalState): string[] {
+    return state.psxMktgWithGoogleActiveCurrencies;
+  },
   [GettersTypes.GET_DOC_AND_FAQ](state: LocalState): HelpInformations {
     return state.psxMktgWithGoogleDocumentAndFaq;
   },
@@ -46,6 +49,15 @@ export default {
   [GettersTypes.GET_PRODUCT_DETAIL_BASE_URL](state: LocalState): string {
     return state.psxMktgWithGoogleProductDetailUrl;
   },
+  [GettersTypes.GET_PRODUCTS_CATALOG_URL](state: LocalState): string {
+    return state.psxMktgWithGoogleProductsUrl;
+  },
+  [GettersTypes.GET_CURRENCIES_URL](state: LocalState): string {
+    return state.psxMktgWithGoogleCurrenciesUrl;
+  },
+  [GettersTypes.GET_LANGUAGES_URL](state: LocalState): string {
+    return state.psxMktgWithGoogleLanguagesUrl;
+  },
   [GettersTypes.GET_STORE_INFORMATION_URL](state: LocalState): string {
     return state.psxMktgWithGoogleStoreSettingsUrl;
   },
@@ -61,7 +73,12 @@ export default {
     );
 
     return filterByActiveCountriesOnShop.reduce((ids : string[], obj) => {
-      if (obj.currency === state.psxMktgWithGoogleShopCurrency.isoCode) {
+      if (
+        // PHP Module providing ONLY default currency
+        obj.currency === state.psxMktgWithGoogleShopCurrency.isoCode
+        // PHP Module providing all shop currencies
+        || state.psxMktgWithGoogleActiveCurrencies.includes(obj.currency)
+      ) {
         ids.push(obj.country);
       }
       return ids;

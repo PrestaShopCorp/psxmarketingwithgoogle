@@ -28,11 +28,13 @@ import {
   ProductFeedValidationSummary,
   AttributesInfos,
   commonAttributes,
-  PrevalidationScanSummary,
-  PreScanReporting,
+  ProductVerificationIssueOverall,
+  ProductVerificationIssueProduct,
+  ProductVerificationIssue,
 } from './state';
 import {RateType} from '@/enums/product-feed/rate';
 import {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
+import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
 
 type payloadObject = {
   name: string, data: string
@@ -166,29 +168,96 @@ export default {
   [MutationsTypes.SET_SYNC_SCHEDULE](state: LocalState, payload: boolean) {
     state.requestSynchronizationNow = payload;
   },
-  [MutationsTypes.SET_PREVALIDATION_SUMMARY](state: LocalState, payload: PrevalidationScanSummary) {
-    state.prevalidationScanSummary = payload;
-  },
-  [MutationsTypes.SET_PRESCAN_LIMIT_PAGE](state: LocalState, payload: number) {
-    state.preScanDetail.limit = payload;
-  },
-  [MutationsTypes.SET_PRESCAN_NEXT_PAGE](state: LocalState, payload: number) {
-    state.preScanDetail.currentPage = payload;
-  },
-  [MutationsTypes.SET_PRESCAN_PRODUCTS](state: LocalState, payload: PreScanReporting[]) {
-    state.preScanDetail.products = payload;
-  },
-  [MutationsTypes.SET_PRESCAN_LANGUAGE_CHOSEN](state: LocalState, payload: string) {
-    state.preScanDetail.langChosen = payload;
-  },
-  [MutationsTypes.SET_PRESCAN_TOTAL_PRODUCT](state: LocalState, payload: number) {
-    state.preScanDetail.total = payload;
-  },
   [MutationsTypes.SET_RATE_CHOSEN](state: LocalState, payload: RateType) {
     state.settings.rate = payload;
   },
   [MutationsTypes.SET_SHIPPING_SETUP_SELECTED](state: LocalState, payload) {
     localStorage.setItem('productFeed-shippingSetup', JSON.stringify(payload));
     state.settings.shippingSetup = payload;
+  },
+  [MutationsTypes.SAVE_PRODUCT_FEED_SYNC_CONTEXT](
+    state: LocalState,
+    syncContext: IncrementalSyncContext,
+  ) {
+    state.report.lastConfigurationUsed = syncContext;
+  },
+  [MutationsTypes.SAVE_NUMBER_OF_PRODUCTS_ON_CLOUDSYNC](
+    state: LocalState,
+    productsInCatalog: string,
+  ) {
+    state.report.productsInCatalog = productsInCatalog;
+  },
+  [MutationsTypes.SAVE_VERIFICATION_STATS](
+    state: LocalState,
+    verificationStats: {
+      validProducts: number;
+      invalidProducts: number;
+    },
+  ) {
+    state.report.invalidProducts = verificationStats.invalidProducts;
+    state.report.validProducts = verificationStats.validProducts;
+  },
+
+  [MutationsTypes.SAVE_VERIFICATION_ISSUES](
+    state: LocalState,
+    verificationIssues: ProductVerificationIssueOverall[],
+  ) {
+    state.verificationIssues = verificationIssues;
+  },
+
+  [MutationsTypes.SAVE_VERIFICATION_ISSUE_PRODUCTS](
+    state: LocalState,
+    data: {
+      originalPayload: {
+        verificationIssue: ProductVerificationIssue,
+        limit: number,
+        offset: number,
+      },
+      verificationIssueProducts: ProductVerificationIssueProduct[],
+    },
+  ) {
+    if (!state.verificationIssuesProducts[data.originalPayload.verificationIssue]) {
+      state.verificationIssuesProducts[data.originalPayload.verificationIssue] = [];
+    }
+
+    // Force type after undefined check
+    const productsList = state.verificationIssuesProducts[
+      data.originalPayload.verificationIssue
+    ] as (ProductVerificationIssueProduct|null)[];
+
+    // Fill intermediate indexes with null values
+    const emptyValues: null[] = Array(
+      Math.max(0, data.originalPayload.offset - productsList.length),
+    ).fill(null);
+
+    productsList.splice(
+      data.originalPayload.offset,
+      data.originalPayload.limit,
+      ...emptyValues,
+      ...data.verificationIssueProducts,
+    );
+    state.verificationIssuesProducts = {
+
+      ...state.verificationIssuesProducts,
+    };
+  },
+
+  [MutationsTypes.SAVE_VERIFICATION_ISSUE_NB_OF_PRODUCTS](
+    state: LocalState,
+    data: {
+      originalPayload: {
+        verificationIssue: ProductVerificationIssue,
+      },
+      verificationIssueNumberOfProducts: number,
+    },
+  ) {
+    state.verificationIssuesNumberOfProducts[
+      data.originalPayload.verificationIssue
+    ] = data.verificationIssueNumberOfProducts;
+
+    // Force refresh of state
+    state.verificationIssuesNumberOfProducts = {
+      ...state.verificationIssuesNumberOfProducts,
+    };
   },
 };

@@ -28,8 +28,9 @@ import {
 import {runIf} from '@/utils/Promise';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {fromApi, toApi} from '@/providers/shipping-rate-provider';
-import {ProductFeedSettings} from './state';
+import {ProductFeedSettings, ProductVerificationIssue, ProductVerificationIssueProduct} from './state';
 import {formatMappingToApi} from '@/utils/AttributeMapping';
+import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
 
 // ToDo: Get DTO type from API sources
 export const createProductFeedApiPayload = (settings:any) => ({
@@ -68,10 +69,6 @@ export default {
         dispatch(ActionsTypes.GET_TOTAL_PRODUCTS_READY_TO_SYNC),
       ),
       runIf(
-        state.prevalidationScanSummary.scannedItems === null,
-        dispatch(ActionsTypes.GET_PREVALIDATION_SUMMARY),
-      ),
-      runIf(
         !getters.GET_PRODUCT_FEED_STATUS.syncSchedule?.length,
         dispatch(ActionsTypes.GET_PRODUCT_FEED_SYNC_STATUS),
       ),
@@ -80,8 +77,20 @@ export default {
         dispatch(ActionsTypes.GET_PRODUCT_FEED_SETTINGS),
       ),
       runIf(
-        getters.GET_PRODUCT_FEED_VALIDATION_SUMMARY.activeItems === null,
+        getters.GET_PRODUCT_FEED_VALIDATION_SUMMARY.activeProducts === null,
         dispatch(ActionsTypes.GET_PRODUCT_FEED_SYNC_SUMMARY),
+      ),
+      runIf(
+        !getters.GET_PRODUCT_FEED_SYNC_CONTEXT,
+        dispatch(ActionsTypes.REQUEST_PRODUCT_FEED_SYNC_CONTEXT),
+      ),
+      runIf(
+        !state.report.productsInCatalog,
+        dispatch(ActionsTypes.REQUEST_PRODUCTS_ON_CLOUDSYNC),
+      ),
+      runIf(
+        !state.report.invalidProducts,
+        dispatch(ActionsTypes.REQUEST_VERIFICATION_STATS),
       ),
     ]);
   },
@@ -315,7 +324,7 @@ export default {
     try {
       const result = await (await fetchOnboarding(
         'GET',
-        'product-feeds/validation/summary',
+        'product-feeds/stats/gmc',
       )).json();
       commit(MutationsTypes.SET_VALIDATION_SUMMARY, result);
     } catch (error) {
@@ -380,32 +389,13 @@ export default {
       console.log(error);
     }
   },
-  async [ActionsTypes.GET_PREVALIDATION_PRODUCTS]({rootState, commit, state}) {
-    const {limit} = state.preScanDetail;
-    const offset = ((state.preScanDetail.currentPage - 1) * limit).toString();
-    const lang = state.preScanDetail.langChosen;
-    let query = `?limit=${limit}&offset=${offset}`;
-
-    if (lang) {
-      query += `&lang=${lang.toLowerCase()}`;
-    }
-    const json = await (await fetchOnboarding(
+  async [ActionsTypes.REQUEST_PRODUCTS_ON_CLOUDSYNC]({commit}) {
+    const json: {totalProducts: string} = await (await fetchOnboarding(
       'GET',
-      `product-feeds/prevalidation-scan/errors${query}`,
+      'product-feeds/stats/shop',
     )).json();
 
-    commit(MutationsTypes.SET_PRESCAN_TOTAL_PRODUCT, json.totalErrors);
-    commit(MutationsTypes.SET_PRESCAN_PRODUCTS, json.errors);
-
-    return json.errors;
-  },
-
-  async [ActionsTypes.GET_PREVALIDATION_SUMMARY]({rootState, commit}) {
-    const json = await (await fetchOnboarding(
-      'GET',
-      'product-feeds/prevalidation-scan/summary',
-    )).json();
-    commit(MutationsTypes.SET_PREVALIDATION_SUMMARY, json);
+    commit(MutationsTypes.SAVE_NUMBER_OF_PRODUCTS_ON_CLOUDSYNC, json.totalProducts);
   },
 
   async [ActionsTypes.SEND_PRODUCT_FEED_FLAGS]({rootState}, flags) {
@@ -414,5 +404,58 @@ export default {
       'debug/migration',
       {body: flags},
     );
+  },
+
+  async [ActionsTypes.REQUEST_PRODUCT_FEED_SYNC_CONTEXT]({commit}) {
+    const json: IncrementalSyncContext = await (await fetchOnboarding(
+      'GET',
+      'incremental-sync/context/',
+    )).json();
+
+    commit(MutationsTypes.SAVE_PRODUCT_FEED_SYNC_CONTEXT, json);
+  },
+
+  async [ActionsTypes.REQUEST_VERIFICATION_STATS]({commit}) {
+    const json = await (await fetchOnboarding(
+      'GET',
+      'product-feeds/stats/verification',
+    )).json();
+
+    commit(MutationsTypes.SAVE_VERIFICATION_STATS, json);
+  },
+
+  async [ActionsTypes.REQUEST_VERIFICATION_ISSUES]({commit}) {
+    const json = await (await fetchOnboarding(
+      'GET',
+      'product-feeds/verification/issues',
+    )).json();
+
+    commit(MutationsTypes.SAVE_VERIFICATION_ISSUES, json);
+  },
+
+  async [ActionsTypes.REQUEST_VERIFICATION_ISSUE_PRODUCTS](
+    {commit},
+    payload: {
+      verificationIssue: ProductVerificationIssue,
+      limit: number,
+      offset: number,
+    },
+  ) {
+    const json: {
+      products: ProductVerificationIssueProduct[],
+      totalCount: string,
+    } = await (await fetchOnboarding(
+      'GET',
+      `product-feeds/verification/issues/${payload.verificationIssue}/products?limit=${payload.limit}&offset=${payload.offset}`,
+    )).json();
+
+    commit(MutationsTypes.SAVE_VERIFICATION_ISSUE_PRODUCTS, {
+      originalPayload: payload,
+      verificationIssueProducts: json.products,
+    });
+    commit(MutationsTypes.SAVE_VERIFICATION_ISSUE_NB_OF_PRODUCTS, {
+      originalPayload: payload,
+      verificationIssueNumberOfProducts: json.totalCount,
+    });
   },
 };

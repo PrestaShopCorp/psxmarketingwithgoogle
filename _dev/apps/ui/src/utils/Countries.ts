@@ -1,5 +1,15 @@
 import countriesSelectionOptions from '@/assets/json/countries.json';
 
+type Country = {
+  country: string;
+  currency: string;
+  shoppingOngletAvailable: boolean,
+  onBeta: boolean,
+  enterpriseNumberNeeded: boolean,
+  shoppingFrAvailable: boolean,
+  code: string;
+};
+
 export const changeCountryCodeToName = ((country: string) => {
   for (let i = 0; i < countriesSelectionOptions.length; i += 1) {
     if (country === countriesSelectionOptions[i].code) {
@@ -27,3 +37,8 @@ export const changeCountryNameToCode = ((country: string) => {
 export const changeCountriesNamesToCodes = (countries: string[]) => countries.map(
   changeCountryNameToCode,
 );
+
+export const getCurrencyFromCountry = (countryCode: string) => countriesSelectionOptions.find(
+  (someCountry: Country) => (
+    someCountry.code === countryCode
+  ))?.currency;

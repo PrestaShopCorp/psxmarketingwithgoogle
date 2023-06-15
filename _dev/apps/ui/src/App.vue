@@ -31,7 +31,7 @@
             v-if="!currentlyOnLandingPage"
             :route="{name: 'product-feed'}"
           >
-            {{ $t('general.tabs.exportStatus') }}
+            {{ $t('general.tabs.productFeed') }}
           </MenuItem>
           <MenuItem
             v-if="!currentlyOnLandingPage"

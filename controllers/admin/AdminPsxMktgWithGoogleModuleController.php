@@ -160,6 +160,9 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
             'psxMktgWithGoogleCarriersUrl' => $this->context->link->getAdminLink('AdminCarriers'),
             'psxMktgWithGoogleAttributesUrl' => $this->context->link->getAdminLink('AdminAttributesGroups'),
             'psxMktgWithGoogleStoreSettingsUrl' => $this->context->link->getAdminLink('AdminStores'),
+            'psxMktgWithGoogleProductsUrl' => $this->context->link->getAdminLink('AdminProducts'),
+            'psxMktgWithGoogleCurrenciesUrl' => $this->context->link->getAdminLink('AdminCurrencies'),
+            'psxMktgWithGoogleLanguagesUrl' => $this->context->link->getAdminLink('AdminLanguages'),
             'psxMktgWithGoogleProductDetailUrl' => $this->context->link->getAdminLink(
                 'AdminProducts',
                 true,
@@ -170,6 +173,7 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
             'isCountryMemberOfEuropeanUnion' => $this->countryRepository->isCompatibleForCSS(),
             'psxMktgWithGoogleShopUrl' => $this->context->link->getBaseLink($this->context->shop->id),
             'psxMktgWithGoogleActiveCountries' => $this->countryRepository->getActiveCountries(),
+            'psxMktgWithGoogleActiveCurrencies' => $this->currencyRepository->getActiveCurrencies(),
             'psxMtgWithGoogleDefaultShopCountry' => $this->countryRepository->getShopDefaultCountry()['iso_code'],
             'psxMktgWithGoogleShopCurrency' => $this->currencyRepository->getShopCurrency(),
             'psxMktgWithGoogleRemarketingTagsStatus' => (bool) $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS),

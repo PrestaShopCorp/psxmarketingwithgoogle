@@ -1,24 +1,27 @@
-import ProductFeedPage from '../src/views/product-feed-page.vue'
+import cloneDeep from 'lodash.clonedeep';
+import ProductFeedPage from '@/views/product-feed-page.vue'
 import {
   productFeed,
   productFeedStatusSyncScheduled,
   productFeedSyncSummaryInProgress,
   productFeedStatusSyncSuccess,
   productFeedStatusSyncFailed,
-} from '../.storybook/mock/product-feed';
+  productFeedIsConfigured,
+} from '@/../.storybook/mock/product-feed';
 import {
   googleAdsNotChosen,
   adsAccountStatus,
-} from '../.storybook/mock/google-ads';
+} from '@/../.storybook/mock/google-ads';
 
 import {
   campaignsListResponse
-} from '../.storybook/mock/campaigns-list';
+} from '@/../.storybook/mock/campaigns-list';
 
 import { rest } from 'msw';
+import merchantCenterAccountConnected from '@/../.storybook/mock/merchant-center-account';
 
 export default {
-  title: 'Product-Feed-Page/ProductFeedPage',
+  title: 'Product-Feed-Page/Product Feed Page',
 };
 
 const ProductFeed = (args, { argTypes }) => ({
@@ -30,7 +33,6 @@ const ProductFeed = (args, { argTypes }) => ({
   beforeCreate(this :any){
     this.$store.state.productFeed.isConfigured = Object.assign({}, true);
   },
-
 });
 
 export const NeedConfiguration:any = ProductFeed.bind({});
@@ -39,6 +41,18 @@ NeedConfiguration.args = {
     this.$store.state.productFeed.isConfigured = false;
   }
 };
+
+export const Loading:any = ProductFeed.bind({});
+Loading.args = {
+  beforeMount() {
+    this.$store.state.productFeed.isConfigured = true;
+  },
+  mounted(this: any) {
+    setTimeout(() => {
+      this.$refs.ProductFeedPage.$data.allDataLoaded = false;
+    }, 500);
+  }
+}
 
 export const Planned:any = ProductFeed.bind({});
 Planned.args = {
@@ -66,7 +80,7 @@ Planned.parameters = {
           })
         );
       }),
-      rest.get('/product-feeds/validation/summary', (req, res, ctx) => {
+      rest.get('/product-feeds/stats/gmc', (req, res, ctx) => {
         return res(
           ctx.json({
             ...productFeedStatusSyncScheduled.validationSummary
@@ -87,13 +101,6 @@ Planned.parameters = {
           })
         );
       }),
-      rest.get('/product-feeds/prevalidation-scan/summary', (req, res, ctx) => {
-        return res(
-          ctx.json({
-            ...productFeed.prevalidationScanSummary
-          })
-        );
-      }),
       rest.get('/shopping-campaigns/list', (req, res, ctx) => {
         return res(
           ctx.json({
@@ -111,6 +118,7 @@ InProgress.args = {
   allDataLoaded : true,
   beforeMount() {
     this.$store.state.productFeed.isConfigured = false;
+    this.$store.state.productFeed.report = cloneDeep(productFeedIsConfigured.report);
   },
   mounted(this: any) {
     this.$refs.ProductFeedPage.$data.allDataLoaded = true
@@ -133,7 +141,7 @@ InProgress.parameters = {
           })
         );
       }),
-      rest.get('/product-feeds/validation/summary', (req, res, ctx) => {
+      rest.get('/product-feeds/stats/gmc', (req, res, ctx) => {
         return res(
           ctx.json({
             ...productFeedSyncSummaryInProgress.validationSummary
@@ -154,13 +162,6 @@ InProgress.parameters = {
           })
         );
       }),
-      rest.get('/product-feeds/prevalidation-scan/summary', (req, res, ctx) => {
-        return res(
-          ctx.json({
-            ...productFeed.prevalidationScanSummary
-          })
-        );
-      }),
       rest.get('/shopping-campaigns/list', (req, res, ctx) => {
         return res(
           ctx.json({
@@ -172,8 +173,14 @@ InProgress.parameters = {
   },
 };
 
-export const SuccessWithoutPrescan:any = ProductFeed.bind({});
-SuccessWithoutPrescan.parameters = {
+export const ScanFailedBecauseOfLanguages:any = ProductFeed.bind({});
+ScanFailedBecauseOfLanguages.args = {
+  beforeMount() {
+    this.$store.state.productFeed.report = cloneDeep(productFeedIsConfigured.report);
+    this.$store.state.productFeed.report.lastConfigurationUsed.languages = [];
+  },
+}
+ScanFailedBecauseOfLanguages.parameters = {
   msw: {
     handlers: [
       rest.get('/incremental-sync/status/*', (req, res, ctx) => {
@@ -190,7 +197,7 @@ SuccessWithoutPrescan.parameters = {
           })
         );
       }),
-      rest.get('/product-feeds/validation/summary', (req, res, ctx) => {
+      rest.get('/product-feeds/stats/gmc', (req, res, ctx) => {
         return res(
           ctx.json({
             ...productFeedStatusSyncSuccess.validationSummary
@@ -228,6 +235,11 @@ SuccessWithoutPrescan.parameters = {
 };
 
 export const Success:any = ProductFeed.bind({});
+Success.args = {
+  beforeMount() {
+    this.$store.state.productFeed.report = cloneDeep(productFeedStatusSyncSuccess.report);
+  },
+}
 Success.parameters = {
   msw: {
     handlers: [
@@ -245,17 +257,17 @@ Success.parameters = {
           })
         );
       }),
-      rest.get('/product-feeds/validation/summary', (req, res, ctx) => {
+      rest.get('/product-feeds/stats/gmc', (req, res, ctx) => {
         return res(
           ctx.json({
             ...productFeedStatusSyncSuccess.validationSummary
           })
         );
       }),
-      rest.get('/product-feeds/prevalidation-scan/summary', (req, res, ctx) => {
+      rest.get('/product-feeds/stats/shop', (req, res, ctx) => {
         return res(
           ctx.json({
-            ...productFeed.prevalidationScanSummary
+            totalProducts: productFeedStatusSyncSuccess.report.productsInCatalog
           })
         );
       }),
@@ -284,8 +296,13 @@ Success.parameters = {
   },
 };
 
-export const Failed:any = ProductFeed.bind({});
-Failed.parameters = {
+export const SyncFailed:any = ProductFeed.bind({});
+SyncFailed.args = {
+  beforeMount() {
+    this.$store.state.productFeed.report = cloneDeep(productFeedIsConfigured.report);
+  },
+}
+SyncFailed.parameters = {
   msw: {
     handlers: [
       rest.get('/incremental-sync/status/*', (req, res, ctx) => {
@@ -302,7 +319,14 @@ Failed.parameters = {
           })
         );
       }),
-      rest.get('/product-feeds/validation/summary', (req, res, ctx) => {
+      rest.get('/product-feeds/stats/shop', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            totalProducts: productFeedStatusSyncSuccess.report.verificationStats.productsInCatalog
+          })
+        );
+      }),
+      rest.get('/product-feeds/stats/gmc', (req, res, ctx) => {
         return res(
           ctx.json({
             ...productFeedStatusSyncFailed.validationSummary
@@ -323,10 +347,93 @@ Failed.parameters = {
           })
         );
       }),
-      rest.get('/product-feeds/prevalidation-scan/summary', (req, res, ctx) => {
+      rest.get('/shopping-campaigns/list', (req, res, ctx) => {
         return res(
           ctx.json({
-            ...productFeed.prevalidationScanSummary
+            ...campaignsListResponse,
+          })
+        );
+      }),
+    ],
+  },
+};
+
+export const AccountSuspended:any = ProductFeed.bind({});
+AccountSuspended.args = {
+  beforeMount() {
+    this.$store.state.accounts.googleMerchantAccount = cloneDeep(Object.assign({},
+      merchantCenterAccountConnected,
+      {
+        isSuspended: {
+          status: true,
+          issues: [
+            {
+              id: 'editorial_and_professional_standards_destination_url_down_policy',
+              title:
+                'Account suspended due to policy violation: landing page not working',
+              country: 'US',
+              severity: 'critical',
+              documentation:
+                'https://google.com/first-link',
+            },
+            {
+              id: 'editorial_and_professional_standards_destination_url_down_policy',
+              title:
+                'Account suspended due to policy violation: Oh no',
+              country: 'US',
+              severity: 'critical',
+              documentation:
+                'https://google.com/second-link',
+            },
+          ]
+        },
+      },
+    ));
+    this.$store.state.productFeed.report = cloneDeep(productFeedStatusSyncSuccess.report);
+  },
+}
+AccountSuspended.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/incremental-sync/status/*', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...productFeedStatusSyncSuccess.status,
+          })
+        );
+      }),
+      rest.get('/incremental-sync/settings/*', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...productFeedStatusSyncSuccess.settings,
+          })
+        );
+      }),
+      rest.get('/product-feeds/stats/gmc', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...productFeedStatusSyncSuccess.validationSummary
+          })
+        );
+      }),
+      rest.get('/product-feeds/stats/shop', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            totalProducts: productFeedStatusSyncSuccess.report.verificationStats.productsInCatalog
+          })
+        );
+      }),
+      rest.get('/ads-accounts/list', (req, res, ctx) => {
+        return res(
+          ctx.json(
+            googleAdsNotChosen.list
+          )
+        );
+      }),
+      rest.get('/ads-accounts/status', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...adsAccountStatus,
           })
         );
       }),

@@ -36,7 +36,7 @@
           </b-badge>
           <div
             class="flex-grow-1 d-flex-md flex-md-grow-1 flex-shrink-0 text-right"
-            v-if="selectedMcaDetails.id === null"
+            v-if="gmcAccountDetails.id === null"
           >
             <b-button
               size="sm"
@@ -88,7 +88,7 @@
           </div>
         </div>
         <div
-          v-if="isEnabled && selectedMcaDetails.id === null"
+          v-if="isEnabled && gmcAccountDetails.id === null"
           class="ml-2 ps_gs-onboardingcard__content"
         >
           <VueShowdown
@@ -97,7 +97,7 @@
             tag="p"
             :markdown="this.$i18n.t('mcaCard.introDisabled')"
             :extensions="['no-p-tag', 'extended-b-link']"
-            v-if="selectedMcaDetails.id === null"
+            v-if="gmcAccountDetails.id === null"
             :vue-template="true"
           />
           <b-form class="mb-2 mt-3">
@@ -286,7 +286,7 @@
                 target="_blank"
                 class="external_link-no_icon link-regular"
               >
-                {{ selectedMcaDetails.name }} - {{ selectedMcaDetails.id }}
+                {{ gmcAccountDetails.name }} - {{ gmcAccountDetails.id }}
               </a>
               <span
                 v-if="loaderText"
@@ -306,41 +306,12 @@
             </div>
           </div>
         </div>
-        <b-alert
+        <merchant-center-account-alert-suspended
           v-if="error === WebsiteClaimErrorReason.Suspended"
-          show
-          variant="danger"
+          :issues="gmcAccountDetails.isSuspended.issues"
+          :account-overview-url="merchantCenterWebsitePageUrl.overview"
           class="mb-0 mt-3"
-        >
-          <strong>{{ $t('mcaCard.alertSuspended') }}</strong><br>
-          <VueShowdown
-            :markdown="$t('mcaCard.alertSuspendedDescription', [
-              merchantCenterWebsitePageUrl.overview,
-              $options.googleUrl.requestiongReReview
-            ])"
-            :extensions="['extended-link']"
-          />
-          <span class="text-muted d-block">
-            <template
-              v-for="(issue, index) in selectedMcaDetails.isSuspended.issues"
-            ><!--
-            comment is necessary to have the comma next to the link
-          --><span
-          v-if="index !== 0"
-          class="mr-2"
-          :key="'span-' + index"
-              >, </span><!--
-            comment is necessary to have the comma next to the link
-          --><a
-            :key="index"
-            :href="issue.documentation"
-            target="_blank"
-            class="text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
-            v-html="$t('mcaCard.linkLearnMoreAbout', [issue.title])"
-          />
-            </template>
-          </span>
-        </b-alert>
+        />
         <b-alert
           v-else-if="error === WebsiteClaimErrorReason.OverwriteNeeded"
           show
@@ -535,6 +506,8 @@ import googleUrl from '@/assets/json/googleUrl.json';
 import {
   WebsiteClaimErrorReason,
 } from '../../store/modules/accounts/state';
+import {getMerchantCenterWebsiteUrls} from './merchant-center-account-links';
+import MerchantCenterAccountAlertSuspended from '@/components/merchant-center-account/merchant-center-account-alert-suspended.vue';
 import MerchantCenterAccountPopinOverwriteClaim from './merchant-center-account-popin-overwrite-claim';
 import MerchantCenterAccountPopinWebsiteRequirements from './merchant-center-account-popin-website-requirements.vue';
 import PhoneVerificationPopin from './phone-verification/phone-verification-popin.vue';
@@ -544,6 +517,7 @@ import AlertModuleDisabled from '@/components/commons/alert-module-disabled';
 export default {
   name: 'MerchantCenterAccountCard',
   components: {
+    MerchantCenterAccountAlertSuspended,
     MerchantCenterAccountPopinOverwriteClaim,
     MerchantCenterAccountPopinWebsiteRequirements,
     VueShowdown,
@@ -616,7 +590,7 @@ export default {
     mcaConfigured() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
     },
-    selectedMcaDetails() {
+    gmcAccountDetails() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'];
     },
     mcaIsNotConnected() {
@@ -677,13 +651,7 @@ export default {
       }
     },
     merchantCenterWebsitePageUrl() {
-      const {id} = this.$store.state.accounts.googleMerchantAccount;
-
-      return {
-        website: `https://merchants.google.com/mc/settings/website?a=${id}`,
-        businessInfo: `https://merchants.google.com/mc/merchantprofile/businessinfo?a=${id}`,
-        overview: `https://merchants.google.com/mc/overview?a=${id}`,
-      };
+      return getMerchantCenterWebsiteUrls(this.gmcAccountDetails.id);
     },
     websiteUrl() {
       return this.$store.state.accounts.googleMerchantAccount.websiteUrl;
@@ -703,16 +671,16 @@ export default {
     },
     isLinkedGmcStillCreating() {
       return this.isEnabled
-        && this.selectedMcaDetails.id !== null
+        && this.gmcAccountDetails.id !== null
         && !this.mcaListLoading
-        && (this.selectedMcaDetails.name === null || this.selectedMcaDetails.name === undefined);
+        && (this.gmcAccountDetails.name === null || this.gmcAccountDetails.name === undefined);
     },
     isLinkedGmcFullyFetched() {
       return this.isEnabled
-        && this.selectedMcaDetails.id !== null
+        && this.gmcAccountDetails.id !== null
         && !this.mcaListLoading
-        && this.selectedMcaDetails.name !== null
-        && this.selectedMcaDetails.name !== undefined;
+        && this.gmcAccountDetails.name !== null
+        && this.gmcAccountDetails.name !== undefined;
     },
     hasGmcCreatedFromModule() {
       const isFromModule = this.mcaSelectionOptions?.findIndex((option) => 'aggregatorId' in option && option.aggregatorId === this.$store.state.accounts.mcaPrestashopId);

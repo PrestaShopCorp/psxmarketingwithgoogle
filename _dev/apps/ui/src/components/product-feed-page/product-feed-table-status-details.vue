@@ -3,24 +3,21 @@
     no-body
     class="ps_gs-onboardingcard"
   >
-    <b-card-header
-      header-tag="nav"
-      header-class="px-3 py-1"
-    >
+    <template #header>
       <ol class="mb-0 list-inline d-flex align-items-center ps_gs-breadcrumb">
         <li class="list-inline-item ps_gs-breadcrumb__item">
-          <a
-            href=""
+          <b-link
+            :to="{name: 'product-feed'}"
             class="d-flex align-items-center ps_gs-breadcrumb__link"
           >
             {{ $t('productFeedSettings.breadcrumb1') }}
-          </a>
+          </b-link>
         </li>
         <li class="list-inline-item ps_gs-breadcrumb__item">
-          {{ $t('productFeedPage.breadcrumb') }}
+          {{ $t('productFeedPage.breadcrumb.productStatusDetails') }}
         </li>
       </ol>
-    </b-card-header>
+    </template>
     <b-card-body body-class="p-3 mt-2">
       <p>
         {{ $t('productFeedPage.approvalTable.description') }}

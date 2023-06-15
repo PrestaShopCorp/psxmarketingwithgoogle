@@ -16,14 +16,18 @@ const {
   psxMktgWithGoogleMaintenanceSettingsUrl,
   psxMktgWithGoogleCarriersUrl,
   psxMktgWithGoogleAttributesUrl,
+  psxMktgWithGoogleProductsUrl,
+  psxMktgWithGoogleCurrenciesUrl,
+  psxMktgWithGoogleLanguagesUrl,
   psxMktgWithGoogleProductDetailUrl,
   psxMktgWithGoogleStoreSettingsUrl,
   psxMtgWithGoogleDefaultShopCountry,
   psxMktgWithGoogleActiveCountries,
+  psxMktgWithGoogleActiveCurrencies,
   psxMktgWithGoogleOnProductionEnvironment,
   psxMktgWithGoogleEnableLink,
   psxMktgWithGoogleModuleIsEnabled,
-}: any = window;
+} = window;
 
 const state: State = {
   ...initialState,
@@ -37,15 +41,19 @@ const state: State = {
   phpVersion: phpVersion || '',
   psxMktgWithGoogleModuleVersion: psxMktgWithGoogleModuleVersion || '',
   psxMktgWithGoogleMaintenanceSettingsUrl: psxMktgWithGoogleMaintenanceSettingsUrl || '',
+  psxMktgWithGoogleProductsUrl: psxMktgWithGoogleProductsUrl || document.querySelector('#subtab-AdminProducts a')?.getAttribute('href') || '',
+  psxMktgWithGoogleCurrenciesUrl: psxMktgWithGoogleCurrenciesUrl || document.querySelector('#subtab-AdminCurrencies a')?.getAttribute('href') || '',
+  psxMktgWithGoogleLanguagesUrl: psxMktgWithGoogleLanguagesUrl || document.querySelector('#subtab-AdminLocalization a')?.getAttribute('href') || '',
   psxMktgWithGoogleProductDetailUrl: psxMktgWithGoogleProductDetailUrl || '',
   psxMktgWithGoogleStoreSettingsUrl: psxMktgWithGoogleStoreSettingsUrl || '',
-  psxMtgWithGoogleDefaultShopCountry: psxMtgWithGoogleDefaultShopCountry || {},
+  psxMtgWithGoogleDefaultShopCountry: psxMtgWithGoogleDefaultShopCountry || '',
   psxMktgWithGoogleActiveCountries: psxMktgWithGoogleActiveCountries || [],
+  psxMktgWithGoogleActiveCurrencies: psxMktgWithGoogleActiveCurrencies || [],
   psxMktgWithGoogleEnableLink: psxMktgWithGoogleEnableLink || '',
   psxMktgWithGoogleModuleIsEnabled: psxMktgWithGoogleModuleIsEnabled || true,
   psxMktgWithGoogleOnProductionEnvironment: psxMktgWithGoogleOnProductionEnvironment || false,
-  psxMktgWithGoogleCarriersUrl: psxMktgWithGoogleCarriersUrl || document.querySelector('#subtab-AdminCarriers a')?.getAttribute('href'),
-  psxMktgWithGoogleAttributesUrl: psxMktgWithGoogleAttributesUrl || document.querySelector('#subtab-AdminParentAttributesGroups a')?.getAttribute('href'),
+  psxMktgWithGoogleCarriersUrl: psxMktgWithGoogleCarriersUrl || document.querySelector('#subtab-AdminCarriers a')?.getAttribute('href') || '',
+  psxMktgWithGoogleAttributesUrl: psxMktgWithGoogleAttributesUrl || document.querySelector('#subtab-AdminParentAttributesGroups a')?.getAttribute('href') || '',
 };
 
 /**

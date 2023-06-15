@@ -1,9 +1,15 @@
 import attributesToMap from "@/store/modules/product-feed/attributes-to-map.json";
 import { RateType } from "@/enums/product-feed/rate";
-import { State, AttributesTypes, ProductStatus } from "@/store/modules/product-feed/state";
-import DeliveryType from '@/enums/product-feed/delivery-type';
+import {
+  State,
+  AttributesTypes,
+  ProductStatus,
+  ProductVerificationIssue,
+} from "@/store/modules/product-feed/state";
+import DeliveryType from "@/enums/product-feed/delivery-type";
 import { shippingPhpExport } from "./shipping-settings";
 import Categories from "@/enums/product-feed/attribute-mapping-categories";
+import { ShippingSetupOption } from "../../src/enums/product-feed/shipping";
 
 export const productFeed: State = {
   isSyncSummaryLoadingInProgress: false,
@@ -23,7 +29,7 @@ export const productFeed: State = {
   attributeMapping: {},
   settings: {
     // Todo: Empty object to avoid trigger of refresh.
-    // To fill with actual data. 
+    // To fill with actual data.
     shippingSettings: shippingPhpExport,
     shippingSetup: null,
     rate: null,
@@ -100,14 +106,10 @@ export const productFeed: State = {
     autoImportTaxSettings: false,
   },
   validationSummary: {
-    activeItems: null,
-    expiringItems: null,
-    pendingItems: null,
-    disapprovedItems: null,
-  },
-  prevalidationScanSummary: {
-    scannedItems: 13456,
-    invalidItems: 140,
+    activeProducts: null,
+    expiringProducts: null,
+    pendingProducts: null,
+    disapprovedProducts: null,
   },
   productsDatas: {
     items: [
@@ -417,29 +419,31 @@ export const productFeed: State = {
     { name: ["property"], type: "feature" as AttributesTypes },
   ],
   selectedProductCategories: [Categories.NONE],
-  preScanDetail: {
-    products: [],
-    limit: 10,
-    currentPage: 1,
-    total: 0,
-    langChosen: '',
+  report: {
+    lastConfigurationUsed: null,
+    productsInCatalog: null,
+    invalidProducts: null,
+    validProducts: null,
   },
+  verificationIssues: null,
+  verificationIssuesNumberOfProducts: {},
+  verificationIssuesProducts: {},
 };
-export const productFeedNoCarriers = {
+export const productFeedNoCarriers: State = {
   ...productFeed,
   settings: {
     ...productFeed.settings,
     deliveryDetails: [],
   },
 };
-export const productFeedIsReadyForExport = {
+export const productFeedIsReadyForExport: State = {
   ...productFeed,
   isConfigured: true,
   status: {
     ...productFeed.status,
     jobEndedAt: "2021-10-06T01:00:00.000Z",
     lastUpdatedAt: null,
-    nextJobAt: new Date("July 22, 2021 03:24:00"),
+    nextJobAt: new Date("July 22, 2021 03:24:00").toString(),
     success: false,
     syncSchedule: "2021-10-06T01:00:00.000Z",
   },
@@ -466,18 +470,18 @@ export const productFeedIsReadyForExport = {
   settings: {
     ...productFeed.settings,
     targetCountries: ["FR"],
-    shippingSetup: "import",
+    shippingSetup: ShippingSetupOption.IMPORT,
   },
 };
 
-export const productFeedIsConfigured = {
+export const productFeedIsConfigured: State = {
   ...productFeed,
   isConfigured: true,
   status: {
     ...productFeed.status,
     jobEndedAt: "2021-10-06T01:00:00.000Z",
-    nextJobAt: new Date("July 22, 2021 03:24:00"),
-    lastUpdatedAt: new Date("July 22, 2021 03:24:00"),
+    nextJobAt: new Date("July 22, 2021 03:24:00").toString(),
+    lastUpdatedAt: new Date("July 22, 2021 03:24:00").toString(),
     success: true,
   },
   attributeMapping: {
@@ -503,18 +507,29 @@ export const productFeedIsConfigured = {
   settings: {
     ...productFeed.settings,
     targetCountries: ["FR"],
-    shippingSetup: "import",
+    shippingSetup: ShippingSetupOption.IMPORT,
+  },
+  report: {
+    lastConfigurationUsed: {
+      lastModificationDate: new Date(2023, 6, 31, 13, 37),
+      targetCountries: ['FR', 'GB', 'IT'], 
+      languages: ['it', 'fr', 'de'],
+      currencies: ['EUR', 'GBP'],
+    },
+    productsInCatalog: null,
+    invalidProducts: null,
+    validProducts: null,
   },
 };
 
-export const productFeedEstimateConfigured = {
+export const productFeedEstimateConfigured: State = {
   ...productFeed,
   isConfigured: true,
   status: {
     ...productFeed.status,
     jobEndedAt: "2021-10-06T01:00:00.000Z",
-    nextJobAt: new Date("July 22, 2021 03:24:00"),
-    lastUpdatedAt: new Date("July 22, 2021 03:24:00"),
+    nextJobAt: new Date("July 22, 2021 03:24:00").toString(),
+    lastUpdatedAt: new Date("July 22, 2021 03:24:00").toString(),
     success: true,
   },
   attributeMapping: {
@@ -539,7 +554,7 @@ export const productFeedEstimateConfigured = {
   },
   settings: {
     ...productFeed.settings,
-    shippingSetup: "estimate",
+    shippingSetup: ShippingSetupOption.ESTIMATE,
     rate: RateType.RATE_ALL_COUNTRIES,
     estimateCarriers: [
       {
@@ -549,19 +564,19 @@ export const productFeedEstimateConfigured = {
         carrierName: '',
         currency: "EUR",
         flatShippingRate: {
-          shippingCost: null
+          shippingCost: null,
         },
         countries: ["FR"],
         freeShippingOverAmount: {
-          shippingCost:null,
-          orderPrice:null
+          shippingCost: null,
+          orderPrice: null,
         },
-      }
-    ]
-  }
-}
+      },
+    ],
+  },
+};
 
-export const productFeedIsConfiguredWithTax = {
+export const productFeedIsConfiguredWithTax: State = {
   ...productFeedIsConfigured,
   settings: {
     ...productFeedIsConfigured.settings,
@@ -569,7 +584,7 @@ export const productFeedIsConfiguredWithTax = {
   },
 };
 
-export const productFeedMissingFields = {
+export const productFeedMissingFields: State = {
   ...productFeedIsConfigured,
   settings: {
     ...productFeedIsConfigured.settings,
@@ -578,83 +593,134 @@ export const productFeedMissingFields = {
   },
 };
 
-export const productFeedStatusSyncFailed = {
+export const productFeedStatusSyncFailed: State = {
   ...productFeedIsConfigured,
   status: {
     ...productFeedIsConfigured.status,
     success: false,
-    jobEndedAt: new Date("July 22, 2021 03:24:00"),
-    lastUpdatedAt: new Date("July 22, 2021 03:24:00"),
-    nextJobAt: new Date("July 22, 2021 03:24:00"),
+    jobEndedAt: new Date("July 22, 2021 03:24:00").toString(),
+    lastUpdatedAt: new Date("July 22, 2021 03:24:00").toString(),
+    nextJobAt: new Date("July 22, 2021 03:24:00").toString(),
   },
   validationSummary: {
-    activeItems: 0,
-    expiringItems: 0,
-    pendingItems: 0,
-    disapprovedItems: 0,
+    activeProducts: 0,
+    expiringProducts: 0,
+    pendingProducts: 0,
+    disapprovedProducts: 0,
   },
 };
 
-export const productFeedErrorAPI = {
+export const productFeedErrorAPI: State = {
   ...productFeed,
   errorAPI: true,
 };
 
-export const productFeedSyncSummaryInProgress = {
+export const productFeedSyncSummaryInProgress: State = {
   ...productFeed,
   isConfigured: true,
   isSyncSummaryLoadingInProgress: true,
   status: {
     success: false,
-    nextJobAt: null,
-    lastUpdatedAt: new Date("July 22, 2021 03:24:00"),
+    nextJobAt: undefined,
+    lastUpdatedAt: new Date("July 22, 2021 03:24:00").toString(),
     jobEndedAt: null,
   },
   validationSummary: {
-    activeItems: null,
-    expiringItems: null,
-    pendingItems: null,
-    disapprovedItems: null,
+    activeProducts: null,
+    expiringProducts: null,
+    pendingProducts: null,
+    disapprovedProducts: null,
   },
 };
 
-export const productFeedStatusSyncScheduled = {
+export const productFeedStatusSyncScheduled: State = {
+  ...productFeedIsConfigured,
   status: {
     success: false,
-    nextJobAt: new Date("July 22, 2022 03:24:00"),
-    lastUpdatedAt: new Date("July 22, 2021 03:24:00"),
+    nextJobAt: new Date("July 22, 2022 03:24:00").toString(),
+    lastUpdatedAt: new Date("July 22, 2021 03:24:00").toString(),
     jobEndedAt: null,
   },
   validationSummary: {
-    activeItems: null,
-    expiringItems: null,
-    pendingItems: null,
-    disapprovedItems: null,
+    activeProducts: null,
+    expiringProducts: null,
+    pendingProducts: null,
+    disapprovedProducts: null,
   },
 };
 
-export const productFeedStatusSyncSuccess = {
+export const productFeedStatusSyncSuccess: State = {
   ...productFeedIsConfigured,
   status: {
     success: true,
-    jobEndedAt: new Date("July 22, 2021 03:24:00"),
-    lastUpdatedAt: new Date("July 22, 2021 03:24:00"),
-    nextJobAt: new Date("July 22, 2021 03:24:00"),
+    jobEndedAt: new Date("July 22, 2021 03:24:00").toString(),
+    lastUpdatedAt: new Date("July 22, 2021 03:24:00").toString(),
+    nextJobAt: new Date("July 22, 2021 03:24:00").toString(),
   },
   validationSummary: {
-    activeItems: 5,
-    expiringItems: 2,
-    pendingItems: 7,
-    disapprovedItems: 1,
+    activeProducts: 1362382,
+    expiringProducts: 2,
+    pendingProducts: 7,
+    disapprovedProducts: 1,
   },
+  report: {
+    lastConfigurationUsed: {
+      lastModificationDate: new Date(2023, 6, 31, 13, 37),
+      targetCountries: ['FR', 'GB', 'IT'],
+      languages: ['it', 'fr', 'de'],
+      currencies: ['EUR'],
+    },
+    productsInCatalog: "1362452",
+    invalidProducts: 60,
+    validProducts: 1362392,
+  },
+  verificationIssues: [
+    {
+      affected: {
+        en: 1,
+      },
+      name: ProductVerificationIssue.MISSING_NAME,
+    },
+    {
+      affected: {
+        en: 5,
+        fr: 11,
+      },
+      name: ProductVerificationIssue.MISSING_DESCRIPTION,
+    },
+    {
+      affected: {
+        en: 1455,
+      },
+      name: ProductVerificationIssue.MISSING_IDENTIFIER,
+    },
+    {
+      affected: {
+        en: 5,
+      },
+      name: ProductVerificationIssue.MISSING_IMAGE,
+    },
+    {
+      affected: {
+        fr: 3,
+      },
+      name: ProductVerificationIssue.MISSING_LINK,
+    },
+    {
+      affected: {
+        en: 5,
+      },
+      name: ProductVerificationIssue.MISSING_PRICE,
+    },
+  ],
 };
 
-export const productFeedIsConfiguredOnce = {
+export const productFeedIsConfiguredOnce: State = {
   ...productFeedIsConfigured,
   isConfiguredOnce: true,
 };
 
-export const productFeedSyncScheduleNow = {
+export const productFeedSyncScheduleNow: State = {
   ...productFeedIsConfigured,
   requestSynchronizationNow: true,
 };
@@ -1170,4 +1236,201 @@ export const prevalidationScan = {
     },
   ],
   totalErrors: 24,
+};
+
+export const partialStateForVerificationIssuesProducts: Pick<
+  State,
+  "verificationIssuesProducts"
+> = {
+  verificationIssuesProducts: {
+    MISSING_DESCRIPTION: [
+      // page 0
+      { id: "7938", variationCount: "2", name: "Ivysaur", langs: ["en", "fr"] },
+      {
+        id: "7939",
+        variationCount: "2",
+        name: "Venusaur",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7941",
+        variationCount: "2",
+        name: "Charmeleon",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7944",
+        variationCount: "2",
+        name: "Wartortle",
+        langs: ["en", "fr"],
+      },
+      { id: "7947", variationCount: "2", name: "Metapod", langs: ["en", "fr"] },
+      // page 1
+      { id: "7948", variationCount: "1", name: "Butterfree", langs: ["en"] },
+      { id: "7949", variationCount: "2", name: "Weedle", langs: ["en", "fr"] },
+      { id: "7950", variationCount: "2", name: "Kakuna", langs: ["en", "fr"] },
+      {
+        id: "7951",
+        variationCount: "2",
+        name: "Beedrill",
+        langs: ["en", "fr"],
+      },
+      { id: "7952", variationCount: "2", name: "Pidgey", langs: ["en", "fr"] },
+      // page 2
+      {
+        id: "7953",
+        variationCount: "2",
+        name: "Pidgeotto",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7954",
+        variationCount: "2",
+        name: "Pidgeot",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7955",
+        variationCount: "2",
+        name: "Rattata",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7956",
+        variationCount: "2",
+        name: "Raticate",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7957",
+        variationCount: "2",
+        name: "Spearow",
+        langs: ["en", "fr"],
+      },
+      // page 3
+      {
+        id: "7958",
+        variationCount: "2",
+        name: "Fearow",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7959",
+        variationCount: "2",
+        name: "Ekans",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7960",
+        variationCount: "2",
+        name: "Arbok",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7962",
+        variationCount: "2",
+        name: "Raichu",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7963",
+        variationCount: "2",
+        name: "Sandshrew",
+        langs: ["en", "fr"],
+      },
+      // page 4
+      {
+        id: "7964",
+        variationCount: "2",
+        name: "Sandslash",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7965",
+        variationCount: "2",
+        name: "Nidoran-f",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7966",
+        variationCount: "2",
+        name: "Nidorina",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7967",
+        variationCount: "2",
+        name: "Nidoqueen",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7968",
+        variationCount: "2",
+        name: "Nidoran-m",
+        langs: ["en", "fr"],
+      },
+      // page 5
+      {
+        id: "7969",
+        variationCount: "2",
+        name: "Nidorino",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7970",
+        variationCount: "2",
+        name: "Nidoking",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7971",
+        variationCount: "2",
+        name: "Clefairy",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7972",
+        variationCount: "2",
+        name: "Clefable",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7973",
+        variationCount: "2",
+        name: "Vulpix",
+        langs: ["en", "fr"],
+      },
+      // page 6
+      {
+        id: "7969",
+        variationCount: "2",
+        name: "Nidorino",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7970",
+        variationCount: "2",
+        name: "Nidoking",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7971",
+        variationCount: "2",
+        name: "Clefairy",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7972",
+        variationCount: "2",
+        name: "Clefable",
+        langs: ["en", "fr"],
+      },
+      {
+        id: "7973",
+        variationCount: "2",
+        name: "Vulpix",
+        langs: ["en", "fr"],
+      },
+    ],
+  },
 };

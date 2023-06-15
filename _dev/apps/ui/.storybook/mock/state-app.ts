@@ -15,6 +15,7 @@ export const initialStateApp: State = {
   shopIsOnMaintenanceMode: false,
   psxMktgWithGoogleProductDetailUrl: 'https://my-shop.com/admin-dev/index.php/sell/catalog/products/1?token=blabla',
   psxMktgWithGoogleActiveCountries: ['ES', 'FR', 'IT', 'PT', 'SE', 'US'],
+  psxMktgWithGoogleActiveCurrencies: ['EUR'],
 };
 
 export const stateWithMaintenanceModeOn = {

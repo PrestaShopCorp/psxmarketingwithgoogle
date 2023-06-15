@@ -23,6 +23,7 @@ export interface State {
   psxMktgWithGoogleAdminAjaxUrl: string;
   psxMktgWithGoogleShopUrl: string;
   psxMktgWithGoogleActiveCountries: string[];
+  psxMktgWithGoogleActiveCurrencies: string[];
   psxMktgWithGoogleShopCurrency: ShopCurrency;
   psxMtgWithGoogleDefaultShopCountry: string | null;
   psxMktgWithGoogleDocumentAndFaq: HelpInformations;
@@ -33,6 +34,9 @@ export interface State {
   psxMktgWithGoogleMaintenanceSettingsUrl: string;
   psxMktgWithGoogleCarriersUrl: string;
   psxMktgWithGoogleAttributesUrl: string;
+  psxMktgWithGoogleProductsUrl: string;
+  psxMktgWithGoogleCurrenciesUrl: string;
+  psxMktgWithGoogleLanguagesUrl: string;
   psxMktgWithGoogleProductDetailUrl: string;
   psxMktgWithGoogleStoreSettingsUrl: string;
   psxMktgWithGoogleOnProductionEnvironment: boolean;
@@ -63,6 +67,7 @@ export interface DebugData {
 export const state: State = {
   psxMktgWithGoogleApiUrl: '',
   psxMktgWithGoogleActiveCountries: [],
+  psxMktgWithGoogleActiveCurrencies: [],
   psxMktgWithGoogleAdminUrl: '',
   psxMktgWithGoogleAdminAjaxUrl: '',
   psxMktgWithGoogleShopUrl: '',
@@ -82,6 +87,9 @@ export const state: State = {
   shopIsOnMaintenanceMode: document.getElementById('maintenance-mode') !== null,
   psxMktgWithGoogleCarriersUrl: '',
   psxMktgWithGoogleAttributesUrl: '',
+  psxMktgWithGoogleProductsUrl: '',
+  psxMktgWithGoogleCurrenciesUrl: '',
+  psxMktgWithGoogleLanguagesUrl: '',
   psxMktgWithGoogleProductDetailUrl: '',
   psxMktgWithGoogleStoreSettingsUrl: '',
   psxMktgWithGoogleOnProductionEnvironment: false,

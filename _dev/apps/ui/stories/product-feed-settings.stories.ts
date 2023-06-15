@@ -200,6 +200,27 @@ EstimateDeliveryTimeAndRatesSeveralCountries.args = {
   },
 };
 
+export const EstimateDeliveryTimeAndRatesSeveralCountriesAndCurrencies: any = Template.bind({});
+EstimateDeliveryTimeAndRatesSeveralCountriesAndCurrencies.argTypes = {
+  hide: {
+    control: "boolean",
+  },
+};
+EstimateDeliveryTimeAndRatesSeveralCountriesAndCurrencies.args = {
+  beforeMount(this: any) {
+    this.$store.state.app = cloneDeep(initialStateApp);
+    this.$store.state.app.psxMktgWithGoogleActiveCountries.push(...['BR', 'GB', 'PL'])
+    this.$store.state.app.psxMktgWithGoogleActiveCurrencies = ['BRL', 'DOP', 'EUR', 'GBP', 'PLN'];
+    this.$store.state.productFeed = cloneDeep(productFeed);
+    this.$store.state.productFeed.stepper = 2;
+    this.$store.state.productFeed.settings.shippingSetup =
+      ShippingSetupOption.ESTIMATE;
+    this.$router.history.current.params.step =
+      ProductFeedSettingsPages.SHIPPING_SETTINGS;
+    this.$store.state.productFeed.settings.rate = RateType.RATE_ALL_COUNTRIES;
+  },
+};
+
 export const EstimateDeliveryTimeAndRatesWithUS: any = Template.bind({});
 EstimateDeliveryTimeAndRatesWithUS.argTypes = {
   hide: {
@@ -209,8 +230,8 @@ EstimateDeliveryTimeAndRatesWithUS.argTypes = {
 EstimateDeliveryTimeAndRatesWithUS.args = {
   beforeMount(this: any) {
     this.$store.state.app = cloneDeep(initialStateApp);
-    (this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode = "USD"),
-      (this.$store.state.productFeed = cloneDeep(productFeed));
+    this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode = "USD";
+    this.$store.state.productFeed = cloneDeep(productFeed);
     this.$store.state.productFeed.settings.targetCountries = ["US"];
     this.$store.state.productFeed.stepper = 2;
     this.$store.state.productFeed.settings.shippingSetup =

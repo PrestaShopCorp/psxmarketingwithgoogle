@@ -2,7 +2,7 @@
   $iconWidth: rem(20);
 
   // Available icons
-  $icons: 'check_circle', 'schedule', 'cancel', 'change_circle', 'info';
+  $icons: 'check_circle', 'schedule', 'error', 'change_circle', 'info';
   // Available colors
   $lineColors: ('danger' : $danger, 'info': $primary);
 
@@ -14,7 +14,7 @@
     align-items: start;
 
     &:not(:last-child) {
-      padding-bottom: rem(50);
+      padding-bottom: rem(32);
     }
 
     &[class*="icon"]::before {
@@ -25,12 +25,13 @@
       margin-right: rem(10);
       margin-top: -#{rem(2)};
       color: $primary;
+      font-size: $iconWidth;
     }
 
     @each $icon in $icons {
       &[class*="--icon-#{$icon}"]::before {
         content: $icon;
-        @if $icon == 'cancel' {
+        @if $icon == 'error' {
           color: $danger;
         }
       }
@@ -43,25 +44,32 @@
 
     @each $lineColorName, $lineColorValue in $lineColors {
       &[class*="--bg-#{$lineColorName}"] {
-        background-image:
-          linear-gradient(to right,
-            transparent calc(#{$iconWidth} / 2 - 0.5px),
-            map-get($lineColors, $lineColorName) calc(#{$iconWidth} / 2 - 0.5px),
-            map-get($lineColors, $lineColorName) calc(#{$iconWidth} / 2 + 0.5px),
-            transparent calc(#{$iconWidth} / 2 + 0.5px));
+        &:not(:last-child) {
+          background-image:
+            linear-gradient(to right,
+              transparent calc(#{$iconWidth} / 2 - 1px),
+              map-get($lineColors, $lineColorName) calc(#{$iconWidth} / 2 - 1px),
+              map-get($lineColors, $lineColorName) calc(#{$iconWidth} / 2 + 1px),
+              transparent calc(#{$iconWidth} / 2 + 1px));
+        }
+
+        h3 {
+          color: map-get($lineColors, $lineColorName);
+        }
       }
     }
 
     &-title {
-      font-size: rem(14);
-      font-weight: 600;
+      font-size: rem(16);
+      font-weight: 500;
       line-height: $iconWidth;
       margin-bottom: 0;
       margin-top: -#{rem(4)};
     }
 
     &-description {
-      font-size: rem(13);
+      font-size: rem(14);
+      color: $secondary;
     }
   }
 }

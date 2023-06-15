@@ -127,7 +127,7 @@
             <b-col>
               <div>
                 <b-input-group
-                  :append="getSymbol"
+                  :append="currencies.length <= 1 ? estimateCarrier.currency : undefined"
                   class="ps_gs-carrier__input-number-group"
                 >
                   <b-form-input
@@ -140,6 +140,16 @@
                     @input="onDataUpdate"
                     :state="validateAmountRate(estimateCarrier[estimateCarrier.offer].shippingCost)"
                   />
+                  <slot
+                    name="append"
+                    v-if="currencies.length > 1"
+                  >
+                    <currency-dropdown
+                      :currencies="currencies"
+                      :selected-currency="estimateCarrier.currency"
+                      @update:selectedCurrency="newValue => estimateCarrier.currency = newValue"
+                    />
+                  </slot>
                 </b-input-group>
               </div>
             </b-col>
@@ -169,7 +179,7 @@
               </b-col>
               <b-col class="col-auto mb-2">
                 <b-input-group
-                  :append="getSymbol"
+                  :append="currencies.length <= 1 ? estimateCarrier.currency : undefined"
                   class="ps_gs-carrier__input-number-group"
                 >
                   <b-form-input
@@ -182,6 +192,16 @@
                     @input="onDataUpdate"
                     :state="validateAmountRate(estimateCarrier[estimateCarrier.offer].orderPrice)"
                   />
+                  <slot
+                    name="append"
+                    v-if="currencies.length > 1"
+                  >
+                    <currency-dropdown
+                      :currencies="currencies"
+                      :selected-currency="estimateCarrier.currency"
+                      @update:selectedCurrency="newValue => estimateCarrier.currency = newValue"
+                    />
+                  </slot>
                 </b-input-group>
               </b-col>
             </b-row>
@@ -207,7 +227,7 @@
               </b-col>
               <b-col class="col-auto">
                 <b-input-group
-                  :append="getSymbol"
+                  :append="currencies.length <= 1 ? estimateCarrier.currency : undefined"
                   class="ps_gs-carrier__input-number-group"
                 >
                   <b-form-input
@@ -220,6 +240,16 @@
                     v-model.number="estimateCarrier[estimateCarrier.offer].shippingCost"
                     @input="onDataUpdate"
                   />
+                  <slot
+                    name="append"
+                    v-if="currencies.length > 1"
+                  >
+                    <currency-dropdown
+                      :currencies="currencies"
+                      :selected-currency="estimateCarrier.currency"
+                      @update:selectedCurrency="newValue => estimateCarrier.currency = newValue"
+                    />
+                  </slot>
                 </b-input-group>
               </b-col>
             </b-row>
@@ -239,9 +269,13 @@ import {
   validateOfferChoice,
   validateCarrierName,
 } from '@/providers/shipping-rate-provider';
+import CurrencyDropdown from './currency-dropdown.vue';
 
 export default Vue.extend({
   name: 'CustomCarrierForm',
+  components: {
+    CurrencyDropdown,
+  },
   props: {
     estimateCarrier: {
       type: Object as PropType<CustomCarrier>,
@@ -294,8 +328,8 @@ export default Vue.extend({
 
       return validateOfferChoice(this.estimateCarrier.offer);
     },
-    getSymbol() {
-      return this.$store.getters['app/GET_SYMBOL_OF_CURRENT_CURRENCY'];
+    currencies(): string[] {
+      return this.$store.getters['app/GET_SHOP_CURRENCIES'];
     },
   },
   methods: {

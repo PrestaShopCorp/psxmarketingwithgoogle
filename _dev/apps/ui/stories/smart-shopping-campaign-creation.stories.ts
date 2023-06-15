@@ -226,7 +226,7 @@ CreationSSC.args = {
   searchLoader: false,
   beforeMount(this: any) {
     this.$store.state.campaigns.errorCampaignNameExists = null;
-    this.$store.state.productFeed.validationSummary.activeItems = 2;
+    this.$store.state.productFeed.validationSummary.activeProducts = 2;
     this.$router.history.current.params.type = CampaignTypes.SMART_SHOPPING
   },
 };
@@ -236,7 +236,7 @@ CreationPMax.args = {
   searchLoader: false,
   beforeMount(this: any) {
     this.$store.state.campaigns.errorCampaignNameExists = null;
-    this.$store.state.productFeed.validationSummary.activeItems = 2;
+    this.$store.state.productFeed.validationSummary.activeProducts = 2;
     this.$router.history.current.params.type = CampaignTypes.PERFORMANCE_MAX
   },
 };
@@ -247,7 +247,7 @@ ErrorAPIWhileCreating.args = {
   editMode: true,
   beforeMount(this: any) {
     this.$store.state.campaigns.errorCampaignNameExists = null;
-    this.$store.state.productFeed.validationSummary.activeItems = 2;
+    this.$store.state.productFeed.validationSummary.activeProducts = 2;
   },
   mounted(this: any) {
     this.$router.history.current.params.id = '16004060865'
@@ -261,7 +261,7 @@ CreationWithoutProducts.args = {
   searchLoader: false,
   beforeMount(this: any) {
     this.$store.state.campaigns.errorCampaignNameExists = null;
-    this.$store.state.productFeed.validationSummary.activeItems = 0;
+    this.$store.state.productFeed.validationSummary.activeProducts = 0;
   },
 };
 
@@ -293,7 +293,7 @@ Edition.args = {
   mounted(this: any) {
     this.$router.history.current.params.id = '16004060865'
     this.$store.state.campaigns.filtersChosen = [{dimension: 'bla', values: ['1', '2']}]
-    this.$store.state.productFeed.validationSummary.activeItems = 2;
+    this.$store.state.productFeed.validationSummary.activeProducts = 2;
   },
 };
 
@@ -306,7 +306,7 @@ EditionWithUnhandledFilters.args = {
     this.$store.state.campaigns.campaigns.sscList = [cloneDeep(campaignWithUnhandledFilters)];
     this.$router.history.current.params.id = '16004060865',
     this.$store.state.campaigns.errorFetchingFilters = false;
-    this.$store.state.productFeed.validationSummary.activeItems = 2;
+    this.$store.state.productFeed.validationSummary.activeProducts = 2;
     Object.keys(campaignWithUnhandledFilters).forEach(el => {
       this.$refs.sscCreation.$data[el] = cloneDeep(campaignWithUnhandledFilters[el]);
   })
@@ -371,7 +371,7 @@ ErrorRetrievingFilters.args = {
   loader: false,
   searchLoader: false,
   mounted(this: any) {
-    this.$store.state.productFeed.validationSummary.activeItems = 2;
+    this.$store.state.productFeed.validationSummary.activeProducts = 2;
     // Is empty but is filled right away??
     this.$store.state.campaigns.sscAvailableFilters = [];
     this.$store.state.campaigns.errorFetchingFilters = true

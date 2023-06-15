@@ -25,7 +25,12 @@ import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {CustomCarrier} from '@/providers/shipping-rate-provider';
 import {RateType} from '@/enums/product-feed/rate';
 import Categories, {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
+import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
 
+/**
+ * @deprecated
+ * To be replaced by ProductFeedReport
+ */
 export interface ProductFeedStatus {
   nextJobAt?: string;
   jobEndedAt?: string|null;
@@ -34,6 +39,17 @@ export interface ProductFeedStatus {
   syncSchedule?: string;
 }
 
+export type VerificationStats = Pick<
+  ProductFeedReport,
+  'productsInCatalog' | 'invalidProducts' | 'validProducts'
+>;
+
+export type ProductFeedReport = {
+  lastConfigurationUsed: IncrementalSyncContext|null;
+  productsInCatalog: string|null;
+  invalidProducts: number|null;
+  validProducts: number|null;
+}
 export interface ProductFeedSettings {
   shippingSetup: ShippingSetupOption|null;
   estimateCarriers: CustomCarrier[];
@@ -46,14 +62,10 @@ export interface ProductFeedSettings {
   targetCountries: string[]|null;
 }
 export interface ProductFeedValidationSummary {
-  activeItems: number|null;
-  expiringItems: number|null;
-  pendingItems: number|null;
-  disapprovedItems: number|null;
-}
-export interface PrevalidationScanSummary {
-  scannedItems: number|null;
-  invalidItems: number|null;
+  activeProducts: number|null;
+  expiringProducts: number|null;
+  pendingProducts: number|null;
+  disapprovedProducts: number|null;
 }
 export interface ProductInfos {
  id: string;
@@ -128,14 +140,20 @@ export interface State {
   status: ProductFeedStatus;
   settings: ProductFeedSettings;
   validationSummary: ProductFeedValidationSummary;
-  prevalidationScanSummary: PrevalidationScanSummary;
   productsDatas: ProductsDatas;
   attributesToMap: any;
   attributesFromShop: Array<AttributesInfos>;
   selectedProductCategories: SelectedProductCategories;
   requestSynchronizationNow: boolean;
-  preScanDetail: PreScanDetail;
   attributeMapping: AttributeResponseFromAPI;
+  report: ProductFeedReport;
+  verificationIssues: ProductVerificationIssueOverall[]|null;
+  verificationIssuesProducts: {
+    [verificationIssue in ProductVerificationIssue]?: (ProductVerificationIssueProduct|null)[];
+  },
+  verificationIssuesNumberOfProducts: {
+    [verificationIssue in ProductVerificationIssue]?: number;
+  }
 }
 
 export enum ProductStatus {
@@ -145,28 +163,36 @@ export enum ProductStatus {
   Expiring = 'expiring',
 }
 
-export interface PreScanProductLang {
-  title: string;
-  lang: string;
+export enum ProductVerificationIssue {
+  MISSING_NAME = 'MISSING_NAME',
+  MISSING_DESCRIPTION = 'MISSING_DESCRIPTION',
+  MISSING_IMAGE = 'MISSING_IMAGE',
+  MISSING_LINK = 'MISSING_LINK',
+  MISSING_PRICE = 'MISSING_PRICE',
+  MISSING_IDENTIFIER = 'MISSING_IDENTIFIER',
 }
-export interface PreScanReporting {
-  productId: number;
-  attributeId?: number;
-  lastValidationDate: number;
-  titleByLang: PreScanProductLang[];
-  isMissingName: Boolean;
-  isMissingLink: Boolean;
-  isMissingImage: Boolean;
-  isMissingPrice: Boolean;
-  isMissingDescription: Boolean;
-  isMissingBrandOrBarcode: Boolean;
+
+export enum ProductVerificationIssueTranslation {
+  MISSING_NAME = 'nameMissing',
+  MISSING_DESCRIPTION = 'descriptionMissing',
+  MISSING_IMAGE = 'imageMissing',
+  MISSING_LINK = 'linkMissing',
+  MISSING_PRICE = 'priceMissing',
+  MISSING_IDENTIFIER = 'identifierMissing',
 }
-export interface PreScanDetail {
-  products: PreScanReporting[];
-  limit: number;
-  currentPage: number;
-  total: number;
-  langChosen: string;
+
+export type ProductVerificationIssueOverall = {
+  name: ProductVerificationIssue;
+  affected: {
+    [isoCodeLanguage: string]: number;
+  };
+}
+
+export type ProductVerificationIssueProduct = {
+  id: string,
+  variationCount: string,
+  name: string,
+  langs: string[],
 }
 
 export const state: State = {
@@ -194,14 +220,10 @@ export const state: State = {
     targetCountries: null,
   },
   validationSummary: {
-    activeItems: null,
-    expiringItems: null,
-    pendingItems: null,
-    disapprovedItems: null,
-  },
-  prevalidationScanSummary: {
-    scannedItems: null,
-    invalidItems: null,
+    activeProducts: null,
+    expiringProducts: null,
+    pendingProducts: null,
+    disapprovedProducts: null,
   },
   productsDatas: {
     items: [],
@@ -210,12 +232,14 @@ export const state: State = {
   requestSynchronizationNow: false,
   attributesFromShop: [],
   selectedProductCategories: [Categories.NONE],
-  preScanDetail: {
-    products: [],
-    limit: 10,
-    currentPage: 1,
-    total: 0,
-    langChosen: '',
-  },
   attributeMapping: {},
+  report: {
+    lastConfigurationUsed: null,
+    productsInCatalog: null,
+    invalidProducts: null,
+    validProducts: null,
+  },
+  verificationIssues: null,
+  verificationIssuesProducts: {},
+  verificationIssuesNumberOfProducts: {},
 };

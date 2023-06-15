@@ -23,7 +23,10 @@ import {
   ProductFeedStatus,
   ProductFeedValidationSummary,
   AttributesInfos,
-  PreScanReporting,
+  VerificationStats,
+  ProductVerificationIssueOverall,
+  ProductVerificationIssueProduct,
+  ProductVerificationIssue,
 } from './state';
 import GettersTypes from './getters-types';
 import {filterCountriesCompatible} from '@/utils/TargetCountryValidator';
@@ -31,6 +34,7 @@ import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 import {AttributeResponseFromAPI} from '@/utils/AttributeMapping';
 import {CustomCarrier} from '@/providers/shipping-rate-provider';
 import {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
+import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
 
 export default {
   [GettersTypes.GET_PRODUCT_FEED_IS_CONFIGURED](state: LocalState): boolean {
@@ -48,7 +52,49 @@ export default {
   [GettersTypes.GET_TOTAL_PRODUCTS_READY_TO_SYNC](state: LocalState): number {
     return state.totalProducts;
   },
+  [GettersTypes.GET_PRODUCT_FEED_VERIFICATION_STATS](state: LocalState) :
+  VerificationStats {
+    return {
+      productsInCatalog: state.report.productsInCatalog,
 
+      invalidProducts: state.report.invalidProducts,
+      validProducts: state.report.validProducts,
+    };
+  },
+  [GettersTypes.GET_PRODUCT_FEED_VERIFICATION_ISSUES](state: LocalState) :
+    ProductVerificationIssueOverall[]|null {
+    return state.verificationIssues;
+  },
+  [GettersTypes.GET_PRODUCT_FEED_VERIFICATION_ISSUE_PRODUCTS](state: LocalState) {
+    return (
+      verificationIssue: ProductVerificationIssue,
+      numberOfProducts: number,
+      activePage: number,
+    ): (ProductVerificationIssueProduct|null)[]|null => {
+      const startOffset = numberOfProducts * activePage;
+
+      if (!state.verificationIssuesProducts[verificationIssue]) {
+        return null;
+      }
+
+      // Force type after undefined check
+      const listOfProducts = state.verificationIssuesProducts[
+        verificationIssue
+      ] as ProductVerificationIssueProduct[];
+
+      if (listOfProducts.length < startOffset) {
+        return null;
+      }
+      return listOfProducts.slice(
+        startOffset, startOffset + numberOfProducts,
+      ) || null;
+    };
+  },
+  [GettersTypes.GET_PRODUCT_FEED_VERIFICATION_ISSUE_NB_OF_PRODUCTS](state: LocalState) {
+    return (
+      verificationIssue: ProductVerificationIssue,
+    ): number|null => state.verificationIssuesNumberOfProducts[verificationIssue] || null;
+  },
   [GettersTypes.GET_PRODUCT_FEED_VALIDATION_SUMMARY](state: LocalState) :
   ProductFeedValidationSummary {
     return state.validationSummary;
@@ -100,21 +146,6 @@ export default {
 
     return state.requestSynchronizationNow;
   },
-  [GettersTypes.GET_PRESCAN_LIMIT_PAGE](state: LocalState): number {
-    return state.preScanDetail.limit;
-  },
-  [GettersTypes.GET_PRESCAN_NEXT_PAGE](state: LocalState): number {
-    return state.preScanDetail.currentPage;
-  },
-  [GettersTypes.GET_PRESCAN_TOTAL_ERROR](state: LocalState): number {
-    return state.preScanDetail.total;
-  },
-  [GettersTypes.GET_PRESCAN_LANGUAGE_CHOSEN](state: LocalState): string {
-    return state.preScanDetail.langChosen;
-  },
-  [GettersTypes.GET_PRESCAN_PRODUCTS](state: LocalState): PreScanReporting[] {
-    return state.preScanDetail.products;
-  },
   [GettersTypes.GET_ATTRIBUTE_MAPPING](state: LocalState): AttributeResponseFromAPI {
     return state.attributeMapping;
   },
@@ -156,5 +187,10 @@ export default {
   },
   [GettersTypes.GET_ESTIMATE_CARRIERS](state: LocalState): CustomCarrier[] {
     return state.settings.estimateCarriers;
+  },
+  [GettersTypes.GET_PRODUCT_FEED_SYNC_CONTEXT](
+    state: LocalState,
+  ): IncrementalSyncContext|null {
+    return state.report.lastConfigurationUsed;
   },
 };

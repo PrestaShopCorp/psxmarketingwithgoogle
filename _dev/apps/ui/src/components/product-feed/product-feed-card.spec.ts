@@ -189,8 +189,11 @@ describe('product-feed-card.vue', () => {
       },
     });
 
+    const summaryCards = wrapper.findComponent(productFeedSummaryCards);
+    expect(summaryCards.exists()).toBeTruthy();
+    // @ts-ignore
+    expect(summaryCards.vm.targetCountries).toEqual(['{country} ({currency})']);
     expect(wrapper.findComponent(productFeedSummaryCards).exists()).toBeTruthy();
-    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
     expect(wrapper.find('b-alert')).toBeTruthy();
     expect(wrapper.find('b-alert').attributes('variant')).toBe('warning');
@@ -230,8 +233,12 @@ describe('product-feed-card.vue', () => {
         VueShowdown: true,
       },
     });
+
+    const summaryCards = wrapper.findComponent(productFeedSummaryCards);
+    expect(summaryCards.exists()).toBeTruthy();
+    // @ts-ignore
+    expect(summaryCards.vm.targetCountries).toEqual(['{country} ({currency})']);
     expect(wrapper.findComponent(ProductFeedCardReportCard).exists()).toBeTruthy();
-    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
     expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
     expect(wrapper.find('b-alert')).toBeTruthy();
     expect(wrapper.find('b-alert').attributes('variant')).toBe('warning');
