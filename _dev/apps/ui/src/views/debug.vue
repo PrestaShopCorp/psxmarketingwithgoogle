@@ -110,8 +110,9 @@
           tabindex="0"
         >
           <b-button
-            class="mt-3 mr-3 text-nowrap"
-            variant="primary"
+            class="mt-3 mr-3 text-nowrap d-block"
+            variant="outline-primary"
+            size="sm"
             @click="triggerGmcAccountCreation"
             :disabled="!GET_GOOGLE_ACCOUNT_IS_ONBOARDED || GET_GOOGLE_MERCHANT_CENTER_IS_CONNECTED"
           >
@@ -135,8 +136,9 @@
         </b-tooltip>
 
         <b-button
-          class="mt-3 mr-3"
-          variant="danger"
+          class="mt-3 mr-3 d-block"
+          variant="outline-danger"
+          size="sm"
           @click="throwErrorForSentry"
         >
           Throw Error test for Sentry
