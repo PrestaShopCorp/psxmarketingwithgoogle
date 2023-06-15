@@ -1,7 +1,7 @@
 {
     "general": {
         "tabs": {
-            "productFeed": "Product voer",
+            "productFeed": "Product feed",
             "campaign": "Campagne",
             "reporting": "Melding",
             "configuration": "Configureer",
@@ -628,7 +628,7 @@
     },
     "productFeedPage": {
         "breadcrumb": {
-            "productStatusDetails": "Details productstatus",
+            "productStatusDetails": "Product status details",
             "nonCompliantProducts": "Non-compliant products"
         },
         "alert": {
@@ -678,20 +678,20 @@
                 "stepTitle": "Products sent to Google",
                 "stepDetails": "This report displays the status of all your products that have been sent to Google Merchant Center. Please note that it may take a few days for Google to review your products. You can use this report to track the progress of each product and ensure that they are approved and active on Google Shopping.\n\n**‘Approved’ products** are fully approved and eligible to appear in free listings on Google.\n\n**‘Pending’ products** are being processed by Google. They will not appear in listings until they are approved.\n\n**‘Expiring’ products** will become inactive and no longer appear in Google listings in the next days.\n\n**‘Disapproved’ products** are inactive and do not appear in Google listings. You can click on Disapproved box for more information.",
                 "reportCards": {
-                    "approved": "Goedgekeurd",
+                    "approved": "Approved",
                     "approvedDescription": "Products with variations successfully synced.",
-                    "pending": "In afwachting van",
+                    "pending": "Pending",
                     "pendingDescription": "Products being reviewed by Google.",
-                    "expiring": "Aflopend",
+                    "expiring": "Expiring",
                     "expiringDescription": "Invalid products to be removed from Google soon.",
-                    "disapproved": "Afgekeurd",
+                    "disapproved": "Disapproved",
                     "disapprovedDescription": "Products that are disapproved by Google."
                 }
             }
         },
         "compliancyIssuesPage": {
             "details": "To ensure a successful pre-scan with Google, please fix the issues outlined in the table below. Taking care of these issues will help your list your product on Google’s surfaces.",
-            "languageSelection": "Filteren op taal",
+            "languageSelection": "Filter by language",
             "languageSelected": "Filter by: {lang}",
             "noResults": "No data found",
             "columns": {
@@ -710,7 +710,7 @@
                 "productsId": "Product’s ID",
                 "productsTitle": "Product’s title",
                 "languages": "Languages",
-                "actions": "Acties"
+                "actions": "Actions"
             },
             "productVariants": "{variantsCount} variant|{variantsCount} variants"
         },
