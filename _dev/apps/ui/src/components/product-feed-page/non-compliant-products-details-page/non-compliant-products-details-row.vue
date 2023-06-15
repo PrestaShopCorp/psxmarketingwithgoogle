@@ -7,6 +7,7 @@
         :href="getProductBaseUrl.replace('/1?', `/${verificationIssueProduct.id}?`)"
         target="_blank"
         class="external_link-no_icon font-weight-600"
+        @click="onProductEditionClick"
       >
         {{ verificationIssueProduct.id }}
       </b-link>
@@ -42,6 +43,7 @@
         :href="getProductBaseUrl.replace('/1?', `/${verificationIssueProduct.id}?`)"
         target="_blank"
         class="external_link-no_icon"
+        @click="onProductEditionClick"
       >
         <i class="material-icons ps_gs-fz-18">create</i>
       </b-button>
@@ -52,6 +54,7 @@
 <script lang="ts">
 import {PropType, defineComponent} from 'vue';
 
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {ProductVerificationIssueProduct, ProductVerificationIssueTranslation} from '@/store/modules/product-feed/state';
 
 export default defineComponent({
@@ -70,6 +73,14 @@ export default defineComponent({
   computed: {
     getProductBaseUrl() {
       return this.$store.getters['app/GET_PRODUCT_DETAIL_BASE_URL'];
+    },
+  },
+  methods: {
+    onProductEditionClick(): void {
+      this.$segment.track('[GGL] Edit product from non-compliant products page', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
     },
   },
 });

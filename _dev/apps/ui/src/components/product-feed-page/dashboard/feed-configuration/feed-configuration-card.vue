@@ -70,6 +70,7 @@
                 :to="{ name: 'product-feed-settings',
                        params: { step: ProductFeedSettingsPages.SHIPPING_SETTINGS}}"
                 class="stretched-link external_link-no_icon"
+                @click="targetCountryClicked"
               />
             </b-card>
           </div>
@@ -104,6 +105,7 @@
                     target="_blank"
                     :href="$store.getters['app/GET_LANGUAGES_URL']"
                     class="stretched-link external_link-no_icon"
+                    @click="languageClicked"
                   />
                 </b-card>
               </template>
@@ -123,6 +125,7 @@ import {IncrementalSyncContext} from './feed-configuration';
 import {timeConverterToDate, timeConverterToHour} from '@/utils/Dates';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import {changeCountryCodeToName, getCurrencyFromCountry} from '@/utils/Countries';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default defineComponent({
   props: {
@@ -149,7 +152,7 @@ export default defineComponent({
       return this.productFeedConfiguration?.languages || [];
     },
     currencies(): string[] {
-      return this.$store.getters['app/GET_SHOP_CURRENCIES'];
+      return this.productFeedConfiguration?.currencies || [];
     },
     localizationListLengths() {
       return {
@@ -173,6 +176,20 @@ export default defineComponent({
           currency: currency || '?',
           currencyIsFound: currency && this.currencies.includes(currency),
         };
+      });
+    },
+  },
+  methods: {
+    targetCountryClicked(): void {
+      this.$segment.track('[GGL] Edit target countries from Product Feed Tab', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
+    },
+    languageClicked(): void {
+      this.$segment.track('[GGL] Edit languages from Product Feed Tab', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
       });
     },
   },
