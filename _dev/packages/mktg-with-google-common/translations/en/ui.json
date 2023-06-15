@@ -878,7 +878,7 @@
       "help": {
         "needHelp": "Need help? Find here the documentation of this module.",
         "downloadPdf": "Download PDF",
-        "couldntFindAnyAnswer": "Couldn\"t find any answer to your question?",
+        "couldntFindAnyAnswer": "Could not find any answer to your question?",
         "contactUs": "Contact us"
       }
     },
