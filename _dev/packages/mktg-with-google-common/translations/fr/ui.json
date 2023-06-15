@@ -628,8 +628,8 @@
     },
     "productFeedPage": {
         "breadcrumb": {
-            "productStatusDetails": "Product status details",
-            "nonCompliantProducts": "Non-compliant products"
+            "productStatusDetails": "Détails du statut du produit",
+            "nonCompliantProducts": "Produits non conformes"
         },
         "alert": {
             "googleIsReviewing": "Vos produits sont en cours de révision  \nCela peut prendre 3 à 5 jours pour examiner vos produits. Une fois approuvés, ils seront disponibles pour les fiches gratuites et campagnes publicitaires.",
@@ -656,15 +656,15 @@
             "timeline": {},
             "productFeedConfiguration": {
                 "title": "Votre configuration de flux produit",
-                "targetCountries": "Selected target country:|Selected target countries:",
-                "languages": "Language:|Languages:",
-                "currencies": "Currency:|Currencies:",
+                "targetCountries": "Pays cible sélectionné:|Pays cibles sélectionnés:",
+                "languages": "Langue :|Langues :",
+                "currencies": "Devise :|Devises :",
                 "noLanguage": "Aucune langue éligible",
                 "noCurrency": "Aucune devise éligible"
             },
             "productVerification": {
                 "stepTitle": "Produits vérifiés par PrestaShop avant d'être envoyés à Google",
-                "stepDetails": "Before sending all your products (including variations), we ensure their compliance with Google's Merchant center policies. We verify the products **every time a change is detected**, and if there are any non-compliant products, we provide guidance on what needs to be done. Click on non-compliant products for more information.\n\nAfter submission, Google assigns each product a status: **Approved, Expiring, Pending** or **Disapproved**.",
+                "stepDetails": "Avant d'envoyer tous vos produits (y compris les déclinaisons), nous nous assurons qu'ils sont conformes aux règles de Google Merchant Center. Nous vérifions les produits **à chaque fois qu'un changement est détecté**, et s'il y a des produits non conformes, nous vous indiquons ce qu'il faut faire. Cliquez sur les produits non conformes pour plus d'informations.\n\nAprès la soumission, Google attribue un statut à chaque produit : **Actif, Expirant, En attente ou Refusé**.",
                 "reportCards": {
                     "productsInCatalog": "Mon catalogue produit",
                     "productsInCatalogDescription": "Produits actifs avec des déclinaisons dans les langues du flux de produits.",
@@ -676,14 +676,14 @@
             },
             "productsSentToGoogle": {
                 "stepTitle": "Produits envoyés à Google",
-                "stepDetails": "This report displays the status of all your products that have been sent to Google Merchant Center. Please note that it may take a few days for Google to review your products. You can use this report to track the progress of each product and ensure that they are approved and active on Google Shopping.\n\n**‘Approved’ products** are fully approved and eligible to appear in free listings on Google.\n\n**‘Pending’ products** are being processed by Google. They will not appear in listings until they are approved.\n\n**‘Expiring’ products** will become inactive and no longer appear in Google listings in the next days.\n\n**‘Disapproved’ products** are inactive and do not appear in Google listings. You can click on Disapproved box for more information.",
+                "stepDetails": "Ce rapport affiche l'état de tous vos produits qui ont été envoyés au Google Merchant Center. Veuillez noter que l'évaluation de vos produits par Google peut prendre quelques jours. Vous pouvez utiliser ce rapport pour suivre la progression de chaque produit et vous assurer qu'ils sont approuvés et actifs sur Google Shopping.\n\n**Les produits \"actifs\"** sont entièrement approuvés et peuvent apparaître dans les listes gratuites de Google.\n\n**Les produits \"en attente\"** sont en cours de traitement par Google. Ils n'apparaîtront pas dans les listes tant qu'ils n'auront pas été approuvés.\n\n**Les produits \"expirants\"** deviendront inactifs et n'apparaîtront plus dans les listes de Google dans les prochains jours.\n\n**Les produits \"refusés\"** sont inactifs et n'apparaissent pas dans les listes de Google. Vous pouvez cliquer sur la case \"Refusés\" pour plus d'informations.",
                 "reportCards": {
                     "approved": "Actifs",
-                    "approvedDescription": "Products with variations successfully synced.",
+                    "approvedDescription": "Produits avec déclinaisons synchronisés avec succès.",
                     "pending": "En attente",
                     "pendingDescription": "Produits en cours d'évaluation par Google.",
                     "expiring": "Expirants",
-                    "expiringDescription": "Invalid products to be removed from Google soon.",
+                    "expiringDescription": "Produits non mis à jour qui seront bientôt supprimés de Google.",
                     "disapproved": "Refusés",
                     "disapprovedDescription": "Produits refusés par Google."
                 }
@@ -712,7 +712,7 @@
                 "languages": "Langues",
                 "actions": "Actions"
             },
-            "productVariants": "{variantsCount} variant|{variantsCount} variants"
+            "productVariants": "{variantsCount} déclinaison|{variantsCount} déclinaisons"
         },
         "compliancyIssues": {
             "nameMissing": "Renseignez un nom",
