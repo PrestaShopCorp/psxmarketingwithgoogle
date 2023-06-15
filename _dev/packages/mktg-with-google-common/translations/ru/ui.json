@@ -924,7 +924,7 @@
         "overwriteProductFeed": "Перезапись ленты продуктов",
         "whyDidntWork": "Проверьте, почему это не сработало",
         "aboutProductCategory": "Список категорий продуктов Google",
-        "edit": "Редактировать",
+        "edit": "Edit",
         "editSettings": "Редактирование настроек",
         "editRules": "Правила редактирования",
         "shopMaintenanceBtn": "Перейдите к настройкам технического обслуживания",
@@ -994,7 +994,7 @@
         "validateSelection": "Проверить правильность выбора",
         "visitThe": "Посетите {0} для получения дополнительной информации",
         "createPmax": "Создание кампании Performance Max",
-        "understand": "Я понимаю",
+        "understand": "I understand",
         "moreActions": "Другие действия"
     },
     "badge": {
