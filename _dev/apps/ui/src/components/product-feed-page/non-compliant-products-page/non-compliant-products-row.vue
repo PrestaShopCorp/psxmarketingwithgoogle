@@ -8,11 +8,13 @@
         ]}`) }}
     </b-td>
     <b-td
-      class="col-md-4"
+      class="col-md-4 ps_gs_noncompliant_cell"
     >
-      {{ $t(`productFeedPage.compliancyIssues.${
-        ProductVerificationIssueTranslation[verificationIssue.name
-        ]}Action`) }}
+      <VueShowdown
+        :markdown="$t(`productFeedPage.compliancyIssues.${
+          ProductVerificationIssueTranslation[verificationIssue.name
+        ]}Action`)"
+      />
     </b-td>
     <b-td>
       {{ numberOfAffectedProducts }}

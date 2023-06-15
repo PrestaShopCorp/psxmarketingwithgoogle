@@ -351,3 +351,9 @@ $statusColors: (
     padding: rem(16);
   }
 }
+
+.ps_gs_noncompliant_cell {
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
