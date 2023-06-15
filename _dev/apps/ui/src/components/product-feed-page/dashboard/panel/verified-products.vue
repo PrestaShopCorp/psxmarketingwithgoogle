@@ -89,11 +89,11 @@ export default defineComponent({
         variant: 'danger',
         icon: 'remove_shopping_cart',
         reverseColors: false,
-        ...(+(this.verificationsStats.invalidProducts || 0) && {
+        ...((this.verificationsStats.invalidProducts !== null) && {
           link: {
             to: {name: 'product-feed-verification-errors'},
           },
-          reverseColors: true,
+          reverseColors: !!this.verificationsStats.invalidProducts,
         }),
       },
       ];
