@@ -89,6 +89,6 @@ describe('feed-configuration-card.vue', () => {
     expect(noElligibleLang.exists()).toBeTruthy();
     expect(noElligibleLang.text()).toEqual('No eligible language');
 
-    expect(languagesAlert.text()).toEqual('Your product language does not match the target country {0}. Please ensure that the language of your products matches the target country spoken languages, by translating your product or changing the target country. | Your product language does not match the target countries {0}. Please ensure that the language of your products matches the target countries spoken languages, by translating your product or changing the target countries.');
+    expect(languagesAlert.text()).toContain('No eligible languages');
   });
 });

@@ -13,7 +13,7 @@
       <VueShowdown
         :markdown="$t(`productFeedPage.compliancyIssues.${
           ProductVerificationIssueTranslation[verificationIssue.name
-        ]}Action`)"
+          ]}Action`)"
       />
     </b-td>
     <b-td>

@@ -351,12 +351,6 @@
         "refreshCarriers": "Refresh if you have edited your carriers",
         "switchToFlatRate": "Switch to estimation shipping’s set-up"
       },
-      "preScan": {
-        "selectLanguage": "Filter by language",
-        "apiError": "An error occurred while fetching data, please try again later.",
-        "langConflict": "Your product language does not match the target country {0}. Please ensure that the language of your products matches the target country spoken languages, by translating your product or changing the target country. | Your product language does not match the target countries {0}. Please ensure that the language of your products matches the target countries spoken languages, by translating your product or changing the target countries. ",
-        "noElement": "You don't have any products."
-      },
       "export": {
         "summarySyncDailyAt": "Sync daily at {0}",
         "synchronizationSchedule": "Export synchronization schedule",
@@ -656,6 +650,14 @@
       "dashboardPage": {
         "timeline": {},
         "productFeedConfiguration": {
+          "alerts": {
+            "productFeedCta": "product feed configuration",
+            "boSettingsCta": "add in your backoffice",
+            "noEligibleLanguagesTitle": "No eligible languages",
+            "noEligibleLanguagesDesc": "Please modify your target countries in your {0} or {1} the right languages to match your target countries.",
+            "noEligibleCurrenciesTitle": "No eligible currencies",
+            "noEligibleCurrenciesDesc": "Please modify your target countries in your {0} or {1} the currencies that matches your target countries in error."
+          },
           "title": "Your product feed's configuration",
           "targetCountries": "Selected target country:|Selected target countries:",
           "languages": "Language:|Languages:",
