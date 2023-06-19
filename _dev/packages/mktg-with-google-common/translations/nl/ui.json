@@ -351,12 +351,6 @@
             "refreshCarriers": "Vernieuwen als u uw dragers hebt bewerkt",
             "switchToFlatRate": "Overschakelen naar geschatte verzendkosten"
         },
-        "preScan": {
-            "selectLanguage": "Filteren op taal",
-            "apiError": "Er ging iets mis tijdens het ophalen van data., probeer het later nog eens.",
-            "langConflict": "Je producttaal komt niet overeen met het doelland {0}. Zorg ervoor dat de taal van je producten overeenkomt met de taal van het doelland door je product te vertalen of het doelland te wijzigen. | Je producttaal komt niet overeen met de doellanden {0}. Zorg ervoor dat de taal van je producten overeenkomt met de gesproken talen in de doellanden. Dit doe je door je product te vertalen of de doellanden te wijzigen. ",
-            "noElement": "Je hebt geen producten."
-        },
         "export": {
             "summarySyncDailyAt": "Synchroniseer dagelijks op {0}",
             "synchronizationSchedule": "Synchronisatieschema exporteren",
@@ -655,6 +649,14 @@
         "dashboardPage": {
             "timeline": {},
             "productFeedConfiguration": {
+                "alerts": {
+                    "productFeedCta": "product feed configuration",
+                    "boSettingsCta": "backoffice",
+                    "noEligibleLanguagesTitle": "No eligible languages",
+                    "noEligibleLanguagesDesc": "Please update your target countries in your {0} or add the relevant languages in your {1} to match your target countries.",
+                    "noEligibleCurrenciesTitle": "No eligible currencies",
+                    "noEligibleCurrenciesDesc": "Please update your target countries in your {0} or add the relevant currencies in your {1} to match the target countries in error."
+                },
                 "title": "Your product feed's configuration",
                 "targetCountries": "Selected target country:|Selected target countries:",
                 "languages": "Language:|Languages:",
@@ -994,7 +996,7 @@
         "validateSelection": "Selectie bevestigen",
         "visitThe": "Bezoek de {0} voor meer informatie",
         "createPmax": "Maximale prestaties-campagne aanmaken",
-        "understand": "I understand",
+        "understand": "Ik begrijp het.",
         "moreActions": "Meer acties"
     },
     "badge": {

@@ -351,12 +351,6 @@
             "refreshCarriers": "Odśwież, jeśli edytowałeś Twoich przewoźników",
             "switchToFlatRate": "Przejdź do konfiguracji szacunkowego trybu wysyłki"
         },
-        "preScan": {
-            "selectLanguage": "Filtruj według języka",
-            "apiError": "Podczas pobierania danych wystąpił błąd. Spróbuj ponownie później.",
-            "langConflict": "Język produktu nie jest zgodny z krajem docelowym {0}. Upewnij się, że język Twoich produktów jest zgodny z językiem kraju docelowego, dodając tłumaczenie produktu lub zmieniając kraj docelowy. | Język produktu nie jest zgodny z krajami docelowymi {0}. Upewnij się, że język Twoich produktów jest zgodny z językiem krajów docelowych, dodając tłumaczenie produktu lub zmieniając kraje docelowe. ",
-            "noElement": "Nie masz żadnych produktów."
-        },
         "export": {
             "summarySyncDailyAt": "Synchronizuj codziennie o {0}",
             "synchronizationSchedule": "Harmonogram synchronizacji eksportu",
@@ -655,6 +649,14 @@
         "dashboardPage": {
             "timeline": {},
             "productFeedConfiguration": {
+                "alerts": {
+                    "productFeedCta": "product feed configuration",
+                    "boSettingsCta": "backoffice",
+                    "noEligibleLanguagesTitle": "No eligible languages",
+                    "noEligibleLanguagesDesc": "Please update your target countries in your {0} or add the relevant languages in your {1} to match your target countries.",
+                    "noEligibleCurrenciesTitle": "No eligible currencies",
+                    "noEligibleCurrenciesDesc": "Please update your target countries in your {0} or add the relevant currencies in your {1} to match the target countries in error."
+                },
                 "title": "Your product feed's configuration",
                 "targetCountries": "Selected target country:|Selected target countries:",
                 "languages": "Language:|Languages:",
