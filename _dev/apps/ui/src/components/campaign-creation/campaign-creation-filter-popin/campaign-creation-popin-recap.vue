@@ -186,9 +186,7 @@ export default defineComponent({
       this.$store
         .dispatch('campaigns/SAVE_NEW_CAMPAIGN', finalCampaign)
         .then((resp) => {
-          this.$refs.modal.hide();
           if (resp && resp.error) {
-            this.isValidating = false;
             this.$emit('displayErrorApiWhenSavingSSC');
           } else {
             this.$store.dispatch(
@@ -199,8 +197,14 @@ export default defineComponent({
               name: 'campaign-list',
             });
             this.$emit('openPopinSSCCreated');
-            this.isValidating = false;
           }
+        })
+        .catch(() => {
+          this.$emit('displayErrorApiWhenSavingSSC');
+        })
+        .finally(() => {
+          this.isValidating = false;
+          this.$refs.modal.hide();
         });
     },
     editCampaign() {
@@ -216,9 +220,7 @@ export default defineComponent({
       this.$store
         .dispatch('campaigns/UPDATE_CAMPAIGN', payload)
         .then((resp) => {
-          this.$refs.modal.hide();
           if (resp && resp.error) {
-            this.isValidating = false;
             this.$emit('displayErrorApiWhenSavingSSC');
           } else {
             this.$store.dispatch(
@@ -232,8 +234,14 @@ export default defineComponent({
             this.$router.push({
               name: 'campaign-list',
             });
-            this.isValidating = false;
           }
+        })
+        .catch(() => {
+          this.$emit('displayErrorApiWhenSavingSSC');
+        })
+        .finally(() => {
+          this.isValidating = false;
+          this.$refs.modal.hide();
         });
     },
   },
