@@ -351,12 +351,6 @@
             "refreshCarriers": "Actualizează dacă ai editat transportatorii",
             "switchToFlatRate": "Treci la configurarea estimării expedierii"
         },
-        "preScan": {
-            "selectLanguage": "Filtrează după limbă",
-            "apiError": "A apărut o eroare la preluarea datelor. Încearcă din nou mai târziu.",
-            "langConflict": "Limba produsului nu se potrivește cu țara vizată {0}. Te rugăm să te asiguri că limba produselor corespunde cu limba vorbită a țării vizată, traducând produsul sau schimbând țara vizată. | Limba produsului nu se potrivește cu țările vizate {0}. Te rugăm să te asiguri că limba produselor se potrivește cu limbile vorbite ale țărilor vizate, traducând produsul sau schimbând țările vizate. ",
-            "noElement": "Nu ai niciun produs."
-        },
         "export": {
             "summarySyncDailyAt": "Sincronizare zilnică la {0}",
             "synchronizationSchedule": "Exportă programul de sincronizare",
@@ -655,6 +649,14 @@
         "dashboardPage": {
             "timeline": {},
             "productFeedConfiguration": {
+                "alerts": {
+                    "productFeedCta": "product feed configuration",
+                    "boSettingsCta": "backoffice",
+                    "noEligibleLanguagesTitle": "No eligible languages",
+                    "noEligibleLanguagesDesc": "Please update your target countries in your {0} or add the relevant languages in your {1} to match your target countries.",
+                    "noEligibleCurrenciesTitle": "No eligible currencies",
+                    "noEligibleCurrenciesDesc": "Please update your target countries in your {0} or add the relevant currencies in your {1} to match the target countries in error."
+                },
                 "title": "Your product feed's configuration",
                 "targetCountries": "Selected target country:|Selected target countries:",
                 "languages": "Language:|Languages:",
