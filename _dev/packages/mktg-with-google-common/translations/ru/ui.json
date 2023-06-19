@@ -351,12 +351,6 @@
             "refreshCarriers": "Обновите, если вы отредактировали своих носителей",
             "switchToFlatRate": "Переключиться в режим расчета стоимости и сроков доставки"
         },
-        "preScan": {
-            "selectLanguage": "Фильтр по языку",
-            "apiError": "Ошибка при получении данных. Повторите попытку позже.",
-            "langConflict": "Язык описания товара не соответствует указанной стране ({0}). Убедитесь, что язык описания товара соответствует указанной стране. При необходимости выполните перевод или измените страну. | Язык описания товара не соответствует указанным странам ({0}). Убедитесь, что язык описания товара соответствует указанным странам. При необходимости выполните перевод или измените страны. ",
-            "noElement": "Товары отсутствуют."
-        },
         "export": {
             "summarySyncDailyAt": "Синхронизация ежедневно в {0}",
             "synchronizationSchedule": "Расписание синхронизации экспорта",
@@ -655,6 +649,14 @@
         "dashboardPage": {
             "timeline": {},
             "productFeedConfiguration": {
+                "alerts": {
+                    "productFeedCta": "product feed configuration",
+                    "boSettingsCta": "backoffice",
+                    "noEligibleLanguagesTitle": "No eligible languages",
+                    "noEligibleLanguagesDesc": "Please update your target countries in your {0} or add the relevant languages in your {1} to match your target countries.",
+                    "noEligibleCurrenciesTitle": "No eligible currencies",
+                    "noEligibleCurrenciesDesc": "Please update your target countries in your {0} or add the relevant currencies in your {1} to match the target countries in error."
+                },
                 "title": "Your product feed's configuration",
                 "targetCountries": "Selected target country:|Selected target countries:",
                 "languages": "Language:|Languages:",
@@ -924,7 +926,7 @@
         "overwriteProductFeed": "Перезапись ленты продуктов",
         "whyDidntWork": "Проверьте, почему это не сработало",
         "aboutProductCategory": "Список категорий продуктов Google",
-        "edit": "Edit",
+        "edit": "Редактировать",
         "editSettings": "Редактирование настроек",
         "editRules": "Правила редактирования",
         "shopMaintenanceBtn": "Перейдите к настройкам технического обслуживания",
@@ -994,7 +996,7 @@
         "validateSelection": "Проверить правильность выбора",
         "visitThe": "Посетите {0} для получения дополнительной информации",
         "createPmax": "Создание кампании Performance Max",
-        "understand": "I understand",
+        "understand": "Я понимаю",
         "moreActions": "Другие действия"
     },
     "badge": {
