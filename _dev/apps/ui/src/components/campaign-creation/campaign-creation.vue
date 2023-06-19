@@ -635,6 +635,7 @@ export default defineComponent({
         endDate: this.campaignDurationEndDate,
         targetCountry: this.targetCountry || this.defaultCountry,
         productFilters: this.finalCampaignFilters,
+        status: this.campaignIsActive ? CampaignStatus.ELIGIBLE : CampaignStatus.PAUSED,
       };
     },
     productsHaveBeenApprovedByGoogle() {

@@ -206,12 +206,12 @@ export default defineComponent({
     editCampaign() {
       this.isValidating = true;
       const payload = {
+        status: CampaignStatusToggle.ENABLED,
         ...this.newCampaign,
         // API wants country code not name so we have to filter it
         targetCountry: changeCountryNameToCode(
           this.newCampaign.targetCountry,
         ),
-        status: CampaignStatusToggle.ENABLED,
       };
       this.$store
         .dispatch('campaigns/UPDATE_CAMPAIGN', payload)
