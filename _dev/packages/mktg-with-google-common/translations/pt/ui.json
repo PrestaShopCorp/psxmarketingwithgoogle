@@ -351,12 +351,6 @@
             "refreshCarriers": "Atualize se você editou seus portadores",
             "switchToFlatRate": "Mude para a configuração de estimativa de envio"
         },
-        "preScan": {
-            "selectLanguage": "Filtrar por idioma",
-            "apiError": "Ocorreu um erro na busca de dados. Tente novamente mais tarde.",
-            "langConflict": "O idioma do seu produto não corresponde ao país de destino {0}. Certifique-se de que o idioma dos seus produtos corresponda aos idiomas falados no país de destino, traduzindo o seu produto ou alterando o país de destino. | O idioma do seu produto não corresponde aos países de destino {0}. Certifique-se de que o idioma dos seus produtos corresponda aos idiomas falados nos países de destino, traduzindo o seu produto ou alterando os países de destino. ",
-            "noElement": "Você não tem nenhum produto."
-        },
         "export": {
             "summarySyncDailyAt": "Sincronizar diariamente em {0}",
             "synchronizationSchedule": "Cronograma de sincronização de exportação",
@@ -655,6 +649,14 @@
         "dashboardPage": {
             "timeline": {},
             "productFeedConfiguration": {
+                "alerts": {
+                    "productFeedCta": "product feed configuration",
+                    "boSettingsCta": "backoffice",
+                    "noEligibleLanguagesTitle": "No eligible languages",
+                    "noEligibleLanguagesDesc": "Please update your target countries in your {0} or add the relevant languages in your {1} to match your target countries.",
+                    "noEligibleCurrenciesTitle": "No eligible currencies",
+                    "noEligibleCurrenciesDesc": "Please update your target countries in your {0} or add the relevant currencies in your {1} to match the target countries in error."
+                },
                 "title": "Your product feed's configuration",
                 "targetCountries": "Selected target country:|Selected target countries:",
                 "languages": "Language:|Languages:",
