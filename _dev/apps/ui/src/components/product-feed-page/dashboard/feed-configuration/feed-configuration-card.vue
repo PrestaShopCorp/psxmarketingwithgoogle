@@ -5,15 +5,64 @@
       show
       v-if="!loading && !languages.length"
     >
-      <p class="mb-0">
-        {{
-          $tc('productFeedSettings.preScan.langConflict',
-              targetCountries.length,
-              [targetCountriesDetails.map((country) => country.countryName).join(', ')]
-          )
-        }}
-      </p>
+      <strong>{{
+        $t('productFeedPage.dashboardPage.productFeedConfiguration.alerts.noEligibleLanguagesTitle')
+      }}</strong><br>
+      <!-- eslint-disable max-len -->
+      <i18n
+        path="productFeedPage.dashboardPage.productFeedConfiguration.alerts.noEligibleLanguagesDesc"
+        class="mt-3 mt-md-0"
+        tag="div"
+      >
+        <router-link
+          :to="{ name: 'product-feed-settings',
+                 params: { step: ProductFeedSettingsPages.SHIPPING_SETTINGS}}"
+          class="external_link-no_icon"
+          @click="targetCountryClicked"
+        >
+          {{ $t('productFeedPage.dashboardPage.productFeedConfiguration.alerts.productFeedCta') }}
+        </router-link>
+        <b-link
+          target="_blank"
+          :href="$store.getters['app/GET_LANGUAGES_URL']"
+          @click="languageClicked"
+        >
+          {{ $t('productFeedPage.dashboardPage.productFeedConfiguration.alerts.boSettingsCta') }}
+        </b-link>
+      </i18n>
     </b-alert>
+
+    <b-alert
+      :variant="localizationListLengths.currencies ? 'warning' : 'danger'"
+      show
+      v-if="!loading && targetCountriesInError.length"
+    >
+      <strong>
+        {{ $t('productFeedPage.dashboardPage.productFeedConfiguration.alerts.noEligibleCurrenciesTitle') }}
+      </strong><br>
+      <i18n
+        path="productFeedPage.dashboardPage.productFeedConfiguration.alerts.noEligibleCurrenciesDesc"
+        class="mt-3 mt-md-0"
+        tag="div"
+      >
+        <router-link
+          :to="{ name: 'product-feed-settings',
+                 params: { step: ProductFeedSettingsPages.SHIPPING_SETTINGS}}"
+          class="external_link-no_icon"
+          @click="targetCountryClicked"
+        >
+          {{ $t('productFeedPage.dashboardPage.productFeedConfiguration.alerts.productFeedCta') }}
+        </router-link>
+        <b-link
+          target="_blank"
+          :href="$store.getters['app/GET_CURRENCIES_URL']"
+          @click="languageClicked"
+        >
+          {{ $t('productFeedPage.dashboardPage.productFeedConfiguration.alerts.boSettingsCta') }}
+        </b-link>
+      </i18n>
+    </b-alert>
+
     <div
       class="d-flex flex-column border border-600-20 mb-4 px-3 py-2 d-flex"
     >
@@ -178,6 +227,12 @@ export default defineComponent({
         };
       });
     },
+    targetCountriesInError(): string[] {
+      return [...new Set(this.targetCountriesDetails
+        .filter((countryDetails) => !countryDetails.currencyIsFound)
+        .map((countryDetails) => countryDetails.countryName),
+      )];
+    },
   },
   methods: {
     targetCountryClicked(): void {
@@ -191,6 +246,16 @@ export default defineComponent({
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
+    },
+  },
+  watch: {
+    loading(newVal, oldVal) {
+      if (oldVal === true && newVal === false) {
+        this.$segment.identify(this.$store.state.accounts.shopIdPsAccounts, {
+          ggl_sync_has_currencies_issues: !!this.targetCountriesInError.length,
+          ggl_sync_has_languages_issues: !this.languages.length,
+        });
+      }
     },
   },
 });

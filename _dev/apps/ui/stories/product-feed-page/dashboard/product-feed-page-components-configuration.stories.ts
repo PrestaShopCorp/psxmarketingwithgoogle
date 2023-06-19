@@ -17,8 +17,9 @@ export const Default:any = ProductFeed.bind({});
 Default.args = {
   productFeedConfiguration: {
     lastModificationDate: new Date(2023, 6, 31, 13, 37),
-    targetCountries: ['FR', 'UK', 'IT'], 
+    targetCountries: ['FR', 'GB', 'IT'], 
     languages: ['it', 'fr', 'de'],
+    currencies: ['EUR', 'GBP'],
   },
   loading: false,
 };
@@ -27,8 +28,9 @@ export const ComplexConfiguration:any = ProductFeed.bind({});
 ComplexConfiguration.args = {
   productFeedConfiguration: {
     lastModificationDate: new Date(2023, 6, 31, 13, 37),
-    targetCountries: ['FR', 'UK', 'IT', 'DE', 'NL', 'PT', 'PL'], 
+    targetCountries: ['FR', 'GB', 'IT', 'DE', 'NL', 'PT', 'PL'], 
     languages: ['it', 'fr', 'de', 'en', 'nl', 'pt', 'pl'],
+    currencies: ['EUR', 'GBP'],
   },
   loading: false,
 };
@@ -43,8 +45,31 @@ export const NoEligibleLanguage: any = ProductFeed.bind({});
 NoEligibleLanguage.args = {
   productFeedConfiguration: {
     lastModificationDate: new Date(2023, 6, 31, 13, 37),
-    targetCountries: ['FR', 'UK', 'IT'], 
+    targetCountries: ['FR', 'GB', 'IT'], 
     languages: [],
+    currencies: ['EUR', 'GBP'],
+  },
+  loading: false,
+};
+
+export const SomeNonEligibleCurrencies: any = ProductFeed.bind({});
+SomeNonEligibleCurrencies.args = {
+  productFeedConfiguration: {
+    lastModificationDate: new Date(2023, 6, 31, 13, 37),
+    targetCountries: ['FR', 'GB', 'IT'], 
+    languages: ['fr', 'en'],
+    currencies: ['EUR'],
+  },
+  loading: false,
+};
+
+export const NoEligibleCurrencies: any = ProductFeed.bind({});
+NoEligibleCurrencies.args = {
+  productFeedConfiguration: {
+    lastModificationDate: new Date(2023, 6, 31, 13, 37),
+    targetCountries: ['FR', 'GB', 'IT'], 
+    languages: ['fr', 'en'],
+    currencies: [],
   },
   loading: false,
 };
