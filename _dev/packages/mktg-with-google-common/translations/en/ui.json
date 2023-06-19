@@ -652,11 +652,11 @@
         "productFeedConfiguration": {
           "alerts": {
             "productFeedCta": "product feed configuration",
-            "boSettingsCta": "add in your backoffice",
+            "boSettingsCta": "backoffice",
             "noEligibleLanguagesTitle": "No eligible languages",
-            "noEligibleLanguagesDesc": "Please modify your target countries in your {0} or {1} the right languages to match your target countries.",
+            "noEligibleLanguagesDesc": "Please update your target countries in your {0} or add the relevant languages in your {1} to match your target countries.",
             "noEligibleCurrenciesTitle": "No eligible currencies",
-            "noEligibleCurrenciesDesc": "Please modify your target countries in your {0} or {1} the currencies that matches your target countries in error."
+            "noEligibleCurrenciesDesc": "Please update your target countries in your {0} or add the relevant currencies in your {1} to match the target countries in error."
           },
           "title": "Your product feed's configuration",
           "targetCountries": "Selected target country:|Selected target countries:",
