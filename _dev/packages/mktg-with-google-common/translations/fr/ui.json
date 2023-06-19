@@ -351,12 +351,6 @@
             "refreshCarriers": "Rafraîchir si vous avez modifié vos transporteurs",
             "switchToFlatRate": "Basculez vers la configuration estimative des modes d'expédition"
         },
-        "preScan": {
-            "selectLanguage": "Filtrer par langue",
-            "apiError": "Une erreur s'est produite lors de la récupération des données. Veuillez réessayer plus tard.",
-            "langConflict": "La langue de votre produit ne correspond pas au pays cible {0}. Veuillez vous assurer que la langue de vos produits correspond aux langues parlées dans le pays cible, en traduisant votre produit ou en changeant le pays cible. | La langue de votre produit ne correspond pas aux pays cibles {0}. Veuillez vous assurer que la langue de vos produits correspond aux langues parlées dans les pays cibles, en traduisant votre produit ou en modifiant les pays cibles. ",
-            "noElement": "Vous n'avez pas encore de produit."
-        },
         "export": {
             "summarySyncDailyAt": "Synchronisation quotidienne à {0}",
             "synchronizationSchedule": "Export prévu",
@@ -655,6 +649,14 @@
         "dashboardPage": {
             "timeline": {},
             "productFeedConfiguration": {
+                "alerts": {
+                    "productFeedCta": "product feed configuration",
+                    "boSettingsCta": "backoffice",
+                    "noEligibleLanguagesTitle": "No eligible languages",
+                    "noEligibleLanguagesDesc": "Please update your target countries in your {0} or add the relevant languages in your {1} to match your target countries.",
+                    "noEligibleCurrenciesTitle": "No eligible currencies",
+                    "noEligibleCurrenciesDesc": "Please update your target countries in your {0} or add the relevant currencies in your {1} to match the target countries in error."
+                },
                 "title": "Votre configuration de flux produit",
                 "targetCountries": "Pays cible sélectionné:|Pays cibles sélectionnés:",
                 "languages": "Langue :|Langues :",
@@ -994,7 +996,7 @@
         "validateSelection": "Valider la sélection",
         "visitThe": "Visitez la page {0} pour plus d'informations.",
         "createPmax": "Créez une campagne Performance Max",
-        "understand": "I understand",
+        "understand": "Je comprends",
         "moreActions": "Plus d'Actions"
     },
     "badge": {
