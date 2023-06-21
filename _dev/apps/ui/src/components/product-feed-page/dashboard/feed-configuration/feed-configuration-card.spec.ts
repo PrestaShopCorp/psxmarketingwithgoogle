@@ -81,7 +81,7 @@ describe('feed-configuration-card.vue', () => {
     });
     const countriesFound = wrapper.findAll('[data-test-id="pf-config-country"]');
     const noElligibleLang = wrapper.find('[data-test-id="pf-config-no-lang"]');
-    const languagesAlert = wrapper.find('.alert-danger');
+    const localizationAlerts = wrapper.find('.alert-danger');
 
     expect(countriesFound).toHaveLength(1);
     expect(countriesFound.at(0).text()).toEqual('France (EUR)');
@@ -89,6 +89,76 @@ describe('feed-configuration-card.vue', () => {
     expect(noElligibleLang.exists()).toBeTruthy();
     expect(noElligibleLang.text()).toEqual('No eligible language');
 
-    expect(languagesAlert.text()).toContain('No eligible languages');
+    expect(localizationAlerts.text()).toContain('No eligible languages');
+  });
+
+  describe('Currencies eligibility', () => {
+    it('should display an error if all target countries currencies are missing', () => {
+      addBootstrapToVue();
+      const wrapper = mount(feedConfigurationCardVue, {
+        localVue,
+        ...config,
+        propsData: {
+          productFeedConfiguration: {
+            targetCountries: ['BR'],
+            languages: [],
+            currencies: ['EUR'],
+            lastModificationDate: new Date(),
+          },
+          loading: false,
+        },
+        store: new Vuex.Store(cloneStore()),
+      });
+      const countriesFound = wrapper.findAll('[data-test-id="pf-config-country"]');
+      const noElligibleLang = wrapper.find('[data-test-id="pf-config-no-lang"]');
+      const localizationAlerts = wrapper.findAll('.alert');
+
+      expect(countriesFound).toHaveLength(1);
+      expect(countriesFound.at(0).text()).toEqual('Brazil (BRL)');
+
+      expect(noElligibleLang.exists()).toBeTruthy();
+      expect(noElligibleLang.text()).toEqual('No eligible language');
+
+      expect(localizationAlerts.at(0).text()).toContain('No eligible languages');
+      expect(localizationAlerts.at(0).classes().includes('alert-danger')).toBe(true);
+      expect(localizationAlerts.at(1).text()).toContain('No eligible currencies');
+      expect(localizationAlerts.at(1).classes().includes('alert-danger')).toBe(true);
+      expect(localizationAlerts.at(1).classes().includes('alert-warning')).toBe(false);
+    });
+  });
+
+  it('should display a warning if some currencies of the target countries are missing', () => {
+    addBootstrapToVue();
+    const wrapper = mount(feedConfigurationCardVue, {
+      localVue,
+      ...config,
+      propsData: {
+        productFeedConfiguration: {
+          targetCountries: ['BR', 'FR'],
+          languages: [],
+          currencies: ['EUR'],
+          lastModificationDate: new Date(),
+        },
+        loading: false,
+      },
+      store: new Vuex.Store(cloneStore()),
+    });
+    const countriesFound = wrapper.findAll('[data-test-id="pf-config-country"]');
+    const noElligibleLang = wrapper.find('[data-test-id="pf-config-no-lang"]');
+    const localizationAlerts = wrapper.findAll('.alert');
+
+    expect(countriesFound).toHaveLength(2);
+    expect(countriesFound.at(0).text()).toEqual('Brazil (BRL)');
+    expect(countriesFound.at(1).text()).toEqual('France (EUR)');
+
+    expect(noElligibleLang.exists()).toBeTruthy();
+    expect(noElligibleLang.text()).toEqual('No eligible language');
+
+    expect(localizationAlerts).toHaveLength(2);
+    expect(localizationAlerts.at(0).text()).toContain('No eligible languages');
+    expect(localizationAlerts.at(0).classes().includes('alert-danger')).toBe(true);
+    expect(localizationAlerts.at(1).text()).toContain('No eligible currencies');
+    expect(localizationAlerts.at(1).classes().includes('alert-danger')).toBe(false);
+    expect(localizationAlerts.at(1).classes().includes('alert-warning')).toBe(true);
   });
 });

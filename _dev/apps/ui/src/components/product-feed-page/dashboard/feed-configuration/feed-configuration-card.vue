@@ -33,7 +33,7 @@
     </b-alert>
 
     <b-alert
-      :variant="localizationListLengths.currencies ? 'warning' : 'danger'"
+      :variant="targetCountriesInError.length === localizationListLengths.countries ? 'danger' : 'warning'"
       show
       v-if="!loading && targetCountriesInError.length"
     >
