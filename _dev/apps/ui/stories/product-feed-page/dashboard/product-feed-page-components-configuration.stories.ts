@@ -73,3 +73,14 @@ NoEligibleCurrencies.args = {
   },
   loading: false,
 };
+
+export const NoEligibleCurrency: any = ProductFeed.bind({});
+NoEligibleCurrency.args = {
+  productFeedConfiguration: {
+    lastModificationDate: new Date(2023, 6, 31, 13, 37),
+    targetCountries: ['BR'], 
+    languages: [],
+    currencies: ['EUR'],
+  },
+  loading: false,
+};
