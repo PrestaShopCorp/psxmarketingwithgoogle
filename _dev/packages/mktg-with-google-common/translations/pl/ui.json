@@ -743,7 +743,7 @@
             "filterTitle": "Filtruj według dostępności",
             "filterAllStatus": "Wszystkie",
             "filterOnlyApproved": "Zatwierdzone",
-            "filterOnlyPending": "W toku",
+            "filterOnlyPending": "Oczekujące",
             "filterOnlyNotApproved": "Niezatwierdzone",
             "tableHeaderID": "ID",
             "tableHeaderAttributeID": "Atrybut",
@@ -879,7 +879,7 @@
         "help": {
             "needHelp": "Potrzebujesz pomocy? Znajdź tutaj dokumentację dotyczącą tego modułu.",
             "downloadPdf": "Pobierz plik PDF",
-            "couldntFindAnyAnswer": "Could not find any answer to your question?",
+            "couldntFindAnyAnswer": "Nie ma odpowiedzi na Twoje pytanie?",
             "contactUs": "Skontaktuj się z nami"
         }
     },
