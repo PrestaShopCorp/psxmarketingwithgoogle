@@ -2,11 +2,11 @@ import {config, createLocalVue} from '@vue/test-utils';
 import Vuex from 'vuex';
 import {BootstrapVue} from 'bootstrap-vue';
 import VueShowdown from 'vue-showdown';
+import {initOnboardingClient} from 'mktg-with-google-common/api/onboardingClient';
+import {initShopClient} from 'mktg-with-google-common/api/shopClient';
 import {messages} from '@/lib/translations';
 import {changeCountriesCodesToNames} from '@/utils/Countries';
 import '../showdown.js';
-import { initOnboardingClient } from 'mktg-with-google-common/api/onboardingClient';
-import { initShopClient } from 'mktg-with-google-common/api/shopClient';
 
 let windowSpy;
 let localVue; // eslint-disable-line
@@ -45,11 +45,11 @@ beforeEach(() => {
   localVue.directive('b-tooltip', VBTooltip);
 
   initOnboardingClient({
-    apiUrl: 'http://some-route', 
+    apiUrl: 'http://some-route',
     token: 'some-token',
   });
   initShopClient({
-    shopUrl: 'http://some-route', 
+    shopUrl: 'http://some-route',
   });
 });
 

@@ -3,7 +3,7 @@ on: [push, pull_request]
 
 env:
   PNPM_VERSION: 7
-  NODE_VERSION: 14
+  NODE_VERSION: 20
 
 jobs:
   js-linter:
