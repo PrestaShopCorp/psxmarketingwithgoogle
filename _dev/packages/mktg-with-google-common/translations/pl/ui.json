@@ -1,7 +1,7 @@
 {
     "general": {
         "tabs": {
-            "productFeed": "Product feed",
+            "productFeed": "Plik danych produktu",
             "campaign": "Kampania",
             "reporting": "Raportowanie",
             "configuration": "Konfiguruj",
@@ -622,8 +622,8 @@
     },
     "productFeedPage": {
         "breadcrumb": {
-            "productStatusDetails": "Product status details",
-            "nonCompliantProducts": "Non-compliant products"
+            "productStatusDetails": "Szczegóły statusu produktu",
+            "nonCompliantProducts": "Produkty niespełniające wymagań"
         },
         "alert": {
             "googleIsReviewing": "Twoje produkty są w trakcie sprawdzania.  \n Przejrzenie Twoich produktów może potrwać 3-5 dni. Po zatwierdzeniu, Twoje produkty będą dostępne dla darmowych aukcji i ogłoszeń.",
@@ -650,27 +650,27 @@
             "timeline": {},
             "productFeedConfiguration": {
                 "alerts": {
-                    "productFeedCta": "product feed configuration",
-                    "boSettingsCta": "backoffice",
-                    "noEligibleLanguagesTitle": "No eligible languages",
-                    "noEligibleLanguagesDesc": "Please update your target countries in your {0} or add the relevant languages in your {1} to match your target countries.",
-                    "noEligibleCurrenciesTitle": "No eligible currencies",
+                    "productFeedCta": "konfiguracja pliku danych produktu",
+                    "boSettingsCta": "back office",
+                    "noEligibleLanguagesTitle": "Brak kwalifikujących się języków",
+                    "noEligibleLanguagesDesc": "Zaktualizuj kraje docelowe na stronie {0} lub dodaj odpowiednie języki na stronie {1}, aby dopasować je do krajów docelowych.",
+                    "noEligibleCurrenciesTitle": "Brak kwalifikujących się walut",
                     "noEligibleCurrenciesDesc": "Please update your target countries in your {0} or add the relevant currencies in your {1} to match the target countries in error."
                 },
                 "title": "Your product feed's configuration",
                 "targetCountries": "Selected target country:|Selected target countries:",
                 "languages": "Language:|Languages:",
                 "currencies": "Currency:|Currencies:",
-                "noLanguage": "No eligible language",
-                "noCurrency": "No eligible currency"
+                "noLanguage": "Brak kwalifikującego się języka",
+                "noCurrency": "Brak kwalifikującej się waluty"
             },
             "productVerification": {
                 "stepTitle": "Products verified by Prestashop before sent to Google",
                 "stepDetails": "Before sending all your products (including variations), we ensure their compliance with Google's Merchant center policies. We verify the products **every time a change is detected**, and if there are any non-compliant products, we provide guidance on what needs to be done. Click on non-compliant products for more information.\n\nAfter submission, Google assigns each product a status: **Approved, Expiring, Pending** or **Disapproved**.",
                 "reportCards": {
-                    "productsInCatalog": "My product catalog",
+                    "productsInCatalog": "Mój katalog produktów",
                     "productsInCatalogDescription": "Active products with variations in product feed languages.",
-                    "verified": "Compliant products",
+                    "verified": "Produkty spełniające wymagania",
                     "verifiedDescription": "PrestaShop-approved products ready to be sent to Google.",
                     "nonCompliant": "Non-compliant products",
                     "nonCompliantDescription": "Products that do not meet Google's requirements."
@@ -682,7 +682,7 @@
                 "reportCards": {
                     "approved": "Approved",
                     "approvedDescription": "Products with variations successfully synced.",
-                    "pending": "Pending",
+                    "pending": "Oczekujące",
                     "pendingDescription": "Products being reviewed by Google.",
                     "expiring": "Expiring",
                     "expiringDescription": "Invalid products to be removed from Google soon.",
@@ -693,31 +693,31 @@
         },
         "compliancyIssuesPage": {
             "details": "To ensure a successful pre-scan with Google, please fix the issues outlined in the table below. Taking care of these issues will help your list your product on Google’s surfaces.",
-            "languageSelection": "Filter by language",
-            "languageSelected": "Filter by: {lang}",
-            "noResults": "No data found",
+            "languageSelection": "Filtruj według języka",
+            "languageSelected": "Filtruj według: {lang}",
+            "noResults": "Nie znaleziono danych",
             "columns": {
-                "issues": "Issues",
-                "suggestedActions": "Suggested actions",
+                "issues": "Problemy",
+                "suggestedActions": "Sugerowane działania",
                 "affectedProducts": "Affected products",
-                "languages": "Languages"
+                "languages": "Języki"
             },
             "actions": {
-                "listProducts": "View product|View products"
+                "listProducts": "Wyświetl produkt|Wyświetl produkty"
             }
         },
         "compliancyIssueProductsPage": {
-            "details": "**Suggested action:** {action}",
+            "details": "**Sugerowane działanie:** {action}",
             "columns": {
-                "productsId": "Product’s ID",
-                "productsTitle": "Product’s title",
-                "languages": "Languages",
-                "actions": "Actions"
+                "productsId": "ID produktu",
+                "productsTitle": "Nazwa produktu",
+                "languages": "Języki",
+                "actions": "Działania"
             },
-            "productVariants": "{variantsCount} variant|{variantsCount} variants"
+            "productVariants": "{variantsCount} wariant|{variantsCount} wariantów"
         },
         "compliancyIssues": {
-            "nameMissing": "Provide a name",
+            "nameMissing": "Podaj nazwę",
             "nameMissingAction": "A product name is a unique identifier used to describe a product, and it is important because it helps improves visibility in search engine results. In PrestaShop, product names can be entered in the Catalog > Product > in the \"Product Name\" section.",
             "imageMissing": "Provide an image",
             "imageMissingAction": "A product image is a visual representation of a product that helps customers understand what the product looks like. It is important to have product images because it can help increase product appeal and sales, and can enhance the overall shopping experience. Product images can be added or edited in Catalog > Product > in the \"Images\" section.",
@@ -1063,10 +1063,10 @@
         "titleDisconnectedUserBo": "Utracono połączenie"
     },
     "tooltip": {
-        "googleAccountRequired": "Wymaga to konfiguracji konta Google",
-        "merchantCenterAccountRequired": "Wymaga to konfiguracji konta Merchant Center",
-        "productFeedRequired": "Wymaga to konfiguracji pliku danych produktu",
-        "googleAdsAccountRequired": "Wymaga to skonfigurowanego konta Google Ads",
+        "googleAccountRequired": "Wymagana konfiguracja konta Google",
+        "merchantCenterAccountRequired": "Wymagana konfiguracja konta Merchant Center",
+        "productFeedRequired": "Wymagana konfiguracja pliku danych produktu",
+        "googleAdsAccountRequired": "Wymagana konfiguracja konta Google Ads",
         "mustCheckAllRequirements": "Konieczne jest sprawdzenie wszystkich wymagań.",
         "mustAgreeGoogleTerms": "Konieczne jest wyrażenie zgody na warunki korzystania Google",
         "mustAgreeGoogleAdsTerms": "Konieczne jest wyrażenie zgody na warunki korzystania",
@@ -1075,7 +1075,7 @@
         "approvalStatusIssues": "Powód, dla którego Twój produkt nie został zatwierdzony przez Google",
         "attributeMapping": {
             "description": "Opis zostanie automatycznie przycięty, jeśli będzie dłuższy niż 5000 znaków",
-            "ageGroup": "Demografia, do której skierowany jest Twój produkt.",
+            "ageGroup": "Grupa demograficzna, do której skierowany jest produkt.",
             "gtin": "Kod nadrukowany na opakowaniu produktu, ułatwiający identyfikację konkretnego artykułu.",
             "mpn": "Unikalny numer, który jest nadawany przez producentów w celu identyfikacji poszczególnych produktów. Składa się z szeregu cyfr i liter.",
             "pattern": "Wzór lub nadruk graficzny Twojego produktu"
@@ -1139,7 +1139,7 @@
         "textAdsBannerLong": "Zdobądź {0} kuponów promocyjnych Google Ads*, jeśli wydasz co najmniej {0} na stworzenie Twoich pierwszych kampanii na PrestaShop lub bezpośrednio przez Twoje [Google Ads Account]({1})[:target=\"_blank\"].",
         "textAdsBanner": "Zdobądź {0} kuponów promocyjnych Google Ads* po wydaniu co najmniej {0} na stworzenie Twoich pierwszych kampanii.",
         "legendLong": "*Twój voucher zostanie zastosowany automatycznie od momentu rozpoczęcia wydatków! *Kwota musi zostać wydana w ciągu 60 dni od daty pierwszej kampanii, a kupony promocyjne będą ważne przez 60 dni po ich przyznaniu. [Przeczytaj Warunki]({0})[:target=\"_blank\"]",
-        "legend": "* Utwórz nowe konto Google Ads. Kupony promocyjne zostaną przyznane automatycznie po spełnieniu kryterium wydatków. Będziesz mieć 60 dni na wykorzystanie kuponów. [Przeczytaj Warunki]({0})[:target=\"_blank\"]",
+        "legend": "* Utwórz nowe konto Google Ads. Kupony promocyjne zostaną przyznane automatycznie po spełnieniu kryterium wydatków. Będziesz mieć 60 dni na wykorzystanie kuponów. [Przeczytaj Regulamin]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "* Utwórz nowe konto Google Ads. Kupony promocyjne zostaną przyznane automatycznie po spełnieniu kryterium wydatków. Będziesz mieć 60 dni na wykorzystanie kuponów. ",
         "ctaCreateFirstCampaign": "Utwórz pierwszą kampanię",
         "textCampaignsBanner": "Performance Max to nowa generacja inteligentnych kampanii produktowych. Jest to rozszerzony typ kampanii oparty na inteligentnej technologii Google. Działa za kulisami, aby automatycznie optymalizować reklamy na całej ścieżce zakupowej i zapewnić ich maksymalną skuteczność."
