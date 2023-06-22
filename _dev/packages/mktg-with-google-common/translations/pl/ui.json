@@ -449,7 +449,7 @@
             "agreementCheckboxLabel1Instant": "Synchronizacja mojego pliku danych produktu zostanie uruchomiona po kliknięciu na zapisz i wyeksportuj (może to potrwać od 1 do 4 godzin)",
             "agreementCheckboxLabel1Default": "Synchronizacja mojego pliku danych produktu zajmie trochę czasu - {time} (Może to potrwać od 1 do 4 godzin)",
             "agreementCheckboxLabel2": "Ocena produktów Google może trwać od 3 do 5 dni roboczych.",
-            "disabledButtonTooltip": "Zanim ruszysz dalej, sprawdź nasze warunki",
+            "disabledButtonTooltip": "Zanim przejdziesz dalej, sprawdź nasze warunki",
             "syncScheduledNow": "Dzisiaj, zaraz po zapisaniu i wyeksportowaniu"
         }
     },
@@ -600,8 +600,8 @@
         "popinTitleConfirmCancel": "Wróć",
         "xProducts": "Brak produktów | {0} produkt | {0} produkty/-ów",
         "productConditions": {
-            "unspecified": "Nieokreślony",
-            "unknown": "Nieznany",
+            "unspecified": "Nieokreślono",
+            "unknown": "Brak informacji",
             "new": "Nowy",
             "refurbished": "Odnowiony",
             "used": "Używany"
