@@ -18,11 +18,9 @@ Free listings allow to show your product attributes, including image and price i
 
 Once your catalog has been synchronised, enable free listings on your dashboard and start showing your products on the Shopping tab for free.
 
-**Create and manage Smart Shopping campaigns**
+**Boost your reach and sales with Performance Max**
 
-Smart Shopping campaigns are ads that use Google’s smart technology for bidding and ad placement to maximize conversion value and strategically display your ads to people searching for products like yours.
-
-Set a daily budget and let Google's smart technology optimize your campaigns across different networks like Google Search, YouTube or Gmail. You only pay when people click.
+Want to maximize your campaign performance and find the right customers wherever they are? From one single campaign, Performance Max collects data across different Google channels, and optimises your campaign performance by showing where your ads have higher chances of driving conversion.
 
 ## Download & Installation
 
@@ -54,7 +52,7 @@ When a class is added or deleted, it is required to rerun the above command.
 
 ### VueJS
 
-The following commands need to be run in the `_dev/` folder and requires pnpm v7 to be installed. If you do not have it:
+With Node 16, the following commands need to be run in the `_dev/` folder and requires pnpm v7 to be installed. If you do not have it:
 
 ```
 npm install -g pnpm@7
