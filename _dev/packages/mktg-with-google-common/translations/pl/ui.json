@@ -90,7 +90,7 @@
         "alertTokenMissing": "Nie udało nam się uwierzytelnić Twojego konta. Spróbuj ponownie lub przełącz się na inne konto.",
         "stepIsMandatory": "*Ten krok jest obowiązkowy",
         "alertInfo": "Upewnij się, że zezwalasz na wszystkie wymagane uprawnienia podczas uwierzytelniania konta Google.  \nTo działanie jest obowiązkowe, aby ta usługa działała poprawnie.",
-        "missingTokenScopes": "Brakuje niektórych wymaganych uprawnień.  \nWszystkie żądane uprawnienia są obowiązkowe, aby ta usługa działała poprawnie, proszę zarządzać swoim kontem i upewnić się, że zezwalasz na wszystkie z nich."
+        "missingTokenScopes": "Brakuje niektórych wymaganych uprawnień.  \nWszystkie wymagane uprawnienia są obowiązkowe, aby ta usługa działała poprawnie. Zmień ustawienia i upewnij się, że zezwalasz na wszystkie z nich."
     },
     "mcaCard": {
         "title": "Konto Merchant Center",
@@ -666,27 +666,27 @@
             },
             "productVerification": {
                 "stepTitle": "Produkty zweryfikowane przez Prestashop przed wysłaniem do Google",
-                "stepDetails": "Before sending all your products (including variations), we ensure their compliance with Google's Merchant center policies. We verify the products **every time a change is detected**, and if there are any non-compliant products, we provide guidance on what needs to be done. Click on non-compliant products for more information.\n\nAfter submission, Google assigns each product a status: **Approved, Expiring, Pending** or **Disapproved**.",
+                "stepDetails": "Przed wysłaniem wszystkich produktów (w tym wariantów) zapewniamy ich zgodność z zasadami Google Merchant Center. Weryfikujemy produkty **za każdym razem, gdy zostanie wykryta zmiana**, a jeśli jakieś produkty nie spełniają wymagań, udzielamy wskazówek, co należy zrobić, by to zmienić. Kliknij w produkty niespełniające wymagań, aby uzyskać więcej informacji.\n\nPo zgłoszeniu Google przypisuje każdemu produktowi status: **Zatwierdzone, Wygasające, Oczekujące** lub **Odrzucone**.",
                 "reportCards": {
                     "productsInCatalog": "Mój katalog produktów",
-                    "productsInCatalogDescription": "Active products with variations in product feed languages.",
+                    "productsInCatalogDescription": "Aktywne produkty z różnymi wariantami w pliku danych produktu.",
                     "verified": "Produkty spełniające wymagania",
                     "verifiedDescription": "Produkty zatwierdzone przez PrestaShop i gotowe do wysłania do Google.",
                     "nonCompliant": "Produkty niespełniające wymagań",
-                    "nonCompliantDescription": "Products that do not meet Google's requirements."
+                    "nonCompliantDescription": "Produkty, które nie spełniają wymagań Google."
                 }
             },
             "productsSentToGoogle": {
                 "stepTitle": "Produkty wysłane do Google",
-                "stepDetails": "This report displays the status of all your products that have been sent to Google Merchant Center. Please note that it may take a few days for Google to review your products. You can use this report to track the progress of each product and ensure that they are approved and active on Google Shopping.\n\n**‘Approved’ products** are fully approved and eligible to appear in free listings on Google.\n\n**‘Pending’ products** are being processed by Google. They will not appear in listings until they are approved.\n\n**‘Expiring’ products** will become inactive and no longer appear in Google listings in the next days.\n\n**‘Disapproved’ products** are inactive and do not appear in Google listings. You can click on Disapproved box for more information.",
+                "stepDetails": "Ten raport wyświetla status wszystkich produktów, które zostały wysłane do Google Merchant Center. Należy pamiętać, że sprawdzenie produktów przez Google może potrwać kilka dni. Możesz użyć tego raportu, aby śledzić postępy każdego produktu i upewnić się, że są one zatwierdzone i aktywne w Zakupach Google.\n\n**Produkty zatwierdzone** są w pełni zatwierdzone i kwalifikują się do bezpłatnego wyświetlania w Google.\n\n**Produkty oczekujące** są przetwarzane przez Google. Nie pojawią się jako bezpłatne informacje, dopóki nie zostaną zatwierdzone.\n\n**Produkty wygasające** staną się nieaktywne i nie będą już wyświetlane w Google w ciągu najbliższych dni.\n\n**Produkty odrzucone** są nieaktywne i nie pojawiają się w Google. Aby uzyskać więcej informacji, kliknij pole Odrzucone.",
                 "reportCards": {
                     "approved": "Zatwierdzone",
-                    "approvedDescription": "Products with variations successfully synced.",
+                    "approvedDescription": "Produkty z wariantami pomyślnie zsynchronizowane.",
                     "pending": "Oczekujące",
                     "pendingDescription": "Produkty są sprawdzane przez Google.",
                     "expiring": "Wygasające",
                     "expiringDescription": "Nieprawidłowe produkty zostaną wkrótce usunięte z Google.",
-                    "disapproved": "Niezatwierdzono",
+                    "disapproved": "Odrzucone",
                     "disapprovedDescription": "Produkty odrzucone przez Google."
                 }
             }
@@ -718,19 +718,19 @@
         },
         "compliancyIssues": {
             "nameMissing": "Wprowadź nazwę",
-            "nameMissingAction": "A product name is a unique identifier used to describe a product, and it is important because it helps improves visibility in search engine results. In PrestaShop, product names can be entered in the Catalog > Product > in the \"Product Name\" section.",
+            "nameMissingAction": "Nazwa produktu jest unikalnym identyfikatorem używanym do opisania produktu i jest ważna, ponieważ pomaga poprawić widoczność w wynikach wyszukiwania. W PrestaShop nazwy produktów można wprowadzać w sekcji Katalog > Produkt > w sekcji \"Nazwa produktu\".",
             "imageMissing": "Wprowadź obraz",
-            "imageMissingAction": "A product image is a visual representation of a product that helps customers understand what the product looks like. It is important to have product images because it can help increase product appeal and sales, and can enhance the overall shopping experience. Product images can be added or edited in Catalog > Product > in the \"Images\" section.",
+            "imageMissingAction": "Obraz (zdjęcie) produktu to wizualna reprezentacja produktu, która pomaga klientom zrozumieć, jak wygląda produkt. Ważne jest, aby zobrazować produkty, ponieważ może to pomóc zwiększyć ich atrakcyjność i sprzedaż, a także może poprawić ogólne doświadczenia klienta z zakupów. Obrazy produktów można dodawać lub edytować w sekcji Katalog > Produkt > w sekcji \"Obrazy\".",
             "linkMissing": "Wprowadź link",
             "linkMissingAction": "Linki do produktów są obowiązkowe. Zaktualizuj stronę produktu, aby wygenerować link do produktu.",
             "descriptionMissing": "Wprowadź opis",
-            "descriptionMissingAction": "Add a description in your products. If you already have a description, check the attribute picked for description in the Attribute mapping configuration of the module.",
+            "descriptionMissingAction": "Dodaj opis do produktów. Jeśli masz już opis, sprawdź atrybut wybrany dla opisu w konfiguracji mapowania atrybutów modułu.",
             "brandMissing": "Wprowadź nazwę marki",
             "brandMissingAction": "Wprowadź markę produktu. Markę można dodać w sekcji Katalog > Produkty > Ustawienia podstawowe w sekcji Marka dla każdego produktu.",
             "identifierMissing": "Wprowadź markę/numer GTIN",
-            "identifierMissingAction": "Please provide either brand or GTIN for the product.\n\nBrand is the brand of the product or your company. You can add a brand in Catalog > Products > Basic settings in the Brand section for each product.\n\nGTIN is a unique identifier used to identify products. It can be UPC or EAN or JAN or ISBN. You can add a GTIN in Catalog > Products > Options > in the Condition & References for each product.",
+            "identifierMissingAction": "Podaj markę lub numer GTIN produktu.\n\nMarka to marka produktu lub firmy. Markę można dodać w sekcji Katalog > Produkty > Ustawienia podstawowe w sekcji Marka dla każdego produktu.\n\nGTIN to unikalny identyfikator używany do identyfikacji produktów. Może to być UPC, EAN, JAN lub ISBN. Numer GTIN można dodać w sekcji Katalog > Produkty > Opcje > w sekcji Stan i referencje dla każdego produktu.",
             "gtinMissing": "Wprowadź numer GTIN",
-            "gtinMssingAction": "A GTIN (Global Trade Item Number) is a unique identifier used to identify products. The GTIN include UPC (in North America), EAN (in Europe), JAN (in Japan), and ISBN (for books). You can add a GTIN in Catalog > Products > Options > in the Condition & References for each product.\n\nThe GTIN identifier can usually be found on the product's barcode label, packaging, or documentation, or contacting the manufacturer.\n\nGTIN is a unique identifier used to identify products. it can be UPC or EAN or JAN or ISBN. Brand is the Brand of the product or your company.",
+            "gtinMssingAction": "GTIN (Global Trade Item Number) to unikalny identyfikator używany do identyfikacji produktów. Numery GTIN obejmują UPC (w Ameryce Północnej), EAN (w Europie), JAN (w Japonii) i ISBN (dla książek). Numer GTIN można dodać w sekcji Katalog > Produkty > Opcje > w sekcji Stan i referencje dla każdego produktu.\n\nIdentyfikator GTIN można zwykle znaleźć na etykiecie z kodem kreskowym produktu, opakowaniu, dokumentacji lub kontaktując się z producentem.\n\nGTIN to unikalny identyfikator używany do identyfikacji produktów. Może to być UPC, EAN, JAN lub ISBN. Marka to marka produktu lub firmy.",
             "priceMissing": "Wprowadź cenę",
             "priceMissingAction": "Wprowadź cenę produktu."
         },
@@ -1003,7 +1003,7 @@
         "free": "Za darmo",
         "connected": "Połączono",
         "active": "Aktywny",
-        "disapproved": "Niezatwierdzono",
+        "disapproved": "Odrzucone",
         "pendingCreation": "Oczekujące",
         "creatingGmc": "Konto zostanie utworzone za kilka sekund...",
         "pendingCheck": "Sprawdzamy status Twojego GMC...",
@@ -1059,7 +1059,7 @@
         "PMaxMigrationText": "Twoje Inteligentne kampanie produktowe będą się teraz automatycznie aktualizować do kampanii Performance Max.\n\n- Ustawienia kampanii i budżet pozostają bez zmian;\n\n- Funkcjonalności są takie same jak w inteligentnych kampaniach produktowych;\n\n- Od tego momentu możesz tworzyć tylko kampanie Performance Max.",
         "PmaxTextLink": "Dowiedz się więcej o Performance Max",
         "textPmaxReleased": "Twoje Inteligentne kampanie produktowe zaczną się teraz automatycznie przekształcać w kampanie Performance Max. Dowiedz się więcej. [Dowiedz się więcej]({0})[:target=\"_blank\" class=\"text-decoration-underline\"]",
-        "disconnectedUserBo": "You have been disconnected from the backoffice. You will be automatically redirected to the login page in {0} seconds.",
+        "disconnectedUserBo": "Wylogowano z back office. Automatyczne przekierowanie na stronę logowania nastąpi w ciągu {0} sekund.",
         "titleDisconnectedUserBo": "Utracono połączenie"
     },
     "tooltip": {
