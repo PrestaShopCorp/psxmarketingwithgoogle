@@ -32,6 +32,10 @@ const buildWrapper = (
   );
   store.modules.campaigns.state.errorCampaignNameExists = false;
   store.modules.googleAds.state = googleAdsAccountChosen;
+  store.modules.campaigns.actions.GET_RECOMMENDED_BUDGET = jest.fn().mockImplementation(() => ({
+    value: 15,
+    currency: 'USD',
+  }));
 
   localVue.filter('formatPrice', formatPrice);
 

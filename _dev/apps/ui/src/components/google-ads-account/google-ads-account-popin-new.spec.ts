@@ -30,13 +30,14 @@ const wrapperOptions = {
 };
 
 describe('google-ads-account-popin-new.vue', () => {
-  let storeInitApp;
+  let storeInitApp: ReturnType<typeof cloneStore>;
   beforeEach(() => {
     storeInitApp = cloneStore();
     storeInitApp.modules.app.state = {
       ...storeInitApp.modules.app.state,
       ...initialStateApp,
     };
+    storeInitApp.modules.googleAds.actions.GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING = jest.fn();
   });
 
   it('create account button is disabled when inputs not filled but checkbox is  checked', async () => {

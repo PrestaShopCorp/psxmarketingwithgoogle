@@ -42,6 +42,9 @@ declare global {
       psxMktgWithGoogleOnProductionEnvironment:boolean,
       psxMktgWithGoogleModuleIsEnabled: boolean,
       psxMktgWithGoogleEnableLink: string,
+
+      // Other apps
+      psaccountsVue?: any,
     }
   //   interface IntrinsicElements {
   //     [elem: string]: any;

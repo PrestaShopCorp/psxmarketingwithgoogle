@@ -5,6 +5,8 @@ import VueShowdown from 'vue-showdown';
 import {messages} from '@/lib/translations';
 import {changeCountriesCodesToNames} from '@/utils/Countries';
 import '../showdown.js';
+import { initOnboardingClient } from 'mktg-with-google-common/api/onboardingClient';
+import { initShopClient } from 'mktg-with-google-common/api/shopClient';
 
 let windowSpy;
 let localVue; // eslint-disable-line
@@ -23,6 +25,7 @@ beforeEach(() => {
     // add data needed in window
     scrollTo: jest.fn(),
     addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
     i18nSettings: {isoCode: 'fr', languageLocale: 'fr'},
   }));
   VBTooltip = jest.fn();
@@ -40,6 +43,14 @@ beforeEach(() => {
   localVue.filter('timeConverterToStringifiedDate', filters.timeConverterToStringifiedDate);
   localVue.filter('slugify', filters.slugify);
   localVue.directive('b-tooltip', VBTooltip);
+
+  initOnboardingClient({
+    apiUrl: 'http://some-route', 
+    token: 'some-token',
+  });
+  initShopClient({
+    shopUrl: 'http://some-route', 
+  });
 });
 
 afterEach(() => {

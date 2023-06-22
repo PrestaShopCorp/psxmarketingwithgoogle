@@ -322,7 +322,7 @@ SyncFailed.parameters = {
       rest.get('/product-feeds/stats/shop', (req, res, ctx) => {
         return res(
           ctx.json({
-            totalProducts: productFeedStatusSyncSuccess.report.verificationStats.productsInCatalog
+            totalProducts: productFeedStatusSyncSuccess.report.productsInCatalog
           })
         );
       }),
@@ -419,7 +419,7 @@ AccountSuspended.parameters = {
       rest.get('/product-feeds/stats/shop', (req, res, ctx) => {
         return res(
           ctx.json({
-            totalProducts: productFeedStatusSyncSuccess.report.verificationStats.productsInCatalog
+            totalProducts: productFeedStatusSyncSuccess.report.productsInCatalog
           })
         );
       }),

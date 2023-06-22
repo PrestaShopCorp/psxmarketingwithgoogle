@@ -1,6 +1,6 @@
 import OnboardingPage from '../src/views/onboarding-page.vue'
 import {initialStateApp} from '../.storybook/mock/state-app';
-import {productFeedIsConfiguredOnce, productFeedEnabled} from '../.storybook/mock/product-feed';
+import {productFeedIsConfiguredOnce, productFeedIsConfigured} from '../.storybook/mock/product-feed';
 import {contextPsAccountsNotConnected, contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
 import {contextPsEventBus} from "../.storybook/mock/ps-event-bus";
 import {googleAccountNotConnected, googleAccountConnected, googleAccountConnectedOnce} from "../.storybook/mock/google-account";
@@ -8,7 +8,7 @@ import {merchantCenterAccountNotConnected, merchantCenterAccountConnected, merch
 import {googleAdsAccountChosen, adsAccountStatus} from "../.storybook/mock/google-ads";
 import {conversionTrackingIsTrue} from '../.storybook/mock/campaigns';
 import {campaigns as campaignsMock} from '../.storybook/mock/campaigns-list';
-import {cloneDeep} from 'lodash';
+import cloneDeep from 'lodash.clonedeep';
 
 export default {
   title: 'Onboarding/OnboardingPage',
@@ -75,7 +75,7 @@ ProductFeed.args = {
     this.$store.state.accounts.contextPsAccounts = Object.assign({}, contextPsAccountsConnectedAndValidated);
     this.$store.state.accounts.googleAccount = Object.assign({}, googleAccountConnected);
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountConnectedOnce);
-    this.$store.state.productFeed = Object.assign({}, productFeedEnabled);
+    this.$store.state.productFeed = Object.assign({}, productFeedIsConfigured);
   },
 };
 
