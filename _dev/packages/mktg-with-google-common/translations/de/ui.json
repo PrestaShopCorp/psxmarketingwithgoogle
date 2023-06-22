@@ -879,7 +879,7 @@
         "help": {
             "needHelp": "Brauchen Sie Hilfe? Hier finden Sie die Dokumentation zu diesem Modul.",
             "downloadPdf": "PDF herunterladen",
-            "couldntFindAnyAnswer": "Could not find any answer to your question?",
+            "couldntFindAnyAnswer": "Konnten Sie keine Antwort auf Ihre Frage finden?",
             "contactUs": "Kontaktieren Sie uns"
         }
     },
