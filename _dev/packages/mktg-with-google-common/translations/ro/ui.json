@@ -879,7 +879,7 @@
         "help": {
             "needHelp": "Ai nevoie de ajutor? Găsești aici documentația acestui modul.",
             "downloadPdf": "Descarcă PDF",
-            "couldntFindAnyAnswer": "Nu ai găsit niciun răspuns la întrebarea ta?",
+            "couldntFindAnyAnswer": "Could not find any answer to your question?",
             "contactUs": "Contactează-ne"
         }
     },
