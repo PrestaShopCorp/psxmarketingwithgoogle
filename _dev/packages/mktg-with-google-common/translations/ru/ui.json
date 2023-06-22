@@ -879,7 +879,7 @@
         "help": {
             "needHelp": "Нужна помощь? Найти документацию по этому модулю можно здесь.",
             "downloadPdf": "Скачать PDF",
-            "couldntFindAnyAnswer": "Не смогли найти ответ на свой вопрос?",
+            "couldntFindAnyAnswer": "Could not find any answer to your question?",
             "contactUs": "Свяжитесь с нами"
         }
     },
