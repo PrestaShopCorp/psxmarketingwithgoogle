@@ -74,7 +74,7 @@
         "productFeedNotice": "Pomóż klientom znaleźć Twoje produkty w Google z jeszcze większą łatwością i skorzystaj z możliwości wyświetlania bezpłatnych informacji o produkcie. Wyświetlanie bezpłatnych informacji o produkcie pozwala dotrzeć do większej liczby klientów, którzy odwiedzą Twoją stronę."
     },
     "multiShopSelector": {
-        "title": "Tryb Multi-store aktywny",
+        "title": "Włączony tryb multi-shop",
         "subtitle": "Musisz skonfigurować swoje sklepy, jeden po drugim, pod kątem tej usługi, ale będziesz mieć możliwość korzystania z tego samego konta. ",
         "selectStore": "Wybierz z poniższej listy pierwszy sklep do skonfigurowania",
         "tips": "Po zakończeniu pracy nad pierwszym sklepem, możesz skonfigurować pozostałe, wybierając je kolejno z listy sklepów w menu poziomym",
@@ -89,7 +89,7 @@
         "alertCantConnect": "Nie możesz teraz połączyć się ze swoim kontem Google. Spróbuj ponownie później.",
         "alertTokenMissing": "Nie udało nam się uwierzytelnić Twojego konta. Spróbuj ponownie lub przełącz się na inne konto.",
         "stepIsMandatory": "*Ten krok jest obowiązkowy",
-        "alertInfo": "Upewnij się, że zezwalasz na wszystkie wymagane uprawnienia podczas uwierzytelniania konta Google.  \nTa akcja jest obowiązkowa, aby ta usługa działała poprawnie.",
+        "alertInfo": "Upewnij się, że zezwalasz na wszystkie wymagane uprawnienia podczas uwierzytelniania konta Google.  \nTo działanie jest obowiązkowe, aby ta usługa działała poprawnie.",
         "missingTokenScopes": "Brakuje niektórych wymaganych uprawnień.  \nWszystkie żądane uprawnienia są obowiązkowe, aby ta usługa działała poprawnie, proszę zarządzać swoim kontem i upewnić się, że zezwalasz na wszystkie z nich."
     },
     "mcaCard": {
@@ -344,7 +344,7 @@
             "carriersDropdownHeader": "Skopiuj informacje o wysyłce do",
             "carriersDropdownHiddenLabel": "Kopiowanie informacji o przewoźniku do innych przewoźników",
             "noCarriersTitle": "Nie masz żadnych przewoźników",
-            "noCarriersDescription": "Proszę przejść do strony przewoźników, aby dodać przewoźników",
+            "noCarriersDescription": "Przejdź do strony przewoźników, aby dodać przewoźników",
             "countryNeededTitle": "Wybierz Twój kraj docelowy",
             "countryNeededDescription": "Wprowadź kraje docelowe, aby wyświetlić odpowiednie ustawienia wysyłki w tabeli",
             "addNewCarriers": "Dodaj lub zaktualizuj przewoźników",
@@ -448,7 +448,7 @@
             "agreementTitle": "Rozumiem i zgadzam się na następujące warunki*.",
             "agreementCheckboxLabel1Instant": "Synchronizacja mojego pliku danych produktu zostanie uruchomiona po kliknięciu na zapisz i wyeksportuj (może to potrwać od 1 do 4 godzin)",
             "agreementCheckboxLabel1Default": "Synchronizacja mojego pliku danych produktu zajmie trochę czasu - {time} (Może to potrwać od 1 do 4 godzin)",
-            "agreementCheckboxLabel2": "Ocena produktów Google może trwać od 3 do 5 dni roboczych.",
+            "agreementCheckboxLabel2": "Ocena produktów przez Google może trwać od 3 do 5 dni roboczych",
             "disabledButtonTooltip": "Zanim przejdziesz dalej, sprawdź nasze warunki",
             "syncScheduledNow": "Dzisiaj, zaraz po zapisaniu i wyeksportowaniu"
         }
@@ -525,11 +525,11 @@
         "breadcrumbEditPMax": "Modyfikuj kampanię Performance Max",
         "inputNameHelper": "Nazwa musi być unikalna i składać się maksymalnie ze 125 znaków.",
         "inputNameLabel": "Nazwa kampanii",
-        "inputNameTooltip": "Wybierz nazwę, która jasno opisuje temat kampanii, tak abyś mógł ją łatwo znaleźć na swoim koncie. Nazwa kampanii nie jest widoczna dla Twoich klientów.",
+        "inputNameTooltip": "Wybierz nazwę, która jasno opisuje temat kampanii, aby można ją było łatwo znaleźć na koncie. Nazwa kampanii nie jest widoczna dla klientów.",
         "inputNamePlaceholder": "Wpisz nazwę kampanii",
         "inputCampaignNameInvalidFeedback": "Nazwa musi być unikalna.",
         "inputCampaignNameTooLongFeedback": "Nazwa musi mieć mniej niż 125 znaków.",
-        "inputDurationHelper": "Zalecamy, aby kampanie trwały minimum 30 dni tak, aby dać czas Google na jej optymalizację.",
+        "inputDurationHelper": "Zalecamy, aby kampanie trwały minimum 30 dni - tak, aby dać czas Google na jej optymalizację.",
         "inputDurationLabel": "Czas trwania kampanii",
         "inputDurationTooltip": "Kampanie reklamowe domyślnie nie mają daty końcowej, dzięki czemu reklamy mogą być wyświetlane bezterminowo. Zawsze możesz dodać datę zakończenia, aby skrócić czas kampanii.",
         "inputDurationLabel1": "Data rozpoczęcia",
@@ -589,7 +589,7 @@
         "nbProductsFiltersSelected": "Nie wybrano żadnego filtra produktu | wybrano {0} filtr produktu | wybrano {0} filtrów produktu",
         "dimensionXFilterSelected": "{0} filtr",
         "categories": "Kategoria",
-        "categoriesSubTitle": "Kategoria produktu zdefiniowana przez Google dla Twojego produktu (np. Odzież",
+        "categoriesSubTitle": "Kategoria produktu zdefiniowana przez Google (np. Odzież i akcesoria > Odzież > Płaszcze i kurtki)",
         "brands": "Marka",
         "brandsSubTitle": "Nazwa marki produktu",
         "products": "ID produktu",
@@ -641,7 +641,7 @@
                 },
                 "subtitle": {
                     "willHappenOnDate": "Rozpocznie się {0} o {1}",
-                    "happenedOnDate": "Na {date}",
+                    "happenedOnDate": "{date}",
                     "error": "Z powodu problemu technicznego, synchronizacja nie powiodła się na stronie {0} pod adresem {1}. Nowa synchronizacja zostanie uruchomiona za kilka godzin."
                 }
             }
@@ -655,7 +655,7 @@
                     "noEligibleLanguagesTitle": "Brak kwalifikujących się języków",
                     "noEligibleLanguagesDesc": "Zaktualizuj kraje docelowe na stronie {0} lub dodaj odpowiednie języki na stronie {1}, aby dopasować je do krajów docelowych.",
                     "noEligibleCurrenciesTitle": "Brak kwalifikujących się walut",
-                    "noEligibleCurrenciesDesc": "Please update your target countries in your {0} or add the relevant currencies in your {1} to match the target countries in error."
+                    "noEligibleCurrenciesDesc": "Zaktualizuj kraje docelowe na stronie {0} lub dodaj odpowiednie języki na stronie {1}, aby dopasować je do krajów docelowych."
                 },
                 "title": "Konfiguracja Twojego pliku danych produktu",
                 "targetCountries": "Wybrany kraj docelowy:|Wybrane kraje docelowe:",
@@ -683,23 +683,23 @@
                     "approved": "Zatwierdzone",
                     "approvedDescription": "Products with variations successfully synced.",
                     "pending": "Oczekujące",
-                    "pendingDescription": "Products being reviewed by Google.",
+                    "pendingDescription": "Produkty są sprawdzane przez Google.",
                     "expiring": "Wygasające",
                     "expiringDescription": "Nieprawidłowe produkty zostaną wkrótce usunięte z Google.",
                     "disapproved": "Niezatwierdzono",
-                    "disapprovedDescription": "Products that are disapproved by Google."
+                    "disapprovedDescription": "Produkty odrzucone przez Google."
                 }
             }
         },
         "compliancyIssuesPage": {
-            "details": "To ensure a successful pre-scan with Google, please fix the issues outlined in the table below. Taking care of these issues will help your list your product on Google’s surfaces.",
+            "details": "Aby zapewnić pomyślne wstępne skanowanie w Google, należy rozwiązać problemy opisane w poniższej tabeli. Rozwiązanie tych problemów ułatwi opublikowanie produktu w powierzchniach reklamowych Google.",
             "languageSelection": "Filtruj według języka",
             "languageSelected": "Filtruj według: {lang}",
             "noResults": "Nie znaleziono danych",
             "columns": {
                 "issues": "Problemy",
                 "suggestedActions": "Sugerowane działania",
-                "affectedProducts": "Affected products",
+                "affectedProducts": "Produkty objęte ograniczeniami",
                 "languages": "Języki"
             },
             "actions": {
@@ -792,11 +792,11 @@
     },
     "campaigns": {
         "status": {
-            "eligible": "Kwalifikowalny",
-            "eligiblelimited": "Kwalifikowalny (w ograniczonym zakresie)",
+            "eligible": "Kwalifikujący się",
+            "eligiblelimited": "Kwalifikujący się (w ograniczonym zakresie)",
             "ended": "Zakończono",
             "paused": "Wstrzymano",
-            "noteligible": "Niekwalifikowalny",
+            "noteligible": "Niekwalifikujący się",
             "draft": "Wersja robocza",
             "pending": "Oczekujące"
         },
@@ -1071,7 +1071,7 @@
         "mustAgreeGoogleTerms": "Konieczne jest wyrażenie zgody na warunki korzystania Google",
         "mustAgreeGoogleAdsTerms": "Konieczne jest wyrażenie zgody na warunki korzystania",
         "approvalStatusStatus": "Dostępność Twoich produktów dla usługi wyświetlania bezpłatnych informacji o produkcie i dla reklam",
-        "approvalStatusLang": "placeholder",
+        "approvalStatusLang": "symbol zastępczy",
         "approvalStatusIssues": "Powód, dla którego Twój produkt nie został zatwierdzony przez Google",
         "attributeMapping": {
             "description": "Opis zostanie automatycznie przycięty, jeśli będzie dłuższy niż 5000 znaków",
