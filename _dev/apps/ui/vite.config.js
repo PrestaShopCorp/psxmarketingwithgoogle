@@ -24,6 +24,12 @@ export default defineConfig({
     'process.env': process.env
   },
   build: {
+    /*lib: {
+      entry: path.resolve(__dirname, 'src/main.ts'),
+      name: 'Marketing with Google',
+      formats: ['es'],
+      fileName: () => 'js/app.js',
+    },*/
     outDir: '../../../views/',
     assetsDir: '',
     publicPath: process.env.VITE_ASSETS_URL || '../modules/psxmarketingwithgoogle/views/',
@@ -31,7 +37,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         sourcemap: !!process.env.GENERATE_SOURCEMAPS,
-        entryFileNames: 'js/app.js',
+        entryFileNames: 'js/[name].js',
         chunkFileNames: 'js/[name].js',
         assetFileNames: function (file) {
           return ['svg', 'png'].includes(file.name.split('.').pop())
@@ -40,7 +46,7 @@ export default defineConfig({
           },
 
       }
-    }
+    },
   }
   // TODO: Move rules used to create build files in the proper folder
   // + remove test attributes in production mode
