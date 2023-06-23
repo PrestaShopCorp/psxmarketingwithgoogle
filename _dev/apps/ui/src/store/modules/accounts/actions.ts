@@ -23,6 +23,7 @@ import MutationsTypes from './mutations-types';
 import MutationsTypesProductFeed from '../product-feed/mutations-types';
 import MutationsTypesGoogleAds from '../google-ads/mutations-types';
 import ActionsTypes from './actions-types';
+import ActionsTypesApp from '../app/actions-types';
 import NeedOverwriteError from '../../../utils/NeedOverwriteError';
 import CannotOverwriteError from '../../../utils/CannotOverwriteError';
 
@@ -69,6 +70,13 @@ export default {
     dispatch(ActionsTypes.SEND_GMC_INFORMATION_TO_SHOP, {
       id: selectedAccount.id,
     });
+    const {hooks} = await dispatch(`app/${ActionsTypesApp.GET_MODULES_VERSIONS}`, 'psxmarketingwithgoogle', {root: true});
+    const hasHooks = Object.keys(hooks);
+
+    if (hasHooks.length > 0) {
+      hasHooks.map((item) => dispatch(`app/${ActionsTypesApp.TRIGGER_REGISTER_HOOK}`, item, {root: true}));
+    }
+
     commit(MutationsTypes.SAVE_GMC, selectedAccount);
   },
 
