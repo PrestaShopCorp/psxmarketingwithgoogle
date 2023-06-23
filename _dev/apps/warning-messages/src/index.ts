@@ -19,7 +19,7 @@ declare global {
   }
 }
 
-const appVersion = process.env.VUE_APP_BUILD_VERSION || "dev";
+const appVersion = process.env.VITE_BUILD_VERSION || "dev";
 
 initOnboardingClient({
   apiUrl: window.psxMktgWithGoogleApiUrl,

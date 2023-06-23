@@ -179,5 +179,5 @@ export const state: State = {
       },
     },
   },
-  mcaPrestashopId: process.env.VUE_APP_AGGREGATOR_ID || '',
+  mcaPrestashopId: process.env.VITE_AGGREGATOR_ID || '',
 };

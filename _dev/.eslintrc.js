@@ -1,7 +1,7 @@
 module.exports = {
     env: {
-        browser: true,
-        es6: true,
+        node: true,
+        es2022: true,
     },
     extends: [
         "prestashop",

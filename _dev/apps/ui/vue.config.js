@@ -55,5 +55,5 @@ module.exports = {
   filenameHashing: false,
   outputDir: '../../../views/',
   assetsDir: '',
-  publicPath: process.env.VUE_APP_ASSETS_URL || '../modules/psxmarketingwithgoogle/views/',
+  publicPath: process.env.VITE_ASSETS_URL || '../modules/psxmarketingwithgoogle/views/',
 };
