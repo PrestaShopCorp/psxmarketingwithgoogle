@@ -37,8 +37,8 @@
   </div>
 </template>
 
-<script>
-const semver = require('semver');
+<script lang="ts">
+import semver from 'semver';
 
 export default {
   name: 'AlertUpdateModule',

@@ -4,7 +4,7 @@
   "private": true,
   "engines": {
     "pnpm": ">=7.14.2",
-    "node": ">=18",
+    "node": ">=20",
     "npm": "please use pnpm",
     "yarn": "please use pnpm"
   },
@@ -12,12 +12,12 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "lint": "eslint --no-fix",
-    "lint-fix": "eslint --fix",
+    "lint": "eslint --no-fix -c .eslintrc.js src/",
+    "lint-fix": "eslint --fix -c .eslintrc.js src/",
     "storybook": "npm run check-for-jest-test-output && start-storybook -p 6006",
     "build-storybook": "npm run check-for-jest-test-output && build-storybook",
     "test:generate-output": "vue-cli-service test:unit --json --outputFile=.jest-test-results.json",
-    "test:unit": "vue-cli-service test:unit",
+    "test:unit": "jest --config=jest.config.js",
     "chromatic": "npm run check-for-jest-test-output && chromatic --exit-zero-on-changes",
     "check-for-jest-test-output": "node checkForJestTestOutput.js"
   },
