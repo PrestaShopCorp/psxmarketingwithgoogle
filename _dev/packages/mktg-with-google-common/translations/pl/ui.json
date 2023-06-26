@@ -94,7 +94,7 @@
     },
     "mcaCard": {
         "title": "Konto Merchant Center",
-        "introDisabled": "Połącz swoje konto Merchant Center z PrestaShop, aby ułatwić synchronizację danych dotyczących sklepu i produktów",
+        "introDisabled": "Link your Merchant Center account to PrestaShop to facilitate synchronization of your store and product data.",
         "claimCollides": "Twoja strona została już zgłoszona.",
         "claimOverwrite": "Aby zakończyć tworzenie konta Merchant Center, należy nadpisać istniejące zgłoszenie.",
         "footerEU": "W przypadku sklepów w Europejskim Obszarze Gospodarczym, Wielkiej Brytanii lub Szwajcarii, konto Merchant Center musi być powiązane z [usługą porównywania cen - Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]. Nowe konta Merchant Center, utworzone za pomocą tej aplikacji, są domyślnie powiązane z Google Zakupy, czyli usługą porównywania cen od Google. Możesz zmienić usługę porównywania cen powiązaną z Twoim kontem w dowolnym momencie. Tutaj możesz znaleźć partnerów oferujących usługi porównywania cen. Po skonfigurowaniu konta Merchant Center, możesz korzystać z naszego narzędzia do onboardingu - niezależnie od tego, z której usługi porównywania cen korzystasz.",
