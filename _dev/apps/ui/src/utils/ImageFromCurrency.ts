@@ -3,7 +3,6 @@ import adsPromotionPounds from '@/assets/images/banner/ads-pounds.svg';
 import adsPromotionDollars from '@/assets/images/banner/ads-dollars.svg';
 import adsPromotionEuro from '@/assets/images/banner/ads-euro.svg';
 
-
 export function getPathToAdsPromotionImage(currency : string) {
   if (currency.toUpperCase() === 'PLN') {
     return adsPromotionZloty;

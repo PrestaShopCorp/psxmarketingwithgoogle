@@ -11,26 +11,26 @@
     it("returns image in euro if french", () => {
       const source = 'EUR'
       const result = getPathToAdsPromotionImage(source);
-      expect(result).toEqual('banner/ads-euro.svg');
+      expect(result).toEqual('ads-euro.svg');
     })
     it("returns image in pounds if english", () => {
       const source = 'GBP'
       const result = getPathToAdsPromotionImage(source);
-      expect(result).toEqual('banner/ads-pounds.svg');
+      expect(result).toEqual('ads-pounds.svg');
     })
     it("returns image in dollars if usd", () => {
       const source = 'USD'
       const result = getPathToAdsPromotionImage(source);
-      expect(result).toEqual('banner/ads-dollars.svg');
+      expect(result).toEqual('ads-dollars.svg');
     })
     it("returns image in zloty if polish", () => {
       const source = 'PLN'
       const result = getPathToAdsPromotionImage(source);
-      expect(result).toEqual('banner/ads-poland.svg');
+      expect(result).toEqual('ads-zloty.svg');
     })
     it("returns image fallback if currency not found", () => {
       const source = 'AZERTY'
       const result = getPathToAdsPromotionImage(source);
-      expect(result).toEqual('banner/ads-dollars.svg');
+      expect(result).toEqual('ads-dollars.svg');
     })
 });

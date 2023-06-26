@@ -46,7 +46,7 @@ export default defineConfig({
 
       }
     },
-  }
+  },
   // TODO: Move rules used to create build files in the proper folder
   // + remove test attributes in production mode
   // from vue.config.js
