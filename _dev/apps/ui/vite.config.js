@@ -36,7 +36,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         sourcemap: !!process.env.GENERATE_SOURCEMAPS,
-        entryFileNames: 'js/[name].js',
+        entryFileNames: 'js/app.js',
         chunkFileNames: 'js/[name].js',
         assetFileNames: function (file) {
           return ['svg', 'png'].includes(file.name.split('.').pop())

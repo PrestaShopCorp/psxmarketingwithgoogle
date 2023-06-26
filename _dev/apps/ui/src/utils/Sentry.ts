@@ -8,8 +8,7 @@ const appVersion = process.env.VITE_BUILD_VERSION || 'dev';
 if (store.state.app.psxMktgWithGoogleOnProductionEnvironment) {
   Sentry.init({
     Vue,
-    // @ts-ignore
-    dsn: global.psxMktgWithGoogleDsnSentry,
+    dsn: window.psxMktgWithGoogleDsnSentry,
     allowUrls: [
       'https://storage.googleapis.com/psxmarketing-cdn/',
     ],

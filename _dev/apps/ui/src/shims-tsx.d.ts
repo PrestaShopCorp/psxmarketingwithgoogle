@@ -42,6 +42,7 @@ declare global {
       psxMktgWithGoogleOnProductionEnvironment:boolean,
       psxMktgWithGoogleModuleIsEnabled: boolean,
       psxMktgWithGoogleEnableLink: string,
+      psxMktgWithGoogleDsnSentry: string,
 
       // Other apps
       psaccountsVue?: any,
