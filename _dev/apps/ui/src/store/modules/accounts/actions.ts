@@ -70,11 +70,11 @@ export default {
     dispatch(ActionsTypes.SEND_GMC_INFORMATION_TO_SHOP, {
       id: selectedAccount.id,
     });
-    const {hooks} = await dispatch(`app/${ActionsTypesApp.GET_MODULES_VERSIONS}`, 'psxmarketingwithgoogle', {root: true});
-    const hasHooks = Object.keys(hooks);
+    const getModulesStatus = await dispatch(`app/${ActionsTypesApp.GET_MODULES_VERSIONS}`, 'psxmarketingwithgoogle', {root: true});
 
-    if (hasHooks.length > 0) {
-      hasHooks.map((item) => dispatch(`app/${ActionsTypesApp.TRIGGER_REGISTER_HOOK}`, item, {root: true}));
+    if (getModulesStatus?.hooks) {
+      Object.keys(getModulesStatus.hooks)
+        .map((item) => dispatch(`app/${ActionsTypesApp.TRIGGER_REGISTER_HOOK}`, item, {root: true}));
     }
 
     commit(MutationsTypes.SAVE_GMC, selectedAccount);
