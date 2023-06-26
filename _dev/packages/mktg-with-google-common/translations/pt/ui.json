@@ -1,7 +1,7 @@
 {
     "general": {
         "tabs": {
-            "productFeed": "Product feed",
+            "productFeed": "Feed de produtos",
             "campaign": "Campanha",
             "reporting": "Relatório",
             "configuration": "Configurar",
@@ -622,8 +622,8 @@
     },
     "productFeedPage": {
         "breadcrumb": {
-            "productStatusDetails": "Product status details",
-            "nonCompliantProducts": "Non-compliant products"
+            "productStatusDetails": "Detalhes do status do produto",
+            "nonCompliantProducts": "Produtos não conformes"
         },
         "alert": {
             "googleIsReviewing": "Os seus produtos estão a ser revistos.  \n Pode demorar 3-5 dias para rever os seus produtos. Uma vez aprovados, os seus produtos estarão disponíveis para anúncios e listagens gratuitas.",
@@ -650,89 +650,89 @@
             "timeline": {},
             "productFeedConfiguration": {
                 "alerts": {
-                    "productFeedCta": "product feed configuration",
+                    "productFeedCta": "configuração do feed de produtos",
                     "boSettingsCta": "backoffice",
-                    "noEligibleLanguagesTitle": "No eligible languages",
-                    "noEligibleLanguagesDesc": "Please update your target countries in your {0} or add the relevant languages in your {1} to match your target countries.",
-                    "noEligibleCurrenciesTitle": "No eligible currencies",
-                    "noEligibleCurrenciesDesc": "Please update your target countries in your {0} or add the relevant currencies in your {1} to match the target countries in error."
+                    "noEligibleLanguagesTitle": "Nenhum idioma elegível",
+                    "noEligibleLanguagesDesc": "Atualize seus países de destino em {0} ou adicione os idiomas relevantes em {1} para corresponder aos seus países de destino.",
+                    "noEligibleCurrenciesTitle": "Nenhuma moeda elegível",
+                    "noEligibleCurrenciesDesc": "Atualize seus países de destino em {0} ou adicione as moedas relevantes em {1} para corresponder aos países de destino com erro."
                 },
-                "title": "Your product feed's configuration",
-                "targetCountries": "Selected target country:|Selected target countries:",
-                "languages": "Language:|Languages:",
-                "currencies": "Currency:|Currencies:",
-                "noLanguage": "No eligible language",
-                "noCurrency": "No eligible currency"
+                "title": "A configuração do seu feed de produtos",
+                "targetCountries": "País de destino selecionado:| Países de destino selecionados:",
+                "languages": "Idioma:|Idiomas:",
+                "currencies": "Moeda:|Moedas:",
+                "noLanguage": "Nenhum idioma elegível",
+                "noCurrency": "Nenhuma moeda elegível"
             },
             "productVerification": {
-                "stepTitle": "Products verified by Prestashop before sent to Google",
-                "stepDetails": "Before sending all your products (including variations), we ensure their compliance with Google's Merchant center policies. We verify the products **every time a change is detected**, and if there are any non-compliant products, we provide guidance on what needs to be done. Click on non-compliant products for more information.\n\nAfter submission, Google assigns each product a status: **Approved, Expiring, Pending** or **Disapproved**.",
+                "stepTitle": "Produtos verificados pela Prestashop antes de serem enviados para o Google",
+                "stepDetails": "Antes de enviar seus produtos (inclusive as variações), garantimos que eles estejam em conformidade com as políticas do Google Merchant Center. Nós conferimos os produtos **toda vez que uma alteração é detectada** e orientamos você sobre o que fazer caso algum deles tenha alguma questão de conformidade. Clique em produtos não conformes para obter mais informações.\n\nApós o envio, o Google atribui a cada produto um status: **Ativo, Prestes a expirar, Pendente** ou **Reprovado**.",
                 "reportCards": {
-                    "productsInCatalog": "My product catalog",
-                    "productsInCatalogDescription": "Active products with variations in product feed languages.",
-                    "verified": "Compliant products",
-                    "verifiedDescription": "PrestaShop-approved products ready to be sent to Google.",
-                    "nonCompliant": "Non-compliant products",
-                    "nonCompliantDescription": "Products that do not meet Google's requirements."
+                    "productsInCatalog": "Meu catálogo de produtos",
+                    "productsInCatalogDescription": "Produtos ativos com variações nos idiomas do feed de produtos.",
+                    "verified": "Produtos conformes",
+                    "verifiedDescription": "Produtos aprovados pela PrestaShop que estão prontos para serem enviados ao Google.",
+                    "nonCompliant": "Produtos não conformes",
+                    "nonCompliantDescription": "Produtos que não atendem aos requisitos do Google."
                 }
             },
             "productsSentToGoogle": {
-                "stepTitle": "Products sent to Google",
-                "stepDetails": "This report displays the status of all your products that have been sent to Google Merchant Center. Please note that it may take a few days for Google to review your products. You can use this report to track the progress of each product and ensure that they are approved and active on Google Shopping.\n\n**‘Approved’ products** are fully approved and eligible to appear in free listings on Google.\n\n**‘Pending’ products** are being processed by Google. They will not appear in listings until they are approved.\n\n**‘Expiring’ products** will become inactive and no longer appear in Google listings in the next days.\n\n**‘Disapproved’ products** are inactive and do not appear in Google listings. You can click on Disapproved box for more information.",
+                "stepTitle": "Produtos enviados para o Google",
+                "stepDetails": "Este relatório exibe o status de todos os seus produtos que foram enviados para o Google Merchant Center. O Google pode levar alguns dias para avaliar seus produtos. O relatório ajuda você a acompanhar o andamento de cada produto e garantir que eles estejam aprovados e ativos no Google Shopping.\n\n** Os produtos \"Ativos\" ** foram totalmente aprovados e são elegíveis para aparecer em listagens gratuitas no Google.\n\n** Os produtos \"Pendentes\" ** estão sendo processados pelo Google. Eles não aparecerão nos anúncios até que sejam aprovados.\n\n** Os produtos prestes a expirar ** ficarão inativos e não aparecerão mais nas listagens do Google nos próximos dias.\n\n** Os produtos \"Reprovados\" ** estão inativos e não aparecem nas listagens do Google. Você pode clicar na caixa Reprovado para obter mais informações.",
                 "reportCards": {
-                    "approved": "Approved",
-                    "approvedDescription": "Products with variations successfully synced.",
-                    "pending": "Pending",
-                    "pendingDescription": "Products being reviewed by Google.",
-                    "expiring": "Expiring",
-                    "expiringDescription": "Invalid products to be removed from Google soon.",
-                    "disapproved": "Disapproved",
-                    "disapprovedDescription": "Products that are disapproved by Google."
+                    "approved": "Ativo",
+                    "approvedDescription": "Produtos com variações sincronizadas com sucesso.",
+                    "pending": "Pendente",
+                    "pendingDescription": "Produtos sendo analisados pelo Google.",
+                    "expiring": "Prestes a expirar",
+                    "expiringDescription": "Produtos inválidos que serão removidos do Google em breve.",
+                    "disapproved": "Reprovado",
+                    "disapprovedDescription": "Produtos que foram reprovados pelo Google."
                 }
             }
         },
         "compliancyIssuesPage": {
-            "details": "To ensure a successful pre-scan with Google, please fix the issues outlined in the table below. Taking care of these issues will help your list your product on Google’s surfaces.",
-            "languageSelection": "Filter by language",
-            "languageSelected": "Filter by: {lang}",
-            "noResults": "No data found",
+            "details": "Para obter sucesso na análise prévia do Google, corrija os problemas descritos na tabela abaixo. Corrigir esses problemas vai ajudar você a fazer com que seus produtos sejam listados nas plataformas do Google.",
+            "languageSelection": "Filtrar por idioma",
+            "languageSelected": "Filtrar por: {lang}",
+            "noResults": "Nenhum dado encontrado",
             "columns": {
-                "issues": "Issues",
-                "suggestedActions": "Suggested actions",
-                "affectedProducts": "Affected products",
-                "languages": "Languages"
+                "issues": "Problemas",
+                "suggestedActions": "Ações sugeridas",
+                "affectedProducts": "Produtos afetados:",
+                "languages": "Idiomas"
             },
             "actions": {
-                "listProducts": "View product|View products"
+                "listProducts": "Visualizar produto|Visualizar produtos"
             }
         },
         "compliancyIssueProductsPage": {
-            "details": "**Suggested action:** {action}",
+            "details": "** Ação sugerida:** {action}",
             "columns": {
-                "productsId": "Product’s ID",
-                "productsTitle": "Product’s title",
-                "languages": "Languages",
-                "actions": "Actions"
+                "productsId": "ID do produto",
+                "productsTitle": "Título do produto",
+                "languages": "Idiomas",
+                "actions": "Ações"
             },
-            "productVariants": "{variantsCount} variant|{variantsCount} variants"
+            "productVariants": "{variantsCount} variante|{variantsCount} variantes"
         },
         "compliancyIssues": {
-            "nameMissing": "Provide a name",
-            "nameMissingAction": "A product name is a unique identifier used to describe a product, and it is important because it helps improves visibility in search engine results. In PrestaShop, product names can be entered in the Catalog > Product > in the \"Product Name\" section.",
-            "imageMissing": "Provide an image",
-            "imageMissingAction": "A product image is a visual representation of a product that helps customers understand what the product looks like. It is important to have product images because it can help increase product appeal and sales, and can enhance the overall shopping experience. Product images can be added or edited in Catalog > Product > in the \"Images\" section.",
-            "linkMissing": "Provide a link",
-            "linkMissingAction": "Product link are mandatory. Please update your product page to generate a product link.",
-            "descriptionMissing": "Provide a description",
-            "descriptionMissingAction": "Add a description in your products. If you already have a description, check the attribute picked for description in the Attribute mapping configuration of the module.",
-            "brandMissing": "Provide a brand",
-            "brandMissingAction": "Please provide the Brand of the product. You can add a Brand in Catalog > Products > Basic settings in the Brand section for each product.",
-            "identifierMissing": "Provide a brand/GTIN",
-            "identifierMissingAction": "Please provide either brand or GTIN for the product.\n\nBrand is the brand of the product or your company. You can add a brand in Catalog > Products > Basic settings in the Brand section for each product.\n\nGTIN is a unique identifier used to identify products. It can be UPC or EAN or JAN or ISBN. You can add a GTIN in Catalog > Products > Options > in the Condition & References for each product.",
-            "gtinMissing": "Provide a GTIN",
-            "gtinMssingAction": "A GTIN (Global Trade Item Number) is a unique identifier used to identify products. The GTIN include UPC (in North America), EAN (in Europe), JAN (in Japan), and ISBN (for books). You can add a GTIN in Catalog > Products > Options > in the Condition & References for each product.\n\nThe GTIN identifier can usually be found on the product's barcode label, packaging, or documentation, or contacting the manufacturer.\n\nGTIN is a unique identifier used to identify products. it can be UPC or EAN or JAN or ISBN. Brand is the Brand of the product or your company.",
-            "priceMissing": "Provide a Price",
-            "priceMissingAction": "Please provide a price for the product."
+            "nameMissing": "Forneça um nome",
+            "nameMissingAction": "Nome é um identificador exclusivo usado para descrever um produto, ele é importante porque ajuda a melhorar a visibilidade nos resultados dos mecanismos de busca. Na PrestaShop, os nomes dos produtos podem ser inseridos em Catálogo > Produto > seção \"Nome do Produto\".",
+            "imageMissing": "Envie uma imagem",
+            "imageMissingAction": "Imagem é uma representação visual de um produto que ajuda os clientes a entenderem como é sua aparência. É importante ter imagens do produto porque isso gera interesse nos clientes, aumentando as vendas e melhorando a experiência de compra como um todo. As imagens do produto podem ser adicionadas ou editadas em Catálogo > Produto > seção \"Imagens\".",
+            "linkMissing": "Forneça um link",
+            "linkMissingAction": "O link do produto é obrigatório. Atualize sua página de produtos para gerar um link de produto.",
+            "descriptionMissing": "Escreva uma descrição",
+            "descriptionMissingAction": "Adicione uma descrição aos seus produtos. Se você já tiver uma descrição, marque o atributo escolhido para a descrição na configuração de mapeamento de atributos do módulo.",
+            "brandMissing": "Informe uma marca",
+            "brandMissingAction": "Informe qual é a marca do produto. Você pode adicionar uma marca em Catálogo > Produtos > Configurações básicas > seção Marca de cada produto.",
+            "identifierMissing": "Informe uma marca/GTIN",
+            "identifierMissingAction": "Forneça uma marca ou GTIN para o produto.\n\nMarca é a marca do produto ou da sua empresa. Você pode adicionar uma marca em Catálogo > Produtos > Configurações básicas > seção Marca de cada produto.\n\nO GTIN é um identificador exclusivo usado para identificar produtos. Pode ser UPC ou EAN ou JAN ou ISBN. Você pode adicionar um GTIN em Catálogo > Produtos > Opções > Condição e Referências de cada produto.",
+            "gtinMissing": "Forneça um GTIN",
+            "gtinMssingAction": "Um GTIN (Global Trade Item Number) é um identificador exclusivo usado para identificar produtos. O GTIN inclui UPC (na América do Norte), EAN (na Europa), JAN (no Japão) e ISBN (para livros). Você pode adicionar um GTIN em Catálogo > Produtos > Opções > Condição e Referências de cada produto.\n\nO identificador GTIN geralmente pode ser obtido no código de barras, na embalagem ou na documentação do produto, ou entrando em contato com o fabricante.\n\nGTIN é um identificador exclusivo usado para identificar produtos. Ele pode ser UPC, EAN, JAN ou ISBN. Marca é a marca do produto ou da sua empresa.",
+            "priceMissing": "Informe o preço",
+            "priceMissingAction": "Informe um preço para o produto."
         },
         "destinations": {
             "shoppingAds": "Anúncios do Shopping",
@@ -757,7 +757,7 @@
             "perPageLabel": "Mostrar:",
             "goToLabel": "Ir para a página:",
             "editX": "Editar {0}",
-            "noReasonFallback": "*Not provided, check [account errors on your Merchant Center]({0})[:target=\"_blank\"].*"
+            "noReasonFallback": "*Não fornecido, verifique [erros de conta no seu Merchant Center]({0})[:target=\"_blank\"].*"
         }
     },
     "campaignCard": {
@@ -983,7 +983,7 @@
         "openActionsMenu": "Abrir menu de ações para campanha {0}",
         "viewInGoogleAds": "Ver na sua conta Google Ads",
         "previous": "Anterior",
-        "loginPage": "Go to login page",
+        "loginPage": "Ir à página de login",
         "next": "Próximo",
         "goToPage": "Ir para a primeira página | Ir para a página: {0} | Ir para a última página",
         "noEndDate": "Sem data final",
@@ -1059,7 +1059,7 @@
         "PMaxMigrationText": "As suas campanhas de Compras Inteligentes começarão agora automaticamente a actualizar para as campanhas Máximo desempenho.\n\n- As definições e orçamento da sua campanha permanecem os mesmos. \n\n- A funcionalidade está em paridade com as campanhas de Smart Shopping.\n\n- A partir deste ponto, só pode criar campanhas Máximo desempenho.",
         "PmaxTextLink": "Saiba mais sobre as Campanhas de máximo desempenho",
         "textPmaxReleased": "As suas campanhas de Compras Inteligentes começarão agora automaticamente a actualizar para as Campanhas de máximo desempenho mais. [Saiba mais]({0})[:target=\"_blank\" class=\"text-decoration-underline\"]",
-        "disconnectedUserBo": "You have been disconnected from the backoffice. You will be automatically redirected to the login page in {0} seconds.",
+        "disconnectedUserBo": "Sua conexão com o backoffice foi interrompida. Você será redirecionado automaticamente para a página de login em {0} segundos.",
         "titleDisconnectedUserBo": "Ligação Perdida"
     },
     "tooltip": {
