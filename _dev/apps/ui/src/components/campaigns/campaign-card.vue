@@ -21,7 +21,7 @@
           <div class="d-flex align-items-start align-items-md-center">
             <img
               class="mr-2"
-              :src="require('@/assets/images/boost-campaing.svg')"
+              src="@/assets/images/boost-campaing.svg"
               width="32"
               height="32"
               alt=""

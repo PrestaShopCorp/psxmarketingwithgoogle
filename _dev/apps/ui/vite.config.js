@@ -31,7 +31,6 @@ export default defineConfig({
       fileName: () => 'js/app.js',
     },*/
     outDir: '../../../views/',
-    assetsDir: '',
     publicPath: process.env.VITE_ASSETS_URL || '../modules/psxmarketingwithgoogle/views/',
     emptyOutDir: false,
     rollupOptions: {
@@ -47,7 +46,6 @@ export default defineConfig({
 
       }
     },
-    assetsInclude: ['**/*.svg'],
   }
   // TODO: Move rules used to create build files in the proper folder
   // + remove test attributes in production mode

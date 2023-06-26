@@ -9,7 +9,7 @@
       >
         <figure class="ps_gs-landingpage-content__figure flex-shrink-0 mr-md-3">
           <img
-            :src="require(`@/assets/images/Google-Commercial-img.png`)"
+            src="@/assets/images/Google-Commercial-img.png"
             class="img-fluid d-block mx-auto"
             alt=""
           >
