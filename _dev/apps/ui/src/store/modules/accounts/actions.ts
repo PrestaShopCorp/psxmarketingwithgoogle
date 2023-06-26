@@ -73,8 +73,15 @@ export default {
     const getModulesStatus = await dispatch(`app/${ActionsTypesApp.GET_MODULES_VERSIONS}`, 'psxmarketingwithgoogle', {root: true});
 
     if (getModulesStatus?.hooks) {
-      Object.keys(getModulesStatus.hooks)
-        .map((item) => dispatch(`app/${ActionsTypesApp.TRIGGER_REGISTER_HOOK}`, item, {root: true}));
+      const hooksNotHooked = Object.entries(getModulesStatus.hooks)
+        .reduce((hooks: string[], [key, value]) => {
+          if (value === false) {
+            hooks.push(key);
+          }
+          return hooks;
+        }, []);
+
+      hooksNotHooked.map((item) => dispatch(`app/${ActionsTypesApp.TRIGGER_REGISTER_HOOK}`, item, {root: true}));
     }
 
     commit(MutationsTypes.SAVE_GMC, selectedAccount);
