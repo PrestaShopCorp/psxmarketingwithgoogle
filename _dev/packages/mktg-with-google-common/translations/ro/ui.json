@@ -94,7 +94,7 @@
     },
     "mcaCard": {
         "title": "Cont Merchant Center",
-        "introDisabled": "Poți conecta un cont Google Merchant Center existent sau poți crea unul nou în câțiva pași simpli.",
+        "introDisabled": "Link your Merchant Center account to PrestaShop to facilitate synchronization of your store and product data.",
         "claimCollides": "Site-ul tău a fost deja revendicat.",
         "claimOverwrite": "Pentru a finaliza crearea contului Merchant Center, trebuie să suprascrii revendicarea existentă.",
         "footerEU": "Pentru magazinele din Spațiul Economic European, Regatul Unit sau Elveția, contul Merchant Center trebuie asociat cu un [serviciu de comparare cumpărături (CSS)]({0})[:target=\"_blank\"]. Pentru noile conturi Merchant Center create prin această aplicație, contul tău va fi asociat în mod implicit cu Google Shopping, CSS-ul Google. Poți schimba oricând CSS-ul asociat contului tău și poți găsi, de asemenea, partenerii CSS aici. După ce ți-ai configurat contul Merchant Center, poți folosi instrumentul nostru de înregistrare, indiferent de CSS-ul pe care îl folosești.",
