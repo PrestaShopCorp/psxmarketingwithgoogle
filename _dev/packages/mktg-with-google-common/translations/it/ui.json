@@ -195,7 +195,7 @@
         "changeCountryField": "Puoi [cambiare il tuo Paese]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informazioni nel tuo back office",
         "changeRegionField": "Puoi [cambiare la tua regione]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informazioni nel tuo back office",
         "changeAddressField": "Puoi [cambiare il tuo indirizzo aziendale]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informazioni nel tuo back office",
-        "changeZipCodeField": "Puoi [cambia il tuo CAP]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informazioni nel tuo back office",
+        "changeZipCodeField": "Puoi [cambiare il tuo CAP]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informazioni nel tuo back office",
         "changeCityField": "Puoi [cambiare la tua città]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informazioni nel tuo back office",
         "changePhoneNumberField": "Puoi [cambiare il tuo numero di telefono aziendale]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informazioni nel tuo back office",
         "siteContainsAdultContent": "Il mio sito web contiene contenuti per adulti",
@@ -504,7 +504,7 @@
         },
         "terms": {
             "title": "Termini di servizio per il programma Google",
-            "label": "Ho letto e accetto i [termini e condizioni di Google Ads]({0})[:target=\"_blank\" class=\"ps_gs-fz-12\"]"
+            "label": "Ho letto e accettato i [termini e condizioni di Google Ads]({0})[:target=\"_blank\" class=\"ps_gs-fz-12\"]"
         }
     },
     "smartShoppingCampaignCard": {
@@ -678,7 +678,7 @@
             },
             "productsSentToGoogle": {
                 "stepTitle": "Prodotti inviati a Google",
-                "stepDetails": "Questo report visualizza lo stato di tutti i tuoi prodotti che sono stati inviati a Google Merchant Center. Nota che potrebbero essere necessari alcuni giorni per la revisione dei prodotti da parte di Google. Puoi utilizzare questo report per monitorare l'avanzamento di ciascun prodotto e assicurarti che sia approvato e attivo su Google Shopping.\n\nI prodotti **approvati** sono completamente approvati e possono apparire nelle schede prodotto su Google.\n\nI prodotti **\"in attesa \"** sono in fase di elaborazione da parte di Google. Non appariranno nelle schede prodotto finché non saranno approvati.\n\n**I prodotti in scadenza** diventeranno inattivi e non appariranno più nelle schede prodotto di Google nei prossimi giorni.\n\nI prodotti **non approvati** sono inattivi e non appaiono nelle schede prodotto di Google. Per ulteriori informazioni, clicca sulla casella Non approvato.",
+                "stepDetails": "Questo report visualizza lo stato di tutti i tuoi prodotti che sono stati inviati a Google Merchant Center. Nota che potrebbero essere necessari alcuni giorni per la revisione dei prodotti da parte di Google. Puoi utilizzare questo report per monitorare l'avanzamento di ciascun prodotto e assicurarti che sia stato approvato e attivato su Google Shopping.\n\nI prodotti **approvati** sono completamente approvati e possono apparire nelle schede prodotto su Google.\n\nI prodotti **\"in attesa \"** sono in fase di elaborazione da parte di Google. Non appariranno nelle schede prodotto finché non saranno approvati.\n\n**I prodotti in scadenza** diventeranno inattivi e non appariranno più nelle schede prodotto di Google nei prossimi giorni.\n\nI prodotti **non approvati** sono inattivi e non appaiono nelle schede prodotto di Google. Per ulteriori informazioni, clicca sulla casella Non approvato.",
                 "reportCards": {
                     "approved": "Approvato",
                     "approvedDescription": "Prodotti con varianti sincronizzati con successo.",
@@ -726,13 +726,13 @@
             "descriptionMissing": "Fornisci una descrizione",
             "descriptionMissingAction": "Aggiungi una descrizione nei tuoi prodotti. Se hai già una descrizione, controlla la caratteristica scelta per la descrizione nella configurazione della mappatura delle caratteristiche del modulo.",
             "brandMissing": "Fornisci un brand",
-            "brandMissingAction": "Please provide the Brand of the product. You can add a Brand in Catalog > Products > Basic settings in the Brand section for each product.",
-            "identifierMissing": "Provide a brand/GTIN",
-            "identifierMissingAction": "Please provide either brand or GTIN for the product.\n\nBrand is the brand of the product or your company. You can add a brand in Catalog > Products > Basic settings in the Brand section for each product.\n\nGTIN is a unique identifier used to identify products. It can be UPC or EAN or JAN or ISBN. You can add a GTIN in Catalog > Products > Options > in the Condition & References for each product.",
-            "gtinMissing": "Provide a GTIN",
-            "gtinMssingAction": "A GTIN (Global Trade Item Number) is a unique identifier used to identify products. The GTIN include UPC (in North America), EAN (in Europe), JAN (in Japan), and ISBN (for books). You can add a GTIN in Catalog > Products > Options > in the Condition & References for each product.\n\nThe GTIN identifier can usually be found on the product's barcode label, packaging, or documentation, or contacting the manufacturer.\n\nGTIN is a unique identifier used to identify products. it can be UPC or EAN or JAN or ISBN. Brand is the Brand of the product or your company.",
-            "priceMissing": "Provide a Price",
-            "priceMissingAction": "Please provide a price for the product."
+            "brandMissingAction": "Per favore indica il brand del prodotto. Puoi aggiungere un brand nel catalogo > Prodotti > Impostazioni di base nella sezione Brand per ogni prodotto.",
+            "identifierMissing": "Indica un brand/GTIN",
+            "identifierMissingAction": "Indica il brand o il GTIN del prodotto.\n\nIl brand è il marchio del prodotto o della tua azienda. È possibile aggiungere un brand in Catalogo > Prodotti > Impostazioni di base nella sezione Brand per ogni prodotto.\n\nIl GTIN è un identificatore unico utilizzato per identificare i prodotti. Può essere UPC o EAN o JAN o ISBN. È possibile aggiungere un GTIN in Catalogo > Prodotti > Opzioni > nella sezione Condizioni e riferimenti per ciascun prodotto.",
+            "gtinMissing": "Indica un GTIN",
+            "gtinMssingAction": "Un GTIN (Global Trade Item Number) è un identificatore unico utilizzato per identificare i prodotti. I GTIN includono UPC (in Nord America), EAN (in Europa), JAN (in Giappone) e ISBN (per i libri). È possibile aggiungere un GTIN in Catalogo > Prodotti > Opzioni > in Condizioni e riferimenti per ogni prodotto.\n\nL'identificatore GTIN si trova solitamente sull'etichetta del codice a barre del prodotto, sulla confezione o sulla documentazione, oppure contattando il produttore.\n\nIl GTIN è un identificatore univoco utilizzato per identificare i prodotti. Può essere UPC o EAN o JAN o ISBN. Il brand è il marchio del prodotto o della tua azienda.",
+            "priceMissing": "Indica un prezzo",
+            "priceMissingAction": "Si prega di indicare un prezzo per il prodotto."
         },
         "destinations": {
             "shoppingAds": "Annunci di shopping",
@@ -757,7 +757,7 @@
             "perPageLabel": "Mostra:",
             "goToLabel": "Vai alla pagina:",
             "editX": "Modifica {0}",
-            "noReasonFallback": "*Not provided, check [account errors on your Merchant Center]({0})[:target=\"_blank\"].*"
+            "noReasonFallback": "*Non fornito, controlla [errori di account sul tuo Merchant Center]({0})[:target=\"_blank\"].*"
         }
     },
     "campaignCard": {
@@ -1059,8 +1059,8 @@
         "PMaxMigrationText": "Le tue campagne Smart Shopping inizieranno ora ad aggiornarsi automaticamente in campagne Performance Max.\n\n- Le impostazioni della campagna e il budget rimangono invariati. \n\n- Le funzionalità sono uguali a quelle delle campagne Smart Shopping.\n\n- Da questo momento in poi è possibile creare solo campagne Performance Max.",
         "PmaxTextLink": "Scopri di più sulle campagne Performance Max",
         "textPmaxReleased": "Le tue campagne Smart Shopping inizieranno a passare automaticamente alle Campagne Performance Max. [Per saperne di più]({0})[:target=\"_blank\" class=\"text-decoration-underline\"]",
-        "disconnectedUserBo": "You have been disconnected from the backoffice. You will be automatically redirected to the login page in {0} seconds.",
-        "titleDisconnectedUserBo": "Connection lost"
+        "disconnectedUserBo": "Sei stato disconnesso dal back office. Verrai automaticamente reindirizzato alla pagina di accesso tra {0} secondi.",
+        "titleDisconnectedUserBo": "Connessione persa"
     },
     "tooltip": {
         "googleAccountRequired": "Richiede la configurazione dell'account Google",
