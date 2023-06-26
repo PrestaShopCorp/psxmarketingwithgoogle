@@ -94,7 +94,7 @@
     },
     "mcaCard": {
         "title": "Account Merchant Center",
-        "introDisabled": "Puoi collegare un account Google Merchant Center esistente o crearne uno nuovo in pochi semplici passaggi.",
+        "introDisabled": "Link your Merchant Center account to PrestaShop to facilitate synchronization of your store and product data.",
         "claimCollides": "Il tuo sito web è già stato verificato.",
         "claimOverwrite": "Per terminare la creazione dell'account Merchant Center, è necessario sovrascrivere la richiesta esistente.",
         "footerEU": "Per i negozi nello Spazio Economico Europeo, nel Regno Unito o in Svizzera, l'account del Merchant Center deve essere associato a un [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]. Per i nuovi account Merchant Center creati tramite questa applicazione, l'account sarà associato per impostazione predefinita a Google Shopping, il CSS di Google. È possibile modificare il CSS associato al proprio account in qualsiasi momento e si possono anche trovare i partner CSS qui. Una volta configurato il proprio account Merchant Center, è possibile utilizzare il nostro strumento di onboarding indipendentemente dal CSS utilizzato.",
