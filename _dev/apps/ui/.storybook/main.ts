@@ -17,10 +17,20 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-module.exports = {
-  "stories": ["../stories/**/*.stories.mdx", "../stories/**/*.stories.@(js|jsx|ts|tsx)"],
-  "addons": ["@storybook/addon-links", "@storybook/addon-essentials", "@storybook/addon-knobs", "@storybook/addon-a11y", "@storybook/addon-actions", "@storybook/addon-jest"],
-  "presets": ["@storybook/preset-scss"],
+import type { StorybookConfig } from '@storybook/vue-vite';
+
+const config: StorybookConfig = {
+  stories: ["../stories/**/*.stories.mdx", "../stories/**/*.stories.@(js|jsx|ts|tsx)"],
+  addons: [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    "@storybook/addon-knobs",
+    "@storybook/addon-a11y",
+    "@storybook/addon-actions",
+    // FIX ME: After migrating on Storybook 7,
+    // findTestRestult was failing with "import_upath.normalize is not a function"
+    // "@storybook/addon-jest",
+  ],
   staticDirs: ['./assets'],
   framework: {
     name: "@storybook/vue-vite",
@@ -30,3 +40,5 @@ module.exports = {
     autodocs: false
   },
 };
+
+export default config;

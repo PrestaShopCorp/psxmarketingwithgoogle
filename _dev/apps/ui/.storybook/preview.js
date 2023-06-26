@@ -29,9 +29,6 @@ import VueI18n from 'vue-i18n';
 import VueShowdown from 'vue-showdown';
 import VueSegment from '@/lib/segment';
 
-// import jest
-import { withTests } from '@storybook/addon-jest';
-
 // Test utils
 import {cloneStore} from '@/../tests/store';
 import {initialStateApp} from "../.storybook/mock/state-app";
@@ -142,7 +139,8 @@ export const decorators = [
     store: new Vuex.Store(cloneStore()),
     router,
   }),
-  withTests({results}),
+  // TODO: Bring back once issue with @storybook/addon-jest is fixed
+  // withTests({results}),
   mswDecorator,
 ];
 

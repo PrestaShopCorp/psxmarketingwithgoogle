@@ -47,6 +47,7 @@ export default defineConfig({
 
       }
     },
+    assetsInclude: ['**/*.svg'],
   }
   // TODO: Move rules used to create build files in the proper folder
   // + remove test attributes in production mode
