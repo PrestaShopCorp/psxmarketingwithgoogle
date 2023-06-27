@@ -652,17 +652,17 @@
                 "alerts": {
                     "productFeedCta": "configuración del feed de producto",
                     "boSettingsCta": "back office",
-                    "noEligibleLanguagesTitle": "No eligible languages",
-                    "noEligibleLanguagesDesc": "Please update your target countries in your {0} or add the relevant languages in your {1} to match your target countries.",
-                    "noEligibleCurrenciesTitle": "No eligible currencies",
-                    "noEligibleCurrenciesDesc": "Please update your target countries in your {0} or add the relevant currencies in your {1} to match the target countries in error."
+                    "noEligibleLanguagesTitle": "Idiomas no aptos",
+                    "noEligibleLanguagesDesc": "Actualiza tus países de destino en tu {0} o añade los idiomas correspondientes en tu {1} para que coincidan con tus países de destino.",
+                    "noEligibleCurrenciesTitle": "Monedas no aptas",
+                    "noEligibleCurrenciesDesc": "Actualiza tus países de destino en tu {0} o añade las monedas correspondientes en tu {1} para que coincidan con tus países de destino que dan error."
                 },
                 "title": "Tu configuración del feed de productos",
-                "targetCountries": "Selected target country:|Selected target countries:",
+                "targetCountries": "País objetivo seleccionado:|Países objetivo seleccionados:",
                 "languages": "Idioma:|Idiomas:",
                 "currencies": "Moneda:|Monedas:",
-                "noLanguage": "No eligible language",
-                "noCurrency": "No eligible currency"
+                "noLanguage": "Idioma no apto",
+                "noCurrency": "Moneda no apta"
             },
             "productVerification": {
                 "stepTitle": "Productos verificados por PrestaShop antes de enviar a Google",
@@ -692,12 +692,12 @@
             }
         },
         "compliancyIssuesPage": {
-            "details": "To ensure a successful pre-scan with Google, please fix the issues outlined in the table below. Taking care of these issues will help your list your product on Google’s surfaces.",
+            "details": "Para conseguir pasar el escaneado de Google, soluciona las incidencias indicadas en esta tabla. Resolverlas te ayudará a que tus productos se incluyan en los canales de Google.",
             "languageSelection": "Filtrar por idioma",
             "languageSelected": "Filtrar por: {lang}",
             "noResults": "No se encontraron datos",
             "columns": {
-                "issues": "Issues",
+                "issues": "Incidencias",
                 "suggestedActions": "Acciones sugeridas",
                 "affectedProducts": "Productos afectados",
                 "languages": "Idiomas"
@@ -724,15 +724,15 @@
             "linkMissing": "Facilitar un enlace",
             "linkMissingAction": "Los enlaces son obligatorios. Actualiza tu página de producto para generar un enlace.",
             "descriptionMissing": "Facilitar una descripción",
-            "descriptionMissingAction": "Add a description in your products. If you already have a description, check the attribute picked for description in the Attribute mapping configuration of the module.",
+            "descriptionMissingAction": "Añade una descripción en tus productos. Si ya la tienes, comprueba el atributo elegido para la descripción en la configuración de asignación de atributos del módulo.",
             "brandMissing": "Facilitar una marca",
             "brandMissingAction": "Indica la marca del producto. Puedes añadir una Marca en Catálogo > Productos > Configuración básica en la sección Marca de cada producto.",
             "identifierMissing": "Facilitar una marca/GTIN",
             "identifierMissingAction": "Facilita la marca o GTIN del producto.\n\nLa marca es la de tu producto o de tu empresa. Puedes añadir una marca en Catálogo > Productos > Ajustes básicos en la sección Marca de cada producto.\n\nGTIN es un identificador único utilizado para identificar los productos. Puede ser UPC, EAN, JAN o ISBN. Puedes añadir un GTIN en Catálogo > Productos > Opciones > Condición y Referencias de cada producto.",
             "gtinMissing": "Facilitar un GTIN",
-            "gtinMssingAction": "A GTIN (Global Trade Item Number) is a unique identifier used to identify products. The GTIN include UPC (in North America), EAN (in Europe), JAN (in Japan), and ISBN (for books). You can add a GTIN in Catalog > Products > Options > in the Condition & References for each product.\n\nThe GTIN identifier can usually be found on the product's barcode label, packaging, or documentation, or contacting the manufacturer.\n\nGTIN is a unique identifier used to identify products. it can be UPC or EAN or JAN or ISBN. Brand is the Brand of the product or your company.",
+            "gtinMssingAction": "Un GTIN (Global Trade Item Number) es un identificador único utilizado para identificar productos. Los GTIN incluyen UPC (en Norteamérica), EAN (en Europa), JAN (en Japón) e ISBN (para libros). Puedes añadir un GTIN en Catálogo > Productos > Opciones > en la Condición y Referencias para cada producto.\n\nEl identificador GTIN suele encontrarse en la etiqueta del código de barras del producto, en el embalaje o en la documentación, o contactando con el fabricante.\n\nEl GTIN es un identificador único utilizado para identificar productos. Puede ser UPC, EAN, JAN o ISBN. Marca es la marca del producto o de tu empresa.",
             "priceMissing": "Indicar un precio",
-            "priceMissingAction": "Please provide a price for the product."
+            "priceMissingAction": "Indica un precio para el producto."
         },
         "destinations": {
             "shoppingAds": "Anuncios de Shopping",
@@ -793,7 +793,7 @@
     "campaigns": {
         "status": {
             "eligible": "Apto",
-            "eligiblelimited": "Eligible (limited)",
+            "eligiblelimited": "Apto (limitado)",
             "ended": "Terminado",
             "paused": "En pausa",
             "noteligible": "No apto",
@@ -983,7 +983,7 @@
         "openActionsMenu": "Abrir el menú de acciones para la campaña {0}",
         "viewInGoogleAds": "Ver en tu cuenta de Google Ads",
         "previous": "Anterior",
-        "loginPage": "Go to login page",
+        "loginPage": "Ir a página de inicio de sesión",
         "next": "Siguiente",
         "goToPage": "Ir a la primera página | Ir a la página: {0} Ir a la última página",
         "noEndDate": "Sin fecha de finalización",
@@ -1059,7 +1059,7 @@
         "PMaxMigrationText": "Tus campañas Shopping inteligentes comenzarán a actualizarse automáticamente a campañas Máximo rendimiento.\n\n- La configuración y el presupuesto de tu campaña no varían. \n\n- La funcionalidad es equiparable a las campañas Shopping inteligentes.\n\n- A partir de este momento sólo podrás crear campañas Máximo rendimiento.",
         "PmaxTextLink": "Saber más sobre las campañas Máximo rendimiento",
         "textPmaxReleased": "Ahora, tus campañas Shopping inteligentes comenzarán a actualizarse automáticamente a campañas Máximo rendimiento. [Más información.]({0})[:target=\"_blank\" class=\"text-decoration-underline\"]",
-        "disconnectedUserBo": "You have been disconnected from the backoffice. You will be automatically redirected to the login page in {0} seconds.",
+        "disconnectedUserBo": "Has sido desconectado del back office. Se te redirigirá automáticamente a la página de inicio de sesión en {0} segundos.",
         "titleDisconnectedUserBo": "Se ha perdido la conexión"
     },
     "tooltip": {
