@@ -94,7 +94,7 @@
     },
     "mcaCard": {
         "title": "Compte Merchant Center",
-        "introDisabled": "Link your Merchant Center account to PrestaShop to facilitate synchronization of your store and product data.",
+        "introDisabled": "Associez votre compte Merchant Center à PrestaShop pour faciliter la synchronisation des données de votre boutique et de vos produits.",
         "claimCollides": "Votre site web a déjà été déclaré.",
         "claimOverwrite": "Pour terminer la création du compte du Centre Marchand, vous devez remplacer la revendication existante.",
         "footerEU": "Si vous êtes dans l'Espace Economique Européen, le Royaume-Uni ou la Suisse, votre compte Merchant Center doit être associé à un [service de Comparaison (CSS)]({0})[:target=\"_blank\"].\nSi vous créez un nouveau compte de Merchant Center via cette application, il sera associé à Google Shopping, le CSS de Google, par défaut. Vous pouvez modifier le CSS associé à votre compte à tout moment et vous pouvez également trouver vos partenaires CSS ici. Une fois que vous avez créé votre compte Merchant Center, vous pouvez utiliser notre outil d'intégration quel que soit le CSS que vous utilisez.",
@@ -650,12 +650,12 @@
             "timeline": {},
             "productFeedConfiguration": {
                 "alerts": {
-                    "productFeedCta": "product feed configuration",
-                    "boSettingsCta": "backoffice",
-                    "noEligibleLanguagesTitle": "No eligible languages",
-                    "noEligibleLanguagesDesc": "Please update your target countries in your {0} or add the relevant languages in your {1} to match your target countries.",
-                    "noEligibleCurrenciesTitle": "No eligible currencies",
-                    "noEligibleCurrenciesDesc": "Please update your target countries in your {0} or add the relevant currencies in your {1} to match the target countries in error."
+                    "productFeedCta": "configuration de flux produit",
+                    "boSettingsCta": "back-office",
+                    "noEligibleLanguagesTitle": "Aucune langue éligible",
+                    "noEligibleLanguagesDesc": "Veuillez mettre à jour vos pays cibles dans votre {0} ou ajouter les langues pertinentes dans votre {1} pour qu'elles correspondent à vos pays cibles.",
+                    "noEligibleCurrenciesTitle": "Aucune devise éligible",
+                    "noEligibleCurrenciesDesc": "Veuillez mettre à jour vos pays cibles dans votre {0} ou ajouter les devises pertinentes dans votre {1} pour qu'elles correspondent aux pays cibles erronés."
                 },
                 "title": "Votre configuration de flux produit",
                 "targetCountries": "Pays cible sélectionné:|Pays cibles sélectionnés:",
