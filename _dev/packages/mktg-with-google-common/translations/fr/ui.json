@@ -653,9 +653,9 @@
                     "productFeedCta": "configuration de flux produit",
                     "boSettingsCta": "back-office",
                     "noEligibleLanguagesTitle": "Aucune langue éligible",
-                    "noEligibleLanguagesDesc": "Veuillez mettre à jour vos pays cibles dans votre {0} ou ajouter les langues pertinentes dans votre {1} pour qu'elles correspondent à vos pays cibles.",
+                    "noEligibleLanguagesDesc": "Veuillez mettre à jour vos pays cibles dans votre {0} ou ajouter les langues correspondantes à vos pays cibles dans votre {1}.",
                     "noEligibleCurrenciesTitle": "Aucune devise éligible",
-                    "noEligibleCurrenciesDesc": "Veuillez mettre à jour vos pays cibles dans votre {0} ou ajouter les devises pertinentes dans votre {1} pour qu'elles correspondent aux pays cibles erronés."
+                    "noEligibleCurrenciesDesc": "Veuillez mettre à jour vos pays cibles dans votre {0} ou ajouter les devises correspondantes aux pays cibles erronés dans votre {1}."
                 },
                 "title": "Votre configuration de flux produit",
                 "targetCountries": "Pays cible sélectionné:|Pays cibles sélectionnés:",
