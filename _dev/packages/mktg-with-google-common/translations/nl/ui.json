@@ -94,7 +94,7 @@
     },
     "mcaCard": {
         "title": "Merchant Center-rekening",
-        "introDisabled": "Link your Merchant Center account to PrestaShop to facilitate synchronization of your store and product data.",
+        "introDisabled": "Koppel uw Merchant Center-account aan PrestaShop om de synchronisatie van uw winkel- en productgegevens te vergemakkelijken.",
         "claimCollides": "Uw website is al geclaimd.",
         "claimOverwrite": "Om het aanmaken van een Merchant Center account te voltooien, moet u de bestaande vordering overschrijven.",
         "footerEU": "Voor winkels in de Europese Economische Ruimte, het Verenigd Koninkrijk of Zwitserland is het vereist dat jouw Merchant Center-account wordt gekoppeld aan een [Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]. Voor nieuwe Merchant Center-accounts die via deze applicatie worden aangemaakt, wordt je account automatisch gekoppeld aan Google Shopping, de CSS van Google. Je kunt op elk moment de CSS van je account wijzigen. Hier kun je CSS-partners vinden. Zodra je jouw Merchant Center account hebt opgezet, kun je onze onboarding tool gebruiken, ongeacht welke CSS je gebruikt.",
