@@ -651,7 +651,7 @@
             "productFeedConfiguration": {
                 "alerts": {
                     "productFeedCta": "product feed configuration",
-                    "boSettingsCta": "backoffice",
+                    "boSettingsCta": "back office",
                     "noEligibleLanguagesTitle": "No eligible languages",
                     "noEligibleLanguagesDesc": "Please update your target countries in your {0} or add the relevant languages in your {1} to match your target countries.",
                     "noEligibleCurrenciesTitle": "No eligible currencies",
@@ -682,7 +682,7 @@
                 "reportCards": {
                     "approved": "Approved",
                     "approvedDescription": "Products with variations successfully synced.",
-                    "pending": "Pending",
+                    "pending": "Pendiente",
                     "pendingDescription": "Products being reviewed by Google.",
                     "expiring": "Expiring",
                     "expiringDescription": "Invalid products to be removed from Google soon.",
@@ -694,13 +694,13 @@
         "compliancyIssuesPage": {
             "details": "To ensure a successful pre-scan with Google, please fix the issues outlined in the table below. Taking care of these issues will help your list your product on Google’s surfaces.",
             "languageSelection": "Filter by language",
-            "languageSelected": "Filter by: {lang}",
+            "languageSelected": "Filtrar por: {lang}",
             "noResults": "No data found",
             "columns": {
                 "issues": "Issues",
                 "suggestedActions": "Suggested actions",
                 "affectedProducts": "Affected products",
-                "languages": "Languages"
+                "languages": "Idiomas"
             },
             "actions": {
                 "listProducts": "View product|View products"
@@ -711,7 +711,7 @@
             "columns": {
                 "productsId": "Product’s ID",
                 "productsTitle": "Product’s title",
-                "languages": "Languages",
+                "languages": "Idiomas",
                 "actions": "Actions"
             },
             "productVariants": "{variantsCount} variant|{variantsCount} variants"
