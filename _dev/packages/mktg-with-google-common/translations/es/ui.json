@@ -623,7 +623,7 @@
     "productFeedPage": {
         "breadcrumb": {
             "productStatusDetails": "Detalles del estado del producto",
-            "nonCompliantProducts": "Non-compliant products"
+            "nonCompliantProducts": "Productos no conformes"
         },
         "alert": {
             "googleIsReviewing": "Se están revisando tus productos \n La revisión de tus productos puede tardar entre 3 y 5 días. Una vez aprobados, estarán disponibles para fichas de producto y anuncios.",
@@ -650,7 +650,7 @@
             "timeline": {},
             "productFeedConfiguration": {
                 "alerts": {
-                    "productFeedCta": "product feed configuration",
+                    "productFeedCta": "configuración del feed de producto",
                     "boSettingsCta": "back office",
                     "noEligibleLanguagesTitle": "No eligible languages",
                     "noEligibleLanguagesDesc": "Please update your target countries in your {0} or add the relevant languages in your {1} to match your target countries.",
@@ -666,26 +666,26 @@
             },
             "productVerification": {
                 "stepTitle": "Productos verificados por PrestaShop antes de enviar a Google",
-                "stepDetails": "Before sending all your products (including variations), we ensure their compliance with Google's Merchant center policies. We verify the products **every time a change is detected**, and if there are any non-compliant products, we provide guidance on what needs to be done. Click on non-compliant products for more information.\n\nAfter submission, Google assigns each product a status: **Approved, Expiring, Pending** or **Disapproved**.",
+                "stepDetails": "Antes de enviar todos tus productos (incluidas las variaciones), nos aseguramos de que cumplen las políticas de Google Merchant Center. Verificamos los productos **cada vez que se detecta un cambio**, y si hay algún producto no conforme, facilitamos orientación sobre lo que se debe hacer. Haz clic en productos no conformes para obtener más información.\n\nTras el envío, Google asigna un estado a cada producto: **Aprobado, A punto de caducar, Pendiente** o **Rechazado**.",
                 "reportCards": {
                     "productsInCatalog": "Mi catálogo de productos",
-                    "productsInCatalogDescription": "Active products with variations in product feed languages.",
-                    "verified": "Compliant products",
-                    "verifiedDescription": "PrestaShop-approved products ready to be sent to Google.",
-                    "nonCompliant": "Non-compliant products",
+                    "productsInCatalogDescription": "Productos activos con variaciones en los idiomas del feed de productos.",
+                    "verified": "Productos conformes",
+                    "verifiedDescription": "Productos aprobados por PrestaShop listos para enviarse a Google.",
+                    "nonCompliant": "Productos no conformes",
                     "nonCompliantDescription": "Productos que no cumplen los requerimientos de Google."
                 }
             },
             "productsSentToGoogle": {
                 "stepTitle": "Productos enviados a Google",
-                "stepDetails": "This report displays the status of all your products that have been sent to Google Merchant Center. Please note that it may take a few days for Google to review your products. You can use this report to track the progress of each product and ensure that they are approved and active on Google Shopping.\n\n**‘Approved’ products** are fully approved and eligible to appear in free listings on Google.\n\n**‘Pending’ products** are being processed by Google. They will not appear in listings until they are approved.\n\n**‘Expiring’ products** will become inactive and no longer appear in Google listings in the next days.\n\n**‘Disapproved’ products** are inactive and do not appear in Google listings. You can click on Disapproved box for more information.",
+                "stepDetails": "Este informe muestra el estado de todos tus productos enviados a Google Merchant Center. Ten en cuenta que Google puede tardar unos días en revisar tus productos. Utiliza este informe para realizar un seguimiento del progreso de cada producto y asegurarse de que se han aprobado y están activos en Google Shopping.\n\n**Productos aprobados** están completamente aprobados y pueden aparecer en las fichas de producto gratuitas de Google.\n\n**Productos pendientes** están siendo procesados por Google. No aparecerán en los fichas hasta que se aprueben.\n\n**‘Productos a punto de caducar** dejarán de estar activos y no aparecerán en las fichas de Google en los próximos días.\n\n**Productos rechazados** están inactivos y no aparecen en las fichas de Google. Haz clic en la casilla Rechazados para más información.",
                 "reportCards": {
-                    "approved": "Approved",
-                    "approvedDescription": "Products with variations successfully synced.",
+                    "approved": "Aprobado",
+                    "approvedDescription": "Productos con variaciones bien sincronizados.",
                     "pending": "Pendiente",
                     "pendingDescription": "Productos en revisión por Google.",
                     "expiring": "A punto de caducar",
-                    "expiringDescription": "Invalid products to be removed from Google soon.",
+                    "expiringDescription": "Los productos no válidos se eliminarán pronto de Google.",
                     "disapproved": "Rechazado",
                     "disapprovedDescription": "Productos rechazados por Google."
                 }
@@ -710,17 +710,17 @@
             "details": "**Acción sugerida:** {action}",
             "columns": {
                 "productsId": "ID del producto",
-                "productsTitle": "Product’s title",
+                "productsTitle": "Título del producto",
                 "languages": "Idiomas",
                 "actions": "Acciones"
             },
-            "productVariants": "{variantsCount} variant|{variantsCount} variants"
+            "productVariants": "variante {variantsCount}|variantes {variantsCount}"
         },
         "compliancyIssues": {
             "nameMissing": "Facilitar un nombre",
             "nameMissingAction": "Un nombre de producto es un identificador único utilizado para describir un producto, y es importante porque ayuda a mejorar la visibilidad en los resultados de los buscadores. En PrestaShop, los nombres de los productos se pueden introducir en Catálogo > Producto > sección \"Nombre del producto\".",
             "imageMissing": "Facilitar una imagen",
-            "imageMissingAction": "A product image is a visual representation of a product that helps customers understand what the product looks like. It is important to have product images because it can help increase product appeal and sales, and can enhance the overall shopping experience. Product images can be added or edited in Catalog > Product > in the \"Images\" section.",
+            "imageMissingAction": "Una imagen de un producto es una representación visual que ayuda a los clientes a entender cómo es el producto. Es importante tener imágenes de los productos ya que puede mejorar el atractivo del producto y las ventas, así como la experiencia general de compra. Las imágenes de producto se pueden añadir o editar en Catálogo > Producto > en la sección \"Imágenes\".",
             "linkMissing": "Facilitar un enlace",
             "linkMissingAction": "Los enlaces son obligatorios. Actualiza tu página de producto para generar un enlace.",
             "descriptionMissing": "Facilitar una descripción",
@@ -792,11 +792,11 @@
     },
     "campaigns": {
         "status": {
-            "eligible": "Elegible",
-            "eligiblelimited": "Elegible (limitado)",
+            "eligible": "Apto",
+            "eligiblelimited": "Eligible (limited)",
             "ended": "Terminado",
             "paused": "En pausa",
-            "noteligible": "No elegible",
+            "noteligible": "No apto",
             "draft": "Borrador",
             "pending": "Pendiente"
         },
@@ -1021,7 +1021,7 @@
         "cantSync": "No se puede sincronizar",
         "close": "Cerrar",
         "suspended": "Suspendida",
-        "ineligibleForFreeListing": "No elegible para las listas de producto gratuitas",
+        "ineligibleForFreeListing": "No apto para las listas de producto gratuitas",
         "urlUnclaimed": "Url no reclamada",
         "urlUnverified": "Url no verificada",
         "canceled": "Cancelada",
