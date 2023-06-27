@@ -94,7 +94,7 @@
     },
     "mcaCard": {
         "title": "Merchant Center Konto",
-        "introDisabled": "Link your Merchant Center account to PrestaShop to facilitate synchronization of your store and product data.",
+        "introDisabled": "Verknüpfen Sie Ihr Merchant Center-Konto mit PrestaShop, um die Synchronisierung Ihrer Shop- und Produktdaten zu erleichtern.",
         "claimCollides": "Ihre Website wurde bereits beansprucht.",
         "claimOverwrite": "Um die Erstellung des Merchant Center-Kontos abzuschließen, müssen Sie den bestehenden Antrag überschreiben.",
         "footerEU": "Für Geschäfte im Europäischen Wirtschaftsraum, im Vereinigten Königreich oder in der Schweiz muss Ihr Merchant-Center-Konto mit einem [Preisvergleichsportal (CSS-Portal)]({0})[:target=\"_blank\"] verknüpft sein. Bei neuen Merchant-Center-Konten, die über diese Anwendung erstellt werden, wird Ihr Konto standardmäßig mit Google Shopping, dem Preisvergleichsportal von Google, verknüpft. Sie können das mit Ihrem Konto verknüpfte Preisvergleichsportal jederzeit ändern. Hier finden Sie Preisvergleichsportal-Partner. Sobald Sie Ihr Merchant-Center-Konto eingerichtet haben, können Sie unser Onboarding-Tool nutzen, egal welches Preisvergleichsportal Sie verwenden.",
