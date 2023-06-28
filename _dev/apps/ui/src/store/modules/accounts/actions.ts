@@ -70,6 +70,8 @@ export default {
     dispatch(ActionsTypes.SEND_GMC_INFORMATION_TO_SHOP, {
       id: selectedAccount.id,
     });
+    commit(MutationsTypes.SAVE_GMC, selectedAccount);
+
     const getModulesStatus = await dispatch(`app/${ActionsTypesApp.GET_MODULES_VERSIONS}`, 'psxmarketingwithgoogle', {root: true});
 
     if (getModulesStatus?.hooks) {
@@ -80,8 +82,6 @@ export default {
           }
         });
     }
-
-    commit(MutationsTypes.SAVE_GMC, selectedAccount);
   },
 
   async [ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS](
