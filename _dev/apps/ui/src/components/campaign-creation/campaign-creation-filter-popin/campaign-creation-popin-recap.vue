@@ -90,7 +90,7 @@
       </b-button>
       <b-button
         variant="primary"
-        @click="editionMode ? editCampaign() : ok()"
+        @click="ok()"
       >
         <template v-if="!isValidating">
           {{ $t('cta.validate') }}
@@ -106,9 +106,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import CampaignStatus, {
-  CampaignStatusToggle, CampaignTypes,
-} from '@/enums/reporting/CampaignStatus';
+import CampaignStatus, {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import PsModal from '@/components/commons/ps-modal.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import compareYears from '@/utils/CompareYears';
@@ -168,72 +166,52 @@ export default defineComponent({
       this.$refs.modal.hide();
     },
     ok() {
-      this.$segment.track('[GGL] Create SSC Validation Step', {
-        module: 'psxmarketingwithgoogle',
-        remarketing_conversion_value:
-          this.$store.state.campaigns.tracking,
-        params: SegmentGenericParams,
-      });
+      if (!this.editionMode) {
+        this.$segment.track('[GGL] Create SSC Validation Step', {
+          module: 'psxmarketingwithgoogle',
+          remarketing_conversion_value:
+            this.$store.state.campaigns.tracking,
+          params: SegmentGenericParams,
+        });
+      }
+
       this.isValidating = true;
-      const finalCampaign = {
-        ...this.newCampaign,
-        // API wants country code not name so we have to filter it
-        targetCountry: changeCountryNameToCode(this.newCampaign.targetCountry),
+      const campaignPayload = {
         // Send default status
         status: CampaignStatus.ELIGIBLE,
         type: CampaignTypes.PERFORMANCE_MAX,
-      };
-      this.$store
-        .dispatch('campaigns/SAVE_NEW_CAMPAIGN', finalCampaign)
-        .then((resp) => {
-          this.$refs.modal.hide();
-          if (resp && resp.error) {
-            this.isValidating = false;
-            this.$emit('displayErrorApiWhenSavingSSC');
-          } else {
-            this.$store.dispatch(
-              'campaigns/GET_CAMPAIGNS_LIST',
-              {isNewRequest: true, typeChosen: CampaignTypes.PERFORMANCE_MAX},
-            );
-            this.$router.push({
-              name: 'campaign-list',
-            });
-            this.$emit('openPopinSSCCreated');
-            this.isValidating = false;
-          }
-        });
-    },
-    editCampaign() {
-      this.isValidating = true;
-      const payload = {
         ...this.newCampaign,
         // API wants country code not name so we have to filter it
-        targetCountry: changeCountryNameToCode(
-          this.newCampaign.targetCountry,
-        ),
-        status: CampaignStatusToggle.ENABLED,
+        targetCountry: changeCountryNameToCode(this.newCampaign.targetCountry),
       };
-      this.$store
-        .dispatch('campaigns/UPDATE_CAMPAIGN', payload)
-        .then((resp) => {
+      const promise = this.editionMode
+        ? this.$store.dispatch('campaigns/UPDATE_CAMPAIGN', campaignPayload)
+        : this.$store.dispatch('campaigns/SAVE_NEW_CAMPAIGN', campaignPayload);
+
+      promise.then((resp) => {
+        if (resp && resp.error) {
+          this.$emit('displayErrorApiWhenSavingSSC');
+        } else {
+          this.$store.dispatch(
+            'campaigns/GET_CAMPAIGNS_LIST',
+            {isNewRequest: true, typeChosen: CampaignTypes.PERFORMANCE_MAX},
+          );
+          this.$router.push({
+            name: 'campaign-list',
+          });
+          this.$emit('openPopinSSCCreated');
+          this.$segment.track(`[GGL] Campaign ${this.edition ? 'updated' : 'created'}`, {
+            module: 'psxmarketingwithgoogle',
+            params: SegmentGenericParams,
+          });
+        }
+      })
+        .catch(() => {
+          this.$emit('displayErrorApiWhenSavingSSC');
+        })
+        .finally(() => {
+          this.isValidating = false;
           this.$refs.modal.hide();
-          if (resp && resp.error) {
-            this.isValidating = false;
-            this.$emit('displayErrorApiWhenSavingSSC');
-          } else {
-            this.$store.dispatch(
-              'campaigns/GET_CAMPAIGNS_LIST',
-              {isNewRequest: true, typeChosen: CampaignTypes.PERFORMANCE_MAX},
-            );
-            this.$store.dispatch(
-              'campaigns/GET_CAMPAIGNS_LIST',
-              {isNewRequest: true, typeChosen: CampaignTypes.SMART_SHOPPING},
-            );
-            this.$router.push({
-              name: 'campaign-list',
-            });
-            this.isValidating = false;
-          }
         });
     },
   },

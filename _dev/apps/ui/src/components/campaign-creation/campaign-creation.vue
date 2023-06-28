@@ -459,7 +459,7 @@ import countriesSelectionOptions from '@/assets/json/countries.json';
 import CampaignCreationPopin from './campaign-creation-filter-popin/campaign-creation-popin.vue';
 import CampaignCreationPopinRecap from './campaign-creation-filter-popin/campaign-creation-popin-recap.vue';
 import SelectCountry from '../commons/select-country.vue';
-import CampaignStatus, {CampaignTypes} from '@/enums/reporting/CampaignStatus';
+import CampaignStatus, {CampaignStatusToggle, CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import BannerAds from '@/components/commons/banner-ads.vue';
 import TipsAndTricksCard from '@/components/commons/tips-and-tricks-card.vue';
 import {
@@ -635,6 +635,7 @@ export default defineComponent({
         endDate: this.campaignDurationEndDate,
         targetCountry: this.targetCountry || this.defaultCountry,
         productFilters: this.finalCampaignFilters,
+        status: this.campaignIsActive ? CampaignStatusToggle.ENABLED : CampaignStatusToggle.PAUSED,
       };
     },
     productsHaveBeenApprovedByGoogle() {
