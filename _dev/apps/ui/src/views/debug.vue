@@ -17,10 +17,12 @@
  * International Registered Trademark & Property of PrestaShop SA
  *-->
 <template>
-  <div>
+  <div
+    class="row"
+  >
     <b-card
       no-body
-      class="ps_gs-onboardingcard px-0"
+      class="ps_gs-onboardingcard px-0 col-7"
     >
       <b-card-header
         header-tag="h3"
@@ -91,7 +93,62 @@
 
     <b-card
       no-body
-      class="ps_gs-onboardingcard px-0"
+      class="ps_gs-onboardingcard px-0 col-5"
+    >
+      <b-card-header
+        header-tag="h3"
+        header-class="px-3 py-3 font-weight-600 ps_gs-fz-16 mb-0"
+      >
+        Actions
+      </b-card-header>
+      <b-card-body
+        body-class="p-3"
+      >
+        <span
+          id="tooltip-gmc-creation"
+          class="d-inline-block"
+          tabindex="0"
+        >
+          <b-button
+            class="mt-3 mr-3 text-nowrap d-block"
+            variant="outline-primary"
+            size="sm"
+            @click="triggerGmcAccountCreation"
+            :disabled="!GET_GOOGLE_ACCOUNT_IS_ONBOARDED || GET_GOOGLE_MERCHANT_CENTER_IS_CONNECTED"
+          >
+            <img
+              src="@/assets/images/google-merchant-center-icon.svg"
+              width="16"
+              height="16"
+              alt=""
+              class="float-left mr-1"
+            >
+            Start GMC account creation
+          </b-button>
+        </span>
+        <b-tooltip
+          target="tooltip-gmc-creation"
+          triggers="hover"
+          container="#psxMktgWithGoogleApp"
+          v-if="GET_GOOGLE_ACCOUNT_IS_ONBOARDED && GET_GOOGLE_MERCHANT_CENTER_IS_CONNECTED"
+        >
+          Disconnect from your GMC account first
+        </b-tooltip>
+
+        <b-button
+          class="mt-3 mr-3 d-block"
+          variant="outline-danger"
+          size="sm"
+          @click="throwErrorForSentry"
+        >
+          Throw Error test for Sentry
+        </b-button>
+      </b-card-body>
+    </b-card>
+
+    <b-card
+      no-body
+      class="ps_gs-onboardingcard px-0 col-12"
     >
       <b-card-header
         header-tag="h3"
@@ -115,14 +172,10 @@
           <li>
             <strong>Types of data synchronized by Event Bus</strong>
             ({{ GET_DEBUG_DATA.typesOfSync.length }}):
-            <ul>
-              <li
-                v-for="(type, index) in GET_DEBUG_DATA.typesOfSync"
-                :key="index"
-              >
-                {{ type }}
-              </li>
-            </ul>
+            <b-table
+              striped
+              :items="GET_DEBUG_DATA.typesOfSync"
+            />
           </li>
           <li>
             <strong>Manual sync:</strong>
@@ -165,7 +218,7 @@
 
     <b-card
       no-body
-      class="ps_gs-onboardingcard px-0"
+      class="ps_gs-onboardingcard px-0 col-12"
     >
       <b-card-header
         header-tag="h3"
@@ -208,7 +261,7 @@
 
     <b-card
       no-body
-      class="ps_gs-onboardingcard px-0"
+      class="ps_gs-onboardingcard px-0 col-12"
     >
       <b-card-header
         header-tag="h3"
@@ -246,29 +299,6 @@
         </ul>
       </b-card-body>
     </b-card>
-
-    <b-card
-      no-body
-      class="ps_gs-onboardingcard px-0"
-    >
-      <b-card-header
-        header-tag="h3"
-        header-class="px-3 py-3 font-weight-600 ps_gs-fz-16 mb-0"
-      >
-        Error reporting
-      </b-card-header>
-      <b-card-body
-        body-class="p-3"
-      >
-        <b-button
-          class="mt-3 mr-3"
-          variant="danger"
-          @click="throwErrorForSentry"
-        >
-          Throw Error test for Sentry
-        </b-button>
-      </b-card-body>
-    </b-card>
   </div>
 </template>
 
@@ -277,6 +307,7 @@ import {defineComponent} from 'vue';
 import {mapGetters, mapState} from 'vuex';
 import GettersTypes from '@/store/modules/campaigns/getters-types';
 import GettersTypesApp from '@/store/modules/app/getters-types';
+import GettersTypesAccounts from '@/store/modules/accounts/getters-types';
 import GettersTypesProductFeed from '@/store/modules/product-feed/getters-types';
 
 export default defineComponent({
@@ -309,6 +340,10 @@ export default defineComponent({
     ]),
     ...mapGetters('app', [
       GettersTypesApp.GET_DEBUG_DATA,
+    ]),
+    ...mapGetters('accounts', [
+      GettersTypesAccounts.GET_GOOGLE_ACCOUNT_IS_ONBOARDED,
+      GettersTypesAccounts.GET_GOOGLE_MERCHANT_CENTER_IS_CONNECTED,
     ]),
     ...mapGetters('productFeed', [
       GettersTypesProductFeed.GET_PRODUCT_FEED_SETTINGS,
@@ -393,6 +428,12 @@ export default defineComponent({
         this.sync.loading = false;
       }
     },
+    async triggerGmcAccountCreation() {
+      await this.$router.push({
+        name: 'configuration',
+      });
+      this.$root.$emit('startGmcAccountCreation');
+    },
     throwErrorForSentry() {
       throw new Error('Test error for sentry');
     },
@@ -404,6 +445,7 @@ export default defineComponent({
     },
   },
   mounted() {
+    this.$store.dispatch('accounts/WARMUP_STORE');
     this.$store.dispatch('campaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
     this.$store.dispatch('campaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED');
     this.getProductFeed();

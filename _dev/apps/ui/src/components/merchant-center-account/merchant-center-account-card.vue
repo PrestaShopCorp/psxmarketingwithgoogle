@@ -777,6 +777,10 @@ export default {
   },
   mounted() {
     this.setFocusOnSelectMCA();
+    this.$root.$on('startGmcAccountCreation', this.checkWebsiteRequirements);
+  },
+  beforeDestroy() {
+    this.$root.$off('startGmcAccountCreation', this.checkWebsiteRequirements);
   },
   watch: {
     mcaConfigured(newVal, oldVal) {
