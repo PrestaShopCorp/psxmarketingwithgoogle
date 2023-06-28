@@ -44,7 +44,6 @@
         </b-card-header>
         <b-card-body body-class="p-3 p-md-4">
           <b-alert
-            v-if="$route.params.type === $options.CampaignTypes.PERFORMANCE_MAX"
             show
             variant="info"
             data-test-id="unhandled-filters-alert"
