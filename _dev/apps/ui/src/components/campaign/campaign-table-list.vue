@@ -21,35 +21,6 @@
         >
           {{ $t('cta.viewReporting') }}
         </b-button>
-        <b-dropdown
-          :disabled="pMaxCampaignsList.length === 0 || sscCampaignsList.length === 0"
-          id="filterByCampaignTypeDropdown"
-          variant="outline-primary"
-          :text="$t('smartShoppingCampaignList.campaignType',
-                    [typeChosen === this.$options.CampaignTypes.PERFORMANCE_MAX ?
-                      $t('smartShoppingCampaignList.performanceMax')
-                      : $t('smartShoppingCampaignList.smartShoppingCampaign')])"
-          class="mt-1 mb-2 mt-md-0 bg-transparent"
-        >
-          <b-dropdown-form>
-            <b-form-radio
-              v-model="typeChosen"
-              :value="this.$options.CampaignTypes.PERFORMANCE_MAX"
-              name="campaignType"
-            >
-              {{ $t('smartShoppingCampaignList.performanceMax') }}
-            </b-form-radio>
-          </b-dropdown-form>
-          <b-dropdown-form>
-            <b-form-radio
-              v-model="typeChosen"
-              :value="this.$options.CampaignTypes.SMART_SHOPPING"
-              name="campaignType"
-            >
-              {{ $t('smartShoppingCampaignList.smartShoppingCampaign') }}
-            </b-form-radio>
-          </b-dropdown-form>
-        </b-dropdown>
       </div>
     </div>
     <ReportingTableHeader
@@ -200,7 +171,6 @@ export default {
     return {
       campaignName: null,
       searchQuery: {},
-      typeChosen: this.$options.CampaignTypes.PERFORMANCE_MAX,
     };
   },
   props: {
@@ -218,18 +188,14 @@ export default {
       return Object.values(CampaignSummaryListHeaderType);
     },
     pMaxCampaignsList() {
-      return this.$store.state.campaigns.campaigns.pMaxList;
+      return this.$store.state.campaigns.campaigns.campaignsList;
     },
-    sscCampaignsList() {
-      return this.$store.state.campaigns.campaigns.sscList;
-    },
+
     campaignList() {
-      const campaigns = this.typeChosen === CampaignTypes.PERFORMANCE_MAX
-        ? this.pMaxCampaignsList : this.sscCampaignsList;
       const searchQuery = this.searchQuery[CampaignSummaryListHeaderType.CAMPAIGN];
 
       if (searchQuery) {
-        return campaigns.filter((campaign) => {
+        return this.pMaxCampaignsList.filter((campaign) => {
           const nameMatch = campaign.campaignName
             .toLowerCase()
             .includes(searchQuery.toLowerCase());
@@ -237,7 +203,7 @@ export default {
           return nameMatch;
         });
       }
-      return campaigns;
+      return this.pMaxCampaignsList;
     },
     queryOrderDirection: {
       get() {
@@ -303,7 +269,7 @@ export default {
     fetchCampaigns(isNewRequest = true) {
       this.$emit('loader', true);
       this.$store
-        .dispatch('campaigns/GET_CAMPAIGNS_LIST', {isNewRequest, typeChosen: this.typeChosen})
+        .dispatch('campaigns/GET_CAMPAIGNS_LIST', {isNewRequest, typeChosen: this.$options.CampaignTypes.PERFORMANCE_MAX})
         .then(() => {
           this.$store.dispatch('campaigns/GET_DIMENSIONS_FILTERS', null);
         })
@@ -319,9 +285,7 @@ export default {
 
       // ToDo: Temporary use of different tokens for next page (SSC + PMax)
       const tokensList = this.$store.getters['campaigns/GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST'];
-      const token = this.typeChosen === CampaignTypes.SMART_SHOPPING
-        ? tokensList.ssc
-        : tokensList.pmax;
+      const token = tokensList.pmax;
 
       if (
         body.scrollTop >= body.scrollHeight - body.clientHeight
@@ -349,9 +313,6 @@ export default {
     if (this.inNeedOfConfiguration) {
       this.$emit('loader', false);
       return;
-    }
-    if (this.pMaxCampaignsList.length === 0 && this.sscCampaignsList.length > 0) {
-      this.typeChosen = this.$options.CampaignTypes.SMART_SHOPPING;
     }
     this.$emit('loader', false);
   },

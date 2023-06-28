@@ -46,8 +46,7 @@ export interface State {
 }
 
 export interface CampaignsLists {
-  sscList: CampaignObject[];
-  pMaxList: CampaignObject[];
+  campaignsList: CampaignObject[];
 }
 
 export interface ConversionAction {
@@ -223,8 +222,7 @@ export interface FiltersPerformances {
 export const state: State = {
   warmedUp: false,
   campaigns: {
-    sscList: [],
-    pMaxList: [],
+    campaignsList: [],
   },
   campaignsOrdering: {},
   nextPageTokenCampaignList: {

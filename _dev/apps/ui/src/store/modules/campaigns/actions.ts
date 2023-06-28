@@ -50,13 +50,6 @@ export default {
         }),
       ),
       runIf(
-        !getters.GET_ALL_CAMPAIGNS?.length,
-        dispatch(ActionsTypes.GET_CAMPAIGNS_LIST, {
-          isNewRequest: true,
-          typeChosen: CampaignTypes.SMART_SHOPPING,
-        }),
-      ),
-      runIf(
         state.tracking === null,
         dispatch(ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_MODULE),
       ),
@@ -375,12 +368,9 @@ export default {
   },
   async [ActionsTypes.GET_CAMPAIGNS_LIST]({commit, state, rootState}, {
     isNewRequest = true,
-    // ToDo: temporary data to remove when PMax is the only kind of campaign we manage
-    typeChosen,
   }) {
     const query = new URLSearchParams();
-    const nextPageToken = typeChosen === CampaignTypes.PERFORMANCE_MAX
-      ? state.nextPageTokenCampaignList.pmax : state.nextPageTokenCampaignList.scc;
+    const nextPageToken = state.nextPageTokenCampaignList.pmax;
 
     if (state.campaignsOrdering && state.campaignsOrdering.duration) {
       query.append('order[startDate]', state.campaignsOrdering.duration);
@@ -397,19 +387,17 @@ export default {
     try {
       const json = await (await fetchOnboarding(
         'GET',
-        `shopping-campaigns/list?${query}&type=${typeChosen}`,
+        `shopping-campaigns/list?${query}`,
       )).json();
 
       if (isNewRequest) {
-        commit(MutationsTypes.RESET_CAMPAIGNS_LIST, typeChosen);
+        commit(MutationsTypes.RESET_CAMPAIGNS_LIST);
       }
       commit(MutationsTypes.SAVE_CAMPAIGNS_TO_LIST, {
         campaigns: json.campaigns,
-        type: typeChosen,
       });
       commit(MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST, {
         nextPageToken: json.nextPageToken,
-        type: typeChosen,
       });
     } catch (error) {
       console.error(error);

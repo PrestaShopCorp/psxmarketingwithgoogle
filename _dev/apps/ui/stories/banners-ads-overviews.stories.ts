@@ -26,7 +26,7 @@ const TemplateAdsPopinNewGoogleAdsAccount = (args, { argTypes }) => ({
   components: { GoogleAdsAccountPopinNew},
   template: `
     <div>
-      <GoogleAdsAccountPopinNew v-bind="$props" 
+      <GoogleAdsAccountPopinNew v-bind="$props"
       ref="googleAdsAccountPopin"
       />
     </div>
@@ -46,7 +46,7 @@ BannerOnPopinNewAdsAccount.args = {
     this.$store.state.productFeed = cloneDeep(productFeedIsConfigured);
     this.$store.state.googleAds = cloneDeep(googleAdsAccountChosen);
   }
- 
+
 };
 
 const TemplateAdsConfigurationPage = (args, { argTypes }) => ({
@@ -113,7 +113,7 @@ const TemplateCampaignsList = (args, { argTypes }) => ({
 export const BannerOnCampaignsListPage:any = TemplateCampaignsList.bind({});
 BannerOnCampaignsListPage.args = {
   beforeMount() {
-    this.$store.state.campaigns.campaigns.pMaxList = [];
+    this.$store.state.campaigns.campaigns.campaignsList = [];
   },
-  loading: false, 
+  loading: false,
 };

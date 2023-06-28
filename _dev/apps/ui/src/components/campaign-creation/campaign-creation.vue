@@ -513,17 +513,9 @@ export default defineComponent({
     formTitle() {
       // Edition
       if (this.campaignToEditFromList) {
-        if (this.campaignToEditFromList.type === this.$options.CampaignTypes.PERFORMANCE_MAX) {
-          return this.$i18n.t('smartShoppingCampaignCreation.breadcrumbEditPMax');
-        }
-        return this.$i18n.t('smartShoppingCampaignCreation.breadcrumbEditSSC');
+        return this.$i18n.t('smartShoppingCampaignCreation.breadcrumbEditPMax');
       }
 
-      // Creation
-      if (this.$route.params
-      && this.$route.params.type === this.$options.CampaignTypes.SMART_SHOPPING) {
-        return this.$i18n.t('smartShoppingCampaignCreation.breadcrumbCreateSSC');
-      }
       return this.$i18n.t('smartShoppingCampaignCreation.breadcrumbCreatePMax');
     },
     dimensionName() {

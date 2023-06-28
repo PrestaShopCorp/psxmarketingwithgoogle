@@ -1,5 +1,5 @@
 import CampaignTableList from '../src/components/campaign/campaign-table-list.vue'
-import {campaigns, campaignsEmpty, onlySsc, onlyPmax, campaignWithOnlySsc, campaignWithOnlyPmax} from '../.storybook/mock/campaigns-list';
+import {campaigns, campaignsEmpty, onlyPmax, campaignWithOnlyPmax} from '../.storybook/mock/campaigns-list';
 import {rest} from 'msw';
 import { CampaignTypes } from '@/enums/reporting/CampaignStatus';
 
@@ -32,56 +32,7 @@ TableWithCampaigns.args = {
 TableWithCampaigns.parameters = {
   msw: {
     handlers: [
-      rest.get('/shopping-campaigns/list', (req, res, ctx) => {
-        const type = new URLSearchParams(req.url.search).get('type');
-        if (type === CampaignTypes.SMART_SHOPPING) {
-          return res(
-            ctx.json({
-              campaigns: [...onlySsc]
-            })
-          );
-        }
-        if (type === CampaignTypes.PERFORMANCE_MAX) {
-          return res(
-            ctx.json({
-              campaigns: [...onlyPmax]
-            })
-          );
-        };
-      }),
-    ],
-  },
-};
-
-export const TableWithOnlySsc:any = Template.bind({});
-TableWithOnlySsc.args = {
-  beforeCreate() {
-    this.$store.state.campaigns.campaigns = Object.assign({}, campaignWithOnlySsc);
-  },
-  loading: false,
-  inNeedOfConfiguration: false,
-}
-
-TableWithOnlySsc.parameters = {
-  msw: {
-    handlers: [
-      rest.get('/shopping-campaigns/list', (req, res, ctx) => {
-        const type = new URLSearchParams(req.url.search).get('type');
-        if (type === CampaignTypes.SMART_SHOPPING) {
-          return res(
-            ctx.json({
-              campaigns: [...onlySsc]
-            })
-          );
-        }
-        if (type === CampaignTypes.PERFORMANCE_MAX) {
-          return res(
-            ctx.json({
-              campaigns: []
-            })
-          );
-        };
-      }),
+      rest.get('/shopping-campaigns/list', (req, res, ctx) => res(ctx.json({campaigns: [...onlyPmax]}))),
     ],
   },
 };
@@ -93,27 +44,17 @@ TableWithOnlyPmax.args = {
   },
   loading: false,
   inNeedOfConfiguration: false,
-}
+};
 
 TableWithOnlyPmax.parameters = {
   msw: {
     handlers: [
       rest.get('/shopping-campaigns/list', (req, res, ctx) => {
-        const type = new URLSearchParams(req.url.search).get('type');
-        if (type === CampaignTypes.SMART_SHOPPING) {
-          return res(
-            ctx.json({
-              campaigns: []
-            })
-          );
-        }
-        if (type === CampaignTypes.PERFORMANCE_MAX) {
-          return res(
-            ctx.json({
-              campaigns: [...onlyPmax]
-            })
-          );
-        };
+        return res(
+          ctx.json({
+            campaigns: [...onlyPmax]
+          })
+        );
       }),
     ],
   },

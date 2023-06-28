@@ -217,29 +217,19 @@ const Template = (args, { argTypes }) => ({
   },
   beforeMount: args.beforeMount,
   mounted: args.mounted,
-  
+
 });
 
-export const CreationSSC: any = Template.bind({});
-CreationSSC.args = {
+export const Creation: any = Template.bind({});
+Creation.args = {
   loader: false,
   searchLoader: false,
   beforeMount(this: any) {
     this.$store.state.campaigns.errorCampaignNameExists = null;
     this.$store.state.productFeed.validationSummary.activeProducts = 2;
-    this.$router.history.current.params.type = CampaignTypes.SMART_SHOPPING
   },
 };
-export const CreationPMax: any = Template.bind({});
-CreationPMax.args = {
-  loader: false,
-  searchLoader: false,
-  beforeMount(this: any) {
-    this.$store.state.campaigns.errorCampaignNameExists = null;
-    this.$store.state.productFeed.validationSummary.activeProducts = 2;
-    this.$router.history.current.params.type = CampaignTypes.PERFORMANCE_MAX
-  },
-};
+
 export const ErrorAPIWhileCreating: any = Template.bind({});
 ErrorAPIWhileCreating.args = {
   loader: false,
@@ -303,7 +293,6 @@ EditionWithUnhandledFilters.args = {
   loader: false,
   searchLoader: false,
   mounted(this: any) {
-    this.$store.state.campaigns.campaigns.sscList = [cloneDeep(campaignWithUnhandledFilters)];
     this.$router.history.current.params.id = '16004060865',
     this.$store.state.campaigns.errorFetchingFilters = false;
     this.$store.state.productFeed.validationSummary.activeProducts = 2;

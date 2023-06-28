@@ -96,12 +96,6 @@ const routes: Array<RouteConfig> = [
       {
         path: 'creation',
         name: 'campaign-creation',
-        redirect: (to) => ({
-          name: 'campaign-creation-typed',
-          params: {
-            type: CampaignTypes.PERFORMANCE_MAX,
-          },
-        }),
       },
       {
         path: 'edit/:id',
