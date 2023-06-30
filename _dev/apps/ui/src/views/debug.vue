@@ -325,7 +325,7 @@ export default defineComponent({
         fullSync: false,
         error: false,
       },
-      appBuildVersion: process.env.VITE_BUILD_VERSION || 'Not provided',
+      appBuildVersion: import.meta.env.VITE_BUILD_VERSION || 'Not provided',
     };
   },
   components: {

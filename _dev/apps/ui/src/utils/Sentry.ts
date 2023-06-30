@@ -2,7 +2,7 @@ import Vue from 'vue';
 import * as Sentry from '@sentry/vue';
 import store from '@/store';
 
-const appVersion = process.env.VITE_BUILD_VERSION || 'dev';
+const appVersion = import.meta.env.VITE_BUILD_VERSION || 'dev';
 
 // @ts-ignore
 if (store.state.app.psxMktgWithGoogleOnProductionEnvironment) {

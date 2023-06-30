@@ -1,10 +1,15 @@
 import { defineConfig } from 'vite';
 import { createVuePlugin as vue } from "vite-plugin-vue2";
 import path from 'path';
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [vue()],
+export default defineConfig(({ mode }) => ({
+  base: './',
+  plugins: [
+    vue(),
+    cssInjectedByJsPlugin(),
+  ],
   resolve: {
     alias: [
       {
@@ -21,7 +26,8 @@ export default defineConfig({
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue', '.scss'],
   },
   define: {
-    'process.env': process.env
+    // 'process.env': process.env,
+    'process.env.NODE_ENV': mode === 'production' ? '"production"' : '"development"',
   },
   build: {
     /*lib: {
@@ -39,15 +45,26 @@ export default defineConfig({
         entryFileNames: 'js/app.js',
         chunkFileNames: 'js/[name].js',
         assetFileNames: function (file) {
-          return ['svg', 'png'].includes(file.name.split('.').pop())
+          if (file.name?.includes('index.html')) {
+            console.log(file.name);
+            return '';
+          }
+          return ['svg', 'png'].includes(file.name?.split('.')?.pop() || '')
             ? 'img/[name].[ext]'
             : '[ext]/[name].[ext]';
-          },
-
+        },
+        manualChunks: (id: string) => {
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          } else if (id.includes('mktg-with-google-common/translations/')) {
+            const splitPath = path.dirname(id).split('/');
+            return `translations/${splitPath[splitPath.length -1]}`;
+          }
+        },
       }
     },
   },
   // TODO: Move rules used to create build files in the proper folder
   // + remove test attributes in production mode
   // from vue.config.js
-});
+}));
