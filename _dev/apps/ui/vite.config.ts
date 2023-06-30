@@ -51,9 +51,9 @@ export default defineConfig(({ mode }) => ({
       output: {
         sourcemap: !!process.env.GENERATE_SOURCEMAPS,
         entryFileNames: (chunkInfo) => {
-          // On versions prior Vite, we were not including app.js with type="module"
-          // To be backward compliant, the app.js adds the new entrypoint the proper way.
-          // On the module side, the new entry point will be loaded directly.
+          // Since we migrated on Vite, type="module" is necessary to load the UI.
+          // -> To be backward compliant, an app.js remains and includes the new entrypoint in the DOM the proper way.
+          // -> On the module side, the new entry point will be loaded directly.
           if (chunkInfo.name === 'bc-ante-vite') {
             return 'js/app.js';
           }
