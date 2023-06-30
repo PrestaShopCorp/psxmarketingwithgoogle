@@ -79,6 +79,7 @@ importers:
       typescript: ^4.9.5
       vite: ^4.3.9
       vite-plugin-css-injected-by-js: ^3.1.2
+      vite-plugin-react-remove-attributes: ^1.0.3
       vite-plugin-vue2: ^2.0.3
       vue: ^2.7.14
       vue-class-component: ^7.2.6
@@ -176,6 +177,7 @@ importers:
       typescript: 4.9.5
       vite: 4.3.9_sass@1.63.6
       vite-plugin-css-injected-by-js: 3.1.2_vite@4.3.9
+      vite-plugin-react-remove-attributes: 1.0.3_vite@4.3.9
       vite-plugin-vue2: 2.0.3_bs6x6pggmduqxznqk744wjnd5m
       vue-loader: 15.10.0_2vuwbok5wruhdckbrycei6e2fm
       vue-template-compiler: 2.7.14
@@ -17541,6 +17543,14 @@ packages:
     resolution: {integrity: sha512-hv/DKA1Yn7Dcqh51nSDiqXJORzXxky4I1CjzsSbJtap0lgCk8qVzkoyEIgWMu+XXjEzv1tyIsLHYwobHTLLh/w==}
     peerDependencies:
       vite: '>2.0.0-0'
+    dependencies:
+      vite: 4.3.9_sass@1.63.6
+    dev: true
+
+  /vite-plugin-react-remove-attributes/1.0.3_vite@4.3.9:
+    resolution: {integrity: sha512-f+ox+GFeqyBHzOe94Tcf1knFXEYWMhOGH04glIZRoXoIXQJD23Z1KFgQ7/JwOoLydsvQTlGzUJ/BpLeL7lh2LQ==}
+    peerDependencies:
+      vite: ^2.4.4
     dependencies:
       vite: 4.3.9_sass@1.63.6
     dev: true

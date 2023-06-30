@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import { createVuePlugin as vue } from "vite-plugin-vue2";
 import path from 'path';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
+import VitePluginReactRemoveAttributes from 'vite-plugin-react-remove-attributes';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -9,6 +10,9 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     vue(),
     cssInjectedByJsPlugin(),
+    VitePluginReactRemoveAttributes({
+      attributes: ['data-test-id'],
+    }),
   ],
   resolve: {
     alias: [
@@ -74,7 +78,4 @@ export default defineConfig(({ mode }) => ({
       }
     },
   },
-  // TODO: Move rules used to create build files in the proper folder
-  // + remove test attributes in production mode
-  // from vue.config.js
 }));
