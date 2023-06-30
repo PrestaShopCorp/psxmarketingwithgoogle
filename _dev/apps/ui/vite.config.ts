@@ -40,15 +40,23 @@ export default defineConfig(({ mode }) => ({
     publicPath: process.env.VITE_ASSETS_URL || '../modules/psxmarketingwithgoogle/views/',
     emptyOutDir: false,
     rollupOptions: {
+      input: [
+        'src/main.ts',
+        'src/bc-ante-vite.ts',
+      ],
       output: {
         sourcemap: !!process.env.GENERATE_SOURCEMAPS,
-        entryFileNames: 'js/app.js',
+        entryFileNames: (chunkInfo) => {
+          // On versions prior Vite, we were not including app.js with type="module"
+          // To be backward compliant, the app.js adds the new entrypoint the proper way.
+          // On the module side, the new entry point will be loaded directly.
+          if (chunkInfo.name === 'bc-ante-vite') {
+            return 'js/app.js';
+          }
+          return 'js/psxmarketingwithgoogle-ui.js';
+        },
         chunkFileNames: 'js/[name].js',
         assetFileNames: function (file) {
-          if (file.name?.includes('index.html')) {
-            console.log(file.name);
-            return '';
-          }
           return ['svg', 'png'].includes(file.name?.split('.')?.pop() || '')
             ? 'img/[name].[ext]'
             : '[ext]/[name].[ext]';
@@ -59,6 +67,8 @@ export default defineConfig(({ mode }) => ({
           } else if (id.includes('mktg-with-google-common/translations/')) {
             const splitPath = path.dirname(id).split('/');
             return `translations/${splitPath[splitPath.length -1]}`;
+          } else if (id.includes('bc-ante-vite')) {
+            return 'app';
           }
         },
       }
