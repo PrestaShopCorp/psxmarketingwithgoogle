@@ -16,7 +16,7 @@ export default defineConfig(({ mode }) => ({
     {
       name: 'asset-path-fixer',
       enforce: 'post',
-      apply: 'serve',
+      apply: (config, env) => env.command === 'serve' && !config.envPrefix?.includes('STORYBOOK_'),
       transform: (code) => {
         return {
           code: code.replaceAll(/\/src\/assets/g, 'http://localhost:5173/src/assets'),
