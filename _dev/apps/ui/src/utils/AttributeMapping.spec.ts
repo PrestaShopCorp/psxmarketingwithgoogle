@@ -10,79 +10,79 @@ import {
   AttributeResponseFromAPI,
   parseApiResponse,
   mergeAttributeMappings,
-} from "./AttributeMapping";
+} from './AttributeMapping';
 
-import { productFeed } from "../../.storybook/mock/product-feed";
+import {productFeed} from '../../.storybook/mock/product-feed';
 
-describe("AttributeMapping - checking if formatting is ok", () => {
-  it("should return an array with description and gtin not empty and ids property", () => {
+describe('AttributeMapping - checking if formatting is ok', () => {
+  it('should return an array with description and gtin not empty and ids property', () => {
     const mapping: AttributeToMap[] = [
       {
-        category: "commons",
+        category: 'commons',
         fields: [
           {
-            label: "Description",
-            name: "description",
+            label: 'Description',
+            name: 'description',
             tooltip: true,
             recommended: [
               {
-                name: ["description"],
-                type: "product",
+                name: ['description'],
+                type: 'product',
               },
             ],
             mapped: [
               {
-                name: ["description"],
-                type: "product",
+                name: ['description'],
+                type: 'product',
               },
             ],
             required: true,
           },
           {
-            label: "GTIN* (EAN, JAN, ISBN, UPC, ITF-14)",
-            name: "gtin",
+            label: 'GTIN* (EAN, JAN, ISBN, UPC, ITF-14)',
+            name: 'gtin',
             tooltip: true,
             recommended: [],
             mapped: [
               {
-                name: ["mpn"],
-                type: "product",
+                name: ['mpn'],
+                type: 'product',
               },
             ],
             required: false,
           },
           {
-            label: "MPN (Manufacturer Part Number)",
-            name: "mpn",
+            label: 'MPN (Manufacturer Part Number)',
+            name: 'mpn',
             tooltip: true,
             recommended: [
               {
-                name: ["mpn"],
-                type: "product",
+                name: ['mpn'],
+                type: 'product',
               },
             ],
             mapped: [
               {
-                name: ["mpn"],
-                type: "product",
+                name: ['mpn'],
+                type: 'product',
               },
             ],
             required: true,
           },
           {
-            label: "Brand",
-            name: "brand",
+            label: 'Brand',
+            name: 'brand',
             tooltip: true,
             recommended: [
               {
-                name: ["manufacturer"],
-                type: "product",
+                name: ['manufacturer'],
+                type: 'product',
               },
             ],
             mapped: [
               {
-                name: ["manufacturer"],
-                type: "product",
+                name: ['manufacturer'],
+                type: 'product',
               },
             ],
             required: true,
@@ -90,56 +90,56 @@ describe("AttributeMapping - checking if formatting is ok", () => {
         ],
       },
       {
-        category: "apparelAndAccessories",
+        category: 'apparelAndAccessories',
         fields: [
           {
-            label: "Age Group",
-            name: "ageGroup",
+            label: 'Age Group',
+            name: 'ageGroup',
             tooltip: true,
             recommended: [],
             mapped: [],
             required: true,
           },
           {
-            label: "Color",
-            name: "color",
+            label: 'Color',
+            name: 'color',
             tooltip: true,
             recommended: [
               {
-                name: ["color"],
-                type: "custom",
+                name: ['color'],
+                type: 'custom',
               },
             ],
             mapped: [],
             required: true,
           },
           {
-            label: "Gender",
-            name: "gender",
+            label: 'Gender',
+            name: 'gender',
             tooltip: true,
             recommended: [
               {
-                name: ["gender"],
-                type: "custom",
+                name: ['gender'],
+                type: 'custom',
               },
             ],
             mapped: [],
             required: true,
           },
           {
-            label: "Size",
-            name: "size",
+            label: 'Size',
+            name: 'size',
             tooltip: true,
             recommended: [
               {
-                name: ["size"],
-                type: "custom",
+                name: ['size'],
+                type: 'custom',
               },
             ],
             mapped: [
               {
-                name: ["size"],
-                type: "custom",
+                name: ['size'],
+                type: 'custom',
               },
             ],
             required: true,
@@ -153,32 +153,32 @@ describe("AttributeMapping - checking if formatting is ok", () => {
       gender: [],
       brand: [
         {
-          ids: ["manufacturer"],
-          type: "product",
+          ids: ['manufacturer'],
+          type: 'product',
         },
       ],
       size: [
         {
-          ids: ["size"],
-          type: "custom",
+          ids: ['size'],
+          type: 'custom',
         },
       ],
       mpn: [
         {
-          ids: ["mpn"],
-          type: "product",
+          ids: ['mpn'],
+          type: 'product',
         },
       ],
       description: [
         {
-          type: "product",
-          ids: ["description"],
+          type: 'product',
+          ids: ['description'],
         },
       ],
       gtin: [
         {
-          ids: ["mpn"],
-          type: "product",
+          ids: ['mpn'],
+          type: 'product',
         },
       ],
       ageGroup: [],
@@ -189,74 +189,74 @@ describe("AttributeMapping - checking if formatting is ok", () => {
     expect(result).toEqual(expected);
   });
 
-  it("AttributeMapping - should return an array with description and gtin not empty and id property", () => {
+  it('AttributeMapping - should return an array with description and gtin not empty and id property', () => {
     const mapping: AttributeToMap[] = [
       {
-        category: "commons",
+        category: 'commons',
         fields: [
           {
-            label: "Description",
-            name: "description",
+            label: 'Description',
+            name: 'description',
             tooltip: true,
             recommended: [
               {
-                name: "description",
-                type: "product",
+                name: 'description',
+                type: 'product',
               },
             ],
             mapped: [
               {
-                name: "description",
-                type: "product",
+                name: 'description',
+                type: 'product',
               },
             ],
             required: true,
           },
           {
-            label: "GTIN* (EAN, JAN, ISBN, UPC, ITF-14)",
-            name: "gtin",
+            label: 'GTIN* (EAN, JAN, ISBN, UPC, ITF-14)',
+            name: 'gtin',
             tooltip: true,
             recommended: [],
             mapped: [
               {
-                name: "mpn",
-                type: "product",
+                name: 'mpn',
+                type: 'product',
               },
             ],
             required: false,
           },
           {
-            label: "MPN (Manufacturer Part Number)",
-            name: "mpn",
+            label: 'MPN (Manufacturer Part Number)',
+            name: 'mpn',
             tooltip: true,
             recommended: [
               {
-                name: "mpn",
-                type: "product",
+                name: 'mpn',
+                type: 'product',
               },
             ],
             mapped: [
               {
-                name: "mpn",
-                type: "product",
+                name: 'mpn',
+                type: 'product',
               },
             ],
             required: true,
           },
           {
-            label: "Brand",
-            name: "brand",
+            label: 'Brand',
+            name: 'brand',
             tooltip: true,
             recommended: [
               {
-                name: "manufacturer",
-                type: "product",
+                name: 'manufacturer',
+                type: 'product',
               },
             ],
             mapped: [
               {
-                name: "manufacturer",
-                type: "product",
+                name: 'manufacturer',
+                type: 'product',
               },
             ],
             required: true,
@@ -264,56 +264,56 @@ describe("AttributeMapping - checking if formatting is ok", () => {
         ],
       },
       {
-        category: "apparelAndAccessories",
+        category: 'apparelAndAccessories',
         fields: [
           {
-            label: "Age Group",
-            name: "ageGroup",
+            label: 'Age Group',
+            name: 'ageGroup',
             tooltip: true,
             recommended: [],
             mapped: [],
             required: true,
           },
           {
-            label: "Color",
-            name: "color",
+            label: 'Color',
+            name: 'color',
             tooltip: true,
             recommended: [
               {
-                name: "color",
-                type: "custom",
+                name: 'color',
+                type: 'custom',
               },
             ],
             mapped: [],
             required: true,
           },
           {
-            label: "Gender",
-            name: "gender",
+            label: 'Gender',
+            name: 'gender',
             tooltip: true,
             recommended: [
               {
-                name: "gender",
-                type: "custom",
+                name: 'gender',
+                type: 'custom',
               },
             ],
             mapped: [],
             required: true,
           },
           {
-            label: "Size",
-            name: "size",
+            label: 'Size',
+            name: 'size',
             tooltip: true,
             recommended: [
               {
-                name: "size",
-                type: "custom",
+                name: 'size',
+                type: 'custom',
               },
             ],
             mapped: [
               {
-                name: "size",
-                type: "custom",
+                name: 'size',
+                type: 'custom',
               },
             ],
             required: true,
@@ -326,32 +326,32 @@ describe("AttributeMapping - checking if formatting is ok", () => {
       gender: [],
       brand: [
         {
-          id: "manufacturer",
-          type: "product",
+          id: 'manufacturer',
+          type: 'product',
         },
       ],
       size: [
         {
-          id: "size",
-          type: "custom",
+          id: 'size',
+          type: 'custom',
         },
       ],
       mpn: [
         {
-          id: "mpn",
-          type: "product",
+          id: 'mpn',
+          type: 'product',
         },
       ],
       description: [
         {
-          type: "product",
-          id: "description",
+          type: 'product',
+          id: 'description',
         },
       ],
       gtin: [
         {
-          id: "mpn",
-          type: "product",
+          id: 'mpn',
+          type: 'product',
         },
       ],
       ageGroup: [],
@@ -362,40 +362,40 @@ describe("AttributeMapping - checking if formatting is ok", () => {
     expect(result).toEqual(expected);
   });
 
-  it("AttributeMapping - should filter each attribute which has elements that do not have ID", () => {
+  it('AttributeMapping - should filter each attribute which has elements that do not have ID', () => {
     const mapping: AttributeResponseFromAPI = {
       color: [],
       gender: [],
       brand: [
         {
-          type: "product",
+          type: 'product',
         },
         {
-          id: "branding",
-          type: "product",
+          id: 'branding',
+          type: 'product',
         },
       ],
       size: [
         {
-          type: "custom",
+          type: 'custom',
         },
       ],
       mpn: [
         {
-          id: "mpn",
-          type: "product",
+          id: 'mpn',
+          type: 'product',
         },
       ],
       description: [
         {
-          type: "product",
-          id: "description",
+          type: 'product',
+          id: 'description',
         },
       ],
       gtin: [
         {
-          id: "mpn",
-          type: "product",
+          id: 'mpn',
+          type: 'product',
         },
       ],
       ageGroup: [],
@@ -406,27 +406,27 @@ describe("AttributeMapping - checking if formatting is ok", () => {
       gender: [],
       brand: [
         {
-          id: "branding",
-          type: "product",
+          id: 'branding',
+          type: 'product',
         },
       ],
       size: [],
       mpn: [
         {
-          id: "mpn",
-          type: "product",
+          id: 'mpn',
+          type: 'product',
         },
       ],
       description: [
         {
-          type: "product",
-          id: "description",
+          type: 'product',
+          id: 'description',
         },
       ],
       gtin: [
         {
-          id: "mpn",
-          type: "product",
+          id: 'mpn',
+          type: 'product',
         },
       ],
       ageGroup: [],
@@ -437,94 +437,94 @@ describe("AttributeMapping - checking if formatting is ok", () => {
     expect(result).toEqual(expected);
   });
 
-  it("AttributeMapping - should mapped corretly with API response", () => {
+  it('AttributeMapping - should mapped corretly with API response', () => {
     const apiResponse = {
       description: [
         {
-          id: "description",
-          type: "product",
+          id: 'description',
+          type: 'product',
         },
         {
-          id: "gender",
-          type: "custom",
+          id: 'gender',
+          type: 'custom',
         },
       ],
       gtin: [],
       brand: [
         {
-          id: "manufacturer",
-          type: "product",
+          id: 'manufacturer',
+          type: 'product',
         },
       ],
       mpn: [
         {
-          id: "mpn",
-          type: "product",
+          id: 'mpn',
+          type: 'product',
         },
       ],
     };
 
     const mapping = [
       {
-        category: "commons",
+        category: 'commons',
         fields: [
           {
-            label: "Description",
-            name: "description",
+            label: 'Description',
+            name: 'description',
             tooltip: true,
             recommended: [
               {
-                name: ["description"],
-                type: "product",
+                name: ['description'],
+                type: 'product',
               },
               {
-                name: ["gender"],
-                type: "product",
+                name: ['gender'],
+                type: 'product',
               },
             ],
             mapped: [
               {
-                name: ["description"],
-                type: "product",
+                name: ['description'],
+                type: 'product',
               },
             ],
             required: true,
           },
           {
-            label: "GTIN* (EAN, JAN, ISBN, UPC, ITF-14)",
-            name: "gtin",
+            label: 'GTIN* (EAN, JAN, ISBN, UPC, ITF-14)',
+            name: 'gtin',
             tooltip: true,
             recommended: [],
             mapped: null,
             required: false,
           },
           {
-            label: "MPN (Manufacturer Part Number)",
-            name: "mpn",
+            label: 'MPN (Manufacturer Part Number)',
+            name: 'mpn',
             tooltip: true,
             recommended: [
               {
-                name: ["mpn"],
-                type: "product",
+                name: ['mpn'],
+                type: 'product',
               },
             ],
             mapped: null,
             required: true,
           },
           {
-            label: "Brand",
-            name: "brand",
+            label: 'Brand',
+            name: 'brand',
             tooltip: true,
             recommended: [
               {
-                name: ["manufacturer"],
-                type: "product",
+                name: ['manufacturer'],
+                type: 'product',
               },
             ],
             mapped: [
               {
-                name: ["manufacturer"],
-                type: "product",
+                name: ['manufacturer'],
+                type: 'product',
               },
             ],
             required: true,
@@ -532,50 +532,50 @@ describe("AttributeMapping - checking if formatting is ok", () => {
         ],
       },
       {
-        category: "apparelAndAccessories",
+        category: 'apparelAndAccessories',
         fields: [
           {
-            label: "Age Group",
-            name: "ageGroup",
+            label: 'Age Group',
+            name: 'ageGroup',
             tooltip: true,
             recommended: [],
             mapped: [],
             required: true,
           },
           {
-            label: "Color",
-            name: "color",
+            label: 'Color',
+            name: 'color',
             tooltip: true,
             recommended: [
               {
-                name: ["color"],
-                type: "custom",
+                name: ['color'],
+                type: 'custom',
               },
             ],
             mapped: [],
             required: true,
           },
           {
-            label: "Gender",
-            name: "gender",
+            label: 'Gender',
+            name: 'gender',
             tooltip: true,
             recommended: [
               {
-                name: ["gender"],
-                type: "custom",
+                name: ['gender'],
+                type: 'custom',
               },
             ],
             mapped: [],
             required: true,
           },
           {
-            label: "Size",
-            name: "size",
+            label: 'Size',
+            name: 'size',
             tooltip: true,
             recommended: [
               {
-                name: ["size"],
-                type: "custom",
+                name: ['size'],
+                type: 'custom',
               },
             ],
             mapped: null,
@@ -588,47 +588,47 @@ describe("AttributeMapping - checking if formatting is ok", () => {
     const result = parseApiResponse(
       mapping,
       productFeed.attributesFromShop,
-      apiResponse
+      apiResponse,
     );
 
     expect(result).toEqual(mapping);
   });
 });
 
-describe("AttributeMapping", () => {
+describe('AttributeMapping', () => {
   const dataFromApi = [
     {
-      category: "commons",
+      category: 'commons',
       fields: [
         {
-          label: "Description",
-          name: "description",
+          label: 'Description',
+          name: 'description',
           tooltip: true,
-          recommended: [{ name: ["description"], type: "product" }],
-          mapped: [{ name: ["description"], type: "product" }],
+          recommended: [{name: ['description'], type: 'product'}],
+          mapped: [{name: ['description'], type: 'product'}],
           required: true,
         },
         {
-          label: "GTIN* (EAN, JAN, ISBN, UPC, ITF-14)",
-          name: "gtin",
+          label: 'GTIN* (EAN, JAN, ISBN, UPC, ITF-14)',
+          name: 'gtin',
           tooltip: true,
           recommended: [],
-          mapped: [{ name: ["ean"], type: "product" }],
+          mapped: [{name: ['ean'], type: 'product'}],
           required: false,
         },
         {
-          label: "MPN (Manufacturer Part Number)",
-          name: "mpn",
+          label: 'MPN (Manufacturer Part Number)',
+          name: 'mpn',
           tooltip: true,
-          recommended: [{ name: ["mpn"], type: "product" }],
-          mapped: [{ name: ["mpn"], type: "product" }],
+          recommended: [{name: ['mpn'], type: 'product'}],
+          mapped: [{name: ['mpn'], type: 'product'}],
           required: true,
         },
         {
-          label: "Brand",
-          name: "brand",
+          label: 'Brand',
+          name: 'brand',
           tooltip: false,
-          recommended: [{ name: ["manufacturer"], type: "product" }],
+          recommended: [{name: ['manufacturer'], type: 'product'}],
           mapped: [
           ],
           required: true,
@@ -636,11 +636,11 @@ describe("AttributeMapping", () => {
       ],
     },
     {
-      category: "electronics",
+      category: 'electronics',
       fields: [
         {
-          label: "Energy class",
-          name: "energyEfficiencyClass",
+          label: 'Energy class',
+          name: 'energyEfficiencyClass',
           tooltip: false,
           recommended: [],
           mapped: [],
@@ -650,31 +650,31 @@ describe("AttributeMapping", () => {
     },
   ];
 
-  it("should merge payloads properly", () => {
+  it('should merge payloads properly', () => {
     const dataFromLocalStorage = [
       {
-        category: "commons",
+        category: 'commons',
         fields: [
           {
-            label: "Brand",
-            name: "brand",
+            label: 'Brand',
+            name: 'brand',
             tooltip: false,
-            recommended: [{ name: ["manufacturer"], type: "product" }],
+            recommended: [{name: ['manufacturer'], type: 'product'}],
             mapped: [
-              { name: ["manufacturer"], type: "product" },
-              { name: ["mpn"], type: "product" },
-              { name: ["description"], type: "product" },
+              {name: ['manufacturer'], type: 'product'},
+              {name: ['mpn'], type: 'product'},
+              {name: ['description'], type: 'product'},
             ],
             required: true,
           },
         ],
       },
       {
-        category: "variantSets",
+        category: 'variantSets',
         fields: [
           {
-            label: "Material",
-            name: "material",
+            label: 'Material',
+            name: 'material',
             tooltip: false,
             recommended: [],
             mapped: [],
@@ -687,52 +687,52 @@ describe("AttributeMapping", () => {
     const result = mergeAttributeMappings(dataFromApi, dataFromLocalStorage);
     expect(result).toStrictEqual([
       {
-        category: "commons",
+        category: 'commons',
         fields: [
           {
-            label: "Description",
-            name: "description",
+            label: 'Description',
+            name: 'description',
             tooltip: true,
-            recommended: [{ name: ["description"], type: "product" }],
-            mapped: [{ name: ["description"], type: "product" }],
+            recommended: [{name: ['description'], type: 'product'}],
+            mapped: [{name: ['description'], type: 'product'}],
             required: true,
           },
           {
-            label: "GTIN* (EAN, JAN, ISBN, UPC, ITF-14)",
-            name: "gtin",
+            label: 'GTIN* (EAN, JAN, ISBN, UPC, ITF-14)',
+            name: 'gtin',
             tooltip: true,
             recommended: [],
-            mapped: [{ name: ["ean"], type: "product" }],
+            mapped: [{name: ['ean'], type: 'product'}],
             required: false,
           },
           {
-            label: "MPN (Manufacturer Part Number)",
-            name: "mpn",
+            label: 'MPN (Manufacturer Part Number)',
+            name: 'mpn',
             tooltip: true,
-            recommended: [{ name: ["mpn"], type: "product" }],
-            mapped: [{ name: ["mpn"], type: "product" }],
+            recommended: [{name: ['mpn'], type: 'product'}],
+            mapped: [{name: ['mpn'], type: 'product'}],
             required: true,
           },
           {
-            label: "Brand",
-            name: "brand",
+            label: 'Brand',
+            name: 'brand',
             tooltip: false,
-            recommended: [{ name: ["manufacturer"], type: "product" }],
+            recommended: [{name: ['manufacturer'], type: 'product'}],
             mapped: [
-              { name: ["manufacturer"], type: "product" },
-              { name: ["mpn"], type: "product" },
-              { name: ["description"], type: "product" },
+              {name: ['manufacturer'], type: 'product'},
+              {name: ['mpn'], type: 'product'},
+              {name: ['description'], type: 'product'},
             ],
             required: true,
           },
         ],
       },
       {
-        category: "electronics",
+        category: 'electronics',
         fields: [
           {
-            label: "Energy class",
-            name: "energyEfficiencyClass",
+            label: 'Energy class',
+            name: 'energyEfficiencyClass',
             tooltip: false,
             recommended: [],
             mapped: [],
@@ -743,7 +743,7 @@ describe("AttributeMapping", () => {
     ]);
   });
 
-  it("should handle empty another source", () => {
+  it('should handle empty another source', () => {
     const dataFromLocalStorage = null;
 
     const result = mergeAttributeMappings(dataFromApi, dataFromLocalStorage);
