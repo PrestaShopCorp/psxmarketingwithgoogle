@@ -190,7 +190,7 @@ export default {
     state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList = [];
   },
   [MutationsTypes.RESET_CAMPAIGNS_LIST](state: LocalState) {
-    state.campaigns.campaignsList = [];
+    state.campaigns = [];
   },
   [MutationsTypes.SET_SSC_LIST_ORDERING](
     state: LocalState,
@@ -211,7 +211,7 @@ export default {
     state.reporting.results.filtersPerformancesSection = payload;
   },
   [MutationsTypes.SAVE_NEW_CAMPAIGN](state: LocalState, payload: CampaignObject) {
-    state.campaigns.campaignsList.push(payload);
+    state.campaigns.push(payload);
   },
   [MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS](
     state: LocalState,
@@ -225,7 +225,7 @@ export default {
       campaigns: CampaignObject[],
     },
   ) {
-    state.campaigns.campaignsList.push(...payload.campaigns);
+    state.campaigns.push(...payload.campaigns);
   },
   [MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST](
     state: LocalState,
@@ -257,7 +257,7 @@ export default {
     state: LocalState,
     payload: CampaignStatusPayload,
   ) {
-    const campaign = state.campaigns.campaignsList.find((el) => el.id === payload.id);
+    const campaign = state.campaigns.find((el) => el.id === payload.id);
 
     if (campaign !== undefined) {
       campaign.status = payload.status === CampaignStatusToggle.ENABLED
@@ -271,9 +271,9 @@ export default {
       ? CampaignStatus.ELIGIBLE
       : CampaignStatus.PAUSED;
 
-    const findCampaign = state.campaigns.campaignsList.findIndex(
+    const findCampaign = state.campaigns.findIndex(
       (el) => el.id === payload.id,
     );
-    state.campaigns.campaignsList.splice(findCampaign, 1, payload);
+    state.campaigns.splice(findCampaign, 1, payload);
   },
 };

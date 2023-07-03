@@ -1,5 +1,5 @@
 import CampaignTableList from '../src/components/campaign/campaign-table-list.vue'
-import {campaigns, campaignsEmpty, onlyPmax, campaignWithOnlyPmax} from '../.storybook/mock/campaigns-list';
+import {campaigns} from '../.storybook/mock/campaigns-list';
 import {rest} from 'msw';
 import { CampaignTypes } from '@/enums/reporting/CampaignStatus';
 
@@ -23,7 +23,7 @@ const Template = (args, { argTypes }) => ({
 export const TableWithCampaigns:any = Template.bind({});
 TableWithCampaigns.args = {
   beforeCreate() {
-    this.$store.state.campaigns.campaigns = Object.assign({}, campaigns);
+    this.$store.state.campaigns.campaigns = campaigns;
   },
   loading: false,
   inNeedOfConfiguration: false,
@@ -32,30 +32,7 @@ TableWithCampaigns.args = {
 TableWithCampaigns.parameters = {
   msw: {
     handlers: [
-      rest.get('/shopping-campaigns/list', (req, res, ctx) => res(ctx.json({campaigns: [...onlyPmax]}))),
-    ],
-  },
-};
-
-export const TableWithOnlyPmax:any = Template.bind({});
-TableWithOnlyPmax.args = {
-  beforeCreate() {
-    this.$store.state.campaigns.campaigns = Object.assign({}, campaignWithOnlyPmax);
-  },
-  loading: false,
-  inNeedOfConfiguration: false,
-};
-
-TableWithOnlyPmax.parameters = {
-  msw: {
-    handlers: [
-      rest.get('/shopping-campaigns/list', (req, res, ctx) => {
-        return res(
-          ctx.json({
-            campaigns: [...onlyPmax]
-          })
-        );
-      }),
+      rest.get('/shopping-campaigns/list', (req, res, ctx) => res(ctx.json({campaigns: onlyPmax}))),
     ],
   },
 };
@@ -68,7 +45,7 @@ Loading.args = {
 export const Empty:any = Template.bind({});
 Empty.args = {
   beforeCreate() {
-    this.$store.state.campaigns.campaigns = Object.assign({}, campaignsEmpty);
+    this.$store.state.campaigns.campaigns = [];
   },
   loading: false,
 }

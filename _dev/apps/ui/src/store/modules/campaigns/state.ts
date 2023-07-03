@@ -25,7 +25,7 @@ import CampaignStatus, {CampaignStatusToggle, CampaignTypes} from '@/enums/repor
 
 export interface State {
   warmedUp: boolean,
-  campaigns: CampaignsLists,
+  campaigns: CampaignObject[],
   campaignsOrdering: CampaignsOrdering,
   nextPageTokenCampaignList: {
     ssc: null|string;
@@ -43,10 +43,6 @@ export interface State {
   dimensionChosen: Dimension,
   // Selected dimensions and filters formatted for the API (after validation from the popin)
   filtersChosen: FiltersChosen[];
-}
-
-export interface CampaignsLists {
-  campaignsList: CampaignObject[];
 }
 
 export interface ConversionAction {
@@ -221,9 +217,7 @@ export interface FiltersPerformances {
 
 export const state: State = {
   warmedUp: false,
-  campaigns: {
-    campaignsList: [],
-  },
+  campaigns: [],
   campaignsOrdering: {},
   nextPageTokenCampaignList: {
     ssc: null,

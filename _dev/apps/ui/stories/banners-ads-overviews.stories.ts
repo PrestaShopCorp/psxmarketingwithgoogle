@@ -113,7 +113,7 @@ const TemplateCampaignsList = (args, { argTypes }) => ({
 export const BannerOnCampaignsListPage:any = TemplateCampaignsList.bind({});
 BannerOnCampaignsListPage.args = {
   beforeMount() {
-    this.$store.state.campaigns.campaigns.campaignsList = [];
+    this.$store.state.campaigns.campaigns = [];
   },
   loading: false,
 };

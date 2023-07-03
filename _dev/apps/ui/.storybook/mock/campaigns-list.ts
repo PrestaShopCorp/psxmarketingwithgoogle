@@ -1,10 +1,6 @@
-import { CampaignObject, CampaignsLists } from "@/store/modules/campaigns/state";
+import { CampaignObject } from "@/store/modules/campaigns/state";
 
-export const campaignsEmpty: CampaignsLists = {
-  campaignsList: [],
-};
-
-export const onlyPmax: CampaignObject[] = [
+export const campaigns: CampaignObject[] = [
   {
     campaignName: "Tartiflette day",
     startDate: "2021-06-20",
@@ -73,13 +69,6 @@ export const onlyPmax: CampaignObject[] = [
   },
 ];
 
-export const campaigns: CampaignsLists = {
-  campaignsList: onlyPmax,
-};
-
-export const campaignWithOnlyPmax: CampaignsLists = {
-  campaignsList: onlyPmax,
-};
 
 export const campaignsListResponse = {
   campaigns: campaigns,

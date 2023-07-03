@@ -187,15 +187,15 @@ export default {
     campaignHeaderList() {
       return Object.values(CampaignSummaryListHeaderType);
     },
-    pMaxCampaignsList() {
-      return this.$store.state.campaigns.campaigns.campaignsList;
+    campaigns() {
+      return this.$store.state.campaigns.campaigns;
     },
 
     campaignList() {
       const searchQuery = this.searchQuery[CampaignSummaryListHeaderType.CAMPAIGN];
 
       if (searchQuery) {
-        return this.pMaxCampaignsList.filter((campaign) => {
+        return this.campaigns.filter((campaign) => {
           const nameMatch = campaign.campaignName
             .toLowerCase()
             .includes(searchQuery.toLowerCase());
@@ -203,7 +203,7 @@ export default {
           return nameMatch;
         });
       }
-      return this.pMaxCampaignsList;
+      return this.campaigns;
     },
     queryOrderDirection: {
       get() {

@@ -81,7 +81,7 @@ export default {
     return state.errorCampaignNameExists;
   },
   [GettersTypes.GET_ALL_CAMPAIGNS](state: LocalState): CampaignObject[] {
-    return state.campaigns.campaignsList;
+    return state.campaigns;
   },
   [GettersTypes.GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST](state: LocalState): object {
     return state.nextPageTokenCampaignList;

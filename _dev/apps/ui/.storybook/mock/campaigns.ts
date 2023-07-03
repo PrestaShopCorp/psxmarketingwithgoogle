@@ -8,9 +8,7 @@ import { CampaignTypes } from "../../src/enums/reporting/CampaignStatus";
 
 export const defaultCampaigns: State = {
   ...state,
-  campaigns: {
-    campaignsList: [],
-  },
+  campaigns: [],
   tracking: null,
   tagAlreadyExists: false,
 };
