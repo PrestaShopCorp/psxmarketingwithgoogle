@@ -24,7 +24,6 @@
 <link href="https://unpkg.com/prestashop_accounts_vue_components@4.3" rel=preload as=script>
 
 <div id="psxMktgWithGoogleApp"></div>
-<script src="{$chunkVendor|escape:'htmlall':'UTF-8'}"></script>
 <script src="{$pathApp|escape:'htmlall':'UTF-8'}" type="module"></script>
 <script src="https://assets.prestashop3.com/ext/cloudsync-merchant-sync-consent/latest/cloudsync-cdc.js"></script>
 <script src="https://unpkg.com/prestashop_accounts_vue_components@4.3"></script>
