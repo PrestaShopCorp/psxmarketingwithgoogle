@@ -1,5 +1,5 @@
 /**
- * @jest-environment jsdom
+ * @vitest-environment jsdom
  */
 import {mount, MountOptions} from '@vue/test-utils';
 import Vuex from 'vuex';

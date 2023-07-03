@@ -1,5 +1,5 @@
 /**
- * @jest-environment jsdom
+ * @vitest-environment jsdom
  */
 import Vuex from 'vuex';
 
@@ -21,7 +21,7 @@ describe('google-account-card.vue', () => {
   let mockRouter;
 
   beforeEach(() => {
-    mockRouter = {go: jest.fn()};
+    mockRouter = {go: vi.fn()};
   });
 
   it('card is greyed when disabled', () => {

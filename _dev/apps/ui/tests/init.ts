@@ -20,21 +20,21 @@ beforeAll(() => {
 });
 
 beforeEach(() => {
-  windowSpy = jest.spyOn(window, 'window', 'get');
+  windowSpy = vi.spyOn(window, 'window', 'get');
   windowSpy.mockImplementation(() => ({
     // add data needed in window
-    scrollTo: jest.fn(),
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
+    scrollTo: vi.fn(),
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
     i18nSettings: {isoCode: 'fr', languageLocale: 'fr'},
   }));
-  VBTooltip = jest.fn();
+  VBTooltip = vi.fn();
   filters = {
-    timeConverterToDate: jest.fn(),
-    timeConverterToHour: jest.fn(),
-    changeCountriesCodesToNames: jest.fn().mockImplementation(changeCountriesCodesToNames),
-    timeConverterToStringifiedDate: jest.fn().mockImplementation(() => ''),
-    slugify: jest.fn().mockImplementation(() => 'foo'),
+    timeConverterToDate: vi.fn(),
+    timeConverterToHour: vi.fn(),
+    changeCountriesCodesToNames: vi.fn().mockImplementation(changeCountriesCodesToNames),
+    timeConverterToStringifiedDate: vi.fn().mockImplementation(() => ''),
+    slugify: vi.fn().mockImplementation(() => 'foo'),
   };
 
   localVue.filter('timeConverterToDate', filters.timeConverterToDate);
@@ -54,7 +54,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  jest.resetAllMocks();
+  vi.resetAllMocks();
   windowSpy.mockRestore();
 });
 

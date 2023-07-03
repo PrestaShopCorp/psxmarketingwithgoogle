@@ -1,5 +1,5 @@
 /**
- * @jest-environment jsdom
+ * @vitest-environment jsdom
  */
 import Vuex from 'vuex';
 
@@ -31,7 +31,7 @@ describe('product-feed-card.vue', () => {
     },
   };
   const mockRouter = {
-    push: jest.fn(),
+    push: vi.fn(),
   };
 
   let storeDisabledOrNotConfigured;

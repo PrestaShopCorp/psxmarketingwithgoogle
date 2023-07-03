@@ -1,5 +1,5 @@
 /**
- * @jest-environment jsdom
+ * @vitest-environment jsdom
  */
 
 import Vuex from 'vuex';
@@ -27,7 +27,7 @@ describe('select countries', () => {
   let store;
   beforeEach(() => {
     mutations = {
-      SET_SELECTED_PRODUCT_FEED_SETTINGS: jest.fn(),
+      SET_SELECTED_PRODUCT_FEED_SETTINGS: vi.fn(),
     };
     store = cloneStore();
     store.modules.productFeed.mutations = {

@@ -1,5 +1,5 @@
 /**
- * @jest-environment jsdom
+ * @vitest-environment jsdom
  */
 import Vuex from 'vuex';
 
@@ -31,7 +31,7 @@ describe('summary', () => {
         },
       },
     },
-    push: jest.fn(),
+    push: vi.fn(),
   };
   it('shows datas', () => {
     const wrapper = shallowMount(ProductFeedSettingsSummary, {

@@ -1,5 +1,5 @@
+import {describe, it, expect} from 'vitest';
 import {OfferType} from '@/enums/product-feed/offer';
-import {RateType} from '@/enums/product-feed/rate';
 import {
   validateCarrier,
   validateDeliveryTime,

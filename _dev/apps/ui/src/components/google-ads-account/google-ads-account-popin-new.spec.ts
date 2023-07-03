@@ -1,5 +1,5 @@
 /**
- * @jest-environment jsdom
+ * @vitest-environment jsdom
  */
 import Vuex from 'vuex';
 
@@ -37,7 +37,7 @@ describe('google-ads-account-popin-new.vue', () => {
       ...storeInitApp.modules.app.state,
       ...initialStateApp,
     };
-    storeInitApp.modules.googleAds.actions.GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING = jest.fn();
+    storeInitApp.modules.googleAds.actions.GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING = vi.fn();
   });
 
   it('create account button is disabled when inputs not filled but checkbox is  checked', async () => {

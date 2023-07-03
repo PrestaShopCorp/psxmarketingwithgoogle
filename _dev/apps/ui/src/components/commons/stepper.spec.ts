@@ -1,5 +1,5 @@
 /**
- * @jest-environment jsdom
+ * @vitest-environment jsdom
  */
 import Vuex from 'vuex';
 
@@ -20,9 +20,9 @@ describe('stepper.vue', () => {
   const routeName = {
     name: 'foo',
   };
-  const push = jest.fn();
+  const push = vi.fn();
   const mockRouter = {
-    push: jest.fn(),
+    push: vi.fn(),
   };
 
   const propsData = {
@@ -53,7 +53,7 @@ describe('stepper.vue', () => {
   let store;
   beforeEach(() => {
     mutations = {
-      SET_ACTIVE_CONFIGURATION_STEP: jest.fn(),
+      SET_ACTIVE_CONFIGURATION_STEP: vi.fn(),
     };
     store = cloneStore();
     store.modules.productFeed.mutations = {

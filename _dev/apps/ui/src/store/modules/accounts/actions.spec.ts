@@ -1,4 +1,4 @@
-import fetchMock from 'jest-fetch-mock';
+import createFetchMock from 'vitest-fetch-mock';
 import {initOnboardingClient} from 'mktg-with-google-common/api/onboardingClient';
 import actions from '@/store/modules/accounts/actions';
 import ActionsTypes from '@/store/modules/accounts/actions-types';
@@ -7,6 +7,7 @@ import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 
 import {} from '@/../tests/init';
 
+const fetchMock = createFetchMock(vi);
 fetchMock.enableMocks();
 
 let commit;
@@ -16,8 +17,8 @@ let payload;
 beforeEach(() => {
   fetchMock.resetMocks();
 
-  commit = jest.fn();
-  dispatch = jest.fn();
+  commit = vi.fn();
+  dispatch = vi.fn();
   initOnboardingClient({
     apiUrl: 'http://perdu.com',
     token: 'token',

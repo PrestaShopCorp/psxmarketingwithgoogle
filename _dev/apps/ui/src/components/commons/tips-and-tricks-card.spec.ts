@@ -1,5 +1,5 @@
 /**
- * @jest-environment jsdom
+ * @vitest-environment jsdom
  */
 import {mount, MountOptions} from '@vue/test-utils';
 import {VBToggle, BCollapse, BButton} from 'bootstrap-vue';
@@ -23,7 +23,7 @@ describe('Tips & Tricks', () => {
       'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     );
     expect(wrapper.find('[data-test-id="advisor"]').text()).toBe(
-      'Christophe PrestaShop eCommerce Expert',
+      'ChristophePrestaShop eCommerce Expert',
     );
   });
 

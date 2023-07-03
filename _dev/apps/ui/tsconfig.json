@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "experimentalDecorators": true,
     "target": "esnext",
     "module": "esnext",
     "strict": true,
@@ -14,7 +13,8 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "types": [
-      "jest"
+      "jest",
+      "vitest/globals"
     ],
     "paths": {
       "@/*": [
