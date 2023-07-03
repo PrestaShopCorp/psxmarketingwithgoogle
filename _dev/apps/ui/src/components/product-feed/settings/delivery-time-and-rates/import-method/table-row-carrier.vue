@@ -129,7 +129,7 @@
 </template>
 
 <script lang="ts">
-import {PropType} from '@vue/composition-api';
+import {PropType} from 'vue';
 import {validateTransitTimes, CarrierIdentifier, DeliveryDetail} from '@/providers/shipping-settings-provider';
 
 type State = {

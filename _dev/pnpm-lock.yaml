@@ -26,7 +26,6 @@ importers:
       '@typescript-eslint/eslint-plugin': ^5.59.9
       '@typescript-eslint/parser': ^5.59.9
       '@vitejs/plugin-vue': ^4.2.3
-      '@vue/composition-api': ^1.7.0
       '@vue/eslint-config-airbnb': ^5.3.0
       '@vue/eslint-config-typescript': ^5.1.0
       '@vue/test-utils': ^1.2.2
@@ -73,10 +72,8 @@ importers:
       vitest: ^0.32.3
       vitest-fetch-mock: ^0.2.2
       vue: ^2.7.14
-      vue-class-component: ^7.2.6
       vue-i18n: ^8.27.2
       vue-loader: ^15.10
-      vue-property-decorator: ^10.0.0-rc.3
       vue-router: ^3.6.5
       vue-select: ^3.20.0
       vue-showdown: ^2.4.1
@@ -90,7 +87,6 @@ importers:
       '@segment/analytics-next': 1.44.0
       '@sentry/tracing': 7.39.0
       '@sentry/vue': 7.39.0_vue@2.7.14
-      '@vue/composition-api': 1.7.0_vue@2.7.14
       bootstrap: 4.6.2
       bootstrap-vue: 2.22.0_vue@2.7.14
       chart.js: 3.9.1
@@ -110,9 +106,7 @@ importers:
       style-loader: 1.3.0
       ts-loader: 8.4.0_typescript@4.9.5
       vue: 2.7.14
-      vue-class-component: 7.2.6_vue@2.7.14
       vue-i18n: 8.27.2_vue@2.7.14
-      vue-property-decorator: 10.0.0-rc.3_jtyyyychrtcflhl7vfprhmeb3y
       vue-router: 3.6.5_vue@2.7.14
       vue-select: 3.20.0_vue@2.7.14
       vue-showdown: 2.4.1_vue@2.7.14
@@ -7215,14 +7209,6 @@ packages:
       - walrus
       - whiskers
     dev: true
-
-  /@vue/composition-api/1.7.0_vue@2.7.14:
-    resolution: {integrity: sha512-hxOgLYR+wjuPX9bkP2pAPlqUs98XxBoa9DSLyp1z6+YR92wC42PZcZKs4d+VRtcv4udOv041Kss+F6ap5nj8YA==}
-    peerDependencies:
-      vue: '>= 2.5 < 2.7'
-    dependencies:
-      vue: 2.7.14
-    dev: false
 
   /@vue/devtools-api/6.5.0:
     resolution: {integrity: sha512-o9KfBeaBmCKl10usN4crU53fYtC1r7jJwdGKjPT24t348rHxgfpZ0xL3Xm/gLUYnc0oTp8LAmrxOeLyu6tbk2Q==}
@@ -16113,14 +16099,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /vue-class-component/7.2.6_vue@2.7.14:
-    resolution: {integrity: sha512-+eaQXVrAm/LldalI272PpDe3+i4mPis0ORiMYxF6Ae4hyuCh15W8Idet7wPUEs4N4YptgFHGys4UrgNQOMyO6w==}
-    peerDependencies:
-      vue: ^2.0.0
-    dependencies:
-      vue: 2.7.14
-    dev: false
-
   /vue-docgen-api/4.73.0_vue@2.7.14:
     resolution: {integrity: sha512-Hx3VZNi630q/JRhHsVo7qeLJdIDkz3JEp/LBITUZQoZBruGyQa7m80uxbEo4JGBpHMxWWHFO9AXrVy7jH4vzFA==}
     dependencies:
@@ -16289,16 +16267,6 @@ packages:
       - walrus
       - whiskers
     dev: true
-
-  /vue-property-decorator/10.0.0-rc.3_jtyyyychrtcflhl7vfprhmeb3y:
-    resolution: {integrity: sha512-EGqjf8Lq+kTausZzfLB1ynWOcyay8ZLAc5p2VlKGEX2q+BjYw84oZxr6IcdwuxGIdNmriZqPUX6AlAluBdnbEg==}
-    peerDependencies:
-      vue: '*'
-      vue-class-component: '*'
-    dependencies:
-      vue: 2.7.14
-      vue-class-component: 7.2.6_vue@2.7.14
-    dev: false
 
   /vue-router/3.6.5_vue@2.7.14:
     resolution: {integrity: sha512-VYXZQLtjuvKxxcshuRAwjHnciqZVoXAjTjcqBTz4rKc8qih9g9pI3hbDjmqXaHdgL3v8pV6P8Z335XvHzESxLQ==}

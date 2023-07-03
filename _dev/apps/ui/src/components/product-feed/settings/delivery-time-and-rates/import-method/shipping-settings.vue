@@ -173,7 +173,7 @@
 </template>
 
 <script lang="ts">
-import {PropType} from '@vue/composition-api';
+import {PropType} from 'vue';
 import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-header-type';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
