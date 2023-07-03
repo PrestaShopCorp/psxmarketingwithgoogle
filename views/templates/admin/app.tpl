@@ -19,15 +19,20 @@
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<link href="{$pathApp|escape:'htmlall':'UTF-8'}" rel=preload as=script>
 <link href="https://assets.prestashop3.com/ext/cloudsync-merchant-sync-consent/latest/cloudsync-cdc.js" rel=preload as=script>
 <link href="https://unpkg.com/prestashop_accounts_vue_components@4.3" rel=preload as=script>
 
 <div id="psxMktgWithGoogleApp"></div>
-<script src="{$pathApp|escape:'htmlall':'UTF-8'}" type="module"></script>
 <script src="https://assets.prestashop3.com/ext/cloudsync-merchant-sync-consent/latest/cloudsync-cdc.js"></script>
 <script src="https://unpkg.com/prestashop_accounts_vue_components@4.3"></script>
 
+{if $psxMktgWithGoogleLiveMode}
+  <script type="module" src="http://localhost:5173/@vite/client"></script>
+  <script type="module" src="http://localhost:5173/src/main.ts"></script>
+{else}
+  <link href="{$pathApp|escape:'htmlall':'UTF-8'}" rel=preload as=script>
+  <script src="{$pathApp|escape:'htmlall':'UTF-8'}" type="module"></script>
+{/if}
 <style>
   /** Hide native multistore module activation panel, because of visual regressions on non-bootstrap content */
   #content.nobootstrap div.bootstrap.panel {

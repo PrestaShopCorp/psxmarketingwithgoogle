@@ -13,6 +13,17 @@ export default defineConfig(({ mode }) => ({
     VitePluginReactRemoveAttributes({
       attributes: ['data-test-id'],
     }),
+    {
+      name: 'asset-path-fixer',
+      enforce: 'post',
+      apply: 'serve',
+      transform: (code) => {
+        return {
+          code: code.replaceAll(/\/src\/assets/g, 'http://localhost:5173/src/assets'),
+          map: null,
+        };
+      },
+    },
   ],
   resolve: {
     alias: [
@@ -34,12 +45,6 @@ export default defineConfig(({ mode }) => ({
     'process.env.NODE_ENV': mode === 'production' ? '"production"' : '"development"',
   },
   build: {
-    /*lib: {
-      entry: path.resolve(__dirname, 'src/main.ts'),
-      name: 'Marketing with Google',
-      formats: ['es'],
-      fileName: () => 'js/app.js',
-    },*/
     outDir: '../../../views/',
     publicPath: process.env.VITE_ASSETS_URL || '../modules/psxmarketingwithgoogle/views/',
     emptyOutDir: false,

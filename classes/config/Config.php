@@ -43,6 +43,7 @@ class Config
     public const PSX_MKTG_WITH_GOOGLE_SENTRY_CREDENTIALS_PHP = 'https://446479f8bca645fa8838c1a5f99dceba@o298402.ingest.sentry.io/5949536';
     public const PSX_MKTG_WITH_GOOGLE_SENTRY_CREDENTIALS_VUE = 'https://6504c60594bd490eab93afa78f274e35@o298402.ingest.sentry.io/5984715';
     public const USE_LOCAL_VUE_APP = false;
+    public const USE_LIVE_VUE_APP = false;
     public const PSX_MKTG_WITH_GOOGLE_SEGMENT_API_KEY = 'RqYiLJKyoWv13t9aKxBvza6vsCsRpPpC';
 
     public const PSX_MKTG_WITH_GOOGLE_WEBSITE_VERIFICATION_META = 'PSX_MKTG_WITH_GOOGLE_WEBSITE_VERIFICATION_META';
