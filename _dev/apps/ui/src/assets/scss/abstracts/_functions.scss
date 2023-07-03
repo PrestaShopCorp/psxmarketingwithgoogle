@@ -10,7 +10,7 @@ $browser-context: 16 !default;
     $context: $context * 1px;
   }
 
-  @return $pixels / $context * 1rem;
+  @return calc($pixels / $context * 1rem);
 }
 
 @function encodecolor($string) {
