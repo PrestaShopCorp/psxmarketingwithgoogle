@@ -82,7 +82,9 @@
               <b-link
                 variant="link"
                 target="_blank"
-                :href="$options.prestashopUrl.contactForm"
+                :href="
+                  `${$options.prestashopUrl.contactForm}${supportUrl}`
+                "
               >
                 {{ $t("help.help.contactUs") }}
               </b-link>
@@ -158,6 +160,12 @@ import prestashopUrl from '@/assets/json/prestashopUrl.json';
 
 export default defineComponent({
   props: ['informations', 'loading'],
+
+  computed: {
+    supportUrl() {
+      return `?psx=psxmarketingwithgoogle&shop_domain=${window.contextPsAccounts.currentShop.domain}`;
+    },
+  },
   methods: {
     onQuestionClick(ref) {
       this.$segment.track(`[GGL] Click on the question #${ref}`, {
