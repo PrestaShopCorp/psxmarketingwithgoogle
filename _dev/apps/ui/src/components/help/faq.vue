@@ -162,8 +162,11 @@ export default defineComponent({
   props: ['informations', 'loading'],
 
   computed: {
+    getDomain() {
+      return this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT'].currentShop.domain;
+    },
     supportUrl() {
-      return `?psx=psxmarketingwithgoogle&shop_domain=${window.contextPsAccounts.currentShop.domain}`;
+      return `?psx=psxmarketingwithgoogle&shop_domain=${this.getDomain}`;
     },
   },
   methods: {
