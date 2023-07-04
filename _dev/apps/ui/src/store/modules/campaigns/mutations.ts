@@ -233,7 +233,7 @@ export default {
       nextPageToken: string,
     },
   ) {
-    state.nextPageTokenCampaignList.pmax = payload.nextPageToken;
+    state.nextPageTokenCampaignList = payload.nextPageToken;
   },
   [MutationsTypes.SET_TOTAL_CAMPAIGNS_PERFORMANCES_RESULTS](
     state: LocalState,

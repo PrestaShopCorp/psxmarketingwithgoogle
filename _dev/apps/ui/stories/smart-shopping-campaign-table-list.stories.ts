@@ -32,7 +32,7 @@ TableWithCampaigns.args = {
 TableWithCampaigns.parameters = {
   msw: {
     handlers: [
-      rest.get('/shopping-campaigns/list', (req, res, ctx) => res(ctx.json({campaigns: onlyPmax}))),
+      rest.get('/shopping-campaigns/list', (req, res, ctx) => res(ctx.json({campaigns}))),
     ],
   },
 };

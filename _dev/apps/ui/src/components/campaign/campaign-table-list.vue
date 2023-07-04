@@ -282,10 +282,7 @@ export default {
         return;
       }
       const body = document.getElementsByClassName('table-with-maxheight')[0];
-
-      // ToDo: Temporary use of different tokens for next page (SSC + PMax)
-      const tokensList = this.$store.getters['campaigns/GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST'];
-      const token = tokensList.pmax;
+      const token = this.$store.getters['campaigns/GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST'];
 
       if (
         body.scrollTop >= body.scrollHeight - body.clientHeight

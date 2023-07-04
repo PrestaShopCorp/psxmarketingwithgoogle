@@ -27,10 +27,7 @@ export interface State {
   warmedUp: boolean,
   campaigns: CampaignObject[],
   campaignsOrdering: CampaignsOrdering,
-  nextPageTokenCampaignList: {
-    ssc: null|string;
-    pmax: null|string;
-  },
+  nextPageTokenCampaignList: null|string;
   errorCampaignNameExists: null|boolean;
   tracking: null|boolean;
   tagAlreadyExists: boolean;
@@ -219,10 +216,7 @@ export const state: State = {
   warmedUp: false,
   campaigns: [],
   campaignsOrdering: {},
-  nextPageTokenCampaignList: {
-    ssc: null,
-    pmax: null,
-  },
+  nextPageTokenCampaignList: null,
   errorCampaignNameExists: null,
   tracking: true,
   tagAlreadyExists: false,

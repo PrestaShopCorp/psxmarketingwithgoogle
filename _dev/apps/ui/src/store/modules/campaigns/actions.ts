@@ -370,7 +370,6 @@ export default {
     isNewRequest = true,
   }) {
     const query = new URLSearchParams();
-    const nextPageToken = state.nextPageTokenCampaignList.pmax;
 
     if (state.campaignsOrdering && state.campaignsOrdering.duration) {
       query.append('order[startDate]', state.campaignsOrdering.duration);
@@ -378,11 +377,11 @@ export default {
     if (state.campaignsOrdering && state.campaignsOrdering.name) {
       query.append('filter[campaignName]', state.campaignsOrdering.name);
     }
-    if (!isNewRequest && !nextPageToken) {
+    if (!isNewRequest && !state.nextPageTokenCampaignList) {
       return;
     }
-    if (!isNewRequest && nextPageToken) {
-      query.append('nextPageToken', nextPageToken);
+    if (!isNewRequest && state.nextPageTokenCampaignList) {
+      query.append('nextPageToken', state.nextPageTokenCampaignList);
     }
     try {
       const json = await (await fetchOnboarding(
