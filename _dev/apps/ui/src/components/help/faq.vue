@@ -166,7 +166,7 @@ export default defineComponent({
       return this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT'].currentShop.domain;
     },
     supportUrl() {
-      return `?psx=psxmarketingwithgoogle&shop_domain=${this.getDomain}`;
+      return `?utm_source=back-office&utm_medium=psx&psx=psxmarketingwithgoogle&shop_domain=${this.getDomain}`;
     },
   },
   methods: {
