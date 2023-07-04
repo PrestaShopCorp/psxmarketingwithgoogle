@@ -46,14 +46,6 @@ export default {
         !getters.GET_ALL_CAMPAIGNS?.length,
         dispatch(ActionsTypes.GET_CAMPAIGNS_LIST, {
           isNewRequest: true,
-          typeChosen: CampaignTypes.PERFORMANCE_MAX,
-        }),
-      ),
-      runIf(
-        !getters.GET_ALL_CAMPAIGNS?.length,
-        dispatch(ActionsTypes.GET_CAMPAIGNS_LIST, {
-          isNewRequest: true,
-          typeChosen: CampaignTypes.SMART_SHOPPING,
         }),
       ),
       runIf(
@@ -375,12 +367,8 @@ export default {
   },
   async [ActionsTypes.GET_CAMPAIGNS_LIST]({commit, state, rootState}, {
     isNewRequest = true,
-    // ToDo: temporary data to remove when PMax is the only kind of campaign we manage
-    typeChosen,
   }) {
     const query = new URLSearchParams();
-    const nextPageToken = typeChosen === CampaignTypes.PERFORMANCE_MAX
-      ? state.nextPageTokenCampaignList.pmax : state.nextPageTokenCampaignList.scc;
 
     if (state.campaignsOrdering && state.campaignsOrdering.duration) {
       query.append('order[startDate]', state.campaignsOrdering.duration);
@@ -388,28 +376,26 @@ export default {
     if (state.campaignsOrdering && state.campaignsOrdering.name) {
       query.append('filter[campaignName]', state.campaignsOrdering.name);
     }
-    if (!isNewRequest && !nextPageToken) {
+    if (!isNewRequest && !state.nextPageTokenCampaignList) {
       return;
     }
-    if (!isNewRequest && nextPageToken) {
-      query.append('nextPageToken', nextPageToken);
+    if (!isNewRequest && state.nextPageTokenCampaignList) {
+      query.append('nextPageToken', state.nextPageTokenCampaignList);
     }
     try {
       const json = await (await fetchOnboarding(
         'GET',
-        `shopping-campaigns/list?${query}&type=${typeChosen}`,
+        `shopping-campaigns/list?${query}`,
       )).json();
 
       if (isNewRequest) {
-        commit(MutationsTypes.RESET_CAMPAIGNS_LIST, typeChosen);
+        commit(MutationsTypes.RESET_CAMPAIGNS_LIST);
       }
       commit(MutationsTypes.SAVE_CAMPAIGNS_TO_LIST, {
         campaigns: json.campaigns,
-        type: typeChosen,
       });
       commit(MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST, {
         nextPageToken: json.nextPageToken,
-        type: typeChosen,
       });
     } catch (error) {
       console.error(error);

@@ -133,7 +133,7 @@ describe('campaign-table-list.vue - show banner SSC ads if user has campaigns', 
     };
 
     store.modules.campaigns.state.sscAvailableFilters = availableFilters;
-    store.modules.campaigns.state.campaigns.pMaxList = [campaignWithUnhandledFilters];
+    store.modules.campaigns.state.campaigns = [campaignWithUnhandledFilters];
 
     wrapper = shallowMount(CampaignTableList, {
       propsData: {

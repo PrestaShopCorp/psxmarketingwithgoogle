@@ -189,13 +189,8 @@ export default {
   [MutationsTypes.RESET_REPORTING_CAMPAIGNS_PERFORMANCES](state: LocalState) {
     state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList = [];
   },
-  [MutationsTypes.RESET_CAMPAIGNS_LIST](state: LocalState, type: CampaignTypes) {
-    if (type === CampaignTypes.PERFORMANCE_MAX) {
-      state.campaigns.pMaxList = [];
-    }
-    if (type === CampaignTypes.SMART_SHOPPING) {
-      state.campaigns.sscList = [];
-    }
+  [MutationsTypes.RESET_CAMPAIGNS_LIST](state: LocalState) {
+    state.campaigns = [];
   },
   [MutationsTypes.SET_SSC_LIST_ORDERING](
     state: LocalState,
@@ -216,12 +211,7 @@ export default {
     state.reporting.results.filtersPerformancesSection = payload;
   },
   [MutationsTypes.SAVE_NEW_CAMPAIGN](state: LocalState, payload: CampaignObject) {
-    if (payload.type === CampaignTypes.SMART_SHOPPING) {
-      state.campaigns.sscList.push(payload);
-    }
-    if (payload.type === CampaignTypes.PERFORMANCE_MAX) {
-      state.campaigns.pMaxList.push(payload);
-    }
+    state.campaigns.push(payload);
   },
   [MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS](
     state: LocalState,
@@ -233,29 +223,17 @@ export default {
     state: LocalState,
     payload: {
       campaigns: CampaignObject[],
-      type: CampaignTypes,
     },
   ) {
-    if (payload.type === CampaignTypes.PERFORMANCE_MAX) {
-      state.campaigns.pMaxList.push(...payload.campaigns);
-    }
-    if (payload.type === CampaignTypes.SMART_SHOPPING) {
-      state.campaigns.sscList.push(...payload.campaigns);
-    }
+    state.campaigns.push(...payload.campaigns);
   },
   [MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST](
     state: LocalState,
     payload: {
       nextPageToken: string,
-      type: CampaignTypes,
     },
   ) {
-    if (payload.type === CampaignTypes.PERFORMANCE_MAX) {
-      state.nextPageTokenCampaignList.pmax = payload.nextPageToken;
-    }
-    if (payload.type === CampaignTypes.SMART_SHOPPING) {
-      state.nextPageTokenCampaignList.ssc = payload.nextPageToken;
-    }
+    state.nextPageTokenCampaignList = payload.nextPageToken;
   },
   [MutationsTypes.SET_TOTAL_CAMPAIGNS_PERFORMANCES_RESULTS](
     state: LocalState,
@@ -279,8 +257,7 @@ export default {
     state: LocalState,
     payload: CampaignStatusPayload,
   ) {
-    const campaign = state.campaigns.pMaxList.find((el) => el.id === payload.id)
-      || state.campaigns.sscList.find((el) => el.id === payload.id);
+    const campaign = state.campaigns.find((el) => el.id === payload.id);
 
     if (campaign !== undefined) {
       campaign.status = payload.status === CampaignStatusToggle.ENABLED
@@ -294,18 +271,9 @@ export default {
       ? CampaignStatus.ELIGIBLE
       : CampaignStatus.PAUSED;
 
-    // Temporary duplicated code while PMax and SSC campaigns coexist
-    if (payload.type === CampaignTypes.PERFORMANCE_MAX) {
-      const findCampaign = state.campaigns.pMaxList.findIndex(
-        (el) => el.id === payload.id,
-      );
-      state.campaigns.pMaxList.splice(findCampaign, 1, payload);
-    }
-    if (payload.type === CampaignTypes.SMART_SHOPPING) {
-      const findCampaign = state.campaigns.sscList.findIndex(
-        (el) => el.id === payload.id,
-      );
-      state.campaigns.sscList.splice(findCampaign, 1, payload);
-    }
+    const findCampaign = state.campaigns.findIndex(
+      (el) => el.id === payload.id,
+    );
+    state.campaigns.splice(findCampaign, 1, payload);
   },
 };

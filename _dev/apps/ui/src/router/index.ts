@@ -89,19 +89,9 @@ const routes: Array<RouteConfig> = [
         component: CampaignList,
       },
       {
-        path: 'creation/:type',
-        name: 'campaign-creation-typed',
-        component: CampaignForm,
-      },
-      {
         path: 'creation',
         name: 'campaign-creation',
-        redirect: (to) => ({
-          name: 'campaign-creation-typed',
-          params: {
-            type: CampaignTypes.PERFORMANCE_MAX,
-          },
-        }),
+        component: CampaignForm,
       },
       {
         path: 'edit/:id',
