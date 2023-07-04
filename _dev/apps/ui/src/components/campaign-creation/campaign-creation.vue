@@ -836,7 +836,7 @@ export default defineComponent({
     if (this.editMode === true) {
       if (!this.campaignsList.length) {
         await this.$store.dispatch('campaigns/GET_CAMPAIGNS_LIST',
-          {isNewRequest: true, typeChosen: this.$options.CampaignTypes.PERFORMANCE_MAX});
+          {isNewRequest: true});
       }
       if (!this.campaignToEditFromList) {
         this.$router.push({

@@ -269,7 +269,7 @@ export default {
     fetchCampaigns(isNewRequest = true) {
       this.$emit('loader', true);
       this.$store
-        .dispatch('campaigns/GET_CAMPAIGNS_LIST', {isNewRequest, typeChosen: this.$options.CampaignTypes.PERFORMANCE_MAX})
+        .dispatch('campaigns/GET_CAMPAIGNS_LIST', {isNewRequest})
         .then(() => {
           this.$store.dispatch('campaigns/GET_DIMENSIONS_FILTERS', null);
         })

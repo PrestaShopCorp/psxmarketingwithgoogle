@@ -46,7 +46,6 @@ export default {
         !getters.GET_ALL_CAMPAIGNS?.length,
         dispatch(ActionsTypes.GET_CAMPAIGNS_LIST, {
           isNewRequest: true,
-          typeChosen: CampaignTypes.PERFORMANCE_MAX,
         }),
       ),
       runIf(
