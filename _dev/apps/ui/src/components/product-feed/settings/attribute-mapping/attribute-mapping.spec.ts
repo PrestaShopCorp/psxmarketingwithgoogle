@@ -1,6 +1,3 @@
-/**
- * @vitest-environment jsdom
- */
 import Vuex from 'vuex';
 import {shallowMount, mount} from '@vue/test-utils';
 import {BFormCheckboxGroup, BFormCheckbox} from 'bootstrap-vue';

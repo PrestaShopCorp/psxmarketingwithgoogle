@@ -1,8 +1,5 @@
 /* eslint-disable */
 
-/**
- * @vitest-environment jsdom
- */
 
  import  {getPathToAdsPromotionImage} from "./ImageFromCurrency";
 

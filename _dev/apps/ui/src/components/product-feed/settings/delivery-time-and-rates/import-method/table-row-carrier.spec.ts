@@ -1,6 +1,3 @@
-/**
- * @vitest-environment jsdom
- */
 // Import this file first to init mock on window
 import {mount, MountOptions} from '@vue/test-utils';
 import config from '@/../tests/init';

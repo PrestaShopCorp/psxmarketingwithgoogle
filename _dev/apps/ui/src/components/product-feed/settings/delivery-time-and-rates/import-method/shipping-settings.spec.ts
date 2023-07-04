@@ -1,7 +1,3 @@
-/**
- * @vitest-environment jsdom
- */
-
 import {mount, MountOptions} from '@vue/test-utils';
 import config, {localVue, filters} from '@/../tests/init';
 

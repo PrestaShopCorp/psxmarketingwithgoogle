@@ -1,11 +1,8 @@
-/**
- * @vitest-environment jsdom
-*/
 import Vuex from 'vuex';
 
 import cloneDeep from 'lodash.clonedeep';
-import {MountOptions, shallowMount, Wrapper} from '@vue/test-utils';
-import config, {localVue, cloneStore, addBootstrapToVue} from '@/../tests/init';
+import {MountOptions, shallowMount} from '@vue/test-utils';
+import config, {localVue, cloneStore} from '@/../tests/init';
 
 import {initialStateApp} from '../../../.storybook/mock/state-app';
 import SectionTitle from './section-title.vue';

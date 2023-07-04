@@ -1,13 +1,9 @@
-/**
- * @vitest-environment jsdom
- */
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
 import {shallowMount} from '@vue/test-utils';
 import config, {cloneStore} from '@/../tests/init';
 import Stepper from '@/components/commons/stepper.vue';
-import {state} from '../../store/modules/product-feed/state';
 
 describe('stepper.vue', () => {
   const productFeedSettingsRoute = {

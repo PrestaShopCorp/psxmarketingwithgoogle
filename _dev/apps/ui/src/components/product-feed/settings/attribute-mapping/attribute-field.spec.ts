@@ -1,6 +1,3 @@
-/**
- * @vitest-environment jsdom
- */
 // Import this file first to init mock on window
 import {shallowMount} from '@vue/test-utils';
 import {BDropdown, BFormCheckbox} from 'bootstrap-vue';

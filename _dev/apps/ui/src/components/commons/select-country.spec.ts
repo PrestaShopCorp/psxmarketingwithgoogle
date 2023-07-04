@@ -1,9 +1,4 @@
-/**
- * @vitest-environment jsdom
- */
-
 import Vuex from 'vuex';
-import VueShowdown from 'vue-showdown';
 import {mount} from '@vue/test-utils';
 import config, {cloneStore} from '@/../tests/init';
 import SelectCountry from '@/components/commons/select-country.vue';

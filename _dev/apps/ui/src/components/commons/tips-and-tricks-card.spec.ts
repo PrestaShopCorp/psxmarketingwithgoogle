@@ -1,6 +1,3 @@
-/**
- * @vitest-environment jsdom
- */
 import {mount, MountOptions} from '@vue/test-utils';
 import {VBToggle, BCollapse, BButton} from 'bootstrap-vue';
 import config, {localVue, addShowdownToVue} from '@/../tests/init';

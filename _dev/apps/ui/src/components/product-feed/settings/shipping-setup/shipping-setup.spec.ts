@@ -1,6 +1,3 @@
-/**
- * @vitest-environment jsdom
- */
 import Vuex from 'vuex';
 
 import {mount, Wrapper} from '@vue/test-utils';

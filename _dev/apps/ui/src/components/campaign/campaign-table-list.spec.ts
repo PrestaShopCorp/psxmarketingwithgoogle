@@ -1,11 +1,8 @@
-/**
- * @vitest-environment jsdom
- */
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
 import cloneDeep from 'lodash.clonedeep';
-import {mount, shallowMount} from '@vue/test-utils';
+import {shallowMount} from '@vue/test-utils';
 import config, {localVue, cloneStore} from '@/../tests/init';
 
 import {initialStateApp} from '../../../.storybook/mock/state-app';
