@@ -52,10 +52,10 @@ When a class is added or deleted, it is required to rerun the above command.
 
 ### VueJS
 
-With Node 16, the following commands need to be run in the `_dev/` folder and requires pnpm v7 to be installed. If you do not have it:
+With Node 20+, the following commands need to be run in the `_dev/` folder and requires pnpm to be installed. If you do not have it:
 
 ```
-npm install -g pnpm@7
+npm install -g pnpm
 ```
 
 To build the application in production mode:

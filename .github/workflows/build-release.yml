@@ -3,7 +3,7 @@ name: Build module artifact & deploy
 on: [push, pull_request]
 
 env:
-  PNPM_VERSION: 7
+  PNPM_VERSION: 8
   NODE_VERSION: 20
 
 jobs:
