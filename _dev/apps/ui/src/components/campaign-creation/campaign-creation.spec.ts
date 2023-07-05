@@ -1,6 +1,3 @@
-/**
- * @jest-environment jsdom
- */
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
@@ -15,7 +12,7 @@ import CampaignCreation from './campaign-creation.vue';
 import {formatPrice} from '@/utils/Price';
 import {deepCheckDimension} from '@/utils/SSCFilters';
 
-const VBTooltip = jest.fn();
+const VBTooltip = vi.fn();
 const buildWrapper = (
   options: MountOptions<any> = {},
 ) => {
@@ -32,6 +29,10 @@ const buildWrapper = (
   );
   store.modules.campaigns.state.errorCampaignNameExists = false;
   store.modules.googleAds.state = googleAdsAccountChosen;
+  store.modules.campaigns.actions.GET_RECOMMENDED_BUDGET = vi.fn().mockImplementation(() => ({
+    value: 15,
+    currency: 'USD',
+  }));
 
   localVue.filter('formatPrice', formatPrice);
 

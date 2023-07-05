@@ -1,10 +1,6 @@
 /* eslint-disable */
 
-/**
- * @jest-environment jsdom
- */
-
- import  {searchPrice} from "./PriceFromCurrency";
+import  {searchPrice} from "./PriceFromCurrency";
 
  describe("Retrieve price in text from currency shop - PriceFromCurrency", () => {
 

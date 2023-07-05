@@ -1,6 +1,3 @@
-/**
- * @jest-environment jsdom
- */
 import Vuex from 'vuex';
 import {mount} from '@vue/test-utils';
 import {BCard, BSkeleton} from 'bootstrap-vue';

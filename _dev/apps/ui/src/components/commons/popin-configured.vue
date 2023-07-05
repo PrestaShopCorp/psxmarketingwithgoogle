@@ -19,7 +19,7 @@
         </h2>
 
         <b-img
-          :src="require('@/assets/images/configured.svg')"
+          src="@/assets/images/configured.svg"
           fluid
         />
         <VueShowdown

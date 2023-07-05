@@ -20,7 +20,7 @@ declare global {
 }
 
 const init = (): void => {
-  const appVersion = process.env.VUE_APP_BUILD_VERSION || 'dev';
+  const appVersion = process.env.VITE_BUILD_VERSION || 'dev';
 
   initShopClient({ shopUrl: window.psxMktgWithGoogleControllerLink });
   initOnboardingClient({

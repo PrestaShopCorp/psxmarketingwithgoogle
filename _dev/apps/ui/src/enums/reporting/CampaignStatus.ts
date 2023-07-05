@@ -5,6 +5,7 @@ enum CampaignStatus {
   REMOVED = 'REMOVED',
   PENDING = 'PENDING',
   ENDED = 'ENDED',
+  DRAFT = 'DRAFT',
 }
 
 export enum CampaignStatusToggle {

@@ -33,7 +33,6 @@
 </template>
 
 <script>
-import {searchImage} from '@/utils/ImageFromCurrency';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
@@ -43,9 +42,6 @@ export default {
     };
   },
   computed: {
-    pngBanner() {
-      return searchImage(this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode);
-    },
     accountHasAtLeastOneCampaign() {
       return !!this.$store.getters['campaigns/GET_ALL_CAMPAIGNS']?.length;
     },

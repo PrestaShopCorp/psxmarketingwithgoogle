@@ -2,6 +2,8 @@ import {config, createLocalVue} from '@vue/test-utils';
 import Vuex from 'vuex';
 import {BootstrapVue} from 'bootstrap-vue';
 import VueShowdown from 'vue-showdown';
+import {initOnboardingClient} from 'mktg-with-google-common/api/onboardingClient';
+import {initShopClient} from 'mktg-with-google-common/api/shopClient';
 import {messages} from '@/lib/translations';
 import {changeCountriesCodesToNames} from '@/utils/Countries';
 import '../showdown.js';
@@ -18,20 +20,21 @@ beforeAll(() => {
 });
 
 beforeEach(() => {
-  windowSpy = jest.spyOn(window, 'window', 'get');
+  windowSpy = vi.spyOn(window, 'window', 'get');
   windowSpy.mockImplementation(() => ({
     // add data needed in window
-    scrollTo: jest.fn(),
-    addEventListener: jest.fn(),
+    scrollTo: vi.fn(),
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
     i18nSettings: {isoCode: 'fr', languageLocale: 'fr'},
   }));
-  VBTooltip = jest.fn();
+  VBTooltip = vi.fn();
   filters = {
-    timeConverterToDate: jest.fn(),
-    timeConverterToHour: jest.fn(),
-    changeCountriesCodesToNames: jest.fn().mockImplementation(changeCountriesCodesToNames),
-    timeConverterToStringifiedDate: jest.fn().mockImplementation(() => ''),
-    slugify: jest.fn().mockImplementation(() => 'foo'),
+    timeConverterToDate: vi.fn(),
+    timeConverterToHour: vi.fn(),
+    changeCountriesCodesToNames: vi.fn().mockImplementation(changeCountriesCodesToNames),
+    timeConverterToStringifiedDate: vi.fn().mockImplementation(() => ''),
+    slugify: vi.fn().mockImplementation(() => 'foo'),
   };
 
   localVue.filter('timeConverterToDate', filters.timeConverterToDate);
@@ -40,10 +43,18 @@ beforeEach(() => {
   localVue.filter('timeConverterToStringifiedDate', filters.timeConverterToStringifiedDate);
   localVue.filter('slugify', filters.slugify);
   localVue.directive('b-tooltip', VBTooltip);
+
+  initOnboardingClient({
+    apiUrl: 'http://some-route',
+    token: 'some-token',
+  });
+  initShopClient({
+    shopUrl: 'http://some-route',
+  });
 });
 
 afterEach(() => {
-  jest.resetAllMocks();
+  vi.resetAllMocks();
   windowSpy.mockRestore();
 });
 

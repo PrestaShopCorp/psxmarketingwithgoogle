@@ -10,7 +10,7 @@
         <div class="d-flex align-items-center">
           <img
             class="mr-2"
-            :src="require('@/assets/images/local-offer.svg')"
+            src="@/assets/images/local-offer.svg"
             width="32"
             height="32"
             alt=""

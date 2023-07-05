@@ -1,6 +1,3 @@
-/**
- * @jest-environment jsdom
- */
 import {mount, MountOptions, shallowMount} from '@vue/test-utils';
 import Vuex from 'vuex';
 import cloneDeep from 'lodash.clonedeep';

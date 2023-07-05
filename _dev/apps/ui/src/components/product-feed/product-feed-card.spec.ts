@@ -1,6 +1,3 @@
-/**
- * @jest-environment jsdom
- */
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
@@ -31,7 +28,7 @@ describe('product-feed-card.vue', () => {
     },
   };
   const mockRouter = {
-    push: jest.fn(),
+    push: vi.fn(),
   };
 
   let storeDisabledOrNotConfigured;

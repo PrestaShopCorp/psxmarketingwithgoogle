@@ -14,7 +14,7 @@
     </button>
     <div class="d-flex flex-column flex-md-row align-items-center">
       <img
-        :src="require(`@/assets/images/${pngBanner}`)"
+        :src="pathToAdsPromotionImage"
         alt="banner-price"
         :height="size === 'xs' ? 90 : 140"
         :width="size === 'xs' ? 90 : 140"
@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import {searchImage} from '@/utils/ImageFromCurrency';
+import {getPathToAdsPromotionImage} from '@/utils/ImageFromCurrency';
 import {searchPrice} from '@/utils/PriceFromCurrency';
 import googleUrl from '../../assets/json/googleUrl.json';
 
@@ -81,8 +81,8 @@ export default {
     };
   },
   computed: {
-    pngBanner() {
-      return searchImage(this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode);
+    pathToAdsPromotionImage() {
+      return getPathToAdsPromotionImage(this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode);
     },
     priceForAds() {
       return searchPrice(this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode);

@@ -21,8 +21,7 @@ Vue.config.ignoredElements = ['prestashop-accounts'];
 Vue.use(BootstrapVue);
 Vue.use(VueShowdown);
 Vue.use(VueSegment, {
-  // @ts-ignore
-  id: global.psxMktgWithGoogleSegmentId,
+  id: window.psxMktgWithGoogleSegmentId,
   router,
   debug: process.env.NODE_ENV !== 'production',
   pageCategory: '[GGL]',

@@ -1,6 +1,3 @@
-/**
- * @jest-environment jsdom
- */
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window

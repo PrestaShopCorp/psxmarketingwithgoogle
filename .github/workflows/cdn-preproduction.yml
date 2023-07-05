@@ -7,8 +7,8 @@ on:
 
 env:
   WORKFLOW: googleshopping-storage.yml
-  NODE_VERSION: 14
-  PNPM_VERSION: 7
+  NODE_VERSION: 20
+  PNPM_VERSION: 8
   VUE_PATH: _dev
   BUILD_PATH: views
 

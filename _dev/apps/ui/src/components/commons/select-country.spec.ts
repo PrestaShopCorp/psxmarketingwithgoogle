@@ -1,9 +1,4 @@
-/**
- * @jest-environment jsdom
- */
-
 import Vuex from 'vuex';
-import VueShowdown from 'vue-showdown';
 import {mount} from '@vue/test-utils';
 import config, {cloneStore} from '@/../tests/init';
 import SelectCountry from '@/components/commons/select-country.vue';
@@ -27,7 +22,7 @@ describe('select countries', () => {
   let store;
   beforeEach(() => {
     mutations = {
-      SET_SELECTED_PRODUCT_FEED_SETTINGS: jest.fn(),
+      SET_SELECTED_PRODUCT_FEED_SETTINGS: vi.fn(),
     };
     store = cloneStore();
     store.modules.productFeed.mutations = {

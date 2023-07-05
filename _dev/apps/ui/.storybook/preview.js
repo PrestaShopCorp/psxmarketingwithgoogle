@@ -17,7 +17,6 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-import { addDecorator } from '@storybook/vue';
 import { select } from '@storybook/addon-knobs';
 import Vue from 'vue';
 import Vuex from 'vuex';
@@ -29,9 +28,6 @@ import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
 import VueI18n from 'vue-i18n';
 import VueShowdown from 'vue-showdown';
 import VueSegment from '@/lib/segment';
-
-// import jest
-import { withTests } from '@storybook/addon-jest';
 
 // Test utils
 import {cloneStore} from '@/../tests/store';
@@ -52,14 +48,8 @@ import '../showdown.js';
 import '../src/utils/Filters';
 
  import {messages, locales} from '@/lib/translations';
- // import css style
- // theme.css v1.7.5 from the Back-Office
- // all font import are commented to avoid 404
- import '!style-loader!css-loader?url=false!./assets/theme.css';
- // shame.css is a set of rules to better mimic the BO behavior in a shameful way
- import '!style-loader!css-loader?url=false!./assets/shame.css';
  // app.scss all the styles for the module
- import '!style-loader!css-loader!sass-loader!../src/assets/scss/app.scss';
+ import '../src/assets/scss/app.scss';
 
  // jest results file
  import results from '../.jest-test-results.json';
@@ -80,84 +70,79 @@ import '../src/utils/Filters';
   pageCategory: '[GGL]',
 });
 
- addDecorator((story, context) => ({
-   template: 
-     `
-     <div>
-      <div
-        id="header_infos"
-        style="display:none;"
-      >
+export const decorators = [
+  (story, context) => ({
+    template: 
+      `
+      <div>
+       <div
+         id="header_infos"
+         style="display:none;"
+       >
+       </div>
+       <div
+         class='nobootstrap'
+         id="content"
+         style='
+           background: none;
+           padding: 0;
+           min-width: 0;
+       '>
+         <div class="page-head">
+         </div>
+         <div id='psxMktgWithGoogleApp'>
+           <div class='ps_gs-sticky-head'>
+             <b-toaster
+               name='b-toaster-top-right'
+               class='ps_gs-toaster-top-right'
+             />
+           </div>
+           <story />
+         </div>
+       </div>
       </div>
-      <div
-        class='nobootstrap'
-        id="content"
-        style='
-          background: none;
-          padding: 0;
-          min-width: 0;
-      '>
-        <div class="page-head">
-        </div>
-        <div id='psxMktgWithGoogleApp'>
-          <div class='ps_gs-sticky-head'>
-            <b-toaster
-              name='b-toaster-top-right'
-              class='ps_gs-toaster-top-right'
-            />
-          </div>
-          <story />
-        </div>
-      </div>
-     </div>
-     `
-     ,
-     i18n: new VueI18n({
-       locale: 'en',
-       messages,
-     }),
-   // add a props to toggle language
-   props: {
-     storybookLocale: {
-       type: String,
-       default: select('I18n locale', locales, 'en'),
-     },
-   },
-   watch: {
-     // add a watcher to toggle language
-     storybookLocale: {
-       handler() {
-         this.$i18n.locale = this.storybookLocale;
-         let dir = this.storybookLocale === 'ar' ? 'rtl' : 'ltr';
-         document.querySelector('html').setAttribute('dir', dir);
-       },
-       immediate: true,
-     },
-   },
-   beforeCreate() {
-     window.i18nSettings = {
-       languageLocale: 'en-us', // needed in _dev/apps/ui/src/store/modules/product-feed/actions.ts
-       isoCode: 'en',
-     }
-
-     this.$store.state.app = Object.assign({}, initialStateApp);
-     this.$root.identifySegment = () => {};
-     initShopClient({shopUrl: '/'});
-     initOnboardingClient({token: 'token', apiUrl: `${window.location.protocol}//${window.location.host}`});
-   },
-   store: new Vuex.Store(cloneStore()),
-   router,
- }));
-
- addDecorator(
-   withTests({
-     results,
-   })
- );
-
-addDecorator(
-  mswDecorator
-);
+      `
+      ,
+      i18n: new VueI18n({
+        locale: 'en',
+        messages,
+      }),
+    // add a props to toggle language
+    props: {
+      storybookLocale: {
+        type: String,
+        default: select('I18n locale', locales, 'en'),
+      },
+    },
+    watch: {
+      // add a watcher to toggle language
+      storybookLocale: {
+        handler() {
+          this.$i18n.locale = this.storybookLocale;
+          let dir = this.storybookLocale === 'ar' ? 'rtl' : 'ltr';
+          document.querySelector('html').setAttribute('dir', dir);
+        },
+        immediate: true,
+      },
+    },
+    beforeCreate() {
+      window.i18nSettings = {
+        languageLocale: 'en-us', // needed in _dev/apps/ui/src/store/modules/product-feed/actions.ts
+        isoCode: 'en',
+      }
+ 
+      this.$store.state.app = Object.assign({}, initialStateApp);
+      this.$root.identifySegment = () => {};
+      initShopClient({shopUrl: '/'});
+      initOnboardingClient({token: 'token', apiUrl: `${window.location.protocol}//${window.location.host}`});
+    },
+    store: new Vuex.Store(cloneStore()),
+    router,
+  }),
+  // TODO: Bring back once issue with @storybook/addon-jest is fixed
+  // withTests({results}),
+  mswDecorator,
+];
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },

@@ -1,17 +1,22 @@
-export function searchImage(currency : string) {
+import adsPromotionZloty from '@/assets/images/banner/ads-zloty.svg';
+import adsPromotionPounds from '@/assets/images/banner/ads-pounds.svg';
+import adsPromotionDollars from '@/assets/images/banner/ads-dollars.svg';
+import adsPromotionEuro from '@/assets/images/banner/ads-euro.svg';
+
+export function getPathToAdsPromotionImage(currency : string) {
   if (currency.toUpperCase() === 'PLN') {
-    return 'banner/ads-poland.svg';
+    return adsPromotionZloty;
   }
   if (currency.toUpperCase() === 'GBP') {
-    return 'banner/ads-pounds.svg';
+    return adsPromotionPounds;
   }
   if (currency.toUpperCase() === 'USD') {
-    return 'banner/ads-dollars.svg';
+    return adsPromotionDollars;
   }
   if (currency.toUpperCase() === 'EUR') {
-    return 'banner/ads-euro.svg';
+    return adsPromotionEuro;
   }
-  return 'banner/ads-dollars.svg';
+  return adsPromotionDollars;
 }
 
-export default {searchImage};
+export default {getPathToAdsPromotionImage};

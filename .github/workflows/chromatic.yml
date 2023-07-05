@@ -13,8 +13,8 @@ on:
       - master
 
 env:
-  PNPM_VERSION: 7
-  NODE_VERSION: 14
+  PNPM_VERSION: 8
+  NODE_VERSION: 20
 
 # List of jobs
 jobs:

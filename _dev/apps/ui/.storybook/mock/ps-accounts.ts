@@ -1,5 +1,8 @@
-import { PrestaShopAccountsContext } from "@/store/modules/accounts/state";
-import { cloneDeep } from "lodash";
+// @ts-nocheck
+
+import { PrestaShopAccountsContext } from
+ "@/store/modules/accounts/state";
+import cloneDeep from 'lodash.clonedeep';
 
 export const contextPsAccountsNotConnected: PrestaShopAccountsContext = {
   currentContext: {

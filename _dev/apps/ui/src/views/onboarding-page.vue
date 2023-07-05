@@ -292,7 +292,7 @@ export default {
     },
     initCloudSyncConsent() {
       // If data related to CloudSync consent screen is available...
-      if (!global.cloudSyncSharingConsent || !this.psAccountsIsOnboarded) {
+      if (!window.cloudSyncSharingConsent || !this.psAccountsIsOnboarded) {
         return;
       }
 
@@ -303,7 +303,7 @@ export default {
       this.cloudSyncSharingConsentScreenStarted = true;
 
       console.log('CloudSync Sharing Consent feature detected. Loading...');
-      const msc = global.cloudSyncSharingConsent;
+      const msc = window.cloudSyncSharingConsent;
       msc.init();
       msc.on('OnboardingCompleted', (isCompleted) => {
         if (isCompleted) {

@@ -1,6 +1,3 @@
-/**
- * @jest-environment jsdom
- */
 import {mount, MountOptions} from '@vue/test-utils';
 import Vuex from 'vuex';
 import cloneDeep from 'lodash.clonedeep';
@@ -290,9 +287,9 @@ describe('delivery-time-and-rates.vue', () => {
       store = cloneStore();
       store.modules.productFeed.state = cloneDeep(productFeed);
       store.modules.productFeed.state.settings.shippingSetup = ShippingSetupOption.IMPORT;
-      store.modules.productFeed.actions.GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS = jest
+      store.modules.productFeed.actions.GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS = vi
         .fn().mockImplementation(() => {});
-      store.modules.productFeed.getters.GET_TARGET_COUNTRIES = jest.fn().mockImplementation(() => ['FR']);
+      store.modules.productFeed.getters.GET_TARGET_COUNTRIES = vi.fn().mockImplementation(() => ['FR']);
     });
 
     it('should display import method interface', () => {

@@ -199,17 +199,18 @@
   </ps-modal>
 </template>
 
-<script>
+<script lang="ts">
 import timezones from 'google-timezones-json';
 import googleUrl from '@/assets/json/googleUrl.json';
 import countriesSelectionOptions from '../../assets/json/countries.json';
-import PsModal from '../commons/ps-modal';
+import PsModal from '@/components/commons/ps-modal.vue';
 import SelectCountry from '../commons/select-country.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
-import GoogleAccountContext from '../../store/modules/accounts/state';
+import {GoogleAccountContext} from '@/store/modules/accounts/state';
 import BannerAds from '../commons/banner-ads.vue';
+import { PropType, defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'GoogleAdsAccountPopinNew',
   components: {
     PsModal,
@@ -271,7 +272,7 @@ export default {
   },
   props: {
     user: {
-      type: GoogleAccountContext,
+      type: Object as PropType<GoogleAccountContext>,
       default: null,
     },
   },
@@ -326,5 +327,5 @@ export default {
   googleUrl,
   countriesSelectionOptions,
   timezones,
-};
+});
 </script>

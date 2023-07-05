@@ -1,18 +1,16 @@
-/**
- * @jest-environment jsdom
- */
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
 import {shallowMount} from '@vue/test-utils';
 import {BAlert} from 'bootstrap-vue';
-import fetchMock from 'jest-fetch-mock';
+import createFetchMock from 'vitest-fetch-mock';
 import config, {cloneStore} from '@/../tests/init';
 
 import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
 import actionsTypes from '../../store/modules/accounts/actions-types';
 import {WebsiteClaimErrorReason} from '../../store/modules/accounts/state';
 
+const fetchMock = createFetchMock(vi);
 fetchMock.enableMocks();
 
 describe('merchant-center-account-card.vue', () => {
@@ -69,7 +67,7 @@ describe('merchant-center-account-card.vue / API errors', () => {
   it('display an error message when API fails when retrieving GMC details', async () => {
     fetchMock.resetMocks();
     fetchMock.mockResponse(JSON.stringify({message: 'Sorry, API is on 🔥'}), {status: 500});
-    jest.spyOn(console, 'error').mockImplementation(() => {});
+    vi.spyOn(console, 'error').mockImplementation(() => {});
 
     const wrapper = shallowMount(MerchantCenterAccountCard, {
       propsData: {

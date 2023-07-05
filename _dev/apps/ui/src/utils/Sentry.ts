@@ -2,14 +2,13 @@ import Vue from 'vue';
 import * as Sentry from '@sentry/vue';
 import store from '@/store';
 
-const appVersion = process.env.VUE_APP_BUILD_VERSION || 'dev';
+const appVersion = import.meta.env.VITE_BUILD_VERSION || 'dev';
 
 // @ts-ignore
 if (store.state.app.psxMktgWithGoogleOnProductionEnvironment) {
   Sentry.init({
     Vue,
-    // @ts-ignore
-    dsn: global.psxMktgWithGoogleDsnSentry,
+    dsn: window.psxMktgWithGoogleDsnSentry,
     allowUrls: [
       'https://storage.googleapis.com/psxmarketing-cdn/',
     ],

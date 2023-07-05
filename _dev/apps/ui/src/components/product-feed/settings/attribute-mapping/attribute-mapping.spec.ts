@@ -1,6 +1,3 @@
-/**
- * @jest-environment jsdom
- */
 import Vuex from 'vuex';
 import {shallowMount, mount} from '@vue/test-utils';
 import {BFormCheckboxGroup, BFormCheckbox} from 'bootstrap-vue';
@@ -29,8 +26,8 @@ describe('attribute-mapping.vue', () => {
   let store;
   beforeEach(() => {
     actions = {
-      REQUEST_ATTRIBUTE_MAPPING: jest.fn(),
-      REQUEST_SHOP_TO_GET_ATTRIBUTE: jest.fn(),
+      REQUEST_ATTRIBUTE_MAPPING: vi.fn(),
+      REQUEST_SHOP_TO_GET_ATTRIBUTE: vi.fn(),
     };
     store = cloneStore();
     store.modules.productFeed.actions = {

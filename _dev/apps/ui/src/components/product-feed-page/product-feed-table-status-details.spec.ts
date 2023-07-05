@@ -1,11 +1,8 @@
-/**
- * @jest-environment jsdom
- */
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
 import {shallowMount} from '@vue/test-utils';
-import fetchMock from 'jest-fetch-mock';
+import createFetchMock from 'vitest-fetch-mock';
 
 import config, {cloneStore} from '@/../tests/init';
 import ProductFeedTableStatusDetailsRow from '@/components/product-feed-page/product-feed-table-status-details-row.vue';
@@ -15,14 +12,15 @@ import {
   productFeedWithDisapprovedProductsButNoIssues,
 } from '../../../.storybook/mock/product-feed';
 
+const fetchMock = createFetchMock(vi);
 fetchMock.enableMocks();
 
 describe('product-feed-table-status-details.vue', () => {
   let storeConfigured;
   let storeConfiguredButNoIssued;
   beforeEach(() => {
-    window.addEventListener = jest.fn();
-    window.removeEventListener = jest.fn();
+    window.addEventListener = vi.fn();
+    window.removeEventListener = vi.fn();
   });
 
   it('display a suspended destination if there are associated issues', () => {

@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 // Import this file first to init mock on window
 import {shallowMount} from '@vue/test-utils';
 import config from '@/../tests/init';

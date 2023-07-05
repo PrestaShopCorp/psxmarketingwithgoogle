@@ -167,8 +167,7 @@
 </template>
 
 <script lang="ts">
-import {PropType} from '@vue/composition-api';
-import {defineComponent} from 'vue';
+import {defineComponent, PropType} from 'vue';
 
 import {IncrementalSyncContext} from './feed-configuration';
 import {timeConverterToDate, timeConverterToHour} from '@/utils/Dates';

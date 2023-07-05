@@ -1,8 +1,5 @@
 /* eslint-disable */
 
-/**
- * @jest-environment jsdom
- */
 
 import { filterCountriesCompatible } from './TargetCountryValidator';
 

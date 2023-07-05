@@ -16,7 +16,7 @@ module.exports = {
   },
   plugins: [
     new DefinePlugin({
-      'process.env.VUE_APP_BUILD_VERSION': JSON.stringify(process.env.VUE_APP_BUILD_VERSION || 'dev')
+      'process.env.VITE_BUILD_VERSION': JSON.stringify(process.env.VITE_BUILD_VERSION || 'dev')
     }),
   ],
   module: {

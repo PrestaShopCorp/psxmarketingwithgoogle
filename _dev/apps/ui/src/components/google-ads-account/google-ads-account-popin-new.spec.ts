@@ -1,12 +1,9 @@
-/**
- * @jest-environment jsdom
- */
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
-import {mount, shallowMount} from '@vue/test-utils';
+import {mount} from '@vue/test-utils';
 import {BFormCheckbox, BButton} from 'bootstrap-vue';
-import config, {cloneStore, filters, localVue} from '@/../tests/init';
+import config, {cloneStore, localVue} from '@/../tests/init';
 import GoogleAdsAccountPopinNew from '@/components/google-ads-account/google-ads-account-popin-new.vue';
 
 import {
@@ -14,7 +11,7 @@ import {
 } from '@/../.storybook/mock/google-account';
 import {
   initialStateApp,
-} from '../../../.storybook/mock/state-app';
+} from '@/../.storybook/mock/state-app';
 
 const wrapperOptions = {
   propsData: {
@@ -30,13 +27,14 @@ const wrapperOptions = {
 };
 
 describe('google-ads-account-popin-new.vue', () => {
-  let storeInitApp;
+  let storeInitApp: ReturnType<typeof cloneStore>;
   beforeEach(() => {
     storeInitApp = cloneStore();
     storeInitApp.modules.app.state = {
       ...storeInitApp.modules.app.state,
       ...initialStateApp,
     };
+    storeInitApp.modules.googleAds.actions.GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING = vi.fn();
   });
 
   it('create account button is disabled when inputs not filled but checkbox is  checked', async () => {

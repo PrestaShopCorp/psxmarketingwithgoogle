@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import {BCard, BSkeleton} from 'bootstrap-vue';
 import {mount, shallowMount} from '@vue/test-utils';
 import StatusCardVue from './status-card.vue';
