@@ -1,4 +1,4 @@
-exports.kpisEmpty = {
+export const kpisEmpty = {
   impressions: 0,
   clicks: 0,
   conversions: 0,
@@ -7,7 +7,7 @@ exports.kpisEmpty = {
   sales: 0,
 };
 
-exports.kpiDatas = {
+export const kpiDatas = {
   impressions: 32,
   clicks: 750,
   conversions: 658,

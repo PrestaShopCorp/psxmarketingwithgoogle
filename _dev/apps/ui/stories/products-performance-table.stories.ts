@@ -1,9 +1,9 @@
-const {dateGenerator} = require('../.storybook/utils/date-generator');
+import {dateGenerator} from '../.storybook/utils/date-generator';
 import ProductsPerformanceTable from '../src/components/campaign/reporting/products-performance/products-performance-table.vue'
 import {googleAdsAccountChosen} from '../.storybook/mock/google-ads';
 import {rest} from 'msw';
-import {productsPerformanceListEmpty, productsPerformanceList} from '../.storybook/mock/reporting/products-performance.js';
-import {nextPageTokenEmpty, nextPageToken} from '../.storybook/mock/reporting/next-page-token.js';
+import {productsPerformanceListEmpty, productsPerformanceList} from '../.storybook/mock/reporting/products-performance';
+import {nextPageTokenEmpty, nextPageToken} from '../.storybook/mock/reporting/next-page-token';
 
 export default {
   title: 'Reporting/Products Performance',

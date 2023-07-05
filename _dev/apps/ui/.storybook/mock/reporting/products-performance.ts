@@ -1,8 +1,8 @@
-exports.productsPerformanceListEmpty = {
+export const productsPerformanceListEmpty = {
   productsPerformanceList: []
 };
 
-exports.productsPerformanceList = {
+export const productsPerformanceList = {
   "productsPerformanceList" : [
     {
       "id" : "8087-0-dt74r1z1ouzzxazjr6eyr8",

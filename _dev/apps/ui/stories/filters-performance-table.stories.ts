@@ -1,8 +1,8 @@
 import FiltersPerformanceTable from '../src/components/campaign/reporting/filters-performance/filters-performance-table.vue'
 import {googleAdsAccountChosen} from '../.storybook/mock/google-ads';
 import {rest} from 'msw';
-import {productsPartitionsPerformanceListEmpty, productsPartitionsPerformanceList} from '../.storybook/mock/reporting/products-partitions-performance.js';
-import {nextPageTokenEmpty, nextPageToken} from '../.storybook/mock/reporting/next-page-token.js';
+import {productsPartitionsPerformanceListEmpty, productsPartitionsPerformanceList} from '../.storybook/mock/reporting/products-partitions-performance';
+import {nextPageTokenEmpty, nextPageToken} from '../.storybook/mock/reporting/next-page-token';
 
 export default {
   title: 'Reporting/Filters Performance',

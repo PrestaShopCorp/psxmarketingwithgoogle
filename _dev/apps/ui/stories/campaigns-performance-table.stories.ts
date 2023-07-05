@@ -1,4 +1,4 @@
-const {dateGenerator} = require('../.storybook/utils/date-generator');
+import {dateGenerator} from '../.storybook/utils/date-generator';
 import CampaignsPerformanceTable from '../src/components/campaign/reporting/campaigns-performance/campaigns-performance-table.vue';
 import {googleAdsAccountChosen} from '../.storybook/mock/google-ads';
 import {rest} from 'msw';
