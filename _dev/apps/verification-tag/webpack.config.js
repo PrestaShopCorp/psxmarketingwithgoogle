@@ -5,11 +5,11 @@ module.exports = {
   mode: "production",
   devtool: !!process.env.GENERATE_SOURCEMAPS ? "source-map": false,
   entry: {
-    main: "./src/index.ts",
+    fetchVerificationTag: "./src/index.ts",
   },
   output: {
     path: path.resolve(__dirname, '../../../views/js'),
-    filename: "fetchVerificationTag.js"
+    filename: "[name].js"
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js"],

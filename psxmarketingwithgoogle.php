@@ -217,6 +217,7 @@ class PsxMarketingWithGoogle extends Module
                     'psxMktgWithGoogleTokenPsAccounts' => $tokenPsAccounts,
                     'psxMktgWithGoogleShopIdPsAccounts' => $shopIdPsAccounts,
                     'psxMktgWithGoogleDsnSentry' => $env->get('PSX_MKTG_WITH_GOOGLE_SENTRY_CREDENTIALS_VUE'),
+                    'psxMktgWithGoogleSegmentId' => $env->get('PSX_MKTG_WITH_GOOGLE_SEGMENT_API_KEY'),
                     'psxMktgWithGoogleOnProductionEnvironment' => $env->get('PSX_MKTG_WITH_GOOGLE_API_URL') === Config::PSX_MKTG_WITH_GOOGLE_API_URL,
                     'i18nSettings' => [
                         'isoCode' => $this->context->language->iso_code,

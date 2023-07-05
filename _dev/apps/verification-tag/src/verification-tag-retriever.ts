@@ -1,3 +1,4 @@
+import { AnalyticsBrowser } from "@segment/analytics-next";
 import * as Sentry from "@sentry/browser";
 import {fetchOnboarding as fetchOnboardingType, fetchShop as fetchShopType, HttpClientError} from 'mktg-with-google-common';
 
@@ -7,8 +8,11 @@ const scope = new Sentry.Scope();
 export const runRetrievalOfVerificationTag = async (
   fetchOnboarding: typeof fetchOnboardingType,
   fetchShop: typeof fetchShopType,
+  analytics?: AnalyticsBrowser,
 ): Promise<void> => {
   try {
+    analytics?.track('[GGL] Re-verification & claiming Started');
+
     // 1- Get site verification token from onboarding API
     const {token} = await (await fetchOnboarding(
       "GET",
@@ -46,8 +50,10 @@ export const runRetrievalOfVerificationTag = async (
     );
   
     console.info('Marketing with Google - Google Verification tag has been refreshed.');
+    analytics?.track('[GGL] Re-verification & claiming Succeeded');
   } catch (e) {
     console.error('Marketing with Google - Google Verification tag refresh failed.', e);
+    analytics?.track('[GGL] Re-verification & claiming Failed');
     scope.setTag('correlationId', correlationId);
     Sentry.captureException(e, scope);
   }
