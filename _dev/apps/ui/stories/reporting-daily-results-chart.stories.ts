@@ -1,8 +1,8 @@
-const {dateGenerator} = require('../.storybook/utils/date-generator');
+import {dateGenerator} from '../.storybook/utils/date-generator';
 import KeyMetricsChartWrapper from '@/components/campaign/reporting/key-metrics/key-metrics-chart-wrapper.vue';
 import {googleAdsAccountChosen} from '../.storybook/mock/google-ads';
 import {rest} from 'msw';
-import {dailyResultsEmpty, dailyResultsDatas, dailyResultsBigDatas} from '../.storybook/mock/reporting/daily-results.js';
+import {dailyResultsEmpty, dailyResultsDatas, dailyResultsBigDatas} from '../.storybook/mock/reporting/daily-results';
 
 export default {
   title: 'Reporting/Daily Result Chart',

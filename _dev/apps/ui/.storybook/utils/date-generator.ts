@@ -1,5 +1,5 @@
-exports.dateGenerator = function(offset){
-  const formatDate = function(date) {
+export const dateGenerator = (offset: number): string => {
+  const formatDate = (date: Date): string => {
     let d = new Date(date),
         month = '' + (d.getMonth() + 1),
         day = '' + d.getDate(),
@@ -12,11 +12,11 @@ exports.dateGenerator = function(offset){
 
     return [year, month, day].join('-');
   }
-  var date = new Date();
+  const date = new Date();
   return formatDate(new Date(date.setDate(date.getDate() - offset)));
 }
 
-exports.dateTokenGenerator = function(offset){
-  var date = new Date()
+export const dateTokenGenerator = (offset: number): string => {
+  const date = new Date()
   return new Date(date.setDate(date.getDate() - offset)).toISOString();
 }

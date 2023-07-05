@@ -1,6 +1,6 @@
-const {dateGenerator} = require('../../utils/date-generator');
+import {dateGenerator} from '../../utils/date-generator';
 
-exports.dailyResultsEmpty = {
+export const dailyResultsEmpty = {
   dailyResultList: [
     {
       impressions: 0,
@@ -14,7 +14,7 @@ exports.dailyResultsEmpty = {
   ]
 }
 
-exports.dailyResultsDatas = {
+export const dailyResultsDatas = {
   dailyResultList: [
     {
       impressions: 12,
@@ -73,7 +73,7 @@ exports.dailyResultsDatas = {
   ],
 }
 
-exports.dailyResultsBigDatas = {
+export const dailyResultsBigDatas = {
   dailyResultList: [
     {
       impressions: 3230,

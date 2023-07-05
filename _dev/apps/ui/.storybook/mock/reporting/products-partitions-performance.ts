@@ -1,8 +1,8 @@
-exports.productsPartitionsPerformanceListEmpty = {
+export const productsPartitionsPerformanceListEmpty = {
   productsPartitionsPerformanceList: []
 };
 
-exports.productsPartitionsPerformanceList = {
+export const productsPartitionsPerformanceList = {
   "productsPartitionsPerformanceList": [
     {
         "campaignName": "Campaign for Pokemon",
