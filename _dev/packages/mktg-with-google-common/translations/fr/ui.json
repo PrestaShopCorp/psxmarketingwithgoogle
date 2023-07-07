@@ -427,7 +427,7 @@
             "title": "Calendrier de synchronisation",
             "subTitle": "Choisissez l'heure à laquelle vous voulez que la première synchronisation commence, l'exportation pourrait ralentir votre trafic.",
             "radioLabel1": "Maintenant, après avoir terminé ma configuration (l'exportation pourrait ralentir votre boutique)",
-            "radioLabel2": "Plus tard, approximativement à 2h00 du matin (GMT 1) (lorsque votre boutique a peu de visites)."
+            "radioLabel2": "Plus tard, approximativement à 2h00 du matin (GMT+1) (lorsque votre boutique a peu de visites)"
         },
         "summary": {
             "title1": "Prochaine synchronisation",
