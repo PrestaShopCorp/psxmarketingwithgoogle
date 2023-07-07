@@ -11,8 +11,18 @@
         "versionDoesNotExist": "Il semble que la version du module ne puisse être récupérée. C'est de notre côté, veuillez réessayer.",
         "moduleNeedActivation": "Le module Marketing with Google est désactivé. Vous ne pourrez utiliser aucune de ses fonctionnalités tant que vous n'aurez pas activé votre module.",
         "moduleUpdateNeeded": {
-            "ps_eventbus": "La version du module PrestaShop CloudSync exécutée sur cette boutique est plus ancienne que le minimum requis.\n\nVous pouvez utiliser PrestaShop Marketing with Google, mais certaines fonctionnalités (par exemple, la synchronisation des produits) ne seront pas disponibles tant que vous n'aurez pas mis à niveau PrestaShop CloudSync.",
-            "psxmarketingwithgoogle": "Veuillez mettre à jour le module PrestaShop Marketing With Google afin de le faire fonctionner correctement."
+            "ps_eventbus": {
+                "title": "**A newer version of PrestaShop CloudSync is requested**\n\n The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync."
+            },
+            "psxmarketingwithgoogle": {
+                "title": "**A newer version of PrestaShop Marketing With Google is available**\n\n It offers significant improvements and exciting features that will take your product usage to the next level.",
+                "changes": {
+                    "1.53.0": [
+                        "Configure your product feed to target countries in several currencies",
+                        "Get a better follow up of your product synchronization thanks to the new product feed page"
+                    ]
+                }
+            }
         },
         "adblockerActivated": "Veuillez désactiver votre bloqueur de publicité pour que le module fonctionne correctement, et rafraîchir votre navigateur.",
         "refreshPage": "Rafraîchir la page",
