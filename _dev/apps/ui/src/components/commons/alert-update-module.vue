@@ -39,8 +39,9 @@
 
 <script lang="ts">
 import semver from 'semver';
+import {defineComponent} from 'vue';
 
-export default {
+export default defineComponent({
   name: 'AlertUpdateModule',
   props: {
     moduleName: {
@@ -114,6 +115,5 @@ export default {
   created() {
     this.checkForInstalledVersion();
   },
-
-};
+});
 </script>
