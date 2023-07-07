@@ -11,8 +11,18 @@
         "versionDoesNotExist": "A quanto pare, per un problema del nostro software, la versione del modulo non può essere recuperata. Ti preghiamo di riprovare.",
         "moduleNeedActivation": "Il modulo Marketing con Google è disabilitato. Non potrai utilizzare alcuna delle sue funzionalità finché non lo abiliterai.",
         "moduleUpdateNeeded": {
-            "ps_eventbus": "La versione del modulo PrestaShop CloudSync in esecuzione su questo store è precedente al minimo richiesto.\n\nPuoi utilizzare PrestaShop Marketing con Google, ma alcune funzionalità (come la sincronizzazione dei prodotti, ad esempio) non saranno disponibili fino a quando non aggiornerai PrestaShop CloudSync.",
-            "psxmarketingwithgoogle": "Aggiorna il modulo PrestaShop Marketing con Google per farlo funzionare correttamente"
+            "ps_eventbus": {
+                "title": "**A newer version of PrestaShop CloudSync is requested**\n\n The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync."
+            },
+            "psxmarketingwithgoogle": {
+                "title": "**A newer version of PrestaShop Marketing With Google is available**\n\n It offers significant improvements and exciting features that will take your product usage to the next level.",
+                "changes": {
+                    "1.53.0": [
+                        "Configure your product feed to target countries in several currencies",
+                        "Get a better follow up of your product synchronization thanks to the new product feed page"
+                    ]
+                }
+            }
         },
         "adblockerActivated": "Per far sì che il modulo funzioni correttamente, disattiva il tuo ad-blocker e aggiorna il browser.",
         "refreshPage": "Aggiorna la pagina",
