@@ -7,11 +7,15 @@
       show
     >
       <VueShowdown
-        tag="p"
-        :extensions="['no-p-tag']"
-        class="mb-0"
-        :markdown="$t(`general.moduleUpdateNeeded.${moduleName}`)"
+        :markdown="$t(`general.moduleUpdateNeeded.${moduleName}.title`)"
       />
+      <ul v-if="featuresList">
+        <li
+          v-for="(feature) in featuresList"
+        >
+          {{ feature }}
+        </li>
+      </ul>
       <div
         class="d-md-flex text-center align-items-center mt-2"
         v-if="upgradeLink"
@@ -19,7 +23,7 @@
         <b-button
           size="sm"
           class="mx-1 mt-3 mt-md-0 md-4 mr-md-1"
-          variant="primary"
+          variant="outline-secondary"
           target="_blank"
           @click="updateModule"
         >
@@ -39,8 +43,10 @@
 
 <script lang="ts">
 import semver from 'semver';
+import {defineComponent} from 'vue';
+import translations from 'mktg-with-google-common/translations/en/ui.json';
 
-export default {
+export default defineComponent({
   name: 'AlertUpdateModule',
   props: {
     moduleName: {
@@ -60,8 +66,28 @@ export default {
       loading: false,
       errorModule: false,
       upgradeLink: null,
-      installedVersion: null,
+      installedVersion: null as string|null,
     };
+  },
+
+  computed: {
+    featuresList(): string[] {
+      if (this.installedVersion === null) {
+        return [];
+      }
+
+      const features = [];
+      Object.keys(translations.general.moduleUpdateNeeded[this.moduleName].changes || {}).forEach(
+        (version: string) => {
+          if (semver.gt(version, this.installedVersion as string)) {
+            const featuresSubset = this.$t(`general.moduleUpdateNeeded.${this.moduleName}.changes["${version}"]`);
+            
+            typeof featuresSubset === 'string' ? features.push(featuresSubset) : features.push(...featuresSubset);
+          }
+        }
+      );
+      return features;
+    },
   },
 
   methods: {
@@ -114,6 +140,5 @@ export default {
   created() {
     this.checkForInstalledVersion();
   },
-
-};
+});
 </script>

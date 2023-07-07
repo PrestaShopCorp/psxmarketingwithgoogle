@@ -31,7 +31,7 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-param-reassign': ['error', {props: false}],
-    'import/no-extraneous-dependencies': ['error', {devDependencies: ['**/*.spec.ts', '**/tests/*.ts']}],
+    'import/no-extraneous-dependencies': ['error', {devDependencies: ['**/*.spec.ts', '**/tests/*.ts', '**/*.stories.ts']}],
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': ['error'],
     // Need some help to handle this error

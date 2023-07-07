@@ -89,13 +89,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import {initShopClient} from 'mktg-with-google-common/api/shopClient';
 import {initOnboardingClient} from 'mktg-with-google-common/api/onboardingClient';
 import Menu from '@/components/menu/menu.vue';
 import MenuItem from '@/components/menu/menu-item.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
-import AlertModuleUpdate from '@/components/commons/alert-update-module';
+import AlertModuleUpdate from '@/components/commons/alert-update-module.vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 import PopinUserNotConnectedToBo from '@/components/commons/user-not-connected-to-bo-popin.vue';
 
