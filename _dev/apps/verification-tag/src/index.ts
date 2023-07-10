@@ -8,6 +8,7 @@ import {
 } from "mktg-with-google-common/api/shopClient";
 import * as Sentry from "@sentry/browser";
 import { runRetrievalOfVerificationTag } from "./verification-tag-retriever";
+import { AnalyticsBrowser } from "@segment/analytics-next";
 declare global {
   interface Window {
     psxMktgWithGoogleControllerLink: string;
@@ -16,6 +17,7 @@ declare global {
     psxMktgWithGoogleApiUrl: string;
     psxMktgWithGoogleDsnSentry: string;
     psxMktgWithGoogleOnProductionEnvironment: boolean;
+    psxMktgWithGoogleSegmentId?: string;
   }
 }
 
@@ -44,8 +46,16 @@ const init = (): void => {
       release: appVersion,
     });
   }
-  
+}
+const initSegment = (): AnalyticsBrowser => {
+  const analytics = AnalyticsBrowser.load(
+    {writeKey: window.psxMktgWithGoogleSegmentId},
+    {disableClientPersistence: true},
+  );
+  analytics.identify(window.psxMktgWithGoogleShopIdPsAccounts);
+  return analytics;
 }
 
 init();
-runRetrievalOfVerificationTag(fetchOnboarding, fetchShop);
+const analytics = initSegment();
+runRetrievalOfVerificationTag(fetchOnboarding, fetchShop, analytics);
