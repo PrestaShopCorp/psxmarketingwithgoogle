@@ -404,6 +404,7 @@ export default {
       this.$store.dispatch('accounts/REQUEST_SHOP_INFORMATIONS')
         .finally(() => {
           this.loading = false;
+          this.stepStoreInfoValidation();
         });
     },
   },
