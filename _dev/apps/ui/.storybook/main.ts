@@ -24,7 +24,7 @@ const config: StorybookConfig = {
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/addon-knobs",
+    "@storybook/addon-controls",
     "@storybook/addon-a11y",
     "@storybook/addon-actions",
     // FIX ME: After migrating on Storybook 7,
