@@ -4,7 +4,7 @@ import {BootstrapVue} from 'bootstrap-vue';
 import VueShowdown from 'vue-showdown';
 import {initOnboardingClient} from 'mktg-with-google-common/api/onboardingClient';
 import {initShopClient} from 'mktg-with-google-common/api/shopClient';
-import {messages} from '@/lib/translations';
+import en from 'mktg-with-google-common/translations/en/ui.json';
 import {changeCountriesCodesToNames} from '@/utils/Countries';
 import '../showdown.js';
 
@@ -61,7 +61,7 @@ afterEach(() => {
 const mockedi18n = (key) => {
   const parts = key.split('.');
   const {length} = parts;
-  let property = messages[defaultLocale];
+  let property = en;
 
   for (let i = 0; i < length && property; i += 1) {
     property = property[parts[i]];

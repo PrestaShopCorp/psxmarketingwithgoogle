@@ -28,6 +28,7 @@ import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
 import VueI18n from 'vue-i18n';
 import VueShowdown from 'vue-showdown';
 import VueSegment from '@/lib/segment';
+import i18n, {availableLocales, loadLanguageAsync} from '@/lib/i18n.ts';
 
 // Test utils
 import {cloneStore} from '@/../tests/store';
@@ -47,7 +48,6 @@ initialize({
 import '../showdown.js';
 import '../src/utils/Filters';
 
- import {messages, locales} from '@/lib/translations';
  // app.scss all the styles for the module
  import '../src/assets/scss/app.scss';
 
@@ -70,15 +70,10 @@ import '../src/utils/Filters';
   pageCategory: '[GGL]',
 });
 
-const i18n = new VueI18n({
-  locale: 'en',
-  messages,
-});
-
 export const decorators = [
   (story, context) => {
     const [{storybookLocale}] = useGlobals();
-    i18n.locale = storybookLocale;
+    loadLanguageAsync(storybookLocale);
 
     return defineComponent({
       template: 
@@ -212,7 +207,7 @@ export const globalTypes = {
     defaultValue: 'en',
     toolbar: {
       icon: 'globe',
-      items: locales.map((languageLocale) => ({
+      items: availableLocales.map((languageLocale) => ({
         value: languageLocale,
         title: new Intl.DisplayNames(
             [navigator.language || 'en'],
