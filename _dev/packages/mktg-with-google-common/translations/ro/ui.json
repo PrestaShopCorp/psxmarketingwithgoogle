@@ -11,8 +11,18 @@
         "versionDoesNotExist": "Se pare că versiunea modulului nu poate fi recuperată. Problema este la noi, te rugăm să încerci din nou.",
         "moduleNeedActivation": "Marketingul cu Google este dezactivat, nu vei putea utiliza niciuna dintre funcțiile sale până când nu activezi modulul.",
         "moduleUpdateNeeded": {
-            "ps_eventbus": "Versiunea modulului PrestaShop CloudSync care rulează în acest magazin este mai veche decât minimul necesar.\n\nPoți utiliza serviciul de marketing PrestaShop cu Google, dar unele funcții (de exemplu, sincronizarea produselor) nu vor fi disponibile până când nu faci upgrade la PrestaShop CloudSync.",
-            "psxmarketingwithgoogle": "Te rugăm să actualizezi PrestaShop Marketing cu modulul Google pentru funcționarea corectă"
+            "ps_eventbus": {
+                "title": "**A newer version of PrestaShop CloudSync is requested**\n\n The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync."
+            },
+            "psxmarketingwithgoogle": {
+                "title": "**A newer version of PrestaShop Marketing With Google is available**\n\n It offers significant improvements and exciting features that will take your product usage to the next level.",
+                "changes": {
+                    "1.53.0": [
+                        "Configure your product feed to target countries in several currencies",
+                        "Get a better follow up of your product synchronization thanks to the new product feed page"
+                    ]
+                }
+            }
         },
         "adblockerActivated": "Dezactivează blocarea reclamelor pentru ca modulul să funcționeze corect și reîmprospătează browserul.",
         "refreshPage": "Reîmprospătare pagină",

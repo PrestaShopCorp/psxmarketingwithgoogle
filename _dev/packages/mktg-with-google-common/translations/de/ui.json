@@ -11,8 +11,18 @@
         "versionDoesNotExist": "Es scheint, dass die Version des Moduls nicht abgerufen werden kann. Es liegt an unserer Seite, bitte versuchen Sie es erneut.",
         "moduleNeedActivation": "Marketing mit Google ist deaktiviert. Sie können die Funktionen erst nutzen, wenn Ihr Modul aktiviert wird.",
         "moduleUpdateNeeded": {
-            "ps_eventbus": "Die Version des Moduls PrestaShop CloudSync, die für diesen Shop ausgeführt wird, ist älter als die mindestens erforderliche Version.\n\nSie können PrestaShop Marketing mit Google verwenden, aber einige Funktionen (z. B. die Produktsynchronisierung) sind erst verfügbar, wenn Sie ein Upgrade auf PrestaShop CloudSync durchführen.",
-            "psxmarketingwithgoogle": "Bitte aktualisieren Sie das Modul PrestaShop Marketing mit Google, damit es richtig funktioniert"
+            "ps_eventbus": {
+                "title": "**A newer version of PrestaShop CloudSync is requested**\n\n The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync."
+            },
+            "psxmarketingwithgoogle": {
+                "title": "**A newer version of PrestaShop Marketing With Google is available**\n\n It offers significant improvements and exciting features that will take your product usage to the next level.",
+                "changes": {
+                    "1.53.0": [
+                        "Configure your product feed to target countries in several currencies",
+                        "Get a better follow up of your product synchronization thanks to the new product feed page"
+                    ]
+                }
+            }
         },
         "adblockerActivated": "Bitte deaktivieren Sie Ihren Werbeblocker, damit das Modul richtig funktioniert, und aktualisieren Sie Ihren Navigator.",
         "refreshPage": "Seite aktualisieren",
