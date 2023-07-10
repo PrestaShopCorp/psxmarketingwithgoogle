@@ -17,11 +17,11 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-import { select } from '@storybook/addon-knobs';
-import Vue from 'vue';
+import Vue, { defineComponent } from 'vue';
 import Vuex from 'vuex';
 import {initShopClient} from "mktg-with-google-common/api/shopClient";
 import {initOnboardingClient} from "mktg-with-google-common/api/onboardingClient";
+import {useGlobals} from '@storybook/client-api';
 
 // import vue plugins
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
@@ -70,75 +70,67 @@ import '../src/utils/Filters';
   pageCategory: '[GGL]',
 });
 
+const i18n = new VueI18n({
+  locale: 'en',
+  messages,
+});
+
 export const decorators = [
-  (story, context) => ({
-    template: 
-      `
-      <div>
-       <div
-         id="header_infos"
-         style="display:none;"
-       >
-       </div>
-       <div
-         class='nobootstrap'
-         id="content"
-         style='
-           background: none;
-           padding: 0;
-           min-width: 0;
-       '>
-         <div class="page-head">
-         </div>
-         <div id='psxMktgWithGoogleApp'>
-           <div class='ps_gs-sticky-head'>
-             <b-toaster
-               name='b-toaster-top-right'
-               class='ps_gs-toaster-top-right'
-             />
-           </div>
-           <story />
-         </div>
-       </div>
-      </div>
-      `
-      ,
-      i18n: new VueI18n({
-        locale: 'en',
-        messages,
-      }),
-    // add a props to toggle language
-    props: {
-      storybookLocale: {
-        type: String,
-        default: select('I18n locale', locales, 'en'),
+  (story, context) => {
+    const [{storybookLocale}] = useGlobals();
+    i18n.locale = storybookLocale;
+
+    return defineComponent({
+      template: 
+        `
+        <div>
+        <div
+          id="header_infos"
+          style="display:none;"
+        >
+        </div>
+        <div
+          class='nobootstrap'
+          id="content"
+          style='
+            background: none;
+            padding: 0;
+            min-width: 0;
+        '>
+          <div class="page-head">
+          </div>
+          <div id='psxMktgWithGoogleApp'>
+            <div class='ps_gs-sticky-head'>
+              <b-toaster
+                name='b-toaster-top-right'
+                class='ps_gs-toaster-top-right'
+              />
+            </div>
+            <story />
+          </div>
+        </div>
+        </div>`,
+      data() {
+        return {
+          storybookLocale,
+        }
       },
-    },
-    watch: {
-      // add a watcher to toggle language
-      storybookLocale: {
-        handler() {
-          this.$i18n.locale = this.storybookLocale;
-          let dir = this.storybookLocale === 'ar' ? 'rtl' : 'ltr';
-          document.querySelector('html').setAttribute('dir', dir);
-        },
-        immediate: true,
+      i18n,
+      beforeCreate() {
+        window.i18nSettings = {
+          languageLocale: 'en-us', // needed in _dev/apps/ui/src/store/modules/product-feed/actions.ts
+          isoCode: 'en',
+        }
+  
+        this.$store.state.app = Object.assign({}, initialStateApp);
+        this.$root.identifySegment = () => {};
+        initShopClient({shopUrl: '/'});
+        initOnboardingClient({token: 'token', apiUrl: `${window.location.protocol}//${window.location.host}`});
       },
-    },
-    beforeCreate() {
-      window.i18nSettings = {
-        languageLocale: 'en-us', // needed in _dev/apps/ui/src/store/modules/product-feed/actions.ts
-        isoCode: 'en',
-      }
- 
-      this.$store.state.app = Object.assign({}, initialStateApp);
-      this.$root.identifySegment = () => {};
-      initShopClient({shopUrl: '/'});
-      initOnboardingClient({token: 'token', apiUrl: `${window.location.protocol}//${window.location.host}`});
-    },
-    store: new Vuex.Store(cloneStore()),
-    router,
-  }),
+      store: new Vuex.Store(cloneStore()),
+      router,
+    });
+  },
   // TODO: Bring back once issue with @storybook/addon-jest is fixed
   // withTests({results}),
   mswDecorator,
@@ -210,6 +202,27 @@ export const parameters = {
         'Whole application',
         ['Overview'],
       ],
+    },
+  },
+};
+
+export const globalTypes = {
+  storybookLocale: {
+    description: 'Internationalization locale',
+    defaultValue: 'en',
+    toolbar: {
+      icon: 'globe',
+      items: locales.map((languageLocale) => ({
+        value: languageLocale,
+        title: new Intl.DisplayNames(
+            [navigator.language || 'en'],
+            {type: 'language'},
+          ).of(languageLocale),
+        right: String.fromCodePoint(...(languageLocale === 'en' ? 'gb': languageLocale)
+          .toUpperCase()
+          .split('')
+          .map(char =>  127397 + char.charCodeAt())),
+      })),
     },
   },
 };
