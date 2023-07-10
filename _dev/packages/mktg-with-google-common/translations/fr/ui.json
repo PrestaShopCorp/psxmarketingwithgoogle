@@ -12,14 +12,14 @@
         "moduleNeedActivation": "Le module Marketing with Google est désactivé. Vous ne pourrez utiliser aucune de ses fonctionnalités tant que vous n'aurez pas activé votre module.",
         "moduleUpdateNeeded": {
             "ps_eventbus": {
-                "title": "**A newer version of PrestaShop CloudSync is requested**\n\n The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync."
+                "title": "**Une version plus récente de PrestaShop CloudSync est requise**\n\n La version du module PrestaShop CloudSync fonctionnant sur cette boutique est plus ancienne que le minimum requis.\n\nVous pouvez utiliser PrestaShop Marketing avec Google mais certaines fonctionnalités (par exemple la synchronisation des produits) ne seront pas disponibles tant que vous n'aurez pas mis à jour PrestaShop CloudSync."
             },
             "psxmarketingwithgoogle": {
-                "title": "**A newer version of PrestaShop Marketing With Google is available**\n\n It offers significant improvements and exciting features that will take your product usage to the next level.",
+                "title": "**Une nouvelle version de PrestaShop Marketing With Google est disponible**\n\n Elle offre des améliorations significatives et des fonctionnalités intéressantes qui vous permettront de passer à la vitesse supérieure dans l'utilisation du module.",
                 "changes": {
                     "1.53.0": [
-                        "Configure your product feed to target countries in several currencies",
-                        "Get a better follow up of your product synchronization thanks to the new product feed page"
+                        "Configurez votre flux de produits pour cibler des pays dans plusieurs devises",
+                        "Obtenez un meilleur suivi de la synchronisation de vos produits grâce à la nouvelle page flux produit"
                     ]
                 }
             }
