@@ -12,14 +12,14 @@
         "moduleNeedActivation": "Marketing with Google jest wyłączony. Nie możesz korzystać z żadnych jego funkcji, dopóki nie włączysz tego modułu.",
         "moduleUpdateNeeded": {
             "ps_eventbus": {
-                "title": "**A newer version of PrestaShop CloudSync is requested**\n\n The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync."
+                "title": "**Wymagana jest nowsza wersja PrestaShop CloudSync**\n\nTwoja wersja modułu PrestaShop CloudSync jest starsza niż wymagane minimum.\n\nMożesz używać PrestaShop Marketing with Google, ale niektóre funkcje (np. synchronizacja produktów) nie będą dostępne do momentu aktualizacji PrestaShop CloudSync."
             },
             "psxmarketingwithgoogle": {
-                "title": "**A newer version of PrestaShop Marketing With Google is available**\n\n It offers significant improvements and exciting features that will take your product usage to the next level.",
+                "title": "**Najnowsza wersja PrestaShop Marketing with Google jest już dostępna**\n\nOferuje ona znaczące ulepszenia i nowe funkcje, które przeniosą korzystanie z produktu na wyższy poziom.",
                 "changes": {
                     "1.53.0": [
-                        "Configure your product feed to target countries in several currencies",
-                        "Get a better follow up of your product synchronization thanks to the new product feed page"
+                        "Skonfiguruj Twój plik danych produktu, by targetować kraje o różnych walutach",
+                        "Uzyskaj lepszy wgląd w synchronizację produktów dzięki nowej stronie pliku danych produktu"
                     ]
                 }
             }
@@ -104,7 +104,7 @@
     },
     "mcaCard": {
         "title": "Konto Merchant Center",
-        "introDisabled": "Połącz swoje konto Merchant Center z PrestaShop, aby ułatwić synchronizację danych dotyczących sklepu i produktów.",
+        "introDisabled": "Połącz Twoje konto Merchant Center z PrestaShop, aby ułatwić synchronizację danych dotyczących sklepu i produktów.",
         "claimCollides": "Twoja strona została już zgłoszona.",
         "claimOverwrite": "Aby zakończyć tworzenie konta Merchant Center, należy nadpisać istniejące zgłoszenie.",
         "footerEU": "W przypadku sklepów w Europejskim Obszarze Gospodarczym, Wielkiej Brytanii lub Szwajcarii, konto Merchant Center musi być powiązane z [usługą porównywania cen - Comparison Shopping Service (CSS)]({0})[:target=\"_blank\"]. Nowe konta Merchant Center, utworzone za pomocą tej aplikacji, są domyślnie powiązane z Google Zakupy, czyli usługą porównywania cen od Google. Możesz zmienić usługę porównywania cen powiązaną z Twoim kontem w dowolnym momencie. Tutaj możesz znaleźć partnerów oferujących usługi porównywania cen. Po skonfigurowaniu konta Merchant Center, możesz korzystać z naszego narzędzia do onboardingu - niezależnie od tego, z której usługi porównywania cen korzystasz.",
