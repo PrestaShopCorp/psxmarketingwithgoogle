@@ -18,9 +18,9 @@
           {{ $t("configuredState.title") }}
         </h2>
 
-        <b-img
+        <img
           src="@/assets/images/configured.svg"
-          fluid
+          class="img-fluid"
         />
         <VueShowdown
           class="mt-4"
