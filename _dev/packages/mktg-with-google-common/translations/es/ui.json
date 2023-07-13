@@ -18,8 +18,8 @@
                 "title": "**A newer version of PrestaShop Marketing With Google is available**\n\n It offers significant improvements and exciting features that will take your product usage to the next level.",
                 "changes": {
                     "1.53.0": [
-                        "Configure your product feed to target countries in several currencies",
-                        "Get a better follow up of your product synchronization thanks to the new product feed page"
+                        "Configura tu feed de productos para dirigirte a países en varias divisas",
+                        "Consigue un mejor seguimiento de la sincronización de tus productos gracias a la nueva página de feed de productos"
                     ]
                 }
             }
