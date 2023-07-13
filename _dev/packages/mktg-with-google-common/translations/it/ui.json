@@ -12,13 +12,13 @@
         "moduleNeedActivation": "Il modulo Marketing con Google è disabilitato. Non potrai utilizzare alcuna delle sue funzionalità finché non lo abiliterai.",
         "moduleUpdateNeeded": {
             "ps_eventbus": {
-                "title": "**A newer version of PrestaShop CloudSync is requested**\n\n The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync."
+                "title": "**Nuova versione di PrestaShop Clouudsync necessaria**\n\nLa versione del modulo PrestaShop CloudSync in esecuzione su questo store è precedente a quella minima richiesta.\n\nPuoi utilizzare PrestaShop Marketing with Google ma alcune funzionalità (come la sincronizzazione dei prodotti, ad esempio) non saranno disponibili fino a quando non aggiornerai PrestaShop CloudSync."
             },
             "psxmarketingwithgoogle": {
-                "title": "**A newer version of PrestaShop Marketing With Google is available**\n\n It offers significant improvements and exciting features that will take your product usage to the next level.",
+                "title": "**È disponibile una nuova versione di PrestaShop Marketing With Google**\n\n Offre miglioramenti significativi e funzioni interessanti che porteranno a migliorare l'utilizzo del prodotto.",
                 "changes": {
                     "1.53.0": [
-                        "Configure your product feed to target countries in several currencies",
+                        "Configura il tuo feed prodotto per i tuoi Paesi target in diverse valute",
                         "Get a better follow up of your product synchronization thanks to the new product feed page"
                     ]
                 }
