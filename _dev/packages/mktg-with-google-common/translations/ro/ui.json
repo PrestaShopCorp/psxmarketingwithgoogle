@@ -12,14 +12,14 @@
         "moduleNeedActivation": "Marketingul cu Google este dezactivat, nu vei putea utiliza niciuna dintre funcțiile sale până când nu activezi modulul.",
         "moduleUpdateNeeded": {
             "ps_eventbus": {
-                "title": "**A newer version of PrestaShop CloudSync is requested**\n\n The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync."
+                "title": "**Se solicită o versiune mai nouă de PrestaShop CloudSync**\n\n Versiunea modulului PrestaShop CloudSync care rulează în acest magazin este mai veche decât minimul necesar.\n\nPoți utiliza serviciul de marketing PrestaShop Marketing with Google, dar unele funcționalități (de exemplu, sincronizarea produselor) nu vor fi disponibile până când nu faci upgrade la PrestaShop CloudSync."
             },
             "psxmarketingwithgoogle": {
-                "title": "**A newer version of PrestaShop Marketing With Google is available**\n\n It offers significant improvements and exciting features that will take your product usage to the next level.",
+                "title": "**Este disponibilă o versiune mai nouă de PrestaShop Marketing with Google **\n\n Oferă îmbunătățiri semnificative și funcționalități interesante care vor duce utilizarea produselor tale la nivelul următor.",
                 "changes": {
                     "1.53.0": [
-                        "Configure your product feed to target countries in several currencies",
-                        "Get a better follow up of your product synchronization thanks to the new product feed page"
+                        "Configurează fluxul de produse pentru a viza țări în mai multe monede",
+                        "Obține o urmărire mai bună a sincronizării produselor tale datorită noii pagini de flux de produse"
                     ]
                 }
             }
