@@ -12,14 +12,14 @@
         "moduleNeedActivation": "Marketing met Google is uitgeschakeld. Je kunt geen van de functies gebruiken totdat je je module inschakelt.",
         "moduleUpdateNeeded": {
             "ps_eventbus": {
-                "title": "**A newer version of PrestaShop CloudSync is requested**\n\n The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync."
+                "title": "**Er is een nieuwere versie van PrestaShop CloudSync aangevraagd**\n\n De versie van de module PrestaShop CloudSync die op deze winkel draait, is ouder dan het vereiste minimum.\n\nJe kunt PrestaShop Marketing met Google gebruiken, maar sommige functies (zoals productsynchronisatie) zijn niet beschikbaar totdat je PrestaShop CloudSync upgrade."
             },
             "psxmarketingwithgoogle": {
-                "title": "**A newer version of PrestaShop Marketing With Google is available**\n\n It offers significant improvements and exciting features that will take your product usage to the next level.",
+                "title": "**Er is een nieuwere versie van PrestaShop Marketing met Google beschikbaar**\n\n Het biedt aanzienlijke verbeteringen en opwindende functies die je productgebruik naar een hoger niveau tillen.",
                 "changes": {
                     "1.53.0": [
-                        "Configure your product feed to target countries in several currencies",
-                        "Get a better follow up of your product synchronization thanks to the new product feed page"
+                        "Configureer je productfeed voor doellanden in verschillende valuta's",
+                        "Krijg een betere opvolging van je productsynchronisatie dankzij de nieuwe productfeedpagina"
                     ]
                 }
             }
@@ -202,12 +202,12 @@
         "businessCity": "Stad",
         "businessRegion": "Regio",
         "businessCountry": "Land",
-        "changeCountryField": "You can [change your country]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informations in your back office",
-        "changeRegionField": "You can [change your region]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informations in your back office",
-        "changeAddressField": "You can [change your business address]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informations in your back office",
-        "changeZipCodeField": "You can [change your zipcode]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informations in your back office",
-        "changeCityField": "You can [change your city]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informations in your back office",
-        "changePhoneNumberField": "You can [change your business phone number]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informations in your back office",
+        "changeCountryField": "Je kunt [je land wijzigen]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] in je back-office",
+        "changeRegionField": "Je kunt [je regio wijzigen]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] in je back-office",
+        "changeAddressField": "Je kunt [je zakelijke adres wijzigen]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] in je back-office",
+        "changeZipCodeField": "Je kunt [je postcode wijzigen]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] in je back-office",
+        "changeCityField": "Je kunt [je stad wijzigen]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] in je back-office",
+        "changePhoneNumberField": "Je kunt [je telefoonnummer wijzigen]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] in je back-office",
         "siteContainsAdultContent": "Mijn website bevat inhoud voor volwassenen",
         "seePolicyAdultContent": "Zie het beleid inzake op volwassenen gerichte inhoud",
         "labelReadAndAgree": "Door de aankoop van Shopping-advertenties heb ik de [Google's voorwaarden en beleid]({0})[:target=\"_blank\"] gelezen en ga ik ermee akkoord dat ik deze naleef, inclusief [Google's Merchant Center servicevoorwaarden]({1})[:target=\"_blank\"], [Beleid voor winkeladvertenties]({2})[:target=\"_blank\"], en [Algemene voorwaarden Google Ads]({3})[:target=\"_blank\"].",
