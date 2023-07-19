@@ -12,14 +12,14 @@
         "moduleNeedActivation": "Marketing mit Google ist deaktiviert. Sie können die Funktionen erst nutzen, wenn Ihr Modul aktiviert wird.",
         "moduleUpdateNeeded": {
             "ps_eventbus": {
-                "title": "**A newer version of PrestaShop CloudSync is requested**\n\n The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync."
+                "title": "**Es ist eine neuere Version von PrestaShop CloudSync erforderlich**\n\n Die Version des Moduls PrestaShop CloudSync, die für diesen Shop ausgeführt wird, ist älter als die mindestens erforderliche Version.\n\nSie können PrestaShop Marketing mit Google verwenden, aber einige Funktionen (z. B. die Produktsynchronisierung) sind erst verfügbar, wenn Sie ein Upgrade auf PrestaShop CloudSync durchführen."
             },
             "psxmarketingwithgoogle": {
-                "title": "**A newer version of PrestaShop Marketing With Google is available**\n\n It offers significant improvements and exciting features that will take your product usage to the next level.",
+                "title": "**Eine neuere Version von PrestaShop Marketing mit Google ist verfügbar**\n\n Sie bietet signifikante Verbesserungen und spannende Funktionen, mit denen Sie bei der Produktnutzung völlig neue Wege gehen können.",
                 "changes": {
                     "1.53.0": [
-                        "Configure your product feed to target countries in several currencies",
-                        "Get a better follow up of your product synchronization thanks to the new product feed page"
+                        "Konfigurieren Sie Ihren Produkt-Feed für Zielländer in mehreren Währungen",
+                        "Verfolgen Sie Ihre Produktsynchronisierung dank der neuen Produkt-Feed-Seite umfassender nach"
                     ]
                 }
             }
@@ -202,12 +202,12 @@
         "businessCity": "Stadt",
         "businessRegion": "Region",
         "businessCountry": "Land",
-        "changeCountryField": "Sie können [Ihr Land ändern]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] Informationen in Ihrem Back-Office",
-        "changeRegionField": "Sie können [Ihre Region ändern]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] Informationen in Ihrem Back-Office",
-        "changeAddressField": "Sie können [Ihre Geschäftsadresse ändern]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] Informationen in Ihrem Back Office",
-        "changeZipCodeField": "Sie können [Ihre Postleitzahl ändern]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] Informationen in Ihrem Back Office",
-        "changeCityField": "Sie können [Ihre Stadt ändern]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] Informationen in Ihrem Back-Office",
-        "changePhoneNumberField": "Sie können [Ihre geschäftliche Telefonnummer ändern]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] Informationen in Ihrem Back Office",
+        "changeCountryField": "Sie können [Ihr Land ändern]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] Informationen in Ihrem Backoffice",
+        "changeRegionField": "Sie können [Ihre Region ändern]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] Informationen in Ihrem Backoffice",
+        "changeAddressField": "Sie können [Ihr Business ändern]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] Informationen in Ihrem Backoffice",
+        "changeZipCodeField": "Sie können [Ihre Postleitzahl ändern]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] Informationen in Ihrem Backoffice",
+        "changeCityField": "Sie können [Ihre Stadt ändern]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] Informationen in Ihrem Backoffice",
+        "changePhoneNumberField": "Sie können [Ihre geschäftliche Telefonnummer ändern]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] Informationen in Ihrem Backoffice",
         "siteContainsAdultContent": "Meine Website enthält Inhalte für Erwachsene",
         "seePolicyAdultContent": "Siehe Richtlinie über Inhalte für Erwachsene",
         "labelReadAndAgree": "Durch den Kauf von Shopping-Anzeigen habe ich die [Google-Bedingungen und -Richtlinien]({0})[:target=\"_blank\"] gelesen und erkläre mich mit ihnen einverstanden, einschließlich der [Nutzungsbedingungen für das Google Merchant Center]({1})[:target=\"_blank\"], [Shopping-Anzeigenrichtlinien]({2})[:target=\"_blank\"], und [Google Ads Terms and Conditions]({3})[:target=\"_blank\"].",
