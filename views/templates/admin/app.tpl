@@ -20,11 +20,11 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <link href="https://assets.prestashop3.com/ext/cloudsync-merchant-sync-consent/latest/cloudsync-cdc.js" rel=preload as=script>
-<link href="https://unpkg.com/prestashop_accounts_vue_components@4.3" rel=preload as=script>
+<link href="https://unpkg.com/prestashop_accounts_vue_components@5" rel=preload as=script>
 
 <div id="psxMktgWithGoogleApp"></div>
 <script src="https://assets.prestashop3.com/ext/cloudsync-merchant-sync-consent/latest/cloudsync-cdc.js"></script>
-<script src="https://unpkg.com/prestashop_accounts_vue_components@4.3"></script>
+<script src="https://unpkg.com/prestashop_accounts_vue_components@5"></script>
 
 {if $psxMktgWithGoogleLiveMode}
   <script type="module" src="http://localhost:5173/@vite/client"></script>
