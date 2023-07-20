@@ -1,6 +1,6 @@
 <template>
   <div
-    class="ps_gs-landingpage-content d-flex flex-column flex-md-row align-items-center mb-4"
+    class="ps_gs-landingpage-content d-flex flex-column flex-md-row align-items-center mb-2"
   >
     <figure class="ps_gs-landingpage-content__figure flex-shrink-0 mr-md-3 mb-md-0">
       <slot/>

@@ -3,12 +3,6 @@ import LandingPageContent from '../src/components/landing-page/landing-page-cont
 export default {
   title: 'LandingPage/Components/Content',
   component: LandingPageContent,
-  argTypes: {
-    contentImage: {
-      control: { type: 'select'},
-      options: ['Google-Commercial-img.png', 'Merchant-Center-img.png', 'Google-Shopping-Tab-img.png'],
-    },
-  },
 };
 
 const Template = (args, { argTypes }) => ({
