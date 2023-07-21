@@ -24,9 +24,6 @@ export interface State {
   status: boolean;
   errorAPI: boolean;
 }
-export interface state {
-   FreeListingStatus;
-}
 
 export const state: State = {
   isActivatedOnce: false,

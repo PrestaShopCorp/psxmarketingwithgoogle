@@ -10,11 +10,11 @@
         :content-text="$t('landingPage.content.content1.text')"
       >
         <img
-          src="@/assets/images/Merchant-Center-img.png"
+          src="@/assets/images/120x120_MARKETING_BACK-OFFICE_01.png"
           class="img-fluid d-block mx-auto"
           alt=""
-          width="250"
-          height="175"
+          width="120"
+          height="120"
         >
       </LandingPageContent>
       <LandingPageContent
@@ -26,11 +26,11 @@
         ])"
       >
         <img
-          src="@/assets/images/Google-Shopping-Tab-img.png"
+          src="@/assets/images/120x120_MARKETING_BACK-OFFICE_02.png"
           class="img-fluid d-block mx-auto"
           alt=""
-          width="250"
-          height="175"
+          width="120"
+          height="120"
         >
       </LandingPageContent>
       <LandingPageContent
@@ -38,11 +38,11 @@
         :content-text="$t('landingPage.content.content3.text')"
       >
         <img
-          src="@/assets/images/Google-Commercial-img.png"
+          src="@/assets/images/120x120_MARKETING_BACK-OFFICE_03.png"
           class="img-fluid d-block mx-auto"
           alt=""
-          width="250"
-          height="175"
+          width="120"
+          height="120"
         >
       </LandingPageContent>
       <LandingPageContent
@@ -54,9 +54,10 @@
       >
         <img
           :src="pathToAdsPromotionImage"
+          class="img-fluid d-block mx-auto"
           alt=""
-          width="250"
-          height="175"
+          width="132"
+          height="132"
         >
       </LandingPageContent>
       <hr class="my-4">

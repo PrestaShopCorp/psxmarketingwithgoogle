@@ -1,22 +1,11 @@
-import adsPromotionZloty from '@/assets/images/banner/ads-zloty.svg';
-import adsPromotionPounds from '@/assets/images/banner/ads-pounds.svg';
-import adsPromotionDollars from '@/assets/images/banner/ads-dollars.svg';
-import adsPromotionEuro from '@/assets/images/banner/ads-euro.svg';
-
 export function getPathToAdsPromotionImage(currency : string) {
   if (currency.toUpperCase() === 'PLN') {
-    return adsPromotionZloty;
-  }
-  if (currency.toUpperCase() === 'GBP') {
-    return adsPromotionPounds;
-  }
-  if (currency.toUpperCase() === 'USD') {
-    return adsPromotionDollars;
+    return new URL('@/assets/images/banner/PS_MARKETING_VOUCHER_ZLOTY.png', import.meta.url).href;
   }
   if (currency.toUpperCase() === 'EUR') {
-    return adsPromotionEuro;
+    return new URL('@/assets/images/banner/PS_MARKETING_VOUCHER_EURO.png', import.meta.url).href;
   }
-  return adsPromotionDollars;
+  return new URL('@/assets/images/banner/PS_MARKETING_VOUCHER_DOLLAR.png', import.meta.url).href;
 }
 
 export default {getPathToAdsPromotionImage};
