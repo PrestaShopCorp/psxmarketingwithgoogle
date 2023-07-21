@@ -292,7 +292,7 @@ export default {
     },
     initCloudSyncConsent() {
       // If data related to CloudSync consent screen is available...
-      if (!window.cloudSyncSharingConsent || !this.psAccountsIsOnboarded) {
+      if (!window.cloudSyncSharingConsent) {
         return;
       }
 
