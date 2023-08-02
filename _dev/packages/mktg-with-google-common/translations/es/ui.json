@@ -1099,7 +1099,6 @@
         }
     },
     "toast": {
-        "alertActivationSuccess": "Has activado correctamente las fichas de producto gratuitas de tus productos en la pestaña Shopping.",
         "alertGoogleAdsAccountSuccess": "¡Has configurado correctamente tu cuenta de Google Ads!",
         "googleAccountConnectedOnceSuccess": "¡Has conectado tu cuenta de Google!",
         "MCAConnectedOnceSuccess": "¡Has conectado tu cuenta de Merchant Center!",
