@@ -204,11 +204,6 @@ ScanFailedBecauseOfLanguages.parameters = {
           })
         );
       }),
-      rest.get('/product-feeds/prevalidation-scan/summary', (req, res, ctx) => {
-        return res(
-          ctx.status(409)
-        );
-      }),
       rest.get('/ads-accounts/list', (req, res, ctx) => {
         return res(
           ctx.json(
