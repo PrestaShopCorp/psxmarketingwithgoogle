@@ -1099,7 +1099,6 @@
         }
     },
     "toast": {
-        "alertActivationSuccess": "U hebt met succes de gratis vermeldingen van uw producten in het tabblad Shopping geactiveerd.",
         "alertGoogleAdsAccountSuccess": "U heeft met succes uw Google Ads account geconfigureerd!",
         "googleAccountConnectedOnceSuccess": "U heeft uw Google account gekoppeld!",
         "MCAConnectedOnceSuccess": "U hebt uw Merchant Center-account aangesloten!",
