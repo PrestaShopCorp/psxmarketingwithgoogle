@@ -1099,7 +1099,6 @@
         }
     },
     "toast": {
-        "alertActivationSuccess": "Pomyślnie aktywowałeś wyświetlanie bezpłatnych informacji o produkcie w karcie Zakupy dla swoich produktów.",
         "alertGoogleAdsAccountSuccess": "Pomyślnie skonfigurowano konto Google Ads!",
         "googleAccountConnectedOnceSuccess": "Pomyślnie połączono konto Google!",
         "MCAConnectedOnceSuccess": "Pomyślnie połączono konto Merchant Center!",

@@ -1099,7 +1099,6 @@
         }
     },
     "toast": {
-        "alertActivationSuccess": "Sie haben die kostenlose Auflistung Ihrer Produkte auf der Registerkarte Einkaufen erfolgreich aktiviert.",
         "alertGoogleAdsAccountSuccess": "Sie haben Ihr Google-Ads-Konto erfolgreich konfiguriert!",
         "googleAccountConnectedOnceSuccess": "Sie haben Ihr Google-Konto verbunden!",
         "MCAConnectedOnceSuccess": "Sie haben Ihr Merchant Center-Konto verbunden!",
