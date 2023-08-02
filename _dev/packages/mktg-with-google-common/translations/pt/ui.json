@@ -1099,7 +1099,6 @@
         }
     },
     "toast": {
-        "alertActivationSuccess": "Você ativou com sucesso as listagens gratuitas dos seus produtos na guia Compras.",
         "alertGoogleAdsAccountSuccess": "Você configurou com sucesso sua conta no Google Ads!",
         "googleAccountConnectedOnceSuccess": "Você conectou a sua conta Google!",
         "MCAConnectedOnceSuccess": "Você conectou a sua conta no Centro de Comerciantes!",
