@@ -16,7 +16,7 @@
     "lint-fix": "eslint --fix -c .eslintrc.js src/",
     "storybook": "npm run check-for-jest-test-output && storybook dev -p 6006",
     "build-storybook": "npm run check-for-jest-test-output && storybook build",
-    "test:generate-output": "vitest --reporter=json --outputFile=.jest-test-results.json",
+    "test:generate-output": "vitest run --reporter=json --outputFile=.jest-test-results.json",
     "test:unit": "vitest",
     "chromatic": "npm run check-for-jest-test-output && chromatic --exit-zero-on-changes",
     "check-for-jest-test-output": "node checkForJestTestOutput.js"

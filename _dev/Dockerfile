@@ -1,9 +1,9 @@
 # Build package
-FROM node:14-alpine as package
+FROM node:20-alpine as package
 
 WORKDIR /app
 
-RUN npm install -g pnpm@7
+RUN npm install -g pnpm@8
 
 ## Build vuejs
 FROM package as builder
