@@ -191,7 +191,6 @@ export default {
       googleIsLoading: false,
       MCAIsLoading: false,
       productFeedIsLoading: false,
-      freeListingIsLoading: false,
       SSCIsLoading: false,
       phoneNumberVerified: false,
       cloudSyncSharingConsentScreenStarted: false,
@@ -271,8 +270,6 @@ export default {
         this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', false);
       } else if (this.productFeedIsConfiguredOnce) {
         this.$store.commit('productFeed/SAVE_CONFIGURATION_CONNECTED_ONCE', false);
-      } else if (this.freeListingIsActivatedOnce) {
-        this.$store.commit('freeListing/SAVE_ACTIVATED_ONCE', false);
       } else if (this.googleAdsAccountConnectedOnce) {
         this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', false);
       } else if (this.phoneNumberVerified) {
@@ -281,10 +278,6 @@ export default {
     },
     triggerLoadOfGoogleAdsAccount() {
       this.googleAdsIsLoading = true;
-      this.freeListingIsLoading = true;
-      this.$store.dispatch('freeListing/GET_FREE_LISTING_STATUS').finally(() => {
-        this.freeListingIsLoading = false;
-      });
       this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST').then(() => this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT')
         .finally(() => {
           this.googleAdsIsLoading = false;
@@ -357,9 +350,6 @@ export default {
     productFeedIsConfiguredOnce() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED_ONCE'];
     },
-    freeListingIsActivatedOnce() {
-      return this.$store.getters['freeListing/GET_FREE_LISTING_IS_ACTIVATED_ONCE'];
-    },
     googleAdsAccountConnectedOnce() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE'];
     },
@@ -376,7 +366,6 @@ export default {
       return this.googleAccountConnectedOnce
         || this.merchantCenterAccountConnectedOnce
         || this.productFeedIsConfiguredOnce
-        || this.freeListingIsActivatedOnce
         || (this.googleAdsAccountConnectedOnce
             && this.billingSettingsCompleted)
         || this.phoneNumberVerified;
@@ -416,8 +405,6 @@ export default {
         return this.$t('toast.MCAConnectedOnceSuccess');
       } if (this.productFeedIsConfiguredOnce) {
         return this.$t('toast.productFeedConfiguredOnceSuccess');
-      } if (this.freeListingIsActivatedOnce) {
-        return this.$t('toast.alertActivationSuccess');
       } if (this.googleAdsAccountConnectedOnce) {
         return this.$t('toast.alertGoogleAdsAccountSuccess');
       } if (this.phoneNumberVerified) {
@@ -463,7 +450,6 @@ export default {
     this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', false);
     this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', false);
     this.$store.commit('productFeed/SAVE_CONFIGURATION_CONNECTED_ONCE', false);
-    this.$store.commit('freeListing/SAVE_ACTIVATED_ONCE', false);
     this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', false);
   },
   watch: {
