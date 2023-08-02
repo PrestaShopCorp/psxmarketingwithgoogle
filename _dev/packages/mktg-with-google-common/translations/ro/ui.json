@@ -1099,7 +1099,6 @@
         }
     },
     "toast": {
-        "alertActivationSuccess": "Ai activat cu succes listările gratuite ale produselor tale în fila Shopping.",
         "alertGoogleAdsAccountSuccess": "Ai configurat cu succes contul Google Ads!",
         "googleAccountConnectedOnceSuccess": "Ți-ai conectat contul Google!",
         "MCAConnectedOnceSuccess": "Ți-ai conectat contul Merchant Center!",
