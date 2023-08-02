@@ -1099,7 +1099,6 @@
         }
     },
     "toast": {
-        "alertActivationSuccess": "Вы успешно активировали бесплатное размещение ваших товаров на вкладке Покупки\".",
         "alertGoogleAdsAccountSuccess": "Вы успешно настроили свой аккаунт Google Ads!",
         "googleAccountConnectedOnceSuccess": "Вы подключили свой аккаунт Google!",
         "MCAConnectedOnceSuccess": "Вы подключили свою учетную запись Merchant Center!",
