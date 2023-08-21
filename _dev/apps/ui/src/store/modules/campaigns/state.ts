@@ -92,6 +92,12 @@ export type CampaignObject = {
   status?: CampaignStatus|CampaignStatusToggle;
   hasUnhandledFilters?: boolean;
   type: CampaignTypes;
+
+  impressions: number;
+  clicks: number;
+  adSpend: number;
+  conversions: number;
+  sales: number;
 }
 
 export interface Reporting {
