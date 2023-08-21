@@ -23,7 +23,7 @@ export const campaigns: CampaignObject[] = [
     id: 19968248543,
     campaignName: "Tartiflette day (Pending)",
     startDate: "2021-06-20T00:00:00.000Z",
-    endDate: "2021-11-15T00:00:00.000Z",
+    endDate: "2069-11-15T00:00:00.000Z",
     targetCountry: "FR",
     dailyBudget: 112,
     status: CampaignStatus.PENDING,

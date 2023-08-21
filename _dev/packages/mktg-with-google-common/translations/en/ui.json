@@ -29,7 +29,6 @@
       "mandatory": "are mandatory",
       "XIsMandatory": "{0} is mandatory.",
       "unableToFetchData": "We were unable to fetch datas, please try again later",
-      "searchByX": "Search by {0}",
       "search": "Search",
       "createAccount": "create your account",
       "createNewAccount": "If you don't have an account, you can {0} today.",
@@ -623,13 +622,6 @@
       }
      },
 
-    "smartShoppingCampaignList": {
-      "tableTitle": "Campaign performance",
-      "xCampaign": "No campaigns | {0} campaign | {0} campaigns",
-      "performanceMax" : "Performance Max",
-      "smartShoppingCampaign": "Smart Shopping Campaign",
-      "campaignType": "Type: {0}"
-    },
     "productFeedPage": {
       "breadcrumb": {
         "productStatusDetails": "Product status details",
@@ -801,6 +793,7 @@
       "salesTooltip": "The value of conversions. This only includes conversion actions which include_in_conversions_metric attribute is set to true. If you use conversion-based bidding, your bid strategies will optimize for these conversions."
     },
     "campaigns": {
+      "listTitle": "Campaign's listing",
       "status": {
         "eligible": "Eligible",
         "eligiblelimited": "Eligible (limited)",
@@ -810,10 +803,13 @@
         "draft": "Draft",
         "pending": "Pending"
       },
-      "from": "From",
-      "fromXToX": "From {startDate} to {endDate}",
+      "dateLabel": {
+        "from": "From {startDate}",
+        "fromXToX": "From {startDate} to {endDate}",
+        "endedOnX": "Ended on {endDate}"
+      },
       "labelCol": {
-        "campaign": "Campaign",
+        "campaign": "Title",
         "budget": "Budget",
         "status": "Status",
         "impressions": "Impressions",
@@ -830,8 +826,8 @@
         "conversionsRate": "Conversions rate",
         "productFilter": "Filter name",
         "dimension": "Filter type",
-        "duration": "Duration date",
-        "target": "Target",
+        "duration": "Date",
+        "target": "Target country",
         "actions": "Actions",
         "dailyBudget": "Daily budget"
       },
