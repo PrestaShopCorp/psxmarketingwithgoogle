@@ -27,6 +27,7 @@
 </template>
 
 <script>
+// DEPRECATED: Remove with new campaign page
 export default {
   name: 'ReportingTableHeader',
   props: {

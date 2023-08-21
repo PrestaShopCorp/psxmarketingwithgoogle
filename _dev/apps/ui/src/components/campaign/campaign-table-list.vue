@@ -4,87 +4,96 @@
       v-if="!inNeedOfConfiguration"
       @openPopinRemarketingTag="remarketingTagPopin"
     />
-    <ReportingTableHeader
-      class="mt-n1"
-      v-if="!inNeedOfConfiguration"
-      :title="$t('campaigns.listTitle')"
-      :use-date="false"
-    />
 
-    <div>
-      <b-table-simple
-        id="table-filters-performance"
-        class="card"
-        responsive="xl"
+    <b-card
+      no-body
+      class="ps_gs-onboardingcard"
+    >
+      <template #header>
+        <ol class="mb-0 list-inline d-flex align-items-center ps_gs-breadcrumb">
+          <li class="list-inline-item ps_gs-breadcrumb__item">
+            {{ $t('campaigns.listTitle') }}
+          </li>
+        </ol>
+      </template>
+      <b-card-body
+        body-class="p-0"
       >
-        <b-thead
-          :style="inNeedOfConfiguration ? {filter:'blur('+4+'px)'} : '' "
-          class="card-header"
+
+        <b-table-simple
+          id="table-filters-performance"
+          class="card mb-0"
+          responsive="xl"
         >
-          <b-tr>
-            <b-th
-              v-for="(type, index) in campaignHeaderList"
-              :key="type"
-              class="font-weight-500"
-              :class="{'ps_gs-table-performance-header': isPerformanceInfo(type)}"
-            >
-              <div class="flex align-items-center">
-                <b-button
-                  v-if="hasSorting(type) && !inNeedOfConfiguration"
-                  @click="sortByType(type)"
-                  variant="invisible"
-                  class="p-0 border-0 text-nowrap"
-                >
-                  <span
-                    class="ps_gs-fz-16 font-weight-500"
+          <b-thead
+            :style="inNeedOfConfiguration ? {filter:'blur('+4+'px)'} : '' "
+            class="card-header"
+          >
+            <b-tr>
+              <b-th
+                v-for="(type, index) in campaignHeaderList"
+                :key="type"
+                class="font-weight-500"
+                :class="{'ps_gs-table-performance-header': isPerformanceInfo(type)}"
+              >
+                <div class="flex align-items-center">
+                  <b-button
+                    v-if="hasSorting(type) && !inNeedOfConfiguration"
+                    @click="sortByType(type)"
+                    variant="invisible"
+                    class="p-0 border-0 text-nowrap"
                   >
+                    <span
+                      class="ps_gs-fz-16 font-weight-500"
+                    >
+                      {{ $t(`campaigns.labelCol.${type}`) }}
+                    </span>
+                    <template v-if="queryOrderDirection[type] === 'ASC'">
+                      <i class="material-icons ps_gs-fz-14">expand_more</i>
+                      <span class="sr-only">{{ $t('cta.clickToSortAsc') }}</span>
+                    </template>
+                    <template v-else>
+                      <i class="material-icons ps_gs-fz-14">expand_less</i>
+                      <span class="sr-only">{{ $t('cta.clickToSortDesc') }}</span>
+                    </template>
+                  </b-button>
+                  <span v-else-if="hasTitleDisplayed(type)">
                     {{ $t(`campaigns.labelCol.${type}`) }}
                   </span>
-                  <template v-if="queryOrderDirection[type] === 'ASC'">
-                    <i class="material-icons ps_gs-fz-14">expand_more</i>
-                    <span class="sr-only">{{ $t('cta.clickToSortAsc') }}</span>
-                  </template>
-                  <template v-else>
-                    <i class="material-icons ps_gs-fz-14">expand_less</i>
-                    <span class="sr-only">{{ $t('cta.clickToSortDesc') }}</span>
-                  </template>
-                </b-button>
-                <span v-else-if="hasTitleDisplayed(type)">
-                  {{ $t(`campaigns.labelCol.${type}`) }}
-                </span>
-              </div>
-            </b-th>
-          </b-tr>
-        </b-thead>
-        <b-tbody class="bg-white">
-          <template
-            v-if="campaignList.length && !inNeedOfConfiguration"
-            class=" ps_gs-onboardingcard__not-configured"
-          >
-            <CampaignTableListRow
-              v-for="campaign in campaignList"
-              :key="campaign.campaignName"
-              :campaign="campaign"
-            />
-          </template>
-          <b-tr
-            v-if="inNeedOfConfiguration"
-          >
-            <b-td :colspan="campaignHeaderList.length">
-              <NotConfiguredCard class="mx-auto" />
-            </b-td>
-          </b-tr>
-          <b-tr v-if="loading">
-            <b-td
-              :colspan="campaignHeaderList.length"
-              class="ps_gs-table-products__loading-slot"
+                </div>
+              </b-th>
+            </b-tr>
+          </b-thead>
+          <b-tbody class="bg-white">
+            <template
+              v-if="campaignList.length && !inNeedOfConfiguration"
+              class=" ps_gs-onboardingcard__not-configured"
             >
-              <i class="ps_gs-table-products__spinner">loading</i>
-            </b-td>
-          </b-tr>
-        </b-tbody>
-      </b-table-simple>
-    </div>
+              <CampaignTableListRow
+                v-for="campaign in campaignList"
+                :key="campaign.campaignName"
+                :campaign="campaign"
+              />
+            </template>
+            <b-tr
+              v-if="inNeedOfConfiguration"
+            >
+              <b-td :colspan="campaignHeaderList.length">
+                <NotConfiguredCard class="mx-auto" />
+              </b-td>
+            </b-tr>
+            <b-tr v-if="loading">
+              <b-td
+                :colspan="campaignHeaderList.length"
+                class="ps_gs-table-products__loading-slot"
+              >
+                <i class="ps_gs-table-products__spinner">loading</i>
+              </b-td>
+            </b-tr>
+          </b-tbody>
+        </b-table-simple>
+      </b-card-body>
+    </b-card>
     <SSCPopinActivateTracking
       modal-id="SSCPopinActivateTrackingSSCList"
       ref="SSCPopinActivateTrackingSSCList"
