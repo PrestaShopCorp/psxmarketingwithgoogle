@@ -1,14 +1,13 @@
 <template>
   <div>
     <BannerCampaigns
-      v-if="!inNeedOfConfiguration"
       @openPopinRemarketingTag="remarketingTagPopin"
     />
 
     <b-card
       no-body
       class="ps_gs-onboardingcard"
-      v-if="loading || campaignList.length"
+      v-if="campaignList.length || loading || apiFailed"
     >
       <template #header>
         <ol class="mb-0 list-inline d-flex align-items-center ps_gs-breadcrumb">
@@ -27,7 +26,6 @@
           responsive="xl"
         >
           <b-thead
-            :style="inNeedOfConfiguration ? {filter:'blur('+4+'px)'} : '' "
             class="card-header"
           >
             <b-tr>
@@ -39,7 +37,7 @@
               >
                 <div class="flex align-items-center">
                   <b-button
-                    v-if="hasSorting(type) && !inNeedOfConfiguration"
+                    v-if="hasSorting(type)"
                     @click="sortByType(type)"
                     variant="invisible"
                     class="p-0 border-0 text-nowrap"
@@ -88,8 +86,13 @@
               </b-tr>
             </template>
 
+            <table-api-error
+              v-else-if="apiFailed" 
+              :colspan="campaignHeaderList.length"
+            />
+
             <template
-              v-else-if="campaignList.length && !inNeedOfConfiguration"
+              v-else-if="campaignList.length"
               class=" ps_gs-onboardingcard__not-configured"
             >
               <CampaignTableListRow
@@ -98,13 +101,6 @@
                 :campaign="campaign"
               />
             </template>
-            <b-tr
-              v-if="inNeedOfConfiguration"
-            >
-              <b-td :colspan="campaignHeaderList.length">
-                <NotConfiguredCard class="mx-auto" />
-              </b-td>
-            </b-tr>
           </b-tbody>
         </b-table-simple>
         <TablePageControls
@@ -127,10 +123,10 @@ import ReportingTableHeader from './reporting/commons/reporting-table-header.vue
 import CampaignSummaryListHeaderType from '@/enums/campaigns-summary/CampaignSummaryListHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import googleUrl from '@/assets/json/googleUrl.json';
-import NotConfiguredCard from '@/components/commons/not-configured-card.vue';
 import BannerCampaigns from '@/components/commons/banner-campaigns.vue';
 import SSCPopinActivateTracking from '@/components/campaigns/ssc-popin-activate-tracking.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
+import TableApiError from '@/components/commons/table-api-error.vue';
 import TablePageControls from '@/components/commons/table-page-controls.vue';
 
 export default {
@@ -138,9 +134,9 @@ export default {
   components: {
     CampaignTableListRow,
     ReportingTableHeader,
-    NotConfiguredCard,
     BannerCampaigns,
     SSCPopinActivateTracking,
+    TableApiError,
     TablePageControls,
   },
   data() {
@@ -152,10 +148,6 @@ export default {
   },
   props: {
     loading: {
-      type: Boolean,
-      required: true,
-    },
-    inNeedOfConfiguration: {
       type: Boolean,
       required: true,
     },

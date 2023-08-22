@@ -111,3 +111,8 @@ export const campaignsListResponse = {
   campaigns: campaigns,
   totalCount: 700,
 };
+
+export const campaignsListEmptyResponse = {
+  campaigns: [],
+  totalCount: 0,
+};

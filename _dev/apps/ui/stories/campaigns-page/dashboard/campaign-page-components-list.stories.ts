@@ -12,7 +12,7 @@ const Template = (args, { argTypes }) => ({
   components: { CampaignTableList },
   template: `
     <div>
-      <CampaignTableList ref="CampaignTableList" v-bind="$props" />
+      <CampaignTableList ref="page" v-bind="$props" />
     </div>
   `,
   mounted: args.mounted,
@@ -25,7 +25,6 @@ TableWithCampaigns.args = {
     this.$store.state.campaigns.campaigns = campaigns;
   },
   loading: false,
-  inNeedOfConfiguration: false,
 }
 
 TableWithCampaigns.parameters = {
@@ -51,5 +50,8 @@ Loading.args = {
 
 export const ErrorApi:any = Template.bind({});
 ErrorApi.args = {
-  loading: true,
+  loading: false,
+  mounted(this: any) {
+    this.$refs.page.$data.apiFailed = true;
+  },
 }

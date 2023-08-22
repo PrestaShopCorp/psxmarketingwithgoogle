@@ -42,39 +42,17 @@
     <b-td class="ps_gs-fz-12">
       {{ campaign.dailyBudget|formatPrice(campaign.currencyCode || currencyCode) }}
     </b-td>
-    <td class="ps_gs-fz-12 text-center">
-      <b-dropdown
+    <b-td
+      class="text-right"
+    >
+      <b-button
         variant="invisible"
-        no-caret
-        :id="`actions-menu-campaign-${campaign.campaignName}`"
-        class="ps-dropdown psxmarketingwithgoogle-dropdown w-auto py-0 pr-0"
-        menu-class="ps-dropdown__menu-small rounded"
-        toggle-class="px-1"
-        boundary="window"
+        class="external_link-no_icon"
+        @click="goToCampaignPage(campaign.campaignName)"
       >
-        <template #button-content>
-          <i class="material-icons ps_gs-fz-20 mx-auto">more_vert</i>
-          <span class="sr-only">
-            {{ $t('cta.openActionsMenu', [campaign.campaignName]) }}
-          </span>
-        </template>
-        <b-dropdown-item-button
-          @click="goToCampaignPage(campaign.campaignName)"
-        >
-          {{ $t('cta.modifyTheCampaign') }}
-        </b-dropdown-item-button>
-        <b-dropdown-item-button
-          @click="isPaused()
-            ? resumeCampaign()
-            : pauseCampaign()"
-        >
-          {{ isPaused()
-            ? $t('cta.resumeCampaign')
-            : $t('cta.pauseCampaign')
-          }}
-        </b-dropdown-item-button>
-      </b-dropdown>
-    </td>
+        <i class="material-icons ps_gs-fz-18">create</i>
+      </b-button>
+    </b-td>
   </b-tr>
 </template>
 
@@ -126,23 +104,6 @@ export default {
           id: this.campaign.id,
         },
       });
-    },
-    isPaused() {
-      return this.campaign.status === CampaignStatus.PAUSED;
-    },
-    pauseCampaign() {
-      const payload = {
-        id: this.campaign.id,
-        status: CampaignStatusToggle.PAUSED,
-      };
-      this.$store.dispatch('campaigns/CHANGE_STATUS_OF_SSC', payload);
-    },
-    resumeCampaign() {
-      const payload = {
-        id: this.campaign.id,
-        status: CampaignStatusToggle.ENABLED,
-      };
-      this.$store.dispatch('campaigns/CHANGE_STATUS_OF_SSC', payload);
     },
   },
   googleUrl,

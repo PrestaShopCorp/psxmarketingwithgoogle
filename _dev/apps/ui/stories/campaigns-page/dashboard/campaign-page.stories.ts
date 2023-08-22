@@ -1,6 +1,6 @@
 import {rest} from 'msw';
 import CampaignPage from '@/views/campaign-page.vue'
-import {campaigns} from '@/../.storybook/mock/campaigns-list';
+import {campaigns, campaignsListEmptyResponse, campaignsListResponse} from '@/../.storybook/mock/campaigns-list';
 
 export default {
   title: 'Campaign/Campaigns page',
@@ -30,7 +30,7 @@ WithSeveralCampaigns.args = {
 WithSeveralCampaigns.parameters = {
   msw: {
     handlers: [
-      rest.get('/shopping-campaigns/list', (req, res, ctx) => res(ctx.json({campaigns}))),
+      rest.get('/shopping-campaigns/list', (req, res, ctx) => res(ctx.json(campaignsListResponse))),
     ],
   },
 };
@@ -46,7 +46,7 @@ WithoutCampaigns.args = {
 WithoutCampaigns.parameters = {
   msw: {
     handlers: [
-      rest.get('/shopping-campaigns/list', (req, res, ctx) => res(ctx.json({campaigns}))),
+      rest.get('/shopping-campaigns/list', (req, res, ctx) => res(ctx.json(campaignsListEmptyResponse))),
     ],
   },
 };

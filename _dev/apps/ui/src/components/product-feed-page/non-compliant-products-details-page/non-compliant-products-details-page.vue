@@ -85,23 +85,10 @@
               </b-tr>
             </template>
 
-            <template v-else-if="apiFailed">
-              <tr>
-                <td
-                  :colspan="filtersHeaderList.length"
-                  class="py-5 text-center text-secondary"
-                >
-                  <div>
-                    <i class="material-icons ps_gs-fz-48">error</i>
-                  </div>
-                  <div
-                    class="ps_gs-fz-16 font-weight-600"
-                  >
-                    {{ $t('general.unableToFetchData') }}
-                  </div>
-                </td>
-              </tr>
-            </template>
+            <table-api-error
+              v-else-if="apiFailed" 
+              :colspan="filtersHeaderList.length"
+            />
 
             <template v-else-if="!issueProducts || !issueProducts.length">
               <tr>
@@ -144,12 +131,14 @@ import {PropType, defineComponent} from 'vue';
 
 import NonCompliantProductsDetailsRow from './non-compliant-products-details-row.vue';
 import {ProductVerificationIssue, ProductVerificationIssueProduct, ProductVerificationIssueTranslation} from '@/store/modules/product-feed/state';
+import TableApiError from '@/components/commons/table-api-error.vue';
 import TablePageControls from '@/components/commons/table-page-controls.vue';
 
 export default defineComponent({
   name: 'NonCompliantProductsDetailsPage',
   components: {
     NonCompliantProductsDetailsRow,
+    TableApiError,
     TablePageControls,
   },
   data() {
