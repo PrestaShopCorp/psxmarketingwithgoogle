@@ -13,11 +13,16 @@ import BannerCampaigns from '../commons/banner-campaigns.vue';
 
 const VBTooltip = vi.fn();
 
+/* TODO:
+ * Display of campaign dates 
+ * Pagination display
+ */
+
 describe('campaign-table-list.vue - display banner SSC ads if user is configured and has no campaigns', () => {
   let store;
   let wrapper;
   const mockRoute = {
-    name: 'campaign-list',
+    name: 'campaign',
   };
   beforeEach(() => {
     store = cloneStore();
@@ -67,7 +72,7 @@ describe('campaign-table-list.vue - hide banner SSC ads if user is not configure
   let store;
   let wrapper;
   const mockRoute = {
-    name: 'campaign-list',
+    name: 'campaign',
   };
   beforeEach(() => {
     store = cloneStore();
@@ -117,7 +122,7 @@ describe('campaign-table-list.vue - show banner SSC ads if user has campaigns', 
   let store;
   let wrapper;
   const mockRoute = {
-    name: 'campaign-list',
+    name: 'campaign',
   };
   beforeEach(() => {
     store = cloneStore();

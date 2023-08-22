@@ -2,7 +2,7 @@
   <div>
     <b-skeleton-wrapper
       v-if="$route.name === 'campaign'"
-      :loading="loadingPage"
+      :loading="!allDataLoaded"
       class="mb-3"
     >
       <template #loading>
@@ -12,34 +12,34 @@
           <b-skeleton width="70%" />
         </b-card>
       </template>
-      <campaign-card-get-started
-        @openPopin="onOpenPopinActivateTracking"
+      <campaign-table-list
+        :loading="!allDataLoaded"
         :in-need-of-configuration="inNeedOfConfiguration"
       />
     </b-skeleton-wrapper>
+    <!-- Need this new router-view since we now have nested children routes -->
+    <router-view  v-else/>
     <SSCPopinActivateTracking
       ref="SSCPopinActivateTrackingCampaignPage"
       modal-id="SSCPopinActivateTrackingCampaignPage"
     />
-    <!-- Need this new router-view since we now have nested children routes -->
-    <router-view />
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SSCPopinActivateTracking from '../components/campaigns/ssc-popin-activate-tracking.vue';
-import CampaignCardGetStarted from '../components/campaigns/campaign-card-get-started.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
+import CampaignTableList from '@/components/campaign/campaign-table-list.vue'
 
 export default {
   components: {
-    CampaignCardGetStarted,
+    CampaignTableList,
     SSCPopinActivateTracking,
   },
 
   data() {
     return {
-      loadingPage: true,
+      allDataLoaded: false,
     };
   },
   computed: {
@@ -68,29 +68,9 @@ export default {
       await this.$store.dispatch('accounts/WARMUP_STORE');
     }
     this.getDatas()
-      .then(() => {
-        this.loadingPage = false;
-        if (this.$route.name === 'campaign' && this.accountHasAtLeastOneCampaign) {
-          this.$router.push({
-            name: 'campaign-list',
-          });
-        }
-      }).finally(() => {
-        this.loadingPage = false;
+      .finally(() => {
+        this.allDataLoaded = true;
       });
-  },
-  watch: {
-    $route: {
-      handler(route) {
-        if (route.name === 'campaign' && this.accountHasAtLeastOneCampaign) {
-          this.$router.push({
-            name: 'campaign-list',
-          });
-        }
-      },
-      deep: true,
-      immediate: true,
-    },
   },
   CampaignTypes,
 };

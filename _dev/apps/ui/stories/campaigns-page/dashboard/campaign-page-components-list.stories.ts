@@ -1,10 +1,9 @@
-import CampaignTableList from '../src/components/campaign/campaign-table-list.vue'
-import {campaigns} from '../.storybook/mock/campaigns-list';
 import {rest} from 'msw';
-import { CampaignTypes } from '@/enums/reporting/CampaignStatus';
+import CampaignTableList from '@/components/campaign/campaign-table-list.vue'
+import {campaigns} from '@/../.storybook/mock/campaigns-list';
 
 export default {
-  title: 'Campaign/Campaigns\' list',
+  title: 'Campaign/Campaigns page/Campaigns\' list',
   component: CampaignTableList,
 };
 
@@ -37,15 +36,15 @@ TableWithCampaigns.parameters = {
   },
 };
 
-export const Loading:any = Template.bind({});
-Loading.args = {
-  loading: true,
-}
-
-export const Empty:any = Template.bind({});
-Empty.args = {
+export const NoData:any = Template.bind({});
+NoData.args = {
   beforeCreate() {
     this.$store.state.campaigns.campaigns = [];
   },
   loading: false,
+}
+
+export const Loading:any = Template.bind({});
+Loading.args = {
+  loading: true,
 }
