@@ -48,3 +48,8 @@ export const Loading:any = Template.bind({});
 Loading.args = {
   loading: true,
 }
+
+export const ErrorApi:any = Template.bind({});
+ErrorApi.args = {
+  loading: true,
+}

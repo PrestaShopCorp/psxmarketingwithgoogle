@@ -19,15 +19,31 @@ const Template = (args, { argTypes }) => ({
   beforeCreate: args.beforeCreate,
 });
 
-export const Default:any = Template.bind({});
-Default.args = {
+export const WithSeveralCampaigns:any = Template.bind({});
+WithSeveralCampaigns.args = {
   beforeCreate() {
     this.$store.state.campaigns.campaigns = campaigns;
     this.$router.push({name: 'campaign'});
   },
 }
 
-Default.parameters = {
+WithSeveralCampaigns.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/shopping-campaigns/list', (req, res, ctx) => res(ctx.json({campaigns}))),
+    ],
+  },
+};
+
+export const WithoutCampaigns:any = Template.bind({});
+WithoutCampaigns.args = {
+  beforeCreate() {
+    this.$store.state.campaigns.campaigns = campaigns;
+    this.$router.push({name: 'campaign'});
+  },
+}
+
+WithoutCampaigns.parameters = {
   msw: {
     handlers: [
       rest.get('/shopping-campaigns/list', (req, res, ctx) => res(ctx.json({campaigns}))),

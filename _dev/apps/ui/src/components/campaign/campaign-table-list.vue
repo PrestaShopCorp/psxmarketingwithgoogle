@@ -8,6 +8,7 @@
     <b-card
       no-body
       class="ps_gs-onboardingcard"
+      v-if="loading || campaignList.length"
     >
       <template #header>
         <ol class="mb-0 list-inline d-flex align-items-center ps_gs-breadcrumb">
@@ -64,9 +65,31 @@
               </b-th>
             </b-tr>
           </b-thead>
+
           <b-tbody class="bg-white">
             <template
-              v-if="campaignList.length && !inNeedOfConfiguration"
+              v-if="loading"
+            >
+              <b-tr
+                v-for="index in pageSize"
+                :key="index"
+                class="justify-content-between align-items-center py-3"
+              >
+                <b-td
+                  v-for="(type, textIndex) in campaignHeaderList"
+                  :key="textIndex"
+                  :class="{'ps_gs-table-performance-cell': isPerformanceInfo(type)}"
+                >
+                  <b-skeleton
+                    class="mb-0 px-1"
+                    width="100%"
+                  />
+                </b-td>
+              </b-tr>
+            </template>
+
+            <template
+              v-else-if="campaignList.length && !inNeedOfConfiguration"
               class=" ps_gs-onboardingcard__not-configured"
             >
               <CampaignTableListRow
@@ -82,16 +105,13 @@
                 <NotConfiguredCard class="mx-auto" />
               </b-td>
             </b-tr>
-            <b-tr v-if="loading">
-              <b-td
-                :colspan="campaignHeaderList.length"
-                class="ps_gs-table-products__loading-slot"
-              >
-                <i class="ps_gs-table-products__spinner">loading</i>
-              </b-td>
-            </b-tr>
           </b-tbody>
         </b-table-simple>
+        <TablePageControls
+          :total-pages="totalPages"
+          :active-page="activePage+1"
+          :selected-filter-quantity-to-show="pageSize"
+        />
       </b-card-body>
     </b-card>
     <SSCPopinActivateTracking
@@ -111,6 +131,7 @@ import NotConfiguredCard from '@/components/commons/not-configured-card.vue';
 import BannerCampaigns from '@/components/commons/banner-campaigns.vue';
 import SSCPopinActivateTracking from '@/components/campaigns/ssc-popin-activate-tracking.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
+import TablePageControls from '@/components/commons/table-page-controls.vue';
 
 export default {
   name: 'CampaignTableList',
@@ -120,11 +141,13 @@ export default {
     NotConfiguredCard,
     BannerCampaigns,
     SSCPopinActivateTracking,
+    TablePageControls,
   },
   data() {
     return {
-      campaignName: null,
-      searchQuery: {},
+      apiFailed: false as boolean,
+      pageSize: 10 as number,
+      activePage: 0 as number,
     };
   },
   props: {
@@ -141,24 +164,13 @@ export default {
     campaignHeaderList() {
       return Object.values(CampaignSummaryListHeaderType);
     },
-    campaigns() {
+    campaignList() {
       return this.$store.state.campaigns.campaigns;
     },
-
-    campaignList() {
-      const searchQuery = this.searchQuery[CampaignSummaryListHeaderType.CAMPAIGN];
-
-      if (searchQuery) {
-        return this.campaigns.filter((campaign) => {
-          const nameMatch = campaign.campaignName
-            .toLowerCase()
-            .includes(searchQuery.toLowerCase());
-
-          return nameMatch;
-        });
-      }
-      return this.campaigns;
+    totalPages(): number {
+      return 2;
     },
+
     queryOrderDirection: {
       get() {
         return this.$store.getters[
@@ -209,43 +221,17 @@ export default {
       this.queryOrderDirection = newOrderDirection;
     },
     fetchCampaigns(isNewRequest: boolean = true) {
-      this.$emit('loader', true);
       this.$store
         .dispatch('campaigns/GET_CAMPAIGNS_LIST', {isNewRequest})
         .then(() => {
           this.$store.dispatch('campaigns/GET_DIMENSIONS_FILTERS', null);
         })
-        .finally(() => {
-          this.$emit('loader', false);
-        });
-    },
-    handleScroll() {
-      if (this.loading === true) {
-        return;
-      }
-      const body = document.getElementsByClassName('table-with-maxheight')[0];
-      const token = this.$store.getters['campaigns/GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST'];
-
-      if (
-        body.scrollTop >= body.scrollHeight - body.clientHeight
-        && body.scrollTop > 0
-        && token !== null
-      ) {
-        this.fetchCampaigns(false);
-      }
     },
     remarketingTagPopin() {
       this.$bvModal.show(
         this.$refs.SSCPopinActivateTrackingSSCList.$refs.modal.id,
       );
     },
-  },
-  async mounted() {
-    if (this.inNeedOfConfiguration) {
-      this.$emit('loader', false);
-      return;
-    }
-    this.$emit('loader', false);
   },
   googleUrl,
   CampaignTypes,
