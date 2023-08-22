@@ -1,9 +1,5 @@
 <template>
   <div>
-    <BannerCampaigns
-      @openPopinRemarketingTag="remarketingTagPopin"
-    />
-
     <b-card
       no-body
       class="ps_gs-onboardingcard"
@@ -110,10 +106,6 @@
         />
       </b-card-body>
     </b-card>
-    <SSCPopinActivateTracking
-      modal-id="SSCPopinActivateTrackingSSCList"
-      ref="SSCPopinActivateTrackingSSCList"
-    />
   </div>
 </template>
 
@@ -124,7 +116,6 @@ import CampaignSummaryListHeaderType from '@/enums/campaigns-summary/CampaignSum
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import googleUrl from '@/assets/json/googleUrl.json';
 import BannerCampaigns from '@/components/commons/banner-campaigns.vue';
-import SSCPopinActivateTracking from '@/components/campaigns/ssc-popin-activate-tracking.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import TableApiError from '@/components/commons/table-api-error.vue';
 import TablePageControls from '@/components/commons/table-page-controls.vue';
@@ -135,7 +126,6 @@ export default {
     CampaignTableListRow,
     ReportingTableHeader,
     BannerCampaigns,
-    SSCPopinActivateTracking,
     TableApiError,
     TablePageControls,
   },
@@ -218,11 +208,6 @@ export default {
         .then(() => {
           this.$store.dispatch('campaigns/GET_DIMENSIONS_FILTERS', null);
         })
-    },
-    remarketingTagPopin() {
-      this.$bvModal.show(
-        this.$refs.SSCPopinActivateTrackingSSCList.$refs.modal.id,
-      );
     },
   },
   googleUrl,

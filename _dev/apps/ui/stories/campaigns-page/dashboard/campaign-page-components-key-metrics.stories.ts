@@ -1,18 +1,18 @@
-import {dateGenerator} from '../.storybook/utils/date-generator';
-import KeyMetricsBlock from '../src/components/campaign/reporting/key-metrics/key-metrics-block.vue'
-import {googleAdsAccountChosen} from '../.storybook/mock/google-ads';
+import {dateGenerator} from '@/../.storybook/utils/date-generator';
+import KeyMetricsBlock from '@/components/campaign/reporting/key-metrics/key-metrics-block.vue'
+import {googleAdsAccountChosen} from '@/../.storybook/mock/google-ads';
 import {rest} from 'msw';
-import {dailyResultsEmpty, dailyResultsDatas} from '../.storybook/mock/reporting/daily-results.js';
-import {kpisEmpty, kpiDatas} from '../.storybook/mock/reporting/kpi';
-import {campaignsPerformanceListEmpty, campaignsPerformanceList} from '../.storybook/mock/reporting/campaigns-performance';
-import {productsPerformanceListEmpty, productsPerformanceList} from '../.storybook/mock/reporting/products-performance.js';
-import {productsPartitionsPerformanceListEmpty, productsPartitionsPerformanceList} from '../.storybook/mock/reporting/products-partitions-performance.js';
-import {nextPageTokenEmpty} from '../.storybook/mock/reporting/next-page-token';
+import {dailyResultsEmpty, dailyResultsDatas} from '@/../.storybook/mock/reporting/daily-results.js';
+import {kpisEmpty, kpiDatas} from '@/../.storybook/mock/reporting/kpi';
+import {campaignsPerformanceListEmpty, campaignsPerformanceList} from '@/../.storybook/mock/reporting/campaigns-performance';
+import {productsPerformanceListEmpty, productsPerformanceList} from '@/../.storybook/mock/reporting/products-performance.js';
+import {productsPartitionsPerformanceListEmpty, productsPartitionsPerformanceList} from '@/../.storybook/mock/reporting/products-partitions-performance.js';
+import {nextPageTokenEmpty} from '@/../.storybook/mock/reporting/next-page-token';
 
 
 
 export default {
-  title: 'Reporting/Key Metrics',
+  title: 'Campaign/Campaigns page/Components/Key Metrics',
   component: KeyMetricsBlock,
 };
 

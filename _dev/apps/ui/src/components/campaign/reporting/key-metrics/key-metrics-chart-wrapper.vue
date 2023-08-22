@@ -1,28 +1,9 @@
 <template>
-  <section class="pt-2 mt-5">
+  <section class="pt-2 mt-2">
     <div class="flex-wrap d-flex align-items-center justify-content-between">
       <h4 class="flex-shrink-0 mb-2 mr-3 font-weight-600 ps_gs-fz-16">
         {{ $t('keymetrics.dailyResultTitle') }}
       </h4>
-      <b-dropdown
-        id="dailyResultKpi"
-        ref="dailyResultKpi"
-        :text="$t(`keymetrics.${dailyResultTypeSelected}`)"
-        variant=" "
-        class="mb-2 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250"
-        size="sm"
-        menu-class="ps-dropdown"
-        :disabled="metricsIsEmpty"
-      >
-        <b-dropdown-item
-          v-for="dailyresultType in dailyResultTypeList"
-          :key="dailyresultType"
-          link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
-          @click="dailyResultTypeSelected = dailyresultType"
-        >
-          {{ $t(`keymetrics.${dailyresultType}`) }}
-        </b-dropdown-item>
-      </b-dropdown>
     </div>
     <div>
       <div
@@ -36,9 +17,11 @@
         body-class="p-md-4"
       >
         <Chart
-          type="bar"
+          type="line"
           :data="getDataSetsByMetric"
           :options="chartOptions"
+          :height="265"
+          :width="1163"
         />
       </b-card>
     </div>
@@ -82,7 +65,7 @@ export default {
             data: this.getMetrics.map((a) => a[this.dailyResultTypeSelected]),
             backgroundColor: '#000000',
             borderColor: '#000000',
-            borderWidth: 1,
+            borderWidth: 2,
             maxBarThickness: 100,
           },
         ],
@@ -114,6 +97,11 @@ export default {
     },
     chartOptions() {
       return {
+        elements: {
+          point: {
+            pointStyle: false,
+          },
+        },
         scales: {
           y: {
             ticks: {

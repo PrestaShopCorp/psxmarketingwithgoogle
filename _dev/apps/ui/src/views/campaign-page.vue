@@ -12,6 +12,23 @@
           <b-skeleton width="70%" />
         </b-card>
       </template>
+
+      <BannerCampaigns
+        v-if="!accountHasAtLeastOneCampaign"
+        @openPopinRemarketingTag="onOpenPopinActivateTracking"
+      />
+
+      <div class="d-flex justify-content-between mb-2">
+        <KeyMetricsPeriodSelector
+          :in-need-of-configuration="inNeedOfConfiguration"
+          class="ml-auto"
+        />
+      </div>
+
+      <KeyMetricsBlock
+        :in-need-of-configuration="inNeedOfConfiguration"
+      />
+
       <campaign-table-list
         :loading="!allDataLoaded"
         :in-need-of-configuration="inNeedOfConfiguration"
@@ -29,11 +46,17 @@
 <script lang="ts">
 import SSCPopinActivateTracking from '../components/campaigns/ssc-popin-activate-tracking.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
+import BannerCampaigns from '@/components/commons/banner-campaigns.vue';
+import KeyMetricsBlock from '@/components/campaign/reporting/key-metrics/key-metrics-block.vue';
+import KeyMetricsPeriodSelector from '@/components/campaign/reporting/key-metrics/key-metrics-period-selector.vue';
 import CampaignTableList from '@/components/campaign/campaign-table-list.vue'
 
 export default {
   components: {
+    BannerCampaigns,
     CampaignTableList,
+    KeyMetricsBlock,
+    KeyMetricsPeriodSelector,
     SSCPopinActivateTracking,
   },
 

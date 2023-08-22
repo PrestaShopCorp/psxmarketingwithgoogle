@@ -1,13 +1,15 @@
 <template>
   <b-card
+    class="ps_gs-onboardingcard mb-3"
     header-class="px-3 d-sm-flex justify-content-between align-items-center"
     body-class="p-3"
   >
     <template #header>
-      <p class="flex-shrink-0 mb-2 ps_gs-onboardingcard__title mb-sm-0">
-        {{ $t('keymetrics.title') }}
-      </p>
-      <KeyMetricsPeriodSelector :in-need-of-configuration="inNeedOfConfiguration" />
+      <ol class="mb-0 list-inline d-flex align-items-center ps_gs-breadcrumb">
+        <li class="list-inline-item ps_gs-breadcrumb__item">
+          {{ $t('keymetrics.title') }}
+        </li>
+      </ol>
     </template>
     <NotConfiguredCard
       v-if="inNeedOfConfiguration"
@@ -17,9 +19,6 @@
     <div v-else>
       <div class="mt-2 d-flex justify-content-between flex-column flex-sm-row">
         <div class="order-1 mb-2 order-sm-0">
-          <h3 class="mb-1 ps_gs-fz-20 font-weight-600">
-            {{ $t('keymetrics.accountTitle') }}
-          </h3>
           <p>
             {{ $t('keymetrics.accountSubtitle') }}
           </p>
@@ -41,11 +40,13 @@
           :kpi-type="kpiType"
           :kpi-name="$t(`keymetrics.${kpiType}`)"
           :kpi-value="kpiValue.toString()"
-          :tooltip="$t(`keymetrics.${kpiType}Tooltip`)"
         />
       </KeyMetricsKpiCardGroup>
       <KeyMetricsChartWrapper />
-      <div class="mt-3 text-right text-primary">
+      <div class="mt-3 d-flex justify-content-between">
+        <p>
+          {{ $t('keymetrics.helpUnderstanding') }}
+        </p>
         <a
           :href="googleAdsAccountUrl"
           target="_blank"
@@ -60,7 +61,6 @@
 
 <script>
 import KeyMetricsErrorMessage from './key-metrics-error-message.vue';
-import KeyMetricsPeriodSelector from './key-metrics-period-selector.vue';
 import KeyMetricsKpiCardGroup from './key-metrics-kpi-card-group.vue';
 import KeyMetricsKpiCard from './key-metrics-kpi-card.vue';
 import KeyMetricsChartWrapper from './key-metrics-chart-wrapper.vue';
@@ -71,7 +71,6 @@ export default {
   name: 'KeyMetricsBlock',
   components: {
     KeyMetricsErrorMessage,
-    KeyMetricsPeriodSelector,
     KeyMetricsKpiCardGroup,
     KeyMetricsKpiCard,
     KeyMetricsChartWrapper,

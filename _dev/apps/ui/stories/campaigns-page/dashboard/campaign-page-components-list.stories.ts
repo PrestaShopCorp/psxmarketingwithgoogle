@@ -3,7 +3,7 @@ import CampaignTableList from '@/components/campaign/campaign-table-list.vue'
 import {campaigns} from '@/../.storybook/mock/campaigns-list';
 
 export default {
-  title: 'Campaign/Campaigns page/Campaigns\' list',
+  title: 'Campaign/Campaigns page/Components/Campaigns\' list',
   component: CampaignTableList,
 };
 

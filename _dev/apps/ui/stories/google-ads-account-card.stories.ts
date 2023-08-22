@@ -88,7 +88,7 @@ EnabledConnected.args = {
   isEnabled: true,
   loading: false,
   beforeMount(this: any) {
-    this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);``
+    this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
   },
 }
 

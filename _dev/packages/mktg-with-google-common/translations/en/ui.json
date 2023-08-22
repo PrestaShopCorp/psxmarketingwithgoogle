@@ -763,10 +763,10 @@
       }
     },
     "keymetrics": {
-      "title": "Key metrics",
-      "accountTitle": "Account performance",
-      "accountSubtitle": "Check out these amazing numbers",
+      "title": "Performance Max campaigns reporting",
+      "accountSubtitle": "Analyze and optimize your online presence with detailed metrics that help you measure the impact of your digital marketing efforts.",
       "dailyResultTitle": "Daily results",
+      "helpUnderstanding": "Discover further information on how to interpret these metrics by visiting our Help Center",
       "periods": {
         "yesterday": "Yesterday",
         "last7Days": "Last 7 days",
@@ -774,18 +774,12 @@
         "3Months": "3 months"
       },
       "impressions": "Impressions",
-      "impressionsTooltip": "Count of how often your ad has appeared on a search results page or website on the Google Network.",
       "clicks": "Clicks",
-      "clicksTooltip": "When someone clicks your ad, like on the blue headline or phone number of a text ad, Google Ads counts that as a click.",
       "conversions": "Conversion",
-      "conversionsTooltip": "The number of conversions. This only includes conversion actions which include_in_conversions_metric attribute is set to true. If you use conversion-based bidding, your bid strategies will optimize for these conversions.",
       "averageCostPerClick": "Avg cost / click",
-      "averageCostPerClickTooltip": "The total cost of all clicks divided by the total number of clicks received.",
       "costs": "Costs",
-      "costsTooltip": "The sum of your cost-per-click (CPC) and cost-per-thousand impressions (CPM) costs during this period.",
       "sales": "Sales",
-      "noData": "No data yet",
-      "salesTooltip": "The value of conversions. This only includes conversion actions which include_in_conversions_metric attribute is set to true. If you use conversion-based bidding, your bid strategies will optimize for these conversions."
+      "noData": "No data yet"
     },
     "campaigns": {
       "listTitle": "Campaign's listing",
@@ -967,7 +961,6 @@
       "launchCampaign": "Launch campaign",
       "resetDate": "Set today's date",
       "validate": "Validate",
-      "moreInfosAboutX": "More infos about {0}",
       "seeOnGoogleAds": "See on Google Ads",
       "clickToSortDesc": "(Click to sort descending)",
       "clickToSortAsc": "(Click to sort ascending)",
