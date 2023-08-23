@@ -8,6 +8,8 @@ import {campaignsPerformanceListEmpty, campaignsPerformanceList} from '@/../.sto
 import {productsPerformanceListEmpty, productsPerformanceList} from '@/../.storybook/mock/reporting/products-performance.js';
 import {productsPartitionsPerformanceListEmpty, productsPartitionsPerformanceList} from '@/../.storybook/mock/reporting/products-partitions-performance.js';
 import {nextPageTokenEmpty} from '@/../.storybook/mock/reporting/next-page-token';
+import {campaigns} from '@/../.storybook/mock/campaigns-list';
+import cloneDeep from 'lodash.clonedeep';
 
 
 
@@ -77,6 +79,7 @@ WithResults.args = {
     // fake date that will be intercepted by the storybook middleware to return results
     this.$store.state.campaigns.reporting.request.dateRange.startDate = dateGenerator(6);
     this.$store.state.campaigns.reporting.request.dateRange.endDate = dateGenerator(0);
+    this.$store.state.campaigns.campaigns = cloneDeep(campaigns);
   },
 };
 
