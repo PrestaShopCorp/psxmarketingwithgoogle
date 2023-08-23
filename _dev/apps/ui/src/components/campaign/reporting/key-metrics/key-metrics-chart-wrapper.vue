@@ -38,10 +38,12 @@
 </template>
 
 <script lang="ts">
-import {ChartData, ChartOptions} from 'chart.js';
+import {ChartData, ChartOptions, ScriptableLineSegmentContext} from 'chart.js';
 import KpiType from '@/enums/reporting/KpiType';
 import Chart from '@/components/chart/chart.vue';
 import { Kpis } from '@/store/modules/campaigns/state';
+
+const skipped = (ctx: ScriptableLineSegmentContext, value: [number, number]) => ctx.p0.skip || ctx.p1.skip ? value : undefined;
 
 export default {
   name: 'KeyMetricsChartWrapper',
@@ -76,6 +78,10 @@ export default {
             backgroundColor: '#000000',
             borderColor: '#000000',
             borderWidth: 2,
+            segment: {
+              borderDash: (ctx) => skipped(ctx, [6, 6]),
+            },
+            spanGaps: true,
           },
         ],
       };
