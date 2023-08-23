@@ -21,7 +21,7 @@
         <b-button
           class="flex-shrink-0"
           variant="primary"
-          @click="openPopinActivateTracking"
+          @click="$emit('clickToCreateCampaign')"
         >
           {{ this.accountHasAtLeastOneCampaign
             ? $t('cta.launchCampaign') : $t('banner.ctaCreateFirstCampaign')
@@ -44,25 +44,6 @@ export default {
   computed: {
     accountHasAtLeastOneCampaign() {
       return !!this.$store.getters['campaigns/GET_ALL_CAMPAIGNS']?.length;
-    },
-    remarketingTagIsSet() {
-      return this.$store.getters['campaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
-    },
-  },
-  methods: {
-    openPopinActivateTracking() {
-      this.$segment.track('[GGL] Click on Create your first campaign - Campaign tab', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-      });
-      // Prevent popin for opening if tracking is a campaign exists
-      if (this.remarketingTagIsSet) {
-        this.$router.push({
-          name: 'campaign-creation',
-        });
-      } else {
-        this.$emit('openPopinRemarketingTag');
-      }
     },
   },
 };

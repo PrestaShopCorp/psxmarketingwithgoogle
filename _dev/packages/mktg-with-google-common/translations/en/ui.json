@@ -779,7 +779,8 @@
       "averageCostPerClick": "Avg cost / click",
       "costs": "Costs",
       "sales": "Sales",
-      "noData": "No data yet"
+      "noData": "No data yet",
+      "noCampaigns": "Ready to boost your product promotion? Create your campaign in few clicks"
     },
     "campaigns": {
       "listTitle": "Campaign's listing",
@@ -957,6 +958,7 @@
       "createSmartShoppingCampaign": "Launch Performance Max campaign",
       "addBillingSettings": "Add billing settings",
       "createCampaign": "Create campaign",
+      "createPMaxCampaign": "Create new PMax campaign",
       "editCampaign": "Update campaign",
       "launchCampaign": "Launch campaign",
       "resetDate": "Set today's date",

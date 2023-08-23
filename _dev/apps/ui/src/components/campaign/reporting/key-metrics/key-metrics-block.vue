@@ -23,15 +23,6 @@
             {{ $t('keymetrics.accountSubtitle') }}
           </p>
         </div>
-        <div class="mb-2 ml-auto order-0 order-sm-1">
-          <b-button
-            size="sm"
-            variant="primary"
-            @click="redirectToCreateCampaign"
-          >
-            {{ $t('cta.createCampaign') }}
-          </b-button>
-        </div>
       </div>
       <KeyMetricsKpiCardGroup>
         <KeyMetricsKpiCard
@@ -59,7 +50,7 @@
   </b-card>
 </template>
 
-<script>
+<script lang="ts">
 import KeyMetricsErrorMessage from './key-metrics-error-message.vue';
 import KeyMetricsKpiCardGroup from './key-metrics-kpi-card-group.vue';
 import KeyMetricsKpiCard from './key-metrics-kpi-card.vue';
@@ -99,11 +90,6 @@ export default {
   methods: {
     fetchKpis() {
       this.$store.dispatch('campaigns/GET_REPORTING_KPIS');
-    },
-    redirectToCreateCampaign() {
-      this.$router.push({
-        name: 'campaign-creation',
-      });
     },
   },
 };

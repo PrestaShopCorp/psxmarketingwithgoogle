@@ -6,16 +6,25 @@
       </h4>
     </div>
     <div>
-      <div
-        v-if="metricsIsEmpty || !checkDataInDateRange"
-        class="text-center py-3"
-      >
-        <span>{{ $t('keymetrics.noData') }}</span>
-      </div>
       <b-card
-        v-else
         body-class="p-md-4"
       >
+        <div
+          class="d-flex flex-column align-items-center ps_gs-onboardingcard__not-configured"
+          v-if="!accountHasAtLeastOneCampaign"
+        >
+          <i class="material-icons ps_gs-fz-48">show_chart</i>
+          <p>{{ $t('keymetrics.noCampaigns') }}</p>
+          <b-button
+            class="flex-shrink-0"
+            variant="primary"
+            @click="$emit('clickToCreateCampaign')"
+          >
+            {{ this.accountHasAtLeastOneCampaign
+              ? $t('cta.launchCampaign') : $t('banner.ctaCreateFirstCampaign')
+            }}
+          </b-button>
+        </div>
         <Chart
           type="line"
           :data="getDataSetsByMetric"
@@ -28,9 +37,11 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
+import {ChartData, ChartOptions} from 'chart.js';
 import KpiType from '@/enums/reporting/KpiType';
 import Chart from '@/components/chart/chart.vue';
+import { Kpis } from '@/store/modules/campaigns/state';
 
 export default {
   name: 'KeyMetricsChartWrapper',
@@ -55,35 +66,21 @@ export default {
         );
       },
     },
-    getDataSetsByMetric() {
-      // https://www.chartjs.org/docs/latest/general/data-structures.html
+    getDataSetsByMetric(): ChartData<'line'> {
       return {
         labels: this.getLabels,
         datasets: [
           {
-            label: this.$t(`keymetrics.${this.dailyResultTypeSelected}`),
+            label: this.$t(`keymetrics.${this.dailyResultTypeSelected}`).toString(),
             data: this.getMetrics.map((a) => a[this.dailyResultTypeSelected]),
             backgroundColor: '#000000',
             borderColor: '#000000',
             borderWidth: 2,
-            maxBarThickness: 100,
           },
         ],
       };
     },
-    checkDataInDateRange() {
-      const startDate = new Date(this.$store.getters['campaigns/GET_REPORTING_START_DATES']);
-      const endDate = new Date(this.$store.getters['campaigns/GET_REPORTING_END_DATES']);
-
-      const dateMatchExists = this.getLabels.some((date) => {
-        const dateFormat = new Date(date);
-
-        return dateFormat >= startDate && dateFormat <= endDate;
-      });
-
-      return dateMatchExists;
-    },
-    getMetrics() {
+    getMetrics(): Kpis[] {
       return this.$store.getters['campaigns/GET_REPORTING_DAILY_RESULT'];
     },
     getLabels() {
@@ -92,10 +89,10 @@ export default {
     metricsIsEmpty() {
       return this.getMetrics.length === 0;
     },
-    currencyCode() {
+    currencyCode(): string|undefined {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode;
     },
-    chartOptions() {
+    chartOptions(): ChartOptions<'line'> {
       return {
         elements: {
           point: {
@@ -107,6 +104,7 @@ export default {
             ticks: {
               callback: (value) => this.getFormattedValue(value),
             },
+            min: 0,
           },
           x: {
             type: 'time',
@@ -129,6 +127,9 @@ export default {
           },
         },
       };
+    },
+    accountHasAtLeastOneCampaign() {
+      return !!this.$store.getters['campaigns/GET_ALL_CAMPAIGNS']?.length;
     },
   },
   methods: {

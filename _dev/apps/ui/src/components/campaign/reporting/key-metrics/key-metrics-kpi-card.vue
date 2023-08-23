@@ -8,16 +8,18 @@
   >
     <b-card
       class="ps_gs-kpi-card flex-grow-1"
-      body-class="p-3"
+      body-class="p-2"
     >
       <dl class="mb-0">
         <dt
-          class="ps_gs-fz-18 font-weight-bold"
+          class="mb-0 font-weight-normal"          
+        >
+          {{ kpiName }}
+        </dt>
+        <dd
+          class="ps_gs-fz-24 font-weight-700 mb-0"  
         >
           {{ getFormattedValue(kpiValue) }}
-        </dt>
-        <dd class="mb-0">
-          {{ kpiName }}
         </dd>
       </dl>
     </b-card>

@@ -15,12 +15,20 @@
 
       <BannerCampaigns
         v-if="!accountHasAtLeastOneCampaign"
-        @openPopinRemarketingTag="onOpenPopinActivateTracking"
+        @clickToCreateCampaign="onClickToCreateCampaign"
       />
 
       <div class="d-flex justify-content-between mb-2">
+        <b-button
+          size="sm"
+          variant="primary"
+          @click="onClickToCreateCampaign"
+        >
+          {{ $t('cta.createPMaxCampaign') }}
+        </b-button>
         <KeyMetricsPeriodSelector
           :in-need-of-configuration="inNeedOfConfiguration"
+          @clickToCreateCampaign="onClickToCreateCampaign"
           class="ml-auto"
         />
       </div>
@@ -50,6 +58,7 @@ import BannerCampaigns from '@/components/commons/banner-campaigns.vue';
 import KeyMetricsBlock from '@/components/campaign/reporting/key-metrics/key-metrics-block.vue';
 import KeyMetricsPeriodSelector from '@/components/campaign/reporting/key-metrics/key-metrics-period-selector.vue';
 import CampaignTableList from '@/components/campaign/campaign-table-list.vue'
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   components: {
@@ -75,10 +84,27 @@ export default {
     accountHasAtLeastOneCampaign() {
       return !!this.$store.getters['campaigns/GET_ALL_CAMPAIGNS']?.length;
     },
+    remarketingTagIsSet() {
+      return this.$store.getters['campaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
+    },
   },
   methods: {
     async getDatas() {
       await this.$store.dispatch('campaigns/WARMUP_STORE');
+    },
+    onClickToCreateCampaign(): void {
+      this.$segment.track('[GGL] Click on Create your first campaign - Campaign tab', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
+      // Prevent popin for opening if tracking is a campaign exists
+      if (this.remarketingTagIsSet) {
+        this.$router.push({
+          name: 'campaign-creation',
+        });
+      } else {
+        this.onOpenPopinActivateTracking();
+      }
     },
     onOpenPopinActivateTracking() {
       this.$bvModal.show(

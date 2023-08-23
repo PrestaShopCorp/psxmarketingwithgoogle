@@ -3,8 +3,8 @@ import {rest} from 'msw';
 import CampaignPage from '@/views/campaign-page.vue'
 import {campaigns, campaignsListEmptyResponse, campaignsListResponse} from '@/../.storybook/mock/campaigns-list';
 import {adsAccountStatus} from '@/../.storybook/mock/google-ads';
-import { dailyResultsDatas } from '@/../.storybook/mock/reporting/daily-results';
-import { kpiDatas } from '@/../.storybook/mock/reporting/kpi';
+import { dailyResultsDatas, dailyResultsEmpty } from '@/../.storybook/mock/reporting/daily-results';
+import { kpiDatas, kpisEmpty } from '@/../.storybook/mock/reporting/kpi';
 
 export default {
   title: 'Campaign/Campaigns page',
@@ -62,6 +62,37 @@ WithSeveralCampaigns.parameters = {
   },
 };
 
+export const WithSeveralCampaignsNotPerforming:any = Template.bind({});
+WithSeveralCampaignsNotPerforming.args = {
+  beforeCreate() {
+    this.$store.state.googleAds = cloneDeep(adsAccountStatus);
+    this.$store.state.campaigns.campaigns = campaigns;
+    this.$router.push({name: 'campaign'});
+  },
+};
+
+WithSeveralCampaignsNotPerforming.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/shopping-campaigns/list', (req, res, ctx) => res(ctx.json(campaignsListResponse))),
+      rest.get('/ads-reporting/daily-results', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...dailyResultsEmpty,
+          })
+        );
+      }),
+      rest.get('/ads-reporting/kpis', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...kpisEmpty,
+          })
+        );
+      }),
+    ],
+  },
+};
+
 export const WithoutCampaigns:any = Template.bind({});
 WithoutCampaigns.args = {
   beforeCreate() {
@@ -75,6 +106,20 @@ WithoutCampaigns.parameters = {
   msw: {
     handlers: [
       rest.get('/shopping-campaigns/list', (req, res, ctx) => res(ctx.json(campaignsListEmptyResponse))),
+      rest.get('/ads-reporting/daily-results', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...dailyResultsEmpty,
+          })
+        );
+      }),
+      rest.get('/ads-reporting/kpis', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...kpisEmpty,
+          })
+        );
+      }),
     ],
   },
 };
