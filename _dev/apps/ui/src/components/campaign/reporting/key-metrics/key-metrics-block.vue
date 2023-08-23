@@ -38,16 +38,30 @@
         @clickToCreateCampaign="$emit('clickToCreateCampaign')"
       />
       <div class="mt-3 d-flex justify-content-between">
-        <p>
-          {{ $t('keymetrics.helpUnderstanding') }}
-        </p>
-        <a
-          :href="googleAdsAccountUrl"
-          target="_blank"
+        <i18n
+          path="keymetrics.helpUnderstanding"
           class="d-inline-block"
+          tag="p"
         >
-          {{ $t('cta.seeOnGoogleAds') }}
-        </a>
+          <router-link
+            :to="{ name: 'help'}"
+            class="external_link-no_icon"
+          >
+            {{ $t('help.helpCenter') }}
+          </router-link>
+        </i18n>
+        <i18n
+          path="cta.seeOnGoogleAds"
+          class="d-inline-block"
+          tag="p"
+        >
+          <b-link
+            target="_blank"
+            :href="googleAdsAccountUrl"
+          >
+            {{ $t('cta.GoogleAds') }}
+          </b-link>
+        </i18n>
       </div>
     </div>
   </b-card>

@@ -766,7 +766,8 @@
       "title": "Performance Max campaigns reporting",
       "accountSubtitle": "Analyze and optimize your online presence with detailed metrics that help you measure the impact of your digital marketing efforts.",
       "dailyResultTitle": "Daily results",
-      "helpUnderstanding": "Discover further information on how to interpret these metrics by visiting our Help Center",
+      "helpUnderstanding": "Discover further information on how to interpret these metrics by visiting our {0}",
+
       "periods": {
         "yesterday": "Yesterday",
         "last7Days": "Last 7 days",
@@ -865,6 +866,7 @@
     },
     "help": {
       "intro": "PrestaShop Marketing makes it easy to connect your store with Google and promote your products to millions of shoppers across multiple Google channels. Create Performance Max campaigns without leaving your PrestaShop dashboard and drive more traffic.",
+      "helpCenter": "Help Center",
       "allowsYouTo": {
         "title": "This module allows you to:",
         "easySync": "Easily sync your product catalog with Google to keep product details such as price and availability automatically updated",
@@ -963,7 +965,8 @@
       "launchCampaign": "Launch campaign",
       "resetDate": "Set today's date",
       "validate": "Validate",
-      "seeOnGoogleAds": "See on Google Ads",
+      "seeOnGoogleAds": "See these metrics on {0}",
+      "GoogleAds": "Google Ads",
       "clickToSortDesc": "(Click to sort descending)",
       "clickToSortAsc": "(Click to sort ascending)",
       "selectFilters": "Select filters",
@@ -1138,7 +1141,7 @@
       "legend": "*Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits. [Read T&C]({0})[:target=\"_blank\"]",
       "legendWithoutTC": "* Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits.",
       "ctaCreateFirstCampaign": "Create your first campaign",
-      "textCampaignsBanner":  "Performance Max is the next generation of Smart Shopping campaigns. It is an enhanced campaign type powered by Google's smart technology. It works behind the scene to automatically optimise your ads across the shopping journey to drive maximum performance."
+      "textCampaignsBanner":  "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
     },
     "tipsAndTricks": {
       "title": "PrestaShop Tips and Tricks",

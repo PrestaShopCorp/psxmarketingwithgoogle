@@ -1,9 +1,9 @@
 <template>
   <b-card class="shadow-sm border-0 mb-3">
-    <b-card-body>
-      <div class="d-flex align-items-center">
+    <b-card-body class="p-1">
+      <div class="d-flex flex-column flex-md-row align-items-center">
         <img
-          src="@/assets/images/Google-Commercial-icon.svg"
+          src="@/assets/images/Google-Ads-PS-Style.svg"
           width="75"
           height="75"
           alt=""
@@ -13,13 +13,13 @@
             {{ $t("smartShoppingCampaignCard.title") }}
           </h3>
 
-          <p>
+          <p class="mb-1 mb-md-0">
             {{ $t("banner.textCampaignsBanner") }}
           </p>
         </div>
 
         <b-button
-          class="flex-shrink-0"
+          class="flex-shrink-0 ml-5"
           variant="primary"
           @click="$emit('clickToCreateCampaign')"
         >
@@ -36,6 +36,7 @@
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
+  name: 'BannerCampaigns',
   data() {
     return {
       isConfigured: true,
