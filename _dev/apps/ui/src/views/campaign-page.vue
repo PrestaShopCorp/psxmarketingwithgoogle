@@ -20,6 +20,7 @@
 
       <div class="d-flex justify-content-between mb-2">
         <b-button
+          v-if="!inNeedOfConfiguration && accountHasAtLeastOneCampaign"
           size="sm"
           variant="primary"
           @click="onClickToCreateCampaign"
@@ -27,17 +28,18 @@
           {{ $t('cta.createPMaxCampaign') }}
         </b-button>
         <KeyMetricsPeriodSelector
-          :in-need-of-configuration="inNeedOfConfiguration"
-          @clickToCreateCampaign="onClickToCreateCampaign"
+          :in-need-of-configuration="inNeedOfConfiguration || !accountHasAtLeastOneCampaign"
           class="ml-auto"
         />
       </div>
 
       <KeyMetricsBlock
         :in-need-of-configuration="inNeedOfConfiguration"
+        @clickToCreateCampaign="onClickToCreateCampaign"
       />
 
       <campaign-table-list
+        v-if="!inNeedOfConfiguration"
         :loading="!allDataLoaded"
         :in-need-of-configuration="inNeedOfConfiguration"
       />

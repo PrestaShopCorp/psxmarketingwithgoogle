@@ -34,7 +34,9 @@
           :disabled="!accountHasAtLeastOneCampaign"
         />
       </KeyMetricsKpiCardGroup>
-      <KeyMetricsChartWrapper />
+      <KeyMetricsChartWrapper
+        @clickToCreateCampaign="$emit('clickToCreateCampaign')"
+      />
       <div class="mt-3 d-flex justify-content-between">
         <p>
           {{ $t('keymetrics.helpUnderstanding') }}
