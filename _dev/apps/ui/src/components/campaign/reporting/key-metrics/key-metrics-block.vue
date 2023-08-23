@@ -31,6 +31,7 @@
           :kpi-type="kpiType"
           :kpi-name="$t(`keymetrics.${kpiType}`)"
           :kpi-value="kpiValue.toString()"
+          :disabled="!accountHasAtLeastOneCampaign"
         />
       </KeyMetricsKpiCardGroup>
       <KeyMetricsChartWrapper />
@@ -57,6 +58,7 @@ import KeyMetricsKpiCard from './key-metrics-kpi-card.vue';
 import KeyMetricsChartWrapper from './key-metrics-chart-wrapper.vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 import NotConfiguredCard from '@/components/commons/not-configured-card.vue';
+import { Kpis } from '@/store/modules/campaigns/state';
 
 export default {
   name: 'KeyMetricsBlock',
@@ -74,7 +76,7 @@ export default {
     },
   },
   computed: {
-    reportingKpis() {
+    reportingKpis(): Kpis {
       return this.$store.getters['campaigns/GET_REPORTING_KPIS'];
     },
     googleAdsAccountUrl() {
@@ -82,6 +84,9 @@ export default {
     },
     errorWithApi() {
       return this.$store.getters['campaigns/GET_REPORTING_KPIS_ERROR'];
+    },
+    accountHasAtLeastOneCampaign() {
+      return !!this.$store.getters['campaigns/GET_ALL_CAMPAIGNS']?.length;
     },
   },
   mounted() {

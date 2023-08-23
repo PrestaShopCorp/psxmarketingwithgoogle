@@ -8,6 +8,8 @@
   >
     <b-card
       class="ps_gs-kpi-card flex-grow-1"
+      :border-variant="disabled ? 'light': 'primary'"
+      :text-variant="disabled ? 'light': 'primary'"
       body-class="p-2"
     >
       <dl class="mb-0">
@@ -19,14 +21,14 @@
         <dd
           class="ps_gs-fz-24 font-weight-700 mb-0"  
         >
-          {{ getFormattedValue(kpiValue) }}
+          {{ getFormattedValue }}
         </dd>
       </dl>
     </b-card>
   </b-col>
 </template>
 
-<script>
+<script lang="ts">
 import KpiType from '@/enums/reporting/KpiType';
 
 export default {
@@ -40,29 +42,31 @@ export default {
       type: String,
       required: true,
     },
-    tooltip: {
-      type: String,
-      default: '',
-      required: false,
-    },
     kpiType: {
       type: String,
       required: true,
     },
-  },
-  computed: {
-    currencyCode() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode;
+    disabled: {
+      type: Boolean,
+      default: false,
+      required: false,
     },
   },
-  methods: {
-    getFormattedValue() {
+  computed: {
+    currencyCode(): string|undefined {
+      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode;
+    },
+    getFormattedValue(): string {
+      if (this.disabled) {
+        return '--';
+      }
+
       if (this.kpiType === KpiType.CLICKS
         || this.kpiType === KpiType.CONVERSIONS
         || this.kpiType === KpiType.IMPRESSIONS) {
         return this.kpiValue;
       }
-
+  
       return this.$options.filters.formatPrice(this.kpiValue, this.currencyCode);
     },
   },
