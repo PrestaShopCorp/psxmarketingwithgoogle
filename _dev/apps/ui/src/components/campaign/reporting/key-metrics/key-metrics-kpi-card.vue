@@ -9,8 +9,9 @@
     <b-card
       class="ps_gs-kpi-card flex-grow-1"
       :border-variant="disabled ? 'light': 'primary'"
-      :text-variant="disabled ? 'light': 'primary'"
+      :text-variant="textVariant"
       body-class="p-2"
+      :style="{ 'background-color': !disabled && activeColor }"
     >
       <dl class="mb-0">
         <dt
@@ -30,6 +31,8 @@
 
 <script lang="ts">
 import KpiType from '@/enums/reporting/KpiType';
+import { PropType } from 'vue';
+import { DailyResultColor } from '@/store/modules/campaigns/state';
 
 export default {
   name: 'KeyMetricsKpiCard',
@@ -51,6 +54,11 @@ export default {
       default: false,
       required: false,
     },
+    activeColor: {
+      type: String as PropType<DailyResultColor|null>,
+      default: null,
+      required: false,
+    },
   },
   computed: {
     currencyCode(): string|undefined {
@@ -68,6 +76,15 @@ export default {
       }
   
       return this.$options.filters.formatPrice(this.kpiValue, this.currencyCode);
+    },
+    textVariant(): string {
+      if (this.disabled) {
+        return 'light';
+      }
+      if ([DailyResultColor.BLACK, DailyResultColor.BLUE].includes(this.activeColor)) {
+        return 'white';
+      }
+      return 'primary';
     },
   },
 };

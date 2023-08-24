@@ -41,7 +41,8 @@
 import {ChartData, ChartDataset, ChartOptions, Point, ScriptableLineSegmentContext} from 'chart.js';
 import KpiType from '@/enums/reporting/KpiType';
 import Chart from '@/components/chart/chart.vue';
-import { Kpis, DailyResultTypes, DailyResultColor } from '@/store/modules/campaigns/state';
+import {Kpis, DailyResultTypes} from '@/store/modules/campaigns/state';
+import { timeConverterToDate } from '@/utils/Dates';
 
 const skipped = (ctx: ScriptableLineSegmentContext, value: [number, number]) => ctx.p0.skip || ctx.p1.skip ? value : undefined;
 
@@ -115,6 +116,9 @@ export default {
           },
           x: {
             type: 'time',
+            ticks: {
+              callback: (value) => timeConverterToDate(value),
+            },
             time: {
               unit: 'day',
             },
@@ -125,6 +129,11 @@ export default {
         plugins: {
           legend: {
             display: false,
+          },
+          tooltip: {
+            callbacks: {
+              title: (tooltipItems) => tooltipItems.map((tooltipItem) => timeConverterToDate(tooltipItem.parsed.x)),
+            },
           },
         },
       };

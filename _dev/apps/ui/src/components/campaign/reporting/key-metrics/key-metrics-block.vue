@@ -32,6 +32,7 @@
           :kpi-name="$t(`keymetrics.${kpiType}`)"
           :kpi-value="kpiValue.toString()"
           :disabled="!accountHasAtLeastOneCampaign"
+          :active-color="associatedColorToKpi(kpiType)"
         />
       </KeyMetricsKpiCardGroup>
       <KeyMetricsChartWrapper
@@ -74,7 +75,8 @@ import KeyMetricsKpiCard from './key-metrics-kpi-card.vue';
 import KeyMetricsChartWrapper from './key-metrics-chart-wrapper.vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 import NotConfiguredCard from '@/components/commons/not-configured-card.vue';
-import { Kpis } from '@/store/modules/campaigns/state';
+import { DailyResultTypes, Kpis } from '@/store/modules/campaigns/state';
+import KpiType from '@/enums/reporting/KpiType';
 
 export default {
   name: 'KeyMetricsBlock',
@@ -95,6 +97,9 @@ export default {
     reportingKpis(): Kpis {
       return this.$store.getters['campaigns/GET_REPORTING_KPIS'];
     },
+    dailyResultTypesSelected(): DailyResultTypes {
+      return this.$store.getters['campaigns/GET_REPORTING_DAILY_RESULT_TYPES'];
+    },
     googleAdsAccountUrl() {
       return googleUrl.googleAdsAccount;
     },
@@ -111,6 +116,9 @@ export default {
   methods: {
     fetchKpis() {
       this.$store.dispatch('campaigns/GET_REPORTING_KPIS');
+    },
+    associatedColorToKpi(kpi: KpiType): string|undefined {
+      return Object.keys(this.dailyResultTypesSelected).find((color: string) => this.dailyResultTypesSelected[color] === kpi);
     },
   },
 };
