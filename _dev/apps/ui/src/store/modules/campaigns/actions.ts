@@ -23,12 +23,13 @@ import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import {
-  CampaignObject, CampaignStatusPayload, ConversionAction,
+  CampaignObject, CampaignStatusPayload, ConversionAction, State,
 } from './state';
 import {deepUpdateDimensionVisibility} from '@/utils/SSCFilters';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import {runIf} from '../../../utils/Promise';
 import {RecommendedBudget} from '@/utils/CampaignsBudget';
+import KpiType from '@/enums/reporting/KpiType';
 
 export default {
   async [ActionsTypes.WARMUP_STORE](
@@ -210,6 +211,41 @@ export default {
     commit(MutationsTypes.SET_REPORTING_PERIOD_SELECTED, payload);
     await dispatch('SET_REPORTING_DATES_RANGE');
     dispatch('UPDATE_ALL_REPORTING_DATA');
+  },
+
+  [ActionsTypes.ADD_REPORTING_DAILY_RESULTS_TYPE](
+    {commit, state}, payload: KpiType,
+  ): boolean {
+    const currentResultTypes = state.reporting.request.dailyResultTypes;
+    const availableKey = Object.keys(currentResultTypes)
+      .find((color) => currentResultTypes[color] === null);
+    
+    if (!availableKey) {
+      return false;
+    }
+
+    commit(
+      MutationsTypes.SET_REPORTING_DAILY_RESULTS_TYPES,
+      Object.assign({}, currentResultTypes, {[availableKey]: payload}),
+    );
+    return true;
+  },
+
+  [ActionsTypes.REMOVE_REPORTING_DAILY_RESULTS_TYPE](
+    {commit, state}, payload: KpiType,
+  ): void {
+    const currentResultTypes = state.reporting.request.dailyResultTypes;
+    const key = Object.keys(currentResultTypes)
+      .find((color) => currentResultTypes[color] === payload);
+    
+    if (!key) {
+      return;
+    }
+
+    commit(
+      MutationsTypes.SET_REPORTING_DAILY_RESULTS_TYPES,
+      Object.assign({}, currentResultTypes, {[key]: null}),
+    );
   },
 
   async [ActionsTypes.GET_REPORTING_KPIS](

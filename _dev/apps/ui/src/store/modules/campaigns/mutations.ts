@@ -35,6 +35,7 @@ import {
   ConversionAction,
   CampaignStatusPayload,
   Dimension,
+  DailyResultTypes,
 } from './state';
 import {
   addPropertiesToDimension, deepUpdateDimensionVisibilityFromTree,
@@ -77,11 +78,11 @@ export default {
     };
   },
 
-  [MutationsTypes.SET_REPORTING_DAILY_RESULTS_TYPE](
+  [MutationsTypes.SET_REPORTING_DAILY_RESULTS_TYPES](
     state: LocalState,
-    payload: KpiType,
+    payload: DailyResultTypes,
   ) {
-    state.reporting.request.dailyResultType = payload;
+    state.reporting.request.dailyResultTypes = payload;
   },
   [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_ORDERING](
     state: LocalState,

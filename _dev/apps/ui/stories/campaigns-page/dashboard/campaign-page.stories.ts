@@ -3,7 +3,7 @@ import {rest} from 'msw';
 import CampaignPage from '@/views/campaign-page.vue'
 import {campaigns, campaignsListEmptyResponse, campaignsListResponse} from '@/../.storybook/mock/campaigns-list';
 import {adsAccountStatus} from '@/../.storybook/mock/google-ads';
-import { dailyResultsDatas, dailyResultsEmpty } from '@/../.storybook/mock/reporting/daily-results';
+import { dailyResultNotPerformingData, dailyResultsDatas, dailyResultsEmpty } from '@/../.storybook/mock/reporting/daily-results';
 import { kpiDatas, kpisEmpty } from '@/../.storybook/mock/reporting/kpi';
 
 export default {
@@ -78,7 +78,7 @@ WithSeveralCampaignsNotPerforming.parameters = {
       rest.get('/ads-reporting/daily-results', (req, res, ctx) => {
         return res(
           ctx.json({
-            ...dailyResultsEmpty,
+            ...dailyResultNotPerformingData,
           })
         );
       }),

@@ -25,6 +25,11 @@
           {{ getFormattedValue }}
         </dd>
       </dl>
+      <b-link
+        v-if="!disabled"
+        class="stretched-link external_link-no_icon"
+        @click="$emit('toggleKpi'/*, {newStatus: !activeColor, kpiType: kpiType}*/)"
+      />
     </b-card>
   </b-col>
 </template>
@@ -46,7 +51,7 @@ export default {
       required: true,
     },
     kpiType: {
-      type: String,
+      type: String as PropType<KpiType>,
       required: true,
     },
     disabled: {

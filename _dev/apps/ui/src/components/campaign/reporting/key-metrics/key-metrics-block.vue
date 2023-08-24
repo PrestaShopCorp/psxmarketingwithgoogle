@@ -33,6 +33,7 @@
           :kpi-value="kpiValue.toString()"
           :disabled="!accountHasAtLeastOneCampaign"
           :active-color="associatedColorToKpi(kpiType)"
+          @toggleKpi="toggleKpi(kpiType, !associatedColorToKpi(kpiType))"
         />
       </KeyMetricsKpiCardGroup>
       <KeyMetricsChartWrapper
@@ -75,7 +76,7 @@ import KeyMetricsKpiCard from './key-metrics-kpi-card.vue';
 import KeyMetricsChartWrapper from './key-metrics-chart-wrapper.vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 import NotConfiguredCard from '@/components/commons/not-configured-card.vue';
-import { DailyResultTypes, Kpis } from '@/store/modules/campaigns/state';
+import {DailyResultColor, DailyResultTypes, Kpis} from '@/store/modules/campaigns/state';
 import KpiType from '@/enums/reporting/KpiType';
 
 export default {
@@ -117,8 +118,15 @@ export default {
     fetchKpis() {
       this.$store.dispatch('campaigns/GET_REPORTING_KPIS');
     },
-    associatedColorToKpi(kpi: KpiType): string|undefined {
+    associatedColorToKpi(kpi: KpiType): DailyResultColor|undefined {
       return Object.keys(this.dailyResultTypesSelected).find((color: string) => this.dailyResultTypesSelected[color] === kpi);
+    },
+    toggleKpi(type: KpiType, newValueIsActive: boolean): void {
+      if (!newValueIsActive) {
+        this.$store.dispatch('campaigns/REMOVE_REPORTING_DAILY_RESULTS_TYPE', type);
+        return;
+      }
+      this.$store.dispatch('campaigns/ADD_REPORTING_DAILY_RESULTS_TYPE', type);
     },
   },
 };

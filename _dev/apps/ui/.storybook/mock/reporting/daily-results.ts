@@ -14,6 +14,20 @@ export const dailyResultsEmpty = {
   ]
 }
 
+export const dailyResultNotPerformingData = {
+  dailyResultList: Array.from(Array(30)).map((x, i) => ({
+    impressions: 0,
+    clicks: 0,
+    conversions: 0,
+    averageCostPerClick: 0,
+    costs: 0,
+    sales: 0,
+    date: dateGenerator(i),
+  })),
+};
+
+console.log(dailyResultNotPerformingData);
+
 export const dailyResultsDatas = {
   dailyResultList: [
     {
