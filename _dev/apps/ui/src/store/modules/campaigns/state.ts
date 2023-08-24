@@ -249,8 +249,8 @@ export const state: State = {
       },
       dailyResultTypes: {
         [DailyResultColor.BLACK]: KpiType.IMPRESSIONS,
-        [DailyResultColor.BLUE]: KpiType.CLICKS,
-        [DailyResultColor.YELLOW]: KpiType.CONVERSIONS,
+        [DailyResultColor.BLUE]: null,
+        [DailyResultColor.YELLOW]: null,
       },
       ordering: {
         campaignsPerformances: {

@@ -79,6 +79,7 @@ export default {
                 borderDash: (ctx) => skipped(ctx, [6, 6]),
               },
               spanGaps: true,
+              yAxisID: this.typeDisplaysPrices(kpiType)? 'yPrice': 'y',
             };
           },
         ),
@@ -105,14 +106,25 @@ export default {
         },
         scales: {
           y: {
-            // TODO: Be able to display several axis depending on the selected kpi types 
+            display: 'auto',
+            min: 0,
+            grace: '15%',
+          },
+          yPrice: {
+            axis: 'y',
+            display: 'auto',
+            position: 'right',
+            grid: {
+              drawOnChartArea: false,
+            },
             ticks: {
               callback: (value) => this.getFormattedValue(
                 value,
-                this.$store.getters['campaigns/GET_REPORTING_DAILY_RESULT_TYPES'],
+                KpiType.AVERAGE_COST_PER_CLICK,
               ),
             },
             min: 0,
+            grace: '15%',
           },
           x: {
             type: 'time',
@@ -131,8 +143,17 @@ export default {
             display: false,
           },
           tooltip: {
+            intersect: false,
             callbacks: {
               title: (tooltipItems) => tooltipItems.map((tooltipItem) => timeConverterToDate(tooltipItem.parsed.x)),
+              label: (tooltipItem) => {
+                if (tooltipItem.dataset.yAxisID === 'yPrice') {
+                  const label = tooltipItem.dataset.label;
+                  const price = this.getFormattedValue(tooltipItem.parsed.y);
+                  return `${label}: ${price}`;
+                }
+                // Otherwise, keep default behavior
+              }
             },
           },
         },
@@ -146,13 +167,12 @@ export default {
     fetchGraph() {
       this.$store.dispatch('campaigns/GET_REPORTING_DAILY_RESULTS');
     },
-    getFormattedValue(value: string|number|Point|null, type: KpiType) {
-      if (type === KpiType.CLICKS
-        || type === KpiType.CONVERSIONS
-        || type === KpiType.IMPRESSIONS) {
-        return value;
-      }
-
+    typeDisplaysPrices(type: KpiType): boolean {
+      return type === KpiType.AVERAGE_COST_PER_CLICK
+        || type === KpiType.SALES
+        || type === KpiType.COSTS;
+    },
+    getFormattedValue(value: string|number|Point|null) {
       return this.$options.filters.formatPrice(value, this.currencyCode);
     },
   },
