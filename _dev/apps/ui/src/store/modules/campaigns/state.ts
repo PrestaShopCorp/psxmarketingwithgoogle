@@ -113,12 +113,21 @@ export interface ReportingErrorList {
   filtersPerformancesSection: boolean;
 }
 
-export interface RequestParams {
-  dateRange: DateRange;
-  dailyResultType: KpiType;
-  ordering: Orderings;
+export enum DailyResultColor {
+  BLACK = '#1D1D1B',
+  BLUE = '#174EEF',
+  YELLOW = '#FFD999',
 }
 
+export type DailyResultTypes = {
+  [key in DailyResultColor]: KpiType|null;
+};
+
+export interface RequestParams {
+  dateRange: DateRange;
+  dailyResultTypes: DailyResultTypes;
+  ordering: Orderings;
+}
 export interface ResultsRequest {
   kpis: Kpis;
   dailyResultChart: DailyresultChart;
@@ -238,7 +247,11 @@ export const state: State = {
         startDate: dayjs().subtract(1, 'day').format('YYYY-MM-DD'),
         endDate: dayjs().subtract(1, 'day').format('YYYY-MM-DD'),
       },
-      dailyResultType: KpiType.IMPRESSIONS,
+      dailyResultTypes: {
+        [DailyResultColor.BLACK]: KpiType.IMPRESSIONS,
+        [DailyResultColor.BLUE]: KpiType.CLICKS,
+        [DailyResultColor.YELLOW]: KpiType.CONVERSIONS,
+      },
       ordering: {
         campaignsPerformances: {
           clicks: QueryOrderDirection.DESCENDING,

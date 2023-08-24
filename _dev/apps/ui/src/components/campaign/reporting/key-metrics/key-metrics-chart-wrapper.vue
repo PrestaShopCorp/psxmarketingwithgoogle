@@ -38,10 +38,10 @@
 </template>
 
 <script lang="ts">
-import {ChartData, ChartOptions, ScriptableLineSegmentContext} from 'chart.js';
+import {ChartData, ChartDataset, ChartOptions, Point, ScriptableLineSegmentContext} from 'chart.js';
 import KpiType from '@/enums/reporting/KpiType';
 import Chart from '@/components/chart/chart.vue';
-import { Kpis } from '@/store/modules/campaigns/state';
+import { Kpis, DailyResultTypes, DailyResultColor } from '@/store/modules/campaigns/state';
 
 const skipped = (ctx: ScriptableLineSegmentContext, value: [number, number]) => ctx.p0.skip || ctx.p1.skip ? value : undefined;
 
@@ -57,33 +57,30 @@ export default {
     dailyResultTypeList() {
       return Object.values(KpiType);
     },
-    dailyResultTypeSelected: {
-      get() {
-        return this.$store.getters['campaigns/GET_REPORTING_DAILY_RESULT_TYPE'];
-      },
-      set(dailyResultType) {
-        this.$store.commit(
-          'campaigns/SET_REPORTING_DAILY_RESULTS_TYPE',
-          dailyResultType,
-        );
-      },
+    dailyResultTypesSelected(): DailyResultTypes {
+      return this.$store.getters['campaigns/GET_REPORTING_DAILY_RESULT_TYPES'];
     },
     getDataSetsByMetric(): ChartData<'line'> {
       return {
         labels: this.getLabels,
-        datasets: [
-          {
-            label: this.$t(`keymetrics.${this.dailyResultTypeSelected}`).toString(),
-            data: this.getMetrics.map((a) => a[this.dailyResultTypeSelected]),
-            backgroundColor: '#000000',
-            borderColor: '#000000',
-            borderWidth: 2,
-            segment: {
-              borderDash: (ctx) => skipped(ctx, [6, 6]),
-            },
-            spanGaps: true,
+        datasets: Object.keys(this.dailyResultTypesSelected)
+          .filter((color: string) => !!this.dailyResultTypesSelected[color])
+          .map((color: string): ChartDataset<"line", (number | Point | null)[]> => {
+            const kpiType = this.dailyResultTypesSelected[color];
+
+            return {
+              label: this.$t(`keymetrics.${kpiType}`).toString(),
+              data: this.getMetrics.map((a) => a[kpiType]),
+              backgroundColor: color,
+              borderColor: color,
+              borderWidth: 2,
+              segment: {
+                borderDash: (ctx) => skipped(ctx, [6, 6]),
+              },
+              spanGaps: true,
+            };
           },
-        ],
+        ),
       };
     },
     getMetrics(): Kpis[] {
@@ -107,8 +104,12 @@ export default {
         },
         scales: {
           y: {
+            // TODO: Be able to display several axis depending on the selected kpi types 
             ticks: {
-              callback: (value) => this.getFormattedValue(value),
+              callback: (value) => this.getFormattedValue(
+                value,
+                this.$store.getters['campaigns/GET_REPORTING_DAILY_RESULT_TYPES'],
+              ),
             },
             min: 0,
           },
@@ -122,12 +123,6 @@ export default {
           },
         },
         plugins: {
-          tooltip: {
-            callbacks: {
-              label: (context) => this.getFormattedValue(
-                context.dataset.data[context.dataIndex]),
-            },
-          },
           legend: {
             display: false,
           },
@@ -142,12 +137,10 @@ export default {
     fetchGraph() {
       this.$store.dispatch('campaigns/GET_REPORTING_DAILY_RESULTS');
     },
-    getFormattedValue(value) {
-      const selectedKpi = this.$store.getters['campaigns/GET_REPORTING_DAILY_RESULT_TYPE'];
-
-      if (selectedKpi === KpiType.CLICKS
-        || selectedKpi === KpiType.CONVERSIONS
-        || selectedKpi === KpiType.IMPRESSIONS) {
+    getFormattedValue(value: string|number|Point|null, type: KpiType) {
+      if (type === KpiType.CLICKS
+        || type === KpiType.CONVERSIONS
+        || type === KpiType.IMPRESSIONS) {
         return value;
       }
 

@@ -30,6 +30,7 @@ import {
   ConversionAction,
   Dimension,
   FiltersChosen,
+  DailyResultTypes,
 } from './state';
 import GettersTypes from './getters-types';
 import KpiType from '@/enums/reporting/KpiType';
@@ -123,10 +124,10 @@ export default {
       .locale(window.i18nSettings.isoCode)
       .format('L');
   },
-  [GettersTypes.GET_REPORTING_DAILY_RESULT_TYPE](
+  [GettersTypes.GET_REPORTING_DAILY_RESULT_TYPES](
     state: LocalState,
-  ): KpiType {
-    return state.reporting.request.dailyResultType;
+  ): DailyResultTypes {
+    return state.reporting.request.dailyResultTypes;
   },
   [GettersTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES_ORDERING](
     state: LocalState,
