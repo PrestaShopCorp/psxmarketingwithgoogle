@@ -20,6 +20,7 @@ import GettersTypes from './getters-types';
 import {State as LocalState, HelpInformations, DebugData} from './state';
 import countriesSelectionOptions from '../../../assets/json/countries.json';
 import symbols from '@/assets/json/symbols.json';
+import prestashopUrls from '@/assets/json/prestashopUrl.json';
 
 export default {
   [GettersTypes.GET_IS_COUNTRY_MEMBER_OF_EU](state: LocalState): boolean {
@@ -33,6 +34,12 @@ export default {
   },
   [GettersTypes.GET_DOC_AND_FAQ](state: LocalState): HelpInformations {
     return state.psxMktgWithGoogleDocumentAndFaq;
+  },
+  [GettersTypes.GET_SUPPORT_URL](
+    state: LocalState, getters, rootState, rootGetters,
+  ): string {
+    const domain = rootGetters['accounts/GET_PS_ACCOUNTS_CONTEXT'].currentShop.domain;
+    return `${prestashopUrls.contactForm}?utm_source=back-office&utm_medium=psx&psx=psxmarketingwithgoogle&shop_domain=${domain}`;
   },
   [GettersTypes.GET_DEBUG_DATA](state: LocalState): DebugData {
     return state.debugData;

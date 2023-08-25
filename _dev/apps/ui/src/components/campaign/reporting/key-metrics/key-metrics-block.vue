@@ -45,12 +45,13 @@
           class="d-inline-block"
           tag="p"
         >
-          <router-link
-            :to="{ name: 'help'}"
-            class="external_link-no_icon"
+          <b-link
+            variant="link"
+            target="_blank"
+            :href="supportUrl"
           >
             {{ $t('help.helpCenter') }}
-          </router-link>
+          </b-link>
         </i18n>
         <i18n
           path="cta.seeOnGoogleAds"
@@ -109,6 +110,9 @@ export default {
     },
     accountHasAtLeastOneCampaign() {
       return !!this.$store.getters['campaigns/GET_CAMPAIGNS_LIST']?.length;
+    },
+    supportUrl(): string {
+      return this.$store.getters['app/GET_SUPPORT_URL'];
     },
   },
   mounted() {

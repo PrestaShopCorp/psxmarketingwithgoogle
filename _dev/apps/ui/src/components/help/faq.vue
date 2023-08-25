@@ -82,9 +82,7 @@
               <b-link
                 variant="link"
                 target="_blank"
-                :href="
-                  `${$options.prestashopUrl.contactForm}${supportUrl}`
-                "
+                :href="supportUrl"
               >
                 {{ $t("help.help.contactUs") }}
               </b-link>
@@ -156,17 +154,13 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
-import prestashopUrl from '@/assets/json/prestashopUrl.json';
 
 export default defineComponent({
   props: ['informations', 'loading'],
 
   computed: {
-    getDomain() {
-      return this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT'].currentShop.domain;
-    },
     supportUrl() {
-      return `?utm_source=back-office&utm_medium=psx&psx=psxmarketingwithgoogle&shop_domain=${this.getDomain}`;
+      return this.$store.getters['app/GET_SUPPORT_URL'];
     },
   },
   methods: {
@@ -189,6 +183,5 @@ export default defineComponent({
       return urls[lang] || urls.en;
     },
   },
-  prestashopUrl,
 });
 </script>
