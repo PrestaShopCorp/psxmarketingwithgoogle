@@ -421,9 +421,9 @@ export default {
         `shopping-campaigns/list?${query}`,
       )).json();
       commit(MutationsTypes.SAVE_CAMPAIGNS_TO_LIST, {
-        campaigns: json.campaigns,
+        campaigns: json.results,
       });
-      commit(MutationsTypes.SET_CAMPAIGNS_LIST_TOTAL, json.totalCount);
+      commit(MutationsTypes.SET_CAMPAIGNS_LIST_TOTAL, json.total);
     } catch (error) {
       commit(MutationsTypes.SET_CAMPAIGNS_LIST_ERROR, true);
       console.error(error);
