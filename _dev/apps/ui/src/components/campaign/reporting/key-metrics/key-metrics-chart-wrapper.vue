@@ -44,7 +44,7 @@ import Chart from '@/components/chart/chart.vue';
 import {Kpis, DailyResultTypes} from '@/store/modules/campaigns/state';
 import { timeConverterToDate } from '@/utils/Dates';
 
-const skipped = (ctx: ScriptableLineSegmentContext, value: [number, number]) => ctx.p0.skip || ctx.p1.skip ? value : undefined;
+const skipped = (ctx: ScriptableLineSegmentContext, value: [number, number]) => ctx.p0.skip || ctx.p1.skip || ctx.p1.stop ? value : undefined;
 
 export default {
   name: 'KeyMetricsChartWrapper',
@@ -78,7 +78,7 @@ export default {
               segment: {
                 borderDash: (ctx) => skipped(ctx, [6, 6]),
               },
-              spanGaps: true,
+              spanGaps: 1000 * 60 * 60 * 24 * 2, // 2 days,
               yAxisID: this.typeDisplaysPrices(kpiType)? 'yPrice': 'y',
             };
           },
@@ -101,7 +101,7 @@ export default {
       return {
         elements: {
           point: {
-            pointStyle: false,
+            pointStyle: this.$store.getters['campaigns/GET_REPORTING_START_DATES'] === this.$store.getters['campaigns/GET_REPORTING_END_DATES'] ? 'circle': false,
           },
         },
         scales: {

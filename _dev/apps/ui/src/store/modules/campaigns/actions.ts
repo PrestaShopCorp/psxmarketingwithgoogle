@@ -172,6 +172,7 @@ export default {
     dispatch('GET_REPORTING_PRODUCTS_PERFORMANCES');
     // temporary disable, waiting final table design
     dispatch('GET_REPORTING_FILTERS_PERFORMANCES');
+    dispatch('GET_CAMPAIGNS_LIST');
   },
   [ActionsTypes.SET_REPORTING_DATES_RANGE](
     {commit, state},

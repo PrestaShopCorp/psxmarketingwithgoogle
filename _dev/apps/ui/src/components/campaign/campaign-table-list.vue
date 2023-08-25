@@ -3,7 +3,7 @@
     <b-card
       no-body
       class="ps_gs-onboardingcard"
-      v-if="campaignList.length || loading || apiFailed"
+      v-if="campaignList.length || loading || fetchingCampaigns || apiFailed"
     >
       <template #header>
         <ol class="mb-0 list-inline d-flex align-items-center ps_gs-breadcrumb">
@@ -62,7 +62,7 @@
 
           <b-tbody class="bg-white">
             <template
-              v-if="loading"
+              v-if="loading || fetchingCampaigns"
             >
               <b-tr
                 v-for="index in pageSize"
@@ -139,6 +139,11 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      fetchingCampaigns: false as boolean,
+    };
+  },
   computed: {
     ...mapGetters('campaigns', {
       campaignList: GettersTypes.GET_CAMPAIGNS_LIST,
@@ -196,7 +201,7 @@ export default {
       return headerType !== CampaignSummaryListHeaderType.STATUS;
     },
     hasSorting(headerType: CampaignSummaryListHeaderType): boolean {
-      return this.isPerformanceInfo(headerType);
+      return this.isPerformanceInfo(headerType) || headerType === CampaignSummaryListHeaderType.DURATION;
     },
     isPerformanceInfo(headerType: CampaignSummaryListHeaderType): boolean {
       return [
@@ -209,7 +214,7 @@ export default {
     },
     sortByType(headerType: CampaignSummaryListHeaderType) {
       // create new object for satisfy deep getter of vueJS
-      const newOrderDirection = {...this.queryOrderDirection};
+      const newOrderDirection = {};
 
       if (
         this.queryOrderDirection[headerType] === QueryOrderDirection.ASCENDING
@@ -221,7 +226,9 @@ export default {
       this.queryOrderDirection = newOrderDirection;
     },
     async fetchCampaigns() {
+      this.fetchingCampaigns = true;
       await this.$store.dispatch('campaigns/GET_CAMPAIGNS_LIST');
+      this.fetchingCampaigns = false;
     },
     changeLimit(event: number) {
       this.$store.commit(`campaigns/${MutationsTypes.SET_CAMPAIGNS_LIST_PAGE_SIZE}`, event);
