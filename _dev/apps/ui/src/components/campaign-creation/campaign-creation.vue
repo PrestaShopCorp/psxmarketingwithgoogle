@@ -835,8 +835,7 @@ export default defineComponent({
 
     if (this.editMode === true) {
       if (!this.campaignsList.length) {
-        await this.$store.dispatch('campaigns/GET_CAMPAIGNS_LIST',
-          {isNewRequest: true});
+        await this.$store.dispatch('campaigns/GET_CAMPAIGNS_LIST');
       }
       if (!this.campaignToEditFromList) {
         this.$router.push({

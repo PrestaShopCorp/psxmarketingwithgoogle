@@ -281,6 +281,7 @@ export const state: State = {
         [DailyResultColor.BLUE]: null,
         [DailyResultColor.YELLOW]: null,
       },
+      // TODO: To remove
       ordering: {
         campaignsPerformances: {
           clicks: QueryOrderDirection.DESCENDING,
@@ -292,6 +293,7 @@ export const state: State = {
           clicks: QueryOrderDirection.DESCENDING,
         },
       },
+      // End of TODO
     },
     results: {
       kpis: {
@@ -305,6 +307,7 @@ export const state: State = {
       dailyResultChart: {
         dailyResultList: [],
       },
+      // TODO: to remove
       campaignsPerformancesSection: {
         campaignsPerformanceList: [],
         limitCampaignPerformanceList: 10,
@@ -317,12 +320,15 @@ export const state: State = {
       filtersPerformancesSection: {
         productsPartitionsPerformanceList: [],
       },
+      // End of TODO
     },
     errorsList: {
       kpis: false,
+      // TODO: To remove
       campaignsPerformancesSection: false,
       productsPerformancesSection: false,
       filtersPerformancesSection: false,
+      // End of TODO
     },
   },
 };

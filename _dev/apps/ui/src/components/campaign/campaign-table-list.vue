@@ -101,7 +101,7 @@
         </b-table-simple>
         <TablePageControls
           :total-pages="totalPages"
-          :active-page="activePage+1"
+          :active-page="activePage"
           :selected-filter-quantity-to-show="pageSize"
         />
       </b-card-body>
@@ -112,6 +112,8 @@
 <script lang="ts">
 import {mapGetters} from 'vuex';
 import GettersTypes from '@/store/modules/campaigns/getters-types';
+import MutationsTypes from '@/store/modules/campaigns/mutations-types';
+import {CampaignListOrdering} from '@/store/modules/campaigns/state';
 import CampaignTableListRow from './campaign-table-list-row.vue';
 import ReportingTableHeader from './reporting/commons/reporting-table-header.vue';
 import CampaignSummaryListHeaderType from '@/enums/campaigns-summary/CampaignSummaryListHeaderType';
@@ -142,19 +144,40 @@ export default {
       campaignList: GettersTypes.GET_CAMPAIGNS_LIST,
       apiFailed: GettersTypes.GET_CAMPAIGNS_LIST_ERROR,
       pageSize: GettersTypes.GET_CAMPAIGNS_LIST_LIMIT,
-      activePage: GettersTypes.GET_CAMPAIGNS_LIST_ACTIVE_PAGE,
-      totalPages: GettersTypes.GET_CAMPAIGNS_TOTAL,
     }),
     campaignHeaderList() {
       return Object.values(CampaignSummaryListHeaderType);
     },
+    totalPages(): number {
+      const totalPages = this.$store.getters[`campaigns/${GettersTypes.GET_CAMPAIGNS_TOTAL}`]
+      / this.$store.getters[`campaigns/${GettersTypes.GET_CAMPAIGNS_LIST_LIMIT}`];
+
+      if (totalPages < 1) {
+        return 1;
+      }
+      return Math.ceil(totalPages);
+    },
+    activePage: {
+      get(): number {
+        return this.$store.getters[
+          `campaigns/${GettersTypes.GET_CAMPAIGNS_LIST_ACTIVE_PAGE}`
+        ];
+      },
+      set(page: number): void {
+        this.$store.commit(
+          `campaigns/${MutationsTypes.SET_CAMPAIGNS_LIST_ACTIVE_PAGE}`,
+          page,
+        );
+        this.fetchCampaigns();
+      },
+    },
     queryOrderDirection: {
-      get() {
+      get(): CampaignListOrdering {
         return this.$store.getters[
           'campaigns/GET_CAMPAIGNS_LIST_ORDERING'
         ];
       },
-      set(orderDirection) {
+      set(orderDirection: CampaignListOrdering): void {
         this.$store.commit(
           'campaigns/SET_CAMPAIGNS_LIST_ORDERING',
           orderDirection,
@@ -197,13 +220,27 @@ export default {
       }
       this.queryOrderDirection = newOrderDirection;
     },
-    fetchCampaigns(isNewRequest: boolean = true) {
-      this.$store
-        .dispatch('campaigns/GET_CAMPAIGNS_LIST', {isNewRequest})
-        .then(() => {
-          this.$store.dispatch('campaigns/GET_DIMENSIONS_FILTERS', null);
-        })
+    async fetchCampaigns() {
+      await this.$store.dispatch('campaigns/GET_CAMPAIGNS_LIST');
     },
+    changeLimit(event: number) {
+      this.$store.commit(`campaigns/${MutationsTypes.SET_CAMPAIGNS_LIST_PAGE_SIZE}`, event);
+      this.fetchCampaigns();
+    },
+    changePageTo(pageNumber: number) {
+      this.$store.commit(`campaigns/${MutationsTypes.SET_CAMPAIGNS_LIST_ACTIVE_PAGE}`, pageNumber);
+      this.fetchCampaigns();
+    },
+  },
+  mounted() {
+    this.$root.$on('changeLimit', this.changeLimit);
+    this.$root.$on('changePage', this.changePageTo);
+    this.fetchCampaigns();
+    this.$store.dispatch('campaigns/GET_DIMENSIONS_FILTERS', null);
+  },
+  beforeDestroy() {
+    this.$root.$off('changeLimit', this.changeLimit);
+    this.$root.$off('changePage', this.changePageTo);
   },
   googleUrl,
   CampaignTypes,

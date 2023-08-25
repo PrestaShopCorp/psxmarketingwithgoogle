@@ -194,7 +194,6 @@ export default defineComponent({
         } else {
           this.$store.dispatch(
             'campaigns/GET_CAMPAIGNS_LIST',
-            {isNewRequest: true, typeChosen: CampaignTypes.PERFORMANCE_MAX},
           );
           this.$router.push({
             name: 'campaign',

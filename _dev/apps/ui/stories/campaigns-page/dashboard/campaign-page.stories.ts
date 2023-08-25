@@ -26,7 +26,7 @@ const Template = (args, { argTypes }) => ({
 export const NeedConfiguration:any = Template.bind({});
 NeedConfiguration.args = {
   beforeCreate() {
-    this.$store.state.campaigns.campaigns.results.campaigns =campaigns;
+    this.$store.state.campaigns.campaigns.results.campaigns = campaigns;
     this.$router.push({name: 'campaign'});
   },
 };
@@ -66,7 +66,7 @@ export const WithSeveralCampaignsNotPerforming:any = Template.bind({});
 WithSeveralCampaignsNotPerforming.args = {
   beforeCreate() {
     this.$store.state.googleAds = cloneDeep(adsAccountStatus);
-    this.$store.state.campaigns.campaigns.results.campaigns =campaigns;
+    this.$store.state.campaigns.campaigns.results.campaigns = campaigns;
     this.$router.push({name: 'campaign'});
   },
 };
@@ -97,7 +97,7 @@ export const WithoutCampaigns:any = Template.bind({});
 WithoutCampaigns.args = {
   beforeCreate() {
     this.$store.state.googleAds = cloneDeep(adsAccountStatus);
-    this.$store.state.campaigns.campaigns.results.campaigns =campaigns;
+    this.$store.state.campaigns.campaigns.results.campaigns = campaigns;
     this.$router.push({name: 'campaign'});
   },
 }

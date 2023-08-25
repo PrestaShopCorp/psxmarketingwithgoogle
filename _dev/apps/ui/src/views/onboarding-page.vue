@@ -471,7 +471,7 @@ export default {
     googleAdsAccountIsChosen(newVal, oldVal) {
       if (oldVal === null && newVal === true) {
         this.SSCIsLoading = true;
-        this.$store.dispatch('campaigns/GET_CAMPAIGNS_LIST', {isNewRequest: true}).finally(() => {
+        this.$store.dispatch('campaigns/GET_CAMPAIGNS_LIST').finally(() => {
           this.SSCIsLoading = false;
         });
         this.$store.dispatch('campaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');

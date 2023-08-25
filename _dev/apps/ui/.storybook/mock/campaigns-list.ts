@@ -109,7 +109,7 @@ export const campaigns: CampaignObject[] = [
 
 export const campaignsListResponse = {
   campaigns: campaigns,
-  totalCount: 700,
+  totalCount: 70,
 };
 
 export const campaignsListEmptyResponse = {

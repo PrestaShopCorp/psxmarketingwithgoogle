@@ -180,14 +180,6 @@ export default {
       ...payload,
     );
   },
-  [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_RESULTS](
-    state: LocalState,
-    payload: CampaignPerformances[],
-  ) {
-    state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList.push(
-      ...payload,
-    );
-  },
   [MutationsTypes.RESET_REPORTING_CAMPAIGNS_PERFORMANCES](state: LocalState) {
     state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList = [];
   },
@@ -199,6 +191,30 @@ export default {
     payload: CampaignListOrdering,
   ) {
     state.campaigns.request.ordering = payload;
+  },
+  [MutationsTypes.SET_CAMPAIGNS_LIST_ACTIVE_PAGE](
+    state: LocalState,
+    payload: number,
+  ) {
+    state.campaigns.request.activePage = payload;
+  },
+  [MutationsTypes.SET_CAMPAIGNS_LIST_PAGE_SIZE](
+    state: LocalState,
+    payload: number,
+  ) {
+    state.campaigns.request.numberOfCampaignsPerPage = payload;
+  },
+  [MutationsTypes.SET_CAMPAIGNS_LIST_TOTAL](
+    state: LocalState,
+    payload: number,
+  ) {
+    state.campaigns.results.totalCount = payload;
+  },
+  [MutationsTypes.SET_CAMPAIGNS_LIST_ERROR](
+    state: LocalState,
+    payload: boolean,
+  ) {
+    state.campaigns.results.error = payload;
   },
   [MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES](
     state: LocalState,
@@ -213,7 +229,7 @@ export default {
     state.reporting.results.filtersPerformancesSection = payload;
   },
   [MutationsTypes.SAVE_NEW_CAMPAIGN](state: LocalState, payload: CampaignObject) {
-    state.campaigns.push(payload);
+    state.campaigns.results.campaigns.push(payload);
   },
   [MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS](
     state: LocalState,
@@ -227,7 +243,7 @@ export default {
       campaigns: CampaignObject[],
     },
   ) {
-    state.campaigns.push(...payload.campaigns);
+    state.campaigns.results.campaigns = payload.campaigns;
   },
   [MutationsTypes.SET_TOTAL_CAMPAIGNS_PERFORMANCES_RESULTS](
     state: LocalState,
@@ -251,7 +267,7 @@ export default {
     state: LocalState,
     payload: CampaignStatusPayload,
   ) {
-    const campaign = state.campaigns.find((el) => el.id === payload.id);
+    const campaign = state.campaigns.results.campaigns.find((el) => el.id === payload.id);
 
     if (campaign !== undefined) {
       campaign.status = payload.status === CampaignStatusToggle.ENABLED
@@ -265,9 +281,9 @@ export default {
       ? CampaignStatus.ELIGIBLE
       : CampaignStatus.PAUSED;
 
-    const findCampaign = state.campaigns.findIndex(
+    const findCampaign = state.campaigns.results.campaigns.findIndex(
       (el) => el.id === payload.id,
     );
-    state.campaigns.splice(findCampaign, 1, payload);
+    state.campaigns.results.campaigns.splice(findCampaign, 1, payload);
   },
 };

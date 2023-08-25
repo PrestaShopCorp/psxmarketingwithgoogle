@@ -22,7 +22,7 @@
     >
       <b-pagination
         @change="goToPage"
-        v-model="activePage"
+        :value="activePage"
         :total-rows="totalPages"
         :per-page="1"
         first-number

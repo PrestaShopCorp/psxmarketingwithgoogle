@@ -401,39 +401,30 @@ export default {
     commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES,
       result);
   },
-  async [ActionsTypes.GET_CAMPAIGNS_LIST]({commit, state, rootState}, {
-    isNewRequest = true,
-  }) {
+  async [ActionsTypes.GET_CAMPAIGNS_LIST]({commit, state, rootState}: {state: State}) {
     const query = new URLSearchParams();
 
-    if (state.campaigns.request.ordering && state.campaigns.request.ordering.duration) {
-      query.append('order[startDate]', state.campaigns.request.ordering.duration);
-    }
-    if (state.campaigns.request.ordering && state.campaigns.request.ordering.name) {
-      query.append('filter[campaignName]', state.campaigns.request.ordering.name);
-    }
-    if (!isNewRequest && !state.nextPageTokenCampaignList) {
-      return;
-    }
-    if (!isNewRequest && state.nextPageTokenCampaignList) {
-      query.append('nextPageToken', state.nextPageTokenCampaignList);
-    }
+    Object.keys(state.campaigns.request.ordering).forEach((ordering) => {
+      query.append(`order[${ordering}]`, state.campaigns.request.ordering[ordering]);
+    });
+
+    query.append('offset', (state.campaigns.request.activePage -1) * state.campaigns.request.numberOfCampaignsPerPage);
+    query.append('limit', state.campaigns.request.numberOfCampaignsPerPage);
+    query.append('startDate', state.reporting.request.dateRange.startDate);
+    query.append('endDate', state.reporting.request.dateRange.endDate);
+
+    // TODO: page management
     try {
       const json = await (await fetchOnboarding(
         'GET',
         `shopping-campaigns/list?${query}`,
       )).json();
-
-      if (isNewRequest) {
-        commit(MutationsTypes.RESET_CAMPAIGNS_LIST);
-      }
       commit(MutationsTypes.SAVE_CAMPAIGNS_TO_LIST, {
         campaigns: json.campaigns,
       });
-      /*commit(MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST, {
-        nextPageToken: json.nextPageToken,
-      });*/
+      commit(MutationsTypes.SET_CAMPAIGNS_LIST_TOTAL, json.totalCount,);
     } catch (error) {
+      commit(MutationsTypes.SET_CAMPAIGNS_LIST_ERROR, true);
       console.error(error);
     }
   },
