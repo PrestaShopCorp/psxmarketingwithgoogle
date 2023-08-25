@@ -1,10 +1,15 @@
 <template>
   <b-tr>
     <b-td
-      class="ps_gs-fz-12 ps_gs-cell-status pr-0"
-      :class="`ps_gs-cell-status--${campaign.status.toLowerCase()}`"
+      class="ps_gs-fz-12 p-0"
     >
+      <span
+        class="ps_gs-cell-status"
+        :class="`ps_gs-cell-status--${campaign.status.toLowerCase()}`"
+        v-b-tooltip:psxMktgWithGoogleApp :title="$t(`campaigns.status.${campaign.status.toLowerCase()}`)"
+      />
     </b-td>
+
     <b-td
       class="text-primary pl-2
       justify-content-between align-items-baseline"
@@ -58,7 +63,7 @@
 
 <script lang="ts">
 import googleUrl from '@/assets/json/googleUrl.json';
-import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
+import CampaignStatus from '@/enums/reporting/CampaignStatus';
 import compareYears from '@/utils/CompareYears';
 import { PropType } from 'vue';
 import { CampaignObject } from '@/store/modules/campaigns/state';
