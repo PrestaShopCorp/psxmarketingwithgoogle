@@ -79,7 +79,7 @@ WithResults.args = {
     // fake date that will be intercepted by the storybook middleware to return results
     this.$store.state.campaigns.reporting.request.dateRange.startDate = dateGenerator(6);
     this.$store.state.campaigns.reporting.request.dateRange.endDate = dateGenerator(0);
-    this.$store.state.campaigns.campaigns = cloneDeep(campaigns);
+    this.$store.state.campaigns.campaigns.results.campaigns =cloneDeep(campaigns);
   },
 };
 

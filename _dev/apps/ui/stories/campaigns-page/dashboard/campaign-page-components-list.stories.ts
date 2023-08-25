@@ -22,7 +22,7 @@ const Template = (args, { argTypes }) => ({
 export const TableWithCampaigns:any = Template.bind({});
 TableWithCampaigns.args = {
   beforeCreate() {
-    this.$store.state.campaigns.campaigns = campaigns;
+    this.$store.state.campaigns.campaigns.results.campaigns =campaigns;
   },
   loading: false,
 }
@@ -38,7 +38,7 @@ TableWithCampaigns.parameters = {
 export const NoData:any = Template.bind({});
 NoData.args = {
   beforeCreate() {
-    this.$store.state.campaigns.campaigns = [];
+    this.$store.state.campaigns.campaigns.results.campaigns =[];
   },
   loading: false,
 }

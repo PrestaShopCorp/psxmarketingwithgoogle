@@ -410,7 +410,7 @@ export default {
       query.append('order[startDate]', state.campaigns.request.ordering.duration);
     }
     if (state.campaigns.request.ordering && state.campaigns.request.ordering.name) {
-      query.append('filter[campaignName]', state.campaigns.request.ordering..name);
+      query.append('filter[campaignName]', state.campaigns.request.ordering.name);
     }
     if (!isNewRequest && !state.nextPageTokenCampaignList) {
       return;

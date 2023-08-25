@@ -110,6 +110,8 @@
 </template>
 
 <script lang="ts">
+import {mapGetters} from 'vuex';
+import GettersTypes from '@/store/modules/campaigns/getters-types';
 import CampaignTableListRow from './campaign-table-list-row.vue';
 import ReportingTableHeader from './reporting/commons/reporting-table-header.vue';
 import CampaignSummaryListHeaderType from '@/enums/campaigns-summary/CampaignSummaryListHeaderType';
@@ -129,13 +131,6 @@ export default {
     TableApiError,
     TablePageControls,
   },
-  data() {
-    return {
-      apiFailed: false as boolean,
-      pageSize: 10 as number,
-      activePage: 0 as number,
-    };
-  },
   props: {
     loading: {
       type: Boolean,
@@ -143,16 +138,16 @@ export default {
     },
   },
   computed: {
+    ...mapGetters('campaigns', {
+      campaignList: GettersTypes.GET_CAMPAIGNS_LIST,
+      apiFailed: GettersTypes.GET_CAMPAIGNS_LIST_ERROR,
+      pageSize: GettersTypes.GET_CAMPAIGNS_LIST_LIMIT,
+      activePage: GettersTypes.GET_CAMPAIGNS_LIST_ACTIVE_PAGE,
+      totalPages: GettersTypes.GET_CAMPAIGNS_TOTAL,
+    }),
     campaignHeaderList() {
       return Object.values(CampaignSummaryListHeaderType);
     },
-    campaignList() {
-      return this.$store.state.campaigns.campaigns;
-    },
-    totalPages(): number {
-      return 2;
-    },
-
     queryOrderDirection: {
       get() {
         return this.$store.getters[

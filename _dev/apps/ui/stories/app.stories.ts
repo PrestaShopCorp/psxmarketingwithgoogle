@@ -29,7 +29,7 @@ const Template = (args, { argTypes }) => ({
     this.$store.state.accounts.googleMerchantAccount = cloneDeep(merchantCenterAccountConnected);
     this.$store.state.productFeed = cloneDeep(productFeedStatusSyncSuccess);
     this.$store.state.campaigns = cloneDeep(conversionTrackingIsTrue);
-    this.$store.state.campaigns.campaigns = cloneDeep(campaigns);
+    this.$store.state.campaigns.campaigns.results.campaigns =cloneDeep(campaigns);
     this.$store.state.campaigns.conversionActions = [{}];
     this.$store.state.googleAds = cloneDeep(adsAccountStatus);
   },

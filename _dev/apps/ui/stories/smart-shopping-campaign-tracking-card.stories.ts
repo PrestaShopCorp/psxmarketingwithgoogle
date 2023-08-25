@@ -26,7 +26,7 @@ Enabled.args = {
     this.$store.state.app = cloneDeep(initialStateApp);
     this.$store.state.accounts.contextPsAccounts = cloneDeep(contextPsAccountsConnectedAndValidated);
     this.$store.state.campaigns = cloneDeep(conversionTrackingIsTrue);
-    this.$store.state.campaigns.campaigns = cloneDeep(campaigns);
+    this.$store.state.campaigns.campaigns.results.campaigns =cloneDeep(campaigns);
     this.$store.state.campaigns.conversionActions = [{}];
   },
 };
@@ -39,7 +39,7 @@ EnabledWithRemarketingSwitchOff.args = {
     this.$store.state.app = cloneDeep(initialStateApp);
     this.$store.state.accounts.contextPsAccounts = cloneDeep(contextPsAccountsConnectedAndValidated);
     this.$store.state.campaigns = cloneDeep(conversionTrackingIsFalse);
-    this.$store.state.campaigns.campaigns = cloneDeep(campaigns);
+    this.$store.state.campaigns.campaigns.results.campaigns =cloneDeep(campaigns);
   },
 };
 
@@ -51,7 +51,7 @@ AlertAboutMissingConversionActions.args = {
     this.$store.state.app = cloneDeep(initialStateApp);
     this.$store.state.accounts.contextPsAccounts = cloneDeep(contextPsAccountsConnectedAndValidated);
     this.$store.state.campaigns = cloneDeep(conversionTrackingIsTrue);
-    this.$store.state.campaigns.campaigns = cloneDeep(campaigns);
+    this.$store.state.campaigns.campaigns.results.campaigns =cloneDeep(campaigns);
     this.$store.state.campaigns.conversionActions = [];
   },
 };

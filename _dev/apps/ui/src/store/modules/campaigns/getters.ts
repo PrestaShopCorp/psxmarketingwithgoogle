@@ -33,7 +33,6 @@ import {
   CampaignListOrdering,
 } from './state';
 import GettersTypes from './getters-types';
-import KpiType from '@/enums/reporting/KpiType';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 
 // locales for dates
