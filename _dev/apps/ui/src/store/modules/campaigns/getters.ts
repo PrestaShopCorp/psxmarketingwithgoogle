@@ -129,6 +129,11 @@ export default {
   ): DailyResultTypes {
     return state.reporting.request.dailyResultTypes;
   },
+  [GettersTypes.GET_REPORTING_DAILY_RESULT_TYPES_AVAILABLE](
+    state: LocalState,
+  ): boolean {
+    return !!Object.values(state.reporting.request.dailyResultTypes).filter((value) => !value).length;
+  },
   [GettersTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES_ORDERING](
     state: LocalState,
   ): Object {

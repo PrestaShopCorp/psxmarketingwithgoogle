@@ -7,7 +7,7 @@
     class="py-1 d-flex flex-column"
   >
     <b-card
-      class="ps_gs-kpi-card flex-grow-1"
+      class="ps_gs-kpi-card flex-grow-1 ps_gs-cursor-disabled"
       :border-variant="disabled ? 'light': 'primary'"
       :text-variant="textVariant"
       body-class="p-2"
@@ -26,9 +26,9 @@
         </dd>
       </dl>
       <b-link
-        v-if="!disabled"
+        v-if="!disabled && (dailyResultSpotAvailable || activeColor)"
         class="stretched-link external_link-no_icon"
-        @click="$emit('toggleKpi'/*, {newStatus: !activeColor, kpiType: kpiType}*/)"
+        @click="$emit('toggleKpi')"
       />
     </b-card>
   </b-col>
@@ -68,6 +68,9 @@ export default {
   computed: {
     currencyCode(): string|undefined {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode;
+    },
+    dailyResultSpotAvailable(): boolean {
+      return this.$store.getters['campaigns/GET_REPORTING_DAILY_RESULT_TYPES_AVAILABLE'];
     },
     getFormattedValue(): string {
       if (this.disabled) {
