@@ -5,6 +5,7 @@ import {campaigns, campaignsListEmptyResponse, campaignsListResponse} from '@/..
 import {adsAccountStatus} from '@/../.storybook/mock/google-ads';
 import { dailyResultNotPerformingData, dailyResultsDatas, dailyResultsEmpty } from '@/../.storybook/mock/reporting/daily-results';
 import { kpiDatas, kpisEmpty } from '@/../.storybook/mock/reporting/kpi';
+import contextPsAccountsConnectedAndValidated from '@/../.storybook/mock/ps-accounts';
 
 export default {
   title: 'Campaign/Campaigns page',
@@ -26,6 +27,7 @@ const Template = (args, { argTypes }) => ({
 export const NeedConfiguration:any = Template.bind({});
 NeedConfiguration.args = {
   beforeCreate() {
+    this.$store.state.accounts.contextPsAccounts = cloneDeep(contextPsAccountsConnectedAndValidated);
     this.$store.state.campaigns.campaigns.results.campaigns = campaigns;
     this.$router.push({name: 'campaign'});
   },
@@ -34,6 +36,7 @@ NeedConfiguration.args = {
 export const WithSeveralCampaigns:any = Template.bind({});
 WithSeveralCampaigns.args = {
   beforeCreate() {
+    this.$store.state.accounts.contextPsAccounts = cloneDeep(contextPsAccountsConnectedAndValidated);
     this.$store.state.googleAds = cloneDeep(adsAccountStatus);
     this.$store.state.campaigns.campaigns.results.campaigns = campaigns;
     this.$router.push({name: 'campaign'});
@@ -65,6 +68,7 @@ WithSeveralCampaigns.parameters = {
 export const WithSeveralCampaignsNotPerforming:any = Template.bind({});
 WithSeveralCampaignsNotPerforming.args = {
   beforeCreate() {
+    this.$store.state.accounts.contextPsAccounts = cloneDeep(contextPsAccountsConnectedAndValidated);
     this.$store.state.googleAds = cloneDeep(adsAccountStatus);
     this.$store.state.campaigns.campaigns.results.campaigns = campaigns;
     this.$router.push({name: 'campaign'});
@@ -96,6 +100,7 @@ WithSeveralCampaignsNotPerforming.parameters = {
 export const WithoutCampaigns:any = Template.bind({});
 WithoutCampaigns.args = {
   beforeCreate() {
+    this.$store.state.accounts.contextPsAccounts = cloneDeep(contextPsAccountsConnectedAndValidated);
     this.$store.state.googleAds = cloneDeep(adsAccountStatus);
     this.$store.state.campaigns.campaigns.results.campaigns = campaigns;
     this.$router.push({name: 'campaign'});

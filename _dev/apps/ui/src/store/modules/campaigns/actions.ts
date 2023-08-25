@@ -414,7 +414,6 @@ export default {
     query.append('startDate', state.reporting.request.dateRange.startDate);
     query.append('endDate', state.reporting.request.dateRange.endDate);
 
-    // TODO: page management
     try {
       const json = await (await fetchOnboarding(
         'GET',
