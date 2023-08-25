@@ -20,7 +20,6 @@
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import {
-  CampaignPerformances,
   CampaignObject,
   Kpis,
   State as LocalState,
@@ -137,7 +136,9 @@ export default {
   [GettersTypes.GET_REPORTING_DAILY_RESULT_TYPES_AVAILABLE](
     state: LocalState,
   ): boolean {
-    return !!Object.values(state.reporting.request.dailyResultTypes).filter((value) => !value).length;
+    return !!Object
+      .values(state.reporting.request.dailyResultTypes)
+      .filter((value) => !value).length;
   },
   [GettersTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES_ORDERING](
     state: LocalState,

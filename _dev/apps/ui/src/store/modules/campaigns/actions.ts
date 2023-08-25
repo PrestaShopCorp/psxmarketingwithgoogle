@@ -219,14 +219,14 @@ export default {
     const currentResultTypes = state.reporting.request.dailyResultTypes;
     const availableKey = Object.keys(currentResultTypes)
       .find((color) => currentResultTypes[color] === null);
-    
+
     if (!availableKey) {
       return false;
     }
 
     commit(
       MutationsTypes.SET_REPORTING_DAILY_RESULTS_TYPES,
-      Object.assign({}, currentResultTypes, {[availableKey]: payload}),
+      {...currentResultTypes, [availableKey]: payload},
     );
     return true;
   },
@@ -237,14 +237,14 @@ export default {
     const currentResultTypes = state.reporting.request.dailyResultTypes;
     const key = Object.keys(currentResultTypes)
       .find((color) => currentResultTypes[color] === payload);
-    
+
     if (!key) {
       return;
     }
 
     commit(
       MutationsTypes.SET_REPORTING_DAILY_RESULTS_TYPES,
-      Object.assign({}, currentResultTypes, {[key]: null}),
+      {...currentResultTypes, [key]: null},
     );
   },
 
@@ -401,14 +401,14 @@ export default {
     commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES,
       result);
   },
-  async [ActionsTypes.GET_CAMPAIGNS_LIST]({commit, state, rootState}: {state: State}) {
+  async [ActionsTypes.GET_CAMPAIGNS_LIST]({commit, state}) {
     const query = new URLSearchParams();
 
     Object.keys(state.campaigns.request.ordering).forEach((ordering) => {
       query.append(`order[${ordering}]`, state.campaigns.request.ordering[ordering]);
     });
 
-    query.append('offset', (state.campaigns.request.activePage -1) * state.campaigns.request.numberOfCampaignsPerPage);
+    query.append('offset', (state.campaigns.request.activePage - 1) * state.campaigns.request.numberOfCampaignsPerPage);
     query.append('limit', state.campaigns.request.numberOfCampaignsPerPage);
     query.append('startDate', state.reporting.request.dateRange.startDate);
     query.append('endDate', state.reporting.request.dateRange.endDate);
@@ -422,7 +422,7 @@ export default {
       commit(MutationsTypes.SAVE_CAMPAIGNS_TO_LIST, {
         campaigns: json.campaigns,
       });
-      commit(MutationsTypes.SET_CAMPAIGNS_LIST_TOTAL, json.totalCount,);
+      commit(MutationsTypes.SET_CAMPAIGNS_LIST_TOTAL, json.totalCount);
     } catch (error) {
       commit(MutationsTypes.SET_CAMPAIGNS_LIST_ERROR, true);
       console.error(error);
