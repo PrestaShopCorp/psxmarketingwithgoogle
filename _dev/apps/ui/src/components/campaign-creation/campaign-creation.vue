@@ -638,7 +638,7 @@ export default defineComponent({
       ];
     },
     campaignsList() {
-      return this.$store.getters['campaigns/GET_ALL_CAMPAIGNS'];
+      return this.$store.getters['campaigns/GET_CAMPAIGNS_LIST'];
     },
     campaignToEditFromList() {
       return this.campaignsList.find((el) => el.id === this.$route.params.id);

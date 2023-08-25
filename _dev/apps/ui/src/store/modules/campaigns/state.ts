@@ -25,9 +25,7 @@ import CampaignStatus, {CampaignStatusToggle, CampaignTypes} from '@/enums/repor
 
 export interface State {
   warmedUp: boolean,
-  campaigns: CampaignObject[],
-  campaignsOrdering: CampaignsOrdering,
-  nextPageTokenCampaignList: null|string;
+  campaigns: CampaignsList,
   errorCampaignNameExists: null|boolean;
   tracking: null|boolean;
   tagAlreadyExists: boolean;
@@ -66,10 +64,6 @@ export interface Dimension {
   indeterminate?: boolean;
   visible?: boolean;
 }
-export interface CampaignsOrdering {
-  name?: string,
-  duration?: QueryOrderDirection,
- }
 
 export interface ProductsFilteredObject {
   dimension: string,
@@ -98,6 +92,32 @@ export type CampaignObject = {
   adSpend: number;
   conversions: number;
   sales: number;
+}
+
+export interface CampaignsList {
+  results: CampaignsListResults;
+  request: CampaignsListRequest;
+}
+
+export interface CampaignsListResults {
+  campaigns: CampaignObject[];
+  totalCount: number;
+  error: boolean;
+}
+
+export interface CampaignsListRequest {
+  numberOfCampaignsPerPage: number;
+  activePage: number;
+  ordering: CampaignListOrdering;
+}
+
+export interface CampaignListOrdering {
+  [KpiType.AVERAGE_COST_PER_CLICK]?: QueryOrderDirection,
+  [KpiType.CLICKS]?: QueryOrderDirection,
+  [KpiType.CONVERSIONS]?: QueryOrderDirection,
+  [KpiType.AVERAGE_COST_PER_CLICK]?: QueryOrderDirection,
+  [KpiType.COSTS]?: QueryOrderDirection,
+  [KpiType.SALES]?: QueryOrderDirection,
 }
 
 export interface Reporting {
@@ -229,9 +249,6 @@ export interface FiltersPerformances {
 
 export const state: State = {
   warmedUp: false,
-  campaigns: [],
-  campaignsOrdering: {},
-  nextPageTokenCampaignList: null,
   errorCampaignNameExists: null,
   tracking: true,
   tagAlreadyExists: false,
@@ -240,6 +257,18 @@ export const state: State = {
   errorFetchingFilters: false,
   dimensionChosen: {},
   filtersChosen: [],
+  campaigns: {
+    results: {
+      campaigns: [],
+      totalCount: 0,
+      error: false,
+    },
+    request: {
+      numberOfCampaignsPerPage: 10,
+      activePage: 1,
+      ordering: {},
+    },
+  },
   reporting: {
     request: {
       dateRange: {

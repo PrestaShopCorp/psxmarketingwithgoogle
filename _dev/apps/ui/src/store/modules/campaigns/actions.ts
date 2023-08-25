@@ -44,7 +44,7 @@ export default {
       dispatch('googleAds/WARMUP_STORE', null, {root: true}),
       dispatch('productFeed/WARMUP_STORE', null, {root: true}),
       runIf(
-        !getters.GET_ALL_CAMPAIGNS?.length,
+        !getters.GET_CAMPAIGNS_LIST?.length,
         dispatch(ActionsTypes.GET_CAMPAIGNS_LIST, {
           isNewRequest: true,
         }),
@@ -406,11 +406,11 @@ export default {
   }) {
     const query = new URLSearchParams();
 
-    if (state.campaignsOrdering && state.campaignsOrdering.duration) {
-      query.append('order[startDate]', state.campaignsOrdering.duration);
+    if (state.campaigns.request.ordering && state.campaigns.request.ordering.duration) {
+      query.append('order[startDate]', state.campaigns.request.ordering.duration);
     }
-    if (state.campaignsOrdering && state.campaignsOrdering.name) {
-      query.append('filter[campaignName]', state.campaignsOrdering.name);
+    if (state.campaigns.request.ordering && state.campaigns.request.ordering.name) {
+      query.append('filter[campaignName]', state.campaigns.request.ordering..name);
     }
     if (!isNewRequest && !state.nextPageTokenCampaignList) {
       return;
@@ -430,9 +430,9 @@ export default {
       commit(MutationsTypes.SAVE_CAMPAIGNS_TO_LIST, {
         campaigns: json.campaigns,
       });
-      commit(MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST, {
+      /*commit(MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST, {
         nextPageToken: json.nextPageToken,
-      });
+      });*/
     } catch (error) {
       console.error(error);
     }

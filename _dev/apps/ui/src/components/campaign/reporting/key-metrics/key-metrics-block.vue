@@ -108,7 +108,7 @@ export default {
       return this.$store.getters['campaigns/GET_REPORTING_KPIS_ERROR'];
     },
     accountHasAtLeastOneCampaign() {
-      return !!this.$store.getters['campaigns/GET_ALL_CAMPAIGNS']?.length;
+      return !!this.$store.getters['campaigns/GET_CAMPAIGNS_LIST']?.length;
     },
   },
   mounted() {

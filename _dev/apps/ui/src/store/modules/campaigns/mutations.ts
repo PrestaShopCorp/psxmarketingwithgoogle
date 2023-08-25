@@ -36,6 +36,7 @@ import {
   CampaignStatusPayload,
   Dimension,
   DailyResultTypes,
+  CampaignListOrdering,
 } from './state';
 import {
   addPropertiesToDimension, deepUpdateDimensionVisibilityFromTree,
@@ -191,13 +192,13 @@ export default {
     state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList = [];
   },
   [MutationsTypes.RESET_CAMPAIGNS_LIST](state: LocalState) {
-    state.campaigns = [];
+    state.campaigns.results.campaigns = [];
   },
-  [MutationsTypes.SET_SSC_LIST_ORDERING](
+  [MutationsTypes.SET_CAMPAIGNS_LIST_ORDERING](
     state: LocalState,
-    payload: OrderByType,
+    payload: CampaignListOrdering,
   ) {
-    state.campaignsOrdering = payload;
+    state.campaigns.request.ordering = payload;
   },
   [MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES](
     state: LocalState,
@@ -227,14 +228,6 @@ export default {
     },
   ) {
     state.campaigns.push(...payload.campaigns);
-  },
-  [MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST](
-    state: LocalState,
-    payload: {
-      nextPageToken: string,
-    },
-  ) {
-    state.nextPageTokenCampaignList = payload.nextPageToken;
   },
   [MutationsTypes.SET_TOTAL_CAMPAIGNS_PERFORMANCES_RESULTS](
     state: LocalState,

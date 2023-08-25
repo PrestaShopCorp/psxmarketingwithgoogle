@@ -161,7 +161,7 @@ export default {
       },
       set(orderDirection) {
         this.$store.commit(
-          'campaigns/SET_SSC_LIST_ORDERING',
+          'campaigns/SET_CAMPAIGNS_LIST_ORDERING',
           orderDirection,
         );
         this.fetchCampaigns();

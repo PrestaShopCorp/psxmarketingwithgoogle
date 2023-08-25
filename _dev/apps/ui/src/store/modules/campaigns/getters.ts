@@ -23,7 +23,6 @@ import {
   CampaignPerformances,
   CampaignObject,
   Kpis,
-  OrderByType,
   State as LocalState,
   ProductPerformances,
   FiltersPerformances,
@@ -31,6 +30,7 @@ import {
   Dimension,
   FiltersChosen,
   DailyResultTypes,
+  CampaignListOrdering,
 } from './state';
 import GettersTypes from './getters-types';
 import KpiType from '@/enums/reporting/KpiType';
@@ -81,9 +81,6 @@ export default {
   [GettersTypes.GET_ERROR_CAMPAIGN_NAME](state: LocalState): boolean|null {
     return state.errorCampaignNameExists;
   },
-  [GettersTypes.GET_ALL_CAMPAIGNS](state: LocalState): CampaignObject[] {
-    return state.campaigns;
-  },
   [GettersTypes.GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST](state: LocalState): string|null {
     return state.nextPageTokenCampaignList;
   },
@@ -95,6 +92,21 @@ export default {
   },
 
   // request getters
+  [GettersTypes.GET_CAMPAIGNS_LIST_ORDERING](
+    state: LocalState,
+  ): CampaignListOrdering {
+    return state.campaigns.request.ordering;
+  },
+  [GettersTypes.GET_CAMPAIGNS_LIST_LIMIT](
+    state: LocalState,
+  ): number {
+    return state.campaigns.request.numberOfCampaignsPerPage;
+  },
+  [GettersTypes.GET_CAMPAIGNS_LIST_ACTIVE_PAGE](
+    state: LocalState,
+  ): number {
+    return state.campaigns.request.activePage;
+  },
   [GettersTypes.GET_REPORTING_PERIOD_SELECTED](
     state: LocalState,
   ): ReportingPeriod {
@@ -139,11 +151,6 @@ export default {
   ): Object {
     return state.reporting.request.ordering.campaignsPerformances;
   },
-  [GettersTypes.GET_CAMPAIGNS_LIST_ORDERING](
-    state: LocalState,
-  ): OrderByType {
-    return state.campaignsOrdering;
-  },
   [GettersTypes.GET_REPORTING_PRODUCTS_PERFORMANCES_ORDERING](
     state: LocalState,
   ): Object {
@@ -166,6 +173,11 @@ export default {
   },
 
   // errors getters
+  [GettersTypes.GET_CAMPAIGNS_LIST_ERROR](
+    state: LocalState,
+  ): boolean {
+    return state.campaigns.results.error;
+  },
   [GettersTypes.GET_REPORTING_KPIS_ERROR](
     state: LocalState,
   ): Boolean {
@@ -188,6 +200,14 @@ export default {
   },
 
   // result getters
+  [GettersTypes.GET_CAMPAIGNS_LIST](state: LocalState): CampaignObject[] {
+    return state.campaigns.results.campaigns;
+  },
+  [GettersTypes.GET_CAMPAIGNS_TOTAL](
+    state: LocalState,
+  ): number {
+    return state.campaigns.results.totalCount;
+  },
   [GettersTypes.GET_REPORTING_KPIS](
     state: LocalState,
   ): Kpis {
@@ -223,10 +243,5 @@ export default {
   ): Array<FiltersPerformances> {
     return state.reporting.results.filtersPerformancesSection
       .productsPartitionsPerformanceList;
-  },
-  [GettersTypes.GET_ERROR_CAMPAIGN_NAME](
-    state: LocalState,
-  ): boolean|null {
-    return state.errorCampaignNameExists;
   },
 };
