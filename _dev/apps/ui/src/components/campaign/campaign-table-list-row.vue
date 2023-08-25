@@ -50,20 +50,44 @@
     <b-td
       class="text-right"
     >
-      <b-button
+      <b-dropdown
         variant="invisible"
-        class="external_link-no_icon"
-        @click="goToCampaignPage(campaign.campaignName)"
+        no-caret
+        :id="`actions-menu-campaign-${campaign.campaignName}`"
+        class="ps-dropdown psxmarketingwithgoogle-dropdown w-auto py-0 pr-0"
+        menu-class="ps-dropdown__menu-small rounded"
+        toggle-class="px-1"
+        boundary="window"
       >
-        <i class="material-icons ps_gs-fz-18">create</i>
-      </b-button>
+        <template #button-content>
+          <i class="material-icons ps_gs-fz-20 mx-auto">create</i>
+          <span class="sr-only">
+            {{ $t('cta.openActionsMenu', [campaign.campaignName]) }}
+          </span>
+        </template>
+        <b-dropdown-item-button
+          @click="goToCampaignPage(campaign.campaignName)"
+        >
+          {{ $t('cta.modifyTheCampaign') }}
+        </b-dropdown-item-button>
+        <b-dropdown-item-button
+          @click="isPaused()
+            ? resumeCampaign()
+            : pauseCampaign()"
+        >
+          {{ isPaused()
+            ? $t('cta.resumeCampaign')
+            : $t('cta.pauseCampaign')
+          }}
+        </b-dropdown-item-button>
+      </b-dropdown>
     </b-td>
   </b-tr>
 </template>
 
 <script lang="ts">
 import googleUrl from '@/assets/json/googleUrl.json';
-import CampaignStatus from '@/enums/reporting/CampaignStatus';
+import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
 import compareYears from '@/utils/CompareYears';
 import { PropType } from 'vue';
 import { CampaignObject } from '@/store/modules/campaigns/state';
@@ -109,6 +133,23 @@ export default {
           id: this.campaign.id,
         },
       });
+    },
+    isPaused() {
+      return this.campaign.status === CampaignStatus.PAUSED;
+    },
+    pauseCampaign() {
+      const payload = {
+        id: this.campaign.id,
+        status: CampaignStatusToggle.PAUSED,
+      };
+      this.$store.dispatch('campaigns/CHANGE_STATUS_OF_CAMPAIGN', payload);
+    },
+    resumeCampaign() {
+      const payload = {
+        id: this.campaign.id,
+        status: CampaignStatusToggle.ENABLED,
+      };
+      this.$store.dispatch('campaigns/CHANGE_STATUS_OF_CAMPAIGN', payload);
     },
   },
   googleUrl,

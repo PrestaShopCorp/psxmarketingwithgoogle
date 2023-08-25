@@ -428,7 +428,7 @@ export default {
       console.error(error);
     }
   },
-  async [ActionsTypes.CHANGE_STATUS_OF_SSC]({commit}, payload: CampaignStatusPayload) {
+  async [ActionsTypes.CHANGE_STATUS_OF_CAMPAIGN]({commit}, payload: CampaignStatusPayload) {
     const json = await (await fetchOnboarding(
       'POST',
       `shopping-campaigns/${payload.id}/status`,
