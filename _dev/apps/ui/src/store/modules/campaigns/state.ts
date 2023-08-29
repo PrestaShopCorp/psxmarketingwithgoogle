@@ -272,8 +272,8 @@ export const state: State = {
   reporting: {
     request: {
       dateRange: {
-        periodSelected: ReportingPeriod.YESTERDAY,
-        startDate: dayjs().subtract(1, 'day').format('YYYY-MM-DD'),
+        periodSelected: ReportingPeriod.LAST_THIRTY_DAY,
+        startDate: dayjs().subtract(30, 'day').format('YYYY-MM-DD'),
         endDate: dayjs().subtract(1, 'day').format('YYYY-MM-DD'),
       },
       dailyResultTypes: {
