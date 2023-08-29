@@ -103,7 +103,7 @@ export default {
       return this.$store.getters['campaigns/GET_REPORTING_DAILY_RESULT_TYPES'];
     },
     googleAdsAccountUrl() {
-      return googleUrl.googleAdsAccount;
+      return googleUrl.googleAdsAccountOverview;
     },
     errorWithApi() {
       return this.$store.getters['campaigns/GET_REPORTING_KPIS_ERROR'];
