@@ -38,7 +38,8 @@ export default {
   [GettersTypes.GET_SUPPORT_URL](
     state: LocalState, getters, rootState, rootGetters,
   ): string {
-    const domain = rootGetters['accounts/GET_PS_ACCOUNTS_CONTEXT'].currentShop.domain;
+    const {domain} = rootGetters['accounts/GET_PS_ACCOUNTS_CONTEXT'].currentShop;
+
     return `${prestashopUrls.contactForm}?utm_source=back-office&utm_medium=psx&psx=psxmarketingwithgoogle&shop_domain=${domain}`;
   },
   [GettersTypes.GET_DEBUG_DATA](state: LocalState): DebugData {
