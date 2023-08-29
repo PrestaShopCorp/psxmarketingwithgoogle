@@ -1,6 +1,6 @@
 import {rest} from 'msw';
 import CampaignTableList from '@/components/campaign/campaign-table-list.vue'
-import {campaigns} from '@/../.storybook/mock/campaigns-list';
+import {campaigns, campaignsListResponse} from '@/../.storybook/mock/campaigns-list';
 
 export default {
   title: 'Campaign/Campaigns page/Components/Campaigns\' list',
@@ -22,7 +22,7 @@ const Template = (args, { argTypes }) => ({
 export const TableWithCampaigns:any = Template.bind({});
 TableWithCampaigns.args = {
   beforeCreate() {
-    this.$store.state.campaigns.campaigns.results.campaigns =campaigns;
+    this.$store.state.campaigns.campaigns.results.campaigns = campaigns;
   },
   loading: false,
 }
@@ -30,7 +30,7 @@ TableWithCampaigns.args = {
 TableWithCampaigns.parameters = {
   msw: {
     handlers: [
-      rest.get('/shopping-campaigns/list', (req, res, ctx) => res(ctx.json({campaigns}))),
+      rest.get('/shopping-campaigns/list', (req, res, ctx) => res(ctx.json(campaignsListResponse))),
     ],
   },
 };
@@ -38,7 +38,7 @@ TableWithCampaigns.parameters = {
 export const NoData:any = Template.bind({});
 NoData.args = {
   beforeCreate() {
-    this.$store.state.campaigns.campaigns.results.campaigns =[];
+    this.$store.state.campaigns.campaigns.results.campaigns = [];
   },
   loading: false,
 }

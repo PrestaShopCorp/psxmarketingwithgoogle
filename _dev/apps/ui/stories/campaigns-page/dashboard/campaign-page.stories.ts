@@ -46,15 +46,15 @@ WithSeveralCampaigns.args = {
 WithSeveralCampaigns.parameters = {
   msw: {
     handlers: [
-      rest.get('/shopping-campaigns/list', (req, res, ctx) => res(ctx.json(campaignsListResponse))),
-      rest.get('/ads-reporting/daily-results', (req, res, ctx) => {
+      rest.get('/shopping-campaigns/list*', (req, res, ctx) => res(ctx.json(campaignsListResponse))),
+      rest.get('/ads-reporting/daily-results*', (req, res, ctx) => {
         return res(
           ctx.json({
             ...dailyResultsDatas,
           })
         );
       }),
-      rest.get('/ads-reporting/kpis', (req, res, ctx) => {
+      rest.get('/ads-reporting/kpis*', (req, res, ctx) => {
         return res(
           ctx.json({
             ...kpiDatas,
@@ -78,15 +78,15 @@ WithSeveralCampaignsNotPerforming.args = {
 WithSeveralCampaignsNotPerforming.parameters = {
   msw: {
     handlers: [
-      rest.get('/shopping-campaigns/list', (req, res, ctx) => res(ctx.json(campaignsListResponse))),
-      rest.get('/ads-reporting/daily-results', (req, res, ctx) => {
+      rest.get('/shopping-campaigns/list*', (req, res, ctx) => res(ctx.json(campaignsListResponse))),
+      rest.get('/ads-reporting/daily-results*', (req, res, ctx) => {
         return res(
           ctx.json({
             ...dailyResultNotPerformingData,
           })
         );
       }),
-      rest.get('/ads-reporting/kpis', (req, res, ctx) => {
+      rest.get('/ads-reporting/kpis*', (req, res, ctx) => {
         return res(
           ctx.json({
             ...kpisEmpty,
@@ -110,15 +110,15 @@ WithoutCampaigns.args = {
 WithoutCampaigns.parameters = {
   msw: {
     handlers: [
-      rest.get('/shopping-campaigns/list', (req, res, ctx) => res(ctx.json(campaignsListEmptyResponse))),
-      rest.get('/ads-reporting/daily-results', (req, res, ctx) => {
+      rest.get('/shopping-campaigns/list*', (req, res, ctx) => res(ctx.json(campaignsListEmptyResponse))),
+      rest.get('/ads-reporting/daily-results*', (req, res, ctx) => {
         return res(
           ctx.json({
             ...dailyResultsEmpty,
           })
         );
       }),
-      rest.get('/ads-reporting/kpis', (req, res, ctx) => {
+      rest.get('/ads-reporting/kpis*', (req, res, ctx) => {
         return res(
           ctx.json({
             ...kpisEmpty,
@@ -128,3 +128,19 @@ WithoutCampaigns.parameters = {
     ],
   },
 };
+
+export const Loading:any = Template.bind({});
+Loading.args = {
+  beforeCreate() {
+    this.$store.state.accounts.contextPsAccounts = cloneDeep(contextPsAccountsConnectedAndValidated);
+    this.$store.state.googleAds = cloneDeep(adsAccountStatus);
+    this.$store.state.campaigns.campaigns.results.campaigns = campaigns;
+    this.$router.push({name: 'campaign'});
+  },
+  mounted(this: any) {
+    setTimeout(() => {
+      this.$refs.CampaignPage.$data.allDataLoaded = false;
+    }, 1000);
+  }
+};
+Loading.parameters = WithSeveralCampaignsNotPerforming.parameters;

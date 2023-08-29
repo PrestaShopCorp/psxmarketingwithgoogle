@@ -10,6 +10,7 @@ import {productsPartitionsPerformanceListEmpty, productsPartitionsPerformanceLis
 import {nextPageTokenEmpty} from '@/../.storybook/mock/reporting/next-page-token';
 import {campaigns} from '@/../.storybook/mock/campaigns-list';
 import cloneDeep from 'lodash.clonedeep';
+import contextPsAccountsConnectedAndValidated from '@/../.storybook/mock/ps-accounts';
 
 
 
@@ -29,52 +30,12 @@ const Template = (args, { argTypes }) => ({
   beforeMount: args.beforeMount,
 });
 
-export const ApiError:any = Template.bind({});
-ApiError.args = {
-  beforeMount(this: any) {
-    this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
-    // fake date that will be intercepted by the storybook middleware to return api error
-    this.$store.state.campaigns.reporting.request.dateRange.startDate = dateGenerator(1);
-    this.$store.state.campaigns.reporting.request.dateRange.endDate = dateGenerator(0);
-  },
-};
-
-ApiError.parameters = {
-  msw: {
-    handlers: [
-      rest.get('/ads-reporting/daily-results', (req, res, ctx) => {
-        return res(
-          ctx.status(500)
-        );
-      }),
-      rest.get('/ads-reporting/kpis', (req, res, ctx) => {
-        return res(
-          ctx.status(500)
-        );
-      }),
-      rest.get('/ads-reporting/campaigns-performances', (req, res, ctx) => {
-        return res(
-          ctx.status(500)
-        );
-      }),
-      rest.get('/ads-reporting/products-partitions-performances', (req, res, ctx) => {
-        return res(
-          ctx.status(500)
-        );
-      }),
-      rest.get('/ads-reporting/products-performances', (req, res, ctx) => {
-        return res(
-          ctx.status(500)
-        );
-      }),
-    ],
-  },
-};
-
-
 export const WithResults:any = Template.bind({});
 WithResults.args = {
+  inNeedOfConfiguration: false,
+  loading: false,
   beforeMount(this: any) {
+    this.$store.state.accounts.contextPsAccounts = cloneDeep(contextPsAccountsConnectedAndValidated);
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
     // fake date that will be intercepted by the storybook middleware to return results
     this.$store.state.campaigns.reporting.request.dateRange.startDate = dateGenerator(6);
@@ -131,7 +92,10 @@ WithResults.parameters = {
 
 export const NoResults:any = Template.bind({});
 NoResults.args = {
+  inNeedOfConfiguration: false,
+  loading: false,
   beforeMount(this: any) {
+    this.$store.state.accounts.contextPsAccounts = cloneDeep(contextPsAccountsConnectedAndValidated);
     this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
     this.$store.state.campaigns.reporting.request.dateRange.startDate = dateGenerator(13);
     this.$store.state.campaigns.reporting.request.dateRange.endDate = dateGenerator(0);
@@ -141,21 +105,21 @@ NoResults.args = {
 NoResults.parameters = {
   msw: {
     handlers: [
-      rest.get('/ads-reporting/daily-results', (req, res, ctx) => {
+      rest.get('/ads-reporting/daily-results*', (req, res, ctx) => {
         return res(
           ctx.json({
             ...dailyResultsEmpty
           })
         );
       }),
-      rest.get('/ads-reporting/kpis', (req, res, ctx) => {
+      rest.get('/ads-reporting/kpis*', (req, res, ctx) => {
         return res(
           ctx.json({
             ...kpisEmpty
           })
         );
       }),
-      rest.get('/ads-reporting/campaigns-performances', (req, res, ctx) => {
+      rest.get('/ads-reporting/campaigns-performances*', (req, res, ctx) => {
         return res(
           ctx.json({
             ...campaignsPerformanceListEmpty,
@@ -163,7 +127,7 @@ NoResults.parameters = {
           })
         );
       }),
-      rest.get('/ads-reporting/products-partitions-performances', (req, res, ctx) => {
+      rest.get('/ads-reporting/products-partitions-performances*', (req, res, ctx) => {
         return res(
           ctx.json({
             ...productsPartitionsPerformanceListEmpty,
@@ -171,7 +135,7 @@ NoResults.parameters = {
           })
         );
       }),
-      rest.get('/ads-reporting/products-performances', (req, res, ctx) => {
+      rest.get('/ads-reporting/products-performances*', (req, res, ctx) => {
         return res(
           ctx.json({
             ...productsPerformanceListEmpty,
@@ -179,6 +143,109 @@ NoResults.parameters = {
           })
         );
       })
+    ],
+  },
+};
+
+export const Loading:any = Template.bind({});
+Loading.args = {
+  inNeedOfConfiguration: false,
+  loading: true,
+  beforeMount(this: any) {
+    this.$store.state.accounts.contextPsAccounts = cloneDeep(contextPsAccountsConnectedAndValidated);
+    this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
+    // fake date that will be intercepted by the storybook middleware to return api error
+    this.$store.state.campaigns.reporting.request.dateRange.startDate = dateGenerator(1);
+    this.$store.state.campaigns.reporting.request.dateRange.endDate = dateGenerator(0);
+  },
+};
+
+Loading.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/ads-reporting/daily-results*', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...dailyResultsEmpty
+          })
+        );
+      }),
+      rest.get('/ads-reporting/kpis*', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...kpisEmpty
+          })
+        );
+      }),
+      rest.get('/ads-reporting/campaigns-performances*', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...campaignsPerformanceListEmpty,
+            ...nextPageTokenEmpty,
+          })
+        );
+      }),
+      rest.get('/ads-reporting/products-partitions-performances*', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...productsPartitionsPerformanceListEmpty,
+            ...nextPageTokenEmpty,
+          })
+        );
+      }),
+      rest.get('/ads-reporting/products-performances*', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...productsPerformanceListEmpty,
+            ...nextPageTokenEmpty,
+          })
+        );
+      })
+    ],
+  },
+};
+
+export const ApiError:any = Template.bind({});
+ApiError.args = {
+  inNeedOfConfiguration: false,
+  loading: false,
+  beforeMount(this: any) {
+    this.$store.state.accounts.contextPsAccounts = cloneDeep(contextPsAccountsConnectedAndValidated);
+    this.$store.state.googleAds = Object.assign({}, googleAdsAccountChosen);
+    // fake date that will be intercepted by the storybook middleware to return api error
+    this.$store.state.campaigns.reporting.request.dateRange.startDate = dateGenerator(1);
+    this.$store.state.campaigns.reporting.request.dateRange.endDate = dateGenerator(0);
+  },
+};
+
+ApiError.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/ads-reporting/daily-results*', (req, res, ctx) => {
+        return res(
+          ctx.status(500)
+        );
+      }),
+      rest.get('/ads-reporting/kpis*', (req, res, ctx) => {
+        return res(
+          ctx.status(500)
+        );
+      }),
+      rest.get('/ads-reporting/campaigns-performances*', (req, res, ctx) => {
+        return res(
+          ctx.status(500)
+        );
+      }),
+      rest.get('/ads-reporting/products-partitions-performances*', (req, res, ctx) => {
+        return res(
+          ctx.status(500)
+        );
+      }),
+      rest.get('/ads-reporting/products-performances*', (req, res, ctx) => {
+        return res(
+          ctx.status(500)
+        );
+      }),
     ],
   },
 };

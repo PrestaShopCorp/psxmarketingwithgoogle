@@ -1,20 +1,12 @@
 <template>
   <div>
-    <b-skeleton-wrapper
+    <div
       v-if="$route.name === 'campaign'"
-      :loading="!allDataLoaded"
       class="mb-3"
     >
-      <template #loading>
-        <b-card>
-          <b-skeleton width="85%" />
-          <b-skeleton width="55%" />
-          <b-skeleton width="70%" />
-        </b-card>
-      </template>
 
       <BannerCampaigns
-        v-if="!accountHasAtLeastOneCampaign"
+        v-if="!inNeedOfConfiguration && !accountHasAtLeastOneCampaign"
         @clickToCreateCampaign="onClickToCreateCampaign"
       />
 
@@ -35,6 +27,7 @@
 
       <KeyMetricsBlock
         :in-need-of-configuration="inNeedOfConfiguration"
+        :loading="!allDataLoaded"
         @clickToCreateCampaign="onClickToCreateCampaign"
       />
 
@@ -43,7 +36,7 @@
         :loading="!allDataLoaded"
         :in-need-of-configuration="inNeedOfConfiguration"
       />
-    </b-skeleton-wrapper>
+    </div>
     <!-- Need this new router-view since we now have nested children routes -->
     <router-view  v-else/>
     <SSCPopinActivateTracking
