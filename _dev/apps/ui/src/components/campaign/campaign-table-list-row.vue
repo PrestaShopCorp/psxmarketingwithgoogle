@@ -66,19 +66,20 @@
           </span>
         </template>
         <b-dropdown-item-button
-          @click="goToCampaignPage(campaign.campaignName)"
-        >
-          {{ $t('cta.modifyTheCampaign') }}
-        </b-dropdown-item-button>
-        <b-dropdown-item-button
-          @click="isPaused()
+          v-if="isPausable"
+          @click="isPaused
             ? resumeCampaign()
             : pauseCampaign()"
         >
-          {{ isPaused()
+          {{ isPaused
             ? $t('cta.resumeCampaign')
             : $t('cta.pauseCampaign')
           }}
+        </b-dropdown-item-button>
+        <b-dropdown-item-button
+          @click="goToCampaignPage(campaign.campaignName)"
+        >
+          {{ $t('cta.modifyTheCampaign') }}
         </b-dropdown-item-button>
       </b-dropdown>
     </b-td>
@@ -124,7 +125,16 @@ export default {
     currencyCode() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode;
     },
-  },
+    isPaused(): boolean {
+      return this.campaign.status === CampaignStatus.PAUSED;
+    },
+    isPausable(): boolean {
+      return ![
+        CampaignStatus.DRAFT,
+        CampaignStatus.ENDED,
+        CampaignStatus.REMOVED,
+      ].includes(this.campaign.status);
+    },  },
   methods: {
     goToCampaignPage() {
       this.$router.push({
@@ -133,9 +143,6 @@ export default {
           id: this.campaign.id,
         },
       });
-    },
-    isPaused() {
-      return this.campaign.status === CampaignStatus.PAUSED;
     },
     pauseCampaign() {
       const payload = {
