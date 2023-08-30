@@ -43,13 +43,11 @@ import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import BannerCampaigns from '@/components/commons/banner-campaigns.vue';
 import KeyMetricsBlock from '@/components/campaign/reporting/key-metrics/key-metrics-block.vue';
 import KeyMetricsControls from '@/components/campaign/reporting/key-metrics/key-metrics-controls.vue';
-import CampaignTableList from '@/components/campaign/campaign-table-list.vue'
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   components: {
     BannerCampaigns,
-    CampaignTableList,
     KeyMetricsBlock,
     KeyMetricsControls,
     SSCPopinActivateTracking,
