@@ -44,9 +44,7 @@ export default {
       dispatch('productFeed/WARMUP_STORE', null, {root: true}),
       runIf(
         !getters.GET_CAMPAIGNS_LIST?.length,
-        dispatch(ActionsTypes.GET_CAMPAIGNS_LIST, {
-          isNewRequest: true,
-        }),
+        dispatch(ActionsTypes.GET_CAMPAIGNS_LIST),
       ),
       runIf(
         state.tracking === null,
@@ -55,6 +53,14 @@ export default {
       runIf(
         !getters.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED.length,
         dispatch(ActionsTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED),
+      ),
+      runIf(
+        !getters.GET_REPORTING_DAILY_RESULT.length,
+        dispatch(ActionsTypes.GET_REPORTING_DAILY_RESULTS),
+      ),
+      runIf(
+        !(getters.GET_REPORTING_KPIS).impressions,
+        dispatch(ActionsTypes.GET_REPORTING_KPIS),
       ),
     ]);
   },

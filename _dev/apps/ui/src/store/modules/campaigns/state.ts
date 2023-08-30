@@ -165,7 +165,7 @@ export interface Kpis {
 }
 
 export interface DailyresultChart {
-  dailyResultList: Array<DailyResult>;
+  dailyResultList: DailyResult[];
 }
 
 export interface DailyResult {
