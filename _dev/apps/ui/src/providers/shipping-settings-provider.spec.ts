@@ -1,8 +1,9 @@
-import {shippingPhpExport} from '../../.storybook/mock/shipping-settings';
+import {shippingPhpExport} from '@/../.storybook/mock/shipping-settings';
 import DeliveryType from '@/enums/product-feed/delivery-type';
 import {
   getEnabledCarriers, Carrier, validateDeliveryDetail,
 } from './shipping-settings-provider';
+import {shippingBugExport} from '@/../.storybook/mock/shipping-settings-bug';
 
 describe('Shipping Settings Provider - getEnabledCarriers()', () => {
   it('returns the active carriers loaded from PHP', () => {
@@ -58,6 +59,17 @@ describe('Shipping Settings Provider - getEnabledCarriers()', () => {
         delay: 'delivery in 5 days',
       },
     ]);
+  });
+
+  it('merges duplicated country iso codes', () => {
+    const result: Carrier[] = getEnabledCarriers(shippingBugExport);
+
+    expect(result).toEqual([{
+      carrierId: '123',
+      country: 'IT',
+      delay: '-',
+      name: 'GLS',
+    }]);
   });
 });
 
