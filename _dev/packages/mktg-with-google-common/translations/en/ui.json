@@ -800,45 +800,17 @@
       },
       "labelCol": {
         "campaign": "Title",
-        "budget": "Budget",
         "status": "Status",
         "impressions": "Impressions",
         "clicks": "Clicks",
         "adSpend": "Ad spend",
-        "conversion": "Conversion",
         "sales": "Sales",
-        "id": "ID",
-        "products": "Product Filters",
-        "click": "Click",
         "costs": "Costs",
-        "averageCostPerClick": "Average CPC",
         "conversions": "Conversions",
-        "conversionsRate": "Conversions rate",
-        "productFilter": "Filter name",
-        "dimension": "Filter type",
         "duration": "Date",
         "target": "Target country",
         "actions": "Actions",
         "dailyBudget": "Daily budget"
-      },
-      "tooltipCol": {
-        "status": "A status for your ad campaign that describes whether or not its ads can run at the moment.",
-        "products": "Product filter is what you selected as your campaign filter with the number of affected products."
-      },
-      "campaignsPerformanceTable": {
-        "title": "Campaign performance",
-        "subTitle": "Check out how well your campaigns perform",
-        "emptyListText": "You don't have any enabled campaign"
-      },
-      "productsPerformanceTable": {
-        "title": "Product performance for active campaigns",
-        "subTitle": "Check out which product performs the best",
-        "emptyListText": "You don't have any products in active campaigns"
-      },
-      "filtersPerformanceTable": {
-        "title": "Overall filter performance (top 10)",
-        "subTitle": "Check out which dimension performs the best",
-        "emptyListText": "You don't have any active campaigns with filters"
       }
     },
     "notConfiguredState": {
