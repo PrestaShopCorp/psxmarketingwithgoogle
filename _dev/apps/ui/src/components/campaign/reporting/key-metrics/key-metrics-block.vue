@@ -20,30 +20,30 @@
       v-else
       :loading="loading"
     >
-    <template #loading>
-      <b-skeleton width="85%" class="mt-2"></b-skeleton>
-      <b-skeleton width="55%" class="mb-3"></b-skeleton>
-      <b-row class="mx-n1 no-gutters">
-        <b-col
-          cols="12" sm="6" md="4" xl="2"
-          v-for="n in 6"
-          :key="n"
-        >
-          <b-skeleton height="4.8rem" class="ps_gs-kpi-card m-1"></b-skeleton>
-        </b-col>
-      </b-row>
-      <b-skeleton width="30%" class="mt-3"></b-skeleton>
-      <b-skeleton-img height="305px" no-aspect class="mt-3"></b-skeleton-img>
-      <b-row>
-        <b-col cols="9">
-          <b-skeleton width="70%" class="mt-3"></b-skeleton>
-        </b-col>
-        <b-col cols="3">
-          <b-skeleton width="100%" class="mt-3"></b-skeleton>
-        </b-col>
-      </b-row>
+      <template #loading>
+        <b-skeleton width="85%" class="mt-2"></b-skeleton>
+        <b-skeleton width="55%" class="mb-3"></b-skeleton>
+        <b-row class="mx-n1 no-gutters">
+          <b-col
+            cols="12" sm="6" md="4" xl="2"
+            v-for="n in 6"
+            :key="n"
+          >
+            <b-skeleton height="4.8rem" class="ps_gs-kpi-card m-1"></b-skeleton>
+          </b-col>
+        </b-row>
+        <b-skeleton width="30%" class="mt-3"></b-skeleton>
+        <b-skeleton-img height="305px" no-aspect class="mt-3"></b-skeleton-img>
+        <b-row>
+          <b-col cols="9">
+            <b-skeleton width="70%" class="mt-3"></b-skeleton>
+          </b-col>
+          <b-col cols="3">
+            <b-skeleton width="100%" class="mt-3"></b-skeleton>
+          </b-col>
+        </b-row>
 
-    </template>
+      </template>
       <div class="mt-2 d-flex justify-content-between flex-column flex-sm-row">
         <div class="order-1 mb-2 order-sm-0">
           <p>

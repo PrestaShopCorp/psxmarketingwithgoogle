@@ -31,31 +31,39 @@
                 class="font-weight-500"
                 :class="{'ps_gs-table-performance-header': isPerformanceInfo(type)}"
               >
-                <div class="flex align-items-center">
-                  <b-button
-                    v-if="hasSorting(type)"
-                    @click="sortByType(type)"
-                    variant="invisible"
-                    class="p-0 border-0 text-nowrap"
-                  >
-                    <span
-                      class="ps_gs-fz-16 font-weight-500"
+                <b-skeleton-wrapper
+                  :loading="loading"
+                >
+                  <template #loading>
+                    <b-skeleton/>
+                  </template>
+
+                  <div class="flex align-items-center">
+                    <b-button
+                      v-if="hasSorting(type)"
+                      @click="sortByType(type)"
+                      variant="invisible"
+                      class="p-0 border-0 text-nowrap"
                     >
+                      <span
+                        class="ps_gs-fz-16 font-weight-500"
+                      >
+                        {{ $t(`campaigns.labelCol.${type}`) }}
+                      </span>
+                      <template v-if="queryOrderDirection[type] === 'ASC'">
+                        <i class="material-icons ps_gs-fz-14">expand_more</i>
+                        <span class="sr-only">{{ $t('cta.clickToSortAsc') }}</span>
+                      </template>
+                      <template v-else>
+                        <i class="material-icons ps_gs-fz-14">expand_less</i>
+                        <span class="sr-only">{{ $t('cta.clickToSortDesc') }}</span>
+                      </template>
+                    </b-button>
+                    <span v-else-if="hasTitleDisplayed(type)">
                       {{ $t(`campaigns.labelCol.${type}`) }}
                     </span>
-                    <template v-if="queryOrderDirection[type] === 'ASC'">
-                      <i class="material-icons ps_gs-fz-14">expand_more</i>
-                      <span class="sr-only">{{ $t('cta.clickToSortAsc') }}</span>
-                    </template>
-                    <template v-else>
-                      <i class="material-icons ps_gs-fz-14">expand_less</i>
-                      <span class="sr-only">{{ $t('cta.clickToSortDesc') }}</span>
-                    </template>
-                  </b-button>
-                  <span v-else-if="hasTitleDisplayed(type)">
-                    {{ $t(`campaigns.labelCol.${type}`) }}
-                  </span>
-                </div>
+                  </div>
+                </b-skeleton-wrapper>
               </b-th>
             </b-tr>
           </b-thead>

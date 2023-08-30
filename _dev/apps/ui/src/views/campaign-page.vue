@@ -10,20 +10,11 @@
         @clickToCreateCampaign="onClickToCreateCampaign"
       />
 
-      <div class="d-flex justify-content-between mb-2">
-        <b-button
-          v-if="!inNeedOfConfiguration && accountHasAtLeastOneCampaign"
-          size="sm"
-          variant="primary"
-          @click="onClickToCreateCampaign"
-        >
-          {{ $t('cta.createPMaxCampaign') }}
-        </b-button>
-        <KeyMetricsPeriodSelector
-          :in-need-of-configuration="inNeedOfConfiguration || !accountHasAtLeastOneCampaign"
-          class="ml-auto"
-        />
-      </div>
+      <key-metrics-controls
+        :in-need-of-configuration="inNeedOfConfiguration"
+        :loading="!allDataLoaded"
+        :accountHasAtLeastOneCampaign="accountHasAtLeastOneCampaign"
+      />
 
       <KeyMetricsBlock
         :in-need-of-configuration="inNeedOfConfiguration"
@@ -51,7 +42,7 @@ import SSCPopinActivateTracking from '../components/campaigns/ssc-popin-activate
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import BannerCampaigns from '@/components/commons/banner-campaigns.vue';
 import KeyMetricsBlock from '@/components/campaign/reporting/key-metrics/key-metrics-block.vue';
-import KeyMetricsPeriodSelector from '@/components/campaign/reporting/key-metrics/key-metrics-period-selector.vue';
+import KeyMetricsControls from '@/components/campaign/reporting/key-metrics/key-metrics-controls.vue';
 import CampaignTableList from '@/components/campaign/campaign-table-list.vue'
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
@@ -60,7 +51,7 @@ export default {
     BannerCampaigns,
     CampaignTableList,
     KeyMetricsBlock,
-    KeyMetricsPeriodSelector,
+    KeyMetricsControls,
     SSCPopinActivateTracking,
   },
 
