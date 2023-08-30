@@ -21,14 +21,6 @@
         <Menu>
           <MenuItem
             v-if="!currentlyOnLandingPage"
-            @click.native="throwSegmentEvent"
-            :route="{name: 'reporting'}"
-          >
-            {{ $t('general.tabs.reporting') }}
-          </MenuItem>
-
-          <MenuItem
-            v-if="!currentlyOnLandingPage"
             :route="{name: 'product-feed'}"
           >
             {{ $t('general.tabs.productFeed') }}
