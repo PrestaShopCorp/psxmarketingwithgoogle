@@ -150,7 +150,6 @@ export default {
     ).finally(() => {
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, null);
       commit(`campaigns/${MutationsTypesCampaigns.RESET_CAMPAIGNS_LIST}`, {root: true});
-      commit(`campaigns/${MutationsTypesCampaigns.RESET_REPORTING_CAMPAIGNS_PERFORMANCES}`, null, {root: true});
     });
     return true;
   },

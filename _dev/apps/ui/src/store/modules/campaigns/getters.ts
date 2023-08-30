@@ -23,8 +23,6 @@ import {
   CampaignObject,
   Kpis,
   State as LocalState,
-  ProductPerformances,
-  FiltersPerformances,
   ConversionAction,
   Dimension,
   FiltersChosen,
@@ -64,12 +62,6 @@ export default {
   ): boolean {
     return getters.GET_REMARKETING_TRACKING_TAG_ALREADY_EXIST_STATUS
       || getters.GET_REMARKETING_TRACKING_TAG_IS_SET;
-  },
-  [GettersTypes.GET_REPORTING_TAB_IS_ACTIVE](
-    state: LocalState, getters, rootState, rootGetters,
-  ) {
-    return getters.GET_REMARKETING_TRACKING_TAG_STATUS
-      && rootGetters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
   },
   [GettersTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED](
     state: LocalState,
@@ -114,20 +106,6 @@ export default {
   ): string {
     return state.reporting.request.dateRange.endDate;
   },
-  [GettersTypes.GET_REPORTING_FORMATTED_START_DATES](
-    state: LocalState,
-  ): string {
-    return dayjs(state.reporting.request.dateRange.startDate)
-      .locale(window.i18nSettings.isoCode)
-      .format('L');
-  },
-  [GettersTypes.GET_REPORTING_FORMATTED_END_DATES](
-    state: LocalState,
-  ): string {
-    return dayjs(state.reporting.request.dateRange.endDate)
-      .locale(window.i18nSettings.isoCode)
-      .format('L');
-  },
   [GettersTypes.GET_REPORTING_DAILY_RESULT_TYPES](
     state: LocalState,
   ): DailyResultTypes {
@@ -144,16 +122,6 @@ export default {
     state: LocalState,
   ): Object {
     return state.reporting.request.ordering.campaignsPerformances;
-  },
-  [GettersTypes.GET_REPORTING_PRODUCTS_PERFORMANCES_ORDERING](
-    state: LocalState,
-  ): Object {
-    return state.reporting.request.ordering.productsPerformances;
-  },
-  [GettersTypes.GET_REPORTING_FILTERS_PERFORMANCES_ORDERING](
-    state: LocalState,
-  ): Object {
-    return state.reporting.request.ordering.filtersPerformances;
   },
   [GettersTypes.GET_SSC_DIMENSIONS_AND_FILTERS](
     state: LocalState,
@@ -177,21 +145,6 @@ export default {
   ): Boolean {
     return state.reporting.errorsList.kpis;
   },
-  [GettersTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES_SECTION_ERROR](
-    state: LocalState,
-  ): Boolean {
-    return state.reporting.errorsList.campaignsPerformancesSection;
-  },
-  [GettersTypes.GET_REPORTING_PRODUCTS_PERFORMANCES_SECTION_ERROR](
-    state: LocalState,
-  ): Boolean {
-    return state.reporting.errorsList.productsPerformancesSection;
-  },
-  [GettersTypes.GET_REPORTING_FILTERS_PERFORMANCES_SECTION_ERROR](
-    state: LocalState,
-  ): Boolean {
-    return state.reporting.errorsList.filtersPerformancesSection;
-  },
 
   // result getters
   [GettersTypes.GET_CAMPAIGNS_LIST](state: LocalState): CampaignObject[] {
@@ -211,16 +164,5 @@ export default {
     state: LocalState,
   ): Kpis[] {
     return state.reporting.results.dailyResultChart.dailyResultList;
-  },
-  [GettersTypes.GET_REPORTING_PRODUCTS_PERFORMANCES](
-    state: LocalState,
-  ): Array<ProductPerformances> {
-    return state.reporting.results.productsPerformancesSection.productsPerformanceList;
-  },
-  [GettersTypes.GET_REPORTING_FILTERS_PERFORMANCES](
-    state: LocalState,
-  ): Array<FiltersPerformances> {
-    return state.reporting.results.filtersPerformancesSection
-      .productsPartitionsPerformanceList;
   },
 };

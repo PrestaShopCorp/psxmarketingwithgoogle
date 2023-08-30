@@ -8,7 +8,6 @@ import Debug from '../views/debug.vue';
 import Help from '../views/help.vue';
 import Configuration from '../views/configuration.vue';
 import ProductFeedPage from '../views/product-feed-page.vue';
-import ReportingPage from '../views/reporting-page.vue';
 import TunnelProductFeed from '../views/tunnel-product-feed.vue';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 
@@ -92,11 +91,6 @@ const routes: Array<RouteConfig> = [
         component: CampaignForm,
       },
     ],
-  },
-  {
-    path: '/reporting',
-    name: 'reporting',
-    component: ReportingPage,
   },
   {
     path: '/debug',

@@ -128,9 +128,6 @@ export interface Reporting {
 
 export interface ReportingErrorList {
   kpis: boolean;
-  campaignsPerformancesSection: boolean;
-  productsPerformancesSection: boolean;
-  filtersPerformancesSection: boolean;
 }
 
 export enum DailyResultColor {
@@ -146,31 +143,15 @@ export type DailyResultTypes = {
 export interface RequestParams {
   dateRange: DateRange;
   dailyResultTypes: DailyResultTypes;
-  ordering: Orderings;
 }
 export interface ResultsRequest {
   kpis: Kpis;
   dailyResultChart: DailyresultChart;
-  campaignsPerformancesSection: CampaignsPerformancesSection;
-  productsPerformancesSection: ProductsPerformancesSection;
-  filtersPerformancesSection: FiltersPerformancesSection;
 }
 export interface DateRange {
   periodSelected: ReportingPeriod;
   startDate: string;
   endDate: string;
-}
-
-export interface Orderings {
-  campaignsPerformances: OrderByType;
-  productsPerformances: OrderByType;
-  filtersPerformances: OrderByType;
-}
-
-export interface OrderByType {
-  clicks?: QueryOrderDirection,
-  name?: string,
-  startDate?: QueryOrderDirection,
 }
 
 export interface Kpis {
@@ -187,21 +168,6 @@ export interface DailyresultChart {
   dailyResultList: Array<DailyResult>;
 }
 
-export interface CampaignsPerformancesSection {
-  campaignsPerformanceList: CampaignPerformances[];
-  limitCampaignPerformanceList: number;
-  activePage: number,
-  totalCampaigns: number,
-}
-
-export interface ProductsPerformancesSection {
-  productsPerformanceList: Array<ProductPerformances>,
-}
-
-export interface FiltersPerformancesSection {
-  productsPartitionsPerformanceList: Array<FiltersPerformances>;
-}
-
 export interface DailyResult {
   impressions: number,
   clicks: number,
@@ -210,41 +176,6 @@ export interface DailyResult {
   costs: number,
   sales: number,
   date: string;
-}
-
-export interface CampaignPerformances {
-  name: string;
-  budget: number;
-  status: string;
-  impressions: number;
-  clicks: number;
-  adSpend: number;
-  conversions: number;
-  sales: number;
-  type: CampaignTypes;
-}
-
-export interface ProductPerformances {
-  id: string,
-  name: string,
-  clicks: number,
-  costs: number,
-  averageCostPerClick: number,
-  conversions: number,
-  conversionsRate: number,
-  sales: number
-}
-
-export interface FiltersPerformances {
-  campaignName: string,
-  dimension: string,
-  productFilter: string,
-  clicks: number,
-  costs: number,
-  averageCostPerClick: number,
-  conversions: number,
-  conversionsRate: number,
-  sales: number
 }
 
 export const state: State = {
@@ -281,19 +212,6 @@ export const state: State = {
         [DailyResultColor.BLUE]: null,
         [DailyResultColor.YELLOW]: null,
       },
-      // TODO: To remove
-      ordering: {
-        campaignsPerformances: {
-          clicks: QueryOrderDirection.DESCENDING,
-        },
-        productsPerformances: {
-          clicks: QueryOrderDirection.DESCENDING,
-        },
-        filtersPerformances: {
-          clicks: QueryOrderDirection.DESCENDING,
-        },
-      },
-      // End of TODO
     },
     results: {
       kpis: {
@@ -307,28 +225,9 @@ export const state: State = {
       dailyResultChart: {
         dailyResultList: [],
       },
-      // TODO: to remove
-      campaignsPerformancesSection: {
-        campaignsPerformanceList: [],
-        limitCampaignPerformanceList: 10,
-        activePage: 1,
-        totalCampaigns: 0,
-      },
-      productsPerformancesSection: {
-        productsPerformanceList: [],
-      },
-      filtersPerformancesSection: {
-        productsPartitionsPerformanceList: [],
-      },
-      // End of TODO
     },
     errorsList: {
       kpis: false,
-      // TODO: To remove
-      campaignsPerformancesSection: false,
-      productsPerformancesSection: false,
-      filtersPerformancesSection: false,
-      // End of TODO
     },
   },
 };

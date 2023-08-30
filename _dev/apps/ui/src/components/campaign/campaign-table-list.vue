@@ -123,7 +123,6 @@ import GettersTypes from '@/store/modules/campaigns/getters-types';
 import MutationsTypes from '@/store/modules/campaigns/mutations-types';
 import {CampaignListOrdering} from '@/store/modules/campaigns/state';
 import CampaignTableListRow from './campaign-table-list-row.vue';
-import ReportingTableHeader from './reporting/commons/reporting-table-header.vue';
 import CampaignSummaryListHeaderType from '@/enums/campaigns-summary/CampaignSummaryListHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import googleUrl from '@/assets/json/googleUrl.json';
@@ -136,7 +135,6 @@ export default {
   name: 'CampaignTableList',
   components: {
     CampaignTableListRow,
-    ReportingTableHeader,
     BannerCampaigns,
     TableApiError,
     TablePageControls,

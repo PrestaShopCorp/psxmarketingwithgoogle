@@ -23,10 +23,9 @@ import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import {
-  CampaignObject, CampaignStatusPayload, ConversionAction, State,
+  CampaignObject, CampaignStatusPayload, ConversionAction,
 } from './state';
 import {deepUpdateDimensionVisibility} from '@/utils/SSCFilters';
-import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import {runIf} from '../../../utils/Promise';
 import {RecommendedBudget} from '@/utils/CampaignsBudget';
 import KpiType from '@/enums/reporting/KpiType';
@@ -164,14 +163,10 @@ export default {
   },
 
   async [ActionsTypes.UPDATE_ALL_REPORTING_DATA](
-    {dispatch, commit},
+    {dispatch},
   ) {
-    dispatch('GET_REPORTING_CAMPAIGNS_PERFORMANCES', {isNewRequest: true});
     dispatch('GET_REPORTING_KPIS');
     dispatch('GET_REPORTING_DAILY_RESULTS');
-    dispatch('GET_REPORTING_PRODUCTS_PERFORMANCES');
-    // temporary disable, waiting final table design
-    dispatch('GET_REPORTING_FILTERS_PERFORMANCES');
     dispatch('GET_CAMPAIGNS_LIST');
   },
   [ActionsTypes.SET_REPORTING_DATES_RANGE](
@@ -299,109 +294,6 @@ export default {
     commit(MutationsTypes.SET_REPORTING_DAILY_RESULTS, result);
   },
 
-  async [ActionsTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES](
-    {commit, rootState, state},
-  ) {
-    const limit = state.reporting.results.campaignsPerformancesSection.limitCampaignPerformanceList;
-    const offset = ((state.reporting.results.campaignsPerformancesSection.activePage - 1)
-    * limit).toString();
-    const query = new URLSearchParams({
-      startDate: state.reporting.request.dateRange.startDate,
-      endDate: state.reporting.request.dateRange.endDate,
-    });
-
-    // add order in array format
-    query.append('order[clicks]', state.reporting.request.ordering.campaignsPerformances.clicks);
-    query.append('limit', limit);
-    query.append('offset', offset);
-
-    const result = await fetchOnboarding(
-      'GET',
-      `ads-reporting/campaigns-performances?${query}`,
-      {
-        onResponse: async (response) => {
-          if (!response.ok) {
-            commit(MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_SECTION_ERROR, true);
-            throw new HttpClientError(response.statusText, response.status);
-          }
-          return response.json();
-        },
-      },
-    );
-    commit(MutationsTypes.RESET_REPORTING_CAMPAIGNS_PERFORMANCES);
-    commit(
-      MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_SECTION_ERROR,
-      false,
-    );
-    commit(
-      MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_RESULTS,
-      result.campaignsPerformanceList,
-    );
-    commit(
-      MutationsTypes.SET_TOTAL_CAMPAIGNS_PERFORMANCES_RESULTS,
-      result.totalCampaigns,
-    );
-  },
-
-  async [ActionsTypes.GET_REPORTING_PRODUCTS_PERFORMANCES](
-    {commit, rootState, state},
-  ) {
-    const query = new URLSearchParams({
-      startDate: state.reporting.request.dateRange.startDate,
-      endDate: state.reporting.request.dateRange.endDate,
-    });
-
-    // add order in array format
-    query.append('order[clicks]', state.reporting.request.ordering.productsPerformances.clicks);
-
-    const result = await fetchOnboarding(
-      'GET',
-      `ads-reporting/products-performances?${query}`,
-      {
-        onResponse: async (response) => {
-          if (!response.ok) {
-            commit(MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES_SECTION_ERROR, true);
-            throw new HttpClientError(response.statusText, response.status);
-          }
-          return response.json();
-        },
-      },
-    );
-
-    commit(MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES_SECTION_ERROR, false);
-    commit(MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES, result);
-  },
-
-  async [ActionsTypes.GET_REPORTING_FILTERS_PERFORMANCES](
-    {commit, rootState, state},
-  ) {
-    const query = new URLSearchParams({
-      startDate: state.reporting.request.dateRange.startDate,
-      endDate: state.reporting.request.dateRange.endDate,
-      lang: window.i18nSettings.isoCode,
-    });
-
-    // add order in array format
-    query.append('order[clicks]', state.reporting.request.ordering.filtersPerformances.clicks);
-
-    const result = await fetchOnboarding(
-      'GET',
-      `ads-reporting/products-partitions-performances?${query}`,
-      {
-        onResponse: async (response) => {
-          if (!response.ok) {
-            commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES_SECTION_ERROR, true);
-            throw new HttpClientError(response.statusText, response.status);
-          }
-          return response.json();
-        },
-      },
-    );
-
-    commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES_SECTION_ERROR, false);
-    commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES,
-      result);
-  },
   async [ActionsTypes.GET_CAMPAIGNS_LIST]({commit, state}) {
     const query = new URLSearchParams();
 
