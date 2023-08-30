@@ -67,7 +67,7 @@ const TemplateAdsConfigurationPage = (args, { argTypes }) => ({
     this.$store.state.accounts.googleMerchantAccount = cloneDeep(merchantCenterAccountConnected);
     this.$store.state.productFeed = cloneDeep(productFeedIsConfigured);
     this.$store.state.campaigns = cloneDeep(conversionTrackingIsTrue);
-    this.$store.state.campaigns.campaigns.results.campaigns =cloneDeep(campaigns);
+    this.$store.state.campaigns.campaigns.results.campaigns = cloneDeep(campaigns);
     this.$store.state.campaigns.conversionActions = [{}];
     this.$store.state.googleAds = cloneDeep(adsAccountStatus);
   }
