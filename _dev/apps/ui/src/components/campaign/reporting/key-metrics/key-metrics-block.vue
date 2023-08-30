@@ -23,13 +23,13 @@
     <template #loading>
       <b-skeleton width="85%" class="mt-2"></b-skeleton>
       <b-skeleton width="55%" class="mb-3"></b-skeleton>
-      <b-row>
+      <b-row class="mx-n1 no-gutters">
         <b-col
           cols="12" sm="6" md="4" xl="2"
           v-for="n in 6"
           :key="n"
         >
-          <b-skeleton height="4.8rem" class="m-1"></b-skeleton>
+          <b-skeleton height="4.8rem" class="ps_gs-kpi-card m-1"></b-skeleton>
         </b-col>
       </b-row>
       <b-skeleton width="30%" class="mt-3"></b-skeleton>
