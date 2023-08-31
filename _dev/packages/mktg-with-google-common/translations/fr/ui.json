@@ -736,7 +736,7 @@
             "descriptionMissingAction": "Ajoutez une description à vos produits. Si vous avez déjà une description, vérifiez l'attribut choisi pour la description dans la cartographie des attributs de votre flux produit.",
             "brandMissing": "Renseignez une marque",
             "brandMissingAction": "Veuillez renseigner la marque du produit. Vous pouvez ajouter une marque dans Catalogue > Produits > Essentiel dans la section Marque pour chaque produit.",
-            "identifierMissing": "Provide either GTIN or Brand and MPN for the product",
+            "identifierMissing": "Renseignez soit le GTIN ou la marque et le MPN pour le produit",
             "identifierMissingAction": "**Products with GTINs**\n\nA GTIN (Global Trade Item Number) is a **unique identifier** used to identify products. The GTIN include **UPC** (in North America), **EAN** (in Europe), **JAN** (in Japan), and **ISBN** (for books). You can add a GTIN in Catalog > Products > Options > in the Condition & References for each product.\n\nThe GTIN identifier can usually be found on the product's barcode label, packaging, or documentation, or contacting the manufacturer. \n\n**Products without a GTIN**\n\nTo help identify your products without a GTIN, you can use the **MPN** and **brand** attributes. \n\nBrand is the brand of the product or your company. You can also use your store name as the brand. You can add a brand in Catalog > Products > Basic settings in the Brand section for each product.\n\nAn MPN or Manufacturer Part Number attribute to indicate the manufacturer reference of your product or unique identifier number of your choice.",
             "priceMissing": "Renseignez un prix",
             "priceMissingAction": "Veuillez renseigner le prix du produit."
