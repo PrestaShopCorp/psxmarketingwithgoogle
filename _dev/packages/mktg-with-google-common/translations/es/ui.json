@@ -3,7 +3,6 @@
         "tabs": {
             "productFeed": "Feed de productos",
             "campaign": "Campaña",
-            "reporting": "Informes",
             "configuration": "Configurar",
             "catalog": "Catálogo de productos",
             "help": "Ayuda"
@@ -29,7 +28,6 @@
         "mandatory": "son obligatorios",
         "XIsMandatory": "{0} es obligatorio.",
         "unableToFetchData": "No pudimos obtener datos, inténtalo más tarde",
-        "searchByX": "Buscar por {0}",
         "search": "Buscar",
         "createAccount": "Crea tu cuenta",
         "createNewAccount": "Si no tienes una cuenta, puedes {0} hoy mismo.",
@@ -622,13 +620,6 @@
             "readMore": "Este presupuesto mínimo recomendado te permitirá probar la efectividad\n  de tus anuncios y hacer ajustes según sea necesario. Por supuesto, cada negocio es\n  diferente, y el presupuesto más adecuado para ti puede variar dependiendo de\n  tus objetivos concretos y tu audiencia. Te recomendamos experimentar\n  con diferentes presupuestos para determinar qué funciona mejor para tu negocio."
         }
     },
-    "smartShoppingCampaignList": {
-        "tableTitle": "Rendimiento de la campaña",
-        "xCampaign": "No hay campañas | {0} campaña | {0} campañas",
-        "performanceMax": "Máximo rendimiento",
-        "smartShoppingCampaign": "Campañas de Shopping inteligentes",
-        "campaignType": "Tipo: {0}"
-    },
     "productFeedPage": {
         "breadcrumb": {
             "productStatusDetails": "Detalles del estado del producto",
@@ -767,16 +758,11 @@
             "noReasonFallback": "*No facilitado, comprueba [errores de cuenta en tu Merchant Center]({0})[:target=\"_blank\"].*"
         }
     },
-    "campaignCard": {
-        "title": "Crea tu campaña Máximo rendimiento en unos pocos clics",
-        "description": "La I.A. de Google mostrará anuncios de los productos buscados a los compradores interesados en el momento oportuno, aumentando tus ventas.\n\nEstablece un presupuesto diario y lanza fácilmente tu campaña, solo se te facturará cuando se haga clic en los anuncios, ¡así de fácil!",
-        "footer": "Tendremos que activar las etiquetas de remarketing y de seguimiento de conversiones para que puedas realizar campañas Máximo rendimiento"
-    },
     "keymetrics": {
-        "title": "Métricas clave",
-        "accountTitle": "Rendimiento de la cuenta",
-        "accountSubtitle": "Observa estas increíbles cifras",
+        "title": "Performance Max campaigns reporting",
+        "accountSubtitle": "Analyze and optimize your online presence with detailed metrics that help you measure the impact of your digital marketing efforts.",
         "dailyResultTitle": "Resultados diarios",
+        "helpUnderstanding": "Discover further information on how to interpret these metrics by visiting our {0}",
         "periods": {
             "yesterday": "Ayer",
             "last7Days": "Últimos 7 días",
@@ -784,20 +770,16 @@
             "3Months": "3 meses"
         },
         "impressions": "Impresiones",
-        "impressionsTooltip": "Recuento de las veces que tu anuncio ha aparecido en una página de resultados de búsqueda o en un sitio web de la Red de Google.",
         "clicks": "Clics",
-        "clicksTooltip": "Cuando alguien hace clic en tu anuncio, por ejemplo en el titular azul o en el número de teléfono de un anuncio de texto, Google Ads lo cuenta como un clic.",
         "conversions": "Conversión",
-        "conversionsTooltip": "El número de conversiones. Solo incluye las acciones de conversión en las que el atributo include_in_conversions_metric está configurado en verdadero. Si utilizas la puja basada en la conversión, tus estrategias de puja se optimizarán para estas conversiones.",
         "averageCostPerClick": "Coste medio / clic",
-        "averageCostPerClickTooltip": "El coste total de todos los clics dividido por el número total de clics recibidos.",
         "costs": "Costes",
-        "costsTooltip": "La suma de tus costes por clic (CPC) y coste por mil impresiones (CPM) durante este periodo.",
         "sales": "Ventas",
         "noData": "Todavía no hay datos",
-        "salesTooltip": "El valor de las conversiones. Solo incluye las acciones de conversión cuyo atributo include_in_conversions_metric está configurado en verdadero. Si utilizas la puja basada en la conversión, tus estrategias de puja se optimizarán para estas conversiones."
+        "noCampaigns": "Ready to boost your product promotion? Create your campaign in few clicks"
     },
     "campaigns": {
+        "listTitle": "Campaign's listing",
         "status": {
             "eligible": "Apto",
             "eligiblelimited": "Apto (limitado)",
@@ -807,49 +789,24 @@
             "draft": "Borrador",
             "pending": "Pendiente"
         },
-        "from": "Desde",
-        "fromXToX": "Desde {startDate} hasta {endDate}",
+        "dateLabel": {
+            "from": "From {startDate}",
+            "fromXToX": "From {startDate} to {endDate}",
+            "endedOnX": "Ended on {endDate}"
+        },
         "labelCol": {
-            "campaign": "Campaña",
-            "budget": "Presupuesto",
+            "campaign": "Title",
             "status": "Estado",
             "impressions": "Impresiones",
             "clicks": "Clics",
             "adSpend": "Gasto en publicidad",
-            "conversion": "Conversión",
             "sales": "Ventas",
-            "id": "ID",
-            "products": "Filtros de producto",
-            "click": "hagan clic en",
             "costs": "Costes",
-            "averageCostPerClick": "CPC medio",
             "conversions": "Conversiones",
-            "conversionsRate": "Tasa de conversiones",
-            "productFilter": "Nombre del filtro",
-            "dimension": "Tipo de filtro",
-            "duration": "Fecha de duración",
-            "target": "Objetivo",
+            "duration": "Date",
+            "target": "Target country",
             "actions": "Acciones",
             "dailyBudget": "Presupuesto diario"
-        },
-        "tooltipCol": {
-            "status": "Un estado para tu campaña publicitaria que describe si tus anuncios pueden ejecutarse en este momento.",
-            "products": "El filtro de producto es lo que ha seleccionado como filtro de la campaña con el número de productos afectados."
-        },
-        "campaignsPerformanceTable": {
-            "title": "Rendimiento de la campaña",
-            "subTitle": "Comprueba el rendimiento de tus campañas",
-            "emptyListText": "No tienes ninguna campaña habilitada"
-        },
-        "productsPerformanceTable": {
-            "title": "Rendimiento de los productos en las campañas activas",
-            "subTitle": "Comprueba qué producto funciona mejor",
-            "emptyListText": "No tienes ningún producto en campañas activas"
-        },
-        "filtersPerformanceTable": {
-            "title": "Rendimiento global de los filtros (top 10)",
-            "subTitle": "Comprueba qué dimensión funciona mejor",
-            "emptyListText": "No tienes ninguna campaña activa con filtros"
         }
     },
     "notConfiguredState": {
@@ -876,6 +833,7 @@
     },
     "help": {
         "intro": "PrestaShop Marketing with Google facilita la conexión de tu tienda PrestaShop con Google, para que puedas mostrar tus productos a millones de compradores en varios canales de Google. Crea campañas Máximo rendimiento sin salir de tu panel de control de PrestaShop y consigue más tráfico.",
+        "helpCenter": "Help Center",
         "allowsYouTo": {
             "title": "Este módulo te permite:",
             "easySync": "Sincroniza fácilmente tu catálogo de productos con Google para mantener actualizados automáticamente los detalles del producto, como el precio y la disponibilidad",
@@ -969,12 +927,13 @@
         "createSmartShoppingCampaign": "Lanzar campaña Máximo rendimiento",
         "addBillingSettings": "Añadir configuracion de facturación",
         "createCampaign": "Crear campaña",
+        "createPMaxCampaign": "Create new PMax campaign",
         "editCampaign": "Actualizar campaña",
         "launchCampaign": "Lanzar campaña",
         "resetDate": "Fijar la fecha de hoy",
         "validate": "Validar",
-        "moreInfosAboutX": "Más información sobre {0}",
-        "seeOnGoogleAds": "Ver en Google Ads",
+        "seeOnGoogleAds": "See these metrics on {0}",
+        "GoogleAds": "Google Ads",
         "clickToSortDesc": "(Haz clic para ordenar de forma descendente)",
         "clickToSortAsc": "(Haz clic para ordenar de forma ascendente)",
         "selectFilters": "Seleccionar filtros",
@@ -984,9 +943,9 @@
         "clearAll": "Borrar todo",
         "signInWithGoogle": "Iniciar sesión con Google",
         "viewReporting": "Ver informe",
-        "pauseCampaign": "Pausar campaña",
-        "resumeCampaign": "Reanudar campaña",
-        "modifyTheCampaign": "Modificar la campaña",
+        "pauseCampaign": "Pause",
+        "resumeCampaign": "Enable",
+        "modifyTheCampaign": "Modify",
         "openActionsMenu": "Abrir el menú de acciones para la campaña {0}",
         "viewInGoogleAds": "Ver en tu cuenta de Google Ads",
         "previous": "Anterior",
@@ -1148,7 +1107,7 @@
         "legend": "*Crea una nueva cuenta de Google Ads, el bono se aplicará automáticamente una vez que coincida con el gasto y tendrás 60 días para utilizar los créditos. [Leer T&C]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "*Crea una nueva cuenta de Google Ads, el bono se aplicará automáticamente una vez que coincida con el gasto y tendrás 60 días para utilizar los créditos.",
         "ctaCreateFirstCampaign": "Crear tu primera campaña",
-        "textCampaignsBanner": "Máximo rendimiento es la nueva generación de campañas Shopping inteligentes. Es un tipo de campaña mejorada proporcionada por la tecnología inteligente de Google. Funciona en segundo plano para optimizar automáticamente tus anuncios a lo largo del proceso de compra con el fin de maximizar el rendimiento."
+        "textCampaignsBanner": "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
     },
     "tipsAndTricks": {
         "title": "Consejos y Trucos PrestaShop",
