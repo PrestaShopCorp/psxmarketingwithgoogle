@@ -3,7 +3,6 @@
         "tabs": {
             "productFeed": "Flux produit",
             "campaign": "Campagnes",
-            "reporting": "Rapports",
             "configuration": "Configuration",
             "catalog": "Catalogue produit",
             "help": "Aide"
@@ -29,7 +28,6 @@
         "mandatory": "sont obligatoires",
         "XIsMandatory": "{0} est obligatoire.",
         "unableToFetchData": "Nous n'avons pas pu récupérer les données, veuillez réessayer plus tard",
-        "searchByX": "Recherche par {0}",
         "search": "Recherche",
         "createAccount": "créer votre compte",
         "createNewAccount": "Si vous n'avez de pas de compte, vous pouvez {0} aujourd'hui.",
@@ -622,13 +620,6 @@
             "readMore": "Ce budget minimum recommandé vous permettra de tester l'efficacité\n  de vos annonces et d'effectuer les ajustements nécessaires. Bien sûr, chaque entreprise est\n  différente, et le budget réel qui vous convient le mieux peut varier en fonction\n  de vos objectifs spécifiques et de votre public cible. Nous vous recommandons d'expérimenter\n  différents budgets pour déterminer ce qui fonctionne le mieux pour votre entreprise."
         }
     },
-    "smartShoppingCampaignList": {
-        "tableTitle": "Performance de la campagne",
-        "xCampaign": "Aucune campagne | {0} campagne | {0} campagnes",
-        "performanceMax": "Performance Max",
-        "smartShoppingCampaign": "Campagne shopping intelligente",
-        "campaignType": "Type : {0}"
-    },
     "productFeedPage": {
         "breadcrumb": {
             "productStatusDetails": "Détails du statut du produit",
@@ -767,16 +758,11 @@
             "noReasonFallback": "*Non fourni, vérifiez [les erreurs de compte sur Merchant Center]({0})[:target=\"_blank\"].*"
         }
     },
-    "campaignCard": {
-        "title": "Créez votre campagne Performance Max en quelques clics",
-        "description": "L'IA de Google affichera les annonces des produits recherchés aux acheteurs intéressés au bon moment, augmentant ainsi vos ventes.\n\nDéfinissez un budget quotidien et lancez facilement votre campagne Shopping - vous n'êtes facturé que lorsque les visiteurs cliquent sur vos annonces, c'est aussi simple que cela !",
-        "footer": "Nous devons activer les balises de remarketing et de suivi des conversions pour que vous puissiez lancer des campagnes Peformance Max"
-    },
     "keymetrics": {
-        "title": "Chiffres clés",
-        "accountTitle": "Performance du compte",
-        "accountSubtitle": "Découvrez ci-dessous l'ensemble des résultats clés de vos campagnes",
+        "title": "Performance Max campaigns reporting",
+        "accountSubtitle": "Analyze and optimize your online presence with detailed metrics that help you measure the impact of your digital marketing efforts.",
         "dailyResultTitle": "Résultats journaliers",
+        "helpUnderstanding": "Discover further information on how to interpret these metrics by visiting our {0}",
         "periods": {
             "yesterday": "Hier",
             "last7Days": "7 derniers jours",
@@ -784,20 +770,16 @@
             "3Months": "3 mois"
         },
         "impressions": "Impressions",
-        "impressionsTooltip": "Nombre total de fois où votre annonce est apparue sur une page de résultats de recherche ou un site Web du réseau Google.",
         "clicks": "Clics",
-        "clicksTooltip": "Lorsqu'une personne clique sur votre annonce, par exemple sur le titre ou le numéro de téléphone d'une annonce textuelle, Google Ads le comptabilise comme un clic.",
         "conversions": "Conversion",
-        "conversionsTooltip": "Le nombre de conversions. Cela inclut uniquement les actions de conversion pour lesquelles l'attribut include_in_conversions_metric est défini à true. Si vous utilisez des enchères basées sur les conversions, vos stratégies d'enchères seront optimisées pour ces conversions.",
         "averageCostPerClick": "Coût moyen par clic",
-        "averageCostPerClickTooltip": "Le coût total de tous les clics divisé par le nombre total de clics reçus.",
         "costs": "Coûts",
-        "costsTooltip": "La somme de vos coûts par clic (CPC) et les coûts par mille impressions (CPM) au cours de cette période.",
         "sales": "Ventes",
         "noData": "Aucune donnée.",
-        "salesTooltip": "La valeur des conversions. Cela inclut uniquement les actions de conversion dont l'attribut include_in_conversions_metric est défini sur true. Si vous utilisez les enchères basées sur les conversions, vos stratégies d'enchères seront optimisées pour ces conversions."
+        "noCampaigns": "Ready to boost your product promotion? Create your campaign in few clicks"
     },
     "campaigns": {
+        "listTitle": "Campaign's listing",
         "status": {
             "eligible": "Éligible",
             "eligiblelimited": "Eligible (limité)",
@@ -807,49 +789,24 @@
             "draft": "Brouillon",
             "pending": "En attente"
         },
-        "from": "De",
-        "fromXToX": "De {startDate} à {endDate}",
+        "dateLabel": {
+            "from": "From {startDate}",
+            "fromXToX": "From {startDate} to {endDate}",
+            "endedOnX": "Ended on {endDate}"
+        },
         "labelCol": {
-            "campaign": "Campagne",
-            "budget": "Budget",
+            "campaign": "Title",
             "status": "Statut",
             "impressions": "Impressions",
             "clicks": "Clics",
             "adSpend": "Dépenses publicitaires",
-            "conversion": "Conversion",
             "sales": "Ventes",
-            "id": "ID",
-            "products": "Filtres de produits",
-            "click": "Clic",
             "costs": "Coûts",
-            "averageCostPerClick": "CPC moyen",
             "conversions": "Conversions",
-            "conversionsRate": "Taux de conversion",
-            "productFilter": "Nom du filtre",
-            "dimension": "Type de filtre",
-            "duration": "Durée",
-            "target": "Cible",
+            "duration": "Date",
+            "target": "Target country",
             "actions": "Actions",
             "dailyBudget": "Budget quotidien"
-        },
-        "tooltipCol": {
-            "status": "Un statut pour votre campagne publicitaire qui décrit si ses annonces peuvent être lancées ou non pour le moment.",
-            "products": "Le filtre de produit est ce que vous avez sélectionné comme filtre de campagne avec le nombre de produits affectés."
-        },
-        "campaignsPerformanceTable": {
-            "title": "Performance de la campagne",
-            "subTitle": "Vérifiez les performances de vos campagnes",
-            "emptyListText": "Vous n'avez pas de campagne activée"
-        },
-        "productsPerformanceTable": {
-            "title": "Performance des produits pour les campagnes actives (top 10)",
-            "subTitle": "Découvrez quel produit est le plus performant",
-            "emptyListText": "Vous n'avez aucun produits dans les campagnes activées"
-        },
-        "filtersPerformanceTable": {
-            "title": "Performance globale des filtres (top 10)",
-            "subTitle": "Découvrez quelle dimension est la plus performante",
-            "emptyListText": "Vous n'avez pas de campagnes actives avec des filtres."
         }
     },
     "notConfiguredState": {
@@ -876,6 +833,7 @@
     },
     "help": {
         "intro": "PrestaShop Marketing with Google permet de connecter facilement votre boutique PrestaShop avec Google et de promouvoir vos produits auprès de millions d'acheteurs sur de multiples canaux Google. Créez des campagnes Performance Max sans quitter votre tableau de bord PrestaShop et générez plus de trafic.",
+        "helpCenter": "Help Center",
         "allowsYouTo": {
             "title": "Ce module vous permet de :",
             "easySync": "Synchronisez facilement votre catalogue de produits avec Google et garder automatiquement à jour les informations produit telles que le prix et le stock",
@@ -969,12 +927,13 @@
         "createSmartShoppingCampaign": "Lancer une campagne Performance Max",
         "addBillingSettings": "Ajoutez des paramètres de facturation",
         "createCampaign": "Créer une campagne",
+        "createPMaxCampaign": "Create new PMax campaign",
         "editCampaign": "Mettre à jour la campagne",
         "launchCampaign": "Lancer une campagne",
         "resetDate": "Date de réinitialisation",
         "validate": "Valider",
-        "moreInfosAboutX": "Plus d'infos sur {0}",
-        "seeOnGoogleAds": "Voir sur Google Ads",
+        "seeOnGoogleAds": "See these metrics on {0}",
+        "GoogleAds": "Google Ads",
         "clickToSortDesc": "(Cliquer pour trier par ordre décroissant)",
         "clickToSortAsc": "(Cliquer pour trier par ordre croissant)",
         "selectFilters": "Sélectionner les filtres",
@@ -984,9 +943,9 @@
         "clearAll": "Effacer tout",
         "signInWithGoogle": "Connectez-vous avec Google",
         "viewReporting": "Afficher le rapport",
-        "pauseCampaign": "Mettre la campagne en pause",
-        "resumeCampaign": "Relancer la campagne",
-        "modifyTheCampaign": "Modifier la campagne",
+        "pauseCampaign": "Pause",
+        "resumeCampaign": "Enable",
+        "modifyTheCampaign": "Modify",
         "openActionsMenu": "Ouvrir le menu d'actions pour la campagne {0}",
         "viewInGoogleAds": "Voir dans votre compte Google Ads",
         "previous": "Précédent",
@@ -1148,7 +1107,7 @@
         "legend": "* Créez un nouveau compte Google Ads, le bon d'achat sera appliqué automatiquement dès que vous aurez atteint le montant des dépenses et vous aurez 60 jours pour les dépenser. [Lire les conditions d'utilisation]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "* Créez un nouveau compte Google Ads, le bon d'achat sera appliqué automatiquement dès que vous aurez atteint le montant des dépenses et vous aurez 60 jours pour les dépenser.",
         "ctaCreateFirstCampaign": "Créer votre première campagne",
-        "textCampaignsBanner": "Performance Max est la nouvelle génération de campagnes shopping intelligentes. Il s'agit d'un type de campagne optimisé, utilisant la technologie intelligente de Google. Elle fonctionne en arrière-plan pour optimiser automatiquement vos annonces tout au long du parcours d'achat afin d'obtenir des performances maximales."
+        "textCampaignsBanner": "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
     },
     "tipsAndTricks": {
         "title": "Conseils et astuces PrestaShop",
