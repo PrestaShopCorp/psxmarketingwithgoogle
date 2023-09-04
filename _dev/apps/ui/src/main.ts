@@ -40,7 +40,7 @@ new Vue({
 
       const psAccountContext = this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT'];
       const userId = this.$store.state.accounts.shopIdPsAccounts;
-      const campaigns = this.$store.getters['campaigns/GET_ALL_CAMPAIGNS'];
+      const campaigns = this.$store.getters['campaigns/GET_CAMPAIGNS_LIST'];
       const isActiveCamp = campaigns.some((camp) => camp.status === CampaignStatus.ELIGIBLE);
 
       // @ts-ignore

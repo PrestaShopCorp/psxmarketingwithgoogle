@@ -25,9 +25,7 @@ import CampaignStatus, {CampaignStatusToggle, CampaignTypes} from '@/enums/repor
 
 export interface State {
   warmedUp: boolean,
-  campaigns: CampaignObject[],
-  campaignsOrdering: CampaignsOrdering,
-  nextPageTokenCampaignList: null|string;
+  campaigns: CampaignsList,
   errorCampaignNameExists: null|boolean;
   tracking: null|boolean;
   tagAlreadyExists: boolean;
@@ -66,10 +64,6 @@ export interface Dimension {
   indeterminate?: boolean;
   visible?: boolean;
 }
-export interface CampaignsOrdering {
-  name?: string,
-  duration?: QueryOrderDirection,
- }
 
 export interface ProductsFilteredObject {
   dimension: string,
@@ -92,6 +86,38 @@ export type CampaignObject = {
   status?: CampaignStatus|CampaignStatusToggle;
   hasUnhandledFilters?: boolean;
   type: CampaignTypes;
+
+  impressions: number;
+  clicks: number;
+  adSpend: number;
+  conversions: number;
+  sales: number;
+}
+
+export interface CampaignsList {
+  results: CampaignsListResults;
+  request: CampaignsListRequest;
+}
+
+export interface CampaignsListResults {
+  campaigns: CampaignObject[];
+  totalCount: number;
+  error: boolean;
+}
+
+export interface CampaignsListRequest {
+  numberOfCampaignsPerPage: number;
+  activePage: number;
+  ordering: CampaignListOrdering;
+}
+
+export interface CampaignListOrdering {
+  [KpiType.AVERAGE_COST_PER_CLICK]?: QueryOrderDirection,
+  [KpiType.CLICKS]?: QueryOrderDirection,
+  [KpiType.CONVERSIONS]?: QueryOrderDirection,
+  [KpiType.AVERAGE_COST_PER_CLICK]?: QueryOrderDirection,
+  [KpiType.COSTS]?: QueryOrderDirection,
+  [KpiType.SALES]?: QueryOrderDirection,
 }
 
 export interface Reporting {
@@ -102,40 +128,30 @@ export interface Reporting {
 
 export interface ReportingErrorList {
   kpis: boolean;
-  campaignsPerformancesSection: boolean;
-  productsPerformancesSection: boolean;
-  filtersPerformancesSection: boolean;
 }
+
+export enum DailyResultColor {
+  BLACK = '#1D1D1B',
+  BLUE = '#174EEF',
+  YELLOW = '#FFD999',
+}
+
+export type DailyResultTypes = {
+  [key in DailyResultColor]: KpiType|null;
+};
 
 export interface RequestParams {
   dateRange: DateRange;
-  dailyResultType: KpiType;
-  ordering: Orderings;
+  dailyResultTypes: DailyResultTypes;
 }
-
 export interface ResultsRequest {
   kpis: Kpis;
   dailyResultChart: DailyresultChart;
-  campaignsPerformancesSection: CampaignsPerformancesSection;
-  productsPerformancesSection: ProductsPerformancesSection;
-  filtersPerformancesSection: FiltersPerformancesSection;
 }
 export interface DateRange {
   periodSelected: ReportingPeriod;
   startDate: string;
   endDate: string;
-}
-
-export interface Orderings {
-  campaignsPerformances: OrderByType;
-  productsPerformances: OrderByType;
-  filtersPerformances: OrderByType;
-}
-
-export interface OrderByType {
-  clicks?: QueryOrderDirection,
-  name?: string,
-  startDate?: QueryOrderDirection,
 }
 
 export interface Kpis {
@@ -149,22 +165,7 @@ export interface Kpis {
 }
 
 export interface DailyresultChart {
-  dailyResultList: Array<DailyResult>;
-}
-
-export interface CampaignsPerformancesSection {
-  campaignsPerformanceList: CampaignPerformances[];
-  limitCampaignPerformanceList: number;
-  activePage: number,
-  totalCampaigns: number,
-}
-
-export interface ProductsPerformancesSection {
-  productsPerformanceList: Array<ProductPerformances>,
-}
-
-export interface FiltersPerformancesSection {
-  productsPartitionsPerformanceList: Array<FiltersPerformances>;
+  dailyResultList: DailyResult[];
 }
 
 export interface DailyResult {
@@ -177,46 +178,8 @@ export interface DailyResult {
   date: string;
 }
 
-export interface CampaignPerformances {
-  name: string;
-  budget: number;
-  status: string;
-  impressions: number;
-  clicks: number;
-  adSpend: number;
-  conversions: number;
-  sales: number;
-  type: CampaignTypes;
-}
-
-export interface ProductPerformances {
-  id: string,
-  name: string,
-  clicks: number,
-  costs: number,
-  averageCostPerClick: number,
-  conversions: number,
-  conversionsRate: number,
-  sales: number
-}
-
-export interface FiltersPerformances {
-  campaignName: string,
-  dimension: string,
-  productFilter: string,
-  clicks: number,
-  costs: number,
-  averageCostPerClick: number,
-  conversions: number,
-  conversionsRate: number,
-  sales: number
-}
-
 export const state: State = {
   warmedUp: false,
-  campaigns: [],
-  campaignsOrdering: {},
-  nextPageTokenCampaignList: null,
   errorCampaignNameExists: null,
   tracking: true,
   tagAlreadyExists: false,
@@ -225,24 +188,29 @@ export const state: State = {
   errorFetchingFilters: false,
   dimensionChosen: {},
   filtersChosen: [],
+  campaigns: {
+    results: {
+      campaigns: [],
+      totalCount: 0,
+      error: false,
+    },
+    request: {
+      numberOfCampaignsPerPage: 10,
+      activePage: 1,
+      ordering: {},
+    },
+  },
   reporting: {
     request: {
       dateRange: {
-        periodSelected: ReportingPeriod.YESTERDAY,
-        startDate: dayjs().subtract(1, 'day').format('YYYY-MM-DD'),
+        periodSelected: ReportingPeriod.LAST_THIRTY_DAY,
+        startDate: dayjs().subtract(30, 'day').format('YYYY-MM-DD'),
         endDate: dayjs().subtract(1, 'day').format('YYYY-MM-DD'),
       },
-      dailyResultType: KpiType.IMPRESSIONS,
-      ordering: {
-        campaignsPerformances: {
-          clicks: QueryOrderDirection.DESCENDING,
-        },
-        productsPerformances: {
-          clicks: QueryOrderDirection.DESCENDING,
-        },
-        filtersPerformances: {
-          clicks: QueryOrderDirection.DESCENDING,
-        },
+      dailyResultTypes: {
+        [DailyResultColor.BLACK]: KpiType.IMPRESSIONS,
+        [DailyResultColor.BLUE]: null,
+        [DailyResultColor.YELLOW]: null,
       },
     },
     results: {
@@ -257,24 +225,9 @@ export const state: State = {
       dailyResultChart: {
         dailyResultList: [],
       },
-      campaignsPerformancesSection: {
-        campaignsPerformanceList: [],
-        limitCampaignPerformanceList: 10,
-        activePage: 1,
-        totalCampaigns: 0,
-      },
-      productsPerformancesSection: {
-        productsPerformanceList: [],
-      },
-      filtersPerformancesSection: {
-        productsPartitionsPerformanceList: [],
-      },
     },
     errorsList: {
       kpis: false,
-      campaignsPerformancesSection: false,
-      productsPerformancesSection: false,
-      filtersPerformancesSection: false,
     },
   },
 };

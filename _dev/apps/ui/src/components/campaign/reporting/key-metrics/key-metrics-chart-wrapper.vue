@@ -1,53 +1,50 @@
 <template>
-  <section class="pt-2 mt-5">
+  <section class="pt-2 mt-2">
     <div class="flex-wrap d-flex align-items-center justify-content-between">
       <h4 class="flex-shrink-0 mb-2 mr-3 font-weight-600 ps_gs-fz-16">
         {{ $t('keymetrics.dailyResultTitle') }}
       </h4>
-      <b-dropdown
-        id="dailyResultKpi"
-        ref="dailyResultKpi"
-        :text="$t(`keymetrics.${dailyResultTypeSelected}`)"
-        variant=" "
-        class="mb-2 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250"
-        size="sm"
-        menu-class="ps-dropdown"
-        :disabled="metricsIsEmpty"
-      >
-        <b-dropdown-item
-          v-for="dailyresultType in dailyResultTypeList"
-          :key="dailyresultType"
-          link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
-          @click="dailyResultTypeSelected = dailyresultType"
-        >
-          {{ $t(`keymetrics.${dailyresultType}`) }}
-        </b-dropdown-item>
-      </b-dropdown>
     </div>
     <div>
-      <div
-        v-if="metricsIsEmpty || !checkDataInDateRange"
-        class="text-center py-3"
-      >
-        <span>{{ $t('keymetrics.noData') }}</span>
-      </div>
       <b-card
-        v-else
         body-class="p-md-4"
       >
+        <div
+          class="d-flex flex-column align-items-center ps_gs-onboardingcard__not-configured"
+          v-if="!accountHasAtLeastOneCampaign"
+        >
+          <i class="material-icons ps_gs-fz-48">show_chart</i>
+          <p>{{ $t('keymetrics.noCampaigns') }}</p>
+          <b-button
+            class="flex-shrink-0"
+            variant="primary"
+            @click="$emit('clickToCreateCampaign')"
+          >
+            {{ this.accountHasAtLeastOneCampaign
+              ? $t('cta.launchCampaign') : $t('banner.ctaCreateFirstCampaign')
+            }}
+          </b-button>
+        </div>
         <Chart
-          type="bar"
+          type="line"
           :data="getDataSetsByMetric"
           :options="chartOptions"
+          :height="265"
+          :width="1163"
         />
       </b-card>
     </div>
   </section>
 </template>
 
-<script>
+<script lang="ts">
+import {ChartData, ChartDataset, ChartOptions, Point, ScriptableLineSegmentContext} from 'chart.js';
 import KpiType from '@/enums/reporting/KpiType';
 import Chart from '@/components/chart/chart.vue';
+import {Kpis, DailyResultTypes} from '@/store/modules/campaigns/state';
+import { timeConverterToDate } from '@/utils/Dates';
+
+const skipped = (ctx: ScriptableLineSegmentContext, value: [number, number]) => ctx.p0.skip || ctx.p1.skip || ctx.p1.stop ? value : undefined;
 
 export default {
   name: 'KeyMetricsChartWrapper',
@@ -61,46 +58,34 @@ export default {
     dailyResultTypeList() {
       return Object.values(KpiType);
     },
-    dailyResultTypeSelected: {
-      get() {
-        return this.$store.getters['campaigns/GET_REPORTING_DAILY_RESULT_TYPE'];
-      },
-      set(dailyResultType) {
-        this.$store.commit(
-          'campaigns/SET_REPORTING_DAILY_RESULTS_TYPE',
-          dailyResultType,
-        );
-      },
+    dailyResultTypesSelected(): DailyResultTypes {
+      return this.$store.getters['campaigns/GET_REPORTING_DAILY_RESULT_TYPES'];
     },
-    getDataSetsByMetric() {
-      // https://www.chartjs.org/docs/latest/general/data-structures.html
+    getDataSetsByMetric(): ChartData<'line'> {
       return {
         labels: this.getLabels,
-        datasets: [
-          {
-            label: this.$t(`keymetrics.${this.dailyResultTypeSelected}`),
-            data: this.getMetrics.map((a) => a[this.dailyResultTypeSelected]),
-            backgroundColor: '#000000',
-            borderColor: '#000000',
-            borderWidth: 1,
-            maxBarThickness: 100,
+        datasets: Object.keys(this.dailyResultTypesSelected)
+          .filter((color: string) => !!this.dailyResultTypesSelected[color])
+          .map((color: string): ChartDataset<"line", (number | Point | null)[]> => {
+            const kpiType = this.dailyResultTypesSelected[color];
+
+            return {
+              label: this.$t(`keymetrics.${kpiType}`).toString(),
+              data: this.getMetrics.map((a) => a[kpiType]),
+              backgroundColor: color,
+              borderColor: color,
+              borderWidth: 2,
+              segment: {
+                borderDash: (ctx) => skipped(ctx, [6, 6]),
+              },
+              spanGaps: 1000 * 60 * 60 * 24 * 2, // 2 days,
+              yAxisID: this.typeDisplaysPrices(kpiType)? 'yPrice': 'y',
+            };
           },
-        ],
+        ),
       };
     },
-    checkDataInDateRange() {
-      const startDate = new Date(this.$store.getters['campaigns/GET_REPORTING_START_DATES']);
-      const endDate = new Date(this.$store.getters['campaigns/GET_REPORTING_END_DATES']);
-
-      const dateMatchExists = this.getLabels.some((date) => {
-        const dateFormat = new Date(date);
-
-        return dateFormat >= startDate && dateFormat <= endDate;
-      });
-
-      return dateMatchExists;
-    },
-    getMetrics() {
+    getMetrics(): Kpis[] {
       return this.$store.getters['campaigns/GET_REPORTING_DAILY_RESULT'];
     },
     getLabels() {
@@ -109,19 +94,43 @@ export default {
     metricsIsEmpty() {
       return this.getMetrics.length === 0;
     },
-    currencyCode() {
+    currencyCode(): string|undefined {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode;
     },
-    chartOptions() {
+    chartOptions(): ChartOptions<'line'> {
       return {
+        elements: {
+          point: {
+            pointStyle: this.$store.getters['campaigns/GET_REPORTING_START_DATES'] === this.$store.getters['campaigns/GET_REPORTING_END_DATES'] ? 'circle': false,
+          },
+        },
         scales: {
           y: {
-            ticks: {
-              callback: (value) => this.getFormattedValue(value),
+            display: 'auto',
+            min: 0,
+            grace: '15%',
+          },
+          yPrice: {
+            axis: 'y',
+            display: 'auto',
+            position: 'right',
+            grid: {
+              drawOnChartArea: false,
             },
+            ticks: {
+              callback: (value) => this.getFormattedValue(
+                value,
+                KpiType.AVERAGE_COST_PER_CLICK,
+              ),
+            },
+            min: 0,
+            grace: '15%',
           },
           x: {
             type: 'time',
+            ticks: {
+              callback: (value) => timeConverterToDate(value),
+            },
             time: {
               unit: 'day',
             },
@@ -130,32 +139,40 @@ export default {
           },
         },
         plugins: {
-          tooltip: {
-            callbacks: {
-              label: (context) => this.getFormattedValue(
-                context.dataset.data[context.dataIndex]),
-            },
-          },
           legend: {
             display: false,
           },
+          tooltip: {
+            intersect: false,
+            callbacks: {
+              title: (tooltipItems) => tooltipItems.map((tooltipItem) => timeConverterToDate(tooltipItem.parsed.x)),
+              label: (tooltipItem) => {
+                if (tooltipItem.dataset.yAxisID === 'yPrice') {
+                  const label = tooltipItem.dataset.label;
+                  const price = this.getFormattedValue(tooltipItem.parsed.y);
+                  return `${label}: ${price}`;
+                }
+                // Otherwise, keep default behavior
+              }
+            },
+          },
         },
       };
+    },
+    accountHasAtLeastOneCampaign() {
+      return !!this.$store.getters['campaigns/GET_CAMPAIGNS_LIST']?.length;
     },
   },
   methods: {
     fetchGraph() {
       this.$store.dispatch('campaigns/GET_REPORTING_DAILY_RESULTS');
     },
-    getFormattedValue(value) {
-      const selectedKpi = this.$store.getters['campaigns/GET_REPORTING_DAILY_RESULT_TYPE'];
-
-      if (selectedKpi === KpiType.CLICKS
-        || selectedKpi === KpiType.CONVERSIONS
-        || selectedKpi === KpiType.IMPRESSIONS) {
-        return value;
-      }
-
+    typeDisplaysPrices(type: KpiType): boolean {
+      return type === KpiType.AVERAGE_COST_PER_CLICK
+        || type === KpiType.SALES
+        || type === KpiType.COSTS;
+    },
+    getFormattedValue(value: string|number|Point|null) {
       return this.$options.filters.formatPrice(value, this.currencyCode);
     },
   },

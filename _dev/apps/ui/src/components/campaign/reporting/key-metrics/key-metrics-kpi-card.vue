@@ -7,37 +7,37 @@
     class="py-1 d-flex flex-column"
   >
     <b-card
-      class="ps_gs-kpi-card flex-grow-1"
-      body-class="p-3"
+      class="ps_gs-kpi-card flex-grow-1 ps_gs-cursor-disabled"
+      :border-variant="disabled ? 'light': 'primary'"
+      :text-variant="textVariant"
+      body-class="p-2"
+      :style="{ 'background-color': !disabled && activeColor }"
     >
-      <b-button
-        v-if="tooltip"
-        variant="invisible"
-        class="ps_gs-kpi-card__tooltip"
-        v-b-tooltip:psxMktgWithGoogleApp
-        :title="tooltip"
-      >
-        <i class="material-icons text-secondary ps_gs-kpi-card__tooltip-icon">info_outlined</i>
-        <span class="sr-only">
-          {{ $t('cta.moreInfosAboutX', [kpiName]) }}
-        </span>
-      </b-button>
       <dl class="mb-0">
         <dt
-          class="ps_gs-fz-18 font-weight-bold"
+          class="mb-0 font-weight-normal"          
         >
-          {{ getFormattedValue(kpiValue) }}
-        </dt>
-        <dd class="mb-0">
           {{ kpiName }}
+        </dt>
+        <dd
+          class="ps_gs-fz-24 font-weight-700 mb-0"  
+        >
+          {{ getFormattedValue }}
         </dd>
       </dl>
+      <b-link
+        v-if="!disabled && (dailyResultSpotAvailable || activeColor)"
+        class="stretched-link external_link-no_icon"
+        @click="$emit('toggleKpi')"
+      />
     </b-card>
   </b-col>
 </template>
 
-<script>
+<script lang="ts">
 import KpiType from '@/enums/reporting/KpiType';
+import { PropType } from 'vue';
+import { DailyResultColor } from '@/store/modules/campaigns/state';
 
 export default {
   name: 'KeyMetricsKpiCard',
@@ -50,30 +50,49 @@ export default {
       type: String,
       required: true,
     },
-    tooltip: {
-      type: String,
-      default: '',
+    kpiType: {
+      type: String as PropType<KpiType>,
+      required: true,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
       required: false,
     },
-    kpiType: {
-      type: String,
-      required: true,
+    activeColor: {
+      type: String as PropType<DailyResultColor|null>,
+      default: null,
+      required: false,
     },
   },
   computed: {
-    currencyCode() {
+    currencyCode(): string|undefined {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode;
     },
-  },
-  methods: {
-    getFormattedValue() {
+    dailyResultSpotAvailable(): boolean {
+      return this.$store.getters['campaigns/GET_REPORTING_DAILY_RESULT_TYPES_AVAILABLE'];
+    },
+    getFormattedValue(): string {
+      if (this.disabled) {
+        return '--';
+      }
+
       if (this.kpiType === KpiType.CLICKS
         || this.kpiType === KpiType.CONVERSIONS
         || this.kpiType === KpiType.IMPRESSIONS) {
         return this.kpiValue;
       }
-
+  
       return this.$options.filters.formatPrice(this.kpiValue, this.currencyCode);
+    },
+    textVariant(): string {
+      if (this.disabled) {
+        return 'light';
+      }
+      if ([DailyResultColor.BLACK, DailyResultColor.BLUE].includes(this.activeColor)) {
+        return 'white';
+      }
+      return 'primary';
     },
   },
 };

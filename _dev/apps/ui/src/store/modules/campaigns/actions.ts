@@ -26,9 +26,9 @@ import {
   CampaignObject, CampaignStatusPayload, ConversionAction,
 } from './state';
 import {deepUpdateDimensionVisibility} from '@/utils/SSCFilters';
-import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import {runIf} from '../../../utils/Promise';
 import {RecommendedBudget} from '@/utils/CampaignsBudget';
+import KpiType from '@/enums/reporting/KpiType';
 
 export default {
   async [ActionsTypes.WARMUP_STORE](
@@ -43,10 +43,8 @@ export default {
       dispatch('googleAds/WARMUP_STORE', null, {root: true}),
       dispatch('productFeed/WARMUP_STORE', null, {root: true}),
       runIf(
-        !getters.GET_ALL_CAMPAIGNS?.length,
-        dispatch(ActionsTypes.GET_CAMPAIGNS_LIST, {
-          isNewRequest: true,
-        }),
+        !getters.GET_CAMPAIGNS_LIST?.length,
+        dispatch(ActionsTypes.GET_CAMPAIGNS_LIST),
       ),
       runIf(
         state.tracking === null,
@@ -55,6 +53,14 @@ export default {
       runIf(
         !getters.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED.length,
         dispatch(ActionsTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED),
+      ),
+      runIf(
+        !getters.GET_REPORTING_DAILY_RESULT.length,
+        dispatch(ActionsTypes.GET_REPORTING_DAILY_RESULTS),
+      ),
+      runIf(
+        !(getters.GET_REPORTING_KPIS).impressions,
+        dispatch(ActionsTypes.GET_REPORTING_KPIS),
       ),
     ]);
   },
@@ -163,14 +169,11 @@ export default {
   },
 
   async [ActionsTypes.UPDATE_ALL_REPORTING_DATA](
-    {dispatch, commit},
+    {dispatch},
   ) {
-    dispatch('GET_REPORTING_CAMPAIGNS_PERFORMANCES', {isNewRequest: true});
     dispatch('GET_REPORTING_KPIS');
     dispatch('GET_REPORTING_DAILY_RESULTS');
-    dispatch('GET_REPORTING_PRODUCTS_PERFORMANCES');
-    // temporary disable, waiting final table design
-    dispatch('GET_REPORTING_FILTERS_PERFORMANCES');
+    dispatch('GET_CAMPAIGNS_LIST');
   },
   [ActionsTypes.SET_REPORTING_DATES_RANGE](
     {commit, state},
@@ -210,6 +213,41 @@ export default {
     commit(MutationsTypes.SET_REPORTING_PERIOD_SELECTED, payload);
     await dispatch('SET_REPORTING_DATES_RANGE');
     dispatch('UPDATE_ALL_REPORTING_DATA');
+  },
+
+  [ActionsTypes.ADD_REPORTING_DAILY_RESULTS_TYPE](
+    {commit, state}, payload: KpiType,
+  ): boolean {
+    const currentResultTypes = state.reporting.request.dailyResultTypes;
+    const availableKey = Object.keys(currentResultTypes)
+      .find((color) => currentResultTypes[color] === null);
+
+    if (!availableKey) {
+      return false;
+    }
+
+    commit(
+      MutationsTypes.SET_REPORTING_DAILY_RESULTS_TYPES,
+      {...currentResultTypes, [availableKey]: payload},
+    );
+    return true;
+  },
+
+  [ActionsTypes.REMOVE_REPORTING_DAILY_RESULTS_TYPE](
+    {commit, state}, payload: KpiType,
+  ): void {
+    const currentResultTypes = state.reporting.request.dailyResultTypes;
+    const key = Object.keys(currentResultTypes)
+      .find((color) => currentResultTypes[color] === payload);
+
+    if (!key) {
+      return;
+    }
+
+    commit(
+      MutationsTypes.SET_REPORTING_DAILY_RESULTS_TYPES,
+      {...currentResultTypes, [key]: null},
+    );
   },
 
   async [ActionsTypes.GET_REPORTING_KPIS](
@@ -262,146 +300,33 @@ export default {
     commit(MutationsTypes.SET_REPORTING_DAILY_RESULTS, result);
   },
 
-  async [ActionsTypes.GET_REPORTING_CAMPAIGNS_PERFORMANCES](
-    {commit, rootState, state},
-  ) {
-    const limit = state.reporting.results.campaignsPerformancesSection.limitCampaignPerformanceList;
-    const offset = ((state.reporting.results.campaignsPerformancesSection.activePage - 1)
-    * limit).toString();
-    const query = new URLSearchParams({
-      startDate: state.reporting.request.dateRange.startDate,
-      endDate: state.reporting.request.dateRange.endDate,
-    });
-
-    // add order in array format
-    query.append('order[clicks]', state.reporting.request.ordering.campaignsPerformances.clicks);
-    query.append('limit', limit);
-    query.append('offset', offset);
-
-    const result = await fetchOnboarding(
-      'GET',
-      `ads-reporting/campaigns-performances?${query}`,
-      {
-        onResponse: async (response) => {
-          if (!response.ok) {
-            commit(MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_SECTION_ERROR, true);
-            throw new HttpClientError(response.statusText, response.status);
-          }
-          return response.json();
-        },
-      },
-    );
-    commit(MutationsTypes.RESET_REPORTING_CAMPAIGNS_PERFORMANCES);
-    commit(
-      MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_SECTION_ERROR,
-      false,
-    );
-    commit(
-      MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_RESULTS,
-      result.campaignsPerformanceList,
-    );
-    commit(
-      MutationsTypes.SET_TOTAL_CAMPAIGNS_PERFORMANCES_RESULTS,
-      result.totalCampaigns,
-    );
-  },
-
-  async [ActionsTypes.GET_REPORTING_PRODUCTS_PERFORMANCES](
-    {commit, rootState, state},
-  ) {
-    const query = new URLSearchParams({
-      startDate: state.reporting.request.dateRange.startDate,
-      endDate: state.reporting.request.dateRange.endDate,
-    });
-
-    // add order in array format
-    query.append('order[clicks]', state.reporting.request.ordering.productsPerformances.clicks);
-
-    const result = await fetchOnboarding(
-      'GET',
-      `ads-reporting/products-performances?${query}`,
-      {
-        onResponse: async (response) => {
-          if (!response.ok) {
-            commit(MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES_SECTION_ERROR, true);
-            throw new HttpClientError(response.statusText, response.status);
-          }
-          return response.json();
-        },
-      },
-    );
-
-    commit(MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES_SECTION_ERROR, false);
-    commit(MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES, result);
-  },
-
-  async [ActionsTypes.GET_REPORTING_FILTERS_PERFORMANCES](
-    {commit, rootState, state},
-  ) {
-    const query = new URLSearchParams({
-      startDate: state.reporting.request.dateRange.startDate,
-      endDate: state.reporting.request.dateRange.endDate,
-      lang: window.i18nSettings.isoCode,
-    });
-
-    // add order in array format
-    query.append('order[clicks]', state.reporting.request.ordering.filtersPerformances.clicks);
-
-    const result = await fetchOnboarding(
-      'GET',
-      `ads-reporting/products-partitions-performances?${query}`,
-      {
-        onResponse: async (response) => {
-          if (!response.ok) {
-            commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES_SECTION_ERROR, true);
-            throw new HttpClientError(response.statusText, response.status);
-          }
-          return response.json();
-        },
-      },
-    );
-
-    commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES_SECTION_ERROR, false);
-    commit(MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES,
-      result);
-  },
-  async [ActionsTypes.GET_CAMPAIGNS_LIST]({commit, state, rootState}, {
-    isNewRequest = true,
-  }) {
+  async [ActionsTypes.GET_CAMPAIGNS_LIST]({commit, state}) {
     const query = new URLSearchParams();
 
-    if (state.campaignsOrdering && state.campaignsOrdering.duration) {
-      query.append('order[startDate]', state.campaignsOrdering.duration);
-    }
-    if (state.campaignsOrdering && state.campaignsOrdering.name) {
-      query.append('filter[campaignName]', state.campaignsOrdering.name);
-    }
-    if (!isNewRequest && !state.nextPageTokenCampaignList) {
-      return;
-    }
-    if (!isNewRequest && state.nextPageTokenCampaignList) {
-      query.append('nextPageToken', state.nextPageTokenCampaignList);
-    }
+    Object.keys(state.campaigns.request.ordering).forEach((ordering) => {
+      query.append(`order[${ordering}]`, state.campaigns.request.ordering[ordering]);
+    });
+
+    query.append('offset', (state.campaigns.request.activePage - 1) * state.campaigns.request.numberOfCampaignsPerPage);
+    query.append('limit', state.campaigns.request.numberOfCampaignsPerPage);
+    query.append('startDate', state.reporting.request.dateRange.startDate);
+    query.append('endDate', state.reporting.request.dateRange.endDate);
+
     try {
       const json = await (await fetchOnboarding(
         'GET',
         `shopping-campaigns/list?${query}`,
       )).json();
-
-      if (isNewRequest) {
-        commit(MutationsTypes.RESET_CAMPAIGNS_LIST);
-      }
       commit(MutationsTypes.SAVE_CAMPAIGNS_TO_LIST, {
-        campaigns: json.campaigns,
+        campaigns: json.results,
       });
-      commit(MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST, {
-        nextPageToken: json.nextPageToken,
-      });
+      commit(MutationsTypes.SET_CAMPAIGNS_LIST_TOTAL, json.total);
     } catch (error) {
+      commit(MutationsTypes.SET_CAMPAIGNS_LIST_ERROR, true);
       console.error(error);
     }
   },
-  async [ActionsTypes.CHANGE_STATUS_OF_SSC]({commit}, payload: CampaignStatusPayload) {
+  async [ActionsTypes.CHANGE_STATUS_OF_CAMPAIGN]({commit}, payload: CampaignStatusPayload) {
     const json = await (await fetchOnboarding(
       'POST',
       `shopping-campaigns/${payload.id}/status`,

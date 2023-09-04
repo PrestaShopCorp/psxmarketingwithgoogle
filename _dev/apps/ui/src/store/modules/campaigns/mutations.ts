@@ -20,21 +20,19 @@
 import KpiType from '@/enums/reporting/KpiType';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import CampaignStatus, {
-  CampaignStatusToggle, CampaignTypes,
+  CampaignStatusToggle,
 } from '@/enums/reporting/CampaignStatus';
 import MutationsTypes from './mutations-types';
 import {
-  CampaignPerformances,
   DailyresultChart,
   Kpis,
-  OrderByType,
-  FiltersPerformancesSection,
   State as LocalState,
   CampaignObject,
-  ProductsPerformancesSection,
   ConversionAction,
   CampaignStatusPayload,
   Dimension,
+  DailyResultTypes,
+  CampaignListOrdering,
 } from './state';
 import {
   addPropertiesToDimension, deepUpdateDimensionVisibilityFromTree,
@@ -77,29 +75,11 @@ export default {
     };
   },
 
-  [MutationsTypes.SET_REPORTING_DAILY_RESULTS_TYPE](
+  [MutationsTypes.SET_REPORTING_DAILY_RESULTS_TYPES](
     state: LocalState,
-    payload: KpiType,
+    payload: DailyResultTypes,
   ) {
-    state.reporting.request.dailyResultType = payload;
-  },
-  [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_ORDERING](
-    state: LocalState,
-    payload: OrderByType,
-  ) {
-    state.reporting.request.ordering.campaignsPerformances = payload;
-  },
-  [MutationsTypes.SET_REPORTING_PRODUCT_PERFORMANCES_ORDERING](
-    state: LocalState,
-    payload: OrderByType,
-  ) {
-    state.reporting.request.ordering.productsPerformances = payload;
-  },
-  [MutationsTypes.SET_REPORTING_PRODUCT_PARTITIONS_PERFORMANCES_ORDERING](
-    state: LocalState,
-    payload: OrderByType,
-  ) {
-    state.reporting.request.ordering.filtersPerformances = payload;
+    state.reporting.request.dailyResultTypes = payload;
   },
 
   // errors mutations
@@ -108,24 +88,6 @@ export default {
     payload: boolean,
   ) {
     state.reporting.errorsList.kpis = payload;
-  },
-  [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_SECTION_ERROR](
-    state: LocalState,
-    payload: boolean,
-  ) {
-    state.reporting.errorsList.campaignsPerformancesSection = payload;
-  },
-  [MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES_SECTION_ERROR](
-    state: LocalState,
-    payload: boolean,
-  ) {
-    state.reporting.errorsList.productsPerformancesSection = payload;
-  },
-  [MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES_SECTION_ERROR](
-    state: LocalState,
-    payload: boolean,
-  ) {
-    state.reporting.errorsList.filtersPerformancesSection = payload;
   },
   [MutationsTypes.SET_FILTERS_CHOSEN](state: LocalState, payload) {
     state.filtersChosen = payload;
@@ -170,48 +132,41 @@ export default {
   ) {
     state.reporting.results.dailyResultChart = payload;
   },
-  [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_RESULTS](
-    state: LocalState,
-    payload: CampaignPerformances[],
-  ) {
-    state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList.push(
-      ...payload,
-    );
-  },
-  [MutationsTypes.SET_REPORTING_CAMPAIGNS_PERFORMANCES_RESULTS](
-    state: LocalState,
-    payload: CampaignPerformances[],
-  ) {
-    state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList.push(
-      ...payload,
-    );
-  },
-  [MutationsTypes.RESET_REPORTING_CAMPAIGNS_PERFORMANCES](state: LocalState) {
-    state.reporting.results.campaignsPerformancesSection.campaignsPerformanceList = [];
-  },
   [MutationsTypes.RESET_CAMPAIGNS_LIST](state: LocalState) {
-    state.campaigns = [];
+    state.campaigns.results.campaigns = [];
   },
-  [MutationsTypes.SET_SSC_LIST_ORDERING](
+  [MutationsTypes.SET_CAMPAIGNS_LIST_ORDERING](
     state: LocalState,
-    payload: OrderByType,
+    payload: CampaignListOrdering,
   ) {
-    state.campaignsOrdering = payload;
+    state.campaigns.request.ordering = payload;
   },
-  [MutationsTypes.SET_REPORTING_PRODUCTS_PERFORMANCES](
+  [MutationsTypes.SET_CAMPAIGNS_LIST_ACTIVE_PAGE](
     state: LocalState,
-    payload: ProductsPerformancesSection,
+    payload: number,
   ) {
-    state.reporting.results.productsPerformancesSection = payload;
+    state.campaigns.request.activePage = payload;
   },
-  [MutationsTypes.SET_REPORTING_FILTERS_PERFORMANCES](
+  [MutationsTypes.SET_CAMPAIGNS_LIST_PAGE_SIZE](
     state: LocalState,
-    payload: FiltersPerformancesSection,
+    payload: number,
   ) {
-    state.reporting.results.filtersPerformancesSection = payload;
+    state.campaigns.request.numberOfCampaignsPerPage = payload;
+  },
+  [MutationsTypes.SET_CAMPAIGNS_LIST_TOTAL](
+    state: LocalState,
+    payload: number,
+  ) {
+    state.campaigns.results.totalCount = payload;
+  },
+  [MutationsTypes.SET_CAMPAIGNS_LIST_ERROR](
+    state: LocalState,
+    payload: boolean,
+  ) {
+    state.campaigns.results.error = payload;
   },
   [MutationsTypes.SAVE_NEW_CAMPAIGN](state: LocalState, payload: CampaignObject) {
-    state.campaigns.push(payload);
+    state.campaigns.results.campaigns.push(payload);
   },
   [MutationsTypes.SET_ERROR_CAMPAIGN_NAME_EXISTS](
     state: LocalState,
@@ -225,39 +180,13 @@ export default {
       campaigns: CampaignObject[],
     },
   ) {
-    state.campaigns.push(...payload.campaigns);
-  },
-  [MutationsTypes.SAVE_NEXT_PAGE_TOKEN_CAMPAIGN_LIST](
-    state: LocalState,
-    payload: {
-      nextPageToken: string,
-    },
-  ) {
-    state.nextPageTokenCampaignList = payload.nextPageToken;
-  },
-  [MutationsTypes.SET_TOTAL_CAMPAIGNS_PERFORMANCES_RESULTS](
-    state: LocalState,
-    payload: number,
-  ) {
-    state.reporting.results.campaignsPerformancesSection.totalCampaigns = payload;
-  },
-  [MutationsTypes.SAVE_ACTIVE_PAGE_CAMPAIGN_PERFORMANCE_LIST](
-    state: LocalState,
-    payload: number,
-  ) {
-    state.reporting.results.campaignsPerformancesSection.activePage = payload;
-  },
-  [MutationsTypes.SAVE_LIMIT_CAMPAIGN_PERFORMANCE_LIST](
-    state: LocalState,
-    payload: number,
-  ) {
-    state.reporting.results.campaignsPerformancesSection.limitCampaignPerformanceList = payload;
+    state.campaigns.results.campaigns = payload.campaigns;
   },
   [MutationsTypes.UPDATE_CAMPAIGN_STATUS](
     state: LocalState,
     payload: CampaignStatusPayload,
   ) {
-    const campaign = state.campaigns.find((el) => el.id === payload.id);
+    const campaign = state.campaigns.results.campaigns.find((el) => el.id === payload.id);
 
     if (campaign !== undefined) {
       campaign.status = payload.status === CampaignStatusToggle.ENABLED
@@ -271,9 +200,9 @@ export default {
       ? CampaignStatus.ELIGIBLE
       : CampaignStatus.PAUSED;
 
-    const findCampaign = state.campaigns.findIndex(
+    const findCampaign = state.campaigns.results.campaigns.findIndex(
       (el) => el.id === payload.id,
     );
-    state.campaigns.splice(findCampaign, 1, payload);
+    state.campaigns.results.campaigns.splice(findCampaign, 1, payload);
   },
 };

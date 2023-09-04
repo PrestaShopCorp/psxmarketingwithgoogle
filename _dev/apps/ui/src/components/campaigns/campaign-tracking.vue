@@ -135,7 +135,7 @@ export default {
       return this.$i18n.t('smartShoppingCampaignCreation.enableCreationRemarketingTag');
     },
     accountHasAtLeastOneCampaign() {
-      return !!this.$store.getters['campaigns/GET_ALL_CAMPAIGNS']?.length;
+      return !!this.$store.getters['campaigns/GET_CAMPAIGNS_LIST']?.length;
     },
     conversionActions() {
       return this.$store.getters['campaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED'];

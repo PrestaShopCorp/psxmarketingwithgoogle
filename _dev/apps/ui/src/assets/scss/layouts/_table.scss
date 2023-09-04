@@ -306,6 +306,13 @@ $statusColors: (
   }
 }
 
+.ps_gs-table-performance-header {
+  background-color: $blue-100;
+}
+.ps_gs-table-performance-cell {
+  background-color: $blue-50;
+}
+
 .ps_gs-table-reporting-header {
   background-color: $white;
   border-bottom: 1px solid #dde4e6;
@@ -348,7 +355,8 @@ $statusColors: (
     }
   }
   th, td {
-    padding: rem(16);
+    padding-top: rem(16);
+    padding-bottom: rem(16);
   }
 }
 

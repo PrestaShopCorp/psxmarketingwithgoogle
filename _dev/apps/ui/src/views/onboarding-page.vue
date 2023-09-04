@@ -377,7 +377,7 @@ export default {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
     },
     accountHasAtLeastOneCampaign() {
-      return !!this.$store.getters['campaigns/GET_ALL_CAMPAIGNS']?.length;
+      return !!this.$store.getters['campaigns/GET_CAMPAIGNS_LIST']?.length;
     },
     remarketingTagIsSet() {
       return this.$store.getters['campaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
@@ -471,7 +471,7 @@ export default {
     googleAdsAccountIsChosen(newVal, oldVal) {
       if (oldVal === null && newVal === true) {
         this.SSCIsLoading = true;
-        this.$store.dispatch('campaigns/GET_CAMPAIGNS_LIST', {isNewRequest: true}).finally(() => {
+        this.$store.dispatch('campaigns/GET_CAMPAIGNS_LIST').finally(() => {
           this.SSCIsLoading = false;
         });
         this.$store.dispatch('campaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');

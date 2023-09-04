@@ -1,9 +1,13 @@
 enum CampaignSummaryListHeaderType {
+  STATUS = 'status',
   CAMPAIGN = 'campaign',
   DURATION = 'duration',
-  STATUS = 'status',
+  IMPRESSIONS = 'impressions',
+  CLICKS = 'clicks',
+  CONVERSIONS = 'conversions',
+  SALES = 'sales',
+  AD_SPEND = 'adSpend',
   TARGET = 'target',
-  PRODUCTS = 'products',
   DAILY_BUDGET = 'dailyBudget',
   ACTIONS = 'actions',
 }

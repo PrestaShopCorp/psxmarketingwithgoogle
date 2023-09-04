@@ -1,7 +1,17 @@
 <template>
   <b-tr>
     <b-td
-      class="b-table-sticky-column text-primary pl-2
+      class="ps_gs-fz-12 p-0"
+    >
+      <span
+        class="ps_gs-cell-status"
+        :class="`ps_gs-cell-status--${campaign.status.toLowerCase()}`"
+        v-b-tooltip:psxMktgWithGoogleApp :title="$t(`campaigns.status.${campaign.status.toLowerCase()}`)"
+      />
+    </b-td>
+
+    <b-td
+      class="text-primary pl-2
       justify-content-between align-items-baseline"
     >
       <b-link
@@ -13,25 +23,33 @@
         {{ campaign.campaignName }}
       </b-link>
     </b-td>
-    <b-td class="ps_gs-fz-12 text-nowrap">
+    <b-td class="ps_gs-fz-12">
       {{ campaignDuration }}
     </b-td>
-    <b-td
-      class="ps_gs-fz-12 ps_gs-cell-status"
-      :class="`ps_gs-cell-status--${campaign.status.toLowerCase()}`"
-    >
-      {{ $t(`campaigns.status.${campaign.status.toLowerCase()}`) }}
+    <b-td class="ps_gs-fz-12 ps_gs-table-performance-cell">
+      {{ campaign.impressions }}
+    </b-td>
+    <b-td class="ps_gs-fz-12 ps_gs-table-performance-cell">
+      {{ campaign.clicks }}
+    </b-td>
+    <b-td class="ps_gs-fz-12 ps_gs-table-performance-cell">
+      {{ campaign.conversions }}
+    </b-td>
+    <b-td class="ps_gs-fz-12 ps_gs-table-performance-cell">
+      {{ campaign.sales|formatPrice(campaign.currencyCode || currencyCode) }}
+    </b-td>
+    <b-td class="ps_gs-fz-12 ps_gs-table-performance-cell">
+      {{ campaign.adSpend|formatPrice(campaign.currencyCode || currencyCode) }}
     </b-td>
     <b-td class="ps_gs-fz-12">
       {{ campaignCountryName }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ campaignProducts }}
-    </b-td>
-    <b-td class="ps_gs-fz-12">
       {{ campaign.dailyBudget|formatPrice(campaign.currencyCode || currencyCode) }}
     </b-td>
-    <td class="ps_gs-fz-12 text-center">
+    <b-td
+      class="text-right"
+    >
       <b-dropdown
         variant="invisible"
         no-caret
@@ -42,83 +60,81 @@
         boundary="window"
       >
         <template #button-content>
-          <i class="material-icons ps_gs-fz-20 mx-auto">more_vert</i>
+          <i class="material-icons ps_gs-fz-20 mx-auto">create</i>
           <span class="sr-only">
             {{ $t('cta.openActionsMenu', [campaign.campaignName]) }}
           </span>
         </template>
         <b-dropdown-item-button
-          @click="goToCampaignPage(campaign.campaignName)"
-        >
-          {{ $t('cta.modifyTheCampaign') }}
-        </b-dropdown-item-button>
-        <b-dropdown-item-button
-          @click="isPaused()
+          v-if="isPausable"
+          @click="isPaused
             ? resumeCampaign()
             : pauseCampaign()"
         >
-          {{ isPaused()
+          {{ isPaused
             ? $t('cta.resumeCampaign')
             : $t('cta.pauseCampaign')
           }}
         </b-dropdown-item-button>
+        <b-dropdown-item-button
+          @click="goToCampaignPage(campaign.campaignName)"
+        >
+          {{ $t('cta.modifyTheCampaign') }}
+        </b-dropdown-item-button>
       </b-dropdown>
-    </td>
+    </b-td>
   </b-tr>
 </template>
 
-<script>
+<script lang="ts">
 import googleUrl from '@/assets/json/googleUrl.json';
 import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
-import compareYears from '../../utils/CompareYears';
-import {
-  retrieveProductNumberFromFiltersIds,
-} from '../../utils/SSCFilters';
+import compareYears from '@/utils/CompareYears';
+import { PropType } from 'vue';
+import { CampaignObject } from '@/store/modules/campaigns/state';
+import { timeConverterToDate } from '@/utils/Dates';
 
 export default {
   name: 'CampaignTableListRow',
   props: {
     campaign: {
-      type: Object,
+      type: Object as PropType<CampaignObject>,
       required: true,
     },
   },
   computed: {
     campaignDuration() {
+      if (this.campaign.status === CampaignStatus.ENDED) {
+        return this.$t('campaigns.dateLabel.endedOnX', {endDate: timeConverterToDate(this.campaign.endDate)});
+      }
       if (this.campaign.endDate) {
         const isThereAnEndDate = compareYears(this.campaign.endDate);
 
-        return isThereAnEndDate
-          ? `${this.$options.filters.timeConverterToDate(this.campaign.startDate)}-${this.$options.filters.timeConverterToDate(this.campaign.endDate)}`
-          : `${this.$t('campaigns.from')} ${this.$options.filters.timeConverterToDate(this.campaign.startDate)}`;
+        if (isThereAnEndDate) {
+          return this.$t('campaigns.dateLabel.fromXToX', {
+            startDate: timeConverterToDate(this.campaign.startDate),
+            endDate: timeConverterToDate(this.campaign.endDate),
+          });
+        }
       }
-      return `${this.$t('campaigns.from')} ${this.$options.filters.timeConverterToDate(this.campaign.startDate)}`;
+      return this.$t('campaigns.dateLabel.from', {startDate: timeConverterToDate(this.campaign.startDate)});
     },
     campaignCountryName() {
       return this.$options.filters.changeCountriesCodesToNames([this.campaign.targetCountry])[0];
     },
-    totalProducts() {
-      return retrieveProductNumberFromFiltersIds(
-        this.campaign.productFilters, this.$store.state.campaigns.sscAvailableFilters,
-      );
-    },
-    campaignProducts() {
-      return this.campaign.productFilters?.length
-        // eslint-disable-next-line
-         ? this.$i18n.tc(
-          'smartShoppingCampaignCreation.dimensionXFilterSelectedWithXProducts',
-          this.totalProducts,
-          [
-            this.$i18n.t(`smartShoppingCampaignCreation.${this.campaign.productFilters[0].dimension}`),
-            this.totalProducts,
-          ],
-        )
-        : this.$t('smartShoppingCampaignCreation.inputAllSyncedProducts');
-    },
     currencyCode() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode;
     },
-  },
+    isPaused(): boolean {
+      return this.campaign.status === CampaignStatus.PAUSED;
+    },
+    isPausable(): boolean {
+      return ![
+        CampaignStatus.DRAFT,
+        CampaignStatus.ENDED,
+        CampaignStatus.REMOVED,
+      ].includes(this.campaign.status);
+    },  },
   methods: {
     goToCampaignPage() {
       this.$router.push({
@@ -128,22 +144,19 @@ export default {
         },
       });
     },
-    isPaused() {
-      return this.campaign.status === CampaignStatus.PAUSED;
-    },
     pauseCampaign() {
       const payload = {
         id: this.campaign.id,
         status: CampaignStatusToggle.PAUSED,
       };
-      this.$store.dispatch('campaigns/CHANGE_STATUS_OF_SSC', payload);
+      this.$store.dispatch('campaigns/CHANGE_STATUS_OF_CAMPAIGN', payload);
     },
     resumeCampaign() {
       const payload = {
         id: this.campaign.id,
         status: CampaignStatusToggle.ENABLED,
       };
-      this.$store.dispatch('campaigns/CHANGE_STATUS_OF_SSC', payload);
+      this.$store.dispatch('campaigns/CHANGE_STATUS_OF_CAMPAIGN', payload);
     },
   },
   googleUrl,

@@ -3,7 +3,6 @@
       "tabs": {
         "productFeed": "Product feed",
         "campaign": "Campaign",
-        "reporting": "Reporting",
         "configuration": "Configure",
         "catalog": "Product catalog",
         "help": "Help"
@@ -29,7 +28,6 @@
       "mandatory": "are mandatory",
       "XIsMandatory": "{0} is mandatory.",
       "unableToFetchData": "We were unable to fetch datas, please try again later",
-      "searchByX": "Search by {0}",
       "search": "Search",
       "createAccount": "create your account",
       "createNewAccount": "If you don't have an account, you can {0} today.",
@@ -623,13 +621,6 @@
       }
      },
 
-    "smartShoppingCampaignList": {
-      "tableTitle": "Campaign performance",
-      "xCampaign": "No campaigns | {0} campaign | {0} campaigns",
-      "performanceMax" : "Performance Max",
-      "smartShoppingCampaign": "Smart Shopping Campaign",
-      "campaignType": "Type: {0}"
-    },
     "productFeedPage": {
       "breadcrumb": {
         "productStatusDetails": "Product status details",
@@ -768,16 +759,12 @@
         "noReasonFallback": "*Not provided, check [account errors on your Merchant Center]({0})[:target=\"_blank\"].*"
       }
     },
-    "campaignCard": {
-      "title": "Create your Performance Max campaign in a few clicks",
-      "description": "Google A.I. will display ads of the searched products to interested shoppers at the right time increasing your sales.\n\nSet a daily budget and easily launch your ads campaign - you only get billed when the ads are clicked, it's that easy!",
-      "footer": "We'll need to activate remarketing and conversion tracking tag for you to run Peformance Max campaigns"
-    },
     "keymetrics": {
-      "title": "Key metrics",
-      "accountTitle": "Account performance",
-      "accountSubtitle": "Check out these amazing numbers",
+      "title": "Performance Max campaigns reporting",
+      "accountSubtitle": "Analyze and optimize your online presence with detailed metrics that help you measure the impact of your digital marketing efforts.",
       "dailyResultTitle": "Daily results",
+      "helpUnderstanding": "Discover further information on how to interpret these metrics by visiting our {0}",
+
       "periods": {
         "yesterday": "Yesterday",
         "last7Days": "Last 7 days",
@@ -785,20 +772,16 @@
         "3Months": "3 months"
       },
       "impressions": "Impressions",
-      "impressionsTooltip": "Count of how often your ad has appeared on a search results page or website on the Google Network.",
       "clicks": "Clicks",
-      "clicksTooltip": "When someone clicks your ad, like on the blue headline or phone number of a text ad, Google Ads counts that as a click.",
       "conversions": "Conversion",
-      "conversionsTooltip": "The number of conversions. This only includes conversion actions which include_in_conversions_metric attribute is set to true. If you use conversion-based bidding, your bid strategies will optimize for these conversions.",
       "averageCostPerClick": "Avg cost / click",
-      "averageCostPerClickTooltip": "The total cost of all clicks divided by the total number of clicks received.",
       "costs": "Costs",
-      "costsTooltip": "The sum of your cost-per-click (CPC) and cost-per-thousand impressions (CPM) costs during this period.",
       "sales": "Sales",
       "noData": "No data yet",
-      "salesTooltip": "The value of conversions. This only includes conversion actions which include_in_conversions_metric attribute is set to true. If you use conversion-based bidding, your bid strategies will optimize for these conversions."
+      "noCampaigns": "Ready to boost your product promotion? Create your campaign in few clicks"
     },
     "campaigns": {
+      "listTitle": "Campaign's listing",
       "status": {
         "eligible": "Eligible",
         "eligiblelimited": "Eligible (limited)",
@@ -808,49 +791,24 @@
         "draft": "Draft",
         "pending": "Pending"
       },
-      "from": "From",
-      "fromXToX": "From {startDate} to {endDate}",
+      "dateLabel": {
+        "from": "From {startDate}",
+        "fromXToX": "From {startDate} to {endDate}",
+        "endedOnX": "Ended on {endDate}"
+      },
       "labelCol": {
-        "campaign": "Campaign",
-        "budget": "Budget",
+        "campaign": "Title",
         "status": "Status",
         "impressions": "Impressions",
         "clicks": "Clicks",
         "adSpend": "Ad spend",
-        "conversion": "Conversion",
         "sales": "Sales",
-        "id": "ID",
-        "products": "Product Filters",
-        "click": "Click",
         "costs": "Costs",
-        "averageCostPerClick": "Average CPC",
         "conversions": "Conversions",
-        "conversionsRate": "Conversions rate",
-        "productFilter": "Filter name",
-        "dimension": "Filter type",
-        "duration": "Duration date",
-        "target": "Target",
+        "duration": "Date",
+        "target": "Target country",
         "actions": "Actions",
         "dailyBudget": "Daily budget"
-      },
-      "tooltipCol": {
-        "status": "A status for your ad campaign that describes whether or not its ads can run at the moment.",
-        "products": "Product filter is what you selected as your campaign filter with the number of affected products."
-      },
-      "campaignsPerformanceTable": {
-        "title": "Campaign performance",
-        "subTitle": "Check out how well your campaigns perform",
-        "emptyListText": "You don't have any enabled campaign"
-      },
-      "productsPerformanceTable": {
-        "title": "Product performance for active campaigns",
-        "subTitle": "Check out which product performs the best",
-        "emptyListText": "You don't have any products in active campaigns"
-      },
-      "filtersPerformanceTable": {
-        "title": "Overall filter performance (top 10)",
-        "subTitle": "Check out which dimension performs the best",
-        "emptyListText": "You don't have any active campaigns with filters"
       }
     },
     "notConfiguredState": {
@@ -877,6 +835,7 @@
     },
     "help": {
       "intro": "PrestaShop Marketing makes it easy to connect your store with Google and promote your products to millions of shoppers across multiple Google channels. Create Performance Max campaigns without leaving your PrestaShop dashboard and drive more traffic.",
+      "helpCenter": "Help Center",
       "allowsYouTo": {
         "title": "This module allows you to:",
         "easySync": "Easily sync your product catalog with Google to keep product details such as price and availability automatically updated",
@@ -970,12 +929,13 @@
       "createSmartShoppingCampaign": "Launch Performance Max campaign",
       "addBillingSettings": "Add billing settings",
       "createCampaign": "Create campaign",
+      "createPMaxCampaign": "Create new PMax campaign",
       "editCampaign": "Update campaign",
       "launchCampaign": "Launch campaign",
       "resetDate": "Set today's date",
       "validate": "Validate",
-      "moreInfosAboutX": "More infos about {0}",
-      "seeOnGoogleAds": "See on Google Ads",
+      "seeOnGoogleAds": "See these metrics on {0}",
+      "GoogleAds": "Google Ads",
       "clickToSortDesc": "(Click to sort descending)",
       "clickToSortAsc": "(Click to sort ascending)",
       "selectFilters": "Select filters",
@@ -985,9 +945,9 @@
       "clearAll": "Clear all",
       "signInWithGoogle": "Sign in with Google",
       "viewReporting": "View reporting",
-      "pauseCampaign": "Pause campaign",
-      "resumeCampaign": "Resume campaign",
-      "modifyTheCampaign": "Modify the campaign",
+      "pauseCampaign": "Pause",
+      "resumeCampaign": "Enable",
+      "modifyTheCampaign": "Modify",
       "openActionsMenu": "Open actions menu for campaign {0}",
       "viewInGoogleAds": "View in your Google Ads account",
       "previous": "Previous",
@@ -1150,7 +1110,7 @@
       "legend": "*Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits. [Read T&C]({0})[:target=\"_blank\"]",
       "legendWithoutTC": "* Create a new Google Ads account, the voucher will be applied automatically once you match the spend and you will have 60 days to spend the credits.",
       "ctaCreateFirstCampaign": "Create your first campaign",
-      "textCampaignsBanner":  "Performance Max is the next generation of Smart Shopping campaigns. It is an enhanced campaign type powered by Google's smart technology. It works behind the scene to automatically optimise your ads across the shopping journey to drive maximum performance."
+      "textCampaignsBanner":  "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
     },
     "tipsAndTricks": {
       "title": "PrestaShop Tips and Tricks",

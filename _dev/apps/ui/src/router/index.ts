@@ -3,16 +3,13 @@ import VueRouter, {RouteConfig} from 'vue-router';
 import Store from '../store';
 import CampaignPage from '../views/campaign-page.vue';
 import CampaignForm from '../views/campaign-form.vue';
-import CampaignList from '../views/campaign-list.vue';
 import LandingPage from '../views/landing-page.vue';
 import Debug from '../views/debug.vue';
 import Help from '../views/help.vue';
 import Configuration from '../views/configuration.vue';
 import ProductFeedPage from '../views/product-feed-page.vue';
-import ReportingPage from '../views/reporting-page.vue';
 import TunnelProductFeed from '../views/tunnel-product-feed.vue';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
-import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
 Vue.use(VueRouter);
 
@@ -84,11 +81,6 @@ const routes: Array<RouteConfig> = [
     component: CampaignPage,
     children: [
       {
-        path: 'list',
-        name: 'campaign-list',
-        component: CampaignList,
-      },
-      {
         path: 'creation',
         name: 'campaign-creation',
         component: CampaignForm,
@@ -99,11 +91,6 @@ const routes: Array<RouteConfig> = [
         component: CampaignForm,
       },
     ],
-  },
-  {
-    path: '/reporting',
-    name: 'reporting',
-    component: ReportingPage,
   },
   {
     path: '/debug',

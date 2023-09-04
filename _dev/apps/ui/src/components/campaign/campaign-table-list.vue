@@ -1,219 +1,196 @@
 <template>
   <div>
-    <BannerCampaigns
-      v-if="!inNeedOfConfiguration"
-      @openPopinRemarketingTag="remarketingTagPopin"
-    />
-    <div
-      class="d-flex justify-content-between align-items-baseline"
+    <b-card
+      no-body
+      class="ps_gs-onboardingcard"
+      v-if="campaignList.length || loading || fetchingCampaigns || apiFailed"
     >
-      <h3 class="ps_gs-fz-20 font-weight-600">
-        {{ $t('smartShoppingCampaignList.tableTitle') }}
-      </h3>
-      <div class="d-flex">
-        <b-button
-          v-if="remarketingTag && campaignList.length && !inNeedOfConfiguration"
-          data-test-id="redirect-to-reporting-button"
-          size="sm"
-          class="mb-2 mr-2"
-          variant="outline-primary"
-          @click="redirectToReporting"
-        >
-          {{ $t('cta.viewReporting') }}
-        </b-button>
-      </div>
-    </div>
-    <ReportingTableHeader
-      class="mt-n1"
-      v-if="!inNeedOfConfiguration"
-      :title="$tc(`smartShoppingCampaignList.xCampaign`,
-                  campaignList.length, [campaignList.length])"
-      :use-date="false"
-    />
-    <!-- TODO : use this header when API returs only GMC linked campaigns -->
-    <!-- <ReportingTableHeader
-      :subtitle="$t('smartShoppingCampaignCreation.descriptiveMessage',[
-        $options.googleUrl.googleAdsAccount
-      ])"
-      :title="$tc(`smartShoppingCampaignList.xCampaign`,
-        campaignList.length, [campaignList.length])"
-      :use-date="false"
-    /> -->
-
-    <div>
-      <b-table-simple
-        id="table-filters-performance"
-        class="ps_gs-table-products mb-0"
-        :class="{'table-with-maxheight b-table-sticky-header' : !inNeedOfConfiguration}"
-        :table-class="{'border-bottom-0': loading}"
-        variant="light"
-        responsive="xl"
+      <template #header>
+        <ol class="mb-0 list-inline d-flex align-items-center ps_gs-breadcrumb">
+          <li class="list-inline-item ps_gs-breadcrumb__item">
+            {{ $t('campaigns.listTitle') }}
+          </li>
+        </ol>
+      </template>
+      <b-card-body
+        body-class="p-0"
       >
-        <b-thead :style="inNeedOfConfiguration ? {filter:'blur('+4+'px)'} : '' ">
-          <b-tr class="bg-prestashop-bg">
-            <b-th
-              v-for="(type, index) in campaignHeaderList"
-              :key="type"
-              class="font-weight-600"
-              :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 0}"
-            >
-              <div class="flex align-items-center text-nowrap">
-                <b-button
-                  v-if="hasSorting(type) && !inNeedOfConfiguration"
-                  @click="sortByType(type)"
-                  variant="invisible"
-                  class="p-0 border-0"
-                >
-                  <span>{{ $t(`campaigns.labelCol.${type}`) }}</span>
-                  <template v-if="queryOrderDirection[type] === 'ASC'">
-                    <i class="material-icons ps_gs-fz-14">expand_more</i>
-                    <span class="sr-only">{{ $t('cta.clickToSortAsc') }}</span>
-                  </template>
-                  <template v-else>
-                    <i class="material-icons ps_gs-fz-14">expand_less</i>
-                    <span class="sr-only">{{ $t('cta.clickToSortDesc') }}</span>
-                  </template>
-                </b-button>
-                <span v-else>
-                  {{ $t(`campaigns.labelCol.${type}`) }}
-                </span>
-                <b-button
-                  v-if="hasToolTip(type) && !inNeedOfConfiguration"
-                  variant="invisible"
-                  v-b-tooltip:psxMktgWithGoogleApp
-                  :title="$t(`campaigns.tooltipCol.${type}`)"
-                  class="p-0 mt-0 ml-1 border-0 d-inline-flex align-items-center"
-                >
-                  <i class="material-icons ps_gs-fz-14 text-secondary">info_outlined</i>
-                </b-button>
-              </div>
-            </b-th>
-          </b-tr>
-          <b-tr>
-            <b-th
-              v-for="(type, index) in campaignHeaderList"
-              :key="type"
-              class="font-weight-600"
-              :class="{'b-table-sticky-column b-table-sticky-column--invisible': index === 0}"
-            >
-              <b-form-input
-                v-if="hasInput(type)"
-                id="campaign-name-input-filter"
-                v-model="campaignName"
-                :placeholder="$t('general.searchByX',
-                                 [$t(`campaigns.labelCol.${type}`).toLowerCase()])"
-                size="sm"
-                class="border-0"
-                type="text"
-                :disabled="!!inNeedOfConfiguration"
-                @keyup="debounceName()"
-              />
-            </b-th>
-          </b-tr>
-        </b-thead>
-        <b-tbody class="bg-white">
-          <template
-            v-if="campaignList.length && !inNeedOfConfiguration"
-            class=" ps_gs-onboardingcard__not-configured"
+
+        <b-table-simple
+          id="table-filters-performance"
+          class="card mb-0"
+          responsive="xl"
+        >
+          <b-thead
+            class="card-header"
           >
-            <CampaignTableListRow
-              v-for="campaign in campaignList"
-              :key="campaign.campaignName"
-              :campaign="campaign"
-            />
-          </template>
-          <b-tr
-            v-if="inNeedOfConfiguration"
-          >
-            <b-td :colspan="campaignHeaderList.length">
-              <NotConfiguredCard class="mx-auto" />
-            </b-td>
-          </b-tr>
-          <b-tr v-if="loading">
-            <b-td
+            <b-tr>
+              <b-th
+                v-for="(type, index) in campaignHeaderList"
+                :key="type"
+                class="font-weight-500"
+                :class="{'ps_gs-table-performance-header': isPerformanceInfo(type)}"
+              >
+                <b-skeleton-wrapper
+                  :loading="loading"
+                >
+                  <template #loading>
+                    <b-skeleton/>
+                  </template>
+
+                  <div class="flex align-items-center">
+                    <b-button
+                      v-if="hasSorting(type)"
+                      @click="sortByType(type)"
+                      variant="invisible"
+                      class="p-0 border-0 text-nowrap"
+                    >
+                      <span
+                        class="ps_gs-fz-16 font-weight-500"
+                      >
+                        {{ $t(`campaigns.labelCol.${type}`) }}
+                      </span>
+                      <template v-if="queryOrderDirection[type] === 'ASC'">
+                        <i class="material-icons ps_gs-fz-14">expand_more</i>
+                        <span class="sr-only">{{ $t('cta.clickToSortAsc') }}</span>
+                      </template>
+                      <template v-else>
+                        <i class="material-icons ps_gs-fz-14">expand_less</i>
+                        <span class="sr-only">{{ $t('cta.clickToSortDesc') }}</span>
+                      </template>
+                    </b-button>
+                    <span v-else-if="hasTitleDisplayed(type)">
+                      {{ $t(`campaigns.labelCol.${type}`) }}
+                    </span>
+                  </div>
+                </b-skeleton-wrapper>
+              </b-th>
+            </b-tr>
+          </b-thead>
+
+          <b-tbody class="bg-white">
+            <template
+              v-if="loading || fetchingCampaigns"
+            >
+              <b-tr
+                v-for="index in pageSize"
+                :key="index"
+                class="justify-content-between align-items-center py-3"
+              >
+                <b-td
+                  v-for="(type, textIndex) in campaignHeaderList"
+                  :key="textIndex"
+                  :class="{'ps_gs-table-performance-cell': isPerformanceInfo(type)}"
+                >
+                  <b-skeleton
+                    class="mb-0 px-1"
+                    width="100%"
+                  />
+                </b-td>
+              </b-tr>
+            </template>
+
+            <table-api-error
+              v-else-if="apiFailed" 
               :colspan="campaignHeaderList.length"
-              class="ps_gs-table-products__loading-slot"
+            />
+
+            <template
+              v-else-if="campaignList.length"
+              class=" ps_gs-onboardingcard__not-configured"
             >
-              <i class="ps_gs-table-products__spinner">loading</i>
-            </b-td>
-          </b-tr>
-        </b-tbody>
-      </b-table-simple>
-    </div>
-    <SSCPopinActivateTracking
-      modal-id="SSCPopinActivateTrackingSSCList"
-      ref="SSCPopinActivateTrackingSSCList"
-    />
+              <CampaignTableListRow
+                v-for="campaign in campaignList"
+                :key="campaign.campaignName"
+                :campaign="campaign"
+              />
+            </template>
+          </b-tbody>
+        </b-table-simple>
+        <TablePageControls
+          :total-pages="totalPages"
+          :active-page="activePage"
+          :selected-filter-quantity-to-show="pageSize"
+        />
+      </b-card-body>
+    </b-card>
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import {mapGetters} from 'vuex';
+import GettersTypes from '@/store/modules/campaigns/getters-types';
+import MutationsTypes from '@/store/modules/campaigns/mutations-types';
+import {CampaignListOrdering} from '@/store/modules/campaigns/state';
 import CampaignTableListRow from './campaign-table-list-row.vue';
-import ReportingTableHeader from './reporting/commons/reporting-table-header.vue';
 import CampaignSummaryListHeaderType from '@/enums/campaigns-summary/CampaignSummaryListHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
-import googleUrl from '../../assets/json/googleUrl.json';
-import NotConfiguredCard from '@/components/commons/not-configured-card.vue';
+import googleUrl from '@/assets/json/googleUrl.json';
 import BannerCampaigns from '@/components/commons/banner-campaigns.vue';
-import SSCPopinActivateTracking from '@/components/campaigns/ssc-popin-activate-tracking.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
+import TableApiError from '@/components/commons/table-api-error.vue';
+import TablePageControls from '@/components/commons/table-page-controls.vue';
 
 export default {
   name: 'CampaignTableList',
   components: {
     CampaignTableListRow,
-    ReportingTableHeader,
-    NotConfiguredCard,
     BannerCampaigns,
-    SSCPopinActivateTracking,
-  },
-  data() {
-    return {
-      campaignName: null,
-      searchQuery: {},
-    };
+    TableApiError,
+    TablePageControls,
   },
   props: {
     loading: {
       type: Boolean,
       required: true,
     },
-    inNeedOfConfiguration: {
-      type: Boolean,
-      required: true,
-    },
+  },
+  data() {
+    return {
+      fetchingCampaigns: false as boolean,
+    };
   },
   computed: {
+    ...mapGetters('campaigns', {
+      campaignList: GettersTypes.GET_CAMPAIGNS_LIST,
+      apiFailed: GettersTypes.GET_CAMPAIGNS_LIST_ERROR,
+      pageSize: GettersTypes.GET_CAMPAIGNS_LIST_LIMIT,
+    }),
     campaignHeaderList() {
       return Object.values(CampaignSummaryListHeaderType);
     },
-    campaigns() {
-      return this.$store.state.campaigns.campaigns;
-    },
+    totalPages(): number {
+      const totalPages = this.$store.getters[`campaigns/${GettersTypes.GET_CAMPAIGNS_TOTAL}`]
+      / this.$store.getters[`campaigns/${GettersTypes.GET_CAMPAIGNS_LIST_LIMIT}`];
 
-    campaignList() {
-      const searchQuery = this.searchQuery[CampaignSummaryListHeaderType.CAMPAIGN];
-
-      if (searchQuery) {
-        return this.campaigns.filter((campaign) => {
-          const nameMatch = campaign.campaignName
-            .toLowerCase()
-            .includes(searchQuery.toLowerCase());
-
-          return nameMatch;
-        });
+      if (totalPages < 1) {
+        return 1;
       }
-      return this.campaigns;
+      return Math.ceil(totalPages);
+    },
+    activePage: {
+      get(): number {
+        return this.$store.getters[
+          `campaigns/${GettersTypes.GET_CAMPAIGNS_LIST_ACTIVE_PAGE}`
+        ];
+      },
+      set(page: number): void {
+        this.$store.commit(
+          `campaigns/${MutationsTypes.SET_CAMPAIGNS_LIST_ACTIVE_PAGE}`,
+          page,
+        );
+        this.fetchCampaigns();
+      },
     },
     queryOrderDirection: {
-      get() {
+      get(): CampaignListOrdering {
         return this.$store.getters[
           'campaigns/GET_CAMPAIGNS_LIST_ORDERING'
         ];
       },
-      set(orderDirection) {
+      set(orderDirection: CampaignListOrdering): void {
         this.$store.commit(
-          'campaigns/SET_SSC_LIST_ORDERING',
+          'campaigns/SET_CAMPAIGNS_LIST_ORDERING',
           orderDirection,
         );
         this.fetchCampaigns();
@@ -226,24 +203,24 @@ export default {
     },
   },
   methods: {
-    hasToolTip(headerType) {
-      return headerType === CampaignSummaryListHeaderType.STATUS
-       || headerType === CampaignSummaryListHeaderType.PRODUCTS;
+    hasTitleDisplayed(headerType: CampaignSummaryListHeaderType): boolean {
+      return headerType !== CampaignSummaryListHeaderType.STATUS;
     },
-    hasInput(headerType) {
-      return headerType === CampaignSummaryListHeaderType.CAMPAIGN;
+    hasSorting(headerType: CampaignSummaryListHeaderType): boolean {
+      return this.isPerformanceInfo(headerType) || headerType === CampaignSummaryListHeaderType.DURATION;
     },
-    hasSorting(headerType) {
-      return headerType === CampaignSummaryListHeaderType.DURATION;
+    isPerformanceInfo(headerType: CampaignSummaryListHeaderType): boolean {
+      return [
+        CampaignSummaryListHeaderType.IMPRESSIONS,
+        CampaignSummaryListHeaderType.CLICKS,
+        CampaignSummaryListHeaderType.AD_SPEND,
+        CampaignSummaryListHeaderType.CONVERSIONS,
+        CampaignSummaryListHeaderType.SALES,
+      ].includes(headerType);
     },
-    redirectToReporting() {
-      this.$router.push({
-        name: 'reporting',
-      });
-    },
-    sortByType(headerType) {
+    sortByType(headerType: CampaignSummaryListHeaderType) {
       // create new object for satisfy deep getter of vueJS
-      const newOrderDirection = {...this.queryOrderDirection};
+      const newOrderDirection = {};
 
       if (
         this.queryOrderDirection[headerType] === QueryOrderDirection.ASCENDING
@@ -254,73 +231,29 @@ export default {
       }
       this.queryOrderDirection = newOrderDirection;
     },
-
-    debounceName() {
-      this.$emit('loader', true);
-      clearTimeout(this.timer);
-      this.timer = setTimeout(() => {
-        this.$store.commit('campaigns/SET_SSC_LIST_ORDERING', {
-          name: this.campaignName,
-        });
-        this.fetchCampaigns();
-      }, 1000);
+    async fetchCampaigns() {
+      this.fetchingCampaigns = true;
+      await this.$store.dispatch('campaigns/GET_CAMPAIGNS_LIST');
+      this.fetchingCampaigns = false;
     },
-
-    fetchCampaigns(isNewRequest = true) {
-      this.$emit('loader', true);
-      this.$store
-        .dispatch('campaigns/GET_CAMPAIGNS_LIST', {isNewRequest})
-        .then(() => {
-          this.$store.dispatch('campaigns/GET_DIMENSIONS_FILTERS', null);
-        })
-        .finally(() => {
-          this.$emit('loader', false);
-        });
+    changeLimit(event: number) {
+      this.$store.commit(`campaigns/${MutationsTypes.SET_CAMPAIGNS_LIST_PAGE_SIZE}`, event);
+      this.fetchCampaigns();
     },
-    handleScroll() {
-      if (this.loading === true) {
-        return;
-      }
-      const body = document.getElementsByClassName('table-with-maxheight')[0];
-      const token = this.$store.getters['campaigns/GET_TOKEN_NEXT_PAGE_CAMPAIGN_LIST'];
-
-      if (
-        body.scrollTop >= body.scrollHeight - body.clientHeight
-        && body.scrollTop > 0
-        && token !== null
-      ) {
-        this.fetchCampaigns(false);
-      }
-    },
-    remarketingTagPopin() {
-      this.$bvModal.show(
-        this.$refs.SSCPopinActivateTrackingSSCList.$refs.modal.id,
-      );
+    changePageTo(pageNumber: number) {
+      this.$store.commit(`campaigns/${MutationsTypes.SET_CAMPAIGNS_LIST_ACTIVE_PAGE}`, pageNumber);
+      this.fetchCampaigns();
     },
   },
-  async mounted() {
-    const tableBody = document.getElementsByClassName(
-      'table-with-maxheight',
-    )[0];
-
-    if (tableBody) {
-      tableBody.addEventListener('scroll', this.handleScroll);
-    }
-
-    if (this.inNeedOfConfiguration) {
-      this.$emit('loader', false);
-      return;
-    }
-    this.$emit('loader', false);
+  mounted() {
+    this.$root.$on('changeLimit', this.changeLimit);
+    this.$root.$on('changePage', this.changePageTo);
+    this.fetchCampaigns();
+    this.$store.dispatch('campaigns/GET_DIMENSIONS_FILTERS', null);
   },
   beforeDestroy() {
-    const tableBody = document.getElementsByClassName(
-      'table-with-maxheight',
-    )[0];
-
-    if (tableBody) {
-      tableBody.removeEventListener('scroll', this.handleScroll);
-    }
+    this.$root.$off('changeLimit', this.changeLimit);
+    this.$root.$off('changePage', this.changePageTo);
   },
   googleUrl,
   CampaignTypes,

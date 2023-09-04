@@ -1,45 +1,61 @@
 <template>
   <div>
-    <b-skeleton-wrapper
+    <div
       v-if="$route.name === 'campaign'"
-      :loading="loadingPage"
       class="mb-3"
     >
-      <template #loading>
-        <b-card>
-          <b-skeleton width="85%" />
-          <b-skeleton width="55%" />
-          <b-skeleton width="70%" />
-        </b-card>
-      </template>
-      <campaign-card-get-started
-        @openPopin="onOpenPopinActivateTracking"
+
+      <BannerCampaigns
+        v-if="!inNeedOfConfiguration && !accountHasAtLeastOneCampaign"
+        @clickToCreateCampaign="onClickToCreateCampaign"
+      />
+
+      <key-metrics-controls
+        :in-need-of-configuration="inNeedOfConfiguration"
+        :loading="!allDataLoaded"
+        :accountHasAtLeastOneCampaign="accountHasAtLeastOneCampaign"
+      />
+
+      <KeyMetricsBlock
+        :in-need-of-configuration="inNeedOfConfiguration"
+        :loading="!allDataLoaded"
+        @clickToCreateCampaign="onClickToCreateCampaign"
+      />
+
+      <campaign-table-list
+        v-if="!inNeedOfConfiguration"
+        :loading="!allDataLoaded"
         :in-need-of-configuration="inNeedOfConfiguration"
       />
-    </b-skeleton-wrapper>
+    </div>
+    <!-- Need this new router-view since we now have nested children routes -->
+    <router-view  v-else/>
     <SSCPopinActivateTracking
       ref="SSCPopinActivateTrackingCampaignPage"
       modal-id="SSCPopinActivateTrackingCampaignPage"
     />
-    <!-- Need this new router-view since we now have nested children routes -->
-    <router-view />
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SSCPopinActivateTracking from '../components/campaigns/ssc-popin-activate-tracking.vue';
-import CampaignCardGetStarted from '../components/campaigns/campaign-card-get-started.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
+import BannerCampaigns from '@/components/commons/banner-campaigns.vue';
+import KeyMetricsBlock from '@/components/campaign/reporting/key-metrics/key-metrics-block.vue';
+import KeyMetricsControls from '@/components/campaign/reporting/key-metrics/key-metrics-controls.vue';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   components: {
-    CampaignCardGetStarted,
+    BannerCampaigns,
+    KeyMetricsBlock,
+    KeyMetricsControls,
     SSCPopinActivateTracking,
   },
 
   data() {
     return {
-      loadingPage: true,
+      allDataLoaded: false,
     };
   },
   computed: {
@@ -50,12 +66,29 @@ export default {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
     },
     accountHasAtLeastOneCampaign() {
-      return !!this.$store.getters['campaigns/GET_ALL_CAMPAIGNS']?.length;
+      return !!this.$store.getters['campaigns/GET_CAMPAIGNS_LIST']?.length;
+    },
+    remarketingTagIsSet() {
+      return this.$store.getters['campaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
     },
   },
   methods: {
     async getDatas() {
       await this.$store.dispatch('campaigns/WARMUP_STORE');
+    },
+    onClickToCreateCampaign(): void {
+      this.$segment.track('[GGL] Click on Create your first campaign - Campaign tab', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
+      // Prevent popin for opening if tracking is a campaign exists
+      if (this.remarketingTagIsSet) {
+        this.$router.push({
+          name: 'campaign-creation',
+        });
+      } else {
+        this.onOpenPopinActivateTracking();
+      }
     },
     onOpenPopinActivateTracking() {
       this.$bvModal.show(
@@ -68,29 +101,9 @@ export default {
       await this.$store.dispatch('accounts/WARMUP_STORE');
     }
     this.getDatas()
-      .then(() => {
-        this.loadingPage = false;
-        if (this.$route.name === 'campaign' && this.accountHasAtLeastOneCampaign) {
-          this.$router.push({
-            name: 'campaign-list',
-          });
-        }
-      }).finally(() => {
-        this.loadingPage = false;
+      .finally(() => {
+        this.allDataLoaded = true;
       });
-  },
-  watch: {
-    $route: {
-      handler(route) {
-        if (route.name === 'campaign' && this.accountHasAtLeastOneCampaign) {
-          this.$router.push({
-            name: 'campaign-list',
-          });
-        }
-      },
-      deep: true,
-      immediate: true,
-    },
   },
   CampaignTypes,
 };

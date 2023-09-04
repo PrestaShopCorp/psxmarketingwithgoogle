@@ -194,10 +194,9 @@ export default defineComponent({
         } else {
           this.$store.dispatch(
             'campaigns/GET_CAMPAIGNS_LIST',
-            {isNewRequest: true, typeChosen: CampaignTypes.PERFORMANCE_MAX},
           );
           this.$router.push({
-            name: 'campaign-list',
+            name: 'campaign',
           });
           this.$emit('openPopinSSCCreated');
           this.$segment.track(`[GGL] Campaign ${this.edition ? 'updated' : 'created'}`, {

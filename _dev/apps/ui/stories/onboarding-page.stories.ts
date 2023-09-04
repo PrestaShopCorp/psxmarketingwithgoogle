@@ -148,6 +148,6 @@ Completed.args = {
     this.$store.state.productFeed = Object.assign({}, productFeedIsConfiguredOnce);
     this.$store.state.googleAds = Object.assign({}, adsAccountStatus);
     this.$store.state.campaigns = cloneDeep(conversionTrackingIsTrue);
-    this.$store.state.campaigns.campaigns = cloneDeep(campaignsMock);
+    this.$store.state.campaigns.campaigns.results.campaigns =cloneDeep(campaignsMock);
   },
 };

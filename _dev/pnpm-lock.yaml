@@ -32,11 +32,11 @@ importers:
         specifier: ^2.22.0
         version: 2.22.0(jquery@3.7.0)(vue@2.7.14)
       chart.js:
-        specifier: ^3.9.1
-        version: 3.9.1
+        specifier: ^4.3.3
+        version: 4.3.3
       chartjs-adapter-date-fns:
         specifier: ^2.0.0
-        version: 2.0.0(chart.js@3.9.1)
+        version: 2.0.0(chart.js@4.3.3)
       css-loader:
         specifier: ^3.6.0
         version: 3.6.0(webpack@5.88.1)
@@ -4095,6 +4095,10 @@ packages:
   /@juggle/resize-observer@3.4.0:
     resolution: {integrity: sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==}
     dev: true
+
+  /@kurkle/color@0.3.2:
+    resolution: {integrity: sha512-fuscdXJ9G1qb7W8VdHi+IwRqij3lBkosAm4ydQtEmbY58OzHXqQhvlxqEkoz0yssNVn38bcpRWgA9PP+OGoisw==}
+    dev: false
 
   /@leichtgewicht/ip-codec@2.0.4:
     resolution: {integrity: sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==}
@@ -8860,16 +8864,19 @@ packages:
     resolution: {integrity: sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==}
     dev: true
 
-  /chart.js@3.9.1:
-    resolution: {integrity: sha512-Ro2JbLmvg83gXF5F4sniaQ+lTbSv18E+TIf2cOeiH1Iqd2PGFOtem+DUufMZsCJwFE7ywPOpfXFBwRTGq7dh6w==}
+  /chart.js@4.3.3:
+    resolution: {integrity: sha512-aTk7pBw+x6sQYhon/NR3ikfUJuym/LdgpTlgZRe2PaEhjUMKBKyNaFCMVRAyTEWYFNO7qRu7iQVqOw/OqzxZxQ==}
+    engines: {pnpm: '>=7'}
+    dependencies:
+      '@kurkle/color': 0.3.2
     dev: false
 
-  /chartjs-adapter-date-fns@2.0.0(chart.js@3.9.1):
+  /chartjs-adapter-date-fns@2.0.0(chart.js@4.3.3):
     resolution: {integrity: sha512-rmZINGLe+9IiiEB0kb57vH3UugAtYw33anRiw5kS2Tu87agpetDDoouquycWc9pRsKtQo5j+vLsYHyr8etAvFw==}
     peerDependencies:
       chart.js: ^3.0.0
     dependencies:
-      chart.js: 3.9.1
+      chart.js: 4.3.3
     dev: false
 
   /check-error@1.0.2:

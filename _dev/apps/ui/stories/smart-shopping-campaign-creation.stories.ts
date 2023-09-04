@@ -293,7 +293,7 @@ EditionWithUnhandledFilters.args = {
   loader: false,
   searchLoader: false,
   mounted(this: any) {
-    this.$store.state.campaigns.campaigns = [cloneDeep(campaignWithUnhandledFilters)];
+    this.$store.state.campaigns.campaigns.results.campaigns =[cloneDeep(campaignWithUnhandledFilters)];
     this.$router.history.current.params.id = '16004060865',
     this.$store.state.campaigns.errorFetchingFilters = false;
     this.$store.state.productFeed.validationSummary.activeProducts = 2;

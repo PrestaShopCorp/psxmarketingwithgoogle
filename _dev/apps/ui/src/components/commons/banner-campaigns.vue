@@ -1,9 +1,9 @@
 <template>
   <b-card class="shadow-sm border-0 mb-3">
-    <b-card-body>
-      <div class="d-flex align-items-center">
+    <b-card-body class="p-1">
+      <div class="d-flex flex-column flex-md-row align-items-center">
         <img
-          src="@/assets/images/Google-Commercial-icon.svg"
+          src="@/assets/images/Google-Ads-PS-Style.svg"
           width="75"
           height="75"
           alt=""
@@ -13,15 +13,15 @@
             {{ $t("smartShoppingCampaignCard.title") }}
           </h3>
 
-          <p>
+          <p class="mb-1 mb-md-0">
             {{ $t("banner.textCampaignsBanner") }}
           </p>
         </div>
 
         <b-button
-          class="flex-shrink-0"
+          class="flex-shrink-0 ml-5"
           variant="primary"
-          @click="openPopinActivateTracking"
+          @click="$emit('clickToCreateCampaign')"
         >
           {{ this.accountHasAtLeastOneCampaign
             ? $t('cta.launchCampaign') : $t('banner.ctaCreateFirstCampaign')
@@ -36,6 +36,7 @@
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
+  name: 'BannerCampaigns',
   data() {
     return {
       isConfigured: true,
@@ -43,26 +44,7 @@ export default {
   },
   computed: {
     accountHasAtLeastOneCampaign() {
-      return !!this.$store.getters['campaigns/GET_ALL_CAMPAIGNS']?.length;
-    },
-    remarketingTagIsSet() {
-      return this.$store.getters['campaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
-    },
-  },
-  methods: {
-    openPopinActivateTracking() {
-      this.$segment.track('[GGL] Click on Create your first campaign - Campaign tab', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-      });
-      // Prevent popin for opening if tracking is a campaign exists
-      if (this.remarketingTagIsSet) {
-        this.$router.push({
-          name: 'campaign-creation',
-        });
-      } else {
-        this.$emit('openPopinRemarketingTag');
-      }
+      return !!this.$store.getters['campaigns/GET_CAMPAIGNS_LIST']?.length;
     },
   },
 };
