@@ -5,8 +5,8 @@
     >
       <span
         class="ps_gs-cell-status"
-        :class="`ps_gs-cell-status--${campaign.status.toLowerCase()}`"
-        v-b-tooltip:psxMktgWithGoogleApp :title="$t(`campaigns.status.${campaign.status.toLowerCase()}`)"
+        :class="`ps_gs-cell-status--${campaign.status?.toLowerCase()}`"
+        v-b-tooltip:psxMktgWithGoogleApp :title="$t(`campaigns.status.${campaign.status?.toLowerCase()}`)"
       />
     </b-td>
 
@@ -18,7 +18,7 @@
         variant="link"
         class="font-weight-normal ps_gs-fz-12 p-0 m-0 btn-max-width"
         :title="campaign.campaignName"
-        @click="goToCampaignPage(campaign.campaignName)"
+        @click="goToCampaignPage"
       >
         {{ campaign.campaignName }}
       </b-link>
@@ -36,16 +36,16 @@
       {{ campaign.conversions }}
     </b-td>
     <b-td class="ps_gs-fz-12 ps_gs-table-performance-cell">
-      {{ campaign.sales|formatPrice(campaign.currencyCode || currencyCode) }}
+      {{ displayAsPrice(campaign.sales) }}
     </b-td>
     <b-td class="ps_gs-fz-12 ps_gs-table-performance-cell">
-      {{ campaign.adSpend|formatPrice(campaign.currencyCode || currencyCode) }}
+      {{ displayAsPrice(campaign.adSpend) }}
     </b-td>
     <b-td class="ps_gs-fz-12">
       {{ campaignCountryName }}
     </b-td>
     <b-td class="ps_gs-fz-12">
-      {{ campaign.dailyBudget|formatPrice(campaign.currencyCode || currencyCode) }}
+      {{ displayAsPrice(campaign.dailyBudget) }}
     </b-td>
     <b-td
       class="text-right"
@@ -77,7 +77,7 @@
           }}
         </b-dropdown-item-button>
         <b-dropdown-item-button
-          @click="goToCampaignPage(campaign.campaignName)"
+          @click="goToCampaignPage"
         >
           {{ $t('cta.modifyTheCampaign') }}
         </b-dropdown-item-button>
@@ -90,15 +90,16 @@
 import googleUrl from '@/assets/json/googleUrl.json';
 import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
 import compareYears from '@/utils/CompareYears';
-import { PropType } from 'vue';
-import { CampaignObject } from '@/store/modules/campaigns/state';
+import { PropType, defineComponent } from 'vue';
+import { CampaignPerformanceObject } from '@/store/modules/campaigns/state';
 import { timeConverterToDate } from '@/utils/Dates';
+import { formatPrice } from '../../utils/Price';
 
-export default {
+export default defineComponent({
   name: 'CampaignTableListRow',
   props: {
     campaign: {
-      type: Object as PropType<CampaignObject>,
+      type: Object as PropType<CampaignPerformanceObject>,
       required: true,
     },
   },
@@ -122,8 +123,8 @@ export default {
     campaignCountryName() {
       return this.$options.filters.changeCountriesCodesToNames([this.campaign.targetCountry])[0];
     },
-    currencyCode() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode;
+    currencyCode(): string {
+      return this.campaign.currencyCode || this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode;
     },
     isPaused(): boolean {
       return this.campaign.status === CampaignStatus.PAUSED;
@@ -136,6 +137,9 @@ export default {
       ].includes(this.campaign.status);
     },  },
   methods: {
+    displayAsPrice(value: number): string {
+      return formatPrice(value, this.currencyCode)
+    },
     goToCampaignPage() {
       this.$router.push({
         name: 'campaign-edition',
@@ -160,5 +164,5 @@ export default {
     },
   },
   googleUrl,
-};
+});
 </script>

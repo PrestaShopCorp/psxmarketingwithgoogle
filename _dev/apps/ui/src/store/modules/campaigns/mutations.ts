@@ -33,6 +33,7 @@ import {
   Dimension,
   DailyResultTypes,
   CampaignListOrdering,
+  CampaignPerformanceObject,
 } from './state';
 import {
   addPropertiesToDimension, deepUpdateDimensionVisibilityFromTree,
@@ -177,7 +178,7 @@ export default {
   [MutationsTypes.SAVE_CAMPAIGNS_TO_LIST](
     state: LocalState,
     payload: {
-      campaigns: CampaignObject[],
+      campaigns: CampaignPerformanceObject[],
     },
   ) {
     state.campaigns.results.campaigns = payload.campaigns;

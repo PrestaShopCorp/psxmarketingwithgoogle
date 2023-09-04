@@ -8,6 +8,7 @@ export const formatPrice = (value: number, currencyCode?: string): string => {
     style: 'currency',
     currency: currencyCode,
     currencyDisplay: 'narrowSymbol',
+    trailingZeroDisplay: 'stripIfInteger',
   }).format(value);
 };
 

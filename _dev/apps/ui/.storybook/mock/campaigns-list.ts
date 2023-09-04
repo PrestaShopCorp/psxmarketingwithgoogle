@@ -1,7 +1,7 @@
-import { CampaignObject } from "@/store/modules/campaigns/state";
+import { CampaignPerformanceObject } from "@/store/modules/campaigns/state";
 import CampaignStatus, { CampaignTypes } from "@/enums/reporting/CampaignStatus";
 
-export const campaigns: CampaignObject[] = [
+export const campaigns: CampaignPerformanceObject[] = [
   {
     id: 19968248543,
     campaignName: "Tartiflette day",

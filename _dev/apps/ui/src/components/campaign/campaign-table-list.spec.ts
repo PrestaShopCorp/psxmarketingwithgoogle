@@ -13,16 +13,11 @@ import BannerCampaigns from '../commons/banner-campaigns.vue';
 
 const VBTooltip = vi.fn();
 
-/* TODO:
- * Display of campaign dates
- * Pagination display
- */
-
 describe('CampaignTableList', () => {
-  describe('Display of dates', () => {
-    it.todo('should render when campaign has only a start date');
-    it.todo('should render when campaign has start & end dates');
-    it.todo('should render when campaign has ended');
+  describe('Header', () => {
+    it.todo('has the proper number of columns');
+    it.todo('has date + performance columns sortable');
+    it.todo('adds a background color on performance columns');
   });
 
   describe('Pagination', () => {
