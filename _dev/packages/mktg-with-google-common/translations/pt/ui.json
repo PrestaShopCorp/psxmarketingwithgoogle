@@ -3,7 +3,6 @@
         "tabs": {
             "productFeed": "Feed de produtos",
             "campaign": "Campanha",
-            "reporting": "Relatório",
             "configuration": "Configurar",
             "catalog": "Catálogo de produtos",
             "help": "Ajuda"
@@ -29,7 +28,6 @@
         "mandatory": "são obrigatórias",
         "XIsMandatory": "{0} é obrigatório.",
         "unableToFetchData": "Não conseguimos obter dados, por favor tente novamente mais tarde.",
-        "searchByX": "Pesquisar por {0}",
         "search": "Pesquisa",
         "createAccount": "criar sua conta",
         "createNewAccount": "Se você não tiver uma conta, poderá {0} hoje.",
@@ -622,13 +620,6 @@
             "readMore": "Este orçamento mínimo recomendado permitirá que você teste a eficácia\n  dos seus anúncios e faça ajustes conforme necessário. É claro que todo negócio é\n  diferente e o orçamento ideal para você pode variar dependendo\n  dos seus objetivos específicos e do seu público-alvo. Recomendamos experimentar\n  orçamentos diferentes para determinar o que funciona melhor para o seu negócio."
         }
     },
-    "smartShoppingCampaignList": {
-        "tableTitle": "Desempenho da campanha",
-        "xCampaign": "Sem campanhas | {0} campanha | {0} campanhas",
-        "performanceMax": "Máximo desempenho",
-        "smartShoppingCampaign": "Campanha Smart Shopping",
-        "campaignType": "Tipo: {0}"
-    },
     "productFeedPage": {
         "breadcrumb": {
             "productStatusDetails": "Detalhes do status do produto",
@@ -767,16 +758,11 @@
             "noReasonFallback": "*Não fornecido, verifique [erros de conta no seu Merchant Center]({0})[:target=\"_blank\"].*"
         }
     },
-    "campaignCard": {
-        "title": "Crie a sua campanha de Máximo desempenho em poucos cliques",
-        "description": "Google A.I. irá exibir anúncios dos produtos pesquisados aos compradores interessados no momento certo, aumentando as suas vendas.\n\nDefina um orçamento diário e lance facilmente a sua campanha de anúncios - só é facturado quando os anúncios são clicados, é assim tão fácil!",
-        "footer": "Precisamos ativar o identificador de rastreamento de remarketing e conversão para você executar as campanhas Peformance Max"
-    },
     "keymetrics": {
-        "title": "Principais métricas",
-        "accountTitle": "Desempenho da conta",
-        "accountSubtitle": "Confira estes números incríveis",
+        "title": "Performance Max campaigns reporting",
+        "accountSubtitle": "Analyze and optimize your online presence with detailed metrics that help you measure the impact of your digital marketing efforts.",
         "dailyResultTitle": "Resultados diários",
+        "helpUnderstanding": "Discover further information on how to interpret these metrics by visiting our {0}",
         "periods": {
             "yesterday": "Ontem",
             "last7Days": "Últimos 7 dias",
@@ -784,20 +770,16 @@
             "3Months": "3 meses"
         },
         "impressions": "Impressões",
-        "impressionsTooltip": "Conte quantas vezes o seu anúncio apareceu numa página de resultados de pesquisa ou site na Rede Google.",
         "clicks": "Cliques",
-        "clicksTooltip": "Quando alguém clica no seu anúncio, como no cabeçalho azul ou no número de telefone de um anúncio de texto, o Google Ads conta isso como um clique.",
         "conversions": "Conversão",
-        "conversionsTooltip": "O número de conversões. Isto inclui apenas as ações de conversão que incluem o atributo in_conversions_metric definido como verdadeiro. Se utilizar a licitação baseada em conversão, as suas estratégias de licitação serão otimizadas para essas conversões.",
         "averageCostPerClick": "Custo Médio / clique",
-        "averageCostPerClickTooltip": "O custo total de todos os cliques dividido pelo número total de cliques recebidos.",
         "costs": "Custos",
-        "costsTooltip": "A soma do custo por clique (CPC) e o custo por mil impressões (CPM) durante este período.",
         "sales": "Vendas",
         "noData": "Ainda sem dados",
-        "salesTooltip": "O número de conversões. Isto inclui apenas as ações de conversão que incluem o atributo in_conversions_metric definido como verdadeiro. Se utilizar a licitação baseada em conversão, as suas estratégias de licitação serão otimizadas para essas conversões."
+        "noCampaigns": "Ready to boost your product promotion? Create your campaign in few clicks"
     },
     "campaigns": {
+        "listTitle": "Campaign's listing",
         "status": {
             "eligible": "Elegível",
             "eligiblelimited": "Elegível (limitado)",
@@ -807,49 +789,24 @@
             "draft": "Rascunho",
             "pending": "Pendente"
         },
-        "from": "A partir de",
-        "fromXToX": "De {startDate} a {endDate}",
+        "dateLabel": {
+            "from": "From {startDate}",
+            "fromXToX": "From {startDate} to {endDate}",
+            "endedOnX": "Ended on {endDate}"
+        },
         "labelCol": {
-            "campaign": "Campanha",
-            "budget": "Orçamento",
+            "campaign": "Title",
             "status": "Estado",
             "impressions": "Impressões",
             "clicks": "Cliques",
             "adSpend": "Anúncio gasto",
-            "conversion": "Conversão",
             "sales": "Vendas",
-            "id": "ID",
-            "products": "Filtros de produtos",
-            "click": "Clique",
             "costs": "Custos",
-            "averageCostPerClick": "Média CPC",
             "conversions": "Conversões",
-            "conversionsRate": "Taxa de conversão",
-            "productFilter": "Nome do filtro",
-            "dimension": "Tipo de filtro",
-            "duration": "Data de duração",
-            "target": "Alvo",
+            "duration": "Date",
+            "target": "Target country",
             "actions": "Ações",
             "dailyBudget": "Orçamento diário"
-        },
-        "tooltipCol": {
-            "status": "Um status para sua campanha publicitária que descreve se seus anúncios podem ou não ser veiculados no momento.",
-            "products": "O filtro de produto é o que você selecionou como filtro de campanha com o número de produtos afetados."
-        },
-        "campaignsPerformanceTable": {
-            "title": "Desempenho da campanha",
-            "subTitle": "Confira o bom desempenho de suas campanhas",
-            "emptyListText": "Você não tem nenhuma campanha activada"
-        },
-        "productsPerformanceTable": {
-            "title": "Desempenho do produto para campanhas ativas",
-            "subTitle": "Confira qual produto tem o melhor desempenho",
-            "emptyListText": "Você não tem nenhum produto em campanhas activas"
-        },
-        "filtersPerformanceTable": {
-            "title": "Desempenho geral do filtro (top 10)",
-            "subTitle": "Confira qual dimensão tem o melhor desempenho",
-            "emptyListText": "Você não tem nenhuma campanha ativa com filtros"
         }
     },
     "notConfiguredState": {
@@ -876,6 +833,7 @@
     },
     "help": {
         "intro": "PrestaShop Marketing facilita a ligação da sua loja ao Google e a promoção dos seus produtos a milhões de compradores através de múltiplos canais Google. Crie campanhas Performance Max sem sair do seu tablier PrestaShop e conduza mais tráfego.",
+        "helpCenter": "Help Center",
         "allowsYouTo": {
             "title": "Este módulo permite-lhe:",
             "easySync": "Sincronize facilmente o seu catálogo de produtos com o Google para manter os detalhes do produto, como preço e disponibilidade, atualizados automaticamente.",
@@ -969,12 +927,13 @@
         "createSmartShoppingCampaign": "Lançar campanha de Máximo desempenho",
         "addBillingSettings": "Adicionar configurações de faturação",
         "createCampaign": "Criar campanha",
+        "createPMaxCampaign": "Create new PMax campaign",
         "editCampaign": "Atualizar campanha",
         "launchCampaign": "Lançar campanha",
         "resetDate": "Data de reinicialização",
         "validate": "Validar",
-        "moreInfosAboutX": "Mais informações sobre {0}",
-        "seeOnGoogleAds": "Veja no Google Ads",
+        "seeOnGoogleAds": "See these metrics on {0}",
+        "GoogleAds": "Google Ads",
         "clickToSortDesc": "(Clique para ordenar por ordem decrescente)",
         "clickToSortAsc": "(Clique para ordenar por ordem ascencente)",
         "selectFilters": "Selecionar filtros",
@@ -984,9 +943,9 @@
         "clearAll": "Limpar tudo",
         "signInWithGoogle": "Entre com o Google",
         "viewReporting": "Ver relatórios",
-        "pauseCampaign": "Pausar campanha",
-        "resumeCampaign": "Retomar campanha",
-        "modifyTheCampaign": "Alterar campanha",
+        "pauseCampaign": "Pause",
+        "resumeCampaign": "Enable",
+        "modifyTheCampaign": "Modify",
         "openActionsMenu": "Abrir menu de ações para campanha {0}",
         "viewInGoogleAds": "Ver na sua conta Google Ads",
         "previous": "Anterior",
@@ -1148,7 +1107,7 @@
         "legend": "*Crie uma nova conta do Google Ads. O voucher será aplicado automaticamente assim que corresponder ao gasto e você terá 60 dias para gastar os créditos. [Ler T&C]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "* Crie uma nova conta do Google Ads. O voucher será aplicado automaticamente assim que corresponder ao gasto e você terá 60 dias para gastar os créditos.",
         "ctaCreateFirstCampaign": "Criar sua primeira campanha",
-        "textCampaignsBanner": "Performance Max é a próxima geração de campanhas Smart Shopping. É um tipo de campanha aprimorada alimentada pela tecnologia inteligente do Google. Ela funciona silencionamente para otimizar automaticamente seus anúncios em toda a jornada de compras para obter o máximo desempenho."
+        "textCampaignsBanner": "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
     },
     "tipsAndTricks": {
         "title": "Dicas e truques da PrestaShop",
