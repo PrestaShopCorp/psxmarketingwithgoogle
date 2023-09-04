@@ -3,7 +3,6 @@
         "tabs": {
             "productFeed": "Productfeed",
             "campaign": "Campagne",
-            "reporting": "Melding",
             "configuration": "Configureer",
             "catalog": "Productcatalogus",
             "help": "Help"
@@ -29,7 +28,6 @@
         "mandatory": "zijn verplicht",
         "XIsMandatory": "{0} is verplicht.",
         "unableToFetchData": "We konden geen gegevens ophalen, probeer het later nog eens",
-        "searchByX": "Zoek op {0}",
         "search": "Zoeken op",
         "createAccount": "je account aanmaken",
         "createNewAccount": "Als je geen account hebt, kun je nu {0}.",
@@ -622,13 +620,6 @@
             "readMore": "Met dit aanbevolen minimumbudget kun je de effectiviteit\n  van je advertenties testen en indien nodig aanpassingen aanbrengen. Natuurlijk is elk bedrijf\n  anders, en het budget dat daadwerkelijk het beste voor je is kan variëren,\n  afhankelijk van je specifieke doelen en doelgroep. We raden aan om te experimenteren\n  met verschillende budgetten om te bepalen wat het beste werkt voor jouw bedrijf."
         }
     },
-    "smartShoppingCampaignList": {
-        "tableTitle": "Prestaties van de campagne",
-        "xCampaign": "Geen campagnes | {0} campagne | {0} campagnes",
-        "performanceMax": "Maximale prestaties",
-        "smartShoppingCampaign": "Smart Shopping-campagne",
-        "campaignType": "Type: {0}"
-    },
     "productFeedPage": {
         "breadcrumb": {
             "productStatusDetails": "Details productstatus",
@@ -767,16 +758,11 @@
             "noReasonFallback": "*Niet opgegeven, controleer [account errors on your Merchant Center]({0})[:target=\"_blank\"].*"
         }
     },
-    "campaignCard": {
-        "title": "Maak uw Maximale prestaties-campagne in een paar klikken",
-        "description": "Google A.I. toont advertenties van de gezochte producten aan geïnteresseerde shoppers op het juiste moment, waardoor uw omzet stijgt.\n\nStel een dagelijks budget in en start eenvoudig uw advertentiecampagne - u wordt alleen gefactureerd wanneer er op de advertenties wordt geklikt, zo eenvoudig is het!",
-        "footer": "We moeten de remarketing- en conversietrackingtag activeren om Peformance Max-campagnes uit te voeren"
-    },
     "keymetrics": {
-        "title": "Belangrijkste gegevens",
-        "accountTitle": "Prestaties van de rekening",
-        "accountSubtitle": "Kijk eens naar deze verbazingwekkende cijfers",
+        "title": "Performance Max campaigns reporting",
+        "accountSubtitle": "Analyze and optimize your online presence with detailed metrics that help you measure the impact of your digital marketing efforts.",
         "dailyResultTitle": "Dagelijkse resultaten",
+        "helpUnderstanding": "Discover further information on how to interpret these metrics by visiting our {0}",
         "periods": {
             "yesterday": "Gisteren",
             "last7Days": "Laatste 7 dagen",
@@ -784,20 +770,16 @@
             "3Months": "3 maanden"
         },
         "impressions": "Indrukken",
-        "impressionsTooltip": "Telling van hoe vaak uw advertentie is verschenen op een zoekresultatenpagina of website van het Google Netwerk.",
         "clicks": "Clicks",
-        "clicksTooltip": "Wanneer iemand op uw advertentie klikt, bijvoorbeeld op de blauwe kop of het telefoonnummer van een tekstadvertentie, telt Google Ads dat als een klik.",
         "conversions": "Conversie",
-        "conversionsTooltip": "Het aantal conversies. Dit omvat alleen conversie acties waarvan het include_in_conversions_metric attribuut op true is gezet. Als u op conversie gebaseerd bieden gebruikt, zullen uw biedstrategieën voor deze conversies worden geoptimaliseerd.",
         "averageCostPerClick": "Gem. kosten/klik",
-        "averageCostPerClickTooltip": "De totale kosten van alle kliks gedeeld door het totale aantal ontvangen kliks.",
         "costs": "Kosten",
-        "costsTooltip": "De som van uw kosten-per-klik (CPC) en kosten-per-duizend vertoningen (CPM) gedurende deze periode.",
         "sales": "Verkoop",
         "noData": "Nog geen gegevens",
-        "salesTooltip": "De waarde van conversies. Dit omvat alleen conversie acties waarvan het include_in_conversions_metric attribuut op true is gezet. Als u op conversie gebaseerd bieden gebruikt, zullen uw biedstrategieën voor deze conversies worden geoptimaliseerd."
+        "noCampaigns": "Ready to boost your product promotion? Create your campaign in few clicks"
     },
     "campaigns": {
+        "listTitle": "Campaign's listing",
         "status": {
             "eligible": "Eligible",
             "eligiblelimited": "In aanmerking komend (beperkt)",
@@ -807,49 +789,24 @@
             "draft": "Ontwerp",
             "pending": "In afwachting van"
         },
-        "from": "Van",
-        "fromXToX": "Van {startDatum} tot {eindDatum}",
+        "dateLabel": {
+            "from": "From {startDate}",
+            "fromXToX": "From {startDate} to {endDate}",
+            "endedOnX": "Ended on {endDate}"
+        },
         "labelCol": {
-            "campaign": "Campagne",
-            "budget": "Begroting",
+            "campaign": "Title",
             "status": "Status",
             "impressions": "Indrukken",
             "clicks": "Clicks",
             "adSpend": "Ad uitgaven",
-            "conversion": "Conversie",
             "sales": "Verkoop",
-            "id": "ID",
-            "products": "Productfilters",
-            "click": "Klik op",
             "costs": "Kosten",
-            "averageCostPerClick": "Gemiddelde CPC",
             "conversions": "Conversies",
-            "conversionsRate": "Omzettingspercentage",
-            "productFilter": "Naam filter",
-            "dimension": "Type filter",
-            "duration": "Duur datum",
-            "target": "Doel",
+            "duration": "Date",
+            "target": "Target country",
             "actions": "Acties",
             "dailyBudget": "Dagelijkse begroting"
-        },
-        "tooltipCol": {
-            "status": "Een status voor uw advertentiecampagne die beschrijft of de advertenties al dan niet kunnen worden uitgevoerd op dit moment.",
-            "products": "Productfilter is wat je hebt geselecteerd als je campagnefilter met het aantal betrokken producten."
-        },
-        "campaignsPerformanceTable": {
-            "title": "Prestaties van de campagne",
-            "subTitle": "Bekijk hoe goed uw campagnes presteren",
-            "emptyListText": "Je hebt geen geactiveerde campagne"
-        },
-        "productsPerformanceTable": {
-            "title": "Productprestaties voor actieve campagnes",
-            "subTitle": "Kijk welk product het beste presteert",
-            "emptyListText": "U heeft geen producten in actieve campagnes"
-        },
-        "filtersPerformanceTable": {
-            "title": "Algemene filterprestaties (top 10)",
-            "subTitle": "Kijk welke dimensie het beste presteert",
-            "emptyListText": "U heeft geen actieve campagnes met filters"
         }
     },
     "notConfiguredState": {
@@ -876,6 +833,7 @@
     },
     "help": {
         "intro": "PrestaShop Marketing maakt het gemakkelijk om uw winkel te verbinden met Google en uw producten te promoten om miljoenen shoppers cross meerdere Google-kanalen. Maak Performance Max campagnes zonder het verlaten van uw PrestaShop dashboard en rijden meer verkeer.",
+        "helpCenter": "Help Center",
         "allowsYouTo": {
             "title": "Met deze module kunt u:",
             "easySync": "Synchroniseer eenvoudig uw productcatalogus met Google om productdetails zoals prijs en beschikbaarheid automatisch bijgewerkt te houden",
@@ -969,12 +927,13 @@
         "createSmartShoppingCampaign": "Start Maximale prestaties-campagn",
         "addBillingSettings": "Factureringsinstellingen toevoegen",
         "createCampaign": "Campagne maken",
+        "createPMaxCampaign": "Create new PMax campaign",
         "editCampaign": "Campagne bijwerken",
         "launchCampaign": "Start campagne",
         "resetDate": "Ingestelde datum",
         "validate": "Valideren",
-        "moreInfosAboutX": "Meer informatie over {0}",
-        "seeOnGoogleAds": "Zie op Google Ads",
+        "seeOnGoogleAds": "See these metrics on {0}",
+        "GoogleAds": "Google Ads",
         "clickToSortDesc": "(Klik om aflopend te sorteren)",
         "clickToSortAsc": "(Klik om oplopend te sorteren)",
         "selectFilters": "Selecteer filters",
@@ -984,9 +943,9 @@
         "clearAll": "Alles wissen",
         "signInWithGoogle": "Aanmelden met Google",
         "viewReporting": "Bekijk rapportage",
-        "pauseCampaign": "Pauze campagne",
-        "resumeCampaign": "Hervat campagne",
-        "modifyTheCampaign": "Wijzig de campagne",
+        "pauseCampaign": "Pause",
+        "resumeCampaign": "Enable",
+        "modifyTheCampaign": "Modify",
         "openActionsMenu": "Open acties menu voor campagne {0}",
         "viewInGoogleAds": "Bekijk in uw Google Ads account",
         "previous": "Vorige",
@@ -1148,7 +1107,7 @@
         "legend": "*Maak een nieuw Google Ads-account aan. De aanbieding wordt automatisch toegepast zodra je de uitgaven hebt gematcht. Je hebt 60 dagen om het tegoed uit te geven. [Voorwaarden lezen]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "*Maak een nieuw Google Ads-account aan. De aanbieding wordt automatisch toegepast zodra je de uitgavendrempel hebt bereikt. Je hebt 60 dagen om het tegoed uit te geven.",
         "ctaCreateFirstCampaign": "Je eerste campagne aanmaken",
-        "textCampaignsBanner": "Maximale prestaties is de volgende generatie van Smart Shopping-campagnes. Het is een verbeterd campagnetype dat wordt aangestuurd door de slimme technologie van Google. Het werkt achter de schermen om uw advertenties tijdens het shoppingtraject automatisch te optimaliseren voor maximale prestaties."
+        "textCampaignsBanner": "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
     },
     "tipsAndTricks": {
         "title": "Tips en trucs voor PrestaShop",
