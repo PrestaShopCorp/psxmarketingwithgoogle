@@ -41,6 +41,7 @@
 import SSCPopinActivateTracking from '../components/campaigns/ssc-popin-activate-tracking.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import BannerCampaigns from '@/components/commons/banner-campaigns.vue';
+import CampaignTableList from '@/components/campaign/campaign-table-list.vue';
 import KeyMetricsBlock from '@/components/campaign/reporting/key-metrics/key-metrics-block.vue';
 import KeyMetricsControls from '@/components/campaign/reporting/key-metrics/key-metrics-controls.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
@@ -51,6 +52,7 @@ export default {
     KeyMetricsBlock,
     KeyMetricsControls,
     SSCPopinActivateTracking,
+    CampaignTableList,
   },
 
   data() {
