@@ -3,7 +3,6 @@
         "tabs": {
             "productFeed": "Товарный фид",
             "campaign": "Кампания",
-            "reporting": "Отчетность",
             "configuration": "Настроить",
             "catalog": "Каталог продукции",
             "help": "Помощь"
@@ -29,7 +28,6 @@
         "mandatory": "обязательны",
         "XIsMandatory": "{0} является обязательным.",
         "unableToFetchData": "Мы не смогли получить данные, пожалуйста, повторите попытку позже",
-        "searchByX": "Поиск по {0}",
         "search": "Поиск",
         "createAccount": "создайте ее",
         "createNewAccount": "Если у вас нет учетной записи, {0} сегодня.",
@@ -622,13 +620,6 @@
             "readMore": "Рекомендуемый минимальный бюджет позволит вам проверить эффективность\n  вашей рекламы и внести необходимые корректировки. Помните, что каждый бизнес\n  уникален, поэтому оптимальный размер бюджета зависит\n  от поставленных перед вами задач и целевой аудитории. Рекомендуем поэкспериментировать\n  с различными бюджетами. Это позволит определить самый эффективный вариант для вашей компании."
         }
     },
-    "smartShoppingCampaignList": {
-        "tableTitle": "Эффективность кампании",
-        "xCampaign": "Нет кампаний | {0} кампаний | {0} кампаний",
-        "performanceMax": "Performance Max",
-        "smartShoppingCampaign": "Умная торговая кампания",
-        "campaignType": "Тип: {0}"
-    },
     "productFeedPage": {
         "breadcrumb": {
             "productStatusDetails": "Сведения о статусе товара",
@@ -767,16 +758,11 @@
             "noReasonFallback": "* Не указано, проверьте [ошибки учетной записи в Merchant Center]({0})[:target=\"_blank\"].*"
         }
     },
-    "campaignCard": {
-        "title": "Создайте кампанию Performance Max несколькими нажатиями",
-        "description": "Google A.I. будет показывать рекламу искомых товаров заинтересованным покупателям в нужное время, увеличивая ваши продажи.\n\nУстановите дневной бюджет и легко запустите свою рекламную кампанию - вы получите счет только тогда, когда на объявления нажмут, это так просто!",
-        "footer": "Для запуска кампании Peformance Max нам потребуется настроить тег ремаркетинга и отслеживания конверсий"
-    },
     "keymetrics": {
-        "title": "Ключевые показатели",
-        "accountTitle": "Производительность счета",
-        "accountSubtitle": "Посмотрите на эти удивительные цифры",
+        "title": "Performance Max campaigns reporting",
+        "accountSubtitle": "Analyze and optimize your online presence with detailed metrics that help you measure the impact of your digital marketing efforts.",
         "dailyResultTitle": "Ежедневные результаты",
+        "helpUnderstanding": "Discover further information on how to interpret these metrics by visiting our {0}",
         "periods": {
             "yesterday": "Вчера",
             "last7Days": "Последние 7 дней",
@@ -784,20 +770,16 @@
             "3Months": "3есяца"
         },
         "impressions": "Впечатления",
-        "impressionsTooltip": "Подсчет того, как часто ваше объявление появлялось на странице результатов поиска или на сайте в сети Google.",
         "clicks": "Клики",
-        "clicksTooltip": "Когда кто-то нажимает на ваше объявление, например, на синий заголовок или номер телефона в текстовом объявлении, Google Ads засчитывает это как клик.",
         "conversions": "Конверсия",
-        "conversionsTooltip": "Количество конверсий. Сюда входят только те действия по преобразованию, для которых атрибут include_in_conversions_metric установлен в true. Если вы используете торги на основе конверсий, ваши стратегии ставок будут оптимизированы для этих конверсий.",
         "averageCostPerClick": "Средняя стоимость клика",
-        "averageCostPerClickTooltip": "Общая стоимость всех кликов, деленная на общее количество полученных кликов.",
         "costs": "Затраты",
-        "costsTooltip": "Сумма ваших затрат на клик (CPC) и затрат на тысячу показов (CPM) за этот период.",
         "sales": "Продажи",
         "noData": "Пока нет данных",
-        "salesTooltip": "Ценность конверсий. Сюда входят только те действия по преобразованию, для которых атрибут include_in_conversions_metric установлен в true. Если вы используете торги на основе конверсий, ваши стратегии ставок будут оптимизированы для этих конверсий."
+        "noCampaigns": "Ready to boost your product promotion? Create your campaign in few clicks"
     },
     "campaigns": {
+        "listTitle": "Campaign's listing",
         "status": {
             "eligible": "Подходящий",
             "eligiblelimited": "Допустимый (ограниченный)",
@@ -807,49 +789,24 @@
             "draft": "Проект",
             "pending": "В ожидании"
         },
-        "from": "С сайта",
-        "fromXToX": "С {startDate} по {endDate}",
+        "dateLabel": {
+            "from": "From {startDate}",
+            "fromXToX": "From {startDate} to {endDate}",
+            "endedOnX": "Ended on {endDate}"
+        },
         "labelCol": {
-            "campaign": "Кампания",
-            "budget": "Бюджет",
+            "campaign": "Title",
             "status": "Статус",
             "impressions": "Впечатления",
             "clicks": "Клики",
             "adSpend": "Рекламные расходы",
-            "conversion": "Конверсия",
             "sales": "Продажи",
-            "id": "ID",
-            "products": "Фильтры товара",
-            "click": "Нажмите",
             "costs": "Затраты",
-            "averageCostPerClick": "Средний CPC",
             "conversions": "Конверсии",
-            "conversionsRate": "Коэффициент конверсии",
-            "productFilter": "Название фильтра",
-            "dimension": "Тип фильтра",
-            "duration": "Дата продолжительности",
-            "target": "Цель",
+            "duration": "Date",
+            "target": "Target country",
             "actions": "Действия",
             "dailyBudget": "Ежедневный бюджет"
-        },
-        "tooltipCol": {
-            "status": "Статус рекламной кампании, описывающий, могут ли ее объявления запускаться в данный момент.",
-            "products": "Фильтр товара — это параметр, выбранный в качестве фильтра кампании с количеством связанных товаров."
-        },
-        "campaignsPerformanceTable": {
-            "title": "Эффективность кампании",
-            "subTitle": "Проверьте, насколько хорошо работают ваши кампании",
-            "emptyListText": "У вас нет ни одной включенной кампании"
-        },
-        "productsPerformanceTable": {
-            "title": "Производительность продукта для активных кампаний",
-            "subTitle": "Проверьте, какой продукт работает лучше всего",
-            "emptyListText": "У вас нет продуктов в активных кампаниях"
-        },
-        "filtersPerformanceTable": {
-            "title": "Общая эффективность фильтрации (топ-10)",
-            "subTitle": "Проверьте, какое измерение работает лучше всего",
-            "emptyListText": "У вас нет активных кампаний с фильтрами"
         }
     },
     "notConfiguredState": {
@@ -876,6 +833,7 @@
     },
     "help": {
         "intro": "PrestaShop Marketing позволяет легко подключить ваш магазин к Google и охватить миллионы покупателей в нескольких каналах. Создавайте кампании Performance Max непосредственно на информационной панели PrestaShop и увеличивайте трафик.",
+        "helpCenter": "Help Center",
         "allowsYouTo": {
             "title": "Этот модуль позволяет:",
             "easySync": "Простая синхронизация каталога товаров с Google для автоматического обновления таких сведений о товаре, как цена и наличие.",
@@ -969,12 +927,13 @@
         "createSmartShoppingCampaign": "Запустить кампанию Performance Max",
         "addBillingSettings": "Добавить настройки выставления счетов",
         "createCampaign": "Создать кампанию",
+        "createPMaxCampaign": "Create new PMax campaign",
         "editCampaign": "Обновление кампании",
         "launchCampaign": "Запустить кампанию",
         "resetDate": "Дата сброса",
         "validate": "Проверить",
-        "moreInfosAboutX": "Дополнительная информация о {0}",
-        "seeOnGoogleAds": "Смотрите на Google Ads",
+        "seeOnGoogleAds": "See these metrics on {0}",
+        "GoogleAds": "Google Ads",
         "clickToSortDesc": "(Нажмите для сортировки по убыванию)",
         "clickToSortAsc": "(Нажмите для сортировки по возрастанию)",
         "selectFilters": "Выберите фильтры",
@@ -984,9 +943,9 @@
         "clearAll": "Очистить все",
         "signInWithGoogle": "Войти в систему с помощью Google",
         "viewReporting": "Просмотр отчетности",
-        "pauseCampaign": "Приостановить кампанию",
-        "resumeCampaign": "Резюме кампании",
-        "modifyTheCampaign": "Изменить кампанию",
+        "pauseCampaign": "Pause",
+        "resumeCampaign": "Enable",
+        "modifyTheCampaign": "Modify",
         "openActionsMenu": "Открыть меню действий для кампании {0}",
         "viewInGoogleAds": "Просмотр в аккаунте Google Ads",
         "previous": "Предыдущий",
@@ -1148,7 +1107,7 @@
         "legend": "*Создайте новый аккаунт в Google Рекламе. Как только вы потратите необходимую сумму, купон будет применен автоматически. Кредиты действительны в течение 60 дней. [Ознакомьтесь с Условиями]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "*Создайте новый аккаунт в Google Рекламе. Как только вы потратите необходимую сумму, купон будет применен автоматически. Кредиты действительны в течение 60 дней.",
         "ctaCreateFirstCampaign": "Создать первую кампанию",
-        "textCampaignsBanner": "Performance Max — это умные торговые кампании следующего поколения. Это оптимизированные кампании, основанные на интеллектуальной технологии Google. Она автоматически оптимизирует ваши объявления в различных каналах, чтобы вы получали максимальную отдачу от рекламы."
+        "textCampaignsBanner": "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
     },
     "tipsAndTricks": {
         "title": "Полезные советы от PrestaShop",
