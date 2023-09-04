@@ -21,15 +21,15 @@
         <Menu>
           <MenuItem
             v-if="!currentlyOnLandingPage"
-            :route="{name: 'product-feed'}"
-          >
-            {{ $t('general.tabs.productFeed') }}
-          </MenuItem>
-          <MenuItem
-            v-if="!currentlyOnLandingPage"
             :route="{name: 'campaign'}"
           >
             {{ $t('general.tabs.campaign') }}
+          </MenuItem>
+          <MenuItem
+            v-if="!currentlyOnLandingPage"
+            :route="{name: 'product-feed'}"
+          >
+            {{ $t('general.tabs.productFeed') }}
           </MenuItem>
           <MenuItem
             :route="{name: 'configuration'}"
