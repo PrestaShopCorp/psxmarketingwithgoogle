@@ -14,6 +14,7 @@
         :in-need-of-configuration="inNeedOfConfiguration"
         :loading="!allDataLoaded"
         :accountHasAtLeastOneCampaign="accountHasAtLeastOneCampaign"
+        @clickToCreateCampaign="onClickToCreateCampaign"
       />
 
       <KeyMetricsBlock
