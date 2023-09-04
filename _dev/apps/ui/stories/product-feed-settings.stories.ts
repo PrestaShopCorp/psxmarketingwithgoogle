@@ -8,6 +8,7 @@ import {
 } from "../.storybook/mock/product-feed";
 import { shippingPhpExportWithIssues } from "../.storybook/mock/shipping-settings";
 import { shippingPhpExportHeavy } from "../.storybook/mock/shipping-settings-heavy";
+import {shippingBugExport }from "../.storybook/mock/shipping-settings-bug";
 import { initialStateApp } from "../.storybook/mock/state-app";
 import { rest } from "msw";
 import ProductFeedSettingsPages from "@/enums/product-feed/product-feed-settings-pages";
@@ -330,6 +331,40 @@ ImportDeliveryTimeAndRatesWithManyCarriers.args = {
       ProductFeedSettingsPages.SHIPPING_SETTINGS;
   },
 };
+
+export const ImportDeliveryTimeAndRatesBug: any = Template.bind({});
+ImportDeliveryTimeAndRatesBug.argTypes = {
+  hide: {
+    control: "boolean",
+  },
+};
+console.log(
+  getEnabledCarriers(shippingBugExport),
+  mergeShippingDetailsSourcesForProductFeedConfiguration(
+    getEnabledCarriers(shippingBugExport),
+    []
+  )
+);
+ImportDeliveryTimeAndRatesBug.args = {
+  beforeMount(this: any) {
+    this.$store.state.app = cloneDeep(initialStateApp);
+    this.$store.state.productFeed = cloneDeep(productFeed);
+    this.$store.state.productFeed.stepper = 2;
+    this.$store.state.productFeed.settings.shippingSetup =
+      ShippingSetupOption.IMPORT;
+    this.$router.history.current.params.step =
+      ProductFeedSettingsPages.SHIPPING_SETTINGS;
+    this.$store.state.productFeed.settings.targetCountries = ["IT"];
+    this.$store.state.productFeed.settings.deliveryDetails = Object.assign(
+      [],
+      mergeShippingDetailsSourcesForProductFeedConfiguration(
+        getEnabledCarriers(shippingBugExport),
+        []
+      )
+    );
+  },
+};
+
 
 export const AttributeMapping: any = Template.bind({});
 AttributeMapping.argTypes = {

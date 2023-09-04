@@ -127,7 +127,8 @@ export function getEnabledCarriers(source: ShopShippingInterface[]): Carrier[] {
   ).flatMap((carrier) => {
     const properties = carrier.properties as ShopShippingCarrierPropertiesInterface;
 
-    return properties.country_ids.split(',').map((country) => ({
+    // Countries may be duplicated on shops, and their iso code are not unique.
+    return [...new Set(properties.country_ids.split(','))].map((country) => ({
       carrierId: properties.id_reference,
       country,
       name: properties.name,
