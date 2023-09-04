@@ -3,7 +3,6 @@
         "tabs": {
             "productFeed": "Produkt-Feed",
             "campaign": "Kampagne",
-            "reporting": "Berichterstattung",
             "configuration": "Konfigurieren",
             "catalog": "Produktkatalog",
             "help": "Hilfe"
@@ -29,7 +28,6 @@
         "mandatory": "sind obligatorisch",
         "XIsMandatory": "{0} ist obligatorisch.",
         "unableToFetchData": "Wir konnten die Daten nicht abrufen, bitte versuchen Sie es später noch einmal.",
-        "searchByX": "Suche nach {0}",
         "search": "Suche",
         "createAccount": "Ihr Konto erstellen",
         "createNewAccount": "Wenn Sie noch kein Konto haben, können Sie jetzt {0}.",
@@ -622,13 +620,6 @@
             "readMore": "Mit diesem empfohlenen Mindestbudget können Sie die Wirksamkeit Ihrer Anzeigen testen und bei Bedarf Anpassungen vornehmen. Natürlich ist jedes Unternehmen anders und das tatsächliche Budget, das für Ihr Unternehmen am besten geeignet ist, hängt von Ihren Zielen und Ihrer Zielgruppe ab. Wir empfehlen, verschiedene Budgets auszuprobieren, um herauszufinden, was für Ihr Unternehmen am besten geeignet ist."
         }
     },
-    "smartShoppingCampaignList": {
-        "tableTitle": "Performance der Kampagne",
-        "xCampaign": "Keine Kampagnen | {0} Kampagne | {0} Kampagnen",
-        "performanceMax": "Leistung max.",
-        "smartShoppingCampaign": "Smart-Shopping-Kampagne",
-        "campaignType": "Art: {0}"
-    },
     "productFeedPage": {
         "breadcrumb": {
             "productStatusDetails": "Details zum Produktstatus",
@@ -767,16 +758,11 @@
             "noReasonFallback": "*Nicht angegeben, überprüfen Sie [Kontofehler in Ihrem Merchant Center]({0})[:target=\"_blank\"].*"
         }
     },
-    "campaignCard": {
-        "title": "Erstellen Sie Ihre Leistung max. Kampagne in nur wenigen Klicks",
-        "description": "Google A.I. zeigt interessierten Käufern zum richtigen Zeitpunkt Anzeigen zu den gesuchten Produkten an und steigert so Ihre Verkäufe.\n\nLegen Sie ein Tagesbudget fest und starten Sie einfach Ihre Anzeigenkampagne – Ihnen wird nur etwas berechnet, wenn auf die Anzeigen geklickt wird. So einfach ist das!",
-        "footer": "Wir müssen Remarketing- und Umwandlungs-Tracking-Tags aktivieren, damit Sie Leistung max. Kampagnen durchführen können"
-    },
     "keymetrics": {
-        "title": "Wesentliche Metriken",
-        "accountTitle": "Leistung des Kontos",
-        "accountSubtitle": "Sehen Sie sich diese erstaunlichen Zahlen an",
+        "title": "Performance Max campaigns reporting",
+        "accountSubtitle": "Analyze and optimize your online presence with detailed metrics that help you measure the impact of your digital marketing efforts.",
         "dailyResultTitle": "Tägliche Ergebnisse",
+        "helpUnderstanding": "Discover further information on how to interpret these metrics by visiting our {0}",
         "periods": {
             "yesterday": "Gestern",
             "last7Days": "Letzte 7 Tage",
@@ -784,20 +770,16 @@
             "3Months": "3 Monate"
         },
         "impressions": "Impressionen",
-        "impressionsTooltip": "Zählung, wie oft Ihre Anzeige auf einer Suchergebnisseite oder Website im Google-Netzwerk erschienen ist.",
         "clicks": "Klicks",
-        "clicksTooltip": "Wenn jemand auf Ihre Anzeige klickt, z. B. auf die blaue Überschrift oder die Telefonnummer einer Textanzeige, zählt Google Ads dies als einen Klick.",
         "conversions": "Umwandlung",
-        "conversionsTooltip": "Die Anzahl der Umwandlungen. Dazu gehören nur Konvertierungsaktionen, bei denen das Attribut include_in_conversions_metric auf true gesetzt ist. Wenn Sie konversionsbasierte Gebote verwenden, werden Ihre Gebotsstrategien für diese Konversionen optimiert.",
         "averageCostPerClick": "Durchschnittliche Kosten/Klick",
-        "averageCostPerClickTooltip": "Die Gesamtkosten aller Klicks geteilt durch die Gesamtzahl der erhaltenen Klicks.",
         "costs": "Kosten",
-        "costsTooltip": "Die Summe der Kosten pro Klick (CPC) und der Kosten pro tausend Impressionen (CPM) in diesem Zeitraum.",
         "sales": "Vertrieb",
         "noData": "Noch keine Daten",
-        "salesTooltip": "Der Wert von Konversionen. Dazu gehören nur Konvertierungsaktionen, bei denen das Attribut include_in_conversions_metric auf true gesetzt ist. Wenn Sie konversionsbasierte Gebote verwenden, werden Ihre Gebotsstrategien für diese Konversionen optimiert."
+        "noCampaigns": "Ready to boost your product promotion? Create your campaign in few clicks"
     },
     "campaigns": {
+        "listTitle": "Campaign's listing",
         "status": {
             "eligible": "Förderfähig",
             "eligiblelimited": "Förderfähig (begrenzt)",
@@ -807,49 +789,24 @@
             "draft": "Entwurf",
             "pending": "Anhängig"
         },
-        "from": "Von",
-        "fromXToX": "Von {startDate} bis {endDate}",
+        "dateLabel": {
+            "from": "From {startDate}",
+            "fromXToX": "From {startDate} to {endDate}",
+            "endedOnX": "Ended on {endDate}"
+        },
         "labelCol": {
-            "campaign": "Kampagne",
-            "budget": "Budget",
+            "campaign": "Title",
             "status": "Status",
             "impressions": "Impressionen",
             "clicks": "Klicks",
             "adSpend": "Ausgaben für Werbung",
-            "conversion": "Umwandlung",
             "sales": "Vertrieb",
-            "id": "ID",
-            "products": "Produktfilter",
-            "click": "Klicken Sie auf",
             "costs": "Kosten",
-            "averageCostPerClick": "Durchschnittlicher CPC",
             "conversions": "Umrechnungen",
-            "conversionsRate": "Umstellungsrate",
-            "productFilter": "Name des Filters",
-            "dimension": "Filter-Typ",
-            "duration": "Datum der Laufzeit",
-            "target": "Ziel",
+            "duration": "Date",
+            "target": "Target country",
             "actions": "Aktionen",
             "dailyBudget": "Tägliches Budget"
-        },
-        "tooltipCol": {
-            "status": "Ein Status für Ihre Anzeigenkampagne, der angibt, ob die Anzeigen im Moment laufen können oder nicht.",
-            "products": "Ein Produktfilter zeigt die entsprechenden Produkte an, für die Ihr ausgewählter Kampagnenfilter gilt."
-        },
-        "campaignsPerformanceTable": {
-            "title": "Performance der Kampagne",
-            "subTitle": "Prüfen Sie, wie gut Ihre Kampagnen funktionieren",
-            "emptyListText": "Sie haben keine aktivierte Kampagne"
-        },
-        "productsPerformanceTable": {
-            "title": "Produktleistung für aktive Kampagnen",
-            "subTitle": "Finden Sie heraus, welches Produkt am besten abschneidet",
-            "emptyListText": "Sie haben keine Produkte in aktiven Kampagnen"
-        },
-        "filtersPerformanceTable": {
-            "title": "Gesamtfilterleistung (Top 10)",
-            "subTitle": "Prüfen Sie, welche Dimension am besten abschneidet",
-            "emptyListText": "Sie haben keine aktiven Kampagnen mit Filtern"
         }
     },
     "notConfiguredState": {
@@ -876,6 +833,7 @@
     },
     "help": {
         "intro": "Mit PrestaShop Marketing können Sie Ihren Shop ganz einfach mit Google verbinden und Ihre Produkte bei Millionen von Käufern über mehrere Google-Kanäle hinweg bewerben. Erstellen Sie Leistung max. Kampagnen, ohne Ihr PrestaShop-Dashboard zu verlassen, und steigern Sie so den Traffic.",
+        "helpCenter": "Help Center",
         "allowsYouTo": {
             "title": "Dieses Modul ermöglicht es Ihnen:",
             "easySync": "Synchronisieren Sie Ihren Produktkatalog ganz einfach mit Google, um Produktdetails wie Preis und Verfügbarkeit automatisch zu aktualisieren.",
@@ -969,12 +927,13 @@
         "createSmartShoppingCampaign": "Leistung max. Kampagne starten",
         "addBillingSettings": "Einstellungen für die Rechnungsstellung hinzufügen",
         "createCampaign": "Kampagne erstellen",
+        "createPMaxCampaign": "Create new PMax campaign",
         "editCampaign": "Kampagne aktualisieren",
         "launchCampaign": "Kampagne veröffentlichen",
         "resetDate": "Datum zurücksetzen",
         "validate": "Validieren Sie",
-        "moreInfosAboutX": "Mehr Informationen über {0}",
-        "seeOnGoogleAds": "Siehe auf Google Ads",
+        "seeOnGoogleAds": "See these metrics on {0}",
+        "GoogleAds": "Google Ads",
         "clickToSortDesc": "(Klicken Sie, um absteigend zu sortieren)",
         "clickToSortAsc": "(Klicken Sie hier, um aufsteigend zu sortieren)",
         "selectFilters": "Filter auswählen",
@@ -984,9 +943,9 @@
         "clearAll": "Alle löschen",
         "signInWithGoogle": "Mit Google anmelden",
         "viewReporting": "Bericht anzeigen",
-        "pauseCampaign": "Pause-Kampagne",
-        "resumeCampaign": "Lebenslauf-Kampagne",
-        "modifyTheCampaign": "Ändern Sie die Kampagne",
+        "pauseCampaign": "Pause",
+        "resumeCampaign": "Enable",
+        "modifyTheCampaign": "Modify",
         "openActionsMenu": "Aktionsmenü für Kampagne öffnen {0}",
         "viewInGoogleAds": "Ansicht in Ihrem Google-Ads-Konto",
         "previous": "Vorherige",
@@ -1148,7 +1107,7 @@
         "legend": "*Erstellen Sie ein neues Google-Ads-Konto. Der Gutschein wird automatisch eingelöst, sobald Sie den erforderlichen Betrag erreicht haben. Sie haben dann 60 Tage Zeit, um das Guthaben einzulösen. [Siehe AGB]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "*Erstellen Sie ein neues Google-Ads-Konto. Der Gutschein wird automatisch eingelöst, sobald Sie den erforderlichen Betrag erreicht haben. Sie haben dann 60 Tage Zeit, um das Guthaben einzulösen.",
         "ctaCreateFirstCampaign": "Erstellen Sie Ihre erste Kampagne",
-        "textCampaignsBanner": "Leistung max. ist die nächste Generation der Smart Shopping-Kampagnen. Es handelt sich hierbei um eine erweiterte Kampagnenart, die von der intelligenten Technologie von Google unterstützt wird. Sie arbeitet im Hintergrund, um Ihre Anzeigen während der gesamten Einkaufsreise automatisch zu optimieren und so eine bestmögliche Performance zu erzielen."
+        "textCampaignsBanner": "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
     },
     "tipsAndTricks": {
         "title": "Tipps und Tricks von PrestaShop",
