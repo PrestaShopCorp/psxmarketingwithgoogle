@@ -3,7 +3,6 @@
         "tabs": {
             "productFeed": "Fluxul de produse",
             "campaign": "Campanie",
-            "reporting": "Raportare",
             "configuration": "Configurare",
             "catalog": "Catalog de produse",
             "help": "Ajutor"
@@ -29,7 +28,6 @@
         "mandatory": "sunt obligatorii",
         "XIsMandatory": "{0} este obligatoriu.",
         "unableToFetchData": "Nu am putut prelua datele, încearcă din nou mai târziu",
-        "searchByX": "Caută după {0}",
         "search": "Căutare",
         "createAccount": "creează-ți un cont",
         "createNewAccount": "Dacă nu ai un cont, poți {0} astăzi.",
@@ -622,13 +620,6 @@
             "readMore": "Acest buget minim recomandat îți va permite să testezi eficacitatea\n reclamelor tale și să efectuezi ajustări după cum este necesar. Desigur, fiecare afacere este\n  diferită, iar bugetul real optim pentru tine poate varia în funcție de\n  obiectivele specifice și de publicul vizat. Îți recomandăm să încerci\n  cu bugete diferite pentru a determina ce funcționează cel mai bine pentru afacerea ta."
         }
     },
-    "smartShoppingCampaignList": {
-        "tableTitle": "Performanța campaniei",
-        "xCampaign": "Nicio campanie | {0} campanie | {0} campanii",
-        "performanceMax": "Performance Max",
-        "smartShoppingCampaign": "Campanie Smart Shopping",
-        "campaignType": "Tip: {0}"
-    },
     "productFeedPage": {
         "breadcrumb": {
             "productStatusDetails": "Detalii privind starea produsului",
@@ -767,16 +758,11 @@
             "noReasonFallback": "*Nu este furnizat, bifează [erori cont în Merchant Center]({0})[:target=\"_blank\"].*"
         }
     },
-    "campaignCard": {
-        "title": "Creează-ți campania Performance Max cu câteva clicuri",
-        "description": "Google A.I. va afișa reclame cu produsele căutate cumpărătorilor interesați la momentul potrivit, crescând vânzările.\n\nStabilește un buget zilnic și lansează-ți cu ușurință campania publicitară – plătești numai atunci când cineva face clic pe reclame, este atât de simplu!",
-        "footer": "Va trebui să activăm remarketingul și eticheta de urmărire a conversiilor pentru a rula campaniile Peformance Max"
-    },
     "keymetrics": {
-        "title": "Indicatori cheie",
-        "accountTitle": "Performanța contului",
-        "accountSubtitle": "Vezi aceste cifre uimitoare",
+        "title": "Performance Max campaigns reporting",
+        "accountSubtitle": "Analyze and optimize your online presence with detailed metrics that help you measure the impact of your digital marketing efforts.",
         "dailyResultTitle": "Rezultate zilnice",
+        "helpUnderstanding": "Discover further information on how to interpret these metrics by visiting our {0}",
         "periods": {
             "yesterday": "Ieri",
             "last7Days": "Ultimele 7 zile",
@@ -784,20 +770,16 @@
             "3Months": "3 luni"
         },
         "impressions": "Afișări",
-        "impressionsTooltip": "Contorizează frecvența cu care reclama ta a apărut pe o pagină cu rezultate ale căutării sau pe un site web din rețeaua Google.",
         "clicks": "Clicuri",
-        "clicksTooltip": "Atunci când cineva face clic pe reclama ta, cum ar fi pe titlul albastru sau pe numărul de telefon al unei reclame text, Google Ads contorizează acest lucru ca un clic.",
         "conversions": "Conversia",
-        "conversionsTooltip": "Numărul de conversii. Aceasta include numai acțiunile de conversie în care caracteristica include_in_conversions_metric este setată la adevărat. Dacă utilizezi licitarea bazată pe conversie, strategiile tale de licitare se vor optimiza pentru aceste conversii.",
         "averageCostPerClick": "Cost mediu/clic",
-        "averageCostPerClickTooltip": "Costul total al tuturor clicurilor împărțit la numărul total de clicuri primite.",
         "costs": "Costuri",
-        "costsTooltip": "Suma costurilor cost-pe-clic (CPC) și cost-pe-mia de afișări (CPM) în această perioadă.",
         "sales": "Vânzări",
         "noData": "Încă nu există date",
-        "salesTooltip": "Valoarea conversiilor. Aceasta include numai acțiunile de conversie în care caracteristica include_in_conversions_metric este setată la adevărat. Dacă utilizezi licitarea bazată pe conversie, strategiile tale de licitare se vor optimiza pentru aceste conversii."
+        "noCampaigns": "Ready to boost your product promotion? Create your campaign in few clicks"
     },
     "campaigns": {
+        "listTitle": "Campaign's listing",
         "status": {
             "eligible": "Eligibil",
             "eligiblelimited": "Eligibil (limitat)",
@@ -807,49 +789,24 @@
             "draft": "Ciornă",
             "pending": "În așteptare"
         },
-        "from": "De la",
-        "fromXToX": "De la {startDate} la {endDate}",
+        "dateLabel": {
+            "from": "From {startDate}",
+            "fromXToX": "From {startDate} to {endDate}",
+            "endedOnX": "Ended on {endDate}"
+        },
         "labelCol": {
-            "campaign": "Campanie",
-            "budget": "Buget",
+            "campaign": "Title",
             "status": "Stare",
             "impressions": "Afișări",
             "clicks": "Clicuri",
             "adSpend": "Cheltuieli publicitare",
-            "conversion": "Conversia",
             "sales": "Vânzări",
-            "id": "ID",
-            "products": "Filtre produs",
-            "click": "Clic",
             "costs": "Costuri",
-            "averageCostPerClick": "CPC mediu",
             "conversions": "Conversii",
-            "conversionsRate": "Rata de conversie",
-            "productFilter": "Denumire filtru",
-            "dimension": "Tip filtru",
-            "duration": "Data duratei",
-            "target": "Ținta",
+            "duration": "Date",
+            "target": "Target country",
             "actions": "Acțiuni",
             "dailyBudget": "Bugetul zilnic"
-        },
-        "tooltipCol": {
-            "status": "O stare pentru campania ta publicitară care descrie dacă reclamele sale pot fi difuzate sau nu în acest moment.",
-            "products": "Filtrul de produs este ceea ce ai selectat ca filtru de campanie cu numărul de produse afectate."
-        },
-        "campaignsPerformanceTable": {
-            "title": "Performanța campaniei",
-            "subTitle": "Vezi cât de bine funcționează campaniile tale",
-            "emptyListText": "Nu ai nicio campanie activată"
-        },
-        "productsPerformanceTable": {
-            "title": "Performanța produsului pentru campaniile active",
-            "subTitle": "Vezi ce produs funcționează cel mai bine",
-            "emptyListText": "Nu ai niciun produs în campanii active"
-        },
-        "filtersPerformanceTable": {
-            "title": "Performanța generală a filtrului (top 10)",
-            "subTitle": "Vezi ce dimensiune funcționează cel mai bine",
-            "emptyListText": "Nu ai nicio campanie activă cu filtre"
         }
     },
     "notConfiguredState": {
@@ -876,6 +833,7 @@
     },
     "help": {
         "intro": "PrestaShop Marketing facilitează conectarea magazinului tău la Google și promovarea produselor tale către milioane de cumpărători pe mai multe canale Google. Creează campanii Performance Max fără a părăsi panoul de bord PrestaShop și determină creșterea traficului.",
+        "helpCenter": "Help Center",
         "allowsYouTo": {
             "title": "Acest modul îți permite să:",
             "easySync": "Sincronizezi cu ușurință catalogul de produse cu Google pentru a păstra actualizate automat detaliile despre produse, cum ar fi prețul și disponibilitatea",
@@ -969,12 +927,13 @@
         "createSmartShoppingCampaign": "Lansează campania Performance Max",
         "addBillingSettings": "Adaugă setări de facturare",
         "createCampaign": "Creează o campanie",
+        "createPMaxCampaign": "Create new PMax campaign",
         "editCampaign": "Actualizează campania",
         "launchCampaign": "Lansează campania",
         "resetDate": "Setează data de astăzi",
         "validate": "Validare",
-        "moreInfosAboutX": "Mai multe informații despre {0}",
-        "seeOnGoogleAds": "Vezi în Google Ads",
+        "seeOnGoogleAds": "See these metrics on {0}",
+        "GoogleAds": "Google Ads",
         "clickToSortDesc": "(Fă clic pentru a sorta descrescător)",
         "clickToSortAsc": "(Fă clic pentru a sorta crescător)",
         "selectFilters": "Selectare filtre",
@@ -984,9 +943,9 @@
         "clearAll": "Șterge tot",
         "signInWithGoogle": "Autentificare prin Google",
         "viewReporting": "Vizualizare rapoarte",
-        "pauseCampaign": "Întrerupe campania",
-        "resumeCampaign": "Reia campania",
-        "modifyTheCampaign": "Modificare campanie",
+        "pauseCampaign": "Pause",
+        "resumeCampaign": "Enable",
+        "modifyTheCampaign": "Modify",
         "openActionsMenu": "Deschide meniul de acțiuni pentru campania {0}",
         "viewInGoogleAds": "Vizualizează în contul tău Google Ads",
         "previous": "Înapoi",
@@ -1147,8 +1106,8 @@
         "legendLong": "*Voucherul tău va fi aplicat automat din momentul în care începi să cheltuiești! *Suma trebuie cheltuită în termen de 60 de zile de la prima cheltuială a campaniei, iar creditele vor fi valabile timp de 60 de zile după ce au fost creditate. [Citește termenii și condițiile]({0})[:target=\"_blank\"]",
         "legend": "*Creează un nou cont Google Ads, voucherul va fi aplicat automat după ce ai acumulat suficient cheltuieli și vei avea la dispoziție 60 de zile pentru a cheltui creditele. [Citește termenii și condițiile]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "* Creează un nou cont Google Ads, voucherul va fi aplicat automat după ce ai acumulat suficiente cheltuieli și vei avea la dispoziție 60 de zile pentru a cheltui creditele.",
-        "ctaCreateFirstCampaign": "Creează-ți prima campanie",
-        "textCampaignsBanner": "Performance Max este următoarea generație de campanii Smart Shopping. Este un tip de campanie avansat, alimentat de tehnologia inteligentă Google. Aceasta funcționează în culise pentru a optimiza automat reclamele pe parcursul traseului de cumpărături pentru a obține performanțe maxime."
+        "ctaCreateFirstCampaign": "Launch your first campaign",
+        "textCampaignsBanner": "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
     },
     "tipsAndTricks": {
         "title": "Sfaturi și sugestii PrestaShop",
