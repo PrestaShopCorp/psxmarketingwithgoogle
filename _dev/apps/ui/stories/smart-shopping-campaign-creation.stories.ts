@@ -15,7 +15,7 @@ export default {
     msw: {
       handlers: [
         rest.get("/shopping-campaigns/list",  (req, res, ctx) => {
-          return res(ctx.json({"campaigns":[
+          return res(ctx.json({results:[
             {
                 "id": "16004060865",
                 "resourceName": "customers/4088436776/campaigns/16004060865",
@@ -293,7 +293,7 @@ EditionWithUnhandledFilters.args = {
   loader: false,
   searchLoader: false,
   mounted(this: any) {
-    this.$store.state.campaigns.campaigns.results.campaigns =[cloneDeep(campaignWithUnhandledFilters)];
+    this.$store.state.campaigns.campaigns.results.campaigns = [cloneDeep(campaignWithUnhandledFilters)];
     this.$router.history.current.params.id = '16004060865',
     this.$store.state.campaigns.errorFetchingFilters = false;
     this.$store.state.productFeed.validationSummary.activeProducts = 2;
@@ -306,7 +306,7 @@ EditionWithUnhandledFilters.parameters = {
     msw: {
       handlers: [
         rest.get("/shopping-campaigns/list",  (req, res, ctx) => {
-          return res(ctx.json({"campaigns":[
+          return res(ctx.json({results:[
             {
                 "id": "16004060865",
                 "resourceName": "customers/4088436776/campaigns/16004060865",

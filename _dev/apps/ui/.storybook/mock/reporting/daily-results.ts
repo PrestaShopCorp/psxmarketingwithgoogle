@@ -26,8 +26,6 @@ export const dailyResultNotPerformingData = {
   })),
 };
 
-console.log(dailyResultNotPerformingData);
-
 export const dailyResultsDatas = {
   dailyResultList: [
     {
