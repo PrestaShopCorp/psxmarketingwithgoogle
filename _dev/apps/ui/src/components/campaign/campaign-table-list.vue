@@ -32,7 +32,7 @@
                 :class="{'ps_gs-table-performance-header': isPerformanceInfo(type)}"
               >
                 <b-skeleton-wrapper
-                  :loading="loading"
+                  :loading="loading || fetchingCampaigns"
                 >
                   <template #loading>
                     <b-skeleton/>

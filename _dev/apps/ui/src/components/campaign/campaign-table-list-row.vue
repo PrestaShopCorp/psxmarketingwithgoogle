@@ -135,7 +135,8 @@ export default defineComponent({
         CampaignStatus.ENDED,
         CampaignStatus.REMOVED,
       ].includes(this.campaign.status);
-    },  },
+    },
+  },
   methods: {
     displayAsPrice(value: number): string {
       return formatPrice(value, this.currencyCode)

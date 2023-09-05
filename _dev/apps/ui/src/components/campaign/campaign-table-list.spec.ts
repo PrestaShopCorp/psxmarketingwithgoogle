@@ -1,24 +1,153 @@
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
-import cloneDeep from 'lodash.clonedeep';
-import {shallowMount} from '@vue/test-utils';
-import config, {localVue, cloneStore} from '@/../tests/init';
+import {MountOptions, mount} from '@vue/test-utils';
+import config, {localVue, cloneStore, addBootstrapToVue} from '@/../tests/init';
 
-import {initialStateApp} from '../../../.storybook/mock/state-app';
-import {googleAdsAccountChosen} from '../../../.storybook/mock/google-ads';
-import {campaignWithUnhandledFilters, availableFilters} from '../../../.storybook/mock/campaigns';
 import CampaignTableList from './campaign-table-list.vue';
-import BannerCampaigns from '../commons/banner-campaigns.vue';
+import { campaigns } from '@/../.storybook/mock/campaigns-list';
+import { BCard, BSkeleton } from 'bootstrap-vue';
+import campaignTableListRowVue from './campaign-table-list-row.vue';
+import tableApiErrorVue from '../commons/table-api-error.vue';
 
-const VBTooltip = vi.fn();
+const buildDefaultStore = (): ReturnType<typeof cloneStore> => {
+  const store = cloneStore();
+  store.modules.campaigns.state.campaigns.results.campaigns = campaigns;
+  store.modules.campaigns.state.campaigns.results.totalCount = 123;
+
+  store.modules.campaigns.actions.GET_DIMENSIONS_FILTERS = vi.fn();
+  store.modules.campaigns.actions.GET_CAMPAIGNS_LIST = vi.fn();
+  return store;
+}
+
+const buildWrapper = (
+  options: MountOptions<any> = {},
+  store: ReturnType<typeof cloneStore> = buildDefaultStore(),
+) => {
+  return mount(CampaignTableList, {
+    localVue,
+    store: new Vuex.Store(store),
+    ...config,
+    ...options,
+  });
+}
 
 describe('CampaignTableList', () => {
+  beforeEach(() => {
+    addBootstrapToVue();
+  });
+
   describe('Display', () => {
-    it.todo('is hidden when there is no campaigns');
-    it.todo('is shown when campaigns are being fetched');
-    it.todo('is shown when API failed');
-    it.todo('is shown during loading');
+    it('is shown by default', () => {
+      const wrapper = buildWrapper({
+        propsData: {
+          loading: false,
+        }
+      });
+
+      // Overall card
+      expect(wrapper.findComponent(BCard).exists()).toBe(true);
+
+      // Error card
+      expect(wrapper.findComponent(tableApiErrorVue).exists()).toBe(false);
+
+      // Loading state
+      expect(wrapper.findAllComponents(BSkeleton)).toHaveLength(0);
+
+      // Campaigns data
+      const tableRows = wrapper.findAllComponents(campaignTableListRowVue);
+      expect(tableRows).toHaveLength(6);
+      expect(tableRows.at(2).props('campaign')).toEqual(campaigns[2]);
+    });
+
+    it('is shown when campaigns are being fetched', async () => {
+      const wrapper = buildWrapper({
+        propsData: {
+          loading: false,
+        }
+      });
+      await wrapper.setData({
+        fetchingCampaigns: true,
+      });
+
+      // Overall card
+      expect(wrapper.findComponent(BCard).exists()).toBe(true);
+
+      // Error card
+      expect(wrapper.findComponent(tableApiErrorVue).exists()).toBe(false);
+
+      // Loading state
+      const numberOfCells = (1 + 10) * 11;
+      expect(wrapper.findAllComponents(BSkeleton)).toHaveLength(numberOfCells);
+
+      // Campaigns data
+      expect(wrapper.findAllComponents(campaignTableListRowVue)).toHaveLength(0);
+    });
+
+    it('is shown when API failed', () => {
+      const store = buildDefaultStore();
+      store.modules.campaigns.state.campaigns.results.error = true;
+      store.modules.campaigns.state.campaigns.results.campaigns = [];
+      store.modules.campaigns.state.campaigns.results.totalCount = 0;
+
+      const wrapper = buildWrapper({
+        propsData: {
+          loading: false,
+        }
+      }, store);
+
+      // Overall card
+      expect(wrapper.findComponent(BCard).exists()).toBe(true);
+
+      // Error card
+      expect(wrapper.findComponent(tableApiErrorVue).exists()).toBe(true);
+
+      // Loading state
+      expect(wrapper.findAllComponents(BSkeleton)).toHaveLength(0);
+
+      // Campaigns data
+      expect(wrapper.findAllComponents(campaignTableListRowVue)).toHaveLength(0);
+    });
+
+    it('is shown during loading', () => {
+      const store = buildDefaultStore();
+      store.modules.campaigns.state.campaigns.results.error = true;
+      store.modules.campaigns.state.campaigns.results.campaigns = [];
+      store.modules.campaigns.state.campaigns.results.totalCount = 0;
+
+      const wrapper = buildWrapper({
+        propsData: {
+          loading: true,
+        }
+      }, store);
+
+      // Overall card
+      expect(wrapper.findComponent(BCard).exists()).toBe(true);
+
+      // Error card
+      expect(wrapper.findComponent(tableApiErrorVue).exists()).toBe(false);
+
+      // Loading state
+      const numberOfCells = (1 + 10) * 11;
+      expect(wrapper.findAllComponents(BSkeleton)).toHaveLength(numberOfCells);
+
+      // Campaigns data
+      expect(wrapper.findAllComponents(campaignTableListRowVue)).toHaveLength(0);
+    });
+
+    it('is hidden when there is no campaigns', () => {
+      const store = buildDefaultStore();
+      store.modules.campaigns.state.campaigns.results.campaigns = [];
+      store.modules.campaigns.state.campaigns.results.totalCount = 0;
+
+      const wrapper = buildWrapper({
+        propsData: {
+          loading: false,
+        }
+      }, store);
+
+      expect(wrapper.findComponent(BCard).exists()).toBe(false);
+    });
   });
 
   describe('Header', () => {
