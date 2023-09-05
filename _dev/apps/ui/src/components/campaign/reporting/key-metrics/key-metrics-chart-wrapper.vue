@@ -138,6 +138,7 @@ export default {
             max: this.$store.getters['campaigns/GET_REPORTING_END_DATES'],
           },
         },
+        maintainAspectRatio: false,
         plugins: {
           legend: {
             display: false,
