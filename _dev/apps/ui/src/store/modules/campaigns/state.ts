@@ -86,7 +86,9 @@ export type CampaignObject = {
   status?: CampaignStatus|CampaignStatusToggle;
   hasUnhandledFilters?: boolean;
   type: CampaignTypes;
+}
 
+export type CampaignPerformanceObject = CampaignObject & {
   impressions: number;
   clicks: number;
   adSpend: number;
@@ -100,7 +102,7 @@ export interface CampaignsList {
 }
 
 export interface CampaignsListResults {
-  campaigns: CampaignObject[];
+  campaigns: CampaignPerformanceObject[];
   totalCount: number;
   error: boolean;
 }

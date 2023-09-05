@@ -28,6 +28,7 @@ import {
   FiltersChosen,
   DailyResultTypes,
   CampaignListOrdering,
+  CampaignPerformanceObject,
 } from './state';
 import GettersTypes from './getters-types';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
@@ -147,7 +148,7 @@ export default {
   },
 
   // result getters
-  [GettersTypes.GET_CAMPAIGNS_LIST](state: LocalState): CampaignObject[] {
+  [GettersTypes.GET_CAMPAIGNS_LIST](state: LocalState): CampaignPerformanceObject[] {
     return state.campaigns.results.campaigns;
   },
   [GettersTypes.GET_CAMPAIGNS_TOTAL](

@@ -219,6 +219,13 @@ export default {
     {commit, state}, payload: KpiType,
   ): boolean {
     const currentResultTypes = state.reporting.request.dailyResultTypes;
+    const alreadyInObject = !!Object.keys(currentResultTypes)
+      .find((color) => currentResultTypes[color] === payload);
+
+    if (alreadyInObject) {
+      return true;
+    }
+
     const availableKey = Object.keys(currentResultTypes)
       .find((color) => currentResultTypes[color] === null);
 
