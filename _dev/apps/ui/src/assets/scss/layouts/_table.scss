@@ -285,11 +285,11 @@
 $statusColors: (
   'eligible': encodecolor($success),
   'eligibleLimited': encodecolor($success),
-  'ended': encodecolor($black),
-  'paused': encodecolor($info),
-  'noteligible': encodecolor($danger),
-  'draft': encodecolor($primary-600),
-  'pending': encodecolor($warning),
+  'ended': encodecolor($primary-800),
+  'paused': encodecolor($warning),
+  'not-eligible': encodecolor($danger),
+  'draft': encodecolor($primary-500),
+  'pending': encodecolor($primary-500),
 );
 
 .ps_gs-cell-status {
