@@ -1106,7 +1106,7 @@
         "legendLong": "*De aanbieding wordt automatisch toegepast vanaf het moment dat je begint met uitgeven! *Het bedrag moet binnen 60 dagen na de eerste campagne-uitgaven worden besteed. Het tegoed is 60 dagen geldig nadat het is bijgeschreven. [Voorwaarden lezen]({0})[:target=\"_blank\"]",
         "legend": "*Maak een nieuw Google Ads-account aan. De aanbieding wordt automatisch toegepast zodra je de uitgaven hebt gematcht. Je hebt 60 dagen om het tegoed uit te geven. [Voorwaarden lezen]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "*Maak een nieuw Google Ads-account aan. De aanbieding wordt automatisch toegepast zodra je de uitgavendrempel hebt bereikt. Je hebt 60 dagen om het tegoed uit te geven.",
-        "ctaCreateFirstCampaign": "Launch your first campaign",
+        "ctaCreateFirstCampaign": "Create your first PMax campaign",
         "textCampaignsBanner": "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
     },
     "tipsAndTricks": {
