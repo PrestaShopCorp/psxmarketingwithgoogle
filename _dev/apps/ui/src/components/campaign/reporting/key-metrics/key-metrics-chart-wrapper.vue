@@ -91,11 +91,17 @@ export default {
     getLabels() {
       return this.getMetrics.map((a) => a.date);
     },
-    metricsIsEmpty() {
-      return this.getMetrics.length === 0;
-    },
     currencyCode(): string|undefined {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode;
+    },
+    absoluteValuesAxisIsDisplayed(): boolean {
+      return !!Object.keys(this.dailyResultTypesSelected)
+          .filter((color: string) => !!this.dailyResultTypesSelected[color])
+          .find((color: string) => {
+            const kpiType = this.dailyResultTypesSelected[color];
+
+            return !this.typeDisplaysPrices(kpiType);
+          });
     },
     chartOptions(): ChartOptions<'line'> {
       return {
@@ -113,9 +119,9 @@ export default {
           yPrice: {
             axis: 'y',
             display: 'auto',
-            position: 'right',
+            position: this.absoluteValuesAxisIsDisplayed ? 'right' : 'left',
             grid: {
-              drawOnChartArea: false,
+              drawOnChartArea: !this.absoluteValuesAxisIsDisplayed,
             },
             ticks: {
               callback: (value) => this.getFormattedValue(
