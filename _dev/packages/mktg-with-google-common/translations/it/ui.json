@@ -785,7 +785,7 @@
             "eligiblelimited": "Idonea (limitato)",
             "ended": "Terminato",
             "paused": "Pausa",
-            "noteligible": "Non idonea",
+            "not-eligible": "Not Eligible",
             "draft": "Bozza",
             "pending": "In attesa"
         },
