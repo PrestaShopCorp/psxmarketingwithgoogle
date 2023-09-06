@@ -785,7 +785,7 @@
             "eligiblelimited": "Eligible (limité)",
             "ended": "Terminé",
             "paused": "En pause",
-            "noteligible": "Non éligible",
+            "not-eligible": "Not Eligible",
             "draft": "Brouillon",
             "pending": "En attente"
         },
