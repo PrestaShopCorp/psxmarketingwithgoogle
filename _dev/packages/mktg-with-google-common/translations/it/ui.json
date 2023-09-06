@@ -1106,7 +1106,7 @@
         "legendLong": "*Il tuo buono sarà applicato automaticamente dal momento in cui inizierai a spendere! *L'importo deve essere speso entro 60 giorni dalla prima spesa della campagna e i crediti saranno validi per 60 giorni una volta accreditati. [Leggi le condizioni generali d'uso]({0})[:target=\"_blank\"]",
         "legend": "*Crea un nuovo account Google Ads, il buono verrà applicato automaticamente una volta che si raggiungerà la spesa e si avranno 60 giorni per spendere i crediti. [Leggi le condizioni generali d'uso]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "* Crea un nuovo account Google Ads; il buono verrà applicato automaticamente una volta che si raggiungerà la spesa e si avranno 60 giorni per spendere i crediti.",
-        "ctaCreateFirstCampaign": "Launch your first campaign",
+        "ctaCreateFirstCampaign": "Create your first PMax campaign",
         "textCampaignsBanner": "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
     },
     "tipsAndTricks": {
