@@ -785,7 +785,7 @@
             "eligiblelimited": "Förderfähig (begrenzt)",
             "ended": "Beendet",
             "paused": "Pausiert",
-            "noteligible": "Nicht zutreffend",
+            "not-eligible": "Not Eligible",
             "draft": "Entwurf",
             "pending": "Anhängig"
         },

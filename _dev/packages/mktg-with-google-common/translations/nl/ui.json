@@ -785,7 +785,7 @@
             "eligiblelimited": "In aanmerking komend (beperkt)",
             "ended": "Beëindigd",
             "paused": "Gepauzeerd",
-            "noteligible": "Niet in aanmerking",
+            "not-eligible": "Not Eligible",
             "draft": "Ontwerp",
             "pending": "In afwachting van"
         },

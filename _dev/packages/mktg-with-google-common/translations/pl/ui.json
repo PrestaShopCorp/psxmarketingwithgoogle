@@ -785,7 +785,7 @@
             "eligiblelimited": "Kwalifikujący się (w ograniczonym zakresie)",
             "ended": "Zakończono",
             "paused": "Wstrzymano",
-            "noteligible": "Niekwalifikujący się",
+            "not-eligible": "Not Eligible",
             "draft": "Wersja robocza",
             "pending": "Oczekujące"
         },
