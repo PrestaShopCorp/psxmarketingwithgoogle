@@ -785,7 +785,7 @@
             "eligiblelimited": "Eligibil (limitat)",
             "ended": "Încheiată",
             "paused": "În pauză",
-            "noteligible": "Nu este eligibil",
+            "not-eligible": "Not Eligible",
             "draft": "Ciornă",
             "pending": "În așteptare"
         },
