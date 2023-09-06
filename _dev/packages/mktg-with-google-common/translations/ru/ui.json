@@ -785,7 +785,7 @@
             "eligiblelimited": "Допустимый (ограниченный)",
             "ended": "Завершено",
             "paused": "Приостановлено",
-            "noteligible": "Не имеет права",
+            "not-eligible": "Not Eligible",
             "draft": "Проект",
             "pending": "В ожидании"
         },
