@@ -11,6 +11,10 @@ import CampaignTableList from './campaign-table-list.vue';
 import {campaigns} from '@/../.storybook/mock/campaigns-list';
 import campaignTableListRowVue from './campaign-table-list-row.vue';
 import tableApiErrorVue from '../commons/table-api-error.vue';
+import KpiType from '@/enums/reporting/KpiType';
+import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
+import CampaignSummaryListHeaderType from '../../enums/campaigns-summary/CampaignSummaryListHeaderType';
+import tablePageControlsVue from '../commons/table-page-controls.vue';
 
 const buildDefaultStore = (): ReturnType<typeof cloneStore> => {
   const store = cloneStore();
@@ -226,17 +230,226 @@ describe('CampaignTableList', () => {
   });
 
   describe('Sorting', () => {
-    it.todo('has no sorting by default');
-    it.todo('sets as Ascending on first clic');
-    it.todo('sets as Descending when current sorting is Ascending');
-    it.todo('sets as Ascending when current sorting is Descending');
-    it.todo('allows only one column to be sorted');
+    it('sorts by clicks (descending) by default', () => {
+      const wrapper = buildWrapper({
+        propsData: {
+          loading: false,
+        },
+      });
+      expect(wrapper.vm.queryOrderDirection).toEqual({
+        [KpiType.CLICKS]: QueryOrderDirection.DESCENDING,
+      });
+
+      const headerCells = wrapper.findAllComponents(BTh);
+
+      expect(headerCells.at(2).find('i').text()).toBe('expand_less');
+      expect(headerCells.at(3).find('i').text()).toBe('expand_less');
+      expect(headerCells.at(4).find('i').text()).toBe('expand_more');
+      expect(headerCells.at(5).find('i').text()).toBe('expand_less');
+      expect(headerCells.at(6).find('i').text()).toBe('expand_less');
+      expect(headerCells.at(7).find('i').text()).toBe('expand_less');
+    });
+
+    it('sets as Descending on first clic', async () => {
+      const wrapper = buildWrapper({
+        propsData: {
+          loading: false,
+        },
+      });
+      expect(wrapper.vm.queryOrderDirection).toEqual({
+        [KpiType.CLICKS]: QueryOrderDirection.DESCENDING,
+      });
+
+      const headerCells = wrapper.findAllComponents(BTh);
+      await headerCells.at(2).findComponent(BButton).trigger('click');
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.vm.queryOrderDirection).toEqual({
+        [CampaignSummaryListHeaderType.DURATION]: QueryOrderDirection.DESCENDING,
+      });
+
+      expect(headerCells.at(2).find('i').text()).toBe('expand_more');
+      expect(headerCells.at(3).find('i').text()).toBe('expand_less');
+      expect(headerCells.at(4).find('i').text()).toBe('expand_less');
+      expect(headerCells.at(5).find('i').text()).toBe('expand_less');
+      expect(headerCells.at(6).find('i').text()).toBe('expand_less');
+      expect(headerCells.at(7).find('i').text()).toBe('expand_less');
+    });
+
+    it('sets as Descending when current sorting is Ascending', async () => {
+      const wrapper = buildWrapper({
+        propsData: {
+          loading: false,
+        },
+      });
+      expect(wrapper.vm.queryOrderDirection).toEqual({
+        [KpiType.CLICKS]: QueryOrderDirection.DESCENDING,
+      });
+
+      const headerCells = wrapper.findAllComponents(BTh);
+      await headerCells.at(2).findComponent(BButton).trigger('click');
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.vm.queryOrderDirection).toEqual({
+        [CampaignSummaryListHeaderType.DURATION]: QueryOrderDirection.DESCENDING,
+      });
+
+      await headerCells.at(2).findComponent(BButton).trigger('click');
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.vm.queryOrderDirection).toEqual({
+        [CampaignSummaryListHeaderType.DURATION]: QueryOrderDirection.ASCENDING,
+      });
+
+      expect(headerCells.at(2).find('i').text()).toBe('expand_less');
+      expect(headerCells.at(3).find('i').text()).toBe('expand_less');
+      expect(headerCells.at(4).find('i').text()).toBe('expand_less');
+      expect(headerCells.at(5).find('i').text()).toBe('expand_less');
+      expect(headerCells.at(6).find('i').text()).toBe('expand_less');
+      expect(headerCells.at(7).find('i').text()).toBe('expand_less');
+    });
+
+    it('sets as Ascending when current sorting is Descending', async () => {
+      const wrapper = buildWrapper({
+        propsData: {
+          loading: false,
+        },
+      });
+      expect(wrapper.vm.queryOrderDirection).toEqual({
+        [KpiType.CLICKS]: QueryOrderDirection.DESCENDING,
+      });
+
+      const headerCells = wrapper.findAllComponents(BTh);
+      await headerCells.at(2).findComponent(BButton).trigger('click');
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.vm.queryOrderDirection).toEqual({
+        [CampaignSummaryListHeaderType.DURATION]: QueryOrderDirection.DESCENDING,
+      });
+
+      await headerCells.at(2).findComponent(BButton).trigger('click');
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.vm.queryOrderDirection).toEqual({
+        [CampaignSummaryListHeaderType.DURATION]: QueryOrderDirection.ASCENDING,
+      });
+
+      await headerCells.at(2).findComponent(BButton).trigger('click');
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.vm.queryOrderDirection).toEqual({
+        [CampaignSummaryListHeaderType.DURATION]: QueryOrderDirection.DESCENDING,
+      });
+
+      expect(headerCells.at(2).find('i').text()).toBe('expand_more');
+      expect(headerCells.at(3).find('i').text()).toBe('expand_less');
+      expect(headerCells.at(4).find('i').text()).toBe('expand_less');
+      expect(headerCells.at(5).find('i').text()).toBe('expand_less');
+      expect(headerCells.at(6).find('i').text()).toBe('expand_less');
+      expect(headerCells.at(7).find('i').text()).toBe('expand_less');
+    });
+
+    it('allows only one column to be sorted', async () => {
+      const wrapper = buildWrapper({
+        propsData: {
+          loading: false,
+        },
+      });
+      expect(wrapper.vm.queryOrderDirection).toEqual({
+        [KpiType.CLICKS]: QueryOrderDirection.DESCENDING,
+      });
+
+      const headerCells = wrapper.findAllComponents(BTh);
+      await headerCells.at(2).findComponent(BButton).trigger('click');
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.vm.queryOrderDirection).toEqual({
+        [CampaignSummaryListHeaderType.DURATION]: QueryOrderDirection.DESCENDING,
+      });
+
+      await headerCells.at(4).findComponent(BButton).trigger('click');
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.vm.queryOrderDirection).toEqual({
+        [CampaignSummaryListHeaderType.CLICKS]: QueryOrderDirection.DESCENDING,
+      });
+
+      await headerCells.at(6).findComponent(BButton).trigger('click');
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.vm.queryOrderDirection).toEqual({
+        [CampaignSummaryListHeaderType.SALES]: QueryOrderDirection.DESCENDING,
+      });
+
+      expect(headerCells.at(2).find('i').text()).toBe('expand_less');
+      expect(headerCells.at(3).find('i').text()).toBe('expand_less');
+      expect(headerCells.at(4).find('i').text()).toBe('expand_less');
+      expect(headerCells.at(5).find('i').text()).toBe('expand_less');
+      expect(headerCells.at(6).find('i').text()).toBe('expand_more');
+      expect(headerCells.at(7).find('i').text()).toBe('expand_less');
+    });
   });
 
   describe('Pagination', () => {
-    it.todo('should display the pagination controls');
-    it.todo('handles an update of the current page');
-    it.todo('handles an update of the page size');
-    it.todo('calls the API when the parameters are updated');
+    it('should display the pagination controls', () => {
+      const wrapper = buildWrapper({
+        propsData: {
+          loading: false,
+        },
+      });
+
+      expect(wrapper.findComponent(tablePageControlsVue).exists()).toBe(true);
+      expect(wrapper.findComponent(tablePageControlsVue).isVisible()).toBe(true);
+    });
+
+    it('handles an update of the current page', async () => {
+      const wrapper = buildWrapper({
+        propsData: {
+          loading: false,
+        },
+      });
+
+      expect(wrapper.findComponent(tablePageControlsVue).exists()).toBe(true);
+      expect(wrapper.vm.activePage).toBe(1);
+
+      await wrapper.vm.$root.$emit('changePage', 3);
+
+      expect(wrapper.vm.activePage).toBe(3);
+    });
+
+    it('handles an update of the page size', async () => {
+      const wrapper = buildWrapper({
+        propsData: {
+          loading: false,
+        },
+      });
+
+      expect(wrapper.findComponent(tablePageControlsVue).exists()).toBe(true);
+      expect(wrapper.vm.totalPages).toBe(13);
+
+      await wrapper.vm.$root.$emit('changeLimit', 50);
+
+      expect(wrapper.vm.totalPages).toBe(3);
+    });
+
+    it('calls the API when the parameters are updated', async () => {
+      const store = buildDefaultStore();
+      const campaignsListAction = vi.fn();
+      store.modules.campaigns.actions.GET_CAMPAIGNS_LIST = campaignsListAction;
+
+      const wrapper = buildWrapper({
+        propsData: {
+          loading: false,
+        },
+      }, store);
+
+      expect(campaignsListAction).toHaveBeenCalledTimes(1);
+
+      await wrapper.vm.$root.$emit('changeLimit', 50);
+      expect(campaignsListAction).toHaveBeenCalledTimes(2);
+
+      await wrapper.vm.$root.$emit('changePage', 3);
+      expect(campaignsListAction).toHaveBeenCalledTimes(3);
+    });
   });
 });

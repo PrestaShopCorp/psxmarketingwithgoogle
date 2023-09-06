@@ -199,7 +199,9 @@ export const state: State = {
     request: {
       numberOfCampaignsPerPage: 10,
       activePage: 1,
-      ordering: {},
+      ordering: {
+        [KpiType.CLICKS]: QueryOrderDirection.DESCENDING,
+      },
     },
   },
   reporting: {

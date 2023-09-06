@@ -223,11 +223,11 @@ export default {
       const newOrderDirection = {};
 
       if (
-        this.queryOrderDirection[headerType] === QueryOrderDirection.ASCENDING
+        this.queryOrderDirection[headerType] === QueryOrderDirection.DESCENDING
       ) {
-        newOrderDirection[headerType] = QueryOrderDirection.DESCENDING;
-      } else {
         newOrderDirection[headerType] = QueryOrderDirection.ASCENDING;
+      } else {
+        newOrderDirection[headerType] = QueryOrderDirection.DESCENDING;
       }
       this.queryOrderDirection = newOrderDirection;
     },
