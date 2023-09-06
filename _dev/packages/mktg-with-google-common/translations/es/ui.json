@@ -1106,7 +1106,7 @@
         "legendLong": "*Tu vale se aplicará automáticamente desde el momento en que empieces a gastar. *El importe debe emplearse en los 60 días siguientes al gasto de la primera campaña y los créditos serán válidos durante 60 días una vez reconocidos. [Leer T&C]({0})[:target=\"_blank\"]",
         "legend": "*Crea una nueva cuenta de Google Ads, el bono se aplicará automáticamente una vez que coincida con el gasto y tendrás 60 días para utilizar los créditos. [Leer T&C]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "*Crea una nueva cuenta de Google Ads, el bono se aplicará automáticamente una vez que coincida con el gasto y tendrás 60 días para utilizar los créditos.",
-        "ctaCreateFirstCampaign": "Crear tu primera campaña",
+        "ctaCreateFirstCampaign": "Launch your first campaign",
         "textCampaignsBanner": "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
     },
     "tipsAndTricks": {

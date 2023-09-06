@@ -1106,7 +1106,7 @@
         "legendLong": "*Twój voucher zostanie zastosowany automatycznie od momentu rozpoczęcia wydatków! *Kwota musi zostać wydana w ciągu 60 dni od daty pierwszej kampanii, a kupony promocyjne będą ważne przez 60 dni po ich przyznaniu. [Przeczytaj Warunki]({0})[:target=\"_blank\"]",
         "legend": "* Utwórz nowe konto Google Ads. Kupony promocyjne zostaną przyznane automatycznie po spełnieniu kryterium wydatków. Będziesz mieć 60 dni na wykorzystanie kuponów. [Przeczytaj Regulamin]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "* Utwórz nowe konto Google Ads. Kupony promocyjne zostaną przyznane automatycznie po spełnieniu kryterium wydatków. Będziesz mieć 60 dni na wykorzystanie kuponów. ",
-        "ctaCreateFirstCampaign": "Utwórz pierwszą kampanię",
+        "ctaCreateFirstCampaign": "Launch your first campaign",
         "textCampaignsBanner": "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
     },
     "tipsAndTricks": {
