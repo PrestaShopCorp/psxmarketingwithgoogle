@@ -7,6 +7,7 @@ import chartVue from '@/components/chart/chart.vue';
 import {campaigns} from '@/../.storybook/mock/campaigns-list';
 import {dateGenerator} from '@/../.storybook/utils/date-generator';
 import KpiType from '@/enums/reporting/KpiType';
+import {DailyResultColor} from '../../../../store/modules/campaigns/state';
 
 describe('KeyMetricsChartWrapper', () => {
   const buildDefaultStore = (): ReturnType<typeof cloneStore> => {
@@ -72,7 +73,42 @@ describe('KeyMetricsChartWrapper', () => {
       });
     });
 
-    it.todo('assigns the color to the line');
+    it('assigns the color to the line', () => {
+      const store = buildDefaultStore();
+      store.modules.campaigns.state.reporting.request.dateRange.endDate = dateGenerator(0);
+      store.modules.campaigns.state.reporting.request.dateRange.startDate = dateGenerator(0);
+      store.modules.campaigns.state.reporting.request.dailyResultTypes = {
+        [DailyResultColor.BLACK]: null,
+        [DailyResultColor.BLUE]: KpiType.SALES,
+        [DailyResultColor.YELLOW]: null,
+      };
+      store.modules.campaigns.state.reporting.results.dailyResultChart.dailyResultList = [{
+        impressions: 400,
+        clicks: 200,
+        conversions: 10,
+        averageCostPerClick: 0.20,
+        costs: 20,
+        sales: 13000,
+        date: dateGenerator(0),
+      }];
+      const wrapper = buildWrapper({}, store);
+
+      expect(wrapper.vm.getDataSetsByMetric).toStrictEqual({
+        labels: [dateGenerator(0)],
+        datasets: [
+          {
+            label: 'Sales',
+            data: [13000],
+            backgroundColor: '#174EEF',
+            borderColor: '#174EEF',
+            borderWidth: 2,
+            segment: expect.any(Object),
+            spanGaps: 172800000,
+            yAxisID: 'yPrice',
+          },
+        ],
+      });
+    });
   });
 
   describe('Y axis', () => {
@@ -173,9 +209,9 @@ describe('KeyMetricsChartWrapper', () => {
       store.modules.campaigns.state.reporting.request.dateRange.endDate = dateGenerator(0);
       store.modules.campaigns.state.reporting.request.dateRange.startDate = dateGenerator(0);
       store.modules.campaigns.state.reporting.request.dailyResultTypes = {
-        '#1D1D1B': KpiType.IMPRESSIONS,
-        '#174EEF': KpiType.CLICKS,
-        '#FFD999': KpiType.CONVERSIONS,
+        [DailyResultColor.BLACK]: KpiType.IMPRESSIONS,
+        [DailyResultColor.BLUE]: KpiType.CLICKS,
+        [DailyResultColor.YELLOW]: KpiType.CONVERSIONS,
       };
       store.modules.campaigns.state.reporting.results.dailyResultChart.dailyResultList = [{
         impressions: 400,
@@ -222,9 +258,9 @@ describe('KeyMetricsChartWrapper', () => {
       store.modules.campaigns.state.reporting.request.dateRange.endDate = dateGenerator(0);
       store.modules.campaigns.state.reporting.request.dateRange.startDate = dateGenerator(0);
       store.modules.campaigns.state.reporting.request.dailyResultTypes = {
-        '#1D1D1B': KpiType.AVERAGE_COST_PER_CLICK,
-        '#174EEF': KpiType.COSTS,
-        '#FFD999': KpiType.SALES,
+        [DailyResultColor.BLACK]: KpiType.AVERAGE_COST_PER_CLICK,
+        [DailyResultColor.BLUE]: KpiType.COSTS,
+        [DailyResultColor.YELLOW]: KpiType.SALES,
       };
       store.modules.campaigns.state.reporting.results.dailyResultChart.dailyResultList = [{
         impressions: 400,
@@ -271,9 +307,9 @@ describe('KeyMetricsChartWrapper', () => {
       store.modules.campaigns.state.reporting.request.dateRange.endDate = dateGenerator(0);
       store.modules.campaigns.state.reporting.request.dateRange.startDate = dateGenerator(0);
       store.modules.campaigns.state.reporting.request.dailyResultTypes = {
-        '#1D1D1B': KpiType.IMPRESSIONS,
-        '#174EEF': KpiType.SALES,
-        '#FFD999': null,
+        [DailyResultColor.BLACK]: KpiType.IMPRESSIONS,
+        [DailyResultColor.BLUE]: KpiType.SALES,
+        [DailyResultColor.YELLOW]: null,
       };
       store.modules.campaigns.state.reporting.results.dailyResultChart.dailyResultList = [{
         impressions: 400,
