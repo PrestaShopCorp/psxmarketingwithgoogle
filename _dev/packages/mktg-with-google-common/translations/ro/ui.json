@@ -1106,7 +1106,7 @@
         "legendLong": "*Voucherul tău va fi aplicat automat din momentul în care începi să cheltuiești! *Suma trebuie cheltuită în termen de 60 de zile de la prima cheltuială a campaniei, iar creditele vor fi valabile timp de 60 de zile după ce au fost creditate. [Citește termenii și condițiile]({0})[:target=\"_blank\"]",
         "legend": "*Creează un nou cont Google Ads, voucherul va fi aplicat automat după ce ai acumulat suficient cheltuieli și vei avea la dispoziție 60 de zile pentru a cheltui creditele. [Citește termenii și condițiile]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "* Creează un nou cont Google Ads, voucherul va fi aplicat automat după ce ai acumulat suficiente cheltuieli și vei avea la dispoziție 60 de zile pentru a cheltui creditele.",
-        "ctaCreateFirstCampaign": "Launch your first campaign",
+        "ctaCreateFirstCampaign": "Create your first PMax campaign",
         "textCampaignsBanner": "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
     },
     "tipsAndTricks": {

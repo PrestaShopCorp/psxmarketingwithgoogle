@@ -1106,7 +1106,7 @@
         "legendLong": "*Купон будет применен автоматически, как только вы начнете инвестировать в рекламу! *Указанная сумма должна быть потрачена в течение 60 дней с момента создания первой кампании. Срок действия кредитов также составляет 60 дней. [Ознакомьтесь с Условиями]({0})[:target=\"_blank\"]",
         "legend": "*Создайте новый аккаунт в Google Рекламе. Как только вы потратите необходимую сумму, купон будет применен автоматически. Кредиты действительны в течение 60 дней. [Ознакомьтесь с Условиями]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "*Создайте новый аккаунт в Google Рекламе. Как только вы потратите необходимую сумму, купон будет применен автоматически. Кредиты действительны в течение 60 дней.",
-        "ctaCreateFirstCampaign": "Launch your first campaign",
+        "ctaCreateFirstCampaign": "Create your first PMax campaign",
         "textCampaignsBanner": "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
     },
     "tipsAndTricks": {

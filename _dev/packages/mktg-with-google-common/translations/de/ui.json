@@ -1106,7 +1106,7 @@
         "legendLong": "*Ihr Gutschein wird automatisch eingelöst, sobald Sie eine Ausgabe tätigen! *Der Betrag muss innerhalb von 60 Tagen nach den Aufwendungen für die erste Kampagne ausgegeben werden. Das Guthaben ist ab der Gutschreibung 60 Tage lang gültig. [Siehe AGB]({0})[:target=\"_blank\"]",
         "legend": "*Erstellen Sie ein neues Google-Ads-Konto. Der Gutschein wird automatisch eingelöst, sobald Sie den erforderlichen Betrag erreicht haben. Sie haben dann 60 Tage Zeit, um das Guthaben einzulösen. [Siehe AGB]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "*Erstellen Sie ein neues Google-Ads-Konto. Der Gutschein wird automatisch eingelöst, sobald Sie den erforderlichen Betrag erreicht haben. Sie haben dann 60 Tage Zeit, um das Guthaben einzulösen.",
-        "ctaCreateFirstCampaign": "Launch your first campaign",
+        "ctaCreateFirstCampaign": "Create your first PMax campaign",
         "textCampaignsBanner": "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
     },
     "tipsAndTricks": {

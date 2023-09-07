@@ -1106,7 +1106,7 @@
         "legendLong": "*Seu voucher será aplicado automaticamente a partir do momento em que você começar a gastar! *O valor precisa ser gasto dentro de 60 dias após o primeiro gasto da campanha e os créditos serão válidos por 60 dias após serem resgatados. [Ler T&C]({0})[:target=\"_blank\"]",
         "legend": "*Crie uma nova conta do Google Ads. O voucher será aplicado automaticamente assim que corresponder ao gasto e você terá 60 dias para gastar os créditos. [Ler T&C]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "* Crie uma nova conta do Google Ads. O voucher será aplicado automaticamente assim que corresponder ao gasto e você terá 60 dias para gastar os créditos.",
-        "ctaCreateFirstCampaign": "Launch your first campaign",
+        "ctaCreateFirstCampaign": "Create your first PMax campaign",
         "textCampaignsBanner": "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
     },
     "tipsAndTricks": {
