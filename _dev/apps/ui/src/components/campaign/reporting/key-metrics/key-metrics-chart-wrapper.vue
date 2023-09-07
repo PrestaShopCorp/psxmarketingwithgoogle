@@ -20,9 +20,7 @@
             variant="primary"
             @click="$emit('clickToCreateCampaign')"
           >
-            {{ this.accountHasAtLeastOneCampaign
-              ? $t('cta.launchCampaign') : $t('banner.ctaCreateFirstCampaign')
-            }}
+            {{ $t('banner.ctaCreateFirstCampaign') }}
           </b-button>
         </div>
         <Chart
@@ -167,7 +165,7 @@ export default {
       };
     },
     accountHasAtLeastOneCampaign() {
-      return !!this.$store.getters['campaigns/GET_CAMPAIGNS_LIST']?.length;
+      return !!this.$store.getters['campaigns/GET_CAMPAIGNS_TOTAL'];
     },
   },
   methods: {
