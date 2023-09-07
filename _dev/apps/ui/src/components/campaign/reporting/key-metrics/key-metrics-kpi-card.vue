@@ -38,6 +38,7 @@
 import KpiType from '@/enums/reporting/KpiType';
 import { PropType } from 'vue';
 import { DailyResultColor } from '@/store/modules/campaigns/state';
+import { formatPrice } from '@/utils/Price';
 
 export default {
   name: 'KeyMetricsKpiCard',
@@ -83,7 +84,7 @@ export default {
         return this.kpiValue;
       }
   
-      return this.$options.filters.formatPrice(this.kpiValue, this.currencyCode);
+      return formatPrice(this.kpiValue, this.currencyCode);
     },
     textVariant(): string {
       if (this.disabled) {

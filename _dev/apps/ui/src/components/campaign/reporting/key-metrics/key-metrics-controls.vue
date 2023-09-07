@@ -19,6 +19,7 @@
         size="sm"
         variant="primary"
         @click="$emit('clickToCreateCampaign')"
+        data-test-id="campaign-creation-button"
       >
         {{ $t('cta.createPMaxCampaign') }}
       </b-button>
