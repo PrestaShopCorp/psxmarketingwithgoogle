@@ -41,6 +41,7 @@ import KpiType from '@/enums/reporting/KpiType';
 import Chart from '@/components/chart/chart.vue';
 import {Kpis, DailyResultTypes} from '@/store/modules/campaigns/state';
 import { timeConverterToDate } from '@/utils/Dates';
+import {externalTooltipHandler} from '@/utils/ChartTooltip';
 
 const skipped = (ctx: ScriptableLineSegmentContext, value: [number, number]) => ctx.p0.skip || ctx.p1.skip || ctx.p1.stop ? value : undefined;
 
@@ -148,16 +149,21 @@ export default {
             display: false,
           },
           tooltip: {
+            enabled: false,
+            position: 'nearest',
+            external: externalTooltipHandler,
             intersect: false,
+            mode: 'index',
+            padding: 12,
             callbacks: {
-              title: (tooltipItems) => tooltipItems.map((tooltipItem) => timeConverterToDate(tooltipItem.parsed.x)),
+              title: (tooltipItems) => [...new Set(tooltipItems.map((tooltipItem) => timeConverterToDate(tooltipItem.parsed.x)))],
               label: (tooltipItem) => {
                 if (tooltipItem.dataset.yAxisID === 'yPrice') {
                   const label = tooltipItem.dataset.label;
                   const price = this.getFormattedValue(tooltipItem.parsed.y);
-                  return `${label}: ${price}`;
+                  return `${label}~ ${price}`;
                 }
-                // Otherwise, keep default behavior
+                return `${tooltipItem.dataset.label}~${tooltipItem.parsed.y}`;
               }
             },
           },
