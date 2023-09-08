@@ -46,6 +46,34 @@ describe('KeyMetricsChartWrapper', () => {
       expect(wrapper.findComponent(chartVue).exists()).toBe(true);
       expect(wrapper.find('.ps_gs-onboardingcard__not-configured').exists()).toBe(true);
     });
+
+    it('displays the graph if campaigns API call failed but stats exist', () => {
+      const store = buildDefaultStore();
+      store.modules.campaigns.state.campaigns.results.error = true;
+      store.modules.campaigns.state.reporting.results.dailyResultChart.dailyResultList = [{
+        impressions: 400,
+        clicks: 200,
+        conversions: 10,
+        averageCostPerClick: 0.20,
+        costs: 20,
+        sales: 13000,
+        date: dateGenerator(0),
+      }];
+      const wrapper = buildWrapper({}, store);
+
+      expect(wrapper.findComponent(chartVue).exists()).toBe(true);
+      expect(wrapper.find('.ps_gs-onboardingcard__not-configured').exists()).toBe(false);
+    });
+
+    it('displays a message if campaigns API call failed and stats are empty', () => {
+      const store = buildDefaultStore();
+      store.modules.campaigns.state.campaigns.results.error = true;
+      store.modules.campaigns.state.reporting.results.dailyResultChart.dailyResultList = [];
+      const wrapper = buildWrapper({}, store);
+
+      expect(wrapper.findComponent(chartVue).exists()).toBe(true);
+      expect(wrapper.find('.ps_gs-onboardingcard__not-configured').exists()).toBe(true);
+    });
   });
 
   describe('Data values style', () => {
