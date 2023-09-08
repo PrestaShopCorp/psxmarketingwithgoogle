@@ -2,7 +2,7 @@
     "general": {
         "tabs": {
             "productFeed": "Товарный фид",
-            "campaign": "Кампания",
+            "campaign": "Campaigns",
             "configuration": "Настроить",
             "catalog": "Каталог продукции",
             "help": "Помощь"
@@ -525,7 +525,7 @@
     },
     "smartShoppingCampaignCreation": {
         "allFilters": "Все фильтры",
-        "breadcrumb1": "Кампания",
+        "breadcrumb1": "Campaigns",
         "breadcrumbCreateSSC": "Создание умной торговой кампании",
         "breadcrumbEditSSC": "Изменение умной торговой кампании",
         "breadcrumbCreatePMax": "Создание кампании Performance Max",
