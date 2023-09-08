@@ -727,8 +727,8 @@
             "descriptionMissingAction": "Aggiungi una descrizione nei tuoi prodotti. Se hai già una descrizione, controlla la caratteristica scelta per la descrizione nella configurazione della mappatura delle caratteristiche del modulo.",
             "brandMissing": "Fornisci un brand",
             "brandMissingAction": "Per favore indica il brand del prodotto. Puoi aggiungere un brand nel catalogo > Prodotti > Impostazioni di base nella sezione Brand per ogni prodotto.",
-            "identifierMissing": "Provide either GTIN or Brand and MPN for the product",
-            "identifierMissingAction": "**Products with GTINs**\n\nA GTIN (Global Trade Item Number) is a **unique identifier** used to identify products. The GTIN include **UPC** (in North America), **EAN** (in Europe), **JAN** (in Japan), and **ISBN** (for books). You can add a GTIN in Catalog > Products > Options > in the Condition & References for each product.\n\nThe GTIN identifier can usually be found on the product's barcode label, packaging, or documentation, or contacting the manufacturer. \n\n**Products without a GTIN**\n\nTo help identify your products without a GTIN, you can use the **MPN** and **brand** attributes. \n\nBrand is the brand of the product or your company. You can also use your store name as the brand. You can add a brand in Catalog > Products > Basic settings in the Brand section for each product.\n\nAn MPN or Manufacturer Part Number attribute to indicate the manufacturer reference of your product or unique identifier number of your choice.",
+            "identifierMissing": "Fornisci il GTIN o il Brand e l'MPN del prodotto",
+            "identifierMissingAction": "**Prodotti con GTIN**\n\nUn GTIN (Global Trade Item Number) è un **identificatore unico** utilizzato per identificare i prodotti. I GTIN includono **UPC** (in Nord America), **EAN** (in Europa), **JAN** (in Giappone) e **ISBN** (per i libri). È possibile aggiungere un GTIN in Catalogo > Prodotti > Opzioni > in Condizioni & Riferimenti per ciascun prodotto.\n\nL'identificatore GTIN si trova solitamente sull'etichetta del codice a barre del prodotto, sulla confezione o sulla documentazione, oppure contattando il produttore. \n\n**Prodotti senza GTIN**\n\nPer identificare i prodotti senza GTIN, è possibile utilizzare gli attributi **MPN** e **brand**. \n\nBrand è il marchio del prodotto o della tua azienda. È anche possibile utilizzare il nome del proprio store come brand. È possibile aggiungere un marchio in Catalogo > Prodotti > Impostazioni di base nella sezione Brand per ciascun prodotto.\n\nUn attributo MPN o Manufacturer Part Number per indicare il riferimento del produttore del prodotto o un numero identificativo unico a scelta.",
             "priceMissing": "Indica un prezzo",
             "priceMissingAction": "Si prega di indicare un prezzo per il prodotto."
         },
@@ -759,10 +759,10 @@
         }
     },
     "keymetrics": {
-        "title": "Performance Max campaigns reporting",
-        "accountSubtitle": "Analyze and optimize your online presence with detailed metrics that help you measure the impact of your digital marketing efforts.",
+        "title": "Reporting delle campagne Performance Max",
+        "accountSubtitle": "Analizza e ottimizza la tua presenza online con metriche dettagliate che ti aiutano a misurare l'impatto delle tue strategie di marketing.",
         "dailyResultTitle": "Risultati giornalieri",
-        "helpUnderstanding": "Discover further information on how to interpret these metrics by visiting our {0}",
+        "helpUnderstanding": "Scopri ulteriori informazioni su come interpretare queste metriche visitando la nostra {0}",
         "periods": {
             "yesterday": "Ieri",
             "last7Days": "Ultimi 7 giorni",
@@ -776,26 +776,26 @@
         "costs": "Costi",
         "sales": "Vendite",
         "noData": "Ancora nessun dato",
-        "noCampaigns": "Ready to boost your product promotion? Create your campaign in few clicks"
+        "noCampaigns": "Sei pronto per spingere la promozione del prodotto? Crea la tua campagna in pochi click"
     },
     "campaigns": {
-        "listTitle": "Campaign's listing",
+        "listTitle": "Scheda della campagna",
         "status": {
             "eligible": "Idonea",
             "eligiblelimited": "Idonea (limitato)",
             "ended": "Terminato",
             "paused": "Pausa",
-            "not-eligible": "Not Eligible",
+            "not-eligible": "Non Possibile",
             "draft": "Bozza",
             "pending": "In attesa"
         },
         "dateLabel": {
-            "from": "From {startDate}",
-            "fromXToX": "From {startDate} to {endDate}",
-            "endedOnX": "Ended on {endDate}"
+            "from": "Da {startDate}",
+            "fromXToX": "Da {startDate} a {endDate}",
+            "endedOnX": "Concluso il {endDate}"
         },
         "labelCol": {
-            "campaign": "Title",
+            "campaign": "Titolo",
             "status": "Stato",
             "impressions": "Impression",
             "clicks": "Clic",
@@ -803,8 +803,8 @@
             "sales": "Vendite",
             "costs": "Costi",
             "conversions": "Conversioni",
-            "duration": "Date",
-            "target": "Target country",
+            "duration": "Data",
+            "target": "Paese target",
             "actions": "Azioni",
             "dailyBudget": "Budget giornaliero"
         }
@@ -833,7 +833,7 @@
     },
     "help": {
         "intro": "PrestaShop Marketing semplifica la connessione del tuo shop con Google e la promozione dei tuoi prodotti a milioni di acquirenti attraverso più canali Google. Crea campagne Performance Max senza lasciare la dashboard di PrestaShop e incrementa il tuo traffico.",
-        "helpCenter": "Help Center",
+        "helpCenter": "Centro assistenza",
         "allowsYouTo": {
             "title": "Questo modulo ti permette di:",
             "easySync": "Sincronizza facilmente il tuo catalogo prodotti con Google per mantenere automaticamente aggiornati i dettagli dei prodotti come il prezzo e la disponibilità",
@@ -927,12 +927,12 @@
         "createSmartShoppingCampaign": "Lanciare la campagna Performance Max",
         "addBillingSettings": "Aggiungi le impostazioni di fatturazione",
         "createCampaign": "Crea una campagna",
-        "createPMaxCampaign": "Create new PMax campaign",
+        "createPMaxCampaign": "Crea una nuova campagna PMax",
         "editCampaign": "Aggiorna la campagna",
         "launchCampaign": "Lanciare la campagna",
         "resetDate": "Impostare la data di oggi",
         "validate": "Convalida",
-        "seeOnGoogleAds": "See these metrics on {0}",
+        "seeOnGoogleAds": "Vedi queste metriche su {0}",
         "GoogleAds": "Google Ads",
         "clickToSortDesc": "(Clicca per ordinare in modo decrescente)",
         "clickToSortAsc": "(Clicca per ordinare in modo decrescente)",
@@ -943,9 +943,9 @@
         "clearAll": "Cancella tutto",
         "signInWithGoogle": "Accedi con Google",
         "viewReporting": "Visualizza segnalazione",
-        "pauseCampaign": "Pause",
-        "resumeCampaign": "Enable",
-        "modifyTheCampaign": "Modify",
+        "pauseCampaign": "Pausa",
+        "resumeCampaign": "Abilita",
+        "modifyTheCampaign": "Modifica",
         "openActionsMenu": "Apri il menu delle azioni per la campagna {0}",
         "viewInGoogleAds": "Visualizza nel tuo account Google Ads",
         "previous": "Precedente",
@@ -1106,8 +1106,8 @@
         "legendLong": "*Il tuo buono sarà applicato automaticamente dal momento in cui inizierai a spendere! *L'importo deve essere speso entro 60 giorni dalla prima spesa della campagna e i crediti saranno validi per 60 giorni una volta accreditati. [Leggi le condizioni generali d'uso]({0})[:target=\"_blank\"]",
         "legend": "*Crea un nuovo account Google Ads, il buono verrà applicato automaticamente una volta che si raggiungerà la spesa e si avranno 60 giorni per spendere i crediti. [Leggi le condizioni generali d'uso]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "* Crea un nuovo account Google Ads; il buono verrà applicato automaticamente una volta che si raggiungerà la spesa e si avranno 60 giorni per spendere i crediti.",
-        "ctaCreateFirstCampaign": "Create your first PMax campaign",
-        "textCampaignsBanner": "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
+        "ctaCreateFirstCampaign": "Crea la tua prima campagna PMax",
+        "textCampaignsBanner": "Crea la tua prima campagna e raggiungi il tuo target di acquirenti su tutti i canali di Google. Lascia che il machine learning di Google ottimizzi gli inserimenti dei tuoi annunci e migliora in modo efficiente il traffico e le vendite."
     },
     "tipsAndTricks": {
         "title": "Suggerimenti e consigli di PrestaShop",
