@@ -2,7 +2,7 @@
     "general": {
         "tabs": {
             "productFeed": "Fluxul de produse",
-            "campaign": "Campanie",
+            "campaign": "Campaigns",
             "configuration": "Configurare",
             "catalog": "Catalog de produse",
             "help": "Ajutor"
@@ -525,7 +525,7 @@
     },
     "smartShoppingCampaignCreation": {
         "allFilters": "Toate filtrele",
-        "breadcrumb1": "Campanie",
+        "breadcrumb1": "Campaigns",
         "breadcrumbCreateSSC": "Creează o campanie Smart Shopping",
         "breadcrumbEditSSC": "Modifică o campanie Smart Shopping",
         "breadcrumbCreatePMax": "Creează o campanie Performance Max",
