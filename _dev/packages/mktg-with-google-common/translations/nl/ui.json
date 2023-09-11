@@ -727,8 +727,8 @@
             "descriptionMissingAction": "Voeg een beschrijving toe aan je producten. Als je al een beschrijving hebt, controleer dan het gekozen kenmerk voor een beschrijving in de Kenmerktoewijzingsconfiguratie van de module.",
             "brandMissing": "Geef een merk op",
             "brandMissingAction": "Geef het merk van het product op. Je kunt een merk toevoegen in Catalogus > Producten > Basisinstellingen in het gedeelte Merk voor elk product.",
-            "identifierMissing": "Provide either GTIN or Brand and MPN for the product",
-            "identifierMissingAction": "**Products with GTINs**\n\nA GTIN (Global Trade Item Number) is a **unique identifier** used to identify products. The GTIN include **UPC** (in North America), **EAN** (in Europe), **JAN** (in Japan), and **ISBN** (for books). You can add a GTIN in Catalog > Products > Options > in the Condition & References for each product.\n\nThe GTIN identifier can usually be found on the product's barcode label, packaging, or documentation, or contacting the manufacturer. \n\n**Products without a GTIN**\n\nTo help identify your products without a GTIN, you can use the **MPN** and **brand** attributes. \n\nBrand is the brand of the product or your company. You can also use your store name as the brand. You can add a brand in Catalog > Products > Basic settings in the Brand section for each product.\n\nAn MPN or Manufacturer Part Number attribute to indicate the manufacturer reference of your product or unique identifier number of your choice.",
+            "identifierMissing": "Geef GTIN of merk en MPN op voor het product",
+            "identifierMissingAction": "**Producten met GTIN's**\n\nEen GTIN (Global Trade Item Number) is een **unieke identificatiecode** die wordt gebruikt om producten te identificeren. De GTIN omvatten **UPC** (in Noord-Amerika), **EAN** (in Europa), **JAN** (in Japan) en **ISBN** (voor boeken). Je kunt een GTIN toevoegen in Catalogus > Producten > Opties > in de Conditie en referenties voor elk product.\n\nDe GTIN-identificatiecode is meestal te vinden op het streepjescodelabel, de verpakking of de documentatie van het product of door contact op te nemen met de fabrikant. \n\n**Producten zonder GTIN**\n\nOm je producten zonder GTIN te identificeren, kun je de kenmerken **MPN** en **merk** gebruiken. \n\nMerk is het merk van het product of je bedrijf. Je kunt ook je winkelnaam als merk gebruiken. Je kunt een merk toevoegen in Catalogus > Producten > Basisinstellingen in het gedeelte Merk voor elk product.\n\nEen MPN- of fabrikantonderdeelnummerkenmerk om de fabrikantreferentie van je product of uniek identificatienummer van je keuze aan te geven.",
             "priceMissing": "Geef een prijs op",
             "priceMissingAction": "Geef een prijs op voor het product."
         },
@@ -759,10 +759,10 @@
         }
     },
     "keymetrics": {
-        "title": "Performance Max campaigns reporting",
-        "accountSubtitle": "Analyze and optimize your online presence with detailed metrics that help you measure the impact of your digital marketing efforts.",
+        "title": "Rapportage van Performance Max-campagnes",
+        "accountSubtitle": "Analyseer en optimaliseer je online aanwezigheid met gedetailleerde statistieken die je helpen de impact van je online marketinginspanningen te meten.",
         "dailyResultTitle": "Dagelijkse resultaten",
-        "helpUnderstanding": "Discover further information on how to interpret these metrics by visiting our {0}",
+        "helpUnderstanding": "Ontdek meer informatie over hoe je deze statistieken kunt interpreteren door onze {0} te bezoeken",
         "periods": {
             "yesterday": "Gisteren",
             "last7Days": "Laatste 7 dagen",
@@ -776,26 +776,26 @@
         "costs": "Kosten",
         "sales": "Verkoop",
         "noData": "Nog geen gegevens",
-        "noCampaigns": "Ready to boost your product promotion? Create your campaign in few clicks"
+        "noCampaigns": "Klaar om je productpromotie te stimuleren? Je campagne aanmaken in een paar klikken"
     },
     "campaigns": {
-        "listTitle": "Campaign's listing",
+        "listTitle": "Advertentie van de campagne",
         "status": {
             "eligible": "Eligible",
             "eligiblelimited": "In aanmerking komend (beperkt)",
             "ended": "Beëindigd",
             "paused": "Gepauzeerd",
-            "not-eligible": "Not Eligible",
+            "not-eligible": "Niet toepasselijk",
             "draft": "Ontwerp",
             "pending": "In afwachting van"
         },
         "dateLabel": {
-            "from": "From {startDate}",
-            "fromXToX": "From {startDate} to {endDate}",
-            "endedOnX": "Ended on {endDate}"
+            "from": "Vanaf {startDate}",
+            "fromXToX": "Vanaf {startDate} tot {endDate}",
+            "endedOnX": "Beëindigd op {endDate}"
         },
         "labelCol": {
-            "campaign": "Title",
+            "campaign": "Titel",
             "status": "Status",
             "impressions": "Indrukken",
             "clicks": "Clicks",
@@ -803,8 +803,8 @@
             "sales": "Verkoop",
             "costs": "Kosten",
             "conversions": "Conversies",
-            "duration": "Date",
-            "target": "Target country",
+            "duration": "Datum",
+            "target": "Doelland",
             "actions": "Acties",
             "dailyBudget": "Dagelijkse begroting"
         }
@@ -833,7 +833,7 @@
     },
     "help": {
         "intro": "PrestaShop Marketing maakt het gemakkelijk om uw winkel te verbinden met Google en uw producten te promoten om miljoenen shoppers cross meerdere Google-kanalen. Maak Performance Max campagnes zonder het verlaten van uw PrestaShop dashboard en rijden meer verkeer.",
-        "helpCenter": "Help Center",
+        "helpCenter": "Helpcentrum",
         "allowsYouTo": {
             "title": "Met deze module kunt u:",
             "easySync": "Synchroniseer eenvoudig uw productcatalogus met Google om productdetails zoals prijs en beschikbaarheid automatisch bijgewerkt te houden",
@@ -927,12 +927,12 @@
         "createSmartShoppingCampaign": "Start Maximale prestaties-campagn",
         "addBillingSettings": "Factureringsinstellingen toevoegen",
         "createCampaign": "Campagne maken",
-        "createPMaxCampaign": "Create new PMax campaign",
+        "createPMaxCampaign": "Maak een nieuwe PMax-campagne aan",
         "editCampaign": "Campagne bijwerken",
         "launchCampaign": "Start campagne",
         "resetDate": "Ingestelde datum",
         "validate": "Valideren",
-        "seeOnGoogleAds": "See these metrics on {0}",
+        "seeOnGoogleAds": "Deze statistieken bekijken op {0}",
         "GoogleAds": "Google Ads",
         "clickToSortDesc": "(Klik om aflopend te sorteren)",
         "clickToSortAsc": "(Klik om oplopend te sorteren)",
@@ -943,9 +943,9 @@
         "clearAll": "Alles wissen",
         "signInWithGoogle": "Aanmelden met Google",
         "viewReporting": "Bekijk rapportage",
-        "pauseCampaign": "Pause",
-        "resumeCampaign": "Enable",
-        "modifyTheCampaign": "Modify",
+        "pauseCampaign": "Pauzeren",
+        "resumeCampaign": "Inschakelen",
+        "modifyTheCampaign": "Veranderen",
         "openActionsMenu": "Open acties menu voor campagne {0}",
         "viewInGoogleAds": "Bekijk in uw Google Ads account",
         "previous": "Vorige",
@@ -1106,8 +1106,8 @@
         "legendLong": "*De aanbieding wordt automatisch toegepast vanaf het moment dat je begint met uitgeven! *Het bedrag moet binnen 60 dagen na de eerste campagne-uitgaven worden besteed. Het tegoed is 60 dagen geldig nadat het is bijgeschreven. [Voorwaarden lezen]({0})[:target=\"_blank\"]",
         "legend": "*Maak een nieuw Google Ads-account aan. De aanbieding wordt automatisch toegepast zodra je de uitgaven hebt gematcht. Je hebt 60 dagen om het tegoed uit te geven. [Voorwaarden lezen]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "*Maak een nieuw Google Ads-account aan. De aanbieding wordt automatisch toegepast zodra je de uitgavendrempel hebt bereikt. Je hebt 60 dagen om het tegoed uit te geven.",
-        "ctaCreateFirstCampaign": "Create your first PMax campaign",
-        "textCampaignsBanner": "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
+        "ctaCreateFirstCampaign": "Je eerste PMax-campagne aanmaken",
+        "textCampaignsBanner": "Maak je eerste campagne aan en bereik meer relevante shoppers via alle kanalen van Google. Laat Google's machine learning je advertentieplaatsingen optimaliseren en je verkeer en verkoop efficiënt verbeteren."
     },
     "tipsAndTricks": {
         "title": "Tips en trucs voor PrestaShop",
