@@ -189,7 +189,7 @@ describe('KeyMetricsChartWrapper', () => {
             yAxisID: 'y',
           },
           {
-            label: 'Conversion',
+            label: 'Conversions',
             data: [10],
             backgroundColor: 'color3',
             borderColor: 'color3',
