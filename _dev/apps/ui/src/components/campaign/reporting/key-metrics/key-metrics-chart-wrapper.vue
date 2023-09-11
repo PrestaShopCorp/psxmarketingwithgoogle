@@ -114,6 +114,13 @@ export default {
             display: 'auto',
             min: 0,
             grace: '15%',
+            grid: {
+              lineWidth: 2,
+              color: '#BBBBBB',
+            },
+            border: {
+              dash: [1, 2],
+            },
           },
           yPrice: {
             axis: 'y',
@@ -121,6 +128,11 @@ export default {
             position: this.absoluteValuesAxisIsDisplayed ? 'right' : 'left',
             grid: {
               drawOnChartArea: !this.absoluteValuesAxisIsDisplayed,
+              lineWidth: 1,
+              color: '#BBBBBB',
+            },
+            border: {
+              dash: [1, 2],
             },
             ticks: {
               callback: (value) => this.getFormattedValue(
@@ -141,6 +153,9 @@ export default {
             },
             min: this.$store.getters['campaigns/GET_REPORTING_START_DATES'],
             max: this.$store.getters['campaigns/GET_REPORTING_END_DATES'],
+            grid: {
+              color: '#EEEEEE',
+            },
           },
         },
         maintainAspectRatio: false,
