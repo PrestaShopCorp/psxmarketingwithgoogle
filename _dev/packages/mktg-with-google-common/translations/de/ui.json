@@ -727,8 +727,8 @@
             "descriptionMissingAction": "Fügen Sie Ihren Produkten eine Beschreibung hinzu. Wenn bereits eine Beschreibung besteht, überprüfen Sie das für die Beschreibung ausgewählte Attribut in der Konfiguration der Attribut-Zuordnung des Moduls.",
             "brandMissing": "Eine Marke angeben",
             "brandMissingAction": "Bitte geben Sie die Marke des Produkts an. Sie können eine Marke unter Katalog > Produkte > Grundeinstellungen im Abschnitt „Marke“ für jedes Produkt hinzufügen.",
-            "identifierMissing": "Provide either GTIN or Brand and MPN for the product",
-            "identifierMissingAction": "**Products with GTINs**\n\nA GTIN (Global Trade Item Number) is a **unique identifier** used to identify products. The GTIN include **UPC** (in North America), **EAN** (in Europe), **JAN** (in Japan), and **ISBN** (for books). You can add a GTIN in Catalog > Products > Options > in the Condition & References for each product.\n\nThe GTIN identifier can usually be found on the product's barcode label, packaging, or documentation, or contacting the manufacturer. \n\n**Products without a GTIN**\n\nTo help identify your products without a GTIN, you can use the **MPN** and **brand** attributes. \n\nBrand is the brand of the product or your company. You can also use your store name as the brand. You can add a brand in Catalog > Products > Basic settings in the Brand section for each product.\n\nAn MPN or Manufacturer Part Number attribute to indicate the manufacturer reference of your product or unique identifier number of your choice.",
+            "identifierMissing": "Geben Sie entweder GTIN oder die Marke und MPN für das Produkt an",
+            "identifierMissingAction": "**Produkte mit GTINs**\n\nEine GTIN (Global Trade Item Number) ist eine **eindeutige Kennung**, die zur Identifizierung von Produkten verwendet wird. Zu den GTINs gehören **UPC** (in Nordamerika), **EAN** (in Europa), **JAN** (in Japan) und **ISBN** (für Bücher). Sie können eine GTIN unter Katalog > Produkte > Optionen > in den Bedingungen und Referenzen für jedes Produkt hinzufügen.\n\nDie GTIN-Kennung finden Sie normalerweise auf dem Barcode-Etikett, der Verpackung oder in der Dokumentation des Produkts. Alternativ können Sie sich an den Hersteller wenden. \n\n**Produkte ohne GTIN**\n\nUm Ihre Produkte ohne GTIN identifizierbar zu machen, können Sie die Attribute **MPN** und **Marke** verwenden. \n\nBei der Marke handelt es sich um die Marke des Produkts oder Ihres Unternehmens. Sie können auch Ihren Geschäfts-Namen als Marke verwenden. Sie können eine Marke unter Katalog > Produkte > Grundeinstellungen im Abschnitt Marke für jedes Produkt hinzufügen.\n\nEin MPN- oder Manufacturer-Part-Number-Attribut zur Angabe der Herstellerreferenz Ihres Produkts oder der eindeutigen Identifikationsnummer Ihrer Wahl.",
             "priceMissing": "Einen Preis angeben",
             "priceMissingAction": "Bitte geben Sie einen Preis für das Produkt an."
         },
@@ -759,10 +759,10 @@
         }
     },
     "keymetrics": {
-        "title": "Performance Max campaigns reporting",
-        "accountSubtitle": "Analyze and optimize your online presence with detailed metrics that help you measure the impact of your digital marketing efforts.",
+        "title": "Leistung max. Kampagnen-Bericht",
+        "accountSubtitle": "Analysieren und optimieren Sie Ihre Online-Präsenz mit detaillierten Metriken, die Ihnen helfen, die Wirkung Ihrer digitalen Marketingmaßnahmen zu messen.",
         "dailyResultTitle": "Tägliche Ergebnisse",
-        "helpUnderstanding": "Discover further information on how to interpret these metrics by visiting our {0}",
+        "helpUnderstanding": "Weitere Informationen zur Interpretation dieser Metriken finden Sie auf unserer {0}",
         "periods": {
             "yesterday": "Gestern",
             "last7Days": "Letzte 7 Tage",
@@ -776,26 +776,26 @@
         "costs": "Kosten",
         "sales": "Vertrieb",
         "noData": "Noch keine Daten",
-        "noCampaigns": "Ready to boost your product promotion? Create your campaign in few clicks"
+        "noCampaigns": "Sind Sie bereit für eine Steigerung Ihrer Produktwerbung? Erstellen Sie Ihre Kampagne mit wenigen Klicks"
     },
     "campaigns": {
-        "listTitle": "Campaign's listing",
+        "listTitle": "Inserat der Kampagne",
         "status": {
             "eligible": "Förderfähig",
             "eligiblelimited": "Förderfähig (begrenzt)",
             "ended": "Beendet",
             "paused": "Pausiert",
-            "not-eligible": "Not Eligible",
+            "not-eligible": "Nicht geeignet",
             "draft": "Entwurf",
             "pending": "Anhängig"
         },
         "dateLabel": {
-            "from": "From {startDate}",
-            "fromXToX": "From {startDate} to {endDate}",
-            "endedOnX": "Ended on {endDate}"
+            "from": "Vom {startDate}",
+            "fromXToX": "Vom {startDate} bis zum {endDate}",
+            "endedOnX": "Endet am {endDate}"
         },
         "labelCol": {
-            "campaign": "Title",
+            "campaign": "Titel",
             "status": "Status",
             "impressions": "Impressionen",
             "clicks": "Klicks",
@@ -803,8 +803,8 @@
             "sales": "Vertrieb",
             "costs": "Kosten",
             "conversions": "Umrechnungen",
-            "duration": "Date",
-            "target": "Target country",
+            "duration": "Datum",
+            "target": "Zielland",
             "actions": "Aktionen",
             "dailyBudget": "Tägliches Budget"
         }
@@ -833,7 +833,7 @@
     },
     "help": {
         "intro": "Mit PrestaShop Marketing können Sie Ihren Shop ganz einfach mit Google verbinden und Ihre Produkte bei Millionen von Käufern über mehrere Google-Kanäle hinweg bewerben. Erstellen Sie Leistung max. Kampagnen, ohne Ihr PrestaShop-Dashboard zu verlassen, und steigern Sie so den Traffic.",
-        "helpCenter": "Help Center",
+        "helpCenter": "Hilfe-Center",
         "allowsYouTo": {
             "title": "Dieses Modul ermöglicht es Ihnen:",
             "easySync": "Synchronisieren Sie Ihren Produktkatalog ganz einfach mit Google, um Produktdetails wie Preis und Verfügbarkeit automatisch zu aktualisieren.",
@@ -927,13 +927,13 @@
         "createSmartShoppingCampaign": "Leistung max. Kampagne starten",
         "addBillingSettings": "Einstellungen für die Rechnungsstellung hinzufügen",
         "createCampaign": "Kampagne erstellen",
-        "createPMaxCampaign": "Create new PMax campaign",
+        "createPMaxCampaign": "Neue PMax-Kampagne erstellen",
         "editCampaign": "Kampagne aktualisieren",
         "launchCampaign": "Kampagne veröffentlichen",
         "resetDate": "Datum zurücksetzen",
         "validate": "Validieren Sie",
-        "seeOnGoogleAds": "See these metrics on {0}",
-        "GoogleAds": "Google Ads",
+        "seeOnGoogleAds": "Sehen Sie sich diese Metriken auf {0} an",
+        "GoogleAds": "Google-Ads",
         "clickToSortDesc": "(Klicken Sie, um absteigend zu sortieren)",
         "clickToSortAsc": "(Klicken Sie hier, um aufsteigend zu sortieren)",
         "selectFilters": "Filter auswählen",
@@ -943,9 +943,9 @@
         "clearAll": "Alle löschen",
         "signInWithGoogle": "Mit Google anmelden",
         "viewReporting": "Bericht anzeigen",
-        "pauseCampaign": "Pause",
-        "resumeCampaign": "Enable",
-        "modifyTheCampaign": "Modify",
+        "pauseCampaign": "Pausieren",
+        "resumeCampaign": "Aktivieren",
+        "modifyTheCampaign": "Ändern",
         "openActionsMenu": "Aktionsmenü für Kampagne öffnen {0}",
         "viewInGoogleAds": "Ansicht in Ihrem Google-Ads-Konto",
         "previous": "Vorherige",
@@ -1106,8 +1106,8 @@
         "legendLong": "*Ihr Gutschein wird automatisch eingelöst, sobald Sie eine Ausgabe tätigen! *Der Betrag muss innerhalb von 60 Tagen nach den Aufwendungen für die erste Kampagne ausgegeben werden. Das Guthaben ist ab der Gutschreibung 60 Tage lang gültig. [Siehe AGB]({0})[:target=\"_blank\"]",
         "legend": "*Erstellen Sie ein neues Google-Ads-Konto. Der Gutschein wird automatisch eingelöst, sobald Sie den erforderlichen Betrag erreicht haben. Sie haben dann 60 Tage Zeit, um das Guthaben einzulösen. [Siehe AGB]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "*Erstellen Sie ein neues Google-Ads-Konto. Der Gutschein wird automatisch eingelöst, sobald Sie den erforderlichen Betrag erreicht haben. Sie haben dann 60 Tage Zeit, um das Guthaben einzulösen.",
-        "ctaCreateFirstCampaign": "Create your first PMax campaign",
-        "textCampaignsBanner": "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
+        "ctaCreateFirstCampaign": "Erstellen Sie Ihre erste PMax-Kampagne",
+        "textCampaignsBanner": "Erstellen Sie Ihre erste Kampagne und erreichen Sie mehr relevante Käufer über alle Kanäle von Google. Überlassen Sie es dem maschinellen Lernen von Google, Ihre Anzeigenplatzierungen zu optimieren und Ihren Traffic und Ihre Verkäufe effizient zu verbessern."
     },
     "tipsAndTricks": {
         "title": "Tipps und Tricks von PrestaShop",
