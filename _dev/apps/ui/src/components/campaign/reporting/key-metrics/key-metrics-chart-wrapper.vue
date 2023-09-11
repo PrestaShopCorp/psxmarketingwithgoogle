@@ -41,6 +41,7 @@ import KpiType from '@/enums/reporting/KpiType';
 import Chart from '@/components/chart/chart.vue';
 import {Kpis, DailyResultTypes} from '@/store/modules/campaigns/state';
 import { timeConverterToDate } from '@/utils/Dates';
+import {externalTooltipHandler} from '@/utils/ChartTooltip';
 
 const skipped = (ctx: ScriptableLineSegmentContext, value: [number, number]) => ctx.p0.skip || ctx.p1.skip || ctx.p1.stop ? value : undefined;
 
@@ -113,6 +114,13 @@ export default {
             display: 'auto',
             min: 0,
             grace: '15%',
+            grid: {
+              lineWidth: 2,
+              color: '#BBBBBB',
+            },
+            border: {
+              dash: [1, 2],
+            },
           },
           yPrice: {
             axis: 'y',
@@ -120,6 +128,11 @@ export default {
             position: this.absoluteValuesAxisIsDisplayed ? 'right' : 'left',
             grid: {
               drawOnChartArea: !this.absoluteValuesAxisIsDisplayed,
+              lineWidth: 1,
+              color: '#BBBBBB',
+            },
+            border: {
+              dash: [1, 2],
             },
             ticks: {
               callback: (value) => this.getFormattedValue(
@@ -140,6 +153,9 @@ export default {
             },
             min: this.$store.getters['campaigns/GET_REPORTING_START_DATES'],
             max: this.$store.getters['campaigns/GET_REPORTING_END_DATES'],
+            grid: {
+              color: '#EEEEEE',
+            },
           },
         },
         maintainAspectRatio: false,
@@ -148,16 +164,21 @@ export default {
             display: false,
           },
           tooltip: {
+            enabled: false,
+            position: 'nearest',
+            external: externalTooltipHandler,
             intersect: false,
+            mode: 'index',
+            padding: 12,
             callbacks: {
-              title: (tooltipItems) => tooltipItems.map((tooltipItem) => timeConverterToDate(tooltipItem.parsed.x)),
+              title: (tooltipItems) => [...new Set(tooltipItems.map((tooltipItem) => timeConverterToDate(tooltipItem.parsed.x)))],
               label: (tooltipItem) => {
                 if (tooltipItem.dataset.yAxisID === 'yPrice') {
                   const label = tooltipItem.dataset.label;
                   const price = this.getFormattedValue(tooltipItem.parsed.y);
-                  return `${label}: ${price}`;
+                  return `${label}~ ${price}`;
                 }
-                // Otherwise, keep default behavior
+                return `${tooltipItem.dataset.label}~${tooltipItem.parsed.y}`;
               }
             },
           },

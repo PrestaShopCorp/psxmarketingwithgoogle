@@ -257,6 +257,13 @@ describe('KeyMetricsChartWrapper', () => {
           display: 'auto',
           min: 0,
           grace: '15%',
+          grid: {
+            lineWidth: 2,
+            color: '#BBBBBB',
+          },
+          border: {
+            dash: [1, 2],
+          },
         },
         yPrice: {
           axis: 'y',
@@ -264,6 +271,11 @@ describe('KeyMetricsChartWrapper', () => {
           position: 'right',
           grid: {
             drawOnChartArea: false,
+            lineWidth: 1,
+            color: '#BBBBBB',
+          },
+          border: {
+            dash: [1, 2],
           },
           ticks: expect.any(Object),
           min: 0,
@@ -277,6 +289,9 @@ describe('KeyMetricsChartWrapper', () => {
           },
           min: dateGenerator(0),
           max: dateGenerator(0),
+          grid: {
+            color: '#EEEEEE',
+          },
         },
       });
     });
@@ -306,6 +321,13 @@ describe('KeyMetricsChartWrapper', () => {
           display: 'auto',
           min: 0,
           grace: '15%',
+          grid: {
+            lineWidth: 2,
+            color: '#BBBBBB',
+          },
+          border: {
+            dash: [1, 2],
+          },
         },
         yPrice: {
           axis: 'y',
@@ -313,6 +335,11 @@ describe('KeyMetricsChartWrapper', () => {
           position: 'left',
           grid: {
             drawOnChartArea: true,
+            lineWidth: 1,
+            color: '#BBBBBB',
+          },
+          border: {
+            dash: [1, 2],
           },
           ticks: expect.any(Object),
           min: 0,
@@ -326,6 +353,9 @@ describe('KeyMetricsChartWrapper', () => {
           },
           min: dateGenerator(0),
           max: dateGenerator(0),
+          grid: {
+            color: '#EEEEEE',
+          },
         },
       });
     });
@@ -355,6 +385,13 @@ describe('KeyMetricsChartWrapper', () => {
           display: 'auto',
           min: 0,
           grace: '15%',
+          grid: {
+            lineWidth: 2,
+            color: '#BBBBBB',
+          },
+          border: {
+            dash: [1, 2],
+          },
         },
         yPrice: {
           axis: 'y',
@@ -362,6 +399,11 @@ describe('KeyMetricsChartWrapper', () => {
           position: 'right',
           grid: {
             drawOnChartArea: false,
+            lineWidth: 1,
+            color: '#BBBBBB',
+          },
+          border: {
+            dash: [1, 2],
           },
           ticks: expect.any(Object),
           min: 0,
@@ -375,6 +417,9 @@ describe('KeyMetricsChartWrapper', () => {
           },
           min: dateGenerator(0),
           max: dateGenerator(0),
+          grid: {
+            color: '#EEEEEE',
+          },
         },
       });
     });

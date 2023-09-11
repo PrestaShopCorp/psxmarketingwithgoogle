@@ -30,6 +30,7 @@ WithResults.args = {
     this.$store.state.campaigns.reporting.request.dateRange.startDate = dateGenerator(6);
     this.$store.state.campaigns.reporting.request.dateRange.endDate = dateGenerator(0);
     this.$store.state.campaigns.campaigns.results.campaigns = cloneDeep(campaigns);
+    this.$store.state.campaigns.campaigns.results.totalCount = 6000;
   },
 };
 
@@ -76,7 +77,13 @@ LotOfResults.args = {
     // fake date that will be intercepted by the storybook middleware to return results
     this.$store.state.campaigns.reporting.request.dateRange.startDate = dateGenerator(59);
     this.$store.state.campaigns.reporting.request.dateRange.endDate = dateGenerator(0);
+    this.$store.state.campaigns.reporting.request.dailyResultTypes = {
+      '#1D1D1B':'impressions',
+      '#174EEF':'conversions',
+      '#FFD999':'sales',
+    };
     this.$store.state.campaigns.campaigns.results.campaigns = cloneDeep(campaigns);
+    this.$store.state.campaigns.campaigns.results.totalCount = 6000;
   },
 };
 
