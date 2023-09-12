@@ -2,7 +2,7 @@
     "general": {
         "tabs": {
             "productFeed": "Produkt-Feed",
-            "campaign": "Campaigns",
+            "campaign": "Kampagnen",
             "configuration": "Konfigurieren",
             "catalog": "Produktkatalog",
             "help": "Hilfe"
@@ -525,7 +525,7 @@
     },
     "smartShoppingCampaignCreation": {
         "allFilters": "Alle Filter",
-        "breadcrumb1": "Campaigns",
+        "breadcrumb1": "Kampagnen",
         "breadcrumbCreateSSC": "Smart-Shopping-Kampagne erstellen",
         "breadcrumbEditSSC": "Smart-Shopping-Kampagne ändern",
         "breadcrumbCreatePMax": "Leistung max. Kampagne erstellen",
@@ -771,7 +771,7 @@
         },
         "impressions": "Impressionen",
         "clicks": "Klicks",
-        "conversions": "Conversions",
+        "conversions": "Umrechnungen",
         "averageCostPerClick": "Durchschnittliche Kosten/Klick",
         "costs": "Kosten",
         "sales": "Vertrieb",
