@@ -727,8 +727,8 @@
             "descriptionMissingAction": "Dodaj opis do produktów. Jeśli masz już opis, sprawdź atrybut wybrany dla opisu w konfiguracji mapowania atrybutów modułu.",
             "brandMissing": "Wprowadź nazwę marki",
             "brandMissingAction": "Wprowadź markę produktu. Markę można dodać w sekcji Katalog > Produkty > Ustawienia podstawowe w sekcji Marka dla każdego produktu.",
-            "identifierMissing": "Provide either GTIN or Brand and MPN for the product",
-            "identifierMissingAction": "**Products with GTINs**\n\nA GTIN (Global Trade Item Number) is a **unique identifier** used to identify products. The GTIN include **UPC** (in North America), **EAN** (in Europe), **JAN** (in Japan), and **ISBN** (for books). You can add a GTIN in Catalog > Products > Options > in the Condition & References for each product.\n\nThe GTIN identifier can usually be found on the product's barcode label, packaging, or documentation, or contacting the manufacturer. \n\n**Products without a GTIN**\n\nTo help identify your products without a GTIN, you can use the **MPN** and **brand** attributes. \n\nBrand is the brand of the product or your company. You can also use your store name as the brand. You can add a brand in Catalog > Products > Basic settings in the Brand section for each product.\n\nAn MPN or Manufacturer Part Number attribute to indicate the manufacturer reference of your product or unique identifier number of your choice.",
+            "identifierMissing": "Podaj numer GTIN lub markę i numer MPN produktu.",
+            "identifierMissingAction": "**Produkty z numerami GTIN**\n\nGTIN (Global Trade Item Number) to **unikalny identyfikator** używany do identyfikacji produktów. GTIN obejmuje **UPC** (w Ameryce Północnej), **EAN** (w Europie), **JAN** (w Japonii) i **ISBN** (dla książek). Numer GTIN można dodać w sekcji Katalog > Produkty > Opcje > w sekcji Stan i referencje dla każdego produktu.\n\nIdentyfikator GTIN można zazwyczaj znaleźć na etykiecie z kodem kreskowym produktu, opakowaniu, dokumentacji lub kontaktując się z producentem. \n\n**Produkty bez numeru GTIN**\n\nAby ułatwić identyfikację produktów bez numeru GTIN, można użyć atrybutów **MPN** i **brand**. \n\nMarka to marka produktu lub firmy. Jako marki można również użyć nazwy sklepu. Markę można dodać w sekcji Katalog > Produkty > Ustawienia podstawowe w sekcji Marka dla każdego produktu.\n\nAtrybut MPN lub Manufacturer Part Number wskazuje numer referencyjny producenta produktu lub unikalny numer identyfikacyjny do wyboru.",
             "priceMissing": "Wprowadź cenę",
             "priceMissingAction": "Wprowadź cenę produktu."
         },
@@ -759,10 +759,10 @@
         }
     },
     "keymetrics": {
-        "title": "Performance Max campaigns reporting",
-        "accountSubtitle": "Analyze and optimize your online presence with detailed metrics that help you measure the impact of your digital marketing efforts.",
+        "title": "Raportowanie kampanii Performance Max",
+        "accountSubtitle": "Analizuj i optymalizuj Twoją obecność online dzięki szczegółowym wskaźnikom, które pomogą Ci zmierzyć wpływ Twoich działań w marketingu cyfrowym.",
         "dailyResultTitle": "Wyniki dzienne",
-        "helpUnderstanding": "Discover further information on how to interpret these metrics by visiting our {0}",
+        "helpUnderstanding": "Więcej informacji na temat interpretacji tych wskaźników można znaleźć na stronie {0}.",
         "periods": {
             "yesterday": "Wczoraj",
             "last7Days": "Ostatnie 7 dni",
@@ -776,26 +776,26 @@
         "costs": "Koszty",
         "sales": "Sprzedaż",
         "noData": "Nie ma jeszcze danych",
-        "noCampaigns": "Ready to boost your product promotion? Create your campaign in few clicks"
+        "noCampaigns": "Chcesz zwiększyć promocję produktu? Stwórz kampanię za pomocą kilku kliknięć"
     },
     "campaigns": {
-        "listTitle": "Campaign's listing",
+        "listTitle": "Lista kampanii",
         "status": {
             "eligible": "Kwalifikujący się",
             "eligiblelimited": "Kwalifikujący się (w ograniczonym zakresie)",
             "ended": "Zakończono",
             "paused": "Wstrzymano",
-            "not-eligible": "Not Eligible",
+            "not-eligible": "Niekwalifikujący się",
             "draft": "Wersja robocza",
             "pending": "Oczekujące"
         },
         "dateLabel": {
-            "from": "From {startDate}",
-            "fromXToX": "From {startDate} to {endDate}",
-            "endedOnX": "Ended on {endDate}"
+            "from": "Od {startDate}",
+            "fromXToX": "Od {startDate} do {endDate}",
+            "endedOnX": "Zakończono {endDate}"
         },
         "labelCol": {
-            "campaign": "Title",
+            "campaign": "Nazwa",
             "status": "Status",
             "impressions": "Odsłony",
             "clicks": "Kliknięcia",
@@ -803,8 +803,8 @@
             "sales": "Sprzedaż",
             "costs": "Koszty",
             "conversions": "Konwersje",
-            "duration": "Date",
-            "target": "Target country",
+            "duration": "Data",
+            "target": "Kraj docelowy",
             "actions": "Działania",
             "dailyBudget": "Budżet dzienny"
         }
@@ -833,7 +833,7 @@
     },
     "help": {
         "intro": "PrestaShop Marketing ułatwia połączenie Twojego sklepu z Google i promowanie Twoich produktów wśród milionów kupujących korzystających z licznych kanałów Google. Twórz kampanie Performance Max bez opuszczania panelu zarządzania PrestaShop i zwiększaj ruch w Twoim sklepie.",
-        "helpCenter": "Help Center",
+        "helpCenter": "Centrum pomocy",
         "allowsYouTo": {
             "title": "Ten moduł pozwala na:",
             "easySync": "Łatwo synchronizuj swój katalog produktów z Google, aby automatycznie aktualizować szczegóły produktu, takie jak cena i dostępność.",
@@ -927,12 +927,12 @@
         "createSmartShoppingCampaign": "Utwórz kampanię Performance Max",
         "addBillingSettings": "Dodaj ustawienia dotyczące rozliczeń",
         "createCampaign": "Utwórz kampanię",
-        "createPMaxCampaign": "Create new PMax campaign",
+        "createPMaxCampaign": "Utwórz nową kampanię PMax",
         "editCampaign": "Aktualizuj kampanię",
         "launchCampaign": "Uruchom kampanię",
         "resetDate": "Ustaw dzisiejszą datę",
         "validate": "Zatwierdź",
-        "seeOnGoogleAds": "See these metrics on {0}",
+        "seeOnGoogleAds": "Zobacz te wskaźniki na {0}",
         "GoogleAds": "Google Ads",
         "clickToSortDesc": "(Kliknij, aby posortować malejąco)",
         "clickToSortAsc": "(Kliknij, aby posortować rosnąco)",
@@ -943,9 +943,9 @@
         "clearAll": "Wyczyść wszystko",
         "signInWithGoogle": "Zaloguj się przez Google",
         "viewReporting": "Zobacz raporty",
-        "pauseCampaign": "Pause",
-        "resumeCampaign": "Enable",
-        "modifyTheCampaign": "Modify",
+        "pauseCampaign": "Pauza",
+        "resumeCampaign": "Włącz",
+        "modifyTheCampaign": "Edytuj",
         "openActionsMenu": "Otwórz menu działań dla kampanii {0}",
         "viewInGoogleAds": "Zobacz na Twoim koncie Google Ads",
         "previous": "Poprzednie",
@@ -1106,8 +1106,8 @@
         "legendLong": "*Twój voucher zostanie zastosowany automatycznie od momentu rozpoczęcia wydatków! *Kwota musi zostać wydana w ciągu 60 dni od daty pierwszej kampanii, a kupony promocyjne będą ważne przez 60 dni po ich przyznaniu. [Przeczytaj Warunki]({0})[:target=\"_blank\"]",
         "legend": "* Utwórz nowe konto Google Ads. Kupony promocyjne zostaną przyznane automatycznie po spełnieniu kryterium wydatków. Będziesz mieć 60 dni na wykorzystanie kuponów. [Przeczytaj Regulamin]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "* Utwórz nowe konto Google Ads. Kupony promocyjne zostaną przyznane automatycznie po spełnieniu kryterium wydatków. Będziesz mieć 60 dni na wykorzystanie kuponów. ",
-        "ctaCreateFirstCampaign": "Create your first PMax campaign",
-        "textCampaignsBanner": "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
+        "ctaCreateFirstCampaign": "Utwórz swoją pierwszą kampanię PMax",
+        "textCampaignsBanner": "Stwórz swoją pierwszą kampanię i docieraj do bardziej odpowiednich kupujących we wszystkich kanałach Google. Pozwól uczeniu maszynowemu Google zoptymalizować miejsca docelowe reklam i skutecznie zwiększyć ruch i sprzedaż."
     },
     "tipsAndTricks": {
         "title": "Porady i wskazówki PrestaShop",
