@@ -2,7 +2,7 @@
     "general": {
         "tabs": {
             "productFeed": "Productfeed",
-            "campaign": "Campaigns",
+            "campaign": "Campagnes",
             "configuration": "Configureer",
             "catalog": "Productcatalogus",
             "help": "Help"
@@ -525,7 +525,7 @@
     },
     "smartShoppingCampaignCreation": {
         "allFilters": "Alle filters",
-        "breadcrumb1": "Campaigns",
+        "breadcrumb1": "Campagnes",
         "breadcrumbCreateSSC": "Smart Shopping-campagne opzetten",
         "breadcrumbEditSSC": "Wijzig Smart Shopping-campagne",
         "breadcrumbCreatePMax": "Maximale prestaties-campagne aanmaken",
@@ -771,7 +771,7 @@
         },
         "impressions": "Indrukken",
         "clicks": "Clicks",
-        "conversions": "Conversions",
+        "conversions": "Conversies",
         "averageCostPerClick": "Gem. kosten/klik",
         "costs": "Kosten",
         "sales": "Verkoop",
