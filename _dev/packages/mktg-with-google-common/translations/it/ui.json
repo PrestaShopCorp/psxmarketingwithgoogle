@@ -2,7 +2,7 @@
     "general": {
         "tabs": {
             "productFeed": "Feed del prodotto",
-            "campaign": "Campaigns",
+            "campaign": "Campagne",
             "configuration": "Configurazione",
             "catalog": "Catalogo prodotti",
             "help": "Assistenza"
@@ -525,7 +525,7 @@
     },
     "smartShoppingCampaignCreation": {
         "allFilters": "Tutti i filtri",
-        "breadcrumb1": "Campaigns",
+        "breadcrumb1": "Campagne",
         "breadcrumbCreateSSC": "Crea una campagna Smart Shopping",
         "breadcrumbEditSSC": "Modifica campagna Smart Shopping",
         "breadcrumbCreatePMax": "Crea la campagna Performance Max",
@@ -771,7 +771,7 @@
         },
         "impressions": "Impression",
         "clicks": "Clic",
-        "conversions": "Conversione",
+        "conversions": "Conversioni",
         "averageCostPerClick": "Costo medio / clic",
         "costs": "Costi",
         "sales": "Vendite",
