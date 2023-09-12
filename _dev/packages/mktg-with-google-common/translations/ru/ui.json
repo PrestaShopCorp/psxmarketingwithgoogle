@@ -11,14 +11,14 @@
         "moduleNeedActivation": "Интеграция PrestaShop Marketing с Google отключена. Включите модуль, чтобы пользоваться его функциями.",
         "moduleUpdateNeeded": {
             "ps_eventbus": {
-                "title": "**A newer version of PrestaShop CloudSync is requested**\n\n The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync."
+                "title": "**Требуется более новая версия PrestaShop CloudSync**\n\n Версия модуля PrestaShop CloudSync в этом магазине устарела.\n\nВы можете и дальше использовать интеграцию PrestaShop Marketing с Google, однако синхронизация товаров и некоторые другие функции станут доступны только после обновления."
             },
             "psxmarketingwithgoogle": {
-                "title": "**A newer version of PrestaShop Marketing With Google is available**\n\n It offers significant improvements and exciting features that will take your product usage to the next level.",
+                "title": "**Доступна новая версия интеграции PrestaShop Marketing с Google **\n\n Мы внесли значительные улучшения и добавили удобные функции, которые выведут ваш продукт на новый уровень.",
                 "changes": {
                     "1.53.0": [
-                        "Configure your product feed to target countries in several currencies",
-                        "Get a better follow up of your product synchronization thanks to the new product feed page"
+                        "Настройте таргетинг товарного фида на страны с разными валютами",
+                        "Получите более полное представление о синхронизации данных на новой странице товарного фида"
                     ]
                 }
             }
@@ -199,12 +199,12 @@
         "businessCity": "Город",
         "businessRegion": "Регион",
         "businessCountry": "Страна",
-        "changeCountryField": "You can [change your country]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informations in your back office",
-        "changeRegionField": "You can [change your region]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informations in your back office",
-        "changeAddressField": "You can [change your business address]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informations in your back office",
-        "changeZipCodeField": "You can [change your zipcode]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informations in your back office",
-        "changeCityField": "You can [change your city]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informations in your back office",
-        "changePhoneNumberField": "You can [change your business phone number]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informations in your back office",
+        "changeCountryField": "[Изменить страну]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] можно в рабочем кабинете",
+        "changeRegionField": "[Изменить регион]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] можно в рабочем кабинете",
+        "changeAddressField": "[Изменить адрес компании]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] можно в рабочем кабинете",
+        "changeZipCodeField": "[Изменить почтовый индекс]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] можно в рабочем кабинете",
+        "changeCityField": "[Изменить город]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] можно в рабочем кабинете",
+        "changePhoneNumberField": "[Изменить телефон компании]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] можно в рабочем кабинете",
         "siteContainsAdultContent": "Мой сайт содержит материалы для взрослых",
         "seePolicyAdultContent": "См. политику в отношении контента, ориентированного на взрослых",
         "labelReadAndAgree": "Приобретая рекламу в магазинах, я прочитал и согласен соблюдать условия и правила [Google]({0})[:target=\"_blank\"], включая условия обслуживания [Google Merchant Center]({1})[:target=\"_blank\"], [Правила размещения рекламы в магазинах]({2})[:target=\"_blank\"] и [Условия и положения Google Ads]({3})[:target=\"_blank\"].",
@@ -727,8 +727,8 @@
             "descriptionMissingAction": "Добавьте описание для своих товаров. Если у вас уже есть описание, проверьте свойство, выбранное для описания в конфигурации сопоставления свойств модуля.",
             "brandMissing": "Укажите бренд",
             "brandMissingAction": "Необходимо указать бренд товара. Добавить бренд для каждого товара можно в разделе «Каталог > Товары > Основные настройки > Бренд».",
-            "identifierMissing": "Provide either GTIN or Brand and MPN for the product",
-            "identifierMissingAction": "**Products with GTINs**\n\nA GTIN (Global Trade Item Number) is a **unique identifier** used to identify products. The GTIN include **UPC** (in North America), **EAN** (in Europe), **JAN** (in Japan), and **ISBN** (for books). You can add a GTIN in Catalog > Products > Options > in the Condition & References for each product.\n\nThe GTIN identifier can usually be found on the product's barcode label, packaging, or documentation, or contacting the manufacturer. \n\n**Products without a GTIN**\n\nTo help identify your products without a GTIN, you can use the **MPN** and **brand** attributes. \n\nBrand is the brand of the product or your company. You can also use your store name as the brand. You can add a brand in Catalog > Products > Basic settings in the Brand section for each product.\n\nAn MPN or Manufacturer Part Number attribute to indicate the manufacturer reference of your product or unique identifier number of your choice.",
+            "identifierMissing": "Укажите номер GTIN или бренд и код MPN продукта",
+            "identifierMissingAction": "**Продукты с GTIN**\n\nGTIN (глобальный номер товара) — это **уникальный идентификатор**, используемый для идентификации продуктов. GTIN включает **UPC** (в Северной Америке), **EAN** (в Европе), **JAN** (в Японии) и **ISBN** (для книг). Вы можете добавить номер GTIN для каждого товара в разделе «Каталог > Товары > Опции > Состояние и ссылки».\n\nНомер GTIN обычно можно найти на этикетке со штрих-кодом товара, на упаковке или в документации либо вы можете обратиться для его получения к производителю.\n\n**Продукты без GTIN**\n\nЧтобы помочь идентифицировать ваши продукты без GTIN, вы можете использовать свойства **MPN** и **бренд**. \n\nБренд — это бренд или марка товара либо вашей компании. Вы также можете использовать название своего магазина в качестве бренда. Вы можете добавить бренд для каждого товара в разделе «Каталог > Товары > Основные настройки > Бренд».\n\nСвойство MPN или «Номер детали производителя» для указания ссылки производителя на ваш продукт или уникальный идентификационный номер по вашему выбору.",
             "priceMissing": "Укажите цену",
             "priceMissingAction": "Укажите цену товара."
         },
@@ -759,10 +759,10 @@
         }
     },
     "keymetrics": {
-        "title": "Performance Max campaigns reporting",
-        "accountSubtitle": "Analyze and optimize your online presence with detailed metrics that help you measure the impact of your digital marketing efforts.",
+        "title": "Отчетность по кампаниям Performance Max",
+        "accountSubtitle": "Анализируйте и оптимизируйте свое присутствие в Интернете с помощью подробных показателей, которые помогут вам измерить влияние ваших усилий в области цифрового маркетинга.",
         "dailyResultTitle": "Ежедневные результаты",
-        "helpUnderstanding": "Discover further information on how to interpret these metrics by visiting our {0}",
+        "helpUnderstanding": "Узнайте больше о том, как интерпретировать эти показатели, посетив наш {0}",
         "periods": {
             "yesterday": "Вчера",
             "last7Days": "Последние 7 дней",
@@ -776,26 +776,26 @@
         "costs": "Затраты",
         "sales": "Продажи",
         "noData": "Пока нет данных",
-        "noCampaigns": "Ready to boost your product promotion? Create your campaign in few clicks"
+        "noCampaigns": "Готовы активизировать продвижение товара? Создайте кампанию несколькими нажатиями"
     },
     "campaigns": {
-        "listTitle": "Campaign's listing",
+        "listTitle": "Листинг кампании",
         "status": {
             "eligible": "Подходящий",
             "eligiblelimited": "Допустимый (ограниченный)",
             "ended": "Завершено",
             "paused": "Приостановлено",
-            "not-eligible": "Not Eligible",
+            "not-eligible": "Недопустимо",
             "draft": "Проект",
             "pending": "В ожидании"
         },
         "dateLabel": {
-            "from": "From {startDate}",
-            "fromXToX": "From {startDate} to {endDate}",
-            "endedOnX": "Ended on {endDate}"
+            "from": "С {startDate}",
+            "fromXToX": "С {startDate} по {endDate}",
+            "endedOnX": "Дата окончания: {endDate}"
         },
         "labelCol": {
-            "campaign": "Title",
+            "campaign": "Название",
             "status": "Статус",
             "impressions": "Впечатления",
             "clicks": "Клики",
@@ -803,8 +803,8 @@
             "sales": "Продажи",
             "costs": "Затраты",
             "conversions": "Конверсии",
-            "duration": "Date",
-            "target": "Target country",
+            "duration": "Дата",
+            "target": "Целевая страна",
             "actions": "Действия",
             "dailyBudget": "Ежедневный бюджет"
         }
@@ -833,7 +833,7 @@
     },
     "help": {
         "intro": "PrestaShop Marketing позволяет легко подключить ваш магазин к Google и охватить миллионы покупателей в нескольких каналах. Создавайте кампании Performance Max непосредственно на информационной панели PrestaShop и увеличивайте трафик.",
-        "helpCenter": "Help Center",
+        "helpCenter": "Справочный центр",
         "allowsYouTo": {
             "title": "Этот модуль позволяет:",
             "easySync": "Простая синхронизация каталога товаров с Google для автоматического обновления таких сведений о товаре, как цена и наличие.",
@@ -927,12 +927,12 @@
         "createSmartShoppingCampaign": "Запустить кампанию Performance Max",
         "addBillingSettings": "Добавить настройки выставления счетов",
         "createCampaign": "Создать кампанию",
-        "createPMaxCampaign": "Create new PMax campaign",
+        "createPMaxCampaign": "Создать новую кампанию PMax",
         "editCampaign": "Обновление кампании",
         "launchCampaign": "Запустить кампанию",
         "resetDate": "Дата сброса",
         "validate": "Проверить",
-        "seeOnGoogleAds": "See these metrics on {0}",
+        "seeOnGoogleAds": "Посмотрите эти показатели на {0}",
         "GoogleAds": "Google Ads",
         "clickToSortDesc": "(Нажмите для сортировки по убыванию)",
         "clickToSortAsc": "(Нажмите для сортировки по возрастанию)",
@@ -943,9 +943,9 @@
         "clearAll": "Очистить все",
         "signInWithGoogle": "Войти в систему с помощью Google",
         "viewReporting": "Просмотр отчетности",
-        "pauseCampaign": "Pause",
-        "resumeCampaign": "Enable",
-        "modifyTheCampaign": "Modify",
+        "pauseCampaign": "Пауза",
+        "resumeCampaign": "Включить",
+        "modifyTheCampaign": "Изменить",
         "openActionsMenu": "Открыть меню действий для кампании {0}",
         "viewInGoogleAds": "Просмотр в аккаунте Google Ads",
         "previous": "Предыдущий",
@@ -1106,8 +1106,8 @@
         "legendLong": "*Купон будет применен автоматически, как только вы начнете инвестировать в рекламу! *Указанная сумма должна быть потрачена в течение 60 дней с момента создания первой кампании. Срок действия кредитов также составляет 60 дней. [Ознакомьтесь с Условиями]({0})[:target=\"_blank\"]",
         "legend": "*Создайте новый аккаунт в Google Рекламе. Как только вы потратите необходимую сумму, купон будет применен автоматически. Кредиты действительны в течение 60 дней. [Ознакомьтесь с Условиями]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "*Создайте новый аккаунт в Google Рекламе. Как только вы потратите необходимую сумму, купон будет применен автоматически. Кредиты действительны в течение 60 дней.",
-        "ctaCreateFirstCampaign": "Create your first PMax campaign",
-        "textCampaignsBanner": "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
+        "ctaCreateFirstCampaign": "Создайте первую кампанию PMax",
+        "textCampaignsBanner": "Создайте первую кампанию и охватите более релевантных покупателей по всем каналам Google. Машинное обучение Google оптимизирует места размещения рекламы и эффективно улучшает трафик и продажи."
     },
     "tipsAndTricks": {
         "title": "Полезные советы от PrestaShop",
