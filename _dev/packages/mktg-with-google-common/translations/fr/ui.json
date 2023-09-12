@@ -2,7 +2,7 @@
     "general": {
         "tabs": {
             "productFeed": "Flux produit",
-            "campaign": "Campaigns",
+            "campaign": "Campagnes",
             "configuration": "Configuration",
             "catalog": "Catalogue produit",
             "help": "Aide"
@@ -525,7 +525,7 @@
     },
     "smartShoppingCampaignCreation": {
         "allFilters": "Tous les filtres",
-        "breadcrumb1": "Campaigns",
+        "breadcrumb1": "Campagnes",
         "breadcrumbCreateSSC": "Créer une campagne Shopping Intelligente",
         "breadcrumbEditSSC": "Modifier une campagne Shopping Intelligente",
         "breadcrumbCreatePMax": "Créez une campagne Performance Max",
@@ -785,7 +785,7 @@
             "eligiblelimited": "Eligible (limité)",
             "ended": "Terminé",
             "paused": "En pause",
-            "not-eligible": "Not Eligible",
+            "not-eligible": "Non éligible",
             "draft": "Brouillon",
             "pending": "En attente"
         },
@@ -1106,7 +1106,7 @@
         "legendLong": "*Votre bon de réduction sera automatiquement appliqué à partir du moment où vous commencez à dépenser ! *Le montant doit être dépensé dans les 60 jours suivant la première dépense de campagne et les crédits seront valides pendant 60 jours après avoir été crédités. [Lire T&C]({0})[:target=\"_blank\"]",
         "legend": "* Créez un nouveau compte Google Ads, le bon d'achat sera appliqué automatiquement dès que vous aurez atteint le montant des dépenses et vous aurez 60 jours pour les dépenser. [Lire les conditions d'utilisation]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "* Créez un nouveau compte Google Ads, le bon d'achat sera appliqué automatiquement dès que vous aurez atteint le montant des dépenses et vous aurez 60 jours pour les dépenser.",
-        "ctaCreateFirstCampaign": "Create your first PMax campaign",
+        "ctaCreateFirstCampaign": "Créez votre première campagne PMax",
         "textCampaignsBanner": "Créez votre première campagne et touchez des acheteurs plus qualifiés sur tous les canaux de Google. Laissez le machine learning de Google optimiser vos placements publicitaires et améliorer efficacement votre trafic et vos ventes."
     },
     "tipsAndTricks": {
