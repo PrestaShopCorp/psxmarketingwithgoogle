@@ -2,7 +2,7 @@
     "general": {
         "tabs": {
             "productFeed": "Plik danych produktu",
-            "campaign": "Campaigns",
+            "campaign": "Kampanie",
             "configuration": "Konfiguruj",
             "catalog": "Katalog produktów",
             "help": "Pomoc"
@@ -525,7 +525,7 @@
     },
     "smartShoppingCampaignCreation": {
         "allFilters": "Wszystkie filtry",
-        "breadcrumb1": "Campaigns",
+        "breadcrumb1": "Kampanie",
         "breadcrumbCreateSSC": "Utwórz inteligentną kampanię produktową",
         "breadcrumbEditSSC": "Modyfikuj intelignetną kampanię produktową",
         "breadcrumbCreatePMax": "Utwórz kampanię Performance Max",
