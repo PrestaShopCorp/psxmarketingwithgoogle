@@ -2,7 +2,7 @@
     "general": {
         "tabs": {
             "productFeed": "Товарный фид",
-            "campaign": "Campaigns",
+            "campaign": "Кампании",
             "configuration": "Настроить",
             "catalog": "Каталог продукции",
             "help": "Помощь"
@@ -525,7 +525,7 @@
     },
     "smartShoppingCampaignCreation": {
         "allFilters": "Все фильтры",
-        "breadcrumb1": "Campaigns",
+        "breadcrumb1": "Кампании",
         "breadcrumbCreateSSC": "Создание умной торговой кампании",
         "breadcrumbEditSSC": "Изменение умной торговой кампании",
         "breadcrumbCreatePMax": "Создание кампании Performance Max",
@@ -771,7 +771,7 @@
         },
         "impressions": "Впечатления",
         "clicks": "Клики",
-        "conversions": "Conversions",
+        "conversions": "Конверсии",
         "averageCostPerClick": "Средняя стоимость клика",
         "costs": "Затраты",
         "sales": "Продажи",
