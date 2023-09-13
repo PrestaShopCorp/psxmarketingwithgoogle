@@ -106,8 +106,13 @@ export default {
       return {
         elements: {
           point: {
-            pointStyle: this.$store.getters['campaigns/GET_REPORTING_START_DATES'] === this.$store.getters['campaigns/GET_REPORTING_END_DATES'] ? 'circle': false,
+            radius: this.$store.getters['campaigns/GET_REPORTING_START_DATES'] === this.$store.getters['campaigns/GET_REPORTING_END_DATES'] ? 3 : 0,
+            hoverRadius: 3,
           },
+        },
+        hover: {
+          mode: 'index',
+          intersect: false,
         },
         scales: {
           y: {

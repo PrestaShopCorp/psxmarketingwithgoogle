@@ -77,13 +77,14 @@ describe('KeyMetricsChartWrapper', () => {
   });
 
   describe('Data values style', () => {
-    it('only shows the line without points by default', () => {
+    it('only shows the line without points by default, unless hovered', () => {
       const store = buildDefaultStore();
       const wrapper = buildWrapper({}, store);
 
       expect(wrapper.vm.chartOptions.elements).toEqual({
         point: {
-          pointStyle: false,
+          radius: 0,
+          hoverRadius: 3,
         },
       });
     });
@@ -96,7 +97,8 @@ describe('KeyMetricsChartWrapper', () => {
 
       expect(wrapper.vm.chartOptions.elements).toEqual({
         point: {
-          pointStyle: 'circle',
+          radius: 3,
+          hoverRadius: 3,
         },
       });
     });
