@@ -290,7 +290,7 @@
               </a>
               <span
                 v-if="loaderText"
-                class="text-muted"
+                class="text-muted ml-4"
               >
                 <i class="icon-busy icon-busy--dark mr-1" />
                 {{ $t(`badge.${loaderText}`) }}

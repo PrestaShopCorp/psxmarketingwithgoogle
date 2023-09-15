@@ -155,6 +155,31 @@ EnabledLinkingFailed.args = {
   ),
 };
 
+export const checkingInProgress: any = Template.bind({});
+checkingInProgress.args = {
+  isEnabled: true,
+  loading: false,
+  initialMcaStatus: Object.assign({},
+    merchantCenterAccountConnected,
+    {
+      gmcStatus: WebsiteClaimErrorReason.PendingCheck,
+    },
+  ),
+};
+
+export const VerificationAndClaimingInProgress: any = Template.bind({});
+VerificationAndClaimingInProgress.args = {
+  isEnabled: true,
+  loading: false,
+  initialMcaStatus: Object.assign({},
+    merchantCenterAccountConnected,
+    {
+      gmcStatus: WebsiteClaimErrorReason.PendingCheck,
+    },
+  ),
+  isLinking: true,
+};
+
 export const Connected:any = Template.bind({});
 Connected.args = {
   isEnabled: true,
@@ -289,6 +314,18 @@ MaintenanceModeDetected.args = {
       stateWithMaintenanceModeOn
     );
   },
+};
+
+export const creationInProgress: any = Template.bind({});
+creationInProgress.args = {
+  isEnabled: true,
+  loading: false,
+  initialMcaStatus: Object.assign({},
+    merchantCenterAccountConnected,
+    {
+      gmcStatus: WebsiteClaimErrorReason.PendingCreation,
+    },
+  ),
 };
 
 export const phoneVerificationNeeded:any = Template.bind({});
