@@ -130,8 +130,10 @@ import BannerCampaigns from '@/components/commons/banner-campaigns.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import TableApiError from '@/components/commons/table-api-error.vue';
 import TablePageControls from '@/components/commons/table-page-controls.vue';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'CampaignTableList',
   components: {
     CampaignTableListRow,
@@ -194,6 +196,11 @@ export default {
           orderDirection,
         );
         this.fetchCampaigns();
+        this.$segment.track('[GGL] Campaigns list - Update sorting', {
+          module: 'psxmarketingwithgoogle',
+          params: SegmentGenericParams,
+          ...orderDirection,
+        });
       },
     },
     remarketingTag() {
@@ -257,5 +264,5 @@ export default {
   },
   googleUrl,
   CampaignTypes,
-};
+});
 </script>
