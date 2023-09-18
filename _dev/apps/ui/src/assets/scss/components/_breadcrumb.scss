@@ -13,8 +13,6 @@
       line-height: 1.2em;
     }
 
-    color: $primary-600;
-
     & + #{$item}::before {
       content: '\e315'; // "keyboard_arrow_right" icon
       font-family: 'Material Icons';

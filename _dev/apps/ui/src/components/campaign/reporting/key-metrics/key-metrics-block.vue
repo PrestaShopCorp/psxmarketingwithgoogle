@@ -5,11 +5,9 @@
     body-class="p-3"
   >
     <template #header>
-      <ol class="mb-0 list-inline d-flex align-items-center ps_gs-breadcrumb">
-        <li class="list-inline-item ps_gs-breadcrumb__item">
-          {{ $t('keymetrics.title') }}
-        </li>
-      </ol>
+      <p class="mb-0 ps_gs-onboardingcard__title">
+        {{ $t('keymetrics.title') }}
+      </p>
     </template>
     <NotConfiguredCard
       v-if="inNeedOfConfiguration"
