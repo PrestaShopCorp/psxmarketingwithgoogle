@@ -32,10 +32,10 @@
   </b-card>
 </template>
 
-<script>
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
+<script lang="ts">
+import {defineComponent} from 'vue';
 
-export default {
+export default defineComponent({
   name: 'BannerCampaigns',
   data() {
     return {
@@ -43,9 +43,9 @@ export default {
     };
   },
   computed: {
-    accountHasAtLeastOneCampaign() {
-      return !!this.$store.getters['campaigns/GET_CAMPAIGNS_LIST']?.length;
+    accountHasAtLeastOneCampaign(): boolean {
+      return this.$store.getters['campaigns/GET_ACCOUNT_HAS_AT_LEAST_ONE_CAMPAIGN'];
     },
   },
-};
+});
 </script>

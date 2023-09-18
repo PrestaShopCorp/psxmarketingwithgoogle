@@ -77,10 +77,11 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
+import {defineComponent} from 'vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
-export default {
+export default defineComponent({
   name: 'CampaignCardTracking',
   components: {
   },
@@ -134,8 +135,8 @@ export default {
       }
       return this.$i18n.t('smartShoppingCampaignCreation.enableCreationRemarketingTag');
     },
-    accountHasAtLeastOneCampaign() {
-      return !!this.$store.getters['campaigns/GET_CAMPAIGNS_LIST']?.length;
+    accountHasAtLeastOneCampaign(): boolean {
+      return this.$store.getters['campaigns/GET_ACCOUNT_HAS_AT_LEAST_ONE_CAMPAIGN'];
     },
     conversionActions() {
       return this.$store.getters['campaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED'];
@@ -143,5 +144,5 @@ export default {
   },
   methods: {
   },
-};
+});
 </script>
