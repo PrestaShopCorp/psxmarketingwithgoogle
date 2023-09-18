@@ -2,7 +2,7 @@
     "general": {
         "tabs": {
             "productFeed": "Fluxul de produse",
-            "campaign": "Campaigns",
+            "campaign": "Campaniile",
             "configuration": "Configurare",
             "catalog": "Catalog de produse",
             "help": "Ajutor"
@@ -101,7 +101,7 @@
     },
     "mcaCard": {
         "title": "Cont Merchant Center",
-        "introDisabled": "Link your Merchant Center account to PrestaShop to facilitate synchronization of your store and product data.",
+        "introDisabled": "Conectează-ți contul Merchant Center la PrestaShop pentru a facilita sincronizarea datelor despre magazin și produs.",
         "claimCollides": "Site-ul tău a fost deja revendicat.",
         "claimOverwrite": "Pentru a finaliza crearea contului Merchant Center, trebuie să suprascrii revendicarea existentă.",
         "footerEU": "Pentru magazinele din Spațiul Economic European, Regatul Unit sau Elveția, contul Merchant Center trebuie asociat cu un [serviciu de comparare cumpărături (CSS)]({0})[:target=\"_blank\"]. Pentru noile conturi Merchant Center create prin această aplicație, contul tău va fi asociat în mod implicit cu Google Shopping, CSS-ul Google. Poți schimba oricând CSS-ul asociat contului tău și poți găsi, de asemenea, partenerii CSS aici. După ce ți-ai configurat contul Merchant Center, poți folosi instrumentul nostru de înregistrare, indiferent de CSS-ul pe care îl folosești.",
@@ -525,7 +525,7 @@
     },
     "smartShoppingCampaignCreation": {
         "allFilters": "Toate filtrele",
-        "breadcrumb1": "Campaigns",
+        "breadcrumb1": "Campaniile",
         "breadcrumbCreateSSC": "Creează o campanie Smart Shopping",
         "breadcrumbEditSSC": "Modifică o campanie Smart Shopping",
         "breadcrumbCreatePMax": "Creează o campanie Performance Max",
@@ -727,8 +727,8 @@
             "descriptionMissingAction": "Adaugă o descriere în produsele tale. Dacă ai deja o descriere, verifică atributul ales pentru descriere în configurația de Mapare a atributelor a modulului.",
             "brandMissing": "Furnizează o marcă",
             "brandMissingAction": "Furnizează marca produsului. Poți adăuga o marcă în Catalog > Produse > Setări de bază în secțiunea Marcă pentru fiecare produs.",
-            "identifierMissing": "Provide either GTIN or Brand and MPN for the product",
-            "identifierMissingAction": "**Products with GTINs**\n\nA GTIN (Global Trade Item Number) is a **unique identifier** used to identify products. The GTIN include **UPC** (in North America), **EAN** (in Europe), **JAN** (in Japan), and **ISBN** (for books). You can add a GTIN in Catalog > Products > Options > in the Condition & References for each product.\n\nThe GTIN identifier can usually be found on the product's barcode label, packaging, or documentation, or contacting the manufacturer. \n\n**Products without a GTIN**\n\nTo help identify your products without a GTIN, you can use the **MPN** and **brand** attributes. \n\nBrand is the brand of the product or your company. You can also use your store name as the brand. You can add a brand in Catalog > Products > Basic settings in the Brand section for each product.\n\nAn MPN or Manufacturer Part Number attribute to indicate the manufacturer reference of your product or unique identifier number of your choice.",
+            "identifierMissing": "Transmite fie GTIN, fie marca și MPN pentru produs",
+            "identifierMissingAction": "**Produse cu GTIN**\n\nUn GTIN (Global Trade Item Number) este un **identificator unic** utilizat pentru identificarea produselor. GTIN include **UPC** (în America de Nord), **EAN** (în Europa), **JAN** (în Japonia) și **ISBN** (pentru cărți). Poți adăuga un GTIN în Catalog > Produse > Opțiuni > în Stare și referințe pentru fiecare produs.\n\nIdentificatorul GTIN poate fi găsit, de obicei, pe eticheta, ambalajul sau documentația cu codul de bare al produsului sau contactând producătorul. \n\n**Produse fără GTIN**\n\nPentru a ajuta la identificarea produselor tale fără GTIN, poți utiliza caracteristicile **MPN** și **marca**. \n\nMarca este marca produsului sau a companiei tale. De asemenea, poți utiliza numele magazinului tău ca marcă. Poți adăuga o marcă în Catalog > Produse > Setări de bază în secțiunea Marcă pentru fiecare produs.\n\nO caracteristică MPN sau numărul de catalog al producătorului pentru a indica referința producătorului produsului sau numărul unic de identificare la alegere.",
             "priceMissing": "Furnizează un preț",
             "priceMissingAction": "Furnizează un preț pentru produs."
         },
@@ -759,10 +759,10 @@
         }
     },
     "keymetrics": {
-        "title": "Performance Max campaigns reporting",
-        "accountSubtitle": "Analyze and optimize your online presence with detailed metrics that help you measure the impact of your digital marketing efforts.",
+        "title": "Raportarea campaniilor Performance Max",
+        "accountSubtitle": "Analizează și optimizează-ți prezența online cu valori detaliate care te ajută să măsori impactul eforturilor tale în ceea ce privește marketing-ul digital.",
         "dailyResultTitle": "Rezultate zilnice",
-        "helpUnderstanding": "Discover further information on how to interpret these metrics by visiting our {0}",
+        "helpUnderstanding": "Descoperă mai multe informații despre cum să interpretezi aceste valori accesând {0}",
         "periods": {
             "yesterday": "Ieri",
             "last7Days": "Ultimele 7 zile",
@@ -771,31 +771,31 @@
         },
         "impressions": "Afișări",
         "clicks": "Clicuri",
-        "conversions": "Conversions",
+        "conversions": "Conversii",
         "averageCostPerClick": "Cost mediu/clic",
         "costs": "Costuri",
         "sales": "Vânzări",
         "noData": "Încă nu există date",
-        "noCampaigns": "Ready to boost your product promotion? Create your campaign in few clicks"
+        "noCampaigns": "Ești gata să îți amplifici promovarea produselor tale? Creează-ți campania cu câteva clicuri"
     },
     "campaigns": {
-        "listTitle": "Campaign's listing",
+        "listTitle": "Anunțul campaniei",
         "status": {
             "eligible": "Eligibil",
             "eligiblelimited": "Eligibil (limitat)",
             "ended": "Încheiată",
             "paused": "În pauză",
-            "not-eligible": "Not Eligible",
+            "not-eligible": "Nu este eligibil",
             "draft": "Ciornă",
             "pending": "În așteptare"
         },
         "dateLabel": {
-            "from": "From {startDate}",
-            "fromXToX": "From {startDate} to {endDate}",
-            "endedOnX": "Ended on {endDate}"
+            "from": "De la {startDate}",
+            "fromXToX": "De la {startDate} la {endDate}",
+            "endedOnX": "Încheiat la {endDate}"
         },
         "labelCol": {
-            "campaign": "Title",
+            "campaign": "Titlu",
             "status": "Stare",
             "impressions": "Afișări",
             "clicks": "Clicuri",
@@ -803,8 +803,8 @@
             "sales": "Vânzări",
             "costs": "Costuri",
             "conversions": "Conversii",
-            "duration": "Date",
-            "target": "Target country",
+            "duration": "Data",
+            "target": "Țară vizată",
             "actions": "Acțiuni",
             "dailyBudget": "Bugetul zilnic"
         }
@@ -833,7 +833,7 @@
     },
     "help": {
         "intro": "PrestaShop Marketing facilitează conectarea magazinului tău la Google și promovarea produselor tale către milioane de cumpărători pe mai multe canale Google. Creează campanii Performance Max fără a părăsi panoul de bord PrestaShop și determină creșterea traficului.",
-        "helpCenter": "Help Center",
+        "helpCenter": "Centru de asistență",
         "allowsYouTo": {
             "title": "Acest modul îți permite să:",
             "easySync": "Sincronizezi cu ușurință catalogul de produse cu Google pentru a păstra actualizate automat detaliile despre produse, cum ar fi prețul și disponibilitatea",
@@ -927,12 +927,12 @@
         "createSmartShoppingCampaign": "Lansează campania Performance Max",
         "addBillingSettings": "Adaugă setări de facturare",
         "createCampaign": "Creează o campanie",
-        "createPMaxCampaign": "Create new PMax campaign",
+        "createPMaxCampaign": "Creează o nouă campanie PMax",
         "editCampaign": "Actualizează campania",
         "launchCampaign": "Lansează campania",
         "resetDate": "Setează data de astăzi",
         "validate": "Validare",
-        "seeOnGoogleAds": "See these metrics on {0}",
+        "seeOnGoogleAds": "Vezi aceste valori pe {0}",
         "GoogleAds": "Google Ads",
         "clickToSortDesc": "(Fă clic pentru a sorta descrescător)",
         "clickToSortAsc": "(Fă clic pentru a sorta crescător)",
@@ -943,9 +943,9 @@
         "clearAll": "Șterge tot",
         "signInWithGoogle": "Autentificare prin Google",
         "viewReporting": "Vizualizare rapoarte",
-        "pauseCampaign": "Pause",
-        "resumeCampaign": "Enable",
-        "modifyTheCampaign": "Modify",
+        "pauseCampaign": "Pauză",
+        "resumeCampaign": "Permite",
+        "modifyTheCampaign": "Modifică",
         "openActionsMenu": "Deschide meniul de acțiuni pentru campania {0}",
         "viewInGoogleAds": "Vizualizează în contul tău Google Ads",
         "previous": "Înapoi",
@@ -1106,8 +1106,8 @@
         "legendLong": "*Voucherul tău va fi aplicat automat din momentul în care începi să cheltuiești! *Suma trebuie cheltuită în termen de 60 de zile de la prima cheltuială a campaniei, iar creditele vor fi valabile timp de 60 de zile după ce au fost creditate. [Citește termenii și condițiile]({0})[:target=\"_blank\"]",
         "legend": "*Creează un nou cont Google Ads, voucherul va fi aplicat automat după ce ai acumulat suficient cheltuieli și vei avea la dispoziție 60 de zile pentru a cheltui creditele. [Citește termenii și condițiile]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "* Creează un nou cont Google Ads, voucherul va fi aplicat automat după ce ai acumulat suficiente cheltuieli și vei avea la dispoziție 60 de zile pentru a cheltui creditele.",
-        "ctaCreateFirstCampaign": "Create your first PMax campaign",
-        "textCampaignsBanner": "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
+        "ctaCreateFirstCampaign": "Creează-ți prima campanie PMax",
+        "textCampaignsBanner": "Creează-ți prima campanie și contactează cumpărători mai relevanți, pe toate canalele Google. Profită de învățarea automată de la Google și optimizează-ți destinațiile de plasare a reclamelor și îmbunătățește-ți în mod eficient traficul și vânzările."
     },
     "tipsAndTricks": {
         "title": "Sfaturi și sugestii PrestaShop",
