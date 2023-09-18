@@ -94,6 +94,7 @@ import { PropType, defineComponent } from 'vue';
 import { CampaignPerformanceObject } from '@/store/modules/campaigns/state';
 import { timeConverterToDate } from '@/utils/Dates';
 import { formatPrice } from '../../utils/Price';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default defineComponent({
   name: 'CampaignTableListRow',
@@ -148,20 +149,27 @@ export default defineComponent({
           id: this.campaign.id,
         },
       });
+      this.$segment.track('[GGL] Campaigns list - Click on edit button', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
     },
     pauseCampaign() {
-      const payload = {
-        id: this.campaign.id,
-        status: CampaignStatusToggle.PAUSED,
-      };
-      this.$store.dispatch('campaigns/CHANGE_STATUS_OF_CAMPAIGN', payload);
+      this.updateCampaignStatus(CampaignStatusToggle.PAUSED);
     },
     resumeCampaign() {
-      const payload = {
+      this.updateCampaignStatus(CampaignStatusToggle.ENABLED);
+    },
+    updateCampaignStatus(newStatus: CampaignStatusToggle) {
+      this.$store.dispatch('campaigns/CHANGE_STATUS_OF_CAMPAIGN', {
         id: this.campaign.id,
-        status: CampaignStatusToggle.ENABLED,
-      };
-      this.$store.dispatch('campaigns/CHANGE_STATUS_OF_CAMPAIGN', payload);
+        newStatus,
+      });
+      this.$segment.track('[GGL] Campaigns list - Update status of campaign', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+        newStatus,
+      });
     },
   },
   googleUrl,

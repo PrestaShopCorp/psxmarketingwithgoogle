@@ -33,10 +33,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import {defineComponent} from 'vue';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
-export default {
+export default defineComponent({
   name: 'KeyMetricsPeriodSelector',
   props: {
     inNeedOfConfiguration: {
@@ -68,13 +70,18 @@ export default {
   },
   computed: {
     reportingPeriod: {
-      get() {
+      get(): ReportingPeriod {
         return this.$store.getters['campaigns/GET_REPORTING_PERIOD_SELECTED'];
       },
-      set(period) {
+      set(period: ReportingPeriod): void {
         this.$store.dispatch('campaigns/CHANGE_REPORTING_DATES', period);
+        this.$segment.track('[GGL] Reporting - Change period', {
+          module: 'psxmarketingwithgoogle',
+          params: SegmentGenericParams,
+          period,
+        });
       },
     },
   },
-};
+});
 </script>
