@@ -728,7 +728,7 @@
             "brandMissing": "Facilitar una marca",
             "brandMissingAction": "Indica la marca del producto. Puedes añadir una Marca en Catálogo > Productos > Configuración básica en la sección Marca de cada producto.",
             "identifierMissing": "Indica el GTIN o la marca y el MPN del producto",
-            "identifierMissingAction": "**Products with GTINs**\n\nA GTIN (Global Trade Item Number) is a **unique identifier** used to identify products. The GTIN include **UPC** (in North America), **EAN** (in Europe), **JAN** (in Japan), and **ISBN** (for books). You can add a GTIN in Catalog > Products > Options > in the Condition & References for each product.\n\nThe GTIN identifier can usually be found on the product's barcode label, packaging, or documentation, or contacting the manufacturer. \n\n**Products without a GTIN**\n\nTo help identify your products without a GTIN, you can use the **MPN** and **brand** attributes. \n\nBrand is the brand of the product or your company. You can also use your store name as the brand. You can add a brand in Catalog > Products > Basic settings in the Brand section for each product.\n\nAn MPN or Manufacturer Part Number attribute to indicate the manufacturer reference of your product or unique identifier number of your choice.",
+            "identifierMissingAction": "**Productos con GTIN**\n\nGTIN (Global Trade Item Number) es un **identificador único** utilizado para identificar productos. Los GTIN incluyen **UPC** (en Norteamérica), **EAN** (en Europa), **JAN** (en Japón) e **ISBN** (para libros). Puedes añadir un GTIN en Catálogo > Productos > Opciones > en Condición y Referencias para cada producto.\n\nEl identificador GTIN suele encontrarse en la etiqueta del código de barras del producto, en el embalaje o en la documentación, o contactando con el fabricante. \n\n**Productos sin GTIN**\n\nPara ayudar a identificar tus productos sin GTIN, puedes utilizar los atributos **MPN** y **marca**. \n\nMarca es la marca del producto o de tu empresa. También puedes utilizar el nombre de tu tienda como marca. Puedes añadir una marca en Catálogo > Productos > Configuración básica en la sección Marca para cada producto.\n\nUn atributo MPN o Manufacturer Part Number para indicar la referencia del fabricante de tu producto o el número identificador único que elijas.",
             "priceMissing": "Indicar un precio",
             "priceMissingAction": "Indica un precio para el producto."
         },
@@ -760,9 +760,9 @@
     },
     "keymetrics": {
         "title": "Informe sobre las campañas Máximo rendimiento",
-        "accountSubtitle": "Analyze and optimize your online presence with detailed metrics that help you measure the impact of your digital marketing efforts.",
+        "accountSubtitle": "Analiza y optimiza tu presencia online con métricas detalladas que te ayudan a medir el impacto de tus acciones de marketing digital.",
         "dailyResultTitle": "Resultados diarios",
-        "helpUnderstanding": "Discover further information on how to interpret these metrics by visiting our {0}",
+        "helpUnderstanding": "Consulta más información sobre cómo interpretar estas métricas visitando {0}",
         "periods": {
             "yesterday": "Ayer",
             "last7Days": "Últimos 7 días",
@@ -779,20 +779,20 @@
         "noCampaigns": "¿Listo para impulsar la promoción de tus productos? Crea tu campaña en unos clics"
     },
     "campaigns": {
-        "listTitle": "Campaign's listing",
+        "listTitle": "Lista de la campaña",
         "status": {
             "eligible": "Apto",
             "eligiblelimited": "Apto (limitado)",
             "ended": "Terminado",
             "paused": "En pausa",
-            "not-eligible": "Not Eligible",
+            "not-eligible": "No apto",
             "draft": "Borrador",
             "pending": "Pendiente"
         },
         "dateLabel": {
             "from": "Desde {startDate}",
             "fromXToX": "Desde {startDate} hasta {endDate}",
-            "endedOnX": "Ended on {endDate}"
+            "endedOnX": "Finalizado en {endDate}"
         },
         "labelCol": {
             "campaign": "Título",
@@ -804,7 +804,7 @@
             "costs": "Costes",
             "conversions": "Conversiones",
             "duration": "Fecha",
-            "target": "Target country",
+            "target": "País de destino",
             "actions": "Acciones",
             "dailyBudget": "Presupuesto diario"
         }
@@ -927,12 +927,12 @@
         "createSmartShoppingCampaign": "Lanzar campaña Máximo rendimiento",
         "addBillingSettings": "Añadir configuracion de facturación",
         "createCampaign": "Crear campaña",
-        "createPMaxCampaign": "Create new PMax campaign",
+        "createPMaxCampaign": "Crea una nueva campaña Máximo rendimiento",
         "editCampaign": "Actualizar campaña",
         "launchCampaign": "Lanzar campaña",
         "resetDate": "Fijar la fecha de hoy",
         "validate": "Validar",
-        "seeOnGoogleAds": "See these metrics on {0}",
+        "seeOnGoogleAds": "Consulta estas métricas en {0}",
         "GoogleAds": "Google Ads",
         "clickToSortDesc": "(Haz clic para ordenar de forma descendente)",
         "clickToSortAsc": "(Haz clic para ordenar de forma ascendente)",
@@ -943,8 +943,8 @@
         "clearAll": "Borrar todo",
         "signInWithGoogle": "Iniciar sesión con Google",
         "viewReporting": "Ver informe",
-        "pauseCampaign": "Pause",
-        "resumeCampaign": "Enable",
+        "pauseCampaign": "Pausar",
+        "resumeCampaign": "Activar",
         "modifyTheCampaign": "Modificar",
         "openActionsMenu": "Abrir el menú de acciones para la campaña {0}",
         "viewInGoogleAds": "Ver en tu cuenta de Google Ads",
@@ -1107,7 +1107,7 @@
         "legend": "*Crea una nueva cuenta de Google Ads, el bono se aplicará automáticamente una vez que coincida con el gasto y tendrás 60 días para utilizar los créditos. [Leer T&C]({0})[:target=\"_blank\"]",
         "legendWithoutTC": "*Crea una nueva cuenta de Google Ads, el bono se aplicará automáticamente una vez que coincida con el gasto y tendrás 60 días para utilizar los créditos.",
         "ctaCreateFirstCampaign": "Crea tu primera campaña Máximo rendimiento",
-        "textCampaignsBanner": "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
+        "textCampaignsBanner": "Crea tu primera campaña y llega a compradores más interesados en todos los canales de Google. Deja que el aprendizaje automático de Google optimice la ubicación de tus anuncios y mejora eficazmente tu tráfico y tus ventas."
     },
     "tipsAndTricks": {
         "title": "Consejos y Trucos PrestaShop",
