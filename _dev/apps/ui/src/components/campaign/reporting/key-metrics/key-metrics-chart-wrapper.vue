@@ -11,7 +11,7 @@
       >
         <div
           class="d-flex flex-column align-items-center ps_gs-onboardingcard__not-configured"
-          v-if="!accountHasAtLeastOneCampaign || displayCampaignCreationMessageOnListApiFailure"
+          v-if="!accountHasAtLeastOneCampaign"
         >
           <i class="material-icons ps_gs-fz-48">show_chart</i>
           <p>{{ $t('keymetrics.noCampaigns') }}</p>
@@ -191,13 +191,7 @@ export default {
       };
     },
     accountHasAtLeastOneCampaign(): boolean {
-      return !!this.$store.getters['campaigns/GET_CAMPAIGNS_TOTAL'];
-    },
-    displayCampaignCreationMessageOnListApiFailure(): boolean {
-      if (!this.$store.getters['campaigns/GET_CAMPAIGNS_LIST_ERROR']) {
-        return false;
-      }
-      return !this.getLabels.length;
+      return this.$store.getters['campaigns/GET_ACCOUNT_HAS_AT_LEAST_ONE_CAMPAIGN'];
     },
   },
   methods: {

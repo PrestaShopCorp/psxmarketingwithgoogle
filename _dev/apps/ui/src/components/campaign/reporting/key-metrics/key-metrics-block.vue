@@ -140,8 +140,8 @@ export default {
     errorWithApi() {
       return this.$store.getters['campaigns/GET_REPORTING_KPIS_ERROR'];
     },
-    accountHasAtLeastOneCampaign() {
-      return !!this.$store.getters['campaigns/GET_CAMPAIGNS_LIST']?.length;
+    accountHasAtLeastOneCampaign(): boolean {
+      return this.$store.getters['campaigns/GET_ACCOUNT_HAS_AT_LEAST_ONE_CAMPAIGN'];
     },
     supportUrl(): string {
       return this.$store.getters['app/GET_SUPPORT_URL'];

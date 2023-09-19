@@ -156,6 +156,16 @@ export default {
   ): number {
     return state.campaigns.results.totalCount;
   },
+  [GettersTypes.GET_ACCOUNT_HAS_AT_LEAST_ONE_CAMPAIGN](
+    state: LocalState,
+    getters,
+  ): boolean {
+    if (getters.GET_CAMPAIGNS_LIST_ERROR) {
+      return !!getters.GET_REPORTING_DAILY_RESULT.length;
+    }
+
+    return !!getters.GET_CAMPAIGNS_TOTAL;
+  },
   [GettersTypes.GET_REPORTING_KPIS](
     state: LocalState,
   ): Kpis {

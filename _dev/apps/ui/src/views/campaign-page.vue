@@ -39,6 +39,7 @@
 </template>
 
 <script lang="ts">
+import {defineComponent} from 'vue';
 import SSCPopinActivateTracking from '../components/campaigns/ssc-popin-activate-tracking.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import BannerCampaigns from '@/components/commons/banner-campaigns.vue';
@@ -47,7 +48,7 @@ import KeyMetricsBlock from '@/components/campaign/reporting/key-metrics/key-met
 import KeyMetricsControls from '@/components/campaign/reporting/key-metrics/key-metrics-controls.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
-export default {
+export default defineComponent({
   components: {
     BannerCampaigns,
     KeyMetricsBlock,
@@ -68,8 +69,8 @@ export default {
     googleAdsIsServing() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
     },
-    accountHasAtLeastOneCampaign() {
-      return !!this.$store.getters['campaigns/GET_CAMPAIGNS_LIST']?.length;
+    accountHasAtLeastOneCampaign(): boolean {
+      return this.$store.getters['campaigns/GET_ACCOUNT_HAS_AT_LEAST_ONE_CAMPAIGN'];
     },
     remarketingTagIsSet() {
       return this.$store.getters['campaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
@@ -109,5 +110,5 @@ export default {
       });
   },
   CampaignTypes,
-};
+});
 </script>

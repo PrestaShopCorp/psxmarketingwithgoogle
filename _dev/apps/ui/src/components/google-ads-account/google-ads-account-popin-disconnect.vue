@@ -57,11 +57,12 @@
   </ps-modal>
 </template>
 
-<script>
+<script lang="ts">
+import {defineComponent} from 'vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
-import PsModal from '../commons/ps-modal';
+import PsModal from '@/components/commons/ps-modal.vue';
 
-export default {
+export default defineComponent({
   name: 'GoogleAdsAccountPopinDisconnect',
   components: {
     PsModal,
@@ -102,9 +103,9 @@ export default {
     },
   },
   computed: {
-    accountHasAtLeastOneCampaign() {
-      return !!this.$store.getters['campaigns/GET_CAMPAIGNS_LIST']?.length;
+    accountHasAtLeastOneCampaign(): boolean {
+      return this.$store.getters['campaigns/GET_ACCOUNT_HAS_AT_LEAST_ONE_CAMPAIGN'];
     },
   },
-};
+});
 </script>

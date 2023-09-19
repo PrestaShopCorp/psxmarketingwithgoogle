@@ -146,7 +146,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import {defineComponent} from 'vue';
 import SectionTitle from '../components/onboarding/section-title';
 import GoogleAccountCard from '../components/google-account/google-account-card';
 import GoogleAdsAccountCard from '../components/google-ads-account/google-ads-account-card';
@@ -165,7 +166,7 @@ import PopinModuleConfigured from '../components/commons/popin-configured.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 
-export default {
+export default defineComponent({
   name: 'OnboardingPage',
   components: {
     SectionTitle,
@@ -376,8 +377,8 @@ export default {
     productFeedIsConfigured() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
     },
-    accountHasAtLeastOneCampaign() {
-      return !!this.$store.getters['campaigns/GET_CAMPAIGNS_LIST']?.length;
+    accountHasAtLeastOneCampaign(): boolean {
+      return this.$store.getters['campaigns/GET_ACCOUNT_HAS_AT_LEAST_ONE_CAMPAIGN'];
     },
     remarketingTagIsSet() {
       return this.$store.getters['campaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
@@ -481,5 +482,5 @@ export default {
 
   },
   CampaignTypes,
-};
+});
 </script>
