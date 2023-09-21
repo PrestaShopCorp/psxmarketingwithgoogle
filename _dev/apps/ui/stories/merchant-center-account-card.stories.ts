@@ -328,6 +328,18 @@ creationInProgress.args = {
   ),
 };
 
+export const creationInProgressLong: any = Template.bind({});
+creationInProgressLong.args = {
+  isEnabled: true,
+  loading: false,
+  initialMcaStatus: Object.assign({},
+    merchantCenterAccountConnected,
+    {
+      gmcStatus: WebsiteClaimErrorReason.StillPendingCreation,
+    },
+  ),
+};
+
 export const phoneVerificationNeeded:any = Template.bind({});
 phoneVerificationNeeded.args = {
   isEnabled: true,

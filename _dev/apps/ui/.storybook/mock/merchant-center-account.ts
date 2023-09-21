@@ -1,3 +1,4 @@
+import cloneDeep from 'lodash.clonedeep';
 import {MerchantCenterAccountContext, state} from '@/store/modules/accounts/state';
 
 export const merchantCenterAccountNotConnected: MerchantCenterAccountContext = {
@@ -30,7 +31,7 @@ export const merchantCenterAccountCreation = {
   ...merchantCenterAccountNotConnected,
 }
 
-export const merchantCenterAccountWithErrors = {
+export const merchantCenterAccountWithErrors: MerchantCenterAccountContext = {
   ...merchantCenterAccountNotConnected,
   shopInfo: {
     shop: {
@@ -39,16 +40,22 @@ export const merchantCenterAccountWithErrors = {
     },
     store:{
       country: {
-        iso_code: "FR",
+        isoCode: "FR",
         name: "France",
       },
       locality: "",
       phone: "qsdsqd",
       postalCode: "75015",
       streetAddress: "12 rue d'amsterdam",
+      region: '',
     }
   }
 }
+
+export const merchantCenterAccountCreationReady: MerchantCenterAccountContext = cloneDeep(merchantCenterAccountWithErrors);
+merchantCenterAccountCreationReady.shopInfo.store.locality = 'Paris';
+merchantCenterAccountCreationReady.shopInfo.store.phone = '0102030405';
+merchantCenterAccountCreationReady.shopInfo.store.region = 'Ile de France';
 
 export const merchantCenterNewGmcNotListed = {
   ...merchantCenterAccountConnected,

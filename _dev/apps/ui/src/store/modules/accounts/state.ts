@@ -124,6 +124,7 @@ export enum WebsiteClaimErrorReason {
   UnlinkFailed = 'UnlinkFailed',
   PendingCheck = 'PendingCheck',
   PendingCreation = 'PendingCreation',
+  StillPendingCreation = 'StillPendingCreation',
   PhoneVerificationNeeded = 'PhoneVerificationNeeded',
   // States with errors
   Suspended = 'Suspended',
