@@ -33,7 +33,6 @@ new Vue({
   i18n,
   methods: {
     identifySegment() {
-      // @ts-ignore
       if (!this.$segment) {
         return;
       }
@@ -43,8 +42,9 @@ new Vue({
       const campaigns = this.$store.getters['campaigns/GET_CAMPAIGNS_LIST'];
       const isActiveCamp = campaigns.some((camp) => camp.status === CampaignStatus.ELIGIBLE);
 
-      // @ts-ignore
-      this.$segment.identify(userId || btoa(window.location.host).slice(0, -1), {
+      this.$segment.setAnonymousId(btoa(window.location.host).slice(0, -1));
+
+      this.$segment.identify(userId, {
         name: psAccountContext?.currentShop?.domainSsl,
         email: psAccountContext?.user?.email,
         language: this.$i18n.locale,
