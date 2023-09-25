@@ -39,6 +39,8 @@ export default {
     }
     state.warmedUp = true;
 
+    await dispatch(ActionsTypes.SET_REPORTING_DATES_RANGE);
+
     await Promise.allSettled([
       dispatch('googleAds/WARMUP_STORE', null, {root: true}),
       dispatch('productFeed/WARMUP_STORE', null, {root: true}),
