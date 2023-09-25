@@ -91,7 +91,7 @@ import googleUrl from '@/assets/json/googleUrl.json';
 import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
 import compareYears from '@/utils/CompareYears';
 import { PropType, defineComponent } from 'vue';
-import { CampaignPerformanceObject } from '@/store/modules/campaigns/state';
+import { CampaignPerformanceObject, CampaignStatusPayload } from '@/store/modules/campaigns/state';
 import { timeConverterToDate } from '@/utils/Dates';
 import { formatPrice } from '../../utils/Price';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
@@ -163,8 +163,8 @@ export default defineComponent({
     updateCampaignStatus(newStatus: CampaignStatusToggle) {
       this.$store.dispatch('campaigns/CHANGE_STATUS_OF_CAMPAIGN', {
         id: this.campaign.id,
-        newStatus,
-      });
+        status: newStatus,
+      } as CampaignStatusPayload);
       this.$segment.track('[GGL] Campaigns list - Update status of campaign', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
