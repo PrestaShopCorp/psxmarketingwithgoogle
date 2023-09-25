@@ -972,6 +972,7 @@
         "disapproved": "Não aprovado",
         "pendingCreation": "Pendente",
         "creatingGmc": "Criar conta em poucos segundos...",
+        "creatingGmcTakingTime": "Processing is taking longer than expected, please wait a few moments and do not refresh the page.",
         "pendingCheck": "Estamos a verificar o seu estado GMC...",
         "pending": "Pendente",
         "expiring": "A expirar em",
