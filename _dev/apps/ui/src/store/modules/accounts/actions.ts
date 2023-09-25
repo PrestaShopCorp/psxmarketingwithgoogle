@@ -18,7 +18,7 @@
  */
 
 import {fetchOnboarding, fetchShop, HttpClientError} from 'mktg-with-google-common';
-import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
+import {GoogleMerchantAccount, MerchantCenterAccountContext, WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 import MutationsTypes from './mutations-types';
 import MutationsTypesProductFeed from '../product-feed/mutations-types';
 import MutationsTypesGoogleAds from '../google-ads/mutations-types';
@@ -211,15 +211,14 @@ export default {
 
       // Now we have the GMC merchant's list, if he already linked one, then must fill it now
       if (state.googleMerchantAccount.id) {
-        const linkedGmc = json.find((gmc) => gmc.id === state.googleMerchantAccount.id);
+        const linkedGmc = json.find((gmc) => gmc.id === state.googleMerchantAccount.id)
+          // Cannot find linked GMC. Maybe it's a freshly created one, in this case previous HTTP
+          // call has failed. Then try another way...
+          || await dispatch(ActionsTypes.REQUEST_NEW_GMC_DETAILS);
 
         if (linkedGmc) {
           commit(MutationsTypes.SAVE_GMC, linkedGmc);
           dispatch(ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS);
-        } else {
-          // Cannot find linked GMC. Maybe it's a freshly created one, in this case previous HTTP
-          //  call has failed. Then try another way...
-          dispatch(ActionsTypes.REQUEST_NEW_GMC_DETAILS);
         }
       }
     } catch (error) {
@@ -461,14 +460,11 @@ export default {
 
       commit(MutationsTypes.ADD_NEW_GMC, newGmc);
       commit(MutationsTypes.SAVE_GMC, newGmc);
-      dispatch(ActionsTypes.SEND_GMC_INFORMATION_TO_SHOP, {
+      await dispatch(ActionsTypes.SEND_GMC_INFORMATION_TO_SHOP, {
         id: accountId,
       });
 
-      commit(
-        MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
-        WebsiteClaimErrorReason.PhoneVerificationNeeded,
-      );
+      dispatch(ActionsTypes.AWAIT_GMC_CREATION);
     } catch (error) {
       console.error(error);
     }
@@ -476,28 +472,55 @@ export default {
 
   async [ActionsTypes.REQUEST_NEW_GMC_DETAILS]({
     commit, rootState, state, dispatch,
-  }) {
+  }): Promise<GoogleMerchantAccount|null> {
     try {
       const linkedGmc = await (await fetchOnboarding(
         'GET',
         `merchant-accounts/${state.googleMerchantAccount.id}`,
       )).json();
 
-      if (linkedGmc) {
-        commit(MutationsTypes.SAVE_GMC, linkedGmc);
-        dispatch(ActionsTypes.SEND_GMC_INFORMATION_TO_SHOP, {
-          id: rootState.accounts.googleMerchantAccount.id,
-        });
-        dispatch(ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS);
-      } else {
+      if (!linkedGmc) {
         throw new Error('Failed to find GMC!');
       }
+
+      commit(MutationsTypes.SAVE_GMC, linkedGmc);
+      dispatch(ActionsTypes.SEND_GMC_INFORMATION_TO_SHOP, {
+        id: rootState.accounts.googleMerchantAccount.id,
+      });
+      return linkedGmc;
     } catch (error) {
       console.error(error);
-      console.log(`GMC ${state.googleMerchantAccount.id} not found, try to search again in 15s`);
-      setTimeout(() => dispatch(ActionsTypes.REQUEST_GMC_LIST), 15000);
+      console.log(`GMC ${state.googleMerchantAccount.id} not found.`);
     }
     return null;
+  },
+
+  async [ActionsTypes.AWAIT_GMC_CREATION]({commit, dispatch, getters}, payload) {
+    commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+      WebsiteClaimErrorReason.PendingCreation);
+
+    setTimeout(() => {
+      if (getters.GET_GOOGLE_ACCOUNT_WEBSITE_CLAIMING_OVERRIDE_STATUS
+        === WebsiteClaimErrorReason.PendingCreation
+      ) {
+        commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+          WebsiteClaimErrorReason.StillPendingCreation);
+      }
+    }, 10000);
+
+    let accountIsFoundOnGoogleAPI = false;
+
+    while (!accountIsFoundOnGoogleAPI) {
+      // eslint-disable-next-line no-await-in-loop
+      await new Promise((resolve) => { setTimeout(resolve, 2000); });
+      // eslint-disable-next-line no-await-in-loop
+      accountIsFoundOnGoogleAPI = !!await dispatch(ActionsTypes.REQUEST_NEW_GMC_DETAILS);
+    }
+
+    commit(
+      MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+      WebsiteClaimErrorReason.PhoneVerificationNeeded,
+    );
   },
 
   // eslint-disable-next-line no-empty-pattern

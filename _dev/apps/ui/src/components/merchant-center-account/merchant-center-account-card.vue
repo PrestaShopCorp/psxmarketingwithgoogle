@@ -633,6 +633,7 @@ export default {
             text: 'pending',
           };
         case WebsiteClaimErrorReason.PendingCreation:
+        case WebsiteClaimErrorReason.StillPendingCreation:
           return {
             color: 'warning',
             text: 'pendingCreation',
@@ -661,6 +662,8 @@ export default {
         return 'checkingSiteClaim';
       }
       switch (this.error) {
+        case WebsiteClaimErrorReason.StillPendingCreation:
+          return 'creatingGmcTakingTime';
         case WebsiteClaimErrorReason.PendingCreation:
           return 'creatingGmc';
         case WebsiteClaimErrorReason.PendingCheck:
