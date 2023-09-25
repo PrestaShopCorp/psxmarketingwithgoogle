@@ -972,6 +972,7 @@
         "disapproved": "Afgekeurd",
         "pendingCreation": "In afwachting van",
         "creatingGmc": "Een account aanmaken in een paar seconden...",
+        "creatingGmcTakingTime": "Processing is taking longer than expected, please wait a few moments and do not refresh the page.",
         "pendingCheck": "We controleren uw GMC status...",
         "pending": "In afwachting van",
         "expiring": "Aflopend",
