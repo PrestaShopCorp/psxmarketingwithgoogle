@@ -16,6 +16,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
+import {ActionContext} from 'vuex';
 import {fetchOnboarding, fetchShop, HttpClientError} from 'mktg-with-google-common';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
@@ -28,9 +29,14 @@ import {
 import {runIf} from '@/utils/Promise';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {fromApi, toApi} from '@/providers/shipping-rate-provider';
-import {ProductFeedSettings, ProductVerificationIssue, ProductVerificationIssueProduct} from './state';
+import {
+  ProductFeedSettings, ProductVerificationIssue, ProductVerificationIssueProduct, State,
+} from './state';
 import {formatMappingToApi} from '@/utils/AttributeMapping';
 import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
+import {FullState} from '../..';
+
+type Context = ActionContext<State, FullState>;
 
 // ToDo: Get DTO type from API sources
 export const createProductFeedApiPayload = (settings:any) => ({
@@ -56,7 +62,7 @@ export const createProductFeedApiPayload = (settings:any) => ({
 
 export default {
   async [ActionsTypes.WARMUP_STORE](
-    {dispatch, state, getters},
+    {dispatch, state, getters}: Context,
   ) {
     if (state.warmedUp) {
       return;
@@ -94,7 +100,7 @@ export default {
       ),
     ]);
   },
-  async [ActionsTypes.GET_PRODUCT_FEED_SYNC_STATUS]({commit, rootState}) {
+  async [ActionsTypes.GET_PRODUCT_FEED_SYNC_STATUS]({commit}: Context) {
     const params = {
       lang: window.i18nSettings.isoCode,
       timezone: encodeURI(Intl.DateTimeFormat().resolvedOptions().timeZone),
@@ -114,7 +120,7 @@ export default {
   },
 
   async [ActionsTypes.GET_PRODUCT_FEED_SETTINGS](
-    {commit},
+    {commit}: Context,
   ): Promise<ProductFeedSettings|null> {
     const params = {
       lang: window.i18nSettings.isoCode,
@@ -167,8 +173,8 @@ export default {
   },
 
   async [ActionsTypes.SEND_PRODUCT_FEED_SETTINGS]({
-    state, rootState, getters, commit,
-  }) {
+    state, getters, commit,
+  }: Context) {
     commit(MutationsTypes.API_ERROR, false);
 
     const productFeedSettings: ProductFeedSettings = {
@@ -251,13 +257,13 @@ export default {
     }
   },
 
-  async [ActionsTypes.GET_SHOP_SHIPPING_SETTINGS]({commit}) {
+  async [ActionsTypes.GET_SHOP_SHIPPING_SETTINGS]({commit}: Context) {
     const result = await fetchShop('getCarrierValues');
     commit(MutationsTypes.SAVE_AUTO_IMPORT_SHIPPING_INFORMATIONS, result);
     return result;
   },
 
-  async [ActionsTypes.GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS]({state, commit, dispatch}) {
+  async [ActionsTypes.GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS]({state, commit, dispatch}: Context) {
     await Promise.allSettled([
       dispatch(ActionsTypes.GET_SHOP_SHIPPING_SETTINGS),
       dispatch(ActionsTypes.GET_PRODUCT_FEED_SETTINGS),
@@ -291,7 +297,7 @@ export default {
   },
 
   [ActionsTypes.DUPLICATE_DELIVERY_DETAILS](
-    {state, commit},
+    {state, commit}: Context,
     payload: {sourceCarrier: CarrierIdentifier, destinationCarriers: CarrierIdentifier[]},
   ) {
     const carriersList = [...state.settings.deliveryDetails];
@@ -319,7 +325,7 @@ export default {
     commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
   },
 
-  async [ActionsTypes.GET_PRODUCT_FEED_SYNC_SUMMARY]({commit}) {
+  async [ActionsTypes.GET_PRODUCT_FEED_SYNC_SUMMARY]({commit}: Context) {
     commit(MutationsTypes.SET_SYNC_SUMMARY_LOADING, true);
     try {
       const result = await (await fetchOnboarding(
@@ -334,12 +340,12 @@ export default {
     }
   },
 
-  async [ActionsTypes.GET_TOTAL_PRODUCTS_READY_TO_SYNC]({rootState, commit}) {
+  async [ActionsTypes.GET_TOTAL_PRODUCTS_READY_TO_SYNC]({commit}: Context) {
     const result = await fetchShop('getProductsReadyToSync');
     commit(MutationsTypes.SAVE_TOTAL_PRODUCTS_READY_TO_SYNC, Number(result.total));
     return result;
   },
-  async [ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES]({rootState, commit}, nextPage) {
+  async [ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES]({commit}: Context, nextPage) {
     const nextToken = nextPage ? `?next_token=${nextPage}` : '';
     const result = await (await fetchOnboarding(
       'GET',
@@ -348,7 +354,7 @@ export default {
     commit(MutationsTypes.SAVE_ALL_PRODUCTS, result.results);
     return result;
   },
-  async [ActionsTypes.REQUEST_SYNCHRONISATION]({rootState}, full = false) {
+  async [ActionsTypes.REQUEST_SYNCHRONISATION]({rootState}: Context, full = false) {
     const response = await fetch(`https://eventbus-sync.psessentials.net/sync/trigger${full ? '-full' : ''}`, {
       method: 'GET',
       headers: {
@@ -363,7 +369,7 @@ export default {
     }
   },
 
-  async [ActionsTypes.REQUEST_FULL_SYNCHRONISATION]({dispatch}) {
+  async [ActionsTypes.REQUEST_FULL_SYNCHRONISATION]({dispatch}: Context) {
     dispatch(ActionsTypes.REQUEST_SYNCHRONISATION, true);
   },
 
@@ -373,12 +379,12 @@ export default {
       'incremental-sync/force-now',
     );
   },
-  async [ActionsTypes.REQUEST_SHOP_TO_GET_ATTRIBUTE]({commit}) {
+  async [ActionsTypes.REQUEST_SHOP_TO_GET_ATTRIBUTE]({commit}: Context) {
     const json = await fetchShop('getShopAttributes');
     commit(MutationsTypes.SAVE_ATTRIBUTES_SHOP, json);
     return json;
   },
-  async [ActionsTypes.REQUEST_ATTRIBUTE_MAPPING]({rootState, commit}) {
+  async [ActionsTypes.REQUEST_ATTRIBUTE_MAPPING]({commit}: Context) {
     try {
       const json = await (await fetchOnboarding(
         'GET',
@@ -389,7 +395,7 @@ export default {
       console.log(error);
     }
   },
-  async [ActionsTypes.REQUEST_PRODUCTS_ON_CLOUDSYNC]({commit}) {
+  async [ActionsTypes.REQUEST_PRODUCTS_ON_CLOUDSYNC]({commit}: Context) {
     const json: {totalProducts: string} = await (await fetchOnboarding(
       'GET',
       'product-feeds/stats/shop',
@@ -398,7 +404,7 @@ export default {
     commit(MutationsTypes.SAVE_NUMBER_OF_PRODUCTS_ON_CLOUDSYNC, json.totalProducts);
   },
 
-  async [ActionsTypes.SEND_PRODUCT_FEED_FLAGS]({rootState}, flags) {
+  async [ActionsTypes.SEND_PRODUCT_FEED_FLAGS]({rootState}: Context, flags) {
     await fetchOnboarding(
       'POST',
       'debug/migration',
@@ -406,7 +412,7 @@ export default {
     );
   },
 
-  async [ActionsTypes.REQUEST_PRODUCT_FEED_SYNC_CONTEXT]({commit}) {
+  async [ActionsTypes.REQUEST_PRODUCT_FEED_SYNC_CONTEXT]({commit}: Context) {
     const json: IncrementalSyncContext = await (await fetchOnboarding(
       'GET',
       'incremental-sync/context/',
@@ -415,7 +421,7 @@ export default {
     commit(MutationsTypes.SAVE_PRODUCT_FEED_SYNC_CONTEXT, json);
   },
 
-  async [ActionsTypes.REQUEST_VERIFICATION_STATS]({commit}) {
+  async [ActionsTypes.REQUEST_VERIFICATION_STATS]({commit}: Context) {
     const json = await (await fetchOnboarding(
       'GET',
       'product-feeds/stats/verification',
@@ -424,7 +430,7 @@ export default {
     commit(MutationsTypes.SAVE_VERIFICATION_STATS, json);
   },
 
-  async [ActionsTypes.REQUEST_VERIFICATION_ISSUES]({commit}) {
+  async [ActionsTypes.REQUEST_VERIFICATION_ISSUES]({commit}: Context) {
     const json = await (await fetchOnboarding(
       'GET',
       'product-feeds/verification/issues',
@@ -434,7 +440,7 @@ export default {
   },
 
   async [ActionsTypes.REQUEST_VERIFICATION_ISSUE_PRODUCTS](
-    {commit},
+    {commit}: Context,
     payload: {
       verificationIssue: ProductVerificationIssue,
       limit: number,

@@ -17,6 +17,7 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
+import {ActionContext} from 'vuex';
 import dayjs, {ManipulateType} from 'dayjs';
 import {fetchShop, fetchOnboarding, HttpClientError} from 'mktg-with-google-common';
 import MutationsTypes from './mutations-types';
@@ -24,15 +25,19 @@ import ActionsTypes from './actions-types';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import {
   CampaignObject, CampaignStatusPayload, ConversionAction,
+  State,
 } from './state';
 import {deepUpdateDimensionVisibility} from '@/utils/SSCFilters';
 import {runIf} from '../../../utils/Promise';
 import {RecommendedBudget} from '@/utils/CampaignsBudget';
 import KpiType from '@/enums/reporting/KpiType';
+import {FullState} from '../..';
+
+type Context = ActionContext<State, FullState>;
 
 export default {
   async [ActionsTypes.WARMUP_STORE](
-    {dispatch, state, getters},
+    {dispatch, state, getters}: Context,
   ) {
     if (state.warmedUp) {
       return;
@@ -66,7 +71,7 @@ export default {
       ),
     ]);
   },
-  async [ActionsTypes.SAVE_NEW_CAMPAIGN]({commit}, payload: CampaignObject) {
+  async [ActionsTypes.SAVE_NEW_CAMPAIGN]({commit}: Context, payload: CampaignObject) {
     try {
       const json = await (await fetchOnboarding(
         'POST',
@@ -86,7 +91,7 @@ export default {
     }
   },
 
-  async [ActionsTypes.CHECK_CAMPAIGN_NAME_ALREADY_EXISTS]({rootState, commit},
+  async [ActionsTypes.CHECK_CAMPAIGN_NAME_ALREADY_EXISTS]({commit}: Context,
     payload : {name: string, id: string},
   ) {
     try {
@@ -106,7 +111,7 @@ export default {
   },
 
   async [ActionsTypes.SAVE_STATUS_REMARKETING_TRACKING_TAG](
-    {commit, rootState}, payload: boolean,
+    {commit, rootState}: Context, payload: boolean,
   ) {
     const remarketingSnippet = rootState.googleAds.accountChosen?.remarketingSnippet;
     await fetchShop('toggleRemarketingTags', {
@@ -117,14 +122,14 @@ export default {
   },
 
   async [ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_MODULE](
-    {commit},
+    {commit}: Context,
   ) {
     const result = await fetchShop('getRemarketingTagsStatus');
     commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG, result.remarketingTagsStatus);
   },
 
   async [ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_IF_ALREADY_EXISTS](
-    {commit, rootState},
+    {commit, rootState}: Context,
   ) {
     const regex = /AW-[0-9]+/;
     const remarketingSnippet = rootState.googleAds.accountChosen?.remarketingSnippet;
@@ -139,7 +144,7 @@ export default {
       result.tagAlreadyExists);
   },
   async [ActionsTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED](
-    {commit},
+    {commit}: Context,
   ) {
     const result = await fetchShop('getConversionActionLabels');
     commit(
@@ -149,7 +154,7 @@ export default {
   },
 
   async [ActionsTypes.CREATE_REMARKETING_DEFAULT_CONVERSION_ACTIONS](
-    {dispatch, rootState},
+    {dispatch}: Context,
   ) {
     try {
       const json = await (await fetchOnboarding(
@@ -164,21 +169,21 @@ export default {
   },
 
   async [ActionsTypes.SAVE_REMARKETING_CONVERSION_ACTION_ON_SHOP](
-    {dispatch}, conversionActions: ConversionAction[],
+    {dispatch}: Context, conversionActions: ConversionAction[],
   ) {
     await fetchShop('setConversionActionLabel', {conversionActions});
     dispatch(ActionsTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED);
   },
 
   async [ActionsTypes.UPDATE_ALL_REPORTING_DATA](
-    {dispatch},
+    {dispatch}: Context,
   ) {
     dispatch('GET_REPORTING_KPIS');
     dispatch('GET_REPORTING_DAILY_RESULTS');
     dispatch('GET_CAMPAIGNS_LIST');
   },
   [ActionsTypes.SET_REPORTING_DATES_RANGE](
-    {commit, state},
+    {commit, state}: Context,
   ) {
     const {periodSelected} = state.reporting.request.dateRange;
     const substractType: {type: ManipulateType, value: number} = {type: 'day', value: 0};
@@ -210,7 +215,7 @@ export default {
     });
   },
   async [ActionsTypes.CHANGE_REPORTING_DATES](
-    {commit, dispatch}, payload: ReportingPeriod,
+    {commit, dispatch}: Context, payload: ReportingPeriod,
   ) {
     commit(MutationsTypes.SET_REPORTING_PERIOD_SELECTED, payload);
     await dispatch('SET_REPORTING_DATES_RANGE');
@@ -218,7 +223,7 @@ export default {
   },
 
   [ActionsTypes.ADD_REPORTING_DAILY_RESULTS_TYPE](
-    {commit, state}, payload: KpiType,
+    {commit, state}: Context, payload: KpiType,
   ): boolean {
     const currentResultTypes = state.reporting.request.dailyResultTypes;
     const alreadyInObject = !!Object.keys(currentResultTypes)
@@ -243,7 +248,7 @@ export default {
   },
 
   [ActionsTypes.REMOVE_REPORTING_DAILY_RESULTS_TYPE](
-    {commit, state}, payload: KpiType,
+    {commit, state}: Context, payload: KpiType,
   ): void {
     const currentResultTypes = state.reporting.request.dailyResultTypes;
     const key = Object.keys(currentResultTypes)
@@ -260,7 +265,7 @@ export default {
   },
 
   async [ActionsTypes.GET_REPORTING_KPIS](
-    {commit, rootState, state},
+    {commit, state}: Context,
   ) {
     const query = new URLSearchParams({
       startDate: state.reporting.request.dateRange.startDate,
@@ -285,7 +290,7 @@ export default {
   },
 
   async [ActionsTypes.GET_REPORTING_DAILY_RESULTS](
-    {commit, rootState, state},
+    {commit, state}: Context,
   ) {
     const query = new URLSearchParams({
       startDate: state.reporting.request.dateRange.startDate,
@@ -309,7 +314,7 @@ export default {
     commit(MutationsTypes.SET_REPORTING_DAILY_RESULTS, result);
   },
 
-  async [ActionsTypes.GET_CAMPAIGNS_LIST]({commit, state}) {
+  async [ActionsTypes.GET_CAMPAIGNS_LIST]({commit, state}: Context) {
     const query = new URLSearchParams();
 
     Object.keys(state.campaigns.request.ordering).forEach((ordering) => {
@@ -335,7 +340,9 @@ export default {
       console.error(error);
     }
   },
-  async [ActionsTypes.CHANGE_STATUS_OF_CAMPAIGN]({commit}, payload: CampaignStatusPayload) {
+  async [ActionsTypes.CHANGE_STATUS_OF_CAMPAIGN]({
+    commit,
+  }: Context, payload: CampaignStatusPayload) {
     const json = await (await fetchOnboarding(
       'POST',
       `shopping-campaigns/${payload.id}/status`,
@@ -346,7 +353,7 @@ export default {
     commit(MutationsTypes.UPDATE_CAMPAIGN_STATUS, payload);
     return json;
   },
-  async [ActionsTypes.UPDATE_CAMPAIGN]({commit, rootState}, payload: CampaignObject) {
+  async [ActionsTypes.UPDATE_CAMPAIGN]({commit}: Context, payload: CampaignObject) {
     const json = await (await fetchOnboarding(
       'POST',
       `shopping-campaigns/${payload.id}`,
@@ -355,7 +362,11 @@ export default {
     commit(MutationsTypes.UPDATE_CAMPAIGN, payload);
     return json;
   },
-  async [ActionsTypes.GET_DIMENSIONS_FILTERS]({commit, rootState, state}, search?: string) {
+  async [ActionsTypes.GET_DIMENSIONS_FILTERS]({
+    commit,
+    rootState,
+    state,
+  }: Context, search?: string) {
     if (!search && state.sscAvailableFilters.length) {
       deepUpdateDimensionVisibility(state.dimensionChosen, true);
       return;
@@ -401,7 +412,7 @@ export default {
     }
   },
   async [ActionsTypes.GET_RECOMMENDED_BUDGET](
-    {rootState}, targetCountry: string,
+    {rootState}: Context, targetCountry: string,
   ): Promise<RecommendedBudget> {
     type RecommendedBudgetResponse = {
       budget: RecommendedBudget,

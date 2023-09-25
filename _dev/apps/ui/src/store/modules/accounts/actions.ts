@@ -17,6 +17,7 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
+import {ActionContext} from 'vuex';
 import {fetchOnboarding, fetchShop, HttpClientError} from 'mktg-with-google-common';
 import {GoogleMerchantAccount, MerchantCenterAccountContext, WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 import MutationsTypes from './mutations-types';
@@ -26,10 +27,14 @@ import ActionsTypes from './actions-types';
 import ActionsTypesApp from '../app/actions-types';
 import NeedOverwriteError from '../../../utils/NeedOverwriteError';
 import CannotOverwriteError from '../../../utils/CannotOverwriteError';
+import {FullState} from '../..';
+import {State} from './state';
+
+type Context = ActionContext<State, FullState>;
 
 export default {
   async [ActionsTypes.WARMUP_STORE](
-    {dispatch, state},
+    {dispatch, state}: Context,
   ) {
     if (state.warmedUp) {
       return;
@@ -43,7 +48,7 @@ export default {
     {
       commit,
       dispatch,
-    },
+    }: Context,
     payload,
   ) {
     const {selectedAccount, correlationId} = payload;
@@ -90,7 +95,7 @@ export default {
       dispatch,
       state,
       rootState,
-    },
+    }: Context,
     correlationId: string,
   ) {
     commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.PendingCheck);
@@ -147,7 +152,7 @@ export default {
     }
   },
 
-  async [ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH]({commit, state, rootState}) {
+  async [ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH]({commit, state, rootState}: Context) {
     const urlState = btoa(JSON.stringify({
       redirectUri: rootState.app.psxMktgWithGoogleAdminUrl,
       shopId: state.shopIdPsAccounts,
@@ -168,7 +173,7 @@ export default {
 
   async [ActionsTypes.REQUEST_GOOGLE_ACCOUNT_DETAILS]({
     commit, dispatch,
-  }) {
+  }: Context) {
     try {
       const json = await (await fetchOnboarding('GET', 'oauth')).json();
 
@@ -201,7 +206,7 @@ export default {
 
   async [ActionsTypes.REQUEST_GMC_LIST]({
     commit, state, dispatch,
-  }) {
+  }: Context) {
     try {
       const json = await (await fetchOnboarding(
         'GET',
@@ -229,7 +234,7 @@ export default {
 
   async [ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT]({
     commit, rootState, state, dispatch,
-  }) {
+  }: Context) {
     const correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
     await fetchOnboarding('DELETE', 'oauth', {correlationId});
 
@@ -246,7 +251,7 @@ export default {
     commit,
     state,
     dispatch,
-  }, correlationId: string) {
+  }: Context, correlationId: string) {
     if (state.googleMerchantAccount.id) {
       if (!correlationId) {
         // eslint-disable-next-line no-param-reassign
@@ -279,7 +284,7 @@ export default {
     return true;
   },
 
-  async [ActionsTypes.REQUEST_TO_OVERRIDE_CLAIM]({commit, dispatch}) {
+  async [ActionsTypes.REQUEST_TO_OVERRIDE_CLAIM]({commit, dispatch}: Context) {
     try {
       await dispatch(
         ActionsTypes.TRIGGER_WEBSITE_CLAIMING_PROCESS,
@@ -304,7 +309,7 @@ export default {
   },
 
   /** Merchant Center Account - Website verification */
-  async [ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_PROCESS]({dispatch, state}) {
+  async [ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_PROCESS]({dispatch, state}: Context) {
     const correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
     try {
       // 1- Get site verification token from onboarding API
@@ -330,7 +335,7 @@ export default {
   },
 
   // eslint-disable-next-line no-empty-pattern
-  async [ActionsTypes.REQUEST_SITE_VERIFICATION_TOKEN]({}, correlationId: string) {
+  async [ActionsTypes.REQUEST_SITE_VERIFICATION_TOKEN]({}: Context, correlationId: string) {
     return (await fetchOnboarding(
       'GET',
       'shopping-websites/site-verification/token',
@@ -339,12 +344,12 @@ export default {
   },
 
   // eslint-disable-next-line no-empty-pattern
-  async [ActionsTypes.SAVE_WEBSITE_VERIFICATION_META]({}, token: string|false) {
+  async [ActionsTypes.SAVE_WEBSITE_VERIFICATION_META]({}: Context, token: string|false) {
     return fetchShop('setWebsiteVerificationMeta', {websiteVerificationMeta: token});
   },
 
   // eslint-disable-next-line no-empty-pattern
-  async [ActionsTypes.REQUEST_GOOGLE_TO_VERIFY_WEBSITE]({}, correlationId: string) {
+  async [ActionsTypes.REQUEST_GOOGLE_TO_VERIFY_WEBSITE]({}: Context, correlationId: string) {
     return (await fetchOnboarding(
       'POST',
       'shopping-websites/site-verification/verify',
@@ -355,7 +360,7 @@ export default {
   async [ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS](
     {
       commit,
-    },
+    }: Context,
     correlationId: string,
   ) {
     const json = await (await fetchOnboarding(
@@ -369,7 +374,7 @@ export default {
   },
 
   async [ActionsTypes.TRIGGER_WEBSITE_CLAIMING_PROCESS](
-    {commit},
+    {commit}: Context,
     payload,
   ) {
     const {overwrite, correlationId} = payload;
@@ -403,11 +408,11 @@ export default {
   },
 
   // eslint-disable-next-line no-empty-pattern
-  async [ActionsTypes.SEND_WEBSITE_REQUIREMENTS]({}, payload: Array<String>) {
+  async [ActionsTypes.SEND_WEBSITE_REQUIREMENTS]({}: Context, payload: Array<String>) {
     return fetchShop('setWebsiteRequirementStatus', {requirements: payload});
   },
 
-  async [ActionsTypes.REQUEST_WEBSITE_REQUIREMENTS]({commit}) {
+  async [ActionsTypes.REQUEST_WEBSITE_REQUIREMENTS]({commit}: Context) {
     try {
       const json = await fetchShop('getWebsiteRequirementStatus');
 
@@ -417,7 +422,7 @@ export default {
     }
   },
 
-  async [ActionsTypes.REQUEST_SHOP_INFORMATIONS]({rootState, commit}) {
+  async [ActionsTypes.REQUEST_SHOP_INFORMATIONS]({commit}: Context) {
     try {
       const json = await fetchShop('getShopConfigurationForGMC');
       commit(MutationsTypes.SAVE_SHOP_INFORMATIONS, json);
@@ -428,7 +433,7 @@ export default {
 
   async [ActionsTypes.REQUEST_TO_SAVE_NEW_GMC]({
     rootState, dispatch, commit,
-  }, payload) {
+  }: Context, payload) {
     try {
       const json = await (await fetchOnboarding(
         'POST',
@@ -472,7 +477,7 @@ export default {
 
   async [ActionsTypes.REQUEST_NEW_GMC_DETAILS]({
     commit, rootState, state, dispatch,
-  }): Promise<GoogleMerchantAccount|null> {
+  }: Context): Promise<GoogleMerchantAccount|null> {
     try {
       const linkedGmc = await (await fetchOnboarding(
         'GET',
@@ -495,7 +500,7 @@ export default {
     return null;
   },
 
-  async [ActionsTypes.AWAIT_GMC_CREATION]({commit, dispatch, getters}, payload) {
+  async [ActionsTypes.AWAIT_GMC_CREATION]({commit, dispatch, getters}: Context) {
     commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
       WebsiteClaimErrorReason.PendingCreation);
 
@@ -524,7 +529,7 @@ export default {
   },
 
   // eslint-disable-next-line no-empty-pattern
-  async [ActionsTypes.REQUEST_VERIFICATION_CODE]({}, payload) {
+  async [ActionsTypes.REQUEST_VERIFICATION_CODE]({}: Context, payload) {
     return (await fetchOnboarding(
       'POST',
       'merchant-accounts/phone-verification/request-code',
@@ -533,7 +538,7 @@ export default {
   },
 
   // eslint-disable-next-line no-empty-pattern
-  async [ActionsTypes.SEND_VERIFICATION_CODE]({}, payload) {
+  async [ActionsTypes.SEND_VERIFICATION_CODE]({}: Context, payload) {
     return (await fetchOnboarding(
       'POST',
       'merchant-accounts/phone-verification/verify',
@@ -542,7 +547,7 @@ export default {
   },
 
   // eslint-disable-next-line no-empty-pattern
-  async [ActionsTypes.SEND_GMC_INFORMATION_TO_SHOP]({}, gmcInfo) {
+  async [ActionsTypes.SEND_GMC_INFORMATION_TO_SHOP]({}: Context, gmcInfo) {
     try {
       await fetchShop('setGMCInformations', {gmcInformations: gmcInfo});
     } catch (error) {

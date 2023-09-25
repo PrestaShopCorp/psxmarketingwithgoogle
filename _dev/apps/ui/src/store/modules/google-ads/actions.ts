@@ -16,16 +16,20 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
+import {ActionContext} from 'vuex';
 import {fetchOnboarding, fetchShop, HttpClientError} from 'mktg-with-google-common';
 import MutationsTypesCampaigns from '../campaigns/mutations-types';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import {runIf} from '../../../utils/Promise';
-import {CampaignTypes} from '../../../enums/reporting/CampaignStatus';
+import {FullState} from '../..';
+import {State} from './state';
+
+type Context = ActionContext<State, FullState>;
 
 export default {
   async [ActionsTypes.WARMUP_STORE](
-    {dispatch, state, getters},
+    {dispatch, state, getters}: Context,
   ) {
     if (state.warmedUp) {
       return;
@@ -40,7 +44,7 @@ export default {
       dispatch(ActionsTypes.GET_GOOGLE_ADS_ACCOUNT),
     ));
   },
-  async [ActionsTypes.GET_GOOGLE_ADS_LIST]({commit}) {
+  async [ActionsTypes.GET_GOOGLE_ADS_LIST]({commit}: Context) {
     try {
       const json = await fetchOnboarding(
         'GET',
@@ -62,7 +66,7 @@ export default {
   },
   async [ActionsTypes.GET_GOOGLE_ADS_ACCOUNT]({
     commit, state,
-  }) {
+  }: Context) {
     try {
       commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, '');
       const json = await (await fetchOnboarding(
@@ -98,7 +102,7 @@ export default {
   },
 
   async [ActionsTypes.SAVE_NEW_GOOGLE_ADS_ACCOUNT](
-    {commit, rootState, dispatch}, payload,
+    {commit}: Context, payload,
   ) {
     const newUser = {
       name: payload.name,
@@ -138,7 +142,7 @@ export default {
       console.error(error);
     }
   },
-  async [ActionsTypes.DISSOCIATE_GOOGLE_ADS_ACCOUNT]({commit, rootState, dispatch},
+  async [ActionsTypes.DISSOCIATE_GOOGLE_ADS_ACCOUNT]({commit, rootState}: Context,
     correlationId: string) {
     commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, '');
     await fetchOnboarding(
@@ -156,7 +160,7 @@ export default {
 
   async [ActionsTypes.SAVE_SELECTED_GOOGLE_ADS_ACCOUNT]({
     commit,
-  }, payload) {
+  }: Context, payload) {
     try {
       await fetchOnboarding(
         'POST',
@@ -175,7 +179,7 @@ export default {
     }
   },
 
-  async [ActionsTypes.GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING]({commit}) {
+  async [ActionsTypes.GET_GOOGLE_ADS_SHOPINFORMATIONS_BILLING]({commit}: Context) {
     const result = await fetchShop('getShopConfigurationForAds');
 
     const shopInfo = {
