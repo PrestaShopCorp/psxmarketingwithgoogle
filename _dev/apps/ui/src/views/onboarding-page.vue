@@ -1,7 +1,7 @@
 <template>
   <div class="pt-2 container">
-    <div class="row row-cols-sm-1 row-cols-md-2 mb-4 ps_gs-onboardingpage">
-      <div class="col">
+    <div class="row mb-4 ps_gs-onboardingpage">
+      <div class="col-12 col-md-5">
         <div
           class="is-sticky pb-3"
         >
@@ -13,7 +13,7 @@
           />
         </div>
       </div>
-      <div class="col">
+      <div class="col-12 col-md-7">
         <prestashop-accounts
           class="ps_gs-ps-account-card"
         />
@@ -22,7 +22,7 @@
         />
       </div>
 
-      <div class="col">
+      <div class="col-12 col-md-5">
         <div
           class="is-sticky pb-3"
         >
@@ -42,7 +42,7 @@
           </div>
         </div>
       </div>
-      <div class="col mb-3">
+      <div class="col-12 col-md-7 mb-3">
         <google-account-card
           :is-enabled="stepsAreCompleted.step1"
           :loading="googleIsLoading"
@@ -67,7 +67,7 @@
         />
       </div>
 
-      <div class="col">
+      <div class="col-12 col-md-5">
         <div
           class="is-sticky pb-3"
         >
@@ -85,7 +85,7 @@
           </div>
         </div>
       </div>
-      <div class="col">
+      <div class="col-12 col-md-7">
         <GoogleAdsAccountCard
           :is-enabled="stepsAreCompleted.step2"
           :loading="googleAdsIsLoading"

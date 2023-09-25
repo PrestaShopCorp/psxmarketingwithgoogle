@@ -6,11 +6,9 @@
       v-if="campaignList.length || loading || fetchingCampaigns || apiFailed"
     >
       <template #header>
-        <ol class="mb-0 list-inline d-flex align-items-center ps_gs-breadcrumb">
-          <li class="list-inline-item ps_gs-breadcrumb__item">
-            {{ $t('campaigns.listTitle') }}
-          </li>
-        </ol>
+        <p class="mb-0 ps_gs-onboardingcard__title">
+          {{ $t('campaigns.listTitle') }}
+        </p>
       </template>
       <b-card-body
         body-class="p-0"

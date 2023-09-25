@@ -4,9 +4,9 @@
     class="ps_gs-onboardingcard"
   >
     <template #header>
-      <h1 class="mb-0 ps_gs-onboardingcard__title">
+      <p class="mb-0 ps_gs-onboardingcard__title">
         {{ $t("productFeedSettings.breadcrumb1") }}
-      </h1>
+      </p>
     </template>
     <div class="d-md-flex position-relative">
       <div
