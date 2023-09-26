@@ -17,12 +17,17 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
+import {ActionContext} from 'vuex';
 import {fetchShop} from 'mktg-with-google-common/api/shopClient';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
+import {FullState} from '../..';
+import {State} from './state';
+
+type Context = ActionContext<State, FullState>;
 
 export default {
-  async [ActionsTypes.REQUEST_DOC_AND_FAQ]({commit}) {
+  async [ActionsTypes.REQUEST_DOC_AND_FAQ]({commit}: Context) {
     try {
       commit(MutationsTypes.SAVE_DOC_AND_FAQ,
         await fetchShop('retrieveFaq'),
@@ -32,7 +37,7 @@ export default {
     }
   },
 
-  async [ActionsTypes.REQUEST_DEBUG_DATA]({commit}) {
+  async [ActionsTypes.REQUEST_DEBUG_DATA]({commit}: Context) {
     try {
       commit(MutationsTypes.SAVE_DEBUG_DATA,
         await fetchShop('getDebugData'),
@@ -46,7 +51,7 @@ export default {
       commit,
       rootState,
       dispatch,
-    },
+    }: Context,
   ) {
     try {
       await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/ads-accounts/check-adblocker`,
@@ -69,7 +74,7 @@ export default {
       }
     }
   },
-  async [ActionsTypes.GET_API_HEALTHCHECK]({rootState}) {
+  async [ActionsTypes.GET_API_HEALTHCHECK]({rootState}: Context) {
     try {
       const resp = await fetch(`${rootState.app.psxMktgWithGoogleApiUrl}/healthcheck`,
         {
@@ -88,7 +93,7 @@ export default {
     return null;
   },
   // eslint-disable-next-line no-empty-pattern
-  async [ActionsTypes.GET_MODULES_VERSIONS]({}, moduleName: string) {
+  async [ActionsTypes.GET_MODULES_VERSIONS]({}: Context, moduleName: string) {
     try {
       return await fetchShop('getModuleStatus', {moduleName});
     } catch (error) {
@@ -97,7 +102,7 @@ export default {
     }
   },
   // eslint-disable-next-line no-empty-pattern
-  async [ActionsTypes.TRIGGER_REGISTER_HOOK]({}, hookName: string) {
+  async [ActionsTypes.TRIGGER_REGISTER_HOOK]({}: Context, hookName: string) {
     return fetchShop('registerHook', {hookName});
   },
 };
