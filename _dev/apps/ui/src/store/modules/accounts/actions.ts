@@ -471,7 +471,10 @@ export default {
 
       dispatch(ActionsTypes.AWAIT_GMC_CREATION);
     } catch (error) {
-      console.error(error);
+      commit(
+        MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+        WebsiteClaimErrorReason.LinkingFailed,
+      );
     }
   },
 
