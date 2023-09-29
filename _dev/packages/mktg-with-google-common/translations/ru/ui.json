@@ -972,6 +972,7 @@
         "disapproved": "Не одобрено",
         "pendingCreation": "В ожидании",
         "creatingGmc": "Создание аккаунта за несколько секунд...",
+        "creatingGmcTakingTime": "Processing is taking longer than expected, please wait a few moments and do not refresh the page.",
         "pendingCheck": "Мы проверяем ваш статус GMC...",
         "pending": "В ожидании",
         "expiring": "Истекающий",

@@ -972,6 +972,7 @@
         "disapproved": "Respins",
         "pendingCreation": "În așteptare",
         "creatingGmc": "Crearea contului în câteva secunde...",
+        "creatingGmcTakingTime": "Processing is taking longer than expected, please wait a few moments and do not refresh the page.",
         "pendingCheck": "Îți verificăm statusul GMC...",
         "pending": "În așteptare",
         "expiring": "Expiră",
