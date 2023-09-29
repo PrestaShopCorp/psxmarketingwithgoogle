@@ -39,10 +39,14 @@ new Vue({
 
       const psAccountContext = this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT'];
       const userId = this.$store.state.accounts.shopIdPsAccounts;
+      const anonymousId = btoa(window.location.host).slice(0, -1);
       const campaigns = this.$store.getters['campaigns/GET_CAMPAIGNS_LIST'];
       const isActiveCamp = campaigns.some((camp) => camp.status === CampaignStatus.ELIGIBLE);
 
-      this.$segment.setAnonymousId(btoa(window.location.host).slice(0, -1));
+      this.$segment.setAnonymousId(anonymousId);
+      if (userId) {
+        this.$segment.alias(userId, anonymousId);
+      }
 
       this.$segment.identify(userId, {
         name: psAccountContext?.currentShop?.domainSsl,
