@@ -22,11 +22,12 @@ describe('status-card.vue', () => {
       },
     });
 
+    const icon = wrapper.find('[data-test-id="pf-status-icon"]');
     const title = wrapper.find('[data-test-id="pf-status-title"]');
     const description = wrapper.find('[data-test-id="pf-status-description"]');
     const badge = wrapper.findComponent(BCard);
 
-    expect(title.text()).toContain('send'); // Icon
+    expect(icon.text()).toContain('send'); // Icon
     expect(title.text()).toContain('Some title'); // Title
     expect(description.text()).toEqual('Some description');
 
@@ -54,11 +55,12 @@ describe('status-card.vue', () => {
       },
     });
 
+    const icon = wrapper.find('[data-test-id="pf-status-icon"]');
     const title = wrapper.find('[data-test-id="pf-status-title"]');
     const description = wrapper.find('[data-test-id="pf-status-description"]');
     const badge = wrapper.findComponent(BCard);
 
-    expect(title.text()).toContain('send'); // Icon
+    expect(icon.text()).toContain('send'); // Icon
     expect(title.text()).toContain('Some title'); // Title
     expect(description.text()).toEqual('Some description');
 

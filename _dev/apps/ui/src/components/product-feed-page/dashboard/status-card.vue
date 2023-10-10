@@ -28,50 +28,58 @@
       </template>
 
       <div
-        class="d-flex flex-column align-items-center p-2"
+        class="d-flex p-2"
       >
-        <span
-          class="d-flex align-items-center flex-column flex-sm-row
-          ps_gs-fz-16 font-weight-500 text-center pt-1 pb-2"
-          data-test-id="pf-status-title"
+        <p
+          v-if="status.icon === 'google'"
+          class="material-icons-round ps_gs-fz-20 mr-1 ps_gs-productfeed__products-status__icon"
         >
           <img
-            v-if="status.icon === 'google'"
-            class="mr-2 rounded-circle"
             src="@/assets/images/google-icon.svg"
             width="20"
             height="20"
           >
-          <span
-            v-else
-            class="material-icons-round ps_gs-fz-20 mr-1"
-            :class="`text-${status.variant}`"
-          >
-            {{ status.icon }}
-          </span>
-          {{ status.title }}
-        </span>
+        </p>
         <span
-          class="text-center pb-1"
-          data-test-id="pf-status-description"
+          v-else
+          class="material-icons-round ps_gs-fz-20 mt-1 mr-1 ps_gs-productfeed__products-status__icon"
+          :class="`text-${status.variant}`"
+          data-test-id="pf-status-icon"
         >
-          {{ status.description }}
+          {{ status.icon }}
         </span>
-        <b-card
-          :border-variant="badgeBorderVariant"
-          :text-variant="badgeTextVariant"
-          :bg-variant="badgeBackgroundVariant"
-          class="ps_gs-productfeed__badge mt-auto"
-          body-class="px-3"
+        <div
+          class="d-flex flex-column align-items-start"
         >
-          {{ badgeValue }}
-        </b-card>
-        <b-link
-          v-if="status.link"
-          v-bind="status.link"
-          class="stretched-link external_link-no_icon"
-          @click="onLinkClick"
-        />
+          <span
+            class="d-flex flex-column
+            ps_gs-fz-16 font-weight-500 pt-1 pb-2"
+            data-test-id="pf-status-title"
+          >
+            {{ status.title }}
+          </span>
+          <span
+            class="pb-1"
+            data-test-id="pf-status-description"
+          >
+            {{ status.description }}
+          </span>
+          <b-card
+            :border-variant="badgeBorderVariant"
+            :text-variant="badgeTextVariant"
+            :bg-variant="badgeBackgroundVariant"
+            class="ps_gs-productfeed__badge mt-auto"
+            body-class="px-3"
+          >
+            {{ badgeValue }}
+          </b-card>
+          <b-link
+            v-if="status.link"
+            v-bind="status.link"
+            class="stretched-link external_link-no_icon"
+            @click="onLinkClick"
+          />
+        </div>
       </div>
     </b-skeleton-wrapper>
   </div>
