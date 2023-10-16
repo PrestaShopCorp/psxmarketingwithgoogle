@@ -59,7 +59,7 @@
             {{ status.title }}
           </span>
           <span
-            class="pb-1"
+            class="pb-3"
             data-test-id="pf-status-description"
           >
             {{ status.description }}
