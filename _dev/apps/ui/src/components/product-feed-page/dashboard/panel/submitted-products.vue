@@ -134,7 +134,7 @@ export default defineComponent({
         value: this.validationSummary.disapprovedProducts,
         variant: 'danger',
         icon: 'cancel',
-        reverseColors: false,
+        reverseColors: !!this.validationSummary.disapprovedProducts,
         link: {
           to: {name: 'product-feed-status'},
         },
