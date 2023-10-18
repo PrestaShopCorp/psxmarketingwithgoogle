@@ -121,9 +121,6 @@ export default defineComponent({
       return this.status.value ?? '--';
     },
     badgeBorderVariant(): string|null {
-      if (this.status.reverseColors) {
-        return null;
-      }
       return this.status.variant;
     },
     badgeTextVariant(): string|null {
