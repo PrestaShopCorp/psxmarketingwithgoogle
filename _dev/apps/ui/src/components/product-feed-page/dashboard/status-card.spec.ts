@@ -110,7 +110,7 @@ describe('status-card.vue', () => {
     const badge = wrapper.findComponent(BCard);
 
     expect(badge.text()).toEqual('125');
-    expect(badge.attributes('bordervariant')).toBeUndefined();
+    expect(badge.attributes('bordervariant')).toEqual('info');
     expect(badge.attributes('textvariant')).toEqual('white');
     expect(badge.attributes('bgvariant')).toEqual('info');
   });
