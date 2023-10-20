@@ -1,0 +1,6 @@
+services:
+  PrestaShop\Module\PsxMarketingWithGoogle\Conversion\EnhancedConversionToggle:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\Conversion\EnhancedConversionToggle
+    public: true
+    arguments:
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter'

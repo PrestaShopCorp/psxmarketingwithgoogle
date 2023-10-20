@@ -3,6 +3,7 @@ imports:
   - { resource: common/buffer.yml }
   - { resource: common/config.yml }
   - { resource: common/context.yml }
+  - { resource: common/conversion.yml }
   - { resource: common/handler.yml }
   - { resource: common/provider.yml }
   - { resource: common/repository.yml }

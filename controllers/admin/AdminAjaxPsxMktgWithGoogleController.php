@@ -21,6 +21,7 @@
 
 use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
+use PrestaShop\Module\PsxMarketingWithGoogle\Conversion\EnhancedConversionToggle;
 use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler;
 use PrestaShop\Module\PsxMarketingWithGoogle\Provider\CarrierDataProvider;
 use PrestaShop\Module\PsxMarketingWithGoogle\Provider\GoogleTagProvider;
@@ -127,6 +128,9 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
                 break;
             case 'checkRemarketingTagExists':
                 $this->checkRemarketingTagExists($inputs);
+                break;
+            case 'setEnhancedConversions':
+                $this->setEnhancedConversions($inputs);
                 break;
             case 'setConversionActionLabel':
                 $this->setConversionActionLabel($inputs);
@@ -329,6 +333,12 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         if ((bool) $inputs['isRemarketingEnabled']) {
             $this->configurationAdapter->updateValue(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS, true);
             $this->configurationAdapter->updateValue(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG, base64_encode($inputs['tagSnippet']));
+
+            if ($this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_ENHANCED_STATUS)) {
+                /** @var EnhancedConversionToggle $enhancedConversionToggle */
+                $enhancedConversionToggle = $this->module->getService(EnhancedConversionToggle::class);
+                $enhancedConversionToggle->enable();
+            }
         } else {
             $this->configurationAdapter->deleteByName(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS);
             $this->configurationAdapter->deleteByName(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG);
@@ -358,6 +368,29 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         }
 
         $this->ajaxDie(json_encode(['tagAlreadyExists' => $googleTag]));
+    }
+
+    private function setEnhancedConversions(array $inputs)
+    {
+        if (!isset($inputs['enable'])) {
+            http_response_code(400);
+            $this->ajaxDie(json_encode([
+                'success' => false,
+                'message' => 'Missing enable key',
+            ]));
+        }
+        /** @var EnhancedConversionToggle $enhancedConversionToggle */
+        $enhancedConversionToggle = $this->module->getService(EnhancedConversionToggle::class);
+
+        if ($inputs['enable']) {
+            $success = $enhancedConversionToggle->enable();
+        } else {
+            $success = $enhancedConversionToggle->disable();
+        }
+
+        $this->ajaxDie(json_encode([
+            'success' => $success,
+        ]));
     }
 
     private function setConversionActionLabel(array $inputs)
