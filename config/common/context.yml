@@ -19,10 +19,20 @@ services:
     public: true
     factory: ['PrestaShop\Module\PsxMarketingWithGoogle\Factory\ContextFactory', 'getLanguage']
 
+  psxmarketingwithgoogle.cart:
+    class: 'Currency'
+    public: true
+    factory: ['PrestaShop\Module\PsxMarketingWithGoogle\Factory\ContextFactory', 'getCart']
+
   psxmarketingwithgoogle.currency:
     class: 'Currency'
     public: true
     factory: ['PrestaShop\Module\PsxMarketingWithGoogle\Factory\ContextFactory', 'getCurrency']
+
+  psxmarketingwithgoogle.customer:
+    class: 'Currency'
+    public: true
+    factory: ['PrestaShop\Module\PsxMarketingWithGoogle\Factory\ContextFactory', 'getCustomer']
 
   psxmarketingwithgoogle.smarty:
     class: 'Smarty'
