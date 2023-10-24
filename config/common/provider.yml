@@ -21,12 +21,6 @@ services:
     arguments:
       - '@psxmarketingwithgoogle.context'
 
-  PrestaShop\Module\PsxMarketingWithGoogle\Provider\ConversionEventDataProvider:
-    class: 'PrestaShop\Module\PsxMarketingWithGoogle\Provider\ConversionEventDataProvider'
-    public: true
-    arguments:
-      - '@psxmarketingwithgoogle.context'
-
   PrestaShop\Module\PsxMarketingWithGoogle\Provider\PageViewEventDataProvider:
     class: 'PrestaShop\Module\PsxMarketingWithGoogle\Provider\PageViewEventDataProvider'
     public: true
