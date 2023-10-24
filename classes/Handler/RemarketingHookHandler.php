@@ -146,7 +146,7 @@ class RemarketingHookHandler
 
         if ($hookName === 'hookDisplayHeader') {
             $snippet = base64_decode($this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG));
-            
+
             if (!$this->enhancedConversionActive) {
                 return $snippet;
             }

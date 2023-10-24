@@ -59,7 +59,7 @@ class UserData implements JsonSerializable
     }
 
     /**
-     * @var bool
+     * @return bool
      */
     public function isEmpty()
     {
@@ -75,6 +75,7 @@ class UserData implements JsonSerializable
                 return false;
             }
         }
+
         return true;
     }
 

@@ -31,7 +31,7 @@ class EnhancedConversionToggle
     private $configurationAdapter;
 
     public function __construct(
-        ConfigurationAdapter $configurationAdapter,
+        ConfigurationAdapter $configurationAdapter
     ) {
         $this->configurationAdapter = $configurationAdapter;
     }
@@ -39,7 +39,7 @@ class EnhancedConversionToggle
     public function enable(): bool
     {
         $snippet = base64_decode($this->configurationAdapter->get(
-            Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG,
+            Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG
         ));
 
         $alteredSnippet = (new SnippetUpdater($snippet))
@@ -58,7 +58,7 @@ class EnhancedConversionToggle
     public function disable(): bool
     {
         $snippet = base64_decode($this->configurationAdapter->get(
-            Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG,
+            Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG
         ));
 
         $alteredSnippet = (new SnippetUpdater($snippet))

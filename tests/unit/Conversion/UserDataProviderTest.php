@@ -3,7 +3,6 @@
 namespace Conversion;
 
 use PHPUnit\Framework\TestCase;
-use PrestaShop\Module\PsxMarketingWithGoogle\Conversion\SnippetUpdater;
 use PrestaShop\Module\PsxMarketingWithGoogle\Conversion\UserDataProvider;
 
 class UserDataProviderTest extends TestCase
@@ -21,44 +20,44 @@ class UserDataProviderTest extends TestCase
         $customerMock->id = 3;
         $customerMock->id_lang = 1;
         $customerMock->id_shop = 1;
-        $customerMock->lastname = "The Dog";
-        $customerMock->firstname = "Doge";
-        $customerMock->birthday = "0000-00-00";
-        $customerMock->email = "doge@prestashop.com";
+        $customerMock->lastname = 'The Dog';
+        $customerMock->firstname = 'Doge';
+        $customerMock->birthday = '0000-00-00';
+        $customerMock->email = 'doge@prestashop.com';
 
         $addressMock->id = 7;
         $addressMock->id_country = 8;
         $addressMock->id_state = 0;
-        $addressMock->country = "France";
-        $addressMock->alias = "Mon adresse";
-        $addressMock->company = "";
-        $addressMock->lastname = "The Dog";
-        $addressMock->firstname = "Doge";
-        $addressMock->address1 = "198 Avenue de France";
-        $addressMock->address2 = "";
-        $addressMock->postcode = "75013";
-        $addressMock->city = "Paris";
-        $addressMock->other = "";
-        $addressMock->phone = "";
-        $addressMock->phone_mobile = "";
+        $addressMock->country = 'France';
+        $addressMock->alias = 'Mon adresse';
+        $addressMock->company = '';
+        $addressMock->lastname = 'The Dog';
+        $addressMock->firstname = 'Doge';
+        $addressMock->address1 = '198 Avenue de France';
+        $addressMock->address2 = '';
+        $addressMock->postcode = '75013';
+        $addressMock->city = 'Paris';
+        $addressMock->other = '';
+        $addressMock->phone = '';
+        $addressMock->phone_mobile = '';
 
         /** @var UserDataProvider */
         $provider = $this->getMockBuilder(UserDataProvider::class)
-            ->onlyMethods(["getAddressFromCart"])
+            ->onlyMethods(['getAddressFromCart'])
             ->setConstructorArgs([$customerMock, $cartMock])
             ->getMock();
         $provider->method('getAddressFromCart')->willReturn($addressMock);
-        
+
         $userData = $provider->getUserData();
         $expected = [
-            "email" => 'doge@prestashop.com',
-            "address" => [
-                "first_name" => 'Doge',
-                "last_name" => 'The Dog',
-                "street" => '198 Avenue de France',
-                "city" => 'Paris',
-                "postal_code" => '75013',
-                "country" => 'France'
+            'email' => 'doge@prestashop.com',
+            'address' => [
+                'first_name' => 'Doge',
+                'last_name' => 'The Dog',
+                'street' => '198 Avenue de France',
+                'city' => 'Paris',
+                'postal_code' => '75013',
+                'country' => 'France',
             ],
         ];
 
@@ -81,24 +80,24 @@ class UserDataProviderTest extends TestCase
         $customerMock->id = 3;
         $customerMock->id_lang = 1;
         $customerMock->id_shop = 1;
-        $customerMock->lastname = "The Dog";
-        $customerMock->firstname = "Doge";
-        $customerMock->birthday = "0000-00-00";
-        $customerMock->email = "doge@prestashop.com";
+        $customerMock->lastname = 'The Dog';
+        $customerMock->firstname = 'Doge';
+        $customerMock->birthday = '0000-00-00';
+        $customerMock->email = 'doge@prestashop.com';
 
         /** @var UserDataProvider */
         $provider = $this->getMockBuilder(UserDataProvider::class)
-            ->onlyMethods(["getAddressFromCart"])
+            ->onlyMethods(['getAddressFromCart'])
             ->setConstructorArgs([$customerMock, $cartMock])
             ->getMock();
         $provider->method('getAddressFromCart')->willReturn(null);
-        
+
         $userData = $provider->getUserData();
         $expected = [
-            "email" => 'doge@prestashop.com',
-            "address" => [
-                "first_name" => 'Doge',
-                "last_name" => 'The Dog',
+            'email' => 'doge@prestashop.com',
+            'address' => [
+                'first_name' => 'Doge',
+                'last_name' => 'The Dog',
             ],
         ];
 
@@ -128,11 +127,11 @@ class UserDataProviderTest extends TestCase
 
         /** @var UserDataProvider */
         $provider = $this->getMockBuilder(UserDataProvider::class)
-            ->onlyMethods(["getAddressFromCart"])
+            ->onlyMethods(['getAddressFromCart'])
             ->setConstructorArgs([$customerMock, $cartMock])
             ->getMock();
         $provider->method('getAddressFromCart')->willReturn(null);
-        
+
         $userData = $provider->getUserData();
         $expected = [];
 

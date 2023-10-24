@@ -54,7 +54,7 @@ class UserDataProvider
     {
         $userData = new UserData();
         $userDataAddress = new UserAddressData();
-        
+
         $userData->setEmail($this->customer->email);
         $userDataAddress->setFirstName($this->customer->firstname);
         $userDataAddress->setLastName($this->customer->lastname);

@@ -95,7 +95,7 @@ class UserAddressData implements JsonSerializable
     }
 
     /**
-     * @var bool
+     * @return bool
      */
     public function isEmpty()
     {
@@ -104,6 +104,7 @@ class UserAddressData implements JsonSerializable
                 return false;
             }
         }
+
         return true;
     }
 

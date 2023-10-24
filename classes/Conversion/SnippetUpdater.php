@@ -22,7 +22,10 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\Conversion;
 
 class SnippetUpdater
 {
-    private string $snippet;
+    /**
+     * @var string
+     */
+    private $snippet;
 
     public function __construct(
         string $originalSnippet
