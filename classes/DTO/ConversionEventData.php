@@ -65,7 +65,12 @@ class ConversionEventData implements JsonSerializable
         return $eventData;
     }
 
-    public function setTransactionId(string $transactionId)
+    /**
+     * @param string|int $transactionId
+     *
+     * @return self
+     */
+    public function setTransactionId($transactionId)
     {
         $this->transactionId = $transactionId;
 
