@@ -81,7 +81,7 @@ class PurchaseEventDataProvider
         $purchaseData->setSendTo($sendTo);
         $purchaseData->setCurrency($this->context->currency->iso_code);
         $purchaseData->setValue((string) $order->total_products_wt);
-        $purchaseData->setTransactionId($order->reference);
+        $purchaseData->setTransactionId($order->id_cart);
 
         // CwCD Parameters
         $purchaseData->setDiscount((float) $order->total_discounts_tax_incl);
