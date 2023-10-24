@@ -59,7 +59,7 @@ class UserAddressData implements JsonSerializable
      */
     private $country;
 
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         $data = [];
 

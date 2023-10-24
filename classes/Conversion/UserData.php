@@ -39,7 +39,7 @@ class UserData implements JsonSerializable
      */
     private $address;
 
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         $data = [];
 

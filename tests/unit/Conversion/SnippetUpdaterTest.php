@@ -18,7 +18,7 @@ class SnippetUpdaterTest extends TestCase
             gtag('js', new Date());
             gtag('config', 'AW-000000000');
             </script>
-            EOF;
+EOF;
 
         $expectedOutput = <<<EOF
             <!-- Google tag (gtag.js) -->
@@ -29,7 +29,7 @@ class SnippetUpdaterTest extends TestCase
             gtag('js', new Date());
             gtag('config', 'AW-000000000', {'allow_enhanced_conversions': true});
             </script>
-            EOF;
+EOF;
 
         $this->assertSame(
             $expectedOutput,
