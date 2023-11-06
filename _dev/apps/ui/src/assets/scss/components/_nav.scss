@@ -3,8 +3,8 @@
 //
 
 .nav-pills {
-  .nav-link.active,
-  .show > .nav-link {
+  .nav-link {
     font-weight: 600;
+    color: $primary;
   }
 }
