@@ -7,7 +7,7 @@
     >
       <template #loading>
         <div
-          class="d-flex flex-column align-items-center p-2"
+          class="d-flex flex-column align-items-center p-3"
         >
           <b-skeleton
             width="70%"
@@ -28,7 +28,7 @@
       </template>
 
       <div
-        class="d-flex p-2"
+        class="d-flex p-3"
       >
         <p
           v-if="status.icon === 'google'"
@@ -121,9 +121,6 @@ export default defineComponent({
       return this.status.value ?? '--';
     },
     badgeBorderVariant(): string|null {
-      if (this.status.reverseColors) {
-        return null;
-      }
       return this.status.variant;
     },
     badgeTextVariant(): string|null {
