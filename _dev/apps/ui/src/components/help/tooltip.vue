@@ -25,7 +25,7 @@
     />
     <b-tooltip
       :target="`tooltip-circle-${this._uid}`"
-      :container="`#${this.$root.$el.id}`"
+      container="#psxMktgWithGoogleApp"
       triggers="hover"
       placement="right"
     >
