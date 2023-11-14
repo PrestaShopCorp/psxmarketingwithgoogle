@@ -891,7 +891,7 @@
         "overwriteProductFeed": "Suprascrie fluxul produselor",
         "whyDidntWork": "Vezi de ce nu a funcționat",
         "aboutProductCategory": "Lista categoriilor de produse Google",
-        "edit": "Edit",
+        "edit": "Editare",
         "editSettings": "Modifică setările",
         "editRules": "Modifică regulile",
         "shopMaintenanceBtn": "Accesează setările de întreținere",
@@ -962,7 +962,7 @@
         "validateSelection": "Validează selecția",
         "visitThe": "Vizitează {0} pentru mai multe informații",
         "createPmax": "Creează o campanie Performance Max",
-        "understand": "I understand",
+        "understand": "Înțeleg",
         "moreActions": "Mai multe acțiuni"
     },
     "badge": {
