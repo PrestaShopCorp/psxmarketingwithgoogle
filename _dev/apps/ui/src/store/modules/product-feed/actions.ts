@@ -51,7 +51,11 @@ export const createProductFeedApiPayload = (settings:any) => ({
   ),
   ...(
     (settings.shippingSetup === ShippingSetupOption.IMPORT) ? {
-      shippingSettings: settings.shippingSettings,
+      shippingSettings: settings.shippingSettings?.filter((s) => (
+        (s.collection !== 'carriers' || (!!s.properties.active && !s.properties.deleted))
+        && (!s.properties.country_ids
+          || settings.targetCountries.some((tc: string) => s.properties.country_ids.includes(tc)))),
+      ),
       additionalShippingSettings: settings.additionalShippingSettings,
     } : {}
   ),
