@@ -124,8 +124,12 @@ export default {
   async [ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_MODULE](
     {commit}: Context,
   ) {
-    const result = await fetchShop('getRemarketingTagsStatus');
+    const result: {
+      remarketingTagsStatus: boolean,
+      enhancedConversionStatus: boolean,
+    } = await fetchShop('getRemarketingTagsStatus');
     commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG, result.remarketingTagsStatus);
+    commit(MutationsTypes.TOGGLE_STATUS_ENHANCED_CONVERSIONS, result.enhancedConversionStatus);
   },
 
   async [ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_IF_ALREADY_EXISTS](
@@ -151,6 +155,23 @@ export default {
       MutationsTypes.SET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED,
       result.conversionActionLabels,
     );
+  },
+
+  async [ActionsTypes.GET_ENHANCED_CONVERSIONS_STATUS](
+    {commit}: Context,
+  ): Promise<void> {
+    const result: {enabled: boolean} = await fetchShop('getEnhancedConversions');
+    commit(MutationsTypes.TOGGLE_STATUS_ENHANCED_CONVERSIONS, result.enabled);
+  },
+
+  async [ActionsTypes.SAVE_ENHANCED_CONVERSIONS_STATUS](
+    {commit}: Context,
+    payload: boolean,
+  ): Promise<void> {
+    await fetchShop('setEnhancedConversions', {
+      enable: payload,
+    });
+    commit(MutationsTypes.TOGGLE_STATUS_ENHANCED_CONVERSIONS, payload);
   },
 
   async [ActionsTypes.CREATE_REMARKETING_DEFAULT_CONVERSION_ACTIONS](

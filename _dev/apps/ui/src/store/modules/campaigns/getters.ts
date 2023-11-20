@@ -69,6 +69,9 @@ export default {
   ): ConversionAction[] {
     return state.conversionActions;
   },
+  [GettersTypes.GET_ENHANCED_CONVERSIONS_STATUS](state: LocalState): boolean|null {
+    return state.trackingFeature.enhanced;
+  },
   [GettersTypes.GET_ERROR_CAMPAIGN_NAME](state: LocalState): boolean|null {
     return state.errorCampaignNameExists;
   },

@@ -59,6 +59,13 @@ export default {
     state.conversionActions = payload;
   },
 
+  [MutationsTypes.TOGGLE_STATUS_ENHANCED_CONVERSIONS](
+    state: LocalState,
+    payload: boolean,
+  ): void {
+    state.trackingFeature.enhanced = payload;
+  },
+
   // request mutations
   [MutationsTypes.SET_REPORTING_PERIOD_SELECTED](
     state: LocalState,

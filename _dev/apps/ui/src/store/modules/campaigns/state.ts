@@ -28,6 +28,10 @@ export interface State {
   campaigns: CampaignsList,
   errorCampaignNameExists: null|boolean;
   tracking: null|boolean;
+  trackingFeature: {
+    basic: null|boolean;
+    enhanced: null|boolean;
+  },
   tagAlreadyExists: boolean;
   conversionActions: ConversionAction[];
   reporting: Reporting;
@@ -184,6 +188,10 @@ export const state: State = {
   warmedUp: false,
   errorCampaignNameExists: null,
   tracking: true,
+  trackingFeature: {
+    basic: false,
+    enhanced: null,
+  },
   tagAlreadyExists: false,
   conversionActions: [],
   sscAvailableFilters: [],
