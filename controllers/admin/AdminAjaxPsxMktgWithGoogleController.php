@@ -317,6 +317,7 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
     {
         $this->ajaxDie(json_encode([
             'remarketingTagsStatus' => (bool) $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS),
+            'enhancedConversionStatus' => (bool) $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_ENHANCED_STATUS),
         ]));
     }
 
