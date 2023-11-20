@@ -28,14 +28,15 @@
     >
       <b-button
         v-if="tosAreSigned"
-        @click="openGadsTos"
+        :href="linkToTermsOfServices"
+        target="_blank"
       >
         {{ $t('cta.signGadsToS') }}
       </b-button>
       
       <b-button
         v-else
-        @click="enabledEnhancedConversions"
+        @click="enableEnhancedConversions"
       >
         {{ $t('cta.enableEnhancedConversions') }}
       </b-button>
@@ -45,6 +46,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import googleUrl from '@/assets/json/googleUrl.json';
 import PsModal from '@/components/commons/ps-modal.vue';
 
 export default defineComponent({
@@ -58,12 +60,14 @@ export default defineComponent({
       required: true,
     },
   },
-  methods: {
-    openGadsTos(): void {
-      // TODO
+  computed: {
+    linkToTermsOfServices(): string {
+      return googleUrl.googleAdsConversionsTermsAndConditions;
     },
-    enabledEnhancedConversions(): void {
-      // TODO
+  },
+  methods: {
+    async enableEnhancedConversions(): Promise<void> {
+      await this.$store.dispatch('campaigns/SAVE_ENHANCED_CONVERSIONS_STATUS', true);
     },
   },
 });

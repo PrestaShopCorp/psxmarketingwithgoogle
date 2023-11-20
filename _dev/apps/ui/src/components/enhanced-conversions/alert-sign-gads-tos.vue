@@ -19,7 +19,8 @@
         <b-button
           class="mx-1 mt-3 mt-md-0 mr-md-1 text-nowrap ml-auto"
           variant="outline-primary"
-          @click="$emit('startSubscription', 'subscription_reactivation')"
+          target="_blank"
+          :href="linkToTermsOfServices"
         >
           {{ $t('cta.goTo', [$t('cta.GoogleAds')]) }}
         </b-button>
@@ -30,11 +31,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import googleUrl from '@/assets/json/googleUrl.json';
 
 export default defineComponent({
-  methods: {
-    openGadsTos(): void {
-      // TODO
+  computed: {
+    linkToTermsOfServices(): string {
+      return googleUrl.googleAdsConversionsTermsAndConditions;
     },
   },
 });

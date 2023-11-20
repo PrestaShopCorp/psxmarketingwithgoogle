@@ -24,9 +24,9 @@
         <b-button
           class="mx-1 mt-3 mt-md-0 mr-md-1 text-nowrap ml-auto"
           variant="outline-primary"
-          @click="$emit('startSubscription', 'subscription_reactivation')"
+          @click="enableEnhancedConversions"
         >
-          {{ $t('cta.goTo', [$t('cta.GoogleAds')]) }}
+          {{ $t('cta.enableEnhancedConversions') }}
         </b-button>
       </div>
     </div>
@@ -41,6 +41,11 @@ export default defineComponent({
     isOnConfigurationPage: {
       type: Boolean,
       required: true,
+    },
+  },
+  methods: {
+    async enableEnhancedConversions(): Promise<void> {
+      await this.$store.dispatch('campaigns/SAVE_ENHANCED_CONVERSIONS_STATUS', true);
     },
   },
 });

@@ -55,6 +55,7 @@ export interface AccountInformations {
     name: null|string,
   },
   currencyCode?: string,
+  acceptedCustomerDataTerms?: boolean,
 }
 
 export const state: State = {

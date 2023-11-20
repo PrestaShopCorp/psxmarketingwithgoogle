@@ -47,6 +47,9 @@ export default {
       timeZone: state.timeZone,
     };
   },
+  [GettersTypes.GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED](state: LocalState): boolean {
+    return !!state.accountChosen?.acceptedCustomerDataTerms;
+  },
   [GettersTypes.GET_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE](state: LocalState) {
     return state.connectedOnce;
   },
