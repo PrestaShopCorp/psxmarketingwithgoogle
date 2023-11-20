@@ -54,7 +54,7 @@ export default {
         dispatch(ActionsTypes.GET_CAMPAIGNS_LIST),
       ),
       runIf(
-        state.tracking === null,
+        state.trackingFeature.basic === null,
         dispatch(ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_MODULE),
       ),
       runIf(
@@ -132,21 +132,6 @@ export default {
     commit(MutationsTypes.TOGGLE_STATUS_ENHANCED_CONVERSIONS, result.enhancedConversionStatus);
   },
 
-  async [ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_IF_ALREADY_EXISTS](
-    {commit, rootState}: Context,
-  ) {
-    const regex = /AW-[0-9]+/;
-    const remarketingSnippet = rootState.googleAds.accountChosen?.remarketingSnippet;
-    const idTag = regex.exec(remarketingSnippet);
-
-    if (!idTag || !idTag.length) {
-      return;
-    }
-
-    const result = await fetchShop('checkRemarketingTagExists', {tag: idTag[0]});
-    commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG_ALREADY_EXIST,
-      result.tagAlreadyExists);
-  },
   async [ActionsTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED](
     {commit}: Context,
   ) {

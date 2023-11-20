@@ -582,8 +582,6 @@
       "enableCreationRemarketingTag": "Enable remarketing and conversion tracking tag",
       "pauseCampaign": "Your campaign will run until you pause it or as soon as end date is meet. You can pause it at any time.",
       "alerts": {
-        "noTag": "By not adding the tag automatically Google will not be able to send campaigns results",
-        "duplicatedTag": "Looks like you already have a tag linked to your google account, creating a new tag can duplicates events for your campaigns. We suggest to only keep the one we generate for you.",
         "noConversionActions": "The tracking tag has been enabled, but there is no conversion action set on the shop. This can be fixed by creating new ones.",
         "hasUnhandledFilters": "At least one filter of this campaign is not supported by this module. To prevent any loss on your existing configuration, only basic details of the campaign can be modified.",
         "PMaxExplanationTitle": "Performance Max is a new goal-based campaign.",
@@ -599,7 +597,6 @@
       "remarketingNote": "**Please note:** if you already have Google Ads Conversion Actions with transaction-specific conversion values configured on your site for this Google Ads account, then you do not need to set new conversion tags on your site.",
       "toggleNewConversionTag": "Set new conversion tracking tags on my site",
       "toggleNewConversionTag2": "We will create the following conversion tags : Page view, Purchase, Add to basket",
-      "remarketingTagLoading": "Checking if you have a remarketing and conversion tracking tags to add to your shop",
       "descriptiveMessage": "Only the Performance Max campaigns and Smart Shopping campaigns associated to your Google Merchant Center account are listed. \nIf you want to see all your campaigns, [please go to your Google Ads Account]({0})[:target=\"_blank\"].",
       "nbProductsFiltersSelected": "No product filter selected | {0} product filter selected | {0} products filters selected",
       "dimensionXFilterSelected": "{0} filter",

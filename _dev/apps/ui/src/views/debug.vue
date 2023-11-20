@@ -274,10 +274,6 @@
       >
         <ul class="mb-0">
           <li>
-            <strong>Remarketing tag is implemented by a third party module:</strong>
-            {{ GET_REMARKETING_TRACKING_TAG_ALREADY_EXIST_STATUS?'✅':'❌' }}
-          </li>
-          <li>
             <strong>
               Remarketing tag is implemented and enabled by "PrestaShop Marketing With Google":
             </strong>
@@ -336,7 +332,6 @@ export default defineComponent({
     ...mapGetters('campaigns', [
       GettersTypes.GET_REMARKETING_TRACKING_TAG_IS_SET,
       GettersTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED,
-      GettersTypes.GET_REMARKETING_TRACKING_TAG_ALREADY_EXIST_STATUS,
     ]),
     ...mapGetters('app', [
       GettersTypesApp.GET_DEBUG_DATA,

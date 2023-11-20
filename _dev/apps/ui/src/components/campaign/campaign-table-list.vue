@@ -203,7 +203,7 @@ export default defineComponent({
     },
     remarketingTag() {
       return this.$store.getters[
-        'campaigns/GET_REMARKETING_TRACKING_TAG_STATUS'
+        'campaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'
       ];
     },
   },

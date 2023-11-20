@@ -1,6 +1,6 @@
 import SSCPopinActivateTracking from '../src/components/campaigns/ssc-popin-activate-tracking.vue'
 import {contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
-import {conversionTrackingIsTrue, conversionTrackingIsFalse, conversionTagAlreadyExists} from '../.storybook/mock/campaigns';
+import {conversionTrackingIsTrue, conversionTrackingIsFalse} from '../.storybook/mock/campaigns';
 export default {
   title: 'Campaign/Popins/Tracking',
     component: SSCPopinActivateTracking,
@@ -56,17 +56,5 @@ TrackingFalse.args = {
     this.$store.state.campaigns = Object.assign({}, conversionTrackingIsFalse);
   },
 };
-
-export const TrackingAlreadyExists:any = Template.bind({});
-TrackingAlreadyExists.args = {
-  visible: true,
-  mounted(this: any) {
-    this.$refs.SSCPopinActivateTracking.$data.isLoading = false;
-  },
-  beforeMount(this: any) {
-    this.$store.state.campaigns = Object.assign({}, conversionTagAlreadyExists);
-  },
-};
-
 
 

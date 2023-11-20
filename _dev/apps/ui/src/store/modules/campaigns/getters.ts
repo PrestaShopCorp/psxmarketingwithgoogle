@@ -50,19 +50,7 @@ export default {
   [GettersTypes.GET_REMARKETING_TRACKING_TAG_IS_SET](
     state: LocalState,
   ): boolean {
-    return !!state.tracking;
-  },
-  [GettersTypes.GET_REMARKETING_TRACKING_TAG_ALREADY_EXIST_STATUS](
-    state: LocalState,
-  ): boolean {
-    return state.tagAlreadyExists;
-  },
-  [GettersTypes.GET_REMARKETING_TRACKING_TAG_STATUS](
-    state: LocalState,
-    getters,
-  ): boolean {
-    return getters.GET_REMARKETING_TRACKING_TAG_ALREADY_EXIST_STATUS
-      || getters.GET_REMARKETING_TRACKING_TAG_IS_SET;
+    return !!state.trackingFeature.basic;
   },
   [GettersTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED](
     state: LocalState,

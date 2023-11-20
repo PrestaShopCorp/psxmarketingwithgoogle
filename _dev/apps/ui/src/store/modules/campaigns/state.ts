@@ -27,12 +27,10 @@ export interface State {
   warmedUp: boolean,
   campaigns: CampaignsList,
   errorCampaignNameExists: null|boolean;
-  tracking: null|boolean;
   trackingFeature: {
     basic: null|boolean;
     enhanced: null|boolean;
   },
-  tagAlreadyExists: boolean;
   conversionActions: ConversionAction[];
   reporting: Reporting;
   // All possible dimensions & filters (untouched by the popin, not filtered by any search)
@@ -187,12 +185,10 @@ export interface DailyResult {
 export const state: State = {
   warmedUp: false,
   errorCampaignNameExists: null,
-  tracking: true,
   trackingFeature: {
     basic: false,
     enhanced: null,
   },
-  tagAlreadyExists: false,
   conversionActions: [],
   sscAvailableFilters: [],
   errorFetchingFilters: false,

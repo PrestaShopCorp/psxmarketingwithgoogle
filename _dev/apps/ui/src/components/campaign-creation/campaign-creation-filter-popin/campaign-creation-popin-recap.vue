@@ -170,7 +170,7 @@ export default defineComponent({
         this.$segment.track('[GGL] Create SSC Validation Step', {
           module: 'psxmarketingwithgoogle',
           remarketing_conversion_value:
-            this.$store.state.campaigns.tracking,
+            this.$store.state.campaigns.trackingFeature.basic,
           params: SegmentGenericParams,
         });
       }
