@@ -3,8 +3,8 @@
     id="psxmarketingwithgoogle_modal_ec_intro"
     ref="psxmarketingwithgoogle_modal_ec_intro"
     :title="$t('modal.titleEnhancedConversionsIntro')"
-    hide-footer
     visible
+    @ok="ok"
   >
     <img
       src="@/assets/images/empty-cart.svg"
@@ -23,24 +23,15 @@
       v-if="!tosAreSigned"
     />
 
-    <div
-      class="my-4 d-flex justify-content-end"
-    >
-      <b-button
-        v-if="tosAreSigned"
-        :href="linkToTermsOfServices"
-        target="_blank"
-      >
-        {{ $t('cta.signGadsToS') }}
-      </b-button>
-      
-      <b-button
-        v-else
-        @click="enableEnhancedConversions"
-      >
-        {{ $t('cta.enableEnhancedConversions') }}
-      </b-button>
-    </div>
+    <template slot="modal-ok">
+      {{ tosAreSigned ? 
+        $t('cta.enableEnhancedConversions') :
+        $t('cta.signGadsToS')
+      }}
+    </template>
+    <template slot="modal-cancel">
+      {{ $t('cta.cancel') }}
+    </template>
   </ps-modal>
 </template>
 
@@ -66,6 +57,15 @@ export default defineComponent({
     },
   },
   methods: {
+    async ok(): Promise<void> {
+      if (this.tosAreSigned) {
+        return this.enableEnhancedConversions();
+      }
+      this.openGoogleAdsTos();
+    },
+    openGoogleAdsTos(): void {
+      window.open(this.linkToTermsOfServices, '_blank')?.focus();
+    },
     async enableEnhancedConversions(): Promise<void> {
       await this.$store.dispatch('campaigns/SAVE_ENHANCED_CONVERSIONS_STATUS', true);
     },
