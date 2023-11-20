@@ -25,6 +25,9 @@ export default {
     headerClass: {
       default: 'ps_gs-modal__header',
     },
+    bodyClass: {
+      default: 'ps_gs-modal__body',
+    },
     contentClass: {
       default: 'ps_gs-modal__content',
     },

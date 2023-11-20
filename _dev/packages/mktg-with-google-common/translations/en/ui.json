@@ -523,6 +523,18 @@
       "contentInfo": "Advertisers who upgrade Smart Shopping campaigns to Performance Max see an average increase of 12% in conversion value at the same or better return on ad spend (ROAS)*",
       "footerInfo": "* Google Data, Global, Ads, Sep–Oct 2021."
     },
+    "enhancedConversionTrackingCard": {
+      "title": "Enhanced conversion tracking",
+      "intro": "Improve your conversion tracking accuracy and unlock more powerful bidding. This feature works alongside your existing conversion tags, sending secure, privacy-friendly conversion data from your website to Google.",
+      "signTosAlert": {
+        "title": "Improve your conversion tracking & unlock more powerful bidding to your Ads",
+        "text": "Enable enhanced conversion tracking by simply agreeing to Google Ads' terms of service"
+      },
+      "enableEnhancedConversionAlert": {
+        "title": "Ready to enable enhanced conversion tracking feature",
+        "text": "Your Google Ads' terms of service are up-to-date, head to your configuration page to enable your new feature"
+      }
+    },
     "smartShoppingCampaignCreation": {
       "allFilters": "All Filters",
       "breadcrumb1": "Campaigns",
@@ -569,10 +581,6 @@
       "toggleCreationNewRemarketingTag": "Create a new remarketing and conversion tracking tag to your shop",
       "enableCreationRemarketingTag": "Enable remarketing and conversion tracking tag",
       "pauseCampaign": "Your campaign will run until you pause it or as soon as end date is meet. You can pause it at any time.",
-      "switch": {
-        "on": "On",
-        "off": "Off"
-      },
       "alerts": {
         "noTag": "By not adding the tag automatically Google will not be able to send campaigns results",
         "duplicatedTag": "Looks like you already have a tag linked to your google account, creating a new tag can duplicates events for your campaigns. We suggest to only keep the one we generate for you.",
@@ -619,7 +627,7 @@
         "content": "It is generally recommended to start with a **minimum budget of {0} per day for your daily ad spend**. This allows you to reach a larger audience & potentially see better results.",
         "readMore": "This recommended minimum budget will allow you to test the effectiveness\n  of your ads and make adjustments as needed. Of course, every business is\n  different, and the actual budget that is best for you may vary depending\n  on your specific goals and target audience. We recommend experimenting\n  with different budgets to determine what works best for your business."
       }
-     },
+    },
 
     "productFeedPage": {
       "breadcrumb": {
@@ -918,6 +926,7 @@
       "reviewProblems": "Review problems",
       "saveAndExport": "Save and export",
       "go": "Go",
+      "goTo": "Go to {0}",
       "continueWithoutSave": "Continue without save",
       "save": "Save",
       "disconnect": "Disconnect",
@@ -965,7 +974,9 @@
       "visitThe" : "Visit the {0} for more information",
       "createPmax": "Create Performance Max campaign",
       "understand": "I understand",
-      "moreActions": "More Actions"
+      "moreActions": "More Actions",
+      "signGadsToS": "Sign terms of service on Google Ads",
+      "enableEnhancedConversions": "Activate enhanced conversion tracking"
     },
     "badge": {
       "free": "Free",
@@ -1019,19 +1030,12 @@
       "titleActivateTrackingSSC": "Activate remarketing and conversion tracking tag.",
       "textActivateTrackingSSC": "In order to run Performance Max campaigns, Google Ads needs to be able to create [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] and [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline\"] on your site.   \n PrestaShop will automatically set these code snippets on your shop.",
       "textConfirmCancel" : "If you go back you will lose your selected values",
-      "upgradeSCCToPmaxTitle": "Campaign's upgrade coming soon",
-      "upgradeSCCToPmaxTextWithoutCampaign": "Starting {0}, you will be able to create Performance Max campaigns for your store. \n\n Performance Max is the next generation of Smart Shopping campaigns. It is an enhanced campaign type powered by Google's smart technology. It works behind the scene to automatically optimise your ads across the shopping journey to drive maximum performance.",
-      "upgradeSCCToPmaxText": "Smart Shopping campaigns will be upgraded to Performance Max on {0}  \n\n You don't need to take any action as your Smart Shopping campaign settings and budget will remain the same. Only your campaign type will be automatically updated to Performance Max. \n\n From the start of July, you will only be able to create Performance Max campaigns.",
-      "PMaxLiveTitle": "Performance Max is here",
-      "PMaxLiveText": "Starting today, you can create Performance Max campaigns, the next generation of Smart Shopping. \n\nPerformance Max is an enhanced campaign type powered by Google's smart technology. It works behind the scenes to automatically optimize your ads across the shopping journey to drive maximum performance. ",
-      "PMaxMigrationTitle": "Important News",
-      "PMaxMigrationText": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max campaigns now.\n\n- Your campaign settings and budget remain the same. \n\n- The functionality is at parity to Smart Shopping campaigns. \n\n- From this point on you can only create Performance Max campaigns.",
-      "PmaxTextLink": "Learn more about Performance Max",
-      "textPmaxReleased": "Your Smart Shopping campaigns will start automatically upgrading to Performance Max Campaigns now. [Learn more]({0})[:target=\"_blank\" class=\"text-decoration-underline\"]",
       "disconnectedUserBo": "You have been disconnected from the backoffice. You will be automatically redirected to the login page in {0} seconds.",
-      "titleDisconnectedUserBo": "Connection lost"
+      "titleDisconnectedUserBo": "Connection lost",
+      "titleEnhancedConversionsIntro": "Measure the effectiveness of your Ads",
+      "textEnhancedConversionsIntro": "Enhance your conversion tracking accuracy and empower your bidding strategy with our latest feature: Enhanced Conversion Tracking. This feature seamlessly integrates with your existing conversion tags, ensuring the secure and privacy-conscious transmission of conversion data from your website to Google.",
+      "textActivationEnhancedConversionsIntro": "Activating it is easy – just agree to the terms of service on Google Ads. The feature is accessible on your configuration’s page below conversion tracking tag."
     },
-
     "tooltip" : {
       "googleAccountRequired" : "Requires Google account configuration",
       "merchantCenterAccountRequired" : "Requires Merchant Center account configuration",
