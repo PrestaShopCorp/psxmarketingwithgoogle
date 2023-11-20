@@ -24,7 +24,6 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\Module\PsxMarketingWithGoogle\Conversion\EnhancedConversionToggle;
 use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler;
 use PrestaShop\Module\PsxMarketingWithGoogle\Provider\CarrierDataProvider;
-use PrestaShop\Module\PsxMarketingWithGoogle\Provider\GoogleTagProvider;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\AttributesRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CurrencyRepository;
@@ -57,11 +56,6 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
     private $currencyRepository;
 
     /**
-     * @var GoogleTagProvider
-     */
-    private $googleTagProvider;
-
-    /**
      * @var ProductRepository
      */
     protected $productRepository;
@@ -81,7 +75,6 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         $this->countryRepository = $this->module->getService(CountryRepository::class);
         $this->productRepository = $this->module->getService(ProductRepository::class);
         $this->attributesRepository = $this->module->getService(attributesRepository::class);
-        $this->googleTagProvider = $this->module->getService(GoogleTagProvider::class);
         $this->currencyRepository = $this->module->getService(CurrencyRepository::class);
         $this->ajax = true;
     }
@@ -125,9 +118,6 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
                 break;
             case 'toggleRemarketingTags':
                 $this->toggleRemarketingTags($inputs);
-                break;
-            case 'checkRemarketingTagExists':
-                $this->checkRemarketingTagExists($inputs);
                 break;
             case 'setEnhancedConversions':
                 $this->setEnhancedConversions($inputs);
@@ -345,30 +335,6 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             $this->configurationAdapter->deleteByName(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG);
         }
         $this->ajaxDie(json_encode(['success' => true]));
-    }
-
-    private function checkRemarketingTagExists(array $inputs)
-    {
-        if (!isset($inputs['tag'])) {
-            http_response_code(400);
-            $this->ajaxDie(json_encode([
-                'success' => false,
-                'message' => 'Missing tag key',
-            ]));
-        }
-
-        $googleRemarketingStatus = $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS);
-        if ($googleRemarketingStatus) {
-            $this->configurationAdapter->updateValue(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS, false);
-        }
-
-        $googleTag = $this->googleTagProvider->checkGoogleTagAlreadyExists($inputs['tag'], $this->context->shop->id);
-
-        if (false === $googleTag && $googleRemarketingStatus) {
-            $this->configurationAdapter->updateValue(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS, true);
-        }
-
-        $this->ajaxDie(json_encode(['tagAlreadyExists' => $googleTag]));
     }
 
     private function setEnhancedConversions(array $inputs)
