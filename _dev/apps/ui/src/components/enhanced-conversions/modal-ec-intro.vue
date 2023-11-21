@@ -3,8 +3,9 @@
     id="psxmarketingwithgoogle_modal_ec_intro"
     ref="psxmarketingwithgoogle_modal_ec_intro"
     :title="$t('modal.titleEnhancedConversionsIntro')"
-    visible
     @ok="ok"
+    @hidden="hidden"
+    :visible="!isModalAlreadyAknowledged()"
   >
     <img
       src="@/assets/images/empty-cart.svg"
@@ -68,6 +69,15 @@ export default defineComponent({
     },
     async enableEnhancedConversions(): Promise<void> {
       await this.$store.dispatch('campaigns/SAVE_ENHANCED_CONVERSIONS_STATUS', true);
+    },
+    hidden(): void {
+      this.doNotDisplayModalAnymore();
+    },
+    isModalAlreadyAknowledged(): boolean {
+      return !!JSON.parse(localStorage.getItem(`enhancedConversionsIntroAck-${this.shopId}`) || 'false');
+    },
+    doNotDisplayModalAnymore(): void {
+      localStorage.setItem(`enhancedConversionsIntroAck-${this.shopId}`, 'true');
     },
   },
 });

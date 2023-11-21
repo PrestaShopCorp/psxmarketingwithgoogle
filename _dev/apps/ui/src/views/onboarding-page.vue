@@ -132,6 +132,10 @@
       ref="SSCPopinActivateTrackingOnboardingPage"
       modal-id="SSCPopinActivateTrackingOnboardingPage"
     />
+    <modal-ec-intro
+      v-if="getGoogleAdsAccount && accountHasAtLeastOneCampaign && !enhancedConversionsTagIsSet"
+      :tos-are-signed="!!getGoogleAdsAccount.acceptedCustomerDataTerms"
+    />
     <PopinModuleConfigured
       ref="PopinModuleConfigured"
       @openPopinRemarketingTag="proceedToCampaignCreation"
@@ -169,6 +173,8 @@ import PopinModuleConfigured from '@/components/commons/popin-configured.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import EnhancedConversionsCard from '@/components/enhanced-conversions/enhanced-conversions-card.vue';
+import ModalEcIntro from '@/components/enhanced-conversions/modal-ec-intro.vue';
+import {AccountInformations} from '@/store/modules/google-ads/state';
 
 export default defineComponent({
   name: 'OnboardingPage',
@@ -184,6 +190,7 @@ export default defineComponent({
     PromoCard,
     GoogleAccountPopinDisconnect,
     MerchantCenterAccountPopinDisconnect,
+    ModalEcIntro,
     GoogleAdsAccountPopinDisconnect,
     GoogleAdsPopinNew,
     PsToast,
@@ -359,7 +366,7 @@ export default defineComponent({
     googleAdsAccountConnectedOnce() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE'];
     },
-    getGoogleAdsAccount() {
+    getGoogleAdsAccount(): AccountInformations|null {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
     },
     googleAdsAccountIsChosen() {
@@ -387,6 +394,9 @@ export default defineComponent({
     },
     remarketingTagIsSet() {
       return this.$store.getters['campaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
+    },
+    enhancedConversionsTagIsSet() {
+      return this.$store.getters['campaigns/GET_ENHANCED_CONVERSIONS_STATUS'];
     },
     stepsAreCompleted() {
       return {

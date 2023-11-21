@@ -6,8 +6,8 @@ import {contextPsAccountsNotConnected, contextPsAccountsConnectedAndValidated} f
 import {contextPsEventBus} from "../.storybook/mock/ps-event-bus";
 import {googleAccountNotConnected, googleAccountConnected, googleAccountConnectedOnce} from "../.storybook/mock/google-account";
 import {merchantCenterAccountNotConnected, merchantCenterAccountConnected, merchantCenterAccountConnectedOnce} from "../.storybook/mock/merchant-center-account";
-import {googleAdsAccountChosen, adsAccountStatus, googleAdsAccountChosenWithSignedTos} from "../.storybook/mock/google-ads";
-import {conversionTrackingIsFalse, conversionTrackingIsTrue, enhancedConversionsTrackingIsTrue} from '../.storybook/mock/campaigns';
+import {adsAccountStatus, googleAdsAccountChosenWithSignedTos} from "../.storybook/mock/google-ads";
+import {conversionTrackingIsTrue, enhancedConversionsTrackingIsTrue} from '../.storybook/mock/campaigns';
 import {campaigns as campaignsMock} from '../.storybook/mock/campaigns-list';
 import {State as CampaignState} from '@/store/modules/campaigns/state';
 
@@ -20,7 +20,6 @@ const TemplatePsAccount = (args, { argTypes }) => ({
   components: { OnboardingPage },
   template: `<OnboardingPage/>`,
   beforeMount: args.beforeMount,
-
 });
 
 export const PsAccount:any = TemplatePsAccount.bind({});
@@ -136,6 +135,7 @@ campaigns.args = {
 export const Tracking:any = TemplatePsAccount.bind({});
 Tracking.args = {
   beforeMount(this: any) {
+    localStorage.clear();
     this.$store.state.app = Object.assign(
       {},
       this.$store.state.app,
@@ -148,7 +148,7 @@ Tracking.args = {
     this.$store.state.accounts.googleMerchantAccount = Object.assign({}, merchantCenterAccountConnected);
     this.$store.state.productFeed = Object.assign({}, productFeedIsConfiguredOnce);
     this.$store.state.googleAds = Object.assign({}, adsAccountStatus);
-    (this.$store.state.campaigns as CampaignState) = cloneDeep(conversionTrackingIsFalse);
+    (this.$store.state.campaigns as CampaignState) = cloneDeep(conversionTrackingIsTrue);
     (this.$store.state.campaigns as CampaignState).campaigns.results.campaigns = cloneDeep(campaignsMock);
     (this.$store.state.campaigns as CampaignState).campaigns.results.totalCount = 40;
   },

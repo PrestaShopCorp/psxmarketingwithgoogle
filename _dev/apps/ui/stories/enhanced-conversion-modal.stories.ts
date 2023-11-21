@@ -10,9 +10,13 @@ const Template = (args, { argTypes }) => ({
   components: { ModalEcIntro},
   template: `
     <div>
+      <span>ℹ️ If the modal does not appear, empty your local storage.</span>
       <modal-ec-intro v-bind="$props" />
     </div>
   `,
+  beforeMount: () => {
+    localStorage.clear();
+  }
 });
 
 export const EnhancedConversionsIntro:any = Template.bind({});
