@@ -49,8 +49,8 @@ dayjs.extend(localizedFormat);
 export default {
   [GettersTypes.GET_REMARKETING_TRACKING_TAG_IS_SET](
     state: LocalState,
-  ): boolean {
-    return !!state.trackingFeature.basic;
+  ): boolean|null {
+    return state.trackingFeature.basic;
   },
   [GettersTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED](
     state: LocalState,

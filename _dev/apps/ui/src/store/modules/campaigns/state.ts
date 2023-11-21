@@ -186,7 +186,7 @@ export const state: State = {
   warmedUp: false,
   errorCampaignNameExists: null,
   trackingFeature: {
-    basic: false,
+    basic: null,
     enhanced: null,
   },
   conversionActions: [],

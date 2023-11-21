@@ -18,7 +18,7 @@ export const conversionTrackingIsTrue = {
   ...defaultCampaigns,
   trackingFeature: {
     basic: true,
-    enhanced: null,
+    enhanced: false,
   },
 };
 
@@ -26,7 +26,15 @@ export const conversionTrackingIsFalse = {
   ...defaultCampaigns,
   trackingFeature: {
     basic: false,
-    enhanced: null,
+    enhanced: false,
+  },
+};
+
+export const enhancedConversionsTrackingIsTrue = {
+  ...defaultCampaigns,
+  trackingFeature: {
+    basic: true,
+    enhanced: true,
   },
 };
 

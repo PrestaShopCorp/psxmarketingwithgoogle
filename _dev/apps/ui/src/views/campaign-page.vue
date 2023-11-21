@@ -31,7 +31,7 @@
     </div>
     <!-- Need this new router-view since we now have nested children routes -->
     <router-view  v-else/>
-    <SSCPopinActivateTracking
+    <TrackingActivationModal
       ref="SSCPopinActivateTrackingCampaignPage"
       modal-id="SSCPopinActivateTrackingCampaignPage"
     />
@@ -40,7 +40,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import SSCPopinActivateTracking from '../components/campaigns/ssc-popin-activate-tracking.vue';
+import TrackingActivationModal from '../components/campaigns/tracking-activation-modal.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import BannerCampaigns from '@/components/commons/banner-campaigns.vue';
 import CampaignTableList from '@/components/campaign/campaign-table-list.vue';
@@ -53,7 +53,7 @@ export default defineComponent({
     BannerCampaigns,
     KeyMetricsBlock,
     KeyMetricsControls,
-    SSCPopinActivateTracking,
+    TrackingActivationModal,
     CampaignTableList,
   },
 
