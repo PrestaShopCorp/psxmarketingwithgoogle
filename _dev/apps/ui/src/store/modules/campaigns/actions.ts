@@ -31,7 +31,7 @@ import {deepUpdateDimensionVisibility} from '@/utils/SSCFilters';
 import {runIf} from '../../../utils/Promise';
 import {RecommendedBudget} from '@/utils/CampaignsBudget';
 import KpiType from '@/enums/reporting/KpiType';
-import {FullState} from '../..';
+import {FullState} from '@/store/types';
 
 type Context = ActionContext<State, FullState>;
 

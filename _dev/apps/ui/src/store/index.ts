@@ -7,11 +7,7 @@ import accounts from './modules/accounts';
 import productFeed from './modules/product-feed';
 import googleAds from './modules/google-ads';
 import campaigns from './modules/campaigns';
-import {State as AppState} from './modules/app/state';
-import {State as AccountsState} from './modules/accounts/state';
-import {State as ProductFeedState} from './modules/product-feed/state';
-import {State as GoogleAdsState} from './modules/google-ads/state';
-import {State as CampaignsState} from './modules/campaigns/state';
+import {FullState} from '@/store/types';
 
 Vue.use(Vuex);
 
@@ -30,14 +26,6 @@ const plugins = [
     ],
   }),
 ];
-
-export interface FullState {
-  app: AppState,
-  accounts: AccountsState,
-  productFeed: ProductFeedState,
-  googleAds: GoogleAdsState,
-  campaigns: CampaignsState,
-}
 
 export default new Vuex.Store<FullState>({
   modules: {

@@ -1,7 +1,6 @@
 import cloneDeep from 'lodash.clonedeep';
 import ProductFeedPage from '@/views/product-feed-page.vue'
 import {
-  productFeed,
   productFeedStatusSyncScheduled,
   productFeedSyncSummaryInProgress,
   productFeedStatusSyncSuccess,
@@ -19,6 +18,7 @@ import {
 
 import { rest } from 'msw';
 import merchantCenterAccountConnected from '@/../.storybook/mock/merchant-center-account';
+import {RequestState} from '@/store/types';
 
 export default {
   title: 'Product-Feed-Page/Product Feed Page',
@@ -49,7 +49,7 @@ Loading.args = {
   },
   mounted(this: any) {
     setTimeout(() => {
-      this.$refs.ProductFeedPage.$data.allDataLoaded = false;
+      this.$store.state.productFeed.warmedUp = RequestState.PENDING;
     }, 500);
   }
 }
@@ -59,9 +59,6 @@ Planned.args = {
   beforeMount() {
     this.$store.state.productFeed.isConfigured = false;
   },
-  mounted(this: any) {
-    this.$refs.ProductFeedPage.$data.allDataLoaded = true
-  }
 }
 Planned.parameters = {
   msw: {
@@ -120,9 +117,6 @@ InProgress.args = {
     this.$store.state.productFeed.isConfigured = false;
     this.$store.state.productFeed.report = cloneDeep(productFeedIsConfigured.report);
   },
-  mounted(this: any) {
-    this.$refs.ProductFeedPage.$data.allDataLoaded = true
-  }
 }
 InProgress.parameters = {
   msw: {

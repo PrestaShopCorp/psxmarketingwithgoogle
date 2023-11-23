@@ -21,7 +21,7 @@ import {ActionContext} from 'vuex';
 import {fetchShop} from 'mktg-with-google-common/api/shopClient';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
-import {FullState} from '../..';
+import {FullState} from '@/store/types';
 import {State} from './state';
 
 type Context = ActionContext<State, FullState>;
