@@ -42,7 +42,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import { mapGetters } from "vuex";
+import {mapGetters} from "vuex";
 import GettersTypesGoogleAds from "@/store/modules/google-ads/getters-types";
 import TrackingActivationModal from '@/components/campaigns/tracking-activation-modal.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';

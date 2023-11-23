@@ -32,6 +32,8 @@ const ProductFeed = (args, { argTypes }) => ({
   mounted: args.mounted,
   beforeCreate(this :any){
     this.$store.state.productFeed.isConfigured = Object.assign({}, true);
+    this.$store.state.googleAds = cloneDeep(adsAccountStatus);
+    this.$store.state.googleAds.accountChosen.acceptedCustomerDataTerms = true;
   },
 });
 
@@ -382,6 +384,69 @@ AccountSuspended.args = {
   },
 }
 AccountSuspended.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/incremental-sync/status/*', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...productFeedStatusSyncSuccess.status,
+          })
+        );
+      }),
+      rest.get('/incremental-sync/settings/*', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...productFeedStatusSyncSuccess.settings,
+          })
+        );
+      }),
+      rest.get('/product-feeds/stats/gmc', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...productFeedStatusSyncSuccess.validationSummary
+          })
+        );
+      }),
+      rest.get('/product-feeds/stats/shop', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            totalProducts: productFeedStatusSyncSuccess.report.productsInCatalog
+          })
+        );
+      }),
+      rest.get('/ads-accounts/list', (req, res, ctx) => {
+        return res(
+          ctx.json(
+            googleAdsNotChosen.list
+          )
+        );
+      }),
+      rest.get('/ads-accounts/status', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...adsAccountStatus,
+          })
+        );
+      }),
+      rest.get('/shopping-campaigns/list', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...campaignsListResponse,
+          })
+        );
+      }),
+    ],
+  },
+};
+
+export const EnhancedConversionsNotice:any = ProductFeed.bind({});
+EnhancedConversionsNotice.args = {
+  beforeMount() {
+    this.$store.state.productFeed.report = cloneDeep(productFeedStatusSyncSuccess.report);
+    this.$store.state.googleAds.accountChosen.acceptedCustomerDataTerms = false;
+  },
+}
+EnhancedConversionsNotice.parameters = {
   msw: {
     handlers: [
       rest.get('/incremental-sync/status/*', (req, res, ctx) => {
