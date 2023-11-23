@@ -1,12 +1,14 @@
 import Vuex from 'vuex';
-import { MountOptions, Wrapper, mount } from "@vue/test-utils";
+import {MountOptions, Wrapper, mount} from '@vue/test-utils';
 import cloneDeep from 'lodash.clonedeep';
-import EnhancedConversionsCard from "./enhanced-conversions-card.vue";
-import config, {localVue, cloneStore, addBootstrapToVue, addShowdownToVue} from '@/../tests/init';
+import {BFormCheckbox} from 'bootstrap-vue';
+import EnhancedConversionsCard from './enhanced-conversions-card.vue';
+import config, {
+  localVue, cloneStore, addBootstrapToVue, addShowdownToVue,
+} from '@/../tests/init';
 import {State as CampaignsState} from '@/store/modules/campaigns/state';
 import {State as GoogleAdsState} from '@/store/modules/google-ads/state';
-import { adsAccountStatus, googleAdsAccountChosen, googleAdsAccountChosenWithSignedTos } from '@/../.storybook/mock/google-ads';
-import { BFormCheckbox } from 'bootstrap-vue';
+import {adsAccountStatus, googleAdsAccountChosen, googleAdsAccountChosenWithSignedTos} from '@/../.storybook/mock/google-ads';
 import AlertSignGadsTos from './alert-sign-gads-tos.vue';
 import alertEcReadyVue from './alert-ec-ready.vue';
 
@@ -50,7 +52,7 @@ describe('EnhancedConversionsCard', () => {
       expect(store.modules.campaigns.actions.SAVE_ENHANCED_CONVERSIONS_STATUS).toBeCalledTimes(1);
     });
   });
-  
+
   describe('Terms of services requirement', () => {
     let wrapper: Wrapper<EnhancedConversionsCard>;
     const store = buildDefaultStore();
