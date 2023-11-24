@@ -1067,7 +1067,8 @@
       "productFeedConfiguredOnceSuccess" : "You have successfully submitted your product data to Merchant Center. Once approved, they will be available for free listings and ads.",
       "attributesMapppingSuccess": "Your product attributes have been successfully saved. Review summary then click \"Export\" to submit them to Google",
       "campaignCreatedSuccess": "You have created your Performance Max campaign successfully!",
-      "phoneNumberVerifiedSuccess": "Your phone number has been verified. The Merchant Account is being created"
+      "phoneNumberVerifiedSuccess": "Your phone number has been verified. The Merchant Account is being created",
+      "enhancedConversionEnabledSuccess": "Enhanced conversion tracking enabled"
     },
     "stepper": {
       "nextStep" : "Next: {0}",

@@ -62,7 +62,7 @@ export default defineComponent({
   components: {
     AlertEcReady,
     AlertSignGadsTos
-},
+  },
   data() {
     return {
       showReadyToEnableFeature: false as boolean,
