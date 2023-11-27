@@ -22,6 +22,7 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\Conversion;
 
 use Address;
 use Cart;
+use Country;
 use Customer;
 use State;
 
@@ -55,18 +56,18 @@ class UserDataProvider
         $userData = new UserData();
         $userDataAddress = new UserAddressData();
 
-        $userData->setEmail($this->customer->email);
-        $userDataAddress->setFirstName($this->customer->firstname);
-        $userDataAddress->setLastName($this->customer->lastname);
+        $userData->setEmail(Hasher::hash(Normalizer::normalize($this->customer->email)));
+        $userDataAddress->setFirstName(Hasher::hash(Normalizer::normalize($this->customer->firstname)));
+        $userDataAddress->setLastName(Hasher::hash(Normalizer::normalize($this->customer->lastname)));
 
         $address = $this->getAddressFromCart();
         if (!empty($address)) {
-            $userData->setPhoneNumber($address->phone ?: $address->phone_mobile);
-            $userDataAddress->setStreet(trim($address->address1 . ' ' . $address->address2));
-            $userDataAddress->setCity($address->city);
-            $userDataAddress->setRegion($address->id_state ? (new State($address->id_state))->name : null);
-            $userDataAddress->setPostalCode($address->postcode);
-            $userDataAddress->setCountry($address->country);
+            $userData->setPhoneNumber(Hasher::hash(Normalizer::normalizeInE164($address->phone ?: $address->phone_mobile, $this->getCountryIsoCodeFromAddress($address))));
+            $userDataAddress->setStreet(Normalizer::normalize(trim($address->address1 . ' ' . $address->address2)));
+            $userDataAddress->setCity(Normalizer::normalize($address->city));
+            $userDataAddress->setRegion(Normalizer::normalize($address->id_state ? (new State($address->id_state))->name : null));
+            $userDataAddress->setPostalCode(Normalizer::normalize($address->postcode));
+            $userDataAddress->setCountry(Normalizer::normalize($address->country));
         }
         $userData->setAddress($userDataAddress);
 
@@ -80,6 +81,18 @@ class UserDataProvider
     {
         if (!empty($this->cart->id_address_invoice)) {
             return new Address($this->cart->id_address_invoice);
+        }
+
+        return null;
+    }
+
+    /**
+     * @return string|null
+     */
+    protected function getCountryIsoCodeFromAddress(Address $address)
+    {
+        if (!empty($address->id_country)) {
+            return (new Country($address->id_country))->iso_code;
         }
 
         return null;

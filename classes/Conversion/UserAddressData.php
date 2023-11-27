@@ -64,11 +64,11 @@ class UserAddressData implements JsonSerializable
         $data = [];
 
         if (!empty($this->firstName)) {
-            $data['first_name'] = $this->firstName;
+            $data['sha256_first_name'] = $this->firstName;
         }
 
         if (!empty($this->lastName)) {
-            $data['last_name'] = $this->lastName;
+            $data['sha256_last_name'] = $this->lastName;
         }
 
         if (!empty($this->street)) {

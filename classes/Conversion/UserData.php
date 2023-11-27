@@ -44,11 +44,11 @@ class UserData implements JsonSerializable
         $data = [];
 
         if (!empty($this->email)) {
-            $data['email'] = $this->email;
+            $data['sha256_email_address'] = $this->email;
         }
 
         if (!empty($this->phoneNumber)) {
-            $data['phone_number'] = $this->phoneNumber;
+            $data['sha256_phone_number'] = $this->phoneNumber;
         }
 
         if (!empty($this->address) && !$this->address->isEmpty()) {
