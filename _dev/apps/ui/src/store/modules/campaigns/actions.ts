@@ -31,7 +31,7 @@ import {deepUpdateDimensionVisibility} from '@/utils/SSCFilters';
 import {runIf} from '../../../utils/Promise';
 import {RecommendedBudget} from '@/utils/CampaignsBudget';
 import KpiType from '@/enums/reporting/KpiType';
-import {FullState} from '../..';
+import {FullState} from '@/store/types';
 
 type Context = ActionContext<State, FullState>;
 
@@ -54,7 +54,7 @@ export default {
         dispatch(ActionsTypes.GET_CAMPAIGNS_LIST),
       ),
       runIf(
-        state.tracking === null,
+        state.trackingFeature.basic === null,
         dispatch(ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_MODULE),
       ),
       runIf(
@@ -124,25 +124,14 @@ export default {
   async [ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_MODULE](
     {commit}: Context,
   ) {
-    const result = await fetchShop('getRemarketingTagsStatus');
+    const result: {
+      remarketingTagsStatus: boolean,
+      enhancedConversionStatus: boolean,
+    } = await fetchShop('getRemarketingTagsStatus');
     commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG, result.remarketingTagsStatus);
+    commit(MutationsTypes.TOGGLE_STATUS_ENHANCED_CONVERSIONS, result.enhancedConversionStatus);
   },
 
-  async [ActionsTypes.GET_REMARKETING_TRACKING_TAG_STATUS_IF_ALREADY_EXISTS](
-    {commit, rootState}: Context,
-  ) {
-    const regex = /AW-[0-9]+/;
-    const remarketingSnippet = rootState.googleAds.accountChosen?.remarketingSnippet;
-    const idTag = regex.exec(remarketingSnippet);
-
-    if (!idTag || !idTag.length) {
-      return;
-    }
-
-    const result = await fetchShop('checkRemarketingTagExists', {tag: idTag[0]});
-    commit(MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG_ALREADY_EXIST,
-      result.tagAlreadyExists);
-  },
   async [ActionsTypes.GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED](
     {commit}: Context,
   ) {
@@ -151,6 +140,23 @@ export default {
       MutationsTypes.SET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED,
       result.conversionActionLabels,
     );
+  },
+
+  async [ActionsTypes.GET_ENHANCED_CONVERSIONS_STATUS](
+    {commit}: Context,
+  ): Promise<void> {
+    const result: {enabled: boolean} = await fetchShop('getEnhancedConversions');
+    commit(MutationsTypes.TOGGLE_STATUS_ENHANCED_CONVERSIONS, result.enabled);
+  },
+
+  async [ActionsTypes.SAVE_ENHANCED_CONVERSIONS_STATUS](
+    {commit}: Context,
+    payload: boolean,
+  ): Promise<void> {
+    await fetchShop('setEnhancedConversions', {
+      enable: payload,
+    });
+    commit(MutationsTypes.TOGGLE_STATUS_ENHANCED_CONVERSIONS, payload);
   },
 
   async [ActionsTypes.CREATE_REMARKETING_DEFAULT_CONVERSION_ACTIONS](

@@ -27,7 +27,7 @@ import ActionsTypes from './actions-types';
 import ActionsTypesApp from '../app/actions-types';
 import NeedOverwriteError from '../../../utils/NeedOverwriteError';
 import CannotOverwriteError from '../../../utils/CannotOverwriteError';
-import {FullState} from '../..';
+import {FullState} from '@/store/types';
 import {State} from './state';
 
 type Context = ActionContext<State, FullState>;

@@ -1,19 +1,20 @@
-/**
- * 2007-2021 PrestaShop and Contributors
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
- * that is bundled with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * https://opensource.org/licenses/AFL-3.0
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@prestashop.com so we can send you a copy immediately.
- *
- * @author    PrestaShop SA <contact@prestashop.com>
- * @copyright 2007-2021 PrestaShop SA and Contributors
- * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
- * International Registered Trademark & Property of PrestaShop SA
- */
-export interface StoreState {}
+import {State as AppState} from './modules/app/state';
+import {State as AccountsState} from './modules/accounts/state';
+import {State as ProductFeedState} from './modules/product-feed/state';
+import {State as GoogleAdsState} from './modules/google-ads/state';
+import {State as CampaignsState} from './modules/campaigns/state';
+
+export interface FullState {
+  app: AppState,
+  accounts: AccountsState,
+  productFeed: ProductFeedState,
+  googleAds: GoogleAdsState,
+  campaigns: CampaignsState,
+}
+
+export enum RequestState {
+  IDLE = 'IDLE',
+  PENDING = 'PENDING',
+  FAILED = 'FAILED',
+  SUCCESS = 'SUCCESS',
+}

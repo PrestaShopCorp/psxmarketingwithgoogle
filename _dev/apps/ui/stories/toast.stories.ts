@@ -14,6 +14,7 @@ const Template = (args, { argTypes }) => ({
         variant="success"
         :visible="visible"
         toaster="b-toaster-top-right"
+        :no-auto-hide="true"
       >
         <p>
           Success variant.
@@ -23,6 +24,7 @@ const Template = (args, { argTypes }) => ({
         variant="warning"
         :visible="visible"
         toaster="b-toaster-top-right"
+        :no-auto-hide="true"
       >
         <p>
           Warning variant.
@@ -32,6 +34,7 @@ const Template = (args, { argTypes }) => ({
         variant="danger"
         :visible="visible"
         toaster="b-toaster-top-right"
+        :no-auto-hide="true"
       >
         <p>
           Danger variant.

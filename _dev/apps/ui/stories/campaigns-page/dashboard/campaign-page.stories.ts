@@ -38,6 +38,7 @@ WithSeveralCampaigns.args = {
   beforeCreate() {
     this.$store.state.accounts.contextPsAccounts = cloneDeep(contextPsAccountsConnectedAndValidated);
     this.$store.state.googleAds = cloneDeep(adsAccountStatus);
+    this.$store.state.googleAds.accountChosen.acceptedCustomerDataTerms = true;
     this.$store.state.campaigns.campaigns.results.campaigns = campaigns;
     this.$router.push({name: 'campaign'});
   },
@@ -70,6 +71,7 @@ WithSeveralCampaignsNotPerforming.args = {
   beforeCreate() {
     this.$store.state.accounts.contextPsAccounts = cloneDeep(contextPsAccountsConnectedAndValidated);
     this.$store.state.googleAds = cloneDeep(adsAccountStatus);
+    this.$store.state.googleAds.accountChosen.acceptedCustomerDataTerms = true;
     this.$store.state.campaigns.campaigns.results.campaigns = campaigns;
     this.$router.push({name: 'campaign'});
   },
@@ -144,3 +146,36 @@ Loading.args = {
   }
 };
 Loading.parameters = WithSeveralCampaignsNotPerforming.parameters;
+
+export const EnhancedConversionsNotice:any = Template.bind({});
+EnhancedConversionsNotice.args = {
+  beforeCreate() {
+    this.$store.state.accounts.contextPsAccounts = cloneDeep(contextPsAccountsConnectedAndValidated);
+    this.$store.state.googleAds = cloneDeep(adsAccountStatus);
+    this.$store.state.googleAds.accountChosen.acceptedCustomerDataTerms = false;
+    this.$store.state.campaigns.campaigns.results.campaigns = campaigns;
+    this.$router.push({name: 'campaign'});
+  },
+};
+
+EnhancedConversionsNotice.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/shopping-campaigns/list*', (req, res, ctx) => res(ctx.json(campaignsListResponse))),
+      rest.get('/ads-reporting/daily-results*', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...dailyResultNotPerformingData,
+          })
+        );
+      }),
+      rest.get('/ads-reporting/kpis*', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...kpisEmpty,
+          })
+        );
+      }),
+    ],
+  },
+};

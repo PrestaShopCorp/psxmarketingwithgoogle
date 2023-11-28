@@ -36,8 +36,8 @@
         >
           <span class="ps_gs-fz-14 text-dark d-block">
             {{ statusTrackingTag ?
-              $t('smartShoppingCampaignCreation.switch.on') :
-              $t('smartShoppingCampaignCreation.switch.off')
+              $t('cta.enabled') :
+              $t('cta.disabled')
             }}
           </span>
         </b-form-checkbox>

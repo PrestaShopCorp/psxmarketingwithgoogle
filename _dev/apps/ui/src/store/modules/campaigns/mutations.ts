@@ -44,19 +44,20 @@ export default {
     state: LocalState,
     payload: boolean,
   ) {
-    state.tracking = payload;
-  },
-  [MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG_ALREADY_EXIST](
-    state: LocalState,
-    payload: boolean,
-  ) {
-    state.tagAlreadyExists = payload;
+    state.trackingFeature.basic = payload;
   },
   [MutationsTypes.SET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED](
     state: LocalState,
     payload: ConversionAction[],
   ) {
     state.conversionActions = payload;
+  },
+
+  [MutationsTypes.TOGGLE_STATUS_ENHANCED_CONVERSIONS](
+    state: LocalState,
+    payload: boolean,
+  ): void {
+    state.trackingFeature.enhanced = payload;
   },
 
   // request mutations

@@ -8,24 +8,34 @@ import { CampaignTypes } from "../../src/enums/reporting/CampaignStatus";
 
 export const defaultCampaigns: State = {
   ...state,
-  tracking: null,
-  tagAlreadyExists: false,
+  trackingFeature: {
+    basic: null,
+    enhanced: null,
+  },
 };
 
 export const conversionTrackingIsTrue = {
   ...defaultCampaigns,
-  tracking: true,
+  trackingFeature: {
+    basic: true,
+    enhanced: false,
+  },
 };
 
 export const conversionTrackingIsFalse = {
   ...defaultCampaigns,
-  tracking: false,
+  trackingFeature: {
+    basic: false,
+    enhanced: false,
+  },
 };
 
-export const conversionTagAlreadyExists = {
+export const enhancedConversionsTrackingIsTrue = {
   ...defaultCampaigns,
-  tracking: true,
-  tagAlreadyExists: true,
+  trackingFeature: {
+    basic: true,
+    enhanced: true,
+  },
 };
 
 export const availableFilters: Dimension[] = [

@@ -4,10 +4,12 @@
       v-if="$route.name === 'campaign'"
       class="mb-3"
     >
-
       <BannerCampaigns
         v-if="!inNeedOfConfiguration && !accountHasAtLeastOneCampaign"
         @clickToCreateCampaign="onClickToCreateCampaign"
+      />
+      <alert-sign-gads-tos
+        v-else-if="allDataLoaded && !GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED"
       />
 
       <key-metrics-controls
@@ -31,7 +33,7 @@
     </div>
     <!-- Need this new router-view since we now have nested children routes -->
     <router-view  v-else/>
-    <SSCPopinActivateTracking
+    <TrackingActivationModal
       ref="SSCPopinActivateTrackingCampaignPage"
       modal-id="SSCPopinActivateTrackingCampaignPage"
     />
@@ -40,20 +42,24 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import SSCPopinActivateTracking from '../components/campaigns/ssc-popin-activate-tracking.vue';
+import {mapGetters} from "vuex";
+import GettersTypesGoogleAds from "@/store/modules/google-ads/getters-types";
+import TrackingActivationModal from '@/components/campaigns/tracking-activation-modal.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import BannerCampaigns from '@/components/commons/banner-campaigns.vue';
 import CampaignTableList from '@/components/campaign/campaign-table-list.vue';
 import KeyMetricsBlock from '@/components/campaign/reporting/key-metrics/key-metrics-block.vue';
 import KeyMetricsControls from '@/components/campaign/reporting/key-metrics/key-metrics-controls.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import AlertSignGadsTos from "@/components/enhanced-conversions/alert-sign-gads-tos.vue";
 
 export default defineComponent({
   components: {
+    AlertSignGadsTos,
     BannerCampaigns,
     KeyMetricsBlock,
     KeyMetricsControls,
-    SSCPopinActivateTracking,
+    TrackingActivationModal,
     CampaignTableList,
   },
 
@@ -63,6 +69,9 @@ export default defineComponent({
     };
   },
   computed: {
+    ...mapGetters("googleAds", [
+      GettersTypesGoogleAds.GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED,
+    ]),
     inNeedOfConfiguration() {
       return !this.googleAdsIsServing;
     },

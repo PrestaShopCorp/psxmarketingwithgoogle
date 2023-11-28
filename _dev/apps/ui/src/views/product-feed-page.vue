@@ -11,51 +11,30 @@
     <non-compliant-products-page
       v-else-if="$route.name === 'product-feed-verification-errors'"
     />
-    <template v-else>
-      <PsToast
-        v-if="allDataLoaded && syncStatus === 'schedule' && !inNeedOfConfiguration"
-        variant="warning"
-        :visible="syncStatus === 'schedule' && !inNeedOfConfiguration"
-        toaster="b-toaster-top-right"
-      >
-        <p> {{ $t('productFeedPage.alert.alertSuccess') }}</p>
-      </PsToast>
-      <sync-overview
-        :in-need-of-configuration="inNeedOfConfiguration"
-        :loading="!allDataLoaded"
-      />
-    </template>
+    <product-feed-dashboard-page
+      v-else
+      :in-need-of-configuration="inNeedOfConfiguration"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
 import ProductFeedTableStatusDetails from '@/components/product-feed-page/product-feed-table-status-details.vue';
-import SyncOverview from '@/components/product-feed-page/dashboard/sync-overview.vue';
 import NonCompliantProductsPage from '@/components/product-feed-page/non-compliant-products-page/non-compliant-products-page.vue';
 import NonCompliantProductsDetailsPage from '@/components/product-feed-page/non-compliant-products-details-page/non-compliant-products-details-page.vue';
-import PsToast from '@/components/commons/ps-toast.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
+import ProductFeedDashboardPage from '@/components/product-feed-page/dashboard/product-feed-dashboard-page.vue';
 
 export default defineComponent({
-  data() {
-    return {
-      allDataLoaded: false,
-    };
-  },
   components: {
+    ProductFeedDashboardPage,
     ProductFeedTableStatusDetails,
     NonCompliantProductsPage,
     NonCompliantProductsDetailsPage,
-    SyncOverview,
-    PsToast,
   },
   computed: {
-    syncStatus() {
-      return this.$store.getters['productFeed/GET_SYNC_STATUS'];
-    },
     inNeedOfConfiguration() {
-      // TODO: check if in need of configuration
       return !this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
     },
   },
@@ -68,9 +47,7 @@ export default defineComponent({
     if (this.inNeedOfConfiguration) {
       await this.$store.dispatch('accounts/WARMUP_STORE');
     }
-    this.getDatas().then(() => {
-      this.allDataLoaded = true;
-    });
+    await this.getDatas();
   },
   CampaignTypes,
 });

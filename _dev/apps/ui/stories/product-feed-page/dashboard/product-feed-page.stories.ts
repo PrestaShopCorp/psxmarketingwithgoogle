@@ -1,7 +1,6 @@
 import cloneDeep from 'lodash.clonedeep';
 import ProductFeedPage from '@/views/product-feed-page.vue'
 import {
-  productFeed,
   productFeedStatusSyncScheduled,
   productFeedSyncSummaryInProgress,
   productFeedStatusSyncSuccess,
@@ -19,6 +18,7 @@ import {
 
 import { rest } from 'msw';
 import merchantCenterAccountConnected from '@/../.storybook/mock/merchant-center-account';
+import {RequestState} from '@/store/types';
 
 export default {
   title: 'Product-Feed-Page/Product Feed Page',
@@ -32,6 +32,8 @@ const ProductFeed = (args, { argTypes }) => ({
   mounted: args.mounted,
   beforeCreate(this :any){
     this.$store.state.productFeed.isConfigured = Object.assign({}, true);
+    this.$store.state.googleAds = cloneDeep(adsAccountStatus);
+    this.$store.state.googleAds.accountChosen.acceptedCustomerDataTerms = true;
   },
 });
 
@@ -49,7 +51,7 @@ Loading.args = {
   },
   mounted(this: any) {
     setTimeout(() => {
-      this.$refs.ProductFeedPage.$data.allDataLoaded = false;
+      this.$store.state.productFeed.warmedUp = RequestState.PENDING;
     }, 500);
   }
 }
@@ -59,9 +61,6 @@ Planned.args = {
   beforeMount() {
     this.$store.state.productFeed.isConfigured = false;
   },
-  mounted(this: any) {
-    this.$refs.ProductFeedPage.$data.allDataLoaded = true
-  }
 }
 Planned.parameters = {
   msw: {
@@ -120,9 +119,6 @@ InProgress.args = {
     this.$store.state.productFeed.isConfigured = false;
     this.$store.state.productFeed.report = cloneDeep(productFeedIsConfigured.report);
   },
-  mounted(this: any) {
-    this.$refs.ProductFeedPage.$data.allDataLoaded = true
-  }
 }
 InProgress.parameters = {
   msw: {
@@ -388,6 +384,69 @@ AccountSuspended.args = {
   },
 }
 AccountSuspended.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/incremental-sync/status/*', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...productFeedStatusSyncSuccess.status,
+          })
+        );
+      }),
+      rest.get('/incremental-sync/settings/*', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...productFeedStatusSyncSuccess.settings,
+          })
+        );
+      }),
+      rest.get('/product-feeds/stats/gmc', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...productFeedStatusSyncSuccess.validationSummary
+          })
+        );
+      }),
+      rest.get('/product-feeds/stats/shop', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            totalProducts: productFeedStatusSyncSuccess.report.productsInCatalog
+          })
+        );
+      }),
+      rest.get('/ads-accounts/list', (req, res, ctx) => {
+        return res(
+          ctx.json(
+            googleAdsNotChosen.list
+          )
+        );
+      }),
+      rest.get('/ads-accounts/status', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...adsAccountStatus,
+          })
+        );
+      }),
+      rest.get('/shopping-campaigns/list', (req, res, ctx) => {
+        return res(
+          ctx.json({
+            ...campaignsListResponse,
+          })
+        );
+      }),
+    ],
+  },
+};
+
+export const EnhancedConversionsNotice:any = ProductFeed.bind({});
+EnhancedConversionsNotice.args = {
+  beforeMount() {
+    this.$store.state.productFeed.report = cloneDeep(productFeedStatusSyncSuccess.report);
+    this.$store.state.googleAds.accountChosen.acceptedCustomerDataTerms = false;
+  },
+}
+EnhancedConversionsNotice.parameters = {
   msw: {
     handlers: [
       rest.get('/incremental-sync/status/*', (req, res, ctx) => {

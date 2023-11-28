@@ -1,22 +1,3 @@
-/**
- * 2007-2021 PrestaShop and Contributors
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
- * that is bundled with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * https://opensource.org/licenses/AFL-3.0
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@prestashop.com so we can send you a copy immediately.
- *
- * @author    PrestaShop SA <contact@prestashop.com>
- * @copyright 2007-2021 PrestaShop SA and Contributors
- * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
- * International Registered Trademark & Property of PrestaShop SA
- */
-
 import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
 import {DeliveryDetail, ShopShippingInterface} from '@/providers/shipping-settings-provider';
 import attributesToMap from './attributes-to-map.json';
@@ -26,6 +7,7 @@ import {CustomCarrier} from '@/providers/shipping-rate-provider';
 import {RateType} from '@/enums/product-feed/rate';
 import Categories, {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
 import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
+import {RequestState} from '@/store/types';
 
 /**
  * @deprecated
@@ -130,7 +112,7 @@ export const commonAttributes: readonly AttributesInfos[] = [
 ];
 
 export interface State {
-  warmedUp: boolean,
+  warmedUp: RequestState,
   isSyncSummaryLoadingInProgress: boolean;
   errorAPI: boolean;
   isConfigured: boolean;
@@ -196,7 +178,7 @@ export type ProductVerificationIssueProduct = {
 }
 
 export const state: State = {
-  warmedUp: false,
+  warmedUp: RequestState.IDLE,
   isSyncSummaryLoadingInProgress: false,
   errorAPI: false,
   isConfigured: false,

@@ -90,4 +90,12 @@ export const adsAccountStatus: State = {
   },
 }
 
+export const googleAdsAccountChosenWithSignedTos: State = {
+  ...adsAccountStatus,
+  accountChosen: {
+    ...googleAdsAccountChosen.accountChosen,
+    acceptedCustomerDataTerms: true,
+  },
+}
+
 export default googleAdsNotChosen;

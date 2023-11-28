@@ -22,7 +22,7 @@ import MutationsTypesCampaigns from '../campaigns/mutations-types';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import {runIf} from '../../../utils/Promise';
-import {FullState} from '../..';
+import {FullState} from '@/store/types';
 import {State} from './state';
 
 type Context = ActionContext<State, FullState>;

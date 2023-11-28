@@ -103,6 +103,9 @@
         <CampaignTracking
           v-if="remarketingTagIsSet !== null && accountHasAtLeastOneCampaign"
         />
+        <EnhancedConversionsCard
+          v-if="remarketingTagIsSet !== null && accountHasAtLeastOneCampaign"
+        />
         <PromoCard />
       </div>
     </div>
@@ -125,9 +128,13 @@
       :user="getGoogleAccount"
       @cancelGoogleAdsCreationNewAccount="onGoogleAdsAccountTogglePopin"
     />
-    <SSCPopinActivateTracking
+    <TrackingActivationModal
       ref="SSCPopinActivateTrackingOnboardingPage"
       modal-id="SSCPopinActivateTrackingOnboardingPage"
+    />
+    <modal-ec-intro
+      v-if="getGoogleAdsAccount && accountHasAtLeastOneCampaign && !enhancedConversionsTagIsSet"
+      :tos-are-signed="!!getGoogleAdsAccount.acceptedCustomerDataTerms"
     />
     <PopinModuleConfigured
       ref="PopinModuleConfigured"
@@ -148,28 +155,32 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import SectionTitle from '../components/onboarding/section-title';
-import GoogleAccountCard from '../components/google-account/google-account-card';
-import GoogleAdsAccountCard from '../components/google-ads-account/google-ads-account-card';
-import MerchantCenterAccountCard from '../components/merchant-center-account/merchant-center-account-card.vue';
-import ProductFeedCard from '../components/product-feed/product-feed-card.vue';
-import GoogleAccountPopinDisconnect from '../components/google-account/google-account-popin-disconnect.vue';
-import MerchantCenterAccountPopinDisconnect from '../components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
-import GoogleAdsAccountPopinDisconnect from '../components/google-ads-account/google-ads-account-popin-disconnect.vue';
-import GoogleAdsPopinNew from '../components/google-ads-account/google-ads-account-popin-new.vue';
-import CampaignCard from '../components/campaigns/campaign-card.vue';
-import CampaignTracking from '../components/campaigns/campaign-tracking.vue';
-import PromoCard from '../components/promo/promo-card.vue';
-import SSCPopinActivateTracking from '../components/campaigns/ssc-popin-activate-tracking.vue';
-import PsToast from '../components/commons/ps-toast';
-import PopinModuleConfigured from '../components/commons/popin-configured.vue';
+import SectionTitle from '@/components/onboarding/section-title.vue';
+import GoogleAccountCard from '@/components/google-account/google-account-card.vue';
+import GoogleAdsAccountCard from '@/components/google-ads-account/google-ads-account-card.vue';
+import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
+import ProductFeedCard from '@/components/product-feed/product-feed-card.vue';
+import GoogleAccountPopinDisconnect from '@/components/google-account/google-account-popin-disconnect.vue';
+import MerchantCenterAccountPopinDisconnect from '@/components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
+import GoogleAdsAccountPopinDisconnect from '@/components/google-ads-account/google-ads-account-popin-disconnect.vue';
+import GoogleAdsPopinNew from '@/components/google-ads-account/google-ads-account-popin-new.vue';
+import CampaignCard from '@/components/campaigns/campaign-card.vue';
+import CampaignTracking from '@/components/campaigns/campaign-tracking.vue';
+import PromoCard from '@/components/promo/promo-card.vue';
+import TrackingActivationModal from '@/components/campaigns/tracking-activation-modal.vue';
+import PsToast from '@/components/commons/ps-toast.vue';
+import PopinModuleConfigured from '@/components/commons/popin-configured.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
+import EnhancedConversionsCard from '@/components/enhanced-conversions/enhanced-conversions-card.vue';
+import ModalEcIntro from '@/components/enhanced-conversions/modal-ec-intro.vue';
+import {AccountInformations} from '@/store/modules/google-ads/state';
 
 export default defineComponent({
   name: 'OnboardingPage',
   components: {
     SectionTitle,
+    EnhancedConversionsCard,
     GoogleAccountCard,
     GoogleAdsAccountCard,
     MerchantCenterAccountCard,
@@ -179,12 +190,13 @@ export default defineComponent({
     PromoCard,
     GoogleAccountPopinDisconnect,
     MerchantCenterAccountPopinDisconnect,
+    ModalEcIntro,
     GoogleAdsAccountPopinDisconnect,
     GoogleAdsPopinNew,
     PsToast,
-    SSCPopinActivateTracking,
+    TrackingActivationModal,
     PopinModuleConfigured,
-  },
+},
   data() {
     return {
       isMcaLinking: false,
@@ -354,7 +366,7 @@ export default defineComponent({
     googleAdsAccountConnectedOnce() {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE'];
     },
-    getGoogleAdsAccount() {
+    getGoogleAdsAccount(): AccountInformations|null {
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
     },
     googleAdsAccountIsChosen() {
@@ -382,6 +394,9 @@ export default defineComponent({
     },
     remarketingTagIsSet() {
       return this.$store.getters['campaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
+    },
+    enhancedConversionsTagIsSet() {
+      return this.$store.getters['campaigns/GET_ENHANCED_CONVERSIONS_STATUS'];
     },
     stepsAreCompleted() {
       return {
