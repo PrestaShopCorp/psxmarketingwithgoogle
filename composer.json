@@ -19,7 +19,8 @@
         "prestashop/module-lib-service-container": "^2.0",
         "prestashop/prestashop-accounts-installer": "dev-main",
         "symfony/polyfill-php80": "^1.23.1",
-        "sentry/sentry": "^1.11"
+        "sentry/sentry": "^1.11",
+        "brick/phonenumber": "^0.4.1"
     },
     "require-dev": {
         "prestashop/php-dev-tools": "^4.2",

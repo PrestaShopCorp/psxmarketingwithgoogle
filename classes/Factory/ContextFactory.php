@@ -36,6 +36,11 @@ class ContextFactory
         return Context::getContext()->language;
     }
 
+    public static function getCart()
+    {
+        return Context::getContext()->cart;
+    }
+
     /**
      * Return the currency present in the context, or the default one
      * when the context doesn't have a currency yet (i.e when user session is empty).
@@ -49,6 +54,11 @@ class ContextFactory
         }
 
         return new Currency((int) Configuration::get('PS_CURRENCY_DEFAULT'));
+    }
+
+    public static function getCustomer()
+    {
+        return Context::getContext()->customer;
     }
 
     public static function getSmarty()

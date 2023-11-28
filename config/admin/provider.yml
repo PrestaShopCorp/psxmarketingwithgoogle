@@ -5,7 +5,3 @@ services:
     arguments:
       - '@PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter'
       - '@PrestaShop\Module\PsxMarketingWithGoogle\Builder\CarrierBuilder'
-
-  PrestaShop\Module\PsxMarketingWithGoogle\Provider\GoogleTagProvider:
-    class: PrestaShop\Module\PsxMarketingWithGoogle\Provider\GoogleTagProvider
-    public: true

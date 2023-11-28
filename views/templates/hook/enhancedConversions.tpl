@@ -1,5 +1,4 @@
-<?php
-/**
+{**
  * Copyright since 2007 PrestaShop SA and Contributors
  * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
  *
@@ -16,32 +15,13 @@
  * @author    PrestaShop SA and Contributors <contact@prestashop.com>
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
- */
-
-namespace PrestaShop\Module\PsxMarketingWithGoogle\Provider;
-
-use Context;
-use Currency;
-use Order;
-use PrestaShop\Module\PsxMarketingWithGoogle\DTO\ConversionEventData;
-
-class ConversionEventDataProvider
-{
-    /**
-     * @var Context
-     */
-    protected $context;
-
-    public function __construct(Context $context)
-    {
-        $this->context = $context;
-    }
-
-    public function getActionDataByOrderObject(Order $order): ConversionEventData
-    {
-        return (new ConversionEventData())
-            ->setTransactionId((string) $order->id)
-            ->setValue((string) $order->total_products_wt)
-            ->setCurrency((new Currency($order->id_currency))->iso_code);
-    }
-}
+ *}
+{literal}
+<script>
+    gtag(
+        'set',
+        'user_data',
+        {/literal}{$userData|@json_encode nofilter}{literal}
+    );
+</script>
+{/literal}

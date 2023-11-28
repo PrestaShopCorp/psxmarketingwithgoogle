@@ -24,6 +24,7 @@ use Context;
 use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Buffer\TemplateBuffer;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
+use PrestaShop\Module\PsxMarketingWithGoogle\Conversion\UserDataProvider;
 use PrestaShop\Module\PsxMarketingWithGoogle\Provider\CartEventDataProvider;
 use PrestaShop\Module\PsxMarketingWithGoogle\Provider\PageViewEventDataProvider;
 use PrestaShop\Module\PsxMarketingWithGoogle\Provider\PurchaseEventDataProvider;
@@ -57,6 +58,11 @@ class RemarketingHookHandler
     protected $active;
 
     /**
+     * @var bool
+     */
+    protected $enhancedConversionActive;
+
+    /**
      * @var array
      */
     protected $conversionLabels;
@@ -71,6 +77,8 @@ class RemarketingHookHandler
         $this->active = (bool) $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS)
             && (bool) $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG)
             && in_array($this->context->controller->controller_type, ['front', 'modulefront']);
+
+        $this->enhancedConversionActive = (bool) $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_ENHANCED_STATUS);
 
         $this->conversionLabels = json_decode($this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_CONVERSION_LABELS), true)
             ?: [];
@@ -137,7 +145,23 @@ class RemarketingHookHandler
         }
 
         if ($hookName === 'hookDisplayHeader') {
-            return base64_decode($this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG));
+            $snippet = base64_decode($this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG));
+
+            if (!$this->enhancedConversionActive) {
+                return $snippet;
+            }
+
+            $userData = $this->module->getService(UserDataProvider::class)->getUserData();
+
+            if ($userData->isEmpty()) {
+                return $snippet;
+            }
+
+            $this->context->smarty->assign([
+                'userData' => $userData,
+            ]);
+
+            return $snippet . $this->module->display($this->module->getfilePath(), 'views/templates/hook/enhancedConversions.tpl');
         }
 
         // Return the existing content in case we have a display hook
