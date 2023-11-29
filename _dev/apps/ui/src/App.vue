@@ -47,6 +47,7 @@
           class="ps_gs-toaster-top-right"
         />
       </div>
+      <notification-panel />
       <AlertModuleUpdate
         module-name="ps_eventbus"
         :needed-version="this.$store.state.app.cloudsyncVersionNeeded"
@@ -90,6 +91,7 @@ import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import AlertModuleUpdate from '@/components/commons/alert-update-module.vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 import PopinUserNotConnectedToBo from '@/components/commons/user-not-connected-to-bo-popin.vue';
+import NotificationPanel from '@/components/enhanced-conversions/notification-panel.vue';
 
 let resizeEventTimer;
 
@@ -99,6 +101,7 @@ export default {
     Menu,
     MenuItem,
     AlertModuleUpdate,
+    NotificationPanel,
     PopinUserNotConnectedToBo,
   },
   data() {

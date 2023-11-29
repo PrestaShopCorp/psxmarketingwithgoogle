@@ -33,6 +33,7 @@ export default defineComponent({
     ]),
     ...mapGetters("googleAds", [
       GettersTypesGoogleAds.GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED,
+      GettersTypesGoogleAds.GET_GOOGLE_ADS_ACCOUNT_IS_SERVING,
     ]),
   },
   methods: {
@@ -41,7 +42,11 @@ export default defineComponent({
         await this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT');
       }
     },
-    onWindowVisibilityChange() {
+    onWindowVisibilityChange(): void {
+      if (!this.GET_GOOGLE_ADS_ACCOUNT_IS_SERVING) {
+        return;
+      }
+
       // Watch when the page gets the focus, for instance
       // when the merchant comes back from another tab.
       if (document[this.hiddenProp] === false) {
@@ -70,6 +75,16 @@ export default defineComponent({
         false,
       );
     },
+    unregisterToWindowVisibilityChangeEvent() {
+      if (document.removeEventListener === 'undefined' || this.hiddenProp === null) {
+        return;
+      }
+      document.removeEventListener(
+        this.visibilityChangeEvent,
+        this.onWindowVisibilityChange,
+        false,
+      );
+    },
   },
   watch: {
     GET_ENHANCED_CONVERSIONS_STATUS(newValue: boolean): void {
@@ -77,16 +92,19 @@ export default defineComponent({
         this.$bvToast.show(this.$refs.ecSuccessfullyEnabled.id);
       }
     },
+    GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED: {
+      handler(newValue: boolean) {
+        if (newValue) {
+          this.unregisterToWindowVisibilityChangeEvent();
+          return;
+        }
+        this.registerToWindowVisibilityChangeEvent();
+      },
+      immediate: true,
+    }
   },
   beforeDestroy() {
-    if (document.removeEventListener === 'undefined' || this.hiddenProp === null) {
-      return;
-    }
-    document.removeEventListener(
-      this.visibilityChangeEvent,
-      this.onWindowVisibilityChange,
-      false,
-    );
+    this.unregisterToWindowVisibilityChangeEvent();
   },
 });
 </script>
