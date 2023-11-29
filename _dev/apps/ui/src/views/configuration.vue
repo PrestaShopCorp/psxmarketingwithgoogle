@@ -11,7 +11,7 @@ import Multistore from './multistore.vue';
 import OnboardingPage from './onboarding-page.vue';
 
 export default defineComponent({
-  name: 'configuration',
+  name: 'Configuration',
   components: {
     OnboardingPage,
     Multistore,

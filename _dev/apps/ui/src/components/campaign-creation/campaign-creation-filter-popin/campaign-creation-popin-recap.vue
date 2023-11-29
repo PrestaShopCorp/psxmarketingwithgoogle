@@ -193,7 +193,7 @@ export default defineComponent({
           if (resp && resp.error) {
             throw new Error(error);
           }
-          
+
           this.$store.dispatch(
             'campaigns/GET_CAMPAIGNS_LIST',
           );

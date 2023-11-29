@@ -1,6 +1,6 @@
 <template>
   <ul class="sync-history list-unstyled mb-auto">
-    <slot :syncStates="syncStates" />
+    <slot :sync-states="syncStates" />
   </ul>
 </template>
 

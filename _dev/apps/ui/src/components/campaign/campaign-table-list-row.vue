@@ -6,7 +6,8 @@
       <span
         class="ps_gs-cell-status"
         :class="`ps_gs-cell-status--${campaign.status?.toLowerCase()}`"
-        v-b-tooltip:psxMktgWithGoogleApp :title="$t(`campaigns.status.${campaign.status?.toLowerCase()}`)"
+        v-b-tooltip:psxMktgWithGoogleApp
+        :title="$t(`campaigns.status.${campaign.status?.toLowerCase()}`)"
       />
     </b-td>
 
@@ -93,13 +94,13 @@
 </template>
 
 <script lang="ts">
+import {PropType, defineComponent} from 'vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignStatus';
 import compareYears from '@/utils/CompareYears';
-import { PropType, defineComponent } from 'vue';
-import { CampaignPerformanceObject, CampaignStatusPayload } from '@/store/modules/campaigns/state';
-import { timeConverterToDate } from '@/utils/Dates';
-import { formatPrice } from '../../utils/Price';
+import {CampaignPerformanceObject, CampaignStatusPayload} from '@/store/modules/campaigns/state';
+import {timeConverterToDate} from '@/utils/Dates';
+import {formatPrice} from '../../utils/Price';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import AlertLowBudget from './alert-low-budget.vue';
 
@@ -114,10 +115,11 @@ export default defineComponent({
   computed: {
     campaignDuration() {
       if (this.campaign.status === CampaignStatus.ENDED) {
-        return this.$t('campaigns.dateLabel.endedOnX', { endDate: timeConverterToDate(this.campaign.endDate) });
+        return this.$t('campaigns.dateLabel.endedOnX', {endDate: timeConverterToDate(this.campaign.endDate)});
       }
       if (this.campaign.endDate) {
         const isThereAnEndDate = compareYears(this.campaign.endDate);
+
         if (isThereAnEndDate) {
           return this.$t('campaigns.dateLabel.fromXToX', {
             startDate: timeConverterToDate(this.campaign.startDate),
@@ -125,7 +127,7 @@ export default defineComponent({
           });
         }
       }
-      return this.$t('campaigns.dateLabel.from', { startDate: timeConverterToDate(this.campaign.startDate) });
+      return this.$t('campaigns.dateLabel.from', {startDate: timeConverterToDate(this.campaign.startDate)});
     },
     campaignCountryName() {
       return this.$options.filters.changeCountriesCodesToNames([this.campaign.targetCountry])[0];
@@ -181,6 +183,6 @@ export default defineComponent({
   googleUrl,
   components: {
     AlertLowBudget,
-  }
+  },
 });
 </script>

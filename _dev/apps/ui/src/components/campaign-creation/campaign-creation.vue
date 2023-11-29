@@ -611,7 +611,7 @@ export default defineComponent({
             'smartShoppingCampaignCreation.inputBudgetBeforeThresholdFeedback',
             {
               budget: this.formattedRecommendedBudget,
-            }
+            },
           ),
         };
       }

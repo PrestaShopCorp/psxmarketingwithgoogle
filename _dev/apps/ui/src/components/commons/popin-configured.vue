@@ -21,7 +21,7 @@
         <img
           src="@/assets/images/configured.svg"
           class="img-fluid"
-        />
+        >
         <VueShowdown
           class="mt-4"
           :markdown="$t('configuredState.text')"

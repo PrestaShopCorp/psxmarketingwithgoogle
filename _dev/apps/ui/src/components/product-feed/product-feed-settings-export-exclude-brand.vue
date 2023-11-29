@@ -17,7 +17,7 @@
       class="maxw-sm-500"
       :class="{ 'has-selection': selectedBrand.length > 0 }"
     >
-      <template v-slot:option="option">
+      <template #option="option">
         <span v-html="highlightSearch(`${option.name}`)" />
       </template>
     </ps-select>

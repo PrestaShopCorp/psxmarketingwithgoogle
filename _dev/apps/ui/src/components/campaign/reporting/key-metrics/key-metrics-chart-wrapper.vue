@@ -36,14 +36,16 @@
 </template>
 
 <script lang="ts">
-import {ChartData, ChartDataset, ChartOptions, Point, ScriptableLineSegmentContext} from 'chart.js';
+import {
+  ChartData, ChartDataset, ChartOptions, Point, ScriptableLineSegmentContext,
+} from 'chart.js';
 import KpiType from '@/enums/reporting/KpiType';
 import Chart from '@/components/chart/chart.vue';
 import {Kpis, DailyResultTypes} from '@/store/modules/campaigns/state';
-import { timeConverterToDate } from '@/utils/Dates';
+import {timeConverterToDate} from '@/utils/Dates';
 import {externalTooltipHandler} from '@/utils/ChartTooltip';
 
-const skipped = (ctx: ScriptableLineSegmentContext, value: [number, number]) => ctx.p0.skip || ctx.p1.skip || ctx.p1.stop ? value : undefined;
+const skipped = (ctx: ScriptableLineSegmentContext, value: [number, number]) => (ctx.p0.skip || ctx.p1.skip || ctx.p1.stop ? value : undefined);
 
 export default {
   name: 'KeyMetricsChartWrapper',
@@ -65,7 +67,7 @@ export default {
         labels: this.getLabels,
         datasets: Object.keys(this.dailyResultTypesSelected)
           .filter((color: string) => !!this.dailyResultTypesSelected[color])
-          .map((color: string): ChartDataset<"line", (number | Point | null)[]> => {
+          .map((color: string): ChartDataset<'line', (number | Point | null)[]> => {
             const kpiType = this.dailyResultTypesSelected[color];
 
             return {
@@ -78,10 +80,10 @@ export default {
                 borderDash: (ctx) => skipped(ctx, [6, 6]),
               },
               spanGaps: 1000 * 60 * 60 * 24 * 2, // 2 days,
-              yAxisID: this.typeDisplaysPrices(kpiType)? 'yPrice': 'y',
+              yAxisID: this.typeDisplaysPrices(kpiType) ? 'yPrice' : 'y',
             };
           },
-        ),
+          ),
       };
     },
     getMetrics(): Kpis[] {
@@ -95,12 +97,12 @@ export default {
     },
     absoluteValuesAxisIsDisplayed(): boolean {
       return !!Object.keys(this.dailyResultTypesSelected)
-          .filter((color: string) => !!this.dailyResultTypesSelected[color])
-          .find((color: string) => {
-            const kpiType = this.dailyResultTypesSelected[color];
+        .filter((color: string) => !!this.dailyResultTypesSelected[color])
+        .find((color: string) => {
+          const kpiType = this.dailyResultTypesSelected[color];
 
-            return !this.typeDisplaysPrices(kpiType);
-          });
+          return !this.typeDisplaysPrices(kpiType);
+        });
     },
     chartOptions(): ChartOptions<'line'> {
       return {
@@ -179,12 +181,13 @@ export default {
               title: (tooltipItems) => [...new Set(tooltipItems.map((tooltipItem) => timeConverterToDate(tooltipItem.parsed.x)))],
               label: (tooltipItem) => {
                 if (tooltipItem.dataset.yAxisID === 'yPrice') {
-                  const label = tooltipItem.dataset.label;
+                  const {label} = tooltipItem.dataset;
                   const price = this.getFormattedValue(tooltipItem.parsed.y);
+
                   return `${label}~ ${price}`;
                 }
                 return `${tooltipItem.dataset.label}~${tooltipItem.parsed.y}`;
-              }
+              },
             },
           },
         },

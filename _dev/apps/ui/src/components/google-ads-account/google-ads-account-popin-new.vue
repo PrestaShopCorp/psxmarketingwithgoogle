@@ -201,6 +201,7 @@
 
 <script lang="ts">
 import timezones from 'google-timezones-json';
+import {PropType, defineComponent} from 'vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 import countriesSelectionOptions from '../../assets/json/countries.json';
 import PsModal from '@/components/commons/ps-modal.vue';
@@ -208,7 +209,6 @@ import SelectCountry from '../commons/select-country.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {GoogleAccountContext} from '@/store/modules/accounts/state';
 import BannerAds from '../commons/banner-ads.vue';
-import { PropType, defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'GoogleAdsAccountPopinNew',
