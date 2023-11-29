@@ -19,6 +19,7 @@
         />
         <div
           id="prestashop-cloudsync"
+          class="my-3"
         />
       </div>
 
