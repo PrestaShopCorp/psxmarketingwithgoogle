@@ -10,7 +10,7 @@
 
 **Sync your product catalog with Google**
 
-Connect your store to Google Merchant Center and synchroniwe your entire product catalog in a few clicks. Product attributes such as price and availability will be automatically updated everyday.
+Connect your store to Google Merchant Center and synchronize your entire product catalog in a few clicks. Product attributes such as price and availability will be automatically updated everyday.
 
 **Enable free listings for your products**
 
@@ -69,7 +69,7 @@ pnpm -r build
 make vuejs
 ```
 
-To compiles and watch for new changes (development mode):
+To compile and watch for new changes (development mode):
 
 ```
 pnpm install
@@ -79,7 +79,7 @@ pnpm -r dev
 
 ## Testing
 
-Tests will be run at each commit on this repository or any pull-request. These command reproduce the checks done by the CI.
+Tests will be run at each commit on this repository or any pull-request. These commands reproduce the checks done by the CI.
 
 * JS checks: Unit tests & coding standards
 
@@ -146,10 +146,10 @@ It is updated on each push to the `master` branch.
 
 ### Hook
 
-The module registers itself to several hooks and add the following features:
+The module registers itself to several hooks and adds the following features:
 
 * actionCartUpdateQuantityBefore
-  * Remarketing: Trigger the Conversion Action "Add to Cart"
+  * Conversion tracking: Trigger the Conversion Action "Add to Cart"
 * displayBackOfficeHeader
   * Menu: Fix the display of the Marketing tab
   * Website Verification: Trigger the verification & claim process every 30 days in the background of the BO dashboard.
@@ -157,12 +157,13 @@ The module registers itself to several hooks and add the following features:
   * Warning Messages: Display a notice after the edition of a carrier advising to reconfigure shipping settings on the module
 * displayHeader
   * Website verification: Display the Google Verification Tag
-  * Remarketing: Display the Google Remarketing Tag to init gtag()
-  * Remarketing: Purge & display events that could not be displayed (i.e triggered from Ajax requests)
+  * Conversion tracking: Display the Google Tag to init gtag()
+  * Conversion tracking: Provide user data for [Enhanced conversions](https://support.google.com/google-ads/answer/98886560)
+  * Conversion tracking: Purge & display events that could not be displayed (i.e triggered from Ajax requests)
 * displayOrderConfirmation
-  * Remarketing: Trigger the Conversion Action "Purchase"
+  * Conversion tracking: Trigger the Conversion Action "Purchase"
 * displayTop
-  * Remarketing: Trigger the Conversion Action "Page view"
+  * Conversion tracking: Trigger the Conversion Action "Page view"
 
 
 ## Contributing
