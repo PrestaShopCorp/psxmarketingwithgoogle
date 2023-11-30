@@ -120,6 +120,7 @@
 </template>
 
 <script lang="ts">
+import {defineComponent} from 'vue';
 import KeyMetricsErrorMessage from './key-metrics-error-message.vue';
 import KeyMetricsKpiCardGroup from './key-metrics-kpi-card-group.vue';
 import KeyMetricsKpiCard from './key-metrics-kpi-card.vue';
@@ -130,7 +131,7 @@ import {DailyResultColor, DailyResultTypes, Kpis} from '@/store/modules/campaign
 import KpiType from '@/enums/reporting/KpiType';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
-export default {
+export default defineComponent({
   name: 'KeyMetricsBlock',
   components: {
     KeyMetricsErrorMessage,
@@ -179,7 +180,9 @@ export default {
       this.$store.dispatch('campaigns/GET_REPORTING_KPIS');
     },
     associatedColorToKpi(kpi: KpiType): DailyResultColor|undefined {
-      return Object.keys(this.dailyResultTypesSelected).find((color: string) => this.dailyResultTypesSelected[color] === kpi);
+      return Object.keys(
+        this.dailyResultTypesSelected,
+      ).find((color: string) => this.dailyResultTypesSelected[color] === kpi);
     },
     toggleKpi(type: KpiType, newValueIsActive: boolean): void {
       this.$segment.track('[GGL] Reporting - Toggle KPI highlighted', {
@@ -195,5 +198,5 @@ export default {
       this.$store.dispatch('campaigns/ADD_REPORTING_DAILY_RESULTS_TYPE', type);
     },
   },
-};
+});
 </script>

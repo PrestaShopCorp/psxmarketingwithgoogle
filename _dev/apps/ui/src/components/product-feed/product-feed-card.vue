@@ -162,7 +162,6 @@ import {defineComponent} from 'vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import googleUrl from '@/assets/json/googleUrl.json';
 import ProductFeedStepper from '@/components/product-feed/product-feed-stepper.vue';
-import ProductFeedCardReportCard from './product-feed-card-report-card.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import ProductFeedSummaryCards from '@/components/product-feed/summary/product-feed-summary-cards.vue';
 
@@ -170,7 +169,6 @@ export default defineComponent({
   name: 'ProductFeedCard',
   components: {
     ProductFeedStepper,
-    ProductFeedCardReportCard,
     VueShowdown,
     ProductFeedSummaryCards,
   },

@@ -11,7 +11,8 @@
       />
       <ul v-if="featuresList">
         <li
-          v-for="(feature) in featuresList"
+          v-for="(feature, index) in featuresList"
+          :key="index"
         >
           {{ feature }}
         </li>

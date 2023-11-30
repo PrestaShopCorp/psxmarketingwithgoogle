@@ -4,9 +4,9 @@ import store from '@/store';
 import CampaignPage from '@/views/campaign-page.vue';
 import CampaignForm from '@/views/campaign-form.vue';
 import LandingPage from '@/views/landing-page.vue';
-import Debug from '@/views/debug.vue';
-import Help from '@/views/help.vue';
-import Configuration from '@/views/configuration.vue';
+import LandingPage from '@/views/landing-page.vue';
+import DebugPage from '@/views/debug-page.vue';
+import HelpPage from '@/views/help-page.vue';
 import ProductFeedPage from '@/views/product-feed-page.vue';
 import TunnelProductFeed from '@/views/tunnel-product-feed.vue';
 import ActionsTypesAccounts from '@/store/modules/accounts/actions-types';
@@ -38,7 +38,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/configuration',
     name: 'configuration',
-    component: Configuration,
+    component: ConfigurationPage,
   },
   {
     path: '/configuration/product-feed-settings/:step',
@@ -48,7 +48,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/help',
     name: 'help',
-    component: Help,
+    component: HelpPage,
   },
   {
     path: '/product-feed',
@@ -92,7 +92,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/debug',
     name: 'Debug',
-    component: Debug,
+    component: DebugPage,
   },
   {
     path: '/',

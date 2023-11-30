@@ -36,6 +36,7 @@
 </template>
 
 <script lang="ts">
+import {defineComponent} from 'vue';
 import {
   ChartData, ChartDataset, ChartOptions, Point, ScriptableLineSegmentContext,
 } from 'chart.js';
@@ -45,9 +46,12 @@ import {Kpis, DailyResultTypes} from '@/store/modules/campaigns/state';
 import {timeConverterToDate} from '@/utils/Dates';
 import {externalTooltipHandler} from '@/utils/ChartTooltip';
 
-const skipped = (ctx: ScriptableLineSegmentContext, value: [number, number]) => (ctx.p0.skip || ctx.p1.skip || ctx.p1.stop ? value : undefined);
+const skipped = (
+  ctx: ScriptableLineSegmentContext,
+  value: [number, number],
+) => (ctx.p0.skip || ctx.p1.skip || ctx.p1.stop ? value : undefined);
 
-export default {
+export default defineComponent({
   name: 'KeyMetricsChartWrapper',
   components: {
     Chart,
@@ -178,7 +182,11 @@ export default {
             mode: 'index',
             padding: 12,
             callbacks: {
-              title: (tooltipItems) => [...new Set(tooltipItems.map((tooltipItem) => timeConverterToDate(tooltipItem.parsed.x)))],
+              title: (tooltipItems) => [
+                ...new Set(tooltipItems.map(
+                  (tooltipItem) => timeConverterToDate(tooltipItem.parsed.x),
+                )),
+              ],
               label: (tooltipItem) => {
                 if (tooltipItem.dataset.yAxisID === 'yPrice') {
                   const {label} = tooltipItem.dataset;
@@ -210,5 +218,5 @@ export default {
       return this.$options.filters.formatPrice(value, this.currencyCode);
     },
   },
-};
+});
 </script>

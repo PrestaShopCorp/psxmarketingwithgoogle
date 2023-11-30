@@ -1,4 +1,4 @@
-import Vue, {VNode} from 'vue';
+// import Vue, {VNode} from 'vue';
 import {ShopCurrency} from './store/modules/app/state';
 
 declare global {

@@ -311,7 +311,6 @@ import GettersTypesAccounts from '@/store/modules/accounts/getters-types';
 import GettersTypesProductFeed from '@/store/modules/product-feed/getters-types';
 
 export default defineComponent({
-  name: 'Debug',
   data() {
     return {
       hooks: [],
@@ -327,10 +326,6 @@ export default defineComponent({
       },
       appBuildVersion: import.meta.env.VITE_BUILD_VERSION || 'Not provided',
     };
-  },
-  components: {
-  },
-  props: {
   },
   computed: {
     ...mapGetters('campaigns', [

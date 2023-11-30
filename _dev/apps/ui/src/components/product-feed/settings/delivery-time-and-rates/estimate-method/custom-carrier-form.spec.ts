@@ -1,4 +1,4 @@
-import {mount, MountOptions, shallowMount} from '@vue/test-utils';
+import {mount, MountOptions} from '@vue/test-utils';
 import Vuex from 'vuex';
 import cloneDeep from 'lodash.clonedeep';
 import config, {localVue, cloneStore} from '@/../tests/init';
@@ -7,7 +7,6 @@ import {productFeed, productFeedEstimateConfigured} from '@/../.storybook/mock/p
 import CustomCarrierForm from './custom-carrier-form.vue';
 import {CustomCarrier} from '@/providers/shipping-rate-provider';
 import currencyDropdownVue from './currency-dropdown.vue';
-import {RateType} from '@/enums/product-feed/rate';
 import {OfferType} from '@/enums/product-feed/offer';
 
 describe('custom-carrier-form.vue', () => {
