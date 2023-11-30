@@ -8,9 +8,17 @@
         v-if="!inNeedOfConfiguration && !accountHasAtLeastOneCampaign"
         @clickToCreateCampaign="onClickToCreateCampaign"
       />
-      <alert-sign-gads-tos
-        v-else-if="allDataLoaded && !GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED"
-      />
+      <template
+        v-else-if="allDataLoaded"
+      >
+        <alert-sign-gads-tos
+          v-if="!GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED"
+        />
+        <alert-ec-ready
+          v-else-if="!GET_ENHANCED_CONVERSIONS_STATUS"
+          :is-on-configuration-page="false"
+        />
+      </template>
 
       <key-metrics-controls
         :in-need-of-configuration="inNeedOfConfiguration"
@@ -43,6 +51,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {mapGetters} from "vuex";
+import GettersTypesCampaigns from "@/store/modules/campaigns/getters-types";
 import GettersTypesGoogleAds from "@/store/modules/google-ads/getters-types";
 import TrackingActivationModal from '@/components/campaigns/tracking-activation-modal.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
@@ -51,10 +60,12 @@ import CampaignTableList from '@/components/campaign/campaign-table-list.vue';
 import KeyMetricsBlock from '@/components/campaign/reporting/key-metrics/key-metrics-block.vue';
 import KeyMetricsControls from '@/components/campaign/reporting/key-metrics/key-metrics-controls.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import AlertEcReady from '@/components/enhanced-conversions/alert-ec-ready.vue';
 import AlertSignGadsTos from "@/components/enhanced-conversions/alert-sign-gads-tos.vue";
 
 export default defineComponent({
   components: {
+    AlertEcReady,
     AlertSignGadsTos,
     BannerCampaigns,
     KeyMetricsBlock,
@@ -71,6 +82,9 @@ export default defineComponent({
   computed: {
     ...mapGetters("googleAds", [
       GettersTypesGoogleAds.GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED,
+    ]),
+    ...mapGetters("campaigns", [
+      GettersTypesCampaigns.GET_ENHANCED_CONVERSIONS_STATUS,
     ]),
     inNeedOfConfiguration() {
       return !this.googleAdsIsServing;
