@@ -38,8 +38,18 @@ import {
 import {
   addPropertiesToDimension, deepUpdateDimensionVisibilityFromTree,
 } from '@/utils/SSCFilters';
+import {RequestState} from '@/store/types';
 
 export default {
+  [MutationsTypes.RESET](
+    state: LocalState,
+  ) {
+    state.warmedUp = RequestState.IDLE;
+    state.trackingFeature = {
+      basic: null,
+      enhanced: null,
+    };
+  },
   [MutationsTypes.TOGGLE_STATUS_REMARKETING_TRACKING_TAG](
     state: LocalState,
     payload: boolean,

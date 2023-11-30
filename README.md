@@ -26,7 +26,7 @@ Want to maximize your campaign performance and find the right customers wherever
 
 Modules archives can be found and downloaded:
 * On the [PrestaShop Addons Marketplace](https://addons.prestashop.com/en/essentials/85751-prestashop-marketing-with-google-.html) (Latest stable release only)
-* On the [releases page](https://github.com/PrestaShopCorp/pasmarketingwithgoogle/releases) of this repository (Stable & beta releases available)
+* On the [releases page](https://github.com/PrestaShopCorp/psxmarketingwithgoogle/releases) of this repository (Stable & beta releases available)
 
 
 Downloaded archives can be uploaded on PrestaShop instances, as detailed in the [user documentation](https://doc.prestashop.com/display/PS17/Modules+Selection#ModulesSelection-Uploadingamodulemanually).
@@ -158,7 +158,7 @@ The module registers itself to several hooks and adds the following features:
 * displayHeader
   * Website verification: Display the Google Verification Tag
   * Conversion tracking: Display the Google Tag to init gtag()
-  * Conversion tracking: Provide user data for [Enhanced conversions](https://support.google.com/google-ads/answer/98886560)
+  * Conversion tracking: Provide user data for [Enhanced conversions](https://support.google.com/google-ads/answer/9888656)
   * Conversion tracking: Purge & display events that could not be displayed (i.e triggered from Ajax requests)
 * displayOrderConfirmation
   * Conversion tracking: Trigger the Conversion Action "Purchase"

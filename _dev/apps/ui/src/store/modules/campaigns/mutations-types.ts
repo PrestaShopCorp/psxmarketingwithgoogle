@@ -18,6 +18,7 @@
  */
 
 enum MutationsTypes {
+    RESET = 'RESET',
 
     // request mutations
     SET_REPORTING_PERIOD_SELECTED = 'SET_REPORTING_PERIOD_SELECTED',

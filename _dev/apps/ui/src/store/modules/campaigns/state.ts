@@ -22,9 +22,10 @@ import KpiType from '@/enums/reporting/KpiType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
 import CampaignStatus, {CampaignStatusToggle, CampaignTypes} from '@/enums/reporting/CampaignStatus';
+import {RequestState} from '@/store/types';
 
 export interface State {
-  warmedUp: boolean,
+  warmedUp: RequestState,
   campaigns: CampaignsList,
   errorCampaignNameExists: null|boolean;
   trackingFeature: {
@@ -183,7 +184,7 @@ export interface DailyResult {
 }
 
 export const state: State = {
-  warmedUp: false,
+  warmedUp: RequestState.IDLE,
   errorCampaignNameExists: null,
   trackingFeature: {
     basic: null,

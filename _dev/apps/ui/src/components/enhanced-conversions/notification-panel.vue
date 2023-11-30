@@ -16,6 +16,7 @@ import { mapGetters } from "vuex";
 import GettersTypesCampaigns from "@/store/modules/campaigns/getters-types";
 import GettersTypesGoogleAds from "@/store/modules/google-ads/getters-types";
 import PsToast from '@/components/commons/ps-toast.vue';
+import { RequestState } from '@/store/types';
 
 export default defineComponent({
   components: {
@@ -35,6 +36,9 @@ export default defineComponent({
       GettersTypesGoogleAds.GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED,
       GettersTypesGoogleAds.GET_GOOGLE_ADS_ACCOUNT_IS_SERVING,
     ]),
+    allDataLoaded(): boolean {
+      return this.$store.state.campaigns.warmedUp === RequestState.SUCCESS;
+    },
   },
   methods: {
     async fetchData(): Promise<void> {
@@ -88,7 +92,7 @@ export default defineComponent({
   },
   watch: {
     GET_ENHANCED_CONVERSIONS_STATUS(newValue: boolean): void {
-      if (newValue) {
+      if (newValue && this.allDataLoaded) {
         this.$bvToast.show(this.$refs.ecSuccessfullyEnabled.id);
       }
     },

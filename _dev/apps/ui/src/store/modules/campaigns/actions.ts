@@ -31,7 +31,7 @@ import {deepUpdateDimensionVisibility} from '@/utils/SSCFilters';
 import {runIf} from '../../../utils/Promise';
 import {RecommendedBudget} from '@/utils/CampaignsBudget';
 import KpiType from '@/enums/reporting/KpiType';
-import {FullState} from '@/store/types';
+import {FullState, RequestState} from '@/store/types';
 
 type Context = ActionContext<State, FullState>;
 
@@ -39,10 +39,13 @@ export default {
   async [ActionsTypes.WARMUP_STORE](
     {dispatch, state, getters}: Context,
   ) {
-    if (state.warmedUp) {
+    if ([
+      RequestState.PENDING,
+      RequestState.SUCCESS,
+    ].includes(state.warmedUp)) {
       return;
     }
-    state.warmedUp = true;
+    state.warmedUp = RequestState.PENDING;
 
     await dispatch(ActionsTypes.SET_REPORTING_DATES_RANGE);
 
@@ -70,6 +73,7 @@ export default {
         dispatch(ActionsTypes.GET_REPORTING_KPIS),
       ),
     ]);
+    state.warmedUp = RequestState.SUCCESS;
   },
   async [ActionsTypes.SAVE_NEW_CAMPAIGN]({commit}: Context, payload: CampaignObject) {
     try {
