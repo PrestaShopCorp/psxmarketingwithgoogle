@@ -277,7 +277,7 @@ export default {
     dispatch(ActionsTypes.SAVE_WEBSITE_VERIFICATION_META, false);
     commit(MutationsTypes.REMOVE_GMC);
     commit(MutationsTypes.SAVE_MCA_CONNECTED_ONCE, false);
-    commit(`googleAds/${MutationsTypesGoogleAds.SET_GOOGLE_ADS_ACCOUNT}`, '', {root: true});
+    commit(`googleAds/${MutationsTypesGoogleAds.SET_GOOGLE_ADS_ACCOUNT}`, null, {root: true});
     commit(`productFeed/${MutationsTypesProductFeed.REMOVE_PRODUCT_FEED}`, null, {root: true});
     commit(`productFeed/${MutationsTypesProductFeed.SET_ACTIVE_CONFIGURATION_STEP}`, 1, {root: true});
     commit(`productFeed/${MutationsTypesProductFeed.TOGGLE_CONFIGURATION_FINISHED}`, false, {root: true});
