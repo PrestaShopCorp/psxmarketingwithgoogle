@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 
 import config, {localVue, cloneStore} from '@/../tests/init';
 import KeyMetricsChartWrapperVue from './key-metrics-chart-wrapper.vue';
-import chartVue from '@/components/chart/chart.vue';
+import ChartCanvasVue from '@/components/chart/chart-canvas.vue';
 import {campaigns} from '@/../.storybook/mock/campaigns-list';
 import {dateGenerator} from '@/../.storybook/utils/date-generator';
 import KpiType from '@/enums/reporting/KpiType';
@@ -34,7 +34,7 @@ describe('KeyMetricsChartWrapper', () => {
     it('is shown by default', () => {
       const wrapper = buildWrapper();
 
-      expect(wrapper.findComponent(chartVue).exists()).toBe(true);
+      expect(wrapper.findComponent(ChartCanvasVue).exists()).toBe(true);
       expect(wrapper.find('.ps_gs-onboardingcard__not-configured').exists()).toBe(false);
     });
 
@@ -43,7 +43,7 @@ describe('KeyMetricsChartWrapper', () => {
       store.modules.campaigns.state.campaigns.results.totalCount = 0;
       const wrapper = buildWrapper({}, store);
 
-      expect(wrapper.findComponent(chartVue).exists()).toBe(true);
+      expect(wrapper.findComponent(ChartCanvasVue).exists()).toBe(true);
       expect(wrapper.find('.ps_gs-onboardingcard__not-configured').exists()).toBe(true);
     });
 
@@ -61,7 +61,7 @@ describe('KeyMetricsChartWrapper', () => {
       }];
       const wrapper = buildWrapper({}, store);
 
-      expect(wrapper.findComponent(chartVue).exists()).toBe(true);
+      expect(wrapper.findComponent(ChartCanvasVue).exists()).toBe(true);
       expect(wrapper.find('.ps_gs-onboardingcard__not-configured').exists()).toBe(false);
     });
 
@@ -71,7 +71,7 @@ describe('KeyMetricsChartWrapper', () => {
       store.modules.campaigns.state.reporting.results.dailyResultChart.dailyResultList = [];
       const wrapper = buildWrapper({}, store);
 
-      expect(wrapper.findComponent(chartVue).exists()).toBe(true);
+      expect(wrapper.findComponent(ChartCanvasVue).exists()).toBe(true);
       expect(wrapper.find('.ps_gs-onboardingcard__not-configured').exists()).toBe(true);
     });
   });

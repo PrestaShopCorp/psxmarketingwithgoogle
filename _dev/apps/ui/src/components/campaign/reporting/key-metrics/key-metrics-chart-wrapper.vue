@@ -23,7 +23,7 @@
             {{ $t('banner.ctaCreateFirstCampaign') }}
           </b-button>
         </div>
-        <Chart
+        <chart-canvas
           type="line"
           :data="getDataSetsByMetric"
           :options="chartOptions"
@@ -41,7 +41,7 @@ import {
   ChartData, ChartDataset, ChartOptions, Point, ScriptableLineSegmentContext,
 } from 'chart.js';
 import KpiType from '@/enums/reporting/KpiType';
-import Chart from '@/components/chart/chart.vue';
+import ChartCanvas from '@/components/chart/chart-canvas.vue';
 import {Kpis, DailyResultTypes} from '@/store/modules/campaigns/state';
 import {timeConverterToDate} from '@/utils/Dates';
 import {externalTooltipHandler} from '@/utils/ChartTooltip';
@@ -54,7 +54,7 @@ const skipped = (
 export default defineComponent({
   name: 'KeyMetricsChartWrapper',
   components: {
-    Chart,
+    ChartCanvas,
   },
   created() {
     this.fetchGraph();

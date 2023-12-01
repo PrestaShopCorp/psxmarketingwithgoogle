@@ -8,9 +8,9 @@
   />
 </template>
 
-<script>
+<script lang="ts">
 import ProductFeedSettingsSteps from '@/enums/product-feed/product-feed-settings-steps';
-import Stepper from '../commons/stepper';
+import Stepper from '@/components/commons/ps-stepper.vue';
 
 export default {
   name: 'ProductFeedStepper',

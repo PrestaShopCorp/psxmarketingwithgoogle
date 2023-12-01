@@ -3,20 +3,12 @@ import Vuex from 'vuex';
 // Import this file first to init mock on window
 import {shallowMount} from '@vue/test-utils';
 import config, {cloneStore} from '@/../tests/init';
-import Stepper from '@/components/commons/stepper.vue';
+import PsStepper from '@/components/commons/ps-stepper.vue';
 
-describe('stepper.vue', () => {
-  const productFeedSettingsRoute = {
-    name: 'product-feed-settings',
-    params: {
-      step: 'target-country',
-    },
-  };
-
+describe('ps-stepper.vue', () => {
   const routeName = {
     name: 'foo',
   };
-  const push = vi.fn();
   const mockRouter = {
     push: vi.fn(),
   };
@@ -59,7 +51,7 @@ describe('stepper.vue', () => {
   });
 
   it('steps before activeStep are completed', () => {
-    const wrapper = shallowMount(Stepper, {
+    const wrapper = shallowMount(PsStepper, {
       propsData,
       ...config,
       store: new Vuex.Store(store),
@@ -70,7 +62,7 @@ describe('stepper.vue', () => {
   });
 
   it('steps before activeStep are <a>', () => {
-    const wrapper = shallowMount(Stepper, {
+    const wrapper = shallowMount(PsStepper, {
       propsData,
       ...config,
       store: new Vuex.Store(store),
@@ -81,7 +73,7 @@ describe('stepper.vue', () => {
   });
 
   it('steps active has a class .active', () => {
-    const wrapper = shallowMount(Stepper, {
+    const wrapper = shallowMount(PsStepper, {
       propsData,
       ...config,
       store: new Vuex.Store(store),
@@ -92,7 +84,7 @@ describe('stepper.vue', () => {
   });
 
   it('test event emited when we click on a previous step on any other page', async () => {
-    const wrapper = shallowMount(Stepper, {
+    const wrapper = shallowMount(PsStepper, {
       mocks: {
         $route: routeName,
         $router: mockRouter,
