@@ -4,7 +4,6 @@ import store from '@/store';
 import CampaignPage from '@/views/campaign-page.vue';
 import CampaignForm from '@/views/campaign-form.vue';
 import LandingPage from '@/views/landing-page.vue';
-import LandingPage from '@/views/landing-page.vue';
 import DebugPage from '@/views/debug-page.vue';
 import HelpPage from '@/views/help-page.vue';
 import ProductFeedPage from '@/views/product-feed-page.vue';

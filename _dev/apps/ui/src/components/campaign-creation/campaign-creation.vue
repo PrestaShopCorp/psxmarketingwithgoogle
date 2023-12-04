@@ -121,7 +121,8 @@
               id="campaign-duration-fieldset"
               class="maxw-sm-420"
               :description="$t('smartShoppingCampaignCreation.inputDurationHelper')"
-              label-class="border-0 bg-transparent d-flex align-items-center ps_gs-fz-16 font-weight-500"
+              label-class="border-0 bg-transparent d-flex align-items-center
+                ps_gs-fz-16 font-weight-500"
               label-for="campaign-duration-start-date-input"
             >
               <template #label>

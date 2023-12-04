@@ -8,8 +8,8 @@
         switch
         size="sm"
         class="ps_gs-switch mb-0"
-        v-model="carrier.enabledCarrier"
-        @input="$emit('dataUpdated')"
+        v-model="enabledCarrier"
+        @input="carrierUpdated"
         :aria-label="$t('productFeedSettings.deliveryTimeAndRates.shippingSwitchCarrier')"
       />
     </td>
@@ -34,8 +34,8 @@
           type="number"
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
-          v-model.number="carrier.minTransitTimeInDays"
-          @input="$emit('dataUpdated')"
+          v-model.number="minTransitTimeInDays"
+          @input="carrierUpdated"
 
           :disabled="disableInputNumber"
           :state="timeStateDelivery"
@@ -49,8 +49,8 @@
             type="number"
             class="ps_gs-carrier__input-number no-arrows"
             size="sm"
-            v-model.number="carrier.maxTransitTimeInDays"
-            @input="$emit('dataUpdated')"
+            v-model.number="maxTransitTimeInDays"
+            @input="carrierUpdated"
             :disabled="disableInputNumber"
             :state="timeStateDelivery"
             :placeholder="$t('general.max')"
@@ -134,6 +134,10 @@ import {validateTransitTimes, CarrierIdentifier, DeliveryDetail} from '@/provide
 
 type State = {
   selectedCarriersForDuplication: CarrierIdentifier[];
+  minTransitTimeInDays?: number;
+  maxTransitTimeInDays?: number;
+  enabledCarrier?: boolean;
+
 }
 
 export default {
@@ -143,6 +147,9 @@ export default {
         carrierId: this.carrier.carrierId,
         country: this.carrier.country,
       }],
+      minTransitTimeInDays: this.carrier.minTransitTimeInDays,
+      maxTransitTimeInDays: this.carrier.maxTransitTimeInDays,
+      enabledCarrier: this.carrier.enabledCarrier,
     };
   },
   props: {
@@ -194,6 +201,14 @@ export default {
             && selectedCarrier.country === carrier.country,
           ).enabledCarrier,
         );
+    },
+    carrierUpdated(): void {
+      this.$emit('carrierUpdated', {
+        ...this.carrier,
+        minTransitTimeInDays: this.minTransitTimeInDays,
+        maxTransitTimeInDays: this.maxTransitTimeInDays,
+        enabledCarrier: this.enabledCarrier,
+      });
     },
   },
 };

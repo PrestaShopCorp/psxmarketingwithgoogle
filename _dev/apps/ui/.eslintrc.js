@@ -34,9 +34,6 @@ module.exports = {
     'import/no-extraneous-dependencies': ['error', {devDependencies: ['**/*.spec.ts', '**/tests/*.ts', '**/*.stories.ts']}],
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': ['error'],
-    "vue/no-mutating-props": ["error", {
-      "shallowOnly": true,
-    }],
     // Need some help to handle this error
     'no-restricted-exports': 'off',
   },
