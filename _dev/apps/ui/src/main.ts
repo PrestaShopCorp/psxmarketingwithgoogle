@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import {BootstrapVue} from 'bootstrap-vue';
 import VueShowdown from 'vue-showdown';
+import {initOnboardingClient} from 'mktg-with-google-common/api/onboardingClient';
 import router from './router';
 import store from './store';
 import App from './App.vue';
@@ -25,6 +26,11 @@ Vue.use(VueSegment, {
   router,
   debug: process.env.NODE_ENV !== 'production',
   pageCategory: '[GGL]',
+});
+
+initOnboardingClient({
+  apiUrl: window.psxMktgWithGoogleApiUrl,
+  token: window.tokenPsAccounts,
 });
 
 new Vue({
