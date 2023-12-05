@@ -381,7 +381,7 @@ export default {
       query.append('search_query', search);
     }
 
-    const json = await (await fetchOnboarding(
+    const json = await fetchOnboarding(
       'GET',
       `shopping-campaigns/dimensions/filters?${query}`,
       {
@@ -393,10 +393,10 @@ export default {
           if (!reponse.ok) {
             throw new HttpClientError(reponse.statusText, reponse.status);
           }
-          return reponse;
+          return reponse.json();
         },
       },
-    )).json();
+    );
 
     if (!search) {
       // Basic mutation storing all possible dimensions and filters
