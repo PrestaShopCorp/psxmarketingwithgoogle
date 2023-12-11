@@ -15,7 +15,7 @@
         v-if="!GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED"
       />
       <alert-ec-ready
-        v-else-if="!GET_ENHANCED_CONVERSIONS_STATUS"
+        v-else-if="GET_ENHANCED_CONVERSIONS_NEVER_ENABLED"
         :is-on-configuration-page="false"
       />
     </template>
@@ -55,7 +55,7 @@ export default defineComponent({
       GettersTypesGoogleAds.GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED,
     ]),
     ...mapGetters("campaigns", [
-      GettersTypesCampaigns.GET_ENHANCED_CONVERSIONS_STATUS,
+      GettersTypesCampaigns.GET_ENHANCED_CONVERSIONS_NEVER_ENABLED,
     ]),
     allDataLoaded(): boolean {
       return this.$store.state.productFeed.warmedUp === RequestState.SUCCESS;

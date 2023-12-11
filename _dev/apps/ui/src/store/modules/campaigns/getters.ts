@@ -60,6 +60,10 @@ export default {
   [GettersTypes.GET_ENHANCED_CONVERSIONS_STATUS](state: LocalState): boolean|null {
     return state.trackingFeature.enhanced;
   },
+  [GettersTypes.GET_ENHANCED_CONVERSIONS_NEVER_ENABLED](state: LocalState): boolean {
+    return state.trackingFeature.basic !== null
+      && state.trackingFeature.enhanced === null;
+  },
   [GettersTypes.GET_ERROR_CAMPAIGN_NAME](state: LocalState): boolean|null {
     return state.errorCampaignNameExists;
   },
