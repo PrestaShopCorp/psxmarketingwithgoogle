@@ -65,7 +65,7 @@ export default {
 
   [MutationsTypes.TOGGLE_STATUS_ENHANCED_CONVERSIONS](
     state: LocalState,
-    payload: boolean,
+    payload: boolean|null,
   ): void {
     state.trackingFeature.enhanced = payload;
   },

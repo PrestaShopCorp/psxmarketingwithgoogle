@@ -134,7 +134,7 @@
       modal-id="SSCPopinActivateTrackingOnboardingPage"
     />
     <modal-ec-intro
-      v-if="getGoogleAdsAccount && accountHasAtLeastOneCampaign && !enhancedConversionsTagIsSet"
+      v-if="getGoogleAdsAccount && accountHasAtLeastOneCampaign && enhancedConversionsHasNeverBeenEnabled"
       :tos-are-signed="!!getGoogleAdsAccount.acceptedCustomerDataTerms"
     />
     <PopinModuleConfigured
@@ -396,8 +396,8 @@ export default defineComponent({
     remarketingTagIsSet() {
       return this.$store.getters['campaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
     },
-    enhancedConversionsTagIsSet() {
-      return this.$store.getters['campaigns/GET_ENHANCED_CONVERSIONS_STATUS'];
+    enhancedConversionsHasNeverBeenEnabled(): boolean {
+      return this.$store.getters['campaigns/GET_ENHANCED_CONVERSIONS_NEVER_ENABLED'];
     },
     stepsAreCompleted() {
       return {
