@@ -188,10 +188,12 @@ export default defineComponent({
         ? this.$store.dispatch('campaigns/UPDATE_CAMPAIGN', campaignPayload)
         : this.$store.dispatch('campaigns/SAVE_NEW_CAMPAIGN', campaignPayload);
 
-      promise.then((resp) => {
-        if (resp && resp.error) {
-          this.$emit('displayErrorApiWhenSavingSSC');
-        } else {
+      promise
+        .then((resp) => {
+          if (resp && resp.error) {
+            throw new Error(error);
+          }
+          
           this.$store.dispatch(
             'campaigns/GET_CAMPAIGNS_LIST',
           );
@@ -203,12 +205,9 @@ export default defineComponent({
             module: 'psxmarketingwithgoogle',
             params: SegmentGenericParams,
           });
-        }
-      })
+        })
         .catch(() => {
           this.$emit('displayErrorApiWhenSavingSSC');
-        })
-        .finally(() => {
           this.isValidating = false;
           this.$refs.modal.hide();
         });
