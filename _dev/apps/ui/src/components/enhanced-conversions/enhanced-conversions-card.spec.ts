@@ -13,13 +13,6 @@ import AlertSignGadsTos from './alert-sign-gads-tos.vue';
 import alertEcReadyVue from './alert-ec-ready.vue';
 
 describe('EnhancedConversionsCard', () => {
-  it('is hidden when status is unknown', () => {
-    const store = buildDefaultStore();
-    store.modules.campaigns.state.trackingFeature.enhanced = null;
-    const wrapper = buildWrapper({}, store);
-    expect(wrapper.isVisible()).toBe(false);
-  });
-
   describe('Toggle', () => {
     it('is visible when status is known', () => {
       const wrapper = buildWrapper();

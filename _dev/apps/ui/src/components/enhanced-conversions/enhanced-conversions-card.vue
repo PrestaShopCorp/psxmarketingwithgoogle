@@ -1,5 +1,5 @@
 <template>
-  <section v-if="GET_ENHANCED_CONVERSIONS_STATUS !== null">
+  <section>
     <b-card no-body class="ps_gs-onboardingcard p-3">
       <div
         class="d-md-flex flex-wrap align-items-center justify-content-between mb-3"

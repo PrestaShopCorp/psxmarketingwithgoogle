@@ -9,7 +9,7 @@
       <p> {{ $t('productFeedPage.alert.alertSuccess') }}</p>
     </PsToast>
     <template
-      v-else-if="allDataLoaded"
+      v-else-if="allDataLoaded && !inNeedOfConfiguration"
     >
       <alert-sign-gads-tos
         v-if="!GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED"
