@@ -321,11 +321,9 @@
               :description="$t('smartShoppingCampaignCreation.inputBudgetHelper')"
               label-for="campaign-dailyBudget-input"
               label-class="d-flex align-items-center font-weight-600"
-              :state="campaignDailyBudgetFeedback"
+              :state="campaignDailyBudgetFeedback.result"
               aria-describedby="campaign-daily-budget-fieldset__BV_description_ input-live-feedback"
-              :invalid-feedback="
-                $t('smartShoppingCampaignCreation.inputBudgetInvalidFeedback')
-              "
+              :invalid-feedback="campaignDailyBudgetFeedback.error"
             >
               <template #label>
                 {{ $t("smartShoppingCampaignCreation.inputBudgetFeedback") }}
@@ -347,6 +345,7 @@
                 class="maxw-sm-420"
               >
                 <b-form-input
+                  type="number"
                   data-test-id="campaign-dailyBudget-input"
                   id="campaign-dailyBudget-input"
                   :value="budgetInput"
@@ -354,7 +353,7 @@
                   :placeholder="
                     $t('smartShoppingCampaignCreation.inputBudgetPlaceholder')
                   "
-                  :state="campaignDailyBudgetFeedback"
+                  :state="campaignDailyBudgetFeedback.result"
                 />
               </b-input-group>
             </b-form-group>
@@ -531,7 +530,7 @@ export default defineComponent({
         this.campaignNameFeedback === true
         && this.campaignDurationStartDate
         && (this.targetCountry || this.defaultCountry)
-        && this.campaignDailyBudgetFeedback === true
+        && this.campaignDailyBudgetFeedback.result === true
         && this.campaignEndDateFeedback !== false
       ) {
         return false;
@@ -575,19 +574,45 @@ export default defineComponent({
       // No feedback to display, either OK or NOK
       return null;
     },
-    campaignDailyBudgetFeedback() {
+    campaignDailyBudgetFeedback(): {result: boolean|null, error?: TranslateResult} {
       const regex = /^[0-9]+([.][0-9]{0,2})?$/g;
 
       if (
         this.budgetInput === null
         || this.budgetInput === ''
       ) {
-        return null;
+        return {
+          result: null,
+        };
       }
-      if (this.budgetInput < 1) {
-        return false;
+      if (+this.budgetInput < 1 || !regex.test(this.budgetInput)) {
+        return {
+          result: false,
+          error: this.$t('smartShoppingCampaignCreation.inputBudgetInvalidFeedback'),
+        };
       }
-      return !!regex.test(this.budgetInput);
+
+      if (this.recommendedBudget === null) {
+        return {
+          result: null,
+        };
+      }
+
+      if (+this.budgetInput < this.recommendedBudget.value) {
+        return {
+          result: false,
+          error: this.$t(
+            'smartShoppingCampaignCreation.inputBudgetBeforeThresholdFeedback',
+            {
+              budget: this.formattedRecommendedBudget,
+            }
+          ),
+        };
+      }
+
+      return {
+        result: true,
+      };
     },
     errorCampaignNameExistsAlready() {
       return this.$store.getters[
@@ -654,7 +679,7 @@ export default defineComponent({
         this.$store.state.app.psxMtgWithGoogleDefaultShopCountry,
       ])[0];
     },
-    formattedRecommendedBudget() {
+    formattedRecommendedBudget(): string {
       return formatPrice(this.recommendedBudget.value, this.recommendedBudget.currency);
     },
     budgetInput(): string|number {
