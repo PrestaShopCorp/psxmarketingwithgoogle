@@ -5,12 +5,13 @@ import cloneDeep from 'lodash.clonedeep';
 import {MountOptions, shallowMount} from '@vue/test-utils';
 import config, {localVue, cloneStore} from '@/../tests/init';
 
-import {initialStateApp} from '../../../.storybook/mock/state-app';
-import {googleAdsAccountChosen} from '../../../.storybook/mock/google-ads';
-import {campaignWithUnhandledFilters, campaignWithoutUnhandledFilters, availableFilters} from '../../../.storybook/mock/campaigns';
+import {initialStateApp} from '@/../.storybook/mock/state-app';
+import {googleAdsAccountChosen} from '@/../.storybook/mock/google-ads';
+import {campaignWithUnhandledFilters, campaignWithoutUnhandledFilters, availableFilters} from '@/../.storybook/mock/campaigns';
 import CampaignCreation from './campaign-creation.vue';
 import {formatPrice} from '@/utils/Price';
 import {deepCheckDimension} from '@/utils/SSCFilters';
+import {RecommendedBudget} from '@/utils/CampaignsBudget';
 
 const VBTooltip = vi.fn();
 const buildWrapper = (
@@ -300,5 +301,101 @@ describe('campaign-creation.vue - Campaign edition - Name validation', () => {
     expect(wrapper.vm.campaignNameFeedback).toBe(false);
     expect(wrapper.vm.campaignNameFeedbackMessage).toBe('The name must be less than 125 characters in length.');
     expect(wrapper.find('[data-test-id="createCampaignButton"]').attributes('disabled')).toBeTruthy();
+  });
+
+  describe('campaign-creation.vue - Campaign edition - Budget validation', () => {
+    it('forbids to continue when the value is not a number', () => {
+      const wrapper = buildWrapper({
+        data() {
+          return {
+            ...campaignWithUnhandledFilters,
+            campaignDailyBudget: '20',
+            recommendedBudget: {
+              value: 10,
+              currency: 'EUR',
+            } as RecommendedBudget,
+          };
+        },
+      });
+
+      expect(wrapper.vm.campaignDailyBudgetFeedback).toEqual({
+        result: true,
+      });
+    });
+
+    it('forbids to continue when the value is not a number', () => {
+      const wrapper = buildWrapper({
+        data() {
+          return {
+            ...campaignWithUnhandledFilters,
+            campaignDailyBudget: '🪲',
+            recommendedBudget: {
+              currency: 'EUR',
+              value: 10,
+            } as RecommendedBudget,
+          };
+        },
+      });
+
+      expect(wrapper.vm.campaignDailyBudgetFeedback).toEqual({
+        result: false,
+        error: 'Your daily budget must be a valid number greater than 1. For any decimal number, please use a dot as separator.',
+      });
+    });
+
+    it('forbids to continue when the value is below the minimum recommended budget', () => {
+      const wrapper = buildWrapper({
+        data() {
+          return {
+            ...campaignWithUnhandledFilters,
+            campaignDailyBudget: '10',
+            recommendedBudget: {
+              currency: 'EUR',
+              value: 120,
+            } as RecommendedBudget,
+          };
+        },
+      });
+
+      expect(wrapper.vm.campaignDailyBudgetFeedback).toEqual({
+        result: false,
+        error: 'Minimum budget requirement: {budget}, please increase your budget to continue.',
+      });
+    });
+
+    it('says nothing when recommended budget is not loaded', () => {
+      const wrapper = buildWrapper({
+        data() {
+          return {
+            ...campaignWithUnhandledFilters,
+            campaignDailyBudget: '10',
+            recommendedBudget: null,
+          };
+        },
+      });
+
+      expect(wrapper.vm.campaignDailyBudgetFeedback).toEqual({
+        result: null,
+      });
+    });
+
+    it('says nothing when input is empty', () => {
+      const wrapper = buildWrapper({
+        data() {
+          return {
+            ...campaignWithUnhandledFilters,
+            campaignDailyBudget: '',
+            recommendedBudget: {
+              currency: 'EUR',
+              value: 120,
+            } as RecommendedBudget,
+          };
+        },
+      });
+
+      expect(wrapper.vm.campaignDailyBudgetFeedback).toEqual({
+        result: null,
+      });
+    });
   });
 });
