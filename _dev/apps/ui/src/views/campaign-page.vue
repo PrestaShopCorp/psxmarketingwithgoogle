@@ -4,15 +4,15 @@
       v-if="$route.name === 'campaign'"
       class="mb-3"
     >
-      <BannerCampaigns
-        v-if="!inNeedOfConfiguration && !accountHasAtLeastOneCampaign"
-        @clickToCreateCampaign="onClickToCreateCampaign"
-      />
       <template
-        v-else-if="allDataLoaded && !inNeedOfConfiguration"
+        v-if="allDataLoaded && !inNeedOfConfiguration"
       >
+        <BannerCampaigns
+          v-if="!accountHasAtLeastOneCampaign"
+          @clickToCreateCampaign="onClickToCreateCampaign"
+        />
         <alert-sign-gads-tos
-          v-if="!GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED"
+          v-else-if="!GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED"
         />
         <alert-ec-ready
           v-else-if="GET_ENHANCED_CONVERSIONS_NEVER_ENABLED"

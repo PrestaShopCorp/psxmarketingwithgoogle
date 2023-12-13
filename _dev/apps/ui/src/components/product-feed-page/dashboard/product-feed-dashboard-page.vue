@@ -9,7 +9,7 @@
       <p> {{ $t('productFeedPage.alert.alertSuccess') }}</p>
     </PsToast>
     <template
-      v-else-if="allDataLoaded && !inNeedOfConfiguration"
+      v-else-if="allDataLoaded && !inNeedOfConfiguration && GET_ACCOUNT_HAS_AT_LEAST_ONE_CAMPAIGN"
     >
       <alert-sign-gads-tos
         v-if="!GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED"
@@ -56,6 +56,7 @@ export default defineComponent({
     ]),
     ...mapGetters("campaigns", [
       GettersTypesCampaigns.GET_ENHANCED_CONVERSIONS_NEVER_ENABLED,
+      GettersTypesCampaigns.GET_ACCOUNT_HAS_AT_LEAST_ONE_CAMPAIGN,
     ]),
     allDataLoaded(): boolean {
       return this.$store.state.productFeed.warmedUp === RequestState.SUCCESS;

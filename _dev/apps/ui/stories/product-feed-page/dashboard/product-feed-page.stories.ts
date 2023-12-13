@@ -13,7 +13,8 @@ import {
 } from '@/../.storybook/mock/google-ads';
 
 import {
-  campaignsListResponse
+  campaignsListResponse,
+  campaigns,
 } from '@/../.storybook/mock/campaigns-list';
 
 import { rest } from 'msw';
@@ -444,6 +445,8 @@ EnhancedConversionsNotice.args = {
   beforeMount() {
     this.$store.state.productFeed.report = cloneDeep(productFeedStatusSyncSuccess.report);
     this.$store.state.googleAds.accountChosen.acceptedCustomerDataTerms = false;
+    this.$store.state.campaigns.campaigns.results.campaigns = cloneDeep(campaigns);
+    this.$store.state.campaigns.campaigns.results.totalCount = 6000;
   },
 }
 EnhancedConversionsNotice.parameters = {
