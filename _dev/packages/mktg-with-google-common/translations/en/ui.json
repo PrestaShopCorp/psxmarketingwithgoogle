@@ -553,6 +553,7 @@
       "inputFiltersHelper": "Take some time to [read Google Shopping ads policies]({0})[:target=\"_blank\"] some product are prohibited or restricted.",
       "inputBudgetHelper": "You will only pay if someone clicks your ad.",
       "inputBudgetInvalidFeedback": "Your daily budget must be a valid number greater than 1. For any decimal number, please use a dot as separator.",
+      "inputBudgetBeforeThresholdFeedback": "Minimum budget requirement: {budget}, please increase your budget to continue.",
       "inputBudgetFeedback": "Daily campaign budget",
       "inputBudgetTooltip": "Your budget is the average amount you’re comfortable spending each day on your campaign. The budget you choose is entirely up to you, and you can adjust it at any time.",
       "inputBudgetPlaceholder": "Amount",
