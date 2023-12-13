@@ -18,6 +18,8 @@ export const campaigns: CampaignPerformanceObject[] = [
     adSpend: 0,
     conversions: 0,
     sales: 0,
+    hasUnhandledFilters: false,
+    isBudgetBelowMinimum: false,
   },
   {
     id: 19968248543,
@@ -25,7 +27,7 @@ export const campaigns: CampaignPerformanceObject[] = [
     startDate: "2021-06-20T00:00:00.000Z",
     endDate: "2069-11-15T00:00:00.000Z",
     targetCountry: "FR",
-    dailyBudget: 112,
+    dailyBudget: 10,
     status: CampaignStatus.PENDING,
     currencyCode: "EUR",
     productFilters: [],
@@ -35,6 +37,8 @@ export const campaigns: CampaignPerformanceObject[] = [
     adSpend: 0,
     conversions: 0,
     sales: 0,
+    hasUnhandledFilters: false,
+    isBudgetBelowMinimum: true,
   },
   {
     id: 19968248543,
@@ -52,6 +56,8 @@ export const campaigns: CampaignPerformanceObject[] = [
     adSpend: 0,
     conversions: 0,
     sales: 0,
+    hasUnhandledFilters: false,
+    isBudgetBelowMinimum: false,
   },
   {
     id: 19968248543,
@@ -69,6 +75,8 @@ export const campaigns: CampaignPerformanceObject[] = [
     adSpend: 0,
     conversions: 0,
     sales: 0,
+    hasUnhandledFilters: false,
+    isBudgetBelowMinimum: false,
   },
   {
     id: 19968248543,
@@ -86,6 +94,8 @@ export const campaigns: CampaignPerformanceObject[] = [
     adSpend: 0,
     conversions: 0,
     sales: 0,
+    hasUnhandledFilters: false,
+    isBudgetBelowMinimum: false,
   },
   {
     id: 19968248543,
@@ -103,6 +113,8 @@ export const campaigns: CampaignPerformanceObject[] = [
     adSpend: 0,
     conversions: 0,
     sales: 0,
+    hasUnhandledFilters: false,
+    isBudgetBelowMinimum: false,
   },
 ];
 

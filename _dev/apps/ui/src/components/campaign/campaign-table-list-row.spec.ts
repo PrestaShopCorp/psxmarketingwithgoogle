@@ -6,6 +6,7 @@ import config, {localVue, addBootstrapToVue} from '@/../tests/init';
 import CampaignTableListRow from './campaign-table-list-row.vue';
 import CampaignStatus, {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import {CampaignPerformanceObject} from '@/store/modules/campaigns/state';
+import alertLowBudgetVue from './alert-low-budget.vue';
 
 describe('CampaignTableListRow', () => {
   beforeEach(() => {
@@ -28,6 +29,8 @@ describe('CampaignTableListRow', () => {
     adSpend: 10,
     conversions: 3,
     sales: 1300.34,
+    hasUnhandledFilters: false,
+    isBudgetBelowMinimum: false,
   };
 
   describe('Columns', () => {
@@ -53,6 +56,34 @@ describe('CampaignTableListRow', () => {
       expect(allCells.at(7).text()).toEqual('10\xa0£');
       expect(allCells.at(8).text()).toEqual('France');
       expect(allCells.at(9).text()).toEqual('15\xa0£');
+      expect(allCells.at(9).findComponent(alertLowBudgetVue).exists()).toBe(false);
+    });
+
+    it('should display an alert when the budget is too low', () => {
+      const wrapper = mount(CampaignTableListRow, {
+        config,
+        localVue,
+        propsData: {
+          campaign: {
+            ...defaultCampaign,
+            isBudgetBelowMinimum: true,
+          },
+        },
+      });
+
+      const allCells = wrapper.findAllComponents(BTd);
+
+      expect(allCells).toHaveLength(11);
+      expect(allCells.at(0).find('span').classes()).toContain('ps_gs-cell-status--paused');
+      expect(allCells.at(1).text()).toEqual('Tartiflette day (Paused)');
+      expect(allCells.at(2).text()).toEqual('From {startDate} to {endDate}');
+      expect(allCells.at(3).text()).toEqual('29');
+      expect(allCells.at(4).text()).toEqual('20');
+      expect(allCells.at(5).text()).toEqual('3');
+      expect(allCells.at(6).text()).toEqual('1\u202f300,34\xa0£');
+      expect(allCells.at(7).text()).toEqual('10\xa0£');
+      expect(allCells.at(8).text()).toEqual('France');
+      expect(allCells.at(9).findComponent(alertLowBudgetVue).exists()).toBe(true);
     });
   });
 

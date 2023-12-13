@@ -1,0 +1,13 @@
+@each $color, $value in $theme-alerts-icons {
+  .ps_gs-alert-mini-#{$color} {
+    // TODO: replace this with variables
+    background-color: $amber-100;
+    @extend .p-2;
+
+    &::after {
+      color: map-get($alerts-second-colors, $color);
+      @include material-icon($value);
+    }
+
+  }
+}

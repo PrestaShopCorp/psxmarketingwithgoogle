@@ -35,7 +35,8 @@ export default {
                         ]
                     }
                 ],
-                "hasUnhandledFilters": false
+                "hasUnhandledFilters": false,
+                "isBudgetBelowMinimum": false,
             },
             {
                 "id": "16004011605",
@@ -57,7 +58,8 @@ export default {
                         ]
                     }
                 ],
-                "hasUnhandledFilters": false
+                "hasUnhandledFilters": false,
+                "isBudgetBelowMinimum": false,
             }
         ]}))}),
         rest.get("/shopping-campaigns/dimensions/filters", (req, res, ctx) => {
@@ -325,7 +327,8 @@ EditionWithUnhandledFilters.parameters = {
                         ]
                     }
                 ],
-                "hasUnhandledFilters": true
+                "hasUnhandledFilters": true,
+                "isBudgetBelowMinimum": false,
             },
             {
                 "id": "16004011605",
@@ -346,7 +349,8 @@ EditionWithUnhandledFilters.parameters = {
                         ]
                     }
                 ],
-                "hasUnhandledFilters": false
+                "hasUnhandledFilters": false,
+                "isBudgetBelowMinimum": false,
               },
             ],
           })
