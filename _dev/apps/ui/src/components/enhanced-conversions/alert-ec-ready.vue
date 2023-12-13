@@ -2,6 +2,8 @@
   <b-alert
     show
     variant="info"
+    dismissible
+    @dismissed="disableEnhancedConversions"
   >
     <div
       class="d-flex flex-column flex-md-row justify-content-between"
@@ -18,7 +20,7 @@
         </span>
       </p>
       <div
-        class="d-md-flex flex-grow-1 text-center align-items-end mt-2"
+        class="d-md-flex flex-grow-1 text-center align-items-end mt-2 mr-2"
         v-if="!isOnConfigurationPage"
       >
         <b-button
@@ -46,6 +48,9 @@ export default defineComponent({
   methods: {
     async enableEnhancedConversions(): Promise<void> {
       await this.$store.dispatch('campaigns/SAVE_ENHANCED_CONVERSIONS_STATUS', true);
+    },
+    async disableEnhancedConversions(): Promise<void> {
+      await this.$store.dispatch('campaigns/SAVE_ENHANCED_CONVERSIONS_STATUS', false);
     },
   },
 });
