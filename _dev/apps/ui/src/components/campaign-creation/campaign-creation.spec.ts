@@ -304,7 +304,7 @@ describe('campaign-creation.vue - Campaign edition - Name validation', () => {
   });
 
   describe('campaign-creation.vue - Campaign edition - Budget validation', () => {
-    it('forbids to continue when the value is not a number', () => {
+    it('allows to continue when the budget is above the recommended one', () => {
       const wrapper = buildWrapper({
         data() {
           return {
