@@ -287,6 +287,7 @@ export const campaignWithUnhandledFilters: CampaignObject = {
   targetCountry: "France",
   currencyCode: "EUR",
   hasUnhandledFilters: true,
+  isBudgetBelowMinimum: false,
   type: CampaignTypes.PERFORMANCE_MAX,
 };
 
