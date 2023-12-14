@@ -1,7 +1,7 @@
 <template>
   <b-tr>
     <b-td
-      class="ps_gs-fz-12 p-0"
+      class=" p-0"
     >
       <span
         class="ps_gs-cell-status"
@@ -16,36 +16,42 @@
     >
       <b-link
         variant="link"
-        class="font-weight-normal ps_gs-fz-12 p-0 m-0 btn-max-width"
+        class="font-weight-normal p-0 m-0 btn-max-width"
         :title="campaign.campaignName"
         @click="goToCampaignPage"
       >
         {{ campaign.campaignName }}
       </b-link>
     </b-td>
-    <b-td class="ps_gs-fz-12">
+    <b-td>
       {{ campaignDuration }}
     </b-td>
-    <b-td class="ps_gs-fz-12 ps_gs-table-performance-cell">
+    <b-td class="ps_gs-table-performance-cell">
       {{ campaign.impressions }}
     </b-td>
-    <b-td class="ps_gs-fz-12 ps_gs-table-performance-cell">
+    <b-td class="ps_gs-table-performance-cell">
       {{ campaign.clicks }}
     </b-td>
-    <b-td class="ps_gs-fz-12 ps_gs-table-performance-cell">
+    <b-td class="ps_gs-table-performance-cell">
       {{ campaign.conversions }}
     </b-td>
-    <b-td class="ps_gs-fz-12 ps_gs-table-performance-cell">
+    <b-td class="ps_gs-table-performance-cell">
       {{ displayAsPrice(campaign.sales) }}
     </b-td>
-    <b-td class="ps_gs-fz-12 ps_gs-table-performance-cell">
+    <b-td class="ps_gs-table-performance-cell">
       {{ displayAsPrice(campaign.adSpend) }}
     </b-td>
-    <b-td class="ps_gs-fz-12">
+    <b-td>
       {{ campaignCountryName }}
     </b-td>
-    <b-td class="ps_gs-fz-12">
-      {{ displayAsPrice(campaign.dailyBudget) }}
+    <b-td>
+      <alert-low-budget
+        v-if="campaign.isBudgetBelowMinimum"
+        :formated-price="displayAsPrice(campaign.dailyBudget)"
+      />
+      <span v-else>
+        {{ displayAsPrice(campaign.dailyBudget) }}
+      </span>
     </b-td>
     <b-td
       class="text-right"
@@ -95,6 +101,7 @@ import { CampaignPerformanceObject, CampaignStatusPayload } from '@/store/module
 import { timeConverterToDate } from '@/utils/Dates';
 import { formatPrice } from '../../utils/Price';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import AlertLowBudget from './alert-low-budget.vue';
 
 export default defineComponent({
   name: 'CampaignTableListRow',
@@ -107,11 +114,10 @@ export default defineComponent({
   computed: {
     campaignDuration() {
       if (this.campaign.status === CampaignStatus.ENDED) {
-        return this.$t('campaigns.dateLabel.endedOnX', {endDate: timeConverterToDate(this.campaign.endDate)});
+        return this.$t('campaigns.dateLabel.endedOnX', { endDate: timeConverterToDate(this.campaign.endDate) });
       }
       if (this.campaign.endDate) {
         const isThereAnEndDate = compareYears(this.campaign.endDate);
-
         if (isThereAnEndDate) {
           return this.$t('campaigns.dateLabel.fromXToX', {
             startDate: timeConverterToDate(this.campaign.startDate),
@@ -119,7 +125,7 @@ export default defineComponent({
           });
         }
       }
-      return this.$t('campaigns.dateLabel.from', {startDate: timeConverterToDate(this.campaign.startDate)});
+      return this.$t('campaigns.dateLabel.from', { startDate: timeConverterToDate(this.campaign.startDate) });
     },
     campaignCountryName() {
       return this.$options.filters.changeCountriesCodesToNames([this.campaign.targetCountry])[0];
@@ -140,7 +146,7 @@ export default defineComponent({
   },
   methods: {
     displayAsPrice(value: number): string {
-      return formatPrice(value, this.currencyCode)
+      return formatPrice(value, this.currencyCode);
     },
     goToCampaignPage() {
       this.$router.push({
@@ -173,5 +179,8 @@ export default defineComponent({
     },
   },
   googleUrl,
+  components: {
+    AlertLowBudget,
+  }
 });
 </script>

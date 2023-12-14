@@ -810,6 +810,9 @@
         "target": "Target country",
         "actions": "Actions",
         "dailyBudget": "Daily budget"
+      },
+      "tooltip": {
+        "lowBudget": "Your daily budget is too low to have a performing campaign, increase your budget to enhance campaign performance."
       }
     },
     "notConfiguredState": {
