@@ -204,7 +204,7 @@
         class="d-flex mr-1 text-muted p-0 border-0"
       >
         <span class="material-icons ps_gs-fz-14">
-          info_outlined
+          help_outline
         </span>
       </b-button>
       <p>

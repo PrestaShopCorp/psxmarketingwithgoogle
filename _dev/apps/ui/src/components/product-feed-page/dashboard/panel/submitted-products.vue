@@ -10,7 +10,7 @@
         variant="text"
       >
         <span class="material-icons-round ps_gs-fz-20 mb-1 ml-0 text-secondary">
-          info_outlined
+          help_outline
         </span>
       </b-button>
       <b-tooltip
