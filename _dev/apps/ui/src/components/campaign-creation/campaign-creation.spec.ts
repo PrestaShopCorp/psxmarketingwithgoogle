@@ -389,7 +389,7 @@ describe('campaign-creation.vue - Campaign edition - Name validation', () => {
         result: null,
       });
 
-      expect(wrapper.find('#campaign-daily-budget-fieldset').attributes('description')).toBe('[AWAITING VALIDATION] The minimum budget varies based on your target country. Please select a country to see the exact minimum required.');
+      expect(wrapper.find('#campaign-daily-budget-fieldset').attributes('description')).toBe('The minimum budget varies based on your target country. Please select a country to see the exact minimum required.');
       expect(wrapper.find('#campaign-daily-budget-fieldset').attributes('invalid-feedback')).toBeUndefined();
     });
 
