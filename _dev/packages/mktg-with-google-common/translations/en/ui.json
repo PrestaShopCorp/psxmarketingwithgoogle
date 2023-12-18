@@ -551,11 +551,12 @@
       "inputFiltersAllLabel": "Include all synced products",
       "inputFiltersPartialLabel": "Select products using product partition filters",
       "inputFiltersHelper": "Take some time to [read Google Shopping ads policies]({0})[:target=\"_blank\"] some product are prohibited or restricted.",
-      "inputBudgetHelper": "You will only pay if someone clicks your ad.",
+      "inputBudgetHelper": "[AWAITING VALIDATION] The minimum budget varies based on your target country. Please select a country to see the exact minimum required.",
+      "inputBudgetHelperForTargetCountry": "The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.",
       "inputBudgetInvalidFeedback": "Your daily budget must be a valid number greater than 1. For any decimal number, please use a dot as separator.",
-      "inputBudgetBeforeThresholdFeedback": "Minimum budget requirement: {budget}, please increase your budget to continue.",
+      "inputBudgetBeforeThresholdFeedback": "Minimum budget required for this target country is {budget}. Please increase your budget to continue.",
       "inputBudgetFeedback": "Daily campaign budget",
-      "inputBudgetTooltip": "Your budget is the average amount you’re comfortable spending each day on your campaign. The budget you choose is entirely up to you, and you can adjust it at any time.",
+      "inputBudgetTooltip": "[AWAITING VALIDATION] To ensure Ad performance, the base minimum depends on your target country and the budget you choose is entirely up to you, and you can adjust it at any time.",
       "inputBudgetPlaceholder": "Amount",
       "inputAllSyncedProducts": "No filters selected",
       "formHelperTitle": "Campaign activation",
@@ -617,8 +618,7 @@
       "dimensionXFilterSelectedWithXProducts" : "{0} filter | {0} filter ({1} product) | {0} filter ({1} products)",
       "filtersWithxValues" : "{0} filters | {0} filters with {1} affected product | {0} filters with {1} affected products",
       "budgetTip": {
-        "content": "It is generally recommended to start with a **minimum budget of {0} per day for your daily ad spend**. This allows you to reach a larger audience & potentially see better results.",
-        "readMore": "This recommended minimum budget will allow you to test the effectiveness\n  of your ads and make adjustments as needed. Of course, every business is\n  different, and the actual budget that is best for you may vary depending\n  on your specific goals and target audience. We recommend experimenting\n  with different budgets to determine what works best for your business."
+        "content": "[AWAITING VALIDATION] To ensure your campaign's success, a daily ad budget can vary based on your target country, for example {budget} is the baseline for {country}. By selecting your target country, you'll be able to determine the optimal starting budget that aligns with your specific goals. This foundational budget is not just a number — it's a crucial part of your strategy. It allows for effective testing and refining of your ads, helping you to tailor your spending to your business's unique needs and maximize overall effectiveness."
       }
      },
 
