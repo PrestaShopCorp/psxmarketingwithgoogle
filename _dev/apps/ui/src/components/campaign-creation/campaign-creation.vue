@@ -102,7 +102,7 @@
                   :title="$t('smartShoppingCampaignCreation.inputNameTooltip')"
                 >
                   <span class="material-icons-round mb-0 text-secondary">
-                    info_outlined
+                    help_outline
                   </span>
                 </b-button>
               </template>
@@ -133,7 +133,7 @@
                   :title="$t('smartShoppingCampaignCreation.inputDurationTooltip')"
                 >
                   <span class="material-icons-round mb-0 ps_gs-fz-16 text-secondary">
-                    info_outlined
+                    help_outline
                   </span>
                 </b-button>
               </template>
@@ -229,7 +229,7 @@
                   :title="$t('smartShoppingCampaignCreation.inputCountryTooltip')"
                 >
                   <span class="material-icons-round mb-0 ps_gs-fz-16 text-secondary">
-                    info_outlined
+                    help_outline
                   </span>
                 </b-button>
               </template>
@@ -340,7 +340,7 @@
                   :title="$t('smartShoppingCampaignCreation.inputBudgetTooltip')"
                 >
                   <i class="material-icons-round mb-0 ps_gs-fz-16 text-secondary">
-                    info_outlined
+                    help_outline
                   </i>
                 </b-button>
               </template>
