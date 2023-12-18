@@ -5,7 +5,7 @@ import config, {localVue, addShowdownToVue} from '@/../tests/init';
 import TipsAndTricksCard from './tips-and-tricks-card.vue';
 
 describe('Tips & Tricks', () => {
-  it('displays the tip from Christophe', () => {
+  it('displays the tip', () => {
     const wrapper = buildWrapper({
       propsData: {
         content: '**Lorem ipsum** dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
@@ -18,9 +18,6 @@ describe('Tips & Tricks', () => {
     );
     expect(wrapper.findComponent(BCollapse).text()).toBe(
       'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    );
-    expect(wrapper.find('[data-test-id="advisor"]').text()).toBe(
-      'ChristophePrestaShop eCommerce Expert',
     );
   });
 

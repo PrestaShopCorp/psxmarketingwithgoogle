@@ -1120,8 +1120,6 @@
       "textCampaignsBanner":  "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
     },
     "tipsAndTricks": {
-      "title": "PrestaShop Tips and Tricks",
-      "advisorPicture": "{0}'s profile picture",
-      "advisorRole": "PrestaShop eCommerce Expert"
+      "title": "PrestaShop pro tip"
     }
 }
