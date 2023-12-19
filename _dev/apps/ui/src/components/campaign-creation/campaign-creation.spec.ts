@@ -321,6 +321,9 @@ describe('campaign-creation.vue - Campaign edition - Name validation', () => {
       expect(wrapper.vm.campaignDailyBudgetFeedback).toEqual({
         result: true,
       });
+
+      expect(wrapper.find('#campaign-daily-budget-fieldset').attributes('description')).toBe('The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.');
+      expect(wrapper.find('#campaign-daily-budget-fieldset').attributes('invalid-feedback')).toBeUndefined();
     });
 
     it('forbids to continue when the value is not a number', () => {
@@ -341,6 +344,10 @@ describe('campaign-creation.vue - Campaign edition - Name validation', () => {
         result: false,
         error: 'Your daily budget must be a valid number greater than 1. For any decimal number, please use a dot as separator.',
       });
+
+      // Display the error only, not the initial description
+      expect(wrapper.find('#campaign-daily-budget-fieldset').attributes('description')).toBe(undefined);
+      expect(wrapper.find('#campaign-daily-budget-fieldset').attributes('invalid-feedback')).toBe('Your daily budget must be a valid number greater than 1. For any decimal number, please use a dot as separator.');
     });
 
     it('forbids to continue when the value is below the minimum recommended budget', () => {
@@ -359,8 +366,12 @@ describe('campaign-creation.vue - Campaign edition - Name validation', () => {
 
       expect(wrapper.vm.campaignDailyBudgetFeedback).toEqual({
         result: false,
-        error: 'Minimum budget requirement: {budget}, please increase your budget to continue.',
+        error: 'Minimum budget required for this target country is {budget}. Please increase your budget to continue.',
       });
+
+      // Display the error only, not the initial description
+      expect(wrapper.find('#campaign-daily-budget-fieldset').attributes('description')).toBe(undefined);
+      expect(wrapper.find('#campaign-daily-budget-fieldset').attributes('invalid-feedback')).toBe('Minimum budget required for this target country is {budget}. Please increase your budget to continue.');
     });
 
     it('says nothing when recommended budget is not loaded', () => {
@@ -377,6 +388,9 @@ describe('campaign-creation.vue - Campaign edition - Name validation', () => {
       expect(wrapper.vm.campaignDailyBudgetFeedback).toEqual({
         result: null,
       });
+
+      expect(wrapper.find('#campaign-daily-budget-fieldset').attributes('description')).toBe('The minimum budget varies based on your target country. Please select a country to see the exact minimum required.');
+      expect(wrapper.find('#campaign-daily-budget-fieldset').attributes('invalid-feedback')).toBeUndefined();
     });
 
     it('says nothing when input is empty', () => {
@@ -396,6 +410,9 @@ describe('campaign-creation.vue - Campaign edition - Name validation', () => {
       expect(wrapper.vm.campaignDailyBudgetFeedback).toEqual({
         result: null,
       });
+
+      expect(wrapper.find('#campaign-daily-budget-fieldset').attributes('description')).toBe('The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.');
+      expect(wrapper.find('#campaign-daily-budget-fieldset').attributes('invalid-feedback')).toBeUndefined();
     });
   });
 });

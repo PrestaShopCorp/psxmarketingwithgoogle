@@ -52,7 +52,7 @@
               :title="tooltipFormat(requirement)"
             >
               <span class="material-icons-round mb-1 ml-0 ps_gs-fz-12 text-secondary">
-                info_outlined
+                help_outline
               </span>
             </b-button>
           </div>

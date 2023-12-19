@@ -74,7 +74,7 @@
                 variant="invisible"
                 class="pt-1 ml-1 mr-n1 border-0 d-inline-flex align-items-center"
               >
-                <i class="material-icons ps_gs-fz-14 text-secondary">info_outlined</i>
+                <i class="material-icons ps_gs-fz-14 text-secondary">help_outline</i>
               </span>
             </component>
           </b-th>

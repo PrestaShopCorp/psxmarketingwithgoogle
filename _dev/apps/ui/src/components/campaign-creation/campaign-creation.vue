@@ -89,7 +89,7 @@
               :description="$t('smartShoppingCampaignCreation.inputNameHelper')"
               label-for="campaign-name-input"
               data-test-id="campaign-name-input"
-              label-class="d-flex align-items-center font-weight-600"
+              label-class="d-flex align-items-center ps_gs-fz-16 font-weight-500"
               :state="campaignNameFeedback"
               :invalid-feedback="campaignNameFeedbackMessage"
             >
@@ -101,8 +101,8 @@
                   v-b-tooltip:psxMktgWithGoogleApp
                   :title="$t('smartShoppingCampaignCreation.inputNameTooltip')"
                 >
-                  <span class="material-icons-round mb-0 ps_gs-fz-16 text-secondary">
-                    info_outlined
+                  <span class="material-icons-round mb-0 text-secondary">
+                    help_outline
                   </span>
                 </b-button>
               </template>
@@ -121,7 +121,8 @@
               id="campaign-duration-fieldset"
               class="maxw-sm-420"
               :description="$t('smartShoppingCampaignCreation.inputDurationHelper')"
-              label-class="border-0 bg-transparent h4 d-flex align-items-center font-weight-600"
+              label-class="border-0 bg-transparent d-flex align-items-center ps_gs-fz-16 font-weight-500"
+              label-for="campaign-duration-start-date-input"
             >
               <template #label>
                 {{ $t("smartShoppingCampaignCreation.inputDurationLabel") }}
@@ -132,7 +133,7 @@
                   :title="$t('smartShoppingCampaignCreation.inputDurationTooltip')"
                 >
                   <span class="material-icons-round mb-0 ps_gs-fz-16 text-secondary">
-                    info_outlined
+                    help_outline
                   </span>
                 </b-button>
               </template>
@@ -210,7 +211,7 @@
             </b-form-group>
             <b-form-group
               id="campaign-target-country-fieldset"
-              label-class="d-flex align-items-center font-weight-600"
+              label-class="d-flex align-items-center ps_gs-fz-16 font-weight-500"
               label-for="campaign-target-country-input"
               :description="
                 !editMode
@@ -228,7 +229,7 @@
                   :title="$t('smartShoppingCampaignCreation.inputCountryTooltip')"
                 >
                   <span class="material-icons-round mb-0 ps_gs-fz-16 text-secondary">
-                    info_outlined
+                    help_outline
                   </span>
                 </b-button>
               </template>
@@ -246,7 +247,7 @@
             <b-form-group
               :label="$t('smartShoppingCampaignCreation.inputFiltersLegend')"
               id="campaign-products-filter-fieldset"
-              label-class="h4 font-weight-600 border-0 bg-transparent"
+              label-class="font-weight-600 border-0 bg-transparent ps_gs-fz-16 font-weight-500"
             >
               <b-form-radio
                 :disabled="hasUnhandledFilters || errorFetchingFilters"
@@ -318,9 +319,14 @@
             </b-form-group>
             <b-form-group
               id="campaign-daily-budget-fieldset"
-              :description="$t('smartShoppingCampaignCreation.inputBudgetHelper')"
+              :description="!campaignDailyBudgetFeedback.error && (!recommendedBudget
+                ? $t('smartShoppingCampaignCreation.inputBudgetHelper')
+                : $t('smartShoppingCampaignCreation.inputBudgetHelperForTargetCountry', {
+                  country: changeCountryCodeToName(targetAudienceCountry),
+                  budget: formattedRecommendedBudget,
+                })) || undefined"
               label-for="campaign-dailyBudget-input"
-              label-class="d-flex align-items-center font-weight-600"
+              label-class="d-flex align-items-center ps_gs-fz-16 font-weight-500"
               :state="campaignDailyBudgetFeedback.result"
               aria-describedby="campaign-daily-budget-fieldset__BV_description_ input-live-feedback"
               :invalid-feedback="campaignDailyBudgetFeedback.error"
@@ -334,7 +340,7 @@
                   :title="$t('smartShoppingCampaignCreation.inputBudgetTooltip')"
                 >
                   <i class="material-icons-round mb-0 ps_gs-fz-16 text-secondary">
-                    info_outlined
+                    help_outline
                   </i>
                 </b-button>
               </template>
@@ -360,10 +366,10 @@
             <TipsAndTricksCard
               v-if="recommendedBudget"
               class="col-8"
-              :content="$t('smartShoppingCampaignCreation.budgetTip.content', [
-                formattedRecommendedBudget,
-              ])"
-              :read-more="$t('smartShoppingCampaignCreation.budgetTip.readMore')"
+              :content="$t('smartShoppingCampaignCreation.budgetTip.content', {
+                country: changeCountryCodeToName(targetAudienceCountry),
+                budget: formattedRecommendedBudget,
+              })"
             />
 
             <span class="font-weight-600">
@@ -471,7 +477,7 @@ import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import googleUrl from '@/assets/json/googleUrl.json';
 import {formatPrice} from '@/utils/Price';
 import {RecommendedBudget} from '@/utils/CampaignsBudget';
-import {changeCountryNameToCode} from '@/utils/Countries';
+import {changeCountryCodeToName, changeCountryNameToCode} from '@/utils/Countries';
 
 export default defineComponent({
   name: 'CampaignCreation',
@@ -529,7 +535,7 @@ export default defineComponent({
       if (
         this.campaignNameFeedback === true
         && this.campaignDurationStartDate
-        && (this.targetCountry || this.defaultCountry)
+        && this.targetAudienceCountry
         && this.campaignDailyBudgetFeedback.result === true
         && this.campaignEndDateFeedback !== false
       ) {
@@ -649,7 +655,7 @@ export default defineComponent({
         currencyCode: this.currency,
         startDate: this.campaignDurationStartDate,
         endDate: this.campaignDurationEndDate,
-        targetCountry: this.targetCountry || this.defaultCountry,
+        targetCountry: this.targetAudienceCountry,
         productFilters: this.finalCampaignFilters,
         status: this.campaignIsActive ? CampaignStatusToggle.ENABLED : CampaignStatusToggle.PAUSED,
       };
@@ -675,9 +681,12 @@ export default defineComponent({
       if (!this.$store.state.app.psxMtgWithGoogleDefaultShopCountry) {
         return '';
       }
-      return this.$options.filters.changeCountriesCodesToNames([
+      return changeCountryCodeToName(
         this.$store.state.app.psxMtgWithGoogleDefaultShopCountry,
-      ])[0];
+      );
+    },
+    targetAudienceCountry(): string {
+      return this.targetCountry || this.defaultCountry;
     },
     formattedRecommendedBudget(): string {
       return formatPrice(this.recommendedBudget.value, this.recommendedBudget.currency);
@@ -692,6 +701,7 @@ export default defineComponent({
     },
   },
   methods: {
+    changeCountryCodeToName,
     debounceName() {
       if (!this.campaignName?.length) {
         return;
@@ -818,9 +828,9 @@ export default defineComponent({
             && !this.campaignToEditFromList.hasUnhandledFilters;
       this.campaignDailyBudget = this.campaignToEditFromList.dailyBudget;
       this.campaignIsActive = this.campaignToEditFromList.status === CampaignStatus.ELIGIBLE;
-      [this.targetCountry] = this.$options.filters.changeCountriesCodesToNames([
+      this.targetCountry = changeCountryCodeToName(
         this.campaignToEditFromList.targetCountry,
-      ]);
+      );
       this.hasUnhandledFilters = this.campaignToEditFromList.hasUnhandledFilters;
       this.debounceName();
       this.$store.commit(
@@ -877,7 +887,7 @@ export default defineComponent({
     }
     this.getDatasFiltersDimensions();
 
-    this.getRecommendedBudget(this.targetCountry || this.defaultCountry);
+    this.getRecommendedBudget(this.targetAudienceCountry);
   },
   created() {
     this.$root.$on('filterByName', this.getDatasFiltersDimensions);

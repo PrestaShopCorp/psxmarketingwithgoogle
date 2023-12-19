@@ -99,7 +99,7 @@
                   :title="tooltipFormat(field.name)"
                 >
                   <span class="material-icons-round mb-0 ps_gs-fz-16 w-16 text-secondary">
-                    info_outlined
+                    help_outline
                   </span>
                 </b-button>
               </div>
