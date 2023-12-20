@@ -3,6 +3,7 @@
     // TODO: replace this with variables
     background-color: $amber-100;
     @extend .p-2;
+    white-space: nowrap;
 
     &::after {
       color: map-get($alerts-second-colors, $color);
