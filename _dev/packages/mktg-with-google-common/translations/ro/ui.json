@@ -552,7 +552,9 @@
         "inputFiltersPartialLabel": "Selectează produse utilizând filtre de partiție pentru produse",
         "inputFiltersHelper": "Ia-ți timp să [citești politicile privind reclamele ale Google Shopping]({0})[:target=\"_blank\"] unele produse sunt interzise sau restricționate.",
         "inputBudgetHelper": "Vei plăti numai dacă cineva face clic pe reclama ta.",
+        "inputBudgetHelperForTargetCountry": "The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.",
         "inputBudgetInvalidFeedback": "Bugetul zilnic trebuie să fie un număr valid mai mare decât 1. Pentru orice număr zecimal, te rugăm să folosești un punct ca separator.",
+        "inputBudgetBeforeThresholdFeedback": "Minimum budget required for this target country is {budget}. Please increase your budget to continue.",
         "inputBudgetFeedback": "Bugetul zilnic al campaniei",
         "inputBudgetTooltip": "Bugetul este suma medie pe care o poți cheltui confortabil în fiecare zi în campania ta. Bugetul pe care îl alegi depinde în întregime de tine și îl poți ajusta în orice moment.",
         "inputBudgetPlaceholder": "Suma",
@@ -616,8 +618,7 @@
         "dimensionXFilterSelectedWithXProducts": "{0} filtru | {0} filtru ({1} produs) | {0} filtru ({1} produse)",
         "filtersWithxValues": "{0} filtre | {0} filtre cu {1} produs afectat | {0} filtre cu {1} produse afectate",
         "budgetTip": {
-            "content": "În general, se recomandă să începi cu un ** buget minim de {0} pe zi pentru cheltuielile zilnice cu reclamele**. Acest lucru îți permite să ajungi la un public mai mare și să obții rezultate mai bune.",
-            "readMore": "Acest buget minim recomandat îți va permite să testezi eficacitatea\n reclamelor tale și să efectuezi ajustări după cum este necesar. Desigur, fiecare afacere este\n  diferită, iar bugetul real optim pentru tine poate varia în funcție de\n  obiectivele specifice și de publicul vizat. Îți recomandăm să încerci\n  cu bugete diferite pentru a determina ce funcționează cel mai bine pentru afacerea ta."
+            "content": "To ensure the success of your campaign, it’s essential to adjust your daily ad budget according to the target country. For instance, a starting point of {budget} is recommended for {country}. By choosing your target country, you can identify the ideal budget to meet your objectives. Remember, this foundational budget is more than just a figure – it’s a key component of your campaign strategy. A well-planned budget facilitates efficient ad testing and refinement, enabling you to customize your expenditure to the unique requirements of your business and enhance overall campaign performance."
         }
     },
     "productFeedPage": {
@@ -807,6 +808,9 @@
             "target": "Țară vizată",
             "actions": "Acțiuni",
             "dailyBudget": "Bugetul zilnic"
+        },
+        "tooltip": {
+            "lowBudget": "Your daily budget is too low to have a performing campaign, increase your budget to enhance campaign performance."
         }
     },
     "notConfiguredState": {
@@ -1111,8 +1115,6 @@
         "textCampaignsBanner": "Creează-ți prima campanie și contactează cumpărători mai relevanți, pe toate canalele Google. Profită de învățarea automată de la Google și optimizează-ți destinațiile de plasare a reclamelor și îmbunătățește-ți în mod eficient traficul și vânzările."
     },
     "tipsAndTricks": {
-        "title": "Sfaturi și sugestii PrestaShop",
-        "advisorPicture": "Fotografia de profil a utilizatorului {0}",
-        "advisorRole": "Expert eCommerce PrestaShop"
+        "title": "Sfaturi și sugestii PrestaShop"
     }
 }

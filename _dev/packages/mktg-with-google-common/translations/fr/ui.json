@@ -552,7 +552,9 @@
         "inputFiltersPartialLabel": "Sélectionner des produits à l'aide des filtres",
         "inputFiltersHelper": "Prenez un peu de temps pour [lire les règles de Google Shopping ads]({0})[:target=\"_blank\"] certains produits sont interdits ou restreints.",
         "inputBudgetHelper": "Vous ne paierez que si quelqu'un clique sur votre annonce.",
+        "inputBudgetHelperForTargetCountry": "The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.",
         "inputBudgetInvalidFeedback": "Votre budget quotidien doit être un nombre valide supérieur à 1. Pour tout nombre décimal, veuillez utiliser un point comme séparateur.",
+        "inputBudgetBeforeThresholdFeedback": "Minimum budget required for this target country is {budget}. Please increase your budget to continue.",
         "inputBudgetFeedback": "Budget quotidien de la campagne",
         "inputBudgetTooltip": "Votre budget est le montant moyen que vous pouvez dépenser chaque jour pour votre campagne. Le budget que vous avez choisi dépend entièrement de vous, et vous pouvez l'ajuster à tout moment.",
         "inputBudgetPlaceholder": "Montant",
@@ -616,8 +618,7 @@
         "dimensionXFilterSelectedWithXProducts": "Filtre {0} | Filtre {0} ({1} produit) | Filtre {0} ({1} produits)",
         "filtersWithxValues": "{0} filtres | {0} filtres avec {1} produit affecté | {0} filtres avec {1} produits affectés",
         "budgetTip": {
-            "content": "Il est généralement recommandé de commencer avec un **budget minimum de {0} par jour pour vos dépenses publicitaires quotidiennes**. Cela vous permet d'atteindre un public plus large et de voir potentiellement de meilleurs résultats.",
-            "readMore": "Ce budget minimum recommandé vous permettra de tester l'efficacité\n  de vos annonces et d'effectuer les ajustements nécessaires. Bien sûr, chaque entreprise est\n  différente, et le budget réel qui vous convient le mieux peut varier en fonction\n  de vos objectifs spécifiques et de votre public cible. Nous vous recommandons d'expérimenter\n  différents budgets pour déterminer ce qui fonctionne le mieux pour votre entreprise."
+            "content": "To ensure the success of your campaign, it’s essential to adjust your daily ad budget according to the target country. For instance, a starting point of {budget} is recommended for {country}. By choosing your target country, you can identify the ideal budget to meet your objectives. Remember, this foundational budget is more than just a figure – it’s a key component of your campaign strategy. A well-planned budget facilitates efficient ad testing and refinement, enabling you to customize your expenditure to the unique requirements of your business and enhance overall campaign performance."
         }
     },
     "productFeedPage": {
@@ -807,6 +808,9 @@
             "target": "Pays cible",
             "actions": "Actions",
             "dailyBudget": "Budget quotidien"
+        },
+        "tooltip": {
+            "lowBudget": "Your daily budget is too low to have a performing campaign, increase your budget to enhance campaign performance."
         }
     },
     "notConfiguredState": {
@@ -1111,8 +1115,6 @@
         "textCampaignsBanner": "Créez votre première campagne et touchez des acheteurs plus qualifiés sur tous les canaux de Google. Laissez le machine learning de Google optimiser vos placements publicitaires et améliorer efficacement votre trafic et vos ventes."
     },
     "tipsAndTricks": {
-        "title": "Conseils et astuces PrestaShop",
-        "advisorPicture": "Photo de profil de {0}",
-        "advisorRole": "Expert e-commerce PrestaShop"
+        "title": "Conseils et astuces PrestaShop"
     }
 }

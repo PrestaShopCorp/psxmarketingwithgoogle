@@ -551,10 +551,12 @@
         "inputFiltersAllLabel": "Incluir todos os produtos sincronizados",
         "inputFiltersPartialLabel": "Selecione produtos usando filtros divisórios de produtos",
         "inputFiltersHelper": "Leve algum tempo para [ler as políticas de anúncios do Google Shopping]({0})[:target=\"_blank\"] algum produto é proibido ou restrito.",
-        "inputBudgetHelper": "Você só pagará se alguém clicar no seu anúncio.",
+        "inputBudgetHelper": "The minimum budget varies based on your target country. Please select a country to see the exact minimum required.",
+        "inputBudgetHelperForTargetCountry": "The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.",
         "inputBudgetInvalidFeedback": "O seu orçamento diário deve ser um número válido superior a 1. Para qualquer número decimal, por favor use um ponto como separador.",
+        "inputBudgetBeforeThresholdFeedback": "Minimum budget required for this target country is {budget}. Please increase your budget to continue.",
         "inputBudgetFeedback": "Orçamento diário da campanha",
-        "inputBudgetTooltip": "O seu orçamento é a quantia média que se sente confortável em gastar cada dia diariamente com a sua campanha. O orçamento que escolher depende inteiramente de si, e pode ajustá-lo a qualquer momento.",
+        "inputBudgetTooltip": "To ensure Ad performance, the base minimum depends on your target country and the budget you choose is entirely up to you, and you can adjust it at any time.",
         "inputBudgetPlaceholder": "Valor",
         "inputAllSyncedProducts": "Nenhum filtro selecionado",
         "formHelperTitle": "Ativação da campanha",
@@ -616,8 +618,7 @@
         "dimensionXFilterSelectedWithXProducts": "{0} filtro | {0} filtro ({1} produto) | {0} filtro ({1} produtos)",
         "filtersWithxValues": "{0} filtros | {0} filtros com {1} produto afetado | {0} filtros com {1} produtos afetados",
         "budgetTip": {
-            "content": "Geralmente, é recomendável começar com um **orçamento mínimo de {0} por dia para seus gastos diários com anúncios**. Isso permite que você alcance um público maior e, potencialmente, alcance melhores resultados.",
-            "readMore": "Este orçamento mínimo recomendado permitirá que você teste a eficácia\n  dos seus anúncios e faça ajustes conforme necessário. É claro que todo negócio é\n  diferente e o orçamento ideal para você pode variar dependendo\n  dos seus objetivos específicos e do seu público-alvo. Recomendamos experimentar\n  orçamentos diferentes para determinar o que funciona melhor para o seu negócio."
+            "content": "To ensure the success of your campaign, it’s essential to adjust your daily ad budget according to the target country. For instance, a starting point of {budget} is recommended for {country}. By choosing your target country, you can identify the ideal budget to meet your objectives. Remember, this foundational budget is more than just a figure – it’s a key component of your campaign strategy. A well-planned budget facilitates efficient ad testing and refinement, enabling you to customize your expenditure to the unique requirements of your business and enhance overall campaign performance."
         }
     },
     "productFeedPage": {
@@ -807,6 +808,9 @@
             "target": "País de destino",
             "actions": "Ações",
             "dailyBudget": "Orçamento diário"
+        },
+        "tooltip": {
+            "lowBudget": "Your daily budget is too low to have a performing campaign, increase your budget to enhance campaign performance."
         }
     },
     "notConfiguredState": {
@@ -1111,8 +1115,6 @@
         "textCampaignsBanner": "Crie sua primeira campanha e atinja compradores mais relevantes em todos os canais do Google. Permita que o aprendizado de máquina do Google otimize o posicionamento dos seus anúncios e melhore seu tráfego e suas vendas de forma eficiente."
     },
     "tipsAndTricks": {
-        "title": "Dicas e truques da PrestaShop",
-        "advisorPicture": "Foto de perfil de {0}",
-        "advisorRole": "Especialista em e-commerce da PrestaShop"
+        "title": "PrestaShop pro tip"
     }
 }
