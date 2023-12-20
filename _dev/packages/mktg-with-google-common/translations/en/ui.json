@@ -618,7 +618,7 @@
       "dimensionXFilterSelectedWithXProducts" : "{0} filter | {0} filter ({1} product) | {0} filter ({1} products)",
       "filtersWithxValues" : "{0} filters | {0} filters with {1} affected product | {0} filters with {1} affected products",
       "budgetTip": {
-        "content": "Your campaign's success is ensured by a daily ad budget that vary with the targeted country, for example {budget} is the baseline for {country}. By selecting your target country, you'll be able to determine the optimal starting budget that aligns with your specific goals. This foundational budget is not just a number — it's a crucial part of your strategy. It allows for effective testing and refining of your ads, helping you to tailor your spending to your business's unique needs and maximize overall effectiveness."
+        "content": "To ensure the success of your campaign, it’s essential to adjust your daily ad budget according to the target country. For instance, a starting point of {budget} is recommended for {country}. By choosing your target country, you can identify the ideal budget to meet your objectives. Remember, this foundational budget is more than just a figure – it’s a key component of your campaign strategy. A well-planned budget facilitates efficient ad testing and refinement, enabling you to customize your expenditure to the unique requirements of your business and enhance overall campaign performance."
       }
      },
 
