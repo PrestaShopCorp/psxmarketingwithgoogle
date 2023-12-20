@@ -84,7 +84,6 @@
 
 <script lang="ts">
 import {initShopClient} from 'mktg-with-google-common/api/shopClient';
-import {initOnboardingClient} from 'mktg-with-google-common/api/onboardingClient';
 import Menu from '@/components/menu/menu.vue';
 import MenuItem from '@/components/menu/menu-item.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
@@ -129,10 +128,6 @@ export default {
       onShopSessionLoggedOut: () => {
         this.$store.commit('app/SAVE_USER_IS_LOGGED_OUT');
       },
-    });
-    initOnboardingClient({
-      apiUrl: this.$store.state.app.psxMktgWithGoogleApiUrl,
-      token: this.$store.state.accounts.tokenPsAccounts,
     });
   },
   mounted() {

@@ -563,10 +563,12 @@
       "inputFiltersAllLabel": "Include all synced products",
       "inputFiltersPartialLabel": "Select products using product partition filters",
       "inputFiltersHelper": "Take some time to [read Google Shopping ads policies]({0})[:target=\"_blank\"] some product are prohibited or restricted.",
-      "inputBudgetHelper": "You will only pay if someone clicks your ad.",
+      "inputBudgetHelper": "The minimum budget varies based on your target country. Please select a country to see the exact minimum required.",
+      "inputBudgetHelperForTargetCountry": "The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.",
       "inputBudgetInvalidFeedback": "Your daily budget must be a valid number greater than 1. For any decimal number, please use a dot as separator.",
+      "inputBudgetBeforeThresholdFeedback": "Minimum budget required for this target country is {budget}. Please increase your budget to continue.",
       "inputBudgetFeedback": "Daily campaign budget",
-      "inputBudgetTooltip": "Your budget is the average amount you’re comfortable spending each day on your campaign. The budget you choose is entirely up to you, and you can adjust it at any time.",
+      "inputBudgetTooltip": "To ensure Ad performance, the base minimum depends on your target country and the budget you choose is entirely up to you, and you can adjust it at any time.",
       "inputBudgetPlaceholder": "Amount",
       "inputAllSyncedProducts": "No filters selected",
       "formHelperTitle": "Campaign activation",
@@ -620,8 +622,7 @@
       "dimensionXFilterSelectedWithXProducts" : "{0} filter | {0} filter ({1} product) | {0} filter ({1} products)",
       "filtersWithxValues" : "{0} filters | {0} filters with {1} affected product | {0} filters with {1} affected products",
       "budgetTip": {
-        "content": "It is generally recommended to start with a **minimum budget of {0} per day for your daily ad spend**. This allows you to reach a larger audience & potentially see better results.",
-        "readMore": "This recommended minimum budget will allow you to test the effectiveness\n  of your ads and make adjustments as needed. Of course, every business is\n  different, and the actual budget that is best for you may vary depending\n  on your specific goals and target audience. We recommend experimenting\n  with different budgets to determine what works best for your business."
+        "content": "To ensure the success of your campaign, it’s essential to adjust your daily ad budget according to the target country. For instance, a starting point of {budget} is recommended for {country}. By choosing your target country, you can identify the ideal budget to meet your objectives. Remember, this foundational budget is more than just a figure – it’s a key component of your campaign strategy. A well-planned budget facilitates efficient ad testing and refinement, enabling you to customize your expenditure to the unique requirements of your business and enhance overall campaign performance."
       }
     },
 
@@ -813,6 +814,9 @@
         "target": "Target country",
         "actions": "Actions",
         "dailyBudget": "Daily budget"
+      },
+      "tooltip": {
+        "lowBudget": "Your daily budget is too low to have a performing campaign, increase your budget to enhance campaign performance."
       }
     },
     "notConfiguredState": {
@@ -1116,8 +1120,6 @@
       "textCampaignsBanner":  "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales."
     },
     "tipsAndTricks": {
-      "title": "PrestaShop Tips and Tricks",
-      "advisorPicture": "{0}'s profile picture",
-      "advisorRole": "PrestaShop eCommerce Expert"
+      "title": "PrestaShop pro tip"
     }
 }

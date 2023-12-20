@@ -4,7 +4,7 @@
     variant="secondary"
     class="ps_gs-alert-tips-and-tricks p-0 pt-2 pb-2"
   >
-    <div class="d-flex ps_gs-fz-16 font-weight-bold text-primary">
+    <div class="d-flex ps_gs-fz-16 font-weight-500 text-primary">
       <i class="material-icons-outlined ps_gs-fz-20 mr-1 mb-0 align-center">
         lightbulb
       </i>
@@ -41,22 +41,6 @@
     >
       {{ readMore }}
     </b-collapse>
-    <div
-      class="d-flex align-items-center mt-1"
-      data-test-id="advisor"
-    >
-      <img
-        class="mr-3 rounded-circle"
-        src="@/assets/images/tips-and-tricks-christophe.png"
-        width="38"
-        height="38"
-        :alt="$t('tipsAndTricks.advisorPicture', [advisorName])"
-      >
-      <div>
-        <span class="text-primary font-weight-bold">{{ advisorName }}</span>
-        <br>{{ $t('tipsAndTricks.advisorRole') }}
-      </div>
-    </div>
   </b-alert>
 </template>
 
@@ -82,11 +66,5 @@ export default defineComponent({
       default: null,
     },
   },
-  data() {
-    return {
-      advisorName: 'Christophe',
-    };
-  },
-  methods: {},
 });
 </script>

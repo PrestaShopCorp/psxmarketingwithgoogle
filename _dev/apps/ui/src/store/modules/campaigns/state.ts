@@ -88,6 +88,7 @@ export type CampaignObject = {
   productFilters?: ProductsFilteredObject[];
   status?: CampaignStatus|CampaignStatusToggle;
   hasUnhandledFilters?: boolean;
+  isBudgetBelowMinimum?: boolean;
   type: CampaignTypes;
 }
 

@@ -1,6 +1,8 @@
+import cloneDeep from 'lodash.clonedeep';
 import {rest} from 'msw';
 import CampaignTableList from '@/components/campaign/campaign-table-list.vue'
 import {campaigns, campaignsListResponse} from '@/../.storybook/mock/campaigns-list';
+import { adsAccountStatus } from '@/../.storybook/mock/google-ads';
 
 export default {
   title: 'Campaign/Campaigns page/Components/Campaigns\' list',
@@ -22,6 +24,7 @@ const Template = (args, { argTypes }) => ({
 export const TableWithCampaigns:any = Template.bind({});
 TableWithCampaigns.args = {
   beforeCreate() {
+    this.$store.state.googleAds = cloneDeep(adsAccountStatus);
     this.$store.state.campaigns.campaigns.results.campaigns = campaigns;
   },
   loading: false,

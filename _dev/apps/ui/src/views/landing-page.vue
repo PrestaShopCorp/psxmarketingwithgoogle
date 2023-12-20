@@ -85,7 +85,6 @@ export default {
   },
   methods: {
     hideLandingPage(where) {
-      localStorage.setItem('landingHasBeenSeen', true);
       this.$router.push({
         name: 'configuration',
       });

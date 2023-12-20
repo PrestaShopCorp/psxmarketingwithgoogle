@@ -324,7 +324,7 @@ export default {
     commit(MutationsTypes.SET_REPORTING_DAILY_RESULTS, result);
   },
 
-  async [ActionsTypes.GET_CAMPAIGNS_LIST]({commit, state}: Context) {
+  async [ActionsTypes.GET_CAMPAIGNS_LIST]({commit, state, rootState}: Context) {
     const query = new URLSearchParams();
 
     Object.keys(state.campaigns.request.ordering).forEach((ordering) => {
@@ -335,6 +335,7 @@ export default {
     query.append('limit', state.campaigns.request.numberOfCampaignsPerPage);
     query.append('startDate', state.reporting.request.dateRange.startDate);
     query.append('endDate', state.reporting.request.dateRange.endDate);
+    query.append('currency_code', rootState.googleAds.accountChosen.currencyCode);
 
     try {
       const json = await (await fetchOnboarding(

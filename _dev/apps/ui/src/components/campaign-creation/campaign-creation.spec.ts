@@ -5,12 +5,13 @@ import cloneDeep from 'lodash.clonedeep';
 import {MountOptions, shallowMount} from '@vue/test-utils';
 import config, {localVue, cloneStore} from '@/../tests/init';
 
-import {initialStateApp} from '../../../.storybook/mock/state-app';
-import {googleAdsAccountChosen} from '../../../.storybook/mock/google-ads';
-import {campaignWithUnhandledFilters, campaignWithoutUnhandledFilters, availableFilters} from '../../../.storybook/mock/campaigns';
+import {initialStateApp} from '@/../.storybook/mock/state-app';
+import {googleAdsAccountChosen} from '@/../.storybook/mock/google-ads';
+import {campaignWithUnhandledFilters, campaignWithoutUnhandledFilters, availableFilters} from '@/../.storybook/mock/campaigns';
 import CampaignCreation from './campaign-creation.vue';
 import {formatPrice} from '@/utils/Price';
 import {deepCheckDimension} from '@/utils/SSCFilters';
+import {RecommendedBudget} from '@/utils/CampaignsBudget';
 
 const VBTooltip = vi.fn();
 const buildWrapper = (
@@ -300,5 +301,118 @@ describe('campaign-creation.vue - Campaign edition - Name validation', () => {
     expect(wrapper.vm.campaignNameFeedback).toBe(false);
     expect(wrapper.vm.campaignNameFeedbackMessage).toBe('The name must be less than 125 characters in length.');
     expect(wrapper.find('[data-test-id="createCampaignButton"]').attributes('disabled')).toBeTruthy();
+  });
+
+  describe('campaign-creation.vue - Campaign edition - Budget validation', () => {
+    it('allows to continue when the budget is above the recommended one', () => {
+      const wrapper = buildWrapper({
+        data() {
+          return {
+            ...campaignWithUnhandledFilters,
+            campaignDailyBudget: '20',
+            recommendedBudget: {
+              value: 10,
+              currency: 'EUR',
+            } as RecommendedBudget,
+          };
+        },
+      });
+
+      expect(wrapper.vm.campaignDailyBudgetFeedback).toEqual({
+        result: true,
+      });
+
+      expect(wrapper.find('#campaign-daily-budget-fieldset').attributes('description')).toBe('The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.');
+      expect(wrapper.find('#campaign-daily-budget-fieldset').attributes('invalid-feedback')).toBeUndefined();
+    });
+
+    it('forbids to continue when the value is not a number', () => {
+      const wrapper = buildWrapper({
+        data() {
+          return {
+            ...campaignWithUnhandledFilters,
+            campaignDailyBudget: '🪲',
+            recommendedBudget: {
+              currency: 'EUR',
+              value: 10,
+            } as RecommendedBudget,
+          };
+        },
+      });
+
+      expect(wrapper.vm.campaignDailyBudgetFeedback).toEqual({
+        result: false,
+        error: 'Your daily budget must be a valid number greater than 1. For any decimal number, please use a dot as separator.',
+      });
+
+      // Display the error only, not the initial description
+      expect(wrapper.find('#campaign-daily-budget-fieldset').attributes('description')).toBe(undefined);
+      expect(wrapper.find('#campaign-daily-budget-fieldset').attributes('invalid-feedback')).toBe('Your daily budget must be a valid number greater than 1. For any decimal number, please use a dot as separator.');
+    });
+
+    it('forbids to continue when the value is below the minimum recommended budget', () => {
+      const wrapper = buildWrapper({
+        data() {
+          return {
+            ...campaignWithUnhandledFilters,
+            campaignDailyBudget: '10',
+            recommendedBudget: {
+              currency: 'EUR',
+              value: 120,
+            } as RecommendedBudget,
+          };
+        },
+      });
+
+      expect(wrapper.vm.campaignDailyBudgetFeedback).toEqual({
+        result: false,
+        error: 'Minimum budget required for this target country is {budget}. Please increase your budget to continue.',
+      });
+
+      // Display the error only, not the initial description
+      expect(wrapper.find('#campaign-daily-budget-fieldset').attributes('description')).toBe(undefined);
+      expect(wrapper.find('#campaign-daily-budget-fieldset').attributes('invalid-feedback')).toBe('Minimum budget required for this target country is {budget}. Please increase your budget to continue.');
+    });
+
+    it('says nothing when recommended budget is not loaded', () => {
+      const wrapper = buildWrapper({
+        data() {
+          return {
+            ...campaignWithUnhandledFilters,
+            campaignDailyBudget: '10',
+            recommendedBudget: null,
+          };
+        },
+      });
+
+      expect(wrapper.vm.campaignDailyBudgetFeedback).toEqual({
+        result: null,
+      });
+
+      expect(wrapper.find('#campaign-daily-budget-fieldset').attributes('description')).toBe('The minimum budget varies based on your target country. Please select a country to see the exact minimum required.');
+      expect(wrapper.find('#campaign-daily-budget-fieldset').attributes('invalid-feedback')).toBeUndefined();
+    });
+
+    it('says nothing when input is empty', () => {
+      const wrapper = buildWrapper({
+        data() {
+          return {
+            ...campaignWithUnhandledFilters,
+            campaignDailyBudget: '',
+            recommendedBudget: {
+              currency: 'EUR',
+              value: 120,
+            } as RecommendedBudget,
+          };
+        },
+      });
+
+      expect(wrapper.vm.campaignDailyBudgetFeedback).toEqual({
+        result: null,
+      });
+
+      expect(wrapper.find('#campaign-daily-budget-fieldset').attributes('description')).toBe('The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.');
+      expect(wrapper.find('#campaign-daily-budget-fieldset').attributes('invalid-feedback')).toBeUndefined();
+    });
   });
 });

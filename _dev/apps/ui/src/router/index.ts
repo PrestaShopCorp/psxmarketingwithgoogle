@@ -1,34 +1,32 @@
 import Vue from 'vue';
 import VueRouter, {RouteConfig} from 'vue-router';
-import Store from '../store';
-import CampaignPage from '../views/campaign-page.vue';
-import CampaignForm from '../views/campaign-form.vue';
-import LandingPage from '../views/landing-page.vue';
-import Debug from '../views/debug.vue';
-import Help from '../views/help.vue';
-import Configuration from '../views/configuration.vue';
-import ProductFeedPage from '../views/product-feed-page.vue';
-import TunnelProductFeed from '../views/tunnel-product-feed.vue';
-import {getDataFromLocalStorage} from '@/utils/LocalStorage';
+import store from '@/store';
+import CampaignPage from '@/views/campaign-page.vue';
+import CampaignForm from '@/views/campaign-form.vue';
+import LandingPage from '@/views/landing-page.vue';
+import Debug from '@/views/debug.vue';
+import Help from '@/views/help.vue';
+import Configuration from '@/views/configuration.vue';
+import ProductFeedPage from '@/views/product-feed-page.vue';
+import TunnelProductFeed from '@/views/tunnel-product-feed.vue';
+import ActionsTypesAccounts from '@/store/modules/accounts/actions-types';
+import GettersTypesAccounts from '@/store/modules/accounts/getters-types';
 
 Vue.use(VueRouter);
 
-const initialPath = (to, from, next) => {
-  if (from.path === '/'
-    && Store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED'] === false
-  ) {
+const initialPath = async (to, from, next) => {
+  if (!store.getters[`accounts/${GettersTypesAccounts.GET_PS_ACCOUNTS_IS_ONBOARDED}`]) {
     next({name: 'landing-page'});
-  } else {
-    next({name: 'configuration'});
-  }
-};
-
-const landingExistsInLocalstorage = (to, from, next) => {
-  if (getDataFromLocalStorage('landingHasBeenSeen')) {
-    next();
     return;
   }
-  next({name: 'landing-page'});
+
+  await store.dispatch(`accounts/${ActionsTypesAccounts.WARMUP_STORE}`);
+  if (!store.getters[`accounts/${GettersTypesAccounts.GET_GOOGLE_ACCOUNT_IS_ONBOARDED}`]) {
+    next({name: 'landing-page'});
+    return;
+  }
+
+  next({name: 'configuration'});
 };
 
 const routes: Array<RouteConfig> = [
@@ -41,7 +39,6 @@ const routes: Array<RouteConfig> = [
     path: '/configuration',
     name: 'configuration',
     component: Configuration,
-    beforeEnter: landingExistsInLocalstorage,
   },
   {
     path: '/configuration/product-feed-settings/:step',
