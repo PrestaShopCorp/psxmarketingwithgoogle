@@ -552,7 +552,9 @@
         "inputFiltersPartialLabel": "Wybierz produkty za pomocą filtrów produktów",
         "inputFiltersHelper": "Poświęć trochę czasu na [przeczytanie zasad reklam Google Shopping]({0})[:target=\"_blank\"] niektóre produkty są zabronione lub ograniczone.",
         "inputBudgetHelper": "Płacisz tylko wtedy, kiedy ktoś kliknie w Twoją reklamę.",
+        "inputBudgetHelperForTargetCountry": "The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.",
         "inputBudgetInvalidFeedback": "Twój dzienny budżet musi być poprawną liczbą większą od 1. Wartości dziesiętne oddzielaj kropką.",
+        "inputBudgetBeforeThresholdFeedback": "Minimum budget required for this target country is {budget}. Please increase your budget to continue.",
         "inputBudgetFeedback": "Dzienny budżet kampanii",
         "inputBudgetTooltip": "Twój budżet to średnia kwota, którą jesteś w stanie wydać każdego dnia na kampanię. Budżet, który wybierzesz, zależy wyłącznie od Ciebie i możesz go zmienić w dowolnym momencie.",
         "inputBudgetPlaceholder": "Kwota",
@@ -616,8 +618,7 @@
         "dimensionXFilterSelectedWithXProducts": " {0} filtr | {0} filtr ({1} produkt) | {0} filtr ({1} produkty/-ów)",
         "filtersWithxValues": "{0} filtrów | {0} filtry/-ów z {1} odpowiadającym produktem | {0} filtry/-ów z {1} odpowiadającymi produktami",
         "budgetTip": {
-            "content": "Zazwyczaj zaleca się, aby zacząć od **minimalnego budżetu {0} dziennie na reklamę**. To pozwala na dotarcie do większej liczby osób i potencjalnie uzyskanie lepszych wyników.",
-            "readMore": "Ten zalecany minimalny budżet pozwoli Ci przetestować skuteczność\n  Twoich reklam i, w razie potrzeby, dokonać korekty. Oczywiście, każdy biznes jest\n  inny, a rzeczywisty budżet, który jest najlepszy dla Ciebie, może się różnić w zależności\n  od konkretnych celów i grupy docelowej. Zalecamy eksperymentowanie\n  z różnymi budżetami, aby określić, co działa najlepiej dla Twojej firmy."
+            "content": "Zazwyczaj zaleca się, aby zacząć od **minimalnego budżetu {0} dziennie na reklamę**. To pozwala na dotarcie do większej liczby osób i potencjalnie uzyskanie lepszych wyników."
         }
     },
     "productFeedPage": {
@@ -807,6 +808,9 @@
             "target": "Kraj docelowy",
             "actions": "Działania",
             "dailyBudget": "Budżet dzienny"
+        },
+        "tooltip": {
+            "lowBudget": "Your daily budget is too low to have a performing campaign, increase your budget to enhance campaign performance."
         }
     },
     "notConfiguredState": {
@@ -1111,8 +1115,6 @@
         "textCampaignsBanner": "Stwórz swoją pierwszą kampanię i docieraj do bardziej odpowiednich kupujących we wszystkich kanałach Google. Pozwól uczeniu maszynowemu Google zoptymalizować miejsca docelowe reklam i skutecznie zwiększyć ruch i sprzedaż."
     },
     "tipsAndTricks": {
-        "title": "Porady i wskazówki PrestaShop",
-        "advisorPicture": "Zdjęcie profilowe użytkownika {0}",
-        "advisorRole": "Ekspert PrestaShop E-commerce"
+        "title": "Porady i wskazówki PrestaShop"
     }
 }
