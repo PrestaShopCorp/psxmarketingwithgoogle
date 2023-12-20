@@ -552,7 +552,9 @@
         "inputFiltersPartialLabel": "Selecteer producten met behulp van productverdelingsfilters",
         "inputFiltersHelper": "Neem even de tijd om [het beleid van Google Shopping-advertenties te lezen]({0})[:target=\"_blank\"] sommige producten zijn verboden of beperkt.",
         "inputBudgetHelper": "U betaalt alleen als iemand op uw advertentie klikt.",
+        "inputBudgetHelperForTargetCountry": "The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.",
         "inputBudgetInvalidFeedback": "Uw dagbudget moet een geldig getal zijn, groter dan 1. Gebruik voor elk decimaal getal een punt als scheidingsteken.",
+        "inputBudgetBeforeThresholdFeedback": "Minimum budget required for this target country is {budget}. Please increase your budget to continue.",
         "inputBudgetFeedback": "Dagelijks campagnebudget",
         "inputBudgetTooltip": "Uw budget is het gemiddelde bedrag dat u per dag aan uw campagne wilt besteden. Het budget dat u kiest, bepaalt u helemaal zelf, en u kunt het op elk moment aanpassen.",
         "inputBudgetPlaceholder": "Bedrag",
@@ -616,8 +618,7 @@
         "dimensionXFilterSelectedWithXProducts": "{0} filter | {0} filter ({1} product) | {0} filter ({1} producten)",
         "filtersWithxValues": "{0} filters | {0} filters met {1} betreffend product | {0} filters met {1} betreffende producten",
         "budgetTip": {
-            "content": "Het wordt over het algemeen aanbevolen om te beginnen met een **minimumbudget van {0} per dag voor je dagelijkse advertentie-uitgaven**. Hiermee kun je een groter publiek bereiken en mogelijk betere resultaten zien.",
-            "readMore": "Met dit aanbevolen minimumbudget kun je de effectiviteit\n  van je advertenties testen en indien nodig aanpassingen aanbrengen. Natuurlijk is elk bedrijf\n  anders, en het budget dat daadwerkelijk het beste voor je is kan variëren,\n  afhankelijk van je specifieke doelen en doelgroep. We raden aan om te experimenteren\n  met verschillende budgetten om te bepalen wat het beste werkt voor jouw bedrijf."
+            "content": "Het wordt over het algemeen aanbevolen om te beginnen met een **minimumbudget van {0} per dag voor je dagelijkse advertentie-uitgaven**. Hiermee kun je een groter publiek bereiken en mogelijk betere resultaten zien."
         }
     },
     "productFeedPage": {
@@ -807,6 +808,9 @@
             "target": "Doelland",
             "actions": "Acties",
             "dailyBudget": "Dagelijkse begroting"
+        },
+        "tooltip": {
+            "lowBudget": "Your daily budget is too low to have a performing campaign, increase your budget to enhance campaign performance."
         }
     },
     "notConfiguredState": {
@@ -1111,8 +1115,6 @@
         "textCampaignsBanner": "Maak je eerste campagne aan en bereik meer relevante shoppers via alle kanalen van Google. Laat Google's machine learning je advertentieplaatsingen optimaliseren en je verkeer en verkoop efficiënt verbeteren."
     },
     "tipsAndTricks": {
-        "title": "Tips en trucs voor PrestaShop",
-        "advisorPicture": "Profielfoto van {0}",
-        "advisorRole": "PrestaShop eCommerce Expert"
+        "title": "Tips en trucs voor PrestaShop"
     }
 }
