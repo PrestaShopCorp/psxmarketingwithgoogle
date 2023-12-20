@@ -618,7 +618,7 @@
         "dimensionXFilterSelectedWithXProducts": "{0} filter | {0} filter ({1} product) | {0} filter ({1} producten)",
         "filtersWithxValues": "{0} filters | {0} filters met {1} betreffend product | {0} filters met {1} betreffende producten",
         "budgetTip": {
-            "content": "Het wordt over het algemeen aanbevolen om te beginnen met een **minimumbudget van {0} per dag voor je dagelijkse advertentie-uitgaven**. Hiermee kun je een groter publiek bereiken en mogelijk betere resultaten zien."
+            "content": "To ensure the success of your campaign, it’s essential to adjust your daily ad budget according to the target country. For instance, a starting point of {budget} is recommended for {country}. By choosing your target country, you can identify the ideal budget to meet your objectives. Remember, this foundational budget is more than just a figure – it’s a key component of your campaign strategy. A well-planned budget facilitates efficient ad testing and refinement, enabling you to customize your expenditure to the unique requirements of your business and enhance overall campaign performance."
         }
     },
     "productFeedPage": {
