@@ -551,10 +551,12 @@
         "inputFiltersAllLabel": "Включить все синхронизированные продукты",
         "inputFiltersPartialLabel": "Выберите продукты, используя фильтры разделов продуктов",
         "inputFiltersHelper": "Потратьте немного времени, чтобы [прочитать рекламную политику Google Shopping]({0})[:target=\"_blank\"] некоторые товары запрещены или ограничены.",
-        "inputBudgetHelper": "Вы будете платить только в том случае, если кто-то нажмет на ваше объявление.",
+        "inputBudgetHelper": "The minimum budget varies based on your target country. Please select a country to see the exact minimum required.",
+        "inputBudgetHelperForTargetCountry": "The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.",
         "inputBudgetInvalidFeedback": "Ваш дневной бюджет должен быть действительным числом больше 1. Для любого десятичного числа используйте точку в качестве разделителя.",
+        "inputBudgetBeforeThresholdFeedback": "Minimum budget required for this target country is {budget}. Please increase your budget to continue.",
         "inputBudgetFeedback": "Ежедневный бюджет кампании",
-        "inputBudgetTooltip": "Ваш бюджет - это средняя сумма, которую вам удобно тратить каждый день на свою кампанию. Выбранный вами бюджет зависит только от вас, и вы можете корректировать его в любое время.",
+        "inputBudgetTooltip": "To ensure Ad performance, the base minimum depends on your target country and the budget you choose is entirely up to you, and you can adjust it at any time.",
         "inputBudgetPlaceholder": "Сумма",
         "inputAllSyncedProducts": "Фильтры не выбраны",
         "formHelperTitle": "Активация кампании",
@@ -616,8 +618,7 @@
         "dimensionXFilterSelectedWithXProducts": "{0} фильтр | {0} фильтр ({1} товар) | {0} фильтр ({1} товара(-ов))",
         "filtersWithxValues": "{0} фильтра(-ов) | {0} фильтра(-ов) с {1} затронутым товаром | {0} фильтра(-ов) с {1} затронутыми товарами",
         "budgetTip": {
-            "content": "Рекомендуемый **минимальный бюджет для ежедневных инвестиций в рекламу — {0}**. Этот бюджет поможет вам охватить большую аудиторию и получить лучшие результаты.",
-            "readMore": "Рекомендуемый минимальный бюджет позволит вам проверить эффективность\n  вашей рекламы и внести необходимые корректировки. Помните, что каждый бизнес\n  уникален, поэтому оптимальный размер бюджета зависит\n  от поставленных перед вами задач и целевой аудитории. Рекомендуем поэкспериментировать\n  с различными бюджетами. Это позволит определить самый эффективный вариант для вашей компании."
+            "content": "Your campaign's success is ensured by a daily ad budget that vary with the targeted country, for example {budget} is the baseline for {country}. By selecting your target country, you'll be able to determine the optimal starting budget that aligns with your specific goals. This foundational budget is not just a number — it's a crucial part of your strategy. It allows for effective testing and refining of your ads, helping you to tailor your spending to your business's unique needs and maximize overall effectiveness."
         }
     },
     "productFeedPage": {
@@ -807,6 +808,9 @@
             "target": "Целевая страна",
             "actions": "Действия",
             "dailyBudget": "Ежедневный бюджет"
+        },
+        "tooltip": {
+            "lowBudget": "Your daily budget is too low to have a performing campaign, increase your budget to enhance campaign performance."
         }
     },
     "notConfiguredState": {
@@ -1111,8 +1115,6 @@
         "textCampaignsBanner": "Создайте первую кампанию и охватите более релевантных покупателей по всем каналам Google. Машинное обучение Google оптимизирует места размещения рекламы и эффективно улучшает трафик и продажи."
     },
     "tipsAndTricks": {
-        "title": "Полезные советы от PrestaShop",
-        "advisorPicture": "Изображение профиля {0}",
-        "advisorRole": "Эксперт по электронной коммерции PrestaShop"
+        "title": "PrestaShop pro tip"
     }
 }
