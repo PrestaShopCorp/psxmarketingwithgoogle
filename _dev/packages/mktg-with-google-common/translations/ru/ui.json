@@ -523,6 +523,18 @@
         "contentInfo": "Рекламодатели, которые используют умные торговые кампании уровня Performance Max, наблюдают средний рост конверсии на 12% при той же или лучшей окупаемости рекламных инвестиций (ROAS)*",
         "footerInfo": "*Глобальные данные Google Рекламы, сентябрь–октябрь 2021 года."
     },
+    "enhancedConversionTrackingCard": {
+        "title": "Enhanced conversion tracking",
+        "intro": "Improve your conversion tracking accuracy and unlock more powerful bidding. This feature works alongside your existing conversion tags, sending secure, privacy-friendly conversion data from your website to Google.",
+        "signTosAlert": {
+            "title": "Improve your conversion tracking & unlock more powerful bidding to your Ads",
+            "text": "Enable enhanced conversion tracking by simply agreeing to Google Ads' terms of service"
+        },
+        "enableEnhancedConversionAlert": {
+            "title": "Ready to enable enhanced conversion tracking feature",
+            "text": "Your Google Ads' terms of service are up-to-date, head to your configuration page to enable your new feature"
+        }
+    },
     "smartShoppingCampaignCreation": {
         "allFilters": "Все фильтры",
         "breadcrumb1": "Кампании",
@@ -551,10 +563,12 @@
         "inputFiltersAllLabel": "Включить все синхронизированные продукты",
         "inputFiltersPartialLabel": "Выберите продукты, используя фильтры разделов продуктов",
         "inputFiltersHelper": "Потратьте немного времени, чтобы [прочитать рекламную политику Google Shopping]({0})[:target=\"_blank\"] некоторые товары запрещены или ограничены.",
-        "inputBudgetHelper": "Вы будете платить только в том случае, если кто-то нажмет на ваше объявление.",
+        "inputBudgetHelper": "The minimum budget varies based on your target country. Please select a country to see the exact minimum required.",
+        "inputBudgetHelperForTargetCountry": "The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.",
         "inputBudgetInvalidFeedback": "Ваш дневной бюджет должен быть действительным числом больше 1. Для любого десятичного числа используйте точку в качестве разделителя.",
+        "inputBudgetBeforeThresholdFeedback": "Minimum budget required for this target country is {budget}. Please increase your budget to continue.",
         "inputBudgetFeedback": "Ежедневный бюджет кампании",
-        "inputBudgetTooltip": "Ваш бюджет - это средняя сумма, которую вам удобно тратить каждый день на свою кампанию. Выбранный вами бюджет зависит только от вас, и вы можете корректировать его в любое время.",
+        "inputBudgetTooltip": "To ensure Ad performance, the base minimum depends on your target country and the budget you choose is entirely up to you, and you can adjust it at any time.",
         "inputBudgetPlaceholder": "Сумма",
         "inputAllSyncedProducts": "Фильтры не выбраны",
         "formHelperTitle": "Активация кампании",
@@ -569,13 +583,8 @@
         "toggleCreationNewRemarketingTag": "Создайте новый тег ремаркетинга и отслеживания конверсии для вашего магазина",
         "enableCreationRemarketingTag": "Включите тег ремаркетинга и отслеживания конверсии",
         "pauseCampaign": "Ваша кампания будет работать до тех пор, пока вы не приостановите ее или как только наступит дата окончания. Вы можете приостановить его в любое время.",
-        "switch": {
-            "on": "Вкл.",
-            "off": "Откл."
-        },
         "alerts": {
             "noTag": "Если не добавить тег автоматически, Google не сможет отправлять результаты кампаний",
-            "duplicatedTag": "Похоже, у вас уже есть метка, связанная с вашей учетной записью google, создание новой метки может привести к дублированию событий для ваших кампаний. Мы предлагаем сохранить только ту, которую мы генерируем для вас.",
             "noConversionActions": "Метка отслеживания была включена, но в магазине не установлено действие конверсии. Это можно исправить путем создания новых.",
             "hasUnhandledFilters": "По крайней мере один фильтр этой кампании не поддерживается данным модулем. Во избежание потерь в существующей конфигурации можно изменить только основные детали кампании.",
             "PMaxExplanationTitle": "Performance Max — это новая целеориентированная кампания.",
@@ -588,10 +597,7 @@
         "nbValuesSelected": "Значение не выбрано | {0} значение выбрано | {0} значения выбраны",
         "selectProductsTitle": "Выберите фильтр продуктов",
         "selectProductsSubtitle": "У кампании может быть только один масштаб с одним или несколькими значениями.",
-        "remarketingNote": "**Примечание:** если на вашем сайте уже настроены действия по конверсии Google Ads со значениями конверсии для конкретной сделки для данного аккаунта Google Ads, то вам не нужно устанавливать новые теги конверсии на вашем сайте.",
         "toggleNewConversionTag": "Установите новые теги отслеживания конверсии на моем сайте",
-        "toggleNewConversionTag2": "Мы создадим следующие теги преобразования: Просмотр страницы, Покупка, Добавить в корзину",
-        "remarketingTagLoading": "Проверка наличия тегов ремаркетинга и отслеживания конверсии для добавления в ваш магазин",
         "descriptiveMessage": "Перечислены только кампании Performance Max и умные торговые кампании, связанные с вашей учетной записью Google Merchant Center. \nЧтобы посмотреть все кампании, [перейдите в  учетную запись Google Рекламы]({0})[:target=\"_blank\"].",
         "nbProductsFiltersSelected": "Фильтр продуктов не выбран | {0} фильтр продуктов выбран | {0} фильтры продуктов выбраны",
         "dimensionXFilterSelected": "Фильтров: {0}",
@@ -616,8 +622,7 @@
         "dimensionXFilterSelectedWithXProducts": "{0} фильтр | {0} фильтр ({1} товар) | {0} фильтр ({1} товара(-ов))",
         "filtersWithxValues": "{0} фильтра(-ов) | {0} фильтра(-ов) с {1} затронутым товаром | {0} фильтра(-ов) с {1} затронутыми товарами",
         "budgetTip": {
-            "content": "Рекомендуемый **минимальный бюджет для ежедневных инвестиций в рекламу — {0}**. Этот бюджет поможет вам охватить большую аудиторию и получить лучшие результаты.",
-            "readMore": "Рекомендуемый минимальный бюджет позволит вам проверить эффективность\n  вашей рекламы и внести необходимые корректировки. Помните, что каждый бизнес\n  уникален, поэтому оптимальный размер бюджета зависит\n  от поставленных перед вами задач и целевой аудитории. Рекомендуем поэкспериментировать\n  с различными бюджетами. Это позволит определить самый эффективный вариант для вашей компании."
+            "content": "To ensure the success of your campaign, it’s essential to adjust your daily ad budget according to the target country. For instance, a starting point of {budget} is recommended for {country}. By choosing your target country, you can identify the ideal budget to meet your objectives. Remember, this foundational budget is more than just a figure – it’s a key component of your campaign strategy. A well-planned budget facilitates efficient ad testing and refinement, enabling you to customize your expenditure to the unique requirements of your business and enhance overall campaign performance."
         }
     },
     "productFeedPage": {
@@ -807,6 +812,9 @@
             "target": "Целевая страна",
             "actions": "Действия",
             "dailyBudget": "Ежедневный бюджет"
+        },
+        "tooltip": {
+            "lowBudget": "Your daily budget is too low to have a performing campaign, increase your budget to enhance campaign performance."
         }
     },
     "notConfiguredState": {
@@ -867,6 +875,7 @@
         "switchAccount": "Переключить учетную запись",
         "acceptInvitation": "Принять приглашение",
         "continue": "Продолжить",
+        "confirm": "Confirm",
         "disabled": "Инвалид",
         "activateModule": "Включить модуль",
         "enabled": "Включено",
@@ -916,6 +925,7 @@
         "reviewProblems": "Проблемы пересмотра",
         "saveAndExport": "Сохранить и экспортировать",
         "go": "Перейти",
+        "goTo": "Go to {0}",
         "continueWithoutSave": "Продолжить без сохранения",
         "save": "Сохранить",
         "disconnect": "Отключить",
@@ -963,7 +973,9 @@
         "visitThe": "Посетите {0} для получения дополнительной информации",
         "createPmax": "Создание кампании Performance Max",
         "understand": "Я понимаю",
-        "moreActions": "Другие действия"
+        "moreActions": "Другие действия",
+        "signGadsToS": "Sign terms of service on Google Ads",
+        "enableEnhancedConversions": "Activate enhanced conversion tracking"
     },
     "badge": {
         "free": "Бесплатно",
@@ -1014,20 +1026,14 @@
         "pauseCampaignsExplainations": "Если приостановить все кампании, выставление счетов прекратится. Вы можете перезапустить свои кампании в любое время в своем аккаунте Google ads.",
         "removeTag": "Удалите тег \"Ремаркетинг и конверсия\" из моего магазина",
         "removeTagExplainations": "Удаление тега означает, что Google больше не сможет отслеживать ваши кампании. Мы рекомендуем удалять тег только в том случае, если вы планируете полностью удалить модуль или изменить учетную запись. Вы всегда можете добавить его самостоятельно в код вашего сайта.",
-        "titleActivateTrackingSSC": "Активируйте тег ремаркетинга и отслеживания конверсий.",
-        "textActivateTrackingSSC": "Для запуска кампании Performance Max сервис Google Ads должен иметь возможность создавать [список ремаркетинга]({0})[:target=\"_blank\" class= \"text-decoration-underline\"] и [тег отслеживания конверсий]({1})[:target=\"_blank\" class=\"text-decoration-underline\"] на вашем сайте.   \n PrestaShop автоматически установит эти фрагменты кода в вашем магазине.",
+        "titleActivateTracking": "Measure the effectiveness of your Ads",
+        "textActivateTracking": "To run Performance Max campaigns effectively, Google Ads requires the ability to generate remarketing lists and add conversion tracking tags to your list.\n\nClicking on confirm means you accept that PrestaShop automatically installs code snippets on your store:\n- Add Google tag on my store\n- Configure conversion actions : Page views, Add to cart, Purchase",
         "textConfirmCancel": "Если вы вернетесь назад, то потеряете выбранные значения.",
-        "upgradeSCCToPmaxTitle": "Встречайте улучшенные кампании",
-        "upgradeSCCToPmaxTextWithoutCampaign": "Начиная с {0} вы сможете создавать кампании Performance Max для своего магазина. \n\n Performance Max — это умные торговые кампании следующего поколения. Это оптимизированные кампании, основанные на интеллектуальной технологии Google. Она автоматически оптимизирует ваши объявления в различных каналах, чтобы вы получали максимальную отдачу от рекламы.",
-        "upgradeSCCToPmaxText": "{0} умные торговые кампании будут улучшены до уровня Performance Max  \n\n От вас не требуется никаких дополнительных действий: настройки умной торговой кампании и бюджет останутся прежними. Будет автоматически обновлен только тип кампании (Performance Max). \n\n С начала июля вы сможете создавать только кампании Performance Max.",
-        "PMaxLiveTitle": "Встречайте Performance Max",
-        "PMaxLiveText": "Начиная с сегодняшнего дня вы можете создавать Performance Max — умные торговые кампании следующего поколения. \n\nPerformance Max — это оптимизированные кампании, основанные на интеллектуальной технологии Google. Она автоматически оптимизирует ваши объявления в различных каналах, чтобы вы получали максимальную отдачу от рекламы. ",
-        "PMaxMigrationTitle": "Важные новости",
-        "PMaxMigrationText": "Теперь ваши кампании Smart Shopping начнут автоматически обновляться до кампаний Performance Max.\n\n- Настройки кампании и бюджет остаются прежними. \n\n- Функциональные возможности соответствуют кампаниям Smart Shopping. \n\n- С этого момента вы можете создавать только кампании Performance Max.",
-        "PmaxTextLink": "Узнайте больше о Performance Max",
-        "textPmaxReleased": "Today, you can start creating Performance Max campaigns, the next generation of Smart Shopping campaigns. [Learn more]({0})[:target=\"_blank\" class=\"text-decoration-underline\"]",
         "disconnectedUserBo": "Вы были отключены от личного кабинета. Вы будете автоматически перенаправлены на страницу входа через {0} сек.",
-        "titleDisconnectedUserBo": "Соединение потеряно"
+        "titleDisconnectedUserBo": "Соединение потеряно",
+        "titleEnhancedConversionsIntro": "Measure the effectiveness of your Ads",
+        "textEnhancedConversionsIntro": "Enhance your conversion tracking accuracy and empower your bidding strategy with our latest feature: Enhanced Conversion Tracking. This feature seamlessly integrates with your existing conversion tags, ensuring the secure and privacy-conscious transmission of conversion data from your website to Google.",
+        "textActivationEnhancedConversionsIntro": "Activating it is easy – just agree to the terms of service on Google Ads. The feature is accessible on your configuration’s page below conversion tracking tag."
     },
     "tooltip": {
         "googleAccountRequired": "Требуется настройка аккаунта Google",
@@ -1063,7 +1069,8 @@
         "productFeedConfiguredOnceSuccess": "Вы успешно отправили данные о своем продукте в Merchant Center. После утверждения они будут доступны для бесплатных объявлений и листингов.",
         "attributesMapppingSuccess": "Атрибуты вашего продукта успешно сохранены. Просмотрите резюме, затем нажмите \"Экспорт\", чтобы отправить их в Google",
         "campaignCreatedSuccess": "Вы создали кампанию Performance Max!",
-        "phoneNumberVerifiedSuccess": "Ваш номер телефона был проверен. Создается торговый счет"
+        "phoneNumberVerifiedSuccess": "Ваш номер телефона был проверен. Создается торговый счет",
+        "enhancedConversionEnabledSuccess": "Enhanced conversion tracking enabled"
     },
     "stepper": {
         "nextStep": "Следующий: {0}",
@@ -1111,8 +1118,6 @@
         "textCampaignsBanner": "Создайте первую кампанию и охватите более релевантных покупателей по всем каналам Google. Машинное обучение Google оптимизирует места размещения рекламы и эффективно улучшает трафик и продажи."
     },
     "tipsAndTricks": {
-        "title": "Полезные советы от PrestaShop",
-        "advisorPicture": "Изображение профиля {0}",
-        "advisorRole": "Эксперт по электронной коммерции PrestaShop"
+        "title": "PrestaShop pro tip"
     }
 }
