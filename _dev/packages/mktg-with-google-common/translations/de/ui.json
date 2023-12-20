@@ -552,7 +552,9 @@
         "inputFiltersPartialLabel": "Produkte mit Hilfe von Produktpartitionsfiltern auswählen",
         "inputFiltersHelper": "Nehmen Sie sich etwas Zeit, um [die Richtlinien für Google Shopping-Anzeigen zu lesen]({0})[:target=\"_blank\"] einige Produkte sind verboten oder eingeschränkt.",
         "inputBudgetHelper": "Sie zahlen nur, wenn jemand auf Ihre Anzeige klickt.",
+        "inputBudgetHelperForTargetCountry": "The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.",
         "inputBudgetInvalidFeedback": "Ihr Tagesbudget muss eine gültige Zahl größer als 1 sein. Für jede Dezimalzahl verwenden Sie bitte einen Punkt als Trennzeichen.",
+        "inputBudgetBeforeThresholdFeedback": "Minimum budget required for this target country is {budget}. Please increase your budget to continue.",
         "inputBudgetFeedback": "Tägliches Kampagnenbudget",
         "inputBudgetTooltip": "Ihr Budget ist der durchschnittliche Betrag, den Sie pro Tag für Ihre Kampagne ausgeben können. Das von Ihnen gewählte Budget liegt ganz in Ihrer Hand und kann jederzeit angepasst werden.",
         "inputBudgetPlaceholder": "Betrag",
@@ -616,8 +618,7 @@
         "dimensionXFilterSelectedWithXProducts": "{0} Filter | {0} Filter ({1} Produkt) | {0} Filter ({1} Produkte)",
         "filtersWithxValues": "{0} Filter | {0} Filter mit {1} betroffenen Produkten | {0} Filter mit {1} betroffenen Produkten",
         "budgetTip": {
-            "content": "Es wird generell empfohlen, mit einem *Mindestbudget von {0} pro Tag für Ihre täglichen Ad-Ausgaben zu starten**. Dadurch können Sie eine größere Zielgruppe erreichen und erzielen potenziell bessere Ergebnisse.",
-            "readMore": "Mit diesem empfohlenen Mindestbudget können Sie die Wirksamkeit Ihrer Anzeigen testen und bei Bedarf Anpassungen vornehmen. Natürlich ist jedes Unternehmen anders und das tatsächliche Budget, das für Ihr Unternehmen am besten geeignet ist, hängt von Ihren Zielen und Ihrer Zielgruppe ab. Wir empfehlen, verschiedene Budgets auszuprobieren, um herauszufinden, was für Ihr Unternehmen am besten geeignet ist."
+            "content": "Es wird generell empfohlen, mit einem *Mindestbudget von {0} pro Tag für Ihre täglichen Ad-Ausgaben zu starten**. Dadurch können Sie eine größere Zielgruppe erreichen und erzielen potenziell bessere Ergebnisse."
         }
     },
     "productFeedPage": {
@@ -807,6 +808,9 @@
             "target": "Zielland",
             "actions": "Aktionen",
             "dailyBudget": "Tägliches Budget"
+        },
+        "tooltip": {
+            "lowBudget": "Your daily budget is too low to have a performing campaign, increase your budget to enhance campaign performance."
         }
     },
     "notConfiguredState": {
@@ -1111,8 +1115,6 @@
         "textCampaignsBanner": "Erstellen Sie Ihre erste Kampagne und erreichen Sie mehr relevante Käufer über alle Kanäle von Google. Überlassen Sie es dem maschinellen Lernen von Google, Ihre Anzeigenplatzierungen zu optimieren und Ihren Traffic und Ihre Verkäufe effizient zu verbessern."
     },
     "tipsAndTricks": {
-        "title": "Tipps und Tricks von PrestaShop",
-        "advisorPicture": "Profilbild von {0}",
-        "advisorRole": "E-Commerce-Experte von PrestaShop"
+        "title": "Tipps und Tricks von PrestaShop"
     }
 }
