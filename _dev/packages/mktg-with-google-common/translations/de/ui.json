@@ -618,7 +618,7 @@
         "dimensionXFilterSelectedWithXProducts": "{0} Filter | {0} Filter ({1} Produkt) | {0} Filter ({1} Produkte)",
         "filtersWithxValues": "{0} Filter | {0} Filter mit {1} betroffenen Produkten | {0} Filter mit {1} betroffenen Produkten",
         "budgetTip": {
-            "content": "Es wird generell empfohlen, mit einem *Mindestbudget von {0} pro Tag für Ihre täglichen Ad-Ausgaben zu starten**. Dadurch können Sie eine größere Zielgruppe erreichen und erzielen potenziell bessere Ergebnisse."
+            "content": "To ensure the success of your campaign, it’s essential to adjust your daily ad budget according to the target country. For instance, a starting point of {budget} is recommended for {country}. By choosing your target country, you can identify the ideal budget to meet your objectives. Remember, this foundational budget is more than just a figure – it’s a key component of your campaign strategy. A well-planned budget facilitates efficient ad testing and refinement, enabling you to customize your expenditure to the unique requirements of your business and enhance overall campaign performance."
         }
     },
     "productFeedPage": {
