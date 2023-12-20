@@ -660,7 +660,7 @@
             "noEligibleCurrenciesDesc": "Please update your target countries in your {0} or add the relevant currencies in your {1} to match the target countries in error."
           },
           "title": "Your product feed's configuration",
-          "targetCountries": "Selected target country:|Selected target countries:",
+          "targetCountries": "Target country:|Target countries:",
           "languages": "Language:|Languages:",
           "currencies": "Currency:|Currencies:",
           "noLanguage": "No eligible language",
