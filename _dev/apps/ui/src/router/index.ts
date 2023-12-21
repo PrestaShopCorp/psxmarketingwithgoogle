@@ -3,6 +3,7 @@ import VueRouter, {RouteConfig} from 'vue-router';
 import store from '@/store';
 import CampaignPage from '@/views/campaign-page.vue';
 import CampaignForm from '@/views/campaign-form.vue';
+import ConfigurationPage from '@/views/configuration-page.vue';
 import LandingPage from '@/views/landing-page.vue';
 import DebugPage from '@/views/debug-page.vue';
 import HelpPage from '@/views/help-page.vue';
