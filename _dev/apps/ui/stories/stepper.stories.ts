@@ -1,4 +1,4 @@
-import Stepper from '../src/components/commons/stepper.vue'
+import Stepper from '@/components/commons/ps-stepper.vue'
 
 export default {
   title: 'Basic Components/Stepper',

@@ -1,7 +1,7 @@
 import cloneDeep from 'lodash.clonedeep';
 import {createProductFeedApiPayload} from './actions';
 import {shippingPhpExportWithIssues} from '@/../.storybook/mock/shipping-settings';
-import {ShopShippingCollectionType, ShopShippingInterface, getEnabledCarriers} from '@/providers/shipping-settings-provider';
+import {ShopShippingCollectionType, ShopShippingInterface} from '@/providers/shipping-settings-provider';
 
 const allDetailsFromState = {
   autoImportTaxSettings: false,

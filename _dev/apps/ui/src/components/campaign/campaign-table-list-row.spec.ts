@@ -1,6 +1,6 @@
 // Import this file first to init mock on window
 import {mount} from '@vue/test-utils';
-import {BDropdown, BDropdownItemButton, BTd} from 'bootstrap-vue';
+import {BDropdownItemButton, BTd} from 'bootstrap-vue';
 import config, {localVue, addBootstrapToVue} from '@/../tests/init';
 
 import CampaignTableListRow from './campaign-table-list-row.vue';

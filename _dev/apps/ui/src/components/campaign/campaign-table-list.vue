@@ -13,7 +13,6 @@
       <b-card-body
         body-class="p-0"
       >
-
         <b-table-simple
           id="table-filters-performance"
           class="card mb-0"
@@ -24,7 +23,7 @@
           >
             <b-tr>
               <b-th
-                v-for="(type, index) in campaignHeaderList"
+                v-for="(type) in campaignHeaderList"
                 :key="type"
                 class="font-weight-500"
                 :class="{'ps_gs-table-performance-header': isPerformanceInfo(type)}"
@@ -33,7 +32,7 @@
                   :loading="loading || fetchingCampaigns"
                 >
                   <template #loading>
-                    <b-skeleton/>
+                    <b-skeleton />
                   </template>
 
                   <div class="flex align-items-center">
@@ -89,13 +88,12 @@
             </template>
 
             <table-api-error
-              v-else-if="apiFailed" 
+              v-else-if="apiFailed"
               :colspan="campaignHeaderList.length"
             />
 
             <template
               v-else-if="campaignList.length"
-              class=" ps_gs-onboardingcard__not-configured"
             >
               <CampaignTableListRow
                 v-for="campaign in campaignList"
@@ -117,6 +115,7 @@
 
 <script lang="ts">
 import {mapGetters} from 'vuex';
+import {defineComponent} from 'vue';
 import GettersTypes from '@/store/modules/campaigns/getters-types';
 import MutationsTypes from '@/store/modules/campaigns/mutations-types';
 import {CampaignListOrdering} from '@/store/modules/campaigns/state';
@@ -124,18 +123,15 @@ import CampaignTableListRow from './campaign-table-list-row.vue';
 import CampaignSummaryListHeaderType from '@/enums/campaigns-summary/CampaignSummaryListHeaderType';
 import QueryOrderDirection from '@/enums/reporting/QueryOrderDirection';
 import googleUrl from '@/assets/json/googleUrl.json';
-import BannerCampaigns from '@/components/commons/banner-campaigns.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import TableApiError from '@/components/commons/table-api-error.vue';
 import TablePageControls from '@/components/commons/table-page-controls.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
-import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'CampaignTableList',
   components: {
     CampaignTableListRow,
-    BannerCampaigns,
     TableApiError,
     TablePageControls,
   },
@@ -212,7 +208,8 @@ export default defineComponent({
       return headerType !== CampaignSummaryListHeaderType.STATUS;
     },
     hasSorting(headerType: CampaignSummaryListHeaderType): boolean {
-      return this.isPerformanceInfo(headerType) || headerType === CampaignSummaryListHeaderType.DURATION;
+      return this.isPerformanceInfo(headerType)
+        || headerType === CampaignSummaryListHeaderType.DURATION;
     },
     isPerformanceInfo(headerType: CampaignSummaryListHeaderType): boolean {
       return [

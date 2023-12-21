@@ -113,6 +113,7 @@
                     && field.name.toUpperCase() === attributeToEdit"
                   :field="field"
                   :category="group.category"
+                  @valueMapped="field.mapped = $event"
                 />
               </div>
             </div>

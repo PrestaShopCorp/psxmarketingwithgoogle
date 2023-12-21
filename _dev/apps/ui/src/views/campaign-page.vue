@@ -4,7 +4,6 @@
       v-if="$route.name === 'campaign'"
       class="mb-3"
     >
-
       <BannerCampaigns
         v-if="!inNeedOfConfiguration && !accountHasAtLeastOneCampaign"
         @clickToCreateCampaign="onClickToCreateCampaign"
@@ -13,7 +12,7 @@
       <key-metrics-controls
         :in-need-of-configuration="inNeedOfConfiguration"
         :loading="!allDataLoaded"
-        :accountHasAtLeastOneCampaign="accountHasAtLeastOneCampaign"
+        :account-has-at-least-one-campaign="accountHasAtLeastOneCampaign"
         @clickToCreateCampaign="onClickToCreateCampaign"
       />
 
@@ -30,7 +29,7 @@
       />
     </div>
     <!-- Need this new router-view since we now have nested children routes -->
-    <router-view  v-else/>
+    <router-view v-else />
     <SSCPopinActivateTracking
       ref="SSCPopinActivateTrackingCampaignPage"
       modal-id="SSCPopinActivateTrackingCampaignPage"

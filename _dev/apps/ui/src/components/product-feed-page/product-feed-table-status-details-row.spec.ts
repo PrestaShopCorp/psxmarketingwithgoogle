@@ -1,7 +1,7 @@
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
-import {mount, MountOptions, Wrapper} from '@vue/test-utils';
+import {mount, MountOptions} from '@vue/test-utils';
 import {BTd} from 'bootstrap-vue';
 import {ProductInfos, ProductStatus} from '@/store/modules/product-feed/state';
 import config, {

@@ -318,6 +318,7 @@ export default {
       );
 
     const {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       name, delay, country, carrierId, ...sourceCarrierData
     } = carriersList[indexToCopy];
 
@@ -409,7 +410,8 @@ export default {
     commit(MutationsTypes.SAVE_NUMBER_OF_PRODUCTS_ON_CLOUDSYNC, json.totalProducts);
   },
 
-  async [ActionsTypes.SEND_PRODUCT_FEED_FLAGS]({rootState}: Context, flags) {
+  // eslint-disable-next-line no-empty-pattern
+  async [ActionsTypes.SEND_PRODUCT_FEED_FLAGS]({}: Context, flags) {
     await fetchOnboarding(
       'POST',
       'debug/migration',

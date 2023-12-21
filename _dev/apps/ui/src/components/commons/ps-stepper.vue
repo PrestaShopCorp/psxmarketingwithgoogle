@@ -67,7 +67,7 @@ import {
 import ProgressRing from '../commons/progress-ring';
 
 export default {
-  name: 'Stepper',
+  name: 'PsStepper',
   components: {
     BIconCheck,
     BIconSlash,

@@ -35,7 +35,7 @@
 
 <script>
 export default {
-  name: 'Glass',
+  name: 'PopupGlass',
   methods: {
     closePopup() {
       this.$emit('close');

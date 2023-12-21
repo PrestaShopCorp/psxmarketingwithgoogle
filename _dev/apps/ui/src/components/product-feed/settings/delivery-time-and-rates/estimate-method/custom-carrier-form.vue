@@ -25,7 +25,7 @@
               type="text"
               class="form-control ps_gs-mw-200"
               id="carrierName"
-              v-model="estimateCarrier.carrierName"
+              v-model="localCarrier.carrierName"
               @input="onDataUpdate"
               :state="validateCarrierName"
               :placeholder="
@@ -50,8 +50,8 @@
             <b-form-radio
               :state="validateRadio"
               class="form-check-input"
-              :name="`offersChoice-${estimateCarrier.countries[0]}`"
-              v-model="estimateCarrier.offer"
+              :name="`offersChoice-${localCarrier.countries[0]}`"
+              v-model="localCarrier.offer"
               @input="onDataUpdate"
               :value="offer.value"
             >
@@ -81,7 +81,7 @@
                 class="ps_gs-carrier__input-number no-arrows"
                 size="sm"
                 :state="validateTimeDelivery"
-                v-model.number="estimateCarrier.minDeliveryTime"
+                v-model.number="localCarrier.minDeliveryTime"
                 @input="onDataUpdate"
                 min="0"
                 :placeholder="$t('general.min')"
@@ -92,7 +92,7 @@
               >
                 <b-form-input
                   type="number"
-                  v-model.number="estimateCarrier.maxDeliveryTime"
+                  v-model.number="localCarrier.maxDeliveryTime"
                   @input="onDataUpdate"
                   class="ps_gs-carrier__input-number no-arrows min-input-custom"
                   size="sm"
@@ -106,10 +106,10 @@
         <!-- eslint-disable max-len -->
         <b-card
           class="offer-rates bg-off-white"
-          v-if="estimateCarrier.offer === OfferType.FLAT_SHIPPING_RATE
-            || estimateCarrier.offer === OfferType.FREE_SHIPPING_OVER_AMOUNT"
+          v-if="localCarrier.offer === OfferType.FLAT_SHIPPING_RATE
+            || localCarrier.offer === OfferType.FREE_SHIPPING_OVER_AMOUNT"
         >
-          <b-row v-if="estimateCarrier.offer === OfferType.FLAT_SHIPPING_RATE">
+          <b-row v-if="localCarrier.offer === OfferType.FLAT_SHIPPING_RATE">
             <b-col>
               <div
                 class="font-weight-600 mb-1"
@@ -127,7 +127,7 @@
             <b-col>
               <div>
                 <b-input-group
-                  :append="currencies.length <= 1 ? estimateCarrier.currency : undefined"
+                  :append="currencies.length <= 1 ? localCarrier.currency : undefined"
                   class="ps_gs-carrier__input-number-group"
                 >
                   <b-form-input
@@ -136,9 +136,9 @@
                     size="sm"
                     step="0.01"
                     placeholder="5.99"
-                    v-model.number="estimateCarrier[estimateCarrier.offer].shippingCost"
+                    v-model.number="localCarrier[localCarrier.offer].shippingCost"
                     @input="onDataUpdate"
-                    :state="validateAmountRate(estimateCarrier[estimateCarrier.offer].shippingCost)"
+                    :state="validateAmountRate(localCarrier[localCarrier.offer].shippingCost)"
                   />
                   <slot
                     name="append"
@@ -146,8 +146,8 @@
                   >
                     <currency-dropdown
                       :currencies="currencies"
-                      :selected-currency="estimateCarrier.currency"
-                      @update:selectedCurrency="newValue => estimateCarrier.currency = newValue"
+                      :selected-currency="localCarrier.currency"
+                      @update:selectedCurrency="newValue => localCarrier.currency = newValue"
                     />
                   </slot>
                 </b-input-group>
@@ -179,7 +179,7 @@
               </b-col>
               <b-col class="col-auto mb-2">
                 <b-input-group
-                  :append="currencies.length <= 1 ? estimateCarrier.currency : undefined"
+                  :append="currencies.length <= 1 ? localCarrier.currency : undefined"
                   class="ps_gs-carrier__input-number-group"
                 >
                   <b-form-input
@@ -188,9 +188,9 @@
                     size="sm"
                     step="0.01"
                     placeholder="42.99"
-                    v-model.number="estimateCarrier[estimateCarrier.offer].orderPrice"
+                    v-model.number="localCarrier[localCarrier.offer].orderPrice"
                     @input="onDataUpdate"
-                    :state="validateAmountRate(estimateCarrier[estimateCarrier.offer].orderPrice)"
+                    :state="validateAmountRate(localCarrier[localCarrier.offer].orderPrice)"
                   />
                   <slot
                     name="append"
@@ -198,8 +198,8 @@
                   >
                     <currency-dropdown
                       :currencies="currencies"
-                      :selected-currency="estimateCarrier.currency"
-                      @update:selectedCurrency="newValue => estimateCarrier.currency = newValue"
+                      :selected-currency="localCarrier.currency"
+                      @update:selectedCurrency="newValue => localCarrier.currency = newValue"
                     />
                   </slot>
                 </b-input-group>
@@ -227,7 +227,7 @@
               </b-col>
               <b-col class="col-auto">
                 <b-input-group
-                  :append="currencies.length <= 1 ? estimateCarrier.currency : undefined"
+                  :append="currencies.length <= 1 ? localCarrier.currency : undefined"
                   class="ps_gs-carrier__input-number-group"
                 >
                   <b-form-input
@@ -236,8 +236,8 @@
                     size="sm"
                     step="0.01"
                     placeholder="5.99"
-                    :state="validateAmountRate(estimateCarrier[estimateCarrier.offer].shippingCost)"
-                    v-model.number="estimateCarrier[estimateCarrier.offer].shippingCost"
+                    :state="validateAmountRate(localCarrier[localCarrier.offer].shippingCost)"
+                    v-model.number="localCarrier[localCarrier.offer].shippingCost"
                     @input="onDataUpdate"
                   />
                   <slot
@@ -246,8 +246,8 @@
                   >
                     <currency-dropdown
                       :currencies="currencies"
-                      :selected-currency="estimateCarrier.currency"
-                      @update:selectedCurrency="newValue => estimateCarrier.currency = newValue"
+                      :selected-currency="localCarrier.currency"
+                      @update:selectedCurrency="newValue => localCarrier.currency = newValue"
                     />
                   </slot>
                 </b-input-group>
@@ -303,6 +303,7 @@ export default Vue.extend({
           value: OfferType.FREE_SHIPPING_OVER_AMOUNT,
         },
       ],
+      localCarrier: this.estimateCarrier as CustomCarrier,
     };
   },
   computed: {
@@ -310,23 +311,23 @@ export default Vue.extend({
       if (!this.displayValidationErrors) {
         return null;
       }
-      return validateDeliveryTime(this.estimateCarrier) ? null : false;
+      return validateDeliveryTime(this.localCarrier) ? null : false;
     },
     validateCarrierName(): boolean|null {
       if (!this.displayValidationErrors) {
         return null;
       }
-      return validateCarrierName(this.estimateCarrier);
+      return validateCarrierName(this.localCarrier);
     },
     validateRadio(): boolean|null {
       if (!this.displayValidationErrors) {
         return null;
       }
-      if (this.estimateCarrier.offer) {
+      if (this.localCarrier.offer) {
         return null;
       }
 
-      return validateOfferChoice(this.estimateCarrier.offer);
+      return validateOfferChoice(this.localCarrier.offer);
     },
     currencies(): string[] {
       return this.$store.getters['app/GET_SHOP_CURRENCIES'];
@@ -343,7 +344,10 @@ export default Vue.extend({
       return !Number.isNaN(amount) && amount > 0 ? null : false;
     },
     async onDataUpdate(): Promise<void> {
-      this.$emit('dataUpdated');
+      this.$emit('carrierUpdated', {
+        ...this.estimateCarrier,
+        ...this.localCarrier,
+      });
       // With the default carrier object, the form does not refresh
       // automatically so we have to force it.
       await this.$nextTick();

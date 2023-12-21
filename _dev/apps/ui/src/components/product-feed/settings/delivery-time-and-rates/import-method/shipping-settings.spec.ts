@@ -141,7 +141,7 @@ describe('shipping-settings.vue', () => {
     // There is a watcher with `immediate: true` -> event will be triggered
     expect((emittedEvents as any[]).length).toBe(1);
 
-    wrapper.findAllComponents(TableRowCarrier).at(0).vm.$emit('dataUpdated', carriers);
+    wrapper.findAllComponents(TableRowCarrier).at(0).vm.$emit('carrierUpdated', carriers[0]);
     await wrapper.vm.$nextTick();
 
     expect((emittedEvents as any[]).length).toBe(2);

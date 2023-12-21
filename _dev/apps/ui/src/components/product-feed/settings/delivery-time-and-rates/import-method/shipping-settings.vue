@@ -108,7 +108,7 @@
           :carrier="carrier"
           :carriers-list="carriers"
           :display-validation-errors="displayValidationErrors"
-          @dataUpdated="$emit('dataUpdated', carriers)"
+          @carrierUpdated="carrierUpdated($event, index)"
         />
       </b-tbody>
     </b-table-simple>
@@ -250,6 +250,15 @@ export default {
     },
     switchToFlatRate() {
       this.$store.commit('productFeed/SET_SHIPPING_SETUP_SELECTED', ShippingSetupOption.ESTIMATE);
+    },
+    carrierUpdated(carrierData: DeliveryDetail, index: number): void {
+      this.$emit(
+        'dataUpdated',
+        this.carriers.toSpliced(index, 1, {
+          ...carrierData[index],
+          ...carrierData,
+        }),
+      );
     },
   },
   watch: {

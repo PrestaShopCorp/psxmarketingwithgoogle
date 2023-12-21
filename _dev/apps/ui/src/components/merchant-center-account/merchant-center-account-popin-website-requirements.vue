@@ -9,7 +9,7 @@
     footer-border-variant="0"
     size="lg"
   >
-    <Stepper
+    <ps-stepper
       v-if="newMca"
       :active-step="stepActiveData"
       :steps="steps()"
@@ -95,21 +95,22 @@
   </ps-modal>
 </template>
 
-<script>
+<script lang="ts">
+import {defineComponent} from 'vue';
 import googleUrl from '@/assets/json/googleUrl.json';
-import PsModal from '../commons/ps-modal';
-import Stepper from '../commons/stepper';
-import StepRequirements from './website-requirements/step-requirements';
-import StepStoreInfo from './website-requirements/step-store-info';
+import PsModal from '@/components/commons/ps-modal.vue';
+import PsStepper from '@/components/commons/ps-stepper.vue';
+import StepRequirements from '@/components/merchant-center-account/website-requirements/step-requirements.vue';
+import StepStoreInfo from '@/components/merchant-center-account/website-requirements/step-store-info.vue';
 import WebsiteRequirementsSteps from '@/enums/stepper/website-requirements-steps';
 import WebsiteRequirements from '@/enums/merchant-center-account/website-requirements';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
-export default {
+export default defineComponent({
   name: 'MerchantCenterAccountPopinWebsiteRequirements',
   components: {
     PsModal,
-    Stepper,
+    PsStepper,
     StepRequirements,
     StepStoreInfo,
   },
@@ -222,5 +223,5 @@ export default {
     }
   },
   googleUrl,
-};
+});
 </script>

@@ -10,7 +10,7 @@
     :placeholder=" $t('productFeedSettings.deliveryTimeAndRates.placeholderSelect')"
     :class="{'maxw-sm-500': notFullWidth }"
   >
-    <template v-slot:option="option">
+    <template #option="option">
       <div class="d-flex flex-wrap flex-md-nowrap align-items-center pr-3">
         <span
           class="mr-2"

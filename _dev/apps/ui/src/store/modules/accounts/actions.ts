@@ -1,25 +1,6 @@
-/**
- * 2007-2021 PrestaShop and Contributors
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
- * that is bundled with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * https://opensource.org/licenses/AFL-3.0
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@prestashop.com so we can send you a copy immediately.
- *
- * @author    PrestaShop SA <contact@prestashop.com>
- * @copyright 2007-2021 PrestaShop SA and Contributors
- * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
- * International Registered Trademark & Property of PrestaShop SA
- */
-
 import {ActionContext} from 'vuex';
 import {fetchOnboarding, fetchShop, HttpClientError} from 'mktg-with-google-common';
-import {GoogleMerchantAccount, MerchantCenterAccountContext, WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
+import {GoogleMerchantAccount, WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 import MutationsTypes from './mutations-types';
 import MutationsTypesProductFeed from '../product-feed/mutations-types';
 import MutationsTypesGoogleAds from '../google-ads/mutations-types';
@@ -233,7 +214,7 @@ export default {
   },
 
   async [ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT]({
-    commit, rootState, state, dispatch,
+    commit, state, dispatch,
   }: Context) {
     const correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
     await fetchOnboarding('DELETE', 'oauth', {correlationId});

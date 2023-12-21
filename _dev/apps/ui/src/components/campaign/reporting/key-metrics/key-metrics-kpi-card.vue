@@ -15,12 +15,12 @@
     >
       <dl class="mb-0">
         <dt
-          class="mb-0 font-weight-normal"          
+          class="mb-0 font-weight-normal"
         >
           {{ kpiName }}
         </dt>
         <dd
-          class="ps_gs-fz-24 font-weight-700 mb-0"  
+          class="ps_gs-fz-24 font-weight-700 mb-0"
         >
           {{ getFormattedValue }}
         </dd>
@@ -35,10 +35,10 @@
 </template>
 
 <script lang="ts">
+import {PropType} from 'vue';
 import KpiType from '@/enums/reporting/KpiType';
-import { PropType } from 'vue';
-import { DailyResultColor } from '@/store/modules/campaigns/state';
-import { formatPrice } from '@/utils/Price';
+import {DailyResultColor} from '@/store/modules/campaigns/state';
+import {formatPrice} from '@/utils/Price';
 
 export default {
   name: 'KeyMetricsKpiCard',
@@ -83,7 +83,7 @@ export default {
         || this.kpiType === KpiType.IMPRESSIONS) {
         return this.kpiValue;
       }
-  
+
       return formatPrice(this.kpiValue, this.currencyCode);
     },
     textVariant(): string {

@@ -100,7 +100,7 @@
             </template>
 
             <table-api-error
-              v-else-if="apiFailed" 
+              v-else-if="apiFailed"
               :colspan="filtersHeaderList.length"
             />
 

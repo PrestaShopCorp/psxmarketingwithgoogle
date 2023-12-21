@@ -21,7 +21,7 @@ describe('tunnel-product-feed.vue', () => {
   });
 
   it('dispatches actions before Create', () => {
-    const wrapper = shallowMount(TunnelProductFeed, {
+    shallowMount(TunnelProductFeed, {
       ...config,
       store: new Vuex.Store(store),
     });

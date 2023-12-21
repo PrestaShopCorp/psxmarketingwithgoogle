@@ -1,5 +1,5 @@
 import Vuex from 'vuex';
-import {shallowMount, mount} from '@vue/test-utils';
+import {shallowMount} from '@vue/test-utils';
 import {BFormCheckboxGroup, BFormCheckbox} from 'bootstrap-vue';
 import config, {cloneStore, localVue} from '@/../tests/init';
 import AttributeMapping from '@/components/product-feed/settings/attribute-mapping/attribute-mapping.vue';
