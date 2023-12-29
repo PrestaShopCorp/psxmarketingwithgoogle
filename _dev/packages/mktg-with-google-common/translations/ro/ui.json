@@ -523,6 +523,18 @@
         "contentInfo": "Agenții de publicitate care actualizează campaniile Smart Shopping la Performance Max înregistrează o creștere medie de 12% a valorii conversiei la aceeași rentabilitate sau o rentabilitate mai bună a cheltuielilor publicitare (ROAS)*",
         "footerInfo": "* Google Data, Global, Ads, Sep–Oct 2021."
     },
+    "enhancedConversionTrackingCard": {
+        "title": "Enhanced conversion tracking",
+        "intro": "Improve your conversion tracking accuracy and unlock more powerful bidding. This feature works alongside your existing conversion tags, sending secure, privacy-friendly conversion data from your website to Google.",
+        "signTosAlert": {
+            "title": "Improve your conversion tracking & unlock more powerful bidding to your Ads",
+            "text": "Enable enhanced conversion tracking by simply agreeing to Google Ads' terms of service"
+        },
+        "enableEnhancedConversionAlert": {
+            "title": "Ready to enable enhanced conversion tracking feature",
+            "text": "Your Google Ads' terms of service are up-to-date, head to your configuration page to enable your new feature"
+        }
+    },
     "smartShoppingCampaignCreation": {
         "allFilters": "Toate filtrele",
         "breadcrumb1": "Campaniile",
@@ -551,12 +563,12 @@
         "inputFiltersAllLabel": "Include toate produsele sincronizate",
         "inputFiltersPartialLabel": "Selectează produse utilizând filtre de partiție pentru produse",
         "inputFiltersHelper": "Ia-ți timp să [citești politicile privind reclamele ale Google Shopping]({0})[:target=\"_blank\"] unele produse sunt interzise sau restricționate.",
-        "inputBudgetHelper": "Vei plăti numai dacă cineva face clic pe reclama ta.",
+        "inputBudgetHelper": "The minimum budget varies based on your target country. Please select a country to see the exact minimum required.",
         "inputBudgetHelperForTargetCountry": "The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.",
         "inputBudgetInvalidFeedback": "Bugetul zilnic trebuie să fie un număr valid mai mare decât 1. Pentru orice număr zecimal, te rugăm să folosești un punct ca separator.",
         "inputBudgetBeforeThresholdFeedback": "Minimum budget required for this target country is {budget}. Please increase your budget to continue.",
         "inputBudgetFeedback": "Bugetul zilnic al campaniei",
-        "inputBudgetTooltip": "Bugetul este suma medie pe care o poți cheltui confortabil în fiecare zi în campania ta. Bugetul pe care îl alegi depinde în întregime de tine și îl poți ajusta în orice moment.",
+        "inputBudgetTooltip": "To ensure Ad performance, the base minimum depends on your target country and the budget you choose is entirely up to you, and you can adjust it at any time.",
         "inputBudgetPlaceholder": "Suma",
         "inputAllSyncedProducts": "Niciun filtru selectat",
         "formHelperTitle": "Activarea campaniei",
@@ -571,13 +583,8 @@
         "toggleCreationNewRemarketingTag": "Creează o nouă etichetă de remarketing și de urmărire a conversiilor în magazinul tău.",
         "enableCreationRemarketingTag": "Activează eticheta de remarketing și de urmărire a conversiilor",
         "pauseCampaign": "Campania se va derula până când o întrerupi sau de îndată ce ajunge la data de încheiere. O poți întrerupe în orice moment.",
-        "switch": {
-            "on": "Activat",
-            "off": "Dezactivat"
-        },
         "alerts": {
             "noTag": "Prin faptul că nu adaugă automat eticheta, Google nu va putea trimite rezultatele campaniilor",
-            "duplicatedTag": "Se pare că ai deja o etichetă conectată la contul tău Google, crearea unei etichete noi poate duplica evenimente pentru campaniile tale. Îți sugerăm să o păstrezi doar pe cea pe care o generăm pentru tine.",
             "noConversionActions": "Eticheta de urmărire a fost activată, dar nu este nicio acțiune de conversie setată în magazin. Acest lucru poate fi rezolvat prin crearea unor etichete noi.",
             "hasUnhandledFilters": "Cel puțin un filtru al acestei campanii nu este acceptat de acest modul. Pentru a preveni orice pierdere a configurației existente, pot fi modificate numai detaliile de bază ale campaniei.",
             "PMaxExplanationTitle": "Performance Max este o nouă campanie bazată pe obiective.",
@@ -590,10 +597,7 @@
         "nbValuesSelected": "Nicio valoare selectată | {0} valoare selectată | {0} valori selectate",
         "selectProductsTitle": "Alege un filtru de produse",
         "selectProductsSubtitle": "Campania poate avea o singură dimensiune cu una sau mai multe valori.",
-        "remarketingNote": "**Reține:** dacă ai deja acțiuni de conversie Google Ads cu valori de conversie specifice tranzacțiilor configurate pe site-ul tău pentru acest cont Google Ads, atunci nu este necesar să setezi etichete de conversie noi pe site-ul tău.",
         "toggleNewConversionTag": "Setează noi etichete de urmărire a conversiilor pe site-ul meu",
-        "toggleNewConversionTag2": "Vom crea următoarele etichete de conversie: Vizualizare pagină, Achiziție, Adăugare în coș",
-        "remarketingTagLoading": "Se verifică dacă ai de adăugat în magazin etichete de remarketing și de urmărire a conversiilor",
         "descriptiveMessage": "Sunt afișate numai campaniile Performance Max și Smart Shopping asociate contului tău Google Merchant Center. \nDacă dorești să vezi toate campaniile, [accesează Contul Google Ads]({0})[:target=\"_blank\"].",
         "nbProductsFiltersSelected": "Niciun filtru de produs selectat | {0} filtru de produs selectat | {0} filtre de produse selectate",
         "dimensionXFilterSelected": "Filtru {0}",
@@ -871,6 +875,7 @@
         "switchAccount": "Schimbă contul",
         "acceptInvitation": "Acceptare invitație",
         "continue": "Continuare",
+        "confirm": "Confirm",
         "disabled": "Dezactivat",
         "activateModule": "Activează modulul",
         "enabled": "Activat",
@@ -920,6 +925,7 @@
         "reviewProblems": "Revizuirea problemelor",
         "saveAndExport": "Salvează și exportă",
         "go": "Accesează",
+        "goTo": "Go to {0}",
         "continueWithoutSave": "Continuă fără salvare",
         "save": "Salvare",
         "disconnect": "Deconectare",
@@ -967,7 +973,9 @@
         "visitThe": "Vizitează {0} pentru mai multe informații",
         "createPmax": "Creează o campanie Performance Max",
         "understand": "Înțeleg",
-        "moreActions": "Mai multe acțiuni"
+        "moreActions": "Mai multe acțiuni",
+        "signGadsToS": "Sign terms of service on Google Ads",
+        "enableEnhancedConversions": "Activate enhanced conversion tracking"
     },
     "badge": {
         "free": "Gratuit",
@@ -1018,20 +1026,14 @@
         "pauseCampaignsExplainations": "Prin întreruperea tuturor campaniilor, facturarea se va opri. Poți reporni campaniile în orice moment în contul tău Google Ads.",
         "removeTag": "Elimină eticheta „Remarketing și conversie” din magazinul meu",
         "removeTagExplainations": "Eliminarea etichetei înseamnă că Google nu va mai putea urmări campaniile tale. Recomandăm să elimini eticheta numai dacă intenționezi să elimini complet modulul sau să schimbi contul. Poți oricând să-l adaugi singur în codul site-ului tău.",
-        "titleActivateTrackingSSC": "Activează eticheta de remarketing și de urmărire a conversiilor.",
-        "textActivateTrackingSSC": "Pentru a rula campanii Performance Max, Google Ads trebuie să poată crea pe site-ul tău [lista de remarketing]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] și [eticheta de urmărire a conversiilor]({1})[:target=\"_blank\" class= \"text-decoration-underline\"].   \n PrestaShop va seta automat aceste fragmente de cod în magazinul tău.",
+        "titleActivateTracking": "Measure the effectiveness of your Ads",
+        "textActivateTracking": "To run Performance Max campaigns effectively, Google Ads requires the ability to generate remarketing lists and add conversion tracking tags to your list.\n\nClicking on confirm means you accept that PrestaShop automatically installs code snippets on your store:\n- Add Google tag on my store\n- Configure conversion actions : Page views, Add to cart, Purchase",
         "textConfirmCancel": "Dacă revii, vei pierde valorile selectate",
-        "upgradeSCCToPmaxTitle": "Actualizarea campaniei va avea loc în curând",
-        "upgradeSCCToPmaxTextWithoutCampaign": "Începând cu {0}, vei putea crea campanii Performance Max pentru magazinul tău. \n\n Performance Max este următoarea generație de campanii Smart Shopping. Este un tip de campanie avansat, alimentat de tehnologia inteligentă Google. Aceasta funcționează în culise pentru a optimiza automat reclamele pe parcursul traseului de cumpărături pentru a obține performanțe maxime.",
-        "upgradeSCCToPmaxText": "Campaniile Smart Shopping vor fi actualizate la Performance Max pe {0}  \n\n Nu trebuie să iei nicio măsură, deoarece setările campaniei Smart Shopping și bugetul vor rămâne aceleași. Numai tipul campaniei va fi actualizat automat la Performance Max. \n\n De la începutul lunii iulie, vei putea crea doar campanii Performance Max.",
-        "PMaxLiveTitle": "Performance Max este aici",
-        "PMaxLiveText": "Începând de astăzi, poți crea campanii Performance Max, următoarea generație de Smart Shopping. \n\nPerformance Max este un tip de campanie îmbunătățit, alimentat de tehnologia inteligentă Google. Aceasta funcționează în culise pentru a optimiza automat reclamele pe parcursul traseului de cumpărături pentru a obține performanțe maxime. ",
-        "PMaxMigrationTitle": "Știri importante",
-        "PMaxMigrationText": "Campaniile Smart Shopping vor începe să fie actualizate automat la campaniile Performance Max.\n\n— Setările campaniei și bugetul rămân aceleași. \n\n— Funcționalitatea este la egalitate cu campaniile Smart Shopping. \n\n— Din acest moment, poți crea doar campanii Performance Max.",
-        "PmaxTextLink": "Află mai multe despre Performance Max",
-        "textPmaxReleased": "Campaniile Smart Shopping vor începe să fie actualizate automat la campaniile Performance Max. [Află mai multe]({0})[:target=\"_blank\" class=\"text-decoration-underline\"]",
         "disconnectedUserBo": "Ai fost deconectat de la back-office. Vei fi redirecționat automat către pagina de conectare în {0} secunde.",
-        "titleDisconnectedUserBo": "Conexiune pierdută"
+        "titleDisconnectedUserBo": "Conexiune pierdută",
+        "titleEnhancedConversionsIntro": "Measure the effectiveness of your Ads",
+        "textEnhancedConversionsIntro": "Enhance your conversion tracking accuracy and empower your bidding strategy with our latest feature: Enhanced Conversion Tracking. This feature seamlessly integrates with your existing conversion tags, ensuring the secure and privacy-conscious transmission of conversion data from your website to Google.",
+        "textActivationEnhancedConversionsIntro": "Activating it is easy – just agree to the terms of service on Google Ads. The feature is accessible on your configuration’s page below conversion tracking tag."
     },
     "tooltip": {
         "googleAccountRequired": "Necesită configurarea contului Google",
@@ -1067,7 +1069,8 @@
         "productFeedConfiguredOnceSuccess": "Ai trimis cu succes datele produselor tale la Merchant Center. Odată aprobate, acestea vor fi disponibile pentru listări și reclame gratuite.",
         "attributesMapppingSuccess": "Caracteristicile produsului tău au fost salvate cu succes. Revizuiește rezumatul, apoi fă clic pe „Export” pentru a le trimite la Google",
         "campaignCreatedSuccess": "Ai creat cu succes campania Performance Max!",
-        "phoneNumberVerifiedSuccess": "Numărul de telefon a fost confirmat. Contul de comerciant este în curs de creare"
+        "phoneNumberVerifiedSuccess": "Numărul de telefon a fost confirmat. Contul de comerciant este în curs de creare",
+        "enhancedConversionEnabledSuccess": "Enhanced conversion tracking enabled"
     },
     "stepper": {
         "nextStep": "Înainte: {0}",
@@ -1115,6 +1118,6 @@
         "textCampaignsBanner": "Creează-ți prima campanie și contactează cumpărători mai relevanți, pe toate canalele Google. Profită de învățarea automată de la Google și optimizează-ți destinațiile de plasare a reclamelor și îmbunătățește-ți în mod eficient traficul și vânzările."
     },
     "tipsAndTricks": {
-        "title": "Sfaturi și sugestii PrestaShop"
+        "title": "PrestaShop pro tip"
     }
 }
