@@ -115,7 +115,7 @@
                 v-for="(country, index) in targetCountriesDetails"
                 :border-variant="country.currencyIsFound ? 'primary' : 'danger'"
                 :text-variant="country.currencyIsFound ? 'primary' : 'danger'"
-                class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13 mb-2"
+                class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13 font-weight-600 mb-2"
                 :key="index"
                 data-test-id="pf-config-country"
               >
@@ -155,7 +155,7 @@
                 <b-card
                   v-for="(language, index) in languages"
                   border-variant="primary"
-                  class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13 mb-2"
+                  class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13 font-weight-600 mb-2"
                   :key="index"
                   data-test-id="pf-config-lang"
                 >
