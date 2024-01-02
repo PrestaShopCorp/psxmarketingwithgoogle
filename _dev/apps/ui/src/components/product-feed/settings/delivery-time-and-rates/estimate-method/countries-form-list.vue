@@ -127,12 +127,12 @@
   </div>
 </template>
 <script lang="ts">
-import Vue, {PropType} from 'vue';
+import {defineComponent, PropType} from 'vue';
 import CustomCarrierForm from './custom-carrier-form.vue';
 import {RateType} from '@/enums/product-feed/rate';
 import {CustomCarrier, validateCarrier} from '@/providers/shipping-rate-provider';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'CountriesFormList',
   components: {
     CustomCarrierForm,

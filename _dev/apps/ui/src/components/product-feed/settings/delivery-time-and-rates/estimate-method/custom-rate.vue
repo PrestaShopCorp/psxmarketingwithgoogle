@@ -54,10 +54,10 @@
   </div>
 </template>
 <script lang="ts">
-import Vue, {PropType} from 'vue';
+import {defineComponent, PropType} from 'vue';
 import {RateType} from '@/enums/product-feed/rate';
 
-export default Vue.extend({
+export default defineComponent({
   data() {
     return {
       RateType,

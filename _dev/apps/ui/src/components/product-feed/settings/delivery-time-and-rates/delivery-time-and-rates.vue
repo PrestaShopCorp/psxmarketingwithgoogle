@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import {defineComponent} from 'vue';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-header-type';
@@ -58,7 +58,7 @@ import CustomRate from '@/components/product-feed/settings/delivery-time-and-rat
 import CountriesFormList from './estimate-method/countries-form-list.vue';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 
-export default Vue.extend({
+export default defineComponent({
   components: {
     ActionsButtons,
     TargetCountries,

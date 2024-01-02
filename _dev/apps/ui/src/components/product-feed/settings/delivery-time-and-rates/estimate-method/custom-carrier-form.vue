@@ -261,7 +261,7 @@
   </div>
 </template>
 <script lang="ts">
-import Vue, {PropType} from 'vue';
+import {defineComponent, PropType} from 'vue';
 import {OfferType} from '@/enums/product-feed/offer';
 import {
   validateDeliveryTime,
@@ -271,7 +271,7 @@ import {
 } from '@/providers/shipping-rate-provider';
 import CurrencyDropdown from './currency-dropdown.vue';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'CustomCarrierForm',
   components: {
     CurrencyDropdown,
