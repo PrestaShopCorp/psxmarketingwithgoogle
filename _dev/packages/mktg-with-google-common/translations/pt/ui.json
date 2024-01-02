@@ -523,6 +523,18 @@
         "contentInfo": "Os anunciantes que fazem upgrade das campanhas Smart Shopping para Performance Max veem um aumento médio de 12% nos valores de conversão com o mesmo ou melhor retorno sobre investimento em anúncios (ROAS)*",
         "footerInfo": "* Google Data, Global, Ads, Set-Out 2021."
     },
+    "enhancedConversionTrackingCard": {
+        "title": "Enhanced conversion tracking",
+        "intro": "Improve your conversion tracking accuracy and unlock more powerful bidding. This feature works alongside your existing conversion tags, sending secure, privacy-friendly conversion data from your website to Google.",
+        "signTosAlert": {
+            "title": "Improve your conversion tracking & unlock more powerful bidding to your Ads",
+            "text": "Enable enhanced conversion tracking by simply agreeing to Google Ads' terms of service"
+        },
+        "enableEnhancedConversionAlert": {
+            "title": "Ready to enable enhanced conversion tracking feature",
+            "text": "Your Google Ads' terms of service are up-to-date, head to your configuration page to enable your new feature"
+        }
+    },
     "smartShoppingCampaignCreation": {
         "allFilters": "Todos os Filtros",
         "breadcrumb1": "Campanhas",
@@ -571,13 +583,8 @@
         "toggleCreationNewRemarketingTag": "Crie uma nova etiqueta de rastreamento de remarketing e conversão para a sua loja",
         "enableCreationRemarketingTag": "Ativar o separador de rastreio de remarketing e conversão.",
         "pauseCampaign": "A sua campanha decorrerá até que faça uma pausa ou assim que a data de término for cumprida. Pode fazer uma pausa na sua campanha a qualquer momento.",
-        "switch": {
-            "on": "Ativar",
-            "off": "Desativar"
-        },
         "alerts": {
             "noTag": "Ao não adicionar o separador automaticamente, o Google não poderá enviar resultados de campanhas",
-            "duplicatedTag": "Parece que já tem um separador ligado à sua conta google, criando um novo separador pode duplicar os eventos para as suas campanhas. Sugerimos que fique apenas com aquele que geramos para si.",
             "noConversionActions": "O separador de rastreio foi ativado, mas não existe nenhuma ação de conversão definida na loja. Isto pode ser corrigido através da criação de novos separadores.",
             "hasUnhandledFilters": "Pelo menos um filtro desta campanha não é suportado por este módulo. Para evitar qualquer perda na sua configuração existente, apenas os detalhes básicos da campanha podem ser modificados.",
             "PMaxExplanationTitle": "Máximo desempenho é uma nova campanha baseada em objectivos.",
@@ -590,10 +597,7 @@
         "nbValuesSelected": "Nenhum valor selecionado | {0} valor selecionado | {0} valores selecionados",
         "selectProductsTitle": "Escolha um filtro de produto",
         "selectProductsSubtitle": "A campanha só pode ter uma dimensão com um ou vários valores.",
-        "remarketingNote": "**Nota:** se já tem Ações de Conversão Google Ads com valores de conversão específicos da transação configurados no seu site para esta conta Google Ads, então não necessita de definir novos separadores de conversão no seu site.",
         "toggleNewConversionTag": "Definir novos separadores de rastreio de conversão no meu site",
-        "toggleNewConversionTag2": "Iremos criar os seguintes separadores de conversão: Vista da página, Comprar, Adicionar ao cesto",
-        "remarketingTagLoading": "Verifique se tem separadores de rastreio de remarketing e conversão para adicionar à sua loja",
         "descriptiveMessage": "Apenas as campanhas de Máximo desempenho e Smart Shopping associadas à sua conta no Google Merchant Center são listadas. \nSe quiser ver todas as suas campanhas, [por favor vá à sua conta de anúncios Google]({0})[:target=\"_blank\"].",
         "nbProductsFiltersSelected": "Nenhum filtro de produto selecionado | {0} filtro de produto selecionado | {0} filtros de produtos selecionados",
         "dimensionXFilterSelected": "{0} filtro",
@@ -871,6 +875,7 @@
         "switchAccount": "Trocar de conta",
         "acceptInvitation": "Aceitar convite",
         "continue": "Continuar",
+        "confirm": "Confirm",
         "disabled": "Desativado",
         "activateModule": "Habilitar o módulo",
         "enabled": "Ativado",
@@ -920,6 +925,7 @@
         "reviewProblems": "Problema opinião",
         "saveAndExport": "Guardar e exportar",
         "go": "Ir",
+        "goTo": "Go to {0}",
         "continueWithoutSave": "Continuar sem guardar",
         "save": "Guardar",
         "disconnect": "Desconectar",
@@ -967,7 +973,9 @@
         "visitThe": "Visite {0} para mais informações ",
         "createPmax": "Campanha Criar Máximo desempenho",
         "understand": "Eu entendo",
-        "moreActions": "Mais ações"
+        "moreActions": "Mais ações",
+        "signGadsToS": "Sign terms of service on Google Ads",
+        "enableEnhancedConversions": "Activate enhanced conversion tracking"
     },
     "badge": {
         "free": "Grátis",
@@ -1018,20 +1026,14 @@
         "pauseCampaignsExplainations": "Ao interromper todas as suas campanhas, a faturação vai parar. Pode reiniciar as suas campanhas a qualquer momento na sua conta Google Ads.",
         "removeTag": "Remover o separador \"Remarketing e conversão\" da minha loja",
         "removeTagExplainations": "A remoção do separador significa que o Google deixará de ser capaz de rastrear as suas campanhas. Nós recomendamos que só remova o separador se planear remover completamente o módulo ou mudar a sua conta. Pode sempre adicioná-lo no código do seu site.",
-        "titleActivateTrackingSSC": "Ative o separador de rastreio de remarketing e conversão.",
-        "textActivateTrackingSSC": "A fim de executar campanhas de Máximo desempenho, o Google Ads precisa de ser capaz de criar [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] e [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline\"] no seu site. \nA PrestaShop definirá automaticamente estes trechos de código na sua loja.",
+        "titleActivateTracking": "Measure the effectiveness of your Ads",
+        "textActivateTracking": "To run Performance Max campaigns effectively, Google Ads requires the ability to generate remarketing lists and add conversion tracking tags to your list.\n\nClicking on confirm means you accept that PrestaShop automatically installs code snippets on your store:\n- Add Google tag on my store\n- Configure conversion actions : Page views, Add to cart, Purchase",
         "textConfirmCancel": "Se você voltar, perderá os valores selecionados.",
-        "upgradeSCCToPmaxTitle": "Atualização da campanha em breve",
-        "upgradeSCCToPmaxTextWithoutCampaign": "A partir de {0}, poderá criar campanhas de Máximo desempenho para a sua loja. \n\n Máximo desempenho é a próxima geração de campanhas de Smart Shopping. É um tipo de campanha melhorada alimentada pela tecnologia inteligente do Google. Funciona por detrás do cenário para optimizar automaticamente os seus anúncios ao longo do percurso de compras, de modo a obter o máximo desempenho.",
-        "upgradeSCCToPmaxText": "As campanhas de Smart Shopping serão actualizadas para máximo desempenho em {0}\n\n Não é necessário tomar quaisquer medidas, uma vez que as definições da sua campanha de Smart Shopping e o orçamento permanecerão os mesmos. Apenas o seu tipo de campanha será automaticamente actualizado para o Máximo de Desempenho. \n\n A partir do início de Julho, só poderá criar campanhas máximo desempenho.",
-        "PMaxLiveTitle": "O máximo desempenho está aqui",
-        "PMaxLiveText": "A partir de hoje, pode criar campanhas de máximo desempenho, a próxima geração de campanhas de Compras Inteligentes.\n\nMáximo desempenho é um tipo de campanha melhorada, alimentada pela tecnologia inteligente do Google. Funciona nos bastidores para optimizar automaticamente os seus anúncios ao longo da viagem de compras, de modo a obter o máximo desempenho. ",
-        "PMaxMigrationTitle": "Notícias importantes",
-        "PMaxMigrationText": "As suas campanhas de Compras Inteligentes começarão agora automaticamente a actualizar para as campanhas Máximo desempenho.\n\n- As definições e orçamento da sua campanha permanecem os mesmos. \n\n- A funcionalidade está em paridade com as campanhas de Smart Shopping.\n\n- A partir deste ponto, só pode criar campanhas Máximo desempenho.",
-        "PmaxTextLink": "Saiba mais sobre as Campanhas de máximo desempenho",
-        "textPmaxReleased": "As suas campanhas de Compras Inteligentes começarão agora automaticamente a actualizar para as Campanhas de máximo desempenho mais. [Saiba mais]({0})[:target=\"_blank\" class=\"text-decoration-underline\"]",
         "disconnectedUserBo": "Sua conexão com o backoffice foi interrompida. Você será redirecionado automaticamente para a página de login em {0} segundos.",
-        "titleDisconnectedUserBo": "Ligação Perdida"
+        "titleDisconnectedUserBo": "Ligação Perdida",
+        "titleEnhancedConversionsIntro": "Measure the effectiveness of your Ads",
+        "textEnhancedConversionsIntro": "Enhance your conversion tracking accuracy and empower your bidding strategy with our latest feature: Enhanced Conversion Tracking. This feature seamlessly integrates with your existing conversion tags, ensuring the secure and privacy-conscious transmission of conversion data from your website to Google.",
+        "textActivationEnhancedConversionsIntro": "Activating it is easy – just agree to the terms of service on Google Ads. The feature is accessible on your configuration’s page below conversion tracking tag."
     },
     "tooltip": {
         "googleAccountRequired": "Requer a configuração da conta Google",
@@ -1067,7 +1069,8 @@
         "productFeedConfiguredOnceSuccess": "Você submeteu com sucesso seus dados de produto ao Merchant Center. Uma vez aprovados, estarão disponíveis para anúncios e listagens gratuitas.",
         "attributesMapppingSuccess": "Os atributos do seu produto foram salvos com sucesso. Resumo da revisão e clique em \"Exportar\" para enviá-los ao Google",
         "campaignCreatedSuccess": "Criou com sucesso a sua campanha de Máximo desempenho!",
-        "phoneNumberVerifiedSuccess": "O seu número de telefone foi verificado. A Conta do Comerciante está sendo criada"
+        "phoneNumberVerifiedSuccess": "O seu número de telefone foi verificado. A Conta do Comerciante está sendo criada",
+        "enhancedConversionEnabledSuccess": "Enhanced conversion tracking enabled"
     },
     "stepper": {
         "nextStep": "A seguir: {0}",

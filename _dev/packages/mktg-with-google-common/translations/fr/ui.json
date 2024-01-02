@@ -523,6 +523,18 @@
         "contentInfo": "Les annonceurs qui mettent à niveau les campagnes Smart Shopping vers Performance Max constatent une augmentation moyenne de 12 % de la valeur de conversion avec un retour sur investissement (ROAS) identique ou supérieur*",
         "footerInfo": "* Données Google, Global, Ads, Sep-Oct 2021."
     },
+    "enhancedConversionTrackingCard": {
+        "title": "Enhanced conversion tracking",
+        "intro": "Improve your conversion tracking accuracy and unlock more powerful bidding. This feature works alongside your existing conversion tags, sending secure, privacy-friendly conversion data from your website to Google.",
+        "signTosAlert": {
+            "title": "Improve your conversion tracking & unlock more powerful bidding to your Ads",
+            "text": "Enable enhanced conversion tracking by simply agreeing to Google Ads' terms of service"
+        },
+        "enableEnhancedConversionAlert": {
+            "title": "Ready to enable enhanced conversion tracking feature",
+            "text": "Your Google Ads' terms of service are up-to-date, head to your configuration page to enable your new feature"
+        }
+    },
     "smartShoppingCampaignCreation": {
         "allFilters": "Tous les filtres",
         "breadcrumb1": "Campagnes",
@@ -551,12 +563,12 @@
         "inputFiltersAllLabel": "Inclure tous les produits synchronisés",
         "inputFiltersPartialLabel": "Sélectionner des produits à l'aide des filtres",
         "inputFiltersHelper": "Prenez un peu de temps pour [lire les règles de Google Shopping ads]({0})[:target=\"_blank\"] certains produits sont interdits ou restreints.",
-        "inputBudgetHelper": "Vous ne paierez que si quelqu'un clique sur votre annonce.",
-        "inputBudgetHelperForTargetCountry": "Le minimum pour le pays cible {country} est {budget}, ce qui assure une visibilité suffisante à votre campagne dans cette zone.",
+        "inputBudgetHelper": "The minimum budget varies based on your target country. Please select a country to see the exact minimum required.",
+        "inputBudgetHelperForTargetCountry": "The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.",
         "inputBudgetInvalidFeedback": "Votre budget quotidien doit être un nombre valide supérieur à 1. Pour tout nombre décimal, veuillez utiliser un point comme séparateur.",
-        "inputBudgetBeforeThresholdFeedback": "Le budget minimum requis pour ce pays cible est de {budget}. Veuillez ajuster votre budget pour continuer.",
+        "inputBudgetBeforeThresholdFeedback": "Minimum budget required for this target country is {budget}. Please increase your budget to continue.",
         "inputBudgetFeedback": "Budget quotidien de la campagne",
-        "inputBudgetTooltip": "Votre budget est le montant moyen que vous pouvez dépenser chaque jour pour votre campagne. Le budget que vous avez choisi dépend entièrement de vous, et vous pouvez l'ajuster à tout moment.",
+        "inputBudgetTooltip": "To ensure Ad performance, the base minimum depends on your target country and the budget you choose is entirely up to you, and you can adjust it at any time.",
         "inputBudgetPlaceholder": "Montant",
         "inputAllSyncedProducts": "Aucun filtre sélectionné",
         "formHelperTitle": "Activation de la campagne",
@@ -571,13 +583,8 @@
         "toggleCreationNewRemarketingTag": "Créez une nouvelle balise de remarketing et de suivi des conversions à ajouter à votre boutique",
         "enableCreationRemarketingTag": "Activez la balise de remarketing et de suivi des conversions",
         "pauseCampaign": "Votre campagne se poursuivra jusqu'à ce que vous la mettiez en pause ou dès que la date de fin sera atteinte. Vous pouvez interrompre votre campagne à tout moment.",
-        "switch": {
-            "on": "Activé",
-            "off": "Désactivé"
-        },
         "alerts": {
             "noTag": "En n'ajoutant pas automatiquement la balise, Google ne sera pas en mesure d'envoyer les résultats des campagnes.",
-            "duplicatedTag": "Il semble que vous avez déjà un tag lié à votre compte Google, la création d'un nouveau tag peut dupliquer des événements pour vos campagnes. Nous vous suggérons de ne conserver que celui que nous générons pour vous.",
             "noConversionActions": "La balise de suivi a été activée, mais il n'y a aucune action de conversion définie dans la boutique. Cela peut être corrigé en créant de nouvelles.",
             "hasUnhandledFilters": "Au moins un filtre de cette campagne n'est pas supporté par ce module. Pour éviter toute perte sur votre configuration existante, seuls les détails de base de la campagne peuvent être modifiés.",
             "PMaxExplanationTitle": "Performance Max est un nouveau type de campagne basé sur des objectifs.",
@@ -590,10 +597,7 @@
         "nbValuesSelected": "Aucune valeur sélectionnée | {0} valeur sélectionnée | {0} valeurs sélectionnées",
         "selectProductsTitle": "Choisissez un filtre de produit",
         "selectProductsSubtitle": "La campagne ne peut avoir qu'une seule dimension avec une ou plusieurs valeurs.",
-        "remarketingNote": "**A noter** si vous avez déjà des actions de conversion Google Ads avec des valeurs de conversion spécifiques à une transaction configurées sur votre site pour ce compte Google Ads alors vous n'avez pas besoin de définir de nouvelles balises de conversion sur votre site.",
         "toggleNewConversionTag": "Définir de nouvelles balises de suivi des conversions sur mon site",
-        "toggleNewConversionTag2": "Nous allons créer les balises de conversion suivantes : Page vue, Achat, Ajouter au panier",
-        "remarketingTagLoading": "Vérifiez si vous avez des balises de remarketing et de suivi des conversions à ajouter à votre boutique",
         "descriptiveMessage": "Seules les campagnes Performance Max et les campagnes Shopping Intelligentes associées à votre compte Google Merchant Center sont répertoriées. \nSi vous souhaitez voir toutes vos campagnes, [veuillez vous rendre sur votre compte Google Ads]({0})[:target=\"_blank\"].",
         "nbProductsFiltersSelected": "Aucun filtre sélectionné | {0} filtre sélectionné | {0} filtres sélectionnés",
         "dimensionXFilterSelected": "Filtre {0}",
@@ -618,7 +622,7 @@
         "dimensionXFilterSelectedWithXProducts": "Filtre {0} | Filtre {0} ({1} produit) | Filtre {0} ({1} produits)",
         "filtersWithxValues": "{0} filtres | {0} filtres avec {1} produit affecté | {0} filtres avec {1} produits affectés",
         "budgetTip": {
-            "content": "Pour assurer le succès de votre campagne, il est essentiel d'ajuster votre budget publicitaire quotidien en fonction du pays cible. Par exemple, un budget minimum de {budget} est recommandé pour le pays {country}. Lorsque vous choisissez votre pays cible, vous pouvez identifier le budget minimum recommandé pour atteindre vos objectifs. N'oubliez pas que ce budget est plus qu'un simple chiffre - c'est un élément clé de votre stratégie de campagne. Un budget bien défini permet de tester et d'affiner efficacement les publicités, ce qui vous permet d'adapter vos dépenses aux besoins spécifiques de votre entreprise et d'améliorer les performances globales de votre campagne."
+            "content": "To ensure the success of your campaign, it’s essential to adjust your daily ad budget according to the target country. For instance, a starting point of {budget} is recommended for {country}. By choosing your target country, you can identify the ideal budget to meet your objectives. Remember, this foundational budget is more than just a figure – it’s a key component of your campaign strategy. A well-planned budget facilitates efficient ad testing and refinement, enabling you to customize your expenditure to the unique requirements of your business and enhance overall campaign performance."
         }
     },
     "productFeedPage": {
@@ -810,7 +814,7 @@
             "dailyBudget": "Budget quotidien"
         },
         "tooltip": {
-            "lowBudget": "Votre budget quotidien est trop faible pour que votre campagne soit performante. Ajuster votre budget pour améliorer les performances de votre campagne."
+            "lowBudget": "Your daily budget is too low to have a performing campaign, increase your budget to enhance campaign performance."
         }
     },
     "notConfiguredState": {
@@ -871,6 +875,7 @@
         "switchAccount": "Changer de compte",
         "acceptInvitation": "Accepter l'invitation",
         "continue": "Continuer",
+        "confirm": "Confirm",
         "disabled": "Désactivé",
         "activateModule": "Activer le module",
         "enabled": "Activé",
@@ -920,6 +925,7 @@
         "reviewProblems": "Examiner les problèmes",
         "saveAndExport": "Enregistrer et Exporter",
         "go": "Commencer",
+        "goTo": "Go to {0}",
         "continueWithoutSave": "Continuer sans sauvegarder",
         "save": "Sauvegarder",
         "disconnect": "Déconnecter",
@@ -967,7 +973,9 @@
         "visitThe": "Visitez la page {0} pour plus d'informations.",
         "createPmax": "Créez une campagne Performance Max",
         "understand": "Je comprends",
-        "moreActions": "Plus d'Actions"
+        "moreActions": "Plus d'Actions",
+        "signGadsToS": "Sign terms of service on Google Ads",
+        "enableEnhancedConversions": "Activate enhanced conversion tracking"
     },
     "badge": {
         "free": "Gratuit",
@@ -1018,20 +1026,14 @@
         "pauseCampaignsExplainations": "En mettant en pause toutes vos campagnes, la facturation s'arrêtera. Vous pouvez redémarrer vos campagnes à tout moment dans votre compte Google ads.",
         "removeTag": "Supprimer la balise \"Remarketing et conversion\" de ma boutique",
         "removeTagExplainations": "La suppression de la balise signifie que Google ne sera plus en mesure de suivre vos campagnes. Nous vous recommandons de ne supprimer la balise que si vous envisagez de supprimer complètement le module ou de modifier votre compte. Vous pouvez toujours l'ajouter vous-même dans le code de votre site.",
-        "titleActivateTrackingSSC": "Activez la balise de remarketing et de suivi des conversions",
-        "textActivateTrackingSSC": "Afin de lancer des campagnes Performance Max, Google Ads doit pouvoir créer une [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] et [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline\"] sur votre site. \n PrestaShop va automatiquement définir ces extraits de code dans votre boutique.",
+        "titleActivateTracking": "Measure the effectiveness of your Ads",
+        "textActivateTracking": "To run Performance Max campaigns effectively, Google Ads requires the ability to generate remarketing lists and add conversion tracking tags to your list.\n\nClicking on confirm means you accept that PrestaShop automatically installs code snippets on your store:\n- Add Google tag on my store\n- Configure conversion actions : Page views, Add to cart, Purchase",
         "textConfirmCancel": "Si vous revenez en arrière, vous perdrez les valeurs sélectionnées.",
-        "upgradeSCCToPmaxTitle": "Nouvelle campagne bientôt disponible",
-        "upgradeSCCToPmaxTextWithoutCampaign": "A compter du {0}, vous pourrez créer des campagnes Performance Max pour votre boutique.\n\nPerformance Max est la nouvelle génération de campagnes shopping intelligentes. Il s'agit d'un type de campagne optimisé, utilisant la technologie intelligente de Google. Elle fonctionne en arrière-plan pour optimiser automatiquement vos annonces tout au long du parcours d'achat afin d'obtenir des performances maximales.",
-        "upgradeSCCToPmaxText": "Les campagnes Shopping Intelligentes vont évoluer vers Performance Max le {0}.\n\nVous n'avez pas besoin de faire quoi que ce soit car la configuration et le budget de votre campagne Shopping Intelligente resteront les mêmes. Seul votre type de campagne sera automatiquement mis à jour vers Performance Max. \n\nÀ partir du 1er juillet, vous ne pourrez plus créer que des campagnes Performance Max.",
-        "PMaxLiveTitle": "Performance Max est disponible",
-        "PMaxLiveText": "A partir d'aujourd'hui, vous pouvez créer des campaignes Performance Max, la nouvelle génération des campagnes Shopping Intelligentes. \n\nPerformance Max est un nouveau type de campagne optimisé, utilisant la technologie intelligente de Google. Elle fonctionne en arrière-plan pour optimiser automatiquement vos annonces tout au long du parcours d'achat afin d'obtenir des performances maximales. ",
-        "PMaxMigrationTitle": "Actualités importantes",
-        "PMaxMigrationText": "Dès aujourd'hui, vos campagnes Shopping Intelligentes vont automatiquement démarrer leur mise à niveau vers Peformance Max.\n\n- La configuration et le budget de votre campagne restent les mêmes.\n\n- Le fonctionnement est le même que celui des campagnes Smart Shopping.\n\n- À partir de maintenant, vous pouvez uniquement créer des campagnes Performance Max.",
-        "PmaxTextLink": "En savoir plus sur Performance Max",
-        "textPmaxReleased": "Dès aujourd'hui, vos campagnes Shopping Intelligentes vont automatiquement démarrer leur mise à niveau vers Peformance Max. [En savoir plus]({0})[:target=\"_blank\" class=\"text-decoration-underline\"]",
         "disconnectedUserBo": "Vous avez été déconnecté du backoffice. Vous serez automatiquement redirigé vers la page de connexion dans {0} secondes.",
-        "titleDisconnectedUserBo": "Connexion perdue"
+        "titleDisconnectedUserBo": "Connexion perdue",
+        "titleEnhancedConversionsIntro": "Measure the effectiveness of your Ads",
+        "textEnhancedConversionsIntro": "Enhance your conversion tracking accuracy and empower your bidding strategy with our latest feature: Enhanced Conversion Tracking. This feature seamlessly integrates with your existing conversion tags, ensuring the secure and privacy-conscious transmission of conversion data from your website to Google.",
+        "textActivationEnhancedConversionsIntro": "Activating it is easy – just agree to the terms of service on Google Ads. The feature is accessible on your configuration’s page below conversion tracking tag."
     },
     "tooltip": {
         "googleAccountRequired": "Nécessite la configuration d'un compte Google",
@@ -1067,7 +1069,8 @@
         "productFeedConfiguredOnceSuccess": "Vous avez soumis avec succès vos produits au Merchant Center. Une fois approuvés, ils seront disponibles pour les fiches gratuites et annonces.",
         "attributesMapppingSuccess": "Les attributs produit ont été enregistrés avec succès. Vérifiez le récapitulatif puis cliquez sur \"Exporter\" pour les soumettre à Google.",
         "campaignCreatedSuccess": "Vous avez créé votre campagne Performance Max avec succès !",
-        "phoneNumberVerifiedSuccess": "Votre numéro de téléphone a été vérifié. Le compte marchand est en cours de création"
+        "phoneNumberVerifiedSuccess": "Votre numéro de téléphone a été vérifié. Le compte marchand est en cours de création",
+        "enhancedConversionEnabledSuccess": "Enhanced conversion tracking enabled"
     },
     "stepper": {
         "nextStep": "Suivant : {0}",
@@ -1115,6 +1118,6 @@
         "textCampaignsBanner": "Créez votre première campagne et touchez des acheteurs plus qualifiés sur tous les canaux de Google. Laissez le machine learning de Google optimiser vos placements publicitaires et améliorer efficacement votre trafic et vos ventes."
     },
     "tipsAndTricks": {
-        "title": "Conseils et astuces PrestaShop"
+        "title": "PrestaShop pro tip"
     }
 }

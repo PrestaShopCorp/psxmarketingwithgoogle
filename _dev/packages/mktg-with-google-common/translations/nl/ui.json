@@ -523,6 +523,18 @@
         "contentInfo": "Adverteerders die Smart Shopping-campagnes upgraden naar Performance Max zien een gemiddelde stijging van 12% in conversiewaarde bij hetzelfde of beter rendement op advertentie-uitgaven (ROAS)*",
         "footerInfo": "* Google Data, Global, Ads, sep-okt 2021."
     },
+    "enhancedConversionTrackingCard": {
+        "title": "Enhanced conversion tracking",
+        "intro": "Improve your conversion tracking accuracy and unlock more powerful bidding. This feature works alongside your existing conversion tags, sending secure, privacy-friendly conversion data from your website to Google.",
+        "signTosAlert": {
+            "title": "Improve your conversion tracking & unlock more powerful bidding to your Ads",
+            "text": "Enable enhanced conversion tracking by simply agreeing to Google Ads' terms of service"
+        },
+        "enableEnhancedConversionAlert": {
+            "title": "Ready to enable enhanced conversion tracking feature",
+            "text": "Your Google Ads' terms of service are up-to-date, head to your configuration page to enable your new feature"
+        }
+    },
     "smartShoppingCampaignCreation": {
         "allFilters": "Alle filters",
         "breadcrumb1": "Campagnes",
@@ -551,12 +563,12 @@
         "inputFiltersAllLabel": "Inclusief alle gesynchroniseerde producten",
         "inputFiltersPartialLabel": "Selecteer producten met behulp van productverdelingsfilters",
         "inputFiltersHelper": "Neem even de tijd om [het beleid van Google Shopping-advertenties te lezen]({0})[:target=\"_blank\"] sommige producten zijn verboden of beperkt.",
-        "inputBudgetHelper": "U betaalt alleen als iemand op uw advertentie klikt.",
+        "inputBudgetHelper": "The minimum budget varies based on your target country. Please select a country to see the exact minimum required.",
         "inputBudgetHelperForTargetCountry": "The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.",
         "inputBudgetInvalidFeedback": "Uw dagbudget moet een geldig getal zijn, groter dan 1. Gebruik voor elk decimaal getal een punt als scheidingsteken.",
         "inputBudgetBeforeThresholdFeedback": "Minimum budget required for this target country is {budget}. Please increase your budget to continue.",
         "inputBudgetFeedback": "Dagelijks campagnebudget",
-        "inputBudgetTooltip": "Uw budget is het gemiddelde bedrag dat u per dag aan uw campagne wilt besteden. Het budget dat u kiest, bepaalt u helemaal zelf, en u kunt het op elk moment aanpassen.",
+        "inputBudgetTooltip": "To ensure Ad performance, the base minimum depends on your target country and the budget you choose is entirely up to you, and you can adjust it at any time.",
         "inputBudgetPlaceholder": "Bedrag",
         "inputAllSyncedProducts": "Geen filters geselecteerd",
         "formHelperTitle": "Activering van de campagne",
@@ -571,13 +583,8 @@
         "toggleCreationNewRemarketingTag": "Maak een nieuwe remarketing en conversie tracking tag voor uw winkel",
         "enableCreationRemarketingTag": "Schakel remarketing en conversie tracking tag in",
         "pauseCampaign": "Uw campagne blijft lopen totdat u deze pauzeert of zodra de einddatum is bereikt. Je kunt het op elk moment pauzeren.",
-        "switch": {
-            "on": "Aan",
-            "off": "Uit"
-        },
         "alerts": {
             "noTag": "Door de tag niet automatisch toe te voegen zal Google niet in staat zijn om campagnes resultaten te sturen",
-            "duplicatedTag": "Het lijkt erop dat u al een tag hebt gekoppeld aan uw google-account, het maken van een nieuwe tag kan gebeurtenissen dupliceren voor uw campagnes. Wij stellen voor om alleen degene te houden die wij voor u genereren.",
             "noConversionActions": "De tracking tag is ingeschakeld, maar er is geen conversie actie ingesteld op de winkel. Dit kan worden verholpen door nieuwe te maken.",
             "hasUnhandledFilters": "Tenminste één filter van deze campagne wordt niet ondersteund door deze module. Om verlies op uw bestaande configuratie te voorkomen, kunnen alleen de basisdetails van de campagne worden gewijzigd.",
             "PMaxExplanationTitle": "Performance Max is een nieuwe doelgerichte campagne.",
@@ -590,10 +597,7 @@
         "nbValuesSelected": "Geen waarde geselecteerd | {0} waarde geselecteerd | {0} waarden geselecteerd",
         "selectProductsTitle": "Kies een productfilter",
         "selectProductsSubtitle": "De campagne kan slechts één dimensie hebben met één of meerdere waarden.",
-        "remarketingNote": "**Let op:** Als u al Google Ads Conversion Actions met transactiespecifieke conversiewaarden op uw site hebt geconfigureerd voor dit Google Ads-account, dan hoeft u geen nieuwe conversietags op uw site in te stellen.",
         "toggleNewConversionTag": "Nieuwe conversie tracking tags instellen op mijn site",
-        "toggleNewConversionTag2": "We zullen de volgende conversie tags maken: Pagina bekijken, Kopen, Toevoegen aan mandje",
-        "remarketingTagLoading": "Controleren of u remarketing- en conversietracking-tags aan uw winkel kunt toevoegen",
         "descriptiveMessage": "Alleen de Performance Max-campagnes en Smart Shopping-campagnes die zijn gekoppeld aan je Google Merchant Center-account worden weergegeven. \nAls je al je campagnes wilt zien, ga dan naar je [Google Ads-account]({0})[:target=\"_blank\"].",
         "nbProductsFiltersSelected": "Geen product filter geselecteerd | {0} product filter geselecteerd | {0} product filters geselecteerd",
         "dimensionXFilterSelected": "{0} filter",
@@ -871,6 +875,7 @@
         "switchAccount": "Overstap account",
         "acceptInvitation": "Uitnodiging accepteren",
         "continue": "Ga verder",
+        "confirm": "Confirm",
         "disabled": "Uitgeschakeld",
         "activateModule": "Module inschakelen",
         "enabled": "Ingeschakeld",
@@ -920,6 +925,7 @@
         "reviewProblems": "Herzieningsproblemen",
         "saveAndExport": "Opslaan en exporteren",
         "go": "Ga",
+        "goTo": "Go to {0}",
         "continueWithoutSave": "Doorgaan zonder op te slaan",
         "save": "Save",
         "disconnect": "Loskoppelen",
@@ -967,7 +973,9 @@
         "visitThe": "Bezoek de {0} voor meer informatie",
         "createPmax": "Maximale prestaties-campagne aanmaken",
         "understand": "Ik begrijp het.",
-        "moreActions": "Meer acties"
+        "moreActions": "Meer acties",
+        "signGadsToS": "Sign terms of service on Google Ads",
+        "enableEnhancedConversions": "Activate enhanced conversion tracking"
     },
     "badge": {
         "free": "Gratis",
@@ -1018,20 +1026,14 @@
         "pauseCampaignsExplainations": "Door al uw campagnes te pauzeren, zal de facturatie stoppen. U kunt uw campagnes op elk moment opnieuw starten in uw Google-advertentieaccount.",
         "removeTag": "Verwijder de tag \"Remarketing en conversie\" uit mijn winkel",
         "removeTagExplainations": "Het verwijderen van de tag betekent dat Google niet langer in staat zal zijn om uw campagnes te volgen. Wij raden u aan de tag alleen te verwijderen als u van plan bent de module volledig te verwijderen of uw account te wijzigen. U kunt het altijd zelf toevoegen in de code van uw site.",
-        "titleActivateTrackingSSC": "Activeer remarketing en conversie tracking tag.",
-        "textActivateTrackingSSC": "Om Maximale prestaties-campagnes te kunnen uitvoeren, moet Google Ads in staat zijn om [remarketing list]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] en [conversion tracking tag]({1})[:target=\"_blank\" class=\"text-decoration-underline\"] op uw site aan te maken. \n  PrestaShop zal deze code snippets automatisch instellen op uw winkel.",
+        "titleActivateTracking": "Measure the effectiveness of your Ads",
+        "textActivateTracking": "To run Performance Max campaigns effectively, Google Ads requires the ability to generate remarketing lists and add conversion tracking tags to your list.\n\nClicking on confirm means you accept that PrestaShop automatically installs code snippets on your store:\n- Add Google tag on my store\n- Configure conversion actions : Page views, Add to cart, Purchase",
         "textConfirmCancel": "Als u teruggaat zult u uw geselecteerde waarden verliezen",
-        "upgradeSCCToPmaxTitle": "Campagnes upgrade komt binnenkort",
-        "upgradeSCCToPmaxTextWithoutCampaign": "Vanaf {0} kunt u Performance Max-campagnes voor uw winkel maken. \n\n Performance Max is de volgende generatie van Smart Shopping-campagnes. Het is een verbeterd campagnetype dat wordt aangedreven door de slimme technologie van Google. Het werkt achter de schermen om uw advertenties automatisch te optimaliseren tijdens het shoppingtraject om maximale prestaties te leveren.",
-        "upgradeSCCToPmaxText": "Smart Shopping-campagnes zullen worden geüpgraded naar maximale prestaties op {0}\n\nU hoeft geen actie te ondernemen aangezien uw Smart Shopping-campagne-instellingen en -budget hetzelfde zullen blijven. Alleen uw campagnetype zal automatisch worden bijgewerkt naar maximale prestaties.\n\nVanaf begin juli kunt u alleen nog Performance Max-campagnes aanmaken.",
-        "PMaxLiveTitle": "Maximale prestaties is hier",
-        "PMaxLiveText": "Vanaf vandaag kunt u Maximale prestaties-campagnes maken, de volgende generatie van Smart Shopping-campagnes.\n\nMaximale prestaties is een verbeterd campagnetype dat wordt aangestuurd door de slimme technologie van Google. Het werkt achter de schermen om uw advertenties tijdens het shoppingtraject automatisch te optimaliseren voor maximale prestaties. ",
-        "PMaxMigrationTitle": "Belangrijk nieuws",
-        "PMaxMigrationText": "Uw Smart Shopping-campagnes worden nu automatisch geüpgraded naar Maximale prestaties-campagnes. \n\n- Uw campagne-instellingen en budget blijven hetzelfde. \n\n- De functionaliteit is gelijk aan die van Smart Shopping-campagnes.\n\n- Vanaf dit moment kunt u alleen nog Maximale prestaties-campagnes aanmaken.",
-        "PmaxTextLink": "Meer informatie over campagnes voor maximale prestaties",
-        "textPmaxReleased": "Uw Smart Shopping-campagnes worden nu automatisch geüpgraded naar Maximale prestaties-campagnes. [Leer meer]({0})[:target=\"_blank\" class=\"text-decoration-underline\"]",
         "disconnectedUserBo": "Je bent losgekoppeld van de backoffice. Je wordt binnen {0} seconden automatisch doorgestuurd naar de inlogpagina.",
-        "titleDisconnectedUserBo": "Verbinding verbroken"
+        "titleDisconnectedUserBo": "Verbinding verbroken",
+        "titleEnhancedConversionsIntro": "Measure the effectiveness of your Ads",
+        "textEnhancedConversionsIntro": "Enhance your conversion tracking accuracy and empower your bidding strategy with our latest feature: Enhanced Conversion Tracking. This feature seamlessly integrates with your existing conversion tags, ensuring the secure and privacy-conscious transmission of conversion data from your website to Google.",
+        "textActivationEnhancedConversionsIntro": "Activating it is easy – just agree to the terms of service on Google Ads. The feature is accessible on your configuration’s page below conversion tracking tag."
     },
     "tooltip": {
         "googleAccountRequired": "Vereist configuratie Google-account",
@@ -1067,7 +1069,8 @@
         "productFeedConfiguredOnceSuccess": "U heeft met succes uw productgegevens ingediend bij Merchant Center. Eenmaal goedgekeurd, zullen ze beschikbaar zijn voor gratis advertenties.",
         "attributesMapppingSuccess": "Uw producteigenschappen zijn succesvol opgeslagen. Bekijk de samenvatting en klik op \"Exporteren\" om ze naar Google te sturen",
         "campaignCreatedSuccess": "U hebt uw Maximale prestaties-campagne met succes aangemaakt!",
-        "phoneNumberVerifiedSuccess": "Uw telefoonnummer is geverifieerd. De Merchant Account wordt aangemaakt"
+        "phoneNumberVerifiedSuccess": "Uw telefoonnummer is geverifieerd. De Merchant Account wordt aangemaakt",
+        "enhancedConversionEnabledSuccess": "Enhanced conversion tracking enabled"
     },
     "stepper": {
         "nextStep": "Volgende: {0}",
@@ -1115,6 +1118,6 @@
         "textCampaignsBanner": "Maak je eerste campagne aan en bereik meer relevante shoppers via alle kanalen van Google. Laat Google's machine learning je advertentieplaatsingen optimaliseren en je verkeer en verkoop efficiënt verbeteren."
     },
     "tipsAndTricks": {
-        "title": "Tips en trucs voor PrestaShop"
+        "title": "PrestaShop pro tip"
     }
 }
