@@ -111,6 +111,7 @@ import PsModal from '@/components/commons/ps-modal.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import compareYears from '@/utils/CompareYears';
 import {changeCountryNameToCode} from '@/utils/Countries';
+import { timeConverterToDate } from '@/utils/Dates';
 
 export default defineComponent({
   name: 'SSCCreationPopinRecap',
@@ -154,7 +155,7 @@ export default defineComponent({
         const isThereAnEndDate = compareYears(this.newCampaign.endDate);
 
         return isThereAnEndDate
-          ? this.$options.filters.timeConverterToDate(this.newCampaign.endDate)
+          ? timeConverterToDate(this.newCampaign.endDate)
           : null;
       }
       return '-';

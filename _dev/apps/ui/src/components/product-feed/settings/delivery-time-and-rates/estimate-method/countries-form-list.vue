@@ -79,7 +79,7 @@
           class="d-flex btn-without-hover"
           variant="invisible"
         >
-          <span>{{ $options.filters.changeCountriesCodesToNames(carrier.countries)[0] }}</span>
+          <span>{{ countriesNames[0] }}</span>
           <span
             v-if="validateCarrier(carrier) === false"
             class="text-danger spans-gs_fz-14 d-inline-block ml-2"
@@ -131,6 +131,7 @@ import {defineComponent, PropType} from 'vue';
 import CustomCarrierForm from './custom-carrier-form.vue';
 import {RateType} from '@/enums/product-feed/rate';
 import {CustomCarrier, validateCarrier} from '@/providers/shipping-rate-provider';
+import {changeCountriesCodesToNames} from '@/utils/Countries';
 
 export default defineComponent({
   name: 'CountriesFormList',
@@ -164,7 +165,7 @@ export default defineComponent({
   },
   computed: {
     countriesNames(): string[] {
-      return this.$options.filters.changeCountriesCodesToNames(this.countries);
+      return changeCountriesCodesToNames(this.countries);
     },
   },
   methods: {

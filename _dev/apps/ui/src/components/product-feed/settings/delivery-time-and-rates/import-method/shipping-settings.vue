@@ -13,7 +13,7 @@
         id="filterByCountryDropdown"
         variant=" "
         menu-class="ps-dropdown"
-        :text="countryChosen ? $options.filters.changeCountriesCodesToNames([countryChosen])[0]
+        :text="countryChosen ? changeCountryCodeToName(countryChosen)
           : $t('productFeedSettings.deliveryTimeAndRates.filterTitle')"
         class="mb-2 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250 ml-2"
       >
@@ -33,7 +33,7 @@
           variant="dark"
           link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
         >
-          {{ $options.filters.changeCountriesCodesToNames([country])[0] }}
+          {{ changeCountryCodeToName(country) }}
         </b-dropdown-item>
       </b-dropdown>
     </div>
@@ -178,8 +178,9 @@ import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-h
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import TableRowCarrier from './table-row-carrier.vue';
-import {DeliveryDetail, validateEachCountryHasAtLeastOneCarrier} from '../../../../../providers/shipping-settings-provider';
-import {ShippingSetupOption} from '../../../../../enums/product-feed/shipping';
+import {DeliveryDetail, validateEachCountryHasAtLeastOneCarrier} from '@/providers/shipping-settings-provider';
+import {ShippingSetupOption} from '@/enums/product-feed/shipping';
+import {changeCountryCodeToName} from '@/utils/Countries';
 
 export default {
   components: {
@@ -231,6 +232,7 @@ export default {
     },
   },
   methods: {
+    changeCountryCodeToName,
     hasToolTip(headerType) {
       if (
         headerType === ShippingSettingsHeaderType.SHIP_TO_CUSTOMER

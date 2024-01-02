@@ -100,9 +100,10 @@ import CampaignStatus, {CampaignStatusToggle} from '@/enums/reporting/CampaignSt
 import compareYears from '@/utils/CompareYears';
 import {CampaignPerformanceObject, CampaignStatusPayload} from '@/store/modules/campaigns/state';
 import {timeConverterToDate} from '@/utils/Dates';
-import {formatPrice} from '../../utils/Price';
+import {formatPrice} from '@/utils/Price';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import AlertLowBudget from './alert-low-budget.vue';
+import {changeCountriesCodesToNames} from '@/utils/Countries';
 
 export default defineComponent({
   name: 'CampaignTableListRow',
@@ -130,7 +131,7 @@ export default defineComponent({
       return this.$t('campaigns.dateLabel.from', {startDate: timeConverterToDate(this.campaign.startDate)});
     },
     campaignCountryName() {
-      return this.$options.filters.changeCountriesCodesToNames([this.campaign.targetCountry])[0];
+      return changeCountriesCodesToNames([this.campaign.targetCountry])[0];
     },
     currencyCode(): string {
       return this.campaign.currencyCode || this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']?.currencyCode;

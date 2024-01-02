@@ -631,7 +631,7 @@ export default defineComponent({
         ?.currencyCode;
     },
     currencySymbol(): string {
-      return this.$options.filters.formatPrice(0, this.currency).replace(/[\s.,0]*/g, '');
+      return formatPrice(0, this.currency).replace(/[\s.,0]*/g, '');
     },
     finalCampaignFilters() {
       // IMPORTANT: Do not send the filters property if the campaign has unhandled filters

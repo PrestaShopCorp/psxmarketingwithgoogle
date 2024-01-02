@@ -209,6 +209,7 @@ import SelectCountry from '../commons/select-country.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {GoogleAccountContext} from '@/store/modules/accounts/state';
 import BannerAds from '../commons/banner-ads.vue';
+import {changeCountryCodeToName} from '@/utils/Countries';
 
 export default defineComponent({
   name: 'GoogleAdsAccountPopinNew',
@@ -261,13 +262,13 @@ export default defineComponent({
     saveCountrySelected(value) {
       this.newAccountInfos.country = value;
     },
-    defaultCountry() {
+    defaultCountry(): string {
       if (!this.$store.state.app.psxMtgWithGoogleDefaultShopCountry) {
         return '';
       }
-      return this.$options.filters.changeCountriesCodesToNames(
-        [this.$store.state.app.psxMtgWithGoogleDefaultShopCountry],
-      )[0];
+      return changeCountryCodeToName(
+        this.$store.state.app.psxMtgWithGoogleDefaultShopCountry,
+      );
     },
   },
   props: {
