@@ -1,6 +1,6 @@
 <template>
   <b-form-group
-    :label-for="field.label | slugify"
+    :label-for="slugifiedLabel"
     label-class="d-flex align-items-center"
   >
     <b-dropdown
@@ -65,6 +65,7 @@
 import {PropType, defineComponent} from 'vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 import {FieldsContent, RecommendedFieldType, arrayEquals} from '@/utils/AttributeMapping';
+import slugify from '@/utils/Slugify';
 
 export default defineComponent({
   data() {
@@ -114,6 +115,9 @@ export default defineComponent({
     },
     displayEventuallyRequiredMessage() {
       return !this.attributesChecked.length && this.field.name !== 'description';
+    },
+    slugifiedLabel(): string {
+      return slugify(this.field.label);
     },
   },
   methods: {

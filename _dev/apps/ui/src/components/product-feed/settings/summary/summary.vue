@@ -232,7 +232,7 @@ import TableRowMapping from '@/components/product-feed/commons/table-row-mapping
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import ProductFeedSummaryCards from '@/components/product-feed/summary/product-feed-summary-cards.vue';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
-import { timeConverterToHour, timeConverterToStringifiedDate } from '@/utils/Dates';
+import {timeConverterToHour, timeConverterToStringifiedDate} from '@/utils/Dates';
 
 dayjs.extend(duration);
 

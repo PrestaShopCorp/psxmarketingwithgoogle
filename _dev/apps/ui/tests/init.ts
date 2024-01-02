@@ -11,7 +11,6 @@ import '../showdown.js';
 let windowSpy;
 let localVue; // eslint-disable-line
 const defaultLocale = 'en';
-let filters; // eslint-disable-line
 let VBTooltip;
 
 beforeAll(() => {
@@ -29,19 +28,7 @@ beforeEach(() => {
     i18nSettings: {isoCode: 'fr', languageLocale: 'fr'},
   }));
   VBTooltip = vi.fn();
-  filters = {
-    timeConverterToDate: vi.fn(),
-    timeConverterToHour: vi.fn(),
-    changeCountriesCodesToNames: vi.fn().mockImplementation(changeCountriesCodesToNames),
-    timeConverterToStringifiedDate: vi.fn().mockImplementation(() => ''),
-    slugify: vi.fn().mockImplementation(() => 'foo'),
-  };
 
-  localVue.filter('timeConverterToDate', filters.timeConverterToDate);
-  localVue.filter('timeConverterToHour', filters.timeConverterToHour);
-  localVue.filter('changeCountriesCodesToNames', filters.changeCountriesCodesToNames);
-  localVue.filter('timeConverterToStringifiedDate', filters.timeConverterToStringifiedDate);
-  localVue.filter('slugify', filters.slugify);
   localVue.directive('b-tooltip', VBTooltip);
 
   initOnboardingClient({
@@ -92,7 +79,7 @@ export default {config};
 
 export {cloneStore} from './store';
 
-export {localVue, filters};
+export {localVue};
 
 export const addShowdownToVue = () => {
   localVue.use(VueShowdown);

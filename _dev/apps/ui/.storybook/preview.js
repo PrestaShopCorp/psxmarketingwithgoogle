@@ -46,7 +46,6 @@ initialize({
 
 // import showdown extension
 import '../showdown.js';
-import '../src/utils/Filters';
 
  // app.scss all the styles for the module
  import '../src/assets/scss/app.scss';
