@@ -69,7 +69,7 @@
             :border-variant="badgeBorderVariant"
             :text-variant="badgeTextVariant"
             :bg-variant="badgeBackgroundVariant"
-            class="ps_gs-productfeed__badge mt-auto"
+            class="ps_gs-productfeed__badge mt-auto ps_gs-fz-16 font-weight-500"
             body-class="px-3"
           >
             {{ badgeValue }}
