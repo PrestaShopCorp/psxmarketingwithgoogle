@@ -4,10 +4,11 @@
   </ul>
 </template>
 
-<script>
+<script lang="ts">
 import {
   SyncHystoryType,
 } from '@/enums/product-feed/sync-history.ts';
+import {timeConverterToDate, timeConverterToHour} from '@/utils/Dates';
 
 export default {
   props: {
@@ -40,7 +41,7 @@ export default {
             ),
             description: this.$i18n.t(
               'productFeedPage.syncSummary.syncHistory.subtitle.happenedOnDate',
-              {date: this.$options.filters.timeConverterToDate(this.syncInfos.lastUpdatedAt)},
+              {date: timeConverterToDate(this.syncInfos.lastUpdatedAt)},
             ),
             icon: 'change_circle',
           },
@@ -56,8 +57,8 @@ export default {
             ),
             description: this.$i18n.t(
               'productFeedPage.syncSummary.syncHistory.subtitle.willHappenOnDate', [
-                this.$options.filters.timeConverterToDate(this.syncInfos.nextJobAt),
-                this.$options.filters.timeConverterToHour(this.syncInfos.nextJobAt),
+                timeConverterToDate(this.syncInfos.nextJobAt),
+                timeConverterToHour(this.syncInfos.nextJobAt),
               ]),
             icon: 'schedule',
           },
@@ -72,7 +73,7 @@ export default {
             description: this.$i18n.t(
               'productFeedPage.syncSummary.syncHistory.subtitle.happenedOnDate',
               {
-                date: this.$options.filters.timeConverterToDate(
+                date: timeConverterToDate(
                   this.syncInfos.lastUpdatedAt ?? this.syncInfos.jobEndedAt,
                 ),
               },
@@ -86,9 +87,9 @@ export default {
             ),
             description: this.$i18n.t(
               'productFeedPage.syncSummary.syncHistory.subtitle.error', [
-                this.$options.filters.timeConverterToDate(this.syncInfos.lastUpdatedAt
+                timeConverterToDate(this.syncInfos.lastUpdatedAt
                 ?? this.syncInfos.jobEndedAt),
-                this.$options.filters.timeConverterToHour(this.syncInfos.lastUpdatedAt
+                timeConverterToHour(this.syncInfos.lastUpdatedAt
                 ?? this.syncInfos.jobEndedAt),
               ],
             ),
@@ -106,7 +107,7 @@ export default {
           ),
           description: this.$i18n.t(
             'productFeedPage.syncSummary.syncHistory.subtitle.happenedOnDate',
-            {date: this.$options.filters.timeConverterToDate(this.syncInfos.lastUpdatedAt)},
+            {date: timeConverterToDate(this.syncInfos.lastUpdatedAt)},
           ),
           icon: 'check_circle',
           lineColor: 'info',
@@ -117,7 +118,7 @@ export default {
           ),
           description: this.$i18n.t(
             'productFeedPage.syncSummary.syncHistory.subtitle.happenedOnDate',
-            {date: this.$options.filters.timeConverterToDate(this.syncInfos.jobEndedAt)},
+            {date: timeConverterToDate(this.syncInfos.jobEndedAt)},
           ),
           icon: 'check_circle',
           lineColor: 'info',
@@ -128,8 +129,8 @@ export default {
           ),
           description: this.$i18n.t(
             'productFeedPage.syncSummary.syncHistory.subtitle.willHappenOnDate', [
-              this.$options.filters.timeConverterToDate(this.syncInfos.nextJobAt),
-              this.$options.filters.timeConverterToHour(this.syncInfos.nextJobAt),
+              timeConverterToDate(this.syncInfos.nextJobAt),
+              timeConverterToHour(this.syncInfos.nextJobAt),
             ],
 
           ),

@@ -28,7 +28,7 @@
                 $t('smartShoppingCampaignCreation.inputDurationLabel1')
               }} </span><br>
             <span class="text-secondary">
-              {{ newCampaign.startDate | timeConverterToDate }}
+              {{ startDate }}
             </span>
           </b-col>
           <b-col
@@ -74,7 +74,7 @@
         {{ $t('smartShoppingCampaignCreation.inputBudgetFeedback') }}
       </dt>
       <dd class="text-secondary mb-2">
-        {{ newCampaign.dailyBudget|formatPrice(newCampaign.currencyCode) }}
+        {{ dailyBudget }}
       </dd>
     </dl>
     <p>
@@ -111,6 +111,8 @@ import PsModal from '@/components/commons/ps-modal.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import compareYears from '@/utils/CompareYears';
 import {changeCountryNameToCode} from '@/utils/Countries';
+import {timeConverterToDate} from '@/utils/Dates';
+import {formatPrice} from '@/utils/Price';
 
 export default defineComponent({
   name: 'SSCCreationPopinRecap',
@@ -149,15 +151,24 @@ export default defineComponent({
     dimensionName() {
       return this.$store.state.campaigns.dimensionChosen.name;
     },
+    startDate(): string {
+      return timeConverterToDate(this.newCampaign.startDate);
+    },
     endDate() {
       if (this.newCampaign.endDate) {
         const isThereAnEndDate = compareYears(this.newCampaign.endDate);
 
         return isThereAnEndDate
-          ? this.$options.filters.timeConverterToDate(this.newCampaign.endDate)
+          ? timeConverterToDate(this.newCampaign.endDate)
           : null;
       }
       return '-';
+    },
+    dailyBudget(): string {
+      return formatPrice(
+        this.newCampaign.dailyBudget,
+        this.newCampaign.currencyCode,
+      );
     },
   },
 

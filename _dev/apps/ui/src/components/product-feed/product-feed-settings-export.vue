@@ -214,7 +214,7 @@
   </b-form> -->
 </template>
 
-<script>
+<script lang="ts">
 /**
  * ! Not needed for batch 1
  */
@@ -231,6 +231,7 @@
  * TODO: Replace with real datas.
  */
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
+import {timeConverterToHour} from '@/utils/Dates';
 
 export default {
   name: 'ProductFeedSettingsExport',
@@ -310,7 +311,7 @@ export default {
       return false;
     },
     syncTime() {
-      return this.$options.filters.timeConverterToHour(this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].nextJobAt);
+      return timeConverterToHour(this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].nextJobAt);
     },
   },
 
