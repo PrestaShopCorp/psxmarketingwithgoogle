@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import { createVuePlugin as vue } from "vite-plugin-vue2";
+import vue from "@vitejs/plugin-vue";
 import path from 'path';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import VitePluginReactRemoveAttributes from 'vite-plugin-react-remove-attributes';
@@ -8,7 +8,15 @@ import VitePluginReactRemoveAttributes from 'vite-plugin-react-remove-attributes
 export default defineConfig(({ mode }) => ({
   base: './',
   plugins: [
-    vue(),
+    vue({
+      template: {
+        compilerOptions: {
+          compatConfig: {
+            MODE: 2
+          }
+        }
+      }
+    }),
     cssInjectedByJsPlugin(),
     VitePluginReactRemoveAttributes({
       attributes: ['data-test-id'],
@@ -27,6 +35,10 @@ export default defineConfig(({ mode }) => ({
   ],
   resolve: {
     alias: [
+      {
+        find: 'vue',
+        replacement: '@vue/compat',
+      },
       {
         find: "@",
         replacement: path.resolve(__dirname, "./src"),
