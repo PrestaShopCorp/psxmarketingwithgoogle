@@ -14,6 +14,7 @@
   >
     <ResultNumberSelector
       :selected-filter-quantity-to-show="selectedFilterQuantityToShow"
+      @changeLimit="$emit('changeLimit', $event)"
     />
 
     <nav
@@ -30,15 +31,19 @@
         class="mb-0"
       />
     </nav>
-    <PageNumberSelector v-if="needPageSelector" />
+    <PageNumberSelector
+      v-if="needPageSelector"
+      @changePage="goToPage($event)"
+    />
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import {defineComponent} from 'vue';
 import PageNumberSelector from './page-number-selector.vue';
 import ResultNumberSelector from './result-number-selector.vue';
 
-export default {
+export default defineComponent({
   name: 'TableControls',
   components: {
     PageNumberSelector,
@@ -66,11 +71,11 @@ export default {
     },
   },
   methods: {
-    goToPage(page) {
+    goToPage(page: number) {
       if (page > 0 && page <= this.totalPages) {
-        this.$root.$emit('changePage', page);
+        this.$emit('changePage', page);
       }
     },
   },
-};
+});
 </script>

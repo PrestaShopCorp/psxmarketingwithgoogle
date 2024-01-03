@@ -107,6 +107,8 @@
           :total-pages="totalPages"
           :active-page="activePage"
           :selected-filter-quantity-to-show="pageSize"
+          @changeLimit="changeLimit"
+          @changePage="changePageTo"
         />
       </b-card-body>
     </b-card>
@@ -248,14 +250,8 @@ export default defineComponent({
     },
   },
   mounted() {
-    this.$root.$on('changeLimit', this.changeLimit);
-    this.$root.$on('changePage', this.changePageTo);
     this.fetchCampaigns();
     this.$store.dispatch('campaigns/GET_DIMENSIONS_FILTERS', null);
-  },
-  beforeDestroy() {
-    this.$root.$off('changeLimit', this.changeLimit);
-    this.$root.$off('changePage', this.changePageTo);
   },
   googleUrl,
   CampaignTypes,

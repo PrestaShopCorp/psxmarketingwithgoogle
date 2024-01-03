@@ -120,6 +120,8 @@
           :total-pages="totalPages"
           :active-page="activePage+1"
           :selected-filter-quantity-to-show="pageSize"
+          @changeLimit="pageChanged"
+          @changePage="limitChanged"
         />
       </b-card-body>
     </b-card>
@@ -212,12 +214,6 @@ export default defineComponent({
   },
   mounted() {
     this.getIssues();
-    this.$root.$on('changePage', this.pageChanged);
-    this.$root.$on('changeLimit', this.limitChanged);
-  },
-  beforeDestroy() {
-    this.$root.$off('changePage', this.pageChanged);
-    this.$root.$off('changeLimit', this.limitChanged);
   },
 });
 </script>
