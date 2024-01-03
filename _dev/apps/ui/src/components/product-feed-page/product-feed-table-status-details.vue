@@ -43,9 +43,11 @@
 
         <b-tbody>
           <template v-for="(product, index) in items">
-            <template v-for="(status, indexStatus) in onlyDisapproved(product.statuses)">
+            <template
+              v-for="(status, indexStatus) in onlyDisapproved(product.statuses)"
+              :key="`${index}-${indexStatus}`"
+            >
               <ProductFeedTableStatusDetailsRow
-                :key="`${index}-${indexStatus}`"
                 :product="product"
                 :status="status"
                 :index-status="indexStatus"

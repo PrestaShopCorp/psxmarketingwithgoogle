@@ -63,7 +63,7 @@
               $t(`smartShoppingCampaignCreation.${dimensionName}`),
               this.totalProducts,
             ],
-          ),
+          )
           }}
         </template>
         <template v-else>

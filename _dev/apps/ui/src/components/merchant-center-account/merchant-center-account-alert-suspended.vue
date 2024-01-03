@@ -14,6 +14,7 @@
     <span class="text-muted d-block">
       <template
         v-for="(issue, index) in issues"
+        :key="index"
       ><!--
       comment is necessary to have the comma next to the link
     --><span
@@ -23,7 +24,6 @@
         >, </span><!--
       comment is necessary to have the comma next to the link
     --><a
-      :key="index"
       :href="issue.documentation"
       target="_blank"
       class="text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
