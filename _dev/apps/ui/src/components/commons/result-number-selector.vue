@@ -32,7 +32,7 @@ export default {
   methods: {
     onChangeLimit(limitChosen) {
       this.selectedFilterQuantityToShow = limitChosen;
-      this.$root.$emit('changeLimit', Number(limitChosen));
+      this.$emit('changeLimit', Number(limitChosen));
     },
 
   },

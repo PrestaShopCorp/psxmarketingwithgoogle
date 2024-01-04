@@ -1,5 +1,5 @@
 import {mount, MountOptions} from '@vue/test-utils';
-import config, {localVue, filters} from '@/../tests/init';
+import config, {localVue} from '@/../tests/init';
 
 import ShippingSettings from './shipping-settings.vue';
 import TableRowCarrier from './table-row-carrier.vue';
@@ -21,7 +21,7 @@ describe('shipping-settings.vue', () => {
     ...options,
   });
 
-  it('is visible', () => {
+  it('is visible', async () => {
     const wrapper = buildWrapper({
       propsData: {
         countries: ['FR'],
@@ -29,13 +29,15 @@ describe('shipping-settings.vue', () => {
         displayValidationErrors: false,
       },
     });
+    const changeCountryCodeToNameSpy = vi.spyOn(wrapper.vm, 'changeCountryCodeToName');
+    await wrapper.vm.$forceUpdate();
     expect(wrapper.isVisible()).toBe(true);
     // Country selector
-    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
+    expect(changeCountryCodeToNameSpy).toHaveBeenCalledTimes(1);
     expect(wrapper.find('#table-carriers').isVisible()).toBe(true);
   });
 
-  it('shows a default message when there are no selected countries', () => {
+  it('shows a default message when there are no selected countries', async () => {
     const wrapper = buildWrapper({
       propsData: {
         countries: [],
@@ -43,7 +45,9 @@ describe('shipping-settings.vue', () => {
         displayValidationErrors: false,
       },
     });
-    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(0);
+    const changeCountryCodeToNameSpy = vi.spyOn(wrapper.vm, 'changeCountryCodeToName');
+    await wrapper.vm.$forceUpdate();
+    expect(changeCountryCodeToNameSpy).toHaveBeenCalledTimes(0);
     expect(wrapper.findAllComponents(TableRowCarrier)).toHaveLength(0);
     expect(wrapper.find('[data-test-id="no-carriers"]').isVisible()).toBe(true);
   });
@@ -89,7 +93,7 @@ describe('shipping-settings.vue', () => {
     });
   });
 
-  it('shows the table with carriers filtered by target countries (IT)', () => {
+  it('shows the table with carriers filtered by target countries (IT)', async () => {
     const wrapper = buildWrapper({
       propsData: {
         countries: ['IT'],
@@ -97,8 +101,10 @@ describe('shipping-settings.vue', () => {
         displayValidationErrors: false,
       },
     });
+    const changeCountryCodeToNameSpy = vi.spyOn(wrapper.vm, 'changeCountryCodeToName');
+    await wrapper.vm.$forceUpdate();
     // Country selector
-    expect(filters.changeCountriesCodesToNames).toHaveBeenCalledTimes(1);
+    expect(changeCountryCodeToNameSpy).toHaveBeenCalledTimes(1);
     expect(wrapper.findAllComponents(TableRowCarrier)).toHaveLength(4);
     expect(wrapper.findAllComponents(TableRowCarrier).at(0).props('carrier')).toEqual({
       carrierId: '9',

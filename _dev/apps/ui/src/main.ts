@@ -7,7 +7,6 @@ import store from './store';
 import App from './App.vue';
 import i18n from './lib/i18n';
 import './assets/scss/app.scss';
-import './utils/Filters';
 // import showdown extension
 import '../showdown.js';
 import '@/utils/Sentry';

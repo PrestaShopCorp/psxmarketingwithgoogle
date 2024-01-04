@@ -232,6 +232,7 @@ import TableRowMapping from '@/components/product-feed/commons/table-row-mapping
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import ProductFeedSummaryCards from '@/components/product-feed/summary/product-feed-summary-cards.vue';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
+import {timeConverterToHour, timeConverterToStringifiedDate} from '@/utils/Dates';
 
 dayjs.extend(duration);
 
@@ -272,12 +273,12 @@ export default defineComponent({
         .nextJobAt;
     },
     formatNextSyncDate() {
-      return this.$options.filters.timeConverterToStringifiedDate(
+      return timeConverterToStringifiedDate(
         this.nextSyncDate,
       );
     },
     formatNextSync() {
-      return this.$options.filters.timeConverterToHour(this.nextSyncDate);
+      return timeConverterToHour(this.nextSyncDate);
     },
     nextSyncTotalProducts: {
       get() {

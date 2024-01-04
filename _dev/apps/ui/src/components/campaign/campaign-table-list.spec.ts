@@ -412,7 +412,7 @@ describe('CampaignTableList', () => {
       expect(wrapper.findComponent(tablePageControlsVue).exists()).toBe(true);
       expect(wrapper.vm.activePage).toBe(1);
 
-      await wrapper.vm.$root.$emit('changePage', 3);
+      await wrapper.findComponent(tablePageControlsVue).vm.$emit('changePage', 3);
 
       expect(wrapper.vm.activePage).toBe(3);
     });
@@ -427,7 +427,7 @@ describe('CampaignTableList', () => {
       expect(wrapper.findComponent(tablePageControlsVue).exists()).toBe(true);
       expect(wrapper.vm.totalPages).toBe(13);
 
-      await wrapper.vm.$root.$emit('changeLimit', 50);
+      await wrapper.findComponent(tablePageControlsVue).vm.$emit('changeLimit', 50);
 
       expect(wrapper.vm.totalPages).toBe(3);
     });
@@ -445,10 +445,10 @@ describe('CampaignTableList', () => {
 
       expect(campaignsListAction).toHaveBeenCalledTimes(1);
 
-      await wrapper.vm.$root.$emit('changeLimit', 50);
+      await wrapper.findComponent(tablePageControlsVue).vm.$emit('changeLimit', 50);
       expect(campaignsListAction).toHaveBeenCalledTimes(2);
 
-      await wrapper.vm.$root.$emit('changePage', 3);
+      await wrapper.findComponent(tablePageControlsVue).vm.$emit('changePage', 3);
       expect(campaignsListAction).toHaveBeenCalledTimes(3);
     });
   });

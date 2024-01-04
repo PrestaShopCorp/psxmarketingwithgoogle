@@ -44,6 +44,7 @@ import KpiType from '@/enums/reporting/KpiType';
 import ChartCanvas from '@/components/chart/chart-canvas.vue';
 import {Kpis, DailyResultTypes} from '@/store/modules/campaigns/state';
 import {timeConverterToDate} from '@/utils/Dates';
+import {formatPrice} from '@/utils/Price';
 import {externalTooltipHandler} from '@/utils/ChartTooltip';
 
 const skipped = (
@@ -215,7 +216,7 @@ export default defineComponent({
         || type === KpiType.COSTS;
     },
     getFormattedValue(value: string|number|Point|null) {
-      return this.$options.filters.formatPrice(value, this.currencyCode);
+      return formatPrice(value, this.currencyCode);
     },
   },
 });
