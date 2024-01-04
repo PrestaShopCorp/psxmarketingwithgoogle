@@ -17,7 +17,8 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-import type { StorybookConfig } from '@storybook/vue-vite';
+import type { StorybookConfig } from '@storybook/vue3-vite';
+import { mergeConfig } from 'vite';
 
 const config: StorybookConfig = {
   stories: ["../**/*.stories.@(js|jsx|ts|tsx)"],
@@ -33,11 +34,26 @@ const config: StorybookConfig = {
   ],
   staticDirs: ['./assets'],
   framework: {
-    name: "@storybook/vue-vite",
-    options: {}
+    name: "@storybook/vue3-vite",
+    options: {},
+  },
+  async viteFinal(config) {
+    // An alias is automatically added by Storybook to use a specifc runner of Vue
+    // It sets a file to the vue library, while we need @vue/compat, that's why we rewrite it here.
+    config.resolve.alias[0] = {
+      find: 'vue',
+      // TODO: Find a better vue runtime
+      replacement: '@vue/compat/dist/vue.cjs.js',
+      // replacement: '@vue/compat/dist/vue.esm-bundler.js',
+    };
+    console.log(config.resolve?.alias);
+    // process.exit();
+    // Merge custom configuration into the default config
+    return mergeConfig(config, {
+    });
   },
   docs: {
-    autodocs: false
+    autodocs: false,
   },
 };
 
