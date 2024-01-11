@@ -123,7 +123,7 @@
                   {{ country.countryName }} ({{ country.currency }})
                   <router-link
                     :to="{ name: 'product-feed-settings',
-                          params: { step: ProductFeedSettingsPages.SHIPPING_SETTINGS}}"
+                           params: { step: ProductFeedSettingsPages.SHIPPING_SETTINGS}}"
                     class="stretched-link external_link-no_icon"
                     @click="targetCountryClicked"
                   />

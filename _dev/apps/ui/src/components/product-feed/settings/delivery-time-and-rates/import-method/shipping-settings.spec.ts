@@ -148,6 +148,12 @@ describe('shipping-settings.vue', () => {
     expect((emittedEvents as any[])[1]).toEqual([carriers]);
   });
 
+  describe('Delivery details duplication', () => {
+    it.todo('duplicates data to all carriers the user checked', () => {
+      // TODO
+    });
+  });
+
   describe('Error management', () => {
     it('displays an error on validation when no carrier is enabled', () => {
       const wrapper = buildWrapper({

@@ -114,6 +114,10 @@
               country: carrier.country,
             },
           )"
+          @duplicateDeliveryDetails="duplicateDeliveryDetails({
+            carrierId: carrier.carrierId,
+            country: carrier.country,
+          }, $event)"
         />
       </b-tbody>
     </b-table-simple>
@@ -273,6 +277,29 @@ export default {
           ...carrierData,
         }),
       );
+    },
+    duplicateDeliveryDetails(
+      sourceCarrier: CarrierIdentifier, destinationCarrier: CarrierIdentifier,
+    ) {
+      const indexToCopy = this.carriers
+        .findIndex((e) => e.carrierId === sourceCarrier.carrierId
+          && e.country === sourceCarrier.country,
+        );
+
+      const indexReceiving = this.carriers
+        .findIndex((e) => e.carrierId === destinationCarrier.carrierId
+          && e.country === destinationCarrier.country,
+        );
+
+      const {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        name, delay, country, carrierId, ...sourceCarrierData
+      } = this.carriers[indexToCopy];
+
+      this.carrierUpdated({
+        ...this.carriers[indexReceiving],
+        ...sourceCarrierData,
+      }, destinationCarrier);
     },
   },
   watch: {

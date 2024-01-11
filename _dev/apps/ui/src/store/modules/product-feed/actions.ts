@@ -22,7 +22,7 @@ import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import {getDataFromLocalStorage, deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
 import {
-  CarrierIdentifier, DeliveryDetail, getEnabledCarriers,
+  DeliveryDetail, getEnabledCarriers,
   mergeShippingDetailsSourcesForProductFeedConfiguration,
   ShopShippingInterface, validateDeliveryDetail,
 } from '@/providers/shipping-settings-provider';
@@ -298,36 +298,6 @@ export default {
       deliveryFromStorage,
     );
 
-    commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
-  },
-
-  [ActionsTypes.DUPLICATE_DELIVERY_DETAILS](
-    {state, commit}: Context,
-    payload: {sourceCarrier: CarrierIdentifier, destinationCarriers: CarrierIdentifier[]},
-  ) {
-    const carriersList = [...state.settings.deliveryDetails];
-    const indexToCopy = carriersList
-      .findIndex((e) => e.carrierId === payload.sourceCarrier.carrierId
-        && e.country === payload.sourceCarrier.country,
-      );
-    const indexesToReceiveCopy = payload.destinationCarriers
-      .map((destinationCarrier) => carriersList
-        .findIndex((e) => e.carrierId === destinationCarrier.carrierId
-          && e.country === destinationCarrier.country,
-        ),
-      );
-
-    const {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      name, delay, country, carrierId, ...sourceCarrierData
-    } = carriersList[indexToCopy];
-
-    indexesToReceiveCopy.forEach((index) => {
-      carriersList.splice(index, 1, {
-        ...carriersList[index],
-        ...sourceCarrierData,
-      });
-    });
     commit(MutationsTypes.SAVE_SHIPPING_SETTINGS, carriersList);
   },
 
