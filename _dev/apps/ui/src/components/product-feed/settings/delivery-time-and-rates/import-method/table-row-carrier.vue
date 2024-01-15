@@ -35,7 +35,7 @@
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
           v-model.number="minTransitTimeInDays"
-          @input="carrierUpdated"
+          @blur="carrierUpdated"
 
           :disabled="disableInputNumber"
           :state="timeStateDelivery"
@@ -50,7 +50,7 @@
             class="ps_gs-carrier__input-number no-arrows"
             size="sm"
             v-model.number="maxTransitTimeInDays"
-            @input="carrierUpdated"
+            @blur="carrierUpdated"
             :disabled="disableInputNumber"
             :state="timeStateDelivery"
             :placeholder="$t('general.max')"
