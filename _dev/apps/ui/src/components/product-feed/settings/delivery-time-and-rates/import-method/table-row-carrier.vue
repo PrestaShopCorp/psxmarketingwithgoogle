@@ -35,7 +35,7 @@
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
           v-model.number="minTransitTimeInDays"
-          @input="carrierUpdated"
+          @blur="carrierUpdated"
 
           :disabled="disableInputNumber"
           :state="timeStateDelivery"
@@ -50,7 +50,7 @@
             class="ps_gs-carrier__input-number no-arrows"
             size="sm"
             v-model.number="maxTransitTimeInDays"
-            @input="carrierUpdated"
+            @blur="carrierUpdated"
             :disabled="disableInputNumber"
             :state="timeStateDelivery"
             :placeholder="$t('general.max')"
@@ -94,7 +94,7 @@
           >
             <b-form-checkbox
               v-for="(carrierOption, index) in carriersList"
-              :key="index"
+              :key="`${index}-${carrierOption.carrierId}-${carrierOption.country}`"
               class="ps_gs-checkbox my-1 w-100"
               :disabled="isInitiatorCarrier(carrierOption.carrierId, carrierOption.country) ||
                 !carrierOption.enabledCarrier"
@@ -143,10 +143,7 @@ type State = {
 export default {
   data(): State {
     return {
-      selectedCarriersForDuplication: [{
-        carrierId: this.carrier.carrierId,
-        country: this.carrier.country,
-      }],
+      selectedCarriersForDuplication: [],
       minTransitTimeInDays: this.carrier.minTransitTimeInDays,
       maxTransitTimeInDays: this.carrier.maxTransitTimeInDays,
       enabledCarrier: this.carrier.enabledCarrier,
@@ -181,16 +178,15 @@ export default {
     isInitiatorCarrier(id: string, country: string) {
       return this.carrier.carrierId === id && this.carrier.country === country;
     },
-    applyInfos() {
-      this.$store.dispatch('productFeed/DUPLICATE_DELIVERY_DETAILS',
-        {
-          sourceCarrier: {
-            carrierId: this.carrier.carrierId,
-            country: this.carrier.country,
-          },
-          destinationCarriers: this.selectedCarriersForDuplication,
-        },
-      );
+    async applyInfos() {
+      // eslint-disable-next-line no-restricted-syntax
+      for (const carrierDataDestination of this.selectedCarriersForDuplication) {
+        this.$emit('duplicateDeliveryDetails', carrierDataDestination);
+        // Sending all the events at the same time will make data overriden.
+        // We wait for the parent component to be refreshed before sending the next one.
+        // eslint-disable-next-line no-await-in-loop
+        await this.$nextTick();
+      }
       this.$refs[`dropdownCarriers${this.carrier.carrierId}-${this.carrier.country}`].hide();
     },
     updateListState() {
