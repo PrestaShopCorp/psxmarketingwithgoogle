@@ -1,6 +1,7 @@
 <template>
   <b-card
     no-body
+    class="ps_gs-card-collapse"
   >
     <b-card-header
       class="p-0"
