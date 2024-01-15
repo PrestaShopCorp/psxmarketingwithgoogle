@@ -28,7 +28,10 @@
       </b-button>
     </b-card-header>
 
-    <b-collapse :id="id">
+    <b-collapse
+      :id="id"
+      :visible="visible"
+    >
       <b-card-body>
         <slot name="content"/>
       </b-card-body>
@@ -41,6 +44,13 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'CardCollapse',
+  props: {
+    visible: {
+      type: Boolean,
+      required: false,
+      default: false,
+    }
+  },
   data() {
     return {
       // eslint-disable-next-line no-underscore-dangle

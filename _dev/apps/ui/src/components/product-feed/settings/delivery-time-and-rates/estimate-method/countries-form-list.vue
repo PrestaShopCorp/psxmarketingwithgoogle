@@ -1,120 +1,70 @@
 <template>
   <!-- CASE FOR RATE_FOR_ALL_COUNTRIES -->
   <div class="estimateMultiCountries">
-    <b-card
+    <card-collapse
       id="for_all_countries"
-      no-body
       class="mb-1"
       v-if="rateChosen === RateType.RATE_ALL_COUNTRIES"
+      visible
     >
-      <b-card-header
-        header-tag="header"
-        class="p-1"
-        role="tab"
+    <div
+      slot="title"
+      class="p-1"
+    >
+      <span class="mr-2">
+        {{ countriesNames.join(', ') }}
+      </span>
+      <span
+        v-if="validateCarrier(carriers[0]) === false"
+        class="text-danger spans-gs_fz-14 d-inline-block ml-2"
       >
-        <b-button
-          block
-          v-b-toggle.withAllCountries
-          class="d-flex btn-without-hover"
-          variant="invisible"
-          :disabled="countriesNames.length === 1"
-        >
-          <span class="mr-2">
-            {{ countriesNames.join(', ') }}
-          </span>
-          <span
-            v-if="validateCarrier(carriers[0]) === false"
-            class="text-danger spans-gs_fz-14 d-inline-block ml-2"
-          >
-            {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.error') }}
-          </span>
-          <i
-            aria-hidden="true"
-            class="material-icons ps_gs-fz-24 ml-auto when-open"
-          >
-            arrow_drop_down
-          </i>
-          <i
-            aria-hidden="true"
-            class="material-icons ps_gs-fz-24 ml-auto when-closed"
-          >
-            arrow_right
-          </i>
-        </b-button>
-      </b-card-header>
-      <b-collapse
-        visible
-        id="withAllCountries"
-        accordion="customCarrierAccordion"
-        role="tabpanel"
-        v-model="cardWithAllCountriesIsVisible"
+        {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.error') }}
+      </span>
+    </div>
+      <div
+        slot="content"
+        class="p-3"
       >
-        <b-card-body>
-          <custom-carrier-form
-            :estimate-carrier="carriers[0]"
-            :display-validation-errors="displayValidationErrors"
-            @carrierUpdated="carrierUpdated($event, 0)"
-          />
-        </b-card-body>
-      </b-collapse>
-    </b-card>
+        <custom-carrier-form
+          :estimate-carrier="carriers[0]"
+          :display-validation-errors="displayValidationErrors"
+          @carrierUpdated="carrierUpdated($event, 0)"
+        />
+  </div>
+    </card-collapse>
 
     <!-- CASE FOR RATE_PER_COUNTRY -->
-    <b-card
-      no-body
+    <card-collapse
       id="card_per_country"
       class="mb-1"
       v-else-if="rateChosen === RateType.RATE_PER_COUNTRY"
       v-for="(carrier, index) in carriers"
       :key="index"
+      :visible="(index === 0)"
     >
-      <b-card-header
-        header-tag="header"
+      <div
+        slot="title"
         class="p-1"
-        role="tab"
       >
-        <b-button
-          block
-          v-b-toggle="`${carrier.rate}-${index}`"
-          class="d-flex btn-without-hover"
-          variant="invisible"
+        <span>{{ $options.filters.changeCountriesCodesToNames(carrier.countries)[0] }}</span>
+        <span
+          v-if="validateCarrier(carrier) === false"
+          class="text-danger spans-gs_fz-14 d-inline-block ml-2"
         >
-          <span>{{ $options.filters.changeCountriesCodesToNames(carrier.countries)[0] }}</span>
-          <span
-            v-if="validateCarrier(carrier) === false"
-            class="text-danger spans-gs_fz-14 d-inline-block ml-2"
-          >
-            {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.error') }}
-          </span>
-          <i
-            aria-hidden="true"
-            class="material-icons ps_gs-fz-24 ml-auto when-closed"
-          >
-            arrow_drop_down
-          </i>
-          <i
-            aria-hidden="true"
-            class="material-icons ps_gs-fz-24 ml-auto when-open"
-          >
-            arrow_right
-          </i>
-        </b-button>
-      </b-card-header>
-      <b-collapse
-        :visible="(index === 0)"
-        :id="`${carrier.rate}-${index}`"
-        :accordion="`customCarrierAccordion-${index}`"
-        role="tabpanel"
+          {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.error') }}
+        </span>
+      </div>
+      <div
+        slot="content"
+        class="p-3"
       >
-        <b-card-body class="p-3">
-          <custom-carrier-form
-            :estimate-carrier="carrier"
-            :display-validation-errors="displayValidationErrors"
-            @carrierUpdated="carrierUpdated($event, index)"
-          />
-        </b-card-body>
-      </b-collapse>
-    </b-card>
+        <custom-carrier-form
+          :estimate-carrier="carrier"
+          :display-validation-errors="displayValidationErrors"
+          @carrierUpdated="carrierUpdated($event, index)"
+        />
+      </div>
+    </card-collapse>
 
     <!-- Errors -->
     <p
@@ -131,10 +81,12 @@ import Vue, {PropType} from 'vue';
 import CustomCarrierForm from './custom-carrier-form.vue';
 import {RateType} from '@/enums/product-feed/rate';
 import {CustomCarrier, validateCarrier} from '@/providers/shipping-rate-provider';
+import CardCollapse from '@/components/product-feed/commons/card-collapse.vue';
 
 export default Vue.extend({
   name: 'CountriesFormList',
   components: {
+    CardCollapse,
     CustomCarrierForm,
   },
   props: {
