@@ -7,20 +7,20 @@
       v-if="rateChosen === RateType.RATE_ALL_COUNTRIES"
       visible
     >
-    <div
-      slot="title"
-      class="p-1"
-    >
-      <span class="mr-2">
-        {{ countriesNames.join(', ') }}
-      </span>
-      <span
-        v-if="validateCarrier(carriers[0]) === false"
-        class="text-danger spans-gs_fz-14 d-inline-block ml-2"
+      <div
+        slot="title"
+        class="p-1"
       >
-        {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.error') }}
-      </span>
-    </div>
+        <span class="mr-2">
+          {{ countriesNames.join(', ') }}
+        </span>
+        <span
+          v-if="validateCarrier(carriers[0]) === false"
+          class="text-danger spans-gs_fz-14 d-inline-block ml-2"
+        >
+          {{ $t('productFeedSettings.deliveryTimeAndRates.estimateStep.error') }}
+        </span>
+      </div>
       <div
         slot="content"
         class="p-3"
@@ -30,7 +30,7 @@
           :display-validation-errors="displayValidationErrors"
           @carrierUpdated="carrierUpdated($event, 0)"
         />
-  </div>
+      </div>
     </card-collapse>
 
     <!-- CASE FOR RATE_PER_COUNTRY -->

@@ -12,7 +12,7 @@
         class="d-flex btn-without-hover align-items-center"
         variant="invisible"
       >
-        <slot name="title"/>
+        <slot name="title" />
         <i
           aria-hidden="true"
           class="material-icons ps_gs-fz-24 text-secondary ml-auto when-closed"
@@ -33,14 +33,14 @@
       :visible="visible"
     >
       <b-card-body>
-        <slot name="content"/>
+        <slot name="content" />
       </b-card-body>
     </b-collapse>
   </b-card>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import {defineComponent} from 'vue';
 
 export default defineComponent({
   name: 'CardCollapse',
@@ -49,7 +49,7 @@ export default defineComponent({
       type: Boolean,
       required: false,
       default: false,
-    }
+    },
   },
   data() {
     return {
