@@ -212,6 +212,10 @@
       "phoneFormat": "Your business phone number isn't a valid format (only accept number) please change it.",
       "updateData": "If you have made any modification in your backoffice, please refresh your information to see the changes reflected here."
     },
+    "gmcAccountErrors": {
+      "title": "More details about account issues",
+      "description": "Your account has been flagged for potential performance and compliance issues. Please review the detailed information provided to understand and address these concerns promptly"
+    },
     "productFeedCard": {
       "title": "Product feed",
       "intro": "Link your products of your catalog to showcase your products on free listings. Pricing and product availability are automatically updated daily, giving your customers access to the most recent and fairly priced products you have on offer!",
