@@ -10,13 +10,13 @@
       class="my-1"
       :markdown="$t('gmcAccountErrors.description')"
     />
-    <b-card
+    <card-collapse
       v-for="(accountError) in errorsList"
       :key="accountError.title"
       class="mt-2"
-      no-body
     >
-      <b-card-header
+      <div
+        slot="title"
         class="d-flex align-items-center"
       >
         <i
@@ -28,11 +28,13 @@
         <p class="mb-0 font-weight-600 ps_gs-fz-18">
           {{ $t('campaigns.listTitle') }}
         </p>
-      </b-card-header>
-      <b-card-body
+      </div>
+      <div
+        slot="content"
         v-html="accountError.prerenderedContent"
       />
-    </b-card>
+    </card-collapse>
+
     <template slot="modal-footer">
       <span />
     </template>
@@ -42,6 +44,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import PsModal from '@/components/commons/ps-modal.vue';
+import CardCollapse from '@/components/product-feed/commons/card-collapse.vue';
 
 type AccountError = {
   title: string;
@@ -55,6 +58,7 @@ export default defineComponent({
   name: 'ProductFeedPopinAccountErrors',
   components: {
     PsModal,
+    CardCollapse,
   },
   computed: {
     errorsList(): AccountError[] {
