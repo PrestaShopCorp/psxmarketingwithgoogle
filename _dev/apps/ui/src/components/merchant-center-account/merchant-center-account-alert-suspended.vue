@@ -29,40 +29,42 @@
     </b-alert>
     <MerchantCenterAccountPopinAccountIssues
       ref="MerchantCenterAccountPopinAccountIssues"
+      :issues="issues"
     />
   </div>
 </template>
 
 <script lang="ts">
-import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
 import {PropType, defineComponent} from 'vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 import MerchantCenterAccountPopinAccountIssues from '@/components/merchant-center-account/issues/merchant-center-account-popin-account-issues.vue';
+import {AccountIssue} from '@/components/merchant-center-account/issues/types';
 
 export default defineComponent({
   name: 'MerchantCenterAccountAlertSuspended',
   props: {
     issues: {
-        type: Object as PropType<contentApi.Schema$AccountStatusAccountLevelIssue[]>,
-        required: true,
+      type: Array as PropType<AccountIssue[]>,
+      required: true,
     },
     accountOverviewUrl: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
   },
   computed: {
-      accountReviewUrl(): string {
-          const { id } = this.$store.state.accounts.googleMerchantAccount;
-          return `https://merchants.google.com/mc/products/diagnostics?a=${id}&tab=account_issues`;
-      },
+    accountReviewUrl(): string {
+      const {id} = this.$store.state.accounts.googleMerchantAccount;
+
+      return `https://merchants.google.com/mc/products/diagnostics?a=${id}&tab=account_issues`;
+    },
   },
   methods: {
     openAccountIssuesModal(): void {
-        this.$bvModal.show(this.$refs.MerchantCenterAccountPopinAccountIssues.$refs.modal.id);
+      this.$bvModal.show(this.$refs.MerchantCenterAccountPopinAccountIssues.$refs.modal.id);
     },
   },
   googleUrl,
-  components: { MerchantCenterAccountPopinAccountIssues }
+  components: {MerchantCenterAccountPopinAccountIssues},
 });
 </script>

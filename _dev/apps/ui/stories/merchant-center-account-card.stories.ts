@@ -6,9 +6,11 @@ import {
   merchantCenterAccountNotConnected,
   merchantCenterAccountConnected,
   merchantCenterNewGmcNotListed,
+  merchantCenterAccountSuspended,
 } from '../.storybook/mock/merchant-center-account';
 import {WebsiteClaimErrorReason} from '../src/store/modules/accounts/state';
 import {rest} from 'msw';
+import cloneDeep from 'lodash.clonedeep';
 
 const getWebsiteRequirementStatusRouteObject = {
   msw: {
@@ -251,34 +253,7 @@ export const Suspended:any = Template.bind({});
 Suspended.args = {
   isEnabled: true,
   loading: false,
-  initialMcaStatus: Object.assign({},
-    merchantCenterAccountConnected,
-    {
-      isSuspended: {
-        status: true,
-        issues: [
-          {
-            id: 'editorial_and_professional_standards_destination_url_down_policy',
-            title:
-              'Account suspended due to policy violation: landing page not working',
-            country: 'US',
-            severity: 'critical',
-            documentation:
-              'https://google.com/first-link',
-          },
-          {
-            id: 'editorial_and_professional_standards_destination_url_down_policy',
-            title:
-              'Account suspended due to policy violation: Oh no',
-            country: 'US',
-            severity: 'critical',
-            documentation:
-              'https://google.com/second-link',
-          },
-        ]
-      },
-    },
-  ),
+  initialMcaStatus: cloneDeep(merchantCenterAccountSuspended),
 };
 
 export const UnlinkFailed:any = Template.bind({});

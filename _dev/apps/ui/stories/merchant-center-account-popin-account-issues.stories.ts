@@ -1,7 +1,8 @@
 import MerchantCenterAccountPopinAccountIssues from '@/components/merchant-center-account/issues/merchant-center-account-popin-account-issues.vue';
+import { merchantCenterAccountSuspended } from '@/../.storybook/mock/merchant-center-account';
 
 export default {
-  title: 'Merchant Center Account/Popins/Account errors',
+  title: 'Merchant Center Account/Popins',
   component: MerchantCenterAccountPopinAccountIssues,
 };
 
@@ -15,6 +16,7 @@ const Template = (args, { argTypes }) => ({
   `,
 });
 
-export const Default:any = Template.bind({});
-Default.args = {
+export const AccountIssues:any = Template.bind({});
+AccountIssues.args = {
+  issues: merchantCenterAccountSuspended.accountIssues.issues,
 };

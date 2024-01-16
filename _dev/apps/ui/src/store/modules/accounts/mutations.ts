@@ -70,11 +70,11 @@ export default {
       gmcStatus: null,
       isVerified: false,
       isClaimed: false,
-      isSuspended: {
-        status: false,
-      },
       isEnhancedFreeListingCompliant: {
         status: true,
+      },
+      accountIssues: {
+        issues: [],
       },
     };
   },
