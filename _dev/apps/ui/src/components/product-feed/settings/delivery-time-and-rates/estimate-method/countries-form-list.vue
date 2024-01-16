@@ -81,7 +81,7 @@ import Vue, {PropType} from 'vue';
 import CustomCarrierForm from './custom-carrier-form.vue';
 import {RateType} from '@/enums/product-feed/rate';
 import {CustomCarrier, validateCarrier} from '@/providers/shipping-rate-provider';
-import CardCollapse from '@/components/product-feed/commons/card-collapse.vue';
+import CardCollapse from '@/components/commons/card-collapse.vue';
 
 export default Vue.extend({
   name: 'CountriesFormList',

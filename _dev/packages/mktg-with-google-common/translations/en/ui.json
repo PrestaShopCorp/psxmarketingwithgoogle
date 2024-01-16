@@ -212,7 +212,7 @@
       "phoneFormat": "Your business phone number isn't a valid format (only accept number) please change it.",
       "updateData": "If you have made any modification in your backoffice, please refresh your information to see the changes reflected here."
     },
-    "gmcAccountErrors": {
+    "gmcAccountIssues": {
       "title": "More details about account issues",
       "description": "Your account has been flagged for potential performance and compliance issues. Please review the detailed information provided to understand and address these concerns promptly"
     },
