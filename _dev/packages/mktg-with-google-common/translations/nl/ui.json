@@ -663,7 +663,7 @@
                     "noEligibleCurrenciesDesc": "Werk je doellanden bij in je {0} of voeg de relevante valuta toe in je {1} om de doellanden ten onrechte overeen te laten komen."
                 },
                 "title": "De configuratie van je productfeed",
-                "targetCountries": "Geselecteerd doelland:|Geselecteerde doellanden:",
+                "targetCountries": "Target country:|Target countries:",
                 "languages": "Taal:|Talen:",
                 "currencies": "Valuta:|Valuta's:",
                 "noLanguage": "Geen in aanmerking komende taal",
