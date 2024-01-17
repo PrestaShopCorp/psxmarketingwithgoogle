@@ -663,7 +663,7 @@
                     "noEligibleCurrenciesDesc": "Atualize seus países de destino em {0} ou adicione as moedas relevantes em {1} para corresponder aos países de destino com erro."
                 },
                 "title": "A configuração do seu feed de produtos",
-                "targetCountries": "País de destino selecionado:| Países de destino selecionados:",
+                "targetCountries": "Target country:|Target countries:",
                 "languages": "Idioma:|Idiomas:",
                 "currencies": "Moeda:|Moedas:",
                 "noLanguage": "Nenhum idioma elegível",
