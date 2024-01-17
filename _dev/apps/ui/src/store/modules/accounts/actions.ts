@@ -344,9 +344,13 @@ export default {
     }: Context,
     correlationId: string,
   ) {
+    const params = new URLSearchParams({
+      languageCode: window.i18nSettings.isoCode,
+      timeZone: encodeURI(Intl.DateTimeFormat().resolvedOptions().timeZone),
+    });
     const json = await (await fetchOnboarding(
       'GET',
-      'shopping-websites/site-verification/status',
+      `shopping-websites/site-verification/status?${params.toString()}`,
       {correlationId},
     )).json();
 
