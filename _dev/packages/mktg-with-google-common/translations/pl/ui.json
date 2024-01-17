@@ -663,7 +663,7 @@
                     "noEligibleCurrenciesDesc": "Zaktualizuj kraje docelowe na stronie {0} lub dodaj odpowiednie języki na stronie {1}, aby dopasować je do krajów docelowych."
                 },
                 "title": "Konfiguracja Twojego pliku danych produktu",
-                "targetCountries": "Wybrany kraj docelowy:|Wybrane kraje docelowe:",
+                "targetCountries": "Target country:|Target countries:",
                 "languages": "Język:|Języki:",
                 "currencies": "Waluta:|Waluty:",
                 "noLanguage": "Brak kwalifikującego się języka",
