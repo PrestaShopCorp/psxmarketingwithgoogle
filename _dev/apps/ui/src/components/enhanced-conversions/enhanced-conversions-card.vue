@@ -1,6 +1,9 @@
 <template>
   <section>
-    <b-card no-body class="ps_gs-onboardingcard p-3">
+    <b-card
+      no-body
+      class="ps_gs-onboardingcard p-3"
+    >
       <div
         class="d-md-flex flex-wrap align-items-center justify-content-between mb-3"
       >
@@ -50,18 +53,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { mapGetters } from "vuex";
-import GettersTypesCampaigns from "@/store/modules/campaigns/getters-types";
-import GettersTypesGoogleAds from "@/store/modules/google-ads/getters-types";
-import AlertEcReady from "@/components/enhanced-conversions/alert-ec-ready.vue";
-import AlertSignGadsTos from "@/components/enhanced-conversions/alert-sign-gads-tos.vue";
+import {defineComponent} from 'vue';
+import {mapGetters} from 'vuex';
+import GettersTypesCampaigns from '@/store/modules/campaigns/getters-types';
+import GettersTypesGoogleAds from '@/store/modules/google-ads/getters-types';
+import AlertEcReady from '@/components/enhanced-conversions/alert-ec-ready.vue';
+import AlertSignGadsTos from '@/components/enhanced-conversions/alert-sign-gads-tos.vue';
 
 export default defineComponent({
-  name: "EnhancedConversionsCard",
+  name: 'EnhancedConversionsCard',
   components: {
     AlertEcReady,
-    AlertSignGadsTos
+    AlertSignGadsTos,
   },
   data() {
     return {
@@ -69,10 +72,10 @@ export default defineComponent({
     };
   },
   computed: {
-    ...mapGetters("campaigns", [
+    ...mapGetters('campaigns', [
       GettersTypesCampaigns.GET_ENHANCED_CONVERSIONS_STATUS,
     ]),
-    ...mapGetters("googleAds", [
+    ...mapGetters('googleAds', [
       GettersTypesGoogleAds.GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED,
     ]),
     toggleIsDisabled(): boolean {
@@ -85,7 +88,7 @@ export default defineComponent({
         return;
       }
       await this.$store.dispatch(
-        "campaigns/SAVE_ENHANCED_CONVERSIONS_STATUS",
+        'campaigns/SAVE_ENHANCED_CONVERSIONS_STATUS',
         !this.GET_ENHANCED_CONVERSIONS_STATUS,
       );
     },

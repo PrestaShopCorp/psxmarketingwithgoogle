@@ -11,12 +11,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { mapGetters } from "vuex";
-import GettersTypesCampaigns from "@/store/modules/campaigns/getters-types";
-import GettersTypesGoogleAds from "@/store/modules/google-ads/getters-types";
+import {defineComponent} from 'vue';
+import {mapGetters} from 'vuex';
+import GettersTypesCampaigns from '@/store/modules/campaigns/getters-types';
+import GettersTypesGoogleAds from '@/store/modules/google-ads/getters-types';
 import PsToast from '@/components/commons/ps-toast.vue';
-import { RequestState } from '@/store/types';
+import {RequestState} from '@/store/types';
 
 export default defineComponent({
   components: {
@@ -29,10 +29,10 @@ export default defineComponent({
     };
   },
   computed: {
-    ...mapGetters("campaigns", [
+    ...mapGetters('campaigns', [
       GettersTypesCampaigns.GET_ENHANCED_CONVERSIONS_STATUS,
     ]),
-    ...mapGetters("googleAds", [
+    ...mapGetters('googleAds', [
       GettersTypesGoogleAds.GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED,
       GettersTypesGoogleAds.GET_GOOGLE_ADS_ACCOUNT_IS_SERVING,
     ]),
@@ -105,7 +105,7 @@ export default defineComponent({
         this.registerToWindowVisibilityChangeEvent();
       },
       immediate: true,
-    }
+    },
   },
   beforeDestroy() {
     this.unregisterToWindowVisibilityChangeEvent();

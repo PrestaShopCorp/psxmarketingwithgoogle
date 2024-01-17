@@ -98,40 +98,52 @@
           </span>
         </div>
 
-        <div class="d-flex justify-content-between">
-          <div class="mr-1 mb-1">
-            <i class="material-icons ps_gs-fz-20">language</i>
-            <span class="font-weight-600 mr-1">
-              {{ $tc(
-                'productFeedPage.dashboardPage.productFeedConfiguration.targetCountries',
-                localizationListLengths.countries) }}
-            </span>
-            <b-card
-              v-for="(country, index) in targetCountriesDetails"
-              :border-variant="country.currencyIsFound ? 'primary' : 'danger'"
-              :text-variant="country.currencyIsFound ? 'primary' : 'danger'"
-              class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13"
-              :key="index"
-              data-test-id="pf-config-country"
-            >
-              {{ country.countryName }} ({{ country.currency }})
-              <router-link
-                :to="{ name: 'product-feed-settings',
-                       params: { step: ProductFeedSettingsPages.SHIPPING_SETTINGS}}"
-                class="stretched-link external_link-no_icon"
-                @click="targetCountryClicked"
-              />
-            </b-card>
+        <div class="d-flex justify-content-between flex-column flex-lg-row">
+          <div class="mr-1 d-flex flex-grow-1">
+            <div class="d-flex flex-column flex-md-row">
+              <div
+                class="text-nowrap"
+              >
+                <i class="material-icons ps_gs-fz-20">language</i>
+                <span class="font-weight-600 mr-1">
+                  {{ $tc(
+                    'productFeedPage.dashboardPage.productFeedConfiguration.targetCountries',
+                    localizationListLengths.countries) }}
+                </span>
+              </div>
+              <div>
+                <b-card
+                  v-for="(country, index) in targetCountriesDetails"
+                  :border-variant="country.currencyIsFound ? 'primary' : 'danger'"
+                  :text-variant="country.currencyIsFound ? 'primary' : 'danger'"
+                  class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13 font-weight-600 mb-2"
+                  :key="index"
+                  data-test-id="pf-config-country"
+                >
+                  {{ country.countryName }} ({{ country.currency }})
+                  <router-link
+                    :to="{ name: 'product-feed-settings',
+                           params: { step: ProductFeedSettingsPages.SHIPPING_SETTINGS}}"
+                    class="stretched-link external_link-no_icon"
+                    @click="targetCountryClicked"
+                  />
+                </b-card>
+              </div>
+            </div>
           </div>
 
           <div class="flex d-flex-column flex-grow-1">
-            <div class="mb-1">
-              <i class="material-icons ps_gs-fz-20">translate</i>
-              <span class="font-weight-600 mr-1">
-                {{ $tc(
-                  'productFeedPage.dashboardPage.productFeedConfiguration.languages',
-                  localizationListLengths.languages) }}
-              </span>
+            <div class="d-flex flex-column flex-md-row">
+              <div
+                class="text-nowrap"
+              >
+                <i class="material-icons ps_gs-fz-20">translate</i>
+                <span class="font-weight-600 mr-1">
+                  {{ $tc(
+                    'productFeedPage.dashboardPage.productFeedConfiguration.languages',
+                    localizationListLengths.languages) }}
+                </span>
+              </div>
               <span
                 v-if="!languages.length"
                 data-test-id="pf-config-no-lang"
@@ -139,13 +151,13 @@
               >
                 {{ $t('productFeedPage.dashboardPage.productFeedConfiguration.noLanguage') }}
               </span>
-              <template
+              <div
                 v-else
               >
                 <b-card
                   v-for="(language, index) in languages"
                   border-variant="primary"
-                  class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13"
+                  class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13 font-weight-600 mb-2"
                   :key="index"
                   data-test-id="pf-config-lang"
                 >
@@ -157,7 +169,7 @@
                     @click="languageClicked"
                   />
                 </b-card>
-              </template>
+              </div>
             </div>
           </div>
         </div>

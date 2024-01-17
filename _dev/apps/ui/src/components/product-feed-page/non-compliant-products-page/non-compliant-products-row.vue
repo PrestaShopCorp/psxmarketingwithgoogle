@@ -36,7 +36,7 @@
         v-for="(numberOfProducts, langIso) in verificationIssue.affected"
         :key="langIso"
         border-variant="primary"
-        class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13"
+        class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13 font-weight-500"
       >
         {{ langIso }}
       </b-card>

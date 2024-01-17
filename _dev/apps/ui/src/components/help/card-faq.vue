@@ -156,7 +156,16 @@ import {defineComponent} from 'vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default defineComponent({
-  props: ['informations', 'loading'],
+  props: {
+    informations: {
+      type: Object,
+      required: true,
+    },
+    loading: {
+      type: Boolean,
+      required: true,
+    },
+  },
 
   computed: {
     supportUrl() {

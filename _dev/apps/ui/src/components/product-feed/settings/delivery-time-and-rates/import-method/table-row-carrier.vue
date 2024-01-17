@@ -8,8 +8,8 @@
         switch
         size="sm"
         class="ps_gs-switch mb-0"
-        v-model="carrier.enabledCarrier"
-        @input="$emit('dataUpdated')"
+        v-model="enabledCarrier"
+        @input="carrierUpdated"
         :aria-label="$t('productFeedSettings.deliveryTimeAndRates.shippingSwitchCarrier')"
       />
     </td>
@@ -34,8 +34,8 @@
           type="number"
           class="ps_gs-carrier__input-number no-arrows"
           size="sm"
-          v-model.number="carrier.minTransitTimeInDays"
-          @input="$emit('dataUpdated')"
+          v-model.number="minTransitTimeInDays"
+          @blur="carrierUpdated"
 
           :disabled="disableInputNumber"
           :state="timeStateDelivery"
@@ -49,8 +49,8 @@
             type="number"
             class="ps_gs-carrier__input-number no-arrows"
             size="sm"
-            v-model.number="carrier.maxTransitTimeInDays"
-            @input="$emit('dataUpdated')"
+            v-model.number="maxTransitTimeInDays"
+            @blur="carrierUpdated"
             :disabled="disableInputNumber"
             :state="timeStateDelivery"
             :placeholder="$t('general.max')"
@@ -94,7 +94,7 @@
           >
             <b-form-checkbox
               v-for="(carrierOption, index) in carriersList"
-              :key="index"
+              :key="`${index}-${carrierOption.carrierId}-${carrierOption.country}`"
               class="ps_gs-checkbox my-1 w-100"
               :disabled="isInitiatorCarrier(carrierOption.carrierId, carrierOption.country) ||
                 !carrierOption.enabledCarrier"
@@ -134,15 +134,19 @@ import {validateTransitTimes, CarrierIdentifier, DeliveryDetail} from '@/provide
 
 type State = {
   selectedCarriersForDuplication: CarrierIdentifier[];
+  minTransitTimeInDays?: number;
+  maxTransitTimeInDays?: number;
+  enabledCarrier?: boolean;
+
 }
 
 export default {
   data(): State {
     return {
-      selectedCarriersForDuplication: [{
-        carrierId: this.carrier.carrierId,
-        country: this.carrier.country,
-      }],
+      selectedCarriersForDuplication: [],
+      minTransitTimeInDays: this.carrier.minTransitTimeInDays,
+      maxTransitTimeInDays: this.carrier.maxTransitTimeInDays,
+      enabledCarrier: this.carrier.enabledCarrier,
     };
   },
   props: {
@@ -174,16 +178,15 @@ export default {
     isInitiatorCarrier(id: string, country: string) {
       return this.carrier.carrierId === id && this.carrier.country === country;
     },
-    applyInfos() {
-      this.$store.dispatch('productFeed/DUPLICATE_DELIVERY_DETAILS',
-        {
-          sourceCarrier: {
-            carrierId: this.carrier.carrierId,
-            country: this.carrier.country,
-          },
-          destinationCarriers: this.selectedCarriersForDuplication,
-        },
-      );
+    async applyInfos() {
+      // eslint-disable-next-line no-restricted-syntax
+      for (const carrierDataDestination of this.selectedCarriersForDuplication) {
+        this.$emit('duplicateDeliveryDetails', carrierDataDestination);
+        // Sending all the events at the same time will make data overriden.
+        // We wait for the parent component to be refreshed before sending the next one.
+        // eslint-disable-next-line no-await-in-loop
+        await this.$nextTick();
+      }
       this.$refs[`dropdownCarriers${this.carrier.carrierId}-${this.carrier.country}`].hide();
     },
     updateListState() {
@@ -194,6 +197,14 @@ export default {
             && selectedCarrier.country === carrier.country,
           ).enabledCarrier,
         );
+    },
+    carrierUpdated(): void {
+      this.$emit('carrierUpdated', {
+        ...this.carrier,
+        minTransitTimeInDays: this.minTransitTimeInDays,
+        maxTransitTimeInDays: this.maxTransitTimeInDays,
+        enabledCarrier: this.enabledCarrier,
+      });
     },
   },
 };

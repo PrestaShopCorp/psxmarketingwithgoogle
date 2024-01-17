@@ -103,12 +103,21 @@
         </b-tr>
         <table-row-carrier
           v-else
-          v-for="(carrier, index) in visibleCarriers"
-          :key="index"
+          v-for="(carrier) in visibleCarriers"
+          :key="JSON.stringify(carrier)"
           :carrier="carrier"
           :carriers-list="carriers"
           :display-validation-errors="displayValidationErrors"
-          @dataUpdated="$emit('dataUpdated', carriers)"
+          @carrierUpdated="carrierUpdated(
+            $event, {
+              carrierId: carrier.carrierId,
+              country: carrier.country,
+            },
+          )"
+          @duplicateDeliveryDetails="duplicateDeliveryDetails({
+            carrierId: carrier.carrierId,
+            country: carrier.country,
+          }, $event)"
         />
       </b-tbody>
     </b-table-simple>
@@ -178,8 +187,8 @@ import ShippingSettingsHeaderType from '@/enums/product-feed/shipping-settings-h
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import TableRowCarrier from './table-row-carrier.vue';
-import {DeliveryDetail, validateEachCountryHasAtLeastOneCarrier} from '../../../../../providers/shipping-settings-provider';
-import {ShippingSetupOption} from '../../../../../enums/product-feed/shipping';
+import {CarrierIdentifier, DeliveryDetail, validateEachCountryHasAtLeastOneCarrier} from '@/providers/shipping-settings-provider';
+import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 
 export default {
   components: {
@@ -250,6 +259,47 @@ export default {
     },
     switchToFlatRate() {
       this.$store.commit('productFeed/SET_SHIPPING_SETUP_SELECTED', ShippingSetupOption.ESTIMATE);
+    },
+    carrierUpdated(carrierData: DeliveryDetail, id: CarrierIdentifier): void {
+      const index = this.carriers.findIndex(
+        (someCarrier) => someCarrier.carrierId === id.carrierId
+          && someCarrier.country === id.country,
+      );
+
+      if (index === -1) {
+        throw new Error('Cannot find carrier to modify');
+      }
+
+      this.$emit(
+        'dataUpdated',
+        this.carriers.toSpliced(index, 1, {
+          ...carrierData[index],
+          ...carrierData,
+        }),
+      );
+    },
+    duplicateDeliveryDetails(
+      sourceCarrier: CarrierIdentifier, destinationCarrier: CarrierIdentifier,
+    ) {
+      const indexToCopy = this.carriers
+        .findIndex((e) => e.carrierId === sourceCarrier.carrierId
+          && e.country === sourceCarrier.country,
+        );
+
+      const indexReceiving = this.carriers
+        .findIndex((e) => e.carrierId === destinationCarrier.carrierId
+          && e.country === destinationCarrier.country,
+        );
+
+      const {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        name, delay, country, carrierId, ...sourceCarrierData
+      } = this.carriers[indexToCopy];
+
+      this.carrierUpdated({
+        ...this.carriers[indexReceiving],
+        ...sourceCarrierData,
+      }, destinationCarrier);
     },
   },
   watch: {

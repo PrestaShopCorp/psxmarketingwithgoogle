@@ -27,15 +27,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import {mapGetters} from "vuex";
-import { RequestState } from '@/store/types';
+import {defineComponent} from 'vue';
+import {mapGetters} from 'vuex';
+import {RequestState} from '@/store/types';
 import SyncOverview from '@/components/product-feed-page/dashboard/sync-overview.vue';
 import PsToast from '@/components/commons/ps-toast.vue';
 import AlertEcReady from '@/components/enhanced-conversions/alert-ec-ready.vue';
-import AlertSignGadsTos from "@/components/enhanced-conversions/alert-sign-gads-tos.vue";
-import GettersTypesCampaigns from "@/store/modules/campaigns/getters-types";
-import GettersTypesGoogleAds from "@/store/modules/google-ads/getters-types";
+import AlertSignGadsTos from '@/components/enhanced-conversions/alert-sign-gads-tos.vue';
+import GettersTypesCampaigns from '@/store/modules/campaigns/getters-types';
+import GettersTypesGoogleAds from '@/store/modules/google-ads/getters-types';
 
 export default defineComponent({
   components: {
@@ -48,13 +48,13 @@ export default defineComponent({
     inNeedOfConfiguration: {
       type: Boolean,
       required: true,
-    }
+    },
   },
   computed: {
-    ...mapGetters("googleAds", [
+    ...mapGetters('googleAds', [
       GettersTypesGoogleAds.GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED,
     ]),
-    ...mapGetters("campaigns", [
+    ...mapGetters('campaigns', [
       GettersTypesCampaigns.GET_ENHANCED_CONVERSIONS_NEVER_ENABLED,
       GettersTypesCampaigns.GET_ACCOUNT_HAS_AT_LEAST_ONE_CAMPAIGN,
     ]),

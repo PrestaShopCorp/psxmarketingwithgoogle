@@ -56,7 +56,7 @@
                 <span class="ml-1 icon-busy" />
               </template>
             </b-button>
-            <glass
+            <popup-glass
               v-if="popupClosingLooper"
               @close="closePopup"
               @forceFocus="focusPopup"
@@ -93,7 +93,7 @@
                 {{ $t('cta.disconnect') }}
               </b-dropdown-item>
             </b-dropdown>
-            <glass
+            <popup-glass
               v-if="popupClosingLooper"
               @close="closePopup"
               @forceFocus="focusPopup"
@@ -202,16 +202,16 @@ import {
 import {defineComponent, PropType} from 'vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 
-import MutationsTypes from '../../store/modules/accounts/mutations-types';
-import ActionsTypes from '../../store/modules/accounts/actions-types';
-import Glass from '../commons/glass';
-import {GoogleAccountContext} from '../../store/modules/accounts/state';
+import MutationsTypes from '@/store/modules/accounts/mutations-types';
+import ActionsTypes from '@/store/modules/accounts/actions-types';
+import PopupGlass from '@/components/commons/popup-glass.vue';
+import {GoogleAccountContext} from '@/store/modules/accounts/state';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default defineComponent({
   name: 'GoogleAccountCard',
   components: {
-    Glass, BAlert,
+    PopupGlass, BAlert,
   },
   data() {
     return {

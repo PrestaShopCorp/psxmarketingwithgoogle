@@ -1,6 +1,6 @@
 import Vuex from 'vuex';
 import {mount} from '@vue/test-utils';
-import {BCard, BSkeleton} from 'bootstrap-vue';
+import {BSkeleton} from 'bootstrap-vue';
 import config, {localVue, addBootstrapToVue, cloneStore} from '@/../tests/init';
 import feedConfigurationCardVue from './feed-configuration-card.vue';
 

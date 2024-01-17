@@ -13,7 +13,7 @@ import 'chartjs-adapter-date-fns';
 Chart.register(...registerables);
 
 export default {
-  name: 'Chart',
+  name: 'ChartCanvas',
   props: {
     type: {
       type: String,

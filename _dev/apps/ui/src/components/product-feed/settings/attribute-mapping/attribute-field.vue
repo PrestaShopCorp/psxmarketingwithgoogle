@@ -61,11 +61,12 @@
   </b-form-group>
 </template>
 
-<script>
+<script lang="ts">
+import {PropType, defineComponent} from 'vue';
 import googleUrl from '@/assets/json/googleUrl.json';
-import {arrayEquals} from '../../../../utils/AttributeMapping';
+import {FieldsContent, RecommendedFieldType, arrayEquals} from '@/utils/AttributeMapping';
 
-export default {
+export default defineComponent({
   data() {
     return {
       notAvailableSelected: false,
@@ -74,9 +75,8 @@ export default {
   },
   props: {
     field: {
-      type: Object,
+      type: Object as PropType<FieldsContent>,
       required: true,
-      default: () => null,
     },
     category: {
       type: String,
@@ -94,14 +94,14 @@ export default {
       return this.$store.getters['productFeed/GET_SHOP_ATTRIBUTES'];
     },
     attributesChecked: {
-      get() {
+      get(): RecommendedFieldType[] {
         if (this.field.mapped !== null) {
           return this.field.mapped;
         }
         return this.field.recommended;
       },
-      set(value) {
-        this.field.mapped = value;
+      set(value: RecommendedFieldType[]) {
+        this.$emit('valueMapped', value);
       },
     },
     formatToDisplay() {
@@ -136,5 +136,5 @@ export default {
     }
   },
   googleUrl,
-};
+});
 </script>

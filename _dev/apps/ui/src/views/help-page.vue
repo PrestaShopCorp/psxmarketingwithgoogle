@@ -17,43 +17,49 @@
  * International Registered Trademark & Property of PrestaShop SA
  *-->
 <template>
-  <span>
-    <b-icon-info-circle
-      :id="`tooltip-circle-${this._uid}`"
-      class="iconInfo ml-2"
-      variant="primary"
+  <div
+    id="help"
+  >
+    <card-faq
+      :informations="helpInformations"
+      :loading="loading"
+      class="m-3"
     />
-    <b-tooltip
-      :target="`tooltip-circle-${this._uid}`"
-      container="#psxMktgWithGoogleApp"
-      triggers="hover"
-      placement="right"
-    >
-      {{ text }}
-    </b-tooltip>
-  </span>
+  </div>
 </template>
 
-<script lang="ts">
-import {BIconInfoCircle} from 'bootstrap-vue';
+<script>
+import {defineComponent} from 'vue';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import CardFaq from '../components/help/card-faq.vue';
 
-export default {
-  name: 'Tooltip',
+export default defineComponent({
   components: {
-    BIconInfoCircle,
+    CardFaq,
   },
-  props: {
-    text: {
-      type: String,
-      default: '',
+  data() {
+    return {
+      loading: true,
+    };
+  },
+  created() {
+    this.fetchHelpInformations();
+    this.$segment.track('[GGL] View Help tab', {
+      module: 'psxmarketingwithgoogle',
+      params: SegmentGenericParams,
+    });
+  },
+  computed: {
+    helpInformations() {
+      return this.$store.getters['app/GET_DOC_AND_FAQ'];
     },
   },
-};
+  methods: {
+    fetchHelpInformations() {
+      this.$store.dispatch('app/REQUEST_DOC_AND_FAQ').then(() => {
+        this.loading = false;
+      });
+    },
+  },
+});
 </script>
-
-<style scoped>
-    .iconInfo {
-      position: relative;
-      top: 0.1em;
-    }
-</style>

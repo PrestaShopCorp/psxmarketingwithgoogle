@@ -82,7 +82,9 @@ export default {
   },
   computed: {
     pathToAdsPromotionImage() {
-      return getPathToAdsPromotionImage(this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode);
+      return getPathToAdsPromotionImage(
+        this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode,
+      );
     },
     priceForAds() {
       return searchPrice(this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode);

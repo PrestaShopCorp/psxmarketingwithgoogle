@@ -4,7 +4,7 @@ import Vuex from 'vuex';
 import {shallowMount, mount} from '@vue/test-utils';
 import {BAlert} from 'bootstrap-vue';
 import VueShowdown from 'vue-showdown';
-import config, {localVue, cloneStore, filters} from '@/../tests/init';
+import config, {localVue, cloneStore} from '@/../tests/init';
 import ProductFeedCard from '@/components/product-feed/product-feed-card.vue';
 import ProductFeedCardReportCard from '@/components/product-feed/product-feed-card-report-card.vue';
 import ProductFeedStepper from '@/components/product-feed/product-feed-stepper.vue';

@@ -1,19 +1,19 @@
-import GlassScreen from '../src/components/commons/glass.vue'
-import OnboardingPage from '../src/views/onboarding-page.vue'
-import {contextPsAccountsNotConnected, contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
+import PopupGlass from '@/components/commons/popup-glass.vue'
+import OnboardingPage from '@/views/onboarding-page.vue'
+import {contextPsAccountsConnectedAndValidated} from "../.storybook/mock/ps-accounts";
 
 export default {
   title: 'Basic Components/Glass',
-  component: GlassScreen, OnboardingPage
+  component: PopupGlass, OnboardingPage
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { GlassScreen, OnboardingPage},
+  components: { PopupGlass, OnboardingPage},
   template: `
     <div>
       <OnboardingPage />
-      <GlassScreen />
+      <PopupGlass />
     </div>
   `,
   beforeCreate(this: any) {

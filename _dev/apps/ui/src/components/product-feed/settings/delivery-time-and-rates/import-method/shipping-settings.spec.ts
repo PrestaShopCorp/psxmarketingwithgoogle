@@ -4,6 +4,8 @@ import config, {localVue, filters} from '@/../tests/init';
 import ShippingSettings from './shipping-settings.vue';
 import TableRowCarrier from './table-row-carrier.vue';
 import {productFeed} from '@/../.storybook/mock/product-feed';
+import {CarrierIdentifier} from '@/providers/shipping-settings-provider';
+import DeliveryType from '@/enums/product-feed/delivery-type';
 
 describe('shipping-settings.vue', () => {
   const buildWrapper = (
@@ -141,11 +143,107 @@ describe('shipping-settings.vue', () => {
     // There is a watcher with `immediate: true` -> event will be triggered
     expect((emittedEvents as any[]).length).toBe(1);
 
-    wrapper.findAllComponents(TableRowCarrier).at(0).vm.$emit('dataUpdated', carriers);
+    wrapper.findAllComponents(TableRowCarrier).at(0).vm.$emit('carrierUpdated', carriers[0]);
     await wrapper.vm.$nextTick();
 
     expect((emittedEvents as any[]).length).toBe(2);
     expect((emittedEvents as any[])[1]).toEqual([carriers]);
+  });
+
+  describe('Delivery details duplication', () => {
+    it('duplicates data to all carriers the user checked', async () => {
+      const carriers = productFeed.settings.deliveryDetails.filter((carrier) => ['FR', 'IT'].includes(carrier.country));
+      const wrapper = buildWrapper({
+        propsData: {
+          countries: ['IT', 'FR'],
+          carriers,
+          displayValidationErrors: false,
+        },
+      });
+
+      const emittedEvents = wrapper.emitted('dataUpdated');
+      expect(emittedEvents).toBeTruthy();
+      // There is a watcher with `immediate: true` -> event will be triggered
+      expect((emittedEvents as any[]).length).toBe(1);
+
+      wrapper.findAllComponents(TableRowCarrier).at(2).vm.$emit(
+        'duplicateDeliveryDetails',
+        {
+          carrierId: '9',
+          country: 'FR',
+        } as CarrierIdentifier,
+      );
+      await wrapper.vm.$nextTick();
+
+      expect((emittedEvents as any[]).length).toBe(2);
+      expect((emittedEvents as any[])[1]).toEqual([[
+        {
+          carrierId: '9',
+          country: 'FR',
+          name: 'PrestaShop',
+          delay: 'Pick up in-store',
+
+          enabledCarrier: true,
+          deliveryType: DeliveryType.DELIVERY,
+          maxTransitTimeInDays: 3,
+          maxHandlingTimeInDays: 3,
+          minTransitTimeInDays: 0,
+          minHandlingTimeInDays: 0,
+        },
+        {
+          carrierId: '9',
+          country: 'IT',
+          name: 'PrestaShop',
+          delay: 'Pick up in-store',
+          deliveryType: undefined,
+        },
+        {
+          enabledCarrier: true,
+          carrierId: '11',
+          country: 'FR',
+          name: 'My carrier',
+          delay: 'Delivery next day!',
+          deliveryType: DeliveryType.DELIVERY,
+          maxTransitTimeInDays: 3,
+          maxHandlingTimeInDays: 3,
+          minTransitTimeInDays: 0,
+          minHandlingTimeInDays: 0,
+        },
+        {
+          carrierId: '11',
+          country: 'IT',
+          name: 'My carrier',
+          delay: 'Delivery next day!',
+          deliveryType: undefined,
+        },
+        {
+          enabledCarrier: true,
+          carrierId: '13',
+          country: 'FR',
+          name: 'Carrier with fixed price',
+          delay: 'Maybe 1 day, maybe never',
+          deliveryType: DeliveryType.DELIVERY,
+          maxTransitTimeInDays: 60,
+          minHandlingTimeInDays: 0,
+          minTransitTimeInDays: 1,
+          maxHandlingTimeInDays: 3,
+        },
+        {
+          carrierId: '13',
+          country: 'IT',
+          name: 'Carrier with fixed price',
+          delay: 'Maybe 1 day, maybe never',
+          deliveryType: undefined,
+        },
+        {
+          carrierId: '14',
+          country: 'IT',
+          name: 'Carrier #2 with fixed price',
+          delay: 'Maybe 1 day, maybe never',
+          deliveryType: undefined,
+        },
+      ]]);
+    });
   });
 
   describe('Error management', () => {

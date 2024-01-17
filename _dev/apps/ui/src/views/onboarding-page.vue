@@ -134,7 +134,9 @@
       modal-id="SSCPopinActivateTrackingOnboardingPage"
     />
     <modal-ec-intro
-      v-if="getGoogleAdsAccount && accountHasAtLeastOneCampaign && enhancedConversionsHasNeverBeenEnabled"
+      v-if="getGoogleAdsAccount
+        && accountHasAtLeastOneCampaign
+        && enhancedConversionsHasNeverBeenEnabled"
       :tos-are-signed="!!getGoogleAdsAccount.acceptedCustomerDataTerms"
     />
     <PopinModuleConfigured
@@ -197,7 +199,7 @@ export default defineComponent({
     PsToast,
     TrackingActivationModal,
     PopinModuleConfigured,
-},
+  },
   data() {
     return {
       isMcaLinking: false,

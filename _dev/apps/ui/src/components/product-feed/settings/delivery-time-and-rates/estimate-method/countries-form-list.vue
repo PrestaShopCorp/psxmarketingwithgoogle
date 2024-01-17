@@ -53,7 +53,7 @@
           <custom-carrier-form
             :estimate-carrier="carriers[0]"
             :display-validation-errors="displayValidationErrors"
-            @dataUpdated="$emit('dataUpdated', carriers)"
+            @carrierUpdated="carrierUpdated($event, 0)"
           />
         </b-card-body>
       </b-collapse>
@@ -110,7 +110,7 @@
           <custom-carrier-form
             :estimate-carrier="carrier"
             :display-validation-errors="displayValidationErrors"
-            @dataUpdated="$emit('dataUpdated', carriers)"
+            @carrierUpdated="carrierUpdated($event, index)"
           />
         </b-card-body>
       </b-collapse>
@@ -173,6 +173,15 @@ export default Vue.extend({
         return null;
       }
       return validateCarrier(carrier);
+    },
+    carrierUpdated(carrierData: CustomCarrier, index: number): void {
+      this.$emit(
+        'dataUpdated',
+        this.carriers.toSpliced(index, 1, {
+          ...carrierData[index],
+          ...carrierData,
+        }),
+      );
     },
   },
   watch: {

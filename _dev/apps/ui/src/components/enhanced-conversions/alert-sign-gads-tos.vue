@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import {defineComponent} from 'vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 
 export default defineComponent({

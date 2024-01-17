@@ -1,4 +1,4 @@
-import HelpPage from '@/views/help.vue'
+import HelpPage from '@/views/help-page.vue'
 import {contextPsAccountsConnectedAndValidated} from '../.storybook/mock/ps-accounts';
 
 export default {

@@ -18,7 +18,7 @@
         id="head_tabs"
         class="ps_gs-sticky-head page-head-tabs"
       >
-        <Menu>
+        <AppMenu>
           <MenuItem
             v-if="!currentlyOnLandingPage"
             :route="{name: 'campaign'}"
@@ -41,7 +41,7 @@
           >
             {{ $t('general.tabs.help') }}
           </MenuItem>
-        </Menu>
+        </AppMenu>
         <b-toaster
           name="b-toaster-top-right"
           class="ps_gs-toaster-top-right"
@@ -84,7 +84,7 @@
 
 <script lang="ts">
 import {initShopClient} from 'mktg-with-google-common/api/shopClient';
-import Menu from '@/components/menu/menu.vue';
+import AppMenu from '@/components/menu/app-menu.vue';
 import MenuItem from '@/components/menu/menu-item.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import AlertModuleUpdate from '@/components/commons/alert-update-module.vue';
@@ -95,9 +95,8 @@ import NotificationPanel from '@/components/enhanced-conversions/notification-pa
 let resizeEventTimer;
 
 export default {
-  name: 'Home',
   components: {
-    Menu,
+    AppMenu,
     MenuItem,
     AlertModuleUpdate,
     NotificationPanel,

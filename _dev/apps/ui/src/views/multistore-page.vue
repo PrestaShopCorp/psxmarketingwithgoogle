@@ -11,7 +11,7 @@
 import MultiStoreSelector from '@/components/multistore/multi-store-selector.vue';
 
 export default {
-  name: 'Multistore',
+  name: 'MultistorePage',
   components: {
     MultiStoreSelector,
   },

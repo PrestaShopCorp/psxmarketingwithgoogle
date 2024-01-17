@@ -8,7 +8,7 @@ import config, {
 } from '@/../tests/init';
 import {State as CampaignsState} from '@/store/modules/campaigns/state';
 import {State as GoogleAdsState} from '@/store/modules/google-ads/state';
-import {adsAccountStatus, googleAdsAccountChosen, googleAdsAccountChosenWithSignedTos} from '@/../.storybook/mock/google-ads';
+import {adsAccountStatus, googleAdsAccountChosen} from '@/../.storybook/mock/google-ads';
 import AlertSignGadsTos from './alert-sign-gads-tos.vue';
 import alertEcReadyVue from './alert-ec-ready.vue';
 

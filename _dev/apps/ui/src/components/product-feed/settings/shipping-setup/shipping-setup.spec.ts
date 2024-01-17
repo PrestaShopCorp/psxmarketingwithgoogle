@@ -2,7 +2,7 @@ import Vuex from 'vuex';
 
 import {mount, Wrapper} from '@vue/test-utils';
 import {BFormRadio} from 'bootstrap-vue';
-import {addBootstrapToVue, cloneStore, localVue} from '@/../tests/init';
+import {cloneStore, localVue} from '@/../tests/init';
 import ShippingSetup from './shipping-setup.vue';
 import {
   productFeed,

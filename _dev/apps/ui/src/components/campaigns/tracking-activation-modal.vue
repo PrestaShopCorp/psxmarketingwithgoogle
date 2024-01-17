@@ -9,8 +9,8 @@
     <img
       src="@/assets/images/empty-cart.svg"
       width="250"
-      height="170" 
-    />
+      height="170"
+    >
     <VueShowdown
       class="mt-1 mb-4"
       :extensions="['extended-link']"
@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import {defineComponent} from 'vue';
 import PsModal from '@/components/commons/ps-modal.vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';

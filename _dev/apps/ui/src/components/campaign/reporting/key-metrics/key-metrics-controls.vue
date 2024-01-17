@@ -5,10 +5,16 @@
     <template #loading>
       <b-row class="mb-2">
         <b-col>
-          <b-skeleton width="30%" height="33px"></b-skeleton>
+          <b-skeleton
+            width="30%"
+            height="33px"
+          />
         </b-col>
         <b-col cols="4">
-          <b-skeleton width="100%" height="33px"></b-skeleton>
+          <b-skeleton
+            width="100%"
+            height="33px"
+          />
         </b-col>
       </b-row>
     </template>
@@ -32,7 +38,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import {defineComponent} from 'vue';
 import KeyMetricsPeriodSelector from '@/components/campaign/reporting/key-metrics/key-metrics-period-selector.vue';
 
 export default defineComponent({
@@ -52,7 +58,7 @@ export default defineComponent({
     accountHasAtLeastOneCampaign: {
       type: Boolean,
       required: true,
-    }
+    },
   },
 });
 </script>
