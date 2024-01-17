@@ -663,7 +663,7 @@
                     "noEligibleCurrenciesDesc": "Bitte aktualisieren Sie Ihre Zielländer in Ihrem {0} oder fügen Sie die entsprechenden Währungen in Ihrem {1} hinzu, damit sie mit den fehlerhaften Zielländern übereinstimmen."
                 },
                 "title": "Konfiguration Ihres Produkt-Feeds",
-                "targetCountries": "Ausgewähltes Zielland:|Ausgewählte Zielländer:",
+                "targetCountries": "Target country:|Target countries:",
                 "languages": "Sprache:|Sprachen:",
                 "currencies": "Währung:|Währungen:",
                 "noLanguage": "Keine zulässige Sprache",

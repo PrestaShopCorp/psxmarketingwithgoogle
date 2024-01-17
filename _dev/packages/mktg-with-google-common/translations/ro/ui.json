@@ -663,7 +663,7 @@
                     "noEligibleCurrenciesDesc": "Actualizează țările țintă din {0} sau adaugă monedele relevante din {1} pentru a se potrivi cu țările țintă în eroare."
                 },
                 "title": "Configurația fluxului tău de produse",
-                "targetCountries": "Țară țintă selectată:| Țări țintă selectate:",
+                "targetCountries": "Target country:|Target countries:",
                 "languages": "Limbă:|Limbi:",
                 "currencies": "Monedă:|Monede:",
                 "noLanguage": "Nicio limbă eligibilă",
