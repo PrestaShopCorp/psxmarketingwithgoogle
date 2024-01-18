@@ -318,8 +318,8 @@ export default {
     return result;
   },
   async [ActionsTypes.REQUEST_SYNCHRONISATION]({rootState}: Context, full = false) {
-    const response = await fetch(`https://api.cloudsync.prestashop.com/sync/v1//trigger${full ? '-full' : ''}`, {
-      method: 'GET',
+    const response = await fetch(`https://api.cloudsync.prestashop.com/sync/v1/trigger${full ? '-full' : ''}`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
