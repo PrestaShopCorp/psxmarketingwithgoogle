@@ -36,7 +36,7 @@
       >
         <merchant-center-account-alert-suspended
           v-if="gmcAccountIsSuspended"
-          :issues="gmcAccountDetails.isSuspended.issues"
+          :issues="gmcAccountDetails.accountIssues.issues"
           :account-overview-url="gmcAccountOverviewPage"
         />
         <feed-configuration-card
@@ -67,7 +67,7 @@ import VerifiedProducts from './panel/verified-products.vue';
 import SyncHistory from './sync-history/sync-history.vue';
 import SyncState from './sync-history/sync-state.vue';
 import {IncrementalSyncContext} from './feed-configuration/feed-configuration';
-import {WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
+import {MerchantCenterAccountContext, WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 import {getMerchantCenterWebsiteUrls} from '@/components/merchant-center-account/merchant-center-account-links';
 import {VerificationStats} from '@/store/modules/product-feed/state';
 
@@ -97,7 +97,7 @@ export default defineComponent({
     incrementalSyncContext(): IncrementalSyncContext|null {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_SYNC_CONTEXT'];
     },
-    gmcAccountDetails() {
+    gmcAccountDetails(): MerchantCenterAccountContext {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'];
     },
     gmcAccountIsSuspended(): boolean {

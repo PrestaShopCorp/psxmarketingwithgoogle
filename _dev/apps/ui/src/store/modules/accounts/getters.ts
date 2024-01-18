@@ -60,7 +60,7 @@ export default {
     if (state.googleMerchantAccount.gmcStatus) {
       return state.googleMerchantAccount.gmcStatus;
     }
-    if (state.googleMerchantAccount.isSuspended.status) {
+    if (state.googleMerchantAccount.accountIssues.issues.length) {
       return WebsiteClaimErrorReason.Suspended;
     }
     return null;

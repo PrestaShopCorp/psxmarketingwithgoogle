@@ -109,7 +109,7 @@ export default {
           ActionsTypes.TRIGGER_WEBSITE_CLAIMING_PROCESS,
           {overwrite: false, correlationId},
         );
-      } else if (state.googleMerchantAccount.isSuspended.status) {
+      } else if (state.googleMerchantAccount.accountIssues.issues.length) {
         commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
       } else if (state.googleMerchantAccount.isPhoneVerified.status === false) {
         commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
@@ -344,9 +344,13 @@ export default {
     }: Context,
     correlationId: string,
   ) {
+    const params = new URLSearchParams({
+      languageCode: window.i18nSettings.isoCode,
+      timeZone: encodeURI(Intl.DateTimeFormat().resolvedOptions().timeZone),
+    });
     const json = await (await fetchOnboarding(
       'GET',
-      'shopping-websites/site-verification/status',
+      `shopping-websites/site-verification/status?${params.toString()}`,
       {correlationId},
     )).json();
 

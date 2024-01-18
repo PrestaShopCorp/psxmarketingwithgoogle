@@ -115,8 +115,9 @@
       "AccountValidationFailed": "Account validation failed",
       "unlinkFailed": "Disconnection failed. Please refresh the page and try again.",
       "tryAgainLater": "We can’t verify or claim the current site. **We recommend that you ensure that the site is accessible** and try again later.",
-      "alertSuspended": "Your account has been deactivated.",
-      "alertSuspendedDescription": "To see more details on the reasons for suspension, please visit your [Merchant Center account]({0})[:target=\"_blank\"]. Once resolved you will need to request a new review by filling out [this form]({1})[:target=\"_blank\"].",
+      "alertSuspended": "Account suspended: action required",
+      "alertSuspendedDescription": "Google suspended your Merchant Center account due to policy violations. Your products are no longer being promoted. Review the suspension reason, analyze your account, and take the necessary steps to meet the requirements. {0}.",
+      "alertSuspendedLearnMore": "Learn more about the account suspension",
       "notManaged": "Not associated with PrestaShop",
       "overwriteFailed": "Website URL claim failed",
       "overwriteToBeDoneManually": "Your website has been already claimed on another merchant center account. As we are not administrator of your account, we cannot overwrite this claim for you. Please go to your [Google Merchant Center]({0})[:target=\"_blank\"] , and change the Website URL with this one : {1}",
@@ -211,6 +212,10 @@
       "alert": "Your store will be reviewed so if one of these requirements is missing, your account will be suspended.",
       "phoneFormat": "Your business phone number isn't a valid format (only accept number) please change it.",
       "updateData": "If you have made any modification in your backoffice, please refresh your information to see the changes reflected here."
+    },
+    "gmcAccountIssues": {
+      "title": "More details about account issues",
+      "description": "Your account has been flagged for potential performance and compliance issues. Please review the detailed information provided to understand and address these concerns promptly"
     },
     "productFeedCard": {
       "title": "Product feed",
@@ -891,6 +896,7 @@
       "cancel": "Cancel",
       "disconnectAccount": "Disconnect account",
       "selectAccount": "Select account",
+      "reviewAccount": "Review account",
       "addMapping": "Add mapping",
       "modifyMapping": "Modify mapping",
       "learnAboutProductConfiguration": "Learn more about product data specification",

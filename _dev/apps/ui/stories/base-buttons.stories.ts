@@ -12,6 +12,7 @@ const Template = (args, { argTypes }) => ({
       <b-button variant="success">Success</b-button>
       <b-button variant="danger">Danger</b-button>
       <b-button variant="warning">Warning</b-button>
+      <b-button variant="info">Info</b-button>
     </div>
   `,
 });
@@ -29,6 +30,7 @@ const TemplateOutline = (args, { argTypes }) => ({
       <b-button variant="outline-success">Success</b-button>
       <b-button variant="outline-danger">Danger</b-button>
       <b-button variant="outline-warning">Warning</b-button>
+      <b-button variant="outline-info">Info</b-button>
     </div>
   `,
 });
