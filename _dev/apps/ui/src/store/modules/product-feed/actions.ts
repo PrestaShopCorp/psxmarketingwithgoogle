@@ -318,7 +318,7 @@ export default {
     return result;
   },
   async [ActionsTypes.REQUEST_SYNCHRONISATION]({rootState}: Context, full = false) {
-    const response = await fetch(`https://eventbus-sync.psessentials.net/sync/trigger${full ? '-full' : ''}`, {
+    const response = await fetch(`https://api.cloudsync.prestashop.com/sync/v1//trigger${full ? '-full' : ''}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
