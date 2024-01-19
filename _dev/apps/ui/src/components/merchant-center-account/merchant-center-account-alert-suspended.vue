@@ -38,7 +38,7 @@
 import {PropType, defineComponent} from 'vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 import MerchantCenterAccountPopinAccountIssues from '@/components/merchant-center-account/issues/merchant-center-account-popin-account-issues.vue';
-import {AccountIssue} from '@/components/merchant-center-account/issues/types';
+import {AccountIssue} from '@/components/render-issues/account-issues.types';
 
 export default defineComponent({
   name: 'MerchantCenterAccountAlertSuspended',

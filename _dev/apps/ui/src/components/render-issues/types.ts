@@ -1,21 +1,3 @@
-export interface AccountIssuesResponse {
-  issues: AccountIssue[];
-  alternateDisputeResolution?: AlternateDisputeResolution;
-}
-
-export interface AccountIssue {
-  title: string;
-  impact: AccountIssueImpact;
-  prerenderedContent: string;
-  actions?: Action[];
-}
-
-export interface AccountIssueImpact {
-  severity: ErrorSeverity;
-  message?: string;
-  breakdowns?: Breakdown[];
-}
-
 export interface Breakdown {
   regions?: Region[];
   details: string[];
@@ -65,4 +47,4 @@ export interface AlternateDisputeResolution {
   label: string;
 }
 
-export type ErrorSeverity = 'ERROR' | 'WARNING' | 'INFO';
+export type Severity = 'ERROR' | 'WARNING' | 'INFO';
