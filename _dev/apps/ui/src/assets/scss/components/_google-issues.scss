@@ -1,0 +1,46 @@
+.issue-detail {
+  .content-element {
+    .tooltip {
+        position: unset;
+      z-index: unset;
+      display: unset;
+      margin: unset;
+        margin-bottom: unset;
+      font-family: unset;
+      font-style: unset;
+      font-weight: unset;
+      line-height: unset;
+      text-align: unset;
+      text-align: unset;
+      text-decoration: unset;
+      text-shadow: unset;
+      text-transform: unset;
+      letter-spacing: unset;
+      word-break: unset;
+      white-space: unset;
+      word-spacing: unset;
+      line-break: unset;
+      font-size: unset;
+      word-wrap: unset;
+      opacity: unset;
+
+      .tooltip-icon {
+        &::before {
+          content: "help_outline"; // "launch" icon
+          font-family: 'Material Icons';
+          -webkit-font-feature-settings: 'liga';
+          display: inline-block;
+          vertical-align: middle;
+          margin-left: 0.18em;
+          text-decoration: none;
+          @extend .ps_gs-fz-20;
+          @extend .text-secondary;
+        }
+      }
+
+      .tooltip-text {
+        display: none;
+      }
+    }
+  }
+}
