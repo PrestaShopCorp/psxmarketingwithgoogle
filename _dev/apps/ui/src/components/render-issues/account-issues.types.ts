@@ -1,4 +1,6 @@
-import { Action, AlternateDisputeResolution, Breakdown, Severity } from "./types";
+import {
+  Action, AlternateDisputeResolution, Breakdown, Severity,
+} from './types';
 
 export interface AccountIssuesResponse {
   issues: AccountIssue[];

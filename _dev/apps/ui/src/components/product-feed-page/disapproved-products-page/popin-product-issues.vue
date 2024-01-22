@@ -19,7 +19,7 @@
         getProductBaseUrl.replace('/1?', `/${productId}?`),
       ])"
     />
-    
+
     <template slot="modal-footer">
       <span />
     </template>
@@ -28,10 +28,10 @@
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
+import {BTooltip} from 'bootstrap-vue';
 import PsModal from '@/components/commons/ps-modal.vue';
 import CollapsingIssues from '@/components/render-issues/collapsing-issues.vue';
 import {ProductIssue} from '@/components/render-issues/product-issues.types';
-import { BTooltip } from 'bootstrap-vue';
 
 export default defineComponent({
   name: 'PopinProductIssues',
@@ -63,22 +63,23 @@ export default defineComponent({
     findAndCreateTooltips(): void {
       // Initialisation of Tooltips
       const tooltips = this.$el.querySelectorAll('.tooltip');
-      
+
       tooltips.forEach((tooltip) => {
         const tooltipText = tooltip.querySelector('.tooltip-text');
         const tooltipIcon = tooltip.querySelector('.tooltip-icon');
 
-        const $tooltip = (this.tooltipsComponents = new BTooltip({
+        const $tooltip = new BTooltip({
           parent: this,
 
           propsData: {
             target: tooltipIcon,
             container: '#psxMktgWithGoogleApp',
             title: tooltipText?.textContent,
-          }
-        }));
-        
+          },
+        });
+
         $tooltip.$mount();
+        this.tooltipsComponents.push($tooltip);
       });
     },
     unloadTooltips(): void {
