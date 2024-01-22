@@ -27,28 +27,26 @@
       :rowspan="countriesAndStatusAreTheSame ? numberOfDisapprovedDestinations : 0"
       v-if="!indexStatus || !countriesAndStatusAreTheSame"
     >
-      <b-badge
-        v-for="(country, indexCountry) in status.countries"
-        :key="indexCountry"
-        variant="primary"
-        class="ps_gs-fz-12 mb-1 mr-1"
+      <b-card
+        v-for="(country) in status.countries"
+        :key="country"
+        border-variant="primary"
+        class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13 font-weight-500"
       >
-        {{ country }}
-      </b-badge>
+        {{ changeCountryCodeToName(country) }}
+      </b-card>
     </b-td>
     <b-td
       class="align-top"
       :rowspan="countriesAndStatusAreTheSame ? numberOfDisapprovedDestinations : 0"
       v-if="!indexStatus || !countriesAndStatusAreTheSame"
     >
-      <span>
-        <b-badge
-          variant="primary"
-          class="ps_gs-fz-12"
-        >
-          {{ product.language }}
-        </b-badge>
-      </span>
+      <b-card
+        border-variant="primary"
+        class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13 font-weight-500"
+      >
+        {{ product.language }}
+      </b-card>
     </b-td>
 
     <b-td
@@ -95,7 +93,8 @@
 import {defineComponent, PropType} from 'vue';
 import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
 import {ProductStatus, ProductInfos, ProductInfosStatus} from '@/store/modules/product-feed/state';
-import { BButton } from 'bootstrap-vue';
+import {BButton} from 'bootstrap-vue';
+import {changeCountryCodeToName} from '@/utils/Countries';
 
 export default defineComponent({
   name: 'ProductFeedTableStatusDetailsRow',
@@ -162,6 +161,7 @@ export default defineComponent({
       }
       return [];
     },
+    changeCountryCodeToName,
   },
 });
 </script>
