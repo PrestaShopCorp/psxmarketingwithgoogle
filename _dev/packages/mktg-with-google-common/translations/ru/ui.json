@@ -117,6 +117,7 @@
         "tryAgainLater": "Не удалось проверить или подтвердить текущий сайт. **Убедитесь, что сайт доступен**, и повторите попытку позже.",
         "alertSuspended": "Ваш аккаунт был деактивирован.",
         "alertSuspendedDescription": "Чтобы узнать более подробную информацию о причинах приостановки, посетите свой [Merchant Center account]({0})[:target=\"_blank\"]. После решения проблемы вам нужно будет запросить новый отзыв, заполнив [эту форму]({1})[:target=\"_blank\"].",
+        "alertSuspendedLearnMore": "Learn more about the account suspension",
         "notManaged": "Не связано с PrestaShop",
         "overwriteFailed": "Утверждение URL-адреса веб-сайта не удалось",
         "overwriteToBeDoneManually": "Ваш сайт уже был заявлен в другом торговом центре. Поскольку мы не являемся администратором вашего аккаунта, мы не можем переписать это заявление для вас. Пожалуйста, зайдите в свой [Google Merchant Center]({0})[:target=\"_blank\"], и измените URL веб-сайта на этот: {1}",
@@ -211,6 +212,10 @@
         "alert": "Ваш магазин будет проверен, и если одно из этих требований будет отсутствовать, ваша учетная запись будет приостановлена.",
         "phoneFormat": "Номер телефона вашего предприятия не соответствует формату (принимается только номер), пожалуйста, измените его.",
         "updateData": "Если вы внесли какие-либо изменения в свой бэк-офис, пожалуйста, обновите информацию, чтобы увидеть изменения, отраженные здесь."
+    },
+    "gmcAccountIssues": {
+        "title": "More details about account issues",
+        "description": "Your account has been flagged for potential performance and compliance issues. Please review the detailed information provided to understand and address these concerns promptly"
     },
     "productFeedCard": {
         "title": "Подача продукта",
@@ -659,7 +664,7 @@
                     "noEligibleCurrenciesDesc": "Обновите целевые страны в {0} или добавьте необходимые валюты в {1}, чтобы они соответствовали целевым странам, указанным в ошибке."
                 },
                 "title": "Конфигурация товарного фида",
-                "targetCountries": "Выбранная целевая страна:|Выбранные целевые страны:",
+                "targetCountries": "Target country:|Target countries:",
                 "languages": "Язык:|Языки:",
                 "currencies": "Валюта:|Валюты:",
                 "noLanguage": "Нет подходящего языка",
@@ -889,6 +894,7 @@
         "cancel": "Отмена",
         "disconnectAccount": "Отключить счет",
         "selectAccount": "Выберите счет",
+        "reviewAccount": "Review account",
         "addMapping": "Добавить отображение",
         "modifyMapping": "Изменить отображение",
         "learnAboutProductConfiguration": "Узнайте больше о спецификации данных о продукте",
