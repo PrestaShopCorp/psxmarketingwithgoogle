@@ -19,7 +19,7 @@
 
 import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
 import {oauth2_v2 as oauthApi} from '@googleapis/oauth2/v2';
-import {AccountIssuesResponse} from '../../../components/merchant-center-account/issues/types';
+import {AccountIssuesResponse} from '@/components/render-issues/account-issues.types';
 
 export interface PrestaShopAccountsContext {
   user: {

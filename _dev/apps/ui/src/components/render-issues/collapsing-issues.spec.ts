@@ -1,18 +1,17 @@
 import {MountOptions, mount} from '@vue/test-utils';
 // Import this file first to init mock on window
 import config, {addBootstrapToVue, addShowdownToVue, localVue} from '@/../tests/init';
-import MerchantCenterAccountPopinAccountIssues from './merchant-center-account-popin-account-issues.vue';
-import {AccountIssue} from './types';
-import PsModal from '@/components/commons/ps-modal.vue';
+import CollapsingIssues from './collapsing-issues.vue';
+import {AccountIssue} from './account-issues.types';
 import CardCollapse from '@/components/commons/card-collapse.vue';
 
-describe('MerchantCenterAccountPopinAccountIssues', () => {
+describe('CollapsingIssues', () => {
   const buildWrapper = (
     options: MountOptions<any> = {},
   ) => {
     addBootstrapToVue();
     addShowdownToVue();
-    return mount(MerchantCenterAccountPopinAccountIssues, {
+    return mount(CollapsingIssues, {
       localVue,
       ...config,
       ...options,
@@ -29,7 +28,6 @@ describe('MerchantCenterAccountPopinAccountIssues', () => {
     // Check if the component is rendered
     expect(wrapper.exists()).toBe(true);
 
-    expect(wrapper.findComponent(PsModal).exists()).toBe(true);
     expect(wrapper.findAllComponents(CardCollapse)).toHaveLength(0);
 
     // Check if issues prop is passed correctly
