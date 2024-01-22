@@ -25,7 +25,6 @@
       <b-table-simple
         id="table-products"
         class="mb-3 card"
-        :table-class="{'border-bottom-0': loading}"
         responsive="xl"
       >
         <b-thead class="card-header">
@@ -42,20 +41,46 @@
         </b-thead>
 
         <b-tbody>
-          <template v-for="(product) in items">
+          <table-api-error
+            v-if="loadingStatus === RequestState.FAILED"
+            :colspan="fields.length"
+          />
+
+          <table-no-data
+            v-else-if="loadingStatus === RequestState.SUCCESS && !items.length"
+            :colspan="fields.length"
+          />
+
+          <template
+            v-else
+            v-for="(product) in items"
+          >
             <DisapprovedProductsRow
               :key="`${product.id}-${product.attribute}-${product.language}`"
               :product="product"
             />
           </template>
-          <b-tr v-if="loading">
-            <b-td
-              colspan="7"
-              class="ps_gs-table-products__loading-slot"
+
+          <template
+            v-if="loadingStatus === RequestState.PENDING"
+          >
+            <b-tr
+              v-for="index in 5"
+              :key="index"
+              class="justify-content-between align-items-center py-3"
             >
-              <i class="ps_gs-table-products__spinner">loading</i>
-            </b-td>
-          </b-tr>
+              <b-td
+                v-for="(text, textIndex) in fields"
+                :class="`${(textIndex!==5 ? 'align-top': undefined)}`"
+                :key="textIndex"
+              >
+                <b-skeleton
+                  class="mb-0 mx-1"
+                  :height="`${(textIndex===4 ? '5em' : undefined)}`"
+                />
+              </b-td>
+            </b-tr>
+          </template>
         </b-tbody>
       </b-table-simple>
     </b-card-body>
@@ -65,16 +90,22 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import DisapprovedProductsRow from './disapproved-products-row.vue';
+import {RequestState} from '@/store/types';
+import TableApiError from '@/components/commons/table-api-error.vue';
+import TableNoData from '@/components/commons/table-no-data.vue';
+import {ProductInfos} from '@/store/modules/product-feed/state';
 
 export default defineComponent({
-  name: 'ProductFeedTableStatusDetails',
+  name: 'DisapprovedProductsPage',
   components: {
     DisapprovedProductsRow,
+    TableApiError,
+    TableNoData,
   },
   data() {
     return {
-      loading: false,
-      nextToken: null,
+      loadingStatus: RequestState.IDLE as RequestState,
+      nextToken: null as string|null,
       selectedFilterQuantityToShow: '100',
       fields: [
         {
@@ -101,6 +132,7 @@ export default defineComponent({
           key: 'actions',
         },
       ],
+      RequestState,
     };
   },
   computed: {
@@ -109,7 +141,7 @@ export default defineComponent({
     },
     items() {
       return this.$store.state.productFeed.productsDatas.items
-        .filter((item) => item.statuses);
+        .filter((item: ProductInfos) => item.statuses);
     },
   },
   mounted() {
@@ -122,33 +154,30 @@ export default defineComponent({
     window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
-    getItems(token) {
-      this.loading = true;
-      this.$store.dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUSES', token)
-        .then((res) => {
-          if (!res.nextToken) {
-            // IF api does not send token, it means there are no results anymore.
-            // We remove the scroll event
-            window.removeEventListener('scroll', this.handleScroll);
-          } else {
-            // ELSE API gave us a token which means it still has results
-            // so we can keep scrolling and sending another GET with the token
-            this.nextToken = res.nextToken;
-          }
-        }).catch((error) => {
-          console.error(error);
+    async getItems(token: null|string): Promise<void> {
+      this.loadingStatus = RequestState.PENDING;
+      try {
+        const res = await this.$store.dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUSES', token);
+
+        if (!res.nextToken) {
+          // IF api does not send token, it means there are no results anymore.
+          // We remove the scroll event
           window.removeEventListener('scroll', this.handleScroll);
-        })
-        .then(() => {
-          setTimeout(() => {
-            this.loading = false;
-          }, 500);
-        });
+        }
+        this.nextToken = res.nextToken || null;
+        this.loadingStatus = RequestState.SUCCESS;
+      } catch (error) {
+        console.error(error);
+        window.removeEventListener('scroll', this.handleScroll);
+        this.loadingStatus = RequestState.FAILED;
+      }
     },
     handleScroll() {
       const de = document.documentElement;
 
-      if (this.loading === false && de.scrollTop + window.innerHeight >= de.scrollHeight - 1) {
+      if (this.loadingStatus === RequestState.SUCCESS 
+        && de.scrollTop + window.innerHeight >= de.scrollHeight - 1
+      ) {
         this.getItems(this.nextToken);
       }
     },

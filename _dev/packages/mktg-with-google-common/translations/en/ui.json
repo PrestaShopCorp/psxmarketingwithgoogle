@@ -28,6 +28,7 @@
       "mandatory": "are mandatory",
       "XIsMandatory": "{0} is mandatory.",
       "unableToFetchData": "We were unable to fetch datas, please try again later",
+      "noResults": "No data found",
       "search": "Search",
       "createAccount": "create your account",
       "createNewAccount": "If you don't have an account, you can {0} today.",
@@ -702,7 +703,6 @@
         "details": "To ensure a successful pre-scan with Google, please fix the issues outlined in the table below. Taking care of these issues will help your list your product on Google’s surfaces.",
         "languageSelection": "Filter by language",
         "languageSelected": "Filter by: {lang}",
-        "noResults": "No data found",
         "columns": {
           "issues": "Issues",
           "suggestedActions": "Suggested actions",

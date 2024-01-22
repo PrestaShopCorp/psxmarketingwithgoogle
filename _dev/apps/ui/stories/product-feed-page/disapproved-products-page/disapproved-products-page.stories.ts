@@ -3,6 +3,7 @@ import DisapprovedProductsPage from "@/components/product-feed-page/disapproved-
 import { initialStateApp } from "@/../.storybook/mock/state-app";
 import { productFeed } from "@/../.storybook/mock/product-feed";
 import {disapprovedProductsMock} from '@/../.storybook/mock/product-feeds/validation/list';
+import { RequestState } from "@/store/types";
 
 export default {
   title: "Product feed page/Disapproved products Page",
@@ -14,25 +15,16 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { DisapprovedProductsPage },
   template:
-    '<div><DisapprovedProductsPage v-bind="$props" ref="testTable"/></div>',
+    '<div><DisapprovedProductsPage v-bind="$props" ref="page"/></div>',
   beforeMount(this: any) {
     this.$store.state.app = Object.assign({}, initialStateApp);
     this.$store.state.productFeed = Object.assign({}, productFeed);
     this.$store.state.productFeed.productsDatas.items = [];
   },
-  mounted(this: any) {
-    if (args.loading === true) {
-      this.$refs.testTable.$data.loading = true;
-    }
-  },
+  ...(args.mounted? {mounted: args.mounted} : {}),
 });
 
 export const TableStatusDetails: any = Template.bind({});
-
-export const Loading: any = Template.bind({});
-Loading.args = {
-  loading: true,
-};
 TableStatusDetails.parameters = {
   msw: {
     handlers: [
@@ -94,6 +86,40 @@ TableStatusDetails.parameters = {
         return res(
           ctx.status(200),
           ctx.json(disapprovedProductsMock),
+        );
+      }),
+    ],
+  },
+};
+
+export const Loading: any = Template.bind({});
+Loading.args = {
+  mounted(this: any) {
+    setTimeout(() => {
+      console.log('bonsoir');
+      this.$refs.page.$data.loadingStatus = RequestState.PENDING;
+    }, 500);
+  }
+};
+Loading.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/product-feeds/verification/issues', (req, res, ctx) => {
+        return res(
+          ctx.json([])
+        );
+      }),
+    ],
+  },
+};
+
+export const ErrorApi: any = Template.bind({});
+ErrorApi.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/product-feeds/verification/issues', (req, res, ctx) => {
+        return res(
+          ctx.status(500)
         );
       }),
     ],

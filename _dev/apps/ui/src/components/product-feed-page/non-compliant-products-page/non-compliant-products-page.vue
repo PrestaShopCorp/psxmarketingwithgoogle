@@ -101,23 +101,11 @@
               :colspan="filtersHeaderList.length"
             />
 
-            <template v-else-if="!issues || !issues.length">
-              <tr>
-                <td
-                  :colspan="filtersHeaderList.length"
-                  class="py-5 text-center text-secondary"
-                >
-                  <div>
-                    <i class="material-icons ps_gs-fz-48">layers_clear</i>
-                  </div>
-                  <div
-                    class="ps_gs-fz-16 font-weight-600"
-                  >
-                    {{ $t('productFeedPage.compliancyIssuesPage.noResults') }}
-                  </div>
-                </td>
-              </tr>
-            </template>
+            <table-no-data
+              v-else-if="!issues || !issues.length"
+              :colspan="filtersHeaderList.length"
+            />
+
             <template v-else>
               <non-compliant-products-row
                 v-for="issue in issues"
@@ -138,12 +126,14 @@ import {defineComponent} from 'vue';
 import NonCompliantProductsRow from './non-compliant-products-row.vue';
 import {ProductVerificationIssueOverall} from '@/store/modules/product-feed/state';
 import TableApiError from '@/components/commons/table-api-error.vue';
+import TableNoData from '@/components/commons/table-no-data.vue';
 
 export default defineComponent({
   name: 'NonCompliantProductsPage',
   components: {
     NonCompliantProductsRow,
     TableApiError,
+    TableNoData,
   },
   data() {
     return {
