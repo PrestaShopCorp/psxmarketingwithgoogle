@@ -51,15 +51,12 @@
               <b-th
                 v-for="(columnText, index) in filtersHeaderList"
                 :key="index"
-                class="font-weight-600"
               >
                 <div
                   class="flex align-items-center text-nowrap"
                   :class="(+index === filtersHeaderList.length-1) && 'text-right'"
                 >
-                  <span>
-                    {{ columnText }}
-                  </span>
+                  {{ columnText }}
                 </div>
               </b-th>
             </b-tr>

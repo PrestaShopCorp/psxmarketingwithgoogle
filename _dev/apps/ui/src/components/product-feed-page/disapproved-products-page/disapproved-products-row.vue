@@ -2,15 +2,11 @@
   <b-tr>
     <b-td
       class="align-top"
-      :rowspan="numberOfDisapprovedDestinations"
-      v-if="!indexStatus"
     >
       {{ product.id }}{{ +product.attribute > 0 ? '&#8209;' + product.attribute : '' }}
     </b-td>
     <b-td
-      class="align-top b-table-sticky-column"
-      :rowspan="numberOfDisapprovedDestinations"
-      v-if="!indexStatus"
+      class="align-top"
     >
       <a
         class="external_link-no_icon"
@@ -24,22 +20,18 @@
     </b-td>
     <b-td
       class="align-top"
-      :rowspan="countriesAndStatusAreTheSame ? numberOfDisapprovedDestinations : 0"
-      v-if="!indexStatus || !countriesAndStatusAreTheSame"
     >
       <b-card
-        v-for="(country) in status.countries"
+        v-for="(country) in allAffectedCountries"
         :key="country"
         border-variant="primary"
-        class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13 font-weight-500"
+        class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13 font-weight-500 mb-2"
       >
         {{ changeCountryCodeToName(country) }}
       </b-card>
     </b-td>
     <b-td
       class="align-top"
-      :rowspan="countriesAndStatusAreTheSame ? numberOfDisapprovedDestinations : 0"
-      v-if="!indexStatus || !countriesAndStatusAreTheSame"
     >
       <b-card
         border-variant="primary"
@@ -54,20 +46,13 @@
     >
       <ul
         class="pl-0 mb-0 ml-3"
-        v-if="getIssues(status.destination).length"
+        v-if="allIssues.length"
       >
         <li
-          v-for="(issue, indexIssues) in getIssues(status.destination)"
+          v-for="(issue, indexIssues) in allIssues"
           :key="indexIssues"
         >
-          <a
-            class="text-decoration-none"
-            :href="issue.documentation"
-            :title="issue.detail"
-            target="_blank"
-          >
-            {{ issue.description }}
-          </a>
+          {{ issue }}
         </li>
       </ul>
       <VueShowdown
@@ -84,7 +69,12 @@
       />
     </b-td>
     <b-td>
-      <b-button></b-button>
+      <b-button
+        variant="primary"
+        class="text-nowrap"
+      >
+        {{ $t('cta.learnMore') }}
+      </b-button>
     </b-td>
   </b-tr>
 </template>
@@ -92,13 +82,13 @@
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
 import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
-import {ProductStatus, ProductInfos, ProductInfosStatus} from '@/store/modules/product-feed/state';
 import {BButton} from 'bootstrap-vue';
+import {ProductStatus, ProductInfos} from '@/store/modules/product-feed/state';
 import {changeCountryCodeToName} from '@/utils/Countries';
 
 export default defineComponent({
   name: 'ProductFeedTableStatusDetailsRow',
-  components: { BButton },
+  components: {BButton},
   data() {
     return {
       ProductStatus,
@@ -107,14 +97,6 @@ export default defineComponent({
   props: {
     product: {
       type: Object as PropType<ProductInfos>,
-      required: true,
-    },
-    status: {
-      type: Object as PropType<ProductInfosStatus>,
-      required: true,
-    },
-    indexStatus: {
-      type: Number,
       required: true,
     },
   },
@@ -134,15 +116,6 @@ export default defineComponent({
       }
       return this.product.issues.filter((issue) => issue.resolution === 'merchant_action' && issue.destination === 'SurfacesAcrossGoogle');
     },
-    countriesAndStatusAreTheSame(): boolean {
-      return this.product.statuses
-        .every((anotherStatus) => anotherStatus.status === this.status.status
-          && JSON.stringify(anotherStatus.countries) === JSON.stringify(this.status.countries),
-        );
-    },
-    numberOfDisapprovedDestinations(): number {
-      return this.product.statuses.filter((s) => s.status === ProductStatus.Disapproved).length;
-    },
     merchantCenterWebsitePageUrl() {
       const {id} = this.$store.state.accounts.googleMerchantAccount;
 
@@ -150,17 +123,29 @@ export default defineComponent({
         accountIssues: `https://merchants.google.com/mc/products/diagnostics?a=${id}&tab=account_issues`,
       };
     },
+    allAffectedCountries(): string[] {
+      return [...new Set(
+        ...this.product.statuses.map((status) => status.countries),
+      )];
+    },
+    allIssues(): string[] {
+      const issues: string[] = [];
+
+      this.product.issues?.forEach((issue) => {
+        if (!issue.description) {
+          return;
+        }
+
+        if (issues.includes(issue.description)) {
+          return;
+        }
+        issues.push(issue.description);
+      });
+
+      return issues;
+    },
   },
   methods: {
-    getIssues(destination: string): contentApi.Schema$ProductStatusItemLevelIssue[] {
-      if (destination === 'Shopping') {
-        return this.getShoppingIssues;
-      }
-      if (destination === 'SurfacesAcrossGoogle') {
-        return this.getSurfacesAcrossGoogleIssues;
-      }
-      return [];
-    },
     changeCountryCodeToName,
   },
 });

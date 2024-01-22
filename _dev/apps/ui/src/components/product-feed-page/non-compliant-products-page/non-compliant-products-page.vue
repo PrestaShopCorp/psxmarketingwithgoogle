@@ -39,7 +39,7 @@
                 :value="null"
                 name="campaignType"
               >
-                {{ $t('productFeedPage.approvalTable.filterAllStatus') }}
+                {{ $t('productFeedPage.approvalTable.filterANoFilterllStatus') }}
               </b-form-radio>
             </b-dropdown-form>
             <b-dropdown-form
@@ -67,12 +67,9 @@
               <b-th
                 v-for="(columnText, index) in filtersHeaderList"
                 :key="index"
-                class="font-weight-600"
               >
                 <div class="flex align-items-center text-nowrap">
-                  <span>
-                    {{ columnText }}
-                  </span>
+                  {{ columnText }}
                 </div>
               </b-th>
             </b-tr>

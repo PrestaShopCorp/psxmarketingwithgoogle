@@ -742,6 +742,7 @@
       "approvalTable": {
         "description": "Below is a list of your products that haven't passed the approval process. Each entry includes reasons for disapproval to help you make quick fixes. Once updated, these products can be sync to Google Shopping.",
         "filterTitle": "Filter by availability",
+        "NoFilter": "All",
         "tableHeaderID": "ID",
         "tableHeaderName": "Product title",
         "tableHeaderLanguage": "Language",
@@ -883,6 +884,7 @@
       "learnAboutAccountSuspension": "Learn about account suspension",
       "learnAboutSiteClaiming": "Learn about site claiming",
       "learnMoreAboutSmartShoppingCampaigns": "Learn more about Smart Shopping campaigns",
+      "learnMore": "Learn more",
       "configureAndExportProductFeed": "Start your configuration",
       "continueProductFeed": "Resume configuration",
       "chooseAccount": "Choose your account",
