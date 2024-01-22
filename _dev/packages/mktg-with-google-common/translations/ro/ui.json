@@ -117,6 +117,7 @@
         "tryAgainLater": "Nu putem verifica sau revendica site-ul curent. **Îți recomandăm să te asiguri că site-ul este accesibil** și să încerci din nou mai târziu.",
         "alertSuspended": "Contul tău a fost dezactivat.",
         "alertSuspendedDescription": "Pentru a vedea mai multe detalii despre motivele suspendării, accesează [contul Merchant Center]({0})[:target=\"_blank\"]. După rezolvare, va trebui să soliciți o nouă examinare completând [acest formular]({1})[:target=\"_blank\"].",
+        "alertSuspendedLearnMore": "Learn more about the account suspension",
         "notManaged": "Nu este asociat cu PrestaShop",
         "overwriteFailed": "Revendicarea adresei URL a site-ului a eșuat",
         "overwriteToBeDoneManually": "Site-ul a fost deja revendicat pe un alt cont Merchant Center. Deoarece nu suntem administratorul contului tău, nu putem suprascrie această revendicare pentru tine. Accesează [Google Merchant Center]({0})[:target=\"_blank\"] și modifică adresa URL a site-ului web cu aceasta: {1}",
@@ -211,6 +212,10 @@
         "alert": "Magazinul tău va fi examinat, și dacă una dintre aceste condiții lipsește, contul tău va fi suspendat.",
         "phoneFormat": "Numărul tău de telefon de serviciu nu are un format valid (acceptă doar numere), te rugăm să îl modifici.",
         "updateData": "Dacă ai făcut orice modificare în back-office, te rugăm să reîmprospătezi informațiile pentru a vedea modificările reflectate aici."
+    },
+    "gmcAccountIssues": {
+        "title": "More details about account issues",
+        "description": "Your account has been flagged for potential performance and compliance issues. Please review the detailed information provided to understand and address these concerns promptly"
     },
     "productFeedCard": {
         "title": "Fluxul de produse",
@@ -551,12 +556,12 @@
         "inputFiltersAllLabel": "Include toate produsele sincronizate",
         "inputFiltersPartialLabel": "Selectează produse utilizând filtre de partiție pentru produse",
         "inputFiltersHelper": "Ia-ți timp să [citești politicile privind reclamele ale Google Shopping]({0})[:target=\"_blank\"] unele produse sunt interzise sau restricționate.",
-        "inputBudgetHelper": "Vei plăti numai dacă cineva face clic pe reclama ta.",
+        "inputBudgetHelper": "The minimum budget varies based on your target country. Please select a country to see the exact minimum required.",
         "inputBudgetHelperForTargetCountry": "The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.",
         "inputBudgetInvalidFeedback": "Bugetul zilnic trebuie să fie un număr valid mai mare decât 1. Pentru orice număr zecimal, te rugăm să folosești un punct ca separator.",
         "inputBudgetBeforeThresholdFeedback": "Minimum budget required for this target country is {budget}. Please increase your budget to continue.",
         "inputBudgetFeedback": "Bugetul zilnic al campaniei",
-        "inputBudgetTooltip": "Bugetul este suma medie pe care o poți cheltui confortabil în fiecare zi în campania ta. Bugetul pe care îl alegi depinde în întregime de tine și îl poți ajusta în orice moment.",
+        "inputBudgetTooltip": "To ensure Ad performance, the base minimum depends on your target country and the budget you choose is entirely up to you, and you can adjust it at any time.",
         "inputBudgetPlaceholder": "Suma",
         "inputAllSyncedProducts": "Niciun filtru selectat",
         "formHelperTitle": "Activarea campaniei",
@@ -659,7 +664,7 @@
                     "noEligibleCurrenciesDesc": "Actualizează țările țintă din {0} sau adaugă monedele relevante din {1} pentru a se potrivi cu țările țintă în eroare."
                 },
                 "title": "Configurația fluxului tău de produse",
-                "targetCountries": "Țară țintă selectată:| Țări țintă selectate:",
+                "targetCountries": "Target country:|Target countries:",
                 "languages": "Limbă:|Limbi:",
                 "currencies": "Monedă:|Monede:",
                 "noLanguage": "Nicio limbă eligibilă",
@@ -889,6 +894,7 @@
         "cancel": "Anulare",
         "disconnectAccount": "Deconectare cont",
         "selectAccount": "Selectare cont",
+        "reviewAccount": "Review account",
         "addMapping": "Adăugare mapare",
         "modifyMapping": "Modificare mapare",
         "learnAboutProductConfiguration": "Află mai multe despre specificațiile datelor produselor",
@@ -1115,6 +1121,6 @@
         "textCampaignsBanner": "Creează-ți prima campanie și contactează cumpărători mai relevanți, pe toate canalele Google. Profită de învățarea automată de la Google și optimizează-ți destinațiile de plasare a reclamelor și îmbunătățește-ți în mod eficient traficul și vânzările."
     },
     "tipsAndTricks": {
-        "title": "Sfaturi și sugestii PrestaShop"
+        "title": "PrestaShop pro tip"
     }
 }
