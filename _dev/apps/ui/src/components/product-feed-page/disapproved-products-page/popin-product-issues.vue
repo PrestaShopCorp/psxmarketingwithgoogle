@@ -2,12 +2,12 @@
   <ps-modal
     id="MerchantCenterAccountPopinAccountIssues"
     ref="modal"
-    :title="$t('productFeedPage.productIssues.title')"
+    :title="$t('productFeedPage.productIssuesModal.title')"
     v-bind="$attrs"
   >
     <VueShowdown
       class="mb-3"
-      :markdown="$t('productFeedPage.productIssues.description')"
+      :markdown="$t('productFeedPage.productIssuesModal.description')"
     />
     <collapsing-issues
       :issues="issues"
@@ -15,7 +15,7 @@
 
     <VueShowdown
       class="mt-3"
-      :markdown="$t('productFeedPage.productIssues.footer', [
+      :markdown="$t('productFeedPage.productIssuesModal.footer', [
         getProductBaseUrl.replace('/1?', `/${productId}?`),
       ])"
     />

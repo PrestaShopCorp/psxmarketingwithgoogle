@@ -44,7 +44,7 @@
         <b-tbody>
           <template v-for="(product, index) in items">
             <template v-for="(status, indexStatus) in onlyDisapproved(product.statuses)">
-              <ProductFeedTableStatusDetailsRow
+              <DisapprovedProductsRow
                 :key="`${index}-${indexStatus}`"
                 :product="product"
                 :status="status"
@@ -66,14 +66,15 @@
   </b-card>
 </template>
 
-<script>
-import ProductFeedTableStatusDetailsRow from './product-feed-table-status-details-row.vue';
+<script lang="ts">
+import { defineComponent } from 'vue';
+import DisapprovedProductsRow from './disapproved-products-row.vue';
 import ProductsStatusType from '@/enums/product-feed/products-status-type';
 
-export default {
+export default defineComponent({
   name: 'ProductFeedTableStatusDetails',
   components: {
-    ProductFeedTableStatusDetailsRow,
+    DisapprovedProductsRow,
   },
   data() {
     return {
@@ -190,5 +191,5 @@ export default {
       return product.filter((stat) => stat.status === ProductsStatusType.DISAPPROVED);
     },
   },
-};
+});
 </script>

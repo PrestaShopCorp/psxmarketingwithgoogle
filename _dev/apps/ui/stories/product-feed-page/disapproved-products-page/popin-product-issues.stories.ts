@@ -2,7 +2,7 @@ import PopinProductIssues from '@/components/product-feed-page/disapproved-produ
 import { ProductIssuesResponse } from '@/components/render-issues/product-issues.types';
 
 export default {
-  title: 'Product Feed Page/Product Issues',
+  title: 'Product Feed Page/Disapproved products Page/Popins',
   component: PopinProductIssues,
 };
 
@@ -171,8 +171,8 @@ const issuesResponse: ProductIssuesResponse = {
 };
 
 
-export const Popin:any = Template.bind({});
-Popin.args = {
+export const ProductIssues:any = Template.bind({});
+ProductIssues.args = {
   issues: issuesResponse.issues,
   productId: '1234',
 };

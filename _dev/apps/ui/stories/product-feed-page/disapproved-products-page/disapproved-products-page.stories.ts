@@ -1,19 +1,19 @@
-import ProductFeedTableStatusDetails from "../src/components/product-feed-page/product-feed-table-status-details.vue";
-import { initialStateApp } from "../.storybook/mock/state-app";
-import { productFeed } from "../.storybook/mock/product-feed";
+import DisapprovedProductsPage from "@/components/product-feed-page/disapproved-products-page/disapproved-products-page.vue";
+import { initialStateApp } from "@/../.storybook/mock/state-app";
+import { productFeed } from "@/../.storybook/mock/product-feed";
 import { rest } from "msw";
 
 export default {
-  title: "Product feed page/Table Status Details",
-  component: ProductFeedTableStatusDetails,
+  title: "Product feed page/Disapproved products Page",
+  component: DisapprovedProductsPage,
   argTypes: {},
 };
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { ProductFeedTableStatusDetails },
+  components: { DisapprovedProductsPage },
   template:
-    '<div><ProductFeedTableStatusDetails v-bind="$props" ref="testTable"/></div>',
+    '<div><DisapprovedProductsPage v-bind="$props" ref="testTable"/></div>',
   beforeMount(this: any) {
     this.$store.state.app = Object.assign({}, initialStateApp);
     this.$store.state.productFeed = Object.assign({}, productFeed);

@@ -5,12 +5,12 @@ import {shallowMount} from '@vue/test-utils';
 import createFetchMock from 'vitest-fetch-mock';
 
 import config, {cloneStore} from '@/../tests/init';
-import ProductFeedTableStatusDetailsRow from '@/components/product-feed-page/product-feed-table-status-details-row.vue';
-import ProductFeedTableStatusDetails from '@/components/product-feed-page/product-feed-table-status-details.vue';
+import DisapprovedProductsRow from '@/components/product-feed-page/disapproved-products-page/disapproved-products-row.vue';
+import DisapprovedProductsPage from '@/components/product-feed-page/disapproved-products-page/disapproved-products-page.vue';
 import {
   productFeed,
   productFeedWithDisapprovedProductsButNoIssues,
-} from '../../../.storybook/mock/product-feed';
+} from '@/../.storybook/mock/product-feed';
 
 const fetchMock = createFetchMock(vi);
 fetchMock.enableMocks();
@@ -28,32 +28,32 @@ describe('product-feed-table-status-details.vue', () => {
     storeConfigured.modules.productFeed.state = {
       ...productFeed,
     };
-    const wrapper = shallowMount(ProductFeedTableStatusDetails, {
+    const wrapper = shallowMount(DisapprovedProductsPage, {
       ...config,
       store: new Vuex.Store(storeConfigured),
     });
-    expect(wrapper.findAllComponents(ProductFeedTableStatusDetailsRow).exists()).toBeTruthy();
+    expect(wrapper.findAllComponents(DisapprovedProductsRow).exists()).toBeTruthy();
   });
   it('does not display a suspended destination if there is not associated issues', () => {
     storeConfiguredButNoIssued = cloneStore();
     storeConfigured.modules.productFeed.state = {
       ...productFeedWithDisapprovedProductsButNoIssues,
     };
-    const wrapper = shallowMount(ProductFeedTableStatusDetails, {
+    const wrapper = shallowMount(DisapprovedProductsPage, {
       ...config,
       store: new Vuex.Store(storeConfiguredButNoIssued),
     });
-    expect(wrapper.findAllComponents(ProductFeedTableStatusDetailsRow).exists()).toBeFalsy();
+    expect(wrapper.findAllComponents(DisapprovedProductsRow).exists()).toBeFalsy();
   });
   it('only display disapproved products', () => {
     storeConfigured = cloneStore();
     storeConfigured.modules.productFeed.state = {
       ...productFeed,
     };
-    const wrapper = shallowMount(ProductFeedTableStatusDetails, {
+    const wrapper = shallowMount(DisapprovedProductsPage, {
       ...config,
       store: new Vuex.Store(storeConfigured),
     });
-    expect(wrapper.findAllComponents(ProductFeedTableStatusDetailsRow).length).toBe(8);
+    expect(wrapper.findAllComponents(DisapprovedProductsRow).length).toBe(8);
   });
 });

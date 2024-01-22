@@ -8,7 +8,7 @@ import config, {
   localVue, cloneStore, addBootstrapToVue, addShowdownToVue,
 } from '@/../tests/init';
 
-import productFeedTableStatusDetailsRowVue from './product-feed-table-status-details-row.vue';
+import DisapprovedProductsRow from './disapproved-products-row.vue';
 
 describe('product-feed-table-status-details-row.vue', () => {
   const buildWrapper = (
@@ -18,7 +18,7 @@ describe('product-feed-table-status-details-row.vue', () => {
     addShowdownToVue();
     const store = cloneStore();
 
-    return mount(productFeedTableStatusDetailsRowVue, {
+    return mount(DisapprovedProductsRow, {
       localVue,
       store: new Vuex.Store(store),
       ...config,
