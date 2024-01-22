@@ -117,6 +117,7 @@
         "tryAgainLater": "Non possiamo verificare o confermare il sito attuale. **Si consiglia di verificare che il sito sia accessibile** e di riprovare più tardi.",
         "alertSuspended": "Il tuo account è stato disabilitato.",
         "alertSuspendedDescription": "Per vedere maggiori dettagli sui motivi della sospensione, visita il tuo [account Merchant Center]({0})[:target=\"_blank\"]. Una volta risolto, dovrai richiedere una nuova revisione compilando [questo modulo]({1})[:target=\"_blank\"].",
+        "alertSuspendedLearnMore": "Learn more about the account suspension",
         "notManaged": "Non associato a PrestaShop",
         "overwriteFailed": "Richiesta di URL del sito web fallita",
         "overwriteToBeDoneManually": "Il tuo sito web è già stato verificato con un altro account del merchant center. Dato che non siamo amministratori del tuo account, non possiamo sovrascrivere questa richiesta al tuo posto. Per favore, vai nel tuo [Google Merchant Center]({0})[:target=\"_blank\"], e cambia l'URL del sito web con questo: {1}",
@@ -211,6 +212,10 @@
         "alert": "Il tuo shop verrà verificato, quindi se uno di questi requisiti dovesse mancare, il tuo account sarà sospeso.",
         "phoneFormat": "Il tuo numero di telefono aziendale non è in un formato valido (accetta solo numeri) per favore cambialo.",
         "updateData": "Se hai fatto qualche modifica nel tuo back office, aggiorna le tue informazioni per vedere i cambiamenti riprodotti anche qui."
+    },
+    "gmcAccountIssues": {
+        "title": "More details about account issues",
+        "description": "Your account has been flagged for potential performance and compliance issues. Please review the detailed information provided to understand and address these concerns promptly"
     },
     "productFeedCard": {
         "title": "Feed prodotti",
@@ -551,12 +556,12 @@
         "inputFiltersAllLabel": "Includi tutti i prodotti sincronizzati",
         "inputFiltersPartialLabel": "Seleziona i prodotti usando i filtri di partizione dei prodotti",
         "inputFiltersHelper": "Prenditi del tempo per leggere [leggi le norme pubblicitarie di Google Shopping]({0})[:target=\"_blank\"] alcuni prodotti sono proibiti o limitati.",
-        "inputBudgetHelper": "Pagherai solo se qualcuno clicca sul tuo annuncio.",
+        "inputBudgetHelper": "The minimum budget varies based on your target country. Please select a country to see the exact minimum required.",
         "inputBudgetHelperForTargetCountry": "The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.",
         "inputBudgetInvalidFeedback": "Il tuo budget giornaliero deve essere un numero valido maggiore di 1. Per qualsiasi numero decimale, usa un punto come separatore.",
         "inputBudgetBeforeThresholdFeedback": "Minimum budget required for this target country is {budget}. Please increase your budget to continue.",
         "inputBudgetFeedback": "Budget giornaliero della campagna",
-        "inputBudgetTooltip": "Il tuo budget è l'importo medio che puoi spendere ogni giorno per la tua campagna. Il budget che scegliete dipende interamente da voi e potete modificarlo in qualsiasi momento.",
+        "inputBudgetTooltip": "To ensure Ad performance, the base minimum depends on your target country and the budget you choose is entirely up to you, and you can adjust it at any time.",
         "inputBudgetPlaceholder": "Importo",
         "inputAllSyncedProducts": "Nessun filtro selezionato",
         "formHelperTitle": "Attivazione della campagna",
@@ -659,7 +664,7 @@
                     "noEligibleCurrenciesDesc": "Aggiorna i Paesi di destinazione nel {0} o aggiungi le relative valute nel {1} per farle corrispondere ai Paesi di destinazione in errore."
                 },
                 "title": "La configurazione del feed del tuo prodotto",
-                "targetCountries": "Paese di destinazione selezionato:|Paesi di destinazione selezionati:",
+                "targetCountries": "Target country:|Target countries:",
                 "languages": "Lingua:|Lingue:",
                 "currencies": "Valuta:|Valute:",
                 "noLanguage": "Nessuna lingua idonea",
@@ -889,6 +894,7 @@
         "cancel": "Cancella",
         "disconnectAccount": "Disconnetti l'account",
         "selectAccount": "Seleziona l'account",
+        "reviewAccount": "Review account",
         "addMapping": "Aggiungi la mappatura",
         "modifyMapping": "Modifica la mappatura",
         "learnAboutProductConfiguration": "Per saperne di più sulle specifiche dei dati di prodotto",
@@ -1115,6 +1121,6 @@
         "textCampaignsBanner": "Crea la tua prima campagna e raggiungi il tuo target di acquirenti su tutti i canali di Google. Lascia che il machine learning di Google ottimizzi gli inserimenti dei tuoi annunci e migliora in modo efficiente il traffico e le vendite."
     },
     "tipsAndTricks": {
-        "title": "Suggerimenti e consigli di PrestaShop"
+        "title": "PrestaShop pro tip"
     }
 }

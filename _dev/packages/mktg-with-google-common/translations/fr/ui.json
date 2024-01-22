@@ -117,6 +117,7 @@
         "tryAgainLater": "Nous ne pouvons pas vérifier ou revendiquer le site actuel. **Nous vous recommandons de vous assurer que le site est accessible** et de réessayer plus tard.",
         "alertSuspended": "Votre compte a été désactivé.",
         "alertSuspendedDescription": "Pour plus de détails sur les raisons de suspension, veuillez visiter votre [compte Merchant Center]({0})[:target=\"_blank\"]. Une fois résolu, vous devrez demander une nouvelle révision en remplissant [ce formulaire]({1})[:target=\"_blank\"].",
+        "alertSuspendedLearnMore": "Learn more about the account suspension",
         "notManaged": "Non associé à PrestaShop",
         "overwriteFailed": "La revendication de l'URL du site web a échoué",
         "overwriteToBeDoneManually": "Votre site Web a déjà été réclamé sur un autre compte Merchant Center. Comme nous ne sommes pas administrateur de votre compte, nous ne pouvons pas écraser cette réclamation pour vous. Veuillez vous rendre à votre [Merchant Center]({0})[:target=\"_blank\"] , et changer l'URL du site web avec celui-ci : {1}",
@@ -211,6 +212,10 @@
         "alert": "Votre boutique sera examinée donc si l'une de ces conditions est manquante, votre compte sera suspendu.",
         "phoneFormat": "Le format de votre numéro de téléphone professionnel n'est pas valide (n'accepte que les numéros), veuillez le modifier.",
         "updateData": "Si vous avez fait des modifications dans votre backoffice, veuillez actualiser vos informations pour voir les changements reflétés ici."
+    },
+    "gmcAccountIssues": {
+        "title": "More details about account issues",
+        "description": "Your account has been flagged for potential performance and compliance issues. Please review the detailed information provided to understand and address these concerns promptly"
     },
     "productFeedCard": {
         "title": "Flux produit",
@@ -551,12 +556,12 @@
         "inputFiltersAllLabel": "Inclure tous les produits synchronisés",
         "inputFiltersPartialLabel": "Sélectionner des produits à l'aide des filtres",
         "inputFiltersHelper": "Prenez un peu de temps pour [lire les règles de Google Shopping ads]({0})[:target=\"_blank\"] certains produits sont interdits ou restreints.",
-        "inputBudgetHelper": "Vous ne paierez que si quelqu'un clique sur votre annonce.",
-        "inputBudgetHelperForTargetCountry": "Le minimum pour le pays cible {country} est {budget}, ce qui assure une visibilité suffisante à votre campagne dans cette zone.",
+        "inputBudgetHelper": "The minimum budget varies based on your target country. Please select a country to see the exact minimum required.",
+        "inputBudgetHelperForTargetCountry": "The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.",
         "inputBudgetInvalidFeedback": "Votre budget quotidien doit être un nombre valide supérieur à 1. Pour tout nombre décimal, veuillez utiliser un point comme séparateur.",
-        "inputBudgetBeforeThresholdFeedback": "Le budget minimum requis pour ce pays cible est de {budget}. Veuillez ajuster votre budget pour continuer.",
+        "inputBudgetBeforeThresholdFeedback": "Minimum budget required for this target country is {budget}. Please increase your budget to continue.",
         "inputBudgetFeedback": "Budget quotidien de la campagne",
-        "inputBudgetTooltip": "Votre budget est le montant moyen que vous pouvez dépenser chaque jour pour votre campagne. Le budget que vous avez choisi dépend entièrement de vous, et vous pouvez l'ajuster à tout moment.",
+        "inputBudgetTooltip": "To ensure Ad performance, the base minimum depends on your target country and the budget you choose is entirely up to you, and you can adjust it at any time.",
         "inputBudgetPlaceholder": "Montant",
         "inputAllSyncedProducts": "Aucun filtre sélectionné",
         "formHelperTitle": "Activation de la campagne",
@@ -618,7 +623,7 @@
         "dimensionXFilterSelectedWithXProducts": "Filtre {0} | Filtre {0} ({1} produit) | Filtre {0} ({1} produits)",
         "filtersWithxValues": "{0} filtres | {0} filtres avec {1} produit affecté | {0} filtres avec {1} produits affectés",
         "budgetTip": {
-            "content": "Pour assurer le succès de votre campagne, il est essentiel d'ajuster votre budget publicitaire quotidien en fonction du pays cible. Par exemple, un budget minimum de {budget} est recommandé pour le pays {country}. Lorsque vous choisissez votre pays cible, vous pouvez identifier le budget minimum recommandé pour atteindre vos objectifs. N'oubliez pas que ce budget est plus qu'un simple chiffre - c'est un élément clé de votre stratégie de campagne. Un budget bien défini permet de tester et d'affiner efficacement les publicités, ce qui vous permet d'adapter vos dépenses aux besoins spécifiques de votre entreprise et d'améliorer les performances globales de votre campagne."
+            "content": "To ensure the success of your campaign, it’s essential to adjust your daily ad budget according to the target country. For instance, a starting point of {budget} is recommended for {country}. By choosing your target country, you can identify the ideal budget to meet your objectives. Remember, this foundational budget is more than just a figure – it’s a key component of your campaign strategy. A well-planned budget facilitates efficient ad testing and refinement, enabling you to customize your expenditure to the unique requirements of your business and enhance overall campaign performance."
         }
     },
     "productFeedPage": {
@@ -659,7 +664,7 @@
                     "noEligibleCurrenciesDesc": "Veuillez mettre à jour vos pays cibles dans votre {0} ou ajouter les devises correspondantes aux pays cibles erronés dans votre {1}."
                 },
                 "title": "Votre configuration de flux produit",
-                "targetCountries": "Pays cible sélectionné:|Pays cibles sélectionnés:",
+                "targetCountries": "Target country:|Target countries:",
                 "languages": "Langue :|Langues :",
                 "currencies": "Devise :|Devises :",
                 "noLanguage": "Aucune langue éligible",
@@ -810,7 +815,7 @@
             "dailyBudget": "Budget quotidien"
         },
         "tooltip": {
-            "lowBudget": "Votre budget quotidien est trop faible pour que votre campagne soit performante. Ajuster votre budget pour améliorer les performances de votre campagne."
+            "lowBudget": "Your daily budget is too low to have a performing campaign, increase your budget to enhance campaign performance."
         }
     },
     "notConfiguredState": {
@@ -889,6 +894,7 @@
         "cancel": "Annuler",
         "disconnectAccount": "Déconnecter le compte",
         "selectAccount": "Sélectionnez un compte",
+        "reviewAccount": "Review account",
         "addMapping": "Ajouter un mappage",
         "modifyMapping": "Modifier le mappage",
         "learnAboutProductConfiguration": "En savoir plus sur la spécification des données produit",
@@ -1115,6 +1121,6 @@
         "textCampaignsBanner": "Créez votre première campagne et touchez des acheteurs plus qualifiés sur tous les canaux de Google. Laissez le machine learning de Google optimiser vos placements publicitaires et améliorer efficacement votre trafic et vos ventes."
     },
     "tipsAndTricks": {
-        "title": "Conseils et astuces PrestaShop"
+        "title": "PrestaShop pro tip"
     }
 }

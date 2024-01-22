@@ -117,6 +117,7 @@
         "tryAgainLater": "We kunnen de huidige website niet verifiëren of claimen. **We raden je aan ervoor te zorgen dat de website toegankelijk is** en het later opnieuw te proberen.",
         "alertSuspended": "Uw account is gedeactiveerd.",
         "alertSuspendedDescription": "Ga naar uw [Merchant Center-account]({0})[:target=\"_blank\"] voor meer informatie over de redenen voor opschorting. Eenmaal opgelost zult u een nieuwe beoordeling moeten aanvragen door [dit formulier]({1})[:target=\"_blank\"] in te vullen.",
+        "alertSuspendedLearnMore": "Learn more about the account suspension",
         "notManaged": "Niet verbonden met PrestaShop",
         "overwriteFailed": "Website URL claim mislukt",
         "overwriteToBeDoneManually": "Uw website is al geclaimd op een andere merchant center account. Aangezien wij geen beheerder van uw account zijn, kunnen wij deze claim niet voor u overschrijven. Ga naar uw [Google Merchant Center]({0})[:target=\"_blank\"] , en verander de Website URL met deze : {1}",
@@ -211,6 +212,10 @@
         "alert": "Uw winkel zal worden beoordeeld, dus als een van deze eisen ontbreekt, zal uw account worden geschorst.",
         "phoneFormat": "Uw zakelijk telefoonnummer is geen geldig formaat (alleen een nummer accepteren) verander het a.u.b.",
         "updateData": "Indien u wijzigingen hebt aangebracht in uw backoffice, gelieve uw informatie te vernieuwen om de wijzigingen hier te zien."
+    },
+    "gmcAccountIssues": {
+        "title": "More details about account issues",
+        "description": "Your account has been flagged for potential performance and compliance issues. Please review the detailed information provided to understand and address these concerns promptly"
     },
     "productFeedCard": {
         "title": "Product voer",
@@ -551,12 +556,12 @@
         "inputFiltersAllLabel": "Inclusief alle gesynchroniseerde producten",
         "inputFiltersPartialLabel": "Selecteer producten met behulp van productverdelingsfilters",
         "inputFiltersHelper": "Neem even de tijd om [het beleid van Google Shopping-advertenties te lezen]({0})[:target=\"_blank\"] sommige producten zijn verboden of beperkt.",
-        "inputBudgetHelper": "U betaalt alleen als iemand op uw advertentie klikt.",
+        "inputBudgetHelper": "The minimum budget varies based on your target country. Please select a country to see the exact minimum required.",
         "inputBudgetHelperForTargetCountry": "The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.",
         "inputBudgetInvalidFeedback": "Uw dagbudget moet een geldig getal zijn, groter dan 1. Gebruik voor elk decimaal getal een punt als scheidingsteken.",
         "inputBudgetBeforeThresholdFeedback": "Minimum budget required for this target country is {budget}. Please increase your budget to continue.",
         "inputBudgetFeedback": "Dagelijks campagnebudget",
-        "inputBudgetTooltip": "Uw budget is het gemiddelde bedrag dat u per dag aan uw campagne wilt besteden. Het budget dat u kiest, bepaalt u helemaal zelf, en u kunt het op elk moment aanpassen.",
+        "inputBudgetTooltip": "To ensure Ad performance, the base minimum depends on your target country and the budget you choose is entirely up to you, and you can adjust it at any time.",
         "inputBudgetPlaceholder": "Bedrag",
         "inputAllSyncedProducts": "Geen filters geselecteerd",
         "formHelperTitle": "Activering van de campagne",
@@ -659,7 +664,7 @@
                     "noEligibleCurrenciesDesc": "Werk je doellanden bij in je {0} of voeg de relevante valuta toe in je {1} om de doellanden ten onrechte overeen te laten komen."
                 },
                 "title": "De configuratie van je productfeed",
-                "targetCountries": "Geselecteerd doelland:|Geselecteerde doellanden:",
+                "targetCountries": "Target country:|Target countries:",
                 "languages": "Taal:|Talen:",
                 "currencies": "Valuta:|Valuta's:",
                 "noLanguage": "Geen in aanmerking komende taal",
@@ -889,6 +894,7 @@
         "cancel": "Annuleer",
         "disconnectAccount": "Account loskoppelen",
         "selectAccount": "Account kiezen",
+        "reviewAccount": "Review account",
         "addMapping": "Mapping toevoegen",
         "modifyMapping": "Wijzig mapping",
         "learnAboutProductConfiguration": "Meer informatie over de specificatie van productgegevens",
@@ -1115,6 +1121,6 @@
         "textCampaignsBanner": "Maak je eerste campagne aan en bereik meer relevante shoppers via alle kanalen van Google. Laat Google's machine learning je advertentieplaatsingen optimaliseren en je verkeer en verkoop efficiënt verbeteren."
     },
     "tipsAndTricks": {
-        "title": "Tips en trucs voor PrestaShop"
+        "title": "PrestaShop pro tip"
     }
 }
