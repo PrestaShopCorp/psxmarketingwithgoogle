@@ -117,6 +117,7 @@
         "tryAgainLater": "Não foi possível verificar ou reivindicar esse site. **Recomendamos que você verifique se o site está acessível** e tente novamente mais tarde.",
         "alertSuspended": "A sua conta foi desativada.",
         "alertSuspendedDescription": "Para mais detalhes sobre os motivos da suspensão, visite a sua [conta do Merchant Center]({0})[:target=\"_blank\"]. Uma vez resolvido o problema, você precisará solicitar uma nova verificação preenchendo [este formulário]({1})[:target=\"_blank\"].",
+        "alertSuspendedLearnMore": "Learn more about the account suspension",
         "notManaged": "Não associado à PrestaShop",
         "overwriteFailed": "Falha na alegação de URL do site",
         "overwriteToBeDoneManually": "O seu site já foi reclamado em outra conta do centro comercial. Como não somos administradores da sua conta, não podemos sobregravar esta reivindicação para você. Por favor vá ao seu [Google Merchant Center]({0})[:target=\"_blank\"] , e altere a URL do site com esta: {1}",
@@ -211,6 +212,10 @@
         "alert": "A sua loja será revista de modo a que, se um destes requisitos faltar, a sua conta seja suspensa.",
         "phoneFormat": "O seu número de telefone comercial não é um formato válido (aceite apenas o número), por favor mude-o.",
         "updateData": "Se fez alguma alteração no seu back office, por favor atualize as suas informações para visualizar as mudanças refletidas aqui."
+    },
+    "gmcAccountIssues": {
+        "title": "More details about account issues",
+        "description": "Your account has been flagged for potential performance and compliance issues. Please review the detailed information provided to understand and address these concerns promptly"
     },
     "productFeedCard": {
         "title": "Feed de produtos",
@@ -659,7 +664,7 @@
                     "noEligibleCurrenciesDesc": "Atualize seus países de destino em {0} ou adicione as moedas relevantes em {1} para corresponder aos países de destino com erro."
                 },
                 "title": "A configuração do seu feed de produtos",
-                "targetCountries": "País de destino selecionado:| Países de destino selecionados:",
+                "targetCountries": "Target country:|Target countries:",
                 "languages": "Idioma:|Idiomas:",
                 "currencies": "Moeda:|Moedas:",
                 "noLanguage": "Nenhum idioma elegível",
@@ -889,6 +894,7 @@
         "cancel": "Cancelar",
         "disconnectAccount": "Desconectar conta",
         "selectAccount": "Selecione conta",
+        "reviewAccount": "Review account",
         "addMapping": "Adicionar mapeamento",
         "modifyMapping": "Modificar mapeamento",
         "learnAboutProductConfiguration": "Saiba mais sobre a especificação de dados dos produtos",
