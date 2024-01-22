@@ -99,17 +99,11 @@ export default defineComponent({
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderLanguage'),
         },
         {
-          key: 'status',
-          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderGoogleValidation'),
-        },
-
-        {
           key: 'issues',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderIssue'),
         },
         {
-          key: 'destination',
-          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderDestination'),
+          key: 'actions',
         },
       ],
     };

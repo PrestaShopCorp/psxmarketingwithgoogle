@@ -15,7 +15,7 @@ import {
 const fetchMock = createFetchMock(vi);
 fetchMock.enableMocks();
 
-describe('product-feed-table-status-details.vue', () => {
+describe('disapproved-products-page/disapproved-products-page.vue', () => {
   let storeConfigured;
   let storeConfiguredButNoIssued;
   beforeEach(() => {

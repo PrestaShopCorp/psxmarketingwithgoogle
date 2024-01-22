@@ -53,20 +53,6 @@
 
     <b-td
       class="align-top"
-      :rowspan="countriesAndStatusAreTheSame ? numberOfDisapprovedDestinations : 0"
-      v-if="!indexStatus || !countriesAndStatusAreTheSame"
-    >
-      <b-badge
-        data-test-id="statusOfProduct"
-        :variant="badgeColor(status.status)"
-        class="ps_gs-fz-12 text-capitalize"
-      >
-        {{ status.status }}
-      </b-badge>
-    </b-td>
-
-    <b-td
-      class="align-top"
     >
       <ul
         class="pl-0 mb-0 ml-3"
@@ -100,7 +86,7 @@
       />
     </b-td>
     <b-td>
-      {{ renameDestination(status.destination) }}
+      <b-button></b-button>
     </b-td>
   </b-tr>
 </template>
@@ -109,10 +95,11 @@
 import {defineComponent, PropType} from 'vue';
 import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
 import {ProductStatus, ProductInfos, ProductInfosStatus} from '@/store/modules/product-feed/state';
+import { BButton } from 'bootstrap-vue';
 
 export default defineComponent({
   name: 'ProductFeedTableStatusDetailsRow',
-  components: {},
+  components: { BButton },
   data() {
     return {
       ProductStatus,
@@ -166,15 +153,6 @@ export default defineComponent({
     },
   },
   methods: {
-    badgeColor(status: ProductStatus): string {
-      if (status === ProductStatus.Approved) {
-        return 'success';
-      }
-      if (status === ProductStatus.Pending) {
-        return 'warning';
-      }
-      return 'danger';
-    },
     getIssues(destination: string): contentApi.Schema$ProductStatusItemLevelIssue[] {
       if (destination === 'Shopping') {
         return this.getShoppingIssues;
@@ -183,15 +161,6 @@ export default defineComponent({
         return this.getSurfacesAcrossGoogleIssues;
       }
       return [];
-    },
-    renameDestination(destination: string): string {
-      if (destination === 'Shopping') {
-        return this.$t('productFeedPage.destinations.shoppingAds');
-      }
-      if (destination === 'SurfacesAcrossGoogle') {
-        return this.$t('productFeedPage.destinations.enhancedFreeListing');
-      }
-      return destination;
     },
   },
 });

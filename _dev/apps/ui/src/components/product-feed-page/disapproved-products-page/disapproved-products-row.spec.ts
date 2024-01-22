@@ -10,7 +10,7 @@ import config, {
 
 import DisapprovedProductsRow from './disapproved-products-row.vue';
 
-describe('product-feed-table-status-details-row.vue', () => {
+describe('disapproved-products-row.vue', () => {
   const buildWrapper = (
     options: MountOptions<any> = {},
   ) => {
