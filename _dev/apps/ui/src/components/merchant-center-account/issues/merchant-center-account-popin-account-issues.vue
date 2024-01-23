@@ -23,7 +23,7 @@
 import {defineComponent, PropType} from 'vue';
 import PsModal from '@/components/commons/ps-modal.vue';
 import CollapsingIssues from '@/components/render-issues/collapsing-issues.vue';
-import {AccountIssue} from '@/components/render-issues/account-issues.types';
+import {AccountIssue} from '@/components/render-issues/types';
 
 export default defineComponent({
   name: 'MerchantCenterAccountPopinAccountIssues',

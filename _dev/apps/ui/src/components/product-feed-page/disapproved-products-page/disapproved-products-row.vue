@@ -85,6 +85,7 @@
       <b-button
         variant="primary"
         class="text-nowrap"
+        @click="learnMore"
       >
         {{ $t('cta.learnMore') }}
       </b-button>
@@ -98,6 +99,7 @@ import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
 import {BButton} from 'bootstrap-vue';
 import {ProductStatus, ProductInfos} from '@/store/modules/product-feed/state';
 import {changeCountryCodeToName} from '@/utils/Countries';
+import {ProductIdentifier} from './types';
 
 export default defineComponent({
   name: 'ProductFeedTableStatusDetailsRow',
@@ -159,6 +161,14 @@ export default defineComponent({
     },
   },
   methods: {
+    learnMore(): void {
+      this.$emit('renderProductIssues', {
+        idProduct: this.product.id,
+        idAttribute: this.product.attribute,
+        currency: this.product.currency,
+        languageCode: this.product.language,
+      } as ProductIdentifier);
+    },
     changeCountryCodeToName,
   },
 });

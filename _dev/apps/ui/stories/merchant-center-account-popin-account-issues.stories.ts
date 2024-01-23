@@ -18,5 +18,5 @@ const Template = (args, { argTypes }) => ({
 
 export const AccountIssues:any = Template.bind({});
 AccountIssues.args = {
-  issues: merchantCenterAccountSuspended.accountIssues.issues,
+  issues: merchantCenterAccountSuspended.accountIssues,
 };

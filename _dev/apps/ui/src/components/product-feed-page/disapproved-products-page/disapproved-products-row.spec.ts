@@ -33,6 +33,7 @@ describe('disapproved-products-row.vue', () => {
       attribute: '0',
       name: 'Psykokwak',
       language: 'fr',
+      currency: '💷',
       statuses: [
         {
           destination: 'Shopping',
@@ -65,24 +66,24 @@ describe('disapproved-products-row.vue', () => {
 
     // Assert
     const cells = wrapper.findAllComponents(BTd);
-    expect(cells.length).toBe(6);
+    expect(cells.length).toBe(7);
 
     expect(cells.at(0).text()).toEqual('7990');
     expect(cells.at(1).text()).toEqual('Psykokwak');
+    expect(cells.at(2).text()).toEqual('💷');
+    expect(cells.at(3).text()).toEqual('fr');
 
-    const countrySpans = cells.at(2).findAllComponents(BCard);
+    const countrySpans = cells.at(4).findAllComponents(BCard);
     expect(countrySpans.length).toEqual(3);
     expect(countrySpans.at(0).text()).toEqual('France');
     expect(countrySpans.at(1).text()).toEqual('Italy');
     expect(countrySpans.at(2).text()).toEqual('Belgium');
 
-    expect(cells.at(3).text()).toEqual('fr');
-
-    const errorsList = cells.at(4).findAll('li');
+    const errorsList = cells.at(5).findAll('li');
     expect(errorsList.length).toEqual(1);
     expect(errorsList.at(0).text()).toEqual('Suspended account for policy violation');
 
-    expect(cells.at(5).text()).toEqual('Learn more');
+    expect(cells.at(6).text()).toEqual('Learn more');
   });
 
   it('suggests to the merchant to open the GMC website to check the errors on the account level', () => {
@@ -92,6 +93,7 @@ describe('disapproved-products-row.vue', () => {
       attribute: '0',
       name: 'Psykokwak',
       language: 'fr',
+      currency: 'EUR',
       statuses: [
         {
           destination: 'Shopping',
@@ -110,23 +112,23 @@ describe('disapproved-products-row.vue', () => {
 
     // Assert
     const cells = wrapper.findAllComponents(BTd);
-    expect(cells.length).toBe(6);
+    expect(cells.length).toBe(7);
 
     expect(cells.at(0).text()).toEqual('7990');
     expect(cells.at(1).text()).toEqual('Psykokwak');
+    expect(cells.at(2).text()).toEqual('EUR');
+    expect(cells.at(3).text()).toEqual('fr');
 
-    const countrySpans = cells.at(2).findAllComponents(BCard);
+    const countrySpans = cells.at(4).findAllComponents(BCard);
     expect(countrySpans.length).toEqual(3);
     expect(countrySpans.at(0).text()).toEqual('France');
     expect(countrySpans.at(1).text()).toEqual('Italy');
     expect(countrySpans.at(2).text()).toEqual('Belgium');
 
-    expect(cells.at(3).text()).toEqual('fr');
-
-    const errorsList = cells.at(4).findAll('li');
+    const errorsList = cells.at(5).findAll('li');
     expect(errorsList.length).toEqual(0);
-    expect(cells.at(4).text()).toEqual('Not provided, check account errors on your Merchant Center.');
+    expect(cells.at(5).text()).toEqual('Not provided, check account errors on your Merchant Center.');
 
-    expect(cells.at(5).text()).toEqual('Learn more');
+    expect(cells.at(6).text()).toEqual('Learn more');
   });
 });

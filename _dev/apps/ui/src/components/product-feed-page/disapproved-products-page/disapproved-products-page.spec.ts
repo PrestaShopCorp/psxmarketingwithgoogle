@@ -54,6 +54,6 @@ describe('disapproved-products-page/disapproved-products-page.vue', () => {
       ...config,
       store: new Vuex.Store(storeConfigured),
     });
-    expect(wrapper.findAllComponents(DisapprovedProductsRow).length).toBe(8);
+    expect(wrapper.findAllComponents(DisapprovedProductsRow).length).toBe(4);
   });
 });

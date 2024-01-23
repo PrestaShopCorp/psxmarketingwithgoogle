@@ -242,50 +242,6 @@ export const productFeed: State = {
         id: "7961",
         attribute: "4",
         name: "Pikachu",
-        language: "fr",
-        statuses: [
-          {
-            destination: "Shopping",
-            status: ProductStatus.Approved,
-            countries: ["FR"],
-          },
-          {
-            destination: "SurfacesAcrossGoogle",
-            status: ProductStatus.Approved,
-            countries: ["FR"],
-          },
-        ],
-        issues: [
-          {
-            code: "language_mismatch",
-            servability: "unaffected",
-            resolution: "merchant_action",
-            destination: "Shopping",
-            description: "Incorrect language",
-            detail: "Use a supported language for the country of sale",
-            documentation:
-              "https://support.google.com/merchants/answer/6101164",
-            applicableCountries: ["FR"],
-          },
-          {
-            code: "hard_goods_missing_2_out_of_3_identifiers",
-            servability: "demoted",
-            resolution: "merchant_action",
-            destination: "Shopping",
-            description:
-              "Limited performance due to missing identifiers [gtin, mpn, brand]",
-            detail:
-              "Add a brand and either a GTIN or MPN. If this product is one-of-a-kind or vintage, you don’t need to add an identifier.",
-            documentation:
-              "https://support.google.com/merchants/answer/6098295",
-            applicableCountries: ["FR"],
-          },
-        ],
-      },
-      {
-        id: "7961",
-        attribute: "4",
-        name: "Pikachu",
         language: "it",
         statuses: [
           {

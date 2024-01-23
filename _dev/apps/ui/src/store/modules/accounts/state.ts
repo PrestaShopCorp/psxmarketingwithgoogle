@@ -19,7 +19,7 @@
 
 import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
 import {oauth2_v2 as oauthApi} from '@googleapis/oauth2/v2';
-import {AccountIssuesResponse} from '@/components/render-issues/account-issues.types';
+import {AccountIssue} from '@/components/render-issues/types';
 
 export interface PrestaShopAccountsContext {
   user: {
@@ -95,7 +95,7 @@ export type MerchantCenterAccountContext = GoogleMerchantAccount & {
   isClaimed: boolean,
   isPhoneVerified: ShoppingWebsiteStatusFlag,
   isEnhancedFreeListingCompliant: ShoppingWebsiteStatusFlag,
-  accountIssues: AccountIssuesResponse,
+  accountIssues: AccountIssue[],
   gmcStatus: WebsiteClaimErrorReason|null,
   websiteRequirements: Array<String>,
   // Display toast component once
@@ -155,9 +155,7 @@ export const state: State = {
     isEnhancedFreeListingCompliant: {
       status: true,
     },
-    accountIssues: {
-      issues: [],
-    },
+    accountIssues: [],
     gmcStatus: null,
     users: [],
     connectedOnce: false,

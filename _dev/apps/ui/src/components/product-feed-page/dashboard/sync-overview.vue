@@ -36,7 +36,7 @@
       >
         <merchant-center-account-alert-suspended
           v-if="gmcAccountIsSuspended"
-          :issues="gmcAccountDetails.accountIssues.issues"
+          :issues="gmcAccountDetails.accountIssues"
           :account-overview-url="gmcAccountOverviewPage"
         />
         <feed-configuration-card

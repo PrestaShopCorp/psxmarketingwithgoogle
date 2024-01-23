@@ -56,8 +56,9 @@
             v-for="(product) in items"
           >
             <DisapprovedProductsRow
-              :key="`${product.id}-${product.attribute}-${product.language}`"
+              :key="`${product.id}-${product.attribute}-${product.language}-${product.currency}`"
               :product="product"
+              @renderProductIssues="onRenderProductIssues($event)"
             />
           </template>
 
@@ -71,12 +72,12 @@
             >
               <b-td
                 v-for="(text, textIndex) in fields"
-                :class="`${(textIndex!==5 ? 'align-top': undefined)}`"
+                :class="`${(textIndex!==6 ? 'align-top': undefined)}`"
                 :key="textIndex"
               >
                 <b-skeleton
                   class="mb-0 mx-1"
-                  :height="`${(textIndex===4 ? '5em' : undefined)}`"
+                  :height="`${(textIndex===5 ? '5em' : undefined)}`"
                 />
               </b-td>
             </b-tr>
@@ -84,6 +85,11 @@
         </b-tbody>
       </b-table-simple>
     </b-card-body>
+
+    <popin-product-issues
+      :product="modalData"
+      ref="PopinProductIssues"
+    />
   </b-card>
 </template>
 
@@ -93,12 +99,15 @@ import DisapprovedProductsRow from './disapproved-products-row.vue';
 import {RequestState} from '@/store/types';
 import TableApiError from '@/components/commons/table-api-error.vue';
 import TableNoData from '@/components/commons/table-no-data.vue';
+import PopinProductIssues from '@/components/product-feed-page/disapproved-products-page/popin-product-issues.vue';
 import {ProductInfos} from '@/store/modules/product-feed/state';
+import {ProductIdentifier} from './types';
 
 export default defineComponent({
   name: 'DisapprovedProductsPage',
   components: {
     DisapprovedProductsRow,
+    PopinProductIssues,
     TableApiError,
     TableNoData,
   },
@@ -107,6 +116,7 @@ export default defineComponent({
       loadingStatus: RequestState.IDLE as RequestState,
       nextToken: null as string|null,
       selectedFilterQuantityToShow: '100',
+      modalData: null as ProductIdentifier|null,
       fields: [
         {
           key: 'id',
@@ -184,6 +194,12 @@ export default defineComponent({
       ) {
         this.getItems(this.nextToken);
       }
+    },
+    onRenderProductIssues(product: ProductIdentifier): void {
+      this.$bvModal.show(
+        this.$refs.PopinProductIssues.$refs.modal.id,
+      );
+      this.modalData = product;
     },
   },
 });

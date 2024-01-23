@@ -10,13 +10,14 @@
       :markdown="$t('productFeedPage.productIssuesModal.description')"
     />
     <collapsing-issues
+      v-if="issues"
       :issues="issues"
     />
 
     <VueShowdown
       class="mt-3"
       :markdown="$t('productFeedPage.productIssuesModal.footer', [
-        getProductBaseUrl.replace('/1?', `/${productId}?`),
+        getProductBaseUrl.replace('/1?', `/${product?.idProduct}?`),
       ])"
     />
 
@@ -28,10 +29,11 @@
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
-import {BTooltip} from 'bootstrap-vue';
 import PsModal from '@/components/commons/ps-modal.vue';
 import CollapsingIssues from '@/components/render-issues/collapsing-issues.vue';
-import {ProductIssue} from '@/components/render-issues/product-issues.types';
+import {ProductIssue} from '@/components/render-issues/types';
+import {RequestState} from '@/store/types';
+import {ProductIdentifier} from './types';
 
 export default defineComponent({
   name: 'PopinProductIssues',
@@ -41,17 +43,15 @@ export default defineComponent({
   },
   data() {
     return {
-      tooltipsComponents: [] as BTooltip[],
+      issues: null as ProductIssue[]|null,
+      loadingState: RequestState.IDLE as RequestState,
     };
   },
   props: {
-    issues: {
-      type: Array as PropType<ProductIssue[]>,
-      required: true,
-    },
-    productId: {
-      type: String,
-      required: true,
+    product: {
+      type: Object as PropType<ProductIdentifier|null>,
+      required: false,
+      default: null,
     },
   },
   computed: {
@@ -60,36 +60,29 @@ export default defineComponent({
     },
   },
   methods: {
-    findAndCreateTooltips(): void {
-      // Initialisation of Tooltips
-      const tooltips = this.$el.querySelectorAll('.tooltip');
-
-      tooltips.forEach((tooltip) => {
-        const tooltipText = tooltip.querySelector('.tooltip-text');
-        const tooltipIcon = tooltip.querySelector('.tooltip-icon');
-
-        const $tooltip = new BTooltip({
-          parent: this,
-
-          propsData: {
-            target: tooltipIcon,
-            container: '#psxMktgWithGoogleApp',
-            title: tooltipText?.textContent,
-          },
+    async loadProductIssues(): Promise<void> {
+      this.loadingState = RequestState.PENDING;
+      try {
+        this.issues = await this.$store.dispatch('productFeed/REQUEST_REPORTING_PRODUCT_ISSUES', {
+          product: this.product,
         });
-
-        $tooltip.$mount();
-        this.tooltipsComponents.push($tooltip);
-      });
-    },
-    unloadTooltips(): void {
-      this.tooltipsComponents.forEach((tooltip) => tooltip.$destroy());
+        this.loadingState = RequestState.SUCCESS;
+      } catch (error) {
+        console.error(error);
+        this.loadingState = RequestState.FAILED;
+      }
     },
   },
-  mounted() {
-    // Because the HTML code comes from Google API, we have to bend it
-    // to use specific features of our application.
-    this.findAndCreateTooltips();
+  watch: {
+    product: {
+      handler(newValue) {
+        this.issues = null;
+        if (newValue) {
+          this.loadProductIssues();
+        }
+      },
+      immediate: true,
+    },
   },
 });
 </script>

@@ -3,6 +3,7 @@ import DisapprovedProductsPage from "@/components/product-feed-page/disapproved-
 import { initialStateApp } from "@/../.storybook/mock/state-app";
 import { productFeed } from "@/../.storybook/mock/product-feed";
 import {disapprovedProductsMock} from '@/../.storybook/mock/product-feeds/validation/list';
+import {defaultProductIssuesMock} from '@/../.storybook/mock/product-feeds/validation/product';
 import { RequestState } from "@/store/types";
 
 export default {
@@ -82,10 +83,17 @@ TableStatusDetails.parameters = {
           })
         );
       }),
-      rest.get("/product-feeds/validation/list*", (req, res, ctx) => {
+      rest.get("/product-feeds/validation/list", (req, res, ctx) => {
         return res(
           ctx.status(200),
           ctx.json(disapprovedProductsMock),
+        );
+      }),
+
+      rest.get("/product-feeds/validation/product/*", (req, res, ctx) => {
+        return res(
+          ctx.status(200),
+          ctx.json(defaultProductIssuesMock),
         );
       }),
     ],
@@ -96,7 +104,6 @@ export const Loading: any = Template.bind({});
 Loading.args = {
   mounted(this: any) {
     setTimeout(() => {
-      console.log('bonsoir');
       this.$refs.page.$data.loadingStatus = RequestState.PENDING;
     }, 500);
   }
@@ -104,7 +111,7 @@ Loading.args = {
 Loading.parameters = {
   msw: {
     handlers: [
-      rest.get('/product-feeds/verification/issues', (req, res, ctx) => {
+      rest.get('/product-feeds/validation/list', (req, res, ctx) => {
         return res(
           ctx.json([])
         );
@@ -117,7 +124,7 @@ export const ErrorApi: any = Template.bind({});
 ErrorApi.parameters = {
   msw: {
     handlers: [
-      rest.get('/product-feeds/verification/issues', (req, res, ctx) => {
+      rest.get('/product-feeds/validation/list', (req, res, ctx) => {
         return res(
           ctx.status(500)
         );

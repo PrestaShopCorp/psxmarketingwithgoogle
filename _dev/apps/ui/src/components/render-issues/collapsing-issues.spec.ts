@@ -2,7 +2,7 @@ import {MountOptions, mount} from '@vue/test-utils';
 // Import this file first to init mock on window
 import config, {addBootstrapToVue, addShowdownToVue, localVue} from '@/../tests/init';
 import CollapsingIssues from './collapsing-issues.vue';
-import {AccountIssue} from './account-issues.types';
+import {AccountIssue} from './types';
 import CardCollapse from '@/components/commons/card-collapse.vue';
 
 describe('CollapsingIssues', () => {
@@ -38,18 +38,18 @@ describe('CollapsingIssues', () => {
     const issues: AccountIssue[] = [
       {
         title: 'Issue 1',
-        impact: {severity: 'ERROR'},
-        prerenderedContent: '<p>Issue content 1</p>',
+        severity: 'ERROR',
+        htmlContent: '<p>Issue content 1</p>',
       },
       {
         title: 'Issue 2',
-        impact: {severity: 'WARNING'},
-        prerenderedContent: '<p>Issue content 2</p>',
+        severity: 'WARNING',
+        htmlContent: '<p>Issue content 2</p>',
       },
       {
         title: 'Issue 3',
-        impact: {severity: 'INFO'},
-        prerenderedContent: '<p>Issue content 3</p>',
+        severity: 'INFO',
+        htmlContent: '<p>Issue content 3</p>',
       },
     ];
 
@@ -85,11 +85,11 @@ describe('CollapsingIssues', () => {
 
       // Check if the icon color and icon are applied correctly
       const iconElement = cardCollapse.find('i');
-      expect(iconElement.classes()).toContain(`text-${wrapper.vm.iconColor(issue.impact.severity)}`);
+      expect(iconElement.classes()).toContain(`text-${wrapper.vm.iconColor(issue.severity)}`);
       expect(iconElement.classes()).toContain(`text-${expectedIcon[index].color}`);
-      expect(iconElement.text()).toBe(wrapper.vm.icon(issue.impact.severity));
+      expect(iconElement.text()).toBe(wrapper.vm.icon(issue.severity));
       expect(iconElement.text()).toBe(expectedIcon[index].icon);
-      expect(cardCollapse.find('.card-body').html()).toContain(issue.prerenderedContent);
+      expect(cardCollapse.find('.card-body').html()).toContain(issue.htmlContent);
     });
   });
 });
