@@ -972,7 +972,8 @@
       "visitThe" : "Visit the {0} for more information",
       "createPmax": "Create Performance Max campaign",
       "understand": "I understand",
-      "moreActions": "More Actions"
+      "moreActions": "More Actions",
+      "loadNextPage": "Load next results"
     },
     "badge": {
       "free": "Free",

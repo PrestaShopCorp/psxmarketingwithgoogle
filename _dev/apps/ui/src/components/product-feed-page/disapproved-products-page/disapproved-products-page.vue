@@ -41,29 +41,8 @@
         </b-thead>
 
         <b-tbody>
-          <table-api-error
-            v-if="loadingStatus === RequestState.FAILED"
-            :colspan="fields.length"
-          />
-
-          <table-no-data
-            v-else-if="loadingStatus === RequestState.SUCCESS && !items.length"
-            :colspan="fields.length"
-          />
-
           <template
-            v-else
-            v-for="(product) in items"
-          >
-            <DisapprovedProductsRow
-              :key="`${product.id}-${product.attribute}-${product.language}-${product.currency}`"
-              :product="product"
-              @renderProductIssues="onRenderProductIssues($event)"
-            />
-          </template>
-
-          <template
-            v-if="loadingStatus === RequestState.PENDING"
+            v-if="loadingStatus === RequestState.PENDING && !items.length"
           >
             <b-tr
               v-for="index in 5"
@@ -82,6 +61,52 @@
               </b-td>
             </b-tr>
           </template>
+
+          <table-api-error
+            v-else-if="loadingStatus === RequestState.FAILED"
+            :colspan="fields.length"
+          />
+
+          <table-no-data
+            v-else-if="loadingStatus === RequestState.SUCCESS && !items.length"
+            :colspan="fields.length"
+          />
+
+          <template
+            v-else
+            v-for="(product) in items"
+          >
+            <DisapprovedProductsRow
+              :key="`${product.id}-${product.attribute}-${product.language}-${product.currency}`"
+              :product="product"
+              @renderProductIssues="onRenderProductIssues($event)"
+            />
+          </template>
+          <b-tr
+            v-if="loadingStatus === RequestState.PENDING && items.length"
+          >
+            <b-td
+              colspan="7"
+              class="ps_gs-table-products__loading-slot"
+            >
+              <i class="ps_gs-table-products__spinner">loading</i>
+            </b-td>
+          </b-tr>
+          <b-tr
+            v-else-if="nextToken"
+          >
+            <b-td
+              colspan="7"
+              class="text-center"
+            >
+              <b-button
+                variant="link"
+                @click="getItems()"
+              >
+                {{ $t('cta.loadNextPage') }}
+              </b-button>
+            </b-td>
+          </b-tr>
         </b-tbody>
       </b-table-simple>
     </b-card-body>
@@ -160,7 +185,7 @@ export default defineComponent({
   },
   mounted() {
     if (!this.items.length) {
-      this.getItems(null);
+      this.getItems();
       window.addEventListener('scroll', this.handleScroll);
     }
   },
@@ -168,10 +193,10 @@ export default defineComponent({
     window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
-    async getItems(token: null|string): Promise<void> {
+    async getItems(): Promise<void> {
       this.loadingStatus = RequestState.PENDING;
       try {
-        const res = await this.$store.dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUSES', token);
+        const res = await this.$store.dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUSES', this.nextToken);
 
         if (!res.nextToken) {
           // IF api does not send token, it means there are no results anymore.
@@ -192,7 +217,7 @@ export default defineComponent({
       if (this.loadingStatus === RequestState.SUCCESS
         && de.scrollTop + window.innerHeight >= de.scrollHeight - 1
       ) {
-        this.getItems(this.nextToken);
+        this.getItems();
       }
     },
     onRenderProductIssues(product: ProductIdentifier): void {

@@ -2035,4 +2035,5 @@ export const disapprovedProductsMock = {
       ],
     },
   ],
+  nextToken: 'yay',
 };
