@@ -762,6 +762,11 @@
             "goToLabel": "Mergi la pagina:",
             "editX": "Editează {0}",
             "noReasonFallback": "*Nu este furnizat, bifează [erori cont în Merchant Center]({0})[:target=\"_blank\"].*"
+        },
+        "productIssues": {
+            "title": "More details about your product issues",
+            "description": "Here are the reasons for suspension provided by Google. Take the necessary steps to meet the requirements and wait for the next scan.",
+            "footer": "Visit your [product sheet]({0}) to make the necessary changes to your product to meet Google's requirements and get it approved."
         }
     },
     "keymetrics": {
