@@ -18,6 +18,29 @@
         {{ product.name }}
       </a>
     </b-td>
+
+    <b-td
+      class="align-top"
+    >
+      <b-card
+        border-variant="primary"
+        class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13 font-weight-500"
+      >
+        {{ product.currency }}
+      </b-card>
+    </b-td>
+
+    <b-td
+      class="align-top"
+    >
+      <b-card
+        border-variant="primary"
+        class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13 font-weight-500"
+      >
+        {{ product.language }}
+      </b-card>
+    </b-td>
+
     <b-td
       class="align-top"
     >
@@ -28,16 +51,6 @@
         class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13 font-weight-500 mb-2"
       >
         {{ changeCountryCodeToName(country) }}
-      </b-card>
-    </b-td>
-    <b-td
-      class="align-top"
-    >
-      <b-card
-        border-variant="primary"
-        class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13 font-weight-500"
-      >
-        {{ product.language }}
       </b-card>
     </b-td>
 

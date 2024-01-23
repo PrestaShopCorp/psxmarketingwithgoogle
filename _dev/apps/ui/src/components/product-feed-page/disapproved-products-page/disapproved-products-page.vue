@@ -117,12 +117,16 @@ export default defineComponent({
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderName'),
         },
         {
-          key: 'country',
-          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderCountry'),
+          key: 'currency',
+          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderCurrency'),
         },
         {
           key: 'lang',
           label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderLanguage'),
+        },
+        {
+          key: 'country',
+          label: this.$i18n.t('productFeedPage.approvalTable.tableHeaderCountry'),
         },
         {
           key: 'issues',
@@ -175,7 +179,7 @@ export default defineComponent({
     handleScroll() {
       const de = document.documentElement;
 
-      if (this.loadingStatus === RequestState.SUCCESS 
+      if (this.loadingStatus === RequestState.SUCCESS
         && de.scrollTop + window.innerHeight >= de.scrollHeight - 1
       ) {
         this.getItems(this.nextToken);
