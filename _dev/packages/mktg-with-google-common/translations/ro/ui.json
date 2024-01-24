@@ -28,6 +28,7 @@
         "mandatory": "sunt obligatorii",
         "XIsMandatory": "{0} este obligatoriu.",
         "unableToFetchData": "Nu am putut prelua datele, încearcă din nou mai târziu",
+        "noResults": "Nu au fost găsite date",
         "search": "Căutare",
         "createAccount": "creează-ți un cont",
         "createNewAccount": "Dacă nu ai un cont, poți {0} astăzi.",
@@ -628,7 +629,7 @@
     },
     "productFeedPage": {
         "breadcrumb": {
-            "productStatusDetails": "Detalii privind starea produsului",
+            "productStatusDetails": "Disapproved products",
             "nonCompliantProducts": "Produse neconforme"
         },
         "alert": {
@@ -701,7 +702,6 @@
             "details": "Pentru a asigura o pre-scanare reușită cu Google, remediază problemele prezentate în tabelul de mai jos. Rezolvarea acestor probleme te va ajuta să listezi produsul pe interfețele Google.",
             "languageSelection": "Filtrează după limbă",
             "languageSelected": "Filtrează după: {lang}",
-            "noResults": "Nu au fost găsite date",
             "columns": {
                 "issues": "Probleme",
                 "suggestedActions": "Acțiuni sugerate",
@@ -738,32 +738,23 @@
             "priceMissing": "Furnizează un preț",
             "priceMissingAction": "Furnizează un preț pentru produs."
         },
-        "destinations": {
-            "shoppingAds": "Reclame pe Shopping",
-            "enhancedFreeListing": "Listări gratuite avansate"
-        },
         "approvalTable": {
-            "description": "Acestea sunt stările produselor trimise la Google Merchant Center. Unele produse pot apărea de mai multe ori din cauza variațiilor de limbă.",
+            "description": "Below is a list of your products that haven't passed the approval process. Each entry includes reasons for disapproval to help you make quick fixes. Once updated, these products can be sync to Google Shopping.",
             "filterTitle": "Filtrează după disponibilitate",
-            "filterAllStatus": "Toate",
-            "filterOnlyApproved": "Aprobat",
-            "filterOnlyPending": "În așteptare",
-            "filterOnlyNotApproved": "Neaprobate",
+            "NoFilter": "Toate",
             "tableHeaderID": "ID",
-            "tableHeaderAttributeID": "Caracteristică",
-            "tableHeaderDestination": "Destinație",
-            "tableHeaderName": "Titlu",
-            "tableHeaderGoogleValidation": "Disponibilitate pentru Google",
+            "tableHeaderName": "Product title",
             "tableHeaderLanguage": "Limbă",
-            "tableHeaderCountry": "Țară",
-            "tableHeaderIssue": "Motiv",
+            "tableHeaderCurrency": "Monedă",
+            "tableHeaderCountry": "Affected countries",
+            "tableHeaderIssue": "Reasons",
             "xResults": "{0} rezultate",
             "perPageLabel": "Afișează:",
             "goToLabel": "Mergi la pagina:",
             "editX": "Editează {0}",
             "noReasonFallback": "*Nu este furnizat, bifează [erori cont în Merchant Center]({0})[:target=\"_blank\"].*"
         },
-        "productIssues": {
+        "productIssuesModal": {
             "title": "More details about your product issues",
             "description": "Here are the reasons for suspension provided by Google. Take the necessary steps to meet the requirements and wait for the next scan.",
             "footer": "Visit your [product sheet]({0}) to make the necessary changes to your product to meet Google's requirements and get it approved."
@@ -892,6 +883,7 @@
         "learnAboutAccountSuspension": "Află mai multe despre suspendarea contului",
         "learnAboutSiteClaiming": "Află mai multe despre revendicarea site-ului",
         "learnMoreAboutSmartShoppingCampaigns": "Află mai multe despre campaniile Smart Shopping",
+        "learnMore": "Află mai multe",
         "configureAndExportProductFeed": "Pornește configurația",
         "continueProductFeed": "Reluare configurare",
         "chooseAccount": "Alege-ți contul",
@@ -978,7 +970,8 @@
         "visitThe": "Vizitează {0} pentru mai multe informații",
         "createPmax": "Creează o campanie Performance Max",
         "understand": "Înțeleg",
-        "moreActions": "Mai multe acțiuni"
+        "moreActions": "Mai multe acțiuni",
+        "loadNextPage": "Încarcă următoarele rezultate"
     },
     "badge": {
         "free": "Gratuit",
