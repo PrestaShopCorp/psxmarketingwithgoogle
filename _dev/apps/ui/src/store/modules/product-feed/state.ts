@@ -71,6 +71,7 @@ export interface ProductInfos {
  id: string;
  name: string;
  attribute: string;
+ currency?: string,
  language: string;
  statuses: ProductInfosStatus[];
  issues?: contentApi.Schema$ProductStatusItemLevelIssue[];

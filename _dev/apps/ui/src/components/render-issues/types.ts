@@ -1,50 +1,16 @@
-export interface Breakdown {
-  regions?: Region[];
-  details: string[];
-}
-
-export interface Region {
-  code: string;
-  name: string;
-}
-
-export interface Action {
-  buttonLabel: string;
-  isAvailable: boolean;
-  externalAction?: ExternalAction;
-  builtinSimpleAction?: BuiltInSimpleAction;
-}
-
-export interface ExternalAction {
-  type: string;
-  uri: string;
-}
-
-export interface BuiltInSimpleAction {
-  type: BuiltInSimpleActionType;
-  attributeCode?: string;
-  additionalContent?: AdditionalContent;
-}
-
-export type BuiltInSimpleActionType =
-  | 'VERIFY_PHONE'
-  | 'CLAIM_WEBSITE'
-  | 'ADD_PRODUCTS'
-  | 'ADD_CONTACT_INFO'
-  | 'LINK_ADS_ACCOUNT'
-  | 'ADD_BUSINESS_REGISTRATION_NUMBER'
-  | 'EDIT_ITEM_ATTRIBUTE'
-  | 'FIX_ACCOUNT_ISSUE'
-  | 'SHOW_ADDITIONAL_CONTENT';
-
-export interface AdditionalContent {
+export interface AccountIssue {
   title: string;
-  paragraphs: [string];
+  severity: Severity;
+  htmlContent: string;
+  impact?: string;
 }
 
-export interface AlternateDisputeResolution {
-  uri: string;
-  label: string;
+export interface ProductIssue {
+  title: string;
+  severity: Severity;
+  htmlContent: string;
+  countries?: string[];
+  impact?: string;
 }
 
 export type Severity = 'ERROR' | 'WARNING' | 'INFO';

@@ -81,51 +81,26 @@ export const merchantCenterPhoneVerificationNeeded: MerchantCenterAccountContext
 
 export const merchantCenterAccountSuspended: MerchantCenterAccountContext = {
   ...merchantCenterAccountConnected,
-  accountIssues: {
-    issues: [
-      {
-        title: 'Online store not confirmed',
-        impact: {
-          severity: 'ERROR',
-          breakdowns: [
-            {
-              details: [
-                'Products not showing in ads',
-                'Products not showing organically',
-              ],
-            },
-          ],
-        },
-        prerenderedContent:
-          '\u003cdiv class="issue-detail"\u003e\u003cdiv class="issue-content"\u003e\u003cp class="content-element"\u003e\u003cspan class="segment"\u003eTo confirm your online store, you&#39;ll need to verify and claim it on Merchant Center. This lets Google know that you can act on behalf of your business to provide a safe shopping experience for customers. It doesn&#39;t give Google any access to your online store.\u003c/span\u003e\u003c/p\u003e\u003ca href="https://support.google.com/merchants/answer/176793?hl=en-US" class="content-element"\u003eLearn more\u003c/a\u003e\u003c/div\u003e\u003c/div\u003e',
-        actions: [
-          {
-            builtinSimpleAction: {
-              type: 'CLAIM_WEBSITE',
-            },
-            buttonLabel: 'Claim your website',
-            isAvailable: true,
-          },
-        ],
-      },
-      {
-        title: 'An exemple of warning',
-        impact: {
-          severity: 'WARNING',
-        },
-        prerenderedContent:
-          '\u003cdiv class="issue-detail"\u003e\u003cdiv class="issue-content"\u003e\u003cp class="content-element"\u003e\u003cspan class="segment"\u003eProvided store name: The Shop Name. Used store name: some.url.com/fr\u003c/span\u003e\u003c/p\u003e\u003ca href="https://support.google.com/merchants/answer/6101130" class="content-element"\u003eLearn more\u003c/a\u003e\u003c/div\u003e\u003c/div\u003e',
-      },
-      {
-        title: 'Invalid store name',
-        impact: {
-          severity: 'INFO',
-        },
-        prerenderedContent:
-          '\u003cdiv class="issue-detail"\u003e\u003cdiv class="issue-content"\u003e\u003cp class="content-element"\u003e\u003cspan class="segment"\u003eProvided store name: The Shop Name. Used store name: some.url.com/fr\u003c/span\u003e\u003c/p\u003e\u003ca href="https://support.google.com/merchants/answer/6101130" class="content-element"\u003eLearn more\u003c/a\u003e\u003c/div\u003e\u003c/div\u003e',
-      },
-    ],
-  },
+  accountIssues: [
+    {
+      title: 'Online store not confirmed',
+      severity: 'ERROR',
+      htmlContent:
+        '\u003cdiv class="issue-detail"\u003e\u003cdiv class="issue-content"\u003e\u003cp class="content-element"\u003e\u003cspan class="segment"\u003eTo confirm your online store, you&#39;ll need to verify and claim it on Merchant Center. This lets Google know that you can act on behalf of your business to provide a safe shopping experience for customers. It doesn&#39;t give Google any access to your online store.\u003c/span\u003e\u003c/p\u003e\u003ca href="https://support.google.com/merchants/answer/176793?hl=en-US" class="content-element"\u003eLearn more\u003c/a\u003e\u003c/div\u003e\u003c/div\u003e',
+    },
+    {
+      title: 'An exemple of warning',
+      severity: 'WARNING',
+      htmlContent:
+        '\u003cdiv class="issue-detail"\u003e\u003cdiv class="issue-content"\u003e\u003cp class="content-element"\u003e\u003cspan class="segment"\u003eProvided store name: The Shop Name. Used store name: some.url.com/fr\u003c/span\u003e\u003c/p\u003e\u003ca href="https://support.google.com/merchants/answer/6101130" class="content-element"\u003eLearn more\u003c/a\u003e\u003c/div\u003e\u003c/div\u003e',
+    },
+    {
+      title: 'Invalid store name',
+      severity: 'INFO',
+      htmlContent:
+        '\u003cdiv class="issue-detail"\u003e\u003cdiv class="issue-content"\u003e\u003cp class="content-element"\u003e\u003cspan class="segment"\u003eProvided store name: The Shop Name. Used store name: some.url.com/fr\u003c/span\u003e\u003c/p\u003e\u003ca href="https://support.google.com/merchants/answer/6101130" class="content-element"\u003eLearn more\u003c/a\u003e\u003c/div\u003e\u003c/div\u003e',
+    },
+  ],
 };
 
 export default merchantCenterAccountConnected;

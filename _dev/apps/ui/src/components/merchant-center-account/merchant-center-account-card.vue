@@ -308,7 +308,7 @@
         </div>
         <merchant-center-account-alert-suspended
           v-if="error === WebsiteClaimErrorReason.Suspended"
-          :issues="gmcAccountDetails.accountIssues.issues"
+          :issues="gmcAccountDetails.accountIssues"
           :account-overview-url="merchantCenterWebsitePageUrl.overview"
           class="mb-0 mt-3"
         />

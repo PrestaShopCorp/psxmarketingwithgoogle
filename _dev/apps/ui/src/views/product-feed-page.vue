@@ -1,6 +1,6 @@
 <template>
   <div>
-    <product-feed-table-status-details v-if="$route.name === 'product-feed-status'" />
+    <disapproved-products-page v-if="$route.name === 'product-feed-status'" />
     <product-feed-pre-scan-table-status-details
       v-else-if="$route.path === '/product-feed/pre-scan'"
     />
@@ -30,7 +30,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import ProductFeedTableStatusDetails from '@/components/product-feed-page/product-feed-table-status-details.vue';
+import DisapprovedProductsPage from '@/components/product-feed-page/disapproved-products-page/disapproved-products-page.vue';
 import SyncOverview from '@/components/product-feed-page/dashboard/sync-overview.vue';
 import NonCompliantProductsPage from '@/components/product-feed-page/non-compliant-products-page/non-compliant-products-page.vue';
 import NonCompliantProductsDetailsPage from '@/components/product-feed-page/non-compliant-products-details-page/non-compliant-products-details-page.vue';
@@ -44,7 +44,7 @@ export default defineComponent({
     };
   },
   components: {
-    ProductFeedTableStatusDetails,
+    DisapprovedProductsPage,
     NonCompliantProductsPage,
     NonCompliantProductsDetailsPage,
     SyncOverview,

@@ -17,3 +17,10 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 export interface StoreState {}
+
+export enum RequestState {
+  IDLE = 'IDLE',
+  PENDING = 'PENDING',
+  FAILED = 'FAILED',
+  SUCCESS = 'SUCCESS',
+}

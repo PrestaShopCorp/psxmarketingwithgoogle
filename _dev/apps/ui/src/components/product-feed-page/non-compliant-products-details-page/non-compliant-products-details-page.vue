@@ -51,15 +51,12 @@
               <b-th
                 v-for="(columnText, index) in filtersHeaderList"
                 :key="index"
-                class="font-weight-600"
               >
                 <div
                   class="flex align-items-center text-nowrap"
                   :class="(+index === filtersHeaderList.length-1) && 'text-right'"
                 >
-                  <span>
-                    {{ columnText }}
-                  </span>
+                  {{ columnText }}
                 </div>
               </b-th>
             </b-tr>
@@ -90,23 +87,11 @@
               :colspan="filtersHeaderList.length"
             />
 
-            <template v-else-if="!issueProducts || !issueProducts.length">
-              <tr>
-                <td
-                  :colspan="filtersHeaderList.length"
-                  class="py-5 text-center text-secondary"
-                >
-                  <div>
-                    <i class="material-icons ps_gs-fz-48">layers_clear</i>
-                  </div>
-                  <div
-                    class="ps_gs-fz-16 font-weight-600"
-                  >
-                    {{ $t('productFeedPage.compliancyIssuesPage.noResults') }}
-                  </div>
-                </td>
-              </tr>
-            </template>
+            <table-no-data
+              v-else-if="!issueProducts || !issueProducts.length"
+              :colspan="filtersHeaderList.length"
+            />
+
             <template v-else>
               <non-compliant-products-details-row
                 v-for="product in issueProducts"
@@ -132,6 +117,7 @@ import {PropType, defineComponent} from 'vue';
 import NonCompliantProductsDetailsRow from './non-compliant-products-details-row.vue';
 import {ProductVerificationIssue, ProductVerificationIssueProduct, ProductVerificationIssueTranslation} from '@/store/modules/product-feed/state';
 import TableApiError from '@/components/commons/table-api-error.vue';
+import TableNoData from '@/components/commons/table-no-data.vue';
 import TablePageControls from '@/components/commons/table-page-controls.vue';
 
 export default defineComponent({
@@ -139,6 +125,7 @@ export default defineComponent({
   components: {
     NonCompliantProductsDetailsRow,
     TableApiError,
+    TableNoData,
     TablePageControls,
   },
   data() {

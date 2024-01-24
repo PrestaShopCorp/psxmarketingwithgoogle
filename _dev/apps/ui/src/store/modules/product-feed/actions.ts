@@ -1,21 +1,3 @@
-/**
- * 2007-2021 PrestaShop and Contributors
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
- * that is bundled with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * https://opensource.org/licenses/AFL-3.0
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@prestashop.com so we can send you a copy immediately.
- *
- * @author    PrestaShop SA <contact@prestashop.com>
- * @copyright 2007-2021 PrestaShop SA and Contributors
- * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
- * International Registered Trademark & Property of PrestaShop SA
- */
 import {ActionContext} from 'vuex';
 import {fetchOnboarding, fetchShop, HttpClientError} from 'mktg-with-google-common';
 import MutationsTypes from './mutations-types';
@@ -35,6 +17,8 @@ import {
 import {formatMappingToApi} from '@/utils/AttributeMapping';
 import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
 import {FullState} from '../..';
+import {ProductIdentifier} from '@/components/product-feed-page/disapproved-products-page/types';
+import {ProductIssuesResponse, ProductIssue} from '@/components/render-issues/types';
 
 type Context = ActionContext<State, FullState>;
 
@@ -321,15 +305,7 @@ export default {
     commit(MutationsTypes.SAVE_TOTAL_PRODUCTS_READY_TO_SYNC, Number(result.total));
     return result;
   },
-  async [ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES]({commit}: Context, nextPage) {
-    const nextToken = nextPage ? `?next_token=${nextPage}` : '';
-    const result = await (await fetchOnboarding(
-      'GET',
-      `product-feeds/validation/list${nextToken}`,
-    )).json();
-    commit(MutationsTypes.SAVE_ALL_PRODUCTS, result.results);
-    return result;
-  },
+
   async [ActionsTypes.REQUEST_SYNCHRONISATION]({rootState}: Context, full = false) {
     const response = await fetch(`https://eventbus-sync.psessentials.net/sync/trigger${full ? '-full' : ''}`, {
       method: 'GET',
@@ -440,5 +416,35 @@ export default {
       originalPayload: payload,
       verificationIssueNumberOfProducts: json.totalCount,
     });
+  },
+
+  async [ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES]({commit}: Context, nextPage) {
+    const nextToken = nextPage ? `?next_token=${nextPage}` : '';
+    const result = await (await fetchOnboarding(
+      'GET',
+      `product-feeds/validation/list${nextToken}`,
+    )).json();
+    commit(MutationsTypes.SAVE_ALL_PRODUCTS, result.results);
+    return result;
+  },
+
+  // eslint-disable-next-line no-empty-pattern
+  async [ActionsTypes.REQUEST_REPORTING_PRODUCT_ISSUES]({}: Context, payload: {
+    product: ProductIdentifier,
+  }): Promise<ProductIssue[]> {
+    console.log('product', payload.product);
+    const params = new URLSearchParams({
+      currency: payload.product.currency,
+      language: payload.product.languageCode,
+      issueLanguage: window.i18nSettings.isoCode,
+      timeZone: encodeURI(Intl.DateTimeFormat().resolvedOptions().timeZone),
+    });
+    const productFullId: string = `${payload.product.idProduct}${(+payload.product.idAttribute > 0 ? `-${payload.product.idAttribute}` : '')}`;
+    const result: ProductIssuesResponse = await (await fetchOnboarding(
+      'GET',
+      `product-feeds/validation/product/${productFullId}?${params.toString()}`,
+    )).json();
+
+    return result.issues || [];
   },
 };
