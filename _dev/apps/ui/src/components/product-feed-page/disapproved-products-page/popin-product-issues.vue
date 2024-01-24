@@ -28,6 +28,7 @@
       :markdown="$t('productFeedPage.productIssuesModal.footer', [
         getProductBaseUrl.replace('/1?', `/${product?.idProduct}?`),
       ])"
+      :extensions="['extended-link']"
     />
 
     <!--Remove buttons-->
