@@ -28,6 +28,7 @@
         "mandatory": "sono obbligatori",
         "XIsMandatory": "{0} è obbligatorio.",
         "unableToFetchData": "Non è stato possibile recuperare i dati, riprova più tardi",
+        "noResults": "Nessun dato trovato",
         "search": "Cerca",
         "createAccount": "crea il tuo account",
         "createNewAccount": "Se non hai un account, puoi {0} oggi.",
@@ -628,7 +629,7 @@
     },
     "productFeedPage": {
         "breadcrumb": {
-            "productStatusDetails": "Dettagli sullo stato del prodotto",
+            "productStatusDetails": "Disapproved products",
             "nonCompliantProducts": "Prodotti non conformi"
         },
         "alert": {
@@ -701,7 +702,6 @@
             "details": "Per garantire il successo della pre-scansione con Google, risolvi i problemi indicati nella tabella seguente. La risoluzione di questi problemi aiuterà l'inserimento del prodotto nelle piattaforme di Google.",
             "languageSelection": "Filtra per lingua",
             "languageSelected": "Filtra per: {lang}",
-            "noResults": "Nessun dato trovato",
             "columns": {
                 "issues": "Problemi",
                 "suggestedActions": "Azioni suggerite",
@@ -738,32 +738,23 @@
             "priceMissing": "Indica un prezzo",
             "priceMissingAction": "Si prega di indicare un prezzo per il prodotto."
         },
-        "destinations": {
-            "shoppingAds": "Annunci di shopping",
-            "enhancedFreeListing": "Attivare le schede di prodotto gratuite"
-        },
         "approvalTable": {
-            "description": "Questi sono gli stati dei tuoi prodotti che vengono inviati a Google Merchant Center. Alcuni prodotti potrebbero apparire più di una volta per via della variazione linguistica.",
+            "description": "Below is a list of your products that haven't passed the approval process. Each entry includes reasons for disapproval to help you make quick fixes. Once updated, these products can be sync to Google Shopping.",
             "filterTitle": "Filtra per disponibilità",
-            "filterAllStatus": "Tutti",
-            "filterOnlyApproved": "Approvato",
-            "filterOnlyPending": "In attesa",
-            "filterOnlyNotApproved": "Non approvato",
+            "NoFilter": "Tutti",
             "tableHeaderID": "ID",
-            "tableHeaderAttributeID": "Attributo",
-            "tableHeaderDestination": "Destinazione",
-            "tableHeaderName": "Titolo",
-            "tableHeaderGoogleValidation": "Disponibilità per Google",
+            "tableHeaderName": "Product title",
             "tableHeaderLanguage": "Lingua",
-            "tableHeaderCountry": "Paese",
-            "tableHeaderIssue": "Motivo",
+            "tableHeaderCurrency": "Valuta",
+            "tableHeaderCountry": "Affected countries",
+            "tableHeaderIssue": "Reasons",
             "xResults": "{0} risultati",
             "perPageLabel": "Mostra:",
             "goToLabel": "Vai alla pagina:",
             "editX": "Modifica {0}",
             "noReasonFallback": "*Non fornito, controlla [errori di account sul tuo Merchant Center]({0})[:target=\"_blank\"].*"
         },
-        "productIssues": {
+        "productIssuesModal": {
             "title": "More details about your product issues",
             "description": "Here are the reasons for suspension provided by Google. Take the necessary steps to meet the requirements and wait for the next scan.",
             "footer": "Visit your [product sheet]({0}) to make the necessary changes to your product to meet Google's requirements and get it approved."
@@ -892,6 +883,7 @@
         "learnAboutAccountSuspension": "Per saperne di più sulla sospensione dell'account",
         "learnAboutSiteClaiming": "Per saperne di più sulla rivendicazione del sito",
         "learnMoreAboutSmartShoppingCampaigns": "Per saperne di più sulle campagne di Smart Shopping",
+        "learnMore": "Scopri di più",
         "configureAndExportProductFeed": "Inizia la tua configurazione",
         "continueProductFeed": "Riprendi configurazione",
         "chooseAccount": "Scegli il tuo account",
@@ -978,7 +970,8 @@
         "visitThe": "Visita il {0} per maggiori informazioni",
         "createPmax": "Crea la campagna Performance Max",
         "understand": "Ho capito",
-        "moreActions": "Altre azioni"
+        "moreActions": "Altre azioni",
+        "loadNextPage": "Carica i risultati successivi"
     },
     "badge": {
         "free": "Gratis",
