@@ -9,14 +9,17 @@
       class="align-top"
     >
       <a
+        v-if="!isNaN(+product.id)"
         class="external_link-no_icon"
-        :href="!isNaN(+product.id)
-          ? getProductBaseUrl.replace('/1?', `/${product.id}?`) : undefined"
+        :href="getProductBaseUrl.replace('/1?', `/${product.id}?`)"
         target="_blank"
         :title="$t('productFeedPage.approvalTable.editX', [product.name])"
       >
         {{ product.name }}
       </a>
+      <span v-else>
+        {{ product.name }}
+      </span>
     </b-td>
 
     <b-td
