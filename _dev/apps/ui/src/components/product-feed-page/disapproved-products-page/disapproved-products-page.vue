@@ -19,9 +19,16 @@
       </ol>
     </template>
     <b-card-body body-class="p-3 mt-2">
-      <p>
-        {{ $t('productFeedPage.approvalTable.description') }}
-      </p>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <p>
+          {{ $t('productFeedPage.approvalTable.description') }}
+        </p>
+        <language-filter-selector
+          :languages="languages"
+          @languageToFilterUpdated="selectedLanguage = $event"
+          :disabled="loadingStatus !== RequestState.SUCCESS || !items.length"
+        />
+      </div>
       <b-table-simple
         id="table-products"
         class="mb-3 card"
@@ -74,7 +81,7 @@
 
           <template
             v-else
-            v-for="(product) in items"
+            v-for="(product) in filteredItems"
           >
             <DisapprovedProductsRow
               :key="`${product.id}-${product.attribute}-${product.language}-${product.currency}`"
@@ -121,6 +128,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import DisapprovedProductsRow from './disapproved-products-row.vue';
+import LanguageFilterSelector from '@/components/product-feed-page/language-filter-selector.vue';
 import {RequestState} from '@/store/types';
 import TableApiError from '@/components/commons/table-api-error.vue';
 import TableNoData from '@/components/commons/table-no-data.vue';
@@ -132,6 +140,7 @@ export default defineComponent({
   name: 'DisapprovedProductsPage',
   components: {
     DisapprovedProductsRow,
+    LanguageFilterSelector,
     PopinProductIssues,
     TableApiError,
     TableNoData,
@@ -142,6 +151,7 @@ export default defineComponent({
       nextToken: null as string|null,
       selectedFilterQuantityToShow: '100',
       modalData: null as ProductIdentifier|null,
+      selectedLanguage: null as string|null,
       fields: [
         {
           key: 'id',
@@ -178,9 +188,25 @@ export default defineComponent({
     getProductBaseUrl() {
       return this.$store.getters['app/GET_PRODUCT_DETAIL_BASE_URL'];
     },
-    items() {
+    items(): ProductInfos[] {
       return this.$store.state.productFeed.productsDatas.items
         .filter((item: ProductInfos) => item.statuses);
+    },
+    filteredItems(): ProductInfos[] {
+      if (!this.selectedLanguage) {
+        return this.items;
+      }
+
+      return this.items.filter((item) => item.language === this.selectedLanguage);
+    },
+    languages(): string[] {
+      // Get all languages and make the array unique
+      return [
+        ...new Set(this.items?.reduce((prev: string[], issue) => {
+          prev.push(issue.language);
+          return prev;
+        }, [])),
+      ];
     },
   },
   mounted() {

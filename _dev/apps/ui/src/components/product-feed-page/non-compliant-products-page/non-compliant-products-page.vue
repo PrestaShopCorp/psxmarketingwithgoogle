@@ -26,35 +26,11 @@
           <div>
             {{ $t('productFeedPage.compliancyIssuesPage.details') }}
           </div>
-          <b-dropdown
-            :text="languageSelectionDropdownText"
-            class="ml-5"
-            variant="outline-primary"
-            toggle-class="text-nowrap"
+          <language-filter-selector
+            :languages="languages"
+            @languageToFilterUpdated="selectedLanguage = $event"
             :disabled="loading || !issues || !issues.length"
-          >
-            <b-dropdown-form>
-              <b-form-radio
-                v-model="selectedLanguage"
-                :value="null"
-                name="campaignType"
-              >
-                {{ $t('productFeedPage.approvalTable.filterANoFilterllStatus') }}
-              </b-form-radio>
-            </b-dropdown-form>
-            <b-dropdown-form
-              v-for="lang in languages"
-              :key="lang"
-            >
-              <b-form-radio
-                v-model="selectedLanguage"
-                :value="lang"
-                name="campaignType"
-              >
-                {{ changeLanguageCodeToName(lang) }}
-              </b-form-radio>
-            </b-dropdown-form>
-          </b-dropdown>
+          />
         </div>
 
         <b-table-simple
@@ -124,6 +100,7 @@
 import {defineComponent} from 'vue';
 
 import NonCompliantProductsRow from './non-compliant-products-row.vue';
+import LanguageFilterSelector from '@/components/product-feed-page/language-filter-selector.vue';
 import {ProductVerificationIssueOverall} from '@/store/modules/product-feed/state';
 import TableApiError from '@/components/commons/table-api-error.vue';
 import TableNoData from '@/components/commons/table-no-data.vue';
@@ -131,6 +108,7 @@ import TableNoData from '@/components/commons/table-no-data.vue';
 export default defineComponent({
   name: 'NonCompliantProductsPage',
   components: {
+    LanguageFilterSelector,
     NonCompliantProductsRow,
     TableApiError,
     TableNoData,
@@ -171,12 +149,6 @@ export default defineComponent({
         }, [])),
       ];
     },
-    languageSelectionDropdownText() {
-      if (this.selectedLanguage) {
-        return this.$t('productFeedPage.compliancyIssuesPage.languageSelected', {lang: this.changeLanguageCodeToName(this.selectedLanguage)});
-      }
-      return this.$t('productFeedPage.compliancyIssuesPage.languageSelection');
-    },
   },
   methods: {
     getIssues(): void {
@@ -192,16 +164,6 @@ export default defineComponent({
         .finally(() => {
           this.loading = false;
         });
-    },
-    changeLanguageCodeToName(langIsoCode: string): string {
-      const languageName = new Intl.DisplayNames(
-        [window.i18nSettings.languageLocale],
-        {type: 'language'},
-      ).of(langIsoCode) || langIsoCode;
-
-      return languageName.replace(
-        /^\p{CWU}/u, (char) => char.toLocaleUpperCase(window.i18nSettings.languageLocale),
-      );
     },
   },
   mounted() {
