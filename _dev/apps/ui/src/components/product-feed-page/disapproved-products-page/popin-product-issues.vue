@@ -9,10 +9,18 @@
       class="mb-3"
       :markdown="$t('productFeedPage.productIssuesModal.description')"
     />
-    <collapsing-issues
-      v-if="issues"
-      :issues="issues"
-    />
+    <b-skeleton-wrapper
+      :loading="loadingState !== RequestState.SUCCESS"
+    >
+      <template #loading>
+        <card-collapse-loading visible />
+      </template>
+
+      <collapsing-issues
+        v-if="issues"
+        :issues="issues"
+      />
+    </b-skeleton-wrapper>
 
     <VueShowdown
       v-if="!isNaN(+product?.idProduct)"
@@ -32,6 +40,7 @@
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
 import PsModal from '@/components/commons/ps-modal.vue';
+import CardCollapseLoading from '@/components/commons/card-collapse-loading.vue';
 import CollapsingIssues from '@/components/render-issues/collapsing-issues.vue';
 import {ProductIssue} from '@/components/render-issues/types';
 import {RequestState} from '@/store/types';
@@ -41,12 +50,14 @@ export default defineComponent({
   name: 'PopinProductIssues',
   components: {
     PsModal,
+    CardCollapseLoading,
     CollapsingIssues,
   },
   data() {
     return {
       issues: null as ProductIssue[]|null,
       loadingState: RequestState.IDLE as RequestState,
+      RequestState,
     };
   },
   props: {
