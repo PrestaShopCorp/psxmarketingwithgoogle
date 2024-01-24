@@ -28,6 +28,7 @@
         "mandatory": "sind obligatorisch",
         "XIsMandatory": "{0} ist obligatorisch.",
         "unableToFetchData": "Wir konnten die Daten nicht abrufen, bitte versuchen Sie es später noch einmal.",
+        "noResults": "Keine Daten gefunden",
         "search": "Suche",
         "createAccount": "Ihr Konto erstellen",
         "createNewAccount": "Wenn Sie noch kein Konto haben, können Sie jetzt {0}.",
@@ -628,7 +629,7 @@
     },
     "productFeedPage": {
         "breadcrumb": {
-            "productStatusDetails": "Details zum Produktstatus",
+            "productStatusDetails": "Disapproved products",
             "nonCompliantProducts": "Nicht konforme Produkte"
         },
         "alert": {
@@ -701,7 +702,6 @@
             "details": "Um einen erfolgreichen Pre-Scan mit Google zu gewährleisten, beheben Sie bitte die in der nachstehenden Tabelle beschriebenen Probleme. Wenn Sie auf diese Punkte achten, können Sie Ihr Produkt auf der Oberfläche von Google inserieren.",
             "languageSelection": "Nach Sprache filtern",
             "languageSelected": "Filtern nach: {lang}",
-            "noResults": "Keine Daten gefunden",
             "columns": {
                 "issues": "Probleme",
                 "suggestedActions": "Vorgeschlagene Maßnahmen",
@@ -738,32 +738,23 @@
             "priceMissing": "Einen Preis angeben",
             "priceMissingAction": "Bitte geben Sie einen Preis für das Produkt an."
         },
-        "destinations": {
-            "shoppingAds": "Shopping-Ads",
-            "enhancedFreeListing": "Erweiterte kostenlose Anzeigen"
-        },
         "approvalTable": {
-            "description": "Der folgende Status Ihrer Produkte wurde ans Google Merchant Center gesendet. Einige Produkte werden aufgrund ihrer Sprachvariation möglicherweise öfter angezeigt als andere.",
+            "description": "Below is a list of your products that haven't passed the approval process. Each entry includes reasons for disapproval to help you make quick fixes. Once updated, these products can be sync to Google Shopping.",
             "filterTitle": "Nach Verfügbarkeit filtern",
-            "filterAllStatus": "Alle",
-            "filterOnlyApproved": "Genehmigt",
-            "filterOnlyPending": "Anhängig",
-            "filterOnlyNotApproved": "Nicht genehmigt",
+            "NoFilter": "Alle",
             "tableHeaderID": "ID",
-            "tableHeaderAttributeID": "Attribut",
-            "tableHeaderDestination": "Ziel",
-            "tableHeaderName": "Titel",
-            "tableHeaderGoogleValidation": "Erreichbarkeit für Google",
+            "tableHeaderName": "Product title",
             "tableHeaderLanguage": "Sprache",
-            "tableHeaderCountry": "Land",
-            "tableHeaderIssue": "Grund",
+            "tableHeaderCurrency": "Währung",
+            "tableHeaderCountry": "Affected countries",
+            "tableHeaderIssue": "Reasons",
             "xResults": "{0} Ergebnisse",
             "perPageLabel": "Zeigen:",
             "goToLabel": "Weiter zur Seite:",
             "editX": "Bearbeiten {0}",
             "noReasonFallback": "*Nicht angegeben, überprüfen Sie [Kontofehler in Ihrem Merchant Center]({0})[:target=\"_blank\"].*"
         },
-        "productIssues": {
+        "productIssuesModal": {
             "title": "More details about your product issues",
             "description": "Here are the reasons for suspension provided by Google. Take the necessary steps to meet the requirements and wait for the next scan.",
             "footer": "Visit your [product sheet]({0}) to make the necessary changes to your product to meet Google's requirements and get it approved."
@@ -892,6 +883,7 @@
         "learnAboutAccountSuspension": "Informationen zur Kontosperrung",
         "learnAboutSiteClaiming": "Erfahren Sie mehr über die Beanspruchung von Standorten",
         "learnMoreAboutSmartShoppingCampaigns": "Erfahren Sie mehr über Smart Shopping Kampagnen",
+        "learnMore": "Mehr erfahren",
         "configureAndExportProductFeed": "Starten Sie mit Ihrer Konfiguration",
         "continueProductFeed": "Konfiguration fortsetzen",
         "chooseAccount": "Wählen Sie Ihr Konto",
@@ -978,7 +970,8 @@
         "visitThe": "Besuchen Sie die Seite {0} für weitere Informationen",
         "createPmax": "Leistung max. Kampagne erstellen",
         "understand": "Ich verstehe",
-        "moreActions": "Weitere Aktionen"
+        "moreActions": "Weitere Aktionen",
+        "loadNextPage": "Nächste Ergebnisse laden"
     },
     "badge": {
         "free": "Kostenlos",
