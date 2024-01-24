@@ -437,7 +437,7 @@ export default {
       currency: payload.product.currency,
       language: payload.product.languageCode,
       issueLanguage: window.i18nSettings.isoCode,
-      timeZone: encodeURI(Intl.DateTimeFormat().resolvedOptions().timeZone),
+      issueTimezone: encodeURI(Intl.DateTimeFormat().resolvedOptions().timeZone),
     });
     const productFullId: string = `${payload.product.idProduct}${(+payload.product.idAttribute > 0 ? `-${payload.product.idAttribute}` : '')}`;
     const result: ProductIssuesResponse = await (await fetchOnboarding(
