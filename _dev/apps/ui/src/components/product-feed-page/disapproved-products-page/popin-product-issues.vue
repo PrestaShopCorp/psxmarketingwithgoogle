@@ -15,12 +15,14 @@
     />
 
     <VueShowdown
+      v-if="!isNaN(+product?.idProduct)"
       class="mt-3"
       :markdown="$t('productFeedPage.productIssuesModal.footer', [
         getProductBaseUrl.replace('/1?', `/${product?.idProduct}?`),
       ])"
     />
 
+    <!--Remove buttons-->
     <template slot="modal-footer">
       <span />
     </template>
