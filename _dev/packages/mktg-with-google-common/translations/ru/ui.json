@@ -28,6 +28,7 @@
         "mandatory": "обязательны",
         "XIsMandatory": "{0} является обязательным.",
         "unableToFetchData": "Мы не смогли получить данные, пожалуйста, повторите попытку позже",
+        "noResults": "Данные не найдены",
         "search": "Поиск",
         "createAccount": "создайте ее",
         "createNewAccount": "Если у вас нет учетной записи, {0} сегодня.",
@@ -628,7 +629,7 @@
     },
     "productFeedPage": {
         "breadcrumb": {
-            "productStatusDetails": "Сведения о статусе товара",
+            "productStatusDetails": "Disapproved products",
             "nonCompliantProducts": "Несоответствующие товары"
         },
         "alert": {
@@ -701,7 +702,6 @@
             "details": "Чтобы обеспечить успешное предварительное сканирование с помощью Google, устраните проблемы, описанные в таблице ниже. Устранение этих проблем поможет вам разместить свой товар на платформах Google.",
             "languageSelection": "Фильтр по языку",
             "languageSelected": "Фильтровать по: {lang}",
-            "noResults": "Данные не найдены",
             "columns": {
                 "issues": "Проблемы",
                 "suggestedActions": "Предлагаемые действия",
@@ -738,32 +738,23 @@
             "priceMissing": "Укажите цену",
             "priceMissingAction": "Укажите цену товара."
         },
-        "destinations": {
-            "shoppingAds": "Товарные объявления",
-            "enhancedFreeListing": "Улучшенные бесплатные объявления"
-        },
         "approvalTable": {
-            "description": "Здесь отображены статусы товаров, данные которых отправлены в Google Merchant Center. Товары с описаниями на разных языках могут быть указаны более одного раза.",
+            "description": "Below is a list of your products that haven't passed the approval process. Each entry includes reasons for disapproval to help you make quick fixes. Once updated, these products can be sync to Google Shopping.",
             "filterTitle": "Фильтр по доступности",
-            "filterAllStatus": "Все",
-            "filterOnlyApproved": "Одобрено",
-            "filterOnlyPending": "В ожидании",
-            "filterOnlyNotApproved": "Не утверждено",
+            "NoFilter": "Все",
             "tableHeaderID": "ID",
-            "tableHeaderAttributeID": "Атрибут",
-            "tableHeaderDestination": "Место назначения",
-            "tableHeaderName": "Название",
-            "tableHeaderGoogleValidation": "Доступность для Google",
+            "tableHeaderName": "Product title",
             "tableHeaderLanguage": "Язык",
-            "tableHeaderCountry": "Страна",
-            "tableHeaderIssue": "Причина",
+            "tableHeaderCurrency": "Валюта",
+            "tableHeaderCountry": "Affected countries",
+            "tableHeaderIssue": "Reasons",
             "xResults": "{0} результаты",
             "perPageLabel": "Показать:",
             "goToLabel": "Перейти на страницу:",
             "editX": "Редактировать {0}",
             "noReasonFallback": "* Не указано, проверьте [ошибки учетной записи в Merchant Center]({0})[:target=\"_blank\"].*"
         },
-        "productIssues": {
+        "productIssuesModal": {
             "title": "More details about your product issues",
             "description": "Here are the reasons for suspension provided by Google. Take the necessary steps to meet the requirements and wait for the next scan.",
             "footer": "Visit your [product sheet]({0}) to make the necessary changes to your product to meet Google's requirements and get it approved."
@@ -892,6 +883,7 @@
         "learnAboutAccountSuspension": "Узнайте о приостановлении действия счета",
         "learnAboutSiteClaiming": "Узнайте о претензиях к сайту",
         "learnMoreAboutSmartShoppingCampaigns": "Узнайте больше о кампаниях Smart Shopping",
+        "learnMore": "Подробнее",
         "configureAndExportProductFeed": "Приступить к настройке",
         "continueProductFeed": "Возобновить настройку",
         "chooseAccount": "Выберите свой счет",
@@ -978,7 +970,8 @@
         "visitThe": "Посетите {0} для получения дополнительной информации",
         "createPmax": "Создание кампании Performance Max",
         "understand": "Я понимаю",
-        "moreActions": "Другие действия"
+        "moreActions": "Другие действия",
+        "loadNextPage": "Загрузить следующие результаты"
     },
     "badge": {
         "free": "Бесплатно",
