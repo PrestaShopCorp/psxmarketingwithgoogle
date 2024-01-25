@@ -216,7 +216,7 @@
     },
     "gmcAccountIssues": {
         "title": "Plus de détails sur les problèmes liés au compte",
-        "description": "Your account has been flagged for potential performance and compliance issues. Please review the detailed information provided to understand and address these concerns promptly"
+        "description": "Votre compte a été signalé pour des problèmes potentiels de performance et de conformité. Veuillez consulter les informations détaillées fournies pour comprendre et résoudre rapidement ces problèmes"
     },
     "productFeedCard": {
         "title": "Flux produit",
@@ -629,7 +629,7 @@
     },
     "productFeedPage": {
         "breadcrumb": {
-            "productStatusDetails": "Disapproved products",
+            "productStatusDetails": "Produits refusés",
             "nonCompliantProducts": "Produits non conformes"
         },
         "alert": {
@@ -739,14 +739,14 @@
             "priceMissingAction": "Veuillez renseigner le prix du produit."
         },
         "approvalTable": {
-            "description": "Below is a list of your products that haven't passed the approval process. Each entry includes reasons for disapproval to help you make quick fixes. Once updated, these products can be sync to Google Shopping.",
+            "description": "Vous trouverez ci-dessous une liste de vos produits qui n'ont pas été approuvés. Chaque ligne comprend les raisons de la désapprobation afin de vous aider à apporter des corrections rapides. Une fois mis à jour, ces produits peuvent être synchronisés avec Google Shopping.",
             "filterTitle": "Filtrer par disponibilité",
             "NoFilter": "Tous",
             "tableHeaderID": "ID",
             "tableHeaderName": "Titre du produit",
             "tableHeaderLanguage": "Langue",
             "tableHeaderCurrency": "Devise",
-            "tableHeaderCountry": "Affected countries",
+            "tableHeaderCountry": "Pays concernés",
             "tableHeaderIssue": "Raisons",
             "xResults": "{0} résultats",
             "perPageLabel": "Montrer :",
@@ -755,9 +755,9 @@
             "noReasonFallback": "*Non fourni, vérifiez [les erreurs de compte sur Merchant Center]({0})[:target=\"_blank\"].*"
         },
         "productIssuesModal": {
-            "title": "More details about your product issues",
-            "description": "Here are the reasons for suspension provided by Google. Take the necessary steps to meet the requirements and wait for the next scan.",
-            "footer": "Visit your [product sheet]({0})[:target=\"_blank\"] to make the necessary changes to your product to meet Google's requirements and get it approved."
+            "title": "Plus de détails sur les problèmes liés à votre produit",
+            "description": "Voici les raisons de la suspension fournies par Google. Prenez les mesures nécessaires pour répondre aux exigences et attendez la prochaine analyse.",
+            "footer": "Visitez votre [fiche produit]({0})[:target=\"_blank\"] pour apporter les modifications nécessaires à votre produit afin qu'il réponde aux exigences de Google et qu'il soit approuvé."
         }
     },
     "keymetrics": {
@@ -891,7 +891,7 @@
         "cancel": "Annuler",
         "disconnectAccount": "Déconnecter le compte",
         "selectAccount": "Sélectionnez un compte",
-        "reviewAccount": "Review account",
+        "reviewAccount": "Examiner le compte",
         "addMapping": "Ajouter un mappage",
         "modifyMapping": "Modifier le mappage",
         "learnAboutProductConfiguration": "En savoir plus sur la spécification des données produit",
