@@ -118,7 +118,7 @@
         "tryAgainLater": "Nous ne pouvons pas vérifier ou revendiquer le site actuel. **Nous vous recommandons de vous assurer que le site est accessible** et de réessayer plus tard.",
         "alertSuspended": "Votre compte a été désactivé.",
         "alertSuspendedDescription": "Pour plus de détails sur les raisons de suspension, veuillez visiter votre [compte Merchant Center]({0})[:target=\"_blank\"]. Une fois résolu, vous devrez demander une nouvelle révision en remplissant [ce formulaire]({1})[:target=\"_blank\"].",
-        "alertSuspendedLearnMore": "Learn more about the account suspension",
+        "alertSuspendedLearnMore": "En savoir plus sur la suspension de votre compte",
         "notManaged": "Non associé à PrestaShop",
         "overwriteFailed": "La revendication de l'URL du site web a échoué",
         "overwriteToBeDoneManually": "Votre site Web a déjà été réclamé sur un autre compte Merchant Center. Comme nous ne sommes pas administrateur de votre compte, nous ne pouvons pas écraser cette réclamation pour vous. Veuillez vous rendre à votre [Merchant Center]({0})[:target=\"_blank\"] , et changer l'URL du site web avec celui-ci : {1}",
@@ -215,7 +215,7 @@
         "updateData": "Si vous avez fait des modifications dans votre backoffice, veuillez actualiser vos informations pour voir les changements reflétés ici."
     },
     "gmcAccountIssues": {
-        "title": "More details about account issues",
+        "title": "Plus de détails sur les problèmes liés au compte",
         "description": "Your account has been flagged for potential performance and compliance issues. Please review the detailed information provided to understand and address these concerns promptly"
     },
     "productFeedCard": {
