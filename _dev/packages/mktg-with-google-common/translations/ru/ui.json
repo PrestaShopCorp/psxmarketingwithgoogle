@@ -28,6 +28,7 @@
         "mandatory": "обязательны",
         "XIsMandatory": "{0} является обязательным.",
         "unableToFetchData": "Мы не смогли получить данные, пожалуйста, повторите попытку позже",
+        "noResults": "No data found",
         "search": "Поиск",
         "createAccount": "создайте ее",
         "createNewAccount": "Если у вас нет учетной записи, {0} сегодня.",
@@ -117,6 +118,7 @@
         "tryAgainLater": "Не удалось проверить или подтвердить текущий сайт. **Убедитесь, что сайт доступен**, и повторите попытку позже.",
         "alertSuspended": "Ваш аккаунт был деактивирован.",
         "alertSuspendedDescription": "Чтобы узнать более подробную информацию о причинах приостановки, посетите свой [Merchant Center account]({0})[:target=\"_blank\"]. После решения проблемы вам нужно будет запросить новый отзыв, заполнив [эту форму]({1})[:target=\"_blank\"].",
+        "alertSuspendedLearnMore": "Learn more about the account suspension",
         "notManaged": "Не связано с PrestaShop",
         "overwriteFailed": "Утверждение URL-адреса веб-сайта не удалось",
         "overwriteToBeDoneManually": "Ваш сайт уже был заявлен в другом торговом центре. Поскольку мы не являемся администратором вашего аккаунта, мы не можем переписать это заявление для вас. Пожалуйста, зайдите в свой [Google Merchant Center]({0})[:target=\"_blank\"], и измените URL веб-сайта на этот: {1}",
@@ -211,6 +213,10 @@
         "alert": "Ваш магазин будет проверен, и если одно из этих требований будет отсутствовать, ваша учетная запись будет приостановлена.",
         "phoneFormat": "Номер телефона вашего предприятия не соответствует формату (принимается только номер), пожалуйста, измените его.",
         "updateData": "Если вы внесли какие-либо изменения в свой бэк-офис, пожалуйста, обновите информацию, чтобы увидеть изменения, отраженные здесь."
+    },
+    "gmcAccountIssues": {
+        "title": "More details about account issues",
+        "description": "Your account has been flagged for potential performance and compliance issues. Please review the detailed information provided to understand and address these concerns promptly"
     },
     "productFeedCard": {
         "title": "Подача продукта",
@@ -627,7 +633,7 @@
     },
     "productFeedPage": {
         "breadcrumb": {
-            "productStatusDetails": "Сведения о статусе товара",
+            "productStatusDetails": "Disapproved products",
             "nonCompliantProducts": "Несоответствующие товары"
         },
         "alert": {
@@ -700,7 +706,6 @@
             "details": "Чтобы обеспечить успешное предварительное сканирование с помощью Google, устраните проблемы, описанные в таблице ниже. Устранение этих проблем поможет вам разместить свой товар на платформах Google.",
             "languageSelection": "Фильтр по языку",
             "languageSelected": "Фильтровать по: {lang}",
-            "noResults": "Данные не найдены",
             "columns": {
                 "issues": "Проблемы",
                 "suggestedActions": "Предлагаемые действия",
@@ -737,30 +742,26 @@
             "priceMissing": "Укажите цену",
             "priceMissingAction": "Укажите цену товара."
         },
-        "destinations": {
-            "shoppingAds": "Товарные объявления",
-            "enhancedFreeListing": "Улучшенные бесплатные объявления"
-        },
         "approvalTable": {
-            "description": "Здесь отображены статусы товаров, данные которых отправлены в Google Merchant Center. Товары с описаниями на разных языках могут быть указаны более одного раза.",
+            "description": "Below is a list of your products that haven't passed the approval process. Each entry includes reasons for disapproval to help you make quick fixes. Once updated, these products can be sync to Google Shopping.",
             "filterTitle": "Фильтр по доступности",
-            "filterAllStatus": "Все",
-            "filterOnlyApproved": "Одобрено",
-            "filterOnlyPending": "В ожидании",
-            "filterOnlyNotApproved": "Не утверждено",
+            "NoFilter": "All",
             "tableHeaderID": "ID",
-            "tableHeaderAttributeID": "Атрибут",
-            "tableHeaderDestination": "Место назначения",
-            "tableHeaderName": "Название",
-            "tableHeaderGoogleValidation": "Доступность для Google",
+            "tableHeaderName": "Product title",
             "tableHeaderLanguage": "Язык",
-            "tableHeaderCountry": "Страна",
-            "tableHeaderIssue": "Причина",
+            "tableHeaderCurrency": "Currency",
+            "tableHeaderCountry": "Affected countries",
+            "tableHeaderIssue": "Reasons",
             "xResults": "{0} результаты",
             "perPageLabel": "Показать:",
             "goToLabel": "Перейти на страницу:",
             "editX": "Редактировать {0}",
             "noReasonFallback": "* Не указано, проверьте [ошибки учетной записи в Merchant Center]({0})[:target=\"_blank\"].*"
+        },
+        "productIssuesModal": {
+            "title": "More details about your product issues",
+            "description": "Here are the reasons for suspension provided by Google. Take the necessary steps to meet the requirements and wait for the next scan.",
+            "footer": "Visit your [product sheet]({0})[:target=\"_blank\"] to make the necessary changes to your product to meet Google's requirements and get it approved."
         }
     },
     "keymetrics": {
@@ -887,6 +888,7 @@
         "learnAboutAccountSuspension": "Узнайте о приостановлении действия счета",
         "learnAboutSiteClaiming": "Узнайте о претензиях к сайту",
         "learnMoreAboutSmartShoppingCampaigns": "Узнайте больше о кампаниях Smart Shopping",
+        "learnMore": "Подробнее",
         "configureAndExportProductFeed": "Приступить к настройке",
         "continueProductFeed": "Возобновить настройку",
         "chooseAccount": "Выберите свой счет",
@@ -894,6 +896,7 @@
         "cancel": "Отмена",
         "disconnectAccount": "Отключить счет",
         "selectAccount": "Выберите счет",
+        "reviewAccount": "Review account",
         "addMapping": "Добавить отображение",
         "modifyMapping": "Изменить отображение",
         "learnAboutProductConfiguration": "Узнайте больше о спецификации данных о продукте",
@@ -975,7 +978,8 @@
         "understand": "Я понимаю",
         "moreActions": "Другие действия",
         "signGadsToS": "Sign terms of service on Google Ads",
-        "enableEnhancedConversions": "Activate enhanced conversion tracking"
+        "enableEnhancedConversions": "Activate enhanced conversion tracking",
+        "loadNextPage": "Загрузить следующие результаты"
     },
     "badge": {
         "free": "Бесплатно",
