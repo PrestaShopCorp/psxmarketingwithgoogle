@@ -15,6 +15,7 @@ declare global {
     psxMktgWithGoogleOnProductionEnvironment: boolean;
     i18nSettings: {
       isoCode: string;
+      languageLocale: string;
     };
   }
 }
@@ -48,7 +49,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const messagesToDisplay = await getListOfWarnings(fetchOnboarding);
 
   buildWarningMessages(messagesToDisplay, {
-    isoCode: window.i18nSettings.isoCode,
+    isoCode: (new Intl.Locale(window.i18nSettings.languageLocale)).language,
     link: window.psxMktgWithGoogleAdminUrl,
   }).attachBefore(document.getElementById('dashboard'));
 });
