@@ -32,6 +32,7 @@ import {runIf} from '../../../utils/Promise';
 import {RecommendedBudget} from '@/utils/CampaignsBudget';
 import KpiType from '@/enums/reporting/KpiType';
 import {FullState} from '../..';
+import appGetters from '@/store/modules/app/getters-types';
 
 type Context = ActionContext<State, FullState>;
 
@@ -366,6 +367,7 @@ export default {
   async [ActionsTypes.GET_DIMENSIONS_FILTERS]({
     commit,
     rootState,
+    rootGetters,
     state,
   }: Context, search?: string) {
     if (!search && state.sscAvailableFilters.length) {
@@ -374,7 +376,7 @@ export default {
     }
 
     const query = new URLSearchParams({
-      language_code: window.i18nSettings.isoCode,
+      language_code: rootGetters[`app/${appGetters.GET_CURRENT_LANGUAGE}`],
       country_code: rootState.app.psxMtgWithGoogleDefaultShopCountry,
     });
 

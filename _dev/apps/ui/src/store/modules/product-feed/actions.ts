@@ -17,6 +17,7 @@ import {
 import {formatMappingToApi} from '@/utils/AttributeMapping';
 import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
 import {FullState} from '../..';
+import appGetters from '@/store/modules/app/getters-types';
 import {ProductIdentifier} from '@/components/product-feed-page/disapproved-products-page/types';
 import {ProductIssuesResponse, ProductIssue} from '@/components/render-issues/types';
 
@@ -89,9 +90,9 @@ export default {
       ),
     ]);
   },
-  async [ActionsTypes.GET_PRODUCT_FEED_SYNC_STATUS]({commit}: Context) {
+  async [ActionsTypes.GET_PRODUCT_FEED_SYNC_STATUS]({commit, rootGetters}: Context) {
     const params = {
-      lang: window.i18nSettings.isoCode,
+      lang: rootGetters[`app/${appGetters.GET_CURRENT_LANGUAGE}`],
       timezone: encodeURI(Intl.DateTimeFormat().resolvedOptions().timeZone),
     };
     try {
@@ -109,10 +110,10 @@ export default {
   },
 
   async [ActionsTypes.GET_PRODUCT_FEED_SETTINGS](
-    {commit}: Context,
+    {commit, rootGetters}: Context,
   ): Promise<ProductFeedSettings|null> {
     const params = {
-      lang: window.i18nSettings.isoCode,
+      lang: rootGetters[`app/${appGetters.GET_CURRENT_LANGUAGE}`],
       timezone: encodeURI(Intl.DateTimeFormat().resolvedOptions().timeZone),
     };
     try {
@@ -428,15 +429,13 @@ export default {
     return result;
   },
 
-  // eslint-disable-next-line no-empty-pattern
-  async [ActionsTypes.REQUEST_REPORTING_PRODUCT_ISSUES]({}: Context, payload: {
+  async [ActionsTypes.REQUEST_REPORTING_PRODUCT_ISSUES]({rootGetters}: Context, payload: {
     product: ProductIdentifier,
   }): Promise<ProductIssue[]> {
-    console.log('product', payload.product);
     const params = new URLSearchParams({
       currency: payload.product.currency,
       language: payload.product.languageCode,
-      issueLanguage: window.i18nSettings.isoCode,
+      issueLanguage: rootGetters[`app/${appGetters.GET_CURRENT_LANGUAGE}`],
       issueTimezone: encodeURI(Intl.DateTimeFormat().resolvedOptions().timeZone),
     });
     const productFullId: string = `${payload.product.idProduct}${(+payload.product.idAttribute > 0 ? `-${payload.product.idAttribute}` : '')}`;

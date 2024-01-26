@@ -9,6 +9,7 @@ import ActionsTypesApp from '../app/actions-types';
 import NeedOverwriteError from '../../../utils/NeedOverwriteError';
 import CannotOverwriteError from '../../../utils/CannotOverwriteError';
 import {FullState} from '../..';
+import appGetters from '@/store/modules/app/getters-types';
 import {State} from './state';
 
 type Context = ActionContext<State, FullState>;
@@ -341,11 +342,12 @@ export default {
   async [ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS](
     {
       commit,
+      rootGetters,
     }: Context,
     correlationId: string,
   ) {
     const params = new URLSearchParams({
-      languageCode: window.i18nSettings.isoCode,
+      languageCode: rootGetters[`app/${appGetters.GET_CURRENT_LANGUAGE}`],
       timeZone: encodeURI(Intl.DateTimeFormat().resolvedOptions().timeZone),
     });
     const json = await (await fetchOnboarding(
