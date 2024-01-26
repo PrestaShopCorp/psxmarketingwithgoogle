@@ -17,6 +17,8 @@ import {
 import {formatMappingToApi} from '@/utils/AttributeMapping';
 import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
 import {FullState, RequestState} from '@/store/types';
+import {ProductIdentifier} from '@/components/product-feed-page/disapproved-products-page/types';
+import {ProductIssue} from '@/components/render-issues/types';
 
 type Context = ActionContext<State, FullState>;
 
@@ -308,15 +310,7 @@ export default {
     commit(MutationsTypes.SAVE_TOTAL_PRODUCTS_READY_TO_SYNC, Number(result.total));
     return result;
   },
-  async [ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES]({commit}: Context, nextPage) {
-    const nextToken = nextPage ? `?next_token=${nextPage}` : '';
-    const result = await (await fetchOnboarding(
-      'GET',
-      `product-feeds/validation/list${nextToken}`,
-    )).json();
-    commit(MutationsTypes.SAVE_ALL_PRODUCTS, result.results);
-    return result;
-  },
+
   async [ActionsTypes.REQUEST_SYNCHRONISATION]({rootState}: Context, full = false) {
     const response = await fetch(`https://api.cloudsync.prestashop.com/sync/v1/sync/trigger${full ? '-full' : ''}`, {
       method: 'POST',
@@ -427,5 +421,35 @@ export default {
       originalPayload: payload,
       verificationIssueNumberOfProducts: json.totalCount,
     });
+  },
+
+  async [ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES]({commit}: Context, nextPage) {
+    const nextToken = nextPage ? `?next_token=${nextPage}` : '';
+    const result = await (await fetchOnboarding(
+      'GET',
+      `product-feeds/validation/list${nextToken}`,
+    )).json();
+    commit(MutationsTypes.SAVE_ALL_PRODUCTS, result.results);
+    return result;
+  },
+
+  // eslint-disable-next-line no-empty-pattern
+  async [ActionsTypes.REQUEST_REPORTING_PRODUCT_ISSUES]({}: Context, payload: {
+    product: ProductIdentifier,
+  }): Promise<ProductIssue[]> {
+    console.log('product', payload.product);
+    const params = new URLSearchParams({
+      currency: payload.product.currency,
+      language: payload.product.languageCode,
+      issueLanguage: window.i18nSettings.isoCode,
+      issueTimezone: encodeURI(Intl.DateTimeFormat().resolvedOptions().timeZone),
+    });
+    const productFullId: string = `${payload.product.idProduct}${(+payload.product.idAttribute > 0 ? `-${payload.product.idAttribute}` : '')}`;
+    const result = await (await fetchOnboarding(
+      'GET',
+      `product-feeds/validation/product/${productFullId}?${params.toString()}`,
+    )).json();
+
+    return result.issues || [];
   },
 };

@@ -28,6 +28,7 @@
         "mandatory": "zijn verplicht",
         "XIsMandatory": "{0} is verplicht.",
         "unableToFetchData": "We konden geen gegevens ophalen, probeer het later nog eens",
+        "noResults": "Geen data gevonden",
         "search": "Zoeken op",
         "createAccount": "je account aanmaken",
         "createNewAccount": "Als je geen account hebt, kun je nu {0}.",
@@ -117,6 +118,7 @@
         "tryAgainLater": "We kunnen de huidige website niet verifiëren of claimen. **We raden je aan ervoor te zorgen dat de website toegankelijk is** en het later opnieuw te proberen.",
         "alertSuspended": "Uw account is gedeactiveerd.",
         "alertSuspendedDescription": "Ga naar uw [Merchant Center-account]({0})[:target=\"_blank\"] voor meer informatie over de redenen voor opschorting. Eenmaal opgelost zult u een nieuwe beoordeling moeten aanvragen door [dit formulier]({1})[:target=\"_blank\"] in te vullen.",
+        "alertSuspendedLearnMore": "Learn more about the account suspension",
         "notManaged": "Niet verbonden met PrestaShop",
         "overwriteFailed": "Website URL claim mislukt",
         "overwriteToBeDoneManually": "Uw website is al geclaimd op een andere merchant center account. Aangezien wij geen beheerder van uw account zijn, kunnen wij deze claim niet voor u overschrijven. Ga naar uw [Google Merchant Center]({0})[:target=\"_blank\"] , en verander de Website URL met deze : {1}",
@@ -211,6 +213,10 @@
         "alert": "Uw winkel zal worden beoordeeld, dus als een van deze eisen ontbreekt, zal uw account worden geschorst.",
         "phoneFormat": "Uw zakelijk telefoonnummer is geen geldig formaat (alleen een nummer accepteren) verander het a.u.b.",
         "updateData": "Indien u wijzigingen hebt aangebracht in uw backoffice, gelieve uw informatie te vernieuwen om de wijzigingen hier te zien."
+    },
+    "gmcAccountIssues": {
+        "title": "More details about account issues",
+        "description": "Your account has been flagged for potential performance and compliance issues. Please review the detailed information provided to understand and address these concerns promptly"
     },
     "productFeedCard": {
         "title": "Product voer",
@@ -627,7 +633,7 @@
     },
     "productFeedPage": {
         "breadcrumb": {
-            "productStatusDetails": "Details productstatus",
+            "productStatusDetails": "Disapproved products",
             "nonCompliantProducts": "Non-conforme producten"
         },
         "alert": {
@@ -700,7 +706,6 @@
             "details": "Los de problemen op die in de onderstaande tabel worden beschreven om een succesvolle pre-scan met Google te garanderen. Door deze problemen op te lossen, kun je je product op de oppervlakken van Google vermelden.",
             "languageSelection": "Filteren op taal",
             "languageSelected": "Filteren op: {lang}",
-            "noResults": "Geen data gevonden",
             "columns": {
                 "issues": "Uitgaven",
                 "suggestedActions": "Voorgestelde acties",
@@ -737,30 +742,26 @@
             "priceMissing": "Geef een prijs op",
             "priceMissingAction": "Geef een prijs op voor het product."
         },
-        "destinations": {
-            "shoppingAds": "Shopreclames",
-            "enhancedFreeListing": "Verbeterde gratis aanbiedingen"
-        },
         "approvalTable": {
-            "description": "Dit is de status van je producten die naar Google Merchant Center worden verzonden. Sommige producten kunnen meer dan één keer verschijnen vanwege hun taalvariatie.",
+            "description": "Below is a list of your products that haven't passed the approval process. Each entry includes reasons for disapproval to help you make quick fixes. Once updated, these products can be sync to Google Shopping.",
             "filterTitle": "Filter op beschikbaarheid",
-            "filterAllStatus": "Alle",
-            "filterOnlyApproved": "Goedgekeurd",
-            "filterOnlyPending": "In afwachting van",
-            "filterOnlyNotApproved": "Niet goedgekeurd",
+            "NoFilter": "Alle",
             "tableHeaderID": "ID",
-            "tableHeaderAttributeID": "Attribuut",
-            "tableHeaderDestination": "Bestemming",
-            "tableHeaderName": "Titel",
-            "tableHeaderGoogleValidation": "Beschikbaarheid voor Google",
+            "tableHeaderName": "Product title",
             "tableHeaderLanguage": "Taal",
-            "tableHeaderCountry": "Land",
-            "tableHeaderIssue": "Reden",
+            "tableHeaderCurrency": "Valuta",
+            "tableHeaderCountry": "Affected countries",
+            "tableHeaderIssue": "Reasons",
             "xResults": "{0} resultaten",
             "perPageLabel": "Laat zien:",
             "goToLabel": "Ga naar pagina:",
             "editX": "Bewerk {0}",
             "noReasonFallback": "*Niet opgegeven, controleer [account errors on your Merchant Center]({0})[:target=\"_blank\"].*"
+        },
+        "productIssuesModal": {
+            "title": "More details about your product issues",
+            "description": "Here are the reasons for suspension provided by Google. Take the necessary steps to meet the requirements and wait for the next scan.",
+            "footer": "Visit your [product sheet]({0})[:target=\"_blank\"] to make the necessary changes to your product to meet Google's requirements and get it approved."
         }
     },
     "keymetrics": {
@@ -887,6 +888,7 @@
         "learnAboutAccountSuspension": "Meer informatie over accountopschorting",
         "learnAboutSiteClaiming": "Meer informatie over het claimen van sites",
         "learnMoreAboutSmartShoppingCampaigns": "Meer informatie over Smart Shopping-campagnes",
+        "learnMore": "Meer informatie",
         "configureAndExportProductFeed": "Je configuratie starten",
         "continueProductFeed": "Configuratie hervatten",
         "chooseAccount": "Kies uw account",
@@ -894,6 +896,7 @@
         "cancel": "Annuleer",
         "disconnectAccount": "Account loskoppelen",
         "selectAccount": "Account kiezen",
+        "reviewAccount": "Review account",
         "addMapping": "Mapping toevoegen",
         "modifyMapping": "Wijzig mapping",
         "learnAboutProductConfiguration": "Meer informatie over de specificatie van productgegevens",
@@ -975,7 +978,8 @@
         "understand": "Ik begrijp het.",
         "moreActions": "Meer acties",
         "signGadsToS": "Sign terms of service on Google Ads",
-        "enableEnhancedConversions": "Activate enhanced conversion tracking"
+        "enableEnhancedConversions": "Activate enhanced conversion tracking",
+        "loadNextPage": "Volgende resultaten laden"
     },
     "badge": {
         "free": "Gratis",

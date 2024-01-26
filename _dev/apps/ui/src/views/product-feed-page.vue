@@ -1,9 +1,6 @@
 <template>
   <div>
-    <product-feed-table-status-details v-if="$route.name === 'product-feed-status'" />
-    <product-feed-pre-scan-table-status-details
-      v-else-if="$route.path === '/product-feed/pre-scan'"
-    />
+    <disapproved-products-page v-if="$route.name === 'product-feed-status'" />
     <non-compliant-products-details-page
       v-else-if="$route.name === 'product-feed-verification-error-products'"
       :verification-issue-name="$route.params.error"
@@ -20,7 +17,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import ProductFeedTableStatusDetails from '@/components/product-feed-page/product-feed-table-status-details.vue';
+import DisapprovedProductsPage from '@/components/product-feed-page/disapproved-products-page/disapproved-products-page.vue';
 import NonCompliantProductsPage from '@/components/product-feed-page/non-compliant-products-page/non-compliant-products-page.vue';
 import NonCompliantProductsDetailsPage from '@/components/product-feed-page/non-compliant-products-details-page/non-compliant-products-details-page.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
@@ -28,10 +25,10 @@ import ProductFeedDashboardPage from '@/components/product-feed-page/dashboard/p
 
 export default defineComponent({
   components: {
-    ProductFeedDashboardPage,
-    ProductFeedTableStatusDetails,
+    DisapprovedProductsPage,
     NonCompliantProductsPage,
     NonCompliantProductsDetailsPage,
+    ProductFeedDashboardPage,
   },
   computed: {
     inNeedOfConfiguration() {

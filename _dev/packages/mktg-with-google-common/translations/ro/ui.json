@@ -28,6 +28,7 @@
         "mandatory": "sunt obligatorii",
         "XIsMandatory": "{0} este obligatoriu.",
         "unableToFetchData": "Nu am putut prelua datele, încearcă din nou mai târziu",
+        "noResults": "Nu au fost găsite date",
         "search": "Căutare",
         "createAccount": "creează-ți un cont",
         "createNewAccount": "Dacă nu ai un cont, poți {0} astăzi.",
@@ -117,6 +118,7 @@
         "tryAgainLater": "Nu putem verifica sau revendica site-ul curent. **Îți recomandăm să te asiguri că site-ul este accesibil** și să încerci din nou mai târziu.",
         "alertSuspended": "Contul tău a fost dezactivat.",
         "alertSuspendedDescription": "Pentru a vedea mai multe detalii despre motivele suspendării, accesează [contul Merchant Center]({0})[:target=\"_blank\"]. După rezolvare, va trebui să soliciți o nouă examinare completând [acest formular]({1})[:target=\"_blank\"].",
+        "alertSuspendedLearnMore": "Learn more about the account suspension",
         "notManaged": "Nu este asociat cu PrestaShop",
         "overwriteFailed": "Revendicarea adresei URL a site-ului a eșuat",
         "overwriteToBeDoneManually": "Site-ul a fost deja revendicat pe un alt cont Merchant Center. Deoarece nu suntem administratorul contului tău, nu putem suprascrie această revendicare pentru tine. Accesează [Google Merchant Center]({0})[:target=\"_blank\"] și modifică adresa URL a site-ului web cu aceasta: {1}",
@@ -211,6 +213,10 @@
         "alert": "Magazinul tău va fi examinat, și dacă una dintre aceste condiții lipsește, contul tău va fi suspendat.",
         "phoneFormat": "Numărul tău de telefon de serviciu nu are un format valid (acceptă doar numere), te rugăm să îl modifici.",
         "updateData": "Dacă ai făcut orice modificare în back-office, te rugăm să reîmprospătezi informațiile pentru a vedea modificările reflectate aici."
+    },
+    "gmcAccountIssues": {
+        "title": "More details about account issues",
+        "description": "Your account has been flagged for potential performance and compliance issues. Please review the detailed information provided to understand and address these concerns promptly"
     },
     "productFeedCard": {
         "title": "Fluxul de produse",
@@ -627,7 +633,7 @@
     },
     "productFeedPage": {
         "breadcrumb": {
-            "productStatusDetails": "Detalii privind starea produsului",
+            "productStatusDetails": "Disapproved products",
             "nonCompliantProducts": "Produse neconforme"
         },
         "alert": {
@@ -700,7 +706,6 @@
             "details": "Pentru a asigura o pre-scanare reușită cu Google, remediază problemele prezentate în tabelul de mai jos. Rezolvarea acestor probleme te va ajuta să listezi produsul pe interfețele Google.",
             "languageSelection": "Filtrează după limbă",
             "languageSelected": "Filtrează după: {lang}",
-            "noResults": "Nu au fost găsite date",
             "columns": {
                 "issues": "Probleme",
                 "suggestedActions": "Acțiuni sugerate",
@@ -737,30 +742,26 @@
             "priceMissing": "Furnizează un preț",
             "priceMissingAction": "Furnizează un preț pentru produs."
         },
-        "destinations": {
-            "shoppingAds": "Reclame pe Shopping",
-            "enhancedFreeListing": "Listări gratuite avansate"
-        },
         "approvalTable": {
-            "description": "Acestea sunt stările produselor trimise la Google Merchant Center. Unele produse pot apărea de mai multe ori din cauza variațiilor de limbă.",
+            "description": "Below is a list of your products that haven't passed the approval process. Each entry includes reasons for disapproval to help you make quick fixes. Once updated, these products can be sync to Google Shopping.",
             "filterTitle": "Filtrează după disponibilitate",
-            "filterAllStatus": "Toate",
-            "filterOnlyApproved": "Aprobat",
-            "filterOnlyPending": "În așteptare",
-            "filterOnlyNotApproved": "Neaprobate",
+            "NoFilter": "Toate",
             "tableHeaderID": "ID",
-            "tableHeaderAttributeID": "Caracteristică",
-            "tableHeaderDestination": "Destinație",
-            "tableHeaderName": "Titlu",
-            "tableHeaderGoogleValidation": "Disponibilitate pentru Google",
+            "tableHeaderName": "Product title",
             "tableHeaderLanguage": "Limbă",
-            "tableHeaderCountry": "Țară",
-            "tableHeaderIssue": "Motiv",
+            "tableHeaderCurrency": "Monedă",
+            "tableHeaderCountry": "Affected countries",
+            "tableHeaderIssue": "Reasons",
             "xResults": "{0} rezultate",
             "perPageLabel": "Afișează:",
             "goToLabel": "Mergi la pagina:",
             "editX": "Editează {0}",
             "noReasonFallback": "*Nu este furnizat, bifează [erori cont în Merchant Center]({0})[:target=\"_blank\"].*"
+        },
+        "productIssuesModal": {
+            "title": "More details about your product issues",
+            "description": "Here are the reasons for suspension provided by Google. Take the necessary steps to meet the requirements and wait for the next scan.",
+            "footer": "Visit your [product sheet]({0})[:target=\"_blank\"] to make the necessary changes to your product to meet Google's requirements and get it approved."
         }
     },
     "keymetrics": {
@@ -887,6 +888,7 @@
         "learnAboutAccountSuspension": "Află mai multe despre suspendarea contului",
         "learnAboutSiteClaiming": "Află mai multe despre revendicarea site-ului",
         "learnMoreAboutSmartShoppingCampaigns": "Află mai multe despre campaniile Smart Shopping",
+        "learnMore": "Află mai multe",
         "configureAndExportProductFeed": "Pornește configurația",
         "continueProductFeed": "Reluare configurare",
         "chooseAccount": "Alege-ți contul",
@@ -894,6 +896,7 @@
         "cancel": "Anulare",
         "disconnectAccount": "Deconectare cont",
         "selectAccount": "Selectare cont",
+        "reviewAccount": "Review account",
         "addMapping": "Adăugare mapare",
         "modifyMapping": "Modificare mapare",
         "learnAboutProductConfiguration": "Află mai multe despre specificațiile datelor produselor",
@@ -975,7 +978,8 @@
         "understand": "Înțeleg",
         "moreActions": "Mai multe acțiuni",
         "signGadsToS": "Sign terms of service on Google Ads",
-        "enableEnhancedConversions": "Activate enhanced conversion tracking"
+        "enableEnhancedConversions": "Activate enhanced conversion tracking",
+        "loadNextPage": "Încarcă următoarele rezultate"
     },
     "badge": {
         "free": "Gratuit",

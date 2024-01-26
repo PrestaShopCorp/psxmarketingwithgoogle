@@ -26,4 +26,8 @@
 
 .card {
   border-color: $grey_light;
+
+  .card-header {
+    margin-bottom: -$card-border-width;
+  }
 }

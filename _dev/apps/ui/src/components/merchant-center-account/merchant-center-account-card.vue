@@ -308,7 +308,7 @@
         </div>
         <merchant-center-account-alert-suspended
           v-if="error === WebsiteClaimErrorReason.Suspended"
-          :issues="gmcAccountDetails.isSuspended.issues"
+          :issues="gmcAccountDetails.accountIssues"
           :account-overview-url="merchantCenterWebsitePageUrl.overview"
           class="mb-0 mt-3"
         />
@@ -498,23 +498,25 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
 import uniqBy from 'lodash.uniqby';
+import {defineComponent} from 'vue';
 import {VueShowdown} from 'vue-showdown';
 import {BAlert} from 'bootstrap-vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 import {
+  MerchantCenterAccountContext,
   WebsiteClaimErrorReason,
-} from '../../store/modules/accounts/state';
-import {getMerchantCenterWebsiteUrls} from './merchant-center-account-links';
+} from '@/store/modules/accounts/state';
+import {getMerchantCenterWebsiteUrls} from '@/components/merchant-center-account/merchant-center-account-links';
 import MerchantCenterAccountAlertSuspended from '@/components/merchant-center-account/merchant-center-account-alert-suspended.vue';
-import MerchantCenterAccountPopinOverwriteClaim from './merchant-center-account-popin-overwrite-claim';
-import MerchantCenterAccountPopinWebsiteRequirements from './merchant-center-account-popin-website-requirements.vue';
-import PhoneVerificationPopin from './phone-verification/phone-verification-popin.vue';
+import MerchantCenterAccountPopinOverwriteClaim from '@/components/merchant-center-account/merchant-center-account-popin-overwrite-claim.vue';
+import MerchantCenterAccountPopinWebsiteRequirements from '@/components/merchant-center-account/merchant-center-account-popin-website-requirements.vue';
+import PhoneVerificationPopin from '@/components/merchant-center-account/phone-verification/phone-verification-popin.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
-import AlertModuleDisabled from '@/components/commons/alert-module-disabled';
+import AlertModuleDisabled from '@/components/commons/alert-module-disabled.vue';
 
-export default {
+export default defineComponent({
   name: 'MerchantCenterAccountCard',
   components: {
     MerchantCenterAccountAlertSuspended,
@@ -590,7 +592,7 @@ export default {
     mcaConfigured() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
     },
-    gmcAccountDetails() {
+    gmcAccountDetails(): MerchantCenterAccountContext {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'];
     },
     mcaIsNotConnected() {
@@ -796,5 +798,5 @@ export default {
     },
   },
   googleUrl,
-};
+});
 </script>

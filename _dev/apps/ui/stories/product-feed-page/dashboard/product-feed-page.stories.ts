@@ -18,7 +18,9 @@ import {
 } from '@/../.storybook/mock/campaigns-list';
 
 import { rest } from 'msw';
-import merchantCenterAccountConnected from '@/../.storybook/mock/merchant-center-account';
+import {
+  merchantCenterAccountSuspended,
+} from '@/../.storybook/mock/merchant-center-account';
 import {RequestState} from '@/store/types';
 
 export default {
@@ -353,34 +355,7 @@ SyncFailed.parameters = {
 export const AccountSuspended:any = ProductFeed.bind({});
 AccountSuspended.args = {
   beforeMount() {
-    this.$store.state.accounts.googleMerchantAccount = cloneDeep(Object.assign({},
-      merchantCenterAccountConnected,
-      {
-        isSuspended: {
-          status: true,
-          issues: [
-            {
-              id: 'editorial_and_professional_standards_destination_url_down_policy',
-              title:
-                'Account suspended due to policy violation: landing page not working',
-              country: 'US',
-              severity: 'critical',
-              documentation:
-                'https://google.com/first-link',
-            },
-            {
-              id: 'editorial_and_professional_standards_destination_url_down_policy',
-              title:
-                'Account suspended due to policy violation: Oh no',
-              country: 'US',
-              severity: 'critical',
-              documentation:
-                'https://google.com/second-link',
-            },
-          ]
-        },
-      },
-    ));
+    this.$store.state.accounts.googleMerchantAccount = cloneDeep(merchantCenterAccountSuspended);
     this.$store.state.productFeed.report = cloneDeep(productFeedStatusSyncSuccess.report);
   },
 }

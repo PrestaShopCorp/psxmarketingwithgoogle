@@ -1,0 +1,20 @@
+.ps_gs-card-collapse {
+  > .card-header {
+    background-color: $white;
+
+    padding-bottom: 0 !important;
+    
+    &:has(.not-collapsed) {
+      border-bottom: none;
+
+      &::after {
+        content: '';
+        border-bottom: 1px solid $card-border-color;
+        display: block;
+        margin-left: rem(16);
+        margin-right: rem(16);
+      }
+    }
+  }
+
+}

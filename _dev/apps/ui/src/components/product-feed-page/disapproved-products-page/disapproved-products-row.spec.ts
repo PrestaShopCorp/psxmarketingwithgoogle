@@ -2,15 +2,15 @@ import Vuex from 'vuex';
 
 // Import this file first to init mock on window
 import {mount, MountOptions} from '@vue/test-utils';
-import {BTd} from 'bootstrap-vue';
+import {BCard, BTd} from 'bootstrap-vue';
 import {ProductInfos, ProductStatus} from '@/store/modules/product-feed/state';
 import config, {
   localVue, cloneStore, addBootstrapToVue, addShowdownToVue,
 } from '@/../tests/init';
 
-import productFeedTableStatusDetailsRowVue from './product-feed-table-status-details-row.vue';
+import DisapprovedProductsRow from './disapproved-products-row.vue';
 
-describe('product-feed-table-status-details-row.vue', () => {
+describe('disapproved-products-row.vue', () => {
   const buildWrapper = (
     options: MountOptions<any> = {},
   ) => {
@@ -18,7 +18,7 @@ describe('product-feed-table-status-details-row.vue', () => {
     addShowdownToVue();
     const store = cloneStore();
 
-    return mount(productFeedTableStatusDetailsRowVue, {
+    return mount(DisapprovedProductsRow, {
       localVue,
       store: new Vuex.Store(store),
       ...config,
@@ -33,6 +33,7 @@ describe('product-feed-table-status-details-row.vue', () => {
       attribute: '0',
       name: 'Psykokwak',
       language: 'fr',
+      currency: '💷',
       statuses: [
         {
           destination: 'Shopping',
@@ -60,8 +61,6 @@ describe('product-feed-table-status-details-row.vue', () => {
     const wrapper = buildWrapper({
       propsData: {
         product,
-        status: product.statuses[0],
-        indexStatus: 0,
       },
     });
 
@@ -71,21 +70,20 @@ describe('product-feed-table-status-details-row.vue', () => {
 
     expect(cells.at(0).text()).toEqual('7990');
     expect(cells.at(1).text()).toEqual('Psykokwak');
-
-    const countrySpans = cells.at(2).findAll('span');
-    expect(countrySpans.length).toEqual(3);
-    expect(countrySpans.at(0).text()).toEqual('FR');
-    expect(countrySpans.at(1).text()).toEqual('IT');
-    expect(countrySpans.at(2).text()).toEqual('BE');
-
+    expect(cells.at(2).text()).toEqual('💷');
     expect(cells.at(3).text()).toEqual('fr');
-    expect(cells.at(4).text()).toEqual('disapproved');
+
+    const countrySpans = cells.at(4).findAllComponents(BCard);
+    expect(countrySpans.length).toEqual(3);
+    expect(countrySpans.at(0).text()).toEqual('France');
+    expect(countrySpans.at(1).text()).toEqual('Italy');
+    expect(countrySpans.at(2).text()).toEqual('Belgium');
 
     const errorsList = cells.at(5).findAll('li');
     expect(errorsList.length).toEqual(1);
     expect(errorsList.at(0).text()).toEqual('Suspended account for policy violation');
 
-    expect(cells.at(6).text()).toEqual('Shopping Ads');
+    expect(cells.at(6).text()).toEqual('Learn more');
   });
 
   it('suggests to the merchant to open the GMC website to check the errors on the account level', () => {
@@ -95,6 +93,7 @@ describe('product-feed-table-status-details-row.vue', () => {
       attribute: '0',
       name: 'Psykokwak',
       language: 'fr',
+      currency: 'EUR',
       statuses: [
         {
           destination: 'Shopping',
@@ -108,8 +107,6 @@ describe('product-feed-table-status-details-row.vue', () => {
     const wrapper = buildWrapper({
       propsData: {
         product,
-        status: product.statuses[0],
-        indexStatus: 0,
       },
     });
 
@@ -119,74 +116,19 @@ describe('product-feed-table-status-details-row.vue', () => {
 
     expect(cells.at(0).text()).toEqual('7990');
     expect(cells.at(1).text()).toEqual('Psykokwak');
-
-    const countrySpans = cells.at(2).findAll('span');
-    expect(countrySpans.length).toEqual(3);
-    expect(countrySpans.at(0).text()).toEqual('FR');
-    expect(countrySpans.at(1).text()).toEqual('IT');
-    expect(countrySpans.at(2).text()).toEqual('BE');
-
+    expect(cells.at(2).text()).toEqual('EUR');
     expect(cells.at(3).text()).toEqual('fr');
-    expect(cells.at(4).text()).toEqual('disapproved');
+
+    const countrySpans = cells.at(4).findAllComponents(BCard);
+    expect(countrySpans.length).toEqual(3);
+    expect(countrySpans.at(0).text()).toEqual('France');
+    expect(countrySpans.at(1).text()).toEqual('Italy');
+    expect(countrySpans.at(2).text()).toEqual('Belgium');
 
     const errorsList = cells.at(5).findAll('li');
     expect(errorsList.length).toEqual(0);
     expect(cells.at(5).text()).toEqual('Not provided, check account errors on your Merchant Center.');
 
-    expect(cells.at(6).text()).toEqual('Shopping Ads');
-  });
-
-  it('merges some cells with the upper line when statuses between for different destinations are the same', () => {
-    // Arrange
-    const product: ProductInfos = {
-      id: '7990',
-      attribute: '0',
-      name: 'Psykokwak',
-      language: 'fr',
-      statuses: [
-        {
-          destination: 'Shopping',
-          status: ProductStatus.Disapproved,
-          countries: ['FR', 'IT', 'BE'],
-        },
-        {
-          destination: 'SurfacesAcrossGoogle',
-          status: ProductStatus.Disapproved,
-          countries: ['FR', 'IT', 'BE'],
-        },
-      ],
-      issues: [
-        {
-          // Content unecessary for the purpose of this test
-        },
-        {
-          code: 'policy_enforcement_account_disapproval',
-          servability: 'disapproved',
-          resolution: 'merchant_action',
-          destination: 'SurfacesAcrossGoogle',
-          description: 'Another error',
-          detail:
-                'Remove products that violate our policies, or request a manual review',
-          documentation:
-                'https://support.google.com/merchants/answer/2948694',
-          applicableCountries: ['BE'],
-        },
-      ],
-    };
-
-    // Act
-    const wrapper = buildWrapper({
-      propsData: {
-        product,
-        status: product.statuses[1],
-        indexStatus: 1,
-      },
-    });
-
-    // Assert
-    const cells = wrapper.findAllComponents(BTd);
-    expect(cells.length).toBe(2);
-    expect(cells.at(0).text()).toEqual('Another error');
-    expect(cells.at(1).text()).toEqual('Enhanced Free Listings');
+    expect(cells.at(6).text()).toEqual('Learn more');
   });
 });
