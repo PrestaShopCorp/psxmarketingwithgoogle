@@ -423,17 +423,11 @@ export default {
     });
   },
 
-  async [ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES](
-    {commit}: Context,
-    nextPage: string|null,
-  ) {
-    const params = new URLSearchParams({
-      next_token: nextPage || '',
-      limit: '10',
-    });
+  async [ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES]({commit}: Context, nextPage) {
+    const nextToken = nextPage ? `?next_token=${nextPage}` : '';
     const result = await (await fetchOnboarding(
       'GET',
-      `product-feeds/validation/list?${params.toString()}`,
+      `product-feeds/validation/list${nextToken}`,
     )).json();
     commit(MutationsTypes.SAVE_ALL_PRODUCTS, result.results);
     return result;
