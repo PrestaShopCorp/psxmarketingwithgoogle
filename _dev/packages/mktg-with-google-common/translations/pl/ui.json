@@ -28,6 +28,7 @@
         "mandatory": "są obowiązkowe",
         "XIsMandatory": "{0} jest obowiązkowy.",
         "unableToFetchData": "Nie udało się pobrać danych, proszę spróbować ponownie później",
+        "noResults": "No data found",
         "search": "Szukaj",
         "createAccount": "utwórz Twoje konto ",
         "createNewAccount": "Nie masz jeszcze konta? {0} już teraz.",
@@ -117,6 +118,7 @@
         "tryAgainLater": "Nie możemy zweryfikować ani zatwierdzić obecnej strony. **Zalecamy upewnić się, że strona jest dostępna** i spróbować ponownie później.",
         "alertSuspended": "Twoje konto zostało dezaktywowane.",
         "alertSuspendedDescription": "Aby zapoznać się ze szczegółami dotyczącymi powodów zawieszenia, sprawdź Twoje [konto Merchant Center]({0})[:target=\"_blank\"]. Po rozwiązaniu problemu, będziesz musiał poprosić o nową weryfikację, wypełniając [ten formularz]({1})[:target=\"_blank\"].",
+        "alertSuspendedLearnMore": "Learn more about the account suspension",
         "notManaged": "Brak powiązania z PrestaShop",
         "overwriteFailed": "Zgłoszenie adresu URL strony internetowej nie powiodło się",
         "overwriteToBeDoneManually": "Twoja strona została już zgłoszona na innym koncie Merchant Center. Ponieważ nie jesteśmy administratorem Twojego konta, nie możemy nadpisać tego roszczenia. Przejdź do Twojego [Google Merchant Center]({0})[:target=\"_blank\"] i zmień adres URL strony na ten: {1}",
@@ -211,6 +213,10 @@
         "alert": "Twój sklep zostanie sprawdzony i jeśli jeden z tych wymogów nie zostanie spełniony, Twoje konto zostanie zawieszone.",
         "phoneFormat": "Twój numer telefonu nie ma poprawnego formatu (akceptujemy tylko cyfry).",
         "updateData": "Jeśli wprowadzono zmiany w back office, konieczne jest odświeżenie strony, aby były one widoczne."
+    },
+    "gmcAccountIssues": {
+        "title": "More details about account issues",
+        "description": "Your account has been flagged for potential performance and compliance issues. Please review the detailed information provided to understand and address these concerns promptly"
     },
     "productFeedCard": {
         "title": "Plik danych produktu",
@@ -627,7 +633,7 @@
     },
     "productFeedPage": {
         "breadcrumb": {
-            "productStatusDetails": "Szczegóły statusu produktu",
+            "productStatusDetails": "Disapproved products",
             "nonCompliantProducts": "Produkty niespełniające wymagań"
         },
         "alert": {
@@ -700,7 +706,6 @@
             "details": "Aby zapewnić pomyślne wstępne skanowanie w Google, należy rozwiązać problemy opisane w poniższej tabeli. Rozwiązanie tych problemów ułatwi opublikowanie produktu w powierzchniach reklamowych Google.",
             "languageSelection": "Filtruj według języka",
             "languageSelected": "Filtruj według: {lang}",
-            "noResults": "Nie znaleziono danych",
             "columns": {
                 "issues": "Problemy",
                 "suggestedActions": "Sugerowane działania",
@@ -737,30 +742,26 @@
             "priceMissing": "Wprowadź cenę",
             "priceMissingAction": "Wprowadź cenę produktu."
         },
-        "destinations": {
-            "shoppingAds": "Reklamy produktowe",
-            "enhancedFreeListing": "Włącz wyświetlanie bezpłatnych informacji o produkcie"
-        },
         "approvalTable": {
-            "description": "Są to statusy Twoich produktów, które są wysyłane do Google Merchant Center. Ze względu na zmianę języka, niektóre produkty mogą pojawić się więcej niż raz.",
+            "description": "Below is a list of your products that haven't passed the approval process. Each entry includes reasons for disapproval to help you make quick fixes. Once updated, these products can be sync to Google Shopping.",
             "filterTitle": "Filtruj według dostępności",
-            "filterAllStatus": "Wszystkie",
-            "filterOnlyApproved": "Zatwierdzone",
-            "filterOnlyPending": "Oczekujące",
-            "filterOnlyNotApproved": "Niezatwierdzone",
+            "NoFilter": "All",
             "tableHeaderID": "ID",
-            "tableHeaderAttributeID": "Atrybut",
-            "tableHeaderDestination": "Miejsce docelowe",
-            "tableHeaderName": "Nazwa",
-            "tableHeaderGoogleValidation": "Dostępność dla Google",
+            "tableHeaderName": "Product title",
             "tableHeaderLanguage": "Język",
-            "tableHeaderCountry": "Kraj",
-            "tableHeaderIssue": "Przyczyna",
+            "tableHeaderCurrency": "Currency",
+            "tableHeaderCountry": "Affected countries",
+            "tableHeaderIssue": "Reasons",
             "xResults": "{0} wyniki/-ów",
             "perPageLabel": "Pokaż:",
             "goToLabel": "Przejdź do strony:",
             "editX": "Edytuj {0}",
             "noReasonFallback": "*Nie wprowadzono, sprawdź [błędy konta w Merchant Center]({0})[:target=\"_blank\"].*"
+        },
+        "productIssuesModal": {
+            "title": "More details about your product issues",
+            "description": "Here are the reasons for suspension provided by Google. Take the necessary steps to meet the requirements and wait for the next scan.",
+            "footer": "Visit your [product sheet]({0})[:target=\"_blank\"] to make the necessary changes to your product to meet Google's requirements and get it approved."
         }
     },
     "keymetrics": {
@@ -887,6 +888,7 @@
         "learnAboutAccountSuspension": "Dowiedz się więcej o zawieszeniu konta.",
         "learnAboutSiteClaiming": "Dowiedz się więcej na temat zgłaszania strony",
         "learnMoreAboutSmartShoppingCampaigns": "Dowiedz się więcej o inteligentnych kampaniach produktowych",
+        "learnMore": "Dowiedz się więcej",
         "configureAndExportProductFeed": "Rozpocznij konfigurację",
         "continueProductFeed": "Wznów konfigurację",
         "chooseAccount": "Wybierz konto",
@@ -894,6 +896,7 @@
         "cancel": "Anuluj",
         "disconnectAccount": "Odłącz konto",
         "selectAccount": "Wybierz konto",
+        "reviewAccount": "Review account",
         "addMapping": "Dodaj mapowanie",
         "modifyMapping": "Modyfikuj mapowanie",
         "learnAboutProductConfiguration": "Dowiedz się więcej o specyfikacji danych produktu",
@@ -975,7 +978,8 @@
         "understand": "Rozumiem",
         "moreActions": "Dodatkowe działania",
         "signGadsToS": "Sign terms of service on Google Ads",
-        "enableEnhancedConversions": "Activate enhanced conversion tracking"
+        "enableEnhancedConversions": "Activate enhanced conversion tracking",
+        "loadNextPage": "Załaduj następne wyniki"
     },
     "badge": {
         "free": "Za darmo",
