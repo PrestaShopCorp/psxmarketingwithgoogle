@@ -424,7 +424,7 @@ export default {
     nextPage: string|null,
   ) {
     const params = new URLSearchParams({
-      next_token: nextPage || '',
+      ...(nextPage && {next_token: nextPage}),
       limit: '10',
     });
     const result = await (await fetchOnboarding(
