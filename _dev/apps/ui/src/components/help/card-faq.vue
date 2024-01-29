@@ -125,7 +125,7 @@
                   @click="onQuestionClick(index + '_' + i)"
                 >
                   <summary class="faq__summary">
-                    <i class="material-icons">keyboard_arrow_right</i>
+                    <i class="material-icons-round">keyboard_arrow_right</i>
                     {{ item.question }}
                   </summary>
                   <VueShowdown

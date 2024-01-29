@@ -11,7 +11,7 @@
         class="d-flex align-items-center"
       >
         <i
-          class="material-icons ps_gs-fz-20 mr-1"
+          class="material-icons-round ps_gs-fz-20 mr-1"
           :class="`text-${iconColor(issue.severity)}`"
         >
           {{ icon(issue.severity) }}

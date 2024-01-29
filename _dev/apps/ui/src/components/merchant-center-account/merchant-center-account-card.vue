@@ -63,7 +63,7 @@
               :toggle-attrs="{title: $t('cta.moreActions')}"
             >
               <template #button-content>
-                <i class="material-icons">
+                <i class="material-icons-round">
                   more_horiz
                 </i>
                 <span class="sr-only" />
@@ -300,7 +300,7 @@
                 class="text-muted"
               >
 
-                <i class="material-icons mr-1 ps_gs-fz-12 text-success">done</i>
+                <i class="material-icons-round mr-1 ps_gs-fz-12 text-success">done</i>
                 {{ $t('badge.siteVerified') }}
               </span>
             </div>

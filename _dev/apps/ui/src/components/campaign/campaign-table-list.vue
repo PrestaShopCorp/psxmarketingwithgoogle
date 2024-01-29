@@ -48,11 +48,11 @@
                         {{ $t(`campaigns.labelCol.${type}`) }}
                       </span>
                       <template v-if="queryOrderDirection[type] === 'DESC'">
-                        <i class="material-icons ps_gs-fz-14">expand_more</i>
+                        <i class="material-icons-round ps_gs-fz-14">expand_more</i>
                         <span class="sr-only">{{ $t('cta.clickToSortAsc') }}</span>
                       </template>
                       <template v-else>
-                        <i class="material-icons ps_gs-fz-14">expand_less</i>
+                        <i class="material-icons-round ps_gs-fz-14">expand_less</i>
                         <span class="sr-only">{{ $t('cta.clickToSortDesc') }}</span>
                       </template>
                     </b-button>

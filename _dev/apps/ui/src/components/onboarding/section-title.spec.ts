@@ -40,7 +40,7 @@ describe('Testing differents case for the sectionTitle components', () => {
     expect(wrapper.find('.ps_gs-section-title .circle').text()).toBe('1');
     expect(wrapper.find('.ps_gs-section-title .circle').classes()).toContain('bg-circle-active');
     expect(wrapper.find('.circle').classes()).not.toContain('bg-circle-disabled');
-    expect(wrapper.find('.material-icons').exists()).toBeFalsy();
+    expect(wrapper.find('.material-icons-round').exists()).toBeFalsy();
   });
 
   it('should display a checkmark when merchant finished the first step', () => {
@@ -56,7 +56,7 @@ describe('Testing differents case for the sectionTitle components', () => {
     });
 
     expect(wrapper.find('.ps_gs-section-title .circle').exists()).toBeFalsy();
-    expect(wrapper.find('.material-icons').exists()).toBeTruthy();
+    expect(wrapper.find('.material-icons-round').exists()).toBeTruthy();
   });
 
   it('should display a circle disable', () => {
@@ -72,7 +72,7 @@ describe('Testing differents case for the sectionTitle components', () => {
     });
 
     expect(wrapper.find('.ps_gs-section-title .circle').classes()).toContain('bg-circle-disabled');
-    expect(wrapper.find('.material-icons').exists()).toBeFalsy();
+    expect(wrapper.find('.material-icons-round').exists()).toBeFalsy();
   });
 
   it('should display checkmark, current, disable steps', () => {
@@ -107,12 +107,12 @@ describe('Testing differents case for the sectionTitle components', () => {
     }
 
     expect(wrapper[0].find('.ps_gs-section-title .circle').exists()).toBeFalsy();
-    expect(wrapper[0].find('.material-icons').exists()).toBeTruthy();
+    expect(wrapper[0].find('.material-icons-round').exists()).toBeTruthy();
 
-    expect(wrapper[1].find('.material-icons').exists()).toBeFalsy();
+    expect(wrapper[1].find('.material-icons-round').exists()).toBeFalsy();
     expect(wrapper[1].find('.circle').classes()).not.toContain('bg-circle-disabled');
 
     expect(wrapper[2].find('.ps_gs-section-title .circle').classes()).toContain('bg-circle-disabled');
-    expect(wrapper[2].find('.material-icons').exists()).toBeFalsy();
+    expect(wrapper[2].find('.material-icons-round').exists()).toBeFalsy();
   });
 });

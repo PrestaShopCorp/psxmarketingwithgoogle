@@ -67,7 +67,7 @@
         boundary="window"
       >
         <template #button-content>
-          <i class="material-icons ps_gs-fz-20 mx-auto">create</i>
+          <i class="material-icons-round ps_gs-fz-20 mx-auto">create</i>
           <span class="sr-only">
             {{ $t('cta.openActionsMenu', [campaign.campaignName]) }}
           </span>

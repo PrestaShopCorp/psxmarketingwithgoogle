@@ -28,7 +28,7 @@
       variant="text"
       @click="closePopup"
     >
-      <i class="material-icons">close</i>
+      <i class="material-icons-round">close</i>
     </b-button>
   </div>
 </template>

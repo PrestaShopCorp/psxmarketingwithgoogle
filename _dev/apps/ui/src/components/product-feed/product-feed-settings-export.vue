@@ -27,7 +27,7 @@
       </div>
       <ul class="pl-0 mb-0">
         <li class="d-flex align-items-center mb-3">
-          <i class="material-icons mr-2">
+          <i class="material-icons-round mr-2">
             schedule
           </i>
           <span class="ps_gs-fz-12">
@@ -35,7 +35,7 @@
           </span>
         </li>
         <li class="d-flex align-items-center mb-3">
-          <i class="material-icons mr-2">
+          <i class="material-icons-round mr-2">
             autorenew
           </i>
           <span class="ps_gs-fz-12">
@@ -43,7 +43,7 @@
           </span>
         </li>
         <li class="d-flex align-items-center mb-0">
-          <i class="material-icons mr-2">
+          <i class="material-icons-round mr-2">
             toggle_off
           </i>
           <span class="ps_gs-fz-12">
@@ -203,7 +203,7 @@
         variant="invisible"
         class="d-flex mr-1 text-muted p-0 border-0"
       >
-        <span class="material-icons ps_gs-fz-14">
+        <span class="material-icons-round ps_gs-fz-14">
           help_outline
         </span>
       </b-button>

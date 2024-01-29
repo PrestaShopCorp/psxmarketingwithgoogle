@@ -13,7 +13,7 @@
           class="d-flex flex-column align-items-center ps_gs-onboardingcard__not-configured"
           v-if="!accountHasAtLeastOneCampaign"
         >
-          <i class="material-icons ps_gs-fz-48">show_chart</i>
+          <i class="material-icons-round ps_gs-fz-48">show_chart</i>
           <p>{{ $t('keymetrics.noCampaigns') }}</p>
           <b-button
             class="flex-shrink-0"

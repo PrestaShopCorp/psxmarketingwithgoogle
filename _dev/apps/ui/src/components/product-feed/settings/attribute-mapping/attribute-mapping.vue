@@ -153,7 +153,7 @@
         @click="refreshComponent"
       >
         {{ $t('productFeedSettings.attributeMapping.refreshAttributes') }}
-        <i class="material-icons ps_gs-fz-12">refresh</i>
+        <i class="material-icons-round ps_gs-fz-12">refresh</i>
       </b-button>
     </div>
 

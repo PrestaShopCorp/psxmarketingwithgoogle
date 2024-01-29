@@ -104,7 +104,7 @@
               <div
                 class="text-nowrap"
               >
-                <i class="material-icons ps_gs-fz-20">language</i>
+                <i class="material-icons-round ps_gs-fz-20">language</i>
                 <span class="font-weight-600 mr-1">
                   {{ $tc(
                     'productFeedPage.dashboardPage.productFeedConfiguration.targetCountries',
@@ -137,7 +137,7 @@
               <div
                 class="text-nowrap"
               >
-                <i class="material-icons ps_gs-fz-20">translate</i>
+                <i class="material-icons-round ps_gs-fz-20">translate</i>
                 <span class="font-weight-600 mr-1">
                   {{ $tc(
                     'productFeedPage.dashboardPage.productFeedConfiguration.languages',

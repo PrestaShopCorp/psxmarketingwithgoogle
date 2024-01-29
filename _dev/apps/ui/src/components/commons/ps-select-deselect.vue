@@ -1,3 +1,3 @@
 <template>
-  <i class="material-icons ps_gs-v-select__deselect">close</i>
+  <i class="material-icons-round ps_gs-v-select__deselect">close</i>
 </template>

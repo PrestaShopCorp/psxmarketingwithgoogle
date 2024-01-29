@@ -11,10 +11,10 @@
         @click="toggle"
       >
         <template v-if="isOpen">
-          <i class="material-icons">keyboard_arrow_down</i>
+          <i class="material-icons-round">keyboard_arrow_down</i>
         </template>
         <template v-else>
-          <i class="material-icons">navigate_next</i>
+          <i class="material-icons-round">navigate_next</i>
         </template>
       </b-button>
     </template>

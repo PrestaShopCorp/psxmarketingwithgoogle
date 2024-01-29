@@ -23,13 +23,13 @@
     >
       <i
         aria-hidden="true"
-        class="material-icons ps_gs-fz-24 ml-auto when-closed"
+        class="material-icons-round ps_gs-fz-24 ml-auto when-closed"
       >
         arrow_right
       </i>
       <i
         aria-hidden="true"
-        class="material-icons ps_gs-fz-24 ml-auto when-open"
+        class="material-icons-round ps_gs-fz-24 ml-auto when-open"
       >
         arrow_drop_down
       </i>

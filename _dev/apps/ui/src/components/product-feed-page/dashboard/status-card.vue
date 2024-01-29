@@ -32,7 +32,8 @@
       >
         <p
           v-if="status.icon === 'google'"
-          class="material-icons-round ps_gs-fz-20 mr-1 ps_gs-productfeed__products-status__icon"
+          class="material-icons-round ps_gs-fz-20 mr-1
+            ps_gs-productfeed__products-status__icon"
         >
           <img
             src="@/assets/images/google-icon.svg"

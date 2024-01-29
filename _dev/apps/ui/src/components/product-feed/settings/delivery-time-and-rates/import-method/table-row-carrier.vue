@@ -72,7 +72,7 @@
       >
         <template #button-content>
           <i
-            class="material-icons"
+            class="material-icons-round"
             title="You can copy this carrier"
           >content_copy</i>
           <span class="sr-only">

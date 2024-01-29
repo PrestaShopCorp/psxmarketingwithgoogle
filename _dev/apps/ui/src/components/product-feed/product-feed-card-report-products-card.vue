@@ -8,7 +8,7 @@
         <div class="d-flex align-items-center">
           <i
             v-if="status === 'success'"
-            class="material-icons ps_gs-fz-18 mb-0 mr-2"
+            class="material-icons-round ps_gs-fz-18 mb-0 mr-2"
             :class="`text-${status}`"
           >
             check_circle

@@ -74,7 +74,7 @@
                 variant="invisible"
                 class="pt-1 ml-1 mr-n1 border-0 d-inline-flex align-items-center"
               >
-                <i class="material-icons ps_gs-fz-14 text-secondary">help_outline</i>
+                <i class="material-icons-round ps_gs-fz-14 text-secondary">help_outline</i>
               </span>
             </component>
           </b-th>
@@ -147,7 +147,7 @@
         @click="$emit('refresh')"
       >
         {{ $t('productFeedSettings.deliveryTimeAndRates.refreshCarriers') }}
-        <i class="material-icons ps_gs-fz-12">refresh</i>
+        <i class="material-icons-round ps_gs-fz-12">refresh</i>
       </b-button>
       <span class="ps_gs-fz-12 text-dark">
         |
@@ -159,7 +159,7 @@
         @click="switchToFlatRate"
       >
         {{ $t('productFeedSettings.deliveryTimeAndRates.switchToFlatRate') }}
-        <i class="material-icons ps_gs-fz-12">call_missed_outgoing</i>
+        <i class="material-icons-round ps_gs-fz-12">call_missed_outgoing</i>
       </b-button>
     </div>
 

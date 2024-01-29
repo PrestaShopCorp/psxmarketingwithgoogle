@@ -133,7 +133,7 @@
         <span> {{ $t('mcaCard.phoneVerifiedContinue') }}</span>
 
         <i
-          class="material-icons ps_gs-fz-16 ml-1 mb-0 text-success align-center"
+          class="material-icons-round ps_gs-fz-16 ml-1 mb-0 text-success align-center"
         >
           check_circle
         </i>

@@ -12,7 +12,7 @@
     </div>
     <i
       v-else
-      class="material-icons ml-2 mr-3 mb-0 text-success step-done-icons"
+      class="material-icons-round ml-2 mr-3 mb-0 text-success step-done-icons"
     >
       check_circle
     </i>

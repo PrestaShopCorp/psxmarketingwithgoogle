@@ -5,7 +5,7 @@
       class="py-5 text-center text-secondary"
     >
       <div>
-        <i class="material-icons ps_gs-fz-48">layers_clear</i>
+        <i class="material-icons-round ps_gs-fz-48">layers_clear</i>
       </div>
       <div
         class="ps_gs-fz-16 font-weight-600"

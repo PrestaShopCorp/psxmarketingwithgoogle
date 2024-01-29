@@ -77,7 +77,7 @@
               :toggle-attrs="{title: $t('cta.moreActions')}"
             >
               <template #button-content>
-                <i class="material-icons">
+                <i class="material-icons-round">
                   more_horiz
                 </i>
                 <span class="sr-only" />

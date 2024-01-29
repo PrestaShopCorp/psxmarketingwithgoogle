@@ -5,7 +5,7 @@
     plain
     @change="changed"
   >
-    <i class="material-icons ps_gs-product-category-checkbox__icon">
+    <i class="material-icons-round ps_gs-product-category-checkbox__icon">
       {{ category.icon }}
     </i>
     <div class="ps_gs-product-category-checkbox__text">

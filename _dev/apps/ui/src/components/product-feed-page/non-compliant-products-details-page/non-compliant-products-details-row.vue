@@ -45,7 +45,7 @@
         class="external_link-no_icon"
         @click="onProductEditionClick"
       >
-        <i class="material-icons ps_gs-fz-18">create</i>
+        <i class="material-icons-round ps_gs-fz-18">create</i>
       </b-button>
     </b-td>
   </b-tr>

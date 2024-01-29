@@ -15,13 +15,13 @@
         <slot name="title" />
         <i
           aria-hidden="true"
-          class="material-icons ps_gs-fz-24 text-secondary ml-auto when-closed"
+          class="material-icons-round ps_gs-fz-24 text-secondary ml-auto when-closed"
         >
           expand_more
         </i>
         <i
           aria-hidden="true"
-          class="material-icons ps_gs-fz-24 text-secondary ml-auto when-open"
+          class="material-icons-round ps_gs-fz-24 text-secondary ml-auto when-open"
         >
           expand_less
         </i>
