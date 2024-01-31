@@ -444,7 +444,7 @@ export default {
       issueLanguage: rootGetters[`app/${appGetters.GET_CURRENT_LANGUAGE}`],
       issueTimezone: encodeURI(Intl.DateTimeFormat().resolvedOptions().timeZone),
     });
-    const productFullId: string = `${payload.product.idProduct}${(+payload.product.idAttribute > 0 ? `-${payload.product.idAttribute}` : '-0')}`;
+    const productFullId: string = `${payload.product.idProduct}-${+payload.product.idAttribute > 0 ? payload.product.idAttribute : '0'}`;
     const result: ProductIssuesResponse = await (await fetchOnboarding(
       'GET',
       `product-feeds/validation/product/${productFullId}?${params.toString()}`,
