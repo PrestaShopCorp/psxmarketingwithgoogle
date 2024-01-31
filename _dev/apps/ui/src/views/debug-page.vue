@@ -143,6 +143,16 @@
         >
           Throw Error test for Sentry
         </b-button>
+
+        <b-button
+          class="mt-3 mr-3 d-block"
+          variant="outline-danger"
+          size="sm"
+          @click="startReplayOnSentry"
+          :disabled="!psxMktgWithGoogleOnProductionEnvironment"
+        >
+          🎥 Start Replay recording on Sentry
+        </b-button>
       </b-card-body>
     </b-card>
 
@@ -309,6 +319,7 @@ import GettersTypes from '@/store/modules/campaigns/getters-types';
 import GettersTypesApp from '@/store/modules/app/getters-types';
 import GettersTypesAccounts from '@/store/modules/accounts/getters-types';
 import GettersTypesProductFeed from '@/store/modules/product-feed/getters-types';
+import {initReplay} from '@/utils/Sentry';
 
 export default defineComponent({
   data() {
@@ -431,6 +442,9 @@ export default defineComponent({
     },
     throwErrorForSentry() {
       throw new Error('Test error for sentry');
+    },
+    async startReplayOnSentry() {
+      await initReplay();
     },
     getProductFeed() {
       this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS').then((res) => {
