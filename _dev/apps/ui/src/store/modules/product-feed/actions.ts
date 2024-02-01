@@ -434,7 +434,7 @@ export default {
     });
     const result = await (await fetchOnboarding(
       'GET',
-      `product-feeds/validation/list${nextToken}`,
+      `product-feeds/validation/list?${params}`,
     )).json();
     commit(MutationsTypes.SAVE_ALL_PRODUCTS, result.results);
     return result;
