@@ -4,7 +4,6 @@ import store from '@/store';
 
 const appVersion = import.meta.env.VITE_BUILD_VERSION || 'dev';
 
-// @ts-ignore
 if (store.state.app.psxMktgWithGoogleOnProductionEnvironment) {
   Sentry.init({
     Vue,
@@ -13,6 +12,8 @@ if (store.state.app.psxMktgWithGoogleOnProductionEnvironment) {
       'https://storage.googleapis.com/psxmarketing-cdn/',
     ],
     tracesSampleRate: 1.0,
+    replaysSessionSampleRate: 1.0,
+    replaysOnErrorSampleRate: 1.0,
     logErrors: true,
     initialScope: {
       tags: {
@@ -31,15 +32,21 @@ if (store.state.app.psxMktgWithGoogleOnProductionEnvironment) {
   });
 }
 
+let recordingTriggered: boolean = false;
+
 export const initReplay = async (): Promise<void> => {
   if (!store.state.app.psxMktgWithGoogleOnProductionEnvironment) {
     return;
   }
+
+  if (recordingTriggered) {
+    console.log('Recording already loaded');
+    return;
+  }
   const {Replay} = await import('@sentry/vue');
-  Sentry.addIntegration(new Replay({
-    sessionSampleRate: 1.0,
-    errorSampleRate: 1.0,
-  }));
+  Sentry.addIntegration(new Replay());
+
+  recordingTriggered = true;
 };
 
 export default {
