@@ -16,7 +16,7 @@ declare global {
       contextPsEventBus: any
       translations: any;
       i18nSettings: {
-        isoCode: string,
+        isoCode: string, // ⚠️ Deprecated, this value can be invalid (i.e will return gb with en-gb)
         languageLocale: string,
       };
       psxMktgWithGoogleApiUrl: string;

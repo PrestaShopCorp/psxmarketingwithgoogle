@@ -62,7 +62,9 @@ export const loadLanguageAsync = async (lang: string): Promise<string> => {
 };
 
 const {i18nSettings} = window;
-const locale = i18nSettings?.languageLocale.substring(0, 2) || undefined;
+const locale = i18nSettings?.languageLocale
+  ? new Intl.Locale(i18nSettings.languageLocale).language
+  : undefined;
 
 const loadedLanguages = ['en'];
 

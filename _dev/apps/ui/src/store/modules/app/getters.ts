@@ -26,6 +26,9 @@ export default {
   [GettersTypes.GET_IS_COUNTRY_MEMBER_OF_EU](state: LocalState): boolean {
     return state.isCountryMemberOfEuropeanUnion;
   },
+  [GettersTypes.GET_CURRENT_LANGUAGE](): string {
+    return (new Intl.Locale(window.i18nSettings.languageLocale)).language;
+  },
   [GettersTypes.GET_CURRENT_CURRENCY](state: LocalState): string {
     return state.psxMktgWithGoogleShopCurrency.isoCode;
   },

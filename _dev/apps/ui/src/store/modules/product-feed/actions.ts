@@ -17,6 +17,7 @@ import {
 import {formatMappingToApi} from '@/utils/AttributeMapping';
 import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
 import {FullState, RequestState} from '@/store/types';
+import appGetters from '@/store/modules/app/getters-types';
 import {ProductIdentifier} from '@/components/product-feed-page/disapproved-products-page/types';
 import {ProductIssue} from '@/components/render-issues/types';
 
@@ -94,9 +95,9 @@ export default {
 
     state.warmedUp = RequestState.SUCCESS;
   },
-  async [ActionsTypes.GET_PRODUCT_FEED_SYNC_STATUS]({commit}: Context) {
+  async [ActionsTypes.GET_PRODUCT_FEED_SYNC_STATUS]({commit, rootGetters}: Context) {
     const params = {
-      lang: window.i18nSettings.isoCode,
+      lang: rootGetters[`app/${appGetters.GET_CURRENT_LANGUAGE}`],
       timezone: encodeURI(Intl.DateTimeFormat().resolvedOptions().timeZone),
     };
     try {
@@ -114,10 +115,10 @@ export default {
   },
 
   async [ActionsTypes.GET_PRODUCT_FEED_SETTINGS](
-    {commit}: Context,
+    {commit, rootGetters}: Context,
   ): Promise<ProductFeedSettings|null> {
     const params = {
-      lang: window.i18nSettings.isoCode,
+      lang: rootGetters[`app/${appGetters.GET_CURRENT_LANGUAGE}`],
       timezone: encodeURI(Intl.DateTimeFormat().resolvedOptions().timeZone),
     };
     try {
@@ -423,8 +424,14 @@ export default {
     });
   },
 
-  async [ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES]({commit}: Context, nextPage) {
-    const nextToken = nextPage ? `?next_token=${nextPage}` : '';
+  async [ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES](
+    {commit}: Context,
+    nextPage: string|null,
+  ) {
+    const params = new URLSearchParams({
+      ...(nextPage && {next_token: nextPage}),
+      limit: '10',
+    });
     const result = await (await fetchOnboarding(
       'GET',
       `product-feeds/validation/list${nextToken}`,
@@ -433,18 +440,16 @@ export default {
     return result;
   },
 
-  // eslint-disable-next-line no-empty-pattern
-  async [ActionsTypes.REQUEST_REPORTING_PRODUCT_ISSUES]({}: Context, payload: {
+  async [ActionsTypes.REQUEST_REPORTING_PRODUCT_ISSUES]({rootGetters}: Context, payload: {
     product: ProductIdentifier,
   }): Promise<ProductIssue[]> {
-    console.log('product', payload.product);
     const params = new URLSearchParams({
       currency: payload.product.currency,
       language: payload.product.languageCode,
-      issueLanguage: window.i18nSettings.isoCode,
+      issueLanguage: rootGetters[`app/${appGetters.GET_CURRENT_LANGUAGE}`],
       issueTimezone: encodeURI(Intl.DateTimeFormat().resolvedOptions().timeZone),
     });
-    const productFullId: string = `${payload.product.idProduct}${(+payload.product.idAttribute > 0 ? `-${payload.product.idAttribute}` : '')}`;
+    const productFullId: string = `${payload.product.idProduct}-${+payload.product.idAttribute > 0 ? payload.product.idAttribute : '0'}`;
     const result = await (await fetchOnboarding(
       'GET',
       `product-feeds/validation/product/${productFullId}?${params.toString()}`,
