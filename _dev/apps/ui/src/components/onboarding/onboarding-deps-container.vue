@@ -17,19 +17,25 @@
         class="ps_gs-ps-account-card"
       />
 
-      <div
-        v-show="!billingRunning"
-        id="ps-billing-in-catalog-tab"
-      />
-      <div id="ps-modal-in-catalog-tab" />
-      <card-billing-connected
-        v-if="billingRunning && billingSubscription"
-        :subscription="billingSubscription"
-      />
+      <template
+        v-if="billingContext"
+      >
+        <div
+          v-show="!billingRunning"
+          id="ps-billing-in-catalog-tab"
+        />
+        <div id="ps-modal-in-catalog-tab" />
+        <card-billing-connected
+          v-if="billingRunning && billingSubscription"
+          :subscription="billingSubscription"
+          class="my-3"
+        />
+      </template>
 
       <div
         id="prestashop-cloudsync"
         class="p-0"
+        v-show="billingRunning"
       />
     </div>
   </div>
@@ -40,7 +46,7 @@ import {defineComponent} from 'vue';
 import {ISubscription} from '@prestashopcorp/billing-cdc/dist/@types/Subscription';
 import {IContextAuthentication, IContextBase} from '@prestashopcorp/billing-cdc/dist/@types/context/ContextRoot';
 import CardBillingConnected from './card-billing-connected.vue';
-import SectionTitle from '@/components/onboarding/section-title';
+import SectionTitle from '@/components/onboarding/section-title.vue';
 import {State as AppState} from '@/store/modules/app/state';
 import {billingUpdateCallback, initialize} from '@/lib/billing';
 import SegmentGenericParams from '../../utils/SegmentGenericParams';
@@ -81,11 +87,10 @@ export default defineComponent({
   methods: {
     initCloudSyncConsent() {
       // If data related to CloudSync consent screen is available...
-      if (!window.cloudSyncSharingConsent) {
+      if (!window.cloudSyncSharingConsent || !this.psAccountsOnboarded) {
         return;
       }
 
-      console.log('CloudSync Sharing Consent feature detected. Loading...');
       const msc = window.cloudSyncSharingConsent;
       msc.init();
       msc.on('OnboardingCompleted', (isCompleted) => {

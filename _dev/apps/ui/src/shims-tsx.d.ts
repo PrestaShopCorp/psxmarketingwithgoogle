@@ -14,8 +14,8 @@ declare global {
       psxMtgWithGoogleDefaultShopCountry: string,
       psxMktgWithGoogleActiveCountries: string[],
       psxMktgWithGoogleActiveCurrencies: string[],
-      contextPsAccounts: any;
-      contextPsEventBus: any
+      contextPsAccounts?: any;
+      contextPsEventbus: any
       translations: any;
       i18nSettings: {
         isoCode: string, // ⚠️ Deprecated, this value can be invalid (i.e will return gb with en-gb)
