@@ -1,27 +1,13 @@
 <template>
   <div class="pt-2 container">
+    
+    <onboarding-deps-container
+      :ps-accounts-onboarded="psAccountsIsOnboarded"
+      :billing-running="GET_BILLING_SUBSCRIPTION_ACTIVE"
+      :steps-are-completed="stepsAreCompleted.step1"
+      @onCloudsyncConsentUpdated="cloudSyncSharingConsentGiven = $event"
+    />
     <div class="row mb-4 ps_gs-onboardingpage">
-      <div class="col-12 col-md-5">
-        <div
-          class="is-sticky pb-3"
-        >
-          <section-title
-            :step-number="1"
-            :step-title="$t('onboarding.sectionTitle.psAccount')"
-            :is-enabled="true"
-            :is-done="stepsAreCompleted.step1"
-          />
-        </div>
-      </div>
-      <div class="col-12 col-md-7">
-        <prestashop-accounts
-          class="ps_gs-ps-account-card"
-        />
-        <div
-          id="prestashop-cloudsync"
-          class="my-3"
-        />
-      </div>
 
       <div class="col-12 col-md-5">
         <div
@@ -171,6 +157,7 @@ import GoogleAdsAccountPopinDisconnect from '@/components/google-ads-account/goo
 import GoogleAdsPopinNew from '@/components/google-ads-account/google-ads-account-popin-new.vue';
 import CampaignCard from '@/components/campaigns/campaign-card.vue';
 import CampaignTracking from '@/components/campaigns/campaign-tracking.vue';
+import OnboardingDepsContainer from '@/components/onboarding/onboarding-deps-container.vue';
 import PromoCard from '@/components/promo/promo-card.vue';
 import TrackingActivationModal from '@/components/campaigns/tracking-activation-modal.vue';
 import PsToast from '@/components/commons/ps-toast.vue';
@@ -190,6 +177,7 @@ export default defineComponent({
     GoogleAccountCard,
     GoogleAdsAccountCard,
     MerchantCenterAccountCard,
+    OnboardingDepsContainer,
     ProductFeedCard,
     CampaignCard,
     CampaignTracking,
@@ -303,50 +291,11 @@ export default defineComponent({
           this.googleAdsIsLoading = false;
         }));
     },
-    initCloudSyncConsent() {
-      // If data related to CloudSync consent screen is available...
-      if (!window.cloudSyncSharingConsent) {
-        return;
-      }
-
-      // ... and the component is not already loaded
-      if (this.cloudSyncSharingConsentScreenStarted) {
-        return;
-      }
-      this.cloudSyncSharingConsentScreenStarted = true;
-
-      console.log('CloudSync Sharing Consent feature detected. Loading...');
-      const msc = window.cloudSyncSharingConsent;
-      msc.init();
-      msc.on('OnboardingCompleted', (isCompleted) => {
-        if (isCompleted) {
-          this.$segment.track('[GGL] Consent to share data of CloudSync', {
-            module: 'psxmarketingwithgoogle',
-            params: SegmentGenericParams,
-          });
-          this.cloudSyncSharingConsentGiven = isCompleted;
-        }
-      });
-      msc.isOnboardingCompleted((isCompleted) => {
-        // Identify only when we get a valid boolean value
-        if (!!isCompleted === isCompleted) {
-          this.$segment.identify(this.$store.state.accounts.shopIdPsAccounts, {
-            ggl_user_has_given_consent_to_use_cloudsync: isCompleted,
-          });
-          this.cloudSyncSharingConsentGiven = isCompleted;
-        }
-      });
-    },
-    initAccountsComponent() {
-      if (!window.psaccountsVue) {
-        return;
-      }
-      window.psaccountsVue.init();
-    },
   },
   computed: {
     ...mapGetters('app', [
       GettersTypesApp.GET_FEATURE_FLAG_ENHANCED_CONVERSIONS,
+      GettersTypesApp.GET_BILLING_SUBSCRIPTION_ACTIVE,
     ]),
     shops() {
       return this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT_SHOPS'];
@@ -411,11 +360,8 @@ export default defineComponent({
     stepsAreCompleted() {
       return {
         step1: this.psAccountsIsOnboarded
-          && (this.cloudSyncSharingConsentGiven
-          || this.googleAccountIsOnboarded
-          // Make CSC optional when the running PHP is not up to date
-          || !window.contextPsEventbus
-          ),
+          && this.GET_BILLING_SUBSCRIPTION_ACTIVE
+          && this.cloudSyncSharingConsentGiven,
         step2: this.googleAccountIsOnboarded
           && this.merchantCenterAccountIsChosen
           && this.productFeedIsConfigured,
@@ -440,14 +386,6 @@ export default defineComponent({
     },
   },
   mounted() {
-    this.initAccountsComponent();
-    this.initCloudSyncConsent();
-
-    window.addEventListener('load', () => {
-      this.initAccountsComponent();
-      this.initCloudSyncConsent();
-    });
-
     // Try to retrieve Google account details. If the merchant is not onboarded,
     // this action will dispatch another one to generate the authentication route.
     // We do it if the state is empty

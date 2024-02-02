@@ -27,6 +27,8 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CurrencyRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ModuleRepository;
 use PrestaShop\PrestaShop\Core\Addon\Module\ModuleManagerBuilder;
 use PrestaShop\PsAccountsInstaller\Installer\Facade\PsAccounts;
+use PrestaShopCorp\Billing\Presenter\BillingPresenter;
+use PrestaShopCorp\Billing\Services\BillingService;
 
 class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
 {
@@ -97,6 +99,10 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
             $tokenPsAccounts = null;
         }
 
+        /************************
+         * PrestaShop CloudSync *
+         ************************/
+
         $moduleManager = ModuleManagerBuilder::getInstance()->build();
 
         if ($moduleManager->isInstalled('ps_eventbus')) {
@@ -110,6 +116,32 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
                 ]);
             }
         }
+
+        /**********************
+         * PrestaShop Billing *
+         **********************/
+
+        // Load the context for PrestaShop Billing
+        $billingFacade = $this->module->getService(BillingPresenter::class);
+        $billingService = $this->module->getService(BillingService::class);
+        $partnerLogo = $this->module->getLocalPath() . 'logo.png';
+        $currentSubscription = $billingService->getCurrentSubscription();
+
+        // PrestaShop Billing
+        Media::addJsDef($billingFacade->present([
+            'logo' => $partnerLogo,
+            'tosLink' => 'https://prestashop.com/prestashop-account-terms-conditions/',
+            'privacyLink' => 'https://prestashop.com/prestashop-account-privacy/',
+            // This field is deprecated but a valid email must be provided to ensure backward compatibility
+            'emailSupport' => 'no-reply@prestashop.com',
+        ]));
+        Media::addJsDef([
+            'psBillingSubscription' => (!empty($currentSubscription['success']) ? $currentSubscription['body'] : null),
+        ]);
+
+        /************************************
+         * PrestaShop Marketing with Google *
+         ************************************/
 
         Media::addJsDef([
             'contextPsAccounts' => (object) $this->module->getService(PsAccounts::class)

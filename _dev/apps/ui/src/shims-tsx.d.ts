@@ -1,4 +1,6 @@
 // import Vue, {VNode} from 'vue';
+import {IContextAuthentication, IContextBase} from '@prestashopcorp/billing-cdc/dist/@types/context/ContextRoot';
+import {ISubscription} from '@prestashopcorp/billing-cdc/dist/@types/Subscription';
 import {ShopCurrency} from './store/modules/app/state';
 
 declare global {
@@ -44,8 +46,12 @@ declare global {
       psxMktgWithGoogleEnableLink: string,
       psxMktgWithGoogleDsnSentry: string,
 
+      psBillingContext?: IContextBase<IContextAuthentication>;
+      psBillingSubscription?: ISubscription;
+
       // Other apps
       psaccountsVue?: any,
+      psBilling: unknown;
     }
   //   interface IntrinsicElements {
   //     [elem: string]: any;

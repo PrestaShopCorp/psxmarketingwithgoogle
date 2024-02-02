@@ -5,6 +5,7 @@
         "campaign": "Campaigns",
         "configuration": "Configure",
         "catalog": "Product catalog",
+        "billing": "Subscription",
         "help": "Help"
       },
       "versionDoesNotExist": "It seems that the module's version can not be retrieved. It's on our side please try again.",
@@ -88,6 +89,12 @@
       "tips": "After you are done with the first shop, you can configure the others by selecting them one by one in the shop selector, in the horizontal menu",
       "configure": "Configure",
       "group": "Shop group"
+    },
+    "billingFacade": {
+      "title": "Payment details",
+      "nextPayment": "Your subscription is active, next billing on {date}",
+      "willEnd": "Your subscription will end on {date}.",
+      "managePayment": "Manage payments"
     },
     "googleAccountCard": {
       "title": "Google account",
@@ -1126,5 +1133,9 @@
     },
     "tipsAndTricks": {
       "title": "PrestaShop pro tip"
+    },
+    "billing": {
+      "planTitle": "Plan & billing information",
+      "invoicesTitle": "Invoices"
     }
 }
