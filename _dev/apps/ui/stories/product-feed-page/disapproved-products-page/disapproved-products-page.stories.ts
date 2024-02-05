@@ -3,7 +3,7 @@ import DisapprovedProductsPage from "@/components/product-feed-page/disapproved-
 import { initialStateApp } from "@/../.storybook/mock/state-app";
 import { productFeed } from "@/../.storybook/mock/product-feed";
 import {disapprovedProductsMock} from '@/../.storybook/mock/product-feeds/validation/list';
-import {defaultProductIssuesMock} from '@/../.storybook/mock/product-feeds/validation/product';
+import {defaultProductIssuesMock} from '@/../.storybook/mock/api-routes/product-feeds/validation/product';
 import { RequestState } from "@/store/types";
 
 export default {

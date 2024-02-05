@@ -1,7 +1,7 @@
 import { rest } from 'msw';
 import PopinProductIssues from '@/components/product-feed-page/disapproved-products-page/popin-product-issues.vue';
 import { ProductIdentifier } from '@/components/product-feed-page/disapproved-products-page/types';
-import { defaultProductIssuesMock } from '@/../.storybook/mock/product-feeds/validation/product';
+import { defaultProductIssuesMock } from '@/../.storybook/mock/api-routes/product-feeds/validation/product';
 
 
 export default {
