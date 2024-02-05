@@ -27,6 +27,7 @@ import {
   ProductVerificationIssueOverall,
   ProductVerificationIssueProduct,
   ProductVerificationIssue,
+  ProductInfos,
 } from './state';
 import GettersTypes from './getters-types';
 import {filterCountriesCompatible} from '@/utils/TargetCountryValidator';
@@ -192,5 +193,15 @@ export default {
     state: LocalState,
   ): IncrementalSyncContext|null {
     return state.report.lastConfigurationUsed;
+  },
+
+  [GettersTypes.GET_PRODUCTS_VALIDATION_DISAPPROVED_LIST](state: LocalState): ProductInfos[] {
+    return state.gmcProductsByStatus.results.disapproved;
+  },
+  [GettersTypes.GET_PRODUCTS_VALIDATION_DISAPPROVED_TOTAL](state: LocalState): number {
+    return state.gmcProductsByStatus.results.disapproved.length;
+  },
+  [GettersTypes.GET_PRODUCTS_VALIDATION_LIMIT](state: LocalState): number {
+    return state.gmcProductsByStatus.request.numberOfProductsPerPage;
   },
 };

@@ -69,22 +69,32 @@ export interface ProductFeedValidationSummary {
 }
 export interface ProductInfos {
  id: string;
- name: string;
- attribute: string;
- currency?: string,
- language: string;
- statuses: ProductInfosStatus[];
- issues?: contentApi.Schema$ProductStatusItemLevelIssue[];
+ title: string;
+ impacts: {
+   attribute: string;
+   currency?: string,
+   language: string;
+ }[],
+ issues: ProductInfosIssues[];
 }
 
-export type ProductInfosStatus = {
+export interface ProductInfosIssues {
+  title: string;
   destination: string;
-  status: ProductStatus;
+  code: string;
+  affectedProperty: string;
   countries: string[];
+  advice: string;
+  documentationLink: string;
+  status: ProductStatus;
+} 
+
+export type GmcProductsByStatusRequest = {
+  numberOfProductsPerPage: number;
 }
 
-export interface ProductsDatas {
-  items: ProductInfos[];
+export type GmcProductsByStatusResults = {
+  [key in ProductStatus]: ProductInfos[];
 }
 
 export interface AttributesInfos {
@@ -141,7 +151,6 @@ export interface State {
   status: ProductFeedStatus;
   settings: ProductFeedSettings;
   validationSummary: ProductFeedValidationSummary;
-  productsDatas: ProductsDatas;
   attributesToMap: any;
   attributesFromShop: Array<AttributesInfos>;
   selectedProductCategories: SelectedProductCategories;
@@ -154,7 +163,12 @@ export interface State {
   },
   verificationIssuesNumberOfProducts: {
     [verificationIssue in ProductVerificationIssue]?: number;
-  }
+  },
+
+  gmcProductsByStatus: {
+    request: GmcProductsByStatusRequest,
+    results: GmcProductsByStatusResults,
+  },
 }
 
 export enum ProductStatus {
@@ -226,9 +240,6 @@ export const state: State = {
     pendingProducts: null,
     disapprovedProducts: null,
   },
-  productsDatas: {
-    items: [],
-  },
   attributesToMap,
   requestSynchronizationNow: false,
   attributesFromShop: [],
@@ -243,4 +254,16 @@ export const state: State = {
   verificationIssues: null,
   verificationIssuesProducts: {},
   verificationIssuesNumberOfProducts: {},
+
+  gmcProductsByStatus: {
+    request: {
+      numberOfProductsPerPage: 10,
+    },
+    results: {
+      [ProductStatus.Approved]: [],
+      [ProductStatus.Disapproved]: [],
+      [ProductStatus.Expiring]: [],
+      [ProductStatus.Pending]: [],
+    },
+  },
 };

@@ -20,6 +20,7 @@ import {FullState} from '../..';
 import appGetters from '@/store/modules/app/getters-types';
 import {ProductIdentifier} from '@/components/product-feed-page/disapproved-products-page/types';
 import {ProductIssuesResponse, ProductIssue} from '@/components/render-issues/types';
+import ProductsStatusType from '@/enums/product-feed/products-status-type';
 
 type Context = ActionContext<State, FullState>;
 
@@ -420,18 +421,29 @@ export default {
   },
 
   async [ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES](
-    {commit}: Context,
-    nextPage: string|null,
+    {commit, getters}: Context,
+    payload: {
+      status: ProductsStatusType,
+      limit: number,
+      offset: number,
+    },
   ) {
+    if (getters.GET_PRODUCTS_VALIDATION_LIMIT !== payload.limit) {
+      // If the number of product per page has changed, reset the list
+      commit(MutationsTypes.RESET_PRODUCTS_VALIDATION_DISAPPROVED_LIST);
+      commit(MutationsTypes.SET_PRODUCTS_VALIDATION_PAGE_SIZE, payload.limit);
+    }
+
     const params = new URLSearchParams({
-      ...(nextPage && {next_token: nextPage}),
-      limit: '10',
+      ...(payload.offset && {offset: payload.offset}),
+      limit: payload.limit,
+      status: payload.status,
     });
     const result = await (await fetchOnboarding(
       'GET',
-      `product-feeds/validation/list?${params.toString()}`,
+      `product-validations?${params.toString()}`,
     )).json();
-    commit(MutationsTypes.SAVE_ALL_PRODUCTS, result.results);
+    commit(MutationsTypes.ADD_TO_PRODUCTS_VALIDATION_DISAPPROVED_LIST, result.results);
     return result;
   },
 

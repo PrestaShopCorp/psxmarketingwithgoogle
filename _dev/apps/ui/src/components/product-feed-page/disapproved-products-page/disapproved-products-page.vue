@@ -26,7 +26,7 @@
         <language-filter-selector
           :languages="languages"
           @languageToFilterUpdated="selectedLanguage = $event"
-          :disabled="loadingStatus !== RequestState.SUCCESS || !items.length"
+          :disabled="loadingStatus !== RequestState.SUCCESS || !GET_PRODUCTS_VALIDATION_DISAPPROVED_TOTAL"
         />
       </div>
       <b-table-simple
@@ -49,7 +49,7 @@
 
         <b-tbody>
           <template
-            v-if="loadingStatus === RequestState.PENDING && !items.length"
+            v-if="loadingStatus === RequestState.PENDING && !GET_PRODUCTS_VALIDATION_DISAPPROVED_TOTAL"
           >
             <b-tr
               v-for="index in 5"
@@ -75,7 +75,7 @@
           />
 
           <table-no-data
-            v-else-if="loadingStatus === RequestState.SUCCESS && !items.length"
+            v-else-if="loadingStatus === RequestState.SUCCESS && !GET_PRODUCTS_VALIDATION_DISAPPROVED_TOTAL"
             :colspan="fields.length"
           />
 
@@ -84,13 +84,13 @@
             v-for="(product) in filteredItems"
           >
             <DisapprovedProductsRow
-              :key="`${product.id}-${product.attribute}-${product.language}-${product.currency}`"
+              :key="product.id"
               :product="product"
               @renderProductIssues="onRenderProductIssues($event)"
             />
           </template>
           <b-tr
-            v-if="loadingStatus === RequestState.PENDING && items.length"
+            v-if="loadingStatus === RequestState.PENDING && GET_PRODUCTS_VALIDATION_DISAPPROVED_TOTAL"
           >
             <b-td
               colspan="7"
@@ -127,6 +127,8 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
+import {mapGetters} from 'vuex';
+import GettersTypesProductFeed from '@/store/modules/product-feed/getters-types';
 import DisapprovedProductsRow from './disapproved-products-row.vue';
 import LanguageFilterSelector from '@/components/product-feed-page/language-filter-selector.vue';
 import {RequestState} from '@/store/types';
@@ -136,6 +138,7 @@ import PopinProductIssues from '@/components/product-feed-page/disapproved-produ
 import {ProductInfos} from '@/store/modules/product-feed/state';
 import {ProductIdentifier} from './types';
 import {initReplay} from '@/utils/Sentry';
+import ProductsStatusType from '@/enums/product-feed/products-status-type';
 
 export default defineComponent({
   name: 'DisapprovedProductsPage',
@@ -150,7 +153,7 @@ export default defineComponent({
     return {
       loadingStatus: RequestState.IDLE as RequestState,
       nextToken: null as string|null,
-      selectedFilterQuantityToShow: '100',
+      selectedFilterQuantityToShow: 100,
       modalData: null as ProductIdentifier|null,
       selectedLanguage: null as string|null,
       fields: [
@@ -186,32 +189,34 @@ export default defineComponent({
     };
   },
   computed: {
+    ...mapGetters('productFeed', [
+      GettersTypesProductFeed.GET_PRODUCTS_VALIDATION_DISAPPROVED_LIST,
+      GettersTypesProductFeed.GET_PRODUCTS_VALIDATION_DISAPPROVED_TOTAL,
+    ]),
     getProductBaseUrl() {
       return this.$store.getters['app/GET_PRODUCT_DETAIL_BASE_URL'];
     },
-    items(): ProductInfos[] {
-      return this.$store.state.productFeed.productsDatas.items
-        .filter((item: ProductInfos) => item.statuses);
-    },
     filteredItems(): ProductInfos[] {
       if (!this.selectedLanguage) {
-        return this.items;
+        return this.GET_PRODUCTS_VALIDATION_DISAPPROVED_LIST;
       }
 
-      return this.items.filter((item) => item.language === this.selectedLanguage);
+      return this.GET_PRODUCTS_VALIDATION_DISAPPROVED_LIST.filter(
+        (item: ProductInfos) => !!item.impacts.find((impact) => impact.language === this.selectedLanguage),
+      );
     },
     languages(): string[] {
       // Get all languages and make the array unique
       return [
-        ...new Set(this.items?.reduce((prev: string[], issue) => {
-          prev.push(issue.language);
+        ...new Set(this.GET_PRODUCTS_VALIDATION_DISAPPROVED_LIST?.reduce((prev: string[], product: ProductInfos) => {
+          prev.push(...product.impacts.map((impact) => impact.language));
           return prev;
-        }, [])),
+        }, [] as string[])),
       ];
     },
   },
   mounted() {
-    if (!this.items.length) {
+    if (!this.GET_PRODUCTS_VALIDATION_DISAPPROVED_TOTAL) {
       this.getItems();
       window.addEventListener('scroll', this.handleScroll);
     }
@@ -231,7 +236,15 @@ export default defineComponent({
     async getItems(): Promise<void> {
       this.loadingStatus = RequestState.PENDING;
       try {
-        const res = await this.$store.dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUSES', this.nextToken);
+        const res = await this.$store.dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUSES', {
+          limit: this.selectedFilterQuantityToShow,
+          offset: this.GET_PRODUCTS_VALIDATION_DISAPPROVED_TOTAL,
+          status: ProductsStatusType.DISAPPROVED,
+        } as {
+          status: ProductsStatusType,
+          limit: number,
+          offset: number,
+        });
 
         if (!res.nextToken) {
           // IF api does not send token, it means there are no results anymore.

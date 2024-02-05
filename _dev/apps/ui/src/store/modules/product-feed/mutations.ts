@@ -44,9 +44,7 @@ export default {
   [MutationsTypes.SET_LAST_SYNCHRONISATION](state: LocalState, payload: payloadObject) {
     state.status[payload.name] = payload.data;
   },
-  [MutationsTypes.SAVE_ALL_PRODUCTS](state: LocalState, payload:ProductInfos[]) {
-    state.productsDatas.items.push(...payload);
-  },
+
   //  Product Feed Card
   [MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS](state: LocalState, payload: payloadObject) {
     state.settings[payload.name] = payload.data;
@@ -259,5 +257,17 @@ export default {
     state.verificationIssuesNumberOfProducts = {
       ...state.verificationIssuesNumberOfProducts,
     };
+  },
+
+  // GMC reports overall
+  [MutationsTypes.SET_PRODUCTS_VALIDATION_PAGE_SIZE](state: LocalState, payload: number): void {
+    state.gmcProductsByStatus.request.numberOfProductsPerPage = payload;
+  },
+  // GMC reports - disapproved products
+  [MutationsTypes.ADD_TO_PRODUCTS_VALIDATION_DISAPPROVED_LIST](state: LocalState, payload:ProductInfos[]) {
+    state.gmcProductsByStatus.results.disapproved.push(...payload);
+  },
+  [MutationsTypes.RESET_PRODUCTS_VALIDATION_DISAPPROVED_LIST](state: LocalState): void {
+    state.gmcProductsByStatus.results.disapproved = [];
   },
 };

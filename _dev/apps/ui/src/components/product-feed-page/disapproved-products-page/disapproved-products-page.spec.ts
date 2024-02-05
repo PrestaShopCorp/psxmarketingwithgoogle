@@ -9,7 +9,6 @@ import DisapprovedProductsRow from '@/components/product-feed-page/disapproved-p
 import DisapprovedProductsPage from '@/components/product-feed-page/disapproved-products-page/disapproved-products-page.vue';
 import {
   productFeed,
-  productFeedWithDisapprovedProductsButNoIssues,
 } from '@/../.storybook/mock/product-feed';
 
 const fetchMock = createFetchMock(vi);
@@ -34,17 +33,7 @@ describe('disapproved-products-page/disapproved-products-page.vue', () => {
     });
     expect(wrapper.findAllComponents(DisapprovedProductsRow).exists()).toBeTruthy();
   });
-  it('does not display a suspended destination if there is not associated issues', () => {
-    storeConfiguredButNoIssued = cloneStore();
-    storeConfigured.modules.productFeed.state = {
-      ...productFeedWithDisapprovedProductsButNoIssues,
-    };
-    const wrapper = shallowMount(DisapprovedProductsPage, {
-      ...config,
-      store: new Vuex.Store(storeConfiguredButNoIssued),
-    });
-    expect(wrapper.findAllComponents(DisapprovedProductsRow).exists()).toBeFalsy();
-  });
+
   it('only display disapproved products', () => {
     storeConfigured = cloneStore();
     storeConfigured.modules.productFeed.state = {
