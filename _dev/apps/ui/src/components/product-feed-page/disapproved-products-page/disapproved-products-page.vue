@@ -135,6 +135,7 @@ import TableNoData from '@/components/commons/table-no-data.vue';
 import PopinProductIssues from '@/components/product-feed-page/disapproved-products-page/popin-product-issues.vue';
 import {ProductInfos} from '@/store/modules/product-feed/state';
 import {ProductIdentifier} from './types';
+import {initReplay} from '@/utils/Sentry';
 
 export default defineComponent({
   name: 'DisapprovedProductsPage',
@@ -213,6 +214,14 @@ export default defineComponent({
     if (!this.items.length) {
       this.getItems();
       window.addEventListener('scroll', this.handleScroll);
+    }
+  },
+  beforeCreate() {
+    // We want to check the behavior of user with many disapproved products.
+    if (this.$store.getters['productFeed/GET_PRODUCT_FEED_VALIDATION_SUMMARY']
+      .disapprovedProducts > 100
+    ) {
+      initReplay();
     }
   },
   beforeDestroy() {
