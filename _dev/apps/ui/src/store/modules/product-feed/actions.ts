@@ -444,7 +444,7 @@ export default {
       `product-validations?${params.toString()}`,
     )).json();
     commit(MutationsTypes.ADD_TO_PRODUCTS_VALIDATION_DISAPPROVED_LIST, result.results);
-    return result;
+    return result.results;
   },
 
   async [ActionsTypes.REQUEST_REPORTING_PRODUCT_ISSUES]({rootGetters}: Context, payload: {

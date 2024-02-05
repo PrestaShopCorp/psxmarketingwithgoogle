@@ -100,7 +100,7 @@
             </b-td>
           </b-tr>
           <b-tr
-            v-else-if="nextToken"
+            v-else-if="canDisplayNextPageCta"
           >
             <b-td
               colspan="7"
@@ -152,7 +152,7 @@ export default defineComponent({
   data() {
     return {
       loadingStatus: RequestState.IDLE as RequestState,
-      nextToken: null as string|null,
+      canDisplayNextPageCta: true as boolean,
       selectedFilterQuantityToShow: 100,
       modalData: null as ProductIdentifier|null,
       selectedLanguage: null as string|null,
@@ -246,12 +246,12 @@ export default defineComponent({
           offset: number,
         });
 
-        if (!res.nextToken) {
+        this.canDisplayNextPageCta = !!res.length;
+        if (!this.canDisplayNextPageCta) {
           // IF api does not send token, it means there are no results anymore.
           // We remove the scroll event
           window.removeEventListener('scroll', this.handleScroll);
         }
-        this.nextToken = res.nextToken || null;
         this.loadingStatus = RequestState.SUCCESS;
       } catch (error) {
         console.error(error);
