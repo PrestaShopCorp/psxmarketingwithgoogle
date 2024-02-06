@@ -1,7 +1,13 @@
 import cloneDeep from 'lodash.clonedeep';
+import createFetchMock from 'vitest-fetch-mock';
+import {initOnboardingClient} from 'mktg-with-google-common/api/onboardingClient';
 import {createProductFeedApiPayload} from './actions';
 import {shippingPhpExportWithIssues} from '@/../.storybook/mock/shipping-settings';
 import {ShopShippingCollectionType, ShopShippingInterface} from '@/providers/shipping-settings-provider';
+import {productValidationListMock} from '@/../.storybook/mock/api-routes/product-validations';
+import ActionsTypes from '@/store/modules/product-feed/actions-types';
+import actions from '@/store/modules/product-feed/actions';
+import {ProductStatus} from './state';
 
 const allDetailsFromState = {
   autoImportTaxSettings: false,
@@ -379,6 +385,69 @@ describe('createProductFeedApiPayload', () => {
       },
       selectedProductCategories: ['none'],
       requestSynchronizationNow: false,
+    });
+  });
+});
+
+describe('Product Feed actions', () => {
+  describe(ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES, () => {
+    const fetchMock = createFetchMock(vi);
+    fetchMock.enableMocks();
+    initOnboardingClient({
+      apiUrl: 'http://perdu.com',
+      token: 'token',
+    });
+
+    it('loads & returns the disapproved products', async () => {
+      fetchMock.resetMocks();
+      fetchMock.mockResponse(JSON.stringify({...productValidationListMock}));
+
+      const commit = vi.fn();
+      const getters = {
+        GET_PRODUCTS_VALIDATION_LIMIT: 100,
+      };
+
+      const payload = {
+        status: ProductStatus.Disapproved,
+        limit: 100,
+      };
+
+      const result = await actions[ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES](
+        {
+          commit,
+          getters,
+        },
+        payload,
+      );
+
+      expect(commit).toHaveBeenCalledTimes(1);
+      expect(result).toEqual(productValidationListMock.results);
+    });
+
+    it('resets the products list when the number of products to load per page changes', async () => {
+      fetchMock.resetMocks();
+      fetchMock.mockResponse(JSON.stringify({...productValidationListMock}));
+
+      const commit = vi.fn();
+      const getters = {
+        GET_PRODUCTS_VALIDATION_LIMIT: 100,
+      };
+
+      const payload = {
+        status: ProductStatus.Disapproved,
+        limit: 50,
+      };
+
+      const result = await actions[ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES](
+        {
+          commit,
+          getters,
+        },
+        payload,
+      );
+
+      expect(commit).toHaveBeenCalledTimes(3);
+      expect(result).toEqual(productValidationListMock.results);
     });
   });
 });

@@ -264,7 +264,10 @@ export default {
     state.gmcProductsByStatus.request.numberOfProductsPerPage = payload;
   },
   // GMC reports - disapproved products
-  [MutationsTypes.ADD_TO_PRODUCTS_VALIDATION_DISAPPROVED_LIST](state: LocalState, payload:ProductInfos[]) {
+  [MutationsTypes.ADD_TO_PRODUCTS_VALIDATION_DISAPPROVED_LIST](
+    state: LocalState,
+    payload:ProductInfos[],
+  ) {
     state.gmcProductsByStatus.results.disapproved.push(...payload);
   },
   [MutationsTypes.RESET_PRODUCTS_VALIDATION_DISAPPROVED_LIST](state: LocalState): void {

@@ -26,7 +26,8 @@
         <language-filter-selector
           :languages="languages"
           @languageToFilterUpdated="selectedLanguage = $event"
-          :disabled="loadingStatus !== RequestState.SUCCESS || !GET_PRODUCTS_VALIDATION_DISAPPROVED_TOTAL"
+          :disabled="loadingStatus !== RequestState.SUCCESS
+            || !GET_PRODUCTS_VALIDATION_DISAPPROVED_TOTAL"
         />
       </div>
       <b-table-simple
@@ -49,7 +50,8 @@
 
         <b-tbody>
           <template
-            v-if="loadingStatus === RequestState.PENDING && !GET_PRODUCTS_VALIDATION_DISAPPROVED_TOTAL"
+            v-if="loadingStatus === RequestState.PENDING
+              && !GET_PRODUCTS_VALIDATION_DISAPPROVED_TOTAL"
           >
             <b-tr
               v-for="index in 5"
@@ -75,7 +77,8 @@
           />
 
           <table-no-data
-            v-else-if="loadingStatus === RequestState.SUCCESS && !GET_PRODUCTS_VALIDATION_DISAPPROVED_TOTAL"
+            v-else-if="loadingStatus === RequestState.SUCCESS
+              && !GET_PRODUCTS_VALIDATION_DISAPPROVED_TOTAL"
             :colspan="fields.length"
           />
 
@@ -90,7 +93,8 @@
             />
           </template>
           <b-tr
-            v-if="loadingStatus === RequestState.PENDING && GET_PRODUCTS_VALIDATION_DISAPPROVED_TOTAL"
+            v-if="loadingStatus === RequestState.PENDING
+              && GET_PRODUCTS_VALIDATION_DISAPPROVED_TOTAL"
           >
             <b-td
               colspan="7"
@@ -202,16 +206,20 @@ export default defineComponent({
       }
 
       return this.GET_PRODUCTS_VALIDATION_DISAPPROVED_LIST.filter(
-        (item: ProductInfos) => !!item.impacts.find((impact) => impact.language === this.selectedLanguage),
+        (item: ProductInfos) => !!item.impacts.find(
+          (impact) => impact.language === this.selectedLanguage,
+        ),
       );
     },
     languages(): string[] {
       // Get all languages and make the array unique
       return [
-        ...new Set(this.GET_PRODUCTS_VALIDATION_DISAPPROVED_LIST?.reduce((prev: string[], product: ProductInfos) => {
-          prev.push(...product.impacts.map((impact) => impact.language));
-          return prev;
-        }, [] as string[])),
+        ...new Set(this.GET_PRODUCTS_VALIDATION_DISAPPROVED_LIST?.reduce(
+          (prev: string[], product: ProductInfos) => {
+            prev.push(...product.impacts.map((impact) => impact.language));
+            return prev;
+          }, [] as string[]),
+        ),
       ];
     },
   },
@@ -219,6 +227,8 @@ export default defineComponent({
     if (!this.GET_PRODUCTS_VALIDATION_DISAPPROVED_TOTAL) {
       this.getItems();
       window.addEventListener('scroll', this.handleScroll);
+    } else {
+      this.loadingStatus = RequestState.SUCCESS;
     }
   },
   beforeCreate() {

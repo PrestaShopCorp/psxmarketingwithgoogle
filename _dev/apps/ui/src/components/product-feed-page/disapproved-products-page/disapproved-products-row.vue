@@ -147,15 +147,15 @@ export default defineComponent({
     },
     allAffectedCountries(): string[] {
       return [...new Set(
-        ...this.product.issues.map((issue) => issue.countries),
+        ...this.product.issues?.map((issue) => issue.countries) || [],
       )];
     },
     allIssues(): string[] {
       return [
-        ...new Set(this.product.issues.reduce((prev: string[], issue) => {
+        ...new Set(this.product.issues?.reduce((prev: string[], issue) => {
           prev.push(issue.title);
           return prev;
-        }, [])),
+        }, [])) || [],
       ];
     },
     allLanguages(): string[] {

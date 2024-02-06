@@ -17,7 +17,6 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
 import {DeliveryDetail, ShopShippingInterface} from '@/providers/shipping-settings-provider';
 import attributesToMap from './attributes-to-map.json';
 import {AttributeResponseFromAPI} from '../../../utils/AttributeMapping';
@@ -75,7 +74,8 @@ export interface ProductInfos {
    currency?: string,
    language: string;
  }[],
- issues: ProductInfosIssues[];
+ issues?: ProductInfosIssues[];
+ destinations?: string[];
 }
 
 export interface ProductInfosIssues {
@@ -87,7 +87,7 @@ export interface ProductInfosIssues {
   advice: string;
   documentationLink: string;
   status: ProductStatus;
-} 
+}
 
 export type GmcProductsByStatusRequest = {
   numberOfProductsPerPage: number;
