@@ -58,7 +58,7 @@ Loading.args = {
 Loading.parameters = {
   msw: {
     handlers: [
-      rest.get('/product-feeds/validation/list', (req, res, ctx) => {
+      rest.get('/product-validations', (req, res, ctx) => {
         return res(
           ctx.json([])
         );
@@ -71,7 +71,7 @@ export const ErrorApi: any = Template.bind({});
 ErrorApi.parameters = {
   msw: {
     handlers: [
-      rest.get('/product-feeds/validation/list', (req, res, ctx) => {
+      rest.get('/product-validations', (req, res, ctx) => {
         return res(
           ctx.status(500)
         );
