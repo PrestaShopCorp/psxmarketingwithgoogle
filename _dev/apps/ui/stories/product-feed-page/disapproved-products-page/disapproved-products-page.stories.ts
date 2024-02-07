@@ -3,7 +3,7 @@ import DisapprovedProductsPage from "@/components/product-feed-page/disapproved-
 import { initialStateApp } from "@/../.storybook/mock/state-app";
 import { productFeed } from "@/../.storybook/mock/product-feed";
 import {productValidationListMock} from '@/../.storybook/mock/api-routes/product-validations';
-import {defaultProductIssuesMock} from '@/../.storybook/mock/api-routes/product-feeds/validation/product';
+import defaultProductIssuesMock from '@/../.storybook/mock/api-routes/product-validations/7961';
 import { RequestState } from "@/store/types";
 import {State as ProductFeedState} from '@/store/modules/product-feed/state';
 
@@ -37,7 +37,7 @@ TableStatusDetails.parameters = {
         );
       }),
 
-      rest.get("/product-feeds/validation/product/*", (req, res, ctx) => {
+      rest.get("/product-validations/*", (req, res, ctx) => {
         return res(
           ctx.status(200),
           ctx.json(defaultProductIssuesMock),

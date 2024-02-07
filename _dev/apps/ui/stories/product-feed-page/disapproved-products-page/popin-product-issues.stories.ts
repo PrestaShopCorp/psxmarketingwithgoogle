@@ -1,7 +1,7 @@
 import { rest } from 'msw';
 import PopinProductIssues from '@/components/product-feed-page/disapproved-products-page/popin-product-issues.vue';
 import { ProductIdentifier } from '@/components/product-feed-page/disapproved-products-page/types';
-import { defaultProductIssuesMock } from '@/../.storybook/mock/api-routes/product-feeds/validation/product';
+import defaultProductIssuesMock from '@/../.storybook/mock/api-routes/product-validations/7961';
 
 
 export default {
@@ -31,7 +31,7 @@ ProductIssues.args = {
 ProductIssues.parameters = {
   msw: {
     handlers: [
-      rest.get("/product-feeds/validation/product/*", (req, res, ctx) => {
+      rest.get("/product-validations/*", (req, res, ctx) => {
         return res(
           ctx.status(200),
           ctx.json(defaultProductIssuesMock),

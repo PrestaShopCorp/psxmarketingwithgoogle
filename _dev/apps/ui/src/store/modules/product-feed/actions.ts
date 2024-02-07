@@ -459,7 +459,7 @@ export default {
     const productFullId: string = `${payload.product.idProduct}-${+payload.product.idAttribute > 0 ? payload.product.idAttribute : '0'}`;
     const result: ProductIssuesResponse = await (await fetchOnboarding(
       'GET',
-      `product-feeds/validation/product/${productFullId}?${params.toString()}`,
+      `product-validations/${productFullId}?${params.toString()}`,
     )).json();
 
     return result.issues || [];

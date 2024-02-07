@@ -25,6 +25,7 @@ import {CustomCarrier} from '@/providers/shipping-rate-provider';
 import {RateType} from '@/enums/product-feed/rate';
 import Categories, {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
 import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
+import {ProductIssueImpact} from '@/components/render-issues/types';
 
 /**
  * @deprecated
@@ -69,11 +70,7 @@ export interface ProductFeedValidationSummary {
 export interface ProductInfos {
  id: string;
  title: string;
- impacts: {
-   attribute: string;
-   currency?: string,
-   language: string;
- }[],
+ impacts: ProductIssueImpact[],
  issues?: ProductInfosIssues[];
  destinations?: string[];
 }
