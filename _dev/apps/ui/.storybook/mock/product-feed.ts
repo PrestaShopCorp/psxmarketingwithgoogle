@@ -114,7 +114,14 @@ export const productFeed: State = {
   gmcProductsByStatus: {
     request: {
       numberOfProductsPerPage: 20,
+      offsets: {
+        [ProductStatus.Approved]: 0,
+        [ProductStatus.Disapproved]: 0,
+        [ProductStatus.Expiring]: 0,
+        [ProductStatus.Pending]: 0,
+      },
     },
+    totalOfProducts: null,
     results: {
       approved: [],
       disapproved: [],

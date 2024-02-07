@@ -198,10 +198,13 @@ export default {
   [GettersTypes.GET_PRODUCTS_VALIDATION_DISAPPROVED_LIST](state: LocalState): ProductInfos[] {
     return state.gmcProductsByStatus.results.disapproved;
   },
-  [GettersTypes.GET_PRODUCTS_VALIDATION_DISAPPROVED_TOTAL](state: LocalState): number {
-    return state.gmcProductsByStatus.results.disapproved.length;
+  [GettersTypes.GET_PRODUCTS_VALIDATION_DISAPPROVED_OFFSET](state: LocalState): number {
+    return state.gmcProductsByStatus.request.offsets.disapproved;
   },
-  [GettersTypes.GET_PRODUCTS_VALIDATION_LIMIT](state: LocalState): number {
+  [GettersTypes.GET_PRODUCTS_VALIDATION_TOTAL](state: LocalState): number|null {
+    return state.gmcProductsByStatus.totalOfProducts;
+  },
+  [GettersTypes.GET_PRODUCTS_VALIDATION_PAGE_SIZE](state: LocalState): number {
     return state.gmcProductsByStatus.request.numberOfProductsPerPage;
   },
 };

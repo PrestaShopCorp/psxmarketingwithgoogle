@@ -2,6 +2,7 @@ export const productValidationListMock = {
   filter: "disapproved",
   offset: 0,
   limit: 250,
+  total: "110",
   results: [
     {
       id: "7937",
@@ -105,7 +106,7 @@ export const productValidationListMock = {
       impacts: [
         { attribute: "4", currency: "EUR", language: "en" },
         { attribute: "4", currency: "EUR", language: "fr" },
-        { attribute: "4", currency: "GBP", language: "en" }
+        { attribute: "4", currency: "GBP", language: "en" },
       ],
       destinations: ["Shopping"],
       issues: [

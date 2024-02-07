@@ -420,22 +420,29 @@ export default {
     });
   },
 
-  async [ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES](
+  async [ActionsTypes.REQUEST_REPORTING_PRODUCTS_BY_STATUS_LIST](
     {commit, getters}: Context,
     payload: {
       status: ProductsStatusType,
       limit: number,
-      offset: number,
     },
   ) {
-    if (getters.GET_PRODUCTS_VALIDATION_LIMIT !== payload.limit) {
+    if (getters.GET_PRODUCTS_VALIDATION_PAGE_SIZE !== payload.limit) {
       // If the number of product per page has changed, reset the list
-      commit(MutationsTypes.RESET_PRODUCTS_VALIDATION_DISAPPROVED_LIST);
+      commit(MutationsTypes.RESET_PRODUCTS_VALIDATION_LIST, {
+        status: payload.status,
+      });
+      commit(MutationsTypes.SET_PRODUCTS_VALIDATION_OFFSET, {
+        offset: 0,
+        status: payload.status,
+      });
       commit(MutationsTypes.SET_PRODUCTS_VALIDATION_PAGE_SIZE, payload.limit);
     }
 
+    const offset = getters.GET_PRODUCTS_VALIDATION_DISAPPROVED_OFFSET;
+
     const params = new URLSearchParams({
-      ...(payload.offset && {offset: payload.offset}),
+      ...(offset && {offset}),
       limit: payload.limit,
       status: payload.status,
     });
@@ -443,7 +450,18 @@ export default {
       'GET',
       `product-validations?${params.toString()}`,
     )).json();
-    commit(MutationsTypes.ADD_TO_PRODUCTS_VALIDATION_DISAPPROVED_LIST, result.results);
+
+    commit(MutationsTypes.ADD_TO_PRODUCTS_VALIDATION_LIST, {
+      products: result.results,
+      status: payload.status,
+    });
+    commit(MutationsTypes.SET_PRODUCTS_VALIDATION_OFFSET, {
+      offset: offset + payload.limit,
+      status: payload.status,
+    });
+    if (result.total) {
+      commit(MutationsTypes.SET_PRODUCTS_VALIDATION_TOTAL, +result.total);
+    }
     return result.results;
   },
 

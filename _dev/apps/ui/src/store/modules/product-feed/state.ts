@@ -88,10 +88,15 @@ export interface ProductInfosIssues {
 
 export type GmcProductsByStatusRequest = {
   numberOfProductsPerPage: number;
+  offsets: GmcProductsByStatusRequestOffset;
 }
 
 export type GmcProductsByStatusResults = {
   [key in ProductStatus]: ProductInfos[];
+}
+
+export type GmcProductsByStatusRequestOffset = {
+  [key in ProductStatus]: number;
 }
 
 export interface AttributesInfos {
@@ -165,6 +170,7 @@ export interface State {
   gmcProductsByStatus: {
     request: GmcProductsByStatusRequest,
     results: GmcProductsByStatusResults,
+    totalOfProducts: number|null,
   },
 }
 
@@ -255,7 +261,14 @@ export const state: State = {
   gmcProductsByStatus: {
     request: {
       numberOfProductsPerPage: 10,
+      offsets: {
+        [ProductStatus.Approved]: 0,
+        [ProductStatus.Disapproved]: 0,
+        [ProductStatus.Expiring]: 0,
+        [ProductStatus.Pending]: 0,
+      },
     },
+    totalOfProducts: null,
     results: {
       [ProductStatus.Approved]: [],
       [ProductStatus.Disapproved]: [],

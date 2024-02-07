@@ -20,14 +20,16 @@
     </template>
     <b-card-body body-class="p-3 mt-2">
       <div class="d-flex justify-content-between align-items-center mb-3">
-        <p>
-          {{ $t('productFeedPage.approvalTable.description') }}
-        </p>
+        <VueShowdown
+          :markdown="$t('productFeedPage.approvalTable.description', {
+            productTotal: GET_PRODUCTS_VALIDATION_TOTAL || ''
+          })"
+        />
         <language-filter-selector
           :languages="languages"
           @languageToFilterUpdated="selectedLanguage = $event"
           :disabled="loadingStatus !== RequestState.SUCCESS
-            || !GET_PRODUCTS_VALIDATION_DISAPPROVED_TOTAL"
+            || !GET_PRODUCTS_VALIDATION_TOTAL"
         />
       </div>
       <b-table-simple
@@ -51,7 +53,7 @@
         <b-tbody>
           <template
             v-if="loadingStatus === RequestState.PENDING
-              && !GET_PRODUCTS_VALIDATION_DISAPPROVED_TOTAL"
+              && !GET_PRODUCTS_VALIDATION_TOTAL"
           >
             <b-tr
               v-for="index in 5"
@@ -78,7 +80,7 @@
 
           <table-no-data
             v-else-if="loadingStatus === RequestState.SUCCESS
-              && !GET_PRODUCTS_VALIDATION_DISAPPROVED_TOTAL"
+              && !GET_PRODUCTS_VALIDATION_TOTAL"
             :colspan="fields.length"
           />
 
@@ -94,7 +96,7 @@
           </template>
           <b-tr
             v-if="loadingStatus === RequestState.PENDING
-              && GET_PRODUCTS_VALIDATION_DISAPPROVED_TOTAL"
+              && GET_PRODUCTS_VALIDATION_TOTAL"
           >
             <b-td
               colspan="7"
@@ -156,7 +158,6 @@ export default defineComponent({
   data() {
     return {
       loadingStatus: RequestState.IDLE as RequestState,
-      canDisplayNextPageCta: true as boolean,
       selectedFilterQuantityToShow: 100,
       modalData: null as ProductIdentifier|null,
       selectedLanguage: null as string|null,
@@ -195,7 +196,8 @@ export default defineComponent({
   computed: {
     ...mapGetters('productFeed', [
       GettersTypesProductFeed.GET_PRODUCTS_VALIDATION_DISAPPROVED_LIST,
-      GettersTypesProductFeed.GET_PRODUCTS_VALIDATION_DISAPPROVED_TOTAL,
+      GettersTypesProductFeed.GET_PRODUCTS_VALIDATION_DISAPPROVED_OFFSET,
+      GettersTypesProductFeed.GET_PRODUCTS_VALIDATION_TOTAL,
     ]),
     getProductBaseUrl() {
       return this.$store.getters['app/GET_PRODUCT_DETAIL_BASE_URL'];
@@ -222,9 +224,12 @@ export default defineComponent({
         ),
       ];
     },
+    canDisplayNextPageCta(): boolean {
+      return this.GET_PRODUCTS_VALIDATION_DISAPPROVED_OFFSET < this.GET_PRODUCTS_VALIDATION_TOTAL;
+    },
   },
   mounted() {
-    if (!this.GET_PRODUCTS_VALIDATION_DISAPPROVED_TOTAL) {
+    if (!this.GET_PRODUCTS_VALIDATION_TOTAL) {
       this.getItems();
       window.addEventListener('scroll', this.handleScroll);
     } else {
@@ -246,22 +251,13 @@ export default defineComponent({
     async getItems(): Promise<void> {
       this.loadingStatus = RequestState.PENDING;
       try {
-        const res = await this.$store.dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_STATUSES', {
+        await this.$store.dispatch('productFeed/REQUEST_REPORTING_PRODUCTS_BY_STATUS_LIST', {
           limit: this.selectedFilterQuantityToShow,
-          offset: this.GET_PRODUCTS_VALIDATION_DISAPPROVED_TOTAL,
           status: ProductsStatusType.DISAPPROVED,
         } as {
           status: ProductsStatusType,
           limit: number,
-          offset: number,
         });
-
-        this.canDisplayNextPageCta = !!res.length;
-        if (!this.canDisplayNextPageCta) {
-          // IF api does not send token, it means there are no results anymore.
-          // We remove the scroll event
-          window.removeEventListener('scroll', this.handleScroll);
-        }
         this.loadingStatus = RequestState.SUCCESS;
       } catch (error) {
         console.error(error);
@@ -283,6 +279,13 @@ export default defineComponent({
         this.$refs.PopinProductIssues.$refs.modal.id,
       );
       this.modalData = product;
+    },
+  },
+  watch: {
+    canDisplayNextPageCta(newValue: boolean) {
+      if (newValue === false) {
+        window.removeEventListener('scroll', this.handleScroll);
+      }
     },
   },
 });

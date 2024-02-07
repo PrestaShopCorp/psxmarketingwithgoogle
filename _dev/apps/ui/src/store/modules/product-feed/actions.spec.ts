@@ -390,7 +390,7 @@ describe('createProductFeedApiPayload', () => {
 });
 
 describe('Product Feed actions', () => {
-  describe(ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES, () => {
+  describe(ActionsTypes.REQUEST_REPORTING_PRODUCTS_BY_STATUS_LIST, () => {
     const fetchMock = createFetchMock(vi);
     fetchMock.enableMocks();
     initOnboardingClient({
@@ -404,7 +404,7 @@ describe('Product Feed actions', () => {
 
       const commit = vi.fn();
       const getters = {
-        GET_PRODUCTS_VALIDATION_LIMIT: 100,
+        GET_PRODUCTS_VALIDATION_PAGE_SIZE: 100,
       };
 
       const payload = {
@@ -412,7 +412,7 @@ describe('Product Feed actions', () => {
         limit: 100,
       };
 
-      const result = await actions[ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES](
+      const result = await actions[ActionsTypes.REQUEST_REPORTING_PRODUCTS_BY_STATUS_LIST](
         {
           commit,
           getters,
@@ -420,7 +420,7 @@ describe('Product Feed actions', () => {
         payload,
       );
 
-      expect(commit).toHaveBeenCalledTimes(1);
+      expect(commit).toHaveBeenCalledTimes(3);
       expect(result).toEqual(productValidationListMock.results);
     });
 
@@ -430,7 +430,7 @@ describe('Product Feed actions', () => {
 
       const commit = vi.fn();
       const getters = {
-        GET_PRODUCTS_VALIDATION_LIMIT: 100,
+        GET_PRODUCTS_VALIDATION_PAGE_SIZE: 100,
       };
 
       const payload = {
@@ -438,7 +438,7 @@ describe('Product Feed actions', () => {
         limit: 50,
       };
 
-      const result = await actions[ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES](
+      const result = await actions[ActionsTypes.REQUEST_REPORTING_PRODUCTS_BY_STATUS_LIST](
         {
           commit,
           getters,
@@ -446,7 +446,7 @@ describe('Product Feed actions', () => {
         payload,
       );
 
-      expect(commit).toHaveBeenCalledTimes(3);
+      expect(commit).toHaveBeenCalledTimes(6);
       expect(result).toEqual(productValidationListMock.results);
     });
   });

@@ -17,6 +17,7 @@ import {
 import {productValidationListMock} from '@/../.storybook/mock/api-routes/product-validations';
 import LanguageFilterSelector from '../language-filter-selector.vue';
 import {RequestState} from '@/store/types';
+import {ProductStatus} from '@/store/modules/product-feed/state';
 
 const fetchMock = createFetchMock(vi);
 fetchMock.enableMocks();
@@ -32,10 +33,11 @@ describe('disapproved-products-page/disapproved-products-page.vue', () => {
     store.modules.productFeed.state = {
       ...cloneDeep(productFeed),
     };
+    store.modules.productFeed.state.gmcProductsByStatus.totalOfProducts = 1200;
     store.modules.productFeed.state.gmcProductsByStatus.results
       .disapproved = cloneDeep(productValidationListMock.results);
     store.modules.productFeed.actions
-      .REQUEST_REPORTING_PRODUCTS_STATUSES = vi.fn().mockImplementation(() => []);
+      .REQUEST_REPORTING_PRODUCTS_BY_STATUS_LIST = vi.fn();
     return store;
   };
 
@@ -67,10 +69,11 @@ describe('disapproved-products-page/disapproved-products-page.vue', () => {
     const allRows = wrapper.findAllComponents(BTr);
     const lastRow = allRows.at(allRows.length - 1);
 
+    expect(wrapper.vm.canDisplayNextPageCta).toBe(true);
     expect(lastRow.text()).toEqual('Load next results');
   });
 
-  it('Hides the next page button when the last loaded page did not return results', async () => {
+  it('Hides the next page button when the current product offset reaches the total', async () => {
     const wrapper = buildWrapper();
 
     const allRows = wrapper.findAllComponents(BTr);
@@ -78,8 +81,9 @@ describe('disapproved-products-page/disapproved-products-page.vue', () => {
     expect(allRows).toHaveLength(11);
     expect(lastRow.text()).toEqual('Load next results');
 
-    // Triger load of next page
-    await wrapper.vm.getItems();
+    wrapper.vm.$store.state.productFeed.gmcProductsByStatus
+      .request.offsets[ProductStatus.Disapproved] = 1200;
+    await wrapper.vm.$nextTick();
 
     expect(wrapper.findAllComponents(BTr)).toHaveLength(10);
   });
