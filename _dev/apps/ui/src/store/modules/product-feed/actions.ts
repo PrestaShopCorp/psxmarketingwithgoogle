@@ -292,7 +292,7 @@ export default {
     try {
       const result = await (await fetchOnboarding(
         'GET',
-        'product-feeds/stats/gmc',
+        'product-validations/stats',
       )).json();
       commit(MutationsTypes.SET_VALIDATION_SUMMARY, result);
     } catch (error) {
