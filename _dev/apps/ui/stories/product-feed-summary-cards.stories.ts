@@ -1,6 +1,7 @@
 import ProductFeedSummaryCards from "../src/components/product-feed/summary/product-feed-summary-cards.vue";
 import { initialStateApp } from "../.storybook/mock/state-app";
 import { productFeed } from "../.storybook/mock/product-feed";
+import {State as ProductFeedState} from '@/store/modules/product-feed/state';
 
 export default {
   title: 'Basic Components/Summary Cards',
@@ -15,8 +16,8 @@ const Template = (args, { argTypes }) => ({
     '<div><ProductFeedSummaryCards v-bind="$props"/></div>',
   beforeMount(this: any) {
     this.$store.state.app = Object.assign({}, initialStateApp);
-    this.$store.state.productFeed = Object.assign({}, productFeed);
-    this.$store.state.productFeed.productsDatas.items = [];
+    (this.$store.state.productFeed as ProductFeedState) = Object.assign({}, productFeed);
+    (this.$store.state.productFeed as ProductFeedState).gmcProductsByStatus.results.disapproved = [];
   },
   mounted(this: any) {
     if (args.loading === true) {

@@ -92,4 +92,26 @@ describe('CollapsingIssues', () => {
       expect(cardCollapse.find('.card-body').html()).toContain(issue.htmlContent);
     });
   });
+
+  it('prevents duplicates in impacted variants', () => {
+    const wrapper = buildWrapper({
+      propsData: {
+        issues: [],
+      },
+    });
+
+    const source = [
+      {currency: 'EUR', language: 'en', attribute: '16'},
+      {currency: 'EUR', language: 'fr', attribute: '16'},
+      {currency: 'EUR', language: 'en', attribute: '17'},
+      {currency: 'EUR', language: 'fr', attribute: '17'},
+    ];
+
+    const expected = [
+      {currency: 'EUR', language: 'en'},
+      {currency: 'EUR', language: 'fr'},
+    ];
+
+    expect(wrapper.vm.uniqueImpactedVariants(source)).toEqual(expected);
+  });
 });

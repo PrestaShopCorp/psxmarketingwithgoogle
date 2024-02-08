@@ -29,30 +29,21 @@ describe('disapproved-products-row.vue', () => {
   it('displays products errors', () => {
     // Arrange
     const product: ProductInfos = {
-      id: '7990',
-      attribute: '0',
-      name: 'Psykokwak',
-      language: 'fr',
-      currency: '💷',
-      statuses: [
-        {
-          destination: 'Shopping',
-          status: ProductStatus.Disapproved,
-          countries: ['FR', 'IT', 'BE'],
-        },
-      ],
+      id: '7945',
+      title: 'Blastoise',
+      impacts: [{attribute: '0', currency: 'EUR', language: 'en'}],
+      destinations: ['Shopping'],
       issues: [
         {
-          code: 'policy_enforcement_account_disapproval',
-          servability: 'disapproved',
-          resolution: 'merchant_action',
+          title: 'Invalid value [gtin]',
           destination: 'Shopping',
-          description: 'Suspended account for policy violation',
-          detail:
-            'Remove products that violate our policies, or request a manual review',
-          documentation:
-            'https://support.google.com/merchants/answer/2948694',
-          applicableCountries: ['BE'],
+          code: 'invalid_upc',
+          affectedProperty: 'gtin',
+          countries: ['FR', 'BE'],
+          advice: "Use your product's globally valid GTIN",
+          documentationLink:
+            'https://support.google.com/merchants/answer/6239388',
+          status: ProductStatus.Disapproved,
         },
       ],
     };
@@ -68,20 +59,24 @@ describe('disapproved-products-row.vue', () => {
     const cells = wrapper.findAllComponents(BTd);
     expect(cells.length).toBe(7);
 
-    expect(cells.at(0).text()).toEqual('7990');
-    expect(cells.at(1).text()).toEqual('Psykokwak');
-    expect(cells.at(2).text()).toEqual('💷');
-    expect(cells.at(3).text()).toEqual('fr');
+    expect(cells.at(0).text()).toEqual('7945');
+    expect(cells.at(1).text()).toEqual('Blastoise');
+    const currencySpans = cells.at(2).findAllComponents(BCard);
+    expect(currencySpans.length).toEqual(1);
+    expect(currencySpans.at(0).text()).toEqual('EUR');
+
+    const languageSpans = cells.at(3).findAllComponents(BCard);
+    expect(languageSpans.length).toEqual(1);
+    expect(languageSpans.at(0).text()).toEqual('en');
 
     const countrySpans = cells.at(4).findAllComponents(BCard);
-    expect(countrySpans.length).toEqual(3);
+    expect(countrySpans.length).toEqual(2);
     expect(countrySpans.at(0).text()).toEqual('France');
-    expect(countrySpans.at(1).text()).toEqual('Italy');
-    expect(countrySpans.at(2).text()).toEqual('Belgium');
+    expect(countrySpans.at(1).text()).toEqual('Belgium');
 
     const errorsList = cells.at(5).findAll('li');
     expect(errorsList.length).toEqual(1);
-    expect(errorsList.at(0).text()).toEqual('Suspended account for policy violation');
+    expect(errorsList.at(0).text()).toEqual('Invalid value [gtin]');
 
     expect(cells.at(6).text()).toEqual('Learn more');
   });
@@ -89,16 +84,67 @@ describe('disapproved-products-row.vue', () => {
   it('suggests to the merchant to open the GMC website to check the errors on the account level', () => {
     // Arrange
     const product: ProductInfos = {
-      id: '7990',
-      attribute: '0',
-      name: 'Psykokwak',
-      language: 'fr',
-      currency: 'EUR',
-      statuses: [
+      id: '7945',
+      title: 'Blastoise',
+      impacts: [{attribute: '0', currency: 'EUR', language: 'en'}],
+      destinations: ['Shopping'],
+    };
+
+    // Act
+    const wrapper = buildWrapper({
+      propsData: {
+        product,
+      },
+    });
+
+    // Assert
+    const cells = wrapper.findAllComponents(BTd);
+    expect(cells.length).toBe(7);
+
+    expect(cells.at(0).text()).toEqual('7945');
+    expect(cells.at(1).text()).toEqual('Blastoise');
+    const currencySpans = cells.at(2).findAllComponents(BCard);
+    expect(currencySpans.length).toEqual(1);
+    expect(currencySpans.at(0).text()).toEqual('EUR');
+
+    const languageSpans = cells.at(3).findAllComponents(BCard);
+    expect(languageSpans.length).toEqual(1);
+    expect(languageSpans.at(0).text()).toEqual('en');
+
+    const countrySpans = cells.at(4).findAllComponents(BCard);
+    expect(countrySpans.length).toEqual(0);
+
+    const errorsList = cells.at(5).findAll('li');
+    expect(errorsList.length).toEqual(0);
+    expect(cells.at(5).text()).toEqual('Not provided, check account errors on your Merchant Center.');
+
+    expect(cells.at(6).text()).toEqual('Learn more');
+  });
+
+  it('List all the impacted currencies and languages', () => {
+    // Arrange
+    const product: ProductInfos = {
+      id: '7945',
+      title: 'Blastoise',
+      impacts: [
+        {attribute: '0', currency: 'EUR', language: 'de'},
+        {attribute: '0', currency: 'GBP', language: 'en'},
+        {attribute: '0', currency: 'EUR', language: 'fr'},
+        {attribute: '0', currency: 'GBP', language: 'fr'},
+        {attribute: '0', currency: 'SEK', language: 'en'},
+      ],
+      destinations: ['Shopping'],
+      issues: [
         {
+          title: 'Invalid value [gtin]',
           destination: 'Shopping',
+          code: 'invalid_upc',
+          affectedProperty: 'gtin',
+          countries: ['FR', 'BE'],
+          advice: "Use your product's globally valid GTIN",
+          documentationLink:
+            'https://support.google.com/merchants/answer/6239388',
           status: ProductStatus.Disapproved,
-          countries: ['FR', 'IT', 'BE'],
         },
       ],
     };
@@ -114,20 +160,89 @@ describe('disapproved-products-row.vue', () => {
     const cells = wrapper.findAllComponents(BTd);
     expect(cells.length).toBe(7);
 
-    expect(cells.at(0).text()).toEqual('7990');
-    expect(cells.at(1).text()).toEqual('Psykokwak');
-    expect(cells.at(2).text()).toEqual('EUR');
-    expect(cells.at(3).text()).toEqual('fr');
+    expect(cells.at(0).text()).toEqual('7945');
+    expect(cells.at(1).text()).toEqual('Blastoise');
+    const currencySpans = cells.at(2).findAllComponents(BCard);
+    expect(currencySpans.length).toEqual(3);
+    expect(currencySpans.at(0).text()).toEqual('EUR');
+    expect(currencySpans.at(1).text()).toEqual('GBP');
+    expect(currencySpans.at(2).text()).toEqual('SEK');
+
+    const languageSpans = cells.at(3).findAllComponents(BCard);
+    expect(languageSpans.length).toEqual(3);
+    expect(languageSpans.at(0).text()).toEqual('de');
+    expect(languageSpans.at(1).text()).toEqual('en');
+    expect(languageSpans.at(2).text()).toEqual('fr');
 
     const countrySpans = cells.at(4).findAllComponents(BCard);
-    expect(countrySpans.length).toEqual(3);
+    expect(countrySpans.length).toEqual(2);
     expect(countrySpans.at(0).text()).toEqual('France');
-    expect(countrySpans.at(1).text()).toEqual('Italy');
-    expect(countrySpans.at(2).text()).toEqual('Belgium');
+    expect(countrySpans.at(1).text()).toEqual('Belgium');
 
     const errorsList = cells.at(5).findAll('li');
-    expect(errorsList.length).toEqual(0);
-    expect(cells.at(5).text()).toEqual('Not provided, check account errors on your Merchant Center.');
+    expect(errorsList.length).toEqual(1);
+    expect(errorsList.at(0).text()).toEqual('Invalid value [gtin]');
+
+    expect(cells.at(6).text()).toEqual('Learn more');
+  });
+
+  it('Merges all variants currencies and languages', () => {
+    // Arrange
+    const product: ProductInfos = {
+      id: '7945',
+      title: 'Blastoise',
+      impacts: [
+        {attribute: '0', currency: 'EUR', language: 'en'},
+        {attribute: '1', currency: 'EUR', language: 'en'},
+        {attribute: '2', currency: 'EUR', language: 'en'},
+        {attribute: '2', currency: 'EUR', language: 'fr'},
+      ],
+      destinations: ['Shopping'],
+      issues: [
+        {
+          title: 'Invalid value [gtin]',
+          destination: 'Shopping',
+          code: 'invalid_upc',
+          affectedProperty: 'gtin',
+          countries: ['FR', 'BE'],
+          advice: "Use your product's globally valid GTIN",
+          documentationLink:
+            'https://support.google.com/merchants/answer/6239388',
+          status: ProductStatus.Disapproved,
+        },
+      ],
+    };
+
+    // Act
+    const wrapper = buildWrapper({
+      propsData: {
+        product,
+      },
+    });
+
+    // Assert
+    const cells = wrapper.findAllComponents(BTd);
+    expect(cells.length).toBe(7);
+
+    expect(cells.at(0).text()).toEqual('7945');
+    expect(cells.at(1).text()).toEqual('Blastoise');
+    const currencySpans = cells.at(2).findAllComponents(BCard);
+    expect(currencySpans.length).toEqual(1);
+    expect(currencySpans.at(0).text()).toEqual('EUR');
+
+    const languageSpans = cells.at(3).findAllComponents(BCard);
+    expect(languageSpans.length).toEqual(2);
+    expect(languageSpans.at(0).text()).toEqual('en');
+    expect(languageSpans.at(1).text()).toEqual('fr');
+
+    const countrySpans = cells.at(4).findAllComponents(BCard);
+    expect(countrySpans.length).toEqual(2);
+    expect(countrySpans.at(0).text()).toEqual('France');
+    expect(countrySpans.at(1).text()).toEqual('Belgium');
+
+    const errorsList = cells.at(5).findAll('li');
+    expect(errorsList.length).toEqual(1);
+    expect(errorsList.at(0).text()).toEqual('Invalid value [gtin]');
 
     expect(cells.at(6).text()).toEqual('Learn more');
   });
