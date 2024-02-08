@@ -20,6 +20,7 @@ import {FullState, RequestState} from '@/store/types';
 import appGetters from '@/store/modules/app/getters-types';
 import {ProductIdentifier} from '@/components/product-feed-page/disapproved-products-page/types';
 import {ProductIssue} from '@/components/render-issues/types';
+import ProductsStatusType from '@/enums/product-feed/products-status-type';
 
 type Context = ActionContext<State, FullState>;
 
@@ -296,7 +297,7 @@ export default {
     try {
       const result = await (await fetchOnboarding(
         'GET',
-        'product-feeds/stats/gmc',
+        'product-validations/stats',
       )).json();
       commit(MutationsTypes.SET_VALIDATION_SUMMARY, result);
     } catch (error) {
@@ -424,20 +425,49 @@ export default {
     });
   },
 
-  async [ActionsTypes.REQUEST_REPORTING_PRODUCTS_STATUSES](
-    {commit}: Context,
-    nextPage: string|null,
+  async [ActionsTypes.REQUEST_REPORTING_PRODUCTS_BY_STATUS_LIST](
+    {commit, getters}: Context,
+    payload: {
+      status: ProductsStatusType,
+      limit: number,
+    },
   ) {
+    if (getters.GET_PRODUCTS_VALIDATION_PAGE_SIZE !== payload.limit) {
+      // If the number of product per page has changed, reset the list
+      commit(MutationsTypes.RESET_PRODUCTS_VALIDATION_LIST, {
+        status: payload.status,
+      });
+      commit(MutationsTypes.SET_PRODUCTS_VALIDATION_OFFSET, {
+        offset: 0,
+        status: payload.status,
+      });
+      commit(MutationsTypes.SET_PRODUCTS_VALIDATION_PAGE_SIZE, payload.limit);
+    }
+
+    const offset = getters.GET_PRODUCTS_VALIDATION_DISAPPROVED_OFFSET;
+
     const params = new URLSearchParams({
-      ...(nextPage && {next_token: nextPage}),
-      limit: '10',
+      ...(offset && {offset}),
+      limit: payload.limit,
+      status: payload.status,
     });
     const result = await (await fetchOnboarding(
       'GET',
-      `product-feeds/validation/list?${params}`,
+      `product-validations?${params.toString()}`,
     )).json();
-    commit(MutationsTypes.SAVE_ALL_PRODUCTS, result.results);
-    return result;
+
+    commit(MutationsTypes.ADD_TO_PRODUCTS_VALIDATION_LIST, {
+      products: result.results,
+      status: payload.status,
+    });
+    commit(MutationsTypes.SET_PRODUCTS_VALIDATION_OFFSET, {
+      offset: offset + payload.limit,
+      status: payload.status,
+    });
+    if (result.total) {
+      commit(MutationsTypes.SET_PRODUCTS_VALIDATION_TOTAL, +result.total);
+    }
+    return result.results;
   },
 
   async [ActionsTypes.REQUEST_REPORTING_PRODUCT_ISSUES]({rootGetters}: Context, payload: {
@@ -452,7 +482,7 @@ export default {
     const productFullId: string = `${payload.product.idProduct}-${+payload.product.idAttribute > 0 ? payload.product.idAttribute : '0'}`;
     const result = await (await fetchOnboarding(
       'GET',
-      `product-feeds/validation/product/${productFullId}?${params.toString()}`,
+      `product-validations/${productFullId}?${params.toString()}`,
     )).json();
 
     return result.issues || [];

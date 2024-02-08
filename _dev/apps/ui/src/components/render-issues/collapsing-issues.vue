@@ -20,10 +20,31 @@
           {{ issue.title }}
         </p>
       </div>
-      <div
+      <template
         slot="content"
-        v-html="issue.htmlContent"
-      />
+      >
+        <div
+          v-if="issue.impacts && issue.impacts.length > 1"
+        >
+          <ul>
+            <li
+              v-for="impact in uniqueImpactedVariants(issue.impacts)"
+              :key="JSON.stringify(impact)"
+              class="font-weight-500"
+            >
+              {{
+                $t('productFeedPage.productIssuesModal.impactListFormat', {
+                  language: impact.language,
+                  currency: impact.currency,
+                  impact: issue.message,
+                })
+              }}
+            </li>
+          </ul>
+        </div>
+
+        <div v-html="issue.htmlContent" />
+      </template>
     </card-collapse>
   </div>
 </template>
@@ -33,6 +54,7 @@ import {defineComponent, PropType} from 'vue';
 import {BTooltip} from 'bootstrap-vue';
 import CardCollapse from '@/components/commons/card-collapse.vue';
 import {Severity, AccountIssue, ProductIssue} from './types';
+import {ProductIssueImpact} from '@/components/render-issues/types';
 
 export default defineComponent({
   name: 'CollapsingIssues',
@@ -96,6 +118,22 @@ export default defineComponent({
     },
     unloadTooltips(): void {
       this.tooltipsComponents.forEach((tooltip) => tooltip.$destroy());
+    },
+    uniqueImpactedVariants(impacts: ProductIssueImpact[]) {
+      const distinctValues: {language: string, currency: string}[] = [];
+      impacts.forEach((impact) => {
+        if (distinctValues.find((existing) => existing.currency === impact.currency
+          && existing.language === impact.language,
+        )) {
+          return;
+        }
+
+        distinctValues.push({
+          language: impact.language,
+          currency: impact.currency,
+        });
+      });
+      return distinctValues;
     },
   },
   mounted() {

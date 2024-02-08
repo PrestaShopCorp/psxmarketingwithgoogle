@@ -1,4 +1,3 @@
-import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
 import {DeliveryDetail, ShopShippingInterface} from '@/providers/shipping-settings-provider';
 import attributesToMap from './attributes-to-map.json';
 import {AttributeResponseFromAPI} from '../../../utils/AttributeMapping';
@@ -8,6 +7,7 @@ import {RateType} from '@/enums/product-feed/rate';
 import Categories, {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
 import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
 import {RequestState} from '@/store/types';
+import {ProductIssueImpact} from '@/components/render-issues/types';
 
 /**
  * @deprecated
@@ -51,22 +51,34 @@ export interface ProductFeedValidationSummary {
 }
 export interface ProductInfos {
  id: string;
- name: string;
- attribute: string;
- currency?: string,
- language: string;
- statuses: ProductInfosStatus[];
- issues?: contentApi.Schema$ProductStatusItemLevelIssue[];
+ title: string;
+ impacts: ProductIssueImpact[],
+ issues?: ProductInfosIssues[];
+ destinations?: string[];
 }
 
-export type ProductInfosStatus = {
+export interface ProductInfosIssues {
+  title: string;
   destination: string;
-  status: ProductStatus;
+  code: string;
+  affectedProperty: string;
   countries: string[];
+  advice: string;
+  documentationLink: string;
+  status: ProductStatus;
 }
 
-export interface ProductsDatas {
-  items: ProductInfos[];
+export type GmcProductsByStatusRequest = {
+  numberOfProductsPerPage: number;
+  offsets: GmcProductsByStatusRequestOffset;
+}
+
+export type GmcProductsByStatusResults = {
+  [key in ProductStatus]: ProductInfos[];
+}
+
+export type GmcProductsByStatusRequestOffset = {
+  [key in ProductStatus]: number;
 }
 
 export interface AttributesInfos {
@@ -123,7 +135,6 @@ export interface State {
   status: ProductFeedStatus;
   settings: ProductFeedSettings;
   validationSummary: ProductFeedValidationSummary;
-  productsDatas: ProductsDatas;
   attributesToMap: any;
   attributesFromShop: Array<AttributesInfos>;
   selectedProductCategories: SelectedProductCategories;
@@ -136,7 +147,13 @@ export interface State {
   },
   verificationIssuesNumberOfProducts: {
     [verificationIssue in ProductVerificationIssue]?: number;
-  }
+  },
+
+  gmcProductsByStatus: {
+    request: GmcProductsByStatusRequest,
+    results: GmcProductsByStatusResults,
+    totalOfProducts: number|null,
+  },
 }
 
 export enum ProductStatus {
@@ -208,9 +225,6 @@ export const state: State = {
     pendingProducts: null,
     disapprovedProducts: null,
   },
-  productsDatas: {
-    items: [],
-  },
   attributesToMap,
   requestSynchronizationNow: false,
   attributesFromShop: [],
@@ -225,4 +239,23 @@ export const state: State = {
   verificationIssues: null,
   verificationIssuesProducts: {},
   verificationIssuesNumberOfProducts: {},
+
+  gmcProductsByStatus: {
+    request: {
+      numberOfProductsPerPage: 10,
+      offsets: {
+        [ProductStatus.Approved]: 0,
+        [ProductStatus.Disapproved]: 0,
+        [ProductStatus.Expiring]: 0,
+        [ProductStatus.Pending]: 0,
+      },
+    },
+    totalOfProducts: null,
+    results: {
+      [ProductStatus.Approved]: [],
+      [ProductStatus.Disapproved]: [],
+      [ProductStatus.Expiring]: [],
+      [ProductStatus.Pending]: [],
+    },
+  },
 };

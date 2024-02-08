@@ -7,10 +7,17 @@ export interface AccountIssue {
 
 export interface ProductIssue {
   title: string;
+  message: string;
   severity: Severity;
   htmlContent: string;
   countries?: string[];
-  impact?: string;
+  impacts?: ProductIssueImpact[];
+}
+
+export interface ProductIssueImpact {
+  currency: string;
+  language: string;
+  attribute: string;
 }
 
 export type Severity = 'ERROR' | 'WARNING' | 'INFO';

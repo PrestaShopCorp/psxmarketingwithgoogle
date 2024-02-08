@@ -3,7 +3,7 @@
     <b-td
       class="align-top"
     >
-      {{ product.id }}{{ +product.attribute > 0 ? '&#8209;' + product.attribute : '' }}
+      {{ product.id }}
     </b-td>
     <b-td
       class="align-top"
@@ -15,10 +15,10 @@
         target="_blank"
         :title="$t('productFeedPage.approvalTable.editX', [product.name])"
       >
-        {{ product.name }}
+        {{ product.title }}
       </a>
       <span v-else>
-        {{ product.name }}
+        {{ product.title }}
       </span>
     </b-td>
 
@@ -26,10 +26,12 @@
       class="align-top"
     >
       <b-card
+        v-for="(currency) in allCurrencies"
+        :key="currency"
         border-variant="primary"
         class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13 font-weight-500"
       >
-        {{ product.currency }}
+        {{ currency }}
       </b-card>
     </b-td>
 
@@ -37,10 +39,12 @@
       class="align-top"
     >
       <b-card
+        v-for="(language) in allLanguages"
+        :key="language"
         border-variant="primary"
         class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13 font-weight-500"
       >
-        {{ product.language }}
+        {{ language }}
       </b-card>
     </b-td>
 
@@ -143,24 +147,34 @@ export default defineComponent({
     },
     allAffectedCountries(): string[] {
       return [...new Set(
-        ...this.product.statuses.map((status) => status.countries),
+        ...this.product.issues?.map((issue) => issue.countries) || [],
       )];
     },
     allIssues(): string[] {
-      const issues: string[] = [];
-
-      this.product.issues?.forEach((issue) => {
-        if (!issue.description) {
-          return;
-        }
-
-        if (issues.includes(issue.description)) {
-          return;
-        }
-        issues.push(issue.description);
-      });
-
-      return issues;
+      return [
+        ...new Set(this.product.issues?.reduce((prev: string[], issue) => {
+          prev.push(issue.title);
+          return prev;
+        }, [])) || [],
+      ];
+    },
+    allLanguages(): string[] {
+      return [
+        ...new Set(this.product.impacts.reduce((prev: string[], impact) => {
+          prev.push(impact.language);
+          return prev;
+        }, [])),
+      ];
+    },
+    allCurrencies(): string[] {
+      return [
+        ...new Set(this.product.impacts.reduce((prev: string[], impact) => {
+          if (impact.currency) {
+            prev.push(impact.currency);
+          }
+          return prev;
+        }, [])),
+      ];
     },
   },
   methods: {

@@ -26,6 +26,7 @@ import {
   State as LocalState,
   ProductInfos,
   ProductFeedValidationSummary,
+  ProductStatus,
   AttributesInfos,
   commonAttributes,
   ProductVerificationIssueOverall,
@@ -44,9 +45,7 @@ export default {
   [MutationsTypes.SET_LAST_SYNCHRONISATION](state: LocalState, payload: payloadObject) {
     state.status[payload.name] = payload.data;
   },
-  [MutationsTypes.SAVE_ALL_PRODUCTS](state: LocalState, payload:ProductInfos[]) {
-    state.productsDatas.items.push(...payload);
-  },
+
   //  Product Feed Card
   [MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS](state: LocalState, payload: payloadObject) {
     state.settings[payload.name] = payload.data;
@@ -259,5 +258,35 @@ export default {
     state.verificationIssuesNumberOfProducts = {
       ...state.verificationIssuesNumberOfProducts,
     };
+  },
+
+  // GMC reports overall
+  [MutationsTypes.SET_PRODUCTS_VALIDATION_PAGE_SIZE](state: LocalState, payload: number): void {
+    state.gmcProductsByStatus.request.numberOfProductsPerPage = payload;
+  },
+  [MutationsTypes.SET_PRODUCTS_VALIDATION_TOTAL](state: LocalState, payload: number): void {
+    state.gmcProductsByStatus.totalOfProducts = payload;
+  },
+
+  // GMC reports - disapproved products
+  [MutationsTypes.ADD_TO_PRODUCTS_VALIDATION_LIST](
+    state: LocalState,
+    payload: {
+      products: ProductInfos[],
+      status: ProductStatus,
+    },
+  ) {
+    state.gmcProductsByStatus.results[payload.status].push(...payload.products);
+  },
+  [MutationsTypes.RESET_PRODUCTS_VALIDATION_LIST](state: LocalState, payload: {
+    status: ProductStatus,
+  }): void {
+    state.gmcProductsByStatus.results[payload.status] = [];
+  },
+  [MutationsTypes.SET_PRODUCTS_VALIDATION_OFFSET](state: LocalState, payload: {
+    offset: number,
+    status: ProductStatus,
+  }): void {
+    state.gmcProductsByStatus.request.offsets[payload.status] = payload.offset;
   },
 };
