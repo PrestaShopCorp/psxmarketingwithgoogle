@@ -743,7 +743,7 @@
             "priceMissingAction": "Si prega di indicare un prezzo per il prodotto."
         },
         "approvalTable": {
-            "description": "Below is a list of your products that haven't passed the approval process. Each entry includes reasons for disapproval to help you make quick fixes. Once updated, these products can be sync to Google Shopping.",
+            "description": "Below, you'll find a list of **{productTotal} products** that didn't pass the approval process. For each product, we've provided the reasons for disapproval to facilitate swift corrections. After making the necessary updates, these products can be synchronized with Google Shopping.",
             "filterTitle": "Filtra per disponibilità",
             "NoFilter": "All",
             "tableHeaderID": "ID",
@@ -761,6 +761,7 @@
         "productIssuesModal": {
             "title": "More details about your product issues",
             "description": "Here are the reasons for suspension provided by Google. Take the necessary steps to meet the requirements and wait for the next scan.",
+            "impactListFormat": "{language} [{currency}]: {impact}",
             "footer": "Visit your [product sheet]({0})[:target=\"_blank\"] to make the necessary changes to your product to meet Google's requirements and get it approved."
         }
     },
