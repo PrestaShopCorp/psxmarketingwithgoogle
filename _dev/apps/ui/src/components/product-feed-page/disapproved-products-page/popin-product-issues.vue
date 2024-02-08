@@ -78,7 +78,7 @@ export default defineComponent({
       this.loadingState = RequestState.PENDING;
       try {
         this.issues = await this.$store.dispatch('productFeed/REQUEST_REPORTING_PRODUCT_ISSUES', {
-          product: this.product,
+          productId: this.product?.idProduct,
         });
         this.loadingState = RequestState.SUCCESS;
       } catch (error) {

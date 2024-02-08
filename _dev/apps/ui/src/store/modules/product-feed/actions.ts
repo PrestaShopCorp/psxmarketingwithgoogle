@@ -466,18 +466,15 @@ export default {
   },
 
   async [ActionsTypes.REQUEST_REPORTING_PRODUCT_ISSUES]({rootGetters}: Context, payload: {
-    product: ProductIdentifier,
+    productId: string,
   }): Promise<ProductIssue[]> {
     const params = new URLSearchParams({
-      currency: payload.product.currency,
-      language: payload.product.languageCode,
-      issueLanguage: rootGetters[`app/${appGetters.GET_CURRENT_LANGUAGE}`],
-      issueTimezone: encodeURI(Intl.DateTimeFormat().resolvedOptions().timeZone),
+      language: rootGetters[`app/${appGetters.GET_CURRENT_LANGUAGE}`],
+      timezone: encodeURI(Intl.DateTimeFormat().resolvedOptions().timeZone),
     });
-    const productFullId: string = `${payload.product.idProduct}-${+payload.product.idAttribute > 0 ? payload.product.idAttribute : '0'}`;
-    const result: ProductIssuesResponse = await (await fetchOnboarding(
+    const result = await (await fetchOnboarding(
       'GET',
-      `product-validations/${productFullId}?${params.toString()}`,
+      `product-validations/${payload.productId}?${params.toString()}`,
     )).json();
 
     return result.issues || [];
