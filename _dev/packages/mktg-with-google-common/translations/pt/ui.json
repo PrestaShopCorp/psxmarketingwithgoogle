@@ -28,7 +28,7 @@
         "mandatory": "são obrigatórias",
         "XIsMandatory": "{0} é obrigatório.",
         "unableToFetchData": "Não conseguimos obter dados, por favor tente novamente mais tarde.",
-        "noResults": "Nenhum dado encontrado",
+        "noResults": "No data found",
         "search": "Pesquisa",
         "createAccount": "criar sua conta",
         "createNewAccount": "Se você não tiver uma conta, poderá {0} hoje.",
@@ -687,7 +687,7 @@
                 "stepTitle": "Produtos enviados para o Google",
                 "stepDetails": "Este relatório exibe o status de todos os seus produtos que foram enviados para o Google Merchant Center. O Google pode levar alguns dias para avaliar seus produtos. O relatório ajuda você a acompanhar o andamento de cada produto e garantir que eles estejam aprovados e ativos no Google Shopping.\n\n** Os produtos \"Ativos\" ** foram totalmente aprovados e são elegíveis para aparecer em listagens gratuitas no Google.\n\n** Os produtos \"Pendentes\" ** estão sendo processados pelo Google. Eles não aparecerão nos anúncios até que sejam aprovados.\n\n** Os produtos prestes a expirar ** ficarão inativos e não aparecerão mais nas listagens do Google nos próximos dias.\n\n** Os produtos \"Reprovados\" ** estão inativos e não aparecem nas listagens do Google. Você pode clicar na caixa Reprovado para obter mais informações.",
                 "reportCards": {
-                    "approved": "Ativo",
+                    "approved": "Aprovado",
                     "approvedDescription": "Produtos com variações sincronizadas com sucesso.",
                     "pending": "Pendente",
                     "pendingDescription": "Produtos sendo analisados pelo Google.",
@@ -739,13 +739,13 @@
             "priceMissingAction": "Informe um preço para o produto."
         },
         "approvalTable": {
-            "description": "Below is a list of your products that haven't passed the approval process. Each entry includes reasons for disapproval to help you make quick fixes. Once updated, these products can be sync to Google Shopping.",
+            "description": "Below, you'll find a list of **{productTotal} products** that didn't pass the approval process. For each product, we've provided the reasons for disapproval to facilitate swift corrections. After making the necessary updates, these products can be synchronized with Google Shopping.",
             "filterTitle": "Filtrar por disponibilidade",
-            "NoFilter": "Todos",
+            "NoFilter": "All",
             "tableHeaderID": "ID",
             "tableHeaderName": "Product title",
             "tableHeaderLanguage": "Idioma",
-            "tableHeaderCurrency": "Moeda",
+            "tableHeaderCurrency": "Currency",
             "tableHeaderCountry": "Affected countries",
             "tableHeaderIssue": "Reasons",
             "xResults": "{0} resultados",
@@ -757,6 +757,7 @@
         "productIssuesModal": {
             "title": "More details about your product issues",
             "description": "Here are the reasons for suspension provided by Google. Take the necessary steps to meet the requirements and wait for the next scan.",
+            "impactListFormat": "{language} [{currency}]: {impact}",
             "footer": "Visit your [product sheet]({0})[:target=\"_blank\"] to make the necessary changes to your product to meet Google's requirements and get it approved."
         }
     },

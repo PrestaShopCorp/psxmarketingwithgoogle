@@ -28,7 +28,7 @@
         "mandatory": "sont obligatoires",
         "XIsMandatory": "{0} est obligatoire.",
         "unableToFetchData": "Nous n'avons pas pu récupérer les données, veuillez réessayer plus tard",
-        "noResults": "Aucune donnée disponible",
+        "noResults": "No data found",
         "search": "Recherche",
         "createAccount": "créer votre compte",
         "createNewAccount": "Si vous n'avez de pas de compte, vous pouvez {0} aujourd'hui.",
@@ -739,13 +739,13 @@
             "priceMissingAction": "Veuillez renseigner le prix du produit."
         },
         "approvalTable": {
-            "description": "Vous trouverez ci-dessous une liste de vos produits qui n'ont pas été approuvés. Chaque ligne comprend les raisons de la désapprobation afin de vous aider à apporter des corrections rapides. Une fois mis à jour, ces produits peuvent être synchronisés avec Google Shopping.",
+            "description": "Below, you'll find a list of **{productTotal} products** that didn't pass the approval process. For each product, we've provided the reasons for disapproval to facilitate swift corrections. After making the necessary updates, these products can be synchronized with Google Shopping.",
             "filterTitle": "Filtrer par disponibilité",
-            "NoFilter": "Tous",
+            "NoFilter": "All",
             "tableHeaderID": "ID",
             "tableHeaderName": "Titre du produit",
             "tableHeaderLanguage": "Langue",
-            "tableHeaderCurrency": "Devise",
+            "tableHeaderCurrency": "Currency",
             "tableHeaderCountry": "Pays concernés",
             "tableHeaderIssue": "Raisons",
             "xResults": "{0} résultats",
@@ -757,6 +757,7 @@
         "productIssuesModal": {
             "title": "Plus de détails sur les problèmes liés à votre produit",
             "description": "Voici les raisons de la suspension fournies par Google. Prenez les mesures nécessaires pour répondre aux exigences et attendez la prochaine analyse.",
+            "impactListFormat": "{language} [{currency}]: {impact}",
             "footer": "Visitez votre [fiche produit]({0})[:target=\"_blank\"] pour apporter les modifications nécessaires à votre produit afin qu'il réponde aux exigences de Google et qu'il soit approuvé."
         }
     },
