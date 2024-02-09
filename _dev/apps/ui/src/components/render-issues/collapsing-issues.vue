@@ -24,7 +24,7 @@
         slot="content"
       >
         <div
-          v-if="issue.impacts && issue.impacts.length > 1"
+          v-if="issue.impacts && issue.impacts.length"
         >
           <ul>
             <li
