@@ -28,7 +28,7 @@
         "mandatory": "son obligatorios",
         "XIsMandatory": "{0} es obligatorio.",
         "unableToFetchData": "No pudimos obtener datos, inténtalo más tarde",
-        "noResults": "No se encontraron datos",
+        "noResults": "No data found",
         "search": "Buscar",
         "createAccount": "Crea tu cuenta",
         "createNewAccount": "Si no tienes una cuenta, puedes {0} hoy mismo.",
@@ -739,13 +739,13 @@
             "priceMissingAction": "Indica un precio para el producto."
         },
         "approvalTable": {
-            "description": "Below is a list of your products that haven't passed the approval process. Each entry includes reasons for disapproval to help you make quick fixes. Once updated, these products can be sync to Google Shopping.",
+            "description": "Below, you'll find a list of **{productTotal} products** that didn't pass the approval process. For each product, we've provided the reasons for disapproval to facilitate swift corrections. After making the necessary updates, these products can be synchronized with Google Shopping.",
             "filterTitle": "Filtrar por disponibilidad",
-            "NoFilter": "Todo",
+            "NoFilter": "All",
             "tableHeaderID": "ID",
             "tableHeaderName": "Product title",
             "tableHeaderLanguage": "Idioma",
-            "tableHeaderCurrency": "Moneda",
+            "tableHeaderCurrency": "Currency",
             "tableHeaderCountry": "Affected countries",
             "tableHeaderIssue": "Reasons",
             "xResults": "{0} resultados",
@@ -757,6 +757,7 @@
         "productIssuesModal": {
             "title": "More details about your product issues",
             "description": "Here are the reasons for suspension provided by Google. Take the necessary steps to meet the requirements and wait for the next scan.",
+            "impactListFormat": "{language} [{currency}]: {impact}",
             "footer": "Visit your [product sheet]({0})[:target=\"_blank\"] to make the necessary changes to your product to meet Google's requirements and get it approved."
         }
     },
