@@ -70,10 +70,17 @@
     "onboarding": {
       "sectionTitle": {
         "psAccount": "Link your shop to your PrestaShop account",
+        "psbilling": {
+          "title": "Billing information",
+          "subTitle": "Access and manage your subscription and related payment method."
+        },
+        "pscloudsync": {
+          "title": "Allow data sharing",
+          "subTitle": "Help us enhance your experience and improve our service by giving consent to securely share relevant data with us."
+        },
         "freeListing": {
           "title": "Reach more people on Google with free listings",
-          "subtitle": "Free listings give you access to millions of shoppers searching for products similar to yours. Display your products for free in organically ranked listings on the Shopping tab when you connect your Google account to Google Merchant Center.",
-          "lastTitle": "Businesses using free listings and ads on the Shopping tab together have seen an average >50% increase in clicks and >100% increase in impressions. (Google Internal Data, July 2020)"
+          "subtitle": "Free listings give you access to millions of shoppers searching for products similar to yours. Display your products for free in organically ranked listings on the Shopping tab when you connect your Google account to Google Merchant Center."
         },
         "smartShoppingCampaign": {
           "title": "Advertise on Google with Performance Max",

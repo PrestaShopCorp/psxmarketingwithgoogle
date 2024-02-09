@@ -1,43 +1,39 @@
 <template>
-  <div class="row mb-4 ps_gs-onboardingpage">
-    <div class="col-12 col-md-5">
-      <div
-        class="is-sticky pb-3"
-      >
-        <section-title
-          :step-number="1"
-          :step-title="$t('onboarding.sectionTitle.psAccount')"
-          :is-enabled="true"
-          :is-done="stepsAreCompleted"
-        />
-      </div>
-    </div>
-    <div class="col-12 col-md-7">
+  <div>
+    <two-panel-cols
+      :title="$t('onboarding.sectionTitle.psAccount')"
+    >
       <prestashop-accounts
         class="ps_gs-ps-account-card"
       />
-
-      <template
-        v-if="billingContext"
-      >
-        <div
-          v-show="!billingRunning"
-          id="ps-billing-in-catalog-tab"
-        />
-        <div id="ps-modal-in-catalog-tab" />
-        <card-billing-connected
-          v-if="billingRunning && billingSubscription"
-          :subscription="billingSubscription"
-          class="my-3"
-        />
-      </template>
-
+    </two-panel-cols>
+    <two-panel-cols
+      v-if="billingContext"
+      :title="$t('onboarding.sectionTitle.psbilling.title')"
+      :description="$t('onboarding.sectionTitle.psbilling.subTitle')"
+    >
+      <div
+        v-show="!billingRunning"
+        id="ps-billing-in-catalog-tab"
+      />
+      <div id="ps-modal-in-catalog-tab" />
+      <card-billing-connected
+        v-if="billingRunning && billingSubscription"
+        :subscription="billingSubscription"
+        class="my-3"
+      />
+    </two-panel-cols>
+    <two-panel-cols
+      :title="$t('onboarding.sectionTitle.pscloudsync.title')"
+      :description="$t('onboarding.sectionTitle.pscloudsync.subTitle')"
+      v-show="billingRunning"
+    >
       <div
         id="prestashop-cloudsync"
         class="p-0"
         v-show="billingRunning"
       />
-    </div>
+    </two-panel-cols>
   </div>
 </template>
 
@@ -50,12 +46,14 @@ import SectionTitle from '@/components/onboarding/section-title.vue';
 import {State as AppState} from '@/store/modules/app/state';
 import {billingUpdateCallback, initialize} from '@/lib/billing';
 import SegmentGenericParams from '../../utils/SegmentGenericParams';
+import TwoPanelCols from './two-panel-cols.vue';
 
 export default defineComponent({
   name: 'OnboardingDepsContainer',
   components: {
     CardBillingConnected,
     SectionTitle,
+    TwoPanelCols,
   },
   props: {
     psAccountsOnboarded: {

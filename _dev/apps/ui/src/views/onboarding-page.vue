@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-2 container">
+  <div class="pt-2 container ps_gs-onboardingpage">
     
     <onboarding-deps-container
       :ps-accounts-onboarded="psAccountsIsOnboarded"
@@ -7,95 +7,64 @@
       :steps-are-completed="stepsAreCompleted.step1"
       @onCloudsyncConsentUpdated="cloudSyncSharingConsentGiven = $event"
     />
-    <div class="row mb-4 ps_gs-onboardingpage">
 
-      <div class="col-12 col-md-5">
-        <div
-          class="is-sticky pb-3"
-        >
-          <section-title
-            :step-number="2"
-            :step-title="$t('onboarding.sectionTitle.freeListing.title')"
-            :is-enabled="stepsAreCompleted.step1"
-            :is-done="stepsAreCompleted.step2"
-          />
-          <div class="stepper-onboarding-subtitle">
-            <p class="text-justify ps_gs-fz-14">
-              {{ $t('onboarding.sectionTitle.freeListing.subtitle') }}
-            </p>
-            <p class="text-muted ps_gs-fz-13">
-              {{ $t('onboarding.sectionTitle.freeListing.lastTitle') }}
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-7 mb-3">
-        <google-account-card
-          :is-enabled="stepsAreCompleted.step1"
-          :loading="googleIsLoading"
-          :user="getGoogleAccount"
-          :is-connected="googleAccountIsOnboarded"
-          @connectGoogleAccount="onGoogleAccountConnection"
-          @dissociateGoogleAccount="onGoogleAccountDissociationRequest"
-        />
-        <MerchantCenterAccountCard
-          :is-enabled="googleAccountIsOnboarded"
-          :is-connected="merchantCenterAccountIsChosen"
-          :loading="MCAIsLoading"
-          :is-e-u="showCSSForMCA"
-          :is-linking="isMcaLinking"
-          @selectMerchantCenterAccount="onMerchantCenterAccountSelected($event)"
-          @dissociateMerchantCenterAccount="onMerchantCenterAccountDissociationRequest"
-          @phoneNumberHasBeenVerified="onPhoneNumberVerified"
-        />
-        <ProductFeedCard
-          :is-enabled="merchantCenterAccountIsChosen"
-          :loading="productFeedIsLoading"
-        />
-      </div>
+    <two-panel-cols
+      :title="$t('onboarding.sectionTitle.freeListing.title')"
+      :description="$t('onboarding.sectionTitle.freeListing.subtitle')"
+    >
+      <google-account-card
+        :is-enabled="stepsAreCompleted.step1"
+        :loading="googleIsLoading"
+        :user="getGoogleAccount"
+        :is-connected="googleAccountIsOnboarded"
+        @connectGoogleAccount="onGoogleAccountConnection"
+        @dissociateGoogleAccount="onGoogleAccountDissociationRequest"
+      />
+      <MerchantCenterAccountCard
+        :is-enabled="googleAccountIsOnboarded"
+        :is-connected="merchantCenterAccountIsChosen"
+        :loading="MCAIsLoading"
+        :is-e-u="showCSSForMCA"
+        :is-linking="isMcaLinking"
+        @selectMerchantCenterAccount="onMerchantCenterAccountSelected($event)"
+        @dissociateMerchantCenterAccount="onMerchantCenterAccountDissociationRequest"
+        @phoneNumberHasBeenVerified="onPhoneNumberVerified"
+      />
+      <ProductFeedCard
+        :is-enabled="merchantCenterAccountIsChosen"
+        :loading="productFeedIsLoading"
+      />
+    </two-panel-cols>
 
-      <div class="col-12 col-md-5">
-        <div
-          class="is-sticky pb-3"
-        >
-          <section-title
-            :step-number="3"
-            :step-title="$t('onboarding.sectionTitle.smartShoppingCampaign.title')"
-            :is-enabled="stepsAreCompleted.step2"
-            :is-done="stepsAreCompleted.step3"
-          />
-          <div class="stepper-onboarding-subtitle">
-            <VueShowdown
-              class="text-justify ps_gs-fz-14"
-              :markdown="$t('onboarding.sectionTitle.smartShoppingCampaign.subtitle')"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-7">
-        <GoogleAdsAccountCard
-          :is-enabled="stepsAreCompleted.step2"
-          :loading="googleAdsIsLoading"
-          @selectGoogleAdsAccount="onGoogleAdsAccountSelected()"
-          @disconnectionGoogleAdsAccount="onGoogleAdsAccountDisconnectionRequest"
-          @creationGoogleAdsAccount="onGoogleAdsAccountTogglePopin"
-        />
-        <CampaignCard
-          v-if="stepsAreCompleted.step2"
-          :is-enabled="stepsAreCompleted.step3"
-          :loading="SSCIsLoading"
-          @openPopin="proceedToCampaignCreation"
-          @remarketingTagHasBeenActivated="checkAndOpenPopinConfigrationDone"
-        />
-        <CampaignTracking
-          v-if="remarketingTagIsSet !== null && accountHasAtLeastOneCampaign"
-        />
-        <EnhancedConversionsCard
-          v-if="remarketingTagIsSet !== null && accountHasAtLeastOneCampaign"
-        />
-        <PromoCard />
-      </div>
-    </div>
+    <two-panel-cols
+      :title="$t('onboarding.sectionTitle.smartShoppingCampaign.title')"
+      :description="$t('onboarding.sectionTitle.smartShoppingCampaign.subtitle')"
+    >
+      <GoogleAdsAccountCard
+        :is-enabled="stepsAreCompleted.step2"
+        :loading="googleAdsIsLoading"
+        @selectGoogleAdsAccount="onGoogleAdsAccountSelected()"
+        @disconnectionGoogleAdsAccount="onGoogleAdsAccountDisconnectionRequest"
+        @creationGoogleAdsAccount="onGoogleAdsAccountTogglePopin"
+      />
+      <CampaignCard
+        v-if="stepsAreCompleted.step2"
+        :is-enabled="stepsAreCompleted.step3"
+        :loading="SSCIsLoading"
+        @openPopin="proceedToCampaignCreation"
+        @remarketingTagHasBeenActivated="checkAndOpenPopinConfigrationDone"
+      />
+      <CampaignTracking
+        v-if="remarketingTagIsSet !== null && accountHasAtLeastOneCampaign"
+      />
+      <CampaignTracking
+        v-if="remarketingTagIsSet !== null && accountHasAtLeastOneCampaign"
+      />
+      <EnhancedConversionsCard
+        v-if="remarketingTagIsSet !== null && accountHasAtLeastOneCampaign"
+      />
+      <PromoCard />
+    </two-panel-cols>
 
     <!-- Modals -->
     <GoogleAccountPopinDisconnect
@@ -168,6 +137,7 @@ import EnhancedConversionsCard from '@/components/enhanced-conversions/enhanced-
 import ModalEcIntro from '@/components/enhanced-conversions/modal-ec-intro.vue';
 import {AccountInformations} from '@/store/modules/google-ads/state';
 import GettersTypesApp from '@/store/modules/app/getters-types';
+import TwoPanelCols from '@/components/onboarding/two-panel-cols.vue';
 
 export default defineComponent({
   name: 'OnboardingPage',
@@ -190,6 +160,7 @@ export default defineComponent({
     PsToast,
     TrackingActivationModal,
     PopinModuleConfigured,
+    TwoPanelCols,
   },
   data() {
     return {
