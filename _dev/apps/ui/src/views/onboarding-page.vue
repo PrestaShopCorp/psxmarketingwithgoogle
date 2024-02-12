@@ -329,7 +329,11 @@ export default defineComponent({
       return {
         step1: this.psAccountsIsOnboarded
           && this.GET_BILLING_SUBSCRIPTION_ACTIVE
-          && this.cloudSyncSharingConsentGiven,
+          && (this.cloudSyncSharingConsentGiven
+            || this.googleAccountIsOnboarded
+            // Make CSC optional when the running PHP is not up to date
+            || !window.contextPsEventbus
+          ),
         step2: this.googleAccountIsOnboarded
           && this.merchantCenterAccountIsChosen
           && this.productFeedIsConfigured,
