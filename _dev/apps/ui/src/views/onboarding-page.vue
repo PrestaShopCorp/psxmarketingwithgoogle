@@ -1,6 +1,5 @@
 <template>
   <div class="pt-2 container ps_gs-onboardingpage">
-    
     <onboarding-deps-container
       :ps-accounts-onboarded="psAccountsIsOnboarded"
       :billing-running="GET_BILLING_SUBSCRIPTION_ACTIVE"
@@ -115,7 +114,6 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {mapGetters} from 'vuex';
-import SectionTitle from '@/components/onboarding/section-title.vue';
 import GoogleAccountCard from '@/components/google-account/google-account-card.vue';
 import GoogleAdsAccountCard from '@/components/google-ads-account/google-ads-account-card.vue';
 import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
@@ -142,7 +140,6 @@ import TwoPanelCols from '@/components/onboarding/two-panel-cols.vue';
 export default defineComponent({
   name: 'OnboardingPage',
   components: {
-    SectionTitle,
     EnhancedConversionsCard,
     GoogleAccountCard,
     GoogleAdsAccountCard,

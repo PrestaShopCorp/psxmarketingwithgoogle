@@ -12,6 +12,7 @@ import ProductFeedPage from '@/views/product-feed-page.vue';
 import TunnelProductFeed from '@/views/tunnel-product-feed.vue';
 import ActionsTypesAccounts from '@/store/modules/accounts/actions-types';
 import GettersTypesAccounts from '@/store/modules/accounts/getters-types';
+import GettersTypesApp from '@/store/modules/app/getters-types';
 
 Vue.use(VueRouter);
 

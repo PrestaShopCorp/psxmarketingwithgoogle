@@ -42,7 +42,6 @@ import {defineComponent} from 'vue';
 import {ISubscription} from '@prestashopcorp/billing-cdc/dist/@types/Subscription';
 import {IContextAuthentication, IContextBase} from '@prestashopcorp/billing-cdc/dist/@types/context/ContextRoot';
 import CardBillingConnected from './card-billing-connected.vue';
-import SectionTitle from '@/components/onboarding/section-title.vue';
 import {State as AppState} from '@/store/modules/app/state';
 import {billingUpdateCallback, initialize} from '@/lib/billing';
 import SegmentGenericParams from '../../utils/SegmentGenericParams';
@@ -52,7 +51,6 @@ export default defineComponent({
   name: 'OnboardingDepsContainer',
   components: {
     CardBillingConnected,
-    SectionTitle,
     TwoPanelCols,
   },
   props: {

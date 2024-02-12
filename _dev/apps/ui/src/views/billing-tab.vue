@@ -1,9 +1,8 @@
 <template>
-  <div
-    class="m-3"
-  >
+  <div>
     <b-card
       no-body
+      class="m-3"
     >
       <b-card-header>
         {{ $t('billing.planTitle') }}
@@ -19,7 +18,7 @@
 
     <b-card
       no-body
-      class="mt-3"
+      class="m-3"
     >
       <b-card-header>
         {{ $t('billing.invoicesTitle') }}
