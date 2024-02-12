@@ -1,13 +1,10 @@
 <template>
   <b-card
     class="ps_gs-onboardingcard mb-3"
-    header-class="px-3 d-sm-flex justify-content-between align-items-center"
     body-class="p-3"
   >
     <template #header>
-      <p class="mb-0 ps_gs-onboardingcard__title">
-        {{ $t('keymetrics.title') }}
-      </p>
+      {{ $t('keymetrics.title') }}
     </template>
     <NotConfiguredCard
       v-if="inNeedOfConfiguration"

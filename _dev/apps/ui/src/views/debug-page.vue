@@ -24,10 +24,7 @@
       no-body
       class="ps_gs-onboardingcard px-0 col-7 mb-3"
     >
-      <b-card-header
-        header-tag="h3"
-        header-class="px-3 py-3 font-weight-600 ps_gs-fz-16 mb-0"
-      >
+      <b-card-header>
         Shop info
       </b-card-header>
       <b-card-body
@@ -95,10 +92,7 @@
       no-body
       class="ps_gs-onboardingcard px-0 col-5 mb-3"
     >
-      <b-card-header
-        header-tag="h3"
-        header-class="px-3 py-3 font-weight-600 ps_gs-fz-16 mb-0"
-      >
+      <b-card-header>
         Actions
       </b-card-header>
       <b-card-body
@@ -160,10 +154,7 @@
       no-body
       class="ps_gs-onboardingcard px-0 col-12 mb-3"
     >
-      <b-card-header
-        header-tag="h3"
-        header-class="px-3 py-3 font-weight-600 ps_gs-fz-16 mb-0"
-      >
+      <b-card-header>
         Synchronisation
       </b-card-header>
       <b-card-body
@@ -230,10 +221,7 @@
       no-body
       class="ps_gs-onboardingcard px-0 col-12 mb-3"
     >
-      <b-card-header
-        header-tag="h3"
-        header-class="px-3 py-3 font-weight-600 ps_gs-fz-16 mb-0"
-      >
+      <b-card-header>
         Remarketing
       </b-card-header>
       <b-card-body

@@ -1,6 +1,6 @@
 <template>
   <div class="mb-4">
-    <div class="d-flex align-items-center mb-2">
+    <div class="d-flex mb-2">
       <h2 class="ps_gs-fz-16 font-weight-600">
         {{ $t('productFeedPage.dashboardPage.productVerification.stepTitle') }}
       </h2>
