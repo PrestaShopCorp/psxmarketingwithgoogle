@@ -198,7 +198,6 @@ export default defineComponent({
       GettersTypesProductFeed.GET_PRODUCTS_VALIDATION_DISAPPROVED_LIST,
       GettersTypesProductFeed.GET_PRODUCTS_VALIDATION_DISAPPROVED_OFFSET,
       GettersTypesProductFeed.GET_PRODUCTS_VALIDATION_TOTAL,
-      GettersTypesProductFeed.GET_PRODUCT_FEED_VALIDATION_SUMMARY,
     ]),
     getProductBaseUrl() {
       return this.$store.getters['app/GET_PRODUCT_DETAIL_BASE_URL'];
@@ -238,7 +237,8 @@ export default defineComponent({
   },
   beforeCreate() {
     // We want to check the behavior of user with many disapproved products.
-    if (this.GET_PRODUCT_FEED_VALIDATION_SUMMARY
+    // Cannot use mapGetters as the component is not loaded yet in this method.
+    if (this.$store.getters[`productFeed/${GettersTypesProductFeed.GET_PRODUCT_FEED_VALIDATION_SUMMARY}`]
       .disapprovedProducts > 100
     ) {
       initReplay();
