@@ -198,6 +198,7 @@ export default defineComponent({
       GettersTypesProductFeed.GET_PRODUCTS_VALIDATION_DISAPPROVED_LIST,
       GettersTypesProductFeed.GET_PRODUCTS_VALIDATION_DISAPPROVED_OFFSET,
       GettersTypesProductFeed.GET_PRODUCTS_VALIDATION_TOTAL,
+      GettersTypesProductFeed.GET_PRODUCT_FEED_VALIDATION_SUMMARY,
     ]),
     getProductBaseUrl() {
       return this.$store.getters['app/GET_PRODUCT_DETAIL_BASE_URL'];
@@ -231,21 +232,22 @@ export default defineComponent({
   mounted() {
     if (!this.GET_PRODUCTS_VALIDATION_TOTAL) {
       this.getItems();
-      window.addEventListener('scroll', this.handleScroll);
     } else {
       this.loadingStatus = RequestState.SUCCESS;
     }
   },
   beforeCreate() {
     // We want to check the behavior of user with many disapproved products.
-    if (this.$store.getters['productFeed/GET_PRODUCT_FEED_VALIDATION_SUMMARY']
+    if (this.GET_PRODUCT_FEED_VALIDATION_SUMMARY
       .disapprovedProducts > 100
     ) {
       initReplay();
     }
   },
   beforeDestroy() {
-    window.removeEventListener('scroll', this.handleScroll);
+    if (this.canDisplayNextPageCta) {
+      window.removeEventListener('scroll', this.handleScroll);
+    }
   },
   methods: {
     async getItems(): Promise<void> {
@@ -260,7 +262,6 @@ export default defineComponent({
         });
         this.loadingStatus = RequestState.SUCCESS;
       } catch (error) {
-        console.error(error);
         window.removeEventListener('scroll', this.handleScroll);
         this.loadingStatus = RequestState.FAILED;
       }
@@ -282,10 +283,15 @@ export default defineComponent({
     },
   },
   watch: {
-    canDisplayNextPageCta(newValue: boolean) {
-      if (newValue === false) {
-        window.removeEventListener('scroll', this.handleScroll);
-      }
+    canDisplayNextPageCta: {
+      handler(newValue: boolean) {
+        if (newValue) {
+          window.addEventListener('scroll', this.handleScroll);
+        } else {
+          window.removeEventListener('scroll', this.handleScroll);
+        }
+      },
+      immediate: true,
     },
   },
 });
