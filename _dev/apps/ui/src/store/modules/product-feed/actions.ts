@@ -316,6 +316,7 @@ export default {
         Accept: 'application/json',
         Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
       },
+      body: JSON.stringify({shopId: rootState.accounts.shopIdPsAccounts}),
     });
 
     if (!response.ok) {
