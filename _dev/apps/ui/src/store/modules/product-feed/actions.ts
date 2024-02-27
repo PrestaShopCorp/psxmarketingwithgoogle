@@ -18,7 +18,6 @@ import {formatMappingToApi} from '@/utils/AttributeMapping';
 import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
 import {FullState, RequestState} from '@/store/types';
 import appGetters from '@/store/modules/app/getters-types';
-import {ProductIdentifier} from '@/components/product-feed-page/disapproved-products-page/types';
 import {ProductIssue} from '@/components/render-issues/types';
 import ProductsStatusType from '@/enums/product-feed/products-status-type';
 
