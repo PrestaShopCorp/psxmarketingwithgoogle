@@ -110,5 +110,5 @@ export const state: State = {
 
   featureFlags: {
     enhancedConversions: false,
-  }
+  },
 };

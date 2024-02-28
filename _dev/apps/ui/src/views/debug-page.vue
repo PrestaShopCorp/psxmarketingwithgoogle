@@ -234,49 +234,6 @@
         header-tag="h3"
         header-class="px-3 py-3 font-weight-600 ps_gs-fz-16 mb-0"
       >
-        ProductFeed infos
-      </b-card-header>
-      <b-card-body
-        body-class="p-3"
-      >
-        <ul class="mb-0">
-          <li>
-            <strong>ProductFeed status</strong>:
-            migration : {{ productFeed.migration ?'✅':'❌' }}
-            fullSync : {{ productFeed.fullSync ?'✅':'❌' }}
-          </li>
-          <li>
-            <b-button
-              class="mt-3 mr-3"
-              variant="primary"
-              @click="sendMigration(true)"
-              :disabled="!GET_PRODUCT_FEED_SETTINGS"
-            >
-              Enable migration
-            </b-button>
-            <b-button
-              class="mt-3 mr-3"
-              variant="primary"
-              @click="sendMigration(false)"
-              :disabled="!GET_PRODUCT_FEED_SETTINGS"
-            >
-              Disable migration
-            </b-button>
-
-            <span v-if="productFeed.error">An error occured while modifying migration flag.</span>
-          </li>
-        </ul>
-      </b-card-body>
-    </b-card>
-
-    <b-card
-      no-body
-      class="ps_gs-onboardingcard px-0 col-12 mb-3"
-    >
-      <b-card-header
-        header-tag="h3"
-        header-class="px-3 py-3 font-weight-600 ps_gs-fz-16 mb-0"
-      >
         Remarketing
       </b-card-header>
       <b-card-body
@@ -350,7 +307,6 @@ import {mapGetters, mapState} from 'vuex';
 import GettersTypes from '@/store/modules/campaigns/getters-types';
 import GettersTypesApp from '@/store/modules/app/getters-types';
 import GettersTypesAccounts from '@/store/modules/accounts/getters-types';
-import GettersTypesProductFeed from '@/store/modules/product-feed/getters-types';
 import {State as StateApp} from '@/store/modules/app/state';
 import {initReplay} from '@/utils/Sentry';
 
@@ -361,11 +317,6 @@ export default defineComponent({
       sync: {
         requested: false,
         loading: false,
-        error: false,
-      },
-      productFeed: {
-        migration: false,
-        fullSync: false,
         error: false,
       },
       appBuildVersion: import.meta.env.VITE_BUILD_VERSION || 'Not provided',
@@ -383,9 +334,6 @@ export default defineComponent({
     ...mapGetters('accounts', [
       GettersTypesAccounts.GET_GOOGLE_ACCOUNT_IS_ONBOARDED,
       GettersTypesAccounts.GET_GOOGLE_MERCHANT_CENTER_IS_CONNECTED,
-    ]),
-    ...mapGetters('productFeed', [
-      GettersTypesProductFeed.GET_PRODUCT_FEED_SETTINGS,
     ]),
     ...mapState({
       psxMktgWithGoogleApiUrl: (state) => state.app.psxMktgWithGoogleApiUrl,
@@ -433,19 +381,7 @@ export default defineComponent({
         this.sync.loading = false;
       }
     },
-    async sendMigration(migrationStatus) {
-      this.productFeed.error = true;
-      try {
-        this.productFeed.migration = migrationStatus;
-        this.productFeed.fullSync = migrationStatus;
-        await this.$store.dispatch('productFeed/SEND_PRODUCT_FEED_FLAGS', this.productFeed);
-      } catch (error) {
-        this.productFeed.error = true;
-        console.error(error);
-      } finally {
-        this.getProductFeed();
-      }
-    },
+
     async getHooks() {
       const res = await this.$store.dispatch('app/GET_MODULES_VERSIONS', 'psxmarketingwithgoogle');
       this.hooks = res.hooks;
@@ -479,21 +415,14 @@ export default defineComponent({
     async startReplayOnSentry() {
       await initReplay();
     },
-    getProductFeed() {
-      this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS').then((res) => {
-        this.productFeed.migration = res?.migration;
-        this.productFeed.fullSync = res?.fullSync;
-      });
-    },
-    toggleFeatureFlag(feature: keyof StateApp["featureFlags"]): void {
+    toggleFeatureFlag(feature: keyof StateApp['featureFlags']): void {
       this.$store.state.app.featureFlags[feature] = !this.$store.state.app.featureFlags[feature];
-    }
+    },
   },
   mounted() {
     this.$store.dispatch('accounts/WARMUP_STORE');
     this.$store.dispatch('campaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
     this.$store.dispatch('campaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED');
-    this.getProductFeed();
     this.$store.dispatch('app/REQUEST_DEBUG_DATA');
     this.getHooks();
   },
