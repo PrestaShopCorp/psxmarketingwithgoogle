@@ -22,7 +22,7 @@
   >
     <b-card
       no-body
-      class="ps_gs-onboardingcard px-0 col-7"
+      class="ps_gs-onboardingcard px-0 col-7 mb-3"
     >
       <b-card-header
         header-tag="h3"
@@ -93,7 +93,7 @@
 
     <b-card
       no-body
-      class="ps_gs-onboardingcard px-0 col-5"
+      class="ps_gs-onboardingcard px-0 col-5 mb-3"
     >
       <b-card-header
         header-tag="h3"
@@ -158,7 +158,7 @@
 
     <b-card
       no-body
-      class="ps_gs-onboardingcard px-0 col-12"
+      class="ps_gs-onboardingcard px-0 col-12 mb-3"
     >
       <b-card-header
         header-tag="h3"
@@ -228,7 +228,7 @@
 
     <b-card
       no-body
-      class="ps_gs-onboardingcard px-0 col-12"
+      class="ps_gs-onboardingcard px-0 col-12 mb-3"
     >
       <b-card-header
         header-tag="h3"
@@ -271,7 +271,7 @@
 
     <b-card
       no-body
-      class="ps_gs-onboardingcard px-0 col-12"
+      class="ps_gs-onboardingcard px-0 col-12 mb-3"
     >
       <b-card-header
         header-tag="h3"
@@ -305,6 +305,42 @@
         </ul>
       </b-card-body>
     </b-card>
+
+    <b-card
+      no-body
+      class="ps_gs-onboardingcard px-0 col-12 mb-3"
+    >
+      <b-card-header
+        header-tag="h3"
+        header-class="px-3 py-3 font-weight-600 ps_gs-fz-16 mb-0"
+      >
+        Feature flags
+      </b-card-header>
+      <b-card-body
+        body-class="p-3"
+      >
+        <ul class="mb-0">
+          <li>
+            <b-form-checkbox
+              switch
+              size="lg"
+              class="mt-3 ps_gs-switch"
+              :checked="GET_FEATURE_FLAG_ENHANCED_CONVERSIONS"
+              @click.native.prevent="toggleFeatureFlag('enhancedConversions')"
+            >
+              Enhanced conversions
+              <span class="ps_gs-fz-14 text-dark">
+                ({{
+                  GET_FEATURE_FLAG_ENHANCED_CONVERSIONS
+                    ? $t("cta.enabled")
+                    : $t("cta.disabled")
+                }})
+              </span>
+            </b-form-checkbox>
+          </li>
+        </ul>
+      </b-card-body>
+    </b-card>
   </div>
 </template>
 
@@ -315,6 +351,7 @@ import GettersTypes from '@/store/modules/campaigns/getters-types';
 import GettersTypesApp from '@/store/modules/app/getters-types';
 import GettersTypesAccounts from '@/store/modules/accounts/getters-types';
 import GettersTypesProductFeed from '@/store/modules/product-feed/getters-types';
+import {State as StateApp} from '@/store/modules/app/state';
 import {initReplay} from '@/utils/Sentry';
 
 export default defineComponent({
@@ -341,6 +378,7 @@ export default defineComponent({
     ]),
     ...mapGetters('app', [
       GettersTypesApp.GET_DEBUG_DATA,
+      GettersTypesApp.GET_FEATURE_FLAG_ENHANCED_CONVERSIONS,
     ]),
     ...mapGetters('accounts', [
       GettersTypesAccounts.GET_GOOGLE_ACCOUNT_IS_ONBOARDED,
@@ -447,6 +485,9 @@ export default defineComponent({
         this.productFeed.fullSync = res?.fullSync;
       });
     },
+    toggleFeatureFlag(feature: keyof StateApp["featureFlags"]): void {
+      this.$store.state.app.featureFlags[feature] = !this.$store.state.app.featureFlags[feature];
+    }
   },
   mounted() {
     this.$store.dispatch('accounts/WARMUP_STORE');
