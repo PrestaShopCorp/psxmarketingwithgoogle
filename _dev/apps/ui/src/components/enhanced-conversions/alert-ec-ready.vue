@@ -4,6 +4,7 @@
     variant="info"
     dismissible
     @dismissed="disableEnhancedConversions"
+    v-if="GET_FEATURE_FLAG_ENHANCED_CONVERSIONS"
   >
     <div
       class="d-flex flex-column flex-md-row justify-content-between"
@@ -37,6 +38,8 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
+import {mapGetters} from 'vuex';
+import GettersTypesApp from '@/store/modules/app/getters-types';
 
 export default defineComponent({
   props: {
@@ -44,6 +47,11 @@ export default defineComponent({
       type: Boolean,
       required: true,
     },
+  },
+  computed: {
+    ...mapGetters('app', [
+      GettersTypesApp.GET_FEATURE_FLAG_ENHANCED_CONVERSIONS,
+    ]),
   },
   methods: {
     async enableEnhancedConversions(): Promise<void> {

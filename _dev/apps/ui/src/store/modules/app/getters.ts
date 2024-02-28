@@ -21,6 +21,7 @@ import {State as LocalState, HelpInformations, DebugData} from './state';
 import countriesSelectionOptions from '../../../assets/json/countries.json';
 import symbols from '@/assets/json/symbols.json';
 import prestashopUrls from '@/assets/json/prestashopUrl.json';
+import GetterTypes from './getters-types';
 
 export default {
   [GettersTypes.GET_IS_COUNTRY_MEMBER_OF_EU](state: LocalState): boolean {
@@ -112,5 +113,9 @@ export default {
 
       return currency ? currency.symbol : '';
     }
+  },
+
+  [GetterTypes.GET_FEATURE_FLAG_ENHANCED_CONVERSIONS](state: LocalState): boolean {
+    return state.featureFlags.enhancedConversions;
   },
 };
