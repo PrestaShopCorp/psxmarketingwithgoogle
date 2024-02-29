@@ -276,26 +276,24 @@
       <b-card-body
         body-class="p-3"
       >
-        <ul class="mb-0">
-          <li>
-            <b-form-checkbox
-              switch
-              size="lg"
-              class="mt-3 ps_gs-switch"
-              :checked="GET_FEATURE_FLAG_ENHANCED_CONVERSIONS"
-              @click.native.prevent="toggleFeatureFlag('enhancedConversions')"
-            >
-              Enhanced conversions
-              <span class="ps_gs-fz-14 text-dark">
-                ({{
-                  GET_FEATURE_FLAG_ENHANCED_CONVERSIONS
-                    ? $t("cta.enabled")
-                    : $t("cta.disabled")
-                }})
-              </span>
-            </b-form-checkbox>
-          </li>
-        </ul>
+        <div class="mb-0 ml-2">
+          <b-form-checkbox
+            switch
+            size="lg"
+            class="mt-3 ps_gs-switch"
+            :checked="GET_FEATURE_FLAG_ENHANCED_CONVERSIONS"
+            @click.native.prevent="toggleFeatureFlag('enhancedConversions')"
+          >
+            Enhanced conversions
+            <span class="ps_gs-fz-14 text-dark">
+              ({{
+                GET_FEATURE_FLAG_ENHANCED_CONVERSIONS
+                  ? $t("cta.enabled")
+                  : $t("cta.disabled")
+              }})
+            </span>
+          </b-form-checkbox>
+        </div>
       </b-card-body>
     </b-card>
   </div>
