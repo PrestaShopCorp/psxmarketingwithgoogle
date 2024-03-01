@@ -7,8 +7,7 @@
 
 .nobootstrap {
   background-color: unset !important;
-  padding: 100px 0 100px; // fallback for IE11
-  padding: var(--header-height) 0 100px;
+  padding: 0;
   min-width: unset !important;
 
   form p {

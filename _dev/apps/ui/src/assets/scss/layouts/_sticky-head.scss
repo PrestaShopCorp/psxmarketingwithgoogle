@@ -3,7 +3,7 @@
   position: sticky;
   top: 136px; // fallback for IE11
   top: var(--header-height-full);
-  margin-bottom: 20px;
+  margin-bottom: var(--header-height);
   z-index: 200;
   padding-left: 0;
   padding-right: 0;

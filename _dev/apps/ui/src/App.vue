@@ -154,7 +154,7 @@ export default {
         return;
       }
 
-      root.style.setProperty('--header-height', `${header.clientHeight}px`);
+      root.style.setProperty('--header-height', `${header.clientHeight + 20}px`);
       root.style.setProperty('--header-height-full', `${header.offsetTop + header.clientHeight}px`);
     },
     reload() {
