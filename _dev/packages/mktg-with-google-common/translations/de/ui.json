@@ -691,7 +691,7 @@
                 "stepTitle": "Die an Google gesendeten Produkte",
                 "stepDetails": "In diesem Bericht wird der Status all Ihrer Produkte angezeigt, die an das Google Merchant Center gesendet wurden. Bitte beachten Sie, dass es ein paar Tage dauern kann, bis Google Ihre Produkte überprüft hat. Sie können mithilfe dieses Berichts den Fortschritt jedes Produkts verfolgen und sicherstellen, dass es zugelassen wurde und bei Google Shopping aktiv ist.\n\n**„Zugelassene“ Produkte** sind vollständig zugelassen und können in kostenlosen Inseraten bei Google erscheinen.\n\n**„Ausstehende“ Produkte** werden von Google bearbeitet. Sie erscheinen nicht in den Inseraten, bis sie zugelassen worden sind.\n\n**„Auslaufende“ Produkte** werden in den nächsten Tagen inaktiv und erscheinen nicht mehr in den Google-Inseraten.\n\n**„Nicht zugelassene “ Produkte** sind inaktiv und erscheinen nicht in den Google-Inseraten. Sie können auf das Feld „Nicht zugelassen“ klicken, um weitere Informationen zu erhalten.",
                 "reportCards": {
-                    "approved": "Zugelassen",
+                    "approved": "Genehmigt",
                     "approvedDescription": "Produkte mit Variationen wurden erfolgreich synchronisiert.",
                     "pending": "Ausstehend",
                     "pendingDescription": "Produkte, die von Google überprüft werden.",
