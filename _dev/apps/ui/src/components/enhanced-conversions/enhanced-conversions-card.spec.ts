@@ -86,6 +86,8 @@ const buildDefaultStore = (): ReturnType<typeof cloneStore> => {
   (store.modules.googleAds.state as GoogleAdsState) = cloneDeep(googleAdsAccountChosen);
 
   store.modules.campaigns.actions.SAVE_ENHANCED_CONVERSIONS_STATUS = vi.fn();
+
+  store.modules.app.state.featureFlags.enhancedConversions = true;
   return store;
 };
 const buildWrapper = (

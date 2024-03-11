@@ -47,6 +47,10 @@ export interface State {
   psxMktgWithGoogleModuleIsEnabled: boolean;
   psxMktgWithGoogleEnableLink: string;
   backOfficeUserIsLoggedIn: boolean;
+
+  featureFlags: {
+    enhancedConversions: boolean;
+  },
 }
 
 export interface ShopCurrency {
@@ -103,4 +107,8 @@ export const state: State = {
   psxMktgWithGoogleModuleIsEnabled: true,
   psxMktgWithGoogleEnableLink: '',
   backOfficeUserIsLoggedIn: true,
+
+  featureFlags: {
+    enhancedConversions: false,
+  },
 };

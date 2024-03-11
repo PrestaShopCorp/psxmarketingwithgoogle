@@ -113,4 +113,8 @@ export default {
       return currency ? currency.symbol : '';
     }
   },
+
+  [GettersTypes.GET_FEATURE_FLAG_ENHANCED_CONVERSIONS](state: LocalState): boolean {
+    return state.featureFlags.enhancedConversions;
+  },
 };

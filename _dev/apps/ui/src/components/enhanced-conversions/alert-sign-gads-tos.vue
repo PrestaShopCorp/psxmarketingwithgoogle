@@ -2,6 +2,7 @@
   <b-alert
     show
     variant="info"
+    v-if="GET_FEATURE_FLAG_ENHANCED_CONVERSIONS"
   >
     <div
       class="d-flex flex-column flex-md-row justify-content-between"
@@ -31,10 +32,15 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
+import {mapGetters} from 'vuex';
+import GettersTypesApp from '@/store/modules/app/getters-types';
 import googleUrl from '@/assets/json/googleUrl.json';
 
 export default defineComponent({
   computed: {
+    ...mapGetters('app', [
+      GettersTypesApp.GET_FEATURE_FLAG_ENHANCED_CONVERSIONS,
+    ]),
     linkToTermsOfServices(): string {
       return googleUrl.googleAdsConversionsTermsAndConditions;
     },

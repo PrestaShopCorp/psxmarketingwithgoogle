@@ -364,15 +364,6 @@ export default {
     commit(MutationsTypes.SAVE_NUMBER_OF_PRODUCTS_ON_CLOUDSYNC, json.totalProducts);
   },
 
-  // eslint-disable-next-line no-empty-pattern
-  async [ActionsTypes.SEND_PRODUCT_FEED_FLAGS]({}: Context, flags) {
-    await fetchOnboarding(
-      'POST',
-      'debug/migration',
-      {body: flags},
-    );
-  },
-
   async [ActionsTypes.REQUEST_PRODUCT_FEED_SYNC_CONTEXT]({commit}: Context) {
     const json: IncrementalSyncContext = await (await fetchOnboarding(
       'GET',
