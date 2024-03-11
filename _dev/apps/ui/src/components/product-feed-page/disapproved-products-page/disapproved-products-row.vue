@@ -29,7 +29,7 @@
         v-for="(currency) in allCurrencies"
         :key="currency"
         border-variant="primary"
-        class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13 font-weight-500"
+        class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13 font-weight-500 mb-2"
       >
         {{ currency }}
       </b-card>
@@ -42,7 +42,7 @@
         v-for="(language) in allLanguages"
         :key="language"
         border-variant="primary"
-        class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13 font-weight-500"
+        class="mx-1 d-inline-flex ps_gs-productfeed__badge ps_gs-fz-13 font-weight-500 mb-2"
       >
         {{ language }}
       </b-card>
