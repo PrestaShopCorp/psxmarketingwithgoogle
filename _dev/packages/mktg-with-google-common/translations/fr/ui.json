@@ -1075,7 +1075,7 @@
         "attributesMapppingSuccess": "Les attributs produit ont été enregistrés avec succès. Vérifiez le récapitulatif puis cliquez sur \"Exporter\" pour les soumettre à Google.",
         "campaignCreatedSuccess": "Vous avez créé votre campagne Performance Max avec succès !",
         "phoneNumberVerifiedSuccess": "Votre numéro de téléphone a été vérifié. Le compte marchand est en cours de création",
-        "enhancedConversionEnabledSuccess": "Enhanced conversion tracking enabled"
+        "enhancedConversionEnabledSuccess": "Suivi avancé des conversions activé"
     },
     "stepper": {
         "nextStep": "Suivant : {0}",
@@ -1123,6 +1123,6 @@
         "textCampaignsBanner": "Créez votre première campagne et touchez des acheteurs plus qualifiés sur tous les canaux de Google. Laissez le machine learning de Google optimiser vos placements publicitaires et améliorer efficacement votre trafic et vos ventes."
     },
     "tipsAndTricks": {
-        "title": "PrestaShop pro tip"
+        "title": "Conseils et astuces PrestaShop"
     }
 }
