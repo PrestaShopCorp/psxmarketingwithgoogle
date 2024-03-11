@@ -691,7 +691,7 @@
                 "stepTitle": "Produtos enviados para o Google",
                 "stepDetails": "Este relatório exibe o status de todos os seus produtos que foram enviados para o Google Merchant Center. O Google pode levar alguns dias para avaliar seus produtos. O relatório ajuda você a acompanhar o andamento de cada produto e garantir que eles estejam aprovados e ativos no Google Shopping.\n\n** Os produtos \"Ativos\" ** foram totalmente aprovados e são elegíveis para aparecer em listagens gratuitas no Google.\n\n** Os produtos \"Pendentes\" ** estão sendo processados pelo Google. Eles não aparecerão nos anúncios até que sejam aprovados.\n\n** Os produtos prestes a expirar ** ficarão inativos e não aparecerão mais nas listagens do Google nos próximos dias.\n\n** Os produtos \"Reprovados\" ** estão inativos e não aparecem nas listagens do Google. Você pode clicar na caixa Reprovado para obter mais informações.",
                 "reportCards": {
-                    "approved": "Aprovado",
+                    "approved": "Ativo",
                     "approvedDescription": "Produtos com variações sincronizadas com sucesso.",
                     "pending": "Pendente",
                     "pendingDescription": "Produtos sendo analisados pelo Google.",
