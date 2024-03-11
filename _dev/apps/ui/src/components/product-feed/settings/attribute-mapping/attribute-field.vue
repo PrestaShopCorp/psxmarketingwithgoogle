@@ -52,7 +52,9 @@
       v-if="displayEventuallyRequiredMessage"
       class="maxw-sm-250 d-flex text-muted ps_gs-fz-12 mt-1 attribute-field__warning"
     >
-      <i class="material-icons-round ps_gs-fz-16 font-weight-normal mr-1">warning_amber</i>
+      <i class="material-icons material-icons-round ps_gs-fz-16 font-weight-normal mr-1">
+        warning_amber
+      </i>
       <VueShowdown
         :markdown="markdown"
         :extensions="['extended-link']"
