@@ -1036,9 +1036,9 @@
         "textConfirmCancel": "Si vous revenez en arrière, vous perdrez les valeurs sélectionnées.",
         "disconnectedUserBo": "Vous avez été déconnecté du backoffice. Vous serez automatiquement redirigé vers la page de connexion dans {0} secondes.",
         "titleDisconnectedUserBo": "Connexion perdue",
-        "titleEnhancedConversionsIntro": "Measure the effectiveness of your Ads",
-        "textEnhancedConversionsIntro": "Enhance your conversion tracking accuracy and empower your bidding strategy with our latest feature: Enhanced Conversion Tracking. This feature seamlessly integrates with your existing conversion tags, ensuring the secure and privacy-conscious transmission of conversion data from your website to Google.",
-        "textActivationEnhancedConversionsIntro": "Activating it is easy – just agree to the terms of service on Google Ads. The feature is accessible on your configuration’s page below conversion tracking tag."
+        "titleEnhancedConversionsIntro": "Mesurer les performances de vos annonces",
+        "textEnhancedConversionsIntro": "Améliorez la précision de votre suivi des conversions et renforcez votre stratégie d'enchères grâce à notre dernière fonctionnalité : Suivi avancé des conversions. Cette fonctionnalité s'intègre parfaitement à vos balises de conversion existantes, garantissant la transmission sécurisée et confidentielle des données de conversion de votre site Web à Google.",
+        "textActivationEnhancedConversionsIntro": "Pour l'activer, rien de plus simple : il suffit d'accepter les conditions d'utilisation de Google Ads. La fonctionnalité est accessible sur votre page de configuration, sous l'encart de suivi des conversions."
     },
     "tooltip": {
         "googleAccountRequired": "Nécessite la configuration d'un compte Google",
