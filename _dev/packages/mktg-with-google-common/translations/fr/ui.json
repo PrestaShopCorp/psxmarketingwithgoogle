@@ -1032,7 +1032,7 @@
         "removeTag": "Supprimer la balise \"Remarketing et conversion\" de ma boutique",
         "removeTagExplainations": "La suppression de la balise signifie que Google ne sera plus en mesure de suivre vos campagnes. Nous vous recommandons de ne supprimer la balise que si vous envisagez de supprimer complètement le module ou de modifier votre compte. Vous pouvez toujours l'ajouter vous-même dans le code de votre site.",
         "titleActivateTracking": "Measure the effectiveness of your Ads",
-        "textActivateTracking": "To run Performance Max campaigns effectively, Google Ads requires the ability to generate remarketing lists and add conversion tracking tags to your list.\n\nClicking on confirm means you accept that PrestaShop automatically installs code snippets on your store:\n- Add Google tag on my store\n- Configure conversion actions : Page views, Add to cart, Purchase",
+        "textActivateTracking": "Pour exécuter efficacement les campagnes Performance Max, Google Ads doit pouvoir générer des listes de remarketing et ajouter des balises de suivi des conversions.\n\nEn cliquant sur confirmer, vous acceptez que PrestaShop installe automatiquement des extraits de code sur votre boutique :\n- Implémenter la balise Google sur ma boutique\n- Configurer les actions de conversion : Pages vues, Ajouter au panier, Achat",
         "textConfirmCancel": "Si vous revenez en arrière, vous perdrez les valeurs sélectionnées.",
         "disconnectedUserBo": "Vous avez été déconnecté du backoffice. Vous serez automatiquement redirigé vers la page de connexion dans {0} secondes.",
         "titleDisconnectedUserBo": "Connexion perdue",
