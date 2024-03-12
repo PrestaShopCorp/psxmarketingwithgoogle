@@ -537,8 +537,8 @@
             "text": "Enable enhanced conversion tracking by simply agreeing to Google Ads' terms of service"
         },
         "enableEnhancedConversionAlert": {
-            "title": "Ready to enable enhanced conversion tracking feature",
-            "text": "Your Google Ads' terms of service are up-to-date, head to your configuration page to enable your new feature"
+            "title": "Prêt à activer le suivi avancé des conversions",
+            "text": "Vos conditions d'utilisation de Google Ads sont à jour, rendez-vous sur votre page de configuration pour activer votre nouvelle fonctionnalité"
         }
     },
     "smartShoppingCampaignCreation": {
@@ -569,12 +569,12 @@
         "inputFiltersAllLabel": "Inclure tous les produits synchronisés",
         "inputFiltersPartialLabel": "Sélectionner des produits à l'aide des filtres",
         "inputFiltersHelper": "Prenez un peu de temps pour [lire les règles de Google Shopping ads]({0})[:target=\"_blank\"] certains produits sont interdits ou restreints.",
-        "inputBudgetHelper": "The minimum budget varies based on your target country. Please select a country to see the exact minimum required.",
-        "inputBudgetHelperForTargetCountry": "The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.",
+        "inputBudgetHelper": "Le budget minimum varie en fonction du pays ciblé. Veuillez sélectionner un pays pour connaître le montant minimum exact requis.",
+        "inputBudgetHelperForTargetCountry": "Le minimum pour le pays {country} est de {budget}, ce qui garantit une portée suffisante à votre campagne dans cette région.",
         "inputBudgetInvalidFeedback": "Votre budget quotidien doit être un nombre valide supérieur à 1. Pour tout nombre décimal, veuillez utiliser un point comme séparateur.",
-        "inputBudgetBeforeThresholdFeedback": "Minimum budget required for this target country is {budget}. Please increase your budget to continue.",
+        "inputBudgetBeforeThresholdFeedback": "Le budget minimum requis pour ce pays cible est de {budget}. Veuillez ajuster votre budget pour continuer.",
         "inputBudgetFeedback": "Budget quotidien de la campagne",
-        "inputBudgetTooltip": "To ensure Ad performance, the base minimum depends on your target country and the budget you choose is entirely up to you, and you can adjust it at any time.",
+        "inputBudgetTooltip": "Pour garantir la performance des campagnes, le montant minimum dépend de votre pays cible et le budget que vous choisissez dépend entièrement de vous, et vous pouvez l'ajuster à tout moment.",
         "inputBudgetPlaceholder": "Montant",
         "inputAllSyncedProducts": "Aucun filtre sélectionné",
         "formHelperTitle": "Activation de la campagne",
@@ -628,7 +628,7 @@
         "dimensionXFilterSelectedWithXProducts": "Filtre {0} | Filtre {0} ({1} produit) | Filtre {0} ({1} produits)",
         "filtersWithxValues": "{0} filtres | {0} filtres avec {1} produit affecté | {0} filtres avec {1} produits affectés",
         "budgetTip": {
-            "content": "To ensure the success of your campaign, it’s essential to adjust your daily ad budget according to the target country. For instance, a starting point of {budget} is recommended for {country}. By choosing your target country, you can identify the ideal budget to meet your objectives. Remember, this foundational budget is more than just a figure – it’s a key component of your campaign strategy. A well-planned budget facilitates efficient ad testing and refinement, enabling you to customize your expenditure to the unique requirements of your business and enhance overall campaign performance."
+            "content": "Pour garantir le succès de votre campagne, il est essentiel d'ajuster votre budget publicitaire quotidien en fonction du pays cible. Par exemple, un budget de départ de {budget} est recommandé pour le pays {country}. En choisissant votre pays cible, vous pouvez identifier le budget idéal pour atteindre vos objectifs. N'oubliez pas que ce budget de base est plus qu'un simple chiffre - c'est un élément clé de votre stratégie de campagne. Un budget bien défini permet de tester et d'affiner efficacement les publicités, ce qui vous permet d'adapter vos dépenses aux besoins spécifiques de votre entreprise et d'améliorer les performances globales de votre campagne."
         }
     },
     "productFeedPage": {
@@ -669,7 +669,7 @@
                     "noEligibleCurrenciesDesc": "Veuillez mettre à jour vos pays cibles dans votre {0} ou ajouter les devises correspondantes aux pays cibles erronés dans votre {1}."
                 },
                 "title": "Votre configuration de flux produit",
-                "targetCountries": "Target country:|Target countries:",
+                "targetCountries": "Pays cible :|Pays cibles :",
                 "languages": "Langue :|Langues :",
                 "currencies": "Devise :|Devises :",
                 "noLanguage": "Aucune langue éligible",
@@ -743,13 +743,13 @@
             "priceMissingAction": "Veuillez renseigner le prix du produit."
         },
         "approvalTable": {
-            "description": "Below, you'll find a list of **{productTotal} products** that didn't pass the approval process. For each product, we've provided the reasons for disapproval to facilitate swift corrections. After making the necessary updates, these products can be synchronized with Google Shopping.",
+            "description": "Ci-dessous, vous trouverez une liste de **{productTotal} produits** qui n'ont pas réussi le processus d'approbation. Pour chaque produit, nous avons fourni les motifs de désapprobation pour faciliter des corrections rapides. Après avoir fait les mises à jour nécessaires, ces produits peuvent être synchronisés avec Google Shopping.",
             "filterTitle": "Filtrer par disponibilité",
-            "NoFilter": "All",
+            "NoFilter": "Toutes",
             "tableHeaderID": "ID",
             "tableHeaderName": "Titre du produit",
             "tableHeaderLanguage": "Langue",
-            "tableHeaderCurrency": "Currency",
+            "tableHeaderCurrency": "Devise",
             "tableHeaderCountry": "Pays concernés",
             "tableHeaderIssue": "Raisons",
             "xResults": "{0} résultats",
@@ -761,7 +761,7 @@
         "productIssuesModal": {
             "title": "Plus de détails sur les problèmes liés à votre produit",
             "description": "Voici les raisons de la suspension fournies par Google. Prenez les mesures nécessaires pour répondre aux exigences et attendez la prochaine analyse.",
-            "impactListFormat": "{language} [{currency}]: {impact}",
+            "impactListFormat": "{language} [{currency}] : {impact}",
             "footer": "Visitez votre [fiche produit]({0})[:target=\"_blank\"] pour apporter les modifications nécessaires à votre produit afin qu'il réponde aux exigences de Google et qu'il soit approuvé."
         }
     },
@@ -816,7 +816,7 @@
             "dailyBudget": "Budget quotidien"
         },
         "tooltip": {
-            "lowBudget": "Your daily budget is too low to have a performing campaign, increase your budget to enhance campaign performance."
+            "lowBudget": "Votre budget quotidien est trop faible pour que votre campagne soit performante. Ajuster votre budget pour améliorer les performances de votre campagne."
         }
     },
     "notConfiguredState": {
@@ -877,7 +877,7 @@
         "switchAccount": "Changer de compte",
         "acceptInvitation": "Accepter l'invitation",
         "continue": "Continuer",
-        "confirm": "Confirm",
+        "confirm": "Confirmer",
         "disabled": "Désactivé",
         "activateModule": "Activer le module",
         "enabled": "Activé",
@@ -929,7 +929,7 @@
         "reviewProblems": "Examiner les problèmes",
         "saveAndExport": "Enregistrer et Exporter",
         "go": "Commencer",
-        "goTo": "Go to {0}",
+        "goTo": "Aller sur {0}",
         "continueWithoutSave": "Continuer sans sauvegarder",
         "save": "Sauvegarder",
         "disconnect": "Déconnecter",
@@ -978,8 +978,8 @@
         "createPmax": "Créez une campagne Performance Max",
         "understand": "Je comprends",
         "moreActions": "Plus d'Actions",
-        "signGadsToS": "Sign terms of service on Google Ads",
-        "enableEnhancedConversions": "Activate enhanced conversion tracking",
+        "signGadsToS": "Signer les conditions d'utilisation sur Google Ads",
+        "enableEnhancedConversions": "Activer le suivi avancé des conversions",
         "loadNextPage": "Chargement des résultats suivants"
     },
     "badge": {
@@ -989,7 +989,7 @@
         "disapproved": "Refusé",
         "pendingCreation": "En attente",
         "creatingGmc": "Création/Connexion du compte en quelques secondes...",
-        "creatingGmcTakingTime": "Processing is taking longer than expected, please wait a few moments and do not refresh the page.",
+        "creatingGmcTakingTime": "Le traitement prend plus de temps que prévu, veuillez patienter quelques instants et ne pas actualiser la page.",
         "pendingCheck": "Nous vérifions l'état de votre GMC...",
         "pending": "En attente",
         "expiring": "En cours d'expiration",
@@ -1031,7 +1031,7 @@
         "pauseCampaignsExplainations": "En mettant en pause toutes vos campagnes, la facturation s'arrêtera. Vous pouvez redémarrer vos campagnes à tout moment dans votre compte Google ads.",
         "removeTag": "Supprimer la balise \"Remarketing et conversion\" de ma boutique",
         "removeTagExplainations": "La suppression de la balise signifie que Google ne sera plus en mesure de suivre vos campagnes. Nous vous recommandons de ne supprimer la balise que si vous envisagez de supprimer complètement le module ou de modifier votre compte. Vous pouvez toujours l'ajouter vous-même dans le code de votre site.",
-        "titleActivateTracking": "Measure the effectiveness of your Ads",
+        "titleActivateTracking": "Mesurer les performances de vos campagnes",
         "textActivateTracking": "Pour exécuter efficacement les campagnes Performance Max, Google Ads doit pouvoir générer des listes de remarketing et ajouter des balises de suivi des conversions.\n\nEn cliquant sur confirmer, vous acceptez que PrestaShop installe automatiquement des extraits de code sur votre boutique :\n- Implémenter la balise Google sur ma boutique\n- Configurer les actions de conversion : Pages vues, Ajouter au panier, Achat",
         "textConfirmCancel": "Si vous revenez en arrière, vous perdrez les valeurs sélectionnées.",
         "disconnectedUserBo": "Vous avez été déconnecté du backoffice. Vous serez automatiquement redirigé vers la page de connexion dans {0} secondes.",
