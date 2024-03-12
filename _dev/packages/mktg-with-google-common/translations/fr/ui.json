@@ -28,7 +28,7 @@
         "mandatory": "sont obligatoires",
         "XIsMandatory": "{0} est obligatoire.",
         "unableToFetchData": "Nous n'avons pas pu récupérer les données, veuillez réessayer plus tard",
-        "noResults": "No data found",
+        "noResults": "Aucune donnée disponible",
         "search": "Recherche",
         "createAccount": "créer votre compte",
         "createNewAccount": "Si vous n'avez de pas de compte, vous pouvez {0} aujourd'hui.",
@@ -116,8 +116,8 @@
         "AccountValidationFailed": "La validation du compte a échoué.",
         "unlinkFailed": "La déconnexion a échoué. Veuillez rafraîchir la page et réessayer.",
         "tryAgainLater": "Nous ne pouvons pas vérifier ou revendiquer le site actuel. **Nous vous recommandons de vous assurer que le site est accessible** et de réessayer plus tard.",
-        "alertSuspended": "Account suspended: action required",
-        "alertSuspendedDescription": "Google suspended your Merchant Center account due to policy violations. Your products are no longer being promoted. Review the suspension reason, analyze your account, and take the necessary steps to meet the requirements. {0}.",
+        "alertSuspended": "Compte suspendu : action requise",
+        "alertSuspendedDescription": "Google a suspendu votre compte Merchant Center en raison de violations des règles. Vos produits ne sont plus mis en avant. Examinez le motif de la suspension, analysez votre compte et prenez les mesures nécessaires pour répondre aux exigences. {0}.",
         "alertSuspendedLearnMore": "En savoir plus sur la suspension de votre compte",
         "notManaged": "Non associé à PrestaShop",
         "overwriteFailed": "La revendication de l'URL du site web a échoué",
@@ -530,11 +530,11 @@
         "footerInfo": "* Données Google, Global, Ads, Sep-Oct 2021."
     },
     "enhancedConversionTrackingCard": {
-        "title": "Enhanced conversion tracking",
-        "intro": "Improve your conversion tracking accuracy and unlock more powerful bidding. This feature works alongside your existing conversion tags, sending secure, privacy-friendly conversion data from your website to Google.",
+        "title": "Suivi avancé des conversions",
+        "intro": "Améliorez la précision de votre suivi des conversions et définissez des enchères plus efficaces. Cette fonctionnalité fonctionne parallèlement à vos balises de conversion existantes, en envoyant des données de conversion sécurisées et confidentielles de votre site Web à Google.",
         "signTosAlert": {
-            "title": "Improve your conversion tracking & unlock more powerful bidding to your Ads",
-            "text": "Enable enhanced conversion tracking by simply agreeing to Google Ads' terms of service"
+            "title": "Améliorez votre suivi des conversions et définissez des enchères plus efficaces dans Google Ads",
+            "text": "Activer le suivi avancé des conversions en acceptant simplement les conditions d'utilisation de Google Ads"
         },
         "enableEnhancedConversionAlert": {
             "title": "Prêt à activer le suivi avancé des conversions",
