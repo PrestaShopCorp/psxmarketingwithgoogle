@@ -144,6 +144,9 @@ It is updated on each push to the `master` branch.
 [Preproduction Storybook](https://google-storybook-preproduction.prestashop.com/)  
 [Production Storybook](https://google-storybook.prestashop.com/)
 
+> [!WARNING]
+> In case Storybook fails while loading with an error "Failed to fetch dynamically imported module: [...]/preview-[...].js", disable your ad-blocker and try again.
+
 ### Hook
 
 The module registers itself to several hooks and adds the following features:
