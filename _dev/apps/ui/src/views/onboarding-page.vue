@@ -134,7 +134,8 @@
       modal-id="SSCPopinActivateTrackingOnboardingPage"
     />
     <modal-ec-intro
-      v-if="getGoogleAdsAccount
+      v-if="GET_FEATURE_FLAG_ENHANCED_CONVERSIONS
+        && getGoogleAdsAccount
         && accountHasAtLeastOneCampaign
         && enhancedConversionsHasNeverBeenEnabled"
       :tos-are-signed="!!getGoogleAdsAccount.acceptedCustomerDataTerms"
@@ -158,6 +159,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
+import {mapGetters} from 'vuex';
 import SectionTitle from '@/components/onboarding/section-title.vue';
 import GoogleAccountCard from '@/components/google-account/google-account-card.vue';
 import GoogleAdsAccountCard from '@/components/google-ads-account/google-ads-account-card.vue';
@@ -178,6 +180,7 @@ import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import EnhancedConversionsCard from '@/components/enhanced-conversions/enhanced-conversions-card.vue';
 import ModalEcIntro from '@/components/enhanced-conversions/modal-ec-intro.vue';
 import {AccountInformations} from '@/store/modules/google-ads/state';
+import GettersTypesApp from '@/store/modules/app/getters-types';
 
 export default defineComponent({
   name: 'OnboardingPage',
@@ -341,6 +344,9 @@ export default defineComponent({
     },
   },
   computed: {
+    ...mapGetters('app', [
+      GettersTypesApp.GET_FEATURE_FLAG_ENHANCED_CONVERSIONS,
+    ]),
     shops() {
       return this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT_SHOPS'];
     },
