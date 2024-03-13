@@ -531,7 +531,7 @@
     },
     "enhancedConversionTrackingCard": {
         "title": "Rozszerzone śledzenie konwersji",
-        "intro": "Improve your conversion tracking accuracy and unlock more powerful bidding. This feature works alongside your existing conversion tags, sending secure, privacy-friendly conversion data from your website to Google.",
+        "intro": "Zwiększ dokładność śledzenia konwersji i odblokuj bardziej wydajne ustalanie stawek. Funkcja ta działa wraz z istniejącymi tagami konwersji, wysyłając bezpieczne, przyjazne dla prywatności dane konwersji z Twojej witryny do Google.",
         "signTosAlert": {
             "title": "Usprawnij śledzenie konwersji i odblokuj bardziej wydajne ustalanie stawek w reklamach",
             "text": "Włącz rozszerzone śledzenie konwersji, po prostu zgadzając się na warunki korzystania z usługi Google Ads"
@@ -628,7 +628,7 @@
         "dimensionXFilterSelectedWithXProducts": " {0} filtr | {0} filtr ({1} produkt) | {0} filtr ({1} produkty/-ów)",
         "filtersWithxValues": "{0} filtrów | {0} filtry/-ów z {1} odpowiadającym produktem | {0} filtry/-ów z {1} odpowiadającymi produktami",
         "budgetTip": {
-            "content": "To ensure the success of your campaign, it’s essential to adjust your daily ad budget according to the target country. For instance, a starting point of {budget} is recommended for {country}. By choosing your target country, you can identify the ideal budget to meet your objectives. Remember, this foundational budget is more than just a figure – it’s a key component of your campaign strategy. A well-planned budget facilitates efficient ad testing and refinement, enabling you to customize your expenditure to the unique requirements of your business and enhance overall campaign performance."
+            "content": "Aby zapewnić sukces kampanii, konieczne jest dostosowanie dziennego budżetu reklamowego do kraju docelowego. Na przykład, minimum {budget} jest zalecane dla {country}. Wybierając kraj docelowy, możesz określić idealny budżet, aby osiągnąć swoje cele. Pamiętaj, że ten podstawowy budżet to coś więcej niż tylko liczba - to kluczowy element strategii kampanii. Dobrze zaplanowany budżet ułatwia skuteczne testowanie i udoskonalanie reklam, umożliwiając dostosowanie wydatków do unikalnych wymagań firmy i zwiększenie ogólnej wydajności kampanii."
         }
     },
     "productFeedPage": {
@@ -743,7 +743,7 @@
             "priceMissingAction": "Wprowadź cenę produktu."
         },
         "approvalTable": {
-            "description": "Below, you'll find a list of **{productTotal} products** that didn't pass the approval process. For each product, we've provided the reasons for disapproval to facilitate swift corrections. After making the necessary updates, these products can be synchronized with Google Shopping.",
+            "description": "Poniżej znajduje się lista **{productTotal} produktów**, które nie przeszły procesu zatwierdzania. Dla każdego produktu podaliśmy powody odrzucenia, aby ułatwić szybkie wprowadzenie poprawek. Po wprowadzeniu niezbędnych aktualizacji, produkty te można zsynchronizować z kartą Zakupy w Google.",
             "filterTitle": "Filtruj według dostępności",
             "NoFilter": "Wszystko",
             "tableHeaderID": "ID",
