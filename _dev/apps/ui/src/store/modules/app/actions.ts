@@ -107,7 +107,7 @@ export default {
   },
 
   async [ActionsTypes.TRIGGER_REGISTER_HOOKS]({dispatch}: Context) {
-    const getModulesStatus = await dispatch(`app/${ActionsTypes.GET_MODULES_VERSIONS}`, 'psxmarketingwithgoogle', {root: true});
+    const getModulesStatus = await dispatch(ActionsTypes.GET_MODULES_VERSIONS, 'psxmarketingwithgoogle');
 
     if (getModulesStatus?.hooks) {
       Object.entries(getModulesStatus.hooks)
