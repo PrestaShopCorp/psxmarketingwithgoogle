@@ -105,4 +105,17 @@ export default {
   async [ActionsTypes.TRIGGER_REGISTER_HOOK]({}: Context, hookName: string) {
     return fetchShop('registerHook', {hookName});
   },
+
+  async [ActionsTypes.TRIGGER_REGISTER_HOOKS]({dispatch}: Context) {
+    const getModulesStatus = await dispatch(`app/${ActionsTypes.GET_MODULES_VERSIONS}`, 'psxmarketingwithgoogle', {root: true});
+
+    if (getModulesStatus?.hooks) {
+      Object.entries(getModulesStatus.hooks)
+        .forEach(([key, value]) => {
+          if (value === false) {
+            dispatch(`app/${ActionsTypes.TRIGGER_REGISTER_HOOK}`, key, {root: true});
+          }
+        });
+    }
+  },
 };

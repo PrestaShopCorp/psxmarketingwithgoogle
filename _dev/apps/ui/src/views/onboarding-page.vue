@@ -243,6 +243,7 @@ export default defineComponent({
       this.checkAndOpenPopinConfigrationDone();
     },
     onGoogleAccountConnection() {
+      this.$store.dispatch('app/TRIGGER_REGISTER_HOOKS');
       this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', true);
     },
 
