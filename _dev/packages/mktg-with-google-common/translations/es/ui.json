@@ -28,7 +28,7 @@
         "mandatory": "son obligatorios",
         "XIsMandatory": "{0} es obligatorio.",
         "unableToFetchData": "No pudimos obtener datos, inténtalo más tarde",
-        "noResults": "No data found",
+        "noResults": "No se encontraron datos",
         "search": "Buscar",
         "createAccount": "Crea tu cuenta",
         "createNewAccount": "Si no tienes una cuenta, puedes {0} hoy mismo.",
@@ -215,7 +215,7 @@
         "updateData": "Si has realizado alguna modificación en tu back office, actualiza tu información para ver los cambios reflejados aquí."
     },
     "gmcAccountIssues": {
-        "title": "More details about account issues",
+        "title": "Más información sobre los problemas de la cuenta",
         "description": "Your account has been flagged for potential performance and compliance issues. Please review the detailed information provided to understand and address these concerns promptly"
     },
     "productFeedCard": {
@@ -538,7 +538,7 @@
         },
         "enableEnhancedConversionAlert": {
             "title": "Ready to enable enhanced conversion tracking feature",
-            "text": "Your Google Ads' terms of service are up-to-date, head to your configuration page to enable your new feature"
+            "text": "Los términos de servicio de Google Ads se han actualizado, dirígete a tu página de configuración para habilitar tu nueva función"
         }
     },
     "smartShoppingCampaignCreation": {
@@ -569,12 +569,12 @@
         "inputFiltersAllLabel": "Incluir todos los productos sincronizados",
         "inputFiltersPartialLabel": "Seleccionar los productos utilizando los filtros de partición de productos",
         "inputFiltersHelper": "Tómate tiempo para [leer las políticas de anuncios de Google Shopping]({0})[:target=\"_blank\"] algunos productos se prohíben o limitan.",
-        "inputBudgetHelper": "The minimum budget varies based on your target country. Please select a country to see the exact minimum required.",
-        "inputBudgetHelperForTargetCountry": "The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.",
+        "inputBudgetHelper": "El presupuesto mínimo varía según el país objetivo. Selecciona un país para ver el mínimo exacto requerido.",
+        "inputBudgetHelperForTargetCountry": "El mínimo para {country} es {budget}, asegurando un alcance suficiente para tu campaña en esta región.",
         "inputBudgetInvalidFeedback": "Tu presupuesto diario debe ser un número válido superior a 1. Para números decimales, utiliza un punto como separador.",
-        "inputBudgetBeforeThresholdFeedback": "Minimum budget required for this target country is {budget}. Please increase your budget to continue.",
+        "inputBudgetBeforeThresholdFeedback": "El presupuesto mínimo requerido para este país objetivo es {budget}. Incrementa tu presupuesto para continuar.",
         "inputBudgetFeedback": "Presupuesto diario de la campaña",
-        "inputBudgetTooltip": "To ensure Ad performance, the base minimum depends on your target country and the budget you choose is entirely up to you, and you can adjust it at any time.",
+        "inputBudgetTooltip": "Para garantizar el resultado de Ads, la base mínima depende de tu país objetivo, tu eliges el presupuesto y puedes ajustarlo en cualquier momento.",
         "inputBudgetPlaceholder": "Cantidad",
         "inputAllSyncedProducts": "No se han seleccionado filtros",
         "formHelperTitle": "Activación de la campaña",
@@ -633,7 +633,7 @@
     },
     "productFeedPage": {
         "breadcrumb": {
-            "productStatusDetails": "Disapproved products",
+            "productStatusDetails": "Productos rechazados",
             "nonCompliantProducts": "Productos no conformes"
         },
         "alert": {
@@ -669,7 +669,7 @@
                     "noEligibleCurrenciesDesc": "Actualiza tus países de destino en tu {0} o añade las monedas correspondientes en tu {1} para que coincidan con tus países de destino que dan error."
                 },
                 "title": "Tu configuración del feed de productos",
-                "targetCountries": "Target country:|Target countries:",
+                "targetCountries": "País objetivo|Países objetivo:",
                 "languages": "Idioma:|Idiomas:",
                 "currencies": "Moneda:|Monedas:",
                 "noLanguage": "Idioma no apto",
@@ -743,15 +743,15 @@
             "priceMissingAction": "Indica un precio para el producto."
         },
         "approvalTable": {
-            "description": "Below, you'll find a list of **{productTotal} products** that didn't pass the approval process. For each product, we've provided the reasons for disapproval to facilitate swift corrections. After making the necessary updates, these products can be synchronized with Google Shopping.",
+            "description": "A continuación, encontrarás una lista de **{productTotal} productos** que no han superado el proceso de aprobación. Para cada producto, hemos proporcionado los motivos para facilitar las correcciones oportunas. Tras realizar las actualizaciones necesarias, estos productos se podrán sincronizar con Google Shopping.",
             "filterTitle": "Filtrar por disponibilidad",
-            "NoFilter": "All",
+            "NoFilter": "Todo",
             "tableHeaderID": "ID",
-            "tableHeaderName": "Product title",
+            "tableHeaderName": "Título del producto",
             "tableHeaderLanguage": "Idioma",
-            "tableHeaderCurrency": "Currency",
-            "tableHeaderCountry": "Affected countries",
-            "tableHeaderIssue": "Reasons",
+            "tableHeaderCurrency": "Moneda",
+            "tableHeaderCountry": "Países afectados",
+            "tableHeaderIssue": "Motivos",
             "xResults": "{0} resultados",
             "perPageLabel": "Mostrar:",
             "goToLabel": "Ir a la página:",
@@ -759,10 +759,10 @@
             "noReasonFallback": "*No facilitado, comprueba [errores de cuenta en tu Merchant Center]({0})[:target=\"_blank\"].*"
         },
         "productIssuesModal": {
-            "title": "More details about your product issues",
+            "title": "Más detalles sobre los problemas de tu producto",
             "description": "Here are the reasons for suspension provided by Google. Take the necessary steps to meet the requirements and wait for the next scan.",
             "impactListFormat": "{language} [{currency}]: {impact}",
-            "footer": "Visit your [product sheet]({0})[:target=\"_blank\"] to make the necessary changes to your product to meet Google's requirements and get it approved."
+            "footer": "Ve a tu [ficha de producto]({0})[:target=\"_blank\"] para realizar los cambios necesarios para cumplir los requisitos de Google y conseguir que se apruebe."
         }
     },
     "keymetrics": {
@@ -816,7 +816,7 @@
             "dailyBudget": "Presupuesto diario"
         },
         "tooltip": {
-            "lowBudget": "Your daily budget is too low to have a performing campaign, increase your budget to enhance campaign performance."
+            "lowBudget": "Tu presupuesto diario es demasiado bajo para tener una campaña efectiva, aumenta tu presupuesto para mejorar el rendimiento de la campaña."
         }
     },
     "notConfiguredState": {
@@ -877,7 +877,7 @@
         "switchAccount": "Cambiar de cuenta",
         "acceptInvitation": "Aceptar la invitación",
         "continue": "Continuar",
-        "confirm": "Confirm",
+        "confirm": "Confirmar",
         "disabled": "Desactivado",
         "activateModule": "Activar módulo",
         "enabled": "Activado",
@@ -897,7 +897,7 @@
         "cancel": "Cancelar",
         "disconnectAccount": "Desconectar la cuenta",
         "selectAccount": "Seleccionar cuenta",
-        "reviewAccount": "Review account",
+        "reviewAccount": "Revisar cuenta",
         "addMapping": "Añadir mapeo",
         "modifyMapping": "Modificar mapeo",
         "learnAboutProductConfiguration": "Más información sobre la especificación de datos de productos",
@@ -929,7 +929,7 @@
         "reviewProblems": "Revisar problemas",
         "saveAndExport": "Guardar y exportar",
         "go": "Ir a",
-        "goTo": "Go to {0}",
+        "goTo": "Ir a {0}",
         "continueWithoutSave": "Continuar sin guardar",
         "save": "Guardar",
         "disconnect": "Desconectar",
@@ -989,7 +989,7 @@
         "disapproved": "Desaprobado",
         "pendingCreation": "Pendiente",
         "creatingGmc": "Crear una cuenta en unos segundos...",
-        "creatingGmcTakingTime": "Processing is taking longer than expected, please wait a few moments and do not refresh the page.",
+        "creatingGmcTakingTime": "El proceso está tardando más de lo previsto, espera unos minutos y no actualices la página.",
         "pendingCheck": "Estamos comprobando el estado de tu GMC...",
         "pending": "Pendiente",
         "expiring": "Caducando",
@@ -1123,6 +1123,6 @@
         "textCampaignsBanner": "Crea tu primera campaña y llega a compradores más interesados en todos los canales de Google. Deja que el aprendizaje automático de Google optimice la ubicación de tus anuncios y mejora eficazmente tu tráfico y tus ventas."
     },
     "tipsAndTricks": {
-        "title": "PrestaShop pro tip"
+        "title": "Consejo PrestaShop"
     }
 }
