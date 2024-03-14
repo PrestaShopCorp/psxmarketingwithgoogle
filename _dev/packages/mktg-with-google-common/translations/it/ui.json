@@ -1031,14 +1031,14 @@
         "pauseCampaignsExplainations": "Mettendo in pausa tutte le tue campagne, la fatturazione si fermerà. Puoi riavviare le tue campagne in qualsiasi momento nel tuo account Google ads.",
         "removeTag": "Rimuovi il tag “Remarketing and conversion” dallo shop",
         "removeTagExplainations": "Rimuovere il tag significa che Google non sarà più in grado di tracciare le tue campagne. Ti consigliamo di rimuovere il tag solo se hai intenzione di rimuovere completamente il modulo o di cambiare il tuo account. Puoi sempre aggiungerlo tu stesso nel codice del tuo sito.",
-        "titleActivateTracking": "Measure the effectiveness of your Ads",
-        "textActivateTracking": "To run Performance Max campaigns effectively, Google Ads requires the ability to generate remarketing lists and add conversion tracking tags to your list.\n\nClicking on confirm means you accept that PrestaShop automatically installs code snippets on your store:\n- Add Google tag on my store\n- Configure conversion actions : Page views, Add to cart, Purchase",
+        "titleActivateTracking": "Misura l'efficacia dei tuoi annunci",
+        "textActivateTracking": "Per gestire efficacemente le campagne Performance Max, Google Ads richiede la possibilità di generare elenchi di remarketing e di aggiungere tag di monitoraggio delle conversioni all'elenco.\n\nFacendo click su conferma, si accetta che PrestaShop installi automaticamente gli snippet di codice sul proprio store:\n- Aggiungi il tag Google sul mio negozio\n- Configura le azioni di conversione: Visualizzazioni di pagina, Aggiungi al carrello, Acquisto",
         "textConfirmCancel": "Se torni indietro perderai i valori selezionati",
         "disconnectedUserBo": "Sei stato disconnesso dal back office. Verrai automaticamente reindirizzato alla pagina di accesso tra {0} secondi.",
         "titleDisconnectedUserBo": "Connessione persa",
-        "titleEnhancedConversionsIntro": "Measure the effectiveness of your Ads",
-        "textEnhancedConversionsIntro": "Enhance your conversion tracking accuracy and empower your bidding strategy with our latest feature: Enhanced Conversion Tracking. This feature seamlessly integrates with your existing conversion tags, ensuring the secure and privacy-conscious transmission of conversion data from your website to Google.",
-        "textActivationEnhancedConversionsIntro": "Activating it is easy – just agree to the terms of service on Google Ads. The feature is accessible on your configuration’s page below conversion tracking tag."
+        "titleEnhancedConversionsIntro": "Misura l'efficacia delle tue Ads",
+        "textEnhancedConversionsIntro": "Migliora l'accuratezza del monitoraggio delle conversioni e potenzia la tua strategia di offerta con la nostra ultima funzione: Enhanced Conversion Tracking. Questa funzione si integra perfettamente con i tag di conversione esistenti, garantendo la trasmissione sicura e rispettosa della privacy dei dati di conversione dal tuo sito web a Google.",
+        "textActivationEnhancedConversionsIntro": "Attivarla è facile: basta accettare i termini di servizio di Google Ads. La funzione è accessibile nella pagina di configurazione sotto il tag di monitoraggio delle conversioni."
     },
     "tooltip": {
         "googleAccountRequired": "Richiede la configurazione dell'account Google",
@@ -1075,7 +1075,7 @@
         "attributesMapppingSuccess": "Gli attributi del tuo prodotto sono stati salvati con successo. Rivedi il riepilogo e poi clicca su \"Esporta\" per inviarli a Google",
         "campaignCreatedSuccess": "Hai creato la tua campagna Performance Max con successo!",
         "phoneNumberVerifiedSuccess": "Il tuo numero di telefono è stato verificato. Il Merchant Account è stato creato",
-        "enhancedConversionEnabledSuccess": "Enhanced conversion tracking enabled"
+        "enhancedConversionEnabledSuccess": "Monitoraggio delle conversioni migliorato"
     },
     "stepper": {
         "nextStep": "Avanti: {0}",
