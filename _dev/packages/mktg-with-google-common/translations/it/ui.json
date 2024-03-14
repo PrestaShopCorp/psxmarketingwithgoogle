@@ -28,7 +28,7 @@
         "mandatory": "sono obbligatori",
         "XIsMandatory": "{0} è obbligatorio.",
         "unableToFetchData": "Non è stato possibile recuperare i dati, riprova più tardi",
-        "noResults": "No data found",
+        "noResults": "Nessun dato trovato",
         "search": "Cerca",
         "createAccount": "crea il tuo account",
         "createNewAccount": "Se non hai un account, puoi {0} oggi.",
@@ -116,9 +116,9 @@
         "AccountValidationFailed": "Convalida dell'account non riuscita",
         "unlinkFailed": "Disconnessione fallita. Riavvia la pagina e riprova.",
         "tryAgainLater": "Non possiamo verificare o confermare il sito attuale. **Si consiglia di verificare che il sito sia accessibile** e di riprovare più tardi.",
-        "alertSuspended": "Account suspended: action required",
-        "alertSuspendedDescription": "Google suspended your Merchant Center account due to policy violations. Your products are no longer being promoted. Review the suspension reason, analyze your account, and take the necessary steps to meet the requirements. {0}.",
-        "alertSuspendedLearnMore": "Learn more about the account suspension",
+        "alertSuspended": "Il tuo account è stato disabilitato: azione necessaria",
+        "alertSuspendedDescription": "Google ha sospeso il tuo account Merchant Center a causa di violazioni dei criteri. I tuoi prodotti non vengono più promossi. Esamina il motivo della sospensione, analizza il tuo account e adotta le misure necessarie per soddisfare i requisiti. {0}.",
+        "alertSuspendedLearnMore": "Scopri di più sulla sospensione dell'account",
         "notManaged": "Non associato a PrestaShop",
         "overwriteFailed": "Richiesta di URL del sito web fallita",
         "overwriteToBeDoneManually": "Il tuo sito web è già stato verificato con un altro account del merchant center. Dato che non siamo amministratori del tuo account, non possiamo sovrascrivere questa richiesta al tuo posto. Per favore, vai nel tuo [Google Merchant Center]({0})[:target=\"_blank\"], e cambia l'URL del sito web con questo: {1}",
@@ -215,8 +215,8 @@
         "updateData": "Se hai fatto qualche modifica nel tuo back office, aggiorna le tue informazioni per vedere i cambiamenti riprodotti anche qui."
     },
     "gmcAccountIssues": {
-        "title": "More details about account issues",
-        "description": "Your account has been flagged for potential performance and compliance issues. Please review the detailed information provided to understand and address these concerns promptly"
+        "title": "Maggiori dettagli sui problemi dell'account",
+        "description": "Il tuo account è stato segnalato per potenziali problemi di performance e conformità. Ti preghiamo di esaminare le informazioni dettagliate fornite per comprendere e risolvere tempestivamente questi problemi"
     },
     "productFeedCard": {
         "title": "Feed prodotti",
@@ -530,15 +530,15 @@
         "footerInfo": "*Dati Google, Global, Ads, Sett-Ott 2021."
     },
     "enhancedConversionTrackingCard": {
-        "title": "Enhanced conversion tracking",
-        "intro": "Improve your conversion tracking accuracy and unlock more powerful bidding. This feature works alongside your existing conversion tags, sending secure, privacy-friendly conversion data from your website to Google.",
+        "title": "Monitoraggio delle conversioni migliorato",
+        "intro": "Migliora l'accuratezza del monitoraggio delle conversioni e sblocca offerte più potenti. Questa funzione si affianca ai tag di conversione esistenti, inviando a Google dati di conversione sicuri e rispettosi della privacy del tuo sito web.",
         "signTosAlert": {
-            "title": "Improve your conversion tracking & unlock more powerful bidding to your Ads",
-            "text": "Enable enhanced conversion tracking by simply agreeing to Google Ads' terms of service"
+            "title": "Migliora il monitoraggio delle conversioni e sblocca offerte più potenti alle tue Ads",
+            "text": "Attiva il monitoraggio delle conversioni semplicemente accettando i termini di servizio di Google Ads"
         },
         "enableEnhancedConversionAlert": {
-            "title": "Ready to enable enhanced conversion tracking feature",
-            "text": "Your Google Ads' terms of service are up-to-date, head to your configuration page to enable your new feature"
+            "title": "Pronti ad abilitare la funzione di monitoraggio delle conversioni avanzate",
+            "text": "I termini di servizio di Google Ads sono aggiornati, vai alla pagina di configurazione per abilitare la tua nuova funzione"
         }
     },
     "smartShoppingCampaignCreation": {
@@ -569,12 +569,12 @@
         "inputFiltersAllLabel": "Includi tutti i prodotti sincronizzati",
         "inputFiltersPartialLabel": "Seleziona i prodotti usando i filtri di partizione dei prodotti",
         "inputFiltersHelper": "Prenditi del tempo per leggere [leggi le norme pubblicitarie di Google Shopping]({0})[:target=\"_blank\"] alcuni prodotti sono proibiti o limitati.",
-        "inputBudgetHelper": "The minimum budget varies based on your target country. Please select a country to see the exact minimum required.",
-        "inputBudgetHelperForTargetCountry": "The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.",
+        "inputBudgetHelper": "Il budget minimo varia in base al Paese di destinazione. Selezionate un Paese per vedere il minimo esatto richiesto.",
+        "inputBudgetHelperForTargetCountry": "Il minimo per {country} è {budget}, per garantire una portata sufficiente alla tua campagna in questa regione.",
         "inputBudgetInvalidFeedback": "Il tuo budget giornaliero deve essere un numero valido maggiore di 1. Per qualsiasi numero decimale, usa un punto come separatore.",
-        "inputBudgetBeforeThresholdFeedback": "Minimum budget required for this target country is {budget}. Please increase your budget to continue.",
+        "inputBudgetBeforeThresholdFeedback": "Il budget minimo richiesto per questo Paese target è {budget}. Si prega di aumentare il budget per continuare.",
         "inputBudgetFeedback": "Budget giornaliero della campagna",
-        "inputBudgetTooltip": "To ensure Ad performance, the base minimum depends on your target country and the budget you choose is entirely up to you, and you can adjust it at any time.",
+        "inputBudgetTooltip": "Il tuo budget è l'importo medio che puoi spendere ogni giorno per la tua campagna. Il budget che scegli dipende interamente da te e puoi modificarlo in qualsiasi momento.",
         "inputBudgetPlaceholder": "Importo",
         "inputAllSyncedProducts": "Nessun filtro selezionato",
         "formHelperTitle": "Attivazione della campagna",
@@ -628,12 +628,12 @@
         "dimensionXFilterSelectedWithXProducts": "Filtro {0} | Filtro {0} ({1} prodotto) | Filtro {0} ({1} prodotti)",
         "filtersWithxValues": "{0} filtri | {0} filtri con {1} prodotto interessato | {0} filtri con {1} prodotto interessato",
         "budgetTip": {
-            "content": "To ensure the success of your campaign, it’s essential to adjust your daily ad budget according to the target country. For instance, a starting point of {budget} is recommended for {country}. By choosing your target country, you can identify the ideal budget to meet your objectives. Remember, this foundational budget is more than just a figure – it’s a key component of your campaign strategy. A well-planned budget facilitates efficient ad testing and refinement, enabling you to customize your expenditure to the unique requirements of your business and enhance overall campaign performance."
+            "content": "Per garantire il successo della campagna, è essenziale adattare il budget pubblicitario giornaliero in base al Paese di destinazione. Per esempio, un punto di partenza di {budget} è consigliato per {country}. Scegliendo il Paese di destinazione, è possibile identificare il budget ideale per raggiungere i propri obiettivi. Ricorda che questo budget di base è più di una semplice cifra: è una componente chiave della strategia della tua campagna. Un budget ben pianificato facilita il test e il perfezionamento degli annunci, consentendo di personalizzare la spesa in base alle esigenze specifiche della tua azienda e di migliorare le prestazioni complessive della campagna."
         }
     },
     "productFeedPage": {
         "breadcrumb": {
-            "productStatusDetails": "Disapproved products",
+            "productStatusDetails": "Prodotti non approvati",
             "nonCompliantProducts": "Prodotti non conformi"
         },
         "alert": {
@@ -669,7 +669,7 @@
                     "noEligibleCurrenciesDesc": "Aggiorna i Paesi di destinazione nel {0} o aggiungi le relative valute nel {1} per farle corrispondere ai Paesi di destinazione in errore."
                 },
                 "title": "La configurazione del feed del tuo prodotto",
-                "targetCountries": "Target country:|Target countries:",
+                "targetCountries": "Paese target|Paesi target:",
                 "languages": "Lingua:|Lingue:",
                 "currencies": "Valuta:|Valute:",
                 "noLanguage": "Nessuna lingua idonea",
@@ -743,15 +743,15 @@
             "priceMissingAction": "Si prega di indicare un prezzo per il prodotto."
         },
         "approvalTable": {
-            "description": "Below, you'll find a list of **{productTotal} products** that didn't pass the approval process. For each product, we've provided the reasons for disapproval to facilitate swift corrections. After making the necessary updates, these products can be synchronized with Google Shopping.",
+            "description": "Di seguito è riportato un elenco di **{productTotal} prodotti** che non hanno superato il processo di approvazione. Per ciascun prodotto, abbiamo fornito i motivi della disapprovazione per facilitare una rapida correzione. Dopo aver apportato gli aggiornamenti necessari, questi prodotti possono essere sincronizzati con Google Shopping.",
             "filterTitle": "Filtra per disponibilità",
-            "NoFilter": "All",
+            "NoFilter": "Tutti",
             "tableHeaderID": "ID",
-            "tableHeaderName": "Product title",
+            "tableHeaderName": "Titolo del prodotto",
             "tableHeaderLanguage": "Lingua",
-            "tableHeaderCurrency": "Currency",
-            "tableHeaderCountry": "Affected countries",
-            "tableHeaderIssue": "Reasons",
+            "tableHeaderCurrency": "Valuta",
+            "tableHeaderCountry": "Paesi interessati",
+            "tableHeaderIssue": "Motivo",
             "xResults": "{0} risultati",
             "perPageLabel": "Mostra:",
             "goToLabel": "Vai alla pagina:",
@@ -759,10 +759,10 @@
             "noReasonFallback": "*Non fornito, controlla [errori di account sul tuo Merchant Center]({0})[:target=\"_blank\"].*"
         },
         "productIssuesModal": {
-            "title": "More details about your product issues",
-            "description": "Here are the reasons for suspension provided by Google. Take the necessary steps to meet the requirements and wait for the next scan.",
+            "title": "Maggiori dettagli sui problemi dell'account",
+            "description": "Ecco i motivi della sospensione forniti da Google. Adotta le misure necessarie per soddisfare i requisiti e attendi la prossima scansione.",
             "impactListFormat": "{language} [{currency}]: {impact}",
-            "footer": "Visit your [product sheet]({0})[:target=\"_blank\"] to make the necessary changes to your product to meet Google's requirements and get it approved."
+            "footer": "Visita la [scheda prodotto]({0})[:target=\"_blank\"] per apportare le modifiche necessarie al tuo prodotto per soddisfare i requisiti di Google e ottenere l'approvazione."
         }
     },
     "keymetrics": {
@@ -816,7 +816,7 @@
             "dailyBudget": "Budget giornaliero"
         },
         "tooltip": {
-            "lowBudget": "Your daily budget is too low to have a performing campaign, increase your budget to enhance campaign performance."
+            "lowBudget": "Il tuo budget giornaliero è troppo basso per avere una campagna performante; aumenta il budget per migliorare le prestazioni della campagna."
         }
     },
     "notConfiguredState": {
@@ -877,7 +877,7 @@
         "switchAccount": "Cambia account",
         "acceptInvitation": "Accetta l'invito",
         "continue": "Continua",
-        "confirm": "Confirm",
+        "confirm": "Conferma",
         "disabled": "Disabilitato",
         "activateModule": "Attiva modulo",
         "enabled": "Abilitato",
@@ -897,7 +897,7 @@
         "cancel": "Cancella",
         "disconnectAccount": "Disconnetti l'account",
         "selectAccount": "Seleziona l'account",
-        "reviewAccount": "Review account",
+        "reviewAccount": "Rivedi l'account",
         "addMapping": "Aggiungi la mappatura",
         "modifyMapping": "Modifica la mappatura",
         "learnAboutProductConfiguration": "Per saperne di più sulle specifiche dei dati di prodotto",
@@ -929,7 +929,7 @@
         "reviewProblems": "Problemi di revisione",
         "saveAndExport": "Salva ed esporta",
         "go": "Vai",
-        "goTo": "Go to {0}",
+        "goTo": "Vai a {0}",
         "continueWithoutSave": "Continua senza salvare",
         "save": "Salva",
         "disconnect": "Disconnettiti",
@@ -978,8 +978,8 @@
         "createPmax": "Crea la campagna Performance Max",
         "understand": "Ho capito",
         "moreActions": "Altre azioni",
-        "signGadsToS": "Sign terms of service on Google Ads",
-        "enableEnhancedConversions": "Activate enhanced conversion tracking",
+        "signGadsToS": "Firma le condizioni di servizio su Google Ads",
+        "enableEnhancedConversions": "Attivare il monitoraggio avanzato delle conversioni",
         "loadNextPage": "Carica i risultati successivi"
     },
     "badge": {
@@ -989,7 +989,7 @@
         "disapproved": "Non approvato",
         "pendingCreation": "In attesa",
         "creatingGmc": "Stiamo creando l'account in pochi secondi...",
-        "creatingGmcTakingTime": "Processing is taking longer than expected, please wait a few moments and do not refresh the page.",
+        "creatingGmcTakingTime": "L'elaborazione sta richiedendo più tempo del previsto, si prega di attendere qualche istante e di non aggiornare la pagina.",
         "pendingCheck": "Stiamo controllando il tuo stato GMC...",
         "pending": "In attesa",
         "expiring": "In scadenza",
