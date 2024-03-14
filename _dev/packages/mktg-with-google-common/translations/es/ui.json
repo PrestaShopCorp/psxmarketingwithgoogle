@@ -116,9 +116,9 @@
         "AccountValidationFailed": "Ha fallado la validación de la cuenta.",
         "unlinkFailed": "Desconexión fallida. Actualiza la página e inténtalo de nuevo.",
         "tryAgainLater": "No podemos verificar o reclamar el sitio actual. **Recomendamos que te asegures de que el sitio es accesible** y lo intentes de nuevo más tarde.",
-        "alertSuspended": "Account suspended: action required",
-        "alertSuspendedDescription": "Google suspended your Merchant Center account due to policy violations. Your products are no longer being promoted. Review the suspension reason, analyze your account, and take the necessary steps to meet the requirements. {0}.",
-        "alertSuspendedLearnMore": "Learn more about the account suspension",
+        "alertSuspended": "Suspensión de cuenta: acción requerida",
+        "alertSuspendedDescription": "Google ha suspendido tu cuenta de Merchant Center debido a infracciones de las políticas. Tus productos ya no se promocionan. Revisa el motivo de la suspensión, analiza tu cuenta y toma las medidas necesarias para cumplir los requisitos. {0}.",
+        "alertSuspendedLearnMore": "Más información sobre la suspensión de la cuenta",
         "notManaged": "No está asociada a PrestaShop",
         "overwriteFailed": "No se ha podido reclamar la URL del sitio web",
         "overwriteToBeDoneManually": "Tu sitio web ya ha sido reclamado en otra cuenta Merchant Center. Como no somos administradores de tu cuenta, no podemos sobrescribir esta reclamación. Accede a tu [Google Merchant Center]({0})[:target=\"_blank\"] y cambia la URL del sitio web por esta: {1}",
@@ -216,7 +216,7 @@
     },
     "gmcAccountIssues": {
         "title": "Más información sobre los problemas de la cuenta",
-        "description": "Your account has been flagged for potential performance and compliance issues. Please review the detailed information provided to understand and address these concerns promptly"
+        "description": "Se ha señalado tu cuenta por posibles problemas de rendimiento y cumplimiento. Revisa la información proporcionada para entender y resolver estos problemas inmediatamente"
     },
     "productFeedCard": {
         "title": "Feed de producto",
@@ -530,14 +530,14 @@
         "footerInfo": "* Datos de Google, Global, Anuncios, Sep-Oct 2021."
     },
     "enhancedConversionTrackingCard": {
-        "title": "Enhanced conversion tracking",
-        "intro": "Improve your conversion tracking accuracy and unlock more powerful bidding. This feature works alongside your existing conversion tags, sending secure, privacy-friendly conversion data from your website to Google.",
+        "title": "Seguimiento mejorado de las conversiones",
+        "intro": "Mejora la precisión de tu seguimiento de conversiones y consigue pujas más potentes. Esta función funciona junto con las etiquetas de conversión existentes y envía datos de conversión seguros y que respetan la privacidad desde tu sitio web a Google.",
         "signTosAlert": {
-            "title": "Improve your conversion tracking & unlock more powerful bidding to your Ads",
-            "text": "Enable enhanced conversion tracking by simply agreeing to Google Ads' terms of service"
+            "title": "Mejora tu seguimiento de conversiones y consigue pujas más potentes para tus Ads",
+            "text": "Activa el seguimiento mejorado de conversiones con solo aceptar los términos de servicio de Google Ads"
         },
         "enableEnhancedConversionAlert": {
-            "title": "Ready to enable enhanced conversion tracking feature",
+            "title": "Preparado para activar la función mejorada de seguimiento de conversiones",
             "text": "Los términos de servicio de Google Ads se han actualizado, dirígete a tu página de configuración para habilitar tu nueva función"
         }
     },
@@ -628,7 +628,7 @@
         "dimensionXFilterSelectedWithXProducts": "{0} filtro | {0} filtro ({1} producto) | {0} filtro ({1} productos)",
         "filtersWithxValues": "{0} filtros | {0} filtros con {1} producto afectado | {0} filtros con {1} productos afectados",
         "budgetTip": {
-            "content": "To ensure the success of your campaign, it’s essential to adjust your daily ad budget according to the target country. For instance, a starting point of {budget} is recommended for {country}. By choosing your target country, you can identify the ideal budget to meet your objectives. Remember, this foundational budget is more than just a figure – it’s a key component of your campaign strategy. A well-planned budget facilitates efficient ad testing and refinement, enabling you to customize your expenditure to the unique requirements of your business and enhance overall campaign performance."
+            "content": "Para lograr el éxito de tu campaña, es esencial ajustar tu presupuesto diario según el país objetivo. Por ejemplo, se recomienda un punto de partida de {budget} por {country}. Al elegir tu país objetivo, puedes valorar el presupuesto idóneo para alcanzar tus objetivos. Recuerda que este presupuesto de base es algo más que una cifra; es un componente clave de la estrategia de tu campaña. Un presupuesto bien planificado facilita probar y ajustar, permitiéndote adaptar el gasto a los requisitos específicos de tu negocio y mejorar el resultado general de la campaña."
         }
     },
     "productFeedPage": {
@@ -760,7 +760,7 @@
         },
         "productIssuesModal": {
             "title": "Más detalles sobre los problemas de tu producto",
-            "description": "Here are the reasons for suspension provided by Google. Take the necessary steps to meet the requirements and wait for the next scan.",
+            "description": "Estos son los motivos de suspensión facilitados por Google. Toma las medidas necesarias para cumplir los requisitos y espera al siguiente análisis.",
             "impactListFormat": "{language} [{currency}]: {impact}",
             "footer": "Ve a tu [ficha de producto]({0})[:target=\"_blank\"] para realizar los cambios necesarios para cumplir los requisitos de Google y conseguir que se apruebe."
         }
@@ -978,8 +978,8 @@
         "createPmax": "Crear una campaña Máximo rendimiento",
         "understand": "Entendido",
         "moreActions": "Más acciones",
-        "signGadsToS": "Sign terms of service on Google Ads",
-        "enableEnhancedConversions": "Activate enhanced conversion tracking",
+        "signGadsToS": "Firma los términos de servicio de Google Ads",
+        "enableEnhancedConversions": "Activa el seguimiento mejorado de conversión",
         "loadNextPage": "Cargar los siguientes resultados"
     },
     "badge": {
@@ -1031,14 +1031,14 @@
         "pauseCampaignsExplainations": "Al pausar todas tus campañas, la facturación se detendrá. Puedes reiniciar tus campañas en cualquier momento en tu cuenta de Google Ads.",
         "removeTag": "Eliminar la etiqueta “Remarketing y conversión” de mi tienda",
         "removeTagExplainations": "La eliminación de la etiqueta significa que Google ya no podrá realizar el seguimiento de tus campañas. Te recomendamos eliminarla solamente si piensas eliminar completamente el módulo o cambiar tu cuenta. Siempre puedes añadirla en el código de tu sitio.",
-        "titleActivateTracking": "Measure the effectiveness of your Ads",
-        "textActivateTracking": "To run Performance Max campaigns effectively, Google Ads requires the ability to generate remarketing lists and add conversion tracking tags to your list.\n\nClicking on confirm means you accept that PrestaShop automatically installs code snippets on your store:\n- Add Google tag on my store\n- Configure conversion actions : Page views, Add to cart, Purchase",
+        "titleActivateTracking": "Mide la eficacia de tus Ads",
+        "textActivateTracking": "Para ejecutar campañas Máximo rendimiento de forma efectiva, Google Ads requiere la capacidad de generar listas de remarketing y añadir etiquetas de seguimiento de conversiones a tu lista.\n\nAl hacer clic en Confirmar significa que aceptas que PrestaShop instale automáticamente snippets en tu tienda: \n- Añadir etiqueta de Google en mi tienda\n- Configurar las acciones de conversión : Páginas vistas, Añadir a la cesta, Compra",
         "textConfirmCancel": "Si vuelves atrás perderás los valores seleccionados",
         "disconnectedUserBo": "Has sido desconectado del back office. Se te redirigirá automáticamente a la página de inicio de sesión en {0} segundos.",
         "titleDisconnectedUserBo": "Se ha perdido la conexión",
-        "titleEnhancedConversionsIntro": "Measure the effectiveness of your Ads",
-        "textEnhancedConversionsIntro": "Enhance your conversion tracking accuracy and empower your bidding strategy with our latest feature: Enhanced Conversion Tracking. This feature seamlessly integrates with your existing conversion tags, ensuring the secure and privacy-conscious transmission of conversion data from your website to Google.",
-        "textActivationEnhancedConversionsIntro": "Activating it is easy – just agree to the terms of service on Google Ads. The feature is accessible on your configuration’s page below conversion tracking tag."
+        "titleEnhancedConversionsIntro": "Mide la eficacia de tus Ads",
+        "textEnhancedConversionsIntro": "Mejora la precisión de tu seguimiento de conversiones y potencia tu estrategia de pujas con nuestra última función: Seguimiento mejorado de conversiones. Esta función se integra perfectamente con tus etiquetas de conversión, lo que garantiza la transmisión segura y confidencial de los datos de conversión de tu sitio web a Google.",
+        "textActivationEnhancedConversionsIntro": "Activarlo es fácil, solo tienes que aceptar los términos del servicio de Google Ads. Esta función se encuentra en la página de configuración, debajo de la etiqueta de seguimiento de conversiones."
     },
     "tooltip": {
         "googleAccountRequired": "Requiere la configuración de la cuenta de Google",
@@ -1075,7 +1075,7 @@
         "attributesMapppingSuccess": "Los atributos de tu producto se han guardado correctamente. Revisa el resumen y haz clic en \"Exportar\" para enviarlo a Google",
         "campaignCreatedSuccess": "¡Has creado tu campaña Máximo rendimiento con éxito!",
         "phoneNumberVerifiedSuccess": "Tu número de teléfono se ha verificado. Se está creando la cuenta Merchant",
-        "enhancedConversionEnabledSuccess": "Enhanced conversion tracking enabled"
+        "enhancedConversionEnabledSuccess": "Activado el seguimiento de conversiones"
     },
     "stepper": {
         "nextStep": "Siguiente: {0}",
