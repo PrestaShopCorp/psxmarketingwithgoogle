@@ -5,6 +5,8 @@
     :title="$t('modal.titleActivateTracking')"
     v-bind="$attrs"
     @ok="updateTrackingStatus"
+    :cancel-disabled="processing"
+    :ok-disabled="processing"
   >
     <img
       src="@/assets/images/empty-cart.svg"
@@ -48,17 +50,29 @@ export default defineComponent({
       default: null,
     },
   },
+  data() {
+    return {
+      processing: false,
+    };
+  },
   methods: {
-    updateTrackingStatus() {
+    async updateTrackingStatus(bvModalEvt) {
+      this.processing = true;
+      bvModalEvt.preventDefault();
+
       this.$segment.track('[GGL] Create SSC Remarketing Conversion Step', {
         module: 'psxmarketingwithgoogle',
         remarketing_tab_value: true,
         conversion_tracking_value: true,
         params: SegmentGenericParams,
       });
-      this.$store.dispatch(
+      await this.$store.dispatch(
         'campaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', true,
       );
+
+      this.processing = false;
+      this.$bvModal.hide(this.modalId);
+
       this.$store.dispatch('campaigns/CREATE_REMARKETING_DEFAULT_CONVERSION_ACTIONS');
       this.$router.push({
         name: 'campaign-creation',
