@@ -113,7 +113,7 @@ export default {
       Object.entries(getModulesStatus.hooks)
         .forEach(([key, value]) => {
           if (value === false) {
-            dispatch(`app/${ActionsTypes.TRIGGER_REGISTER_HOOK}`, key, {root: true});
+            dispatch(ActionsTypes.TRIGGER_REGISTER_HOOK, key);
           }
         });
     }
