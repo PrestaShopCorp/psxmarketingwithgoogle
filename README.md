@@ -190,6 +190,13 @@ The module registers itself to several hooks and adds the following features:
 * displayTop
   * Conversion tracking: Trigger the Conversion Action "Page view"
 
+### Localization
+
+Translated data is stored in the folder `_dev/packages/mktg-with-google-common/translations`.
+
+Each hour, Crowdin will run several tasks on the repository:
+* Data in the `en/` folder will be synchronized to Crowdin as source strings,
+* Updates in the translated content on Crowdin will be sent back to the repository with a pull-request.
 
 ## Contributing
 
