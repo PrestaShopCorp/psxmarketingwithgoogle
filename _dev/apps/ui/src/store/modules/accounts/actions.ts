@@ -58,17 +58,6 @@ export default {
       id: selectedAccount.id,
     });
     commit(MutationsTypes.SAVE_GMC, selectedAccount);
-
-    const getModulesStatus = await dispatch(`app/${ActionsTypesApp.GET_MODULES_VERSIONS}`, 'psxmarketingwithgoogle', {root: true});
-
-    if (getModulesStatus?.hooks) {
-      Object.entries(getModulesStatus.hooks)
-        .forEach(([key, value]) => {
-          if (value === false) {
-            dispatch(`app/${ActionsTypesApp.TRIGGER_REGISTER_HOOK}`, key, {root: true});
-          }
-        });
-    }
   },
 
   async [ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS](
