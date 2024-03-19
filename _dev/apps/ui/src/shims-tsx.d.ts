@@ -1,4 +1,6 @@
 // import Vue, {VNode} from 'vue';
+import {IContextAuthentication, IContextBase} from '@prestashopcorp/billing-cdc/dist/@types/context/ContextRoot';
+import {ISubscription} from '@prestashopcorp/billing-cdc/dist/@types/Subscription';
 import {ShopCurrency} from './store/modules/app/state';
 
 declare global {
@@ -12,8 +14,8 @@ declare global {
       psxMtgWithGoogleDefaultShopCountry: string,
       psxMktgWithGoogleActiveCountries: string[],
       psxMktgWithGoogleActiveCurrencies: string[],
-      contextPsAccounts: any;
-      contextPsEventBus: any
+      contextPsAccounts?: any;
+      contextPsEventbus: any
       translations: any;
       i18nSettings: {
         isoCode: string, // ⚠️ Deprecated, this value can be invalid (i.e will return gb with en-gb)
@@ -44,8 +46,12 @@ declare global {
       psxMktgWithGoogleEnableLink: string,
       psxMktgWithGoogleDsnSentry: string,
 
+      psBillingContext?: IContextBase<IContextAuthentication>;
+      psBillingSubscription?: ISubscription;
+
       // Other apps
       psaccountsVue?: any,
+      psBilling: unknown;
     }
   //   interface IntrinsicElements {
   //     [elem: string]: any;

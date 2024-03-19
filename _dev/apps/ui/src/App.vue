@@ -37,6 +37,11 @@
             {{ $t('general.tabs.configuration') }}
           </MenuItem>
           <MenuItem
+            :route="{name: 'Billing'}"
+          >
+            {{ $t('general.tabs.billing') }}
+          </MenuItem>
+          <MenuItem
             :route="{name: 'help'}"
           >
             {{ $t('general.tabs.help') }}

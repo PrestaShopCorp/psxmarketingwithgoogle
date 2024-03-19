@@ -17,7 +17,6 @@
       >
         <b-card-header
           header-tag="nav"
-          header-class="px-3 py-1"
         >
           <ol
             class="list-inline mb-0 d-sm-flex align-items-center ps_gs-breadcrumb"

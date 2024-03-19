@@ -18,7 +18,7 @@
         </li>
       </ol>
     </template>
-    <b-card-body body-class="p-3 mt-2">
+    <b-card-body>
       <div class="d-flex justify-content-between align-items-center mb-3">
         <VueShowdown
           :markdown="$t('productFeedPage.approvalTable.description', {

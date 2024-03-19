@@ -25,6 +25,7 @@
 <div id="psxMktgWithGoogleApp"></div>
 <script src="https://assets.prestashop3.com/ext/cloudsync-merchant-sync-consent/latest/cloudsync-cdc.js"></script>
 <script src="https://unpkg.com/prestashop_accounts_vue_components@5"></script>
+<script src="https://unpkg.com/@prestashopcorp/billing-cdc/dist/bundle.js" rel=preload></script>
 
 {if $psxMktgWithGoogleLiveMode}
   <script type="module" src="http://localhost:5173/@vite/client"></script>

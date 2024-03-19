@@ -5,6 +5,7 @@
         "campaign": "Campaigns",
         "configuration": "Configure",
         "catalog": "Product catalog",
+        "billing": "Subscription",
         "help": "Help"
       },
       "versionDoesNotExist": "It seems that the module's version can not be retrieved. It's on our side please try again.",
@@ -69,10 +70,17 @@
     "onboarding": {
       "sectionTitle": {
         "psAccount": "Link your shop to your PrestaShop account",
+        "psbilling": {
+          "title": "Billing information",
+          "subTitle": "Access and manage your subscription and related payment method."
+        },
+        "pscloudsync": {
+          "title": "Allow data sharing",
+          "subTitle": "Help us enhance your experience and improve our service by giving consent to securely share relevant data with us."
+        },
         "freeListing": {
           "title": "Reach more people on Google with free listings",
-          "subtitle": "Free listings give you access to millions of shoppers searching for products similar to yours. Display your products for free in organically ranked listings on the Shopping tab when you connect your Google account to Google Merchant Center.",
-          "lastTitle": "Businesses using free listings and ads on the Shopping tab together have seen an average >50% increase in clicks and >100% increase in impressions. (Google Internal Data, July 2020)"
+          "subtitle": "Free listings give you access to millions of shoppers searching for products similar to yours. Display your products for free in organically ranked listings on the Shopping tab when you connect your Google account to Google Merchant Center."
         },
         "smartShoppingCampaign": {
           "title": "Advertise on Google with Performance Max",
@@ -88,6 +96,12 @@
       "tips": "After you are done with the first shop, you can configure the others by selecting them one by one in the shop selector, in the horizontal menu",
       "configure": "Configure",
       "group": "Shop group"
+    },
+    "billingFacade": {
+      "title": "Payment details",
+      "nextPayment": "Your subscription is active, next billing on {date}",
+      "willEnd": "Your subscription will end on {date}.",
+      "managePayment": "Manage payments"
     },
     "googleAccountCard": {
       "title": "Google account",
@@ -1126,5 +1140,9 @@
     },
     "tipsAndTricks": {
       "title": "PrestaShop pro tip"
+    },
+    "billing": {
+      "planTitle": "Plan & billing information",
+      "invoicesTitle": "Invoices"
     }
 }

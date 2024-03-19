@@ -117,4 +117,14 @@ export default {
   [GettersTypes.GET_FEATURE_FLAG_ENHANCED_CONVERSIONS](state: LocalState): boolean {
     return state.featureFlags.enhancedConversions;
   },
+
+  [GettersTypes.GET_BILLING_SUBSCRIPTION_ACTIVE](state: LocalState): boolean {
+    return !!state.billing.subscription
+      // Using the type from billing-cdc prevents the module to work
+      && state.billing.subscription.status !== 'cancelled';
+  },
+  [GettersTypes.GET_BILLING_SUBSCRIPTION_EXPIRING](state: LocalState): boolean {
+    return !!state.billing.subscription
+      && !!state.billing.subscription.cancelled_at;
+  },
 };
