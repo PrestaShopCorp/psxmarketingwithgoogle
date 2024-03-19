@@ -30,7 +30,7 @@
           <b-badge
             class="mx-3"
             :variant="mcaStatusBadge.color"
-            v-if="mcaConfigured"
+            v-if="isLinkedGmcFullyFetched"
           >
             {{ $t(`badge.${mcaStatusBadge.text}`) }}
           </b-badge>
