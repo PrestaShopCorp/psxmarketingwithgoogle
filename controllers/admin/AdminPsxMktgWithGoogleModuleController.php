@@ -91,9 +91,35 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
         ]);
 
         try {
+            /**********************
+             * PrestaShop Account *
+             **********************/
+
             $psAccountsService = $this->module->getService(PsAccounts::class)->getPsAccountsService();
             $shopIdPsAccounts = $psAccountsService->getShopUuidV4();
             $tokenPsAccounts = $psAccountsService->getOrRefreshToken();
+
+            /**********************
+             * PrestaShop Billing *
+             **********************/
+
+            // Load the context for PrestaShop Billing
+            $billingFacade = $this->module->getService(BillingPresenter::class);
+            $billingService = $this->module->getService(BillingService::class);
+            $partnerLogo = $this->module->getLocalPath() . 'logo.png';
+            $currentSubscription = $billingService->getCurrentSubscription();
+
+            // PrestaShop Billing
+            Media::addJsDef($billingFacade->present([
+                'logo' => $partnerLogo,
+                'tosLink' => 'https://prestashop.com/prestashop-account-terms-conditions/',
+                'privacyLink' => 'https://prestashop.com/prestashop-account-privacy/',
+                // This field is deprecated but a valid email must be provided to ensure backward compatibility
+                'emailSupport' => 'no-reply@prestashop.com',
+            ]));
+            Media::addJsDef([
+                'psBillingSubscription' => (!empty($currentSubscription['success']) ? $currentSubscription['body'] : null),
+            ]);
         } catch (Exception $e) {
             $shopIdPsAccounts = null;
             $tokenPsAccounts = null;
@@ -116,28 +142,6 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
                 ]);
             }
         }
-
-        /**********************
-         * PrestaShop Billing *
-         **********************/
-
-        // Load the context for PrestaShop Billing
-        $billingFacade = $this->module->getService(BillingPresenter::class);
-        $billingService = $this->module->getService(BillingService::class);
-        $partnerLogo = $this->module->getLocalPath() . 'logo.png';
-        $currentSubscription = $billingService->getCurrentSubscription();
-
-        // PrestaShop Billing
-        Media::addJsDef($billingFacade->present([
-            'logo' => $partnerLogo,
-            'tosLink' => 'https://prestashop.com/prestashop-account-terms-conditions/',
-            'privacyLink' => 'https://prestashop.com/prestashop-account-privacy/',
-            // This field is deprecated but a valid email must be provided to ensure backward compatibility
-            'emailSupport' => 'no-reply@prestashop.com',
-        ]));
-        Media::addJsDef([
-            'psBillingSubscription' => (!empty($currentSubscription['success']) ? $currentSubscription['body'] : null),
-        ]);
 
         /************************************
          * PrestaShop Marketing with Google *
