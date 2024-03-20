@@ -1,6 +1,7 @@
 imports:
   - { resource: ../common.yml }
   - { resource: accounts.yml }
+  - { resource: billing.yml }  
   - { resource: installer.yml }
   - { resource: builder.yml }
   - { resource: provider.yml }
