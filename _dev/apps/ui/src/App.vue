@@ -38,6 +38,7 @@
           </MenuItem>
           <MenuItem
             :route="{name: 'Billing'}"
+            v-if="GET_BILLING_SUBSCRIPTION_ACTIVE"
           >
             {{ $t('general.tabs.billing') }}
           </MenuItem>
@@ -88,6 +89,7 @@
 </template>
 
 <script lang="ts">
+import {mapGetters} from 'vuex';
 import {initShopClient} from 'mktg-with-google-common/api/shopClient';
 import AppMenu from '@/components/menu/app-menu.vue';
 import MenuItem from '@/components/menu/menu-item.vue';
@@ -96,6 +98,7 @@ import AlertModuleUpdate from '@/components/commons/alert-update-module.vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 import PopinUserNotConnectedToBo from '@/components/commons/user-not-connected-to-bo-popin.vue';
 import NotificationPanel from '@/components/enhanced-conversions/notification-panel.vue';
+import GettersTypesApp from '@/store/modules/app/getters-types';
 
 let resizeEventTimer;
 
@@ -113,6 +116,9 @@ export default {
     };
   },
   computed: {
+    ...mapGetters('app', [
+      GettersTypesApp.GET_BILLING_SUBSCRIPTION_ACTIVE,
+    ]),
     shopId() {
       return window.shopIdPsAccounts;
     },
