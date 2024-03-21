@@ -98,7 +98,6 @@
             :markdown="this.$i18n.t('mcaCard.introDisabled')"
             :extensions="['no-p-tag', 'extended-b-link']"
             v-if="gmcAccountDetails.id === null"
-            :vue-template="true"
           />
           <b-form class="mb-2 mt-3">
             <div class="d-md-flex text-center">
