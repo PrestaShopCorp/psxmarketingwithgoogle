@@ -10,7 +10,7 @@ import {
 } from '@/providers/shipping-settings-provider';
 import {runIf} from '@/utils/Promise';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
-import {fromApi, toApi} from '@/providers/shipping-rate-provider';
+import {CustomCarrier, fromApi, toApi} from '@/providers/shipping-rate-provider';
 import {
   ProductFeedSettings, ProductVerificationIssue, ProductVerificationIssueProduct, State,
 } from './state';
@@ -51,7 +51,7 @@ export const createProductFeedApiPayload = (settings:any) => ({
   requestSynchronizationNow: settings.requestSynchronizationNow,
 });
 
-const filterEstimateCarriers = (data) => {
+const filterEstimateCarriers = (data: CustomCarrier) => {
   if (data[0].offer === OfferType.FLAT_SHIPPING_RATE || data[0].offer === OfferType.FREE_SHIPPING) {
     delete data[0].freeShippingOverAmount;
     if (data[0].offer === OfferType.FREE_SHIPPING) {
