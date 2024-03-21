@@ -1,31 +1,32 @@
-import {ActionContext} from 'vuex';
-import {fetchOnboarding, fetchShop, HttpClientError} from 'mktg-with-google-common';
-import MutationsTypes from './mutations-types';
-import ActionsTypes from './actions-types';
-import {getDataFromLocalStorage, deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
-import {
-  DeliveryDetail, getEnabledCarriers,
-  mergeShippingDetailsSourcesForProductFeedConfiguration,
-  ShopShippingInterface, validateDeliveryDetail,
-} from '@/providers/shipping-settings-provider';
-import {runIf} from '@/utils/Promise';
+import type {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
+import type {ProductIssue} from '@/components/render-issues/types';
+import { OfferType } from '@/enums/product-feed/offer';
+import type ProductsStatusType from '@/enums/product-feed/products-status-type';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
-import {CustomCarrier, fromApi, toApi} from '@/providers/shipping-rate-provider';
+import {type CustomCarrier, fromApi, toApi} from '@/providers/shipping-rate-provider';
 import {
+  type DeliveryDetail,
+  type ShopShippingInterface, getEnabledCarriers,
+  mergeShippingDetailsSourcesForProductFeedConfiguration,validateDeliveryDetail,
+} from '@/providers/shipping-settings-provider';
+import appGetters from '@/store/modules/app/getters-types';
+import {type FullState, RequestState} from '@/store/types';
+import {formatMappingToApi} from '@/utils/AttributeMapping';
+import {deleteProductFeedDataFromLocalStorage,getDataFromLocalStorage } from '@/utils/LocalStorage';
+import {runIf} from '@/utils/Promise';
+import {HttpClientError,fetchOnboarding, fetchShop } from 'mktg-with-google-common';
+import type {ActionContext} from 'vuex';
+import ActionsTypes from './actions-types';
+import MutationsTypes from './mutations-types';
+import type {
   ProductFeedSettings, ProductVerificationIssue, ProductVerificationIssueProduct, State,
 } from './state';
-import {formatMappingToApi} from '@/utils/AttributeMapping';
-import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
-import {FullState, RequestState} from '@/store/types';
-import appGetters from '@/store/modules/app/getters-types';
-import {ProductIssue} from '@/components/render-issues/types';
-import ProductsStatusType from '@/enums/product-feed/products-status-type';
-import { OfferType } from '@/enums/product-feed/offer';
+
 
 type Context = ActionContext<State, FullState>;
 
 // ToDo: Get DTO type from API sources
-export const createProductFeedApiPayload = (settings:any) => ({
+export const createProductFeedApiPayload = (settings: ProductFeedSettings) => ({
   autoImportTaxSettings: settings.autoImportTaxSettings,
   shippingSetup: settings.shippingSetup,
   targetCountries: settings.targetCountries,
@@ -38,7 +39,7 @@ export const createProductFeedApiPayload = (settings:any) => ({
   ...(
     (settings.shippingSetup === ShippingSetupOption.IMPORT) ? {
       // Send in payload data related to active carriers and active countries on shop
-      shippingSettings: settings.shippingSettings?.filter((s) => (
+      shippingSettings: settings.shippingSettings?.filter((s: ShopShippingInterface) => (
         (s.collection !== 'carriers' || (!!s.properties.active && !s.properties.deleted))
         && (!s.properties.country_ids
           || settings.targetCountries.some((tc: string) => s.properties.country_ids.includes(tc)))),
@@ -51,7 +52,7 @@ export const createProductFeedApiPayload = (settings:any) => ({
   requestSynchronizationNow: settings.requestSynchronizationNow,
 });
 
-const filterEstimateCarriers = (data: CustomCarrier) => {
+const filterEstimateCarriers = (data: CustomCarrier[]) => {
   if (data[0].offer === OfferType.FLAT_SHIPPING_RATE || data[0].offer === OfferType.FREE_SHIPPING) {
     delete data[0].freeShippingOverAmount;
     if (data[0].offer === OfferType.FREE_SHIPPING) {
