@@ -20,6 +20,7 @@ import {FullState, RequestState} from '@/store/types';
 import appGetters from '@/store/modules/app/getters-types';
 import {ProductIssue} from '@/components/render-issues/types';
 import ProductsStatusType from '@/enums/product-feed/products-status-type';
+import { OfferType } from '@/enums/product-feed/offer';
 
 type Context = ActionContext<State, FullState>;
 
@@ -31,7 +32,7 @@ export const createProductFeedApiPayload = (settings:any) => ({
   ...(
     (settings.shippingSetup === ShippingSetupOption.ESTIMATE) ? {
       rate: settings.rate,
-      estimateCarriers: settings.estimateCarriers,
+      estimateCarriers: filterEstimateCarriers(settings.estimateCarriers),
     } : {}
   ),
   ...(
@@ -49,6 +50,18 @@ export const createProductFeedApiPayload = (settings:any) => ({
   selectedProductCategories: settings.selectedProductCategories,
   requestSynchronizationNow: settings.requestSynchronizationNow,
 });
+
+const filterEstimateCarriers = (data) => {
+  if (data[0].offer === OfferType.FLAT_SHIPPING_RATE || data[0].offer === OfferType.FREE_SHIPPING) {
+    delete data[0].freeShippingOverAmount;
+    if (data[0].offer === OfferType.FREE_SHIPPING) {
+      delete data[0].flatShippingRate;
+    }
+  } else if (data[0].offer === OfferType.FREE_SHIPPING_OVER_AMOUNT) {
+    delete data[0].flatShippingRate;
+  }
+  return data;
+}
 
 export default {
   async [ActionsTypes.WARMUP_STORE](
@@ -216,7 +229,6 @@ export default {
       selectedProductCategories,
       requestSynchronizationNow,
     });
-
     try {
       await fetchOnboarding(
         'POST',
