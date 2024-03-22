@@ -28,7 +28,7 @@
         "mandatory": "zijn verplicht",
         "XIsMandatory": "{0} is verplicht.",
         "unableToFetchData": "We konden geen gegevens ophalen, probeer het later nog eens",
-        "noResults": "No data found",
+        "noResults": "Geen data gevonden",
         "search": "Zoeken op",
         "createAccount": "je account aanmaken",
         "createNewAccount": "Als je geen account hebt, kun je nu {0}.",
@@ -116,9 +116,9 @@
         "AccountValidationFailed": "Account validatie mislukt",
         "unlinkFailed": "Verbinding verbroken. Vernieuw de pagina en probeer het opnieuw.",
         "tryAgainLater": "We kunnen de huidige website niet verifiëren of claimen. **We raden je aan ervoor te zorgen dat de website toegankelijk is** en het later opnieuw te proberen.",
-        "alertSuspended": "Account suspended: action required",
-        "alertSuspendedDescription": "Google suspended your Merchant Center account due to policy violations. Your products are no longer being promoted. Review the suspension reason, analyze your account, and take the necessary steps to meet the requirements. {0}.",
-        "alertSuspendedLearnMore": "Learn more about the account suspension",
+        "alertSuspended": "Account opgeschort: actie vereist",
+        "alertSuspendedDescription": "Google heeft je Merchant Center-account opgeschort vanwege schendingen van het beleid. Je producten worden niet meer gepromoot. Bekijk de reden voor de opschorting, analyseer je account en neem de nodige stappen om aan de vereisten te voldoen. {0}.",
+        "alertSuspendedLearnMore": "Meer informatie over de schorsing van je account",
         "notManaged": "Niet verbonden met PrestaShop",
         "overwriteFailed": "Website URL claim mislukt",
         "overwriteToBeDoneManually": "Uw website is al geclaimd op een andere merchant center account. Aangezien wij geen beheerder van uw account zijn, kunnen wij deze claim niet voor u overschrijven. Ga naar uw [Google Merchant Center]({0})[:target=\"_blank\"] , en verander de Website URL met deze : {1}",
@@ -215,11 +215,11 @@
         "updateData": "Indien u wijzigingen hebt aangebracht in uw backoffice, gelieve uw informatie te vernieuwen om de wijzigingen hier te zien."
     },
     "gmcAccountIssues": {
-        "title": "More details about account issues",
-        "description": "Your account has been flagged for potential performance and compliance issues. Please review the detailed information provided to understand and address these concerns promptly"
+        "title": "Meer informatie over accountproblemen",
+        "description": "Je account is gemarkeerd vanwege mogelijke prestatie- en nalevingsproblemen. Lees de verstrekte gedetailleerde informatie om deze zorgen te begrijpen en snel aan te pakken"
     },
     "productFeedCard": {
-        "title": "Product voer",
+        "title": "Productfeed",
         "intro": "Stuur uw productgegevens rechtstreeks naar uw Merchant Center en houd ze altijd up-to-date voor gratis vermeldingen en advertenties.",
         "introToConfigure": "Het is belangrijk dat u uw productfeed in het juiste formaat indient, omdat Google dit gebruikt om er zeker van te zijn dat uw producten overeenkomen met de juiste zoekopdrachten.",
         "nextSync": "Volgende synchronisatie op {0}",
@@ -241,7 +241,7 @@
         "alertErrorApi": "U kunt uw productgegevens op dit moment niet naar Google sturen. Probeer het later nog eens."
     },
     "productFeedSettings": {
-        "breadcrumb1": "Product voer",
+        "breadcrumb1": "Productfeed",
         "breadcrumb2": "Instellingen productaanvoer",
         "steps": {
             "shippingSetup": "Verzendinstellingen",
@@ -530,15 +530,15 @@
         "footerInfo": "* Google Data, Global, Ads, sep-okt 2021."
     },
     "enhancedConversionTrackingCard": {
-        "title": "Enhanced conversion tracking",
-        "intro": "Improve your conversion tracking accuracy and unlock more powerful bidding. This feature works alongside your existing conversion tags, sending secure, privacy-friendly conversion data from your website to Google.",
+        "title": "Verbeterde conversietracking",
+        "intro": "Verbeter je nauwkeurigheid bij het bijhouden van conversies en ontgrendel krachtiger biedingen. Deze functie werkt naast je bestaande conversietags en stuurt veilige, privacyvriendelijke conversiegegevens van je website naar Google.",
         "signTosAlert": {
-            "title": "Improve your conversion tracking & unlock more powerful bidding to your Ads",
-            "text": "Enable enhanced conversion tracking by simply agreeing to Google Ads' terms of service"
+            "title": "Verbeter je conversietracking en ontgrendel krachtiger bieden op jouw advertenties",
+            "text": "Schakel verbeterde conversietracking in door simpelweg akkoord te gaan met de servicevoorwaarden van Google Ads"
         },
         "enableEnhancedConversionAlert": {
-            "title": "Ready to enable enhanced conversion tracking feature",
-            "text": "Your Google Ads' terms of service are up-to-date, head to your configuration page to enable your new feature"
+            "title": "Klaar om de verbeterde conversietrackingfunctie in te schakelen",
+            "text": "De servicevoorwaarden van je Google Ads zijn up-to-date, ga naar je configuratiepagina om je nieuwe functie in te schakelen"
         }
     },
     "smartShoppingCampaignCreation": {
@@ -569,12 +569,12 @@
         "inputFiltersAllLabel": "Inclusief alle gesynchroniseerde producten",
         "inputFiltersPartialLabel": "Selecteer producten met behulp van productverdelingsfilters",
         "inputFiltersHelper": "Neem even de tijd om [het beleid van Google Shopping-advertenties te lezen]({0})[:target=\"_blank\"] sommige producten zijn verboden of beperkt.",
-        "inputBudgetHelper": "The minimum budget varies based on your target country. Please select a country to see the exact minimum required.",
-        "inputBudgetHelperForTargetCountry": "The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.",
+        "inputBudgetHelper": "Het minimumbudget varieert op basis van uw doelland. Selecteer een land om het exacte vereiste minimum te zien.",
+        "inputBudgetHelperForTargetCountry": "Het minimum voor {country} is {budget}, wat zorgt voor voldoende bereik voor je campagne in deze regio.",
         "inputBudgetInvalidFeedback": "Uw dagbudget moet een geldig getal zijn, groter dan 1. Gebruik voor elk decimaal getal een punt als scheidingsteken.",
-        "inputBudgetBeforeThresholdFeedback": "Minimum budget required for this target country is {budget}. Please increase your budget to continue.",
+        "inputBudgetBeforeThresholdFeedback": "Het vereiste minimumbudget voor dit doelland is {budget}. Verhoog je budget om door te gaan.",
         "inputBudgetFeedback": "Dagelijks campagnebudget",
-        "inputBudgetTooltip": "To ensure Ad performance, the base minimum depends on your target country and the budget you choose is entirely up to you, and you can adjust it at any time.",
+        "inputBudgetTooltip": "Om de advertentieprestaties te garanderen, is het basisminimum afhankelijk van je doelland en is het budget dat je kiest volledig aan jou. Je kunt het op elk gewenst moment aanpassen.",
         "inputBudgetPlaceholder": "Bedrag",
         "inputAllSyncedProducts": "Geen filters geselecteerd",
         "formHelperTitle": "Activering van de campagne",
@@ -628,12 +628,12 @@
         "dimensionXFilterSelectedWithXProducts": "{0} filter | {0} filter ({1} product) | {0} filter ({1} producten)",
         "filtersWithxValues": "{0} filters | {0} filters met {1} betreffend product | {0} filters met {1} betreffende producten",
         "budgetTip": {
-            "content": "To ensure the success of your campaign, it’s essential to adjust your daily ad budget according to the target country. For instance, a starting point of {budget} is recommended for {country}. By choosing your target country, you can identify the ideal budget to meet your objectives. Remember, this foundational budget is more than just a figure – it’s a key component of your campaign strategy. A well-planned budget facilitates efficient ad testing and refinement, enabling you to customize your expenditure to the unique requirements of your business and enhance overall campaign performance."
+            "content": "Om het succes van je campagne te garanderen, is het essentieel om je dagelijkse advertentiebudget aan te passen aan het doelland. Een startpunt van {budget} wordt bijvoorbeeld aanbevolen voor {country}. Door je doelland te kiezen, kun je het ideale budget bepalen om je doelstellingen te bereiken. Vergeet niet dat dit basisbudget meer is dan alleen een cijfer – het is een belangrijk onderdeel van je campagnestrategie. Een goed gepland budget vergemakkelijkt het efficiënt testen en verfijnen van advertenties, zodat u uw uitgaven kunt aanpassen aan de unieke vereisten van uw bedrijf en de algehele campagneprestaties kunt verbeteren."
         }
     },
     "productFeedPage": {
         "breadcrumb": {
-            "productStatusDetails": "Disapproved products",
+            "productStatusDetails": "Afgekeurde producten",
             "nonCompliantProducts": "Non-conforme producten"
         },
         "alert": {
@@ -669,7 +669,7 @@
                     "noEligibleCurrenciesDesc": "Werk je doellanden bij in je {0} of voeg de relevante valuta toe in je {1} om de doellanden ten onrechte overeen te laten komen."
                 },
                 "title": "De configuratie van je productfeed",
-                "targetCountries": "Target country:|Target countries:",
+                "targetCountries": "Doelland:|Doellanden:",
                 "languages": "Taal:|Talen:",
                 "currencies": "Valuta:|Valuta's:",
                 "noLanguage": "Geen in aanmerking komende taal",
@@ -743,15 +743,15 @@
             "priceMissingAction": "Geef een prijs op voor het product."
         },
         "approvalTable": {
-            "description": "Below, you'll find a list of **{productTotal} products** that didn't pass the approval process. For each product, we've provided the reasons for disapproval to facilitate swift corrections. After making the necessary updates, these products can be synchronized with Google Shopping.",
+            "description": "Hieronder vind je een lijst met **{productTotal} producten** die het goedkeuringsproces niet hebben doorstaan. Voor elk product hebben we de redenen voor afkeuring gegeven om snelle correcties mogelijk te maken. Na het maken van de nodige updates kunnen deze producten gesynchroniseerd worden met Google Shopping.",
             "filterTitle": "Filter op beschikbaarheid",
-            "NoFilter": "All",
+            "NoFilter": "Alle",
             "tableHeaderID": "ID",
-            "tableHeaderName": "Product title",
+            "tableHeaderName": "Producttitel",
             "tableHeaderLanguage": "Taal",
-            "tableHeaderCurrency": "Currency",
-            "tableHeaderCountry": "Affected countries",
-            "tableHeaderIssue": "Reasons",
+            "tableHeaderCurrency": "Valuta",
+            "tableHeaderCountry": "Getroffen landen",
+            "tableHeaderIssue": "Redenen",
             "xResults": "{0} resultaten",
             "perPageLabel": "Laat zien:",
             "goToLabel": "Ga naar pagina:",
@@ -759,10 +759,10 @@
             "noReasonFallback": "*Niet opgegeven, controleer [account errors on your Merchant Center]({0})[:target=\"_blank\"].*"
         },
         "productIssuesModal": {
-            "title": "More details about your product issues",
-            "description": "Here are the reasons for suspension provided by Google. Take the necessary steps to meet the requirements and wait for the next scan.",
+            "title": "Meer informatie over je productproblemen",
+            "description": "Dit zijn de redenen voor opschorting die door Google zijn verstrekt. Neem de nodige stappen om aan de vereisten te voldoen en wacht op de volgende scan.",
             "impactListFormat": "{language} [{currency}]: {impact}",
-            "footer": "Visit your [product sheet]({0})[:target=\"_blank\"] to make the necessary changes to your product to meet Google's requirements and get it approved."
+            "footer": "Ga naar je [productblad]({0})[:target=\"_blank\"] om de nodige wijzigingen aan te brengen in je product om aan de vereisten van Google te voldoen en het te laten goedkeuren."
         }
     },
     "keymetrics": {
@@ -816,7 +816,7 @@
             "dailyBudget": "Dagelijkse begroting"
         },
         "tooltip": {
-            "lowBudget": "Your daily budget is too low to have a performing campaign, increase your budget to enhance campaign performance."
+            "lowBudget": "Je dagbudget is te laag om een presterende campagne te hebben, verhoog je budget om de campagneprestaties te verbeteren."
         }
     },
     "notConfiguredState": {
@@ -877,7 +877,7 @@
         "switchAccount": "Overstap account",
         "acceptInvitation": "Uitnodiging accepteren",
         "continue": "Ga verder",
-        "confirm": "Confirm",
+        "confirm": "Bevestigen",
         "disabled": "Uitgeschakeld",
         "activateModule": "Module inschakelen",
         "enabled": "Ingeschakeld",
@@ -897,7 +897,7 @@
         "cancel": "Annuleer",
         "disconnectAccount": "Account loskoppelen",
         "selectAccount": "Account kiezen",
-        "reviewAccount": "Review account",
+        "reviewAccount": "Account controleren",
         "addMapping": "Mapping toevoegen",
         "modifyMapping": "Wijzig mapping",
         "learnAboutProductConfiguration": "Meer informatie over de specificatie van productgegevens",
@@ -929,7 +929,7 @@
         "reviewProblems": "Herzieningsproblemen",
         "saveAndExport": "Opslaan en exporteren",
         "go": "Ga",
-        "goTo": "Go to {0}",
+        "goTo": "Ga naar {0}",
         "continueWithoutSave": "Doorgaan zonder op te slaan",
         "save": "Save",
         "disconnect": "Loskoppelen",
@@ -978,8 +978,8 @@
         "createPmax": "Maximale prestaties-campagne aanmaken",
         "understand": "Ik begrijp het.",
         "moreActions": "Meer acties",
-        "signGadsToS": "Sign terms of service on Google Ads",
-        "enableEnhancedConversions": "Activate enhanced conversion tracking",
+        "signGadsToS": "Servicevoorwaarden ondertekenen op Google Ads",
+        "enableEnhancedConversions": "Verbeterde conversietracking activeren",
         "loadNextPage": "Volgende resultaten laden"
     },
     "badge": {
@@ -989,13 +989,13 @@
         "disapproved": "Afgekeurd",
         "pendingCreation": "In afwachting van",
         "creatingGmc": "Een account aanmaken in een paar seconden...",
-        "creatingGmcTakingTime": "Processing is taking longer than expected, please wait a few moments and do not refresh the page.",
+        "creatingGmcTakingTime": "De verwerking duurt langer dan verwacht, wacht even en ververs de pagina niet.",
         "pendingCheck": "We controleren uw GMC status...",
         "pending": "In afwachting van",
         "expiring": "Aflopend",
         "checkingSiteClaim": "Ik controleer uw claim...",
         "siteVerified": "Gecontroleerde site",
-        "productFeed": "Product voer",
+        "productFeed": "Productfeed",
         "productFeedSettings": "Instellingen productaanvoer",
         "merchantCenterAccount": "Merchant Center-rekening",
         "googleAccount": "Google-account",
@@ -1018,7 +1018,7 @@
         "titleDisconnection": "Bevestig loskoppeling?",
         "titleoverwrite": "Bestaande claim overschrijven?",
         "textDisconnectGoogleAccount": "U staat op het punt uw Google-account af te sluiten. Dit zal de toegang tot Google, Google Merchant Center en Google Ads accounts verwijderen.",
-        "textDisconnectMCA": "Als u uw Merchant Center loskoppelt, hebt u geen toegang meer tot uw Google-advertenties in deze module en wordt een lopende campagne onderbroken.",
+        "textDisconnectMCA": "Als u uw Merchant Center loskoppelt, hebt u geen toegang meer tot uw Google-advertenties in deze module en wordt een lopende campagne onderbroken. ",
         "textoverwrite": "Het overschrijven van bestaande claim zal uw vorige account deactiveren en bestaande campagnes pauzeren die aan die account gekoppeld zijn- gratis listings en Shopping campagnes.  \nAls u een andere Shopping-campagne voert, raden wij u aan deze te pauzeren.",
         "titleCancelWithoutSaving": "Annuleren zonder op te slaan?",
         "textCancelProductFeed": "U verliest alle niet-opgeslagen wijzigingen als u Doorgaat. Om uw productgegevens succesvol bij Google in te dienen, dient u alle stappen te doorlopen.",
@@ -1031,14 +1031,14 @@
         "pauseCampaignsExplainations": "Door al uw campagnes te pauzeren, zal de facturatie stoppen. U kunt uw campagnes op elk moment opnieuw starten in uw Google-advertentieaccount.",
         "removeTag": "Verwijder de tag \"Remarketing en conversie\" uit mijn winkel",
         "removeTagExplainations": "Het verwijderen van de tag betekent dat Google niet langer in staat zal zijn om uw campagnes te volgen. Wij raden u aan de tag alleen te verwijderen als u van plan bent de module volledig te verwijderen of uw account te wijzigen. U kunt het altijd zelf toevoegen in de code van uw site.",
-        "titleActivateTracking": "Measure the effectiveness of your Ads",
-        "textActivateTracking": "To run Performance Max campaigns effectively, Google Ads requires the ability to generate remarketing lists and add conversion tracking tags to your list.\n\nClicking on confirm means you accept that PrestaShop automatically installs code snippets on your store:\n- Add Google tag on my store\n- Configure conversion actions : Page views, Add to cart, Purchase",
+        "titleActivateTracking": "Meet de effectiviteit van je advertenties",
+        "textActivateTracking": "Om Performance Max-campagnes effectief uit te voeren, vereist Google Ads de mogelijkheid om remarketinglijsten te genereren en conversietrackingtags aan je lijst toe te voegen.\n\nAls je op bevestigen klikt, accepteer je dat PrestaShop automatisch codefragmenten in je winkel installeert:\n- Google-tag toevoegen aan mijn winkel\n- Configureer conversieacties : paginaweergaven, toevoegen aan winkelwagen, aankoop",
         "textConfirmCancel": "Als u teruggaat zult u uw geselecteerde waarden verliezen",
         "disconnectedUserBo": "Je bent losgekoppeld van de backoffice. Je wordt binnen {0} seconden automatisch doorgestuurd naar de inlogpagina.",
         "titleDisconnectedUserBo": "Verbinding verbroken",
-        "titleEnhancedConversionsIntro": "Measure the effectiveness of your Ads",
-        "textEnhancedConversionsIntro": "Enhance your conversion tracking accuracy and empower your bidding strategy with our latest feature: Enhanced Conversion Tracking. This feature seamlessly integrates with your existing conversion tags, ensuring the secure and privacy-conscious transmission of conversion data from your website to Google.",
-        "textActivationEnhancedConversionsIntro": "Activating it is easy – just agree to the terms of service on Google Ads. The feature is accessible on your configuration’s page below conversion tracking tag."
+        "titleEnhancedConversionsIntro": "Meet de effectiviteit van je advertenties",
+        "textEnhancedConversionsIntro": "Verbeter de nauwkeurigheid van je conversietracking en versterk je biedstrategie met onze nieuwste functie: Verbeterde conversietracking. Deze functie kan naadloos worden geïntegreerd met je bestaande conversietags en zorgt voor de veilige en privacybewuste overdracht van conversiegegevens van je website naar Google.",
+        "textActivationEnhancedConversionsIntro": "Het activeren is eenvoudig – ga gewoon akkoord met de servicevoorwaarden op Google Ads. De functie is toegankelijk op de pagina van je configuratie onder de tag voor het bijhouden van conversies."
     },
     "tooltip": {
         "googleAccountRequired": "Vereist configuratie Google-account",
@@ -1075,7 +1075,7 @@
         "attributesMapppingSuccess": "Uw producteigenschappen zijn succesvol opgeslagen. Bekijk de samenvatting en klik op \"Exporteren\" om ze naar Google te sturen",
         "campaignCreatedSuccess": "U hebt uw Maximale prestaties-campagne met succes aangemaakt!",
         "phoneNumberVerifiedSuccess": "Uw telefoonnummer is geverifieerd. De Merchant Account wordt aangemaakt",
-        "enhancedConversionEnabledSuccess": "Enhanced conversion tracking enabled"
+        "enhancedConversionEnabledSuccess": "Verbeterde conversietracking ingeschakeld"
     },
     "stepper": {
         "nextStep": "Volgende: {0}",
@@ -1123,6 +1123,6 @@
         "textCampaignsBanner": "Maak je eerste campagne aan en bereik meer relevante shoppers via alle kanalen van Google. Laat Google's machine learning je advertentieplaatsingen optimaliseren en je verkeer en verkoop efficiënt verbeteren."
     },
     "tipsAndTricks": {
-        "title": "PrestaShop pro tip"
+        "title": "Pro-tip van PrestaShop"
     }
 }
