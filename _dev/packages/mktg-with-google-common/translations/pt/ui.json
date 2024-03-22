@@ -7,7 +7,7 @@
             "catalog": "Catálogo de produtos",
             "help": "Ajuda"
         },
-        "versionDoesNotExist": "Parece que a versão do módulo não pode ser recuperada. Está do nosso lado, por favor tente novamente.",
+        "versionDoesNotExist": "A versão do módulo não pôde ser encontrada. Tente novamente.",
         "moduleNeedActivation": "O Marketing with Google está desativado. Você não poderá usar nenhum dos recursos até ativar seu módulo.",
         "moduleUpdateNeeded": {
             "ps_eventbus": {
@@ -28,7 +28,7 @@
         "mandatory": "são obrigatórias",
         "XIsMandatory": "{0} é obrigatório.",
         "unableToFetchData": "Não conseguimos obter dados, por favor tente novamente mais tarde.",
-        "noResults": "No data found",
+        "noResults": "Nenhum dado encontrado",
         "search": "Pesquisa",
         "createAccount": "criar sua conta",
         "createNewAccount": "Se você não tiver uma conta, poderá {0} hoje.",
@@ -116,9 +116,9 @@
         "AccountValidationFailed": "A validação da conta falhou.",
         "unlinkFailed": "A desconexão falhou. Atualize a página e tente novamente.",
         "tryAgainLater": "Não foi possível verificar ou reivindicar esse site. **Recomendamos que você verifique se o site está acessível** e tente novamente mais tarde.",
-        "alertSuspended": "Account suspended: action required",
-        "alertSuspendedDescription": "Google suspended your Merchant Center account due to policy violations. Your products are no longer being promoted. Review the suspension reason, analyze your account, and take the necessary steps to meet the requirements. {0}.",
-        "alertSuspendedLearnMore": "Learn more about the account suspension",
+        "alertSuspended": "Conta suspensa: ação necessária",
+        "alertSuspendedDescription": "O Google suspendeu sua conta do Merchant Center devido a violações das nossas políticas. Seus produtos não estão mais sendo promovidos. Consulte o motivo da suspensão, analise sua conta e tome as medidas necessárias para atender aos requisitos. {0}.",
+        "alertSuspendedLearnMore": "Saiba mais sobre a suspensão da sua conta",
         "notManaged": "Não associado à PrestaShop",
         "overwriteFailed": "Falha na alegação de URL do site",
         "overwriteToBeDoneManually": "O seu site já foi reclamado em outra conta do centro comercial. Como não somos administradores da sua conta, não podemos sobregravar esta reivindicação para você. Por favor vá ao seu [Google Merchant Center]({0})[:target=\"_blank\"] , e altere a URL do site com esta: {1}",
@@ -215,8 +215,8 @@
         "updateData": "Se fez alguma alteração no seu back office, por favor atualize as suas informações para visualizar as mudanças refletidas aqui."
     },
     "gmcAccountIssues": {
-        "title": "More details about account issues",
-        "description": "Your account has been flagged for potential performance and compliance issues. Please review the detailed information provided to understand and address these concerns promptly"
+        "title": "Mais informações sobre problemas com a conta",
+        "description": "A sua conta foi sinalizada devido a potenciais problemas de desempenho e conformidade. Por favor, reveja as informações detalhadas fornecidas para compreender e resolver estas preocupações imediatamente"
     },
     "productFeedCard": {
         "title": "Feed de produtos",
@@ -530,23 +530,23 @@
         "footerInfo": "* Google Data, Global, Ads, Set-Out 2021."
     },
     "enhancedConversionTrackingCard": {
-        "title": "Enhanced conversion tracking",
-        "intro": "Improve your conversion tracking accuracy and unlock more powerful bidding. This feature works alongside your existing conversion tags, sending secure, privacy-friendly conversion data from your website to Google.",
+        "title": "Acompanhamento avançado de conversões",
+        "intro": "Melhore a precisão do seu acompanhamento de conversões e desfrute de lances mais competitivos. Essa funcionalidade funciona junto com suas tags de conversão existentes, enviando dados de conversão seguros e em conformidade com as regras de privacidade do seu site para o Google.",
         "signTosAlert": {
-            "title": "Improve your conversion tracking & unlock more powerful bidding to your Ads",
-            "text": "Enable enhanced conversion tracking by simply agreeing to Google Ads' terms of service"
+            "title": "Aprimore seu acompanhamento de conversões e desfrute de lances mais competitivos para seus anúncios",
+            "text": "Ative o acompanhamento aprimorado de conversões simplesmente concordando com os termos de serviço do Google Ads"
         },
         "enableEnhancedConversionAlert": {
-            "title": "Ready to enable enhanced conversion tracking feature",
-            "text": "Your Google Ads' terms of service are up-to-date, head to your configuration page to enable your new feature"
+            "title": "Pronto para ativar o recurso aprimorado de acompanhamento de conversões",
+            "text": "Os termos de serviço do Google Ads estão atualizados. Acesse a página de configurações para ativar o novo recurso"
         }
     },
     "smartShoppingCampaignCreation": {
-        "allFilters": "Todos os Filtros",
+        "allFilters": "Todos os filtros",
         "breadcrumb1": "Campanhas",
         "breadcrumbCreateSSC": "Crie uma campanha Smart Shopping",
         "breadcrumbEditSSC": "Modificar campanha Smart Shopping",
-        "breadcrumbCreatePMax": "Campanha Criar Máximo desempenho",
+        "breadcrumbCreatePMax": "Criar campanha Performance Max",
         "breadcrumbEditPMax": "Modificar a campanha Máximo desempenho",
         "inputNameHelper": "O nome deve ser único e ter, no máximo, 125 caracteres.",
         "inputNameLabel": "Nome da campanha",
@@ -569,12 +569,12 @@
         "inputFiltersAllLabel": "Incluir todos os produtos sincronizados",
         "inputFiltersPartialLabel": "Selecione produtos usando filtros divisórios de produtos",
         "inputFiltersHelper": "Leve algum tempo para [ler as políticas de anúncios do Google Shopping]({0})[:target=\"_blank\"] algum produto é proibido ou restrito.",
-        "inputBudgetHelper": "The minimum budget varies based on your target country. Please select a country to see the exact minimum required.",
-        "inputBudgetHelperForTargetCountry": "The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.",
+        "inputBudgetHelper": "O orçamento mínimo varia de acordo com o seu país de destino. Selecione um país para ver o mínimo exigido.",
+        "inputBudgetHelperForTargetCountry": "O mínimo para {country} é {budget}, garantindo alcance suficiente para sua campanha nesta região.",
         "inputBudgetInvalidFeedback": "O seu orçamento diário deve ser um número válido superior a 1. Para qualquer número decimal, por favor use um ponto como separador.",
-        "inputBudgetBeforeThresholdFeedback": "Minimum budget required for this target country is {budget}. Please increase your budget to continue.",
+        "inputBudgetBeforeThresholdFeedback": "O orçamento mínimo necessário para este país de destino é {budget}. Aumente seu orçamento para continuar.",
         "inputBudgetFeedback": "Orçamento diário da campanha",
-        "inputBudgetTooltip": "To ensure Ad performance, the base minimum depends on your target country and the budget you choose is entirely up to you, and you can adjust it at any time.",
+        "inputBudgetTooltip": "Para garantir o desempenho do seu anúncio, o valor mínimo dependerá do seu país de destino e a escolha do seu orçamento dependerá inteiramente de você. Você poderá ajustar seu orçamento a qualquer momento.",
         "inputBudgetPlaceholder": "Valor",
         "inputAllSyncedProducts": "Nenhum filtro selecionado",
         "formHelperTitle": "Ativação da campanha",
@@ -628,12 +628,12 @@
         "dimensionXFilterSelectedWithXProducts": "{0} filtro | {0} filtro ({1} produto) | {0} filtro ({1} produtos)",
         "filtersWithxValues": "{0} filtros | {0} filtros com {1} produto afetado | {0} filtros com {1} produtos afetados",
         "budgetTip": {
-            "content": "To ensure the success of your campaign, it’s essential to adjust your daily ad budget according to the target country. For instance, a starting point of {budget} is recommended for {country}. By choosing your target country, you can identify the ideal budget to meet your objectives. Remember, this foundational budget is more than just a figure – it’s a key component of your campaign strategy. A well-planned budget facilitates efficient ad testing and refinement, enabling you to customize your expenditure to the unique requirements of your business and enhance overall campaign performance."
+            "content": "Para garantir o sucesso da sua campanha, é essencial ajustar seu orçamento diário de anúncios de acordo com o país de destino. Por exemplo, um ponto de partida de {budget} é recomendado para {country}. Ao escolher seu país de destino, você pode identificar o orçamento ideal para atingir seus objetivos. Lembre-se de que este orçamento inicial é mais do que apenas um número, ele é um componente-chave da sua estratégia de campanha. Um orçamento bem planejado facilita o teste e o refinamento eficientes de anúncios, permitindo que você personalize suas despesas de acordo com os requisitos exclusivos de sua empresa e melhore o desempenho geral da campanha."
         }
     },
     "productFeedPage": {
         "breadcrumb": {
-            "productStatusDetails": "Disapproved products",
+            "productStatusDetails": "Produtos reprovados",
             "nonCompliantProducts": "Produtos não conformes"
         },
         "alert": {
@@ -669,7 +669,7 @@
                     "noEligibleCurrenciesDesc": "Atualize seus países de destino em {0} ou adicione as moedas relevantes em {1} para corresponder aos países de destino com erro."
                 },
                 "title": "A configuração do seu feed de produtos",
-                "targetCountries": "Target country:|Target countries:",
+                "targetCountries": "País de destino:|Países de destino:",
                 "languages": "Idioma:|Idiomas:",
                 "currencies": "Moeda:|Moedas:",
                 "noLanguage": "Nenhum idioma elegível",
@@ -743,15 +743,15 @@
             "priceMissingAction": "Informe um preço para o produto."
         },
         "approvalTable": {
-            "description": "Below, you'll find a list of **{productTotal} products** that didn't pass the approval process. For each product, we've provided the reasons for disapproval to facilitate swift corrections. After making the necessary updates, these products can be synchronized with Google Shopping.",
+            "description": "Abaixo, você encontrará uma lista de **{productTotal} produtos** que não passaram no processo de aprovação. Para cada produto, fornecemos os motivos da reprovação para facilitar correções. Depois das atualizações necessárias esses produtos poderão ser sincronizados com o Google Shopping.",
             "filterTitle": "Filtrar por disponibilidade",
-            "NoFilter": "All",
+            "NoFilter": "Todas",
             "tableHeaderID": "ID",
-            "tableHeaderName": "Product title",
+            "tableHeaderName": "Nome do produto",
             "tableHeaderLanguage": "Idioma",
-            "tableHeaderCurrency": "Currency",
-            "tableHeaderCountry": "Affected countries",
-            "tableHeaderIssue": "Reasons",
+            "tableHeaderCurrency": "Moeda",
+            "tableHeaderCountry": "Países afetados",
+            "tableHeaderIssue": "Motivos",
             "xResults": "{0} resultados",
             "perPageLabel": "Mostrar:",
             "goToLabel": "Ir para a página:",
@@ -759,10 +759,10 @@
             "noReasonFallback": "*Não fornecido, verifique [erros de conta no seu Merchant Center]({0})[:target=\"_blank\"].*"
         },
         "productIssuesModal": {
-            "title": "More details about your product issues",
-            "description": "Here are the reasons for suspension provided by Google. Take the necessary steps to meet the requirements and wait for the next scan.",
+            "title": "Mais detalhes sobre os problemas com seus produtos",
+            "description": "Aqui estão os motivos da suspensão fornecidos pelo Google. Tome as medidas necessárias para atender aos requisitos e aguarde a próxima verificação.",
             "impactListFormat": "{language} [{currency}]: {impact}",
-            "footer": "Visit your [product sheet]({0})[:target=\"_blank\"] to make the necessary changes to your product to meet Google's requirements and get it approved."
+            "footer": "Visite sua [product sheet]({0})[:target=\"_blank\"] para fazer as alterações necessárias em seu produto para atender aos requisitos do Google e aprová-lo."
         }
     },
     "keymetrics": {
@@ -816,7 +816,7 @@
             "dailyBudget": "Orçamento diário"
         },
         "tooltip": {
-            "lowBudget": "Your daily budget is too low to have a performing campaign, increase your budget to enhance campaign performance."
+            "lowBudget": "Seu orçamento diário é muito baixo para uma campanha de bom desempenho, aumente seu orçamento para melhorar o desempenho da campanha."
         }
     },
     "notConfiguredState": {
@@ -877,7 +877,7 @@
         "switchAccount": "Trocar de conta",
         "acceptInvitation": "Aceitar convite",
         "continue": "Continuar",
-        "confirm": "Confirm",
+        "confirm": "Confirmar",
         "disabled": "Desativado",
         "activateModule": "Habilitar o módulo",
         "enabled": "Ativado",
@@ -897,7 +897,7 @@
         "cancel": "Cancelar",
         "disconnectAccount": "Desconectar conta",
         "selectAccount": "Selecione conta",
-        "reviewAccount": "Review account",
+        "reviewAccount": "Revisar conta",
         "addMapping": "Adicionar mapeamento",
         "modifyMapping": "Modificar mapeamento",
         "learnAboutProductConfiguration": "Saiba mais sobre a especificação de dados dos produtos",
@@ -929,7 +929,7 @@
         "reviewProblems": "Problema opinião",
         "saveAndExport": "Guardar e exportar",
         "go": "Ir",
-        "goTo": "Go to {0}",
+        "goTo": "Ir para {0}",
         "continueWithoutSave": "Continuar sem guardar",
         "save": "Guardar",
         "disconnect": "Desconectar",
@@ -975,11 +975,11 @@
         "update": "Atualizar",
         "validateSelection": "Validar a seleção",
         "visitThe": "Visite {0} para mais informações ",
-        "createPmax": "Campanha Criar Máximo desempenho",
+        "createPmax": "Criar campanha Performance Max",
         "understand": "Eu entendo",
         "moreActions": "Mais ações",
-        "signGadsToS": "Sign terms of service on Google Ads",
-        "enableEnhancedConversions": "Activate enhanced conversion tracking",
+        "signGadsToS": "Assinar os termos de serviço do Google Ads",
+        "enableEnhancedConversions": "Ativar o acomanhamento avançado de conversões",
         "loadNextPage": "Carregar os próximos resultados"
     },
     "badge": {
@@ -989,7 +989,7 @@
         "disapproved": "Não aprovado",
         "pendingCreation": "Pendente",
         "creatingGmc": "Criar conta em poucos segundos...",
-        "creatingGmcTakingTime": "Processing is taking longer than expected, please wait a few moments and do not refresh the page.",
+        "creatingGmcTakingTime": "O processamento está demorando mais do que o esperado, aguarde alguns instantes e não atualize a página.",
         "pendingCheck": "Estamos a verificar o seu estado GMC...",
         "pending": "Pendente",
         "expiring": "A expirar em",
@@ -1031,14 +1031,14 @@
         "pauseCampaignsExplainations": "Ao interromper todas as suas campanhas, a faturação vai parar. Pode reiniciar as suas campanhas a qualquer momento na sua conta Google Ads.",
         "removeTag": "Remover o separador \"Remarketing e conversão\" da minha loja",
         "removeTagExplainations": "A remoção do separador significa que o Google deixará de ser capaz de rastrear as suas campanhas. Nós recomendamos que só remova o separador se planear remover completamente o módulo ou mudar a sua conta. Pode sempre adicioná-lo no código do seu site.",
-        "titleActivateTracking": "Measure the effectiveness of your Ads",
-        "textActivateTracking": "To run Performance Max campaigns effectively, Google Ads requires the ability to generate remarketing lists and add conversion tracking tags to your list.\n\nClicking on confirm means you accept that PrestaShop automatically installs code snippets on your store:\n- Add Google tag on my store\n- Configure conversion actions : Page views, Add to cart, Purchase",
+        "titleActivateTracking": "Avalie a eficiência dos seus anúncios",
+        "textActivateTracking": "Para executar campanhas Performance Max de forma eficiente, o Google Ads requer a capacidade de gerar listas de remarketing e adicionar tags de acompanhamento de conversões à sua lista.\n\nClicar em confirmar significa que você aceita que o PrestaShop instale automaticamente trechos de código em sua loja:\n- Adicionar tag do Google em minha loja\n- Configurar ações de conversão: visualizações de página, adicionar ao carrinho, compras",
         "textConfirmCancel": "Se você voltar, perderá os valores selecionados.",
         "disconnectedUserBo": "Sua conexão com o backoffice foi interrompida. Você será redirecionado automaticamente para a página de login em {0} segundos.",
         "titleDisconnectedUserBo": "Ligação Perdida",
-        "titleEnhancedConversionsIntro": "Measure the effectiveness of your Ads",
-        "textEnhancedConversionsIntro": "Enhance your conversion tracking accuracy and empower your bidding strategy with our latest feature: Enhanced Conversion Tracking. This feature seamlessly integrates with your existing conversion tags, ensuring the secure and privacy-conscious transmission of conversion data from your website to Google.",
-        "textActivationEnhancedConversionsIntro": "Activating it is easy – just agree to the terms of service on Google Ads. The feature is accessible on your configuration’s page below conversion tracking tag."
+        "titleEnhancedConversionsIntro": "Avalie a eficiência dos seus anúncios",
+        "textEnhancedConversionsIntro": "Melhore a precisão do seu acompanhamento de conversões e aprimore sua estratégia de lances com nossa funcionalidade mais recente: o acompanhamento aprimorado de conversões. Essa funcionalidade se integra perfeitamente às suas tags de conversão existentes, garantindo a transmissão segura e em conformidade com as regras de privacidade dos dados de conversão do seu site para o Google.",
+        "textActivationEnhancedConversionsIntro": "A ativação é fácil: basta concordar com os termos de serviço do Google Ads. Essa funcionalidade está disponível na página de configurações abaixo da tag de acompanhamento de conversões."
     },
     "tooltip": {
         "googleAccountRequired": "Requer a configuração da conta Google",
@@ -1075,7 +1075,7 @@
         "attributesMapppingSuccess": "Os atributos do seu produto foram salvos com sucesso. Resumo da revisão e clique em \"Exportar\" para enviá-los ao Google",
         "campaignCreatedSuccess": "Criou com sucesso a sua campanha de Máximo desempenho!",
         "phoneNumberVerifiedSuccess": "O seu número de telefone foi verificado. A Conta do Comerciante está sendo criada",
-        "enhancedConversionEnabledSuccess": "Enhanced conversion tracking enabled"
+        "enhancedConversionEnabledSuccess": "Acompanhamento avançado de conversões ativado"
     },
     "stepper": {
         "nextStep": "A seguir: {0}",
@@ -1123,6 +1123,6 @@
         "textCampaignsBanner": "Crie sua primeira campanha e atinja compradores mais relevantes em todos os canais do Google. Permita que o aprendizado de máquina do Google otimize o posicionamento dos seus anúncios e melhore seu tráfego e suas vendas de forma eficiente."
     },
     "tipsAndTricks": {
-        "title": "PrestaShop pro tip"
+        "title": "Dica profissional do PrestaShop"
     }
 }
