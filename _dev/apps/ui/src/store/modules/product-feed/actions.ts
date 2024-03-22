@@ -5,7 +5,7 @@ import type ProductsStatusType from '@/enums/product-feed/products-status-type';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {type CustomCarrier, fromApi, toApi} from '@/providers/shipping-rate-provider';
 import {
-  type DeliveryDetail,
+  type DeliveryDetail,ShopShippingCollectionType,
   type ShopShippingInterface, getEnabledCarriers,
   mergeShippingDetailsSourcesForProductFeedConfiguration,validateDeliveryDetail,
 } from '@/providers/shipping-settings-provider';
@@ -19,6 +19,7 @@ import type {ActionContext} from 'vuex';
 import ActionsTypes from './actions-types';
 import MutationsTypes from './mutations-types';
 import type {
+  ProductFeedAPIPayload,
   ProductFeedSettings, ProductVerificationIssue, ProductVerificationIssueProduct, State,
 } from './state';
 
@@ -26,40 +27,53 @@ import type {
 type Context = ActionContext<State, FullState>;
 
 // ToDo: Get DTO type from API sources
-export const createProductFeedApiPayload = (settings: ProductFeedSettings) => ({
-  autoImportTaxSettings: settings.autoImportTaxSettings,
-  shippingSetup: settings.shippingSetup,
-  targetCountries: settings.targetCountries,
-  ...(
-    (settings.shippingSetup === ShippingSetupOption.ESTIMATE) ? {
-      rate: settings.rate,
-      estimateCarriers: filterEstimateCarriers(settings.estimateCarriers),
-    } : {}
-  ),
-  ...(
-    (settings.shippingSetup === ShippingSetupOption.IMPORT) ? {
-      // Send in payload data related to active carriers and active countries on shop
-      shippingSettings: settings.shippingSettings?.filter((s: ShopShippingInterface) => (
-        (s.collection !== 'carriers' || (!!s.properties.active && !s.properties.deleted))
-        && (!s.properties.country_ids
-          || settings.targetCountries.some((tc: string) => s.properties.country_ids.includes(tc)))),
-      ),
-      additionalShippingSettings: settings.additionalShippingSettings,
-    } : {}
-  ),
-  attributeMapping: formatMappingToApi(settings.attributeMapping),
-  selectedProductCategories: settings.selectedProductCategories,
-  requestSynchronizationNow: settings.requestSynchronizationNow,
-});
+export const createProductFeedApiPayload = (settings: ProductFeedAPIPayload): ProductFeedAPIPayload => {
 
-const filterEstimateCarriers = (data: CustomCarrier[]) => {
-  if (data[0].offer === OfferType.FLAT_SHIPPING_RATE || data[0].offer === OfferType.FREE_SHIPPING) {
-    delete data[0].freeShippingOverAmount;
-    if (data[0].offer === OfferType.FREE_SHIPPING) {
-      delete data[0].flatShippingRate;
-    }
-  } else if (data[0].offer === OfferType.FREE_SHIPPING_OVER_AMOUNT) {
-    delete data[0].flatShippingRate;
+  // const productFeedApiPayload: Partial<ProductFeedAPIPayload>= {
+  const productFeedApiPayload: ProductFeedAPIPayload= {
+    autoImportTaxSettings: settings.autoImportTaxSettings,
+    shippingSetup: settings.shippingSetup,
+    targetCountries: settings.targetCountries,
+
+    // biome-ignore lint/suspicious/noExplicitAny: TYPE:MUST_FIX
+    attributeMapping: formatMappingToApi(settings.attributeMapping as any),
+    selectedProductCategories: settings.selectedProductCategories,
+    requestSynchronizationNow: settings.requestSynchronizationNow,
+  };
+
+  const filterShippingSettings= (s: ShopShippingInterface) => (
+      (s.collection !== ShopShippingCollectionType.CARRIERS || (!!s.properties.active && !s.properties.deleted))
+      &&
+      (!s.properties.country_ids || settings.targetCountries?.some((tc: string) => s.properties.country_ids.includes(tc))));
+
+  switch(settings.shippingSetup) {
+    case ShippingSetupOption.ESTIMATE:
+      productFeedApiPayload.rate = settings.rate;
+      productFeedApiPayload.estimateCarriers = settings.estimateCarriers?.map(filterEstimateCarriers);
+      break;
+    case ShippingSetupOption.IMPORT:
+      // Send in payload data related to active carriers and active countries on shop
+      productFeedApiPayload.shippingSettings = settings.shippingSettings?.filter(filterShippingSettings);
+      productFeedApiPayload.additionalShippingSettings = settings.additionalShippingSettings;
+      break;
+  }
+
+  return productFeedApiPayload;
+
+}
+
+const filterEstimateCarriers = (data: CustomCarrier) => {
+  switch(data.offer) {
+    case OfferType.FLAT_SHIPPING_RATE:
+      data.freeShippingOverAmount= undefined;
+      break;
+    case OfferType.FREE_SHIPPING:
+      data.freeShippingOverAmount= undefined;
+      data.flatShippingRate= undefined;
+      break;
+    case OfferType.FREE_SHIPPING_OVER_AMOUNT:
+      data.flatShippingRate= undefined;
+      break;
   }
   return data;
 }

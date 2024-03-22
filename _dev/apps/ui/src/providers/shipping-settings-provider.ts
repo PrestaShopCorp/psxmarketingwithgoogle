@@ -6,13 +6,31 @@ export enum ShopShippingCollectionType {
     CARRIER_TAXES = 'carrier_taxes',
 }
 
-export type ShopShippingInterface = {
-    collection: ShopShippingCollectionType,
-    id: string|number,
-    properties: (ShopShippingCarrierPropertiesInterface
-      |ShopShippingCarrierDetailPropertiesInterface
-      |ShopShippingCarrierTaxPropertiesInterface),
-}
+type ShopShippingCarrierInterface = {
+  collection: ShopShippingCollectionType.CARRIERS,
+  id: string|number,
+  properties: ShopShippingCarrierPropertiesInterface
+};
+type ShopShippingCarrierDetailInterface = {
+  collection: ShopShippingCollectionType.CARRIER_DETAILS,
+  id: string|number,
+  properties: ShopShippingCarrierDetailPropertiesInterface
+};
+type ShopShippingCarrierTaxInterface = {
+  collection: ShopShippingCollectionType.CARRIER_TAXES,
+  id: string|number,
+  properties: ShopShippingCarrierTaxPropertiesInterface
+};
+
+export type ShopShippingInterface = ShopShippingCarrierInterface | ShopShippingCarrierDetailInterface | ShopShippingCarrierTaxInterface;
+
+// export type ShopShippingInterface = {
+//     collection: ShopShippingCollectionType,
+//     id: string|number,
+//     properties: (ShopShippingCarrierPropertiesInterface
+//       |ShopShippingCarrierDetailPropertiesInterface
+//       |ShopShippingCarrierTaxPropertiesInterface),
+// };
 
 export type ShopShippingCarrierPropertiesInterface = {
   // eslint-disable-next-line camelcase

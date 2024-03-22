@@ -1,21 +1,23 @@
-import cloneDeep from 'lodash.clonedeep';
-import createFetchMock from 'vitest-fetch-mock';
-import {initOnboardingClient} from 'mktg-with-google-common/api/onboardingClient';
-import {createProductFeedApiPayload} from './actions';
-import {shippingPhpExportWithIssues} from '@/../.storybook/mock/shipping-settings';
-import {ShopShippingCollectionType, ShopShippingInterface} from '@/providers/shipping-settings-provider';
 import {productValidationListMock} from '@/../.storybook/mock/api-routes/product-validations';
-import ActionsTypes from '@/store/modules/product-feed/actions-types';
+import {shippingPhpExportWithIssues} from '@/../.storybook/mock/shipping-settings';
+import DeliveryType from "@/enums/product-feed/delivery-type";
+import { ShippingSetupOption } from "@/enums/product-feed/shipping";
+import {ShopShippingCollectionType, type ShopShippingInterface} from '@/providers/shipping-settings-provider';
 import actions from '@/store/modules/product-feed/actions';
-import {ProductStatus} from './state';
+import ActionsTypes from '@/store/modules/product-feed/actions-types';
+import cloneDeep from 'lodash.clonedeep';
+import {initOnboardingClient} from 'mktg-with-google-common/api/onboardingClient';
+import createFetchMock from 'vitest-fetch-mock';
+import {createProductFeedApiPayload} from './actions';
+import {type ProductFeedSettings, ProductStatus} from './state';
 
-const allDetailsFromState = {
+const allDetailsFromState: ProductFeedSettings = {
   autoImportTaxSettings: false,
-  shippingSetup: 'import',
+  shippingSetup: ShippingSetupOption.IMPORT,
   targetCountries: ['FR', 'IT'],
   shippingSettings: [
     {
-      collection: 'carriers',
+      collection: ShopShippingCollectionType.CARRIERS,
       id: '189',
       properties: {
         id_carrier: '273',
@@ -50,7 +52,7 @@ const allDetailsFromState = {
   additionalShippingSettings: {
     deliveryDetails: [
       {
-        deliveryType: 'delivery',
+        deliveryType: DeliveryType.DELIVERY,
         minHandlingTimeInDays: 0,
         maxHandlingTimeInDays: 0,
         minTransitTimeInDays: 1,

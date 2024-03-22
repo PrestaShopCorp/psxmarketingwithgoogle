@@ -1,13 +1,13 @@
-import {DeliveryDetail, ShopShippingInterface} from '@/providers/shipping-settings-provider';
-import attributesToMap from './attributes-to-map.json';
-import {AttributeResponseFromAPI} from '../../../utils/AttributeMapping';
-import {ShippingSetupOption} from '@/enums/product-feed/shipping';
-import {CustomCarrier} from '@/providers/shipping-rate-provider';
-import {RateType} from '@/enums/product-feed/rate';
-import Categories, {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
-import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
+import type {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
+import type {ProductIssueImpact} from '@/components/render-issues/types';
+import Categories, {type SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
+import type {RateType} from '@/enums/product-feed/rate';
+import type {ShippingSetupOption} from '@/enums/product-feed/shipping';
+import type {CustomCarrier} from '@/providers/shipping-rate-provider';
+import type {DeliveryDetail, ShopShippingInterface} from '@/providers/shipping-settings-provider';
 import {RequestState} from '@/store/types';
-import {ProductIssueImpact} from '@/components/render-issues/types';
+import type {AttributeResponseFromAPI} from '../../../utils/AttributeMapping';
+import attributesToMap from './attributes-to-map.json';
 
 /**
  * @deprecated
@@ -34,15 +34,25 @@ export type ProductFeedReport = {
 }
 export interface ProductFeedSettings {
   shippingSetup: ShippingSetupOption|null;
-  estimateCarriers: CustomCarrier[];
-  shippingSettings: ShopShippingInterface[];
-  rate: RateType|null;
-  deliveryDetails: DeliveryDetail[];
+  estimateCarriers?: CustomCarrier[];
+  shippingSettings?: ShopShippingInterface[];
+  rate?: RateType|null;
+  deliveryDetails?: DeliveryDetail[];
   autoImportTaxSettings: boolean;
   // Deprecated: Kept for backward compatibility with old product feed.
   autoImportShippingSettings?: boolean;
   targetCountries: string[]|null;
 }
+
+export interface ProductFeedAPIPayload extends ProductFeedSettings {
+  additionalShippingSettings?: {
+    deliveryDetails: DeliveryDetail[];
+  };
+  attributeMapping: AttributeResponseFromAPI;
+  selectedProductCategories: unknown;
+  requestSynchronizationNow: unknown;
+}
+
 export interface ProductFeedValidationSummary {
   activeProducts: number|null;
   expiringProducts: number|null;
