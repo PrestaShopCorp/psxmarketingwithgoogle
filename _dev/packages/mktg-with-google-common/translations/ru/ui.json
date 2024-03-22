@@ -7,11 +7,11 @@
             "catalog": "Каталог продукции",
             "help": "Помощь"
         },
-        "versionDoesNotExist": "Похоже, что версия модуля не может быть получена. Это на нашей стороне, пожалуйста, попробуйте еще раз.",
+        "versionDoesNotExist": "Возможно, не удалось получить версию модуля из-за проблемы на нашей стороне. Повторите попытку.",
         "moduleNeedActivation": "Интеграция PrestaShop Marketing с Google отключена. Включите модуль, чтобы пользоваться его функциями.",
         "moduleUpdateNeeded": {
             "ps_eventbus": {
-                "title": "**Требуется более новая версия PrestaShop CloudSync**\n\n Версия модуля PrestaShop CloudSync в этом магазине устарела.\n\nВы можете и дальше использовать интеграцию PrestaShop Marketing с Google, однако синхронизация товаров и некоторые другие функции станут доступны только после обновления."
+                "title": "**Требуется более новая версия PrestaShop CloudSync**\n\n Версия модуля PrestaShop CloudSync в этом магазине устарела.\n\nВы можете и дальше использовать интеграцию PrestaShop Marketing с Google, однако синхронизация товаров и некоторые другие функции станут доступны только после обновления PrestaShop CloudSync."
             },
             "psxmarketingwithgoogle": {
                 "title": "**Доступна новая версия интеграции PrestaShop Marketing с Google **\n\n Мы внесли значительные улучшения и добавили удобные функции, которые выведут ваш продукт на новый уровень.",
@@ -28,7 +28,7 @@
         "mandatory": "обязательны",
         "XIsMandatory": "{0} является обязательным.",
         "unableToFetchData": "Мы не смогли получить данные, пожалуйста, повторите попытку позже",
-        "noResults": "No data found",
+        "noResults": "Данные не найдены",
         "search": "Поиск",
         "createAccount": "создайте ее",
         "createNewAccount": "Если у вас нет учетной записи, {0} сегодня.",
@@ -116,11 +116,11 @@
         "AccountValidationFailed": "Проверка учетной записи не прошла",
         "unlinkFailed": "Отключение не удалось. Пожалуйста, обновите страницу и попробуйте снова.",
         "tryAgainLater": "Не удалось проверить или подтвердить текущий сайт. **Убедитесь, что сайт доступен**, и повторите попытку позже.",
-        "alertSuspended": "Account suspended: action required",
-        "alertSuspendedDescription": "Google suspended your Merchant Center account due to policy violations. Your products are no longer being promoted. Review the suspension reason, analyze your account, and take the necessary steps to meet the requirements. {0}.",
-        "alertSuspendedLearnMore": "Learn more about the account suspension",
+        "alertSuspended": "Действие аккаунта приостановлено: требуется действие",
+        "alertSuspendedDescription": "Google приостановил действие аккаунта Merchant Center из-за нарушения правил. Ваши товары больше не продвигаются. Проверьте причину приостановки, проанализируйте свой аккаунт и примите меры, чтобы обеспечить соответствие требованиям. {0}.",
+        "alertSuspendedLearnMore": "Узнать больше о приостановке действия аккаунта",
         "notManaged": "Не связано с PrestaShop",
-        "overwriteFailed": "Утверждение URL-адреса веб-сайта не удалось",
+        "overwriteFailed": "Не удалось утвердить URL-адрес сайта",
         "overwriteToBeDoneManually": "Ваш сайт уже был заявлен в другом торговом центре. Поскольку мы не являемся администратором вашего аккаунта, мы не можем переписать это заявление для вас. Пожалуйста, зайдите в свой [Google Merchant Center]({0})[:target=\"_blank\"], и измените URL веб-сайта на этот: {1}",
         "ineligibleForFreeListing": "Ваш аккаунт не имеет права на бесплатные расширенные объявления в Google",
         "ineligibleForFreeListingDescription": "Пожалуйста, изучите отказы на уровне продукта, а также в целом по вашему счету.",
@@ -215,11 +215,11 @@
         "updateData": "Если вы внесли какие-либо изменения в свой бэк-офис, пожалуйста, обновите информацию, чтобы увидеть изменения, отраженные здесь."
     },
     "gmcAccountIssues": {
-        "title": "More details about account issues",
-        "description": "Your account has been flagged for potential performance and compliance issues. Please review the detailed information provided to understand and address these concerns promptly"
+        "title": "Подробнее о проблемах с учетной записью",
+        "description": "Мы обнаружили в вашей учетной записи возможные проблемы с производительностью и соответствием требованиям. Ознакомьтесь с предоставленной подробной информацией, чтобы проанализировать и оперативно решить эти проблемы."
     },
     "productFeedCard": {
-        "title": "Подача продукта",
+        "title": "Товарный фид",
         "intro": "Отправляйте данные о своих товарах непосредственно в Merchant Center и постоянно обновляйте их для бесплатных объявлений и листингов.",
         "introToConfigure": "Очень важно представить свою ленту товаров в правильном формате, поскольку Google использует его, чтобы убедиться, что ваши товары соответствуют правильным запросам.",
         "nextSync": "Дата следующей синхронизации: {0}",
@@ -241,7 +241,7 @@
         "alertErrorApi": "Вы не можете отправить данные о своих продуктах в Google прямо сейчас. Повторите попытку позже."
     },
     "productFeedSettings": {
-        "breadcrumb1": "Подача продукта",
+        "breadcrumb1": "Товарный фид",
         "breadcrumb2": "Настройки подачи продукта",
         "steps": {
             "shippingSetup": "Настройка доставки",
@@ -530,15 +530,15 @@
         "footerInfo": "*Глобальные данные Google Рекламы, сентябрь–октябрь 2021 года."
     },
     "enhancedConversionTrackingCard": {
-        "title": "Enhanced conversion tracking",
-        "intro": "Improve your conversion tracking accuracy and unlock more powerful bidding. This feature works alongside your existing conversion tags, sending secure, privacy-friendly conversion data from your website to Google.",
+        "title": "Расширенное отслеживание конверсий",
+        "intro": "Повысьте точность отслеживания конверсий и эффективность ставок. Эта функция работает вместе с существующими тегами конверсий, отправляя безопасные и конфиденциальные данные о конверсиях с вашего сайта в Google.",
         "signTosAlert": {
-            "title": "Improve your conversion tracking & unlock more powerful bidding to your Ads",
-            "text": "Enable enhanced conversion tracking by simply agreeing to Google Ads' terms of service"
+            "title": "Улучшите отслеживание конверсий и повысьте эффективность ставок для своих объявлений",
+            "text": "Включите расширенное отслеживание конверсий, просто предоставив согласие с условиями использования Google Рекламы"
         },
         "enableEnhancedConversionAlert": {
-            "title": "Ready to enable enhanced conversion tracking feature",
-            "text": "Your Google Ads' terms of service are up-to-date, head to your configuration page to enable your new feature"
+            "title": "Включите функцию расширенного отслеживания конверсий",
+            "text": "Условия использования Google Рекламы обновлены. Чтобы включить новую функцию, перейдите на страницу настройки."
         }
     },
     "smartShoppingCampaignCreation": {
@@ -569,12 +569,12 @@
         "inputFiltersAllLabel": "Включить все синхронизированные продукты",
         "inputFiltersPartialLabel": "Выберите продукты, используя фильтры разделов продуктов",
         "inputFiltersHelper": "Потратьте немного времени, чтобы [прочитать рекламную политику Google Shopping]({0})[:target=\"_blank\"] некоторые товары запрещены или ограничены.",
-        "inputBudgetHelper": "The minimum budget varies based on your target country. Please select a country to see the exact minimum required.",
-        "inputBudgetHelperForTargetCountry": "The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.",
+        "inputBudgetHelper": "Минимальный бюджет зависит от целевой страны. Выберите страну, чтобы узнать точный требуемый минимальный бюджет.",
+        "inputBudgetHelperForTargetCountry": "Минимальный бюджет, необходимый для страны {country}, составляет {budget}. Это обеспечит достаточный охват вашей кампании в этом регионе.",
         "inputBudgetInvalidFeedback": "Ваш дневной бюджет должен быть действительным числом больше 1. Для любого десятичного числа используйте точку в качестве разделителя.",
-        "inputBudgetBeforeThresholdFeedback": "Minimum budget required for this target country is {budget}. Please increase your budget to continue.",
+        "inputBudgetBeforeThresholdFeedback": "Минимальный бюджет, необходимый для этой целевой страны, составляет {budget}. Чтобы продолжить, увеличьте бюджет.",
         "inputBudgetFeedback": "Ежедневный бюджет кампании",
-        "inputBudgetTooltip": "To ensure Ad performance, the base minimum depends on your target country and the budget you choose is entirely up to you, and you can adjust it at any time.",
+        "inputBudgetTooltip": "Базовый минимальный бюджет, необходимый для эффективного размещения объявлений, зависит от целевой страны. Однако вы можете выбрать любой бюджет и изменить его в любое время.",
         "inputBudgetPlaceholder": "Сумма",
         "inputAllSyncedProducts": "Фильтры не выбраны",
         "formHelperTitle": "Активация кампании",
@@ -628,12 +628,12 @@
         "dimensionXFilterSelectedWithXProducts": "{0} фильтр | {0} фильтр ({1} товар) | {0} фильтр ({1} товара(-ов))",
         "filtersWithxValues": "{0} фильтра(-ов) | {0} фильтра(-ов) с {1} затронутым товаром | {0} фильтра(-ов) с {1} затронутыми товарами",
         "budgetTip": {
-            "content": "To ensure the success of your campaign, it’s essential to adjust your daily ad budget according to the target country. For instance, a starting point of {budget} is recommended for {country}. By choosing your target country, you can identify the ideal budget to meet your objectives. Remember, this foundational budget is more than just a figure – it’s a key component of your campaign strategy. A well-planned budget facilitates efficient ad testing and refinement, enabling you to customize your expenditure to the unique requirements of your business and enhance overall campaign performance."
+            "content": "Для эффективного ведения кампании необходимо скорректировать дневной рекламный бюджет в соответствии с целевой страной. Например, для страны {country} рекомендуется начальный бюджет {budget}. Выбрав целевую страну, вы можете определить идеальный бюджет для достижения своих целей. Помните, что базовый бюджет — это не просто сумма, это ключевой компонент стратегии вашей кампании. Правильно спланированный бюджет помогает эффективно тестировать и улучшать рекламу, чтобы настроить расходы в соответствии с уникальными требованиями вашего бизнеса и повысить общую эффективность кампании."
         }
     },
     "productFeedPage": {
         "breadcrumb": {
-            "productStatusDetails": "Disapproved products",
+            "productStatusDetails": "Отклоненные товары",
             "nonCompliantProducts": "Несоответствующие товары"
         },
         "alert": {
@@ -669,7 +669,7 @@
                     "noEligibleCurrenciesDesc": "Обновите целевые страны в {0} или добавьте необходимые валюты в {1}, чтобы они соответствовали целевым странам, указанным в ошибке."
                 },
                 "title": "Конфигурация товарного фида",
-                "targetCountries": "Target country:|Target countries:",
+                "targetCountries": "Целевая страна:|Целевые страны:",
                 "languages": "Язык:|Языки:",
                 "currencies": "Валюта:|Валюты:",
                 "noLanguage": "Нет подходящего языка",
@@ -743,15 +743,15 @@
             "priceMissingAction": "Укажите цену товара."
         },
         "approvalTable": {
-            "description": "Below, you'll find a list of **{productTotal} products** that didn't pass the approval process. For each product, we've provided the reasons for disapproval to facilitate swift corrections. After making the necessary updates, these products can be synchronized with Google Shopping.",
+            "description": "Ниже приведен список **товаров ({productTotal})**, которые не прошли утверждение. Для каждого товара мы указали причину отклонения, чтобы упростить быстрое исправление. После внесения необходимых обновлений эти товары можно синхронизировать с Google Shopping.",
             "filterTitle": "Фильтр по доступности",
-            "NoFilter": "All",
+            "NoFilter": "Все",
             "tableHeaderID": "ID",
-            "tableHeaderName": "Product title",
+            "tableHeaderName": "Название товара",
             "tableHeaderLanguage": "Язык",
-            "tableHeaderCurrency": "Currency",
-            "tableHeaderCountry": "Affected countries",
-            "tableHeaderIssue": "Reasons",
+            "tableHeaderCurrency": "Валюта",
+            "tableHeaderCountry": "Затронутые страны",
+            "tableHeaderIssue": "Причины",
             "xResults": "{0} результаты",
             "perPageLabel": "Показать:",
             "goToLabel": "Перейти на страницу:",
@@ -759,10 +759,10 @@
             "noReasonFallback": "* Не указано, проверьте [ошибки учетной записи в Merchant Center]({0})[:target=\"_blank\"].*"
         },
         "productIssuesModal": {
-            "title": "More details about your product issues",
-            "description": "Here are the reasons for suspension provided by Google. Take the necessary steps to meet the requirements and wait for the next scan.",
+            "title": "Подробнее о проблемах с товарами",
+            "description": "Ниже приведены причины приостановки, предоставленные Google. Примите необходимые меры для соответствия требованиям и дождитесь следующей проверки.",
             "impactListFormat": "{language} [{currency}]: {impact}",
-            "footer": "Visit your [product sheet]({0})[:target=\"_blank\"] to make the necessary changes to your product to meet Google's requirements and get it approved."
+            "footer": "Откройте [описание товара]({0})[:target=\"_blank\"] и внесите необходимые изменения, чтобы обеспечить соответствие требованиям Google и получить утверждение."
         }
     },
     "keymetrics": {
@@ -816,7 +816,7 @@
             "dailyBudget": "Ежедневный бюджет"
         },
         "tooltip": {
-            "lowBudget": "Your daily budget is too low to have a performing campaign, increase your budget to enhance campaign performance."
+            "lowBudget": "Ваш ежедневный бюджет недостаточен для эффективного ведения кампании. Увеличьте бюджет, чтобы повысить эффективность кампании."
         }
     },
     "notConfiguredState": {
@@ -877,8 +877,8 @@
         "switchAccount": "Переключить учетную запись",
         "acceptInvitation": "Принять приглашение",
         "continue": "Продолжить",
-        "confirm": "Confirm",
-        "disabled": "Инвалид",
+        "confirm": "Подтвердить",
+        "disabled": "Отключено",
         "activateModule": "Включить модуль",
         "enabled": "Включено",
         "agree": "Я согласен",
@@ -897,7 +897,7 @@
         "cancel": "Отмена",
         "disconnectAccount": "Отключить счет",
         "selectAccount": "Выберите счет",
-        "reviewAccount": "Review account",
+        "reviewAccount": "Проверить учетную запись",
         "addMapping": "Добавить отображение",
         "modifyMapping": "Изменить отображение",
         "learnAboutProductConfiguration": "Узнайте больше о спецификации данных о продукте",
@@ -929,7 +929,7 @@
         "reviewProblems": "Проблемы пересмотра",
         "saveAndExport": "Сохранить и экспортировать",
         "go": "Перейти",
-        "goTo": "Go to {0}",
+        "goTo": "Перейти к {0}",
         "continueWithoutSave": "Продолжить без сохранения",
         "save": "Сохранить",
         "disconnect": "Отключить",
@@ -978,8 +978,8 @@
         "createPmax": "Создание кампании Performance Max",
         "understand": "Я понимаю",
         "moreActions": "Другие действия",
-        "signGadsToS": "Sign terms of service on Google Ads",
-        "enableEnhancedConversions": "Activate enhanced conversion tracking",
+        "signGadsToS": "Подписать условия использования Google Рекламы",
+        "enableEnhancedConversions": "Включите расширенное отслеживание конверсий",
         "loadNextPage": "Загрузить следующие результаты"
     },
     "badge": {
@@ -989,13 +989,13 @@
         "disapproved": "Не одобрено",
         "pendingCreation": "В ожидании",
         "creatingGmc": "Создание аккаунта за несколько секунд...",
-        "creatingGmcTakingTime": "Processing is taking longer than expected, please wait a few moments and do not refresh the page.",
+        "creatingGmcTakingTime": "Обработка занимает больше времени, чем ожидалось. Подождите несколько минут и не обновляйте страницу.",
         "pendingCheck": "Мы проверяем ваш статус GMC...",
         "pending": "В ожидании",
         "expiring": "Истекающий",
         "checkingSiteClaim": "Проверяю претензии к вашему сайту...",
         "siteVerified": "Сайт проверен",
-        "productFeed": "Подача продукта",
+        "productFeed": "Товарный фид",
         "productFeedSettings": "Настройки подачи продукта",
         "merchantCenterAccount": "Счет в торговом центре",
         "googleAccount": "аккаунт Google",
@@ -1018,7 +1018,7 @@
         "titleDisconnection": "Подтвердить отключение?",
         "titleoverwrite": "Переписать существующее заявление?",
         "textDisconnectGoogleAccount": "Вы собираетесь отключить аккаунт Google. Это приведет к удалению доступа к аккаунтам Google, Google Merchant Center и Google Ads.",
-        "textDisconnectMCA": "Отключение Merchant Center приведет к удалению доступа к объявлениям Google Ads в этом модуле и приостановке любой запущенной кампании.",
+        "textDisconnectMCA": "Отключение Merchant Center приведет к удалению доступа к объявлениям Google Ads в этом модуле и приостановке любой запущенной кампании. ",
         "textoverwrite": "Перезапись существующего заявления приведет к деактивации вашей предыдущей учетной записи и приостановке существующих кампаний, связанных с этой учетной записью - бесплатных объявлений и кампаний Shopping.  \nЕсли вы запускаете другую кампанию Shopping, мы рекомендуем приостановить ее.",
         "titleCancelWithoutSaving": "Отменить без сохранения?",
         "textCancelProductFeed": "Если вы продолжите, то потеряете все несохраненные изменения. Чтобы успешно отправить данные о своем продукте в Google, необходимо выполнить все шаги.",
@@ -1031,14 +1031,14 @@
         "pauseCampaignsExplainations": "Если приостановить все кампании, выставление счетов прекратится. Вы можете перезапустить свои кампании в любое время в своем аккаунте Google ads.",
         "removeTag": "Удалите тег \"Ремаркетинг и конверсия\" из моего магазина",
         "removeTagExplainations": "Удаление тега означает, что Google больше не сможет отслеживать ваши кампании. Мы рекомендуем удалять тег только в том случае, если вы планируете полностью удалить модуль или изменить учетную запись. Вы всегда можете добавить его самостоятельно в код вашего сайта.",
-        "titleActivateTracking": "Measure the effectiveness of your Ads",
-        "textActivateTracking": "To run Performance Max campaigns effectively, Google Ads requires the ability to generate remarketing lists and add conversion tracking tags to your list.\n\nClicking on confirm means you accept that PrestaShop automatically installs code snippets on your store:\n- Add Google tag on my store\n- Configure conversion actions : Page views, Add to cart, Purchase",
+        "titleActivateTracking": "Оцените эффективность вашей рекламы",
+        "textActivateTracking": "Чтобы эффективно запускать кампании Performance Max, Google Реклама требует возможности создавать списки ремаркетинга и добавлять теги отслеживания конверсий в ваш список.\n\nНажимая кнопку \"Подтвердить\", вы даете согласие с тем, что PrestaShop будет автоматически устанавливать фрагменты кода в вашем магазине:\n- Добавление тега Google в мой магазин\n- Настройка действий по конверсии: просмотры страницы, добавление в корзину, покупка",
         "textConfirmCancel": "Если вы вернетесь назад, то потеряете выбранные значения.",
         "disconnectedUserBo": "Вы были отключены от личного кабинета. Вы будете автоматически перенаправлены на страницу входа через {0} сек.",
         "titleDisconnectedUserBo": "Соединение потеряно",
-        "titleEnhancedConversionsIntro": "Measure the effectiveness of your Ads",
-        "textEnhancedConversionsIntro": "Enhance your conversion tracking accuracy and empower your bidding strategy with our latest feature: Enhanced Conversion Tracking. This feature seamlessly integrates with your existing conversion tags, ensuring the secure and privacy-conscious transmission of conversion data from your website to Google.",
-        "textActivationEnhancedConversionsIntro": "Activating it is easy – just agree to the terms of service on Google Ads. The feature is accessible on your configuration’s page below conversion tracking tag."
+        "titleEnhancedConversionsIntro": "Оцените эффективность вашей рекламы",
+        "textEnhancedConversionsIntro": "Повысьте точность отслеживания конверсий и расширьте возможности своей стратегии ставок с помощью нашей последней функции: расширенное отслеживание конверсий. Эта функция удобно интегрируется с существующими тегами конверсий, обеспечивая безопасную и конфиденциальную передачу данных о конверсии с вашего сайта в Google.",
+        "textActivationEnhancedConversionsIntro": "Чтобы включить эту функцию, просто предоставьте согласие с условиями использования Google Рекламы. Функция доступна на странице настройки в разделе тегов отслеживания конверсий."
     },
     "tooltip": {
         "googleAccountRequired": "Требуется настройка аккаунта Google",
@@ -1075,7 +1075,7 @@
         "attributesMapppingSuccess": "Атрибуты вашего продукта успешно сохранены. Просмотрите резюме, затем нажмите \"Экспорт\", чтобы отправить их в Google",
         "campaignCreatedSuccess": "Вы создали кампанию Performance Max!",
         "phoneNumberVerifiedSuccess": "Ваш номер телефона был проверен. Создается торговый счет",
-        "enhancedConversionEnabledSuccess": "Enhanced conversion tracking enabled"
+        "enhancedConversionEnabledSuccess": "Расширенное отслеживание конверсий включено"
     },
     "stepper": {
         "nextStep": "Следующий: {0}",
@@ -1123,6 +1123,6 @@
         "textCampaignsBanner": "Создайте первую кампанию и охватите более релевантных покупателей по всем каналам Google. Машинное обучение Google оптимизирует места размещения рекламы и эффективно улучшает трафик и продажи."
     },
     "tipsAndTricks": {
-        "title": "PrestaShop pro tip"
+        "title": "Профессиональный совет от PrestaShop"
     }
 }
