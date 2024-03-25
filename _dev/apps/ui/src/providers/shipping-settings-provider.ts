@@ -26,14 +26,6 @@ export type ShopShippingInterface = ShopShippingCarrierInterface
   | ShopShippingCarrierDetailInterface
   | ShopShippingCarrierTaxInterface;
 
-// export type ShopShippingInterface = {
-//     collection: ShopShippingCollectionType,
-//     id: string|number,
-//     properties: (ShopShippingCarrierPropertiesInterface
-//       |ShopShippingCarrierDetailPropertiesInterface
-//       |ShopShippingCarrierTaxPropertiesInterface),
-// };
-
 export type ShopShippingCarrierPropertiesInterface = {
   // eslint-disable-next-line camelcase
   id_carrier: string,

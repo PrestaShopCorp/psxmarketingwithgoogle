@@ -4,7 +4,6 @@ import {type GoogleMerchantAccount, WebsiteClaimErrorReason} from '@/store/modul
 import appGetters from '@/store/modules/app/getters-types';
 import type {FullState} from '@/store/types';
 import CannotOverwriteError from '../../../utils/CannotOverwriteError';
-// import ActionsTypesApp from '../app/actions-types';
 import NeedOverwriteError from '../../../utils/NeedOverwriteError';
 import MutationsTypesGoogleAds from '../google-ads/mutations-types';
 import MutationsTypesProductFeed from '../product-feed/mutations-types';
