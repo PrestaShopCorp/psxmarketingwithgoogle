@@ -22,7 +22,9 @@ type ShopShippingCarrierTaxInterface = {
   properties: ShopShippingCarrierTaxPropertiesInterface
 };
 
-export type ShopShippingInterface = ShopShippingCarrierInterface | ShopShippingCarrierDetailInterface | ShopShippingCarrierTaxInterface;
+export type ShopShippingInterface = ShopShippingCarrierInterface
+  | ShopShippingCarrierDetailInterface
+  | ShopShippingCarrierTaxInterface;
 
 // export type ShopShippingInterface = {
 //     collection: ShopShippingCollectionType,

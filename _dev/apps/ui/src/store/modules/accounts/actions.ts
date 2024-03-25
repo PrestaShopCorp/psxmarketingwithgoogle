@@ -1,16 +1,16 @@
-import {ActionContext} from 'vuex';
-import {fetchOnboarding, fetchShop, HttpClientError} from 'mktg-with-google-common';
-import {GoogleMerchantAccount, WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
-import MutationsTypes from './mutations-types';
-import MutationsTypesProductFeed from '../product-feed/mutations-types';
-import MutationsTypesGoogleAds from '../google-ads/mutations-types';
-import ActionsTypes from './actions-types';
-import ActionsTypesApp from '../app/actions-types';
-import NeedOverwriteError from '../../../utils/NeedOverwriteError';
-import CannotOverwriteError from '../../../utils/CannotOverwriteError';
-import {FullState} from '@/store/types';
+import {HttpClientError, fetchOnboarding, fetchShop} from 'mktg-with-google-common';
+import type {ActionContext} from 'vuex';
+import {type GoogleMerchantAccount, WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 import appGetters from '@/store/modules/app/getters-types';
-import {State} from './state';
+import type {FullState} from '@/store/types';
+import CannotOverwriteError from '../../../utils/CannotOverwriteError';
+// import ActionsTypesApp from '../app/actions-types';
+import NeedOverwriteError from '../../../utils/NeedOverwriteError';
+import MutationsTypesGoogleAds from '../google-ads/mutations-types';
+import MutationsTypesProductFeed from '../product-feed/mutations-types';
+import ActionsTypes from './actions-types';
+import MutationsTypes from './mutations-types';
+import type {State} from './state';
 
 type Context = ActionContext<State, FullState>;
 
@@ -384,7 +384,7 @@ export default {
   },
 
   // eslint-disable-next-line no-empty-pattern
-  async [ActionsTypes.SEND_WEBSITE_REQUIREMENTS]({}: Context, payload: Array<String>) {
+  async [ActionsTypes.SEND_WEBSITE_REQUIREMENTS]({}: Context, payload: Array<string>) {
     return fetchShop('setWebsiteRequirementStatus', {requirements: payload});
   },
 

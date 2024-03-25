@@ -1,13 +1,13 @@
-import {productValidationListMock} from '@/../.storybook/mock/api-routes/product-validations';
-import {shippingPhpExportWithIssues} from '@/../.storybook/mock/shipping-settings';
-import DeliveryType from "@/enums/product-feed/delivery-type";
-import { ShippingSetupOption } from "@/enums/product-feed/shipping";
-import {ShopShippingCollectionType, type ShopShippingInterface} from '@/providers/shipping-settings-provider';
-import actions from '@/store/modules/product-feed/actions';
-import ActionsTypes from '@/store/modules/product-feed/actions-types';
 import cloneDeep from 'lodash.clonedeep';
 import {initOnboardingClient} from 'mktg-with-google-common/api/onboardingClient';
 import createFetchMock from 'vitest-fetch-mock';
+import {productValidationListMock} from '@/../.storybook/mock/api-routes/product-validations';
+import {shippingPhpExportWithIssues} from '@/../.storybook/mock/shipping-settings';
+import DeliveryType from '@/enums/product-feed/delivery-type';
+import {ShippingSetupOption} from '@/enums/product-feed/shipping';
+import {ShopShippingCollectionType, type ShopShippingInterface} from '@/providers/shipping-settings-provider';
+import actions from '@/store/modules/product-feed/actions';
+import ActionsTypes from '@/store/modules/product-feed/actions-types';
 import {createProductFeedApiPayload} from './actions';
 import {type ProductFeedSettings, ProductStatus} from './state';
 
