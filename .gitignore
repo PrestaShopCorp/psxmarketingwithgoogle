@@ -34,4 +34,9 @@ _dev/apps/ui/.jest-test-results.json
 _dev/apps/ui/storybook-static
 .vscode/launch.json
 .pnpm-store
-views/js/*
+# do not push files from the local built
+views/js/fetchVerificationTag.js*
+views/js/psxmarketingwithgoogle-ui.js*
+views/js/vendor.js*
+views/js/translations/
+views/img/
