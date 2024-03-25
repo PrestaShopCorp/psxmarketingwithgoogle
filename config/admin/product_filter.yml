@@ -1,0 +1,18 @@
+services:
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\AttributeOptionsProvider:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\AttributeOptionsProvider
+    public: true
+    arguments:
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Repository\AttributesRepository'
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\BrandOptionsProvider:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\BrandOptionsProvider
+    public: true
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\CategoryOptionsProvider:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\CategoryOptionsProvider
+    public: true
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\Resolver:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\Resolver
+    public: true
