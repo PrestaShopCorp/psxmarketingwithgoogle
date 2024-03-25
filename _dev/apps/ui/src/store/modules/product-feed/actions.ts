@@ -1,3 +1,5 @@
+import {HttpClientError, fetchOnboarding, fetchShop} from 'mktg-with-google-common';
+import type {ActionContext} from 'vuex';
 import type {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
 import type {ProductIssue} from '@/components/render-issues/types';
 import {OfferType} from '@/enums/product-feed/offer';
@@ -14,8 +16,6 @@ import {type FullState, RequestState} from '@/store/types';
 import {formatMappingToApi} from '@/utils/AttributeMapping';
 import {deleteProductFeedDataFromLocalStorage, getDataFromLocalStorage} from '@/utils/LocalStorage';
 import {runIf} from '@/utils/Promise';
-import {HttpClientError, fetchOnboarding, fetchShop} from 'mktg-with-google-common';
-import type {ActionContext} from 'vuex';
 import ActionsTypes from './actions-types';
 import MutationsTypes from './mutations-types';
 import type {
@@ -38,7 +38,7 @@ export const createProductFeedApiPayload = (settings: ProductFeedAPIPayload): Pr
     selectedProductCategories: settings.selectedProductCategories,
     requestSynchronizationNow: settings.requestSynchronizationNow,
   };
-  //TODO: refactor so it is Typescript valid
+  // TODO: refactor so it is Typescript valid
   const filterShippingSettings = (s: ShopShippingInterface) => (
     (s.collection !== ShopShippingCollectionType.CARRIERS || (!!s.properties.active && !s.properties.deleted))
       && (!s.properties.country_ids || settings.targetCountries?.some((tc: string) => s.properties.country_ids.includes(tc))));
