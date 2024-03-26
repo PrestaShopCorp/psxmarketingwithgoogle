@@ -21,6 +21,7 @@
 namespace PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options;
 
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\AttributesRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\LanguageRepository;
 
 class AttributeOptionsProvider implements OptionsProviderInterface
 {
@@ -29,14 +30,43 @@ class AttributeOptionsProvider implements OptionsProviderInterface
      */
     protected $attributeRepository;
 
+    /**
+     * @var LanguageRepository
+     */
+    protected $languageRepository;
+
     public function __construct(
-        AttributesRepository $attributeRepository
+        AttributesRepository $attributeRepository,
+        LanguageRepository $languageRepository
     ) {
         $this->attributeRepository = $attributeRepository;
+        $this->languageRepository = $languageRepository;
     }
 
     public function getOptions(): array
     {
-        return $this->attributeRepository->getAllAttributes();
+        $rawData = $this->attributeRepository->getCustomAttributesWithValues();
+
+        $options = [];
+        foreach ($rawData as $rawAttribute) {
+            // find existing attribute group to modify it...
+            foreach ($options as &$option) {
+                if ($option['reference'] === $rawAttribute['id_attribute_group']) {
+                    $option['values'][] = ['value' => $rawAttribute['name'], 'language' => $this->languageRepository->getIsoById($rawAttribute['id_lang'])];
+                    continue 2;
+                }
+            }
+
+            // ... or push a new one
+            $options[] = [
+                'reference' => $rawAttribute['id_attribute_group'],
+                'key' => $rawAttribute['attribute_group'],
+                'values' => [
+                    ['value' => $rawAttribute['name'], 'language' => $this->languageRepository->getIsoById($rawAttribute['id_lang'])],
+                ],
+            ];
+        }
+
+        return $options;
     }
 }

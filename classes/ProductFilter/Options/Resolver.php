@@ -27,7 +27,7 @@ class Resolver
     public function getProvider(string $kind): string
     {
         $providersList = $this->getAttributeKindsAndProviders();
-        if (!in_array($kind, $providersList)) {
+        if (!array_key_exists($kind, $providersList)) {
             throw new InvalidArgumentException("Provided attribute kind '$kind' is not a valid value");
         }
 
