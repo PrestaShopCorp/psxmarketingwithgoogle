@@ -20,10 +20,32 @@
 
 namespace PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options;
 
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CategoryRepository;
+
 class CategoryOptionsProvider implements OptionsProviderInterface
 {
+    /**
+     * @var CategoryRepository
+     */
+    protected $categoryRepository;
+
+    public function __construct(
+        CategoryRepository $categoryRepository
+    ) {
+        $this->categoryRepository = $categoryRepository;
+    }
+
     public function getOptions(): array
     {
-        return [];
+        $options = [];
+
+        foreach ($this->categoryRepository->getCategoriesList() as $category) {
+            $options[] = [
+                'reference' => $category->id,
+                'value' => $category->name,
+            ];
+        }
+
+        return $options;
     }
 }

@@ -18,34 +18,28 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options;
+namespace PrestaShop\Module\PsxMarketingWithGoogle\Repository;
 
-use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ManufacturerRepository;
+use Context;
+use PrestaShopCollection;
 
-class BrandOptionsProvider implements OptionsProviderInterface
+class CategoryRepository
 {
     /**
-     * @var ManufacturerRepository
+     * @var Context
      */
-    protected $manufacturerRepository;
+    private $context;
 
-    public function __construct(
-        ManufacturerRepository $manufacturerRepository
-    ) {
-        $this->manufacturerRepository = $manufacturerRepository;
+    public function __construct(Context $context)
+    {
+        $this->context = $context;
     }
 
-    public function getOptions(): array
+    public function getCategoriesList()
     {
-        $options = [];
-
-        foreach ($this->manufacturerRepository->getManufacturersList() as $brand) {
-            $options[] = [
-                'reference' => $brand->id,
-                'value' => $brand->name,
-            ];
-        }
-
-        return $options;
+        return (new PrestaShopCollection(
+            'Category',
+            $this->context->language->id
+        ))->getResults();
     }
 }
