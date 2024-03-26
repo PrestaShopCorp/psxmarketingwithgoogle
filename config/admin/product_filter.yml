@@ -4,6 +4,7 @@ services:
     public: true
     arguments:
       - '@PrestaShop\Module\PsxMarketingWithGoogle\Repository\AttributesRepository'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Repository\LanguageRepository'
 
   PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\BrandOptionsProvider:
     class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\BrandOptionsProvider
