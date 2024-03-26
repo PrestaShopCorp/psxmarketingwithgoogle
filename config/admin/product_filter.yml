@@ -9,10 +9,14 @@ services:
   PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\BrandOptionsProvider:
     class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\BrandOptionsProvider
     public: true
+    arguments:
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Repository\ManufacturerRepository'
 
   PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\CategoryOptionsProvider:
     class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\CategoryOptionsProvider
     public: true
+    arguments:
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Repository\CategoryRepository'
 
   PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\Resolver:
     class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\Resolver
