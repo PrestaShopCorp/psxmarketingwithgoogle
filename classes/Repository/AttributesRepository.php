@@ -35,17 +35,16 @@ class AttributesRepository
     }
 
     /**
-     * Get all custom and product attributes.
+     * Get all custom attributes that are used as product features and combination of attributes.
+     * Data used in Product feed configuration > Attribute mapping.
      *
      * @return array
      */
     public function getAllAttributes(): array
     {
         $attributes = [];
-        $customAttributes = \AttributeGroupCore::getAttributesGroups($this->context->language->id);
-        $features = \FeatureCore::getFeatures($this->context->language->id);
 
-        foreach ($customAttributes as $attr) {
+        foreach ($this->getCustomAttributes() as $attr) {
             $attributes[] = [
                 // Not the best way in terms of permances, but avoid being responsible of a whole SQL query.
                 'name' => array_values(array_unique((array) (new \AttributeGroupCore($attr['id_attribute_group']))->name)),
@@ -53,7 +52,7 @@ class AttributesRepository
             ];
         }
 
-        foreach ($features as $feature) {
+        foreach ($this->getFeatures() as $feature) {
             $attributes[] = [
                 // Not the best way in terms of permances, but avoid being responsible of a whole SQL query.
                 'name' => array_values(array_unique((array) (new \FeatureCore($feature['id_feature']))->name)),
@@ -62,5 +61,35 @@ class AttributesRepository
         }
 
         return $attributes;
+    }
+
+    public function getCustomAttributesWithValues(): array
+    {
+        // SQL request taken and adapted from ProductAttribute::getAttributes as there it is returning values only for a given language.
+
+        return \Db::getInstance()->executeS('
+			SELECT DISTINCT ag.id_attribute_group, al.id_lang, al.`name`, agl.`name` AS `attribute_group`
+			FROM `' . _DB_PREFIX_ . 'attribute_group` ag
+			LEFT JOIN `' . _DB_PREFIX_ . 'attribute_group_lang` agl
+				ON (ag.`id_attribute_group` = agl.`id_attribute_group` AND agl.`id_lang` = ' . (int) $this->context->language->id . ')
+			LEFT JOIN `' . _DB_PREFIX_ . 'attribute` a
+				ON a.`id_attribute_group` = ag.`id_attribute_group`
+			LEFT JOIN `' . _DB_PREFIX_ . 'attribute_lang` al
+				ON (a.`id_attribute` = al.`id_attribute`)
+			' . \Shop::addSqlAssociation('attribute_group', 'ag') . '
+			' . \Shop::addSqlAssociation('attribute', 'a') .
+            'WHERE a.`id_attribute` IS NOT NULL AND al.`name` IS NOT NULL AND agl.`id_attribute_group` IS NOT NULL
+			ORDER BY agl.`name` ASC, a.`position` ASC
+		');
+    }
+
+    protected function getCustomAttributes(): array
+    {
+        return \AttributeGroupCore::getAttributesGroups($this->context->language->id);
+    }
+
+    protected function getFeatures(): array
+    {
+        return \FeatureCore::getFeatures($this->context->language->id);
     }
 }
