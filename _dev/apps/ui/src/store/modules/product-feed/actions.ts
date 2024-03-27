@@ -27,13 +27,12 @@ type Context = ActionContext<State, FullState>;
 
 // ToDo: Get DTO type from API sources
 export const createProductFeedApiPayload = (settings: ProductFeedAPIPayload): ProductFeedAPIPayload => {
-  // const productFeedApiPayload: Partial<ProductFeedAPIPayload>= {
   const productFeedApiPayload: ProductFeedAPIPayload = {
     autoImportTaxSettings: settings.autoImportTaxSettings,
     shippingSetup: settings.shippingSetup,
     targetCountries: settings.targetCountries,
 
-    // biome-ignore lint/suspicious/noExplicitAny: TYPE:MUST_FIX
+    // TODO: used any as a time saver here but that's bad. Must be solved.
     attributeMapping: formatMappingToApi(settings.attributeMapping as any),
     selectedProductCategories: settings.selectedProductCategories,
     requestSynchronizationNow: settings.requestSynchronizationNow,
