@@ -383,7 +383,7 @@ export default {
   },
 
   // eslint-disable-next-line no-empty-pattern
-  async [ActionsTypes.SEND_WEBSITE_REQUIREMENTS]({}: Context, payload: Array<string>) {
+  async [ActionsTypes.SEND_WEBSITE_REQUIREMENTS]({}: Context, payload: string[]) {
     return fetchShop('setWebsiteRequirementStatus', {requirements: payload});
   },
 
