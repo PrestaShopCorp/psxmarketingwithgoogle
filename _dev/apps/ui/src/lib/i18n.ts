@@ -53,7 +53,12 @@ export const loadLanguageAsync = async (lang: string): Promise<string> => {
     return Promise.resolve(setI18nLanguage(lang));
   }
 
-  // If the language hasn't been loaded yet
+  // If the language is not supported, fallback in English
+  if (!translationFiles[lang]) {
+    return Promise.resolve(setI18nLanguage('en'));
+  }
+
+  // Otherwise, proceed with the loading of the translation file
   return translationFiles[lang]().then((messages) => {
     i18n.setLocaleMessage(lang, messages.default);
     loadedLanguages.push(lang);
