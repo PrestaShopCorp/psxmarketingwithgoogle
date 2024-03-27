@@ -1,54 +1,80 @@
-import {ActionContext} from 'vuex';
-import {fetchOnboarding, fetchShop, HttpClientError} from 'mktg-with-google-common';
-import MutationsTypes from './mutations-types';
-import ActionsTypes from './actions-types';
-import {getDataFromLocalStorage, deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
-import {
-  DeliveryDetail, getEnabledCarriers,
-  mergeShippingDetailsSourcesForProductFeedConfiguration,
-  ShopShippingInterface, validateDeliveryDetail,
-} from '@/providers/shipping-settings-provider';
-import {runIf} from '@/utils/Promise';
+import {HttpClientError, fetchOnboarding, fetchShop} from 'mktg-with-google-common';
+import type {ActionContext} from 'vuex';
+import type {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
+import type {ProductIssue} from '@/components/render-issues/types';
+import {OfferType} from '@/enums/product-feed/offer';
+import type ProductsStatusType from '@/enums/product-feed/products-status-type';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
-import {fromApi, toApi} from '@/providers/shipping-rate-provider';
+import {type CustomCarrier, fromApi, toApi} from '@/providers/shipping-rate-provider';
 import {
+  type DeliveryDetail, ShopShippingCollectionType,
+  type ShopShippingInterface, getEnabledCarriers,
+  mergeShippingDetailsSourcesForProductFeedConfiguration, validateDeliveryDetail,
+} from '@/providers/shipping-settings-provider';
+import appGetters from '@/store/modules/app/getters-types';
+import {type FullState, RequestState} from '@/store/types';
+import {formatMappingToApi} from '@/utils/AttributeMapping';
+import {deleteProductFeedDataFromLocalStorage, getDataFromLocalStorage} from '@/utils/LocalStorage';
+import {runIf} from '@/utils/Promise';
+import ActionsTypes from './actions-types';
+import MutationsTypes from './mutations-types';
+import type {
+  ProductFeedAPIPayload,
   ProductFeedSettings, ProductVerificationIssue, ProductVerificationIssueProduct, State,
 } from './state';
-import {formatMappingToApi} from '@/utils/AttributeMapping';
-import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
-import {FullState, RequestState} from '@/store/types';
-import appGetters from '@/store/modules/app/getters-types';
-import {ProductIssue} from '@/components/render-issues/types';
-import ProductsStatusType from '@/enums/product-feed/products-status-type';
 
 type Context = ActionContext<State, FullState>;
 
 // ToDo: Get DTO type from API sources
-export const createProductFeedApiPayload = (settings:any) => ({
-  autoImportTaxSettings: settings.autoImportTaxSettings,
-  shippingSetup: settings.shippingSetup,
-  targetCountries: settings.targetCountries,
-  ...(
-    (settings.shippingSetup === ShippingSetupOption.ESTIMATE) ? {
-      rate: settings.rate,
-      estimateCarriers: settings.estimateCarriers,
-    } : {}
-  ),
-  ...(
-    (settings.shippingSetup === ShippingSetupOption.IMPORT) ? {
+export const createProductFeedApiPayload = (settings: ProductFeedAPIPayload): ProductFeedAPIPayload => {
+  const productFeedApiPayload: ProductFeedAPIPayload = {
+    autoImportTaxSettings: settings.autoImportTaxSettings,
+    shippingSetup: settings.shippingSetup,
+    targetCountries: settings.targetCountries,
+
+    // TODO: used any as a time saver here but that's bad. Must be solved.
+    attributeMapping: formatMappingToApi(settings.attributeMapping as any),
+    selectedProductCategories: settings.selectedProductCategories,
+    requestSynchronizationNow: settings.requestSynchronizationNow,
+  };
+  // TODO: refactor so it is Typescript valid
+  const filterShippingSettings = (s: ShopShippingInterface) => (
+    (s.collection !== ShopShippingCollectionType.CARRIERS || (!!s.properties.active && !s.properties.deleted))
+      && (!s.properties.country_ids || settings.targetCountries?.some((tc: string) => s.properties.country_ids.includes(tc))));
+
+  switch (settings.shippingSetup) {
+    case ShippingSetupOption.ESTIMATE:
+      productFeedApiPayload.rate = settings.rate;
+      productFeedApiPayload.estimateCarriers = settings.estimateCarriers?.map(filterEstimateCarriers);
+      break;
+    case ShippingSetupOption.IMPORT:
       // Send in payload data related to active carriers and active countries on shop
-      shippingSettings: settings.shippingSettings?.filter((s) => (
-        (s.collection !== 'carriers' || (!!s.properties.active && !s.properties.deleted))
-        && (!s.properties.country_ids
-          || settings.targetCountries.some((tc: string) => s.properties.country_ids.includes(tc)))),
-      ),
-      additionalShippingSettings: settings.additionalShippingSettings,
-    } : {}
-  ),
-  attributeMapping: formatMappingToApi(settings.attributeMapping),
-  selectedProductCategories: settings.selectedProductCategories,
-  requestSynchronizationNow: settings.requestSynchronizationNow,
-});
+      productFeedApiPayload.shippingSettings = settings.shippingSettings?.filter(filterShippingSettings);
+      productFeedApiPayload.additionalShippingSettings = settings.additionalShippingSettings;
+      break;
+    default:
+  }
+
+  return productFeedApiPayload;
+};
+
+const filterEstimateCarriers = (data: CustomCarrier) => {
+  switch (data.offer) {
+    case OfferType.FLAT_SHIPPING_RATE:
+      data.freeShippingOverAmount = undefined;
+      break;
+    case OfferType.FREE_SHIPPING:
+      data.freeShippingOverAmount = undefined;
+      data.flatShippingRate = undefined;
+      break;
+    case OfferType.FREE_SHIPPING_OVER_AMOUNT:
+      data.flatShippingRate = undefined;
+      break;
+    default:
+  }
+
+  return data;
+};
 
 export default {
   async [ActionsTypes.WARMUP_STORE](
@@ -216,7 +242,6 @@ export default {
       selectedProductCategories,
       requestSynchronizationNow,
     });
-
     try {
       await fetchOnboarding(
         'POST',

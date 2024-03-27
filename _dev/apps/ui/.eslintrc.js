@@ -28,6 +28,7 @@ module.exports = {
     '@vue/typescript',
   ],
   rules: {
+    'max-len': ['warn', {code: 80}],
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-param-reassign': ['error', {props: false}],

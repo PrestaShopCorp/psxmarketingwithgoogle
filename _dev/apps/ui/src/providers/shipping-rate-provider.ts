@@ -18,8 +18,8 @@ export type CustomCarrier = {
   maxDeliveryTime: number|null;
   minDeliveryTime: number|null;
   validationError?: boolean;
-  freeShippingOverAmount: freeShippingOverAmount;
-  flatShippingRate: flatShippingRate;
+  freeShippingOverAmount?: freeShippingOverAmount;
+  flatShippingRate?: flatShippingRate;
 }
 
 export function validateCarrier(carrier: CustomCarrier): boolean {
