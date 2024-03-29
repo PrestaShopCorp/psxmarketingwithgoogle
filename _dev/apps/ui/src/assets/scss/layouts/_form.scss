@@ -141,16 +141,24 @@
 
   &.vs--searching .vs__search {
     color: $grey_dark;
+    margin: 0;
   }
 
   .vs__search {
     color: $gray-450;
-    padding-left: 0;
+    margin-top: 0;
+
+    &::placeholder {
+      color: $primary-600;
+    }
   }
 
   .vs__dropdown-toggle {
+    background-color: white;
     border: 1px solid $gray-450;
     @include border-radius(0);
+    padding: 0;
+    min-height: 36px;
   }
 
   .vs__selected {
@@ -158,9 +166,12 @@
     background-color: $primary-300;
     color: $black;
     font-size: rem(12);
-    padding-left: 6px;
-    padding-right: 6px;
+    padding: 6px 8px;
+    border-radius: 0;
+    font-weight: 700;
+    margin: 0 0 3px 8px; 
   }
+
   .vs__deselect {
     text-shadow: none;
     color: $black;
@@ -169,18 +180,46 @@
       font-size: rem(16);
       color: inherit;
     }
-
-    &:hover, &:focus {
-      color: red;
-    }
   }
 
   .vs__selected-options {
-    padding: 2px 2px 2px 10px;
+    padding: 3px 3px 0 3px;
   }
 
-  .vs__dropdown-option--highlight {
-    background: $primary;
+  .vs__dropdown-option {
+    padding: 8px;
+    margin-bottom: 2px;
+
+    &--highlight {
+      background: $primary-200;
+      color: $dark-gray;
+      
+      .custom-control-label:before {
+        color: white !important;
+        border-color: $primary-800;
+        background-color: $primary-800;
+      }
+
+      .custom-control-label:after {
+        background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' aria-label='check' xmlns='http://www.w3.org/2000/svg' fill='%23fff'%3E%3Cpath d='M10.97 4.97a.75.75 0 011.07 1.05l-3.99 4.99a.75.75 0 01-1.08.02L4.324 8.384a.75.75 0 111.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 01.02-.022z'/%3E%3C/svg%3E");
+        background-size: 125%;
+      }
+    }
+    
+    &--selected {
+      background: $primary-200;
+
+      .custom-control-label:before {
+        color: white !important;
+        border-color: $primary-800;
+        background-color: $primary-800;
+      }
+
+      .custom-control-label:after {
+        background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' aria-label='check' xmlns='http://www.w3.org/2000/svg' fill='%23fff'%3E%3Cpath d='M10.97 4.97a.75.75 0 011.07 1.05l-3.99 4.99a.75.75 0 01-1.08.02L4.324 8.384a.75.75 0 111.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 01.02-.022z'/%3E%3C/svg%3E");
+        background-size: 125%;
+      }
+    }
   }
 }
 
@@ -202,9 +241,9 @@
   }
 
   .custom-control-label:before{
-    border-color: $gray-450;
+    border-color: $primary-800;
     border-width: 2px;
-    border-radius: 2px;
+    border-radius: 2px !important;
   }
 
   .custom-control-label:after, .custom-control-label:before {
@@ -254,7 +293,7 @@
 .ps_gs-datepicker {
   .b-calendar-grid-body {
     [aria-disabled="true"] {
-     background: $grey_extralight !important;
+    background: $grey_extralight !important;
     }
   }
 
