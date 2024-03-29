@@ -1,17 +1,21 @@
 <template>
   <ps-select
-    data-test-id="ps-select-country"
+    data-test-id="ps-select-value"
     :deselect-from-dropdown="true"
     :multiple="true"
     :options="dropdownOptions"
-    @search="onSearchCountry"
+    @search="onSearchValue"
     label="name"
-    v-model="countries"
+    v-model="selectedItems"
     :placeholder=" $t('productFeedSettings.deliveryTimeAndRates.placeholderSelect')"
     :class="{'maxw-sm-500': notFullWidth }"
   >
     <template #option="option">
       <div class="d-flex flex-wrap flex-md-nowrap align-items-center pr-3">
+        <b-form-checkbox
+          data-test-id="buttonCheckbox"
+          class="ps_gs-checkbox"
+        />
         <span
           class="mr-2"
           v-html="highlightSearch(option.name)"
@@ -24,47 +28,33 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import PsSelect from '@/components/commons/ps-select.vue';
-import countriesSelectionOptions from '@/assets/json/countries.json';
-import googleUrl from '@/assets/json/googleUrl.json';
 
 export default defineComponent({
-  name: 'SelectCountryWithCurrency',
+  name: 'MultiSelectValue',
   components: {
     PsSelect,
   },
   data() {
     return {
-      countriesChosen: [],
       searchString: '',
+      selectedItems: [],
+      isChecked: false,
     };
   },
   props: {
-    defaultValue: {
-      type: [String, Array],
-      required: true,
-      default() {
-        return [];
-      },
-    },
     dropdownOptions: {
       type: Array,
-      required: true,
+      required: true
     },
     notFullWidth: {
       type: Boolean,
       required: false,
       default: false,
     },
-    multipleCountries: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
   },
   methods: {
-    onSearchCountry(event) {
+    onSearchValue(event) {
       this.searchString = event;
-    console.log('dropdownOptions', this.dropdownOptions);
     },
     highlightSearch(str) {
       /** Highlight search terms */
@@ -76,25 +66,8 @@ export default defineComponent({
       return this.dropdownOptions.filter((c) => arg.includes(c));
     },
   },
-  countriesSelectionOptions,
-  googleUrl,
-  computed: {
-    countries: {
-      get() {
-        return this.countriesChosen.length ? this.countriesChosen
-          : this.getCountriesFilteredWithList(this.defaultValue);
-      },
-      set(newValuesList) {
-        if (this.multipleCountries) {
-          this.countriesChosen = newValuesList;
-          this.$emit('countrySelected', newValuesList);
-        } else {
-          const listOfOneCountry = newValuesList.length ? [newValuesList.pop()] : [];
-          this.countriesChosen = listOfOneCountry;
-          this.$emit('countrySelected', listOfOneCountry);
-        }
-      },
-    },
+  mounted() {
+    this.dropdownOptions = ["Black", "White", "Red", "Blue", "Green", "Yellow"];
   },
 });
 </script>

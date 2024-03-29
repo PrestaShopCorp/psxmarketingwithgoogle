@@ -1,7 +1,7 @@
 import InputTextWithTag from '../src/components/commons/input-text-with-tag.vue';
 
 export default {
-  title: 'Basic Components/Input Text With Tag',
+  title: 'Basic Components/InputTextTag',
 };
 
 const Template = (args, { argTypes }) => ({
@@ -11,13 +11,13 @@ const Template = (args, { argTypes }) => ({
   },
   template: `
     <div style="max-width: 400px">
-      <InputTextWithTag :has-error="hasError" />
+      <InputTextWithTag v-bind="$props" />
     </div>
   `,
 });
 
-export const Basics:any = Template.bind({});
-Basics.args = {
+export const InputTextTag:any = Template.bind({});
+InputTextTag.args = {
   hasError: true
 }
 
