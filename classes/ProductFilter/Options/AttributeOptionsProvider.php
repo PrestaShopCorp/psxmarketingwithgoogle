@@ -52,7 +52,11 @@ class AttributeOptionsProvider implements OptionsProviderInterface
             // find existing attribute group to modify it...
             foreach ($options as &$option) {
                 if ($option['reference'] === $rawAttribute['id_attribute_group']) {
-                    $option['values'][] = ['value' => $rawAttribute['name'], 'language' => $this->languageRepository->getIsoById($rawAttribute['id_lang'])];
+                    $option['values'][] = [
+                        'key' => $rawAttribute['attribute_group'],
+                        'value' => $rawAttribute['name'],
+                        'language' => $this->languageRepository->getIsoById($rawAttribute['id_lang']),
+                    ];
                     continue 2;
                 }
             }
@@ -62,7 +66,12 @@ class AttributeOptionsProvider implements OptionsProviderInterface
                 'reference' => $rawAttribute['id_attribute_group'],
                 'key' => $rawAttribute['attribute_group'],
                 'values' => [
-                    ['value' => $rawAttribute['name'], 'language' => $this->languageRepository->getIsoById($rawAttribute['id_lang'])],
+                    [
+                        // Repeat key to ease the creation of payload when value is selected
+                        'key' => $rawAttribute['attribute_group'],
+                        'value' => $rawAttribute['name'],
+                        'language' => $this->languageRepository->getIsoById($rawAttribute['id_lang']),
+                    ],
                 ],
             ];
         }
