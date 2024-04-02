@@ -5,7 +5,10 @@
     </p>
     <div class="container-fluid">
       <div class="row">
-        <div class="col col-12 col-md border rounded p-3 mr-1">
+        <div
+          class="col col-12 col-md border-primary-400 rounded p-3 mr-1"
+          :class="{'border-primary-800': rateSelected === RateType.RATE_ALL_COUNTRIES}"
+        >
           <div>
             <b-form-radio
               data-test-id="radioButton"
@@ -20,14 +23,17 @@
                 </span>
                 <VueShowdown
                   :extensions="['no-p-tag']"
-                  class="text-muted ps_gs-fz-14 mb-0"
+                  class="ps_gs-fz-14 mb-0 text-primary-600"
                   :markdown="$t('productFeedSettings.deliveryTimeAndRates.customRate.rateDesc')"
                 />
               </div>
             </b-form-radio>
           </div>
         </div>
-        <div class="col col-12 col-md border rounded p-3 mt-1 mt-md-0 ml-md-1">
+        <div
+          class="col col-12 col-md border-primary-400 rounded p-3 mt-1 mt-md-0 ml-md-1"
+          :class="{'border-primary-800': rateSelected === RateType.RATE_PER_COUNTRY}"
+        >
           <div>
             <b-form-radio
               v-model="rateSelected"
@@ -42,7 +48,7 @@
                 </span>
                 <VueShowdown
                   :extensions="['no-p-tag']"
-                  class="text-muted ps_gs-fz-14 mb-0"
+                  class="ps_gs-fz-14 mb-0 text-primary-600"
                   :markdown="$t('productFeedSettings.deliveryTimeAndRates.customRate.customDesc')"
                 />
               </div>

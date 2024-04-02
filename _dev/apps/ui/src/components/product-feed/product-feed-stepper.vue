@@ -42,6 +42,9 @@ export default {
           title: this.$i18n.t('productFeedSettings.steps.attributeMapping'),
         },
         {
+          title: this.$i18n.t('productFeedSettings.steps.productSelection'),
+        },
+        {
           title: this.$i18n.t('productFeedSettings.steps.syncSchedule'),
         },
         {

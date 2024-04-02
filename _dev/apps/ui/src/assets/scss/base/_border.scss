@@ -21,6 +21,14 @@
       border-top: $border-width solid $border-color !important;
       border-bottom: $border-width solid $border-color !important;
     }
+
+    .border-primary-400 {
+      border: $border-width solid $primary-400;
+    }
+
+    .border-primary-800 {
+      border: $border-width solid $primary-800;
+    }
   }
 }
 

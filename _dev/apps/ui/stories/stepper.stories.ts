@@ -27,6 +27,9 @@ HorizontalStepper.args = {
       title: "Attribute mapping",
     },
     {
+      title: "Product selection",
+    },
+    {
       title: "Summary",
     },
   ],
@@ -45,6 +48,9 @@ VerticalStepper.args = {
     },
     {
       title: "Attribute mapping",
+    },
+    {
+      title: "Product selection",
     },
     {
       title: "Summary",
