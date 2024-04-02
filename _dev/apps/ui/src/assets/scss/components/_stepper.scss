@@ -1,4 +1,4 @@
-$stepWidth: rem(32);
+$stepWidth: rem(28);
 $stepWidthMobile: rem(42);
 
 .ps_gs-stepper {
@@ -109,17 +109,17 @@ $stepWidthMobile: rem(42);
       display: none;
     }
 
-    &.active,
-    &.complete {
+    &.active {
       #{$root}__step {
         background-color: $primary;
-        border-color: $primary;
         color: #fff;
-        font-weight: 600;
       }
+    }
 
-      #{$root}__title {
-        color: $grey_dark;
+    &.complete {
+      #{$root}__step {
+        background-color: $green-50;
+        color: $green-500;
       }
     }
 
@@ -128,12 +128,11 @@ $stepWidthMobile: rem(42);
         content:'';
         display: block;
         position: absolute;
-        background: $grey_median;
-
-        height: 2px;
+        height: 1px;
         top: calc(#{$stepWidth} / 2 - 1px);
         left: calc(-50% + #{$stepWidth} / 2);
         width: calc(100% - #{$stepWidth});
+        background: $primary-400;
       }
 
       &.vertical::after {
@@ -149,9 +148,8 @@ $stepWidthMobile: rem(42);
       width: $stepWidth;
       height: $stepWidth;
       font-size: 0.875rem;
-      color: $grey_muted;
-      background-color: #fff;
-      border: 2px solid $grey_median;
+      color: white;
+      background-color: $primary-400;
       border-radius: 50%;
       margin: 0 auto .5rem;
 
@@ -163,14 +161,13 @@ $stepWidthMobile: rem(42);
 
     &.complete,
     &.active {
-
       &::before {
         content: '';
         display: block;
         position: absolute;
-        background: $primary;
+        background: $primary-400;
         z-index: -1;
-        height: 2px;
+        height: 1px;
         width: 50%;
         top: calc(#{$stepWidth} / 2 - 1px);
       }
