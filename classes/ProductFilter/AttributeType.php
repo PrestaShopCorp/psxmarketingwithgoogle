@@ -18,34 +18,18 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication;
+namespace PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter;
 
-class ProductEnumerator
+/**
+ * enum only exists from PHP 8 and the module is compliant with PHP 7.2+,
+ * thus cannot be used here.
+ */
+class AttributeType
 {
-    /**
-     * @var FilterValidator
-     */
-    protected $filterValidator;
-
-    public function __construct(
-        FilterValidator $filterValidator
-    ) {
-        $this->filterValidator = $filterValidator;
-    }
-
-    public function countProductsMatchingFilters(array $filters): int
-    {
-        $this->filterValidator->validate($filters);
-
-        return 0;
-    }
-
-    public function listProductsMatchingFilters(array $filters, array $paginationParams): array
-    {
-        $this->filterValidator->validate($filters);
-
-        // TODO
-
-        return [];
-    }
+    const BRAND = 'brand';
+    const CATEGORY = 'category';
+    const CUSTOM_ATTRIBUTE = 'attribute';
+    const PRICE = 'price';
+    const PRODUCT_ID = 'id';
+    const OUT_OF_STOCK = 'out of stock';
 }

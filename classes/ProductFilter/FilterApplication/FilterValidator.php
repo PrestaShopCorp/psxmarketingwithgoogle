@@ -21,43 +21,68 @@
 namespace PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication;
 
 use InvalidArgumentException;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\AttributeType;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Condition;
 
 class FilterValidator
 {
     /**
      * @throws InvalidArgumentException
-     * 
+     *
      * TODO: Input input checking with types if possible.
      * See https://phpstan.org/writing-php-code/phpdoc-types#general-arrays
      */
     public function validate(array $filters): void
     {
         foreach ($filters as $index => $filter) {
+            $this->hasValueCompliantWithCondition($filter, $index);
+
             switch ($filter['attribute']) {
-                case 'brand':
+                case AttributeType::BRAND:
                     $this->mustContainNumbers($filter, $index);
                     $this->mustContainPositiveNumbers($filter, $index);
                     break;
-                case 'category':
+                case AttributeType::CATEGORY:
                     $this->mustContainNumbers($filter, $index);
                     $this->mustContainPositiveNumbers($filter, $index);
                     break;
-                case 'attribute':
+                case AttributeType::CUSTOM_ATTRIBUTE:
                     $this->mustHaveSeveralValues($filter, $index);
                     $this->mustContainLocalizedValues($filter, $index);
                     break;
-                case 'price':
+                case AttributeType::PRICE:
                     $this->mustContainNumbers($filter, $index);
                     break;
-                case 'id':
+                case AttributeType::PRODUCT_ID:
                     $this->mustContainNumbers($filter, $index);
                     $this->mustContainPositiveNumbers($filter, $index);
                     break;
-                case 'out of stock':
+                case AttributeType::OUT_OF_STOCK:
                     $this->mustHaveOneValue($filter, $index);
                     $this->mustBeBoolean($filter, $index);
                     break;
             }
+        }
+    }
+
+    protected function hasValueCompliantWithCondition($filter, int $index): void
+    {
+        switch ($filter['condition']) {
+            case Condition::CONTAINS:
+                $this->mustHaveOneValue($filter, $index);
+                break;
+            case Condition::GREATER:
+                $this->mustHaveOneValue($filter, $index);
+                break;
+            case Condition::LOWER:
+                $this->mustHaveOneValue($filter, $index);
+                break;
+            case Condition::IS:
+                // Either single or multiple values
+                break;
+            case Condition::IS_NOT:
+                $this->mustHaveSeveralValues($filter, $index);
+                break;
         }
     }
 
@@ -86,7 +111,7 @@ class FilterValidator
     {
         $checkValueIsNumeric = function ($value) use ($index): void {
             if (!is_numeric($value)) {
-                throw new InvalidArgumentException('Value '. $value ." of filter #$index must be a number.");
+                throw new InvalidArgumentException('Value ' . $value . " of filter #$index must be a number.");
             }
         };
 
@@ -107,7 +132,7 @@ class FilterValidator
     {
         $checkValueIsPositive = function ($value) use ($index): void {
             if ((int) $value <= 0) {
-                throw new InvalidArgumentException('Value '. $value ." of filter #$index is not a positive number.");
+                throw new InvalidArgumentException('Value ' . $value . " of filter #$index is not a positive number.");
             }
         };
 
@@ -128,11 +153,15 @@ class FilterValidator
     {
         foreach ($filter['values'] as $localizedValueIndex => $localizedValue) {
             if (empty($localizedValue['value'])) {
-                throw new InvalidArgumentException('Missing field "value" in filter #' . $index .', key #' . $localizedValueIndex . ' .');
+                throw new InvalidArgumentException('Missing field "value" in filter #' . $index . ', key #' . $localizedValueIndex . '.');
             }
 
             if (empty($localizedValue['language'])) {
-                throw new InvalidArgumentException('Missing field "language" in filter #' . $index .', key #' . $localizedValueIndex . ' .');
+                throw new InvalidArgumentException('Missing field "language" in filter #' . $index . ', key #' . $localizedValueIndex . '.');
+            }
+
+            if (empty($localizedValue['key'])) {
+                throw new InvalidArgumentException('Missing field "key" in filter #' . $index . ', key #' . $localizedValueIndex . '.');
             }
         }
     }

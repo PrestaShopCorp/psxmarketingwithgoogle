@@ -21,6 +21,7 @@
 namespace PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options;
 
 use InvalidArgumentException;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\AttributeType;
 
 class Resolver
 {
@@ -37,9 +38,9 @@ class Resolver
     protected function getAttributeKindsAndProviders(): array
     {
         return [
-            'brand' => BrandOptionsProvider::class,
-            'category' => CategoryOptionsProvider::class,
-            'attribute' => AttributeOptionsProvider::class,
+            AttributeType::BRAND => BrandOptionsProvider::class,
+            AttributeType::CATEGORY => CategoryOptionsProvider::class,
+            AttributeType::CUSTOM_ATTRIBUTE => AttributeOptionsProvider::class,
         ];
     }
 }
