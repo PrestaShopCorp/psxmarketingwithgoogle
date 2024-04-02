@@ -440,6 +440,15 @@
       "learnAboutShippingSettings": "Learn more about shipping settings",
       "learnHowToSetupShippingSettings": "Learn how to set up shipping"
     },
+    "productSelection": {
+      "methodSynch": {
+        "title": "Select the method for products syncing",
+        "synchAllProducts": "Synchronize all products",
+        "synchAllProductsDesc": "The entire catalog will be synchronized.",
+        "synchFilteredProducts": "Synchronize filtered products",
+        "synchFilteredProductsDesc": "Only the products you select will be synchronized."
+      }  
+    },
     "syncSchedule": {
       "title": "Synchronization schedule",
       "subTitle": "Choose the time when you want the first synchronization to start, the export might slow down your traffic",
