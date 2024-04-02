@@ -23,6 +23,7 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\Module\PsxMarketingWithGoogle\Conversion\EnhancedConversionToggle;
 use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\ProductEnumerator;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\OptionsProviderInterface;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\Resolver;
 use PrestaShop\Module\PsxMarketingWithGoogle\Provider\CarrierDataProvider;
@@ -147,6 +148,9 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
                 break;
             case 'getProductFilterOptions':
                 $this->getProductFilterOptions($inputs);
+                break;
+            case 'countMatchingProductsFromFilters':
+                $this->countMatchingProductsFromFilters($inputs);
                 break;
             default:
                 http_response_code(400);
@@ -503,6 +507,28 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
                 'message' => $e->getMessage(),
             ]));
         }
+    }
+
+    public function countMatchingProductsFromFilters(array $inputs)
+    {
+        if (!isset($inputs['filters'])) {
+            http_response_code(400);
+            $this->ajaxDie(json_encode([
+                'success' => false,
+                'message' => 'Missing filters key',
+            ]));
+        }
+
+        $filters = $inputs['filters'];
+
+        /** @var ProductEnumerator $productEnumerator */
+        $productEnumerator = $this->module->getService(ProductEnumerator::class);
+
+        $this->ajaxDie(
+            json_encode([
+                'numberOfProducts' => $productEnumerator->countProductsMatchingFilters($filters),
+            ])
+        );
     }
 
     private function getModuleStatus(array $inputs)
