@@ -21,12 +21,11 @@
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Adapter;
 
 use Configuration;
-use Shop;
 
 class ConfigurationAdapter
 {
     /**
-     * @var Shop
+     * @var int
      */
     private $shopId;
 

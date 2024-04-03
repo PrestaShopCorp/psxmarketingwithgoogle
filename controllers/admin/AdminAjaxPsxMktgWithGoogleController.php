@@ -152,6 +152,9 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             case 'countMatchingProductsFromFilters':
                 $this->countMatchingProductsFromFilters($inputs);
                 break;
+            case 'listMatchingProductsFromFilters':
+                $this->listMatchingProductsFromFilters($inputs);
+                break;
             default:
                 http_response_code(400);
                 $this->ajaxDie(json_encode(['success' => false, 'message' => $this->l('Action is missing or incorrect.')]));
@@ -528,6 +531,26 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             json_encode([
                 'numberOfProducts' => $productEnumerator->countProductsMatchingFilters($filters),
             ])
+        );
+    }
+
+    public function listMatchingProductsFromFilters(array $inputs)
+    {
+        if (!isset($inputs['filters'])) {
+            http_response_code(400);
+            $this->ajaxDie(json_encode([
+                'success' => false,
+                'message' => 'Missing filters key',
+            ]));
+        }
+
+        $filters = $inputs['filters'];
+
+        /** @var ProductEnumerator $productEnumerator */
+        $productEnumerator = $this->module->getService(ProductEnumerator::class);
+
+        $this->ajaxDie(
+            json_encode($productEnumerator->listProductsMatchingFilters($filters, []))
         );
     }
 

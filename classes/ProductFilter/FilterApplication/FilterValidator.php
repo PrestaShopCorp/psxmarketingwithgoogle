@@ -39,8 +39,6 @@ class FilterValidator
 
             switch ($filter['attribute']) {
                 case AttributeType::BRAND:
-                    $this->mustContainNumbers($filter, $index);
-                    $this->mustContainPositiveNumbers($filter, $index);
                     break;
                 case AttributeType::CATEGORY:
                     $this->mustContainNumbers($filter, $index);
