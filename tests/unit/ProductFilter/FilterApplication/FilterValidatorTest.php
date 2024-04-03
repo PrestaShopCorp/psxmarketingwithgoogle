@@ -45,7 +45,7 @@ class FilterValidatorTest extends TestCase
                 [
                     'attribute' => AttributeType::BRAND,
                     'condition' => Condition::IS,
-                    'values' => [2, 3, 4],
+                    'values' => ['Brand 1', 'Brand 2'],
                 ],
                 [
                     'attribute' => AttributeType::CATEGORY,
@@ -81,37 +81,91 @@ class FilterValidatorTest extends TestCase
 
     /**
      * BRAND
+     *
+     * No particular check for Brands. We check single and multi values match the selected condition instead.
      */
-    public function testBrandWithNonNumericValue(): void
+    public function testOneValueIsSentWithContains(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Value 🐶 of filter #0 must be a number.');
+        $this->expectExceptionMessage('Filter #0 is malformed, a field "value" is excepted instead of "values".');
 
         $filterValidator = new FilterValidator();
 
         $filterValidator->validate([
             [
                 'attribute' => AttributeType::BRAND,
-                'condition' => Condition::IS,
+                'condition' => Condition::CONTAINS,
+                'values' => ['🐶', '🥸'],
+            ],
+        ]);
+    }
+
+    public function testOneValueIsSentWithGeater(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Filter #0 is malformed, a field "value" is excepted instead of "values".');
+
+        $filterValidator = new FilterValidator();
+
+        $filterValidator->validate([
+            [
+                'attribute' => AttributeType::BRAND,
+                'condition' => Condition::GREATER,
+                'values' => ['🐶', '🥸'],
+            ],
+        ]);
+    }
+
+    public function testOneValueIsSentWithLower(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Filter #0 is malformed, a field "value" is excepted instead of "values".');
+
+        $filterValidator = new FilterValidator();
+
+        $filterValidator->validate([
+            [
+                'attribute' => AttributeType::BRAND,
+                'condition' => Condition::LOWER,
+                'values' => ['🐶', '🥸'],
+            ],
+        ]);
+    }
+
+    public function testSeveralValuesAreSentWithIsNot(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Filter #0 is malformed, a field "values" is excepted instead of "value".');
+
+        $filterValidator = new FilterValidator();
+
+        $filterValidator->validate([
+            [
+                'attribute' => AttributeType::BRAND,
+                'condition' => Condition::IS_NOT,
                 'value' => '🐶',
             ],
         ]);
     }
 
-    public function testBrandWithNegativeValue(): void
+    public function testBothTypesOfValuesCanBeSentWithIs(): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Value -1 of filter #0 is not a positive number.');
-
         $filterValidator = new FilterValidator();
 
-        $filterValidator->validate([
-            [
-                'attribute' => AttributeType::BRAND,
-                'condition' => Condition::IS,
-                'values' => [3, 50003, -1],
-            ],
-        ]);
+        $this->assertNull(
+            $filterValidator->validate([
+                [
+                    'attribute' => AttributeType::BRAND,
+                    'condition' => Condition::IS,
+                    'value' => '🐶',
+                ],
+                [
+                    'attribute' => AttributeType::BRAND,
+                    'condition' => Condition::IS,
+                    'values' => ['🩹'],
+                ],
+            ])
+        );
     }
 
     /**
