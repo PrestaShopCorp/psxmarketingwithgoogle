@@ -18,30 +18,13 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter;
+namespace PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder;
 
-/**
- * enum only exists from PHP 8 and the module is compliant with PHP 7.2+,
- * thus cannot be used here.
- */
-class AttributeType
+use DbQuery;
+
+interface QueryBuilderInterface
 {
-    const BRAND = 'brand';
-    const CATEGORY = 'category';
-    const CUSTOM_ATTRIBUTE = 'attribute';
-    const PRICE = 'price';
-    const PRODUCT_ID = 'id';
-    const OUT_OF_STOCK = 'out of stock';
+    public function addWhereFromFilter(DbQuery $query, $filter): DbQuery;
 
-    public static function all()
-    {
-        return [
-            static::BRAND,
-            static::CATEGORY,
-            static::CUSTOM_ATTRIBUTE,
-            static::PRICE,
-            static::PRODUCT_ID,
-            static::OUT_OF_STOCK,
-        ];
-    }
+    public function addRelations(DbQuery $query): DbQuery;
 }

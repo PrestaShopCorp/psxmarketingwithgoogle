@@ -20,6 +20,9 @@
 
 namespace PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication;
 
+use Db;
+use DbQuery;
+
 class ProductEnumerator
 {
     /**
@@ -27,25 +30,41 @@ class ProductEnumerator
      */
     protected $filterValidator;
 
+    /**
+     * @var QueryBuilder
+     */
+    protected $queryBuilder;
+
     public function __construct(
-        FilterValidator $filterValidator
+        FilterValidator $filterValidator,
+        QueryBuilder $queryBuilder
     ) {
         $this->filterValidator = $filterValidator;
+        $this->queryBuilder = $queryBuilder;
     }
 
     public function countProductsMatchingFilters(array $filters): int
     {
         $this->filterValidator->validate($filters);
 
-        return 0;
+        $res = $this->execute(
+            $this->queryBuilder->buildQueryToCount($filters)
+        );
+
+        return $res[0]['total'] ?? 0;
     }
 
     public function listProductsMatchingFilters(array $filters, array $paginationParams): array
     {
         $this->filterValidator->validate($filters);
 
-        // TODO
+        return $this->execute(
+            $this->queryBuilder->buildQueryToList($filters)
+        );
+    }
 
-        return [];
+    protected function execute(DbQuery $query): array
+    {
+        return Db::getInstance()->executeS($query);
     }
 }

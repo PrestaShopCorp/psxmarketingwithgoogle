@@ -18,30 +18,24 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter;
+namespace PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder;
 
-/**
- * enum only exists from PHP 8 and the module is compliant with PHP 7.2+,
- * thus cannot be used here.
- */
-class AttributeType
+use DbQuery;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Condition;
+
+class OutOfStockQueryBuilder implements QueryBuilderInterface
 {
-    const BRAND = 'brand';
-    const CATEGORY = 'category';
-    const CUSTOM_ATTRIBUTE = 'attribute';
-    const PRICE = 'price';
-    const PRODUCT_ID = 'id';
-    const OUT_OF_STOCK = 'out of stock';
-
-    public static function all()
+    public function addWhereFromFilter(DbQuery $query, $filter): DbQuery
     {
-        return [
-            static::BRAND,
-            static::CATEGORY,
-            static::CUSTOM_ATTRIBUTE,
-            static::PRICE,
-            static::PRODUCT_ID,
-            static::OUT_OF_STOCK,
-        ];
+        if ($filter['condition'] === Condition::IS && $filter['value'] === false) {
+            return $query->where('sa.quantity > 0');
+        }
+
+        return $query;
+    }
+
+    public function addRelations(DbQuery $query): DbQuery
+    {
+        return $query->innerJoin('stock_available', 'sa', 'p.id_product = sa.id_product');
     }
 }
