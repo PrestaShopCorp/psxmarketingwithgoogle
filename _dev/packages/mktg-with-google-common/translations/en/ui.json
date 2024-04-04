@@ -250,6 +250,7 @@
       "shippingSetup": "Shipping setup",
       "deliveryTimesAndRates": "Delivery time & rates",
       "attributeMapping": "Attribute mapping",
+      "productSelection": "Product Selection",
       "categoryMapping": "Category mapping",
       "productSelection": "Product selection",
         "summary": "Summary",
@@ -448,8 +449,19 @@
           "syncAllProductsDesc": "The entire catalog will be synchronized.",
           "syncFilteredProducts": "Synchronize filtered products",
           "syncFilteredProductsDesc": "Only the products you select will be synchronized."
+      },
+      "lineFilter": {
+        "attributes": {
+          "label": "Attribute",
+          "defaultAttributes": "Default attributes",
+          "customAttributes": "Custom attributes",
+          "price": "Price (tax excluded)",
+          "brand": "Brand",
+          "category": "Category",
+          "productId": "Product ID",
+          "outOfStock": "Out of stock"
         }
-
+      }
     },
     "syncSchedule": {
       "title": "Synchronization schedule",
