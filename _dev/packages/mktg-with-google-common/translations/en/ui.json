@@ -452,6 +452,7 @@
       "lineFilter": {
         "attributes": {
           "label": "Attribute",
+          "placeholder": "Select an attribute",
           "defaultAttributes": "Default attributes",
           "customAttributes": "Custom attributes",
           "price": "Price (tax excluded)",
