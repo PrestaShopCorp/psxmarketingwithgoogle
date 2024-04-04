@@ -21,7 +21,8 @@
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Repository;
 
 use Context;
-use PrestaShopCollection;
+use Db;
+use DbQuery;
 
 class CategoryRepository
 {
@@ -35,11 +36,17 @@ class CategoryRepository
         $this->context = $context;
     }
 
-    public function getCategoriesList()
+    public function getCategoriesList(): array
     {
-        return (new PrestaShopCollection(
-            'Category',
-            $this->context->language->id
-        ))->getResults();
+        $query = new DbQuery();
+        $query->select('DISTINCT c.id_category AS id, cl.name AS name')
+            ->from('category', 'c')
+            ->innerJoin('category_shop', 'cs', 'cs.id_category = c.id_category')
+            ->innerJoin('category_lang', 'cl', 'cl.id_category = c.id_category')
+            ->where('cs.id_shop = ' . (int) $this->context->shop->id)
+            ->where('cl.id_lang = ' . (int) $this->context->language->id)
+            ->where('c.active = 1');
+
+        return Db::getInstance()->executeS($query);
     }
 }
