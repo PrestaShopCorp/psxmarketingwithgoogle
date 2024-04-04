@@ -1,47 +1,81 @@
 <template>
   <div class="gs-product-selection">
     <h3 class="font-weight-600">
-      {{ $t('productFeedSettings.productSelection.methodSync.title') }}
+      {{ $t('productFeedSettings.productSelection.methodSynch.title') }}
     </h3>
     <div class="container-fluid">
-      <div class="row methods-sync ps_gs-radio">
+      <div class="row methods-synch">
         <div
           class="col col-12 col-md border-primary-400 p-3"
-          :class="{'checked': syncSelected === 'syncAllProducts'}"
+          :class="{'border-primary-800': synchSelected === 'synchAllProducts'}"
         >
           <b-form-radio
-            v-model="syncSelected"
-            name="customSyncRadio"
-            value="syncAllProducts"
+            v-model="synchSelected"
+            name="customSynchRadio"
+            value="synchAllProducts"
           >
-            <h3 class="font-weight-700 mb-2 ps_gs-fz-14">
-              {{ $t('productFeedSettings.productSelection.methodSync.syncAllProducts') }}
+            <h3 class="font-weight-700 mb-2">
+              {{ $t('productFeedSettings.productSelection.methodSynch.synchAllProducts') }}
             </h3>
-            <span class="text-muted">
-              {{ $t('productFeedSettings.productSelection.methodSync.syncAllProductsDesc') }}
+            <span class="text-primary-600">
+              {{ $t('productFeedSettings.productSelection.methodSynch.synchAllProductsDesc') }}
             </span>
           </b-form-radio>
         </div>
         <div
           class="col col-12 col-md border-primary-400 p-3 ml-md-1 mt-1 mt-md-0"
-          :class="{'checked': syncSelected === 'syncFilteredProducts'}"
+          :class="{'border-primary-800': synchSelected === 'synchFilteredProducts'}"
         >
           <div>
             <b-form-radio
-              v-model="syncSelected"
-              name="customSyncRadio"
-              value="syncFilteredProducts"
+              v-model="synchSelected"
+              name="customSynchRadio"
+              value="synchFilteredProducts"
             >
-              <h3 class="font-weight-700 mb-2 ps_gs-fz-14">
-                {{ $t('productFeedSettings.productSelection.methodSync.syncFilteredProducts') }}
+              <h3 class="font-weight-700 mb-2">
+                {{ $t('productFeedSettings.productSelection.methodSynch.synchFilteredProducts') }}
               </h3>
-              <span class="text-muted">
+              <span class="text-primary-600">
                 {{
-                  $t('productFeedSettings.productSelection.methodSync.syncFilteredProductsDesc')
+                  $t('productFeedSettings.productSelection.methodSynch.synchFilteredProductsDesc')
                 }}
               </span>
             </b-form-radio>
           </div>
+        </div>
+      </div>
+    </div>
+    <div v-if="synchSelected === 'synchFilteredProducts'" class="filters">
+      <div class="line-filter">
+        <b-form>
+          <div class="d-md-flex text-center">
+            <b-dropdown
+              id="psSelection"
+              :text="attributeSelected ? labelAttribute(attributeSelected) : 'select a value'"
+            >
+              <b-dropdown-group
+              >
+                <template #header>
+                  <div class="text-muted px-3">
+                    <span class="font-weight-600 ps_gs-fz-13 mr-2">
+                      {{ labelAttribute('defaultAttributes') }}
+                    </span>
+                  </div>
+                </template>
+
+                <b-dropdown-item
+                  v-for="(attribute) in defaultAttributes"
+                  @click="attributeSelected = attribute"
+                  link-class="d-flex flex-wrap flex-md-nowrap align-items-center pl-4 pr-3"
+                >
+                  <span class="mr-auto">{{ labelAttribute(attribute) }}</span>
+                </b-dropdown-item>
+              </b-dropdown-group>
+            </b-dropdown>
+          </div>
+        </b-form>
+        <div class="delete-filter">
+          <i class="material-icons ps_gs-fz-20">delete</i>
         </div>
       </div>
     </div>
@@ -54,22 +88,25 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
-import ProductFilterMethodsSync from '@/enums/product-feed/product-filter-mothods-sync';
+import DefaultAttributes from '@/enums/product-feed/default-attributes';
 
-export default defineComponent({
+export default {
   name: 'ProductFeedSettingsProductSelection',
   components: {
     ActionsButtons,
   },
   data() {
     return {
-      syncSelected: ProductFilterMethodsSync.SYNC_ALL_PRODUCT,
+      synchSelected: 'synchFilteredProducts',
+      attributeSelected: ''
     };
   },
   methods: {
+    labelAttribute(label) {
+      return this.$i18n.t(`productFeedSettings.productSelection.lineFilter.attributes.${label}`)
+    },
     previousStep() {
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
       this.$router.push({
@@ -94,5 +131,10 @@ export default defineComponent({
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
   },
-});
+  computed: {
+    defaultAttributes() {
+      return Object.values(DefaultAttributes);
+    },
+  },
+};
 </script>
