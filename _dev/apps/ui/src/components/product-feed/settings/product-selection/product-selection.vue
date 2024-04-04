@@ -45,6 +45,40 @@
         </div>
       </div>
     </div>
+    <div v-if="synchSelected === 'synchFilteredProducts'" class="filters">
+      <div class="line-filter">
+        <b-form>
+          <div class="d-md-flex text-center">
+            <b-dropdown
+              id="psSelection"
+              :text="attributeSelected ? labelAttribute(attributeSelected) : 'select a value'"
+            >
+              <b-dropdown-group
+              >
+                <template #header>
+                  <div class="text-muted px-3">
+                    <span class="font-weight-600 ps_gs-fz-13 mr-2">
+                      {{ labelAttribute('defaultAttributes') }}
+                    </span>
+                  </div>
+                </template>
+
+                <b-dropdown-item
+                  v-for="(attribute) in defaultAttributes"
+                  @click="attributeSelected = attribute"
+                  link-class="d-flex flex-wrap flex-md-nowrap align-items-center pl-4 pr-3"
+                >
+                  <span class="mr-auto">{{ labelAttribute(attribute) }}</span>
+                </b-dropdown-item>
+              </b-dropdown-group>
+            </b-dropdown>
+          </div>
+        </b-form>
+        <div class="delete-filter">
+          <i class="material-icons ps_gs-fz-20">delete</i>
+        </div>
+      </div>
+    </div>
     <actions-buttons
       :next-step="nextStep"
       :previous-step="previousStep"
@@ -56,6 +90,7 @@
 <script lang="ts">
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
+import DefaultAttributes from '@/enums/product-feed/default-attributes';
 
 export default {
   name: 'ProductFeedSettingsProductSelection',
@@ -64,10 +99,14 @@ export default {
   },
   data() {
     return {
-      synchSelected: 'synchAllProducts',
+      synchSelected: 'synchFilteredProducts',
+      attributeSelected: ''
     };
   },
   methods: {
+    labelAttribute(label) {
+      return this.$i18n.t(`productFeedSettings.productSelection.lineFilter.attributes.${label}`)
+    },
     previousStep() {
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
       this.$router.push({
@@ -90,6 +129,11 @@ export default {
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
+    },
+  },
+  computed: {
+    defaultAttributes() {
+      return Object.values(DefaultAttributes);
     },
   },
 };
