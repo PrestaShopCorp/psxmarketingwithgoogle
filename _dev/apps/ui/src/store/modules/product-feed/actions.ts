@@ -32,7 +32,7 @@ export const createProductFeedApiPayload = (settings:any) => ({
   ...(
     (settings.shippingSetup === ShippingSetupOption.ESTIMATE) ? {
       rate: settings.rate,
-      estimateCarriers: settings.estimateCarriers.map(filterEstimateCarriers),
+      estimateCarriers: settings.estimateCarriers,
     } : {}
   ),
   ...(
@@ -476,22 +476,4 @@ export default {
 
     return result.issues || [];
   },
-};
-
-const filterEstimateCarriers = (data) => {
-  switch (data.offer) {
-    case OfferType.FLAT_SHIPPING_RATE:
-      data.freeShippingOverAmount = undefined;
-      break;
-    case OfferType.FREE_SHIPPING:
-      data.freeShippingOverAmount = undefined;
-      data.flatShippingRate = undefined;
-      break;
-    case OfferType.FREE_SHIPPING_OVER_AMOUNT:
-      data.flatShippingRate = undefined;
-      break;
-    default:
-  }
-
-  return data;
 };
