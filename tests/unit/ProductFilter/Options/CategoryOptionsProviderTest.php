@@ -24,7 +24,6 @@ use PHPUnit\Framework\TestCase;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\CategoryOptionsProvider;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CategoryRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\LanguageRepository;
-use stdClass;
 
 class CategoryOptionsProviderTest extends TestCase
 {
@@ -66,11 +65,6 @@ class CategoryOptionsProviderTest extends TestCase
 
     private function generateCategory(string $id, string $name): array
     {
-        $class = new stdClass();
-        $class->id = $id;
-        $class->id_category = $id;
-        $class->name = $name;
-
         return [
             'id' => $id,
             'id_category' => $id,
