@@ -41,8 +41,8 @@ class BrandOptionsProvider implements OptionsProviderInterface
 
         foreach ($this->manufacturerRepository->getManufacturersList() as $brand) {
             $options[] = [
-                'reference' => $brand->id,
-                'value' => $brand->name,
+                'reference' => $brand['id'],
+                'value' => $brand['name'],
             ];
         }
 

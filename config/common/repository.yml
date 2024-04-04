@@ -43,6 +43,8 @@ services:
   PrestaShop\Module\PsxMarketingWithGoogle\Repository\ManufacturerRepository:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\ManufacturerRepository
     public: true
+    arguments:
+      - '@psxmarketingwithgoogle.context'
 
   PrestaShop\Module\PsxMarketingWithGoogle\Repository\ProductRepository:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\ProductRepository
