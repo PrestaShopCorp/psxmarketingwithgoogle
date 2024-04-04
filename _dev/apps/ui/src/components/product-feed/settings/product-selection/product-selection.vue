@@ -50,25 +50,38 @@
         <b-form>
           <div class="d-md-flex text-center">
             <b-dropdown
-              id="psSelection"
-              :text="attributeSelected ? labelAttribute(attributeSelected) : 'select a value'"
+              :text="attributeSelected ? labelAttribute(attributeSelected) : $t('productFeedSettings.productSelection.lineFilter.attributes.placeholder')"
+              class="psxmarketingwithgoogle-dropdown ps-dropdown"
+              menu-class="ps-dropdown"
             >
               <b-dropdown-group
               >
                 <template #header>
-                  <div class="text-muted px-3">
-                    <span class="font-weight-600 ps_gs-fz-13 mr-2">
-                      {{ labelAttribute('defaultAttributes') }}
-                    </span>
-                  </div>
+                  <span>
+                    {{ $t('productFeedSettings.productSelection.lineFilter.attributes.defaultAttributes') }}
+                  </span>
                 </template>
 
                 <b-dropdown-item
                   v-for="(attribute) in defaultAttributes"
                   @click="attributeSelected = attribute"
-                  link-class="d-flex flex-wrap flex-md-nowrap align-items-center pl-4 pr-3"
                 >
-                  <span class="mr-auto">{{ labelAttribute(attribute) }}</span>
+                  <span>{{ labelAttribute(attribute) }}</span>
+                </b-dropdown-item>
+              </b-dropdown-group>
+              <b-dropdown-group
+              >
+                <template #header>
+                  <span>
+                    {{ $t('productFeedSettings.productSelection.lineFilter.attributes.customAttributes') }}
+                  </span>
+                </template>
+
+                <b-dropdown-item
+                  v-for="(attribute) in customAttributes"
+                  @click="attributeSelected = attribute"
+                >
+                  <span>{{ attribute }}</span>
                 </b-dropdown-item>
               </b-dropdown-group>
             </b-dropdown>
@@ -100,7 +113,8 @@ export default {
   data() {
     return {
       synchSelected: 'synchFilteredProducts',
-      attributeSelected: ''
+      attributeSelected: '',
+      customAttributes: ['Color', 'Country of origin', 'Certification', 'Material', 'Rating', 'Refurbished', 'Size chart']
     };
   },
   methods: {
