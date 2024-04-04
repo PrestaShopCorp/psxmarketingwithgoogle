@@ -64,13 +64,17 @@ class CategoryOptionsProviderTest extends TestCase
         ];
     }
 
-    private function generateCategory(string $id, string $name): stdClass
+    private function generateCategory(string $id, string $name): array
     {
         $class = new stdClass();
         $class->id = $id;
         $class->id_category = $id;
         $class->name = $name;
 
-        return $class;
+        return [
+            'id' => $id,
+            'id_category' => $id,
+            'name' => $name,
+        ];
     }
 }

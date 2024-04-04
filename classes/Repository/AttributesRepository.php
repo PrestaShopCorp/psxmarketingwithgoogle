@@ -21,6 +21,7 @@
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Repository;
 
 use Context;
+use Shop;
 
 class AttributesRepository
 {
@@ -65,20 +66,24 @@ class AttributesRepository
 
     public function getCustomAttributesWithValues(): array
     {
-        // SQL request taken and adapted from ProductAttribute::getAttributes as there it is returning values only for a given language.
+        Shop::setContext(Shop::CONTEXT_SHOP, $this->context->shop->id);
 
+        // SQL request taken and adapted from ProductAttribute::getAttributes as there it is returning values only for a given language.
         return \Db::getInstance()->executeS('
 			SELECT DISTINCT ag.id_attribute_group, al.id_lang, al.`name`, agl.`name` AS `attribute_group`
 			FROM `' . _DB_PREFIX_ . 'attribute_group` ag
 			LEFT JOIN `' . _DB_PREFIX_ . 'attribute_group_lang` agl
-				ON (ag.`id_attribute_group` = agl.`id_attribute_group` AND agl.`id_lang` = ' . (int) $this->context->language->id . ')
+				ON (ag.`id_attribute_group` = agl.`id_attribute_group`
+                AND agl.`id_lang` = ' . (int) $this->context->language->id . ')
 			LEFT JOIN `' . _DB_PREFIX_ . 'attribute` a
 				ON a.`id_attribute_group` = ag.`id_attribute_group`
 			LEFT JOIN `' . _DB_PREFIX_ . 'attribute_lang` al
 				ON (a.`id_attribute` = al.`id_attribute`)
-			' . \Shop::addSqlAssociation('attribute_group', 'ag') . '
-			' . \Shop::addSqlAssociation('attribute', 'a') .
-            'WHERE a.`id_attribute` IS NOT NULL AND al.`name` IS NOT NULL AND agl.`id_attribute_group` IS NOT NULL
+			' . Shop::addSqlAssociation('attribute_group', 'ag') . '
+			' . Shop::addSqlAssociation('attribute', 'a') .
+            'WHERE a.`id_attribute` IS NOT NULL
+                AND al.`name` IS NOT NULL
+                AND agl.`id_attribute_group` IS NOT NULL
 			ORDER BY agl.`name` ASC, a.`position` ASC
 		');
     }
