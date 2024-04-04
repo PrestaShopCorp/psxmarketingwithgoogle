@@ -20,12 +20,31 @@
 
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Repository;
 
-use PrestaShopCollection;
+use Context;
+use Db;
+use DbQuery;
 
 class ManufacturerRepository
 {
+    /**
+     * @var Context
+     */
+    private $context;
+
+    public function __construct(Context $context)
+    {
+        $this->context = $context;
+    }
+
     public function getManufacturersList(): array
     {
-        return (new PrestaShopCollection('Manufacturer'))->getResults();
+        $query = new DbQuery();
+        $query->select('DISTINCT m.id_manufacturer AS id, m.name AS name')
+            ->from('manufacturer', 'm')
+            ->innerJoin('manufacturer_shop', 'ms', 'ms.id_manufacturer = m.id_manufacturer')
+            ->where('ms.id_shop = ' . (int) $this->context->shop->id)
+            ->where('m.active = 1');
+
+        return Db::getInstance()->executeS($query);
     }
 }
