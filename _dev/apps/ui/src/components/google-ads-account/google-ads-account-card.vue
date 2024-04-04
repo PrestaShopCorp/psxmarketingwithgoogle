@@ -123,7 +123,7 @@
                     ref="googleAdsAccountSelection"
                     :text="googleAdsLabel(selectedIndex) || $t('cta.selectAccount')"
                     variant=" "
-                    class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
+                    class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown"
                     :toggle-class="{'ps-dropdown__placeholder' : selectedIndex === null}"
                     menu-class="ps-dropdown"
                     size="sm"
@@ -142,7 +142,6 @@
                       v-if="!listLoading && googleAdsAccountSelectionOptions.length === 0"
                       :disabled="true"
                       variant="dark"
-                      link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
                       data-test-id="message-empty-list"
                     >
                       <span class="mr-2">
@@ -157,7 +156,6 @@
                       @click="selectedIndex = index"
                       :disabled="isShownAsDisabled(option)"
                       variant="dark"
-                      link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
                     >
                       <span class="mr-2">
                         {{ displayIdName(option) }}
