@@ -8,7 +8,7 @@
       :html="`<span class='text-truncate d-inline-block'>
         ${formatToDisplay}</span>`"
       variant=" "
-      class="ps-dropdown psxmarketingwithgoogle-dropdown bordered"
+      class="ps-dropdown psxmarketingwithgoogle-dropdown"
       :toggle-class="[{'ps-dropdown__placeholder' : !formatToDisplay}, 'w-100']"
       menu-class="ps-dropdown"
       size="sm"

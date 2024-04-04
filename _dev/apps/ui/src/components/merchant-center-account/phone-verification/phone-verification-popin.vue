@@ -30,10 +30,8 @@
             v-model="phoneRegionCode"
           >
             <template #option="{ dial_code, name }">
-              <div class="d-flex flex-wrap flex-md-nowrap align-items-center pr-3">
-                <span class="mr-2">{{ name }}</span>
-                <span class="font-italic text-muted">{{ dial_code }}</span>
-              </div>
+              <span class="mr-2">{{ name }}</span>
+              <span class="font-italic text-muted">{{ dial_code }}</span>
             </template>
           </ps-select>
           <b-form-input
