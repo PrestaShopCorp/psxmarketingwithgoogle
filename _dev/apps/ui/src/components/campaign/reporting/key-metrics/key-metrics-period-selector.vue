@@ -16,7 +16,7 @@
       id="periodSelectorMobile"
       :text="$t(`keymetrics.periods.${reportingPeriod}`)"
       variant=" "
-      class="mb-2 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250 d-sm-none"
+      class="mb-2 ps-dropdown psxmarketingwithgoogle-dropdown maxw-sm-250 d-sm-none"
       size="sm"
       menu-class="ps-dropdown"
     >

@@ -11,16 +11,14 @@
     :class="{'maxw-sm-500': notFullWidth }"
   >
     <template #option="option">
-      <div class="d-flex flex-wrap flex-md-nowrap align-items-center pr-3">
-        <b-form-checkbox
-          data-test-id="buttonCheckbox"
-          class="ps_gs-checkbox"
-        />
-        <span
-          class="mr-2"
-          v-html="highlightSearch(option.name)"
-        />
-      </div>
+      <b-form-checkbox
+        data-test-id="buttonCheckbox"
+        class="ps_gs-checkbox"
+      />
+      <span
+        class="mr-2"
+        v-html="highlightSearch(option.name)"
+      />
     </template>
   </ps-select>
 </template>
