@@ -45,13 +45,13 @@ class AttributeOptionsProvider implements OptionsProviderInterface
 
     public function getOptions(): array
     {
-        $rawData = $this->attributeRepository->getCustomAttributesWithValues();
+        $rawData = $this->attributeRepository->getCustomAttributesWithLocalizedValues();
 
         $options = [];
         foreach ($rawData as $rawAttribute) {
             // find existing attribute group to modify it...
             foreach ($options as &$option) {
-                if ($option['reference'] === $rawAttribute['id_attribute_group']) {
+                if ($option['id'] === $rawAttribute['id_attribute_group']) {
                     $option['values'][] = [
                         'key' => $rawAttribute['attribute_group'],
                         'value' => $rawAttribute['name'],
@@ -63,7 +63,7 @@ class AttributeOptionsProvider implements OptionsProviderInterface
 
             // ... or push a new one
             $options[] = [
-                'reference' => $rawAttribute['id_attribute_group'],
+                'id' => $rawAttribute['id_attribute_group'],
                 'key' => $rawAttribute['attribute_group'],
                 'values' => [
                     [
