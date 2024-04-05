@@ -21,6 +21,8 @@
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Repository;
 
 use Context;
+use Db;
+use DbQuery;
 use Shop;
 
 class AttributesRepository
@@ -89,6 +91,24 @@ class AttributesRepository
                 AND agl.`id_attribute_group` IS NOT NULL
 			ORDER BY agl.`name` ASC, a.`position` ASC
 		');
+    }
+
+    /**
+     * Data used for Product filters
+     */
+    public function getFeaturesWithLocalizedValues(): array
+    {
+        $query = new DbQuery();
+        $query->select('f.id_feature, fl.id_lang, fl.name AS feature_name, fvl.value')
+            ->from('feature', 'f')
+            ->innerJoin('feature_shop', 'fs', 'fs.id_feature = f.id_feature')
+            ->innerJoin('feature_lang', 'fl', 'fl.id_feature = f.id_feature')
+            ->innerJoin('feature_value', 'fv', 'fv.id_feature = f.id_feature')
+            ->innerJoin('feature_value_lang', 'fvl', 'fvl.id_feature_value = fv.id_feature_value')
+            ->where('fs.id_shop = ' . (int) $this->context->shop->id)
+            ->where('fl.id_lang = ' . (int) $this->context->language->id)
+            ->where('fvl.id_lang = ' . (int) $this->context->language->id);
+        return Db::getInstance()->executeS($query);
     }
 
     protected function getCustomAttributes(): array

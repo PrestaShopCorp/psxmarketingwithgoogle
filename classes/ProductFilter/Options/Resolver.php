@@ -41,6 +41,7 @@ class Resolver
             AttributeType::BRAND => BrandOptionsProvider::class,
             AttributeType::CATEGORY => CategoryOptionsProvider::class,
             AttributeType::CUSTOM_ATTRIBUTE => AttributeOptionsProvider::class,
+            AttributeType::FEATURE => FeatureOptionsProvider::class,
         ];
     }
 }
