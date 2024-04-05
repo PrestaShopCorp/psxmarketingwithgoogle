@@ -53,6 +53,7 @@ class FeatureOptionsProvider implements OptionsProviderInterface
             foreach ($options as &$option) {
                 if ($option['id'] === $rawAttribute['id_feature']) {
                     $option['values'][] = [
+                        'id' => $rawAttribute['id_feature_value'],
                         'key' => $rawAttribute['feature_name'],
                         'value' => $rawAttribute['value'],
                         'language' => $this->languageRepository->getIsoById($rawAttribute['id_lang']),
@@ -67,6 +68,7 @@ class FeatureOptionsProvider implements OptionsProviderInterface
                 'key' => $rawAttribute['feature_name'],
                 'values' => [
                     [
+                        'id' => $rawAttribute['id_feature_value'],
                         // Repeat key to ease the creation of payload when value is selected
                         'key' => $rawAttribute['feature_name'],
                         'value' => $rawAttribute['value'],
