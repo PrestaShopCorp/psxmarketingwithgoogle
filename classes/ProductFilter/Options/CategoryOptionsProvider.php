@@ -41,7 +41,7 @@ class CategoryOptionsProvider implements OptionsProviderInterface
 
         foreach ($this->categoryRepository->getCategoriesList() as $category) {
             $options[] = [
-                'reference' => $category['id'],
+                'id' => $category['id'],
                 'value' => $category['name'],
             ];
         }
