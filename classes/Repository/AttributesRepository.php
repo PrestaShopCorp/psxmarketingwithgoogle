@@ -64,7 +64,10 @@ class AttributesRepository
         return $attributes;
     }
 
-    public function getCustomAttributesWithValues(): array
+    /**
+     * Data used for Product filters
+     */
+    public function getCustomAttributesWithLocalizedValues(): array
     {
         Shop::setContext(Shop::CONTEXT_SHOP, $this->context->shop->id);
 
