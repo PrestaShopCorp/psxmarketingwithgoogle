@@ -75,7 +75,7 @@ class AttributesRepository
 
         // SQL request taken and adapted from ProductAttribute::getAttributes as there it is returning values only for a given language.
         return \Db::getInstance()->executeS('
-			SELECT DISTINCT ag.id_attribute_group, al.id_lang, al.`name`, agl.`name` AS `attribute_group`
+			SELECT DISTINCT ag.id_attribute_group, al.id_attribute, al.id_lang, al.`name`, agl.`name` AS `attribute_group`
 			FROM `' . _DB_PREFIX_ . 'attribute_group` ag
 			LEFT JOIN `' . _DB_PREFIX_ . 'attribute_group_lang` agl
 				ON (ag.`id_attribute_group` = agl.`id_attribute_group`
@@ -99,15 +99,15 @@ class AttributesRepository
     public function getFeaturesWithLocalizedValues(): array
     {
         $query = new DbQuery();
-        $query->select('f.id_feature, fl.id_lang, fl.name AS feature_name, fvl.value')
+        $query->select('f.id_feature, fvl.id_lang, fl.name AS feature_name, fvl.id_feature_value, fvl.value')
             ->from('feature', 'f')
             ->innerJoin('feature_shop', 'fs', 'fs.id_feature = f.id_feature')
             ->innerJoin('feature_lang', 'fl', 'fl.id_feature = f.id_feature')
             ->innerJoin('feature_value', 'fv', 'fv.id_feature = f.id_feature')
             ->innerJoin('feature_value_lang', 'fvl', 'fvl.id_feature_value = fv.id_feature_value')
             ->where('fs.id_shop = ' . (int) $this->context->shop->id)
-            ->where('fl.id_lang = ' . (int) $this->context->language->id)
-            ->where('fvl.id_lang = ' . (int) $this->context->language->id);
+            ->where('fl.id_lang = ' . (int) $this->context->language->id);
+
         return Db::getInstance()->executeS($query);
     }
 
