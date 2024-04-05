@@ -32,7 +32,7 @@ class AttributeOptionsProviderTest extends TestCase
         $stubAttributeRepository = $this->createStub(AttributesRepository::class);
         $stubLanguageRepository = $this->createStub(LanguageRepository::class);
 
-        $stubAttributeRepository->method('getCustomAttributesWithValues')
+        $stubAttributeRepository->method('getCustomAttributesWithLocalizedValues')
             ->willReturn($this->getInputData());
         $stubLanguageRepository->method('getIsoById')
             ->will($this->onConsecutiveCalls('fr', 'en_gb', 'fr', 'en_gb', 'fr', 'en_gb', 'fr', 'en_gb'));
@@ -45,7 +45,7 @@ class AttributeOptionsProviderTest extends TestCase
         $this->assertSame(
             [
                 [
-                    'reference' => '2',
+                    'id' => '2',
                     'key' => 'Form',
                     'values' => [
                         ['key' => 'Form', 'value' => 'Classique', 'language' => 'fr'],
@@ -55,7 +55,7 @@ class AttributeOptionsProviderTest extends TestCase
                     ],
                 ],
                 [
-                    'reference' => '1',
+                    'id' => '1',
                     'key' => 'Gender',
                     'values' => [
                         ['key' => 'Gender', 'value' => 'Femmes', 'language' => 'fr'],

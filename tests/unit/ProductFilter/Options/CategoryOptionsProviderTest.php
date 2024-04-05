@@ -43,11 +43,11 @@ class CategoryOptionsProviderTest extends TestCase
         $this->assertSame(
             [
                 [
-                    'reference' => '834',
+                    'id' => '834',
                     'value' => 'Feu',
                 ],
                 [
-                    'reference' => '845',
+                    'id' => '845',
                     'value' => 'Livres',
                 ],
             ],
