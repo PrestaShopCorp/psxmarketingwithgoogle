@@ -56,7 +56,7 @@ class FeatureQueryBuilder implements QueryBuilderInterface
     public function addWhereFromFilter(DbQuery $query, $filter): DbQuery
     {
         /*
-        Example of payload:
+        Example of content of $filter:
 
         {
             "attribute": "feature",

@@ -76,6 +76,8 @@ class QueryBuilder
     public function buildQueryToList(array $filters): DbQuery
     {
         $query = $this->buildCommonQuery($filters);
+
+        // TODO: Selection of columns seems to depend on filters.
         $query->select('DISTINCT p.id_product, p.*');
 
         return $query;
