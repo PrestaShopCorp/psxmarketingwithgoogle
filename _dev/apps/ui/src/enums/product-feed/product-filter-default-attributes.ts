@@ -1,4 +1,4 @@
-enum DefaultAttributes {
+enum ProductFilterDefaultAttributes {
   PRICE = 'price',
   BRAND = 'brand',
   CATEGORY = 'category',
@@ -6,4 +6,4 @@ enum DefaultAttributes {
   OUT_OF_STOCK = 'outOfStock',
 }
 
-export default DefaultAttributes;
+export default ProductFilterDefaultAttributes;

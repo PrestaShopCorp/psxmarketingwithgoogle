@@ -7,8 +7,8 @@
     @search="onSearchValue"
     label="name"
     v-model="selectedItems"
-    :placeholder=" $t('productFeedSettings.deliveryTimeAndRates.placeholderSelect')"
-    :class="{'maxw-sm-500': notFullWidth }"
+    :placeholder="placeholder"
+    :class="{'maxw-sm-500': notFullWidth, 'disabled': disabled }"
   >
     <template #option="option">
       <b-form-checkbox
@@ -37,14 +37,26 @@ export default defineComponent({
       searchString: '',
       selectedItems: [],
       isChecked: false,
+      inputSearch: HTMLElement,
+      menuSelect: HTMLElement,
     };
   },
   props: {
     dropdownOptions: {
       type: Array,
-      required: true
+      required: true,
     },
     notFullWidth: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    placeholder: {
+      type: String,
+      required: false,
+      default: undefined,
+    },
+    disabled: {
       type: Boolean,
       required: false,
       default: false,
@@ -63,9 +75,6 @@ export default defineComponent({
     getCountriesFilteredWithList(arg) {
       return this.dropdownOptions.filter((c) => arg.includes(c));
     },
-  },
-  mounted() {
-    this.dropdownOptions = ["Black", "White", "Red", "Blue", "Green", "Yellow"];
   },
 });
 </script>

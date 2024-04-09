@@ -1,11 +1,13 @@
 .input-text-with-tag {
+  padding: 2px 0;
   .container {
+    height: 100%;
     border: solid 1px $primary-400;
-    background-color: white;
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
     padding: 5px 12px;
+    line-height: 19px;
   
     &.has-error {
       background-color: $red-50;
@@ -23,7 +25,7 @@
         background-color: transparent;
         border: none;
         font-size: 16px;
-        margin-left: 12px;
+        margin-left: 6px;
       }
     }
   
@@ -38,6 +40,10 @@
       &:focus-visible {
         border: none;
         outline: none;
+      }
+
+      &[disabled="disabled"] {
+        color: $primary-600;
       }
     }
   }
