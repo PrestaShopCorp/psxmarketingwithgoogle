@@ -7,7 +7,19 @@
 
     .line-filter {
       background-color: $primary-200;  
-      padding: 24px;
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      flex-direction: column;
+      
+      @include media-breakpoint-up(sm) {
+        padding: 24px;
+        flex-direction: row;
+      }
+
+      form {
+        flex-grow: 1;
+      }
     } 
 
     .delete-filter {
@@ -18,10 +30,42 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-left: rem(16);
+      margin-top: 12px;
+
+      @include media-breakpoint-up(sm) {
+        margin-top: 0;
+      }
 
       .material-icons {
         color: $red-100;
       }
     }
-  } 
+  }
+
+  .conditions {
+    margin-right: -1px;
+
+    & ~ div {
+      flex-grow: 1;
+    }
+  }
+
+  .attributes {
+    margin-right: 8px !important;
+  }
+
+  .attributes,
+  .conditions {
+    @include media-breakpoint-up(sm) {
+      width: calc( 50% - 4px );
+    }
+    @include media-breakpoint-up(md) {
+      max-width: 200px;
+    }
+  }
+
+  .field-number {
+    padding: 2px 0;
+  }
 }
