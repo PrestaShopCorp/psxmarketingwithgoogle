@@ -438,12 +438,12 @@
         "learnHowToSetupShippingSettings": "Learn how to set up shipping"
       },
       "productSelection": {
-        "methodSynch": {
+        "methodSync": {
           "title": "Select the method for products syncing",
-          "synchAllProducts": "Synchronize all products",
-          "synchAllProductsDesc": "The entire catalog will be synchronized.",
-          "synchFilteredProducts": "Synchronize filtered products",
-          "synchFilteredProductsDesc": "Only the products you select will be synchronized."
+          "syncAllProducts": "Synchronize all products",
+          "syncAllProductsDesc": "The entire catalog will be synchronized.",
+          "syncFilteredProducts": "Synchronize filtered products",
+          "syncFilteredProductsDesc": "Only the products you select will be synchronized."
         }
         
       },

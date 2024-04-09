@@ -1,43 +1,43 @@
 <template>
   <div class="gs-product-selection">
     <h3 class="font-weight-600">
-      {{ $t('productFeedSettings.productSelection.methodSynch.title') }}
+      {{ $t('productFeedSettings.productSelection.methodSync.title') }}
     </h3>
     <div class="container-fluid">
-      <div class="row methods-synch">
+      <div class="row methods-sync">
         <div
           class="col col-12 col-md border-primary-400 p-3"
-          :class="{'border-primary-800': synchSelected === 'synchAllProducts'}"
+          :class="{'border-primary-800': syncSelected === 'syncAllProducts'}"
         >
           <b-form-radio
-            v-model="synchSelected"
-            name="customSynchRadio"
-            value="synchAllProducts"
+            v-model="syncSelected"
+            name="customSyncRadio"
+            value="syncAllProducts"
           >
             <h3 class="font-weight-700 mb-2">
-              {{ $t('productFeedSettings.productSelection.methodSynch.synchAllProducts') }}
+              {{ $t('productFeedSettings.productSelection.methodSync.syncAllProducts') }}
             </h3>
             <span class="text-primary-600">
-              {{ $t('productFeedSettings.productSelection.methodSynch.synchAllProductsDesc') }}
+              {{ $t('productFeedSettings.productSelection.methodSync.syncAllProductsDesc') }}
             </span>
           </b-form-radio>
         </div>
         <div
           class="col col-12 col-md border-primary-400 p-3 ml-md-1 mt-1 mt-md-0"
-          :class="{'border-primary-800': synchSelected === 'synchFilteredProducts'}"
+          :class="{'border-primary-800': syncSelected === 'syncFilteredProducts'}"
         >
           <div>
             <b-form-radio
-              v-model="synchSelected"
-              name="customSynchRadio"
-              value="synchFilteredProducts"
+              v-model="syncSelected"
+              name="customSyncRadio"
+              value="syncFilteredProducts"
             >
               <h3 class="font-weight-700 mb-2">
-                {{ $t('productFeedSettings.productSelection.methodSynch.synchFilteredProducts') }}
+                {{ $t('productFeedSettings.productSelection.methodSync.syncFilteredProducts') }}
               </h3>
               <span class="text-primary-600">
                 {{
-                  $t('productFeedSettings.productSelection.methodSynch.synchFilteredProductsDesc')
+                  $t('productFeedSettings.productSelection.methodSync.syncFilteredProductsDesc')
                 }}
               </span>
             </b-form-radio>
@@ -54,17 +54,19 @@
 </template>
 
 <script lang="ts">
+import {defineComponent} from 'vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
+import ProductFilterMethodsSync from '@/enums/product-feed/product-filter-mothods-sync';
 
-export default {
+export default defineComponent({
   name: 'ProductFeedSettingsProductSelection',
   components: {
     ActionsButtons,
   },
   data() {
     return {
-      synchSelected: 'synchAllProducts',
+      syncSelected: ProductFilterMethodsSync.SYNC_ALL_PRODUCT,
     };
   },
   methods: {
@@ -92,5 +94,5 @@ export default {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
   },
-};
+});
 </script>
