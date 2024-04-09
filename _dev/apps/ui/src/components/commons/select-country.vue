@@ -64,7 +64,6 @@ export default defineComponent({
   methods: {
     onSearchCountry(event) {
       this.searchString = event;
-    console.log('dropdownOptions', this.dropdownOptions);
     },
     highlightSearch(str) {
       /** Highlight search terms */
