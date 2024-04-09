@@ -1,3 +1,4 @@
+<!-- eslint-disable max-len -->
 <template>
   <div class="gs-product-selection">
     <h3 class="font-weight-600">
@@ -45,52 +46,11 @@
         </div>
       </div>
     </div>
-    <div v-if="synchSelected === 'synchFilteredProducts'" class="filters">
-      <div class="line-filter">
-        <b-form>
-          <div class="d-md-flex text-center">
-            <b-dropdown
-              :text="attributeSelected ? labelAttribute(attributeSelected) : $t('productFeedSettings.productSelection.lineFilter.attributes.placeholder')"
-              class="psxmarketingwithgoogle-dropdown ps-dropdown"
-              menu-class="ps-dropdown"
-            >
-              <b-dropdown-group
-              >
-                <template #header>
-                  <span>
-                    {{ $t('productFeedSettings.productSelection.lineFilter.attributes.defaultAttributes') }}
-                  </span>
-                </template>
-
-                <b-dropdown-item
-                  v-for="(attribute) in defaultAttributes"
-                  @click="attributeSelected = attribute"
-                >
-                  <span>{{ labelAttribute(attribute) }}</span>
-                </b-dropdown-item>
-              </b-dropdown-group>
-              <b-dropdown-group
-              >
-                <template #header>
-                  <span>
-                    {{ $t('productFeedSettings.productSelection.lineFilter.attributes.customAttributes') }}
-                  </span>
-                </template>
-
-                <b-dropdown-item
-                  v-for="(attribute) in customAttributes"
-                  @click="attributeSelected = attribute"
-                >
-                  <span>{{ attribute }}</span>
-                </b-dropdown-item>
-              </b-dropdown-group>
-            </b-dropdown>
-          </div>
-        </b-form>
-        <div class="delete-filter">
-          <i class="material-icons ps_gs-fz-20">delete</i>
-        </div>
-      </div>
+    <div
+      v-if="synchSelected === 'synchFilteredProducts'"
+      class="filters"
+    >
+      <line-filter />
     </div>
     <actions-buttons
       :next-step="nextStep"
@@ -101,26 +61,23 @@
 </template>
 
 <script lang="ts">
+import {defineComponent} from 'vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
+import LineFilter from '@/components/product-feed/settings/product-selection/line-filter.vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
-import DefaultAttributes from '@/enums/product-feed/default-attributes';
 
-export default {
+export default defineComponent({
   name: 'ProductFeedSettingsProductSelection',
   components: {
     ActionsButtons,
+    LineFilter,
   },
   data() {
     return {
       synchSelected: 'synchFilteredProducts',
-      attributeSelected: '',
-      customAttributes: ['Color', 'Country of origin', 'Certification', 'Material', 'Rating', 'Refurbished', 'Size chart']
     };
   },
   methods: {
-    labelAttribute(label) {
-      return this.$i18n.t(`productFeedSettings.productSelection.lineFilter.attributes.${label}`)
-    },
     previousStep() {
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
       this.$router.push({
@@ -145,10 +102,5 @@ export default {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
   },
-  computed: {
-    defaultAttributes() {
-      return Object.values(DefaultAttributes);
-    },
-  },
-};
+});
 </script>
