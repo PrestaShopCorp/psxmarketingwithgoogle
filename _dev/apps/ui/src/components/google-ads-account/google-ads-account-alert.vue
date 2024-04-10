@@ -15,7 +15,7 @@
       />
       <b-link
         v-if="!!gAdsAccountAlert.link"
-        class="text-primary-600"
+        class="text-muted"
         :href="gAdsAccountAlert.link.url"
         target="_blank"
         @click="segmentClicked"

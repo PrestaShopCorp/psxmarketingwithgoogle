@@ -10,7 +10,7 @@
       <p class="mb-1">
         {{ $t('productFeedSettings.shippingSetup.stepExplanation') }}
       </p>
-      <p class="mb-2 ps_gs-fz-12 font-italic text-primary-600">
+      <p class="mb-2 ps_gs-fz-12 font-italic text-muted">
         {{ $t('productFeedSettings.submissionExplanation') }}
       </p>
       <div
@@ -27,7 +27,7 @@
               {{ $t('productFeedSettings.shippingSetup.estimateOption.title') }}
             </span>
             <VueShowdown
-              class="text-primary-600 ps_gs-fz-12 mb-0"
+              class="text-muted ps_gs-fz-12 mb-0"
               :markdown="$t('productFeedSettings.shippingSetup.estimateOption.description')"
             />
           </div>
@@ -47,7 +47,7 @@
               {{ $t('productFeedSettings.shippingSetup.importOption.title') }}
             </span>
             <VueShowdown
-              class="text-primary-600 ps_gs-fz-12 mb-0"
+              class="text-muted ps_gs-fz-12 mb-0"
               :markdown="$t('productFeedSettings.shippingSetup.importOption.description')"
             />
           </div>

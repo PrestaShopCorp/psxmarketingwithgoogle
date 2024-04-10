@@ -1,6 +1,6 @@
 <template>
   <div
-    class="text-primary-600 ps_gs-fz-12 mb-0 mt-2
+    class="text-muted ps_gs-fz-12 mb-0 mt-2
     text-right"
   >
     <span

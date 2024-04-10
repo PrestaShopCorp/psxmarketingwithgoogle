@@ -2,7 +2,7 @@
   <div
     class="py-3 text-center ps_gs-fz-12"
   >
-    <p class="pt-2 mb-0 text-primary-600">
+    <p class="pt-2 mb-0 text-muted">
       {{ $t('general.unableToFetchData') }}
     </p>
     <b-button

@@ -7,7 +7,7 @@
       <label class="mb-2">
         {{ $t('productFeedSettings.deliveryTimeAndRates.productAvailaibleIn') }}
       </label>
-      <p class="mb-2 ps_gs-fz-12 font-italic text-primary-600">
+      <p class="mb-2 ps_gs-fz-12 font-italic text-muted">
         {{ $t('productFeedSettings.submissionExplanation') }}
       </p>
       <SelectCountry
@@ -28,7 +28,7 @@
         <span class="h4 mb-0 font-weight-600 mr-1">
           {{ $t('productFeedSettings.deliveryTimeAndRates.taxSettings') }}
         </span>
-        <span class="text-primary-600 ps_gs-fz-12">
+        <span class="text-muted ps_gs-fz-12">
           {{ $t('productFeedSettings.deliveryTimeAndRates.appliedOnlyForUsa') }}
         </span>
       </div>

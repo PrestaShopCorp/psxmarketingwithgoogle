@@ -8,7 +8,7 @@
     </p>
     <a
       target="_blank"
-      class="text-primary-600 ps_gs-fz-12 px-2"
+      class="text-muted ps_gs-fz-12 px-2"
       :href="$options.googleUrl.learnAboutFreeListing"
     >
       {{ $t('cta.learnAboutFreeListing') }}

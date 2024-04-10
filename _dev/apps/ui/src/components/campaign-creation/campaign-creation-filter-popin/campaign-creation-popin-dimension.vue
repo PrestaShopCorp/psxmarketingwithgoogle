@@ -10,7 +10,7 @@
         </p>
         <span
           v-if="!availableDimensions.length"
-          class="text-primary-600"
+          class="text-muted"
         >
           <i class="icon-busy icon-busy--dark mr-1" />
           {{ $t("badge.loading") }}

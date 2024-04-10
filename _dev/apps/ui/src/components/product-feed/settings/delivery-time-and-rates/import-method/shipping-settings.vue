@@ -122,7 +122,7 @@
       </b-tbody>
     </b-table-simple>
     <!-- END > TABLE -->
-    <p class="text-primary-600 text-center">
+    <p class="text-muted text-center">
       <span class="ps_gs-fz-12 align-middle">
         {{ $t('productFeedSettings.deliveryTimeAndRates.shippingTableNotice') }}
       </span>

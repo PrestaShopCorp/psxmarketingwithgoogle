@@ -13,7 +13,7 @@
       class="my-3"
     >
       <p v-if="isMultiGroup">
-        <label class="text-primary-600">
+        <label class="text-muted">
           {{ $t('multiShopSelector.group') }}:
         </label>
         {{ group.name }}

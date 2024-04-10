@@ -194,14 +194,14 @@
       </b-button>
     </div>
     <div
-      class="text-primary-600 ps_gs-fz-12 mb-0 mt-2
+      class="text-muted ps_gs-fz-12 mb-0 mt-2
       d-flex align-items-start align-items-sm-center justify-content-end"
     >
       <b-button
         v-b-tooltip
         title="Tooltip!"
         variant="invisible"
-        class="d-flex mr-1 text-primary-600 p-0 border-0"
+        class="d-flex mr-1 text-muted p-0 border-0"
       >
         <span class="material-icons ps_gs-fz-14">
           help_outline

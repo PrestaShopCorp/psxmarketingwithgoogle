@@ -22,7 +22,7 @@
         {{ shopInformations.shop.url }}
       </span>
       <VueShowdown
-        class="font-weight-normal ps_gs-fz-12 text-primary-600 mb-3 pb-2"
+        class="font-weight-normal ps_gs-fz-12 text-muted mb-3 pb-2"
         :markdown="$t('mcaRequirements.legend2')"
         :extensions="['extended-link']"
       />
@@ -81,7 +81,7 @@
       </p>
       <VueShowdown
         id="businessAddressFeedback"
-        class="font-weight-normal ps_gs-fz-12 text-primary-600 mb-0"
+        class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
         :extensions="['extended-link']"
         :markdown="$t('mcaRequirements.changeAddressField', [storeInformationsUrl])"
       />
@@ -117,7 +117,7 @@
       </p>
       <VueShowdown
         id="businessZipCodeFeedback"
-        class="font-weight-normal ps_gs-fz-12 text-primary-600 mb-0"
+        class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
         :extensions="['extended-link']"
         :markdown="$t('mcaRequirements.changeZipCodeField', [storeInformationsUrl])"
       />
@@ -155,7 +155,7 @@
 
       <VueShowdown
         id="businessCityFeedback"
-        class="font-weight-normal ps_gs-fz-12 text-primary-600 mb-0"
+        class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
         :extensions="['extended-link']"
         :markdown="$t('mcaRequirements.changeCityField', [storeInformationsUrl])"
       />
@@ -194,7 +194,7 @@
 
       <VueShowdown
         id="businessCountryFeedback"
-        class="font-weight-normal ps_gs-fz-12 text-primary-600 mb-0"
+        class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
         :extensions="['extended-link']"
         :markdown="$t('mcaRequirements.changeCountryField', [storeInformationsUrl])"
       />
@@ -234,7 +234,7 @@
       </p>
       <VueShowdown
         id="businessRegionFeedback"
-        class="font-weight-normal ps_gs-fz-12 text-primary-600 mb-0"
+        class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
         :extensions="['extended-link']"
         :markdown="$t('mcaRequirements.changeRegionField', [storeInformationsUrl])"
       />
@@ -276,7 +276,7 @@
       </p>
       <VueShowdown
         id="businessPhoneNumberFeedback"
-        class="font-weight-normal ps_gs-fz-12 text-primary-600 mb-0"
+        class="font-weight-normal ps_gs-fz-12 text-muted mb-0"
         :extensions="['extended-link']"
         :markdown="$t('mcaRequirements.changePhoneNumberField', [storeInformationsUrl])"
       />
@@ -416,7 +416,7 @@ export default {
       return `${this.$store.getters['app/GET_STORE_INFORMATION_URL']}#store_fieldset_contact`;
     },
     loadingClass() {
-      return {'text-primary-600': this.loading};
+      return {'text-muted': this.loading};
     },
   },
   googleUrl,
