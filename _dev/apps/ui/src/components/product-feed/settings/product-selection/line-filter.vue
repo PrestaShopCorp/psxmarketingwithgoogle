@@ -75,8 +75,7 @@
         <b-input-group
           v-if="attributeSelected === 'price' || attributeSelected === 'productId'"
           class="field-number"
-          :prepend="attributeSelected === 'price' ? currencySymbol : undefined"
-          :append="attributeSelected === 'price' ? currency : undefined"
+          :append="attributeSelected === 'price' ? currencySymbol : undefined"
         >
           <b-form-input
             type="number"
