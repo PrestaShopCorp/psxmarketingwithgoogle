@@ -17,7 +17,7 @@
             <h3 class="font-weight-700 mb-2">
               {{ $t('productFeedSettings.productSelection.methodSync.syncAllProducts') }}
             </h3>
-            <span class="text-primary-600">
+            <span class="text-muted">
               {{ $t('productFeedSettings.productSelection.methodSync.syncAllProductsDesc') }}
             </span>
           </b-form-radio>
@@ -35,7 +35,7 @@
               <h3 class="font-weight-700 mb-2">
                 {{ $t('productFeedSettings.productSelection.methodSync.syncFilteredProducts') }}
               </h3>
-              <span class="text-primary-600">
+              <span class="text-muted">
                 {{
                   $t('productFeedSettings.productSelection.methodSync.syncFilteredProductsDesc')
                 }}

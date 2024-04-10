@@ -23,7 +23,7 @@
                 </span>
                 <VueShowdown
                   :extensions="['no-p-tag']"
-                  class="ps_gs-fz-14 mb-0 text-primary-600"
+                  class="ps_gs-fz-14 mb-0 text-muted"
                   :markdown="$t('productFeedSettings.deliveryTimeAndRates.customRate.rateDesc')"
                 />
               </div>
@@ -48,7 +48,7 @@
                 </span>
                 <VueShowdown
                   :extensions="['no-p-tag']"
-                  class="ps_gs-fz-14 mb-0 text-primary-600"
+                  class="ps_gs-fz-14 mb-0 text-muted"
                   :markdown="$t('productFeedSettings.deliveryTimeAndRates.customRate.customDesc')"
                 />
               </div>
