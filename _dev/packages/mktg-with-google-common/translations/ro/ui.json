@@ -248,6 +248,7 @@
             "deliveryTimesAndRates": "Timp de livrare și tarife",
             "attributeMapping": "Maparea caracteristicilor",
             "categoryMapping": "Maparea categoriilor",
+            "productSelection": "Product selection",
             "summary": "Rezumat",
             "exportFeed": "Exportare flux!",
             "shippingSettingsErrors": "Această țară nu este compatibilă cu moneda ta",
@@ -435,6 +436,15 @@
             "thisCustomField": "Acest câmp personalizat",
             "learnAboutShippingSettings": "Află mai multe despre setările de expediere",
             "learnHowToSetupShippingSettings": "Află cum să configurezi expedierea"
+        },
+        "productSelection": {
+            "methodSync": {
+                "title": "Select the method for products syncing",
+                "syncAllProducts": "Synchronize all products",
+                "syncAllProductsDesc": "The entire catalog will be synchronized.",
+                "syncFilteredProducts": "Synchronize filtered products",
+                "syncFilteredProductsDesc": "Only the products you select will be synchronized."
+            }
         },
         "syncSchedule": {
             "title": "Program de sincronizare",
