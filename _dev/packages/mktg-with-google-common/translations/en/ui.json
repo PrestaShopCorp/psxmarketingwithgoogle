@@ -248,6 +248,7 @@
         "deliveryTimesAndRates": "Delivery time & rates",
         "attributeMapping": "Attribute mapping",
         "categoryMapping": "Category mapping",
+        "productSelection": "Product selection",
         "summary": "Summary",
         "exportFeed": "Export feed!",
         "shippingSettingsErrors": "This country is not compatible with your currency",
@@ -435,6 +436,16 @@
         "thisCustomField": "This custom field",
         "learnAboutShippingSettings": "Learn more about shipping settings",
         "learnHowToSetupShippingSettings": "Learn how to set up shipping"
+      },
+      "productSelection": {
+        "methodSync": {
+          "title": "Select the method for products syncing",
+          "syncAllProducts": "Synchronize all products",
+          "syncAllProductsDesc": "The entire catalog will be synchronized.",
+          "syncFilteredProducts": "Synchronize filtered products",
+          "syncFilteredProductsDesc": "Only the products you select will be synchronized."
+        }
+        
       },
       "syncSchedule": {
         "title": "Synchronization schedule",

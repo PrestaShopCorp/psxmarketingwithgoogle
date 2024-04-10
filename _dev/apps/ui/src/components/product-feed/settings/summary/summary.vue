@@ -355,7 +355,7 @@ export default defineComponent({
       this.postDatas();
     },
     previousStep() {
-      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 4);
+      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 5);
       this.$router.push({
         name: 'product-feed-settings',
         params: {

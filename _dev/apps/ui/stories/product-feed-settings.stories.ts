@@ -451,6 +451,22 @@ AttributeMapping.parameters = {
   },
 };
 
+export const ProductSelection: any = Template.bind({});
+ProductSelection.argTypes = {
+  hide: {
+    control: "boolean",
+  },
+};
+ProductSelection.args = {
+  beforeMount(this: any) {
+    this.$store.state.app = cloneDeep(initialStateApp);
+    this.$store.state.productFeed = cloneDeep(productFeed);
+    this.$store.state.productFeed.stepper = 4;
+    this.$router.history.current.params.step =
+      ProductFeedSettingsPages.PRODUCT_SELECTION;
+  },
+};
+
 export const SyncSchedule: any = Template.bind({});
 SyncSchedule.argTypes = {
   hide: {
@@ -461,7 +477,7 @@ SyncSchedule.args = {
   beforeMount(this: any) {
     this.$store.state.app = cloneDeep(initialStateApp);
     this.$store.state.productFeed = cloneDeep(productFeedSyncScheduleNow);
-    this.$store.state.productFeed.stepper = 4;
+    this.$store.state.productFeed.stepper = 5;
     this.$router.history.current.params.step =
       ProductFeedSettingsPages.SYNC_SCHEDULE;
   },
@@ -477,7 +493,7 @@ Summary.args = {
   beforeMount(this: any) {
     this.$store.state.app = cloneDeep(initialStateApp);
     this.$store.state.productFeed = cloneDeep(productFeedIsReadyForExport);
-    this.$store.state.productFeed.stepper = 5;
+    this.$store.state.productFeed.stepper = 6;
     this.$router.history.current.params.step = ProductFeedSettingsPages.SUMMARY;
   },
 };

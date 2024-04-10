@@ -66,22 +66,22 @@ export default {
   },
   methods: {
     previousStep() {
-      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
+      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 4);
       this.$router.push({
         params: {
           name: 'product-feed-settings',
-          step: ProductFeedSettingsPages.ATTRIBUTE_MAPPING,
+          step: ProductFeedSettingsPages.PRODUCT_SELECTION,
         },
       });
       window.scrollTo(0, 0);
     },
     nextStep() {
       localStorage.setItem('productFeed-requestSynchronizationNow', this.selectedSyncSchedule);
-      this.$segment.track('[GGL] Product feed config - Step 4', {
+      this.$segment.track('[GGL] Product feed config - Step 5', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
-      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 5);
+      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 6);
       this.$router.push({
         name: 'product-feed-settings',
         params: {
