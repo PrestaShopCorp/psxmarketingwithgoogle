@@ -248,6 +248,7 @@
             "deliveryTimesAndRates": "Levertijd en -tarieven",
             "attributeMapping": "Attribuut in kaart brengen",
             "categoryMapping": "Categorie in kaart brengen",
+            "productSelection": "Product selection",
             "summary": "Samenvatting",
             "exportFeed": "Voer uit!",
             "shippingSettingsErrors": "Dit land is niet compatibel met uw munteenheid",
@@ -435,6 +436,15 @@
             "thisCustomField": "Dit aangepaste veld",
             "learnAboutShippingSettings": "Meer informatie over verzendinstellingen",
             "learnHowToSetupShippingSettings": "Leer hoe u de verzending instelt"
+        },
+        "productSelection": {
+            "methodSync": {
+                "title": "Select the method for products syncing",
+                "syncAllProducts": "Synchronize all products",
+                "syncAllProductsDesc": "The entire catalog will be synchronized.",
+                "syncFilteredProducts": "Synchronize filtered products",
+                "syncFilteredProductsDesc": "Only the products you select will be synchronized."
+            }
         },
         "syncSchedule": {
             "title": "Synchronisatie schema",
