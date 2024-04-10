@@ -41,12 +41,12 @@
     padding-top: rem(8);
     padding-bottom: rem(8);
     font-weight: 400;
-    background-color: transparent;
+    background-color: white;
     color: $primary-800 !important;
     border-color: $primary-400;
     
     &:hover {
-      background-color: transparent;
+      background-color: white;
       color: $primary-800 !important;
     }
 
@@ -209,6 +209,10 @@
     border: 1px solid $primary-400;
     border-radius: 0 !important;
     padding: 4px 0 4px 12px;
+
+    &:hover {
+      border: 1px solid $primary-800;
+    }
   }
 
   .vs__selected {
@@ -437,15 +441,16 @@ input[type=number].no-arrows {
 
 /* Color could not be redefined in a clean way */
 .form-control {
-  background-color: transparent;
   color: $primary-800 !important;
   border-color: $primary-400;
 
   &:hover {
-    background-color: transparent !important;
+    border-color: $primary-800;
+    background-color: white !important;
   }
 
-  &[disabled="disabled"] {
+  &[disabled="disabled"],
+  &[disabled="disabled"] + div .input-group-text {
     color: $primary-400 !important;
     background-color: transparent !important;
     border-color: $primary-400;
@@ -460,6 +465,6 @@ input[type=number].no-arrows {
 
 .input-group-text {
   background-color: transparent;
-  color: $primary-400 !important;
+  color: $primary-800 !important;
   border-color: $primary-400 !important;
 }
