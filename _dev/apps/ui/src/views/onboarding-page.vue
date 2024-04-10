@@ -37,7 +37,7 @@
             <p class="text-justify ps_gs-fz-14">
               {{ $t('onboarding.sectionTitle.freeListing.subtitle') }}
             </p>
-            <p class="text-muted ps_gs-fz-13">
+            <p class="text-primary-600 ps_gs-fz-13">
               {{ $t('onboarding.sectionTitle.freeListing.lastTitle') }}
             </p>
           </div>

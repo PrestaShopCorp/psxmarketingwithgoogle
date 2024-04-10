@@ -65,7 +65,7 @@
             />
           </div>
           <div class="bg-light p-4 mt-1">
-            <strong class="text-muted font-weight-600">{{ $t("help.help.needHelp") }}</strong>
+            <strong class="text-primary-600 font-weight-600">{{ $t("help.help.needHelp") }}</strong>
             <br>
             <b-button
               class="mt-3"

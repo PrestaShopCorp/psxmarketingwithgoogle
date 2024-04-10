@@ -20,7 +20,7 @@
         </b-iconstack>
         {{ $t('productFeedCard.googleTaxonomyAssociation') }}
         <span
-          class="text-muted font-italic font-weight-normal"
+          class="text-primary-600 font-italic font-weight-normal"
         >-&nbsp;{{ $t('productFeedCard.optional') }}</span>
       </div>
       <div
@@ -59,7 +59,7 @@
           <a
             :href="$options.googleUrl.googleProductCategories"
             target="_blank"
-            class="text-muted"
+            class="text-primary-600"
           >
             {{ $t('cta.aboutProductCategory') }}
           </a>

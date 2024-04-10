@@ -14,9 +14,9 @@
         class="ps_gs-landingpage-content__text"
       />
       <div
-        class="ps_gs-landingpage-content__muted text-muted"
+        class="ps_gs-landingpage-content__muted text-primary-600"
       >
-        <VueShowdown
+      <VueShowdown
           v-if="contentFooter"
           :markdown="contentFooter"
           :extensions="['extended-link']"

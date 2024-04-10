@@ -58,8 +58,7 @@
       />
       <router-view />
       <div
-        class="ps_gs-landingpage-content__muted text-muted bg-transparent mt-4"
-        v-if="currentlyOnLandingPage"
+        class="ps_gs-landingpage-content__muted text-primary-600 bg-transparent mt-4"
       >
         <VueShowdown
           :markdown="$t('landingPage.footer.explanation')"

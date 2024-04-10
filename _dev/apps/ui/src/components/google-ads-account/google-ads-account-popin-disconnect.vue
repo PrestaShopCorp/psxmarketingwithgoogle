@@ -24,7 +24,7 @@
           {{ $t('modal.pauseCampaigns') }}
         </span>
         <p
-          class="text-muted mb-0 ps_gs-fz-12"
+          class="text-primary-600 mb-0 ps_gs-fz-12"
         >
           {{ $t('modal.pauseCampaignsExplainations') }}
         </p>
@@ -42,7 +42,7 @@
           :v-html="$t('modal.removeTag')"
         />
         <p
-          class="text-muted mb-0 ps_gs-fz-12"
+          class="text-primary-600 mb-0 ps_gs-fz-12"
         >
           {{ $t('modal.removeTagExplainations') }}
         </p>

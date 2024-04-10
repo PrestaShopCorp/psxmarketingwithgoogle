@@ -14,7 +14,7 @@
     </div>
     <div
       v-if="searchLoader"
-      class="text-muted rounded-bottom border border-450 p-3 text-center"
+      class="text-primary-600 rounded-bottom border border-450 p-3 text-center"
     >
       <i class="icon-busy icon-busy--dark mr-1" />
       {{ $t('badge.loading') }}

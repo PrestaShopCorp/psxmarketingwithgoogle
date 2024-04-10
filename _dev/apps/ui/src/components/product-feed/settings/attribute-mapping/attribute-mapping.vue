@@ -131,7 +131,7 @@
           {{ $t('productFeedSettings.attributeMapping.learnRequirementsProductSpecification') }}
         </a>
       </p>
-      <p class="ps_gs-fz-12 text-muted">
+      <p class="ps_gs-fz-12 text-primary-600">
         {{ $t('productFeedSettings.attributeMapping.footerNotice') }}
       </p>
     </b-form>

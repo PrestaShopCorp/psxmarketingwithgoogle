@@ -160,7 +160,7 @@
                   :key="index"
                 >
                   <template #header>
-                    <div class="text-muted px-3">
+                    <div class="text-primary-600 px-3">
                       <span class="font-weight-600 ps_gs-fz-13 mr-2">
                         {{ group.mca.name }}
                       </span>
@@ -236,7 +236,7 @@
 
             <VueShowdown
               v-if="isEU"
-              class="mt-4 mb-0 text-muted ps_gs-fz-12"
+              class="mt-4 mb-0 text-primary-600 ps_gs-fz-12"
               :markdown="$t('mcaCard.footerEU', [
                 this.$options.googleUrl.comparisonShoppingServices,
                 this.$options.googleUrl.findCssPartners
@@ -289,14 +289,14 @@
               </a>
               <span
                 v-if="loaderText"
-                class="text-muted ml-4"
+                class="text-primary-600 ml-4"
               >
                 <i class="icon-busy icon-busy--dark mr-1" />
                 {{ $t(`badge.${loaderText}`) }}
               </span>
               <span
                 v-if="displaySiteVerified"
-                class="text-muted"
+                class="text-primary-600"
               >
 
                 <i class="material-icons mr-1 ps_gs-fz-12 text-success">done</i>
@@ -325,7 +325,7 @@
             <a
               :href="$options.googleUrl.learnAboutSiteClaiming"
               target="_blank"
-              class="d-inline-block text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
+              class="d-inline-block text-primary-600 ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
             >
               {{ $t('cta.learnAboutSiteClaiming') }}
             </a>
@@ -356,7 +356,7 @@
             <a
               :href="$options.googleUrl.learnAboutSiteClaiming"
               target="_blank"
-              class="d-inline-block text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
+              class="d-inline-block text-primary-600 ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
             >
               {{ $t('cta.learnAboutSiteClaiming') }}
             </a>

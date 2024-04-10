@@ -32,7 +32,7 @@
             <template #option="{ dial_code, name }">
               <div class="d-flex flex-wrap flex-md-nowrap align-items-center pr-3">
                 <span class="mr-2">{{ name }}</span>
-                <span class="font-italic text-muted">{{ dial_code }}</span>
+                <span class="font-italic text-primary-600">{{ dial_code }}</span>
               </div>
             </template>
           </ps-select>
@@ -71,7 +71,7 @@
         </b-button>
         <span
           v-if="askAgainIn60Sec"
-          class="ps_gs-fz-12 text-muted"
+          class="ps_gs-fz-12 text-primary-600"
         >
           {{ $t('mcaCard.askAgain60sec') }}
         </span>
