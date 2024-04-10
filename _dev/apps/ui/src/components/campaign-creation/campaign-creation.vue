@@ -347,8 +347,7 @@
               </template>
               <b-input-group
                 data-test-id="campaign-dailyBudget-input-group"
-                :prepend="currencySymbol"
-                :append="currency"
+                :append="currencySymbol"
                 class="maxw-sm-420"
               >
                 <b-form-input
