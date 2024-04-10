@@ -248,6 +248,7 @@
             "deliveryTimesAndRates": "Délai et tarifs de livraison",
             "attributeMapping": "Cartographie des attributs",
             "categoryMapping": "Mapping des catégories",
+            "productSelection": "Product selection",
             "summary": "Résumé",
             "exportFeed": "Exporter vos produits",
             "shippingSettingsErrors": "Ce pays n'est pas compatible avec votre devise",
@@ -435,6 +436,15 @@
             "thisCustomField": "Ce champ personnalisé",
             "learnAboutShippingSettings": "En savoir plus sur les paramètres d'expédition",
             "learnHowToSetupShippingSettings": "Apprenez à mettre en place des politiques de retour"
+        },
+        "productSelection": {
+            "methodSync": {
+                "title": "Select the method for products syncing",
+                "syncAllProducts": "Synchronize all products",
+                "syncAllProductsDesc": "The entire catalog will be synchronized.",
+                "syncFilteredProducts": "Synchronize filtered products",
+                "syncFilteredProductsDesc": "Only the products you select will be synchronized."
+            }
         },
         "syncSchedule": {
             "title": "Calendrier de synchronisation",
