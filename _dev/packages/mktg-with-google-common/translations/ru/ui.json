@@ -248,6 +248,7 @@
             "deliveryTimesAndRates": "Сроки и стоимость доставки",
             "attributeMapping": "Сопоставление атрибутов",
             "categoryMapping": "Картирование категорий",
+            "productSelection": "Product selection",
             "summary": "Резюме",
             "exportFeed": "Экспортный корм!",
             "shippingSettingsErrors": "Эта страна не совместима с вашей валютой",
@@ -435,6 +436,15 @@
             "thisCustomField": "Это пользовательское поле",
             "learnAboutShippingSettings": "Узнайте больше о настройках доставки",
             "learnHowToSetupShippingSettings": "Узнайте, как настроить доставку"
+        },
+        "productSelection": {
+            "methodSync": {
+                "title": "Select the method for products syncing",
+                "syncAllProducts": "Synchronize all products",
+                "syncAllProductsDesc": "The entire catalog will be synchronized.",
+                "syncFilteredProducts": "Synchronize filtered products",
+                "syncFilteredProductsDesc": "Only the products you select will be synchronized."
+            }
         },
         "syncSchedule": {
             "title": "Расписание синхронизации",
