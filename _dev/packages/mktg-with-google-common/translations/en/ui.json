@@ -479,7 +479,9 @@
           "selectValue": "Select a value",
           "enterValue": "Enter a value"
         }
-      }
+      },
+      "and": "And",
+      "addFilter": "Add filter"
     },
     "syncSchedule": {
       "title": "Synchronization schedule",

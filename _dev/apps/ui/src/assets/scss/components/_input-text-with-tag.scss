@@ -1,6 +1,8 @@
 .input-text-with-tag {
   padding: 2px 0;
+
   .container {
+    background-color: white;
     height: 100%;
     border: solid 1px $primary-400;
     display: flex;

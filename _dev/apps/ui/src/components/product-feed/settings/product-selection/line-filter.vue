@@ -101,9 +101,14 @@
         />
       </div>
     </b-form>
-    <div class="delete-filter">
+    <button
+      :class="{'disabled': deleteButtonDisabled}"
+      :disabled="deleteButtonDisabled"
+      class="delete-filter"
+      @click="$emit('clickToDeleteFilter')"
+    >
       <i class="material-icons ps_gs-fz-20">delete</i>
-    </div>
+    </button>
   </div>
 </template>
 
@@ -128,6 +133,12 @@ export default defineComponent({
     MultiSelectValue,
     InputTextWithTag,
   },
+  props: {
+    deleteButtonDisabled: {
+      type: Boolean,
+      required: false,
+    },
+  },
   data() {
     return {
       features: featureMock,
@@ -145,7 +156,7 @@ export default defineComponent({
     },
     conditionValueSelected(label) {
       return this.$i18n.t(`productFeedSettings.productSelection.lineFilter.condition.${label}`);
-    },
+    }
   },
   computed: {
     // Attribute Field
