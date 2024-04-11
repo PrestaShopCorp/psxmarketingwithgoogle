@@ -14,7 +14,7 @@
             name="customSyncRadio"
             value="syncAllProducts"
           >
-            <h3 class="font-weight-700 mb-2">
+            <h3 class="font-weight-700 mb-2 ps_gs-fz-14">
               {{ $t('productFeedSettings.productSelection.methodSync.syncAllProducts') }}
             </h3>
             <span class="text-muted">
@@ -32,7 +32,7 @@
               name="customSyncRadio"
               value="syncFilteredProducts"
             >
-              <h3 class="font-weight-700 mb-2">
+              <h3 class="font-weight-700 mb-2 ps_gs-fz-14">
                 {{ $t('productFeedSettings.productSelection.methodSync.syncFilteredProducts') }}
               </h3>
               <span class="text-muted">

@@ -18,7 +18,7 @@
               :value="RateType.RATE_ALL_COUNTRIES"
             >
               <div>
-                <span class="font-weight-600 mb-2">
+                <span class="font-weight-600 mb-2 d-block">
                   {{ $t('productFeedSettings.deliveryTimeAndRates.customRate.rateTitle') }}
                 </span>
                 <VueShowdown
@@ -43,7 +43,7 @@
               :disabled="!isMultipleCountries"
             >
               <div>
-                <span class="font-weight-600 mb-2">
+                <span class="font-weight-600 mb-2 d-block">
                   {{ $t('productFeedSettings.deliveryTimeAndRates.customRate.customTitle') }}
                 </span>
                 <VueShowdown
