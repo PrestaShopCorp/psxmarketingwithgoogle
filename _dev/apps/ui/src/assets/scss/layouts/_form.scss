@@ -50,8 +50,9 @@
       color: $primary-800 !important;
     }
 
-    &:focus {
-      background: transparent;
+    &:focus,
+    &:focus-visible {
+      background: white;
       box-shadow: none;
       outline-offset: 1px;
     }
@@ -130,6 +131,8 @@
 
   .dropdown-toggle {
     padding-right: 6px;
+    background-color: white;
+    z-index: 2 !important;
 
     &[expanded="true"] {
       border-bottom: 0;
@@ -162,14 +165,12 @@
   }
 
   & > .disabled {
-    background-color: transparent;
     color: $primary-500 !important;
     border: 1px solid $primary-400;
     cursor: auto;
     
     &:hover {
       color: $primary-500 !important;
-      background-color: transparent;
     }
   }
 }
@@ -278,6 +279,7 @@
 
     .vs__dropdown-toggle {
       height: 100%;
+      background-color: white;
     }
    
     .vs__dropdown-option {
@@ -490,13 +492,11 @@ input[type=number].no-arrows {
   &[disabled="disabled"],
   &[disabled="disabled"] + div .input-group-text {
     color: $primary-400 !important;
-    background-color: transparent !important;
     border-color: $primary-400;
   }
 
 
   &:focus {
-    background-color: transparent !important;
     border-color: $primary-800 !important;
   }
 }

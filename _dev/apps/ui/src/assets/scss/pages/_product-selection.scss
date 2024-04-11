@@ -21,10 +21,29 @@
         flex-grow: 1;
       }
     } 
+    
+    .separator {
+      display: flex;
+      align-items: center;
+      
+      hr {
+        height: 1px;
+        width: 100%;
+      }
+      
+      span {
+        margin: 0 rem(16);
+        padding: 2px 8px;
+        border: solid 1px $primary-800;
+        height: min-content;
+        border-radius: 100px;
+      }
+    }
 
     .delete-filter {
       background-color: $red-50;
       border-radius: 100%;
+      border: none;
       height: 36px;
       width: 36px;
       display: flex;
@@ -38,7 +57,13 @@
       }
 
       .material-icons {
-        color: $red-100;
+        color: $red-500;
+      }
+
+      &.disabled {
+        .material-icons {
+          color: $red-100;
+        }
       }
     }
   }
@@ -61,11 +86,12 @@
       width: calc( 50% - 4px );
     }
     @include media-breakpoint-up(md) {
-      max-width: 200px;
+      width: 200px !important;
     }
   }
 
   .field-number {
     padding: 2px 0;
+    width: auto;
   }
 }
