@@ -1,5 +1,20 @@
 .btn {
   border-radius: 0;
+  font-weight: 500;
+
+  &:focus {
+    box-shadow: none !important;
+  }
+  
+  &:focus-visible {
+    box-shadow: none;
+    outline: $blue-500 2px solid !important;
+    outline-offset: 2px;
+
+    &:active {
+      box-shadow: none !important;
+    }
+  }
 }
 
 .btn-sm {
@@ -23,6 +38,13 @@
 
   &:focus {
     color: $primary;
+    box-shadow: 0;
+  }
+
+  &:active {
+    background-color: $primary-400 !important;
+    color: $primary-800 !important;
+    outline: none;
   }
 }
 

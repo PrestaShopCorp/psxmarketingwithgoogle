@@ -50,8 +50,32 @@
       v-if="synchSelected === 'synchFilteredProducts'"
       class="filters"
     >
-      <line-filter />
+      <div
+        v-for="(card, index) in cardsArray"
+        :key="index"
+      >
+        <div
+          class="separator"
+          v-if="index !== 0"
+        >
+          <hr>
+          <span>{{ $t('productFeedSettings.productSelection.and') }}</span>
+          <hr>
+        </div>
+        <line-filter
+          :delete-button-disabled="cardsArray.length === 1"
+          @clickToDeleteFilter="deleteFilter(index)"
+        />
+      </div>
     </div>
+    <b-button
+      variant="outline-secondary"
+      class="mt-3"
+      @click="addNewFilter()"
+    >
+      <i class="material-icons ps_gs-fz-20">add</i>
+      {{ $t('productFeedSettings.productSelection.addFilter') }}
+    </b-button>
     <actions-buttons
       :next-step="nextStep"
       :previous-step="previousStep"
@@ -75,6 +99,7 @@ export default defineComponent({
   data() {
     return {
       synchSelected: 'synchFilteredProducts',
+      cardsArray: [{}],
     };
   },
   methods: {
@@ -97,6 +122,15 @@ export default defineComponent({
         },
       });
       window.scrollTo(0, 0);
+    },
+    addNewFilter() {
+      this.cardsArray.push({});
+      console.log('cardsArray', this.cardsArray);
+    },
+    deleteFilter(index) {
+      console.log('index', index);
+      this.cardsArray.splice(index, 1);
+      console.log('cardsArray', this.cardsArray);
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
