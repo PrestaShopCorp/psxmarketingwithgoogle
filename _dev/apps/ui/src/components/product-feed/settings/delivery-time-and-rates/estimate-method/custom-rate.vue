@@ -4,10 +4,10 @@
       {{ $t('productFeedSettings.steps.deliveryTimesAndRates') }}
     </p>
     <div class="container-fluid">
-      <div class="row">
+      <div class="row ps_gs-radio">
         <div
-          class="col col-12 col-md border-primary-400 rounded p-3 mr-1"
-          :class="{'border-primary-800': rateSelected === RateType.RATE_ALL_COUNTRIES}"
+          class="col col-12 col-md border-primary-400 p-3 mr-1"
+          :class="{'checked': rateSelected === RateType.RATE_ALL_COUNTRIES}"
         >
           <div>
             <b-form-radio
@@ -31,8 +31,8 @@
           </div>
         </div>
         <div
-          class="col col-12 col-md border-primary-400 rounded p-3 mt-1 mt-md-0 ml-md-1"
-          :class="{'border-primary-800': rateSelected === RateType.RATE_PER_COUNTRY}"
+          class="col col-12 col-md border-primary-400 p-3 mt-1 mt-md-0 ml-md-1"
+          :class="{'checked': rateSelected === RateType.RATE_PER_COUNTRY}"
         >
           <div>
             <b-form-radio

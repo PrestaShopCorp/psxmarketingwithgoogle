@@ -4,10 +4,10 @@
       {{ $t('productFeedSettings.productSelection.methodSync.title') }}
     </h3>
     <div class="container-fluid">
-      <div class="row methods-sync">
+      <div class="row methods-sync ps_gs-radio">
         <div
           class="col col-12 col-md border-primary-400 p-3"
-          :class="{'border-primary-800': syncSelected === 'syncAllProducts'}"
+          :class="{'checked': syncSelected === 'syncAllProducts'}"
         >
           <b-form-radio
             v-model="syncSelected"
@@ -24,7 +24,7 @@
         </div>
         <div
           class="col col-12 col-md border-primary-400 p-3 ml-md-1 mt-1 mt-md-0"
-          :class="{'border-primary-800': syncSelected === 'syncFilteredProducts'}"
+          :class="{'checked': syncSelected === 'syncFilteredProducts'}"
         >
           <div>
             <b-form-radio
