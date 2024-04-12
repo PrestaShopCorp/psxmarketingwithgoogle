@@ -28,7 +28,7 @@
         "mandatory": "sunt obligatorii",
         "XIsMandatory": "{0} este obligatoriu.",
         "unableToFetchData": "Nu am putut prelua datele, încearcă din nou mai târziu",
-        "noResults": "No data found",
+        "noResults": "Nu au fost găsite date",
         "search": "Căutare",
         "createAccount": "creează-ți un cont",
         "createNewAccount": "Dacă nu ai un cont, poți {0} astăzi.",
@@ -116,9 +116,9 @@
         "AccountValidationFailed": "Validarea contului a eșuat",
         "unlinkFailed": "Deconectarea a eșuat. Reîncarcă pagina și încearcă din nou.",
         "tryAgainLater": "Nu putem verifica sau revendica site-ul curent. **Îți recomandăm să te asiguri că site-ul este accesibil** și să încerci din nou mai târziu.",
-        "alertSuspended": "Account suspended: action required",
-        "alertSuspendedDescription": "Google suspended your Merchant Center account due to policy violations. Your products are no longer being promoted. Review the suspension reason, analyze your account, and take the necessary steps to meet the requirements. {0}.",
-        "alertSuspendedLearnMore": "Learn more about the account suspension",
+        "alertSuspended": "Cont suspendat: acțiune necesară",
+        "alertSuspendedDescription": "Google ți-a suspendat contul Merchant Center din cauza încălcărilor politicii. Produsele tale nu mai sunt promovate. Consultă motivul suspendării, analizează-ți contul și ia măsurile necesare pentru a îndeplini cerințele. {0}.",
+        "alertSuspendedLearnMore": "Află mai multe despre suspendarea contului",
         "notManaged": "Nu este asociat cu PrestaShop",
         "overwriteFailed": "Revendicarea adresei URL a site-ului a eșuat",
         "overwriteToBeDoneManually": "Site-ul a fost deja revendicat pe un alt cont Merchant Center. Deoarece nu suntem administratorul contului tău, nu putem suprascrie această revendicare pentru tine. Accesează [Google Merchant Center]({0})[:target=\"_blank\"] și modifică adresa URL a site-ului web cu aceasta: {1}",
@@ -215,8 +215,8 @@
         "updateData": "Dacă ai făcut orice modificare în back-office, te rugăm să reîmprospătezi informațiile pentru a vedea modificările reflectate aici."
     },
     "gmcAccountIssues": {
-        "title": "More details about account issues",
-        "description": "Your account has been flagged for potential performance and compliance issues. Please review the detailed information provided to understand and address these concerns promptly"
+        "title": "Mai multe detalii despre problemele contului",
+        "description": "Contul tău a fost semnalizat din cauza unor potențiale probleme de performanță și conformitate. Te rugăm să consulți informațiile detaliate furnizate pentru a înțelege și a aborda aceste preocupări cu promptitudine"
     },
     "productFeedCard": {
         "title": "Fluxul de produse",
@@ -540,15 +540,15 @@
         "footerInfo": "* Google Data, Global, Ads, Sep–Oct 2021."
     },
     "enhancedConversionTrackingCard": {
-        "title": "Enhanced conversion tracking",
-        "intro": "Improve your conversion tracking accuracy and unlock more powerful bidding. This feature works alongside your existing conversion tags, sending secure, privacy-friendly conversion data from your website to Google.",
+        "title": "Urmărire îmbunătățită a conversiilor",
+        "intro": "Îmbunătățește acuratețea urmăririi conversiilor și deblochează licitații mai puternice. Această funcționalitate operează alături de etichetele de conversie existente, trimițând date de conversie sigure, care respectă confidențialitatea, de pe site-ul tău web către Google.",
         "signTosAlert": {
-            "title": "Improve your conversion tracking & unlock more powerful bidding to your Ads",
-            "text": "Enable enhanced conversion tracking by simply agreeing to Google Ads' terms of service"
+            "title": "Îmbunătățește-ți urmărirea conversiilor și deblochează licitații mai puternice pentru anunțurile tale",
+            "text": "Activează urmărirea îmbunătățită a conversiilor prin simpla acceptare a condițiilor de utilizare Google Ads"
         },
         "enableEnhancedConversionAlert": {
-            "title": "Ready to enable enhanced conversion tracking feature",
-            "text": "Your Google Ads' terms of service are up-to-date, head to your configuration page to enable your new feature"
+            "title": "Gata să activezi funcționalitatea de urmărire îmbunătățită a conversiilor",
+            "text": "Condițiile de utilizare Google Ads sunt actualizate, accesează pagina de configurare pentru a activa noua funcționalitate"
         }
     },
     "smartShoppingCampaignCreation": {
@@ -579,12 +579,12 @@
         "inputFiltersAllLabel": "Include toate produsele sincronizate",
         "inputFiltersPartialLabel": "Selectează produse utilizând filtre de partiție pentru produse",
         "inputFiltersHelper": "Ia-ți timp să [citești politicile privind reclamele ale Google Shopping]({0})[:target=\"_blank\"] unele produse sunt interzise sau restricționate.",
-        "inputBudgetHelper": "The minimum budget varies based on your target country. Please select a country to see the exact minimum required.",
-        "inputBudgetHelperForTargetCountry": "The minimum for {country} is {budget}, ensuring sufficient reach for your campaign in this region.",
+        "inputBudgetHelper": "Bugetul minim variază în funcție de țara țintă. Te rugăm selectează o țară pentru a vedea minimul necesar.",
+        "inputBudgetHelperForTargetCountry": "Valoarea minimă pentru {country} este {budget}, asigurând o acoperire suficientă pentru campania ta din această regiune.",
         "inputBudgetInvalidFeedback": "Bugetul zilnic trebuie să fie un număr valid mai mare decât 1. Pentru orice număr zecimal, te rugăm să folosești un punct ca separator.",
-        "inputBudgetBeforeThresholdFeedback": "Minimum budget required for this target country is {budget}. Please increase your budget to continue.",
+        "inputBudgetBeforeThresholdFeedback": "Bugetul minim necesar pentru această țară țintă este de {budget}. Te rugăm să mărești bugetul pentru a continua.",
         "inputBudgetFeedback": "Bugetul zilnic al campaniei",
-        "inputBudgetTooltip": "To ensure Ad performance, the base minimum depends on your target country and the budget you choose is entirely up to you, and you can adjust it at any time.",
+        "inputBudgetTooltip": "Pentru a asigura performanța anunțurilor, minimul de bază depinde de țara țintă, iar bugetul pe care îl alegi depinde în întregime de tine și îl poți ajusta în orice moment.",
         "inputBudgetPlaceholder": "Suma",
         "inputAllSyncedProducts": "Niciun filtru selectat",
         "formHelperTitle": "Activarea campaniei",
@@ -638,12 +638,12 @@
         "dimensionXFilterSelectedWithXProducts": "{0} filtru | {0} filtru ({1} produs) | {0} filtru ({1} produse)",
         "filtersWithxValues": "{0} filtre | {0} filtre cu {1} produs afectat | {0} filtre cu {1} produse afectate",
         "budgetTip": {
-            "content": "To ensure the success of your campaign, it’s essential to adjust your daily ad budget according to the target country. For instance, a starting point of {budget} is recommended for {country}. By choosing your target country, you can identify the ideal budget to meet your objectives. Remember, this foundational budget is more than just a figure – it’s a key component of your campaign strategy. A well-planned budget facilitates efficient ad testing and refinement, enabling you to customize your expenditure to the unique requirements of your business and enhance overall campaign performance."
+            "content": "Pentru a asigura succesul campaniei, este esențial să ajustezi bugetul zilnic al anunțurilor în funcție de țara vizată. De exemplu, un punct de plecare de {budget} este recomandat pentru {country}. Alegând țara țintă, poți identifica bugetul ideal pentru a-ți îndeplini obiectivele. Reține că acest buget fundamental este mai mult decât o cifră – este o componentă-cheie a strategiei tale de campanie. Un buget bine planificat facilitează testarea și rafinarea eficientă a anunțurilor, permițându-ți să îți personalizezi cheltuielile în funcție de cerințele unice ale afacerii tale și să îmbunătățești performanța generală a campaniei."
         }
     },
     "productFeedPage": {
         "breadcrumb": {
-            "productStatusDetails": "Disapproved products",
+            "productStatusDetails": "Produse respinse",
             "nonCompliantProducts": "Produse neconforme"
         },
         "alert": {
@@ -679,7 +679,7 @@
                     "noEligibleCurrenciesDesc": "Actualizează țările țintă din {0} sau adaugă monedele relevante din {1} pentru a se potrivi cu țările țintă în eroare."
                 },
                 "title": "Configurația fluxului tău de produse",
-                "targetCountries": "Target country:|Target countries:",
+                "targetCountries": "Țară vizată:|Țări vizate:",
                 "languages": "Limbă:|Limbi:",
                 "currencies": "Monedă:|Monede:",
                 "noLanguage": "Nicio limbă eligibilă",
@@ -753,15 +753,15 @@
             "priceMissingAction": "Furnizează un preț pentru produs."
         },
         "approvalTable": {
-            "description": "Below, you'll find a list of **{productTotal} products** that didn't pass the approval process. For each product, we've provided the reasons for disapproval to facilitate swift corrections. After making the necessary updates, these products can be synchronized with Google Shopping.",
+            "description": "Mai jos, vei găsi o listă de **{productTotal} produse** care nu au trecut de procesul de aprobare. Pentru fiecare produs, am furnizat motivele dezaprobării pentru a facilita corecțiile rapide. După efectuarea actualizărilor necesare, aceste produse pot fi sincronizate cu Google Shopping.",
             "filterTitle": "Filtrează după disponibilitate",
-            "NoFilter": "All",
+            "NoFilter": "Toate",
             "tableHeaderID": "ID",
-            "tableHeaderName": "Product title",
+            "tableHeaderName": "Titlul produsului",
             "tableHeaderLanguage": "Limbă",
-            "tableHeaderCurrency": "Currency",
-            "tableHeaderCountry": "Affected countries",
-            "tableHeaderIssue": "Reasons",
+            "tableHeaderCurrency": "Monedă",
+            "tableHeaderCountry": "Țări afectate",
+            "tableHeaderIssue": "Motive",
             "xResults": "{0} rezultate",
             "perPageLabel": "Afișează:",
             "goToLabel": "Mergi la pagina:",
@@ -769,10 +769,10 @@
             "noReasonFallback": "*Nu este furnizat, bifează [erori cont în Merchant Center]({0})[:target=\"_blank\"].*"
         },
         "productIssuesModal": {
-            "title": "More details about your product issues",
-            "description": "Here are the reasons for suspension provided by Google. Take the necessary steps to meet the requirements and wait for the next scan.",
+            "title": "Mai multe detalii despre problemele produsului tău",
+            "description": "Iată motivele suspendării furnizate de Google. Ia măsurile necesare pentru a îndeplini cerințele și așteaptă următoarea scanare.",
             "impactListFormat": "{language} [{currency}]: {impact}",
-            "footer": "Visit your [product sheet]({0})[:target=\"_blank\"] to make the necessary changes to your product to meet Google's requirements and get it approved."
+            "footer": "Accesează [fișa produsului]({0})[:target=\"_blank\"] pentru a face modificările necesare produsului tău pentru a îndeplini cerințele Google și a-l aproba."
         }
     },
     "keymetrics": {
@@ -826,7 +826,7 @@
             "dailyBudget": "Bugetul zilnic"
         },
         "tooltip": {
-            "lowBudget": "Your daily budget is too low to have a performing campaign, increase your budget to enhance campaign performance."
+            "lowBudget": "Bugetul tău zilnic este prea mic pentru a avea o campanie performantă, crește-ți bugetul pentru a îmbunătăți performanța campaniei."
         }
     },
     "notConfiguredState": {
@@ -887,7 +887,7 @@
         "switchAccount": "Schimbă contul",
         "acceptInvitation": "Acceptare invitație",
         "continue": "Continuare",
-        "confirm": "Confirm",
+        "confirm": "Confirmă",
         "disabled": "Dezactivat",
         "activateModule": "Activează modulul",
         "enabled": "Activat",
@@ -907,7 +907,7 @@
         "cancel": "Anulare",
         "disconnectAccount": "Deconectare cont",
         "selectAccount": "Selectare cont",
-        "reviewAccount": "Review account",
+        "reviewAccount": "Verifică contul",
         "addMapping": "Adăugare mapare",
         "modifyMapping": "Modificare mapare",
         "learnAboutProductConfiguration": "Află mai multe despre specificațiile datelor produselor",
@@ -939,7 +939,7 @@
         "reviewProblems": "Revizuirea problemelor",
         "saveAndExport": "Salvează și exportă",
         "go": "Accesează",
-        "goTo": "Go to {0}",
+        "goTo": "Accesează {0}",
         "continueWithoutSave": "Continuă fără salvare",
         "save": "Salvare",
         "disconnect": "Deconectare",
@@ -988,8 +988,8 @@
         "createPmax": "Creează o campanie Performance Max",
         "understand": "Înțeleg",
         "moreActions": "Mai multe acțiuni",
-        "signGadsToS": "Sign terms of service on Google Ads",
-        "enableEnhancedConversions": "Activate enhanced conversion tracking",
+        "signGadsToS": "Semnează condițiile de utilizare a serviciului în Google Ads",
+        "enableEnhancedConversions": "Activează urmărirea îmbunătățită a conversiilor",
         "loadNextPage": "Încarcă următoarele rezultate"
     },
     "badge": {
@@ -999,7 +999,7 @@
         "disapproved": "Respins",
         "pendingCreation": "În așteptare",
         "creatingGmc": "Crearea contului în câteva secunde...",
-        "creatingGmcTakingTime": "Processing is taking longer than expected, please wait a few moments and do not refresh the page.",
+        "creatingGmcTakingTime": "Procesarea durează mai mult decât era de așteptat, te rugăm să aștepți câteva momente și să nu reîmprospătezi pagina.",
         "pendingCheck": "Îți verificăm statusul GMC...",
         "pending": "În așteptare",
         "expiring": "Expiră",
@@ -1041,14 +1041,14 @@
         "pauseCampaignsExplainations": "Prin întreruperea tuturor campaniilor, facturarea se va opri. Poți reporni campaniile în orice moment în contul tău Google Ads.",
         "removeTag": "Elimină eticheta „Remarketing și conversie” din magazinul meu",
         "removeTagExplainations": "Eliminarea etichetei înseamnă că Google nu va mai putea urmări campaniile tale. Recomandăm să elimini eticheta numai dacă intenționezi să elimini complet modulul sau să schimbi contul. Poți oricând să-l adaugi singur în codul site-ului tău.",
-        "titleActivateTracking": "Measure the effectiveness of your Ads",
-        "textActivateTracking": "To run Performance Max campaigns effectively, Google Ads requires the ability to generate remarketing lists and add conversion tracking tags to your list.\n\nClicking on confirm means you accept that PrestaShop automatically installs code snippets on your store:\n- Add Google tag on my store\n- Configure conversion actions : Page views, Add to cart, Purchase",
+        "titleActivateTracking": "Măsoară eficiența reclamelor tale",
+        "textActivateTracking": "Pentru a rula eficient campaniile Performance Max, Google Ads necesită capacitatea de a genera liste de remarketing și de a adăuga etichete de urmărire a conversiilor în lista ta.\n\nDacă dai clic pe „Confirmă”, înseamnă că accepți că PrestaShop instalează automat fragmente de cod în magazinul tău:\n- Adaugă eticheta Google în magazinul meu\n- Configurează acțiunile de conversie: vizualizări de pagină, adăugare în coș, achiziție",
         "textConfirmCancel": "Dacă revii, vei pierde valorile selectate",
         "disconnectedUserBo": "Ai fost deconectat de la back-office. Vei fi redirecționat automat către pagina de conectare în {0} secunde.",
         "titleDisconnectedUserBo": "Conexiune pierdută",
-        "titleEnhancedConversionsIntro": "Measure the effectiveness of your Ads",
-        "textEnhancedConversionsIntro": "Enhance your conversion tracking accuracy and empower your bidding strategy with our latest feature: Enhanced Conversion Tracking. This feature seamlessly integrates with your existing conversion tags, ensuring the secure and privacy-conscious transmission of conversion data from your website to Google.",
-        "textActivationEnhancedConversionsIntro": "Activating it is easy – just agree to the terms of service on Google Ads. The feature is accessible on your configuration’s page below conversion tracking tag."
+        "titleEnhancedConversionsIntro": "Măsoară eficiența reclamelor tale",
+        "textEnhancedConversionsIntro": "Îmbunătățește acuratețea urmăririi conversiilor și consolidează strategia de licitare cu cea mai recentă funcționalitate a noastră: urmărirea îmbunătățită a conversiilor. Această funcționalitate se integrează perfect cu etichetele de conversie existente, asigurând transmiterea sigură și confidențială a datelor de conversie de pe site-ul tău web către Google.",
+        "textActivationEnhancedConversionsIntro": "Este ușor de activat. Trebuie doar să fii de acord cu condițiile de utilizare a serviciului în Google Ads. Funcționalitatea este accesibilă pe pagina configurației tale, sub eticheta de urmărire a conversiilor."
     },
     "tooltip": {
         "googleAccountRequired": "Necesită configurarea contului Google",
@@ -1085,7 +1085,7 @@
         "attributesMapppingSuccess": "Caracteristicile produsului tău au fost salvate cu succes. Revizuiește rezumatul, apoi fă clic pe „Export” pentru a le trimite la Google",
         "campaignCreatedSuccess": "Ai creat cu succes campania Performance Max!",
         "phoneNumberVerifiedSuccess": "Numărul de telefon a fost confirmat. Contul de comerciant este în curs de creare",
-        "enhancedConversionEnabledSuccess": "Enhanced conversion tracking enabled"
+        "enhancedConversionEnabledSuccess": "Urmărire îmbunătățită a conversiilor activată"
     },
     "stepper": {
         "nextStep": "Înainte: {0}",
@@ -1133,6 +1133,6 @@
         "textCampaignsBanner": "Creează-ți prima campanie și contactează cumpărători mai relevanți, pe toate canalele Google. Profită de învățarea automată de la Google și optimizează-ți destinațiile de plasare a reclamelor și îmbunătățește-ți în mod eficient traficul și vânzările."
     },
     "tipsAndTricks": {
-        "title": "PrestaShop pro tip"
+        "title": "Sfat profesional PrestaShop"
     }
 }
