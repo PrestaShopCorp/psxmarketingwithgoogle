@@ -24,7 +24,7 @@
               :key="index"
               :value="getSelectedLabel('attributes', attribute)"
               v-model="attributeSelected.id"
-              @click="updateAttribute(attribute, true)"
+              @click="updateAttribute(attribute.value, true)"
             >
               <span>{{ getSelectedLabel('attributes', attribute.value) }}</span>
             </b-dropdown-item>
@@ -40,7 +40,7 @@
             <b-dropdown-item
               v-for="(feature, index) in featuresList"
               :key="index"
-              @click="updateAttribute(feature, false)"
+              @click="updateAttribute(feature.value, false)"
               :value="feature"
             >
               <span>{{ feature.value }}</span>
@@ -167,22 +167,21 @@ export default defineComponent({
       attributeSelected: {id: '', value: ''},
       conditionSelected: '',
       conditionTypeSelected: '',
-      productFiltered: [] <string[]>,
-      valueSelected: null as number|boolean|null,
-      valuesSelected: [] <string[]>,
+      valueSelected: null as number|ProductFilterBooleanConditions|null,
+      valuesSelected: [] as string[],
     };
   },
   methods: {
     updateAttribute(attribute: string, isDefault: boolean) {
-      this.attributeSelected = attribute
-      this.defaultAttributeIsSelected = isDefault
+      this.attributeSelected.value = attribute;
+      this.defaultAttributeIsSelected = isDefault;
       this.updateCondition('');
     },
     updateCondition(condition: string) {
       this.conditionSelected = condition;
       this.updateValue(null);
     },
-    updateValue(value: number | null) {
+    updateValue(value: number | ProductFilterBooleanConditions | null) {
       this.valueSelected = value;
       this.onDataUpdate();
     },
@@ -194,7 +193,7 @@ export default defineComponent({
         attribute: this.attributeSelected.id,
         condition: this.conditionSelected,
         value: this.valueSelected,
-        values: this.valuesSelected
+        values: this.valuesSelected,
       });
     },
     onDataMultiSelectUpdate(event) {

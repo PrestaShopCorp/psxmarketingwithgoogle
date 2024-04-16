@@ -94,16 +94,14 @@ import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 
 function uuidv4() {
-  return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
-    (+c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> +c / 4).toString(16)
+  // eslint-disable-next-line no-bitwise, no-mixed-operators
+  return '10000000-1000-4000-8000-100000000000'.replace(/[018]/g, (c) => (+c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> +c / 4).toString(16),
   );
 }
 
-const newFilter = () => {
-  return {
-    id: uuidv4()
-  }
-}
+const newFilter = () => ({
+  id: uuidv4(),
+});
 
 export default defineComponent({
   name: 'ProductFeedSettingsProductSelection',
@@ -165,7 +163,7 @@ export default defineComponent({
       console.log('event: ', event);
       console.log('before: ', JSON.stringify(this.listFilters[index]));
       this.listFilters[index] = {...this.listFilters[index], ...event};
-      console.log('after: ',this.listFilters[index]);
+      console.log('after: ', this.listFilters[index]);
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
