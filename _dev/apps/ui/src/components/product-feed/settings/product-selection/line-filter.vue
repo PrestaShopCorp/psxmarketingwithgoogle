@@ -20,16 +20,19 @@
             </template>
 
             <b-dropdown-item
-              v-for="(attribute, index) in defaultAttributesValues"
+              v-for="(attribute, index) in defaultAttributesList"
               :key="index"
+              :value="getSelectedLabel('attributes', attribute)"
+              v-model="attributeSelected.id"
               @click="() => {
                 attributeSelected = attribute
                 defaultAttributeIsSelected = true
                 conditionSelected = ''
+                valueSelected = null
+                onDataUpdate()
               }"
-              :value="defautltAttributesValueSelected(attribute)"
             >
-              <span>{{ defautltAttributesValueSelected(attribute) }}</span>
+              <span>{{ getSelectedLabel('attributes', attribute.value) }}</span>
             </b-dropdown-item>
           </b-dropdown-group>
           <!-- CUSTOM ATTRIBUTES -->
@@ -41,63 +44,97 @@
             </template>
 
             <b-dropdown-item
-              v-for="(attribute, index) in featuresValuesArray"
+              v-for="(feature, index) in featuresList"
               :key="index"
               @click="() => {
-                attributeSelected = attribute
+                attributeSelected = feature
                 defaultAttributeIsSelected = false
                 conditionSelected = ''
+                valueSelected = null
+                onDataUpdate()
               }"
-              :value="attribute"
+              :value="feature"
             >
-              <span>{{ attribute }}</span>
+              <span>{{ feature.value }}</span>
             </b-dropdown-item>
           </b-dropdown-group>
         </b-dropdown>
         <!-- CONDITIONS -->
         <b-dropdown
+          v-if="attributeSelected.value !== 'outOfStock'"
           class="ps-dropdown psxmarketingwithgoogle-dropdown conditions"
           menu-class="ps-dropdown"
-          :text="conditionSelected.length ? conditionValueSelected(conditionSelected) : undefined || $t('productFeedSettings.productSelection.lineFilter.condition.placeholder')"
-          :disabled="!attributeSelected"
+          :text="conditionSelected.length ? getSelectedLabel('conditions', conditionSelected) : undefined || $t('productFeedSettings.productSelection.lineFilter.conditions.placeholder')"
+          :disabled="!attributeSelected.value"
         >
           <b-dropdown-item
             v-for="(type, index) in typeOfConditionSelection"
             :key="index"
-            @click="conditionSelected = type"
+            @click="() => {
+              conditionSelected = type
+              valueSelected = null
+              onDataUpdate()
+            }"
           >
             <span class="mr-2">
-              {{ conditionValueSelected(type) }}
+              {{ getSelectedLabel('conditions', type) }}
             </span>
           </b-dropdown-item>
         </b-dropdown>
         <!-- VALUE / NUMBER -->
         <b-input-group
-          v-if="attributeSelected === 'price' || attributeSelected === 'productId'"
+          v-if="attributeSelected.value === 'price' || attributeSelected.value === 'productId'"
           class="field-number"
-          :append="attributeSelected === 'price' ? currencySymbol : undefined"
+          :append="attributeSelected.value === 'price' ? currencySymbol : undefined"
         >
           <b-form-input
             type="number"
             min="0"
-            :value="valueTypeNumber"
+            :value="valueSelected"
             :disabled="!conditionSelected.length"
-            @change="valueTypeNumber = $event"
+            @change="valueSelected = $event;"
+            @input="onDataUpdate"
           />
         </b-input-group>
+        <!-- VALUE / BOOLEAN -->
+        <b-dropdown
+          v-if="attributeSelected.value === 'outOfStock'"
+          class="ps-dropdown psxmarketingwithgoogle-dropdown value-boolean"
+          menu-class="ps-dropdown"
+          :text="valueSelected ? getSelectedLabel('value', valueSelected) : $t('productFeedSettings.productSelection.lineFilter.conditions.placeholder')"
+        >
+          <b-dropdown-item
+            v-for="(type, index) in booleanList"
+            :key="index"
+            @click="() => {
+              onDataUpdate()
+              valueSelected = type
+            }"
+          >
+            <span class="mr-2">
+              {{ getSelectedLabel('value', type) }}
+            </span>
+          </b-dropdown-item>
+        </b-dropdown>
         <!-- VALUE / MULTI-SELECT -->
         <multi-select-value
           v-else-if="conditionSelected === 'isIn' || conditionSelected === 'isNot'"
           class="multi-select"
-          :dropdown-options="productFilteredArray"
+          :dropdown-options="productFilteredArray()"
           :placeholder="placeholderMultiSelect"
           :disabled="!!!conditionSelected.length"
+          @dataUpdated="onDataMultiSelectUpdate($event)"
         />
         <!-- VALUE / FREE FIELD -->
         <!-- TODO : Réinitialiser le champ au on-change du champ attribut -->
         <input-text-with-tag
           :disabled="!!!conditionSelected.length"
-          v-else-if="!!!conditionSelected.length || conditionSelected === 'contains' || conditionSelected === 'notContain'"
+          v-else-if="
+            attributeSelected.value !== 'price'
+              && attributeSelected.value !== 'productId'
+              && !!!conditionSelected.length
+              || conditionSelected === 'contains'
+              || conditionSelected === 'notContain'"
         />
       </div>
     </b-form>
@@ -113,19 +150,19 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
-import VueI18n from 'vue-i18n';
+import {PropType, defineComponent} from 'vue';
 import MultiSelectValue from '@/components/commons/multi-select-value.vue';
 import InputTextWithTag from '@/components/commons/input-text-with-tag.vue';
 import ProductFilterDefaultAttributes from '@/enums/product-feed/product-filter-default-attributes';
 import {
+  ProductFilterBooleanConditions,
   ProductFilterFieldConditions,
   ProductFilterNumericConditions,
   ProductFilterStringConditions,
-  ProductFilterBooleanConditions,
 } from '@/enums/product-feed/product-filter-condition';
 import featureMock from './features.json';
-import productFilteredMock from './products-filtered.json';
+import categoryOrBrand from './categoryOrBrand.json';
+import {ProductFilter} from './type';
 
 export default defineComponent({
   name: 'LineFilter',
@@ -138,42 +175,70 @@ export default defineComponent({
       type: Boolean,
       required: false,
     },
+    filters: {
+      type: Array as PropType<ProductFilter[]>,
+      required: true,
+    },
   },
   data() {
     return {
       features: featureMock,
       defaultAttributeIsSelected: false,
-      attributeSelected: '',
+      attributeSelected: {id: '', value: ''},
       conditionSelected: '',
       conditionTypeSelected: '',
-      productFiltered: productFilteredMock,
-      valueTypeNumber: 0,
+      productFiltered: [] as string[],
+      valueSelected: null as string|number|boolean|null,
     };
   },
   methods: {
-    defautltAttributesValueSelected(label): VueI18n.TranslateResult {
-      return this.$i18n.t(`productFeedSettings.productSelection.lineFilter.attributes.${label}`);
+    getSelectedLabel(field, item) {
+      return this.$i18n.t(`productFeedSettings.productSelection.lineFilter.${field}.${item}`);
     },
-    conditionValueSelected(label) {
-      return this.$i18n.t(`productFeedSettings.productSelection.lineFilter.condition.${label}`);
-    }
+    onDataUpdate() {
+      this.$emit('dataUpdated', [{
+        attribute: this.attributeSelected.id,
+        condition: this.conditionSelected,
+        value: this.valueSelected,
+      }]);
+      // this.$emit(
+      //   'dataUpdated',
+      //   this.filters.toSpliced(index, 1, {
+      //     ...filterData[index],
+      //     ...filterData,
+      //   }),
+      // );
+    },
+    onDataMultiSelectUpdate(event) {
+      console.log('event', event);
+    },
+    // Free input Field
+    productFilteredArray() {
+      if (this.attributeSelected.id === ProductFilterDefaultAttributes.BRAND
+        || this.attributeSelected.id === ProductFilterDefaultAttributes.CATEGORY) {
+        console.log('ici');
+        this.productFiltered = categoryOrBrand.map((value) => value.value);
+      }
+      return this.productFiltered;
+    },
   },
   computed: {
     // Attribute Field
-    defaultAttributesValues() {
-      return Object.values(ProductFilterDefaultAttributes);
+    defaultAttributesList() {
+      return Object.values(ProductFilterDefaultAttributes).map(
+        (attribute) => ({id: attribute, value: attribute}));
     },
     attributesValues() {
-      if (this.attributeSelected) {
+      if (this.attributeSelected.value) {
         if (this.defaultAttributeIsSelected) {
-          return this.defautltAttributesValueSelected(this.attributeSelected);
+          return this.getSelectedLabel('attributes', this.attributeSelected.value);
         }
-        return this.attributeSelected;
+        return this.attributeSelected.value;
       }
       return this.$i18n.t('productFeedSettings.productSelection.lineFilter.attributes.placeholder');
     },
-    featuresValuesArray() {
-      return this.features.map((feature) => feature.key);
+    featuresList() {
+      return this.features.map((feature) => ({id: feature.id, value: feature.key}));
     },
     // Conditions
     typeOfConditionSelection() {
@@ -182,8 +247,6 @@ export default defineComponent({
           return Object.values(ProductFilterNumericConditions);
         case ProductFilterFieldConditions.STRING:
           return Object.values(ProductFilterStringConditions);
-        case ProductFilterFieldConditions.BOOLEAN:
-          return Object.values(ProductFilterBooleanConditions);
         default:
           return null;
       }
@@ -192,10 +255,6 @@ export default defineComponent({
     placeholderMultiSelect() {
       return this.$i18n.t('productFeedSettings.productSelection.lineFilter.value.selectValue') as string;
     },
-    // Free input Field
-    productFilteredArray() {
-      return this.productFiltered.map((product) => product.value);
-    },
     // Number Fied
     currency() {
       return this.$store.getters['app/GET_CURRENT_CURRENCY'];
@@ -203,22 +262,22 @@ export default defineComponent({
     currencySymbol(): string {
       return this.$options.filters?.formatPrice(0, this.currency).replace(/[\s.,0]*/g, '');
     },
+    // Boolean Field
+    booleanList() {
+      return Object.values(ProductFilterBooleanConditions);
+    },
   },
   watch: {
     attributeSelected() {
       if (this.defaultAttributeIsSelected) {
-        if (this.attributeSelected === ProductFilterDefaultAttributes.PRICE
-          || this.attributeSelected === ProductFilterDefaultAttributes.PRODUCT_ID) {
+        if (this.attributeSelected.id === ProductFilterDefaultAttributes.PRICE
+          || this.attributeSelected.id === ProductFilterDefaultAttributes.PRODUCT_ID) {
           this.conditionTypeSelected = ProductFilterFieldConditions.NUMERIC;
-        } else if (this.attributeSelected === ProductFilterDefaultAttributes.BRAND
-          || this.attributeSelected === ProductFilterDefaultAttributes.CATEGORY) {
+        } else if (this.attributeSelected.id === ProductFilterDefaultAttributes.BRAND
+          || this.attributeSelected.id === ProductFilterDefaultAttributes.CATEGORY) {
           this.conditionTypeSelected = ProductFilterFieldConditions.STRING;
-        } else if (ProductFilterDefaultAttributes.OUT_OF_STOCK) {
-          this.conditionTypeSelected = ProductFilterFieldConditions.BOOLEAN;
         }
       } else {
-        // TODO : Si les valeurs des features selectionné est un nombre
-        // alors le champ condition doit être numérique
         this.conditionTypeSelected = ProductFilterFieldConditions.STRING;
       }
     },

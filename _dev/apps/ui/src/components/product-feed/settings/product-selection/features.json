@@ -1,60 +1,30 @@
 [
   {
       "id": "25",
-      "key": "Country",
+      "key": "Bio",
       "values": [
           {
               "id": "3776",
-              "key": "Country",
-              "value": "Allemagne",
+              "key": "Bio",
+              "value": "Non",
               "language": "fr"
           },
           {
               "id": "3776",
-              "key": "Country",
-              "value": "Germany",
+              "key": "Bio",
+              "value": "Nope",
               "language": "gb"
           },
           {
               "id": "3780",
-              "key": "Country",
-              "value": "Espagne",
+              "key": "Bio",
+              "value": "Oui",
               "language": "fr"
           },
           {
               "id": "3780",
-              "key": "Country",
-              "value": "Spain",
-              "language": "gb"
-          }
-      ]
-  },
-  {
-      "id": "26",
-      "key": "Color",
-      "values": [
-          {
-              "id": "3476",
-              "key": "Color",
-              "value": "Rouge",
-              "language": "fr"
-          },
-          {
-              "id": "3476",
-              "key": "Color",
-              "value": "Red",
-              "language": "gb"
-          },
-          {
-              "id": "3480",
-              "key": "Color",
-              "value": "Vert",
-              "language": "fr"
-          },
-          {
-              "id": "3480",
-              "key": "Color",
-              "value": "Green",
+              "key": "Bio",
+              "value": "Yep",
               "language": "gb"
           }
       ]

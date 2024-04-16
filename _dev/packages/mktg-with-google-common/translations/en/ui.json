@@ -461,7 +461,7 @@
           "productId": "Product ID",
           "outOfStock": "Out of stock"
         },
-        "condition": {
+        "conditions": {
           "label": "Condition",
           "placeholder": "Select a condition",
           "isEqualTo": "Is equal to",
@@ -476,7 +476,9 @@
         },
         "value": {
           "selectValue": "Select a value",
-          "enterValue": "Enter a value"
+          "enterValue": "Enter a value",
+          "false": "Is false",
+          "true": "Is true"
         }
       },
       "and": "And",

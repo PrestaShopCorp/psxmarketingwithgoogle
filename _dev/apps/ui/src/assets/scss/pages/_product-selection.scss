@@ -81,7 +81,8 @@
   }
 
   .attributes,
-  .conditions {
+  .conditions,
+  .value-boolean {
     @include media-breakpoint-up(sm) {
       width: calc( 50% - 4px );
     }
