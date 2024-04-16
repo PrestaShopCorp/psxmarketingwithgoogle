@@ -51,8 +51,8 @@
       class="filters"
     >
       <div
-        v-for="(card, index) in listFilters"
-        :key="index"
+        v-for="(filters, index) in listFilters"
+        :key="filters.id"
       >
         <div
           class="separator"
@@ -65,8 +65,8 @@
         <line-filter
           :delete-button-disabled="listFilters.length === 1"
           @clickToDeleteFilter="deleteFilter(index)"
-          @dataUpdated="listFilters = $event"
-          :filters="filtersToConfigure"
+          @dataUpdated="updateFilter($event, index)"
+          :filters="filters"
         />
       </div>
     </div>
@@ -93,6 +93,18 @@ import LineFilter from '@/components/product-feed/settings/product-selection/lin
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 
+function uuidv4() {
+  return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
+    (+c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> +c / 4).toString(16)
+  );
+}
+
+const newFilter = () => {
+  return {
+    id: uuidv4()
+  }
+}
+
 export default defineComponent({
   name: 'ProductFeedSettingsProductSelection',
   components: {
@@ -102,7 +114,7 @@ export default defineComponent({
   data() {
     return {
       synchSelected: 'synchFilteredProducts',
-      listFilters: [{}],
+      listFilters: [newFilter()],
     };
   },
   computed: {
@@ -144,10 +156,16 @@ export default defineComponent({
       window.scrollTo(0, 0);
     },
     addNewFilter() {
-      this.listFilters.push({});
+      this.listFilters.push(newFilter());
     },
     deleteFilter(index) {
       this.listFilters.splice(index, 1);
+    },
+    updateFilter(event, index) {
+      console.log('event: ', event);
+      console.log('before: ', JSON.stringify(this.listFilters[index]));
+      this.listFilters[index] = {...this.listFilters[index], ...event};
+      console.log('after: ',this.listFilters[index]);
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
