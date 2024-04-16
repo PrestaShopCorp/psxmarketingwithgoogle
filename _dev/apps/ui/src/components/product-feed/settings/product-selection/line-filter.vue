@@ -24,13 +24,7 @@
               :key="index"
               :value="getSelectedLabel('attributes', attribute)"
               v-model="attributeSelected.id"
-              @click="() => {
-                attributeSelected = attribute
-                defaultAttributeIsSelected = true
-                conditionSelected = ''
-                valueSelected = null
-                onDataUpdate()
-              }"
+              @click="updateAttribute(attribute, true)"
             >
               <span>{{ getSelectedLabel('attributes', attribute.value) }}</span>
             </b-dropdown-item>
@@ -46,13 +40,7 @@
             <b-dropdown-item
               v-for="(feature, index) in featuresList"
               :key="index"
-              @click="() => {
-                attributeSelected = feature
-                defaultAttributeIsSelected = false
-                conditionSelected = ''
-                valueSelected = null
-                onDataUpdate()
-              }"
+              @click="updateAttribute(feature, false)"
               :value="feature"
             >
               <span>{{ feature.value }}</span>
@@ -70,11 +58,7 @@
           <b-dropdown-item
             v-for="(type, index) in typeOfConditionSelection"
             :key="index"
-            @click="() => {
-              conditionSelected = type
-              valueSelected = null
-              onDataUpdate()
-            }"
+            @click="updateCondition(type)"
           >
             <span class="mr-2">
               {{ getSelectedLabel('conditions', type) }}
@@ -92,8 +76,7 @@
             min="0"
             :value="valueSelected"
             :disabled="!conditionSelected.length"
-            @change="valueSelected = $event"
-            @input="onDataUpdate"
+            @change="updateValue($event)"
           />
         </b-input-group>
         <!-- VALUE / BOOLEAN -->
@@ -106,10 +89,7 @@
           <b-dropdown-item
             v-for="(type, index) in booleanList"
             :key="index"
-            @click="() => {
-              valueSelected = type
-              onDataUpdate()
-            }"
+            @click="updateValue(type)"
           >
             <span class="mr-2">
               {{ getSelectedLabel('value', type) }}
@@ -187,22 +167,38 @@ export default defineComponent({
       attributeSelected: {id: '', value: ''},
       conditionSelected: '',
       conditionTypeSelected: '',
-      valueSelected: null as string|number|boolean|null,
+      productFiltered: [] <string[]>,
+      valueSelected: null as number|boolean|null,
+      valuesSelected: [] <string[]>,
     };
   },
   methods: {
+    updateAttribute(attribute: string, isDefault: boolean) {
+      this.attributeSelected = attribute
+      this.defaultAttributeIsSelected = isDefault
+      this.updateCondition('');
+    },
+    updateCondition(condition: string) {
+      this.conditionSelected = condition;
+      this.updateValue(null);
+    },
+    updateValue(value: number | null) {
+      this.valueSelected = value;
+      this.onDataUpdate();
+    },
     getSelectedLabel(field, item) {
       return this.$i18n.t(`productFeedSettings.productSelection.lineFilter.${field}.${item}`);
     },
     onDataUpdate() {
-      this.$emit('dataUpdated', [{
+      this.$emit('dataUpdated', {
         attribute: this.attributeSelected.id,
         condition: this.conditionSelected,
         value: this.valueSelected,
-      }]);
+        values: this.valuesSelected
+      });
     },
     onDataMultiSelectUpdate(event) {
-      console.log('event', event);
+      this.valuesSelected = [...event];
     },
     getValuesOfFeaturesByLanguage() {
       const result: string[] = [];
