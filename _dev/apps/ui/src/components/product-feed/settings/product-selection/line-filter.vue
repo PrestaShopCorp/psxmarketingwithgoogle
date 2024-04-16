@@ -92,7 +92,7 @@
             min="0"
             :value="valueSelected"
             :disabled="!conditionSelected.length"
-            @change="valueSelected = $event;"
+            @change="valueSelected = $event"
             @input="onDataUpdate"
           />
         </b-input-group>
@@ -107,8 +107,8 @@
             v-for="(type, index) in booleanList"
             :key="index"
             @click="() => {
-              onDataUpdate()
               valueSelected = type
+              onDataUpdate()
             }"
           >
             <span class="mr-2">
@@ -120,7 +120,7 @@
         <multi-select-value
           v-else-if="conditionSelected === 'isIn' || conditionSelected === 'isNot'"
           class="multi-select"
-          :dropdown-options="productFilteredArray()"
+          :dropdown-options="productFiltered"
           :placeholder="placeholderMultiSelect"
           :disabled="!!!conditionSelected.length"
           @dataUpdated="onDataMultiSelectUpdate($event)"
@@ -187,7 +187,6 @@ export default defineComponent({
       attributeSelected: {id: '', value: ''},
       conditionSelected: '',
       conditionTypeSelected: '',
-      productFiltered: [] as string[],
       valueSelected: null as string|number|boolean|null,
     };
   },
@@ -201,25 +200,20 @@ export default defineComponent({
         condition: this.conditionSelected,
         value: this.valueSelected,
       }]);
-      // this.$emit(
-      //   'dataUpdated',
-      //   this.filters.toSpliced(index, 1, {
-      //     ...filterData[index],
-      //     ...filterData,
-      //   }),
-      // );
     },
     onDataMultiSelectUpdate(event) {
       console.log('event', event);
     },
-    // Free input Field
-    productFilteredArray() {
-      if (this.attributeSelected.id === ProductFilterDefaultAttributes.BRAND
-        || this.attributeSelected.id === ProductFilterDefaultAttributes.CATEGORY) {
-        console.log('ici');
-        this.productFiltered = categoryOrBrand.map((value) => value.value);
-      }
-      return this.productFiltered;
+    getValuesOfFeaturesByLanguage() {
+      const result: string[] = [];
+      this.features.forEach((feature) => {
+        feature.values.forEach((value) => {
+          if (value.language === this.$i18n.locale.toLowerCase()) {
+            result.push(value.value);
+          }
+        });
+      });
+      return result;
     },
   },
   computed: {
@@ -254,6 +248,16 @@ export default defineComponent({
     // Multi-select Field
     placeholderMultiSelect() {
       return this.$i18n.t('productFeedSettings.productSelection.lineFilter.value.selectValue') as string;
+    },
+    productFiltered(): string[] {
+      if (this.attributeSelected.id === ProductFilterDefaultAttributes.BRAND
+        || this.attributeSelected.id === ProductFilterDefaultAttributes.CATEGORY) {
+        return categoryOrBrand.map((value) => value.value);
+      }
+      if (this.defaultAttributeIsSelected === false) {
+        return this.getValuesOfFeaturesByLanguage();
+      }
+      return [];
     },
     // Number Fied
     currency() {
