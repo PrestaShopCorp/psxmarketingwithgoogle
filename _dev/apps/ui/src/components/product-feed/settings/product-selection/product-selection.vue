@@ -51,7 +51,7 @@
       class="filters"
     >
       <div
-        v-for="(card, index) in cardsArray"
+        v-for="(card, index) in listFilters"
         :key="index"
       >
         <div
@@ -63,8 +63,10 @@
           <hr>
         </div>
         <line-filter
-          :delete-button-disabled="cardsArray.length === 1"
+          :delete-button-disabled="listFilters.length === 1"
           @clickToDeleteFilter="deleteFilter(index)"
+          @dataUpdated="listFilters = $event;"
+          :filters="filtersToConfigure"
         />
       </div>
     </div>
@@ -89,6 +91,7 @@ import {defineComponent} from 'vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import LineFilter from '@/components/product-feed/settings/product-selection/line-filter.vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
+import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 
 export default defineComponent({
   name: 'ProductFeedSettingsProductSelection',
@@ -99,10 +102,27 @@ export default defineComponent({
   data() {
     return {
       synchSelected: 'synchFilteredProducts',
-      cardsArray: [{}],
+      listFilters: [{}],
     };
   },
+  computed: {
+    filtersToConfigure() {
+      console.log('this.listFilters', this.listFilters);
+      return this.listFilters
+        || getDataFromLocalStorage('productFeed-productFilter')
+        || (this.$store.getters['productFeed/GET_PRODUCT_FILTER']?.length
+          ? this.$store.getters['productFeed/GET_PRODUCT_FILTER']
+          : null
+        );
+    },
+  },
   methods: {
+    saveSelectedProducts() {
+      localStorage.setItem('productFeed-targetCountries', JSON.stringify(this.listFilters));
+      this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
+        name: 'productFilter', data: this.listFilters,
+      });
+    },
     previousStep() {
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
       this.$router.push({
@@ -114,6 +134,7 @@ export default defineComponent({
       window.scrollTo(0, 0);
     },
     nextStep() {
+      this.saveSelectedProducts();
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 5);
       this.$router.push({
         name: 'product-feed-settings',
@@ -124,13 +145,11 @@ export default defineComponent({
       window.scrollTo(0, 0);
     },
     addNewFilter() {
-      this.cardsArray.push({});
-      console.log('cardsArray', this.cardsArray);
+      this.listFilters.push({});
     },
     deleteFilter(index) {
       console.log('index', index);
-      this.cardsArray.splice(index, 1);
-      console.log('cardsArray', this.cardsArray);
+      this.listFilters.splice(index, 1);
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
