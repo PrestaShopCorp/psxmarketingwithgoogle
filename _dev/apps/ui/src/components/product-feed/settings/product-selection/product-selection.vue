@@ -13,7 +13,6 @@
           <b-form-radio
             v-model="synchSelected"
             name="customSynchRadio"
-            value="synchAllProducts"
           >
             <h3 class="font-weight-700 mb-2">
               {{ $t('productFeedSettings.productSelection.methodSynch.synchAllProducts') }}
@@ -71,9 +70,11 @@
       </div>
     </div>
     <b-button
+      v-if="synchSelected === 'synchFilteredProducts'"
       variant="outline-secondary"
       class="mt-3"
       @click="addNewFilter()"
+      :disabled="!filtersAreValid"
     >
       <i class="material-icons ps_gs-fz-20">add</i>
       {{ $t('productFeedSettings.productSelection.addFilter') }}
@@ -92,6 +93,8 @@ import ActionsButtons from '@/components/product-feed/settings/commons/actions-b
 import LineFilter from '@/components/product-feed/settings/product-selection/line-filter.vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
+import ProductFilterDefaultAttributes from '@/enums/product-feed/product-filter-default-attributes';
+import type {ProductFilter} from '@/components/product-feed/settings/product-selection/type';
 
 function uuidv4() {
   // eslint-disable-next-line no-bitwise, no-mixed-operators
@@ -112,17 +115,15 @@ export default defineComponent({
   data() {
     return {
       synchSelected: 'synchFilteredProducts',
-      listFilters: [newFilter()],
+      listFilters: [] as ProductFilter[],
     };
   },
   computed: {
-    filtersToConfigure() {
-      return this.listFilters
-        || getDataFromLocalStorage('productFeed-productFilter')
-        || (this.$store.getters['productFeed/GET_PRODUCT_FILTER']?.length
-          ? this.$store.getters['productFeed/GET_PRODUCT_FILTER']
-          : null
-        );
+    filtersAreValid() {
+      // TODO: Add validation condition
+      const filtersAreValid = true;
+
+      return filtersAreValid;
     },
   },
   methods: {
@@ -168,6 +169,13 @@ export default defineComponent({
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
+  },
+  mounted() {
+    this.listFilters = getDataFromLocalStorage('productFeed-productFilter')
+    || (this.$store.getters['productFeed/GET_PRODUCT_FILTER']?.length
+      ? this.$store.getters['productFeed/GET_PRODUCT_FILTER']
+      : [newFilter()]
+    );
   },
 });
 </script>

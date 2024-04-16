@@ -23,8 +23,7 @@
               v-for="(attribute, index) in defaultAttributesList"
               :key="index"
               :value="getSelectedLabel('attributes', attribute)"
-              v-model="attributeSelected.id"
-              @click="updateAttribute(attribute.value, true)"
+              @click="updateAttribute(attribute, true)"
             >
               <span>{{ getSelectedLabel('attributes', attribute.value) }}</span>
             </b-dropdown-item>
@@ -40,7 +39,7 @@
             <b-dropdown-item
               v-for="(feature, index) in featuresList"
               :key="index"
-              @click="updateAttribute(feature.value, false)"
+              @click="updateAttribute(feature, false)"
               :value="feature"
             >
               <span>{{ feature.value }}</span>
@@ -102,7 +101,7 @@
           class="multi-select"
           :dropdown-options="productFiltered"
           :placeholder="placeholderMultiSelect"
-          :disabled="!!!conditionSelected.length"
+          :disabled="!conditionSelected.length"
           @dataUpdated="onDataMultiSelectUpdate($event)"
         />
         <!-- VALUE / FREE FIELD -->
@@ -142,7 +141,7 @@ import {
 } from '@/enums/product-feed/product-filter-condition';
 import featureMock from './features.json';
 import categoryOrBrand from './categoryOrBrand.json';
-import {ProductFilter} from './type';
+import {ProductFilter, Attribute} from './type';
 
 export default defineComponent({
   name: 'LineFilter',
@@ -172,8 +171,8 @@ export default defineComponent({
     };
   },
   methods: {
-    updateAttribute(attribute: string, isDefault: boolean) {
-      this.attributeSelected.value = attribute;
+    updateAttribute(attribute: Attribute, isDefault: boolean) {
+      this.attributeSelected = attribute;
       this.defaultAttributeIsSelected = isDefault;
       this.updateCondition('');
     },
@@ -196,8 +195,9 @@ export default defineComponent({
         values: this.valuesSelected,
       });
     },
-    onDataMultiSelectUpdate(event) {
-      this.valuesSelected = [...event];
+    onDataMultiSelectUpdate(event: string[]) {
+      console.log(event);
+      // this.valuesSelected = event;
     },
     getValuesOfFeaturesByLanguage() {
       const result: string[] = [];
