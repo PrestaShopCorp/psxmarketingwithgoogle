@@ -65,7 +65,7 @@
         <line-filter
           :delete-button-disabled="listFilters.length === 1"
           @clickToDeleteFilter="deleteFilter(index)"
-          @dataUpdated="listFilters = $event;"
+          @dataUpdated="listFilters = $event"
           :filters="filtersToConfigure"
         />
       </div>
@@ -107,7 +107,6 @@ export default defineComponent({
   },
   computed: {
     filtersToConfigure() {
-      console.log('this.listFilters', this.listFilters);
       return this.listFilters
         || getDataFromLocalStorage('productFeed-productFilter')
         || (this.$store.getters['productFeed/GET_PRODUCT_FILTER']?.length
@@ -148,7 +147,6 @@ export default defineComponent({
       this.listFilters.push({});
     },
     deleteFilter(index) {
-      console.log('index', index);
       this.listFilters.splice(index, 1);
     },
     cancel() {
