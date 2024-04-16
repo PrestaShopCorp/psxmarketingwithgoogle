@@ -9,6 +9,7 @@
     v-model="selectedItems"
     :placeholder="placeholder"
     :class="{'maxw-sm-500': notFullWidth, 'disabled': disabled }"
+    @input="$emit('dataUpdated', selectedItems)"
   >
     <template #option="option">
       <b-form-checkbox
