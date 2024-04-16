@@ -36,6 +36,7 @@ import {AttributeResponseFromAPI} from '@/utils/AttributeMapping';
 import {CustomCarrier} from '@/providers/shipping-rate-provider';
 import {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
 import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
+import {ProductFilter} from '@/providers/product-filter-provider';
 
 export default {
   [GettersTypes.GET_PRODUCT_FEED_IS_CONFIGURED](state: LocalState): boolean {
@@ -173,8 +174,11 @@ export default {
     if (getDataFromLocalStorage('productFeed-attributeMapping') !== null) {
       state.stepper = 4;
     }
-    if (getDataFromLocalStorage('productFeed-requestSynchronizationNow') !== null) {
+    if (getDataFromLocalStorage('productFeed-productFilter') !== null) {
       state.stepper = 5;
+    }
+    if (getDataFromLocalStorage('productFeed-requestSynchronizationNow') !== null) {
+      state.stepper = 6;
     }
 
     return state.stepper;
@@ -188,6 +192,9 @@ export default {
   },
   [GettersTypes.GET_ESTIMATE_CARRIERS](state: LocalState): CustomCarrier[] {
     return state.settings.estimateCarriers;
+  },
+  [GettersTypes.GET_PRODUCT_FILTER](state: LocalState): ProductFilter[] {
+    return state.settings.productFilter;
   },
   [GettersTypes.GET_PRODUCT_FEED_SYNC_CONTEXT](
     state: LocalState,

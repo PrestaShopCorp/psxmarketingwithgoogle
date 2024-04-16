@@ -46,6 +46,7 @@ export const createProductFeedApiPayload = (settings:any) => ({
     } : {}
   ),
   attributeMapping: formatMappingToApi(settings.attributeMapping),
+  productSelected: settings.productSelected,
   selectedProductCategories: settings.selectedProductCategories,
   requestSynchronizationNow: settings.requestSynchronizationNow,
 });
@@ -198,6 +199,8 @@ export default {
     );
     // Attributes mapping
     const attributeMapping = getDataFromLocalStorage('productFeed-attributeMapping') || state.attributeMapping || {};
+    // Product filter
+    const productFiltered = getDataFromLocalStorage('productFeed-productFilter') || productFeedSettings.productFilter;
     const selectedProductCategories = getDataFromLocalStorage('productFeed-selectedProductCategories') || getters.GET_PRODUCT_CATEGORIES_SELECTED;
     // Next synchronization request
     const requestSynchronizationNow = getters.GET_SYNC_SCHEDULE;
@@ -213,6 +216,7 @@ export default {
       rate,
       estimateCarriers,
       attributeMapping,
+      productFiltered,
       selectedProductCategories,
       requestSynchronizationNow,
     });
@@ -244,6 +248,10 @@ export default {
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'shippingSettings',
         data: productFeedSettings.shippingSettings,
+      });
+      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+        name: 'productFilter',
+        data: productFeedSettings.productFilter,
       });
       commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, newSettings.attributeMapping);
     } catch (error) {
