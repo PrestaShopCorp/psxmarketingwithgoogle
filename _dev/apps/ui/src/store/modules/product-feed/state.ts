@@ -8,6 +8,7 @@ import Categories, {SelectedProductCategories} from '@/enums/product-feed/attrib
 import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
 import {RequestState} from '@/store/types';
 import {ProductIssueImpact} from '@/components/render-issues/types';
+import {ProductFilter} from '@/providers/product-filter-provider';
 
 /**
  * @deprecated
@@ -42,6 +43,7 @@ export interface ProductFeedSettings {
   // Deprecated: Kept for backward compatibility with old product feed.
   autoImportShippingSettings?: boolean;
   targetCountries: string[]|null;
+  productFilter: ProductFilter[]
 }
 export interface ProductFeedValidationSummary {
   activeProducts: number|null;
@@ -218,6 +220,7 @@ export const state: State = {
     deliveryDetails: [],
     autoImportTaxSettings: false,
     targetCountries: null,
+    productFilter: [],
   },
   validationSummary: {
     activeProducts: null,
