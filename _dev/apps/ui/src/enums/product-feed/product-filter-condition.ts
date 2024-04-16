@@ -12,15 +12,14 @@ export enum ProductFilterStringConditions {
 }
 
 export enum ProductFilterBooleanConditions {
-  IS_FALSE = 'isFalse',
-  IS_TRUE = 'isTrue',
+  IS_FALSE = 'false',
+  IS_TRUE = 'true',
 }
 
 export enum ProductFilterFieldConditions {
   NUMERIC = 'numeric',
   STRING = 'string',
   MULTI_SELECT = 'multiSelect',
-  BOOLEAN = 'boolean',
 }
 
 export default {
