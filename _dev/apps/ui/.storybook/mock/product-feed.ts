@@ -104,6 +104,7 @@ export const productFeed: State = {
       },
     ],
     autoImportTaxSettings: false,
+    productFilter: [],
   },
   validationSummary: {
     activeProducts: null,
