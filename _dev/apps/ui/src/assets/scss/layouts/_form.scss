@@ -121,9 +121,14 @@
     label {
       padding: rem(10) rem(15) rem(10) calc(#{rem(15)} + 1.5rem);
 
-      &:before, &:after {
-        top: rem(12);
-        left: rem(15);
+      &:before {
+        left: -27px;
+        top: 0;
+      } 
+      
+      &:after {
+        left: -25px;
+        top: 2px;
       }
     }
   }
