@@ -118,8 +118,8 @@ export default defineComponent({
   data() {
     return {
       synchSelected: getDataFromLocalStorage(localStorageName)
-        ? ProductFilterMethodsSync.SYNC_FILTERED_PRODUCT
-        : ProductFilterMethodsSync.SYNC_ALL_PRODUCT,
+        ? ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT
+        : ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT,
       listFilters: [] as ProductFilter[],
       filtersAreValid: false,
     };
@@ -150,7 +150,7 @@ export default defineComponent({
       });
     },
     checkMethodSyncBeforeMoveStep() {
-      if (this.synchSelected === ProductFilterMethodsSync.SYNC_ALL_PRODUCT) {
+      if (this.synchSelected === ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT) {
         this.deleteFilters();
       } else {
         this.saveFilters();
