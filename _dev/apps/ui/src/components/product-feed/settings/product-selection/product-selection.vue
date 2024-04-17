@@ -94,9 +94,8 @@ import ActionsButtons from '@/components/product-feed/settings/commons/actions-b
 import LineFilter from '@/components/product-feed/settings/product-selection/line-filter.vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
-import ProductFilterDefaultAttributes from '@/enums/product-feed/product-filter-default-attributes';
 import type {ProductFilter} from '@/components/product-feed/settings/product-selection/type';
-import ProductFilterMethodsSync from '@/enums/product-feed/product-filter-mothods-sync';
+import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
 
 function uuidv4() {
   // eslint-disable-next-line no-bitwise, no-mixed-operators
@@ -118,7 +117,7 @@ export default defineComponent({
   },
   data() {
     return {
-      synchSelected: ProductFilterMethodsSync.SYNC_ALL_PRODUCT,
+      synchSelected: ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT,
       listFilters: [] as ProductFilter[],
       filtersAreValid: false,
     };
