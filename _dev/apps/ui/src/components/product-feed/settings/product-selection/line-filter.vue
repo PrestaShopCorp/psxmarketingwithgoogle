@@ -29,7 +29,7 @@
             </b-dropdown-item>
           </b-dropdown-group>
           <!-- CUSTOM ATTRIBUTES -->
-          <b-dropdown-group>
+          <b-dropdown-group v-if="featuresList.length">
             <template #header>
               <span>
                 {{ $t('productFeedSettings.productSelection.lineFilter.attributes.features') }}
@@ -51,7 +51,7 @@
           v-if="attributeSelected.value !== 'outOfStock'"
           class="ps-dropdown psxmarketingwithgoogle-dropdown conditions"
           menu-class="ps-dropdown"
-          :text="conditionSelected.length ? getSelectedLabel('conditions', conditionSelected) : undefined || $t('productFeedSettings.productSelection.lineFilter.conditions.placeholder')"
+          :text="conditionSelected.length ? getSelectedLabel('conditions', conditionSelected) : $t('productFeedSettings.productSelection.lineFilter.conditions.placeholder')"
           :disabled="!attributeSelected.value"
         >
           <b-dropdown-item
@@ -108,13 +108,13 @@
         <!-- VALUE / FREE FIELD -->
         <!-- TODO : Réinitialiser le champ au on-change du champ attribut -->
         <input-text-with-tag
-          :disabled="!!!conditionSelected.length"
           v-else-if="
             attributeSelected.value !== 'price'
-              && attributeSelected.value !== 'productId'
-              && !!!conditionSelected.length
-              || conditionSelected === 'contains'
+              && attributeSelected.value !== 'productId' && !conditionSelected.length || conditionSelected === 'contains'
               || conditionSelected === 'notContain'"
+          :disabled="!conditionSelected.length"
+          :default-value="valuesSelected"
+          @dataUpdated="updateValues($event)"
         />
       </div>
     </b-form>
@@ -251,7 +251,7 @@ export default defineComponent({
         || this.attributeSelected.id === ProductFilterDefaultAttributes.CATEGORY) {
         return categoryOrBrand.map((value) => value.value);
       }
-      if (this.defaultAttributeIsSelected === false) {
+      if (!this.defaultAttributeIsSelected) {
         return this.getValuesOfFeaturesByLanguage();
       }
       return [];
