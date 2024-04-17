@@ -11,7 +11,10 @@
         >
           <!-- DEFAULTS ATTRIBUTES -->
           <b-dropdown-group>
-            <template #header>
+            <template
+              v-if="featuresList.length"
+              #header
+            >
               <span>
                 {{
                   $t('productFeedSettings.productSelection.lineFilter.attributes.defaultAttributes')
