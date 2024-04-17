@@ -41,7 +41,7 @@ export default defineComponent({
   data() {
     return {
       newTag: '',
-      tags: [],
+      tags: this.$props.defaultValue ?? [],
     };
   },
   props: {
@@ -55,12 +55,18 @@ export default defineComponent({
       required: false,
       default: false,
     },
+    defaultValue: {
+      type: Array,
+      required: false,
+      default: () => [],
+    },
   },
   methods: {
     addTag() {
       if (!this.newTag) return;
       this.tags.push(this.newTag);
       this.newTag = '';
+      this.$emit('dataUpdated', this.tags);
     },
     deleteTag(tag) {
       this.tags.splice(this.tags.indexOf(tag), 1);
@@ -69,6 +75,11 @@ export default defineComponent({
   computed: {
     setPlaceholder() {
       return this.$i18n.t('productFeedSettings.productSelection.lineFilter.value.enterValue') as string;
+    },
+  },
+  watch: {
+    defaultValue(newValue) {
+      this.tags = newValue;
     },
   },
 });

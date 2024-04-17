@@ -65,6 +65,7 @@ export default defineComponent({
     defaultValue: {
       type: Array,
       required: false,
+      default: () => [],
     },
   },
   methods: {
@@ -79,6 +80,11 @@ export default defineComponent({
     },
     getCountriesFilteredWithList(arg) {
       return this.dropdownOptions.filter((c) => arg.includes(c));
+    },
+  },
+  watch: {
+    defaultValue(newValue) {
+      this.selectedItems = newValue;
     },
   },
 });
