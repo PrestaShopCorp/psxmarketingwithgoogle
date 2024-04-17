@@ -102,7 +102,7 @@
           :dropdown-options="productFiltered"
           :placeholder="placeholderMultiSelect"
           :disabled="!conditionSelected.length"
-          @dataUpdated="onDataMultiSelectUpdate($event)"
+          @dataUpdated="updateValues($event)"
         />
         <!-- VALUE / FREE FIELD -->
         <!-- TODO : Réinitialiser le champ au on-change du champ attribut -->
@@ -179,9 +179,14 @@ export default defineComponent({
     updateCondition(condition: string) {
       this.conditionSelected = condition;
       this.updateValue(null);
+      this.updateValues([]);
     },
     updateValue(value: number | ProductFilterBooleanConditions | null) {
       this.valueSelected = value;
+      this.onDataUpdate();
+    },
+    updateValues(values: string[]) {
+      this.valuesSelected = values;
       this.onDataUpdate();
     },
     getSelectedLabel(field, item) {
@@ -194,10 +199,6 @@ export default defineComponent({
         value: this.valueSelected,
         values: this.valuesSelected,
       });
-    },
-    onDataMultiSelectUpdate(event: string[]) {
-      console.log(event);
-      // this.valuesSelected = event;
     },
     getValuesOfFeaturesByLanguage() {
       const result: string[] = [];
@@ -288,29 +289,25 @@ export default defineComponent({
       );
 
       if (defaultAttribute) {
-        this.defaultAttributeIsSelected = true;
-        this.attributeSelected.id = defaultAttribute.id;
-        this.attributeSelected.value = defaultAttribute.value;
+        this.updateAttribute(defaultAttribute, true);
       } else {
         const featureAttribute = this.featuresList.find(
           (el) => el.id === this.$props.filters.attribute,
         );
 
         if (featureAttribute) {
-          this.defaultAttributeIsSelected = false;
-          this.attributeSelected.id = featureAttribute.id;
-          this.attributeSelected.value = featureAttribute.value;
+          this.updateAttribute(featureAttribute, false);
         }
       }
     }
     if (this.$props.filters.condition) {
-      this.conditionSelected = this.$props.filters.condition;
+      this.updateCondition(this.$props.filters.condition);
     }
     if (this.$props.filters.value) {
-      this.valueSelected = Number(this.$props.filters.value);
+      this.updateValue(Number(this.$props.filters.value));
     }
     if (this.$props.filters.values) {
-      this.valuesSelected = this.$props.filters.values;
+      this.updateValues(this.$props.filters.values);
     }
   },
 });
