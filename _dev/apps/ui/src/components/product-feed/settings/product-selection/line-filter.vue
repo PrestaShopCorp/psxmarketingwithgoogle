@@ -155,7 +155,7 @@ export default defineComponent({
       required: false,
     },
     filters: {
-      type: Array as PropType<ProductFilter[]>,
+      type: Object as PropType<ProductFilter>,
       required: true,
     },
   },
@@ -280,6 +280,38 @@ export default defineComponent({
         this.conditionTypeSelected = ProductFilterFieldConditions.STRING;
       }
     },
+  },
+  mounted() {
+    if (this.$props.filters.attribute) {
+      const defaultAttribute = this.defaultAttributesList.find(
+        (el) => el.id === this.$props.filters.attribute,
+      );
+
+      if (defaultAttribute) {
+        this.defaultAttributeIsSelected = true;
+        this.attributeSelected.id = defaultAttribute.id;
+        this.attributeSelected.value = defaultAttribute.value;
+      } else {
+        const featureAttribute = this.featuresList.find(
+          (el) => el.id === this.$props.filters.attribute,
+        );
+
+        if (featureAttribute) {
+          this.defaultAttributeIsSelected = false;
+          this.attributeSelected.id = featureAttribute.id;
+          this.attributeSelected.value = featureAttribute.value;
+        }
+      }
+    }
+    if (this.$props.filters.condition) {
+      this.conditionSelected = this.$props.filters.condition;
+    }
+    if (this.$props.filters.value) {
+      this.valueSelected = Number(this.$props.filters.value);
+    }
+    if (this.$props.filters.values) {
+      this.valuesSelected = this.$props.filters.values;
+    }
   },
 });
 </script>
