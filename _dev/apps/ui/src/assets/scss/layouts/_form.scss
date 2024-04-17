@@ -121,14 +121,9 @@
     label {
       padding: rem(10) rem(15) rem(10) calc(#{rem(15)} + 1.5rem);
 
-      &:before {
-        left: -27px;
-        top: 0;
-      } 
-      
-      &:after {
-        left: -25px;
-        top: 2px;
+      &:before, &:after {
+        top: rem(12);
+        left: rem(15);
       }
     }
   }
@@ -267,20 +262,21 @@
   }
 
   .checked {
-    .custom-control-label::after {
-      background-image: none !important;
-      background-color: $primary-800;
-      border-radius: 50%;
-      height: rem(15);
-      width: rem(15);
-      border: white 3px solid;
-      left: rem(-24.3);
-      top: rem(4.48);
-    }
-  
-    .custom-control-label::before {
-      background-color: $primary-800;
-      top: rem(2);
+    .custom-control-label {
+      &:after {
+        background-image: none !important;
+        background-color: $primary-800;
+        border-radius: 50%;
+        height: 1rem;
+        width: 1rem;
+        border: white 3px solid;
+        left: -25px;
+        top: 2px;
+      }
+    
+      &:before {
+        background-color: $primary-800;
+      }
     }
   }
   
@@ -288,7 +284,8 @@
     width: rem(20);
     height: rem(20);
     border: $primary-800 solid 2px;
-    left: rem(-27);
+    top: 0;
+    left: -27px;
   }
 }
 
