@@ -106,6 +106,8 @@ const newFilter = () => ({
   id: uuidv4(),
 });
 
+const localStorageName = 'productFeed-productFilter';
+
 export default defineComponent({
   name: 'ProductFeedSettingsProductSelection',
   components: {
@@ -128,7 +130,7 @@ export default defineComponent({
   },
   methods: {
     saveSelectedProducts() {
-      localStorage.setItem('productFeed-targetCountries', JSON.stringify(this.listFilters));
+      localStorage.setItem(localStorageName, JSON.stringify(this.listFilters));
       this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
         name: 'productFilter', data: this.listFilters,
       });
@@ -161,21 +163,22 @@ export default defineComponent({
       this.listFilters.splice(index, 1);
     },
     updateFilter(event, index) {
-      console.log('event: ', event);
-      console.log('before: ', JSON.stringify(this.listFilters[index]));
       this.listFilters[index] = {...this.listFilters[index], ...event};
-      console.log('after: ', this.listFilters[index]);
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
   },
   mounted() {
-    this.listFilters = getDataFromLocalStorage('productFeed-productFilter')
+    const listFilters = getDataFromLocalStorage(localStorageName)
     || (this.$store.getters['productFeed/GET_PRODUCT_FILTER']?.length
       ? this.$store.getters['productFeed/GET_PRODUCT_FILTER']
       : [newFilter()]
     );
+
+    listFilters.forEach((filter, index) => {
+      this.$set(this.listFilters, index, filter);
+    });
   },
 });
 </script>
