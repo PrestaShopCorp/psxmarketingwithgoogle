@@ -3,11 +3,13 @@ export interface Features {
   id: string;
 }
 
+export type ProductFilterValue = number|string|boolean|null;
+
 export type ProductFilter = {
   id?: string,
   attribute?: number | string,
   condition?: string,
-  value?: number | string | boolean,
+  value?: ProductFilterValue,
   values?: string[]
 }
 
