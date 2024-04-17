@@ -118,17 +118,22 @@ export default defineComponent({
     return {
       synchSelected: 'synchFilteredProducts',
       listFilters: [] as ProductFilter[],
+      filtersAreValid: false,
     };
   },
-  computed: {
-    filtersAreValid() {
-      // TODO: Add validation condition
-      const filtersAreValid = true;
-
-      return filtersAreValid;
-    },
-  },
   methods: {
+    checkFiltersValidity() {
+      let validity = true;
+      this.listFilters.forEach((filter) => {
+        validity = validity && (
+          !!filter.attribute
+          && (filter.attribute === 'outOfStock' || !!filter.condition)
+          && (!!filter.value || !!filter.values?.length)
+        );
+      });
+
+      this.filtersAreValid = validity;
+    },
     saveSelectedProducts() {
       localStorage.setItem(localStorageName, JSON.stringify(this.listFilters));
       this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
@@ -163,7 +168,7 @@ export default defineComponent({
       this.listFilters.splice(index, 1);
     },
     updateFilter(event, index) {
-      this.listFilters[index] = {...this.listFilters[index], ...event};
+      this.$set(this.listFilters, index, {...this.listFilters[index], ...event});
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
@@ -175,6 +180,11 @@ export default defineComponent({
       ? this.$store.getters['productFeed/GET_PRODUCT_FILTER']
       : [newFilter()]
     );
+  },
+  watch: {
+    listFilters() {
+      this.checkFiltersValidity();
+    },
   },
 });
 </script>
