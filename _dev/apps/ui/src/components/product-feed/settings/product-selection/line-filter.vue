@@ -102,6 +102,7 @@
           :dropdown-options="productFiltered"
           :placeholder="placeholderMultiSelect"
           :disabled="!conditionSelected.length"
+          :default-value="valuesSelected"
           @dataUpdated="updateValues($event)"
         />
         <!-- VALUE / FREE FIELD -->
@@ -141,7 +142,7 @@ import {
 } from '@/enums/product-feed/product-filter-condition';
 import featureMock from './features.json';
 import categoryOrBrand from './categoryOrBrand.json';
-import {ProductFilter, Attribute} from './type';
+import {ProductFilter, Attribute, ProductFilterValue} from './type';
 
 export default defineComponent({
   name: 'LineFilter',
@@ -166,7 +167,7 @@ export default defineComponent({
       attributeSelected: {id: '', value: ''},
       conditionSelected: '',
       conditionTypeSelected: '',
-      valueSelected: null as number|ProductFilterBooleanConditions|null,
+      valueSelected: null as ProductFilterValue,
       valuesSelected: [] as string[],
     };
   },
@@ -181,7 +182,7 @@ export default defineComponent({
       this.updateValue(null);
       this.updateValues([]);
     },
-    updateValue(value: number | ProductFilterBooleanConditions | null) {
+    updateValue(value: ProductFilterValue) {
       this.valueSelected = value;
       this.onDataUpdate();
     },
@@ -304,7 +305,7 @@ export default defineComponent({
       this.updateCondition(this.$props.filters.condition);
     }
     if (this.$props.filters.value) {
-      this.updateValue(Number(this.$props.filters.value));
+      this.updateValue(this.$props.filters.value);
     }
     if (this.$props.filters.values) {
       this.updateValues(this.$props.filters.values);

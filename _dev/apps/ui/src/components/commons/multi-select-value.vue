@@ -36,7 +36,7 @@ export default defineComponent({
   data() {
     return {
       searchString: '',
-      selectedItems: [],
+      selectedItems: this.$props.defaultValue ?? [],
       isChecked: false,
       inputSearch: HTMLElement,
       menuSelect: HTMLElement,
@@ -61,6 +61,10 @@ export default defineComponent({
       type: Boolean,
       required: false,
       default: false,
+    },
+    defaultValue: {
+      type: Array,
+      required: false,
     },
   },
   methods: {
