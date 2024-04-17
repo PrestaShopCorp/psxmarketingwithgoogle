@@ -117,7 +117,9 @@ export default defineComponent({
   },
   data() {
     return {
-      synchSelected: ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT,
+      synchSelected: getDataFromLocalStorage(localStorageName)
+        ? ProductFilterMethodsSync.SYNC_FILTERED_PRODUCT
+        : ProductFilterMethodsSync.SYNC_ALL_PRODUCT,
       listFilters: [] as ProductFilter[],
       filtersAreValid: false,
     };
@@ -135,13 +137,27 @@ export default defineComponent({
 
       this.filtersAreValid = validity;
     },
-    saveSelectedProducts() {
+    saveFilters() {
       localStorage.setItem(localStorageName, JSON.stringify(this.listFilters));
       this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
         name: 'productFilter', data: this.listFilters,
       });
     },
+    deleteFilters() {
+      localStorage.removeItem(localStorageName);
+      this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
+        name: 'productFilter', data: [],
+      });
+    },
+    checkMethodSyncBeforeMoveStep() {
+      if (this.synchSelected === ProductFilterMethodsSync.SYNC_ALL_PRODUCT) {
+        this.deleteFilters();
+      } else {
+        this.saveFilters();
+      }
+    },
     previousStep() {
+      this.checkMethodSyncBeforeMoveStep();
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
       this.$router.push({
         params: {
@@ -152,7 +168,7 @@ export default defineComponent({
       window.scrollTo(0, 0);
     },
     nextStep() {
-      this.saveSelectedProducts();
+      this.checkMethodSyncBeforeMoveStep();
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 5);
       this.$router.push({
         name: 'product-feed-settings',
