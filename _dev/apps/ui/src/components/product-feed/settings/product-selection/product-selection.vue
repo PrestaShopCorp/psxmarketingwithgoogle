@@ -170,15 +170,11 @@ export default defineComponent({
     },
   },
   mounted() {
-    const listFilters = getDataFromLocalStorage(localStorageName)
+    this.listFilters = getDataFromLocalStorage(localStorageName)
     || (this.$store.getters['productFeed/GET_PRODUCT_FILTER']?.length
       ? this.$store.getters['productFeed/GET_PRODUCT_FILTER']
       : [newFilter()]
     );
-
-    listFilters.forEach((filter, index) => {
-      this.$set(this.listFilters, index, filter);
-    });
   },
 });
 </script>
