@@ -5,37 +5,38 @@
       {{ $t('productFeedSettings.productSelection.methodSynch.title') }}
     </h3>
     <div class="container-fluid">
-      <div class="row methods-synch">
+      <div class="row methods-sync ps_gs-radio">
         <div
           class="col col-12 col-md border-primary-400 p-3"
-          :class="{'border-primary-800': synchSelected === 'synchAllProducts'}"
+          :class="{'checked': synchSelected === 'synchAllProducts'}"
         >
           <b-form-radio
             v-model="synchSelected"
-            name="customSynchRadio"
+            name="customSyncRadio"
+            value="synchAllProducts"
           >
-            <h3 class="font-weight-700 mb-2">
+            <h3 class="font-weight-700 mb-2 ps_gs-fz-14">
               {{ $t('productFeedSettings.productSelection.methodSynch.synchAllProducts') }}
             </h3>
-            <span class="text-primary-600">
+            <span class="text-muted">
               {{ $t('productFeedSettings.productSelection.methodSynch.synchAllProductsDesc') }}
             </span>
           </b-form-radio>
         </div>
         <div
           class="col col-12 col-md border-primary-400 p-3 ml-md-1 mt-1 mt-md-0"
-          :class="{'border-primary-800': synchSelected === 'synchFilteredProducts'}"
+          :class="{'checked': synchSelected === 'synchFilteredProducts'}"
         >
           <div>
             <b-form-radio
               v-model="synchSelected"
-              name="customSynchRadio"
+              name="customSyncRadio"
               value="synchFilteredProducts"
             >
-              <h3 class="font-weight-700 mb-2">
+              <h3 class="font-weight-700 mb-2 ps_gs-fz-14">
                 {{ $t('productFeedSettings.productSelection.methodSynch.synchFilteredProducts') }}
               </h3>
-              <span class="text-primary-600">
+              <span class="text-muted">
                 {{
                   $t('productFeedSettings.productSelection.methodSynch.synchFilteredProductsDesc')
                 }}
@@ -95,6 +96,7 @@ import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 import ProductFilterDefaultAttributes from '@/enums/product-feed/product-filter-default-attributes';
 import type {ProductFilter} from '@/components/product-feed/settings/product-selection/type';
+import ProductFilterMethodsSync from '@/enums/product-feed/product-filter-mothods-sync';
 
 function uuidv4() {
   // eslint-disable-next-line no-bitwise, no-mixed-operators
@@ -116,7 +118,7 @@ export default defineComponent({
   },
   data() {
     return {
-      synchSelected: 'synchFilteredProducts',
+      synchSelected: ProductFilterMethodsSync.SYNC_ALL_PRODUCT,
       listFilters: [] as ProductFilter[],
     };
   },

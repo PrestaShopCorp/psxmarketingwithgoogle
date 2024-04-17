@@ -371,6 +371,42 @@
   }
 }
 
+.ps_gs-radio {
+  .custom-control {
+    padding-left: rem(28);
+  }
+
+  .custom-control-input {
+    width: rem(20);
+    height: rem(20);
+  }
+
+  .checked {
+    .custom-control-label::after {
+      background-image: none !important;
+      background-color: $primary-800;
+      border-radius: 50%;
+      height: rem(15);
+      width: rem(15);
+      border: white 3px solid;
+      left: rem(-24.3);
+      top: rem(4.48);
+    }
+  
+    .custom-control-label::before {
+      background-color: $primary-800;
+      top: rem(2);
+    }
+  }
+  
+  .custom-control-label::before {
+    width: rem(20);
+    height: rem(20);
+    border: $primary-800 solid 2px;
+    left: rem(-27);
+  }
+}
+
 .ps_gs-datepicker {
   .b-calendar-grid-body {
     [aria-disabled="true"] {
