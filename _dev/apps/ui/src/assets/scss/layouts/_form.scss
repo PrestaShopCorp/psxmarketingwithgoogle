@@ -301,6 +301,10 @@
         color: $primary-500;
       }
     }
+
+    &:hover {
+      z-index: 2;
+    }
   }
 }
 
