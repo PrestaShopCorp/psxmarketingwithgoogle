@@ -442,6 +442,8 @@
       "learnHowToSetupShippingSettings": "Learn how to set up shipping"
     },
     "productSelection": {
+      "and": "And",
+      "addFilter": "Add filter",
       "methodSynch": {
         "title": "Select the method for products syncing",
         "synchAllProducts": "Synchronize all products",
@@ -481,8 +483,12 @@
           "true": "Is true"
         }
       },
-      "and": "And",
-      "addFilter": "Add filter"
+      "alerts": {
+        "countProducts": "We haven't found any products matching your selection. Change your filters and try again. | product selected. | products selected.",
+        "erreurCountApi": "We are not able to retrieve the requested data right now. Check your configuration and try again later.",
+        "viewProducts": "View products",
+        "tryAgain": "Try again"
+      }
     },
     "syncSchedule": {
       "title": "Synchronization schedule",

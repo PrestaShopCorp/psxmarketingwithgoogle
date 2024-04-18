@@ -491,7 +491,7 @@ input[type=number].no-arrows {
   color: $primary-800 !important;
   border-color: $primary-400;
 
-  &:hover {
+  &:hover:not([disabled="disabled"]) {
     border-color: $primary-800;
     background-color: white !important;
   }
