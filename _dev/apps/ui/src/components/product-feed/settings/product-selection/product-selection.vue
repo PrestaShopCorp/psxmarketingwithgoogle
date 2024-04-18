@@ -126,7 +126,11 @@ import ActionsButtons from '@/components/product-feed/settings/commons/actions-b
 import LineFilter from '@/components/product-feed/settings/product-selection/line-filter.vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
-import {ProductFilter, ProductFilterToSend} from '@/components/product-feed/settings/product-selection/type';
+import {
+  ProductFilter,
+  ProductFilterErrors,
+  ProductFilterToSend,
+} from '@/components/product-feed/settings/product-selection/type';
 import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
 
 function uuidv4() {
@@ -159,16 +163,59 @@ export default defineComponent({
     };
   },
   methods: {
-    checkFiltersValidity(sendError: boolean) {
-      // TODO : Add send error to line
-      // TODO : Add check input number
-      let validity = true;
+    resetErrors() {
       this.listFilters.forEach((filter) => {
-        validity = validity && (
-          !!filter.attribute
-          && (filter.attribute === 'outOfStock' || !!filter.condition)
-          && (!!filter.value || !!filter.values?.length)
-        );
+        filter.errors = undefined;
+      });
+    },
+    checkFiltersValidity(sendError: boolean) {
+      if (sendError) {
+        this.resetErrors();
+      }
+
+      let validity = true;
+      this.listFilters.forEach((filter, index) => {
+        const errors: ProductFilterErrors = {
+          attribute: undefined,
+          condition: undefined,
+          value: undefined,
+        };
+
+        if (!filter.attribute) {
+          if (sendError) {
+            errors.attribute = this.$t('productFeedSettings.productSelection.lineFilter.errors.empty') as string;
+          }
+          validity = false;
+        }
+
+        if (filter.attribute !== 'outOfStock' && !filter.condition) {
+          if (sendError) {
+            errors.condition = this.$t('productFeedSettings.productSelection.lineFilter.errors.empty') as string;
+          }
+          validity = false;
+        }
+
+        if (!(filter.value || (filter.values && filter.values.length))) {
+          if (sendError) {
+            errors.value = this.$t('productFeedSettings.productSelection.lineFilter.errors.empty') as string;
+          }
+          validity = false;
+        } else if (filter.conditionType === 'number' && Number.isNaN(filter.value)) {
+          if (sendError) {
+            errors.value = this.$t('productFeedSettings.productSelection.lineFilter.errors.invalidNumber') as string;
+          }
+          validity = false;
+        }
+
+        if (sendError) {
+          this.$set(
+            this.listFilters,
+            index,
+            {
+              ...this.listFilters[index],
+              errors,
+            });
+        }
       });
 
       this.filtersAreValid = validity;
@@ -223,6 +270,10 @@ export default defineComponent({
       window.scrollTo(0, 0);
     },
     nextStep() {
+      this.checkFiltersValidity(true);
+      if (!this.filtersAreValid) {
+        return;
+      }
       this.checkMethodSyncBeforeMoveStep();
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 5);
       this.$router.push({
