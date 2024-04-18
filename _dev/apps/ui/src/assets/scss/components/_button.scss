@@ -15,6 +15,36 @@
       box-shadow: none !important;
     }
   }
+
+  &.btn-danger {
+    background-color: $red-50;
+    border-color: $red-500;
+    color: $primary-800;
+    
+    &:hover {
+      background-color: $red-100;
+    }
+    
+    &:active {
+      background-color: $red-300 !important;
+      color: $primary-800 !important;
+    }
+  }
+
+  &.btn-info {
+    border-color: $blue-500;
+    background-color: $blue-50;
+    color: $primary-800;
+    
+    &:hover {
+      background-color: $blue-100;
+    }
+    
+    &:active {
+      color: $primary-800 !important;
+      background-color: $blue-300 !important;
+    }
+  }
 }
 
 .btn-sm {
