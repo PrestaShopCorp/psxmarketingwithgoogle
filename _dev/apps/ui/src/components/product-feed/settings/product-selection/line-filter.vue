@@ -49,6 +49,9 @@
             </b-dropdown-item>
           </b-dropdown-group>
         </b-dropdown>
+        <span v-if="filters.errors?.attribute">
+          {{ filters.errors?.attribute }}
+        </span>
         <!-- CONDITIONS -->
         <b-dropdown
           v-if="attributeSelected.value !== 'outOfStock'"
@@ -67,6 +70,9 @@
             </span>
           </b-dropdown-item>
         </b-dropdown>
+        <span v-if="filters.errors?.condition">
+          {{ filters.errors?.condition }}
+        </span>
         <!-- VALUE / NUMBER -->
         <b-input-group
           v-if="attributeSelected.value === 'price' || attributeSelected.value === 'productId'"
@@ -109,7 +115,6 @@
           @dataUpdated="updateValues($event)"
         />
         <!-- VALUE / FREE FIELD -->
-        <!-- TODO : Réinitialiser le champ au on-change du champ attribut -->
         <input-text-with-tag
           v-else-if="
             attributeSelected.value !== 'price'
@@ -119,6 +124,9 @@
           :default-value="valuesSelected"
           @dataUpdated="updateValues($event)"
         />
+        <span v-if="filters.errors?.value">
+          {{ filters.errors?.value }}
+        </span>
       </div>
     </b-form>
     <button

@@ -452,6 +452,10 @@
         "synchFilteredProductsDesc": "Only the products you select will be synchronized."
       },
       "lineFilter": {
+        "errors": {
+          "empty": "This field is mandatory.",
+          "invalidNumber": "Enter a valid number."
+        },
         "attributes": {
           "label": "Attribute",
           "placeholder": "Select an attribute",
