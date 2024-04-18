@@ -15,6 +15,7 @@ export type ProductFilter = {
   id?: string,
   attribute?: number | string,
   condition?: string,
+  conditionType?: string,
   value?: ProductFilterValue,
   values?: string[],
   errors?: ProductFilterErrors
