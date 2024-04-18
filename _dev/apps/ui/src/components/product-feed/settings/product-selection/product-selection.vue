@@ -215,14 +215,13 @@ export default defineComponent({
   mounted() {
     this.listFilters = getDataFromLocalStorage(localStorageName)
     || (this.$store.getters['productFeed/GET_PRODUCT_FILTER']?.length
-    // TODO: add UUID
-      ? this.$store.getters['productFeed/GET_PRODUCT_FILTER']
+      ? this.$store.getters['productFeed/GET_PRODUCT_FILTER'].map((filter: ProductFilterToSend) => ({...filter, ...newFilter()}))
       : [newFilter()]
     );
   },
   watch: {
     listFilters() {
-      this.checkFiltersValidity();
+      this.checkFiltersValidity(false);
     },
   },
 });
