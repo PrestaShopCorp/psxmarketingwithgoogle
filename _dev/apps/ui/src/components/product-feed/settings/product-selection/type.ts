@@ -5,12 +5,26 @@ export interface Features {
 
 export type ProductFilterValue = number|string|boolean|null;
 
+export type ProductFilterErrors = {
+  attribute?: string,
+  condition?: string,
+  value?: string,
+}
+
 export type ProductFilter = {
   id?: string,
   attribute?: number | string,
   condition?: string,
   value?: ProductFilterValue,
-  values?: string[]
+  values?: string[],
+  errors?: ProductFilterErrors
+}
+
+export type ProductFilterToSend = {
+  attribute: number | string,
+  condition?: string,
+  value?: ProductFilterValue,
+  values?: string[],
 }
 
 export type Attribute = {
