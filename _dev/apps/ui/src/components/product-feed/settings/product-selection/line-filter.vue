@@ -200,6 +200,7 @@ export default defineComponent({
       this.$emit('dataUpdated', {
         attribute: this.attributeSelected.id,
         condition: this.conditionSelected,
+        conditionType: this.conditionTypeSelected,
         value: this.valueSelected,
         values: this.valuesSelected,
       });

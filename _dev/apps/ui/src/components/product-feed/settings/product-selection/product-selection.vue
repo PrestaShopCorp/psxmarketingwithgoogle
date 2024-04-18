@@ -94,7 +94,7 @@ import ActionsButtons from '@/components/product-feed/settings/commons/actions-b
 import LineFilter from '@/components/product-feed/settings/product-selection/line-filter.vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
-import type {ProductFilter} from '@/components/product-feed/settings/product-selection/type';
+import {ProductFilter, ProductFilterToSend} from '@/components/product-feed/settings/product-selection/type';
 import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
 
 function uuidv4() {
@@ -125,7 +125,9 @@ export default defineComponent({
     };
   },
   methods: {
-    checkFiltersValidity() {
+    checkFiltersValidity(sendError: boolean) {
+      // TODO : Add send error to line
+      // TODO : Add check input number
       let validity = true;
       this.listFilters.forEach((filter) => {
         validity = validity && (
@@ -140,13 +142,32 @@ export default defineComponent({
     saveFilters() {
       localStorage.setItem(localStorageName, JSON.stringify(this.listFilters));
       this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
-        name: 'productFilter', data: this.listFilters,
+        name: 'productFilter', data: this.getCleanFilters(),
       });
     },
     deleteFilters() {
       localStorage.removeItem(localStorageName);
       this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
         name: 'productFilter', data: [],
+      });
+    },
+    getCleanFilters() {
+      return this.listFilters.map((filter) => {
+        const cleanFilter: ProductFilterToSend = {
+          attribute: filter.attribute as string | number,
+        };
+
+        if (filter.condition) {
+          cleanFilter.condition = filter.condition;
+        }
+
+        if (filter.value) {
+          cleanFilter.value = filter.value;
+        } else if (filter.values?.length) {
+          cleanFilter.values = filter.values;
+        }
+
+        return cleanFilter;
       });
     },
     checkMethodSyncBeforeMoveStep() {
@@ -194,6 +215,7 @@ export default defineComponent({
   mounted() {
     this.listFilters = getDataFromLocalStorage(localStorageName)
     || (this.$store.getters['productFeed/GET_PRODUCT_FILTER']?.length
+    // TODO: add UUID
       ? this.$store.getters['productFeed/GET_PRODUCT_FILTER']
       : [newFilter()]
     );
