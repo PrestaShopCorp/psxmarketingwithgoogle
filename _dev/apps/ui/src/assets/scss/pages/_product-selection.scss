@@ -95,4 +95,12 @@
     padding: 2px 0;
     width: auto;
   }
+
+  .alert {
+    & > div {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
 }

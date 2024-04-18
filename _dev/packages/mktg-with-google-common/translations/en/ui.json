@@ -446,14 +446,16 @@
       "thisCustomField": "This custom field",
       "learnAboutShippingSettings": "Learn more about shipping settings",
       "learnHowToSetupShippingSettings": "Learn how to set up shipping"
-      },
-      "productSelection": {
-        "methodSync": {
-          "title": "Select the method for products syncing",
-          "syncAllProducts": "Synchronize all products",
-          "syncAllProductsDesc": "The entire catalog will be synchronized.",
-          "syncFilteredProducts": "Synchronize filtered products",
-          "syncFilteredProductsDesc": "Only the products you select will be synchronized."
+    },
+    "productSelection": {
+      "and": "And",
+      "addFilter": "Add filter",
+      "methodSynch": {
+        "title": "Select the method for products syncing",
+        "synchAllProducts": "Synchronize all products",
+        "synchAllProductsDesc": "The entire catalog will be synchronized.",
+        "synchFilteredProducts": "Synchronize filtered products",
+        "synchFilteredProductsDesc": "Only the products you select will be synchronized."
       },
       "lineFilter": {
         "attributes": {
@@ -487,8 +489,12 @@
           "true": "Is true"
         }
       },
-      "and": "And",
-      "addFilter": "Add filter"
+      "alerts": {
+        "countProducts": "We haven't found any products matching your selection. Change your filters and try again. | product selected. | products selected.",
+        "erreurCountApi": "We are not able to retrieve the requested data right now. Check your configuration and try again later.",
+        "viewProducts": "View products",
+        "tryAgain": "Try again"
+      }
     },
     "syncSchedule": {
       "title": "Synchronization schedule",
