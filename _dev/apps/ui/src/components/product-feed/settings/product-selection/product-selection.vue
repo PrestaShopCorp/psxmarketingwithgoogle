@@ -80,6 +80,38 @@
       <i class="material-icons ps_gs-fz-20">add</i>
       {{ $t('productFeedSettings.productSelection.addFilter') }}
     </b-button>
+    <b-alert
+      v-if="false"
+      class="mt-3"
+      :variant="isErrorCountApi ? 'danger' : numberProdctFiltered === 0 ? 'warning' : 'info'"
+      show
+    >
+      <div v-if="isErrorCountApi">
+        <span>{{ $t('productFeedSettings.productSelection.alerts.erreurCountApi') }}</span>
+        <b-button
+          size="sm"
+          variant="danger"
+          @click="loadCountProduct"
+        >
+          {{ $t('productFeedSettings.productSelection.alerts.tryAgain') }}
+        </b-button>
+      </div>
+      <div v-else>
+        <p>
+          <span
+            class="font-weight-600"
+            v-if="numberProdctFiltered > 0"
+          >{{ numberProdctFiltered }}</span> {{ $tc('productFeedSettings.productSelection.alerts.countProducts', numberProdctFiltered) }}
+        </p>
+        <b-button
+          size="sm"
+          variant="info"
+          @click="loadCountProduct"
+        >
+          {{ $t('productFeedSettings.productSelection.alerts.viewProducts') }}
+        </b-button>
+      </div>
+    </b-alert>
     <actions-buttons
       :next-step="nextStep"
       :previous-step="previousStep"
@@ -122,6 +154,8 @@ export default defineComponent({
         : ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT,
       listFilters: [] as ProductFilter[],
       filtersAreValid: false,
+      numberProdctFiltered: 1,
+      isErrorCountApi: false,
     };
   },
   methods: {
@@ -207,6 +241,14 @@ export default defineComponent({
     },
     updateFilter(event, index) {
       this.$set(this.listFilters, index, {...this.listFilters[index], ...event});
+    },
+    loadCountProduct() {
+      // TODO : cette methode doit appeler la requête qui permet de charger les produits filtré
+      // Elle doit être appeler à plusieurs endroits :
+      //    - quand l'utilisateur finit de remplir les 3 champs dans un filtre
+      //    - quand l'utilisateur modifie un champs dans une filtre qui a déjà tous les champs de remplis
+      //    - sur le bouton "Try angain" dans l'alerte qui s'affiche après l'échec de cette requête
+      console.log('loadCountProduct');
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
