@@ -163,22 +163,14 @@ export default defineComponent({
     };
   },
   methods: {
-    resetErrors() {
-      this.listFilters.forEach((filter) => {
-        filter.errors = undefined;
-      });
-    },
     checkFiltersValidity(sendError: boolean) {
-      if (sendError) {
-        this.resetErrors();
-      }
-
       let validity = true;
       this.listFilters.forEach((filter, index) => {
         const errors: ProductFilterErrors = {
           attribute: undefined,
           condition: undefined,
           value: undefined,
+          ...this.listFilters[index].errors,
         };
 
         if (!filter.attribute) {
@@ -186,6 +178,8 @@ export default defineComponent({
             errors.attribute = this.$t('productFeedSettings.productSelection.lineFilter.errors.empty') as string;
           }
           validity = false;
+        } else {
+          errors.attribute = undefined;
         }
 
         if (filter.attribute !== 'outOfStock' && !filter.condition) {
@@ -193,6 +187,8 @@ export default defineComponent({
             errors.condition = this.$t('productFeedSettings.productSelection.lineFilter.errors.empty') as string;
           }
           validity = false;
+        } else {
+          errors.condition = undefined;
         }
 
         if (!(filter.value || (filter.values && filter.values.length))) {
@@ -205,17 +201,17 @@ export default defineComponent({
             errors.value = this.$t('productFeedSettings.productSelection.lineFilter.errors.invalidNumber') as string;
           }
           validity = false;
+        } else {
+          errors.value = undefined;
         }
 
-        if (sendError) {
-          this.$set(
-            this.listFilters,
-            index,
-            {
-              ...this.listFilters[index],
-              errors,
-            });
-        }
+        this.$set(
+          this.listFilters,
+          index,
+          {
+            ...this.listFilters[index],
+            errors,
+          });
       });
 
       this.filtersAreValid = validity;
@@ -259,7 +255,6 @@ export default defineComponent({
       }
     },
     previousStep() {
-      this.checkMethodSyncBeforeMoveStep();
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
       this.$router.push({
         params: {
@@ -286,12 +281,15 @@ export default defineComponent({
     },
     addNewFilter() {
       this.listFilters.push(newFilter());
+      this.checkFiltersValidity(false);
     },
     deleteFilter(index) {
       this.listFilters.splice(index, 1);
+      this.checkFiltersValidity(false);
     },
     updateFilter(event, index) {
       this.$set(this.listFilters, index, {...this.listFilters[index], ...event});
+      this.checkFiltersValidity(false);
     },
     loadCountProduct() {
       // TODO : cette methode doit appeler la requête qui permet de charger les produits filtré
@@ -311,11 +309,6 @@ export default defineComponent({
       ? this.$store.getters['productFeed/GET_PRODUCT_FILTER'].map((filter: ProductFilterToSend) => ({...filter, ...newFilter()}))
       : [newFilter()]
     );
-  },
-  watch: {
-    listFilters() {
-      this.checkFiltersValidity(false);
-    },
   },
 });
 </script>
