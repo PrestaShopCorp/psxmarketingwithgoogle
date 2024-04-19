@@ -61,21 +61,24 @@
   text-decoration: none;
   background-color: $white;
 
-  &:hover {
-    background-color: $primary-300;
-    color: $primary;
+  &:not([disabled="disabled"]) {
+    &:hover {
+      background-color: $primary-300;
+      color: $primary;
+    }
+  
+    &:focus {
+      color: $primary;
+      box-shadow: 0;
+    }
+  
+    &:active {
+      background-color: $primary-400 !important;
+      color: $primary-800 !important;
+      outline: none;
+    }
   }
 
-  &:focus {
-    color: $primary;
-    box-shadow: 0;
-  }
-
-  &:active {
-    background-color: $primary-400 !important;
-    color: $primary-800 !important;
-    outline: none;
-  }
 }
 
 .alert {
