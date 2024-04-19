@@ -165,54 +165,58 @@ export default defineComponent({
   methods: {
     checkFiltersValidity(sendError: boolean) {
       let validity = true;
-      this.listFilters.forEach((filter, index) => {
-        const errors: ProductFilterErrors = {
-          attribute: undefined,
-          condition: undefined,
-          value: undefined,
-          ...this.listFilters[index].errors,
-        };
+      console.log('this.listFilters.length', this.listFilters.length);
 
-        if (!filter.attribute) {
-          if (sendError) {
-            errors.attribute = this.$t('productFeedSettings.productSelection.lineFilter.errors.empty') as string;
-          }
-          validity = false;
-        } else {
-          errors.attribute = undefined;
-        }
+      if (this.synchSelected === ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT) {
+        this.listFilters.forEach((filter, index) => {
+          const errors: ProductFilterErrors = {
+            attribute: undefined,
+            condition: undefined,
+            value: undefined,
+            ...this.listFilters[index].errors,
+          };
 
-        if (filter.attribute !== 'outOfStock' && !filter.condition) {
-          if (sendError) {
-            errors.condition = this.$t('productFeedSettings.productSelection.lineFilter.errors.empty') as string;
+          if (!filter.attribute) {
+            if (sendError) {
+              errors.attribute = this.$t('productFeedSettings.productSelection.lineFilter.errors.empty') as string;
+            }
+            validity = false;
+          } else {
+            errors.attribute = undefined;
           }
-          validity = false;
-        } else {
-          errors.condition = undefined;
-        }
 
-        if (!(filter.value || (filter.values && filter.values.length))) {
-          if (sendError) {
-            errors.value = this.$t('productFeedSettings.productSelection.lineFilter.errors.empty') as string;
+          if (filter.attribute !== 'outOfStock' && !filter.condition) {
+            if (sendError) {
+              errors.condition = this.$t('productFeedSettings.productSelection.lineFilter.errors.empty') as string;
+            }
+            validity = false;
+          } else {
+            errors.condition = undefined;
           }
-          validity = false;
-        } else if (filter.conditionType === 'number' && Number.isNaN(filter.value)) {
-          if (sendError) {
-            errors.value = this.$t('productFeedSettings.productSelection.lineFilter.errors.invalidNumber') as string;
-          }
-          validity = false;
-        } else {
-          errors.value = undefined;
-        }
 
-        this.$set(
-          this.listFilters,
-          index,
-          {
-            ...this.listFilters[index],
-            errors,
-          });
-      });
+          if (!(filter.value || (filter.values && filter.values.length))) {
+            if (sendError) {
+              errors.value = this.$t('productFeedSettings.productSelection.lineFilter.errors.empty') as string;
+            }
+            validity = false;
+          } else if (filter.conditionType === 'number' && Number.isNaN(filter.value)) {
+            if (sendError) {
+              errors.value = this.$t('productFeedSettings.productSelection.lineFilter.errors.invalidNumber') as string;
+            }
+            validity = false;
+          } else {
+            errors.value = undefined;
+          }
+
+          this.$set(
+            this.listFilters,
+            index,
+            {
+              ...this.listFilters[index],
+              errors,
+            });
+        });
+      }
 
       this.filtersAreValid = validity;
     },
