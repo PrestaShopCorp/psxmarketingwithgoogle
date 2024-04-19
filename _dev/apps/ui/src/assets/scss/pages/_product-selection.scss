@@ -19,6 +19,23 @@
 
       form {
         flex-grow: 1;
+        width: 100%;
+      }
+
+      .line-filter-field {
+        & > div:last-child {
+          flex-grow: 1;
+        }
+
+        @include media-breakpoint-up(md) {
+          display: flex;
+        }
+      }
+
+      .error-field button,
+      .error-field .input-text-with-tag-container {
+        border-color: $red-500;
+        background-color: $red-50;
       }
     } 
     
@@ -49,11 +66,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-left: rem(16);
       margin-top: 12px;
 
       @include media-breakpoint-up(sm) {
-        margin-top: 0;
+        margin-left: rem(16);
       }
 
       .material-icons {
@@ -94,6 +110,11 @@
   .field-number {
     padding: 2px 0;
     width: auto;
+  }
+
+  .error-message {
+    margin-top: rem(4px);
+    color:$red-500
   }
 
   .alert {
