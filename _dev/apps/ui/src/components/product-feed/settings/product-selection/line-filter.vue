@@ -2,131 +2,153 @@
 <template>
   <div class="line-filter">
     <b-form>
-      <div class="d-md-flex text-center">
+      <div class="line-filter-field">
         <!-- ATTRIBUTES -->
-        <b-dropdown
-          :text="attributesValues"
-          class="psxmarketingwithgoogle-dropdown ps-dropdown attributes"
-          menu-class="ps-dropdown"
-        >
-          <!-- DEFAULTS ATTRIBUTES -->
-          <b-dropdown-group>
-            <template
-              v-if="featuresList.length"
-              #header
-            >
-              <span>
-                {{
-                  $t('productFeedSettings.productSelection.lineFilter.attributes.defaultAttributes')
-                }}
-              </span>
-            </template>
+        <div>
+          <b-dropdown
+            :text="attributesValues"
+            class="psxmarketingwithgoogle-dropdown ps-dropdown attributes"
+            :class="{'error-field': filters.errors?.attribute}"
+            menu-class="ps-dropdown"
+          >
+            <!-- DEFAULTS ATTRIBUTES -->
+            <b-dropdown-group>
+              <template
+                v-if="featuresList.length"
+                #header
+              >
+                <span>
+                  {{
+                    $t('productFeedSettings.productSelection.lineFilter.attributes.defaultAttributes')
+                  }}
+                </span>
+              </template>
 
-            <b-dropdown-item
-              v-for="(attribute, index) in defaultAttributesList"
-              :key="index"
-              :value="getSelectedLabel('attributes', attribute)"
-              @click="updateAttribute(attribute, true)"
-            >
-              <span>{{ getSelectedLabel('attributes', attribute.value) }}</span>
-            </b-dropdown-item>
-          </b-dropdown-group>
-          <!-- CUSTOM ATTRIBUTES -->
-          <b-dropdown-group v-if="featuresList.length">
-            <template #header>
-              <span>
-                {{ $t('productFeedSettings.productSelection.lineFilter.attributes.features') }}
-              </span>
-            </template>
+              <b-dropdown-item
+                v-for="(attribute, index) in defaultAttributesList"
+                :key="index"
+                :value="getSelectedLabel('attributes', attribute)"
+                @click="updateAttribute(attribute, true)"
+              >
+                <span>{{ getSelectedLabel('attributes', attribute.value) }}</span>
+              </b-dropdown-item>
+            </b-dropdown-group>
+            <!-- CUSTOM ATTRIBUTES -->
+            <b-dropdown-group v-if="featuresList.length">
+              <template #header>
+                <span>
+                  {{ $t('productFeedSettings.productSelection.lineFilter.attributes.features') }}
+                </span>
+              </template>
 
-            <b-dropdown-item
-              v-for="(feature, index) in featuresList"
-              :key="index"
-              @click="updateAttribute(feature, false)"
-              :value="feature"
-            >
-              <span>{{ feature.value }}</span>
-            </b-dropdown-item>
-          </b-dropdown-group>
-        </b-dropdown>
-        <span v-if="filters.errors?.attribute">
-          {{ filters.errors?.attribute }}
-        </span>
+              <b-dropdown-item
+                v-for="(feature, index) in featuresList"
+                :key="index"
+                @click="updateAttribute(feature, false)"
+                :value="feature"
+              >
+                <span>{{ feature.value }}</span>
+              </b-dropdown-item>
+            </b-dropdown-group>
+          </b-dropdown>
+          <p
+            v-if="filters.errors?.attribute"
+            class="error-message"
+          >
+            {{ filters.errors?.attribute }}
+          </p>
+        </div>
+
         <!-- CONDITIONS -->
-        <b-dropdown
-          v-if="attributeSelected.value !== 'outOfStock'"
-          class="ps-dropdown psxmarketingwithgoogle-dropdown conditions"
-          menu-class="ps-dropdown"
-          :text="conditionSelected.length ? getSelectedLabel('conditions', conditionSelected) : $t('productFeedSettings.productSelection.lineFilter.conditions.placeholder')"
-          :disabled="!attributeSelected.value"
-        >
-          <b-dropdown-item
-            v-for="(type, index) in typeOfConditionSelection"
-            :key="index"
-            @click="updateCondition(type)"
+        <div>
+          <b-dropdown
+            v-if="attributeSelected.value !== 'outOfStock'"
+            class="ps-dropdown psxmarketingwithgoogle-dropdown conditions"
+            :class="{'error-field': filters.errors?.condition}"
+            menu-class="ps-dropdown"
+            :text="conditionSelected.length ? getSelectedLabel('conditions', conditionSelected) : $t('productFeedSettings.productSelection.lineFilter.conditions.placeholder')"
+            :disabled="!attributeSelected.value"
           >
-            <span class="mr-2">
-              {{ getSelectedLabel('conditions', type) }}
-            </span>
-          </b-dropdown-item>
-        </b-dropdown>
-        <span v-if="filters.errors?.condition">
-          {{ filters.errors?.condition }}
-        </span>
-        <!-- VALUE / NUMBER -->
-        <b-input-group
-          v-if="attributeSelected.value === 'price' || attributeSelected.value === 'productId'"
-          class="field-number"
-          :append="attributeSelected.value === 'price' ? currencySymbol : undefined"
-        >
-          <b-form-input
-            type="number"
-            min="0"
-            :value="valueSelected"
+            <b-dropdown-item
+              v-for="(type, index) in typeOfConditionSelection"
+              :key="index"
+              @click="updateCondition(type)"
+            >
+              <span class="mr-2">
+                {{ getSelectedLabel('conditions', type) }}
+              </span>
+            </b-dropdown-item>
+          </b-dropdown>
+          <p
+            class="error-message"
+            v-if="filters.errors?.condition"
+          >
+            {{ filters.errors?.condition }}
+          </p>
+        </div>
+        <div>
+          <!-- VALUE / NUMBER -->
+          <b-input-group
+            v-if="attributeSelected.value === 'price' || attributeSelected.value === 'productId'"
+            class="field-number"
+            :class="{'error-field': filters.errors?.value}"
+            :append="attributeSelected.value === 'price' ? currencySymbol : undefined"
+          >
+            <b-form-input
+              type="number"
+              min="0"
+              :value="valueSelected"
+              :disabled="!conditionSelected.length"
+              @change="updateValue($event)"
+            />
+          </b-input-group>
+          <!-- VALUE / BOOLEAN -->
+          <b-dropdown
+            v-if="attributeSelected.value === 'outOfStock'"
+            class="ps-dropdown psxmarketingwithgoogle-dropdown value-boolean"
+            :class="{'error-field': filters.errors?.value}"
+            menu-class="ps-dropdown"
+            :text="valueSelected ? getSelectedLabel('value', valueSelected) : $t('productFeedSettings.productSelection.lineFilter.conditions.placeholder')"
+          >
+            <b-dropdown-item
+              v-for="(type, index) in booleanList"
+              :key="index"
+              @click="updateValue(type)"
+            >
+              <span class="mr-2">
+                {{ getSelectedLabel('value', type) }}
+              </span>
+            </b-dropdown-item>
+          </b-dropdown>
+          <!-- VALUE / MULTI-SELECT -->
+          <multi-select-value
+            v-else-if="conditionSelected === 'isIn' || conditionSelected === 'isNot'"
+            class="multi-select"
+            :class="{'error-field': filters.errors?.value}"
+            :dropdown-options="productFiltered"
+            :placeholder="placeholderMultiSelect"
             :disabled="!conditionSelected.length"
-            @change="updateValue($event)"
+            :default-value="valuesSelected"
+            @dataUpdated="updateValues($event)"
           />
-        </b-input-group>
-        <!-- VALUE / BOOLEAN -->
-        <b-dropdown
-          v-if="attributeSelected.value === 'outOfStock'"
-          class="ps-dropdown psxmarketingwithgoogle-dropdown value-boolean"
-          menu-class="ps-dropdown"
-          :text="valueSelected ? getSelectedLabel('value', valueSelected) : $t('productFeedSettings.productSelection.lineFilter.conditions.placeholder')"
-        >
-          <b-dropdown-item
-            v-for="(type, index) in booleanList"
-            :key="index"
-            @click="updateValue(type)"
+          <!-- VALUE / FREE FIELD -->
+          <input-text-with-tag
+            v-else-if="
+              attributeSelected.value !== 'price'
+                && attributeSelected.value !== 'productId' && !conditionSelected.length || conditionSelected === 'contains'
+                || conditionSelected === 'notContain'"
+            :disabled="!conditionSelected.length"
+            :default-value="valuesSelected"
+            :class="{'error-field': filters.errors?.value}"
+            @dataUpdated="updateValues($event)"
+          />
+          <p
+            class="error-message"
+            v-if="filters.errors?.value"
           >
-            <span class="mr-2">
-              {{ getSelectedLabel('value', type) }}
-            </span>
-          </b-dropdown-item>
-        </b-dropdown>
-        <!-- VALUE / MULTI-SELECT -->
-        <multi-select-value
-          v-else-if="conditionSelected === 'isIn' || conditionSelected === 'isNot'"
-          class="multi-select"
-          :dropdown-options="productFiltered"
-          :placeholder="placeholderMultiSelect"
-          :disabled="!conditionSelected.length"
-          :default-value="valuesSelected"
-          @dataUpdated="updateValues($event)"
-        />
-        <!-- VALUE / FREE FIELD -->
-        <input-text-with-tag
-          v-else-if="
-            attributeSelected.value !== 'price'
-              && attributeSelected.value !== 'productId' && !conditionSelected.length || conditionSelected === 'contains'
-              || conditionSelected === 'notContain'"
-          :disabled="!conditionSelected.length"
-          :default-value="valuesSelected"
-          @dataUpdated="updateValues($event)"
-        />
-        <span v-if="filters.errors?.value">
-          {{ filters.errors?.value }}
-        </span>
+            {{ filters.errors?.value }}
+          </p>
+        </div>
       </div>
     </b-form>
     <button

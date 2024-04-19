@@ -2,7 +2,7 @@
 <template>
   <div class="input-text-with-tag">
     <div
-      class="container"
+      class="input-text-with-tag-container"
       :class="{ 'has-error': hasError }"
     >
       <span
@@ -26,7 +26,6 @@
     </div>
     <b-form-invalid-feedback
       v-if="hasError"
-      :state="false"
     >
       {{ $t('general.errorsMessages.enterValue') }}
     </b-form-invalid-feedback>
