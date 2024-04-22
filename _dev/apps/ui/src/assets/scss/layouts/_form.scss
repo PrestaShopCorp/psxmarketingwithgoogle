@@ -503,9 +503,20 @@ input[type=number].no-arrows {
     border-color: $primary-400;
   }
 
-
   &:focus {
     border-color: $primary-800 !important;
+  }
+}
+
+.field-number {
+  &:has(input[type="number"]:disabled) {
+    .input-group-prepend:first-child {
+      .input-group-text {
+        background-color: white !important;
+        color: $primary-400 !important;
+        border-color: $primary-400;
+      }
+    }
   }
 }
 
