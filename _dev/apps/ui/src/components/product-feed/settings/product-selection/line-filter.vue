@@ -63,7 +63,7 @@
         </div>
 
         <!-- CONDITIONS -->
-        <div>
+        <div v-if="attributeSelected.value !== 'outOfStock'">
           <p
             class="mb-0 font-weight-500"
             :class="{'text-primary-500': !attributeSelected.value}"
@@ -98,7 +98,7 @@
         <div>
           <p
             class="mb-0 font-weight-500"
-            :class="{'text-primary-500': !conditionSelected.length}"
+            :class="{'text-primary-500': !conditionSelected.length && attributeSelected.value !== 'outOfStock'}"
           >
             {{ $t('productFeedSettings.productSelection.lineFilter.value.label') }}
           </p>
