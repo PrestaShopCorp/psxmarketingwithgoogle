@@ -107,7 +107,8 @@
             v-if="attributeSelected.value === 'price'"
             class="field-number"
             :class="{'error-field': filters.errors?.value}"
-            :append="attributeSelected.value === 'price' ? currencySymbol : undefined"
+            :append="attributeSelected.value === 'price' && currencySymbol !== 'en-gb' ? currencySymbol : undefined"
+            :prepend="attributeSelected.value === 'price' && currencySymbol === 'en-gb' ? currencySymbol : undefined"
           >
             <b-form-input
               type="number"
