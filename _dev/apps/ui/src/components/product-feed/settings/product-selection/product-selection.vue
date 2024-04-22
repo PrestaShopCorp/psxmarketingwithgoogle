@@ -132,6 +132,11 @@ import {
   ProductFilterToSend,
 } from '@/components/product-feed/settings/product-selection/type';
 import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
+import {
+  ProductFilterNumericArrayConditions,
+  ProductFilterNumericConditions,
+  ProductFilterStringConditions,
+} from '@/enums/product-feed/product-filter-condition';
 
 function uuidv4() {
   // eslint-disable-next-line no-bitwise, no-mixed-operators
@@ -243,7 +248,7 @@ export default defineComponent({
         };
 
         if (filter.condition) {
-          cleanFilter.condition = filter.condition;
+          cleanFilter.condition = this.formatCondition(filter.condition);
         }
 
         if (filter.value) {
@@ -254,6 +259,15 @@ export default defineComponent({
 
         return cleanFilter;
       });
+    },
+    formatCondition(condition) {
+      if (condition === ProductFilterNumericConditions.IS_EQUAL_TO || condition === ProductFilterStringConditions.IS_IN) return 'is';
+      if (condition === ProductFilterNumericArrayConditions.IS_NOT_EQUAL_TO || condition === ProductFilterStringConditions.IS_NOT) return 'is_not';
+      if (condition === ProductFilterNumericConditions.IS_LESS_THAN) return 'lower';
+      if (condition === ProductFilterNumericConditions.IS_GREATER_THAN) return 'greater';
+      if (condition === ProductFilterStringConditions.CONTAINS) return 'contains';
+      if (condition === ProductFilterStringConditions.NOT_CONTAIN) return 'does_not_contain';
+      throw new Error(`Condition ${condition} does not exist`);
     },
     checkMethodSyncBeforeMoveStep() {
       if (this.synchSelected === ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT) {
