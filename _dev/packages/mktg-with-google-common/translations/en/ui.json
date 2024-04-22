@@ -471,6 +471,7 @@
           "label": "Condition",
           "placeholder": "Select a condition",
           "isEqualTo": "Is equal to",
+          "isNotEqualTo": "Is not equal to",
           "isLessThan": "Is less than",
           "isGreaterThan": "Is greater than",
           "contains": "Contains",
@@ -481,6 +482,7 @@
           "isTrue": "Is true"
         },
         "value": {
+          "label": "Value",
           "selectValue": "Select a value",
           "enterValue": "Enter a value",
           "false": "Is false",

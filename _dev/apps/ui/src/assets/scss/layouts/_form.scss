@@ -494,11 +494,11 @@ input[type=number].no-arrows {
   &:hover:not([disabled="disabled"]) {
     border-color: $primary-800;
     z-index: 2;
-    background-color: white !important;
   }
-
+  
   &[disabled="disabled"],
   &[disabled="disabled"] + div .input-group-text {
+    background-color: white !important;
     color: $primary-400 !important;
     border-color: $primary-400;
   }
