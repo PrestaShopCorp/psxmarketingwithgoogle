@@ -4,6 +4,11 @@ export enum ProductFilterNumericConditions {
   IS_GREATER_THAN = 'isGreaterThan',
 }
 
+export enum ProductFilterNumericArrayConditions {
+  IS_EQUAL_TO = 'isEqualTo',
+  IS_NOT_EQUAL_TO = 'isNotEqualTo',
+}
+
 export enum ProductFilterStringConditions {
   CONTAINS = 'contains',
   NOT_CONTAIN = 'notContain',
@@ -18,12 +23,14 @@ export enum ProductFilterBooleanConditions {
 
 export enum ProductFilterFieldConditions {
   NUMERIC = 'numeric',
+  NUMERIC_OR_NUMAREIC_ARRAY = 'numericArray',
   STRING = 'string',
   MULTI_SELECT = 'multiSelect',
 }
 
 export default {
   ProductFilterNumericConditions,
+  ProductFilterNumericArrayConditions,
   ProductFilterStringConditions,
   ProductFilterBooleanConditions,
   ProductFilterFieldConditions,
