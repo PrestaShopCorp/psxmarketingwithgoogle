@@ -165,7 +165,6 @@ export default defineComponent({
   methods: {
     checkFiltersValidity(sendError: boolean) {
       let validity = true;
-      console.log('this.listFilters.length', this.listFilters.length);
 
       if (this.synchSelected === ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT) {
         this.listFilters.forEach((filter, index) => {
@@ -194,9 +193,14 @@ export default defineComponent({
             errors.condition = undefined;
           }
 
-          if (!(filter.value || (filter.values && filter.values.length))) {
+          if (!(filter.value || filter.values?.length)) {
             if (sendError) {
               errors.value = this.$t('productFeedSettings.productSelection.lineFilter.errors.empty') as string;
+            }
+            validity = false;
+          } else if (filter.conditionType === 'numericArray' && filter.values?.length && !filter.values?.every((value) => !Number.isNaN(Number(value)))) {
+            if (sendError) {
+              errors.value = 'il faut que les valeurs soient de type nombre' as string;
             }
             validity = false;
           } else if (filter.conditionType === 'number' && Number.isNaN(filter.value)) {
@@ -298,8 +302,8 @@ export default defineComponent({
     loadCountProduct() {
       // TODO : cette methode doit appeler la requête qui permet de charger les produits filtré
       // Elle doit être appeler à plusieurs endroits :
-      //    - quand l'utilisateur finit de remplir les 3 champs dans un filtre
-      //    - quand l'utilisateur modifie un champs dans une filtre qui a déjà tous les champs de remplis
+      //    - quand le user finit de remplir les 3 champs dans un filtre
+      //    - quand le user modifie un champs dans une filtre qui a déjà tous les champs de remplis
       //    - sur le bouton "Try angain" dans l'alerte qui s'affiche après l'échec de cette requête
       console.log('loadCountProduct');
     },
