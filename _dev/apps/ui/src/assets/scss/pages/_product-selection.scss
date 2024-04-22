@@ -23,8 +23,17 @@
       }
 
       .line-filter-field {
-        & > div:last-child {
-          flex-grow: 1;
+        & > div {
+          display: flex;
+          flex-direction: column;
+
+          & > div {
+            width: 100%;
+          }
+
+          &:last-child {
+            flex-grow: 1;
+          }
         }
 
         @include media-breakpoint-up(md) {
@@ -33,9 +42,13 @@
       }
 
       .error-field button,
-      .error-field .input-text-with-tag-container {
+      .error-field .input-text-with-tag-container,
+      .error-field .vs__dropdown-toggle,
+      .error-field .form-control {
         border-color: $red-500;
         background-color: $red-50;
+        z-index: 2;
+        position: relative;
       }
     } 
     
