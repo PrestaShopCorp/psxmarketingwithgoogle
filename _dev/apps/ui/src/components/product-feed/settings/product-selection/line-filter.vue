@@ -5,6 +5,9 @@
       <div class="line-filter-field">
         <!-- ATTRIBUTES -->
         <div>
+          <p class="mb-0 font-weight-500">
+            {{ $t('productFeedSettings.productSelection.lineFilter.attributes.label') }}
+          </p>
           <b-dropdown
             :text="attributesValues"
             class="psxmarketingwithgoogle-dropdown ps-dropdown attributes"
@@ -61,6 +64,12 @@
 
         <!-- CONDITIONS -->
         <div>
+          <p
+            class="mb-0 font-weight-500"
+            :class="{'text-primary-500': !attributeSelected.value}"
+          >
+            {{ $t('productFeedSettings.productSelection.lineFilter.conditions.label') }}
+          </p>
           <b-dropdown
             v-if="attributeSelected.value !== 'outOfStock'"
             class="ps-dropdown psxmarketingwithgoogle-dropdown conditions"
@@ -87,9 +96,15 @@
           </p>
         </div>
         <div>
+          <p
+            class="mb-0 font-weight-500"
+            :class="{'text-primary-500': !conditionSelected.length}"
+          >
+            {{ $t('productFeedSettings.productSelection.lineFilter.value.label') }}
+          </p>
           <!-- VALUE / NUMBER -->
           <b-input-group
-            v-if="attributeSelected.value === 'price' || attributeSelected.value === 'productId'"
+            v-if="attributeSelected.value === 'price'"
             class="field-number"
             :class="{'error-field': filters.errors?.value}"
             :append="attributeSelected.value === 'price' ? currencySymbol : undefined"
@@ -134,8 +149,7 @@
           <!-- VALUE / FREE FIELD -->
           <input-text-with-tag
             v-else-if="
-              attributeSelected.value !== 'price'
-                && attributeSelected.value !== 'productId' && !conditionSelected.length || conditionSelected === 'contains'
+              attributeSelected.value !== 'price' && !conditionSelected.length || attributeSelected.value === 'productId' || conditionSelected === 'contains'
                 || conditionSelected === 'notContain'"
             :disabled="!conditionSelected.length"
             :default-value="valuesSelected"
@@ -171,6 +185,7 @@ import {
   ProductFilterBooleanConditions,
   ProductFilterFieldConditions,
   ProductFilterNumericConditions,
+  ProductFilterNumericArrayConditions,
   ProductFilterStringConditions,
 } from '@/enums/product-feed/product-filter-condition';
 import featureMock from './features.json';
@@ -272,6 +287,8 @@ export default defineComponent({
           return Object.values(ProductFilterNumericConditions);
         case ProductFilterFieldConditions.STRING:
           return Object.values(ProductFilterStringConditions);
+        case ProductFilterFieldConditions.NUMERIC_OR_NUMAREIC_ARRAY:
+          return Object.values(ProductFilterNumericArrayConditions);
         default:
           return null;
       }
@@ -305,9 +322,10 @@ export default defineComponent({
   watch: {
     attributeSelected() {
       if (this.defaultAttributeIsSelected) {
-        if (this.attributeSelected.id === ProductFilterDefaultAttributes.PRICE
-          || this.attributeSelected.id === ProductFilterDefaultAttributes.PRODUCT_ID) {
+        if (this.attributeSelected.id === ProductFilterDefaultAttributes.PRICE) {
           this.conditionTypeSelected = ProductFilterFieldConditions.NUMERIC;
+        } else if (this.attributeSelected.id === ProductFilterDefaultAttributes.PRODUCT_ID) {
+          this.conditionTypeSelected = ProductFilterFieldConditions.NUMERIC_OR_NUMAREIC_ARRAY;
         } else if (this.attributeSelected.id === ProductFilterDefaultAttributes.BRAND
           || this.attributeSelected.id === ProductFilterDefaultAttributes.CATEGORY) {
           this.conditionTypeSelected = ProductFilterFieldConditions.STRING;
