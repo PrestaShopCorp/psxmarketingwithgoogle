@@ -460,7 +460,7 @@
       "lineFilter": {
         "errors": {
           "empty": "This field is mandatory.",
-          "invalidNumber": "Enter a valid number."
+          "invalidNumber": "A number is required."
         },
         "attributes": {
           "label": "Attribute",
