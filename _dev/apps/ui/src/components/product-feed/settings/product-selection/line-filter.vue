@@ -8,7 +8,7 @@
           <b-dropdown
             :text="attributesValues"
             class="psxmarketingwithgoogle-dropdown ps-dropdown attributes"
-            :class="{'error-field': filters.errors?.attribute}"
+            :class="{'error-field': filters.errors?.attribute, 'h-100': !filters.errors?.value}"
             menu-class="ps-dropdown"
           >
             <!-- DEFAULTS ATTRIBUTES -->
@@ -64,7 +64,7 @@
           <b-dropdown
             v-if="attributeSelected.value !== 'outOfStock'"
             class="ps-dropdown psxmarketingwithgoogle-dropdown conditions"
-            :class="{'error-field': filters.errors?.condition}"
+            :class="{'error-field': filters.errors?.condition, 'h-100': !filters.errors?.value}"
             menu-class="ps-dropdown"
             :text="conditionSelected.length ? getSelectedLabel('conditions', conditionSelected) : $t('productFeedSettings.productSelection.lineFilter.conditions.placeholder')"
             :disabled="!attributeSelected.value"
