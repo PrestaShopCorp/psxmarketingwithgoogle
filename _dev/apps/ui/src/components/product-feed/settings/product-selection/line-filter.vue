@@ -191,7 +191,9 @@ import {
 } from '@/enums/product-feed/product-filter-condition';
 import featureMock from './features.json';
 import categoryOrBrand from './categoryOrBrand.json';
-import {ProductFilter, Attribute, ProductFilterValue} from './type';
+import {
+  ProductFilter, Attribute, ProductFilterValue, ProductFilterValues,
+} from './type';
 
 export default defineComponent({
   name: 'LineFilter',
@@ -251,17 +253,18 @@ export default defineComponent({
         values: this.valuesSelected,
       });
     },
-    getValuesOfFeaturesByLanguage() {
-      const result: string[] = [];
-      this.features.forEach((feature) => {
-        feature.values.forEach((value) => {
-          if (value.language === this.$i18n.locale.toLowerCase()) {
-            result.push(value.value);
-          }
-        });
-      });
-      return result;
-    },
+    // TODO
+    // getValuesOfFeaturesByLanguage() {
+    //   const result: string[] = [];
+    //   this.features.forEach((feature) => {
+    //     feature.values.forEach((value) => {
+    //       if (value.language === this.$i18n.locale.toLowerCase()) {
+    //         result.push(value.value);
+    //       }
+    //     });
+    //   });
+    //   return result;
+    // },
   },
   computed: {
     // Attribute Field
@@ -298,14 +301,15 @@ export default defineComponent({
     placeholderMultiSelect() {
       return this.$i18n.t('productFeedSettings.productSelection.lineFilter.value.selectValue') as string;
     },
-    productFiltered(): string[] {
+    productFiltered(): ProductFilterValues[] {
       if (this.attributeSelected.id === ProductFilterDefaultAttributes.BRAND
         || this.attributeSelected.id === ProductFilterDefaultAttributes.CATEGORY) {
-        return categoryOrBrand.map((value) => value.value);
+        return categoryOrBrand.map((value) => value);
       }
-      if (!this.defaultAttributeIsSelected) {
-        return this.getValuesOfFeaturesByLanguage();
-      }
+      // TODO: gestion des features
+      // if (!this.defaultAttributeIsSelected) {
+      //   return this.getValuesOfFeaturesByLanguage();
+      // }
       return [];
     },
     // Number Fied
