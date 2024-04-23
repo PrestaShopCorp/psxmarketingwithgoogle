@@ -5,10 +5,11 @@
     :multiple="true"
     :options="dropdownOptions"
     @search="onSearchValue"
-    label="name"
+    label="value"
     v-model="selectedItems"
     :placeholder="placeholder"
     :class="{'maxw-sm-500': notFullWidth, 'disabled': disabled }"
+    :reduce="value => value.id"
     @input="$emit('dataUpdated', selectedItems)"
   >
     <template #option="option">
@@ -18,7 +19,7 @@
       />
       <span
         class="mr-2"
-        v-html="highlightSearch(option.name)"
+        v-html="highlightSearch(option.value ?? option.name)"
       />
     </template>
   </ps-select>
