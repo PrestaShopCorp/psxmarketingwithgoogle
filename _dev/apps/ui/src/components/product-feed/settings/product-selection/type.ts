@@ -11,9 +11,14 @@ export type ProductFilterErrors = {
   value?: string,
 }
 
+export type ProductFilterValues = {
+  id: string,
+  value: string
+}
+
 export type ProductFilter = {
-  id?: string,
-  attribute?: number | string,
+  id: string,
+  attribute?: string,
   condition?: string,
   conditionType?: string,
   value?: ProductFilterValue,
@@ -22,7 +27,7 @@ export type ProductFilter = {
 }
 
 export type ProductFilterToSend = {
-  attribute: number | string,
+  attribute: string,
   condition?: string,
   value?: ProductFilterValue,
   values?: string[],
