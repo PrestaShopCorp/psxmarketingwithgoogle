@@ -18,42 +18,35 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\PsxMarketingWithGoogle\Adapter;
+namespace PrestaShop\Module\PsxMarketingWithGoogle\Repository;
 
-use Configuration;
+use Context;
+use Db;
+use DbQuery;
 
-class ConfigurationAdapter
+class CategoryRepository
 {
     /**
-     * @var int
+     * @var Context
      */
-    private $shopId;
+    private $context;
 
-    public function __construct($shopId)
+    public function __construct(Context $context)
     {
-        $this->shopId = $shopId;
+        $this->context = $context;
     }
 
-    public function get($key, $idLang = null, $idShopGroup = null, $idShop = null, $default = false)
+    public function getCategoriesList(): array
     {
-        if ($idShop === null) {
-            $idShop = $this->shopId;
-        }
+        $query = new DbQuery();
+        $query->select('DISTINCT c.id_category AS id, cl.name AS name')
+            ->from('category', 'c')
+            ->innerJoin('category_shop', 'cs', 'cs.id_category = c.id_category')
+            ->innerJoin('category_lang', 'cl', 'cl.id_category = c.id_category')
+            ->where('cs.id_shop = ' . (int) $this->context->shop->id)
+            ->where('cl.id_lang = ' . (int) $this->context->language->id)
+            ->where('c.active = 1');
 
-        return Configuration::get($key, $idLang, $idShopGroup, $idShop, $default);
-    }
-
-    public function updateValue($key, $values, $html = false, $idShopGroup = null, $idShop = null)
-    {
-        if ($idShop === null) {
-            $idShop = $this->shopId;
-        }
-
-        return Configuration::updateValue($key, $values, $html, $idShopGroup, $idShop);
-    }
-
-    public function deleteByName($key)
-    {
-        return Configuration::deleteByName($key);
+        return Db::getInstance()->executeS($query);
     }
 }

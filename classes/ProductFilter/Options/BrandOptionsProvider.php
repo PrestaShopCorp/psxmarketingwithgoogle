@@ -18,42 +18,34 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\PsxMarketingWithGoogle\Adapter;
+namespace PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options;
 
-use Configuration;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ManufacturerRepository;
 
-class ConfigurationAdapter
+class BrandOptionsProvider implements OptionsProviderInterface
 {
     /**
-     * @var int
+     * @var ManufacturerRepository
      */
-    private $shopId;
+    protected $manufacturerRepository;
 
-    public function __construct($shopId)
-    {
-        $this->shopId = $shopId;
+    public function __construct(
+        ManufacturerRepository $manufacturerRepository
+    ) {
+        $this->manufacturerRepository = $manufacturerRepository;
     }
 
-    public function get($key, $idLang = null, $idShopGroup = null, $idShop = null, $default = false)
+    public function getOptions(): array
     {
-        if ($idShop === null) {
-            $idShop = $this->shopId;
+        $options = [];
+
+        foreach ($this->manufacturerRepository->getManufacturersList() as $brand) {
+            $options[] = [
+                'id' => $brand['id'],
+                'value' => $brand['name'],
+            ];
         }
 
-        return Configuration::get($key, $idLang, $idShopGroup, $idShop, $default);
-    }
-
-    public function updateValue($key, $values, $html = false, $idShopGroup = null, $idShop = null)
-    {
-        if ($idShop === null) {
-            $idShop = $this->shopId;
-        }
-
-        return Configuration::updateValue($key, $values, $html, $idShopGroup, $idShop);
-    }
-
-    public function deleteByName($key)
-    {
-        return Configuration::deleteByName($key);
+        return $options;
     }
 }

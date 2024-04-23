@@ -23,6 +23,9 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\Module\PsxMarketingWithGoogle\Conversion\EnhancedConversionToggle;
 use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\ProductEnumerator;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\OptionsProviderInterface;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\Resolver;
 use PrestaShop\Module\PsxMarketingWithGoogle\Provider\CarrierDataProvider;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\AttributesRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
@@ -142,6 +145,15 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
                 break;
             case 'registerHook':
                 $this->registerHook($inputs);
+                break;
+            case 'getProductFilterOptions':
+                $this->getProductFilterOptions($inputs);
+                break;
+            case 'countMatchingProductsFromFilters':
+                $this->countMatchingProductsFromFilters($inputs);
+                break;
+            case 'listMatchingProductsFromFilters':
+                $this->listMatchingProductsFromFilters($inputs);
                 break;
             default:
                 http_response_code(400);
@@ -459,6 +471,86 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             json_encode(
                 $this->attributesRepository->getAllAttributes()
             )
+        );
+    }
+
+    /*******************
+     * Product filters *
+     *******************/
+
+    public function getProductFilterOptions(array $inputs)
+    {
+        if (!isset($inputs['kind'])) {
+            http_response_code(400);
+            $this->ajaxDie(json_encode([
+                'success' => false,
+                'message' => 'Missing kind key',
+            ]));
+        }
+
+        $attributeKind = $inputs['kind'];
+
+        try {
+            /** @var Resolver $providerResolver */
+            $providerResolver = $this->module->getService(Resolver::class);
+            $providerName = $providerResolver->getProvider($attributeKind);
+
+            /** @var OptionsProviderInterface $optionsProvider */
+            $optionsProvider = $this->module->getService($providerName);
+
+            $this->ajaxDie(
+                json_encode(
+                    $optionsProvider->getOptions()
+                )
+            );
+        } catch (InvalidArgumentException $e) {
+            http_response_code(400);
+            $this->ajaxDie(json_encode([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ]));
+        }
+    }
+
+    public function countMatchingProductsFromFilters(array $inputs)
+    {
+        if (!isset($inputs['filters'])) {
+            http_response_code(400);
+            $this->ajaxDie(json_encode([
+                'success' => false,
+                'message' => 'Missing filters key',
+            ]));
+        }
+
+        $filters = $inputs['filters'];
+
+        /** @var ProductEnumerator $productEnumerator */
+        $productEnumerator = $this->module->getService(ProductEnumerator::class);
+
+        $this->ajaxDie(
+            json_encode([
+                'numberOfProducts' => $productEnumerator->countProductsMatchingFilters($filters),
+            ])
+        );
+    }
+
+    public function listMatchingProductsFromFilters(array $inputs)
+    {
+        if (!isset($inputs['filters'])) {
+            http_response_code(400);
+            $this->ajaxDie(json_encode([
+                'success' => false,
+                'message' => 'Missing filters key',
+            ]));
+        }
+
+        $filters = $inputs['filters'];
+
+        /** @var ProductEnumerator $productEnumerator */
+        $productEnumerator = $this->module->getService(ProductEnumerator::class);
+
+        $this->ajaxDie(
+            json_encode($productEnumerator->listProductsMatchingFilters($filters, []))
         );
     }
 
