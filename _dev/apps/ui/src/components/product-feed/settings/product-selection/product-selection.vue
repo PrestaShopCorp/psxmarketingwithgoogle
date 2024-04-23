@@ -83,7 +83,7 @@
     <b-alert
       v-if="false"
       class="mt-3"
-      :variant="isErrorCountApi ? 'danger' : numberProdctFiltered === 0 ? 'warning' : 'info'"
+      :variant="isErrorCountApi ? 'danger' : numberProductFiltered === 0 ? 'warning' : 'info'"
       show
     >
       <div v-if="isErrorCountApi">
@@ -100,8 +100,8 @@
         <p>
           <span
             class="font-weight-600"
-            v-if="numberProdctFiltered > 0"
-          >{{ numberProdctFiltered }}</span> {{ $tc('productFeedSettings.productSelection.alerts.countProducts', numberProdctFiltered) }}
+            v-if="numberProductFiltered > 0"
+          >{{ numberProductFiltered }}</span> {{ $tc('productFeedSettings.productSelection.alerts.countProducts', numberProductFiltered) }}
         </p>
         <b-button
           size="sm"
@@ -163,7 +163,7 @@ export default defineComponent({
         : ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT,
       listFilters: [] as ProductFilter[],
       filtersAreValid: false,
-      numberProdctFiltered: 1,
+      numberProductFiltered: 1,
       isErrorCountApi: false,
     };
   },
@@ -244,7 +244,7 @@ export default defineComponent({
     getCleanFilters() {
       return this.listFilters.map((filter) => {
         const cleanFilter: ProductFilterToSend = {
-          attribute: filter.attribute as string | number,
+          attribute: filter.attribute ?? '',
         };
 
         if (filter.condition) {
