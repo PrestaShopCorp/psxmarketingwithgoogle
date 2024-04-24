@@ -27,13 +27,8 @@ class PriceQueryBuilder implements QueryBuilderInterface
 {
     public function addWhereFromFilter(DbQuery $query, $filter): DbQuery
     {
-        // TODO for combinations, think about impact on price
+        // TODO add not contain
         switch ($filter['condition']) {
-            case Condition::CONTAINS:
-                return $query->where('(
-                    p.price LIKE "%' . (float) $filter['value'] . '%"
-                    OR (p.price + pa.price) LIKE "%' . (float) $filter['value'] . '%"
-                )');
             case Condition::GREATER:
                 return $query->where('(
                     p.price > ' . (float) $filter['value'] . '
@@ -45,21 +40,9 @@ class PriceQueryBuilder implements QueryBuilderInterface
                     OR (p.price + pa.price) < ' . (float) $filter['value'] . '
                 )');
             case Condition::IS:
-                if ($filter['value']) {
-                    return $query->where('(
-                        p.price = ' . (float) $filter['value'] . '
-                        OR (p.price + pa.price) = ' . (float) $filter['value'] . '
-                    )');
-                }
-
                 return $query->where('(
-                    p.price IN [' . implode(', ', array_map('doubleval', $filter['values'])) . ']
-                    OR (p.price + pa.price) IN [' . implode(', ', array_map('doubleval', $filter['values'])) . ']
-                )');
-            case Condition::IS_NOT:
-                return $query->where('(
-                    p.price NOT IN [' . implode(', ', array_map('doubleval', $filter['values'])) . ']
-                    OR (p.price + pa.price) NOT IN [' . implode(', ', array_map('doubleval', $filter['values'])) . ']
+                    p.price = ' . (float) $filter['value'] . '
+                    OR (p.price + pa.price) = ' . (float) $filter['value'] . '
                 )');
         }
 
