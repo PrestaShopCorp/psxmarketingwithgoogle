@@ -293,7 +293,7 @@ export default defineComponent({
           return Object.values(ProductFilterNumericConditions);
         case ProductFilterFieldConditions.STRING:
           return Object.values(ProductFilterStringConditions);
-        case ProductFilterFieldConditions.NUMERIC_OR_NUMAREIC_ARRAY:
+        case ProductFilterFieldConditions.NUMERIC_ARRAY:
           return Object.values(ProductFilterNumericArrayConditions);
         default:
           return null;
@@ -332,7 +332,7 @@ export default defineComponent({
         if (this.attributeSelected.id === ProductFilterDefaultAttributes.PRICE) {
           this.conditionTypeSelected = ProductFilterFieldConditions.NUMERIC;
         } else if (this.attributeSelected.id === ProductFilterDefaultAttributes.PRODUCT_ID) {
-          this.conditionTypeSelected = ProductFilterFieldConditions.NUMERIC_OR_NUMAREIC_ARRAY;
+          this.conditionTypeSelected = ProductFilterFieldConditions.NUMERIC_ARRAY;
         } else if (this.attributeSelected.id === ProductFilterDefaultAttributes.BRAND
           || this.attributeSelected.id === ProductFilterDefaultAttributes.CATEGORY) {
           this.conditionTypeSelected = ProductFilterFieldConditions.STRING;
