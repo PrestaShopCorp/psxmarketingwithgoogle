@@ -138,7 +138,7 @@
           </b-dropdown>
           <!-- VALUE / MULTI-SELECT -->
           <multi-select-value
-            v-else-if="conditionSelected === typeStringCondition.IS_IN || conditionSelected === typeStringCondition.IS_NOT"
+            v-else-if="conditionSelected === typeMultiSelectCondition.IS_IN || conditionSelected === typeMultiSelectCondition.IS_NOT"
             class="multi-select"
             :class="{'error-field': filters.errors?.value}"
             :dropdown-options="productFiltered"
@@ -149,9 +149,7 @@
           />
           <!-- VALUE / FREE FIELD -->
           <input-text-with-tag
-            v-else-if="
-              attributeSelected.value !== typeAttributes.PRICE && !conditionSelected.length || attributeSelected.value === typeAttributes.PRODUCT_ID || conditionSelected === typeStringCondition.CONTAINS
-                || conditionSelected === typeStringCondition.NOT_CONTAIN"
+            v-else-if="displayInputTextWithTag"
             :disabled="!conditionSelected.length"
             :default-value="valuesSelected"
             :class="{'error-field': filters.errors?.value}"
@@ -188,6 +186,7 @@ import {
   ProductFilterNumericConditions,
   ProductFilterNumericArrayConditions,
   ProductFilterStringConditions,
+  ProductFilterMultiSelectConditions,
 } from '@/enums/product-feed/product-filter-condition';
 import featureMock from './features.json';
 import categoryOrBrand from './categoryOrBrand.json';
@@ -217,6 +216,7 @@ export default defineComponent({
       defaultAttributeIsSelected: false,
       typeAttributes: ProductFilterDefaultAttributes,
       attributeSelected: {id: '', value: ''},
+      typeMultiSelectCondition: ProductFilterMultiSelectConditions,
       typeStringCondition: ProductFilterStringConditions,
       conditionSelected: '',
       conditionTypeSelected: '',
@@ -292,6 +292,8 @@ export default defineComponent({
           return Object.values(ProductFilterNumericConditions);
         case ProductFilterFieldConditions.STRING:
           return Object.values(ProductFilterStringConditions);
+        case ProductFilterFieldConditions.MULTI_SELECT:
+          return Object.values(ProductFilterMultiSelectConditions);
         case ProductFilterFieldConditions.NUMERIC_ARRAY:
           return Object.values(ProductFilterNumericArrayConditions);
         default:
@@ -334,17 +336,26 @@ export default defineComponent({
   },
   watch: {
     attributeSelected() {
-      if (this.defaultAttributeIsSelected) {
-        if (this.attributeSelected.id === ProductFilterDefaultAttributes.PRICE) {
-          this.conditionTypeSelected = ProductFilterFieldConditions.NUMERIC;
-        } else if (this.attributeSelected.id === ProductFilterDefaultAttributes.PRODUCT_ID) {
-          this.conditionTypeSelected = ProductFilterFieldConditions.NUMERIC_ARRAY;
-        } else if (this.attributeSelected.id === ProductFilterDefaultAttributes.BRAND
-          || this.attributeSelected.id === ProductFilterDefaultAttributes.CATEGORY) {
-          this.conditionTypeSelected = ProductFilterFieldConditions.STRING;
+      if (!this.defaultAttributeIsSelected) {
+        this.conditionTypeSelected = ProductFilterFieldConditions.MULTI_SELECT;
+        return;
+      }
+
+      if (this.attributeSelected.id !== ProductFilterDefaultAttributes.OUT_OF_STOCK) {
+        switch (this.attributeSelected.id) {
+          case ProductFilterDefaultAttributes.PRICE:
+            this.conditionTypeSelected = ProductFilterFieldConditions.NUMERIC;
+            break;
+          case ProductFilterDefaultAttributes.PRODUCT_ID:
+            this.conditionTypeSelected = ProductFilterFieldConditions.NUMERIC_ARRAY;
+            break;
+          case ProductFilterDefaultAttributes.BRAND:
+          case ProductFilterDefaultAttributes.CATEGORY:
+            this.conditionTypeSelected = ProductFilterFieldConditions.STRING;
+            break;
+          default:
+            throw new Error(`The selected attribute ${this.attributeSelected.id} is not recognized`);
         }
-      } else {
-        this.conditionTypeSelected = ProductFilterFieldConditions.STRING;
       }
     },
   },
