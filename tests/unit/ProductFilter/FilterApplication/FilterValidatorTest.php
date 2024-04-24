@@ -28,9 +28,11 @@ use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\Fil
 
 class FilterValidatorTest extends TestCase
 {
+    /**
+     * GLOBAL
+     */
     public function testCheckEmptyList(): void
     {
-        // Most basic check
         $filterValidator = new FilterValidator();
 
         $this->assertNull($filterValidator->validate([]));
@@ -44,20 +46,27 @@ class FilterValidatorTest extends TestCase
             $filterValidator->validate([
                 [
                     'attribute' => AttributeType::BRAND,
-                    'condition' => Condition::IS,
+                    'condition' => Condition::CONTAINS,
                     'values' => ['Brand 1', 'Brand 2'],
                 ],
                 [
-                    'attribute' => AttributeType::CATEGORY,
-                    'condition' => Condition::LOWER,
-                    'value' => 400,
-                ],
-                [
-                    'attribute' => AttributeType::CUSTOM_ATTRIBUTE,
+                    'attribute' => AttributeType::BRAND,
                     'condition' => Condition::IS,
                     'values' => [
-                        ['key' => 'Color', 'value' => 'Bleu', 'language' => 'fr'],
-                        ['key' => 'Color', 'value' => 'Blue', 'language' => 'en_gb'],
+                        ['id' => 1, 'value' => 'brand 1'],
+                        ['id' => 122, 'value' => 'brand 2'],
+                    ],
+                ],
+                [
+                    'attribute' => AttributeType::CATEGORY,
+                    'condition' => Condition::DOES_NOT_CONTAIN,
+                    'values' => ['Category 1'],
+                ],
+                [
+                    'attribute' => AttributeType::CATEGORY,
+                    'condition' => Condition::IS_NOT,
+                    'values' => [
+                        ['id' => 133, 'value' => 'category 2'],
                     ],
                 ],
                 [
@@ -67,8 +76,8 @@ class FilterValidatorTest extends TestCase
                 ],
                 [
                     'attribute' => AttributeType::PRODUCT_ID,
-                    'condition' => Condition::GREATER,
-                    'value' => 100,
+                    'condition' => Condition::IS,
+                    'values' => [100],
                 ],
                 [
                     'attribute' => AttributeType::OUT_OF_STOCK,
@@ -79,308 +88,707 @@ class FilterValidatorTest extends TestCase
         );
     }
 
-    /**
-     * BRAND
-     *
-     * No particular check for Brands. We check single and multi values match the selected condition instead.
-     */
-    public function testOneValueIsSentWithContains(): void
+    public function testWithInvalidAttribute(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Filter #0 is malformed, a field "value" is excepted instead of "values".');
+        $this->expectExceptionMessage('Filter #0 has no valid "attribute" field.');
 
         $filterValidator = new FilterValidator();
 
         $filterValidator->validate([
             [
-                'attribute' => AttributeType::BRAND,
+                'attribute' => '🥸',
                 'condition' => Condition::CONTAINS,
                 'values' => ['🐶', '🥸'],
             ],
         ]);
     }
 
-    public function testOneValueIsSentWithGeater(): void
+    public function testWithInvalidCondition(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Filter #0 is malformed, a field "value" is excepted instead of "values".');
+        $this->expectExceptionMessage('Filter #0 has no valid "condition" field.');
 
         $filterValidator = new FilterValidator();
 
         $filterValidator->validate([
             [
                 'attribute' => AttributeType::BRAND,
-                'condition' => Condition::GREATER,
+                'condition' => '🥸',
                 'values' => ['🐶', '🥸'],
             ],
         ]);
     }
 
-    public function testOneValueIsSentWithLower(): void
+    /**
+     * BRAND
+     */
+
+    /**
+     * @dataProvider brandInvalidArgumentProvider
+     */
+    public function testBrandInvalidArgument(array $filters, string $expectedExceptionMessage): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Filter #0 is malformed, a field "value" is excepted instead of "values".');
+        $this->expectExceptionMessage($expectedExceptionMessage);
 
         $filterValidator = new FilterValidator();
-
-        $filterValidator->validate([
-            [
-                'attribute' => AttributeType::BRAND,
-                'condition' => Condition::LOWER,
-                'values' => ['🐶', '🥸'],
-            ],
-        ]);
+        $filterValidator->validate([$filters]);
     }
 
-    public function testSeveralValuesAreSentWithIsNot(): void
+    public function brandInvalidArgumentProvider(): array
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Filter #0 is malformed, a field "values" is excepted instead of "value".');
-
-        $filterValidator = new FilterValidator();
-
-        $filterValidator->validate([
+        return [
             [
-                'attribute' => AttributeType::BRAND,
-                'condition' => Condition::IS_NOT,
-                'value' => '🐶',
+                [
+                    'attribute' => AttributeType::BRAND,
+                    'condition' => Condition::CONTAINS,
+                    'value' => '🐶',
+                ],
+                'Filter #0 is malformed, a field "values" is excepted instead of "value".',
             ],
-        ]);
-    }
-
-    public function testBothTypesOfValuesCanBeSentWithIs(): void
-    {
-        $filterValidator = new FilterValidator();
-
-        $this->assertNull(
-            $filterValidator->validate([
+            [
+                [
+                    'attribute' => AttributeType::BRAND,
+                    'condition' => Condition::CONTAINS,
+                    'values' => '🐶',
+                ],
+                'Filter #0 is malformed, "values" field need to be an array of value.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::BRAND,
+                    'condition' => Condition::CONTAINS,
+                ],
+                'Filter #0 requires a "values" field.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::BRAND,
+                    'condition' => Condition::CONTAINS,
+                    'values' => [1, 2, 3],
+                ],
+                'Value 1 of filter #0 must be a string.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::BRAND,
+                    'condition' => Condition::DOES_NOT_CONTAIN,
+                    'value' => '🐶',
+                ],
+                'Filter #0 is malformed, a field "values" is excepted instead of "value".',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::BRAND,
+                    'condition' => Condition::DOES_NOT_CONTAIN,
+                    'values' => '🐶',
+                ],
+                'Filter #0 is malformed, "values" field need to be an array of value.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::BRAND,
+                    'condition' => Condition::DOES_NOT_CONTAIN,
+                ],
+                'Filter #0 requires a "values" field.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::BRAND,
+                    'condition' => Condition::DOES_NOT_CONTAIN,
+                    'values' => [1, 2, 3],
+                ],
+                'Value 1 of filter #0 must be a string.',
+            ],
+            [
                 [
                     'attribute' => AttributeType::BRAND,
                     'condition' => Condition::IS,
                     'value' => '🐶',
                 ],
+                'Filter #0 is malformed, a field "values" is excepted instead of "value".',
+            ],
+            [
                 [
                     'attribute' => AttributeType::BRAND,
                     'condition' => Condition::IS,
-                    'values' => ['🩹'],
+                    'values' => '🐶',
                 ],
-            ])
-        );
+                'Filter #0 is malformed, "values" field need to be an array of value.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::BRAND,
+                    'condition' => Condition::IS,
+                ],
+                'Filter #0 requires a "values" field.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::BRAND,
+                    'condition' => Condition::IS,
+                    'values' => [1, 2, 3],
+                ],
+                'Value 1 of filter #0 is not an object.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::BRAND,
+                    'condition' => Condition::IS,
+                    'values' => [
+                        ['id' => 1],
+                    ],
+                ],
+                'Value {"id":1} of filter #0 does not have the required \'value\' key.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::BRAND,
+                    'condition' => Condition::IS_NOT,
+                    'value' => '🐶',
+                ],
+                'Filter #0 is malformed, a field "values" is excepted instead of "value".',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::BRAND,
+                    'condition' => Condition::IS_NOT,
+                    'values' => '🐶',
+                ],
+                'Filter #0 is malformed, "values" field need to be an array of value.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::BRAND,
+                    'condition' => Condition::IS_NOT,
+                ],
+                'Filter #0 requires a "values" field.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::BRAND,
+                    'condition' => Condition::IS_NOT,
+                    'values' => [1, 2, 3],
+                ],
+                'Value 1 of filter #0 is not an object.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::BRAND,
+                    'condition' => Condition::IS_NOT,
+                    'values' => [
+                        ['id' => 1],
+                    ],
+                ],
+                'Value {"id":1} of filter #0 does not have the required \'value\' key.',
+            ],
+        ];
     }
 
     /**
      * CATEGORY
      */
-    public function testCategoryWithonNumericValue(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Value A of filter #0 must be a number.');
-
-        $filterValidator = new FilterValidator();
-
-        $filterValidator->validate([
-            [
-                'attribute' => AttributeType::CATEGORY,
-                'condition' => Condition::IS,
-                'values' => [3, 50003, 'A'],
-            ],
-        ]);
-    }
-
-    public function testCategoryWithNegativeValue(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Value 0 of filter #1 is not a positive number.');
-
-        $filterValidator = new FilterValidator();
-
-        $filterValidator->validate([
-            [
-                'attribute' => AttributeType::CATEGORY,
-                'condition' => Condition::IS,
-                'values' => [3, 50003, 1],
-            ],
-            [
-                'attribute' => AttributeType::CATEGORY,
-                'condition' => Condition::LOWER,
-                'value' => 0,
-            ],
-        ]);
-    }
 
     /**
-     * CUSTOM ATTRIBUTE
+     * @dataProvider categoryInvalidArgumentProvider
      */
-    public function testCustomAttributeWithSingleValue(): void
+    public function testCategoryInvalidArgument(array $filters, string $expectedExceptionMessage): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Filter #0 is malformed, a field "values" is excepted instead of "value".');
+        $this->expectExceptionMessage($expectedExceptionMessage);
 
         $filterValidator = new FilterValidator();
-
-        $filterValidator->validate([
-            [
-                'attribute' => AttributeType::CUSTOM_ATTRIBUTE,
-                'condition' => Condition::IS,
-                'value' => ['key' => 'Color', 'value' => 'Bleu', 'language' => 'fr'],
-            ],
-        ]);
+        $filterValidator->validate([$filters]);
     }
 
-    public function testCustomAttributeWithMissingLocalizedValue(): void
+    public function categoryInvalidArgumentProvider(): array
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Missing field "value" in filter #0, key #0.');
-
-        $filterValidator = new FilterValidator();
-
-        $filterValidator->validate([
+        return [
             [
-                'attribute' => AttributeType::CUSTOM_ATTRIBUTE,
-                'condition' => Condition::IS,
-                'values' => [3, 50003, 1],
-            ],
-        ]);
-    }
-
-    public function testCustomAttributeWithMissingLocalizedLanguage(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Missing field "language" in filter #0, key #1.');
-
-        $filterValidator = new FilterValidator();
-
-        $filterValidator->validate([
-            [
-                'attribute' => AttributeType::CUSTOM_ATTRIBUTE,
-                'condition' => Condition::IS,
-                'values' => [
-                    ['key' => 'Color', 'value' => 'Blue', 'language' => 'fr'],
-                    ['key' => 'Color', 'value' => 'Blue'],
+                [
+                    'attribute' => AttributeType::CATEGORY,
+                    'condition' => Condition::CONTAINS,
+                    'value' => '🐶',
                 ],
+                'Filter #0 is malformed, a field "values" is excepted instead of "value".',
             ],
-        ]);
-    }
-
-    public function testCustomAttributeWithMissingLocalizedKey(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Missing field "key" in filter #0, key #2.');
-
-        $filterValidator = new FilterValidator();
-
-        $filterValidator->validate([
             [
-                'attribute' => AttributeType::CUSTOM_ATTRIBUTE,
-                'condition' => Condition::IS,
-                'values' => [
-                    ['key' => 'Color', 'value' => 'Bleu', 'language' => 'fr'],
-                    ['key' => 'Color', 'value' => 'Blue', 'language' => 'en_gb'],
-                    ['value' => 'Women', 'language' => 'en_gb'],
+                [
+                    'attribute' => AttributeType::CATEGORY,
+                    'condition' => Condition::CONTAINS,
+                    'values' => '🐶',
                 ],
+                'Filter #0 is malformed, "values" field need to be an array of value.',
             ],
-        ]);
+            [
+                [
+                    'attribute' => AttributeType::CATEGORY,
+                    'condition' => Condition::CONTAINS,
+                ],
+                'Filter #0 requires a "values" field.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::CATEGORY,
+                    'condition' => Condition::CONTAINS,
+                    'values' => [1, 2, 3],
+                ],
+                'Value 1 of filter #0 must be a string.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::CATEGORY,
+                    'condition' => Condition::DOES_NOT_CONTAIN,
+                    'value' => '🐶',
+                ],
+                'Filter #0 is malformed, a field "values" is excepted instead of "value".',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::CATEGORY,
+                    'condition' => Condition::DOES_NOT_CONTAIN,
+                    'values' => '🐶',
+                ],
+                'Filter #0 is malformed, "values" field need to be an array of value.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::CATEGORY,
+                    'condition' => Condition::DOES_NOT_CONTAIN,
+                ],
+                'Filter #0 requires a "values" field.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::CATEGORY,
+                    'condition' => Condition::DOES_NOT_CONTAIN,
+                    'values' => [1, 2, 3],
+                ],
+                'Value 1 of filter #0 must be a string.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::CATEGORY,
+                    'condition' => Condition::IS,
+                    'value' => '🐶',
+                ],
+                'Filter #0 is malformed, a field "values" is excepted instead of "value".',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::CATEGORY,
+                    'condition' => Condition::IS,
+                    'values' => '🐶',
+                ],
+                'Filter #0 is malformed, "values" field need to be an array of value.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::CATEGORY,
+                    'condition' => Condition::IS,
+                ],
+                'Filter #0 requires a "values" field.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::CATEGORY,
+                    'condition' => Condition::IS,
+                    'values' => [1, 2, 3],
+                ],
+                'Value 1 of filter #0 is not an object.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::CATEGORY,
+                    'condition' => Condition::IS,
+                    'values' => [
+                        ['id' => 1],
+                    ],
+                ],
+                'Value {"id":1} of filter #0 does not have the required \'value\' key.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::CATEGORY,
+                    'condition' => Condition::IS_NOT,
+                    'value' => '🐶',
+                ],
+                'Filter #0 is malformed, a field "values" is excepted instead of "value".',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::CATEGORY,
+                    'condition' => Condition::IS_NOT,
+                    'values' => '🐶',
+                ],
+                'Filter #0 is malformed, "values" field need to be an array of value.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::CATEGORY,
+                    'condition' => Condition::IS_NOT,
+                ],
+                'Filter #0 requires a "values" field.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::CATEGORY,
+                    'condition' => Condition::IS_NOT,
+                    'values' => [1, 2, 3],
+                ],
+                'Value 1 of filter #0 is not an object.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::CATEGORY,
+                    'condition' => Condition::IS_NOT,
+                    'values' => [
+                        ['id' => 1],
+                    ],
+                ],
+                'Value {"id":1} of filter #0 does not have the required \'value\' key.',
+            ],
+        ];
     }
 
     /**
      * PRICE
      */
-    public function testPriceWithNonNumericValue(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Value 🐶 of filter #0 must be a number.');
-
-        $filterValidator = new FilterValidator();
-
-        $filterValidator->validate([
-            [
-                'attribute' => AttributeType::PRICE,
-                'condition' => Condition::GREATER,
-                'value' => '🐶',
-            ],
-        ]);
-    }
 
     /**
-     * (PRODUCT) ID
+     * @dataProvider priceInvalidArgumentProvider
      */
-    public function testProductIdsWithNonNumericValue(): void
+    public function testPriceInvalidArgument(array $filters, string $expectedExceptionMessage): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Value oh no of filter #0 must be a number.');
+        $this->expectExceptionMessage($expectedExceptionMessage);
 
         $filterValidator = new FilterValidator();
-
-        $filterValidator->validate([
-            [
-                'attribute' => AttributeType::PRODUCT_ID,
-                'condition' => Condition::GREATER,
-                'value' => 'oh no',
-            ],
-            [
-                'attribute' => AttributeType::PRODUCT_ID,
-                'condition' => Condition::IS_NOT,
-                'values' => [102, 50002, 220],
-            ],
-        ]);
+        $filterValidator->validate([$filters]);
     }
 
-    public function testProductIdsWithNegativeValue(): void
+    public function priceInvalidArgumentProvider(): array
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Value -220 of filter #1 is not a positive number.');
-
-        $filterValidator = new FilterValidator();
-
-        $filterValidator->validate([
+        return [
             [
-                'attribute' => AttributeType::PRODUCT_ID,
-                'condition' => Condition::GREATER,
-                'value' => 100,
-            ],
-            [
-                'attribute' => AttributeType::PRODUCT_ID,
-                'condition' => Condition::IS_NOT,
-                'values' => [102, 50002, -220],
-            ],
-        ]);
-    }
-
-    /**
-     * OUT OF STOCK
-     */
-    public function testOutOfStockWithNonBooleanValue(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Value of filter #0 must be a boolean, string provided');
-
-        $filterValidator = new FilterValidator();
-
-        $filterValidator->validate([
-            [
-                'attribute' => AttributeType::OUT_OF_STOCK,
-                'condition' => Condition::IS,
-                'value' => '🥸',
-            ],
-        ]);
-    }
-
-    public function testOutOfStockWithMultipleValues(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Filter #0 is malformed, a field "value" is excepted instead of "values".');
-
-        $filterValidator = new FilterValidator();
-
-        $filterValidator->validate([
-            [
-                'attribute' => AttributeType::OUT_OF_STOCK,
-                'condition' => Condition::IS,
-                'values' => [
-                    '🥸',
-                    'wololo',
+                [
+                    'attribute' => AttributeType::PRICE,
+                    'condition' => Condition::IS,
+                    'values' => '🐶',
                 ],
+                'Filter #0 is malformed, a field "value" is excepted instead of "values".',
             ],
-        ]);
+            [
+                [
+                    'attribute' => AttributeType::PRICE,
+                    'condition' => Condition::IS,
+                    'value' => '🐶',
+                ],
+                'Value 🐶 of filter #0 must be a number.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::PRICE,
+                    'condition' => Condition::IS,
+                ],
+                'Filter #0 requires a "value" field.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::PRICE,
+                    'condition' => Condition::GREATER,
+                    'values' => '🐶',
+                ],
+                'Filter #0 is malformed, a field "value" is excepted instead of "values".',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::PRICE,
+                    'condition' => Condition::GREATER,
+                    'value' => '🐶',
+                ],
+                'Value 🐶 of filter #0 must be a number.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::PRICE,
+                    'condition' => Condition::GREATER,
+                ],
+                'Filter #0 requires a "value" field.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::PRICE,
+                    'condition' => Condition::LOWER,
+                    'values' => '🐶',
+                ],
+                'Filter #0 is malformed, a field "value" is excepted instead of "values".',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::PRICE,
+                    'condition' => Condition::LOWER,
+                    'value' => '🐶',
+                ],
+                'Value 🐶 of filter #0 must be a number.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::PRICE,
+                    'condition' => Condition::LOWER,
+                ],
+                'Filter #0 requires a "value" field.',
+            ],
+        ];
+    }
+
+    /**
+     * PRODUCT_ID
+     */
+
+    /**
+     * @dataProvider productIdInvalidArgumentProvider
+     */
+    public function testProductIdInvalidArgument(array $filters, string $expectedExceptionMessage): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage($expectedExceptionMessage);
+
+        $filterValidator = new FilterValidator();
+        $filterValidator->validate([$filters]);
+    }
+
+    public function productIdInvalidArgumentProvider(): array
+    {
+        return [
+            [
+                [
+                    'attribute' => AttributeType::PRODUCT_ID,
+                    'condition' => Condition::IS,
+                    'value' => '🐶',
+                ],
+                'Filter #0 is malformed, a field "values" is excepted instead of "value".',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::PRODUCT_ID,
+                    'condition' => Condition::IS,
+                    'values' => '🐶',
+                ],
+                'Filter #0 is malformed, "values" field need to be an array of value.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::PRODUCT_ID,
+                    'condition' => Condition::IS,
+                ],
+                'Filter #0 requires a "values" field.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::PRODUCT_ID,
+                    'condition' => Condition::IS,
+                    'values' => ['🐶']
+                ],
+                'Value 🐶 of filter #0 must be a number.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::PRODUCT_ID,
+                    'condition' => Condition::IS,
+                    'values' => [-1]
+                ],
+                'Value -1 of filter #0 is not a positive number.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::PRODUCT_ID,
+                    'condition' => Condition::IS_NOT,
+                    'value' => '🐶',
+                ],
+                'Filter #0 is malformed, a field "values" is excepted instead of "value".',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::PRODUCT_ID,
+                    'condition' => Condition::IS_NOT,
+                    'values' => '🐶',
+                ],
+                'Filter #0 is malformed, "values" field need to be an array of value.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::PRODUCT_ID,
+                    'condition' => Condition::IS_NOT,
+                ],
+                'Filter #0 requires a "values" field.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::PRODUCT_ID,
+                    'condition' => Condition::IS_NOT,
+                    'values' => ['🐶']
+                ],
+                'Value 🐶 of filter #0 must be a number.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::PRODUCT_ID,
+                    'condition' => Condition::IS_NOT,
+                    'values' => [-1]
+                ],
+                'Value -1 of filter #0 is not a positive number.',
+            ],
+        ];
+    }
+
+    /**
+     * OUT_OF_STOCK
+     */
+
+    /**
+     * @dataProvider outOfStockInvalidArgumentProvider
+     */
+    public function testOutOfStockInvalidArgument(array $filters, string $expectedExceptionMessage): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage($expectedExceptionMessage);
+
+        $filterValidator = new FilterValidator();
+        $filterValidator->validate([$filters]);
+    }
+
+    public function outOfStockInvalidArgumentProvider(): array
+    {
+        return [
+            [
+                [
+                    'attribute' => AttributeType::OUT_OF_STOCK,
+                    'condition' => Condition::IS,
+                    'value' => '🐶',
+                ],
+                'Value of filter #0 must be a boolean, string provided',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::OUT_OF_STOCK,
+                    'condition' => Condition::IS,
+                    'values' => '🐶',
+                ],
+                'Filter #0 is malformed, a field "value" is excepted instead of "values".',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::OUT_OF_STOCK,
+                    'condition' => Condition::IS,
+                ],
+                'Filter #0 requires a "value" field.',
+            ],
+        ];
+    }
+
+    /**
+     * FEATURE
+     */
+
+    /**
+     * @dataProvider featureInvalidArgumentProvider
+     */
+    public function testFeatureInvalidArgument(array $filters, string $expectedExceptionMessage): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage($expectedExceptionMessage);
+
+        $filterValidator = new FilterValidator();
+        $filterValidator->validate([$filters]);
+    }
+
+    public function featureInvalidArgumentProvider(): array
+    {
+        return [
+            [
+                [
+                    'attribute' => AttributeType::FEATURE,
+                    'condition' => Condition::IS,
+                    'value' => '🐶',
+                ],
+                'Filter #0 is malformed, a field "values" is excepted instead of "value".',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::FEATURE,
+                    'condition' => Condition::IS,
+                    'values' => '🐶',
+                ],
+                'Filter #0 is malformed, "values" field need to be an array of value.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::FEATURE,
+                    'condition' => Condition::IS,
+                ],
+                'Filter #0 requires a "values" field.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::FEATURE,
+                    'condition' => Condition::IS,
+                    'values' => [1, 2, 3],
+                ],
+                'Value 1 of filter #0 is not an object.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::FEATURE,
+                    'condition' => Condition::IS,
+                    'values' => [
+                        ['id' => 1],
+                    ],
+                ],
+                'Value {"id":1} of filter #0 does not have the required \'key\' key.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::FEATURE,
+                    'condition' => Condition::IS_NOT,
+                    'value' => '🐶',
+                ],
+                'Filter #0 is malformed, a field "values" is excepted instead of "value".',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::FEATURE,
+                    'condition' => Condition::IS_NOT,
+                    'values' => '🐶',
+                ],
+                'Filter #0 is malformed, "values" field need to be an array of value.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::FEATURE,
+                    'condition' => Condition::IS_NOT,
+                ],
+                'Filter #0 requires a "values" field.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::FEATURE,
+                    'condition' => Condition::IS_NOT,
+                    'values' => [1, 2, 3],
+                ],
+                'Value 1 of filter #0 is not an object.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::FEATURE,
+                    'condition' => Condition::IS_NOT,
+                    'values' => [
+                        ['id' => 1],
+                    ],
+                ],
+                'Value {"id":1} of filter #0 does not have the required \'key\' key.',
+            ],
+        ];
     }
 }

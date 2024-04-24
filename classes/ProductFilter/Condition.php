@@ -27,6 +27,7 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter;
 class Condition
 {
     const CONTAINS = 'contains';
+    const DOES_NOT_CONTAIN = 'does_not_contain';
     const GREATER = 'greater';
     const LOWER = 'lower';
     const IS = 'is';
