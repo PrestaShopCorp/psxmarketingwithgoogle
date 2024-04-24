@@ -28,17 +28,7 @@ class ProductIdQueryBuilder implements QueryBuilderInterface
     public function addWhereFromFilter(DbQuery $query, $filter): DbQuery
     {
         switch ($filter['condition']) {
-            case Condition::CONTAINS:
-                return $query->where('p.id_product LIKE "%' . (int) $filter['value'] . '%"');
-            case Condition::GREATER:
-                return $query->where('p.id_product > ' . (int) $filter['value']);
-            case Condition::LOWER:
-                return $query->where('p.id_product < ' . (int) $filter['value']);
             case Condition::IS:
-                if ($filter['value']) {
-                    return $query->where('p.id_product = ' . (int) $filter['value']);
-                }
-
                 return $query->where('p.id_product IN [' . implode(', ', array_map('intval', $filter['values'])) . ']');
             case Condition::IS_NOT:
                 return $query->where('p.id_product NOT IN [' . implode(', ', array_map('intval', $filter['values'])) . ']');
