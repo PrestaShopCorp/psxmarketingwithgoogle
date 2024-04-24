@@ -202,7 +202,12 @@ export default defineComponent({
             errors.condition = undefined;
           }
 
-          if (!(filter.value || filter.values?.length)) {
+          if (filter.conditionType === 'numeric' && filter.value === null) {
+            if (sendError) {
+              errors.value = this.$t('productFeedSettings.productSelection.lineFilter.errors.invalidNumber') as string;
+            }
+            validity = false;
+          } else if (!(filter.value || filter.values?.length)) {
             if (sendError) {
               errors.value = this.$t('productFeedSettings.productSelection.lineFilter.errors.empty') as string;
             }
@@ -210,11 +215,6 @@ export default defineComponent({
           } else if (filter.conditionType === 'numericArray' && filter.values?.length && !filter.values?.every((value) => !Number.isNaN(Number(value)))) {
             if (sendError) {
               errors.value = 'il faut que les valeurs soient de type nombre' as string;
-            }
-            validity = false;
-          } else if (filter.conditionType === 'number' && Number.isNaN(filter.value)) {
-            if (sendError) {
-              errors.value = this.$t('productFeedSettings.productSelection.lineFilter.errors.invalidNumber') as string;
             }
             validity = false;
           } else {
