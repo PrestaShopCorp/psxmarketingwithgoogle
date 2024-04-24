@@ -255,18 +255,17 @@ export default defineComponent({
         values: this.valuesSelected,
       });
     },
-    // TODO
-    // getValuesOfFeaturesByLanguage() {
-    //   const result: string[] = [];
-    //   this.features.forEach((feature) => {
-    //     feature.values.forEach((value) => {
-    //       if (value.language === this.$i18n.locale.toLowerCase()) {
-    //         result.push(value.value);
-    //       }
-    //     });
-    //   });
-    //   return result;
-    // },
+    getValuesOfFeaturesByLanguage() {
+      const result: ProductFilterValues[] = [];
+      this.features.forEach((feature) => {
+        feature.values.forEach((value) => {
+          if (value.language === this.$i18n.locale.toLowerCase()) {
+            result.push({value: value.value, id: value.id});
+          }
+        });
+      });
+      return result;
+    },
   },
   computed: {
     // Attribute Field
@@ -308,10 +307,9 @@ export default defineComponent({
         || this.attributeSelected.id === ProductFilterDefaultAttributes.CATEGORY) {
         return categoryOrBrand.map((value) => value);
       }
-      // TODO: gestion des features
-      // if (!this.defaultAttributeIsSelected) {
-      //   return this.getValuesOfFeaturesByLanguage();
-      // }
+      if (!this.defaultAttributeIsSelected) {
+        return this.getValuesOfFeaturesByLanguage();
+      }
       return [];
     },
     // Number Fied
