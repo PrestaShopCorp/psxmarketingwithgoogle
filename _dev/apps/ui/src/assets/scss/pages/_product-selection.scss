@@ -83,6 +83,7 @@
 
       @include media-breakpoint-up(sm) {
         margin-left: rem(16);
+        margin-top: 0;
       }
 
       .material-icons {
