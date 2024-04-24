@@ -255,7 +255,8 @@ class FilterValidator
         }
     }
 
-    protected function isAssociativeArray($array) {
+    protected function isAssociativeArray($array)
+    {
         if (!is_array($array)) {
             return false;
         }
@@ -265,6 +266,7 @@ class FilterValidator
                 return false;
             }
         }
+
         return true;
     }
 }
