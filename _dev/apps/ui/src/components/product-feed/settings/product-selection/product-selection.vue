@@ -134,6 +134,7 @@ import {
 import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
 import {
   ProductFilterConditionApi,
+  ProductFilterMultiSelectConditions,
   ProductFilterNumericArrayConditions,
   ProductFilterNumericConditions,
   ProductFilterStringConditions,
@@ -270,9 +271,9 @@ export default defineComponent({
     formatCondition(condition) {
       const map = {
         [ProductFilterNumericConditions.IS_EQUAL_TO]: ProductFilterConditionApi.IS,
-        [ProductFilterStringConditions.IS_IN]: ProductFilterConditionApi.IS,
+        [ProductFilterMultiSelectConditions.IS_IN]: ProductFilterConditionApi.IS,
         [ProductFilterNumericArrayConditions.IS_NOT_EQUAL_TO]: ProductFilterConditionApi.IS_NOT,
-        [ProductFilterStringConditions.IS_NOT]: ProductFilterConditionApi.IS_NOT,
+        [ProductFilterMultiSelectConditions.IS_NOT]: ProductFilterConditionApi.IS_NOT,
         [ProductFilterNumericConditions.IS_LESS_THAN]: ProductFilterConditionApi.LOWER,
         [ProductFilterNumericConditions.IS_GREATER_THAN]: ProductFilterConditionApi.GREATER,
         [ProductFilterStringConditions.CONTAINS]: ProductFilterConditionApi.CONTAINS,
