@@ -24,7 +24,6 @@ use DbQuery;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\AttributeType;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\BrandQueryBuilder;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\CategoryQueryBuilder;
-use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\CustomAttributeQueryBuilder;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\FeatureQueryBuilder;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\OutOfStockQueryBuilder;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\PriceQueryBuilder;
@@ -47,7 +46,6 @@ class QueryBuilder
         int $shopId,
         BrandQueryBuilder $brandQueryBuilder,
         CategoryQueryBuilder $categoryQueryBuilder,
-        CustomAttributeQueryBuilder $customAttributeQueryBuilder,
         FeatureQueryBuilder $featureQueryBuilder,
         OutOfStockQueryBuilder $outOfStockQueryBuilder,
         PriceQueryBuilder $priceQueryBuilder,
@@ -57,7 +55,6 @@ class QueryBuilder
         $this->builders = [
             AttributeType::BRAND => $brandQueryBuilder,
             AttributeType::CATEGORY => $categoryQueryBuilder,
-            AttributeType::CUSTOM_ATTRIBUTE => $customAttributeQueryBuilder,
             AttributeType::FEATURE => $featureQueryBuilder,
             AttributeType::OUT_OF_STOCK => $outOfStockQueryBuilder,
             AttributeType::PRICE => $priceQueryBuilder,
