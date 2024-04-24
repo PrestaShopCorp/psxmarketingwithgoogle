@@ -29,15 +29,30 @@ class BrandQueryBuilder implements QueryBuilderInterface
     {
         switch ($filter['condition']) {
             case Condition::CONTAINS:
-                return $query->where('m.name LIKE "%' . pSQL($filter['value']) . '%"');
-            case Condition::IS:
-                if ($filter['value']) {
-                    return $query->where('m.name = ' . pSQL($filter['value']));
+                $queryConditions = [];
+                foreach ($filter['values'] as $value) {
+                    $queryConditions[] = 'm.name LIKE "%' . pSQL($value) . '%"';
                 }
+                return $query->where('(' . implode(' OR ', $queryConditions) . ')');
 
-                return $query->where('m.name IN ["' . implode('", "', array_map('pSQL', $filter['values'])) . '"]');
+            case Condition::DOES_NOT_CONTAIN:
+                $queryConditions = [];
+                foreach ($filter['values'] as $value) {
+                    $queryConditions[] = 'm.name NOT LIKE "%' . pSQL($value) . '%"';
+                }
+                return $query->where('(' . implode(' OR ', $queryConditions) . ')');
+
+            case Condition::IS:
+                $filteredValues = array_map(function ($item) {
+                    return $item['value'];
+                }, $filter['values']);
+                return $query->where('m.name IN ["' . implode('", "', array_map('pSQL', $filteredValues)) . '"]');
+
             case Condition::IS_NOT:
-                return $query->where('m.name NOT IN ["' . implode('", "', array_map('pSQL', $filter['values'])) . '"]');
+                $filteredValues = array_map(function ($item) {
+                    return $item['value'];
+                }, $filter['values']);
+                return $query->where('m.name NOT IN ["' . implode('", "', array_map('pSQL', $filteredValues)) . '"]');
         }
 
         return $query;
