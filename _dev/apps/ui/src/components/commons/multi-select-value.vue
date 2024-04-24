@@ -9,7 +9,6 @@
     v-model="selectedItems"
     :placeholder="placeholder"
     :class="{'maxw-sm-500': notFullWidth, 'disabled': disabled }"
-    :reduce="value => value.id"
     @input="$emit('dataUpdated', selectedItems)"
   >
     <template #option="option">
