@@ -325,6 +325,14 @@ export default defineComponent({
     booleanList() {
       return Object.values(ProductFilterBooleanConditions);
     },
+    // Free Field
+    displayInputTextWithTag() {
+      return (this.attributeSelected.value !== this.typeAttributes.PRICE
+      && !this.conditionSelected.length)
+      || this.attributeSelected.value === ProductFilterDefaultAttributes.PRODUCT_ID
+      || this.conditionSelected === ProductFilterStringConditions.CONTAINS
+      || this.conditionSelected === ProductFilterStringConditions.NOT_CONTAIN;
+    },
   },
   watch: {
     attributeSelected() {
