@@ -21,13 +21,12 @@
 namespace PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder;
 
 use DbQuery;
-use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Condition;
 
 class OutOfStockQueryBuilder implements QueryBuilderInterface
 {
     public function addWhereFromFilter(DbQuery $query, $filter): DbQuery
     {
-        if ($filter['condition'] === Condition::IS && $filter['value'] === false) {
+        if ($filter['value'] === false) {
             return $query->where('sa.quantity > 0');
         }
 
