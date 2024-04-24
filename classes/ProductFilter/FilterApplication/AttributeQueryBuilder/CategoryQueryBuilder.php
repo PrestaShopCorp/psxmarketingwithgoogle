@@ -46,6 +46,7 @@ class CategoryQueryBuilder implements QueryBuilderInterface
                 foreach ($filter['values'] as $value) {
                     $queryConditions[] = 'cl.name LIKE "%' . pSQL($value) . '%"';
                 }
+
                 return $query->where('(' . implode(' OR ', $queryConditions) . ')');
 
             case Condition::DOES_NOT_CONTAIN:
@@ -53,20 +54,22 @@ class CategoryQueryBuilder implements QueryBuilderInterface
                 foreach ($filter['values'] as $value) {
                     $queryConditions[] = 'cl.name NOT LIKE "%' . pSQL($value) . '%"';
                 }
+
                 return $query->where('(' . implode(' OR ', $queryConditions) . ')');
 
             case Condition::IS:
                 $filteredValues = array_map(function ($item) {
                     return $item['id'];
                 }, $filter['values']);
+
                 return $query->where('c.id_category_default IN [' . implode(', ', array_map('intval', $filteredValues)) . ']');
 
             case Condition::IS_NOT:
                 $filteredValues = array_map(function ($item) {
                     return $item['id'];
                 }, $filter['values']);
-                return $query->where('c.id_category_default NOT IN [' . implode(', ', array_map('intval', $filteredValues)) . ']');
 
+                return $query->where('c.id_category_default NOT IN [' . implode(', ', array_map('intval', $filteredValues)) . ']');
         }
 
         return $query;

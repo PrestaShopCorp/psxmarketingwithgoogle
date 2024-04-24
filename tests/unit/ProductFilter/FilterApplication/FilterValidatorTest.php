@@ -589,7 +589,7 @@ class FilterValidatorTest extends TestCase
                 [
                     'attribute' => AttributeType::PRODUCT_ID,
                     'condition' => Condition::IS,
-                    'values' => ['🐶']
+                    'values' => ['🐶'],
                 ],
                 'Value 🐶 of filter #0 must be a number.',
             ],
@@ -597,7 +597,7 @@ class FilterValidatorTest extends TestCase
                 [
                     'attribute' => AttributeType::PRODUCT_ID,
                     'condition' => Condition::IS,
-                    'values' => [-1]
+                    'values' => [-1],
                 ],
                 'Value -1 of filter #0 is not a positive number.',
             ],
@@ -628,7 +628,7 @@ class FilterValidatorTest extends TestCase
                 [
                     'attribute' => AttributeType::PRODUCT_ID,
                     'condition' => Condition::IS_NOT,
-                    'values' => ['🐶']
+                    'values' => ['🐶'],
                 ],
                 'Value 🐶 of filter #0 must be a number.',
             ],
@@ -636,7 +636,7 @@ class FilterValidatorTest extends TestCase
                 [
                     'attribute' => AttributeType::PRODUCT_ID,
                     'condition' => Condition::IS_NOT,
-                    'values' => [-1]
+                    'values' => [-1],
                 ],
                 'Value -1 of filter #0 is not a positive number.',
             ],
