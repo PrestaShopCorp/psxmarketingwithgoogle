@@ -8,7 +8,7 @@
       <div class="row methods-sync ps_gs-radio">
         <div
           class="col col-12 col-md border-primary-400 p-3"
-          :class="{'checked': synchSelected === typeMethodsSynch.SYNCH_ALL_PRODUCT}"
+          :class="{'checked': synchSelected === 'synchAllProducts'}"
         >
           <b-form-radio
             v-model="synchSelected"
@@ -25,7 +25,7 @@
         </div>
         <div
           class="col col-12 col-md border-primary-400 p-3 ml-md-1 mt-1 mt-md-0"
-          :class="{'checked': synchSelected === typeMethodsSynch.SYNCH_FILTERED_PRODUCT}"
+          :class="{'checked': synchSelected === 'synchFilteredProducts'}"
         >
           <div>
             <b-form-radio
@@ -47,7 +47,7 @@
       </div>
     </div>
     <div
-      v-if="synchSelected === typeMethodsSynch.SYNCH_FILTERED_PRODUCT"
+      v-if="synchSelected === 'synchFilteredProducts'"
       class="filters"
     >
       <div
@@ -71,7 +71,7 @@
       </div>
     </div>
     <b-button
-      v-if="synchSelected === typeMethodsSynch.SYNCH_FILTERED_PRODUCT"
+      v-if="synchSelected === 'synchFilteredProducts'"
       variant="outline-secondary"
       class="mt-3"
       @click="addNewFilter()"
@@ -133,12 +133,10 @@ import {
 } from '@/components/product-feed/settings/product-selection/type';
 import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
 import {
-  ProductFilterConditionApi,
   ProductFilterNumericArrayConditions,
   ProductFilterNumericConditions,
   ProductFilterStringConditions,
 } from '@/enums/product-feed/product-filter-condition';
-import ProductFilterDefaultAttributes from '@/enums/product-feed/product-filter-default-attributes';
 
 function uuidv4() {
   // eslint-disable-next-line no-bitwise, no-mixed-operators
@@ -160,7 +158,6 @@ export default defineComponent({
   },
   data() {
     return {
-      typeMethodsSynch: ProductFilterMethodsSynch,
       synchSelected: getDataFromLocalStorage(localStorageName)
         ? ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT
         : ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT,
@@ -250,10 +247,6 @@ export default defineComponent({
           attribute: filter.attribute ?? '',
         };
 
-        if (filter.attribute === ProductFilterDefaultAttributes.OUT_OF_STOCK) {
-          cleanFilter.condition = 'is';
-        }
-
         if (filter.condition) {
           cleanFilter.condition = this.formatCondition(filter.condition);
         }
@@ -268,18 +261,13 @@ export default defineComponent({
       });
     },
     formatCondition(condition) {
-      const map = {
-        [ProductFilterNumericConditions.IS_EQUAL_TO]: ProductFilterConditionApi.IS,
-        [ProductFilterStringConditions.IS_IN]: ProductFilterConditionApi.IS,
-        [ProductFilterNumericArrayConditions.IS_NOT_EQUAL_TO]: ProductFilterConditionApi.IS_NOT,
-        [ProductFilterStringConditions.IS_NOT]: ProductFilterConditionApi.IS_NOT,
-        [ProductFilterNumericConditions.IS_LESS_THAN]: ProductFilterConditionApi.LOWER,
-        [ProductFilterNumericConditions.IS_GREATER_THAN]: ProductFilterConditionApi.GREATER,
-        [ProductFilterStringConditions.CONTAINS]: ProductFilterConditionApi.CONTAINS,
-        [ProductFilterStringConditions.NOT_CONTAIN]: ProductFilterConditionApi.DOES_NOT_CONTAIN,
-      };
-
-      return map[condition];
+      if (condition === ProductFilterNumericConditions.IS_EQUAL_TO || condition === ProductFilterStringConditions.IS_IN) return 'is';
+      if (condition === ProductFilterNumericArrayConditions.IS_NOT_EQUAL_TO || condition === ProductFilterStringConditions.IS_NOT) return 'is_not';
+      if (condition === ProductFilterNumericConditions.IS_LESS_THAN) return 'lower';
+      if (condition === ProductFilterNumericConditions.IS_GREATER_THAN) return 'greater';
+      if (condition === ProductFilterStringConditions.CONTAINS) return 'contains';
+      if (condition === ProductFilterStringConditions.NOT_CONTAIN) return 'does_not_contain';
+      throw new Error(`Condition ${condition} does not exist`);
     },
     checkMethodSyncBeforeMoveStep() {
       if (this.synchSelected === ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT) {

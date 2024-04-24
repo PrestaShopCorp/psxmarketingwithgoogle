@@ -28,15 +28,6 @@ export enum ProductFilterFieldConditions {
   MULTI_SELECT = 'multiSelect',
 }
 
-export enum ProductFilterConditionApi {
-  IS = 'is',
-  IS_NOT = 'is_not',
-  LOWER = 'lower',
-  GREATER = 'greater',
-  CONTAINS = 'contains',
-  DOES_NOT_CONTAIN = 'does_not_contain',
-}
-
 export default {
   ProductFilterNumericConditions,
   ProductFilterNumericArrayConditions,

@@ -63,7 +63,7 @@
         </div>
 
         <!-- CONDITIONS -->
-        <div v-if="attributeSelected.value !== typeAttributes.OUT_OF_STOCK">
+        <div v-if="attributeSelected.value !== 'outOfStock'">
           <p
             class="mb-0 font-weight-500"
             :class="{'text-primary-500': !attributeSelected.value}"
@@ -71,7 +71,7 @@
             {{ $t('productFeedSettings.productSelection.lineFilter.conditions.label') }}
           </p>
           <b-dropdown
-            v-if="attributeSelected.value !== typeAttributes.OUT_OF_STOCK"
+            v-if="attributeSelected.value !== 'outOfStock'"
             class="ps-dropdown psxmarketingwithgoogle-dropdown conditions"
             :class="{'error-field': filters.errors?.condition, 'h-100': !filters.errors?.value}"
             menu-class="ps-dropdown"
@@ -98,17 +98,17 @@
         <div>
           <p
             class="mb-0 font-weight-500"
-            :class="{'text-primary-500': !conditionSelected.length && attributeSelected.value !== typeAttributes.OUT_OF_STOCK}"
+            :class="{'text-primary-500': !conditionSelected.length && attributeSelected.value !== 'outOfStock'}"
           >
             {{ $t('productFeedSettings.productSelection.lineFilter.value.label') }}
           </p>
           <!-- VALUE / NUMBER -->
           <b-input-group
-            v-if="attributeSelected.value === typeAttributes.PRICE"
+            v-if="attributeSelected.value === 'price'"
             class="field-number"
             :class="{'error-field': filters.errors?.value}"
-            :append="attributeSelected.value === typeAttributes.PRICE && currencySymbol !== 'en-gb' ? currencySymbol : undefined"
-            :prepend="attributeSelected.value === typeAttributes.PRICE && currencySymbol === 'en-gb' ? currencySymbol : undefined"
+            :append="attributeSelected.value === 'price' && currencySymbol !== 'en-gb' ? currencySymbol : undefined"
+            :prepend="attributeSelected.value === 'price' && currencySymbol === 'en-gb' ? currencySymbol : undefined"
           >
             <b-form-input
               type="number"
@@ -120,7 +120,7 @@
           </b-input-group>
           <!-- VALUE / BOOLEAN -->
           <b-dropdown
-            v-if="attributeSelected.value === typeAttributes.OUT_OF_STOCK"
+            v-if="attributeSelected.value === 'outOfStock'"
             class="ps-dropdown psxmarketingwithgoogle-dropdown value-boolean"
             :class="{'error-field': filters.errors?.value}"
             menu-class="ps-dropdown"
@@ -138,7 +138,7 @@
           </b-dropdown>
           <!-- VALUE / MULTI-SELECT -->
           <multi-select-value
-            v-else-if="conditionSelected === typeStringCondition.IS_IN || conditionSelected === typeStringCondition.IS_NOT"
+            v-else-if="conditionSelected === 'isIn' || conditionSelected === 'isNot'"
             class="multi-select"
             :class="{'error-field': filters.errors?.value}"
             :dropdown-options="productFiltered"
@@ -150,8 +150,8 @@
           <!-- VALUE / FREE FIELD -->
           <input-text-with-tag
             v-else-if="
-              attributeSelected.value !== typeAttributes.PRICE && !conditionSelected.length || attributeSelected.value === typeAttributes.PRODUCT_ID || conditionSelected === typeStringCondition.CONTAINS
-                || conditionSelected === typeStringCondition.NOT_CONTAIN"
+              attributeSelected.value !== 'price' && !conditionSelected.length || attributeSelected.value === 'productId' || conditionSelected === 'contains'
+                || conditionSelected === 'notContain'"
             :disabled="!conditionSelected.length"
             :default-value="valuesSelected"
             :class="{'error-field': filters.errors?.value}"
@@ -215,9 +215,7 @@ export default defineComponent({
     return {
       features: featureMock,
       defaultAttributeIsSelected: false,
-      typeAttributes: ProductFilterDefaultAttributes,
       attributeSelected: {id: '', value: ''},
-      typeStringCondition: ProductFilterStringConditions,
       conditionSelected: '',
       conditionTypeSelected: '',
       valueSelected: null as ProductFilterValue,
