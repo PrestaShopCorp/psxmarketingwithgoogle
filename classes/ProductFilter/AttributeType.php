@@ -28,7 +28,6 @@ class AttributeType
 {
     const BRAND = 'brand';
     const CATEGORY = 'category';
-    const CUSTOM_ATTRIBUTE = 'attribute';
     const FEATURE = 'feature';
     const PRICE = 'price';
     const PRODUCT_ID = 'id';
@@ -39,7 +38,6 @@ class AttributeType
         return [
             static::BRAND,
             static::CATEGORY,
-            static::CUSTOM_ATTRIBUTE,
             static::FEATURE,
             static::PRICE,
             static::PRODUCT_ID,
