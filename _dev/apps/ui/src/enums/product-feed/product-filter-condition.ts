@@ -23,7 +23,7 @@ export enum ProductFilterBooleanConditions {
 
 export enum ProductFilterFieldConditions {
   NUMERIC = 'numeric',
-  NUMERIC_OR_NUMAREIC_ARRAY = 'numericArray',
+  NUMERIC_ARRAY = 'numericArray',
   STRING = 'string',
   MULTI_SELECT = 'multiSelect',
 }
