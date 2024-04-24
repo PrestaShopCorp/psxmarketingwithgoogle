@@ -9,9 +9,15 @@ export enum ProductFilterNumericArrayConditions {
   IS_NOT_EQUAL_TO = 'isNotEqualTo',
 }
 
+// TODO: c'est pas propre...
 export enum ProductFilterStringConditions {
   CONTAINS = 'contains',
   NOT_CONTAIN = 'notContain',
+  IS_IN = 'isIn',
+  IS_NOT = 'isNot'
+}
+
+export enum ProductFilterMultiSelectConditions {
   IS_IN = 'isIn',
   IS_NOT = 'isNot'
 }
@@ -41,6 +47,7 @@ export default {
   ProductFilterNumericConditions,
   ProductFilterNumericArrayConditions,
   ProductFilterStringConditions,
+  ProductFilterMultiSelectConditions,
   ProductFilterBooleanConditions,
   ProductFilterFieldConditions,
   ProductFilterConditionApi,
