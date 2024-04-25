@@ -37,15 +37,11 @@ class BrandOptionsProvider implements OptionsProviderInterface
 
     public function getOptions(): array
     {
-        $options = [];
-
-        foreach ($this->manufacturerRepository->getManufacturersList() as $brand) {
-            $options[] = [
+        return array_map(function ($brand) {
+            return [
                 'id' => $brand['id'],
                 'value' => $brand['name'],
             ];
-        }
-
-        return $options;
+        }, $this->manufacturerRepository->getManufacturersList());
     }
 }
