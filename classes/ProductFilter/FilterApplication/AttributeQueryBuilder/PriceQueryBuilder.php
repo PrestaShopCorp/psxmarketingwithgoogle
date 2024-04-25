@@ -27,7 +27,6 @@ class PriceQueryBuilder implements QueryBuilderInterface
 {
     public function addWhereFromFilter(DbQuery $query, $filter): DbQuery
     {
-        // TODO add not contain
         switch ($filter['condition']) {
             case Condition::GREATER:
                 return $query->where('(
