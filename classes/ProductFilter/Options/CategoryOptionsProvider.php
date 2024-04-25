@@ -37,15 +37,11 @@ class CategoryOptionsProvider implements OptionsProviderInterface
 
     public function getOptions(): array
     {
-        $options = [];
-
-        foreach ($this->categoryRepository->getCategoriesList() as $category) {
-            $options[] = [
+        return array_map(function ($category) {
+            return [
                 'id' => $category['id'],
                 'value' => $category['name'],
             ];
-        }
-
-        return $options;
+        }, $this->categoryRepository->getCategoriesList());
     }
 }
