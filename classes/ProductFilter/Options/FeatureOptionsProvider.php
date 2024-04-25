@@ -50,7 +50,7 @@ class FeatureOptionsProvider implements OptionsProviderInterface
         $options = [];
         foreach ($rawData as $rawAttribute) {
             // find existing attribute group to modify it...
-            foreach ($options as &$option) {
+            foreach ($options as $option) {
                 if ($option['id'] === $rawAttribute['id_feature']) {
                     $option['values'][] = [
                         'id' => $rawAttribute['id_feature_value'],
