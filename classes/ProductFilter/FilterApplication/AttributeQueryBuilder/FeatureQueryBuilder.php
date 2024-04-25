@@ -58,7 +58,7 @@ class FeatureQueryBuilder implements QueryBuilderInterface
         $uniqueFeature = [];
 
         foreach ($filter['values'] as $value) {
-            if (!isset($uniqueFeature)) {
+            if (!isset($uniqueFeature[$value['id']])) {
                 $uniqueFeature[$value['id']] = $value;
             }
         }
