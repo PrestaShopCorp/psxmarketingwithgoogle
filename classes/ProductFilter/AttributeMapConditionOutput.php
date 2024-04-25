@@ -29,7 +29,7 @@ class AttributeMapConditionOutput
 
     const MAP = [
         AttributeType::BRAND => [
-            Condition::CONTAINS => [
+            Condition::DOES_CONTAIN => [
                 'multiple' => true,
                 'type' => self::STRING,
             ],
@@ -49,7 +49,7 @@ class AttributeMapConditionOutput
             ],
         ],
         AttributeType::CATEGORY => [
-            Condition::CONTAINS => [
+            Condition::DOES_CONTAIN => [
                 'multiple' => true,
                 'type' => self::STRING,
             ],
