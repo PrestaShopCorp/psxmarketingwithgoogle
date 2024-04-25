@@ -55,36 +55,31 @@ class FeatureQueryBuilder implements QueryBuilderInterface
 
     public function addWhereFromFilter(DbQuery $query, $filter): DbQuery
     {
-        /*
-        Example of content of $filter:
+        $uniqueFeature = [];
 
-        {
-            "attribute": "feature",
-            "condition": "in",
-            "values": [
-                {
-                    "id": "6",
-                    "key": "Brasserie",
-                    "value": "BRASSERIE DES LEGENDES",
-                    "language": "fr"
-                },
-                {
-                    "id": "6",
-                    "key": "Brasserie",
-                    "value": "BRASSERY DES LEGENDES",
-                    "language": "gb"
-                }
-            ]
+        foreach ($filter['values'] as $value) {
+            if (!isset($uniqueFeature)) {
+                $uniqueFeature[$value['id']] = $value;
+            }
         }
-        */
+
+        $uniqueFeature = array_values($uniqueFeature);
 
         switch ($filter['condition']) {
             case Condition::IS:
-                // TODO
-                return $query;
+                $queryConditions = [];
+                foreach ($uniqueFeature as $value) {
+                    $queryConditions[] = 'fvl.value = "' . pSQL($value['value']) . '"';
+                }
+
+                return $query->where('fl.name = "' . pSQL($uniqueFeature[0]['key']) . '" AND (' . implode(' OR ', $queryConditions) . ')');
             case Condition::IS_NOT:
-                // TODO
-                return $query;
+                $queryConditions = [];
+                foreach ($uniqueFeature as $value) {
+                    $queryConditions[] = 'fvl.value <> "' . pSQL($value['value']) . '"';
+                }
+
+                return $query->where('fl.name = "' . pSQL($uniqueFeature[0]['key']) . '" AND (' . implode(' OR ', $queryConditions) . ')');
         }
 
         return $query;
@@ -94,9 +89,8 @@ class FeatureQueryBuilder implements QueryBuilderInterface
     {
         return $query
             ->leftJoin('feature_product', 'fp', 'fp.id_product = p.id_product')
-            ->innerJoin('feature', 'f', 'fp.id_feature = f.id_feature')
-            ->innerJoin('feature_shop', 'fs', 'fs.id_feature = f.id_feature')
-            ->innerJoin('feature_lang', 'fl', 'fl.id_feature = f.id_feature')
+            ->innerJoin('feature_shop', 'fs', 'fs.id_feature = fp.id_feature')
+            ->innerJoin('feature_lang', 'fl', 'fl.id_feature = fp.id_feature')
             ->innerJoin('feature_value', 'fv', 'fv.id_feature = fp.id_feature')
             ->innerJoin('feature_value_lang', 'fvl', 'fvl.id_feature_value = fv.id_feature_value')
             ->where('fs.id_shop = ' . (int) $this->context->shop->id)
