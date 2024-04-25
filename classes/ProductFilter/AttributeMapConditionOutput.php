@@ -104,12 +104,12 @@ class AttributeMapConditionOutput
             ],
         ],
         AttributeType::FEATURE => [
-            CONDITION::IS => [
+            Condition::IS => [
                 'multiple' => true,
                 'type' => self::OBJECT,
                 'keys' => ['id', 'key', 'value', 'language'],
             ],
-            CONDITION::IS_NOT => [
+            Condition::IS_NOT => [
                 'multiple' => true,
                 'type' => self::OBJECT,
                 'keys' => ['id', 'key', 'value', 'language'],
