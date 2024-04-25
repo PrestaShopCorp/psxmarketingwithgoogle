@@ -28,7 +28,7 @@ class BrandQueryBuilder implements QueryBuilderInterface
     public function addWhereFromFilter(DbQuery $query, $filter): DbQuery
     {
         switch ($filter['condition']) {
-            case Condition::CONTAINS:
+            case Condition::DOES_CONTAIN:
                 $queryConditions = [];
                 foreach ($filter['values'] as $value) {
                     $queryConditions[] = 'm.name LIKE "%' . pSQL($value) . '%"';

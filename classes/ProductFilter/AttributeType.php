@@ -31,7 +31,7 @@ class AttributeType
     const FEATURE = 'feature';
     const PRICE = 'price';
     const PRODUCT_ID = 'id';
-    const OUT_OF_STOCK = 'out of stock';
+    const OUT_OF_STOCK = 'out_of_stock';
 
     public static function all()
     {
