@@ -41,7 +41,7 @@ class CategoryQueryBuilder implements QueryBuilderInterface
         // At the time of implementation, CloudSync gets only the default category of the product.
         // We add the condition based on the default category here as well.
         switch ($filter['condition']) {
-            case Condition::CONTAINS:
+            case Condition::DOES_CONTAIN:
                 $queryConditions = [];
                 foreach ($filter['values'] as $value) {
                     $queryConditions[] = 'cl.name LIKE "%' . pSQL($value) . '%"';

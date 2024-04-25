@@ -46,7 +46,7 @@ class FilterValidatorTest extends TestCase
             $filterValidator->validate([
                 [
                     'attribute' => AttributeType::BRAND,
-                    'condition' => Condition::CONTAINS,
+                    'condition' => Condition::DOES_CONTAIN,
                     'values' => ['Brand 1', 'Brand 2'],
                 ],
                 [
@@ -98,7 +98,7 @@ class FilterValidatorTest extends TestCase
         $filterValidator->validate([
             [
                 'attribute' => '🥸',
-                'condition' => Condition::CONTAINS,
+                'condition' => Condition::DOES_CONTAIN,
                 'values' => ['🐶', '🥸'],
             ],
         ]);
@@ -142,7 +142,7 @@ class FilterValidatorTest extends TestCase
             [
                 [
                     'attribute' => AttributeType::BRAND,
-                    'condition' => Condition::CONTAINS,
+                    'condition' => Condition::DOES_CONTAIN,
                     'value' => '🐶',
                 ],
                 'Filter #0 is malformed, a field "values" is excepted instead of "value".',
@@ -150,7 +150,7 @@ class FilterValidatorTest extends TestCase
             [
                 [
                     'attribute' => AttributeType::BRAND,
-                    'condition' => Condition::CONTAINS,
+                    'condition' => Condition::DOES_CONTAIN,
                     'values' => '🐶',
                 ],
                 'Filter #0 is malformed, "values" field need to be an array of value.',
@@ -158,14 +158,14 @@ class FilterValidatorTest extends TestCase
             [
                 [
                     'attribute' => AttributeType::BRAND,
-                    'condition' => Condition::CONTAINS,
+                    'condition' => Condition::DOES_CONTAIN,
                 ],
                 'Filter #0 requires a "values" field.',
             ],
             [
                 [
                     'attribute' => AttributeType::BRAND,
-                    'condition' => Condition::CONTAINS,
+                    'condition' => Condition::DOES_CONTAIN,
                     'values' => [1, 2, 3],
                 ],
                 'Value 1 of filter #0 must be a string.',
@@ -308,7 +308,7 @@ class FilterValidatorTest extends TestCase
             [
                 [
                     'attribute' => AttributeType::CATEGORY,
-                    'condition' => Condition::CONTAINS,
+                    'condition' => Condition::DOES_CONTAIN,
                     'value' => '🐶',
                 ],
                 'Filter #0 is malformed, a field "values" is excepted instead of "value".',
@@ -316,7 +316,7 @@ class FilterValidatorTest extends TestCase
             [
                 [
                     'attribute' => AttributeType::CATEGORY,
-                    'condition' => Condition::CONTAINS,
+                    'condition' => Condition::DOES_CONTAIN,
                     'values' => '🐶',
                 ],
                 'Filter #0 is malformed, "values" field need to be an array of value.',
@@ -324,14 +324,14 @@ class FilterValidatorTest extends TestCase
             [
                 [
                     'attribute' => AttributeType::CATEGORY,
-                    'condition' => Condition::CONTAINS,
+                    'condition' => Condition::DOES_CONTAIN,
                 ],
                 'Filter #0 requires a "values" field.',
             ],
             [
                 [
                     'attribute' => AttributeType::CATEGORY,
-                    'condition' => Condition::CONTAINS,
+                    'condition' => Condition::DOES_CONTAIN,
                     'values' => [1, 2, 3],
                 ],
                 'Value 1 of filter #0 must be a string.',
