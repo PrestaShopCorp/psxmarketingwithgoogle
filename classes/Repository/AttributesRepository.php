@@ -23,7 +23,6 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\Repository;
 use Context;
 use Db;
 use DbQuery;
-use Shop;
 
 class AttributesRepository
 {
