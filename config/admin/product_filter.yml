@@ -1,11 +1,4 @@
 services:
-  PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\AttributeOptionsProvider:
-    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\AttributeOptionsProvider
-    public: true
-    arguments:
-      - '@PrestaShop\Module\PsxMarketingWithGoogle\Repository\AttributesRepository'
-      - '@PrestaShop\Module\PsxMarketingWithGoogle\Repository\LanguageRepository'
-
   PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\BrandOptionsProvider:
     class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\BrandOptionsProvider
     public: true
@@ -42,10 +35,6 @@ services:
     public: true
     arguments:
       - '@psxmarketingwithgoogle.context'
-
-  PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\CustomAttributeQueryBuilder:
-    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\CustomAttributeQueryBuilder
-    public: true
 
   PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\FeatureQueryBuilder:
     class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\FeatureQueryBuilder
