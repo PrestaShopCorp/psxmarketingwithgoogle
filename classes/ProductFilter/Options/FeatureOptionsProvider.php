@@ -49,21 +49,18 @@ class FeatureOptionsProvider implements OptionsProviderInterface
 
         $options = [];
         foreach ($rawData as $rawAttribute) {
-            // find existing attribute group to modify it...
-            foreach ($options as $option) {
-                if ($option['id'] === $rawAttribute['id_feature']) {
-                    $option['values'][] = [
-                        'id' => $rawAttribute['id_feature_value'],
-                        'key' => $rawAttribute['feature_name'],
-                        'value' => $rawAttribute['value'],
-                        'language' => $this->languageRepository->getIsoById($rawAttribute['id_lang']),
-                    ];
-                    continue 2;
-                }
+            if (isset($options[$rawAttribute['id_feature']])) {
+                $options[$rawAttribute['id_feature']]['values'][] = [
+                    'id' => $rawAttribute['id_feature_value'],
+                    // Repeat key to ease the creation of payload when value is selected
+                    'key' => $rawAttribute['feature_name'],
+                    'value' => $rawAttribute['value'],
+                    'language' => $this->languageRepository->getIsoById($rawAttribute['id_lang']),
+                ];
+                continue;
             }
 
-            // ... or push a new one
-            $options[] = [
+            $options[$rawAttribute['id_feature']] = [
                 'id' => $rawAttribute['id_feature'],
                 'key' => $rawAttribute['feature_name'],
                 'values' => [
@@ -78,6 +75,6 @@ class FeatureOptionsProvider implements OptionsProviderInterface
             ];
         }
 
-        return $options;
+        return array_values($options);
     }
 }
