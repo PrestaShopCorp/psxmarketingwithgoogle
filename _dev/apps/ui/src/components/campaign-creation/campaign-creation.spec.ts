@@ -81,15 +81,13 @@ describe('campaign-creation.vue - Campaign creation', () => {
 
   it('should display the proper currency', async () => {
     const inputGroup = wrapper.find('[data-test-id="campaign-dailyBudget-input-group"]');
-    expect(inputGroup.attributes('prepend')).toEqual('€');
-    expect(inputGroup.attributes('append')).toEqual('EUR');
+    expect(inputGroup.attributes('append')).toEqual('€');
 
     wrapper.vm.$store.state.googleAds.accountChosen.currencyCode = 'USD';
     await wrapper.vm.$nextTick();
 
     const inputGroupWithDollars = wrapper.find('[data-test-id="campaign-dailyBudget-input-group"]');
-    expect(inputGroupWithDollars.attributes('prepend')).toEqual('$');
-    expect(inputGroupWithDollars.attributes('append')).toEqual('USD');
+    expect(inputGroupWithDollars.attributes('append')).toEqual('$');
   });
 });
 
