@@ -308,12 +308,12 @@
                 >
                   {{ $tc(
                     'smartShoppingCampaignCreation.filtersWithxValues',
-                    this.totalProducts,
+                    totalProducts,
                     [
                       $t(`smartShoppingCampaignCreation.${dimensionName}`),
-                      this.totalProducts,
+                      totalProducts,
                     ],
-                  ),
+                  )
                   }}
                 </div>
               </div>
@@ -379,7 +379,7 @@
               {{ $t("smartShoppingCampaignCreation.formHelperDescription") }}
             </p>
             <b-form-checkbox
-              v-if="editMode === true"
+              v-if="editMode"
               switch
               size="lg"
               class="ps_gs-switch mb-3"
@@ -532,16 +532,11 @@ export default defineComponent({
       );
     },
     disableCreateCampaign() {
-      if (
-        this.campaignNameFeedback === true
+      return !(this.campaignNameFeedback === true
         && this.campaignDurationStartDate
         && this.targetAudienceCountry
         && this.campaignDailyBudgetFeedback.result === true
-        && this.campaignEndDateFeedback !== false
-      ) {
-        return false;
-      }
-      return true;
+        && this.campaignEndDateFeedback !== false);
     },
     minimunEndDate() {
       return new Date(Math.max(new Date(this.campaignDurationStartDate), new Date()));
@@ -629,7 +624,7 @@ export default defineComponent({
       return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN']
         ?.currencyCode;
     },
-    currencySymbol(): string {
+    currencySymbol(): string | undefined {
       return this.$options.filters?.formatPrice(0, this.currency).replace(/[\s.,0]*/g, '');
     },
     finalCampaignFilters() {
@@ -868,7 +863,7 @@ export default defineComponent({
   async mounted() {
     window.scrollTo(0, 0);
 
-    if (this.editMode === true) {
+    if (this.editMode) {
       if (!this.campaignsList.length) {
         await this.$store.dispatch('campaigns/GET_CAMPAIGNS_LIST');
       }
