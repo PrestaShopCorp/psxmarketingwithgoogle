@@ -18,42 +18,26 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\PsxMarketingWithGoogle\Adapter;
+namespace PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder;
 
-use Configuration;
+use DbQuery;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Condition;
 
-class ConfigurationAdapter
+class OutOfStockQueryBuilder implements QueryBuilderInterface
 {
-    /**
-     * @var int
-     */
-    private $shopId;
-
-    public function __construct($shopId)
+    public function addWhereFromFilter(DbQuery $query, $filter): DbQuery
     {
-        $this->shopId = $shopId;
-    }
+        if ($filter['condition'] === Condition::IS) {
+            $wantOnlyInStock = $filter['value'] === false;
 
-    public function get($key, $idLang = null, $idShopGroup = null, $idShop = null, $default = false)
-    {
-        if ($idShop === null) {
-            $idShop = $this->shopId;
+            return $wantOnlyInStock ? $query->where('sa.quantity > 0') : $query;
         }
 
-        return Configuration::get($key, $idLang, $idShopGroup, $idShop, $default);
+        return $query;
     }
 
-    public function updateValue($key, $values, $html = false, $idShopGroup = null, $idShop = null)
+    public function addRelations(DbQuery $query): DbQuery
     {
-        if ($idShop === null) {
-            $idShop = $this->shopId;
-        }
-
-        return Configuration::updateValue($key, $values, $html, $idShopGroup, $idShop);
-    }
-
-    public function deleteByName($key)
-    {
-        return Configuration::deleteByName($key);
+        return $query->innerJoin('stock_available', 'sa', 'p.id_product = sa.id_product');
     }
 }
