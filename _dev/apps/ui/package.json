@@ -14,7 +14,7 @@
     "watch": "vite build --mode=development --watch",
     "lint": "eslint --no-fix -c .eslintrc.js src/",
     "lint-fix": "eslint --fix -c .eslintrc.js src/",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "npm run check-for-jest-test-output && storybook dev -p 6006",
     "build-storybook": "npm run check-for-jest-test-output && storybook build",
     "test:generate-output": "vitest run --reporter=json --outputFile=.jest-test-results.json",
     "test:unit": "vitest",
