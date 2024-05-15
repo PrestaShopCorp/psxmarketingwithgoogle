@@ -74,7 +74,7 @@
       v-if="synchSelected === typeMethodsSynch.SYNCH_FILTERED_PRODUCT"
       variant="outline-secondary"
       class="mt-3"
-      @click="addNewFilter()"
+      @click="addNewFilter"
       :disabled="!filtersAreValid"
     >
       <i class="material-icons ps_gs-fz-20">add</i>
@@ -115,7 +115,7 @@
     <actions-buttons
       :next-step="nextStep"
       :previous-step="previousStep"
-      @cancelProductFeedSettingsConfiguration="cancel()"
+      @cancelProductFeedSettingsConfiguration="cancel"
     />
   </div>
 </template>
@@ -126,29 +126,22 @@ import ActionsButtons from '@/components/product-feed/settings/commons/actions-b
 import LineFilter from '@/components/product-feed/settings/product-selection/line-filter.vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
+import FilterValidator from '@/components/product-feed/settings/product-selection/filterValidator';
 import {
   ProductFilter,
   ProductFilterErrors,
-  ProductFilterToSend,
+  CleanProductFilter, type FeatureOption, type Feature,
 } from '@/components/product-feed/settings/product-selection/type';
+import ATTRIBUTE_MAP_CONDITION from '@/components/product-feed/settings/product-selection/attributeMapCondition';
+import ProductFilterAttributes from '@/enums/product-feed/product-filter-attributes';
 import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
-import {
-  ProductFilterConditionApi,
-  ProductFilterMultiSelectConditions,
-  ProductFilterNumericArrayConditions,
-  ProductFilterNumericConditions,
-  ProductFilterStringConditions,
-} from '@/enums/product-feed/product-filter-condition';
-import ProductFilterDefaultAttributes from '@/enums/product-feed/product-filter-default-attributes';
-
-function uuidv4() {
-  // eslint-disable-next-line no-bitwise, no-mixed-operators
-  return '10000000-1000-4000-8000-100000000000'.replace(/[018]/g, (c) => (+c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> +c / 4).toString(16),
-  );
-}
+import ProductFilterValueType from '@/enums/product-feed/product-filter-value-type';
+import ActionsTypes from '@/store/modules/product-feed/actions-types';
+import MutationsTypes from '@/store/modules/product-feed/mutations-types';
+import GetterTypes from '@/store/modules/product-feed/getters-types';
 
 const newFilter = () => ({
-  id: uuidv4(),
+  id: crypto.randomUUID(),
 });
 
 const localStorageName = 'productFeed-productFilter';
@@ -172,115 +165,162 @@ export default defineComponent({
     };
   },
   methods: {
+    getFeatureByOptions(options: FeatureOption[]): Feature | undefined {
+      function featureContainValues(feature: Feature, values: FeatureOption[]) {
+        return values.every(
+          (value: FeatureOption) => feature.values.some(
+            (featureValue: FeatureOption) => featureValue.id === value.id,
+          ),
+        );
+      }
+
+      return this.features.find((feature: Feature) => featureContainValues(feature, options));
+    },
+    // used to create new filter for front with saved filter.
+    recoverFilter(filter: CleanProductFilter): ProductFilter {
+      const recoveredFilter = {
+        ...newFilter(),
+        ...filter,
+      };
+
+      if (recoveredFilter.attribute === ProductFilterAttributes.FEATURE
+        && recoveredFilter.values?.length) {
+        const feature = this.getFeatureByOptions(recoveredFilter.values);
+
+        if (feature) {
+          recoveredFilter.attribute = feature.id;
+        }
+      }
+
+      return recoveredFilter;
+    },
+
+    convertStringBooleanToBoolean(value: any): any {
+      if (typeof value !== 'string') {
+        return value;
+      }
+      if (value.toLowerCase() === 'true') {
+        return true;
+      }
+      if (value.toLowerCase() === 'false') {
+        return false;
+      }
+      return value;
+    },
+    convertStringToNumber(value: any): any {
+      if (!Number.isNaN(value) && !Number.isNaN(parseFloat(value))) {
+        return Number(value);
+      }
+      return value;
+    },
+    // used to format filter before saving and sending it.
+    cleanFilter(filter: ProductFilter): CleanProductFilter {
+      const cleanFilter: CleanProductFilter = {
+        attribute:
+          filter.attribute === undefined
+          || Object.keys(ATTRIBUTE_MAP_CONDITION).includes(filter.attribute as string)
+            ? filter.attribute as string
+            : ProductFilterAttributes.FEATURE,
+        condition: filter.condition as string,
+      };
+
+      if (!cleanFilter.attribute || !cleanFilter.condition) {
+        return cleanFilter;
+      }
+
+      if (ATTRIBUTE_MAP_CONDITION[cleanFilter.attribute][cleanFilter.condition].multiple) {
+        switch (ATTRIBUTE_MAP_CONDITION[cleanFilter.attribute][cleanFilter.condition].type) {
+          case ProductFilterValueType.BOOLEAN:
+            // eslint-disable-next-line max-len
+            cleanFilter.values = filter.values?.map((value) => this.convertStringBooleanToBoolean(value));
+            break;
+          case ProductFilterValueType.INT:
+            cleanFilter.values = filter.values?.map(
+              (value) => this.convertStringToNumber(value),
+            );
+            break;
+          default:
+            cleanFilter.values = filter.values;
+        }
+      } else {
+        switch (ATTRIBUTE_MAP_CONDITION[cleanFilter.attribute][cleanFilter.condition].type) {
+          case ProductFilterValueType.BOOLEAN:
+            cleanFilter.value = this.convertStringBooleanToBoolean(filter.value);
+            break;
+          case ProductFilterValueType.INT:
+            cleanFilter.value = this.convertStringToNumber(filter.value);
+            break;
+          default:
+            cleanFilter.value = filter.value;
+        }
+      }
+
+      return cleanFilter;
+    },
+    getCleanFilters() {
+      return this.listFilters.map((filter) => this.cleanFilter(filter));
+    },
+
     checkFiltersValidity(sendError: boolean) {
       let validity = true;
 
-      if (this.synchSelected === ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT) {
-        this.listFilters.forEach((filter, index) => {
-          const errors: ProductFilterErrors = {
-            attribute: undefined,
-            condition: undefined,
-            value: undefined,
-            ...this.listFilters[index].errors,
-          };
+      this.listFilters.forEach((filter, index) => {
+        const cleanFilter = this.cleanFilter(filter);
+        const validator = new FilterValidator();
+        validator.validate(cleanFilter);
 
-          if (!filter.attribute) {
-            if (sendError) {
-              errors.attribute = this.$t('productFeedSettings.productSelection.lineFilter.errors.empty') as string;
-            }
-            validity = false;
-          } else {
-            errors.attribute = undefined;
+        let errors: ProductFilterErrors = {
+          attribute: undefined,
+          condition: undefined,
+          value: undefined,
+          ...this.listFilters[index].errors,
+        };
+
+        if (!validator.isValid) {
+          validity = false;
+          if (sendError) {
+            errors = {
+              ...errors,
+              ...validator.errors,
+            };
           }
+        }
 
-          if (filter.attribute !== 'outOfStock' && !filter.condition) {
-            if (sendError) {
-              errors.condition = this.$t('productFeedSettings.productSelection.lineFilter.errors.empty') as string;
-            }
-            validity = false;
-          } else {
-            errors.condition = undefined;
+        if (!sendError) {
+          if (errors.attribute && !validator.errors.attribute) {
+            delete errors.attribute;
           }
-
-          if (filter.conditionType === 'numeric' && filter.value === null) {
-            if (sendError) {
-              errors.value = this.$t('productFeedSettings.productSelection.lineFilter.errors.invalidNumber') as string;
-            }
-            validity = false;
-          } else if (!(filter.value || filter.values?.length)) {
-            if (sendError) {
-              errors.value = this.$t('productFeedSettings.productSelection.lineFilter.errors.empty') as string;
-            }
-            validity = false;
-          } else if (filter.conditionType === 'numericArray' && filter.values?.length && !filter.values?.every((value) => !Number.isNaN(Number(value)))) {
-            if (sendError) {
-              errors.value = 'il faut que les valeurs soient de type nombre' as string;
-            }
-            validity = false;
-          } else {
-            errors.value = undefined;
+          if (errors.condition && !validator.errors.condition) {
+            delete errors.condition;
           }
+          if (errors.value && !validator.errors.value) {
+            delete errors.value;
+          }
+        }
 
-          this.$set(
-            this.listFilters,
-            index,
-            {
-              ...this.listFilters[index],
-              errors,
-            });
-        });
-      }
+        this.$set(
+          this.listFilters,
+          index,
+          {
+            ...this.listFilters[index],
+            errors,
+          });
+      });
 
       this.filtersAreValid = validity;
     },
     saveFilters() {
-      localStorage.setItem(localStorageName, JSON.stringify(this.listFilters));
-      this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
-        name: 'productFilter', data: this.getCleanFilters(),
+      const filters = this.getCleanFilters();
+      localStorage.setItem(localStorageName, JSON.stringify(filters));
+      this.$store.commit(`productFeed/${MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS}`, {
+        name: 'productFilter', data: filters,
       });
     },
     deleteFilters() {
       localStorage.removeItem(localStorageName);
-      this.$store.commit('productFeed/SET_SELECTED_PRODUCT_FEED_SETTINGS', {
+      this.$store.commit(`productFeed/${MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS}`, {
         name: 'productFilter', data: [],
       });
-    },
-    getCleanFilters() {
-      return this.listFilters.map((filter) => {
-        const cleanFilter: ProductFilterToSend = {
-          attribute: filter.attribute ?? '',
-        };
-
-        if (filter.attribute === ProductFilterDefaultAttributes.OUT_OF_STOCK) {
-          cleanFilter.condition = 'is';
-        }
-
-        if (filter.condition) {
-          cleanFilter.condition = this.formatCondition(filter.condition);
-        }
-
-        if (filter.value) {
-          cleanFilter.value = filter.value;
-        } else if (filter.values?.length) {
-          cleanFilter.values = filter.values;
-        }
-
-        return cleanFilter;
-      });
-    },
-    formatCondition(condition) {
-      const map = {
-        [ProductFilterNumericConditions.IS_EQUAL_TO]: ProductFilterConditionApi.IS,
-        [ProductFilterMultiSelectConditions.IS_IN]: ProductFilterConditionApi.IS,
-        [ProductFilterNumericArrayConditions.IS_NOT_EQUAL_TO]: ProductFilterConditionApi.IS_NOT,
-        [ProductFilterMultiSelectConditions.IS_NOT]: ProductFilterConditionApi.IS_NOT,
-        [ProductFilterNumericConditions.IS_LESS_THAN]: ProductFilterConditionApi.LOWER,
-        [ProductFilterNumericConditions.IS_GREATER_THAN]: ProductFilterConditionApi.GREATER,
-        [ProductFilterStringConditions.CONTAINS]: ProductFilterConditionApi.CONTAINS,
-        [ProductFilterStringConditions.NOT_CONTAIN]: ProductFilterConditionApi.DOES_NOT_CONTAIN,
-      };
-
-      return map[condition];
     },
     checkMethodSyncBeforeMoveStep() {
       if (this.synchSelected === ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT) {
@@ -290,7 +330,7 @@ export default defineComponent({
       }
     },
     previousStep() {
-      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 3);
+      this.$store.commit(`productFeed/${MutationsTypes.SET_ACTIVE_CONFIGURATION_STEP}`, 3);
       this.$router.push({
         params: {
           name: 'product-feed-settings',
@@ -300,12 +340,15 @@ export default defineComponent({
       window.scrollTo(0, 0);
     },
     nextStep() {
-      this.checkFiltersValidity(true);
-      if (!this.filtersAreValid) {
-        return;
+      if (this.synchSelected === ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT) {
+        this.checkFiltersValidity(true);
+        if (!this.filtersAreValid) {
+          return;
+        }
       }
+
       this.checkMethodSyncBeforeMoveStep();
-      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 5);
+      this.$store.commit(`productFeed/${MutationsTypes.SET_ACTIVE_CONFIGURATION_STEP}`, 5);
       this.$router.push({
         name: 'product-feed-settings',
         params: {
@@ -338,10 +381,23 @@ export default defineComponent({
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
   },
-  mounted() {
+  computed: {
+    features(): Feature[] {
+      return this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER_FEATURES_OPTIONS}`];
+    },
+  },
+  async mounted() {
+    // get all data for filters
+    await this.$store.dispatch(`productFeed/${ActionsTypes.GET_SHOP_PRODUCT_FEATURES_OPTIONS}`);
+    await this.$store.dispatch(`productFeed/${ActionsTypes.GET_SHOP_CATEGORIES_OPTIONS}`);
+    await this.$store.dispatch(`productFeed/${ActionsTypes.GET_SHOP_BRANDS_OPTIONS}`);
+
+    // get data from localstorage > store OR create new empty filter
     this.listFilters = getDataFromLocalStorage(localStorageName)
-    || (this.$store.getters['productFeed/GET_PRODUCT_FILTER']?.length
-      ? this.$store.getters['productFeed/GET_PRODUCT_FILTER'].map((filter: ProductFilterToSend) => ({...filter, ...newFilter()}))
+      .map((filter: CleanProductFilter) => this.recoverFilter(filter))
+    || (this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER}`]?.length
+      ? this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER}`]
+        .map((filter: CleanProductFilter) => this.recoverFilter(filter))
       : [newFilter()]
     );
   },

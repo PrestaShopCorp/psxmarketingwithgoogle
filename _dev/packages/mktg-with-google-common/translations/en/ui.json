@@ -460,7 +460,9 @@
       "lineFilter": {
         "errors": {
           "empty": "This field is mandatory.",
-          "invalidNumber": "A number is required."
+          "invalidEntry": "Entry is not valid.",
+          "invalidNumber": "A number is required.",
+          "invalidPositiveNumber": "A positive number is required."
         },
         "attributes": {
           "label": "Attribute",
@@ -470,8 +472,8 @@
           "price": "Price (tax excluded)",
           "brand": "Brand",
           "category": "Category",
-          "productId": "Product ID",
-          "outOfStock": "Out of stock"
+          "id": "Product ID",
+          "out_of_stock": "Out of stock"
         },
         "conditions": {
           "label": "Condition",
