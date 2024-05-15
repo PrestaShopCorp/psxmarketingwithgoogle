@@ -185,11 +185,10 @@ import {
 } from '@/enums/product-feed/product-filter-condition';
 import type {
   ProductFilter, Attribute, ProductFilterValue, ProductFilterValues,
-  BrandOption, CategoryOption, FeatureOption, Feature,
+  Feature,
 } from './type';
 import ProductFilterValueType from '@/enums/product-feed/product-filter-value-type';
 import GetterTypes from '@/store/modules/product-feed/getters-types';
-import * as AppGetterTypes from '@/store/modules/app/getters-types';
 import ATTRIBUTE_MAP_CONDITION from './attributeMapCondition';
 
 export default defineComponent({
