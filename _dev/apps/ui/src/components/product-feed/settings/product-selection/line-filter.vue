@@ -66,7 +66,7 @@
         <div v-if="displayCondition">
           <p
             class="mb-0 font-weight-500"
-            :class="{'text-primary-500': !attributeSelected}"
+            :class="{'text-primary-500': !attributeSelected.id}"
           >
             {{ $t('productFeedSettings.productSelection.lineFilter.conditions.label') }}
           </p>
@@ -98,9 +98,9 @@
         <div>
           <p
             class="mb-0 font-weight-500"
-            :class="{'text-primary-500': !conditionSelected.length && attributeSelected.value !== ProductFilterAttributes.OUT_OF_STOCK}"
+            :class="{'text-primary-500': !conditionSelected }"
           >
-            {{ $t('productFeedSettings.productSelection.lineFilter.value.label') }}
+            {{ displayCondition ? $t('productFeedSettings.productSelection.lineFilter.value.label') : $t('productFeedSettings.productSelection.lineFilter.conditions.label') }}
           </p>
           <!-- VALUE / NUMBER -->
           <b-input-group
