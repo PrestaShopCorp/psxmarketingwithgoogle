@@ -1,19 +1,34 @@
-export interface Features {
+export interface FeatureOption {
+  id: number;
+  key: string;
   value: string;
-  id: string;
+  language: string;
 }
 
-export type ProductFilterValue = number|string|boolean|null;
+export interface Feature {
+  id: number;
+  key: string;
+  values: FeatureOption[];
+}
+
+export interface BrandOption {
+  id: number;
+  value: string;
+}
+
+export interface CategoryOption {
+  id: number;
+  value: string;
+}
+
+export type ProductFilterValue = number | string | boolean | null;
+// eslint-disable-next-line max-len
+export type ProductFilterValues = string[] | number[] | BrandOption[] | FeatureOption[] | CategoryOption[];
 
 export type ProductFilterErrors = {
   attribute?: string,
   condition?: string,
   value?: string,
-}
-
-export type ProductFilterValues = {
-  id: string,
-  value: string
 }
 
 export type ProductFilter = {
@@ -22,18 +37,18 @@ export type ProductFilter = {
   condition?: string,
   conditionType?: string,
   value?: ProductFilterValue,
-  values?: string[],
+  values?: ProductFilterValues,
   errors?: ProductFilterErrors
 }
 
-export type ProductFilterToSend = {
+export type CleanProductFilter = {
   attribute: string,
-  condition?: string,
+  condition: string,
   value?: ProductFilterValue,
-  values?: string[],
+  values?: ProductFilterValues,
 }
 
 export type Attribute = {
-  id: string,
+  id: string | number,
   value: string
 }

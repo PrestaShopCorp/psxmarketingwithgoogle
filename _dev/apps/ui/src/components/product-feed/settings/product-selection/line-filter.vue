@@ -9,9 +9,9 @@
             {{ $t('productFeedSettings.productSelection.lineFilter.attributes.label') }}
           </p>
           <b-dropdown
-            :text="attributesValues"
-            class="psxmarketingwithgoogle-dropdown ps-dropdown attributes"
-            :class="{'error-field': filters.errors?.attribute, 'h-100': !filters.errors?.value}"
+            :text="currentAttributesValue"
+            class="psxmarketingwithgoogle-dropdown ps-dropdown attributes h-100"
+            :class="{'error-field': filters.errors?.attribute}"
             menu-class="ps-dropdown"
           >
             <!-- DEFAULTS ATTRIBUTES -->
@@ -30,7 +30,7 @@
               <b-dropdown-item
                 v-for="(attribute, index) in defaultAttributesList"
                 :key="index"
-                :value="getSelectedLabel('attributes', attribute)"
+                :value="getSelectedLabel('attributes', attribute.value )"
                 @click="updateAttribute(attribute, true)"
               >
                 <span>{{ getSelectedLabel('attributes', attribute.value) }}</span>
@@ -55,60 +55,60 @@
             </b-dropdown-group>
           </b-dropdown>
           <p
-            v-if="filters.errors?.attribute"
+            v-if="hasError"
             class="error-message"
           >
-            {{ filters.errors?.attribute }}
+            {{ filters.errors?.attribute || '&nbsp;' }}
           </p>
         </div>
 
         <!-- CONDITIONS -->
-        <div v-if="attributeSelected.value !== typeAttributes.OUT_OF_STOCK">
+        <div v-if="displayCondition">
           <p
             class="mb-0 font-weight-500"
-            :class="{'text-primary-500': !attributeSelected.value}"
+            :class="{'text-primary-500': !attributeSelected}"
           >
             {{ $t('productFeedSettings.productSelection.lineFilter.conditions.label') }}
           </p>
           <b-dropdown
-            v-if="attributeSelected.value !== typeAttributes.OUT_OF_STOCK"
-            class="ps-dropdown psxmarketingwithgoogle-dropdown conditions"
-            :class="{'error-field': filters.errors?.condition, 'h-100': !filters.errors?.value}"
+            class="ps-dropdown psxmarketingwithgoogle-dropdown conditions h-100"
+            :class="{'error-field': filters.errors?.condition}"
             menu-class="ps-dropdown"
-            :text="conditionSelected.length ? getSelectedLabel('conditions', conditionSelected) : $t('productFeedSettings.productSelection.lineFilter.conditions.placeholder')"
+            :text="conditionSelected ? getSelectedLabel('conditions', availableAttributeConditions[conditionSelected].translation) : $t('productFeedSettings.productSelection.lineFilter.conditions.placeholder')"
             :disabled="!attributeSelected.value"
           >
             <b-dropdown-item
-              v-for="(type, index) in typeOfConditionSelection"
-              :key="index"
-              @click="updateCondition(type)"
+              v-for="(condition, key) in availableAttributeConditions"
+              :key="key"
+              :value="key"
+              @click="updateCondition(key)"
             >
               <span class="mr-2">
-                {{ getSelectedLabel('conditions', type) }}
+                {{ getSelectedLabel('conditions', condition.translation) }}
               </span>
             </b-dropdown-item>
           </b-dropdown>
           <p
             class="error-message"
-            v-if="filters.errors?.condition"
+            v-if="hasError"
           >
-            {{ filters.errors?.condition }}
+            {{ filters.errors?.condition || '&nbsp;' }}
           </p>
         </div>
         <div>
           <p
             class="mb-0 font-weight-500"
-            :class="{'text-primary-500': !conditionSelected.length && attributeSelected.value !== typeAttributes.OUT_OF_STOCK}"
+            :class="{'text-primary-500': !conditionSelected.length && attributeSelected.value !== ProductFilterAttributes.OUT_OF_STOCK}"
           >
             {{ $t('productFeedSettings.productSelection.lineFilter.value.label') }}
           </p>
           <!-- VALUE / NUMBER -->
           <b-input-group
-            v-if="attributeSelected.value === typeAttributes.PRICE"
+            v-if="displayInputNumber"
             class="field-number"
             :class="{'error-field': filters.errors?.value}"
-            :append="attributeSelected.value === typeAttributes.PRICE && currencySymbol !== 'en-gb' ? currencySymbol : undefined"
-            :prepend="attributeSelected.value === typeAttributes.PRICE && currencySymbol === 'en-gb' ? currencySymbol : undefined"
+            :append="attributeSelected.value === ProductFilterAttributes.PRICE && currencySymbol !== 'en-gb' ? currencySymbol : undefined"
+            :prepend="attributeSelected.value === ProductFilterAttributes.PRICE && currencySymbol === 'en-gb' ? currencySymbol : undefined"
           >
             <b-form-input
               type="number"
@@ -120,7 +120,7 @@
           </b-input-group>
           <!-- VALUE / BOOLEAN -->
           <b-dropdown
-            v-if="attributeSelected.value === typeAttributes.OUT_OF_STOCK"
+            v-if="displayBoolSelect"
             class="ps-dropdown psxmarketingwithgoogle-dropdown value-boolean"
             :class="{'error-field': filters.errors?.value}"
             menu-class="ps-dropdown"
@@ -138,10 +138,10 @@
           </b-dropdown>
           <!-- VALUE / MULTI-SELECT -->
           <multi-select-value
-            v-else-if="conditionSelected === typeMultiSelectCondition.IS_IN || conditionSelected === typeMultiSelectCondition.IS_NOT"
+            v-else-if="displayMultiSelect"
             class="multi-select"
             :class="{'error-field': filters.errors?.value}"
-            :dropdown-options="productFiltered"
+            :dropdown-options="currentAttributeOptions"
             :placeholder="placeholderMultiSelect"
             :disabled="!conditionSelected.length"
             :default-value="valuesSelected"
@@ -149,7 +149,7 @@
           />
           <!-- VALUE / FREE FIELD -->
           <input-text-with-tag
-            v-else-if="displayInputTextWithTag"
+            v-else-if="displayFreeField"
             :disabled="!conditionSelected.length"
             :default-value="valuesSelected"
             :class="{'error-field': filters.errors?.value}"
@@ -157,9 +157,9 @@
           />
           <p
             class="error-message"
-            v-if="filters.errors?.value"
+            v-if="hasError"
           >
-            {{ filters.errors?.value }}
+            {{ filters.errors?.value || '&nbsp;' }}
           </p>
         </div>
       </div>
@@ -179,20 +179,18 @@
 import {PropType, defineComponent} from 'vue';
 import MultiSelectValue from '@/components/commons/multi-select-value.vue';
 import InputTextWithTag from '@/components/commons/input-text-with-tag.vue';
-import ProductFilterDefaultAttributes from '@/enums/product-feed/product-filter-default-attributes';
+import ProductFilterAttributes from '@/enums/product-feed/product-filter-attributes';
 import {
   ProductFilterBooleanConditions,
-  ProductFilterFieldConditions,
-  ProductFilterNumericConditions,
-  ProductFilterNumericArrayConditions,
-  ProductFilterStringConditions,
-  ProductFilterMultiSelectConditions,
 } from '@/enums/product-feed/product-filter-condition';
-import featureMock from './features.json';
-import categoryOrBrand from './categoryOrBrand.json';
-import {
+import type {
   ProductFilter, Attribute, ProductFilterValue, ProductFilterValues,
+  BrandOption, CategoryOption, FeatureOption, Feature,
 } from './type';
+import ProductFilterValueType from '@/enums/product-feed/product-filter-value-type';
+import GetterTypes from '@/store/modules/product-feed/getters-types';
+import * as AppGetterTypes from '@/store/modules/app/getters-types';
+import ATTRIBUTE_MAP_CONDITION from './attributeMapCondition';
 
 export default defineComponent({
   name: 'LineFilter',
@@ -212,16 +210,12 @@ export default defineComponent({
   },
   data() {
     return {
-      features: featureMock,
+      ProductFilterAttributes,
       defaultAttributeIsSelected: false,
-      typeAttributes: ProductFilterDefaultAttributes,
-      attributeSelected: {id: '', value: ''},
-      typeMultiSelectCondition: ProductFilterMultiSelectConditions,
-      typeStringCondition: ProductFilterStringConditions,
+      attributeSelected: {id: '', value: ''} as Attribute,
       conditionSelected: '',
-      conditionTypeSelected: '',
       valueSelected: null as ProductFilterValue,
-      valuesSelected: [] as string[],
+      valuesSelected: [] as ProductFilterValues,
     };
   },
   methods: {
@@ -229,6 +223,11 @@ export default defineComponent({
       this.attributeSelected = attribute;
       this.defaultAttributeIsSelected = isDefault;
       this.updateCondition('');
+
+      // necessary cause if we got only one condition we don't display the condition field;
+      if (!this.displayCondition) {
+        this.updateCondition(Object.keys(ATTRIBUTE_MAP_CONDITION[attribute.value])[0]);
+      }
     },
     updateCondition(condition: string) {
       this.conditionSelected = condition;
@@ -239,41 +238,46 @@ export default defineComponent({
       this.valueSelected = value;
       this.onDataUpdate();
     },
-    updateValues(values: string[]) {
+    updateValues(values: ProductFilterValues) {
       this.valuesSelected = values;
       this.onDataUpdate();
     },
-    getSelectedLabel(field, item) {
+    getSelectedLabel(field: string, item: string) {
       return this.$i18n.t(`productFeedSettings.productSelection.lineFilter.${field}.${item}`);
     },
     onDataUpdate() {
       this.$emit('dataUpdated', {
         attribute: this.attributeSelected.id,
         condition: this.conditionSelected,
-        conditionType: this.conditionTypeSelected,
         value: this.valueSelected,
         values: this.valuesSelected,
       });
     },
-    getValuesOfFeaturesByLanguage() {
-      const result: ProductFilterValues[] = [];
-      this.features.forEach((feature) => {
-        feature.values.forEach((value) => {
-          if (value.language === this.$i18n.locale.toLowerCase()) {
-            result.push({value: value.value, id: value.id});
-          }
-        });
-      });
-      return result;
-    },
   },
   computed: {
-    // Attribute Field
+    hasError(): Boolean {
+      return !!this.filters.errors?.attribute
+        || !!this.filters.errors?.condition
+        || !!this.filters.errors?.value;
+    },
+    // Features
+    features(): Feature[] {
+      return this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER_FEATURES_OPTIONS}`];
+    },
+    featuresList() {
+      return this.features.map((feature) => ({id: feature.id, value: feature.key}));
+    },
+
+    // Attribute
     defaultAttributesList() {
-      return Object.values(ProductFilterDefaultAttributes).map(
+      const attributes = Object
+        .keys(ATTRIBUTE_MAP_CONDITION)
+        .filter((val) => val !== ProductFilterAttributes.FEATURE);
+
+      return Object.values(attributes).map(
         (attribute) => ({id: attribute, value: attribute}));
     },
-    attributesValues() {
+    currentAttributesValue() {
       if (this.attributeSelected.value) {
         if (this.defaultAttributeIsSelected) {
           return this.getSelectedLabel('attributes', this.attributeSelected.value);
@@ -282,37 +286,63 @@ export default defineComponent({
       }
       return this.$i18n.t('productFeedSettings.productSelection.lineFilter.attributes.placeholder');
     },
-    featuresList() {
-      return this.features.map((feature) => ({id: feature.id, value: feature.key}));
-    },
-    // Conditions
-    typeOfConditionSelection() {
-      switch (this.conditionTypeSelected) {
-        case ProductFilterFieldConditions.NUMERIC:
-          return Object.values(ProductFilterNumericConditions);
-        case ProductFilterFieldConditions.STRING:
-          return Object.values(ProductFilterStringConditions);
-        case ProductFilterFieldConditions.MULTI_SELECT:
-          return Object.values(ProductFilterMultiSelectConditions);
-        case ProductFilterFieldConditions.NUMERIC_ARRAY:
-          return Object.values(ProductFilterNumericArrayConditions);
-        default:
-          return null;
+    currentAttributeType() {
+      if (this.defaultAttributeIsSelected) {
+        return this.attributeSelected.id;
       }
+      return ProductFilterAttributes.FEATURE;
+    },
+
+    // Conditions
+    displayCondition() {
+      return !this.attributeSelected
+        || Object.keys(ATTRIBUTE_MAP_CONDITION[this.currentAttributeType]).length > 1;
+    },
+    availableAttributeConditions() {
+      return this.defaultAttributeIsSelected
+        ? ATTRIBUTE_MAP_CONDITION[this.attributeSelected.value]
+        : ATTRIBUTE_MAP_CONDITION[ProductFilterAttributes.FEATURE];
+    },
+
+    // Fields
+    displayInputNumber() {
+      return ATTRIBUTE_MAP_CONDITION[this.currentAttributeType][this.conditionSelected]?.type
+        === ProductFilterValueType.INT
+        && !ATTRIBUTE_MAP_CONDITION[this.currentAttributeType][this.conditionSelected]?.multiple;
+    },
+    displayBoolSelect() {
+      return ATTRIBUTE_MAP_CONDITION[this.currentAttributeType][this.conditionSelected]?.type
+        === ProductFilterValueType.BOOLEAN;
+    },
+    displayMultiSelect() {
+      return ATTRIBUTE_MAP_CONDITION[this.currentAttributeType][this.conditionSelected]?.type
+        === ProductFilterValueType.OBJECT;
+    },
+    displayFreeField() {
+      return !this.attributeSelected.value
+        || !this.conditionSelected
+        || ([ProductFilterValueType.STRING, ProductFilterValueType.INT]
+          // eslint-disable-next-line max-len
+          .includes(ATTRIBUTE_MAP_CONDITION[this.currentAttributeType][this.conditionSelected]?.type)
+        && ATTRIBUTE_MAP_CONDITION[this.currentAttributeType][this.conditionSelected].multiple);
     },
     // Multi-select Field
     placeholderMultiSelect() {
       return this.$i18n.t('productFeedSettings.productSelection.lineFilter.value.selectValue') as string;
     },
-    productFiltered(): ProductFilterValues[] {
-      if (this.attributeSelected.id === ProductFilterDefaultAttributes.BRAND
-        || this.attributeSelected.id === ProductFilterDefaultAttributes.CATEGORY) {
-        return categoryOrBrand.map((value) => value);
+    currentAttributeOptions(): ProductFilterValues {
+      switch (this.currentAttributeType) {
+        case ProductFilterAttributes.BRAND:
+          return this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER_BRANDS_OPTIONS}`];
+        case ProductFilterAttributes.CATEGORY:
+          return this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER_CATEGORIES_OPTIONS}`];
+        case ProductFilterAttributes.FEATURE:
+          return this.features.find((el: Feature) => el.id === this.attributeSelected.id)
+            ?.values.filter((option) => option.language === this.$i18n.locale.toLowerCase())
+            || [];
+        default:
+          return [];
       }
-      if (!this.defaultAttributeIsSelected) {
-        return this.getValuesOfFeaturesByLanguage();
-      }
-      return [];
     },
     // Number Fied
     currency() {
@@ -325,39 +355,6 @@ export default defineComponent({
     booleanList() {
       return Object.values(ProductFilterBooleanConditions);
     },
-    // Free Field
-    displayInputTextWithTag() {
-      return (this.attributeSelected.value !== this.typeAttributes.PRICE
-      && !this.conditionSelected.length)
-      || this.attributeSelected.value === ProductFilterDefaultAttributes.PRODUCT_ID
-      || this.conditionSelected === ProductFilterStringConditions.CONTAINS
-      || this.conditionSelected === ProductFilterStringConditions.NOT_CONTAIN;
-    },
-  },
-  watch: {
-    attributeSelected() {
-      if (!this.defaultAttributeIsSelected) {
-        this.conditionTypeSelected = ProductFilterFieldConditions.MULTI_SELECT;
-        return;
-      }
-
-      if (this.attributeSelected.id !== ProductFilterDefaultAttributes.OUT_OF_STOCK) {
-        switch (this.attributeSelected.id) {
-          case ProductFilterDefaultAttributes.PRICE:
-            this.conditionTypeSelected = ProductFilterFieldConditions.NUMERIC;
-            break;
-          case ProductFilterDefaultAttributes.PRODUCT_ID:
-            this.conditionTypeSelected = ProductFilterFieldConditions.NUMERIC_ARRAY;
-            break;
-          case ProductFilterDefaultAttributes.BRAND:
-          case ProductFilterDefaultAttributes.CATEGORY:
-            this.conditionTypeSelected = ProductFilterFieldConditions.STRING;
-            break;
-          default:
-            throw new Error(`The selected attribute ${this.attributeSelected.id} is not recognized`);
-        }
-      }
-    },
   },
   mounted() {
     if (this.$props.filters.attribute) {
@@ -369,7 +366,7 @@ export default defineComponent({
         this.updateAttribute(defaultAttribute, true);
       } else {
         const featureAttribute = this.featuresList.find(
-          (el) => el.id === this.$props.filters.attribute,
+          (el) => Number(el.id) === Number(this.$props.filters.attribute),
         );
 
         if (featureAttribute) {
@@ -377,9 +374,11 @@ export default defineComponent({
         }
       }
     }
+
     if (this.$props.filters.condition) {
       this.updateCondition(this.$props.filters.condition);
     }
+
     if (this.$props.filters.value) {
       this.updateValue(this.$props.filters.value);
     }
