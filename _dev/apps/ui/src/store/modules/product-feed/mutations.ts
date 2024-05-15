@@ -94,6 +94,7 @@ export default {
       estimateCarriers: [],
       shippingSettings: [],
       deliveryDetails: [],
+      productFilter: [],
       autoImportTaxSettings: false,
       autoImportShippingSettings: undefined,
       targetCountries: null,
@@ -288,5 +289,10 @@ export default {
     status: ProductStatus,
   }): void {
     state.gmcProductsByStatus.request.offsets[payload.status] = payload.offset;
+  },
+
+  // Product filters
+  [MutationsTypes.SET_PRODUCT_FILTER_OPTIONS](state: LocalState, payload: payloadObject): void {
+    state.productFilterOptions[payload.name] = payload.data;
   },
 };
