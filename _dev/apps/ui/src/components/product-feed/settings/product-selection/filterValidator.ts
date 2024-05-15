@@ -140,9 +140,7 @@ class FilterValidator {
   }
 
   private mustBeString(filter: CleanProductFilter, conditionRequirements) {
-    const isString = function (value: any): boolean {
-      return typeof value === 'string';
-    };
+    const isString = (value: any): boolean => typeof value === 'string';
 
     if (conditionRequirements.multiple && filter.values) {
       filter.values.some((value: any) => {
@@ -162,9 +160,8 @@ class FilterValidator {
   }
 
   private mustBeNumber(filter: CleanProductFilter, conditionRequirements) {
-    const isNumber = function (value: any): boolean {
-      return !Number.isNaN(value) && !Number.isNaN(parseFloat(value));
-    };
+    const isNumber = (value: any): boolean => !Number.isNaN(value)
+      && !Number.isNaN(parseFloat(value));
 
     if (conditionRequirements.multiple && filter.values) {
       filter.values.some((value: any) => {
@@ -184,9 +181,7 @@ class FilterValidator {
   }
 
   private mustBePositiveNumber(filter: CleanProductFilter, conditionRequirements) {
-    const isPositiveNumber = function (value: any): boolean {
-      return Number(value) >= 0;
-    };
+    const isPositiveNumber = (value: any): boolean => Number(value) >= 0;
 
     if (conditionRequirements.multiple && filter.values) {
       filter.values.some((value: any) => {
@@ -206,9 +201,7 @@ class FilterValidator {
   }
 
   private mustBeBoolean(filter: CleanProductFilter, conditionRequirements) {
-    const isBoolean = function (value: any): boolean {
-      return typeof value === 'boolean';
-    };
+    const isBoolean = (value: any): boolean => typeof value === 'boolean';
 
     if (conditionRequirements.multiple && filter.values) {
       filter.values.some((value: any) => {
@@ -228,7 +221,7 @@ class FilterValidator {
   }
 
   private mustBeObjectWithKeys(filter: CleanProductFilter, conditionRequirements) {
-    const isObjectWithKeys = function (value: any, keys: string[]): boolean {
+    const isObjectWithKeys = (value: any, keys: string[]): boolean => {
       if (typeof value !== 'object' || value === null) {
         return false;
       }

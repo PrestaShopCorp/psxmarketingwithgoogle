@@ -2,7 +2,6 @@ import {HttpClientError, fetchOnboarding, fetchShop} from 'mktg-with-google-comm
 import type {ActionContext} from 'vuex';
 import type {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
 import type {ProductIssue} from '@/components/render-issues/types';
-import {OfferType} from '@/enums/product-feed/offer';
 import type ProductsStatusType from '@/enums/product-feed/products-status-type';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {fromApi, toApi} from '@/providers/shipping-rate-provider';
