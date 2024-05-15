@@ -187,6 +187,9 @@ export default defineComponent({
         && recoveredFilter.values?.length) {
         const feature = this.getFeatureByOptions(recoveredFilter.values);
 
+        recoveredFilter.values = (recoveredFilter.values as FeatureOption[])
+          .filter((el) => el.language === this.$i18n.locale.toLowerCase());
+
         if (feature) {
           recoveredFilter.attribute = feature.id;
         }
@@ -231,8 +234,9 @@ export default defineComponent({
       if (ATTRIBUTE_MAP_CONDITION[cleanFilter.attribute][cleanFilter.condition].multiple) {
         switch (ATTRIBUTE_MAP_CONDITION[cleanFilter.attribute][cleanFilter.condition].type) {
           case ProductFilterValueType.BOOLEAN:
-            // eslint-disable-next-line max-len
-            cleanFilter.values = filter.values?.map((value) => this.convertStringBooleanToBoolean(value));
+            cleanFilter.values = filter.values?.map(
+              (value) => this.convertStringBooleanToBoolean(value),
+            );
             break;
           case ProductFilterValueType.INT:
             cleanFilter.values = filter.values?.map(
@@ -252,6 +256,23 @@ export default defineComponent({
             break;
           default:
             cleanFilter.value = filter.value;
+        }
+      }
+
+      // we have to add all location values options and not only the current;
+      if (cleanFilter.attribute === ProductFilterAttributes.FEATURE) {
+        const currentFeature = this.features
+          .find((el) => Number(el.id) === Number(filter.attribute));
+
+        if (currentFeature) {
+          const featureOptions = currentFeature.values;
+          const completeValues: FeatureOption[] = [];
+
+          (filter.values as FeatureOption[])?.forEach((value) => {
+            completeValues.push(...featureOptions.filter((el) => el.id === value.id));
+          });
+
+          cleanFilter.values = completeValues;
         }
       }
 
