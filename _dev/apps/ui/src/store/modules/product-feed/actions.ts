@@ -49,6 +49,7 @@ export const createProductFeedApiPayload = (settings:any) => ({
   productSelected: settings.productSelected,
   selectedProductCategories: settings.selectedProductCategories,
   requestSynchronizationNow: settings.requestSynchronizationNow,
+  filters: settings.productFiltered,
 });
 
 export default {
@@ -201,6 +202,7 @@ export default {
     const attributeMapping = getDataFromLocalStorage('productFeed-attributeMapping') || state.attributeMapping || {};
     // Product filter
     const productFiltered = getDataFromLocalStorage('productFeed-productFilter') || productFeedSettings.productFilter;
+    // Product categories
     const selectedProductCategories = getDataFromLocalStorage('productFeed-selectedProductCategories') || getters.GET_PRODUCT_CATEGORIES_SELECTED;
     // Next synchronization request
     const requestSynchronizationNow = getters.GET_SYNC_SCHEDULE;
@@ -346,11 +348,13 @@ export default {
       'incremental-sync/force-now',
     );
   },
+
   async [ActionsTypes.REQUEST_SHOP_TO_GET_ATTRIBUTE]({commit}: Context) {
     const json = await fetchShop('getShopAttributes');
     commit(MutationsTypes.SAVE_ATTRIBUTES_SHOP, json);
     return json;
   },
+
   async [ActionsTypes.REQUEST_ATTRIBUTE_MAPPING]({commit}: Context) {
     try {
       const json = await (await fetchOnboarding(
@@ -362,6 +366,7 @@ export default {
       console.log(error);
     }
   },
+
   async [ActionsTypes.REQUEST_PRODUCTS_ON_CLOUDSYNC]({commit}: Context) {
     const json: {totalProducts: string} = await (await fetchOnboarding(
       'GET',
@@ -482,5 +487,27 @@ export default {
     )).json();
 
     return result.issues || [];
+  },
+
+  /* PRODUCT FILTERS */
+  async [ActionsTypes.GET_SHOP_PRODUCT_FEATURES_OPTIONS](
+    {commit}: Context,
+  ) {
+    const result = await fetchShop('getShopAttributes', {action: 'getProductFilterOptions', kind: 'feature'});
+    commit(MutationsTypes.SET_PRODUCT_FILTER_OPTIONS, {name: 'features', data: result});
+  },
+
+  async [ActionsTypes.GET_SHOP_CATEGORIES_OPTIONS](
+    {commit}: Context,
+  ) {
+    const result = await fetchShop('getShopAttributes', {action: 'getProductFilterOptions', kind: 'category'});
+    commit(MutationsTypes.SET_PRODUCT_FILTER_OPTIONS, {name: 'categories', data: result});
+  },
+
+  async [ActionsTypes.GET_SHOP_BRANDS_OPTIONS](
+    {commit}: Context,
+  ) {
+    const result = await fetchShop('getShopAttributes', {action: 'getProductFilterOptions', kind: 'brand'});
+    commit(MutationsTypes.SET_PRODUCT_FILTER_OPTIONS, {name: 'brands', data: result});
   },
 };

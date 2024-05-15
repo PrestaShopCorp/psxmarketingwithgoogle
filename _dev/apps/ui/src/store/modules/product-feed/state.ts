@@ -8,7 +8,9 @@ import Categories, {SelectedProductCategories} from '@/enums/product-feed/attrib
 import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
 import {RequestState} from '@/store/types';
 import {ProductIssueImpact} from '@/components/render-issues/types';
-import {ProductFilter} from '@/providers/product-filter-provider';
+import {
+  BrandOption, CategoryOption, CleanProductFilter, Feature,
+} from '@/components/product-feed/settings/product-selection/type';
 
 /**
  * @deprecated
@@ -43,7 +45,7 @@ export interface ProductFeedSettings {
   // Deprecated: Kept for backward compatibility with old product feed.
   autoImportShippingSettings?: boolean;
   targetCountries: string[]|null;
-  productFilter: ProductFilter[]
+  productFilter: CleanProductFilter[]
 }
 export interface ProductFeedValidationSummary {
   activeProducts: number|null;
@@ -156,6 +158,11 @@ export interface State {
     results: GmcProductsByStatusResults,
     totalOfProducts: number|null,
   },
+  productFilterOptions: {
+    features: Feature[],
+    categories: CategoryOption[],
+    brands: BrandOption[],
+  },
 }
 
 export enum ProductStatus {
@@ -221,6 +228,11 @@ export const state: State = {
     autoImportTaxSettings: false,
     targetCountries: null,
     productFilter: [],
+  },
+  productFilterOptions: {
+    features: [],
+    categories: [],
+    brands: [],
   },
   validationSummary: {
     activeProducts: null,
