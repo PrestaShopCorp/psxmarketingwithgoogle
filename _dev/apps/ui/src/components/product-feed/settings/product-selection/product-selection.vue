@@ -415,10 +415,10 @@ export default defineComponent({
 
     // get data from localstorage > store OR create new empty filter
     this.listFilters = getDataFromLocalStorage(localStorageName)
-      .map((filter: CleanProductFilter) => this.recoverFilter(filter))
+      ?.map((filter: CleanProductFilter) => this.recoverFilter(filter))
     || (this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER}`]?.length
       ? this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER}`]
-        .map((filter: CleanProductFilter) => this.recoverFilter(filter))
+        ?.map((filter: CleanProductFilter) => this.recoverFilter(filter))
       : [newFilter()]
     );
   },
