@@ -485,7 +485,7 @@
           "contains": "Contains",
           "notContain": "Does not contain",
           "isIn": "Is in",
-          "isNot": "Is not",
+          "isNot": "Is not in",
           "isFalse": "Is false",
           "isTrue": "Is true"
         },
