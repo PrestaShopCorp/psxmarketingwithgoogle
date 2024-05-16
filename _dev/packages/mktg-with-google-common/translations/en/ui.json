@@ -468,7 +468,7 @@
           "label": "Attribute",
           "placeholder": "Select an attribute",
           "defaultAttributes": "Default attributes",
-          "features": "Features",
+          "features": "Feature | Features",
           "price": "Price (tax excluded)",
           "brand": "Brand",
           "category": "Category",
