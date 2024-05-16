@@ -510,4 +510,12 @@ export default {
     const result = await fetchShop('getShopAttributes', {action: 'getProductFilterOptions', kind: 'brand'});
     commit(MutationsTypes.SET_PRODUCT_FILTER_OPTIONS, {name: 'brands', data: result});
   },
+
+  async [ActionsTypes.GET_PRODUCT_COUNT](
+    {commit, state}: Context,
+  ) {
+    const filters = null ? [] : state.settings.productFilter;
+    const count = await fetchShop('numberOfProducts', {filters});
+    commit(MutationsTypes.SET_PRODUCT_COUNT, count);
+  },
 };

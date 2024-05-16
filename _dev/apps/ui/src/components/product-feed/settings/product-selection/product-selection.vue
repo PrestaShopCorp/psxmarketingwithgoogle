@@ -393,6 +393,9 @@ export default defineComponent({
     },
   },
   computed: {
+    synchSelected(): ProductFilterMethodsSynch {
+      return this.$store.getters[`productFeed/${GetterTypes.GET_METHOD_SYNC}`];
+    },
     features(): Feature[] {
       return this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER_FEATURES_OPTIONS}`];
     },

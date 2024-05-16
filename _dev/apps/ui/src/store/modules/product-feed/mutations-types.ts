@@ -63,6 +63,8 @@ enum MutationsTypes {
 
     /* PRODUCT FILTER */
     SET_PRODUCT_FILTER_OPTIONS = 'SET_PRODUCT_FILTER_OPTIONS',
+    SET_PRODUCT_COUNT = 'SET_PRODUCT_COUNT',
+    SET_SYNC_METHOD = 'SET_SYNC_METHOD',
 }
 
 export {MutationsTypes as default};

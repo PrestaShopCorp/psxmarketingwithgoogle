@@ -11,6 +11,7 @@ import {ProductIssueImpact} from '@/components/render-issues/types';
 import {
   BrandOption, CategoryOption, CleanProductFilter, Feature,
 } from '@/components/product-feed/settings/product-selection/type';
+import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
 
 /**
  * @deprecated
@@ -45,7 +46,7 @@ export interface ProductFeedSettings {
   // Deprecated: Kept for backward compatibility with old product feed.
   autoImportShippingSettings?: boolean;
   targetCountries: string[]|null;
-  productFilter: CleanProductFilter[]
+  productFilter: CleanProductFilter[];
 }
 export interface ProductFeedValidationSummary {
   activeProducts: number|null;
@@ -163,6 +164,8 @@ export interface State {
     categories: CategoryOption[],
     brands: BrandOption[],
   },
+  productCount: number|null;
+  syncSelected: ProductFilterMethodsSynch;
 }
 
 export enum ProductStatus {
@@ -234,6 +237,8 @@ export const state: State = {
     categories: [],
     brands: [],
   },
+  productCount: null,
+  syncSelected: ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT,
   validationSummary: {
     activeProducts: null,
     expiringProducts: null,
