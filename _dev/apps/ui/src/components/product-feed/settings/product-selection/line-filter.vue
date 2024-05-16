@@ -40,7 +40,7 @@
             <b-dropdown-group v-if="featuresList.length">
               <template #header>
                 <span>
-                  {{ $t('productFeedSettings.productSelection.lineFilter.attributes.features') }}
+                  {{ $tc('productFeedSettings.productSelection.lineFilter.attributes.features', features.length) }}
                 </span>
               </template>
 
@@ -330,6 +330,7 @@ export default defineComponent({
       return this.$i18n.t('productFeedSettings.productSelection.lineFilter.value.selectValue') as string;
     },
     currentAttributeOptions(): ProductFilterValues {
+      console.log(this.$i18n);
       switch (this.currentAttributeType) {
         case ProductFilterAttributes.BRAND:
           return this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER_BRANDS_OPTIONS}`];
