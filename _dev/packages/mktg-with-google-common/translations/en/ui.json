@@ -478,7 +478,7 @@
           "isLessThan": "Is less than",
           "isGreaterThan": "Is greater than",
           "contains": "Contains",
-          "notContain": "Not contains",
+          "notContain": "Does not contain",
           "isIn": "Is in",
           "isNot": "Is not",
           "isFalse": "Is false",
