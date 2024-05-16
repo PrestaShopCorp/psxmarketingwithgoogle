@@ -1,7 +1,7 @@
 <!-- eslint-disable max-len -->
 <template>
   <div class="line-filter">
-    <b-form>
+    <b-form @submit.prevent="">
       <div class="line-filter-field">
         <!-- ATTRIBUTES -->
         <div>
