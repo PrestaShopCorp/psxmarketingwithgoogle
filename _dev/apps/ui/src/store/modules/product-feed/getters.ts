@@ -36,6 +36,9 @@ import {AttributeResponseFromAPI} from '@/utils/AttributeMapping';
 import {CustomCarrier} from '@/providers/shipping-rate-provider';
 import {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
 import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
+import {
+  BrandOption, CategoryOption, CleanProductFilter, Feature,
+} from '@/components/product-feed/settings/product-selection/type';
 
 export default {
   [GettersTypes.GET_PRODUCT_FEED_IS_CONFIGURED](state: LocalState): boolean {
@@ -173,8 +176,11 @@ export default {
     if (getDataFromLocalStorage('productFeed-attributeMapping') !== null) {
       state.stepper = 4;
     }
-    if (getDataFromLocalStorage('productFeed-requestSynchronizationNow') !== null) {
+    if (getDataFromLocalStorage('productFeed-productFilter') !== null) {
       state.stepper = 5;
+    }
+    if (getDataFromLocalStorage('productFeed-requestSynchronizationNow') !== null) {
+      state.stepper = 6;
     }
 
     return state.stepper;
@@ -188,6 +194,9 @@ export default {
   },
   [GettersTypes.GET_ESTIMATE_CARRIERS](state: LocalState): CustomCarrier[] {
     return state.settings.estimateCarriers;
+  },
+  [GettersTypes.GET_PRODUCT_FILTER](state: LocalState): CleanProductFilter[] {
+    return state.settings.productFilter;
   },
   [GettersTypes.GET_PRODUCT_FEED_SYNC_CONTEXT](
     state: LocalState,
@@ -206,5 +215,16 @@ export default {
   },
   [GettersTypes.GET_PRODUCTS_VALIDATION_PAGE_SIZE](state: LocalState): number {
     return state.gmcProductsByStatus.request.numberOfProductsPerPage;
+  },
+
+  // Product Filter
+  [GettersTypes.GET_PRODUCT_FILTER_FEATURES_OPTIONS](state: LocalState): Feature[] {
+    return state.productFilterOptions.features;
+  },
+  [GettersTypes.GET_PRODUCT_FILTER_BRANDS_OPTIONS](state: LocalState): BrandOption[] {
+    return state.productFilterOptions.brands;
+  },
+  [GettersTypes.GET_PRODUCT_FILTER_CATEGORIES_OPTIONS](state: LocalState): CategoryOption[] {
+    return state.productFilterOptions.categories;
   },
 };

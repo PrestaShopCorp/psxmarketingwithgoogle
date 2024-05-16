@@ -86,7 +86,7 @@
                   $t('googleAdsAccountNew.business.placeholderCurrency')
               "
               variant=" "
-              class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
+              class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown"
               :toggle-class="{
                 'ps-dropdown__placeholder': !selectedCurrency,
               }"
@@ -99,7 +99,6 @@
                 :value="option"
                 @click="selectedCurrency = option"
                 variant="dark"
-                link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
               >
                 <span class="mr-2">
                   {{ option }}
@@ -123,7 +122,7 @@
                   $t('googleAdsAccountNew.business.placeholderTimeZone')
               "
               variant=" "
-              class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
+              class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown"
               :toggle-class="{
                 'ps-dropdown__placeholder': !selectedTimeZone,
               }"
@@ -136,7 +135,6 @@
                 :value="option"
                 @click="selectedTimeZone = index"
                 variant="dark"
-                link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
               >
                 <span class="mr-2">
                   {{ option + ' - ' + index }}

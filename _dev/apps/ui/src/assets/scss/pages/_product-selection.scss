@@ -2,4 +2,141 @@
   .methods-sync {
     max-width: 808px;
   }
+  .filters {
+    margin-top: 16px;
+
+    .line-filter {
+      background-color: $primary-200;  
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      flex-direction: column;
+      
+      @include media-breakpoint-up(sm) {
+        padding: 24px;
+        flex-direction: row;
+      }
+
+      form {
+        flex-grow: 1;
+        width: 100%;
+      }
+
+      .line-filter-field {
+        & > div {
+          display: flex;
+          flex-direction: column;
+
+          & > div {
+            width: 100%;
+          }
+
+          &:last-child {
+            flex-grow: 1;
+          }
+        }
+
+        @include media-breakpoint-up(md) {
+          display: flex;
+        }
+      }
+
+      .error-field button,
+      .error-field .input-text-with-tag-container,
+      .error-field .vs__dropdown-toggle,
+      .error-field .form-control {
+        border-color: $red-500;
+        background-color: $red-50;
+        z-index: 2;
+        position: relative;
+      }
+    } 
+    
+    .separator {
+      display: flex;
+      align-items: center;
+      
+      hr {
+        height: 1px;
+        width: 100%;
+      }
+      
+      span {
+        margin: 0 rem(16);
+        padding: 2px 8px;
+        border: solid 1px $primary-800;
+        height: min-content;
+        border-radius: 100px;
+      }
+    }
+
+    .delete-filter {
+      background-color: $red-50;
+      border-radius: 100%;
+      border: none;
+      height: 36px;
+      width: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 12px;
+
+      @include media-breakpoint-up(sm) {
+        margin-left: rem(16);
+        margin-top: 0;
+      }
+
+      .material-icons {
+        color: $red-500;
+      }
+
+      &.disabled {
+        .material-icons {
+          color: $red-100;
+        }
+      }
+    }
+  }
+
+  .conditions {
+    margin-right: -1px;
+
+    & ~ div {
+      flex-grow: 1;
+    }
+  }
+
+  .attributes {
+    margin-right: 8px !important;
+  }
+
+  .attributes,
+  .conditions,
+  .value-boolean {
+    @include media-breakpoint-up(sm) {
+      width: calc( 50% - 4px );
+    }
+    @include media-breakpoint-up(md) {
+      width: 200px !important;
+    }
+  }
+
+  .field-number {
+    padding: 2px 0;
+    width: auto;
+  }
+
+  .error-message {
+    margin-top: rem(4px);
+    margin-bottom: 0;
+    color:$red-500
+  }
+
+  .alert {
+    & > div {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
 }

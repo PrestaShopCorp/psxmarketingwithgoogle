@@ -2,7 +2,6 @@ import {HttpClientError, fetchOnboarding, fetchShop} from 'mktg-with-google-comm
 import type {ActionContext} from 'vuex';
 import type {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
 import type {ProductIssue} from '@/components/render-issues/types';
-import {OfferType} from '@/enums/product-feed/offer';
 import type ProductsStatusType from '@/enums/product-feed/products-status-type';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {fromApi, toApi} from '@/providers/shipping-rate-provider';
@@ -47,8 +46,10 @@ export const createProductFeedApiPayload = (settings:any) => ({
     } : {}
   ),
   attributeMapping: formatMappingToApi(settings.attributeMapping),
+  productSelected: settings.productSelected,
   selectedProductCategories: settings.selectedProductCategories,
   requestSynchronizationNow: settings.requestSynchronizationNow,
+  filters: settings.productFiltered,
 });
 
 export default {
@@ -199,6 +200,9 @@ export default {
     );
     // Attributes mapping
     const attributeMapping = getDataFromLocalStorage('productFeed-attributeMapping') || state.attributeMapping || {};
+    // Product filter
+    const productFiltered = getDataFromLocalStorage('productFeed-productFilter') || productFeedSettings.productFilter;
+    // Product categories
     const selectedProductCategories = getDataFromLocalStorage('productFeed-selectedProductCategories') || getters.GET_PRODUCT_CATEGORIES_SELECTED;
     // Next synchronization request
     const requestSynchronizationNow = getters.GET_SYNC_SCHEDULE;
@@ -214,6 +218,7 @@ export default {
       rate,
       estimateCarriers,
       attributeMapping,
+      productFiltered,
       selectedProductCategories,
       requestSynchronizationNow,
     });
@@ -245,6 +250,10 @@ export default {
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'shippingSettings',
         data: productFeedSettings.shippingSettings,
+      });
+      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+        name: 'productFilter',
+        data: productFeedSettings.productFilter,
       });
       commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, newSettings.attributeMapping);
     } catch (error) {
@@ -339,11 +348,13 @@ export default {
       'incremental-sync/force-now',
     );
   },
+
   async [ActionsTypes.REQUEST_SHOP_TO_GET_ATTRIBUTE]({commit}: Context) {
     const json = await fetchShop('getShopAttributes');
     commit(MutationsTypes.SAVE_ATTRIBUTES_SHOP, json);
     return json;
   },
+
   async [ActionsTypes.REQUEST_ATTRIBUTE_MAPPING]({commit}: Context) {
     try {
       const json = await (await fetchOnboarding(
@@ -355,6 +366,7 @@ export default {
       console.log(error);
     }
   },
+
   async [ActionsTypes.REQUEST_PRODUCTS_ON_CLOUDSYNC]({commit}: Context) {
     const json: {totalProducts: string} = await (await fetchOnboarding(
       'GET',
@@ -475,5 +487,27 @@ export default {
     )).json();
 
     return result.issues || [];
+  },
+
+  /* PRODUCT FILTERS */
+  async [ActionsTypes.GET_SHOP_PRODUCT_FEATURES_OPTIONS](
+    {commit}: Context,
+  ) {
+    const result = await fetchShop('getShopAttributes', {action: 'getProductFilterOptions', kind: 'feature'});
+    commit(MutationsTypes.SET_PRODUCT_FILTER_OPTIONS, {name: 'features', data: result});
+  },
+
+  async [ActionsTypes.GET_SHOP_CATEGORIES_OPTIONS](
+    {commit}: Context,
+  ) {
+    const result = await fetchShop('getShopAttributes', {action: 'getProductFilterOptions', kind: 'category'});
+    commit(MutationsTypes.SET_PRODUCT_FILTER_OPTIONS, {name: 'categories', data: result});
+  },
+
+  async [ActionsTypes.GET_SHOP_BRANDS_OPTIONS](
+    {commit}: Context,
+  ) {
+    const result = await fetchShop('getShopAttributes', {action: 'getProductFilterOptions', kind: 'brand'});
+    commit(MutationsTypes.SET_PRODUCT_FILTER_OPTIONS, {name: 'brands', data: result});
   },
 };
