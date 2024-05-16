@@ -115,7 +115,7 @@
               min="0"
               :value="valueSelected"
               :disabled="!conditionSelected.length"
-              @change="updateValue($event)"
+              @input="updateValue($event)"
             />
           </b-input-group>
           <!-- VALUE / BOOLEAN -->
