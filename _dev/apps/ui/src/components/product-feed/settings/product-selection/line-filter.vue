@@ -107,8 +107,8 @@
             v-if="displayInputNumber"
             class="field-number"
             :class="{'error-field': filters.errors?.value}"
-            :append="attributeSelected.value === ProductFilterAttributes.PRICE && currencySymbol !== 'en-gb' ? currencySymbol : undefined"
-            :prepend="attributeSelected.value === ProductFilterAttributes.PRICE && currencySymbol === 'en-gb' ? currencySymbol : undefined"
+            :append="attributeSelected.value === ProductFilterAttributes.PRICE && currentCountry !== 'gb' ? currencySymbol : undefined"
+            :prepend="attributeSelected.value === ProductFilterAttributes.PRICE && currentCountry === 'gb' ? currencySymbol : undefined"
           >
             <b-form-input
               type="number"
@@ -254,6 +254,9 @@ export default defineComponent({
     },
   },
   computed: {
+    currentCountry(): string {
+      return window.i18nSettings.isoCode;
+    },
     hasError(): Boolean {
       return !!this.filters.errors?.attribute
         || !!this.filters.errors?.condition
@@ -330,7 +333,6 @@ export default defineComponent({
       return this.$i18n.t('productFeedSettings.productSelection.lineFilter.value.selectValue') as string;
     },
     currentAttributeOptions(): ProductFilterValues {
-      console.log(this.$i18n);
       switch (this.currentAttributeType) {
         case ProductFilterAttributes.BRAND:
           return this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER_BRANDS_OPTIONS}`];
@@ -338,7 +340,7 @@ export default defineComponent({
           return this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER_CATEGORIES_OPTIONS}`];
         case ProductFilterAttributes.FEATURE:
           return this.features.find((el: Feature) => el.id === this.attributeSelected.id)
-            ?.values.filter((option) => option.language === this.$i18n.locale.toLowerCase())
+            ?.values.filter((option) => option.language === this.currentCountry)
             || [];
         default:
           return [];
