@@ -181,7 +181,7 @@ class FilterValidator {
   }
 
   private mustBePositiveNumber(filter: CleanProductFilter, conditionRequirements) {
-    const isPositiveNumber = (value: any): boolean => Number(value) >= 0;
+    const isPositiveNumber = (value: any): boolean => Number(value) > 0;
 
     if (conditionRequirements.multiple && filter.values) {
       filter.values.some((value: any) => {
