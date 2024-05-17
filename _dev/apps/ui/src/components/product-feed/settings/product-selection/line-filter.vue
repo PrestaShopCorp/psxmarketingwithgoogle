@@ -113,7 +113,7 @@
             <b-form-input
               type="number"
               min="0"
-              :step="availableAttributeConditions[conditionSelected]?.integer ? 1 : 0.01"
+              :step="availableAttributeConditions[conditionSelected]?.integer ? 1 : 'any'"
               :value="valueSelected"
               :disabled="!conditionSelected.length"
               @input="updateValue($event)"
