@@ -457,7 +457,8 @@
           "empty": "This field is mandatory.",
           "invalidEntry": "Entry is not valid.",
           "invalidNumber": "A number is required.",
-          "invalidPositiveNumber": "A positive number is required."
+          "invalidPositiveNumber": "A positive number is required.",
+          "invalidInteger": "A whole number is required."
         },
         "attributes": {
           "label": "Attribute",

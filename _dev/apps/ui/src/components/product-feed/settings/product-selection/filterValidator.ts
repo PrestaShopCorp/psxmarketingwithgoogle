@@ -95,10 +95,13 @@ class FilterValidator {
       case ProductFilterValueType.STRING:
         this.mustBeString(filter, conditionRequirements);
         break;
-      case ProductFilterValueType.INT:
+      case ProductFilterValueType.NUMBER:
         this.mustBeNumber(filter, conditionRequirements);
         if (conditionRequirements.positive && !this.valueError) {
           this.mustBePositiveNumber(filter, conditionRequirements);
+        }
+        if (conditionRequirements.integer && !this.valueError) {
+          this.mustBeInteger(filter, conditionRequirements);
         }
         break;
       case ProductFilterValueType.BOOLEAN:
@@ -196,6 +199,27 @@ class FilterValidator {
     if (!conditionRequirements.multiple) {
       if (!isPositiveNumber(filter.value)) {
         this.valueError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidPositiveNumber') as string;
+      }
+    }
+  }
+
+  private mustBeInteger(filter: CleanProductFilter, conditionRequirements) {
+    const isInteger = (value: any): boolean => Number.isInteger(value)
+      && !Number.isNaN(parseFloat(value));
+
+    if (conditionRequirements.multiple && filter.values) {
+      filter.values.some((value: any) => {
+        if (!isInteger(value)) {
+          this.valueError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidInteger') as string;
+          return true; // This will stop iteration
+        }
+        return false;
+      });
+    }
+
+    if (!conditionRequirements.multiple) {
+      if (!isInteger(filter.value)) {
+        this.valueError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidInteger') as string;
       }
     }
   }

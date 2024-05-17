@@ -238,7 +238,7 @@ export default defineComponent({
               (value) => this.convertStringBooleanToBoolean(value),
             );
             break;
-          case ProductFilterValueType.INT:
+          case ProductFilterValueType.NUMBER:
             cleanFilter.values = filter.values?.map(
               (value) => this.convertStringToNumber(value),
             );
@@ -251,7 +251,7 @@ export default defineComponent({
           case ProductFilterValueType.BOOLEAN:
             cleanFilter.value = this.convertStringBooleanToBoolean(filter.value);
             break;
-          case ProductFilterValueType.INT:
+          case ProductFilterValueType.NUMBER:
             cleanFilter.value = this.convertStringToNumber(filter.value);
             break;
           default:
