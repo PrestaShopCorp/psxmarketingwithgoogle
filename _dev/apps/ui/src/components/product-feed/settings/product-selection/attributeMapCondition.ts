@@ -55,19 +55,19 @@ const ATTRIBUTE_MAP_CONDITION = {
     [ProductFilterConditions.IS]: {
       multiple: false,
       type: ProductFilterValueType.INT,
-      positive: false,
+      positive: true,
       translation: ProductFilterConditionsTranslations.IS_EQUAL_TO,
     },
     [ProductFilterConditions.GREATER]: {
       multiple: false,
       type: ProductFilterValueType.INT,
-      positive: false,
+      positive: true,
       translation: ProductFilterConditionsTranslations.IS_GREATER_THAN,
     },
     [ProductFilterConditions.LOWER]: {
       multiple: false,
       type: ProductFilterValueType.INT,
-      positive: false,
+      positive: true,
       translation: ProductFilterConditionsTranslations.IS_LESS_THAN,
     },
   },
