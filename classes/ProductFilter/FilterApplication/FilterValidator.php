@@ -77,6 +77,9 @@ class FilterValidator
                 if ($conditionRequirements['positive']) {
                     $this->mustBePositiveNumber($filter, $index);
                 }
+                if ($conditionRequirements['integer']) {
+                    $this->mustBeInteger($filter, $index);
+                }
                 break;
             case AttributeMapConditionOutput::BOOLEAN:
                 $this->mustBeBoolean($filter, $index);
@@ -210,7 +213,7 @@ class FilterValidator
     protected function mustBePositiveNumber($filter, int $index): void
     {
         $checkValueIsPositive = function ($value) use ($index): void {
-            if ((int) $value <= 0) {
+            if ($value < 0) {
                 throw new InvalidArgumentException('Value ' . $value . " of filter #$index is not a positive number.");
             }
         };
@@ -224,6 +227,35 @@ class FilterValidator
         if (isset($filter['values'])) {
             foreach ($filter['values'] as $value) {
                 $checkValueIsPositive($value);
+            }
+        }
+    }
+
+    /**
+     * @throws InvalidArgumentException
+     *
+     * @param $filter
+     * @param int $index
+     *
+     * @return void
+     */
+    protected function mustBeInteger($filter, int $index): void
+    {
+        $checkValueIsInteger = function ($value) use ($index): void {
+            if (!is_int($value)) {
+                throw new InvalidArgumentException('Value ' . $value . " of filter #$index is not an integer.");
+            }
+        };
+
+        // Single Value
+        if (isset($filter['value'])) {
+            $checkValueIsInteger($filter['value']);
+        }
+
+        // Multiple values
+        if (isset($filter['values'])) {
+            foreach ($filter['values'] as $value) {
+                $checkValueIsInteger($value);
             }
         }
     }

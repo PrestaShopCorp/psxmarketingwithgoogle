@@ -74,7 +74,7 @@
             class="ps-dropdown psxmarketingwithgoogle-dropdown conditions h-100"
             :class="{'error-field': filters.errors?.condition}"
             menu-class="ps-dropdown"
-            :text="conditionSelected ? getSelectedLabel('conditions', availableAttributeConditions[conditionSelected].translation) : $t('productFeedSettings.productSelection.lineFilter.conditions.placeholder')"
+            :text="conditionSelected ? getSelectedLabel('conditions', availableAttributeConditions[conditionSelected]?.translation) : $t('productFeedSettings.productSelection.lineFilter.conditions.placeholder')"
             :disabled="!attributeSelected.value"
           >
             <b-dropdown-item
@@ -113,6 +113,7 @@
             <b-form-input
               type="number"
               min="0"
+              :step="availableAttributeConditions[conditionSelected]?.integer ? 1 : 0.01"
               :value="valueSelected"
               :disabled="!conditionSelected.length"
               @input="updateValue($event)"
@@ -309,7 +310,7 @@ export default defineComponent({
     // Fields
     displayInputNumber() {
       return ATTRIBUTE_MAP_CONDITION[this.currentAttributeType][this.conditionSelected]?.type
-        === ProductFilterValueType.INT
+        === ProductFilterValueType.NUMBER
         && !ATTRIBUTE_MAP_CONDITION[this.currentAttributeType][this.conditionSelected]?.multiple;
     },
     displayBoolSelect() {
@@ -323,7 +324,7 @@ export default defineComponent({
     displayFreeField() {
       return !this.attributeSelected.value
         || !this.conditionSelected
-        || ([ProductFilterValueType.STRING, ProductFilterValueType.INT]
+        || ([ProductFilterValueType.STRING, ProductFilterValueType.NUMBER]
           // eslint-disable-next-line max-len
           .includes(ATTRIBUTE_MAP_CONDITION[this.currentAttributeType][this.conditionSelected]?.type)
         && ATTRIBUTE_MAP_CONDITION[this.currentAttributeType][this.conditionSelected].multiple);

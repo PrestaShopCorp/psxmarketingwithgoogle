@@ -72,7 +72,7 @@ class FilterValidatorTest extends TestCase
                 [
                     'attribute' => AttributeType::PRICE,
                     'condition' => Condition::GREATER,
-                    'value' => 1000,
+                    'value' => 1780.10,
                 ],
                 [
                     'attribute' => AttributeType::PRODUCT_ID,
@@ -600,6 +600,14 @@ class FilterValidatorTest extends TestCase
                     'values' => [-1],
                 ],
                 'Value -1 of filter #0 is not a positive number.',
+            ],
+            [
+                [
+                    'attribute' => AttributeType::PRODUCT_ID,
+                    'condition' => Condition::IS,
+                    'values' => [1, 1.50],
+                ],
+                'Value 1.5 of filter #0 is not an integer.',
             ],
             [
                 [
