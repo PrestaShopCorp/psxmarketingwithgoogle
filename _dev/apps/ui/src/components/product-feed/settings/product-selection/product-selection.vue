@@ -188,7 +188,7 @@ export default defineComponent({
         const feature = this.getFeatureByOptions(recoveredFilter.values);
 
         recoveredFilter.values = (recoveredFilter.values as FeatureOption[])
-          .filter((el) => el.language === this.$i18n.locale.toLowerCase());
+          .filter((el) => el.language === this.currentCountry);
 
         if (feature) {
           recoveredFilter.attribute = feature.id;
@@ -405,6 +405,9 @@ export default defineComponent({
   computed: {
     features(): Feature[] {
       return this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER_FEATURES_OPTIONS}`];
+    },
+    currentCountry(): string {
+      return window.i18nSettings.isoCode;
     },
   },
   async mounted() {
