@@ -1,5 +1,11 @@
 <template>
   <div class="pt-2 container">
+    <div
+      v-if="displayCmpAlert"
+      class="row"
+    >
+      <AlertCmp />
+    </div>
     <div class="row mb-4 ps_gs-onboardingpage">
       <div class="col-12 col-md-5">
         <div
@@ -176,11 +182,13 @@ import TrackingActivationModal from '@/components/campaigns/tracking-activation-
 import PsToast from '@/components/commons/ps-toast.vue';
 import PopinModuleConfigured from '@/components/commons/popin-configured.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import AlertCmp from '@/components/commons/alert-cmp.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import EnhancedConversionsCard from '@/components/enhanced-conversions/enhanced-conversions-card.vue';
 import ModalEcIntro from '@/components/enhanced-conversions/modal-ec-intro.vue';
 import {AccountInformations} from '@/store/modules/google-ads/state';
 import GettersTypesApp from '@/store/modules/app/getters-types';
+import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 
 export default defineComponent({
   name: 'OnboardingPage',
@@ -202,6 +210,7 @@ export default defineComponent({
     PsToast,
     TrackingActivationModal,
     PopinModuleConfigured,
+    AlertCmp,
   },
   data() {
     return {
@@ -348,6 +357,9 @@ export default defineComponent({
     ...mapGetters('app', [
       GettersTypesApp.GET_FEATURE_FLAG_ENHANCED_CONVERSIONS,
     ]),
+    displayCmpAlert() {
+      return !this.$store.getters['google-ads/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'] && !getDataFromLocalStorage('alert-cmp-closed');
+    },
     shops() {
       return this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT_SHOPS'];
     },
