@@ -72,17 +72,20 @@ class AttributeMapConditionOutput
             Condition::IS => [
                 'multiple' => false,
                 'type' => self::INT,
-                'positive' => false,
+                'positive' => true,
+                'integer' => false,
             ],
             Condition::GREATER => [
                 'multiple' => false,
                 'type' => self::INT,
-                'positive' => false,
+                'positive' => true,
+                'integer' => false,
             ],
             Condition::LOWER => [
                 'multiple' => false,
                 'type' => self::INT,
-                'positive' => false,
+                'positive' => true,
+                'integer' => false,
             ],
         ],
         AttributeType::PRODUCT_ID => [
@@ -90,11 +93,13 @@ class AttributeMapConditionOutput
                 'multiple' => true,
                 'type' => self::INT,
                 'positive' => true,
+                'integer' => true,
             ],
             Condition::IS_NOT => [
                 'multiple' => true,
                 'type' => self::INT,
                 'positive' => true,
+                'integer' => true,
             ],
         ],
         AttributeType::OUT_OF_STOCK => [
