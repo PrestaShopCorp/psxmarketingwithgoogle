@@ -1,6 +1,6 @@
 export enum ProductFilterValueType {
   STRING = 'string',
-  INT = 'int',
+  NUMBER = 'number',
   BOOLEAN = 'boolean',
   OBJECT = 'object'
 }
