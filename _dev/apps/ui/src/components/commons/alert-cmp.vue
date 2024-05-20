@@ -1,9 +1,7 @@
 <template>
   <div class="col-12">
     <b-alert
-      v-if="display"
       variant="info"
-      class=""
       show
     >
       <div>
@@ -45,11 +43,6 @@ import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'AlertCMP',
-  data() {
-    return {
-      display: true,
-    };
-  },
   methods: {
     sendEvent() {
       this.$segment.track('[GGL] Understand CMP requirement', {
@@ -58,9 +51,8 @@ export default {
       });
     },
     onClick() {
-      localStorage.setItem('alert-cmp-closed', 1);
+      this.$emit('close');
       this.sendEvent();
-      this.display = false;
     },
   },
   computed: {

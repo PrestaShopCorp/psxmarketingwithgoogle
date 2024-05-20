@@ -4,7 +4,7 @@
       v-if="displayCmpAlert"
       class="row"
     >
-      <AlertCmp />
+      <AlertCmp @close="closeCmpAlert" />
     </div>
     <div class="row mb-4 ps_gs-onboardingpage">
       <div class="col-12 col-md-5">
@@ -223,9 +223,14 @@ export default defineComponent({
       phoneNumberVerified: false,
       cloudSyncSharingConsentScreenStarted: false,
       cloudSyncSharingConsentGiven: false,
+      showCmpAlert: true,
     };
   },
   methods: {
+    closeCmpAlert() {
+      localStorage.setItem('cmp-alert-closed', '1');
+      this.showCmpAlert = false;
+    },
     onMerchantCenterAccountSelected(selectedAccount) {
       this.isMcaLinking = true;
       const correlationId = `${Math.floor(Date.now() / 1000)}`;
@@ -358,7 +363,7 @@ export default defineComponent({
       GettersTypesApp.GET_FEATURE_FLAG_ENHANCED_CONVERSIONS,
     ]),
     displayCmpAlert() {
-      return !this.$store.getters['google-ads/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'] && !getDataFromLocalStorage('alert-cmp-closed');
+      return !!this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'] && this.showCmpAlert;
     },
     shops() {
       return this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT_SHOPS'];
@@ -459,6 +464,10 @@ export default defineComponent({
       this.initAccountsComponent();
       this.initCloudSyncConsent();
     });
+
+    if (localStorage.getItem('cmp-alert-closed')) {
+      this.showCmpAlert = false;
+    }
 
     // Try to retrieve Google account details. If the merchant is not onboarded,
     // this action will dispatch another one to generate the authentication route.
