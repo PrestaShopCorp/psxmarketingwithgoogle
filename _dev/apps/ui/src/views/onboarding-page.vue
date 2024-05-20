@@ -465,7 +465,7 @@ export default defineComponent({
       this.initCloudSyncConsent();
     });
 
-    if (localStorage.getItem('cmp-alert-closed')) {
+    if (getDataFromLocalStorage('cmp-alert-closed')) {
       this.showCmpAlert = false;
     }
 
