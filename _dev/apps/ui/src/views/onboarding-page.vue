@@ -465,9 +465,7 @@ export default defineComponent({
       this.initCloudSyncConsent();
     });
 
-    if (getDataFromLocalStorage('cmp-alert-closed')) {
-      this.showCmpAlert = false;
-    }
+    this.showCmpAlert = !getDataFromLocalStorage('cmp-alert-closed');
 
     // Try to retrieve Google account details. If the merchant is not onboarded,
     // this action will dispatch another one to generate the authentication route.
