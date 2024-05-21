@@ -28,7 +28,7 @@
         </ol>
         <b-button
           size="sm"
-          variant="outline-primary"
+          variant="outline-info"
           @click="onClick"
         >
           I understand
