@@ -184,10 +184,10 @@ export default defineComponent({
       };
 
       if (recoveredFilter.attribute === ProductFilterAttributes.FEATURE
-        && recoveredFilter.values?.length) {
-        const feature = this.getFeatureByOptions(recoveredFilter.values);
+        && recoveredFilter.value?.length) {
+        const feature = this.getFeatureByOptions(recoveredFilter.value);
 
-        recoveredFilter.values = (recoveredFilter.values as FeatureOption[])
+        recoveredFilter.value = (recoveredFilter.value as FeatureOption[])
           .filter((el) => el.language === this.currentCountry);
 
         if (feature) {
@@ -231,32 +231,22 @@ export default defineComponent({
         return cleanFilter;
       }
 
-      if (ATTRIBUTE_MAP_CONDITION[cleanFilter.attribute][cleanFilter.condition].multiple) {
-        switch (ATTRIBUTE_MAP_CONDITION[cleanFilter.attribute][cleanFilter.condition].type) {
-          case ProductFilterValueType.BOOLEAN:
-            cleanFilter.values = filter.values?.map(
-              (value) => this.convertStringBooleanToBoolean(value),
-            );
-            break;
-          case ProductFilterValueType.NUMBER:
-            cleanFilter.values = filter.values?.map(
-              (value) => this.convertStringToNumber(value),
-            );
-            break;
-          default:
-            cleanFilter.values = filter.values;
-        }
-      } else {
-        switch (ATTRIBUTE_MAP_CONDITION[cleanFilter.attribute][cleanFilter.condition].type) {
-          case ProductFilterValueType.BOOLEAN:
-            cleanFilter.value = this.convertStringBooleanToBoolean(filter.value);
-            break;
-          case ProductFilterValueType.NUMBER:
-            cleanFilter.value = this.convertStringToNumber(filter.value);
-            break;
-          default:
-            cleanFilter.value = filter.value;
-        }
+      const multipleValue = ATTRIBUTE_MAP_CONDITION[cleanFilter.attribute][cleanFilter.condition]
+        .multiple;
+
+      switch (ATTRIBUTE_MAP_CONDITION[cleanFilter.attribute][cleanFilter.condition].type) {
+        case ProductFilterValueType.BOOLEAN:
+          cleanFilter.value = multipleValue ? filter.value?.map(
+            (value) => this.convertStringBooleanToBoolean(value),
+          ) : this.convertStringBooleanToBoolean(filter.value);
+          break;
+        case ProductFilterValueType.NUMBER:
+          cleanFilter.value = multipleValue ? filter.value?.map(
+            (value) => this.convertStringToNumber(value),
+          ) : this.convertStringToNumber(filter.value);
+          break;
+        default:
+          cleanFilter.value = filter.value;
       }
 
       // we have to add all location values options and not only the current;
@@ -268,11 +258,11 @@ export default defineComponent({
           const featureOptions = currentFeature.values;
           const completeValues: FeatureOption[] = [];
 
-          (filter.values as FeatureOption[])?.forEach((value) => {
+          (filter.value as FeatureOption[])?.forEach((value) => {
             completeValues.push(...featureOptions.filter((el) => el.id === value.id));
           });
 
-          cleanFilter.values = completeValues;
+          cleanFilter.value = completeValues;
         }
       }
 

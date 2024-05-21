@@ -83,12 +83,8 @@ class FilterValidator {
       if (!this.mustHaveSeveralValues(filter)) {
         return;
       }
-    }
-
-    if (!conditionRequirements.multiple && !filter.value) {
-      if (!this.mustHaveOneValue(filter)) {
-        return;
-      }
+    } else if (!this.mustHaveOneValue(filter)) {
+      return;
     }
 
     switch (conditionRequirements.type) {
@@ -115,12 +111,12 @@ class FilterValidator {
   }
 
   private mustHaveSeveralValues(filter: CleanProductFilter): boolean {
-    if (filter.value || !filter.values || !Array.isArray(filter.values)) {
+    if (!Array.isArray(filter.value)) {
       this.valueError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidEntry') as string;
       return false;
     }
 
-    if (filter.values.length === 0) {
+    if (filter.value.length === 0) {
       this.valueError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.empty') as string;
       return false;
     }
@@ -129,7 +125,7 @@ class FilterValidator {
   }
 
   private mustHaveOneValue(filter: CleanProductFilter): boolean {
-    if (filter.values) {
+    if (Array.isArray(filter.value)) {
       this.valueError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidEntry') as string;
       return false;
     }
@@ -145,20 +141,16 @@ class FilterValidator {
   private mustBeString(filter: CleanProductFilter, conditionRequirements) {
     const isString = (value: any): boolean => typeof value === 'string';
 
-    if (conditionRequirements.multiple && filter.values) {
-      filter.values.some((value: any) => {
+    if (conditionRequirements.multiple && Array.isArray(filter.value)) {
+      filter.value.some((value: any) => {
         if (!isString(value)) {
           this.valueError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidEntry') as string;
           return true; // This will stop iteration
         }
         return false;
       });
-    }
-
-    if (!conditionRequirements.multiple) {
-      if (!isString(filter.value)) {
-        this.valueError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidEntry') as string;
-      }
+    } else if (!isString(filter.value)) {
+      this.valueError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidEntry') as string;
     }
   }
 
@@ -166,40 +158,32 @@ class FilterValidator {
     const isNumber = (value: any): boolean => !Number.isNaN(value)
       && !Number.isNaN(parseFloat(value));
 
-    if (conditionRequirements.multiple && filter.values) {
-      filter.values.some((value: any) => {
+    if (conditionRequirements.multiple && Array.isArray(filter.value)) {
+      filter.value.some((value: any) => {
         if (!isNumber(value)) {
           this.valueError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidNumber') as string;
           return true; // This will stop iteration
         }
         return false;
       });
-    }
-
-    if (!conditionRequirements.multiple) {
-      if (!isNumber(filter.value)) {
-        this.valueError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidNumber') as string;
-      }
+    } else if (!isNumber(filter.value)) {
+      this.valueError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidNumber') as string;
     }
   }
 
   private mustBePositiveNumber(filter: CleanProductFilter, conditionRequirements) {
     const isPositiveNumber = (value: any): boolean => Number(value) > 0;
 
-    if (conditionRequirements.multiple && filter.values) {
-      filter.values.some((value: any) => {
+    if (conditionRequirements.multiple && Array.isArray(filter.value)) {
+      filter.value.some((value: any) => {
         if (!isPositiveNumber(value)) {
           this.valueError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidPositiveNumber') as string;
           return true; // This will stop iteration
         }
         return false;
       });
-    }
-
-    if (!conditionRequirements.multiple) {
-      if (!isPositiveNumber(filter.value)) {
-        this.valueError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidPositiveNumber') as string;
-      }
+    } else if (!isPositiveNumber(filter.value)) {
+      this.valueError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidPositiveNumber') as string;
     }
   }
 
@@ -207,40 +191,32 @@ class FilterValidator {
     const isInteger = (value: any): boolean => Number.isInteger(value)
       && !Number.isNaN(parseFloat(value));
 
-    if (conditionRequirements.multiple && filter.values) {
-      filter.values.some((value: any) => {
+    if (conditionRequirements.multiple && Array.isArray(filter.value)) {
+      filter.value.some((value: any) => {
         if (!isInteger(value)) {
           this.valueError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidInteger') as string;
           return true; // This will stop iteration
         }
         return false;
       });
-    }
-
-    if (!conditionRequirements.multiple) {
-      if (!isInteger(filter.value)) {
-        this.valueError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidInteger') as string;
-      }
+    } else if (!isInteger(filter.value)) {
+      this.valueError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidInteger') as string;
     }
   }
 
   private mustBeBoolean(filter: CleanProductFilter, conditionRequirements) {
     const isBoolean = (value: any): boolean => typeof value === 'boolean';
 
-    if (conditionRequirements.multiple && filter.values) {
-      filter.values.some((value: any) => {
+    if (conditionRequirements.multiple && Array.isArray(filter.value)) {
+      filter.value.some((value: any) => {
         if (!isBoolean(value)) {
           this.valueError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidEntry') as string;
           return true; // This will stop iteration
         }
         return false;
       });
-    }
-
-    if (!conditionRequirements.multiple) {
-      if (!isBoolean(filter.value)) {
-        this.valueError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidEntry') as string;
-      }
+    } else if (!isBoolean(filter.value)) {
+      this.valueError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidEntry') as string;
     }
   }
 
@@ -252,20 +228,16 @@ class FilterValidator {
       return keys.every((key) => Object.keys(value).includes(key));
     };
 
-    if (conditionRequirements.multiple && filter.values) {
-      filter.values.some((value: any) => {
+    if (conditionRequirements.multiple && Array.isArray(filter.value)) {
+      filter.value.some((value: any) => {
         if (!isObjectWithKeys(value, conditionRequirements.keys)) {
           this.valueError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidEntry') as string;
           return true; // This will stop iteration
         }
         return false;
       });
-    }
-
-    if (!conditionRequirements.multiple) {
-      if (!isObjectWithKeys(filter.value, conditionRequirements.keys)) {
-        this.valueError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidEntry') as string;
-      }
+    } else if (!isObjectWithKeys(filter.value, conditionRequirements.keys)) {
+      this.valueError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidEntry') as string;
     }
   }
 }
