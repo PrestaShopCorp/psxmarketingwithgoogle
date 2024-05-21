@@ -67,6 +67,13 @@
         }
     },
     "onboarding": {
+        "cmpAlert": {
+            "title": "GDPR updates",
+            "paragraph": "Starting March 2024, businesses advertising to users in the European Economic Area (EEA) must create a strong framework to collect and communicate end-users’ consent choices via consent banners integrated with Google’s Consent Mode. To build a strong foundation for measuring your ads follow these steps:",
+            "list1": "For users using the Prestashop Marketing with Google module, update the module to the latest version",
+            "list2": "Set up a cookie banner through a supported, dedicated Consent Management Platform. If you do not already have one, we recommend that you use the following consent management platform, which is compliant with the new regulations: {link}",
+            "moduleGDPR": "Cookies GDPR Law (Blocker) + Google Consent Mode V2"
+        },
         "sectionTitle": {
             "psAccount": "Connectez votre compte PrestaShop",
             "freeListing": {
