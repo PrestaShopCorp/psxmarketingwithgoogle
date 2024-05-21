@@ -26,12 +26,33 @@
   }
 }
 
-.alert .btn-secondary {
-  color: $white;
-  text-decoration: none;
-
-  &:hover {
+.alert {
+  .btn {
+    &[class*="btn-outline"] {
+      color: $primary-800;
+    }
+    &:hover {
+      &.btn-outline-info {
+        background-color: $blue-100;
+      }
+      &.btn-outline-warning {
+        background-color: $yellow-100;
+      }
+      &.btn-outline-success {
+        background-color: $green-100;
+      }
+      &.btn-outline-danger {
+        background-color: $red-100;
+      }
+    }
+  }
+  .btn-secondary {
     color: $white;
+    text-decoration: none;
+
+    &:hover {
+      color: $white;
+    }
   }
 }
 
