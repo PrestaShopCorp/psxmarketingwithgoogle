@@ -47,12 +47,12 @@ class FilterValidatorTest extends TestCase
                 [
                     'attribute' => AttributeType::BRAND,
                     'condition' => Condition::DOES_CONTAIN,
-                    'values' => ['Brand 1', 'Brand 2'],
+                    'value' => ['Brand 1', 'Brand 2'],
                 ],
                 [
                     'attribute' => AttributeType::BRAND,
                     'condition' => Condition::IS,
-                    'values' => [
+                    'value' => [
                         ['id' => 1, 'value' => 'brand 1'],
                         ['id' => 122, 'value' => 'brand 2'],
                     ],
@@ -60,12 +60,12 @@ class FilterValidatorTest extends TestCase
                 [
                     'attribute' => AttributeType::CATEGORY,
                     'condition' => Condition::DOES_NOT_CONTAIN,
-                    'values' => ['Category 1'],
+                    'value' => ['Category 1'],
                 ],
                 [
                     'attribute' => AttributeType::CATEGORY,
                     'condition' => Condition::IS_NOT,
-                    'values' => [
+                    'value' => [
                         ['id' => 133, 'value' => 'category 2'],
                     ],
                 ],
@@ -77,7 +77,7 @@ class FilterValidatorTest extends TestCase
                 [
                     'attribute' => AttributeType::PRODUCT_ID,
                     'condition' => Condition::IS,
-                    'values' => [100],
+                    'value' => [100],
                 ],
                 [
                     'attribute' => AttributeType::OUT_OF_STOCK,
@@ -99,7 +99,7 @@ class FilterValidatorTest extends TestCase
             [
                 'attribute' => '🥸',
                 'condition' => Condition::DOES_CONTAIN,
-                'values' => ['🐶', '🥸'],
+                'value' => ['🐶', '🥸'],
             ],
         ]);
     }
@@ -115,7 +115,7 @@ class FilterValidatorTest extends TestCase
             [
                 'attribute' => AttributeType::BRAND,
                 'condition' => '🥸',
-                'values' => ['🐶', '🥸'],
+                'value' => ['🐶', '🥸'],
             ],
         ]);
     }
@@ -143,30 +143,14 @@ class FilterValidatorTest extends TestCase
                 [
                     'attribute' => AttributeType::BRAND,
                     'condition' => Condition::DOES_CONTAIN,
-                    'value' => '🐶',
                 ],
-                'Filter #0 is malformed, a field "values" is excepted instead of "value".',
+                'Filter #0 requires a "value" field.',
             ],
             [
                 [
                     'attribute' => AttributeType::BRAND,
                     'condition' => Condition::DOES_CONTAIN,
-                    'values' => '🐶',
-                ],
-                'Filter #0 is malformed, "values" field need to be an array of value.',
-            ],
-            [
-                [
-                    'attribute' => AttributeType::BRAND,
-                    'condition' => Condition::DOES_CONTAIN,
-                ],
-                'Filter #0 requires a "values" field.',
-            ],
-            [
-                [
-                    'attribute' => AttributeType::BRAND,
-                    'condition' => Condition::DOES_CONTAIN,
-                    'values' => [1, 2, 3],
+                    'value' => [1, 2, 3],
                 ],
                 'Value 1 of filter #0 must be a string.',
             ],
@@ -176,28 +160,28 @@ class FilterValidatorTest extends TestCase
                     'condition' => Condition::DOES_NOT_CONTAIN,
                     'value' => '🐶',
                 ],
-                'Filter #0 is malformed, a field "values" is excepted instead of "value".',
+                'Filter #0 is malformed, "value" field need to be an array of value.',
             ],
             [
                 [
                     'attribute' => AttributeType::BRAND,
                     'condition' => Condition::DOES_NOT_CONTAIN,
-                    'values' => '🐶',
+                    'value' => '🐶',
                 ],
-                'Filter #0 is malformed, "values" field need to be an array of value.',
+                'Filter #0 is malformed, "value" field need to be an array of value.',
             ],
             [
                 [
                     'attribute' => AttributeType::BRAND,
                     'condition' => Condition::DOES_NOT_CONTAIN,
                 ],
-                'Filter #0 requires a "values" field.',
+                'Filter #0 requires a "value" field.',
             ],
             [
                 [
                     'attribute' => AttributeType::BRAND,
                     'condition' => Condition::DOES_NOT_CONTAIN,
-                    'values' => [1, 2, 3],
+                    'value' => [1, 2, 3],
                 ],
                 'Value 1 of filter #0 must be a string.',
             ],
@@ -207,28 +191,20 @@ class FilterValidatorTest extends TestCase
                     'condition' => Condition::IS,
                     'value' => '🐶',
                 ],
-                'Filter #0 is malformed, a field "values" is excepted instead of "value".',
-            ],
-            [
-                [
-                    'attribute' => AttributeType::BRAND,
-                    'condition' => Condition::IS,
-                    'values' => '🐶',
-                ],
-                'Filter #0 is malformed, "values" field need to be an array of value.',
+                'Filter #0 is malformed, "value" field need to be an array of value.',
             ],
             [
                 [
                     'attribute' => AttributeType::BRAND,
                     'condition' => Condition::IS,
                 ],
-                'Filter #0 requires a "values" field.',
+                'Filter #0 requires a "value" field.',
             ],
             [
                 [
                     'attribute' => AttributeType::BRAND,
                     'condition' => Condition::IS,
-                    'values' => [1, 2, 3],
+                    'value' => [1, 2, 3],
                 ],
                 'Value 1 of filter #0 is not an object.',
             ],
@@ -236,7 +212,7 @@ class FilterValidatorTest extends TestCase
                 [
                     'attribute' => AttributeType::BRAND,
                     'condition' => Condition::IS,
-                    'values' => [
+                    'value' => [
                         ['id' => 1],
                     ],
                 ],
@@ -248,28 +224,20 @@ class FilterValidatorTest extends TestCase
                     'condition' => Condition::IS_NOT,
                     'value' => '🐶',
                 ],
-                'Filter #0 is malformed, a field "values" is excepted instead of "value".',
-            ],
-            [
-                [
-                    'attribute' => AttributeType::BRAND,
-                    'condition' => Condition::IS_NOT,
-                    'values' => '🐶',
-                ],
-                'Filter #0 is malformed, "values" field need to be an array of value.',
+                'Filter #0 is malformed, "value" field need to be an array of value.',
             ],
             [
                 [
                     'attribute' => AttributeType::BRAND,
                     'condition' => Condition::IS_NOT,
                 ],
-                'Filter #0 requires a "values" field.',
+                'Filter #0 requires a "value" field.',
             ],
             [
                 [
                     'attribute' => AttributeType::BRAND,
                     'condition' => Condition::IS_NOT,
-                    'values' => [1, 2, 3],
+                    'value' => [1, 2, 3],
                 ],
                 'Value 1 of filter #0 is not an object.',
             ],
@@ -277,7 +245,7 @@ class FilterValidatorTest extends TestCase
                 [
                     'attribute' => AttributeType::BRAND,
                     'condition' => Condition::IS_NOT,
-                    'values' => [
+                    'value' => [
                         ['id' => 1],
                     ],
                 ],
@@ -311,28 +279,20 @@ class FilterValidatorTest extends TestCase
                     'condition' => Condition::DOES_CONTAIN,
                     'value' => '🐶',
                 ],
-                'Filter #0 is malformed, a field "values" is excepted instead of "value".',
-            ],
-            [
-                [
-                    'attribute' => AttributeType::CATEGORY,
-                    'condition' => Condition::DOES_CONTAIN,
-                    'values' => '🐶',
-                ],
-                'Filter #0 is malformed, "values" field need to be an array of value.',
+                'Filter #0 is malformed, "value" field need to be an array of value.',
             ],
             [
                 [
                     'attribute' => AttributeType::CATEGORY,
                     'condition' => Condition::DOES_CONTAIN,
                 ],
-                'Filter #0 requires a "values" field.',
+                'Filter #0 requires a "value" field.',
             ],
             [
                 [
                     'attribute' => AttributeType::CATEGORY,
                     'condition' => Condition::DOES_CONTAIN,
-                    'values' => [1, 2, 3],
+                    'value' => [1, 2, 3],
                 ],
                 'Value 1 of filter #0 must be a string.',
             ],
@@ -342,28 +302,20 @@ class FilterValidatorTest extends TestCase
                     'condition' => Condition::DOES_NOT_CONTAIN,
                     'value' => '🐶',
                 ],
-                'Filter #0 is malformed, a field "values" is excepted instead of "value".',
-            ],
-            [
-                [
-                    'attribute' => AttributeType::CATEGORY,
-                    'condition' => Condition::DOES_NOT_CONTAIN,
-                    'values' => '🐶',
-                ],
-                'Filter #0 is malformed, "values" field need to be an array of value.',
+                'Filter #0 is malformed, "value" field need to be an array of value.',
             ],
             [
                 [
                     'attribute' => AttributeType::CATEGORY,
                     'condition' => Condition::DOES_NOT_CONTAIN,
                 ],
-                'Filter #0 requires a "values" field.',
+                'Filter #0 requires a "value" field.',
             ],
             [
                 [
                     'attribute' => AttributeType::CATEGORY,
                     'condition' => Condition::DOES_NOT_CONTAIN,
-                    'values' => [1, 2, 3],
+                    'value' => [1, 2, 3],
                 ],
                 'Value 1 of filter #0 must be a string.',
             ],
@@ -373,28 +325,20 @@ class FilterValidatorTest extends TestCase
                     'condition' => Condition::IS,
                     'value' => '🐶',
                 ],
-                'Filter #0 is malformed, a field "values" is excepted instead of "value".',
-            ],
-            [
-                [
-                    'attribute' => AttributeType::CATEGORY,
-                    'condition' => Condition::IS,
-                    'values' => '🐶',
-                ],
-                'Filter #0 is malformed, "values" field need to be an array of value.',
+                'Filter #0 is malformed, "value" field need to be an array of value.',
             ],
             [
                 [
                     'attribute' => AttributeType::CATEGORY,
                     'condition' => Condition::IS,
                 ],
-                'Filter #0 requires a "values" field.',
+                'Filter #0 requires a "value" field.',
             ],
             [
                 [
                     'attribute' => AttributeType::CATEGORY,
                     'condition' => Condition::IS,
-                    'values' => [1, 2, 3],
+                    'value' => [1, 2, 3],
                 ],
                 'Value 1 of filter #0 is not an object.',
             ],
@@ -402,7 +346,7 @@ class FilterValidatorTest extends TestCase
                 [
                     'attribute' => AttributeType::CATEGORY,
                     'condition' => Condition::IS,
-                    'values' => [
+                    'value' => [
                         ['id' => 1],
                     ],
                 ],
@@ -414,28 +358,20 @@ class FilterValidatorTest extends TestCase
                     'condition' => Condition::IS_NOT,
                     'value' => '🐶',
                 ],
-                'Filter #0 is malformed, a field "values" is excepted instead of "value".',
-            ],
-            [
-                [
-                    'attribute' => AttributeType::CATEGORY,
-                    'condition' => Condition::IS_NOT,
-                    'values' => '🐶',
-                ],
-                'Filter #0 is malformed, "values" field need to be an array of value.',
+                'Filter #0 is malformed, "value" field need to be an array of value.',
             ],
             [
                 [
                     'attribute' => AttributeType::CATEGORY,
                     'condition' => Condition::IS_NOT,
                 ],
-                'Filter #0 requires a "values" field.',
+                'Filter #0 requires a "value" field.',
             ],
             [
                 [
                     'attribute' => AttributeType::CATEGORY,
                     'condition' => Condition::IS_NOT,
-                    'values' => [1, 2, 3],
+                    'value' => [1, 2, 3],
                 ],
                 'Value 1 of filter #0 is not an object.',
             ],
@@ -443,7 +379,7 @@ class FilterValidatorTest extends TestCase
                 [
                     'attribute' => AttributeType::CATEGORY,
                     'condition' => Condition::IS_NOT,
-                    'values' => [
+                    'value' => [
                         ['id' => 1],
                     ],
                 ],
@@ -475,14 +411,6 @@ class FilterValidatorTest extends TestCase
                 [
                     'attribute' => AttributeType::PRICE,
                     'condition' => Condition::IS,
-                    'values' => '🐶',
-                ],
-                'Filter #0 is malformed, a field "value" is excepted instead of "values".',
-            ],
-            [
-                [
-                    'attribute' => AttributeType::PRICE,
-                    'condition' => Condition::IS,
                     'value' => '🐶',
                 ],
                 'Value 🐶 of filter #0 must be a number.',
@@ -498,14 +426,6 @@ class FilterValidatorTest extends TestCase
                 [
                     'attribute' => AttributeType::PRICE,
                     'condition' => Condition::GREATER,
-                    'values' => '🐶',
-                ],
-                'Filter #0 is malformed, a field "value" is excepted instead of "values".',
-            ],
-            [
-                [
-                    'attribute' => AttributeType::PRICE,
-                    'condition' => Condition::GREATER,
                     'value' => '🐶',
                 ],
                 'Value 🐶 of filter #0 must be a number.',
@@ -516,14 +436,6 @@ class FilterValidatorTest extends TestCase
                     'condition' => Condition::GREATER,
                 ],
                 'Filter #0 requires a "value" field.',
-            ],
-            [
-                [
-                    'attribute' => AttributeType::PRICE,
-                    'condition' => Condition::LOWER,
-                    'values' => '🐶',
-                ],
-                'Filter #0 is malformed, a field "value" is excepted instead of "values".',
             ],
             [
                 [
@@ -568,28 +480,20 @@ class FilterValidatorTest extends TestCase
                     'condition' => Condition::IS,
                     'value' => '🐶',
                 ],
-                'Filter #0 is malformed, a field "values" is excepted instead of "value".',
-            ],
-            [
-                [
-                    'attribute' => AttributeType::PRODUCT_ID,
-                    'condition' => Condition::IS,
-                    'values' => '🐶',
-                ],
-                'Filter #0 is malformed, "values" field need to be an array of value.',
+                'Filter #0 is malformed, "value" field need to be an array of value.',
             ],
             [
                 [
                     'attribute' => AttributeType::PRODUCT_ID,
                     'condition' => Condition::IS,
                 ],
-                'Filter #0 requires a "values" field.',
+                'Filter #0 requires a "value" field.',
             ],
             [
                 [
                     'attribute' => AttributeType::PRODUCT_ID,
                     'condition' => Condition::IS,
-                    'values' => ['🐶'],
+                    'value' => ['🐶'],
                 ],
                 'Value 🐶 of filter #0 must be a number.',
             ],
@@ -597,7 +501,7 @@ class FilterValidatorTest extends TestCase
                 [
                     'attribute' => AttributeType::PRODUCT_ID,
                     'condition' => Condition::IS,
-                    'values' => [-1],
+                    'value' => [-1],
                 ],
                 'Value -1 of filter #0 is not a positive number.',
             ],
@@ -605,7 +509,7 @@ class FilterValidatorTest extends TestCase
                 [
                     'attribute' => AttributeType::PRODUCT_ID,
                     'condition' => Condition::IS,
-                    'values' => [1, 1.50],
+                    'value' => [1, 1.50],
                 ],
                 'Value 1.5 of filter #0 is not an integer.',
             ],
@@ -615,28 +519,20 @@ class FilterValidatorTest extends TestCase
                     'condition' => Condition::IS_NOT,
                     'value' => '🐶',
                 ],
-                'Filter #0 is malformed, a field "values" is excepted instead of "value".',
-            ],
-            [
-                [
-                    'attribute' => AttributeType::PRODUCT_ID,
-                    'condition' => Condition::IS_NOT,
-                    'values' => '🐶',
-                ],
-                'Filter #0 is malformed, "values" field need to be an array of value.',
+                'Filter #0 is malformed, "value" field need to be an array of value.',
             ],
             [
                 [
                     'attribute' => AttributeType::PRODUCT_ID,
                     'condition' => Condition::IS_NOT,
                 ],
-                'Filter #0 requires a "values" field.',
+                'Filter #0 requires a "value" field.',
             ],
             [
                 [
                     'attribute' => AttributeType::PRODUCT_ID,
                     'condition' => Condition::IS_NOT,
-                    'values' => ['🐶'],
+                    'value' => ['🐶'],
                 ],
                 'Value 🐶 of filter #0 must be a number.',
             ],
@@ -644,7 +540,7 @@ class FilterValidatorTest extends TestCase
                 [
                     'attribute' => AttributeType::PRODUCT_ID,
                     'condition' => Condition::IS_NOT,
-                    'values' => [-1],
+                    'value' => [-1],
                 ],
                 'Value -1 of filter #0 is not a positive number.',
             ],
@@ -682,14 +578,6 @@ class FilterValidatorTest extends TestCase
                 [
                     'attribute' => AttributeType::OUT_OF_STOCK,
                     'condition' => Condition::IS,
-                    'values' => '🐶',
-                ],
-                'Filter #0 is malformed, a field "value" is excepted instead of "values".',
-            ],
-            [
-                [
-                    'attribute' => AttributeType::OUT_OF_STOCK,
-                    'condition' => Condition::IS,
                 ],
                 'Filter #0 requires a "value" field.',
             ],
@@ -721,28 +609,20 @@ class FilterValidatorTest extends TestCase
                     'condition' => Condition::IS,
                     'value' => '🐶',
                 ],
-                'Filter #0 is malformed, a field "values" is excepted instead of "value".',
-            ],
-            [
-                [
-                    'attribute' => AttributeType::FEATURE,
-                    'condition' => Condition::IS,
-                    'values' => '🐶',
-                ],
-                'Filter #0 is malformed, "values" field need to be an array of value.',
+                'Filter #0 is malformed, "value" field need to be an array of value.',
             ],
             [
                 [
                     'attribute' => AttributeType::FEATURE,
                     'condition' => Condition::IS,
                 ],
-                'Filter #0 requires a "values" field.',
+                'Filter #0 requires a "value" field.',
             ],
             [
                 [
                     'attribute' => AttributeType::FEATURE,
                     'condition' => Condition::IS,
-                    'values' => [1, 2, 3],
+                    'value' => [1, 2, 3],
                 ],
                 'Value 1 of filter #0 is not an object.',
             ],
@@ -750,7 +630,7 @@ class FilterValidatorTest extends TestCase
                 [
                     'attribute' => AttributeType::FEATURE,
                     'condition' => Condition::IS,
-                    'values' => [
+                    'value' => [
                         ['id' => 1],
                     ],
                 ],
@@ -762,28 +642,20 @@ class FilterValidatorTest extends TestCase
                     'condition' => Condition::IS_NOT,
                     'value' => '🐶',
                 ],
-                'Filter #0 is malformed, a field "values" is excepted instead of "value".',
-            ],
-            [
-                [
-                    'attribute' => AttributeType::FEATURE,
-                    'condition' => Condition::IS_NOT,
-                    'values' => '🐶',
-                ],
-                'Filter #0 is malformed, "values" field need to be an array of value.',
+                'Filter #0 is malformed, "value" field need to be an array of value.',
             ],
             [
                 [
                     'attribute' => AttributeType::FEATURE,
                     'condition' => Condition::IS_NOT,
                 ],
-                'Filter #0 requires a "values" field.',
+                'Filter #0 requires a "value" field.',
             ],
             [
                 [
                     'attribute' => AttributeType::FEATURE,
                     'condition' => Condition::IS_NOT,
-                    'values' => [1, 2, 3],
+                    'value' => [1, 2, 3],
                 ],
                 'Value 1 of filter #0 is not an object.',
             ],
@@ -791,7 +663,7 @@ class FilterValidatorTest extends TestCase
                 [
                     'attribute' => AttributeType::FEATURE,
                     'condition' => Condition::IS_NOT,
-                    'values' => [
+                    'value' => [
                         ['id' => 1],
                     ],
                 ],
