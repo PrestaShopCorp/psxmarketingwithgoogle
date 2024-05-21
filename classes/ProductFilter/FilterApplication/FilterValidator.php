@@ -70,22 +70,22 @@ class FilterValidator
         // type check
         switch ($conditionRequirements['type']) {
             case AttributeMapConditionOutput::STRING:
-                $this->mustBeString($filter, $index);
+                $this->mustBeString($filter, $index, $conditionRequirements);
                 break;
             case AttributeMapConditionOutput::INT:
-                $this->mustBeNumber($filter, $index);
+                $this->mustBeNumber($filter, $index, $conditionRequirements);
                 if ($conditionRequirements['positive']) {
-                    $this->mustBePositiveNumber($filter, $index);
+                    $this->mustBePositiveNumber($filter, $index, $conditionRequirements);
                 }
                 if ($conditionRequirements['integer']) {
-                    $this->mustBeInteger($filter, $index);
+                    $this->mustBeInteger($filter, $index, $conditionRequirements);
                 }
                 break;
             case AttributeMapConditionOutput::BOOLEAN:
                 $this->mustBeBoolean($filter, $index);
                 break;
             case AttributeMapConditionOutput::OBJECT:
-                $this->mustBeValidObject($filter, $index, $conditionRequirements['keys']);
+                $this->mustBeValidObject($filter, $index, $conditionRequirements);
                 break;
         }
     }
@@ -100,11 +100,11 @@ class FilterValidator
      */
     protected function mustHaveOneValue($filter, int $index): void
     {
-        if (isset($filter['values'])) {
-            throw new InvalidArgumentException('Filter #' . $index . ' is malformed, a field "value" is excepted instead of "values".');
-        }
         if (!isset($filter['value'])) {
             throw new InvalidArgumentException('Filter #' . $index . ' requires a "value" field.');
+        }
+        if (is_array($filter['value']) && !$this->isAssociativeArray($filter['value'])) {
+            throw new InvalidArgumentException('Filter #' . $index . ' is malformed, "value" field need to be one value.');
         }
     }
 
@@ -118,14 +118,11 @@ class FilterValidator
      */
     protected function mustHaveSeveralValues($filter, int $index): void
     {
-        if (isset($filter['value'])) {
-            throw new InvalidArgumentException('Filter #' . $index . ' is malformed, a field "values" is excepted instead of "value".');
+        if (!isset($filter['value'])) {
+            throw new InvalidArgumentException('Filter #' . $index . ' requires a "value" field.');
         }
-        if (!isset($filter['values'])) {
-            throw new InvalidArgumentException('Filter #' . $index . ' requires a "values" field.');
-        }
-        if (!is_array($filter['values']) || $this->isAssociativeArray($filter['values'])) {
-            throw new InvalidArgumentException('Filter #' . $index . ' is malformed, "values" field need to be an array of value.');
+        if (!is_array($filter['value']) || $this->isAssociativeArray($filter['value'])) {
+            throw new InvalidArgumentException('Filter #' . $index . ' is malformed, "value" field need to be an array of value.');
         }
     }
 
@@ -149,10 +146,11 @@ class FilterValidator
      *
      * @param $filter
      * @param int $index
+     * @param $conditionRequirements
      *
      * @return void
      */
-    protected function mustBeString($filter, int $index): void
+    protected function mustBeString($filter, int $index, $conditionRequirements): void
     {
         $checkValueIsString = function ($value) use ($index): void {
             if (!is_string($value)) {
@@ -161,15 +159,12 @@ class FilterValidator
         };
 
         // Single Value
-        if (isset($filter['value'])) {
-            $checkValueIsString($filter['value']);
-        }
-
-        // Multiple values
-        if (isset($filter['values'])) {
-            foreach ($filter['values'] as $value) {
+        if ($conditionRequirements['multiple']) {
+            foreach ($filter['value'] as $value) {
                 $checkValueIsString($value);
             }
+        } else {
+            $checkValueIsString($filter['value']);
         }
     }
 
@@ -178,10 +173,11 @@ class FilterValidator
      *
      * @param $filter
      * @param int $index
+     * @param $conditionRequirements
      *
      * @return void
      */
-    protected function mustBeNumber($filter, int $index): void
+    protected function mustBeNumber($filter, int $index, $conditionRequirements): void
     {
         $checkValueIsNumber = function ($value) use ($index): void {
             if (!is_numeric($value)) {
@@ -189,16 +185,12 @@ class FilterValidator
             }
         };
 
-        // Single Value
-        if (isset($filter['value'])) {
-            $checkValueIsNumber($filter['value']);
-        }
-
-        // Multiple values
-        if (isset($filter['values'])) {
-            foreach ($filter['values'] as $value) {
+        if ($conditionRequirements['multiple']) {
+            foreach ($filter['value'] as $value) {
                 $checkValueIsNumber($value);
             }
+        } else {
+            $checkValueIsNumber($filter['value']);
         }
     }
 
@@ -207,10 +199,11 @@ class FilterValidator
      *
      * @param $filter
      * @param int $index
+     * @param $conditionRequirements
      *
      * @return void
      */
-    protected function mustBePositiveNumber($filter, int $index): void
+    protected function mustBePositiveNumber($filter, int $index, $conditionRequirements): void
     {
         $checkValueIsPositive = function ($value) use ($index): void {
             if ($value < 0) {
@@ -218,16 +211,12 @@ class FilterValidator
             }
         };
 
-        // Single Value
-        if (isset($filter['value'])) {
-            $checkValueIsPositive($filter['value']);
-        }
-
-        // Multiple values
-        if (isset($filter['values'])) {
-            foreach ($filter['values'] as $value) {
+        if ($conditionRequirements['multiple']) {
+            foreach ($filter['value'] as $value) {
                 $checkValueIsPositive($value);
             }
+        } else {
+            $checkValueIsPositive($filter['value']);
         }
     }
 
@@ -236,10 +225,11 @@ class FilterValidator
      *
      * @param $filter
      * @param int $index
+     * @param $conditionRequirements
      *
      * @return void
      */
-    protected function mustBeInteger($filter, int $index): void
+    protected function mustBeInteger($filter, int $index, $conditionRequirements): void
     {
         $checkValueIsInteger = function ($value) use ($index): void {
             if (!is_int($value)) {
@@ -247,47 +237,53 @@ class FilterValidator
             }
         };
 
-        // Single Value
-        if (isset($filter['value'])) {
-            $checkValueIsInteger($filter['value']);
-        }
-
-        // Multiple values
-        if (isset($filter['values'])) {
-            foreach ($filter['values'] as $value) {
+        if ($conditionRequirements['multiple']) {
+            foreach ($filter['value'] as $value) {
                 $checkValueIsInteger($value);
             }
+        } else {
+            $checkValueIsInteger($filter['value']);
         }
     }
 
-    protected function mustBeValidObject($filter, int $index, array $keys): void
+    /**
+     * @throws InvalidArgumentException
+     *
+     * @param $filter
+     * @param int $index
+     * @param $conditionRequirements
+     *
+     * @return void
+     */
+    protected function mustBeValidObject($filter, int $index, $conditionRequirements): void
     {
-        $checkValueIsValidObject = function ($value) use ($index, $keys): void {
+        $checkValueIsValidObject = function ($value) use ($index, $conditionRequirements): void {
             if (!$this->isAssociativeArray($value)) {
                 throw new InvalidArgumentException('Value ' . json_encode($value) . " of filter #$index is not an object.");
             }
 
-            foreach ($keys as $key) {
+            foreach ($conditionRequirements['keys'] as $key) {
                 if (!array_key_exists($key, $value)) {
                     throw new InvalidArgumentException('Value ' . json_encode($value) . " of filter #$index does not have the required '" . $key . '\' key.');
                 }
             }
         };
 
-        // Single Value
-        if (isset($filter['value'])) {
-            $checkValueIsValidObject($filter['value']);
-        }
-
-        // Multiple values
-        if (isset($filter['values'])) {
-            foreach ($filter['values'] as $value) {
+        if ($conditionRequirements['multiple']) {
+            foreach ($filter['value'] as $value) {
                 $checkValueIsValidObject($value);
             }
+        } else {
+            $checkValueIsValidObject($filter['value']);
         }
     }
 
-    protected function isAssociativeArray($array)
+    /**
+     * @param $array
+     *
+     * @return bool
+     */
+    protected function isAssociativeArray($array): bool
     {
         if (!is_array($array)) {
             return false;

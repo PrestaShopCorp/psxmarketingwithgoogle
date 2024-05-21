@@ -36,16 +36,14 @@ export type ProductFilter = {
   attribute?: string,
   condition?: string,
   conditionType?: string,
-  value?: ProductFilterValue,
-  values?: ProductFilterValues,
+  value?: ProductFilterValue | ProductFilterValues,
   errors?: ProductFilterErrors
 }
 
 export type CleanProductFilter = {
   attribute: string,
   condition: string,
-  value?: ProductFilterValue,
-  values?: ProductFilterValues,
+  value?: ProductFilterValue | ProductFilterValues,
 }
 
 export type Attribute = {
