@@ -8,24 +8,19 @@
         <div class="h3">
           {{ $t('onboarding.cmpAlert.title') }}
         </div>
-        <p class="mb-2">
-          {{ $t('onboarding.cmpAlert.paragraph') }}
-        </p>
-        <ol>
-          <li>{{ $t('onboarding.cmpAlert.list1') }}</li>
-          <i18n
-            path="onboarding.cmpAlert.list2"
-            tag="li"
-          >
-            <template #link>
-              <a
-                :href="GDPRModuleLink"
-                target="_blank"
-                rel="noopener"
-              >{{ $t('onboarding.cmpAlert.moduleGDPR') }}</a>
-            </template>
-          </i18n>
-        </ol>
+        <i18n
+          path="onboarding.cmpAlert.paragraph"
+          tag="p"
+          class="mb-2"
+        >
+          <template #link>
+            <a
+              :href="GDPRModuleLink"
+              target="_blank"
+              rel="noopener"
+            >{{ $t('onboarding.cmpAlert.moduleGDPR') }}</a>
+          </template>
+        </i18n>
         <b-button
           size="sm"
           variant="outline-info"
