@@ -249,8 +249,7 @@ export default defineComponent({
       this.$emit('dataUpdated', {
         attribute: this.attributeSelected.id,
         condition: this.conditionSelected,
-        value: this.valueSelected,
-        values: this.valuesSelected,
+        value: (this.currentConditions?.multiple) ? this.valuesSelected : this.valueSelected,
       });
     },
   },
@@ -302,23 +301,24 @@ export default defineComponent({
         || Object.keys(ATTRIBUTE_MAP_CONDITION[this.currentAttributeType]).length > 1;
     },
     availableAttributeConditions() {
-      return this.defaultAttributeIsSelected
-        ? ATTRIBUTE_MAP_CONDITION[this.attributeSelected.value]
-        : ATTRIBUTE_MAP_CONDITION[ProductFilterAttributes.FEATURE];
+      return ATTRIBUTE_MAP_CONDITION[this.currentAttributeType];
+    },
+    currentConditions() {
+      return this.availableAttributeConditions[this.conditionSelected];
     },
 
     // Fields
     displayInputNumber() {
-      return ATTRIBUTE_MAP_CONDITION[this.currentAttributeType][this.conditionSelected]?.type
+      return this.currentConditions?.type
         === ProductFilterValueType.NUMBER
-        && !ATTRIBUTE_MAP_CONDITION[this.currentAttributeType][this.conditionSelected]?.multiple;
+        && !this.currentConditions?.multiple;
     },
     displayBoolSelect() {
-      return ATTRIBUTE_MAP_CONDITION[this.currentAttributeType][this.conditionSelected]?.type
+      return this.currentConditions?.type
         === ProductFilterValueType.BOOLEAN;
     },
     displayMultiSelect() {
-      return ATTRIBUTE_MAP_CONDITION[this.currentAttributeType][this.conditionSelected]?.type
+      return this.currentConditions?.type
         === ProductFilterValueType.OBJECT;
     },
     displayFreeField() {
@@ -326,8 +326,8 @@ export default defineComponent({
         || !this.conditionSelected
         || ([ProductFilterValueType.STRING, ProductFilterValueType.NUMBER]
           // eslint-disable-next-line max-len
-          .includes(ATTRIBUTE_MAP_CONDITION[this.currentAttributeType][this.conditionSelected]?.type)
-        && ATTRIBUTE_MAP_CONDITION[this.currentAttributeType][this.conditionSelected].multiple);
+          .includes(this.currentConditions?.type)
+        && this.currentConditions?.multiple);
     },
     // Multi-select Field
     placeholderMultiSelect() {
@@ -382,11 +382,12 @@ export default defineComponent({
       this.updateCondition(this.$props.filters.condition);
     }
 
-    if (this.$props.filters.value) {
-      this.updateValue(this.$props.filters.value);
-    }
-    if (this.$props.filters.values) {
-      this.updateValues(this.$props.filters.values);
+    if (this.$props.filters.value !== undefined) {
+      if (Array.isArray(this.$props.filters.value)) {
+        this.updateValues(this.$props.filters.value);
+      } else {
+        this.updateValue(this.$props.filters.value);
+      }
     }
   },
 });
