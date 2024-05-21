@@ -30,6 +30,7 @@
   .btn {
     &[class*="btn-outline"] {
       color: $primary-800;
+      font-weight: 500;
     }
     &:hover {
       &.btn-outline-info {
