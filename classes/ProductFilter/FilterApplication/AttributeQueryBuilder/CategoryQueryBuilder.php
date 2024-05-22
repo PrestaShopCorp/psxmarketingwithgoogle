@@ -43,7 +43,7 @@ class CategoryQueryBuilder implements QueryBuilderInterface
         switch ($filter['condition']) {
             case Condition::DOES_CONTAIN:
                 $queryConditions = [];
-                foreach ($filter['values'] as $value) {
+                foreach ($filter['value'] as $value) {
                     $queryConditions[] = 'cl.name LIKE "%' . pSQL($value) . '%"';
                 }
 
@@ -51,7 +51,7 @@ class CategoryQueryBuilder implements QueryBuilderInterface
 
             case Condition::DOES_NOT_CONTAIN:
                 $queryConditions = [];
-                foreach ($filter['values'] as $value) {
+                foreach ($filter['value'] as $value) {
                     $queryConditions[] = 'cl.name NOT LIKE "%' . pSQL($value) . '%"';
                 }
 
@@ -60,14 +60,14 @@ class CategoryQueryBuilder implements QueryBuilderInterface
             case Condition::IS:
                 $filteredValues = array_map(function ($item) {
                     return $item['id'];
-                }, $filter['values']);
+                }, $filter['value']);
 
                 return $query->where('c.id_category_default IN [' . implode(', ', array_map('intval', $filteredValues)) . ']');
 
             case Condition::IS_NOT:
                 $filteredValues = array_map(function ($item) {
                     return $item['id'];
-                }, $filter['values']);
+                }, $filter['value']);
 
                 return $query->where('c.id_category_default NOT IN [' . implode(', ', array_map('intval', $filteredValues)) . ']');
         }

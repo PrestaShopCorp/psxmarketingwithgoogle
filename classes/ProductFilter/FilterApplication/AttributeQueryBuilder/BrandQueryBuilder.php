@@ -30,7 +30,7 @@ class BrandQueryBuilder implements QueryBuilderInterface
         switch ($filter['condition']) {
             case Condition::DOES_CONTAIN:
                 $queryConditions = [];
-                foreach ($filter['values'] as $value) {
+                foreach ($filter['value'] as $value) {
                     $queryConditions[] = 'm.name LIKE "%' . pSQL($value) . '%"';
                 }
 
@@ -38,7 +38,7 @@ class BrandQueryBuilder implements QueryBuilderInterface
 
             case Condition::DOES_NOT_CONTAIN:
                 $queryConditions = [];
-                foreach ($filter['values'] as $value) {
+                foreach ($filter['value'] as $value) {
                     $queryConditions[] = 'm.name NOT LIKE "%' . pSQL($value) . '%"';
                 }
 
@@ -47,14 +47,14 @@ class BrandQueryBuilder implements QueryBuilderInterface
             case Condition::IS:
                 $filteredValues = array_map(function ($item) {
                     return $item['value'];
-                }, $filter['values']);
+                }, $filter['value']);
 
                 return $query->where('m.name IN ["' . implode('", "', array_map('pSQL', $filteredValues)) . '"]');
 
             case Condition::IS_NOT:
                 $filteredValues = array_map(function ($item) {
                     return $item['value'];
-                }, $filter['values']);
+                }, $filter['value']);
 
                 return $query->where('m.name NOT IN ["' . implode('", "', array_map('pSQL', $filteredValues)) . '"]');
         }
