@@ -68,8 +68,8 @@
     },
     "onboarding": {
         "cmpAlert": {
-            "title": "GDPR updates",
-            "paragraph": "Starting March 2024, businesses advertising to users in the European Economic Area (EEA) must create a strong framework to collect and communicate end-users’ consent choices via consent banners integrated with Google’s Consent Mode. To build a strong foundation for measuring your ads you must set up a cookie banner through a supported, dedicated Consent Management Platform. If you do not already have one, we recommend that you use the following consent management platform, which is compliant with the new regulations: {link}",
+            "title": "Mises à jour RGPD",
+            "paragraph": "À partir de mars 2024, les entreprises qui font de la publicité auprès des utilisateurs de l'Espace économique européen (EEE) doivent créer un cadre solide pour collecter et communiquer les choix de consentement des utilisateurs finaux par le biais de bannières de consentement compatibles avec le mode de consentement de Google. Afin d'établir une base solide pour mesurer vos publicités, vous devez mettre en place une bannière de cookies par l'intermédiaire d'une plateforme de gestion des consentements dédiée et prise en charge. Si vous n'en avez pas encore, nous vous recommandons d'utiliser la plateforme de gestion du consentement suivante, qui est conforme à la nouvelle réglementation : {link}",
             "moduleGDPR": "Loi Cookies RGPD (Bloqueur) + Google Consent Mode V2"
         },
         "sectionTitle": {
@@ -253,7 +253,7 @@
             "deliveryTimesAndRates": "Délai et tarifs de livraison",
             "attributeMapping": "Cartographie des attributs",
             "categoryMapping": "Mapping des catégories",
-            "productSelection": "Product selection",
+            "productSelection": "Sélection de produits",
             "summary": "Résumé",
             "exportFeed": "Exporter vos produits",
             "shippingSettingsErrors": "Ce pays n'est pas compatible avec votre devise",
@@ -444,11 +444,11 @@
         },
         "productSelection": {
             "methodSync": {
-                "title": "Select the method for products syncing",
-                "syncAllProducts": "Synchronize all products",
-                "syncAllProductsDesc": "The entire catalog will be synchronized.",
-                "syncFilteredProducts": "Synchronize filtered products",
-                "syncFilteredProductsDesc": "Only the products you select will be synchronized."
+                "title": "Sélectionnez la méthode de synchronisation des produits",
+                "syncAllProducts": "Synchronisez tous les produits",
+                "syncAllProductsDesc": "Le catalogue entier sera synchronisé.",
+                "syncFilteredProducts": "Synchronisez les produits filtrés",
+                "syncFilteredProductsDesc": "Seuls les produits sélectionnés seront synchronisés."
             }
         },
         "syncSchedule": {
