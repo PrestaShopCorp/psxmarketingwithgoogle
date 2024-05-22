@@ -13,7 +13,7 @@
           <b-form-radio
             v-model="synchSelected"
             name="customSyncRadio"
-            value="synchAllProducts"
+            :value="typeMethodsSynch.SYNCH_ALL_PRODUCT"
           >
             <h3 class="font-weight-700 mb-2 ps_gs-fz-14">
               {{ $t('productFeedSettings.productSelection.methodSynch.synchAllProducts') }}
@@ -31,7 +31,7 @@
             <b-form-radio
               v-model="synchSelected"
               name="customSyncRadio"
-              value="synchFilteredProducts"
+              :value="typeMethodsSynch.SYNCH_FILTERED_PRODUCT"
             >
               <h3 class="font-weight-700 mb-2 ps_gs-fz-14">
                 {{ $t('productFeedSettings.productSelection.methodSynch.synchFilteredProducts') }}
@@ -155,9 +155,6 @@ export default defineComponent({
   data() {
     return {
       typeMethodsSynch: ProductFilterMethodsSynch,
-      synchSelected: getDataFromLocalStorage(localStorageName)
-        ? ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT
-        : ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT,
       listFilters: [] as ProductFilter[],
       filtersAreValid: false,
       numberProductFiltered: 1,
@@ -393,8 +390,13 @@ export default defineComponent({
     },
   },
   computed: {
-    synchSelected(): ProductFilterMethodsSynch {
-      return this.$store.getters[`productFeed/${GetterTypes.GET_METHOD_SYNC}`];
+    synchSelected: {
+      get(): ProductFilterMethodsSynch {
+        return this.$store.getters[`productFeed/${GetterTypes.GET_METHOD_SYNC}`];
+      },
+      set(value: ProductFilterMethodsSynch): void {
+        this.$store.commit(`productFeed/${MutationsTypes.SET_SYNC_METHOD}`, value);
+      },
     },
     features(): Feature[] {
       return this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER_FEATURES_OPTIONS}`];
@@ -410,7 +412,13 @@ export default defineComponent({
     await this.$store.dispatch(`productFeed/${ActionsTypes.GET_SHOP_BRANDS_OPTIONS}`);
 
     // get data from localstorage > store OR create new empty filter
-    this.listFilters = getDataFromLocalStorage(localStorageName)
+    const localStorageFilters = getDataFromLocalStorage(localStorageName);
+
+    if (localStorageFilters) {
+      this.$store.commit(`productFeed/${MutationsTypes.SET_SYNC_METHOD}`, ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT);
+    }
+
+    this.listFilters = localStorageFilters
       ?.map((filter: CleanProductFilter) => this.recoverFilter(filter))
     || (this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER}`]?.length
       ? this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER}`]
