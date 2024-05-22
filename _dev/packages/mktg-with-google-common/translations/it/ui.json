@@ -67,6 +67,11 @@
         }
     },
     "onboarding": {
+        "cmpAlert": {
+            "title": "GDPR updates",
+            "paragraph": "Starting March 2024, businesses advertising to users in the European Economic Area (EEA) must create a strong framework to collect and communicate end-users’ consent choices via consent banners integrated with Google’s Consent Mode. To build a strong foundation for measuring your ads you must set up a cookie banner through a supported, dedicated Consent Management Platform. If you do not already have one, we recommend that you use the following consent management platform, which is compliant with the new regulations: {link}",
+            "moduleGDPR": "Cookies GDPR Law (Blocker) + Google Consent Mode V2"
+        },
         "sectionTitle": {
             "psAccount": "Collega il tuo shop al tuo account PrestaShop",
             "freeListing": {
@@ -248,6 +253,7 @@
             "deliveryTimesAndRates": "Tempi e tariffe di consegna",
             "attributeMapping": "Mappatura degli attributi",
             "categoryMapping": "Mappatura della categoria",
+            "productSelection": "Product selection",
             "summary": "Sommario",
             "exportFeed": "Esportazione del feed!",
             "shippingSettingsErrors": "Questo Paese non è compatibile con la tua valuta",
@@ -435,6 +441,15 @@
             "thisCustomField": "Questo campo personalizzato",
             "learnAboutShippingSettings": "Per saperne di più sulle impostazioni di spedizione",
             "learnHowToSetupShippingSettings": "Impara a configurare la spedizione"
+        },
+        "productSelection": {
+            "methodSync": {
+                "title": "Select the method for products syncing",
+                "syncAllProducts": "Synchronize all products",
+                "syncAllProductsDesc": "The entire catalog will be synchronized.",
+                "syncFilteredProducts": "Synchronize filtered products",
+                "syncFilteredProductsDesc": "Only the products you select will be synchronized."
+            }
         },
         "syncSchedule": {
             "title": "Programma di sincronizzazione",

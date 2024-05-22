@@ -67,6 +67,11 @@
         }
     },
     "onboarding": {
+        "cmpAlert": {
+            "title": "GDPR updates",
+            "paragraph": "Starting March 2024, businesses advertising to users in the European Economic Area (EEA) must create a strong framework to collect and communicate end-users’ consent choices via consent banners integrated with Google’s Consent Mode. To build a strong foundation for measuring your ads you must set up a cookie banner through a supported, dedicated Consent Management Platform. If you do not already have one, we recommend that you use the following consent management platform, which is compliant with the new regulations: {link}",
+            "moduleGDPR": "Cookies GDPR Law (Blocker) + Google Consent Mode V2"
+        },
         "sectionTitle": {
             "psAccount": "Conecta tu tienda con tu cuenta PrestaShop",
             "freeListing": {
@@ -248,6 +253,7 @@
             "deliveryTimesAndRates": "Plazo de entrega y tarifas de envío",
             "attributeMapping": "Mapeo de atributos",
             "categoryMapping": "Mapeo de categorías",
+            "productSelection": "Product selection",
             "summary": "Resumen",
             "exportFeed": "Exportar feed",
             "shippingSettingsErrors": "Este país no es compatible con tu moneda",
@@ -435,6 +441,15 @@
             "thisCustomField": "Este campo personalizado",
             "learnAboutShippingSettings": "Saber más sobre la configuración de los envíos",
             "learnHowToSetupShippingSettings": "Aprende a configurar los envíos"
+        },
+        "productSelection": {
+            "methodSync": {
+                "title": "Select the method for products syncing",
+                "syncAllProducts": "Synchronize all products",
+                "syncAllProductsDesc": "The entire catalog will be synchronized.",
+                "syncFilteredProducts": "Synchronize filtered products",
+                "syncFilteredProductsDesc": "Only the products you select will be synchronized."
+            }
         },
         "syncSchedule": {
             "title": "Horario de sincronización",

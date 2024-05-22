@@ -67,6 +67,11 @@
         }
     },
     "onboarding": {
+        "cmpAlert": {
+            "title": "Mises à jour RGPD",
+            "paragraph": "À partir de mars 2024, les entreprises qui font de la publicité auprès des utilisateurs de l'Espace économique européen (EEE) doivent créer un cadre solide pour collecter et communiquer les choix de consentement des utilisateurs finaux par le biais de bannières de consentement compatibles avec le mode de consentement de Google. Afin d'établir une base solide pour mesurer vos publicités, vous devez mettre en place une bannière de cookies par l'intermédiaire d'une plateforme de gestion des consentements dédiée et prise en charge. Si vous n'en avez pas encore, nous vous recommandons d'utiliser la plateforme de gestion du consentement suivante, qui est conforme à la nouvelle réglementation : {link}",
+            "moduleGDPR": "Loi Cookies RGPD (Bloqueur) + Google Consent Mode V2"
+        },
         "sectionTitle": {
             "psAccount": "Connectez votre compte PrestaShop",
             "freeListing": {
@@ -248,6 +253,7 @@
             "deliveryTimesAndRates": "Délai et tarifs de livraison",
             "attributeMapping": "Cartographie des attributs",
             "categoryMapping": "Mapping des catégories",
+            "productSelection": "Sélection de produits",
             "summary": "Résumé",
             "exportFeed": "Exporter vos produits",
             "shippingSettingsErrors": "Ce pays n'est pas compatible avec votre devise",
@@ -435,6 +441,15 @@
             "thisCustomField": "Ce champ personnalisé",
             "learnAboutShippingSettings": "En savoir plus sur les paramètres d'expédition",
             "learnHowToSetupShippingSettings": "Apprenez à mettre en place des politiques de retour"
+        },
+        "productSelection": {
+            "methodSync": {
+                "title": "Sélectionnez la méthode de synchronisation des produits",
+                "syncAllProducts": "Synchronisez tous les produits",
+                "syncAllProductsDesc": "Le catalogue entier sera synchronisé.",
+                "syncFilteredProducts": "Synchronisez les produits filtrés",
+                "syncFilteredProductsDesc": "Seuls les produits sélectionnés seront synchronisés."
+            }
         },
         "syncSchedule": {
             "title": "Calendrier de synchronisation",
