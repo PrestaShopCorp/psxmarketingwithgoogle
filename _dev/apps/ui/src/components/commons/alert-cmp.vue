@@ -26,7 +26,7 @@
           variant="outline-info"
           @click="onClick"
         >
-          I understand
+          {{ $t('cta.understand') }}
         </b-button>
       </div>
     </b-alert>
