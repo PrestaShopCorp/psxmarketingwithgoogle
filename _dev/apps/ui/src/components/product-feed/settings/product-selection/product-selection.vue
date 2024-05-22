@@ -167,7 +167,7 @@ export default defineComponent({
   methods: {
     getFeatureByOptions(options: FeatureOption[]): Feature | undefined {
       function featureContainValues(feature: Feature, values: FeatureOption[]) {
-        return values.every(
+        return values.some(
           (value: FeatureOption) => feature.values.some(
             (featureValue: FeatureOption) => featureValue.id === value.id,
           ),
