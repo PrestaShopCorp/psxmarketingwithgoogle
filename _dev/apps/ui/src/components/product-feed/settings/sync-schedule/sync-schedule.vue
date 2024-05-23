@@ -70,7 +70,7 @@ export default {
       this.$router.push({
         params: {
           name: 'product-feed-settings',
-          step: ProductFeedSettingsPages.PRODUCT_SELECTION,
+          step: ProductFeedSettingsPages.ATTRIBUTE_MAPPING,
         },
       });
       window.scrollTo(0, 0);
