@@ -20,6 +20,8 @@ import MutationsTypes from './mutations-types';
 import type {
   ProductFeedSettings, ProductVerificationIssue, ProductVerificationIssueProduct, State,
 } from './state';
+import GetterTypes from '@/store/modules/product-feed/getters-types';
+import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
 
 type Context = ActionContext<State, FullState>;
 
@@ -512,10 +514,13 @@ export default {
   },
 
   async [ActionsTypes.GET_PRODUCT_COUNT](
-    {commit, state}: Context,
+    {commit, state, getters}: Context,
   ) {
-    const filters = null ? [] : state.settings.productFilter;
-    const count = await fetchShop('numberOfProducts', {filters});
-    commit(MutationsTypes.SET_PRODUCT_COUNT, count);
+    const filters = (getters[GetterTypes.GET_METHOD_SYNC]
+      === ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT)
+      ? []
+      : state.settings.productFilter;
+    const result = await fetchShop('countMatchingProductsFromFilters', {filters});
+    commit(MutationsTypes.SET_PRODUCT_COUNT, result.numberOfProducts);
   },
 };

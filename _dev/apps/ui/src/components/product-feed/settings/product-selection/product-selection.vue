@@ -81,7 +81,7 @@
       {{ $t('productFeedSettings.productSelection.addFilter') }}
     </b-button>
     <b-alert
-      v-if="false"
+      v-if="true"
       class="mt-3"
       :variant="isErrorCountApi ? 'danger' : numberProductFiltered === 0 ? 'warning' : 'info'"
       show
@@ -157,7 +157,7 @@ export default defineComponent({
       typeMethodsSynch: ProductFilterMethodsSynch,
       listFilters: [] as ProductFilter[],
       filtersAreValid: false,
-      numberProductFiltered: 1,
+      numberProductFiltered: 0,
       isErrorCountApi: false,
     };
   },
@@ -425,6 +425,8 @@ export default defineComponent({
         ?.map((filter: CleanProductFilter) => this.recoverFilter(filter))
       : [newFilter()]
     );
+
+    this.$store.dispatch(`productFeed/${ActionsTypes.GET_PRODUCT_COUNT}`);
   },
 });
 </script>
