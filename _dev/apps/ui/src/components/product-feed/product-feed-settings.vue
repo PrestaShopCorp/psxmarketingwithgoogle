@@ -72,7 +72,6 @@ import ProductFeedStepper from '@/components/product-feed/product-feed-stepper.v
 import ShippingSetup from '@/components/product-feed/settings/shipping-setup/shipping-setup.vue';
 import DeliveryTimeAndRates from '@/components/product-feed/settings/delivery-time-and-rates/delivery-time-and-rates.vue';
 import AttributeMapping from '@/components/product-feed/settings/attribute-mapping/attribute-mapping.vue';
-// import ProductSelection from '@/components/product-feed/settings/product-selection/product-selection.vue';
 import SyncSchedule from '@/components/product-feed/settings/sync-schedule/sync-schedule.vue';
 import ProductFeedSettingsSummary from '@/components/product-feed/settings/summary/summary.vue';
 
@@ -83,7 +82,6 @@ export default defineComponent({
     ShippingSetup,
     DeliveryTimeAndRates,
     AttributeMapping,
-    // ProductSelection,
     SyncSchedule,
     ProductFeedSettingsSummary,
   },
