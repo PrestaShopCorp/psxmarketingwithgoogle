@@ -62,14 +62,14 @@ class CategoryQueryBuilder implements QueryBuilderInterface
                     return $item['id'];
                 }, $filter['value']);
 
-                return $query->where('c.id_category_default IN [' . implode(', ', array_map('intval', $filteredValues)) . ']');
+                return $query->where('c.id_category_default IN (' . implode(', ', array_map('intval', $filteredValues)) . ')');
 
             case Condition::IS_NOT:
                 $filteredValues = array_map(function ($item) {
                     return $item['id'];
                 }, $filter['value']);
 
-                return $query->where('c.id_category_default NOT IN [' . implode(', ', array_map('intval', $filteredValues)) . ']');
+                return $query->where('c.id_category_default NOT IN (' . implode(', ', array_map('intval', $filteredValues)) . ')');
         }
 
         return $query;
