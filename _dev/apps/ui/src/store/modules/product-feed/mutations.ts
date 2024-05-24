@@ -37,6 +37,7 @@ import {RateType} from '@/enums/product-feed/rate';
 import {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
 import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
 import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
+import ProductFeedCountStatus from '@/enums/product-feed/product-feed-count-status';
 
 type payloadObject = {
   name: string, data: string
@@ -297,7 +298,13 @@ export default {
     state.productFilterOptions[payload.name] = payload.data;
   },
   [MutationsTypes.SET_PRODUCT_COUNT](state: LocalState, payload: number): void {
-    state.productCount = payload;
+    state.productCount.count = payload;
+  },
+  [MutationsTypes.SET_PRODUCT_COUNT_STATUS](
+    state: LocalState,
+    payload: ProductFeedCountStatus,
+  ): void {
+    state.productCount.status = payload;
   },
   [MutationsTypes.SET_SYNC_METHOD](state: LocalState, payload: ProductFilterMethodsSynch): void {
     state.syncSelected = payload;

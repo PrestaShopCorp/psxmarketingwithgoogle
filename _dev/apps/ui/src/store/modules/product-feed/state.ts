@@ -12,6 +12,7 @@ import {
   BrandOption, CategoryOption, CleanProductFilter, Feature,
 } from '@/components/product-feed/settings/product-selection/type';
 import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
+import ProductFeedCountStatus from '@/enums/product-feed/product-feed-count-status';
 
 /**
  * @deprecated
@@ -129,6 +130,13 @@ export const commonAttributes: readonly AttributesInfos[] = [
   },
 ];
 
+export interface ProductCount {
+  count: number | null,
+  status: ProductFeedCountStatus | null,
+  abortController: typeof AbortController | null,
+  debounce: typeof setTimeout | null,
+}
+
 export interface State {
   warmedUp: RequestState,
   isSyncSummaryLoadingInProgress: boolean;
@@ -164,7 +172,7 @@ export interface State {
     categories: CategoryOption[],
     brands: BrandOption[],
   },
-  productCount: number|null;
+  productCount: ProductCount;
   syncSelected: ProductFilterMethodsSynch;
 }
 
@@ -237,7 +245,12 @@ export const state: State = {
     categories: [],
     brands: [],
   },
-  productCount: null,
+  productCount: {
+    count: null,
+    status: null,
+    abortController: null,
+    debounce: null,
+  },
   syncSelected: ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT,
   validationSummary: {
     activeProducts: null,

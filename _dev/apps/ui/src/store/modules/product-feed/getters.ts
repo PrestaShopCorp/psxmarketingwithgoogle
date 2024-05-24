@@ -40,6 +40,7 @@ import {
   BrandOption, CategoryOption, CleanProductFilter, Feature,
 } from '@/components/product-feed/settings/product-selection/type';
 import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
+import ProductFeedCountStatus from '@/enums/product-feed/product-feed-count-status';
 
 export default {
   [GettersTypes.GET_PRODUCT_FEED_IS_CONFIGURED](state: LocalState): boolean {
@@ -229,7 +230,10 @@ export default {
     return state.productFilterOptions.categories;
   },
   [GettersTypes.GET_PRODUCT_COUNT](state: LocalState): number|null {
-    return state.productCount;
+    return state.productCount.count;
+  },
+  [GettersTypes.GET_PRODUCT_COUNT_STATUS](state: LocalState): ProductFeedCountStatus|null {
+    return state.productCount.status;
   },
   [GettersTypes.GET_METHOD_SYNC](state: LocalState): ProductFilterMethodsSynch {
     return state.syncSelected;

@@ -80,38 +80,41 @@
       <i class="material-icons ps_gs-fz-20">add</i>
       {{ $t('productFeedSettings.productSelection.addFilter') }}
     </b-button>
-    <b-alert
-      v-if="true"
-      class="mt-3"
-      :variant="isErrorCountApi ? 'danger' : numberProductFiltered === 0 ? 'warning' : 'info'"
-      show
-    >
-      <div v-if="isErrorCountApi">
-        <span>{{ $t('productFeedSettings.productSelection.alerts.erreurCountApi') }}</span>
-        <b-button
-          size="sm"
-          variant="danger"
-          @click="loadCountProduct"
-        >
-          {{ $t('productFeedSettings.productSelection.alerts.tryAgain') }}
-        </b-button>
-      </div>
-      <div v-else>
-        <p>
-          <span
-            class="font-weight-600"
-            v-if="numberProductFiltered > 0"
-          >{{ numberProductFiltered }}</span> {{ $tc('productFeedSettings.productSelection.alerts.countProducts', numberProductFiltered) }}
-        </p>
-        <b-button
-          size="sm"
-          variant="info"
-          @click="loadCountProduct"
-        >
-          {{ $t('productFeedSettings.productSelection.alerts.viewProducts') }}
-        </b-button>
-      </div>
-    </b-alert>
+    <ProductCount
+      v-if="displayProductCount"
+    />
+    <!--    <b-alert-->
+    <!--      v-if="true"-->
+    <!--      class="mt-3"-->
+    <!--      :variant="isErrorCountApi ? 'danger' : numberProductFiltered === 0 ? 'warning' : 'info'"-->
+    <!--      show-->
+    <!--    >-->
+    <!--      <div v-if="isErrorCountApi">-->
+    <!--        <span>{{ $t('productFeedSettings.productSelection.alerts.erreurCountApi') }}</span>-->
+    <!--        <b-button-->
+    <!--          size="sm"-->
+    <!--          variant="danger"-->
+    <!--          @click="loadCountProduct"-->
+    <!--        >-->
+    <!--          {{ $t('productFeedSettings.productSelection.alerts.tryAgain') }}-->
+    <!--        </b-button>-->
+    <!--      </div>-->
+    <!--      <div v-else>-->
+    <!--        <p>-->
+    <!--          <span-->
+    <!--            class="font-weight-600"-->
+    <!--            v-if="numberProductFiltered > 0"-->
+    <!--          >{{ numberProductFiltered }}</span> {{ $tc('productFeedSettings.productSelection.alerts.countProducts', numberProductFiltered) }}-->
+    <!--        </p>-->
+    <!--        <b-button-->
+    <!--          size="sm"-->
+    <!--          variant="info"-->
+    <!--          @click="loadCountProduct"-->
+    <!--        >-->
+    <!--          {{ $t('productFeedSettings.productSelection.alerts.viewProducts') }}-->
+    <!--        </b-button>-->
+    <!--      </div>-->
+    <!--    </b-alert>-->
     <actions-buttons
       :next-step="nextStep"
       :previous-step="previousStep"
@@ -124,6 +127,7 @@
 import {defineComponent} from 'vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import LineFilter from '@/components/product-feed/settings/product-selection/line-filter.vue';
+import ProductCount from '@/components/product-feed/settings/product-selection/product-count.vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 import FilterValidator from '@/components/product-feed/settings/product-selection/filterValidator';
@@ -151,14 +155,13 @@ export default defineComponent({
   components: {
     ActionsButtons,
     LineFilter,
+    ProductCount,
   },
   data() {
     return {
       typeMethodsSynch: ProductFilterMethodsSynch,
       listFilters: [] as ProductFilter[],
       filtersAreValid: false,
-      numberProductFiltered: 0,
-      isErrorCountApi: false,
     };
   },
   methods: {
@@ -317,9 +320,12 @@ export default defineComponent({
 
       this.filtersAreValid = validity;
     },
-    saveFilters() {
+    saveFilters(localStorageSave = false) {
       const filters = this.getCleanFilters();
-      localStorage.setItem(localStorageName, JSON.stringify(filters));
+
+      if (localStorageSave) {
+        localStorage.setItem(localStorageName, JSON.stringify(filters));
+      }
       this.$store.commit(`productFeed/${MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS}`, {
         name: 'productFilter', data: filters,
       });
@@ -334,7 +340,7 @@ export default defineComponent({
       if (this.synchSelected === ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT) {
         this.deleteFilters();
       } else {
-        this.saveFilters();
+        this.saveFilters(true);
       }
     },
     previousStep() {
@@ -365,6 +371,12 @@ export default defineComponent({
       });
       window.scrollTo(0, 0);
     },
+    saveFiltersInStoreAndUpdateCount() {
+      if (this.filtersAreValid) {
+        this.saveFilters();
+        this.$store.dispatch(`productFeed/${ActionsTypes.GET_PRODUCT_COUNT}`);
+      }
+    },
     addNewFilter() {
       this.listFilters.push(newFilter());
       this.checkFiltersValidity(false);
@@ -372,18 +384,12 @@ export default defineComponent({
     deleteFilter(index) {
       this.listFilters.splice(index, 1);
       this.checkFiltersValidity(false);
+      this.saveFiltersInStoreAndUpdateCount();
     },
     updateFilter(event, index) {
       this.$set(this.listFilters, index, {...this.listFilters[index], ...event});
       this.checkFiltersValidity(false);
-    },
-    loadCountProduct() {
-      // TODO : cette methode doit appeler la requête qui permet de charger les produits filtré
-      // Elle doit être appeler à plusieurs endroits :
-      //    - quand le user finit de remplir les 3 champs dans un filtre
-      //    - quand le user modifie un champs dans une filtre qui a déjà tous les champs de remplis
-      //    - sur le bouton "Try angain" dans l'alerte qui s'affiche après l'échec de cette requête
-      console.log('loadCountProduct');
+      this.saveFiltersInStoreAndUpdateCount();
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
@@ -396,7 +402,16 @@ export default defineComponent({
       },
       set(value: ProductFilterMethodsSynch): void {
         this.$store.commit(`productFeed/${MutationsTypes.SET_SYNC_METHOD}`, value);
+        if (value === ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT
+          && (!this.listFilters.length || !this.filtersAreValid)) {
+          return;
+        }
+        this.$store.dispatch(`productFeed/${ActionsTypes.GET_PRODUCT_COUNT}`);
       },
+    },
+    displayProductCount(): boolean {
+      return this.synchSelected === ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT
+        || (this.listFilters.length > 0 && this.filtersAreValid);
     },
     features(): Feature[] {
       return this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER_FEATURES_OPTIONS}`];
@@ -407,6 +422,7 @@ export default defineComponent({
   },
   async mounted() {
     // get all data for filters
+    // TODO : refacto into one action;
     await this.$store.dispatch(`productFeed/${ActionsTypes.GET_SHOP_PRODUCT_FEATURES_OPTIONS}`);
     await this.$store.dispatch(`productFeed/${ActionsTypes.GET_SHOP_CATEGORIES_OPTIONS}`);
     await this.$store.dispatch(`productFeed/${ActionsTypes.GET_SHOP_BRANDS_OPTIONS}`);
@@ -426,7 +442,11 @@ export default defineComponent({
       : [newFilter()]
     );
 
-    this.$store.dispatch(`productFeed/${ActionsTypes.GET_PRODUCT_COUNT}`);
+    this.checkFiltersValidity(true);
+
+    if (this.filtersAreValid) {
+      await this.$store.dispatch(`productFeed/${ActionsTypes.GET_PRODUCT_COUNT}`);
+    }
   },
 });
 </script>

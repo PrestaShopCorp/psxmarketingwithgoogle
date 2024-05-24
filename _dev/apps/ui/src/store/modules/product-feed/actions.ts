@@ -22,6 +22,7 @@ import type {
 } from './state';
 import GetterTypes from '@/store/modules/product-feed/getters-types';
 import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
+import ProductFeedCountStatus from '@/enums/product-feed/product-feed-count-status';
 
 type Context = ActionContext<State, FullState>;
 
@@ -516,11 +517,19 @@ export default {
   async [ActionsTypes.GET_PRODUCT_COUNT](
     {commit, state, getters}: Context,
   ) {
+    commit(MutationsTypes.SET_PRODUCT_COUNT_STATUS, ProductFeedCountStatus.PENDING);
     const filters = (getters[GetterTypes.GET_METHOD_SYNC]
       === ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT)
       ? []
       : state.settings.productFilter;
-    const result = await fetchShop('countMatchingProductsFromFilters', {filters});
-    commit(MutationsTypes.SET_PRODUCT_COUNT, result.numberOfProducts);
+    await fetchShop('countMatchingProductsFromFilters', {filters})
+      .then((result) => {
+        commit(MutationsTypes.SET_PRODUCT_COUNT_STATUS, ProductFeedCountStatus.ERROR);
+        commit(MutationsTypes.SET_PRODUCT_COUNT, result.numberOfProducts);
+      })
+      .catch(() => {
+        commit(MutationsTypes.SET_PRODUCT_COUNT_STATUS, ProductFeedCountStatus.ERROR);
+        commit(MutationsTypes.SET_PRODUCT_COUNT, null);
+      });
   },
 };
