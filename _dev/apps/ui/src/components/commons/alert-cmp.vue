@@ -1,5 +1,8 @@
 <template>
-  <div class="col-12">
+  <div
+    v-if="display"
+    class="col-12"
+  >
     <b-alert
       variant="info"
       show
@@ -35,9 +38,17 @@
 
 <script>
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import {getDataFromLocalStorage} from '@/utils/LocalStorage';
+
+const localStorageSave = 'google-cmp-closed';
 
 export default {
   name: 'AlertCMP',
+  data() {
+    return {
+      display: false,
+    };
+  },
   methods: {
     sendEvent() {
       this.$segment.track('[GGL] Understand CMP requirement', {
@@ -46,14 +57,18 @@ export default {
       });
     },
     onClick() {
-      this.$emit('close');
+      localStorage.setItem(localStorageSave, '1');
       this.sendEvent();
+      this.display = false;
     },
   },
   computed: {
     GDPRModuleLink() {
       return `https://addons.prestashop.com/${this.$i18n.locale}/legal/21644-cookies-gdpr-law-blocker-google-consent-mode-v2.html`;
     },
+  },
+  mounted() {
+    this.display = !getDataFromLocalStorage(localStorageSave);
   },
 };
 </script>

@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="row">
+      <AlertCmp />
+    </div>
     <div
       v-if="$route.name === 'campaign'"
       class="mb-3"
@@ -62,9 +65,11 @@ import KeyMetricsControls from '@/components/campaign/reporting/key-metrics/key-
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import AlertEcReady from '@/components/enhanced-conversions/alert-ec-ready.vue';
 import AlertSignGadsTos from '@/components/enhanced-conversions/alert-sign-gads-tos.vue';
+import AlertCmp from '@/components/commons/alert-cmp.vue';
 
 export default defineComponent({
   components: {
+    AlertCmp,
     AlertEcReady,
     AlertSignGadsTos,
     BannerCampaigns,
