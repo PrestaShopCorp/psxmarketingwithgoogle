@@ -1,6 +1,6 @@
 import {DeliveryDetail, ShopShippingInterface} from '@/providers/shipping-settings-provider';
 import attributesToMap from './attributes-to-map.json';
-import {AttributeResponseFromAPI} from '../../../utils/AttributeMapping';
+import {AttributeResponseFromAPI} from '@/utils/AttributeMapping';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {CustomCarrier} from '@/providers/shipping-rate-provider';
 import {RateType} from '@/enums/product-feed/rate';
