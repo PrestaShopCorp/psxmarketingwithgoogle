@@ -306,6 +306,12 @@ export default {
   ): void {
     state.productCount.status = payload;
   },
+  [MutationsTypes.SET_PRODUCT_COUNT_ABORT_CONTROLLER](
+    state: LocalState,
+    payload: AbortController | null,
+  ) {
+    state.productCount.abortController = payload;
+  },
   [MutationsTypes.SET_SYNC_METHOD](state: LocalState, payload: ProductFilterMethodsSynch): void {
     state.syncSelected = payload;
   },

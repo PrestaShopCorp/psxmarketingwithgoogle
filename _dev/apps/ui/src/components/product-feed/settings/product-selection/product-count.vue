@@ -5,12 +5,25 @@
     show
   >
     <div>
-      <b v-if="productCount">{{ productCount }}</b> {{ message }}
+      <p>
+        <b
+          v-if="productCount
+            && status === ProductFeedCountStatus.SUCCESS"
+        >
+          {{ productCount }}
+        </b>
+        <span
+          v-if="status === ProductFeedCountStatus.PENDING"
+          class="icon-busy icon-busy--dark mr-1"
+        />
+        {{ message }}
+      </p>
       <b-btn
         v-if="status === ProductFeedCountStatus.ERROR"
         :variant="variant"
+        @click="relaunchCount"
       >
-        Try Again
+        {{ $t('productFeedSettings.productSelection.productCount.tryAgain') }}
       </b-btn>
     </div>
   </b-alert>
@@ -18,16 +31,38 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import {mapGetters} from 'vuex';
+import {mapGetters, mapActions} from 'vuex';
 import GetterTypes from '@/store/modules/product-feed/getters-types';
 import ProductFeedCountStatus from '@/enums/product-feed/product-feed-count-status';
+import ActionsTypes from '@/store/modules/product-feed/actions-types';
 
 export default defineComponent({
   name: 'ProductFeedSettingsProductCount',
   data() {
     return {
       ProductFeedCountStatus,
+      isPendingLong: false,
+      pendingTimeout: null as ReturnType<typeof setTimeout> | null,
     };
+  },
+  methods: {
+    ...mapActions({
+      relaunchCount: `productFeed/${ActionsTypes.TRIGGER_PRODUCT_COUNT}`,
+    }),
+    startPendingTimeout() {
+      if (this.pendingTimeout) {
+        clearTimeout(this.pendingTimeout);
+      }
+      this.pendingTimeout = setTimeout(() => {
+        this.isPendingLong = true;
+      }, 5000);
+    },
+    clearPendingTimeout() {
+      if (this.pendingTimeout) {
+        clearTimeout(this.pendingTimeout);
+        this.pendingTimeout = null;
+      }
+    },
   },
   computed: {
     ...mapGetters({
@@ -48,6 +83,9 @@ export default defineComponent({
     },
     message(): string {
       if (this.status === ProductFeedCountStatus.PENDING) {
+        if (this.isPendingLong) {
+          return this.$t('productFeedSettings.productSelection.productCount.pendingLong') as string;
+        }
         return this.$t('productFeedSettings.productSelection.productCount.pending') as string;
       }
 
@@ -61,6 +99,25 @@ export default defineComponent({
 
       return this.$tc('productFeedSettings.productSelection.productCount.productSelected', this.productCount) as string;
     },
+  },
+  watch: {
+    status(newStatus) {
+      if (newStatus === ProductFeedCountStatus.PENDING) {
+        this.isPendingLong = false;
+        this.startPendingTimeout();
+      } else {
+        this.isPendingLong = false;
+        this.clearPendingTimeout();
+      }
+    },
+  },
+  mounted() {
+    if (this.status === ProductFeedCountStatus.PENDING) {
+      this.startPendingTimeout();
+    }
+  },
+  beforeDestroy() {
+    this.clearPendingTimeout();
   },
 });
 </script>

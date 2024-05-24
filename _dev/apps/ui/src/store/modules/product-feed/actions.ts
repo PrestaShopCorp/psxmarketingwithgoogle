@@ -23,6 +23,7 @@ import type {
 import GetterTypes from '@/store/modules/product-feed/getters-types';
 import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
 import ProductFeedCountStatus from '@/enums/product-feed/product-feed-count-status';
+import debounce from '@/utils/Debounce';
 
 type Context = ActionContext<State, FullState>;
 
@@ -514,22 +515,47 @@ export default {
     commit(MutationsTypes.SET_PRODUCT_FILTER_OPTIONS, {name: 'brands', data: result});
   },
 
-  async [ActionsTypes.GET_PRODUCT_COUNT](
-    {commit, state, getters}: Context,
-  ) {
-    commit(MutationsTypes.SET_PRODUCT_COUNT_STATUS, ProductFeedCountStatus.PENDING);
+  async [ActionsTypes.GET_SHOPS_PRODUCTS_INFOS]({dispatch}: Context) {
+    await dispatch(ActionsTypes.GET_SHOP_PRODUCT_FEATURES_OPTIONS);
+    await dispatch(ActionsTypes.GET_SHOP_CATEGORIES_OPTIONS);
+    await dispatch(ActionsTypes.GET_SHOP_BRANDS_OPTIONS);
+  },
+
+  [ActionsTypes.GET_PRODUCT_COUNT]: debounce(async (context : Context) => {
+    const {commit, state, getters} = context;
+
     const filters = (getters[GetterTypes.GET_METHOD_SYNC]
-      === ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT)
+        === ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT)
       ? []
       : state.settings.productFilter;
-    await fetchShop('countMatchingProductsFromFilters', {filters})
-      .then((result) => {
+
+    const abortController = getters[GetterTypes.GET_PRODUCT_COUNT_ABORT_CONTROLLER];
+
+    if (abortController) {
+      abortController.abort();
+    }
+
+    const controller = new AbortController();
+    const {signal} = controller;
+
+    commit(MutationsTypes.SET_PRODUCT_COUNT_ABORT_CONTROLLER, controller);
+
+    try {
+      const response = await fetchShop('countMatchingProductsFromFilters', {filters}, signal);
+      commit(MutationsTypes.SET_PRODUCT_COUNT_STATUS, ProductFeedCountStatus.SUCCESS);
+      commit(MutationsTypes.SET_PRODUCT_COUNT, response.numberOfProducts);
+    } catch (error: any) {
+      if (error.name !== 'AbortError') {
         commit(MutationsTypes.SET_PRODUCT_COUNT_STATUS, ProductFeedCountStatus.ERROR);
-        commit(MutationsTypes.SET_PRODUCT_COUNT, result.numberOfProducts);
-      })
-      .catch(() => {
-        commit(MutationsTypes.SET_PRODUCT_COUNT_STATUS, ProductFeedCountStatus.ERROR);
-        commit(MutationsTypes.SET_PRODUCT_COUNT, null);
-      });
+      }
+    } finally {
+      commit(MutationsTypes.SET_PRODUCT_COUNT_ABORT_CONTROLLER, null);
+    }
+  }, 500),
+
+  async [ActionsTypes.TRIGGER_PRODUCT_COUNT]({commit, dispatch}: Context) {
+    commit(MutationsTypes.SET_PRODUCT_COUNT_STATUS, ProductFeedCountStatus.PENDING);
+    commit(MutationsTypes.SET_PRODUCT_COUNT, null);
+    await dispatch(ActionsTypes.GET_PRODUCT_COUNT);
   },
 };

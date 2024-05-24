@@ -133,8 +133,7 @@ export const commonAttributes: readonly AttributesInfos[] = [
 export interface ProductCount {
   count: number | null,
   status: ProductFeedCountStatus | null,
-  abortController: typeof AbortController | null,
-  debounce: typeof setTimeout | null,
+  abortController: AbortController | null,
 }
 
 export interface State {
@@ -249,7 +248,6 @@ export const state: State = {
     count: null,
     status: null,
     abortController: null,
-    debounce: null,
   },
   syncSelected: ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT,
   validationSummary: {

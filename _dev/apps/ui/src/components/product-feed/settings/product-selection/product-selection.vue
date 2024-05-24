@@ -125,6 +125,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
+import {mapGetters} from 'vuex';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import LineFilter from '@/components/product-feed/settings/product-selection/line-filter.vue';
 import ProductCount from '@/components/product-feed/settings/product-selection/product-count.vue';
@@ -374,7 +375,7 @@ export default defineComponent({
     saveFiltersInStoreAndUpdateCount() {
       if (this.filtersAreValid) {
         this.saveFilters();
-        this.$store.dispatch(`productFeed/${ActionsTypes.GET_PRODUCT_COUNT}`);
+        this.$store.dispatch(`productFeed/${ActionsTypes.TRIGGER_PRODUCT_COUNT}`);
       }
     },
     addNewFilter() {
@@ -396,6 +397,9 @@ export default defineComponent({
     },
   },
   computed: {
+    ...mapGetters({
+      productCountStatus: `productFeed/${GetterTypes.GET_PRODUCT_COUNT_STATUS}`,
+    }),
     synchSelected: {
       get(): ProductFilterMethodsSynch {
         return this.$store.getters[`productFeed/${GetterTypes.GET_METHOD_SYNC}`];
@@ -406,12 +410,13 @@ export default defineComponent({
           && (!this.listFilters.length || !this.filtersAreValid)) {
           return;
         }
-        this.$store.dispatch(`productFeed/${ActionsTypes.GET_PRODUCT_COUNT}`);
+        this.$store.dispatch(`productFeed/${ActionsTypes.TRIGGER_PRODUCT_COUNT}`);
       },
     },
     displayProductCount(): boolean {
-      return this.synchSelected === ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT
-        || (this.listFilters.length > 0 && this.filtersAreValid);
+      return this.productCountStatus
+        && (this.synchSelected === ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT
+        || (this.listFilters.length > 0 && this.filtersAreValid));
     },
     features(): Feature[] {
       return this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER_FEATURES_OPTIONS}`];
@@ -422,10 +427,7 @@ export default defineComponent({
   },
   async mounted() {
     // get all data for filters
-    // TODO : refacto into one action;
-    await this.$store.dispatch(`productFeed/${ActionsTypes.GET_SHOP_PRODUCT_FEATURES_OPTIONS}`);
-    await this.$store.dispatch(`productFeed/${ActionsTypes.GET_SHOP_CATEGORIES_OPTIONS}`);
-    await this.$store.dispatch(`productFeed/${ActionsTypes.GET_SHOP_BRANDS_OPTIONS}`);
+    await this.$store.dispatch(`productFeed/${ActionsTypes.GET_SHOPS_PRODUCTS_INFOS}`);
 
     // get data from localstorage > store OR create new empty filter
     const localStorageFilters = getDataFromLocalStorage(localStorageName);
@@ -445,7 +447,7 @@ export default defineComponent({
     this.checkFiltersValidity(true);
 
     if (this.filtersAreValid) {
-      await this.$store.dispatch(`productFeed/${ActionsTypes.GET_PRODUCT_COUNT}`);
+      await this.$store.dispatch(`productFeed/${ActionsTypes.TRIGGER_PRODUCT_COUNT}`);
     }
   },
 });

@@ -235,6 +235,9 @@ export default {
   [GettersTypes.GET_PRODUCT_COUNT_STATUS](state: LocalState): ProductFeedCountStatus|null {
     return state.productCount.status;
   },
+  [GettersTypes.GET_PRODUCT_COUNT_ABORT_CONTROLLER](state: LocalState): AbortController|null {
+    return state.productCount.abortController;
+  },
   [GettersTypes.GET_METHOD_SYNC](state: LocalState): ProductFilterMethodsSynch {
     return state.syncSelected;
   },
