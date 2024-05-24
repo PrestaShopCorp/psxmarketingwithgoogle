@@ -28,9 +28,7 @@ class OutOfStockQueryBuilder implements QueryBuilderInterface
     public function addWhereFromFilter(DbQuery $query, $filter): DbQuery
     {
         if ($filter['condition'] === Condition::IS) {
-            $wantOnlyInStock = $filter['value'] === false;
-
-            return $wantOnlyInStock ? $query->where('sa.quantity > 0') : $query;
+            return $filter['value'] ? $query->where('sa.quantity <= 0') : $query->where('sa.quantity > 0');
         }
 
         return $query;
