@@ -1,10 +1,7 @@
 <template>
   <div class="pt-2 container">
-    <div
-      v-if="displayCmpAlert"
-      class="row"
-    >
-      <AlertCmp @close="closeCmpAlert" />
+    <div class="row">
+      <AlertCmp />
     </div>
     <div class="row mb-4 ps_gs-onboardingpage">
       <div class="col-12 col-md-5">
@@ -188,7 +185,6 @@ import EnhancedConversionsCard from '@/components/enhanced-conversions/enhanced-
 import ModalEcIntro from '@/components/enhanced-conversions/modal-ec-intro.vue';
 import {AccountInformations} from '@/store/modules/google-ads/state';
 import GettersTypesApp from '@/store/modules/app/getters-types';
-import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 
 export default defineComponent({
   name: 'OnboardingPage',
@@ -223,14 +219,9 @@ export default defineComponent({
       phoneNumberVerified: false,
       cloudSyncSharingConsentScreenStarted: false,
       cloudSyncSharingConsentGiven: false,
-      showCmpAlert: true,
     };
   },
   methods: {
-    closeCmpAlert() {
-      localStorage.setItem('cmp-alert-closed', '1');
-      this.showCmpAlert = false;
-    },
     onMerchantCenterAccountSelected(selectedAccount) {
       this.isMcaLinking = true;
       const correlationId = `${Math.floor(Date.now() / 1000)}`;
@@ -464,8 +455,6 @@ export default defineComponent({
       this.initAccountsComponent();
       this.initCloudSyncConsent();
     });
-
-    this.showCmpAlert = !getDataFromLocalStorage('cmp-alert-closed');
 
     // Try to retrieve Google account details. If the merchant is not onboarded,
     // this action will dispatch another one to generate the authentication route.
