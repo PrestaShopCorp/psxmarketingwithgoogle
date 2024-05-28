@@ -1,6 +1,6 @@
 import {DeliveryDetail, ShopShippingInterface} from '@/providers/shipping-settings-provider';
 import attributesToMap from './attributes-to-map.json';
-import {AttributeResponseFromAPI} from '../../../utils/AttributeMapping';
+import {AttributeResponseFromAPI} from '@/utils/AttributeMapping';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {CustomCarrier} from '@/providers/shipping-rate-provider';
 import {RateType} from '@/enums/product-feed/rate';
@@ -11,6 +11,8 @@ import {ProductIssueImpact} from '@/components/render-issues/types';
 import {
   BrandOption, CategoryOption, CleanProductFilter, Feature,
 } from '@/components/product-feed/settings/product-selection/type';
+import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
+import ProductFeedCountStatus from '@/enums/product-feed/product-feed-count-status';
 
 /**
  * @deprecated
@@ -45,7 +47,7 @@ export interface ProductFeedSettings {
   // Deprecated: Kept for backward compatibility with old product feed.
   autoImportShippingSettings?: boolean;
   targetCountries: string[]|null;
-  productFilter: CleanProductFilter[]
+  productFilter: CleanProductFilter[];
 }
 export interface ProductFeedValidationSummary {
   activeProducts: number|null;
@@ -128,6 +130,12 @@ export const commonAttributes: readonly AttributesInfos[] = [
   },
 ];
 
+export interface ProductCount {
+  count: number | null,
+  status: ProductFeedCountStatus | null,
+  abortController: AbortController | null,
+}
+
 export interface State {
   warmedUp: RequestState,
   isSyncSummaryLoadingInProgress: boolean;
@@ -163,6 +171,8 @@ export interface State {
     categories: CategoryOption[],
     brands: BrandOption[],
   },
+  productCount: ProductCount;
+  syncSelected: ProductFilterMethodsSynch;
 }
 
 export enum ProductStatus {
@@ -234,6 +244,12 @@ export const state: State = {
     categories: [],
     brands: [],
   },
+  productCount: {
+    count: null,
+    status: null,
+    abortController: null,
+  },
+  syncSelected: ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT,
   validationSummary: {
     activeProducts: null,
     expiringProducts: null,
