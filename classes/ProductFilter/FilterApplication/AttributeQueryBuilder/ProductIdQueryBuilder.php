@@ -29,9 +29,9 @@ class ProductIdQueryBuilder implements QueryBuilderInterface
     {
         switch ($filter['condition']) {
             case Condition::IS:
-                return $query->where('p.id_product IN [' . implode(', ', array_map('intval', $filter['value'])) . ']');
+                return $query->where('p.id_product IN (' . implode(', ', array_map('intval', $filter['value'])) . ')');
             case Condition::IS_NOT:
-                return $query->where('p.id_product NOT IN [' . implode(', ', array_map('intval', $filter['value'])) . ']');
+                return $query->where('p.id_product NOT IN (' . implode(', ', array_map('intval', $filter['value'])) . ')');
         }
 
         return $query;

@@ -49,14 +49,14 @@ class BrandQueryBuilder implements QueryBuilderInterface
                     return $item['value'];
                 }, $filter['value']);
 
-                return $query->where('m.name IN ["' . implode('", "', array_map('pSQL', $filteredValues)) . '"]');
+                return $query->where('m.name IN ("' . implode('", "', array_map('pSQL', $filteredValues)) . '")');
 
             case Condition::IS_NOT:
                 $filteredValues = array_map(function ($item) {
                     return $item['value'];
                 }, $filter['value']);
 
-                return $query->where('m.name NOT IN ["' . implode('", "', array_map('pSQL', $filteredValues)) . '"]');
+                return $query->where('m.name NOT IN ("' . implode('", "', array_map('pSQL', $filteredValues)) . '")');
         }
 
         return $query;
