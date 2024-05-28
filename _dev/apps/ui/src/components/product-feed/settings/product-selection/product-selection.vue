@@ -83,38 +83,6 @@
     <ProductCount
       v-if="displayProductCount"
     />
-    <!--    <b-alert-->
-    <!--      v-if="true"-->
-    <!--      class="mt-3"-->
-    <!--      :variant="isErrorCountApi ? 'danger' : numberProductFiltered === 0 ? 'warning' : 'info'"-->
-    <!--      show-->
-    <!--    >-->
-    <!--      <div v-if="isErrorCountApi">-->
-    <!--        <span>{{ $t('productFeedSettings.productSelection.alerts.erreurCountApi') }}</span>-->
-    <!--        <b-button-->
-    <!--          size="sm"-->
-    <!--          variant="danger"-->
-    <!--          @click="loadCountProduct"-->
-    <!--        >-->
-    <!--          {{ $t('productFeedSettings.productSelection.alerts.tryAgain') }}-->
-    <!--        </b-button>-->
-    <!--      </div>-->
-    <!--      <div v-else>-->
-    <!--        <p>-->
-    <!--          <span-->
-    <!--            class="font-weight-600"-->
-    <!--            v-if="numberProductFiltered > 0"-->
-    <!--          >{{ numberProductFiltered }}</span> {{ $tc('productFeedSettings.productSelection.alerts.countProducts', numberProductFiltered) }}-->
-    <!--        </p>-->
-    <!--        <b-button-->
-    <!--          size="sm"-->
-    <!--          variant="info"-->
-    <!--          @click="loadCountProduct"-->
-    <!--        >-->
-    <!--          {{ $t('productFeedSettings.productSelection.alerts.viewProducts') }}-->
-    <!--        </b-button>-->
-    <!--      </div>-->
-    <!--    </b-alert>-->
     <actions-buttons
       :next-step="nextStep"
       :previous-step="previousStep"
