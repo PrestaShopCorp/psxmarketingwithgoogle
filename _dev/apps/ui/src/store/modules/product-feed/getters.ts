@@ -39,6 +39,8 @@ import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/f
 import {
   BrandOption, CategoryOption, CleanProductFilter, Feature,
 } from '@/components/product-feed/settings/product-selection/type';
+import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
+import ProductFeedCountStatus from '@/enums/product-feed/product-feed-count-status';
 
 export default {
   [GettersTypes.GET_PRODUCT_FEED_IS_CONFIGURED](state: LocalState): boolean {
@@ -226,5 +228,17 @@ export default {
   },
   [GettersTypes.GET_PRODUCT_FILTER_CATEGORIES_OPTIONS](state: LocalState): CategoryOption[] {
     return state.productFilterOptions.categories;
+  },
+  [GettersTypes.GET_PRODUCT_COUNT](state: LocalState): number|null {
+    return state.productCount.count;
+  },
+  [GettersTypes.GET_PRODUCT_COUNT_STATUS](state: LocalState): ProductFeedCountStatus|null {
+    return state.productCount.status;
+  },
+  [GettersTypes.GET_PRODUCT_COUNT_ABORT_CONTROLLER](state: LocalState): AbortController|null {
+    return state.productCount.abortController;
+  },
+  [GettersTypes.GET_METHOD_SYNC](state: LocalState): ProductFilterMethodsSynch {
+    return state.syncSelected;
   },
 };

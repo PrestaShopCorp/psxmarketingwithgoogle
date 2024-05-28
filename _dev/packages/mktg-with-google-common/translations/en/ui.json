@@ -498,10 +498,12 @@
           "true": "Is true"
         }
       },
-      "alerts": {
-        "countProducts": "We haven't found any products matching your selection. Change your filters and try again. | product selected. | products selected.",
-        "erreurCountApi": "We are not able to retrieve the requested data right now. Check your configuration and try again later.",
-        "viewProducts": "View products",
+      "productCount": {
+        "productSelected": "product selected. | products selected.",
+        "error": "We are not able to retrieve the requested data right now. Check your configuration and try again later.",
+        "pending": "Searching products...",
+        "pendingLong": "The search is taking longer than expected. Please wait and don’t refresh the page.",
+        "nothingFound": "We haven't found any products matching your selection. Change your filters and try again.",
         "tryAgain": "Try again"
       }
     },

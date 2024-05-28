@@ -77,7 +77,7 @@ class FeatureQueryBuilder implements QueryBuilderInterface
                     $queryConditions[] = 'fvl.value <> "' . pSQL($value['value']) . '"';
                 }
 
-                return $query->where('fl.name = "' . pSQL($uniqueFeature[0]['key']) . '" AND (' . implode(' OR ', $queryConditions) . ')');
+                return $query->where('fl.name = "' . pSQL($uniqueFeature[0]['key']) . '" AND (' . implode(' AND ', $queryConditions) . ')');
         }
 
         return $query;
@@ -90,7 +90,7 @@ class FeatureQueryBuilder implements QueryBuilderInterface
             ->innerJoin('feature_shop', 'fs', 'fs.id_feature = fp.id_feature')
             ->innerJoin('feature_lang', 'fl', 'fl.id_feature = fp.id_feature')
             ->innerJoin('feature_value', 'fv', 'fv.id_feature = fp.id_feature')
-            ->innerJoin('feature_value_lang', 'fvl', 'fvl.id_feature_value = fv.id_feature_value')
+            ->innerJoin('feature_value_lang', 'fvl', '(fvl.id_feature_value = fv.id_feature_value AND fp.id_feature_value = fvl.id_feature_value)')
             ->where('fs.id_shop = ' . (int) $this->context->shop->id)
             ->where('fl.id_lang = ' . (int) $this->context->language->id);
     }

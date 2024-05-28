@@ -290,7 +290,7 @@ export default defineComponent({
       this.$router.push({
         name: 'product-feed-settings',
         params: {
-          step: ProductFeedSettingsPages.SYNC_SCHEDULE,
+          step: ProductFeedSettingsPages.PRODUCT_SELECTION,
         },
       });
       window.scrollTo(0, 0);
