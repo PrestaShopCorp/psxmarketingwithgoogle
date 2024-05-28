@@ -62,14 +62,14 @@ class CategoryQueryBuilder implements QueryBuilderInterface
                     return $item['id'];
                 }, $filter['value']);
 
-                return $query->where('c.id_category_default IN [' . implode(', ', array_map('intval', $filteredValues)) . ']');
+                return $query->where('c.id_category IN (' . implode(', ', array_map('intval', $filteredValues)) . ')');
 
             case Condition::IS_NOT:
                 $filteredValues = array_map(function ($item) {
                     return $item['id'];
                 }, $filter['value']);
 
-                return $query->where('c.id_category_default NOT IN [' . implode(', ', array_map('intval', $filteredValues)) . ']');
+                return $query->where('c.id_category NOT IN (' . implode(', ', array_map('intval', $filteredValues)) . ')');
         }
 
         return $query;
@@ -81,5 +81,6 @@ class CategoryQueryBuilder implements QueryBuilderInterface
             ->innerJoin('category_lang', 'cl', 'c.id_category = cl.id_category')
             ->where('cl.id_lang = ' . (int) $this->context->language->id)
             ->where('c.active = 1');
+        // Unknown column 'c.id_category_default' in 'where clause'
     }
 }
