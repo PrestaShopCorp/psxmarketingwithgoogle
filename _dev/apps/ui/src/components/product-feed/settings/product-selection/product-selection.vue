@@ -398,23 +398,21 @@ export default defineComponent({
     await this.$store.dispatch(`productFeed/${ActionsTypes.GET_SHOPS_PRODUCTS_INFOS}`);
 
     // get data from localstorage > store OR create new empty filter
-    const localStorageFilters = getDataFromLocalStorage(localStorageName);
+    const localFilters = getDataFromLocalStorage(localStorageName)
+      || (this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER}`]?.length
+      ?? this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER}`]);
 
-    if (localStorageFilters) {
+    if (localFilters) {
       this.$store.commit(`productFeed/${MutationsTypes.SET_SYNC_METHOD}`, ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT);
+      this.listFilters = localFilters
+        .map((filter: CleanProductFilter) => this.recoverFilter(filter));
+      this.checkFiltersValidity(true);
+    } else {
+      this.listFilters = [newFilter()];
     }
 
-    this.listFilters = localStorageFilters
-      ?.map((filter: CleanProductFilter) => this.recoverFilter(filter))
-    || (this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER}`]?.length
-      ? this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER}`]
-        ?.map((filter: CleanProductFilter) => this.recoverFilter(filter))
-      : [newFilter()]
-    );
-
-    this.checkFiltersValidity(true);
-
-    if (this.filtersAreValid) {
+    if (this.synchSelected === ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT
+      || this.filtersAreValid) {
       await this.$store.dispatch(`productFeed/${ActionsTypes.TRIGGER_PRODUCT_COUNT}`);
     }
   },
