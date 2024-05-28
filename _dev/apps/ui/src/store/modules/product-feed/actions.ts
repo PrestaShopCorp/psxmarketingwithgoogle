@@ -542,11 +542,11 @@ export default {
 
     try {
       const response = await fetchShop('countMatchingProductsFromFilters', {filters}, signal);
-      commit(MutationsTypes.SET_PRODUCT_COUNT_STATUS, ProductFeedCountStatus.SUCCESS);
+      // commit(MutationsTypes.SET_PRODUCT_COUNT_STATUS, ProductFeedCountStatus.SUCCESS);
       commit(MutationsTypes.SET_PRODUCT_COUNT, response.numberOfProducts);
     } catch (error: any) {
       if (error.name !== 'AbortError') {
-        commit(MutationsTypes.SET_PRODUCT_COUNT_STATUS, ProductFeedCountStatus.ERROR);
+        // commit(MutationsTypes.SET_PRODUCT_COUNT_STATUS, ProductFeedCountStatus.ERROR);
       }
     } finally {
       commit(MutationsTypes.SET_PRODUCT_COUNT_ABORT_CONTROLLER, null);
@@ -554,8 +554,12 @@ export default {
   }, 500),
 
   async [ActionsTypes.TRIGGER_PRODUCT_COUNT]({commit, dispatch}: Context) {
-    commit(MutationsTypes.SET_PRODUCT_COUNT_STATUS, ProductFeedCountStatus.PENDING);
-    commit(MutationsTypes.SET_PRODUCT_COUNT, null);
-    await dispatch(ActionsTypes.GET_PRODUCT_COUNT);
+    commit(MutationsTypes.SET_PRODUCT_COUNT_STATUS, null);
+    // we used this to restart loading status on product count pending
+    setTimeout(async () => {
+      commit(MutationsTypes.SET_PRODUCT_COUNT_STATUS, ProductFeedCountStatus.PENDING);
+      commit(MutationsTypes.SET_PRODUCT_COUNT, null);
+      await dispatch(ActionsTypes.GET_PRODUCT_COUNT);
+    }, 1);
   },
 };

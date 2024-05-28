@@ -5,7 +5,7 @@
     show
   >
     <div>
-      <p>
+      <p class="d-flex align-items-center">
         <b
           v-if="productCount
             && status === ProductFeedCountStatus.SUCCESS"
@@ -14,7 +14,7 @@
         </b>
         <span
           v-if="status === ProductFeedCountStatus.PENDING"
-          class="icon-busy icon-busy--dark mr-1"
+          class="icon-busy icon-busy--dark mr-2 flex-shrink-0"
         />
         {{ message }}
       </p>
