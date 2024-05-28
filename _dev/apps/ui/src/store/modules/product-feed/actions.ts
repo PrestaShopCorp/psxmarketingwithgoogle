@@ -542,11 +542,11 @@ export default {
 
     try {
       const response = await fetchShop('countMatchingProductsFromFilters', {filters}, signal);
-      // commit(MutationsTypes.SET_PRODUCT_COUNT_STATUS, ProductFeedCountStatus.SUCCESS);
+      commit(MutationsTypes.SET_PRODUCT_COUNT_STATUS, ProductFeedCountStatus.SUCCESS);
       commit(MutationsTypes.SET_PRODUCT_COUNT, response.numberOfProducts);
     } catch (error: any) {
       if (error.name !== 'AbortError') {
-        // commit(MutationsTypes.SET_PRODUCT_COUNT_STATUS, ProductFeedCountStatus.ERROR);
+        commit(MutationsTypes.SET_PRODUCT_COUNT_STATUS, ProductFeedCountStatus.ERROR);
       }
     } finally {
       commit(MutationsTypes.SET_PRODUCT_COUNT_ABORT_CONTROLLER, null);

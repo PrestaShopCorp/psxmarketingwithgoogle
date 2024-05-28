@@ -9,6 +9,7 @@
         <b
           v-if="productCount
             && status === ProductFeedCountStatus.SUCCESS"
+          class="mr-1"
         >
           {{ productCount }}
         </b>
