@@ -112,6 +112,8 @@ import ProductFilterValueType from '@/enums/product-feed/product-filter-value-ty
 import ActionsTypes from '@/store/modules/product-feed/actions-types';
 import MutationsTypes from '@/store/modules/product-feed/mutations-types';
 import GetterTypes from '@/store/modules/product-feed/getters-types';
+import {booleanToString, stringToBoolean} from '@/utils/StringToBoolean';
+import stringToNumber from '@/utils/StringToNumber';
 
 const newFilter = () => ({
   id: crypto.randomUUID(),
@@ -164,26 +166,12 @@ export default defineComponent({
         }
       }
 
-      return recoveredFilter;
-    },
+      if (recoveredFilter.attribute === ProductFilterAttributes.OUT_OF_STOCK
+        && recoveredFilter.value !== undefined) {
+        recoveredFilter.value = booleanToString(recoveredFilter.value);
+      }
 
-    convertStringBooleanToBoolean(value: any): any {
-      if (typeof value !== 'string') {
-        return value;
-      }
-      if (value.toLowerCase() === 'true') {
-        return true;
-      }
-      if (value.toLowerCase() === 'false') {
-        return false;
-      }
-      return value;
-    },
-    convertStringToNumber(value: any): any {
-      if (!Number.isNaN(value) && !Number.isNaN(parseFloat(value))) {
-        return Number(value);
-      }
-      return value;
+      return recoveredFilter;
     },
     // used to format filter before saving and sending it.
     cleanFilter(filter: ProductFilter): CleanProductFilter {
@@ -206,13 +194,13 @@ export default defineComponent({
       switch (ATTRIBUTE_MAP_CONDITION[cleanFilter.attribute][cleanFilter.condition].type) {
         case ProductFilterValueType.BOOLEAN:
           cleanFilter.value = multipleValue ? filter.value?.map(
-            (value) => this.convertStringBooleanToBoolean(value),
-          ) : this.convertStringBooleanToBoolean(filter.value);
+            (value) => stringToBoolean(value),
+          ) : stringToBoolean(filter.value);
           break;
         case ProductFilterValueType.NUMBER:
           cleanFilter.value = multipleValue ? filter.value?.map(
-            (value) => this.convertStringToNumber(value),
-          ) : this.convertStringToNumber(filter.value);
+            (value) => stringToNumber(value),
+          ) : stringToNumber(filter.value);
           break;
         default:
           cleanFilter.value = filter.value;
@@ -398,23 +386,20 @@ export default defineComponent({
     await this.$store.dispatch(`productFeed/${ActionsTypes.GET_SHOPS_PRODUCTS_INFOS}`);
 
     // get data from localstorage > store OR create new empty filter
-    const localStorageFilters = getDataFromLocalStorage(localStorageName);
+    const localFilters = getDataFromLocalStorage(localStorageName)
+      || this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER}`];
 
-    if (localStorageFilters) {
+    if (localFilters?.length) {
       this.$store.commit(`productFeed/${MutationsTypes.SET_SYNC_METHOD}`, ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT);
+      this.listFilters = localFilters
+        .map((filter: CleanProductFilter) => this.recoverFilter(filter));
+      this.checkFiltersValidity(true);
+    } else {
+      this.listFilters = [newFilter()];
     }
 
-    this.listFilters = localStorageFilters
-      ?.map((filter: CleanProductFilter) => this.recoverFilter(filter))
-    || (this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER}`]?.length
-      ? this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER}`]
-        ?.map((filter: CleanProductFilter) => this.recoverFilter(filter))
-      : [newFilter()]
-    );
-
-    this.checkFiltersValidity(true);
-
-    if (this.filtersAreValid) {
+    if (this.synchSelected === ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT
+      || this.filtersAreValid) {
       await this.$store.dispatch(`productFeed/${ActionsTypes.TRIGGER_PRODUCT_COUNT}`);
     }
   },
