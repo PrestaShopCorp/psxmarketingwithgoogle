@@ -399,8 +399,7 @@ export default defineComponent({
 
     // get data from localstorage > store OR create new empty filter
     const localFilters = getDataFromLocalStorage(localStorageName)
-      || (this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER}`]?.length
-      ?? this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER}`]);
+      || this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER}`];
 
     if (localFilters) {
       this.$store.commit(`productFeed/${MutationsTypes.SET_SYNC_METHOD}`, ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT);
