@@ -401,7 +401,7 @@ export default defineComponent({
     const localFilters = getDataFromLocalStorage(localStorageName)
       || this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER}`];
 
-    if (localFilters) {
+    if (localFilters?.length) {
       this.$store.commit(`productFeed/${MutationsTypes.SET_SYNC_METHOD}`, ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT);
       this.listFilters = localFilters
         .map((filter: CleanProductFilter) => this.recoverFilter(filter));
