@@ -405,14 +405,7 @@ export default defineComponent({
       return window.i18nSettings.isoCode;
     },
     disableNextStep(): boolean {
-      if (this.loading) {
-        return true;
-      }
-
-      if (this.synchSelected === ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT) {
-        return !this.filtersAreValid;
-      }
-      return false;
+      return this.loading;
     },
   },
   async mounted() {
