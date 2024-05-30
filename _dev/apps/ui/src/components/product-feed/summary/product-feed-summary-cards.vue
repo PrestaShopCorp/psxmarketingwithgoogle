@@ -58,6 +58,16 @@
         :link-to="{ name: 'product-feed-settings',
                     step: 3, params: ProductFeedSettingsPages.ATTRIBUTE_MAPPING}"
       />
+      <product-feed-card-report-card
+        v-if="displayAttributeMappingSimpleCard"
+        :basic-display="displayAttributeMappingSimpleCard"
+        :status="'success'"
+        :title="$t('productFeedSettings.steps.productSelection')"
+        :description="attributeMapping.join(', ')"
+        :link="$t('cta.editProductAttributes')"
+        :link-to="{ name: 'product-feed-settings',
+                    step: 4, params: ProductFeedSettingsPages.PRODUCT_SELECTION}"
+      />
     </b-col>
     <b-col
       v-if="!displayAttributeMappingSimpleCard"
