@@ -4,88 +4,111 @@
     <h3 class="font-weight-600">
       {{ $t('productFeedSettings.productSelection.methodSynch.title') }}
     </h3>
-    <div class="container-fluid">
-      <div class="row methods-sync ps_gs-radio">
-        <div
-          class="col col-12 col-md border-primary-400 p-3"
-          :class="{'checked': synchSelected === typeMethodsSynch.SYNCH_ALL_PRODUCT}"
-        >
-          <b-form-radio
-            v-model="synchSelected"
-            name="customSyncRadio"
-            :value="typeMethodsSynch.SYNCH_ALL_PRODUCT"
-          >
-            <h3 class="font-weight-700 mb-2 ps_gs-fz-14">
-              {{ $t('productFeedSettings.productSelection.methodSynch.synchAllProducts') }}
-            </h3>
-            <span class="text-muted">
-              {{ $t('productFeedSettings.productSelection.methodSynch.synchAllProductsDesc') }}
-            </span>
-          </b-form-radio>
+    <b-skeleton-wrapper :loading="loading">
+      <template #loading>
+        <div class="container-fluid">
+          <div class="row methods-sync ps_gs-radio">
+            <b-skeleton
+              height="5rem"
+              class="col col-12 col-md border-primary-400 p-3"
+            />
+            <b-skeleton
+              height="5rem"
+              class="col col-12 col-md border-primary-400 p-3 ml-md-1 mt-1 mt-md-0"
+            />
+          </div>
         </div>
-        <div
-          class="col col-12 col-md border-primary-400 p-3 ml-md-1 mt-1 mt-md-0"
-          :class="{'checked': synchSelected === typeMethodsSynch.SYNCH_FILTERED_PRODUCT}"
-        >
-          <div>
+        <div class="filters">
+          <b-skeleton
+            height="7rem"
+          />
+        </div>
+      </template>
+      <div class="container-fluid">
+        <div class="row methods-sync ps_gs-radio">
+          <div
+            class="col col-12 col-md border-primary-400 p-3"
+            :class="{'checked': synchSelected === typeMethodsSynch.SYNCH_ALL_PRODUCT}"
+          >
             <b-form-radio
               v-model="synchSelected"
               name="customSyncRadio"
-              :value="typeMethodsSynch.SYNCH_FILTERED_PRODUCT"
+              :value="typeMethodsSynch.SYNCH_ALL_PRODUCT"
             >
               <h3 class="font-weight-700 mb-2 ps_gs-fz-14">
-                {{ $t('productFeedSettings.productSelection.methodSynch.synchFilteredProducts') }}
+                {{ $t('productFeedSettings.productSelection.methodSynch.synchAllProducts') }}
               </h3>
               <span class="text-muted">
-                {{
-                  $t('productFeedSettings.productSelection.methodSynch.synchFilteredProductsDesc')
-                }}
+                {{ $t('productFeedSettings.productSelection.methodSynch.synchAllProductsDesc') }}
               </span>
             </b-form-radio>
           </div>
+          <div
+            class="col col-12 col-md border-primary-400 p-3 ml-md-1 mt-1 mt-md-0"
+            :class="{'checked': synchSelected === typeMethodsSynch.SYNCH_FILTERED_PRODUCT}"
+          >
+            <div>
+              <b-form-radio
+                v-model="synchSelected"
+                name="customSyncRadio"
+                :value="typeMethodsSynch.SYNCH_FILTERED_PRODUCT"
+              >
+                <h3 class="font-weight-700 mb-2 ps_gs-fz-14">
+                  {{ $t('productFeedSettings.productSelection.methodSynch.synchFilteredProducts') }}
+                </h3>
+                <span class="text-muted">
+                  {{
+                    $t('productFeedSettings.productSelection.methodSynch.synchFilteredProductsDesc')
+                  }}
+                </span>
+              </b-form-radio>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div
-      v-if="synchSelected === typeMethodsSynch.SYNCH_FILTERED_PRODUCT"
-      class="filters"
-    >
+
       <div
-        v-for="(filters, index) in listFilters"
-        :key="filters.id"
+        v-if="synchSelected === typeMethodsSynch.SYNCH_FILTERED_PRODUCT"
+        class="filters"
       >
         <div
-          class="separator"
-          v-if="index !== 0"
+          v-for="(filters, index) in listFilters"
+          :key="filters.id"
         >
-          <hr>
-          <span>{{ $t('productFeedSettings.productSelection.and') }}</span>
-          <hr>
+          <div
+            class="separator"
+            v-if="index !== 0"
+          >
+            <hr>
+            <span>{{ $t('productFeedSettings.productSelection.and') }}</span>
+            <hr>
+          </div>
+          <line-filter
+            :delete-button-disabled="listFilters.length === 1"
+            @clickToDeleteFilter="deleteFilter(index)"
+            @dataUpdated="updateFilter($event, index)"
+            :filters="filters"
+          />
         </div>
-        <line-filter
-          :delete-button-disabled="listFilters.length === 1"
-          @clickToDeleteFilter="deleteFilter(index)"
-          @dataUpdated="updateFilter($event, index)"
-          :filters="filters"
-        />
       </div>
-    </div>
-    <b-button
-      v-if="synchSelected === typeMethodsSynch.SYNCH_FILTERED_PRODUCT"
-      variant="outline-secondary"
-      class="mt-3"
-      @click="addNewFilter"
-      :disabled="!filtersAreValid"
-    >
-      <i class="material-icons ps_gs-fz-20">add</i>
-      {{ $t('productFeedSettings.productSelection.addFilter') }}
-    </b-button>
-    <ProductCount
-      v-if="displayProductCount"
-    />
+      <b-button
+        v-if="synchSelected === typeMethodsSynch.SYNCH_FILTERED_PRODUCT"
+        variant="outline-secondary"
+        class="mt-3"
+        @click="addNewFilter"
+        :disabled="!filtersAreValid"
+      >
+        <i class="material-icons ps_gs-fz-20">add</i>
+        {{ $t('productFeedSettings.productSelection.addFilter') }}
+      </b-button>
+      <ProductCount
+        v-if="displayProductCount && !loading"
+      />
+    </b-skeleton-wrapper>
     <actions-buttons
       :next-step="nextStep"
       :previous-step="previousStep"
+      :disable-continue="disableNextStep"
       @cancelProductFeedSettingsConfiguration="cancel"
     />
   </div>
@@ -133,6 +156,7 @@ export default defineComponent({
       typeMethodsSynch: ProductFilterMethodsSynch,
       listFilters: [] as ProductFilter[],
       filtersAreValid: false,
+      loading: true,
     };
   },
   methods: {
@@ -380,10 +404,22 @@ export default defineComponent({
     currentCountry(): string {
       return window.i18nSettings.isoCode;
     },
+    disableNextStep(): boolean {
+      if (this.loading) {
+        return true;
+      }
+
+      if (this.synchSelected === ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT) {
+        return !this.filtersAreValid;
+      }
+      return false;
+    },
   },
   async mounted() {
+    this.loading = true;
     // get all data for filters
     await this.$store.dispatch(`productFeed/${ActionsTypes.GET_SHOPS_PRODUCTS_INFOS}`);
+    await this.$store.dispatch(`productFeed/${ActionsTypes.GET_PRODUCT_FILTER_SETTINGS}`);
 
     // get data from localstorage > store OR create new empty filter
     const localFilters = getDataFromLocalStorage(localStorageName)
@@ -402,6 +438,8 @@ export default defineComponent({
       || this.filtersAreValid) {
       await this.$store.dispatch(`productFeed/${ActionsTypes.TRIGGER_PRODUCT_COUNT}`);
     }
+
+    this.loading = false;
   },
 });
 </script>
