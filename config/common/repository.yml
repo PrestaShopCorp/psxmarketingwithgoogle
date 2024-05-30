@@ -39,6 +39,8 @@ services:
   PrestaShop\Module\PsxMarketingWithGoogle\Repository\LanguageRepository:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\LanguageRepository
     public: true
+    arguments:
+      - '@=service("psxmarketingwithgoogle.shop").id'
 
   PrestaShop\Module\PsxMarketingWithGoogle\Repository\ManufacturerRepository:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\ManufacturerRepository
