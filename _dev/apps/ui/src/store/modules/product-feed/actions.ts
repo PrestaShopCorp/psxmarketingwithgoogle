@@ -53,6 +53,7 @@ export const createProductFeedApiPayload = (settings:any) => ({
   productSelected: settings.productSelected,
   selectedProductCategories: settings.selectedProductCategories,
   requestSynchronizationNow: settings.requestSynchronizationNow,
+  languages: settings.languages,
 });
 
 export default {
@@ -187,7 +188,7 @@ export default {
   },
 
   async [ActionsTypes.SEND_PRODUCT_FEED_SETTINGS]({
-    state, getters, commit,
+    state, rootState, getters, commit,
   }: Context) {
     commit(MutationsTypes.API_ERROR, false);
 
@@ -237,6 +238,7 @@ export default {
       attributeMapping,
       selectedProductCategories,
       requestSynchronizationNow,
+      languages: rootState.app.psxMktgWithGoogleLanguages,
     });
 
     try {
