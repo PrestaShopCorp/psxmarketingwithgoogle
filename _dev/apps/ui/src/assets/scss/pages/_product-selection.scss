@@ -6,12 +6,12 @@
     margin-top: 16px;
 
     .line-filter {
-      background-color: $primary-200;  
+      background-color: $primary-200;
       display: flex;
       align-items: center;
       padding: 12px;
       flex-direction: column;
-      
+
       @include media-breakpoint-up(sm) {
         padding: 24px;
         flex-direction: row;
@@ -30,10 +30,6 @@
           & > div {
             width: 100%;
           }
-
-          &:last-child {
-            flex-grow: 1;
-          }
         }
 
         @include media-breakpoint-up(md) {
@@ -50,17 +46,17 @@
         z-index: 2;
         position: relative;
       }
-    } 
-    
+    }
+
     .separator {
       display: flex;
       align-items: center;
-      
+
       hr {
         height: 1px;
         width: 100%;
       }
-      
+
       span {
         margin: 0 rem(16);
         padding: 2px 8px;
@@ -80,6 +76,7 @@
       align-items: center;
       justify-content: center;
       margin-top: 12px;
+      padding: 2px 0;
 
       @include media-breakpoint-up(sm) {
         margin-left: rem(16);
