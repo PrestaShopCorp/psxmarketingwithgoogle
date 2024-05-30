@@ -53,7 +53,6 @@ export const createProductFeedApiPayload = (settings:any) => ({
   productSelected: settings.productSelected,
   selectedProductCategories: settings.selectedProductCategories,
   requestSynchronizationNow: settings.requestSynchronizationNow,
-  filters: settings.productFiltered,
 });
 
 export default {
@@ -115,6 +114,20 @@ export default {
       commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'nextJobAt', data: json.nextJobAt});
       commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'success', data: json.success});
       commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'syncSchedule', data: json.syncSchedule});
+    } catch (error) {
+      console.error(error);
+    }
+  },
+
+  async [ActionsTypes.GET_PRODUCT_FILTER_SETTINGS](
+    {commit}: Context,
+  ) {
+    try {
+      const json = await (await fetchOnboarding('GET', 'product-filters')).json();
+
+      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+        name: 'productFilter', data: json,
+      });
     } catch (error) {
       console.error(error);
     }
@@ -222,7 +235,6 @@ export default {
       rate,
       estimateCarriers,
       attributeMapping,
-      productFiltered,
       selectedProductCategories,
       requestSynchronizationNow,
     });
@@ -232,6 +244,11 @@ export default {
         'POST',
         'incremental-sync/settings',
         {body: newSettings},
+      );
+      await fetchOnboarding(
+        'POST',
+        'product-filters',
+        {body: productFiltered},
       );
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
       commit(MutationsTypes.SAVE_CONFIGURATION_CONNECTED_ONCE, true);
