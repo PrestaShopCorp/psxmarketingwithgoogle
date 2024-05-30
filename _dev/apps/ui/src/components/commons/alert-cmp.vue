@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="display"
+    v-if="displayAlert"
     class="col-12"
   >
     <b-alert
@@ -39,6 +39,7 @@
 <script>
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
+import GettersTypes from '@/store/modules/google-ads/getters-types';
 
 const localStorageSave = 'google-cmp-closed';
 
@@ -65,6 +66,9 @@ export default {
   computed: {
     GDPRModuleLink() {
       return `https://addons.prestashop.com/${this.$i18n.locale}/legal/21644-cookies-gdpr-law-blocker-google-consent-mode-v2.html`;
+    },
+    displayAlert() {
+      return this.display && this.$store.getters[`googleAds/${GettersTypes.GET_GOOGLE_ADS_ACCOUNT_CHOSEN}`];
     },
   },
   mounted() {
