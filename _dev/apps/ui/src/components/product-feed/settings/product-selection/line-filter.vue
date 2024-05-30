@@ -95,7 +95,7 @@
             {{ filters.errors?.condition || '&nbsp;' }}
           </p>
         </div>
-        <div>
+        <div class="flex-grow-1">
           <p
             class="mb-0 font-weight-500"
             :class="{'text-primary-500': !conditionSelected }"
@@ -163,16 +163,31 @@
             {{ filters.errors?.value || '&nbsp;' }}
           </p>
         </div>
+        <div>
+          <p class="mb-0 font-weight-500">
+            &nbsp;
+          </p>
+          <div
+            class="d-flex align-items-center justify-content-start h-100"
+          >
+            <button
+              :class="{'disabled': deleteButtonDisabled}"
+              :disabled="deleteButtonDisabled"
+              class="delete-filter"
+              @click="$emit('clickToDeleteFilter')"
+            >
+              <i class="material-icons ps_gs-fz-20">delete</i>
+            </button>
+          </div>
+          <p
+            class="error-message"
+            v-if="hasError"
+          >
+            &nbsp;
+          </p>
+        </div>
       </div>
     </b-form>
-    <button
-      :class="{'disabled': deleteButtonDisabled}"
-      :disabled="deleteButtonDisabled"
-      class="delete-filter"
-      @click="$emit('clickToDeleteFilter')"
-    >
-      <i class="material-icons ps_gs-fz-20">delete</i>
-    </button>
   </div>
 </template>
 
