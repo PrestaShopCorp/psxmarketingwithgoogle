@@ -75,9 +75,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ${{ github.event.repository.name }}
+          path: '.'
 
       - name: Prepare the production zip
         run: |
+          ls -la
           cd ${{ github.event.repository.name }}
           zip -r ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}.zip ${{ github.event.repository.name }} -x '*.git*'
 
@@ -99,6 +101,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ${{ github.event.repository.name }}
+          path: '.'
 
       - name: auth
         uses: google-github-actions/auth@v2
@@ -140,6 +143,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ${{ github.event.repository.name }}
+          path: '.'
 
       - name: auth
         uses: google-github-actions/auth@v2
