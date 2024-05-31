@@ -64,7 +64,7 @@ jobs:
         run: |
           mkdir ${{ github.event.repository.name }}
           shopt -s extglob
-          mv !(./${{ github.event.repository.name }}) ./${{ github.event.repository.name }}
+          mv !(${{ github.event.repository.name }}) ./${{ github.event.repository.name }}
 
       - name: Create & upload artifact
         uses: actions/upload-artifact@v4
