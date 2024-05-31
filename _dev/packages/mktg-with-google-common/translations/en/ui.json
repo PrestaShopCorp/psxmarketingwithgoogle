@@ -257,8 +257,7 @@
       "attributeMapping": "Attribute mapping",
       "productSelection": "Product Selection",
       "categoryMapping": "Category mapping",
-      "productSelection": "Product selection",
-        "summary": "Summary",
+      "summary": "Summary",
       "exportFeed": "Export feed!",
       "shippingSettingsErrors": "This country is not compatible with your currency",
       "syncSchedule" : "Sync schedule"
@@ -751,8 +750,8 @@
         "stepTitle": "Products verified by Prestashop before sent to Google",
         "stepDetails": "Before sending all your products (including variations), we ensure their compliance with Google's Merchant center policies. We verify the products **every time a change is detected**, and if there are any non-compliant products, we provide guidance on what needs to be done. Click on non-compliant products for more information.\n\nAfter submission, Google assigns each product a status: **Approved, Expiring, Pending** or **Disapproved**.",
         "reportCards": {
-          "productsInCatalog": "My product catalog",
-          "productsInCatalogDescription": "Active products with variations in product feed languages.",
+          "selectedProducts": "My selected products",
+          "selectedProductsDescription": "Selected products with variations in product feed languages",
           "verified": "Compliant products",
           "verifiedDescription": "PrestaShop-approved products ready to be sent to Google.",
           "nonCompliant": "Non-compliant products",
