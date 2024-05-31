@@ -42,12 +42,6 @@ jobs:
       - name: Clean-up project
         uses: PrestaShopCorp/github-action-clean-before-deploy@v1.0
 
-      - name: Create directory with repo name and copy files
-        run: |
-          mkdir ${{ github.event.repository.name }}
-          shopt -s extglob
-          cp -r !(./${{ github.event.repository.name }}) ./${{ github.event.repository.name }}
-
       - name: Create & upload artifact
         uses: actions/upload-artifact@v4
         with:
