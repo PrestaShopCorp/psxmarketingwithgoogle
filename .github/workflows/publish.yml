@@ -90,8 +90,6 @@ jobs:
 
       - name: Prepare the production zip
         run: |
-          ls -la
-          cd ${{ github.event.repository.name }}
           zip -r ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}.zip ${{ github.event.repository.name }} -x '*.git*'
 
       - name: Publish the production zip
@@ -127,13 +125,12 @@ jobs:
       - name: Copy env files
         run: |
           gcloud components install beta
-          gcloud beta secrets versions access latest --secret="google-shopping-module" >> psxmarketingwithgoogle/psxmarketingwithgoogle/.env
+          gcloud beta secrets versions access latest --secret="google-shopping-module" >> ${{ github.event.repository.name }}/.env
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.G_CREDENTIAL_PREPRODUCTION }}
 
       - name: Prepare the preproduction zip
         run: |
-          cd ${{ github.event.repository.name }}
           zip -r ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_preproduction.zip ${{ github.event.repository.name }} -x '*.git*'
 
       - name: Publish the preproduction zip
@@ -169,13 +166,12 @@ jobs:
       - name: Copy env files
         run: |
           gcloud components install beta
-          gcloud beta secrets versions access latest --secret="google-shopping-module" >> psxmarketingwithgoogle/psxmarketingwithgoogle/.env
+          gcloud beta secrets versions access latest --secret="google-shopping-module" >> ${{ github.event.repository.name }}/.env
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
 
       - name: Prepare the integration zip
         run: |
-          cd ${{ github.event.repository.name }}
           zip -r ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_integration.zip ${{ github.event.repository.name }}  -x '*.git*'
 
       - name: Publish the integration zip
