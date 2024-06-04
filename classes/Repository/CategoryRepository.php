@@ -45,6 +45,8 @@ class CategoryRepository
             ->innerJoin('category_lang', 'cl', 'cl.id_category = c.id_category')
             ->where('cs.id_shop = ' . (int) $this->context->shop->id)
             ->where('cl.id_lang = ' . (int) $this->context->language->id)
+            // allows you to remove the root category and the categories cannot be administered or assigned to a product.
+            ->where('c.id_parent <> 0')
             ->where('c.active = 1');
 
         return Db::getInstance()->executeS($query);
