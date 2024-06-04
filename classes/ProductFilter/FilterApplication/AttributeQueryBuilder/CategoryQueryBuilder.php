@@ -77,7 +77,8 @@ class CategoryQueryBuilder implements QueryBuilderInterface
 
     public function addRelations(DbQuery $query): DbQuery
     {
-        return $query->innerJoin('category', 'c', 'c.id_category = p.id_category_default')
+        return $query->innerJoin('category_product', 'cp', 'cp.id_product = p.id_product')
+            ->innerJoin('category', 'c', 'c.id_category = cp.id_category')
             ->innerJoin('category_lang', 'cl', 'c.id_category = cl.id_category')
             ->where('cl.id_lang = ' . (int) $this->context->language->id)
             ->where('c.active = 1');
