@@ -10,17 +10,18 @@
           <div class="row methods-sync ps_gs-radio">
             <b-skeleton
               height="5rem"
-              class="col col-12 col-md border-primary-400 p-3"
+              class="col col-12 col-md p-3 rounded-0"
             />
             <b-skeleton
               height="5rem"
-              class="col col-12 col-md border-primary-400 p-3 ml-md-1 mt-1 mt-md-0"
+              class="col col-12 col-md p-3 ml-md-1 mt-1 mt-md-0 rounded-0"
             />
           </div>
         </div>
         <div class="filters">
           <b-skeleton
             height="7rem"
+            class="rounded-0"
           />
         </div>
       </template>
@@ -80,7 +81,7 @@
             v-if="index !== 0"
           >
             <hr>
-            <span>{{ $t('productFeedSettings.productSelection.and') }}</span>
+            <span class="font-weight-500">{{ $t('productFeedSettings.productSelection.and') }}</span>
             <hr>
           </div>
           <line-filter
@@ -88,6 +89,7 @@
             @clickToDeleteFilter="deleteFilter(index)"
             @dataUpdated="updateFilter($event, index)"
             :filters="filters"
+            :filter-index="index"
           />
         </div>
       </div>
@@ -95,6 +97,7 @@
         v-if="synchSelected === typeMethodsSynch.SYNCH_FILTERED_PRODUCT"
         variant="outline-secondary"
         class="mt-3"
+        id="add-filter"
         @click="addNewFilter"
         :disabled="!filtersAreValid"
       >

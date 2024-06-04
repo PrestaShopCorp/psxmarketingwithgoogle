@@ -2,7 +2,10 @@
 <template>
   <div class="line-filter">
     <b-form @submit.prevent="">
-      <div class="line-filter-field">
+      <div
+        class="line-filter-field"
+        :id="`line-filter-${filterIndex}`"
+      >
         <!-- ATTRIBUTES -->
         <div>
           <p class="mb-0 font-weight-500">
@@ -117,6 +120,7 @@
               :value="valueSelected"
               :disabled="!conditionSelected.length"
               @input="updateValue($event)"
+              @keydown.enter.prevent="focusNext"
             />
           </b-input-group>
           <!-- VALUE / BOOLEAN -->
@@ -222,6 +226,10 @@ export default defineComponent({
       type: Object as PropType<ProductFilter>,
       required: true,
     },
+    filterIndex: {
+      type: Number,
+      required: true,
+    },
   },
   data() {
     return {
@@ -234,6 +242,24 @@ export default defineComponent({
     };
   },
   methods: {
+    focusNext() {
+      const nextFilter = document.getElementById(`line-filter-${this.$props.filterIndex + 1}`);
+
+      if (nextFilter) {
+        const firstButton = nextFilter.querySelector('button.btn.dropdown-toggle') as HTMLButtonElement;
+
+        if (firstButton) {
+          firstButton.focus();
+        }
+        return;
+      }
+
+      const addFilterButton = document.getElementById('add-filter');
+
+      if (addFilterButton) {
+        addFilterButton.focus();
+      }
+    },
     updateAttribute(attribute: Attribute, isDefault: boolean) {
       this.attributeSelected = attribute;
       this.defaultAttributeIsSelected = isDefault;
