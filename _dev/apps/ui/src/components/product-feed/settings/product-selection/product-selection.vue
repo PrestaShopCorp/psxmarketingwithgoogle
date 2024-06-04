@@ -145,7 +145,8 @@ const newFilter = () => ({
   id: crypto.randomUUID(),
 });
 
-const localStorageName = 'productFeed-productFilter';
+const localStorageProductFilter = 'productFeed-productFilter';
+const localStorageProductFilterSync = 'productFeed-productFilterSync';
 
 export default defineComponent({
   name: 'ProductFeedSettingsProductSelection',
@@ -308,14 +309,14 @@ export default defineComponent({
       const filters = this.getCleanFilters();
 
       if (localStorageSave) {
-        localStorage.setItem(localStorageName, JSON.stringify(filters));
+        localStorage.setItem(localStorageProductFilter, JSON.stringify(filters));
       }
       this.$store.commit(`productFeed/${MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS}`, {
         name: 'productFilter', data: filters,
       });
     },
     deleteFilters() {
-      localStorage.removeItem(localStorageName);
+      localStorage.removeItem(localStorageProductFilter);
       this.$store.commit(`productFeed/${MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS}`, {
         name: 'productFilter', data: [],
       });
@@ -346,6 +347,8 @@ export default defineComponent({
       }
 
       this.checkMethodSyncBeforeMoveStep();
+
+      localStorage.setItem(localStorageProductFilterSync, this.synchSelected);
       this.$store.commit(`productFeed/${MutationsTypes.SET_ACTIVE_CONFIGURATION_STEP}`, 5);
       this.$router.push({
         name: 'product-feed-settings',
@@ -417,12 +420,16 @@ export default defineComponent({
     await this.$store.dispatch(`productFeed/${ActionsTypes.GET_SHOPS_PRODUCTS_INFOS}`);
     await this.$store.dispatch(`productFeed/${ActionsTypes.GET_PRODUCT_FILTER_SETTINGS}`);
 
-    // get data from localstorage > store OR create new empty filter
-    const localFilters = getDataFromLocalStorage(localStorageName)
+    const currentSync = localStorage.getItem(localStorageProductFilterSync);
+    const localFilters = getDataFromLocalStorage(localStorageProductFilter)
       || this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER}`];
 
-    if (localFilters?.length) {
-      this.$store.commit(`productFeed/${MutationsTypes.SET_SYNC_METHOD}`, ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT);
+    if (currentSync) {
+      this.$store.commit(`productFeed/${MutationsTypes.SET_SYNC_METHOD}`, currentSync);
+    }
+
+    if (this.synchSelected === ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT
+      && localFilters?.length) {
       this.listFilters = localFilters
         .map((filter: CleanProductFilter) => this.recoverFilter(filter));
       this.checkFiltersValidity(true);
