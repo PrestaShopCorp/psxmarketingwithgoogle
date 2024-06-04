@@ -81,7 +81,7 @@
             v-if="index !== 0"
           >
             <hr>
-            <span>{{ $t('productFeedSettings.productSelection.and') }}</span>
+            <span class="font-weight-500">{{ $t('productFeedSettings.productSelection.and') }}</span>
             <hr>
           </div>
           <line-filter
