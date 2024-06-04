@@ -10,17 +10,18 @@
           <div class="row methods-sync ps_gs-radio">
             <b-skeleton
               height="5rem"
-              class="col col-12 col-md border-primary-400 p-3"
+              class="col col-12 col-md p-3 rounded-0"
             />
             <b-skeleton
               height="5rem"
-              class="col col-12 col-md border-primary-400 p-3 ml-md-1 mt-1 mt-md-0"
+              class="col col-12 col-md p-3 ml-md-1 mt-1 mt-md-0 rounded-0"
             />
           </div>
         </div>
         <div class="filters">
           <b-skeleton
             height="7rem"
+            class="rounded-0"
           />
         </div>
       </template>
