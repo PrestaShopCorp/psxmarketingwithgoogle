@@ -89,7 +89,7 @@
             @clickToDeleteFilter="deleteFilter(index)"
             @dataUpdated="updateFilter($event, index)"
             :filters="filters"
-            :index="index"
+            :filter-index="index"
           />
         </div>
       </div>

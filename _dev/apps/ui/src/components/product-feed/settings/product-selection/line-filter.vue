@@ -4,7 +4,7 @@
     <b-form @submit.prevent="">
       <div
         class="line-filter-field"
-        :id="`line-filter-${index}`"
+        :id="`line-filter-${filterIndex}`"
       >
         <!-- ATTRIBUTES -->
         <div>
@@ -226,7 +226,7 @@ export default defineComponent({
       type: Object as PropType<ProductFilter>,
       required: true,
     },
-    index: {
+    filterIndex: {
       type: Number,
       required: true,
     },
@@ -243,8 +243,7 @@ export default defineComponent({
   },
   methods: {
     focusNext() {
-      const nextFilter = document.getElementById(`line-filter-${this.$props.index + 1}`);
-      console.log(nextFilter);
+      const nextFilter = document.getElementById(`line-filter-${this.$props.filterIndex + 1}`);
 
       if (nextFilter) {
         const firstButton = nextFilter.querySelector('button.btn.dropdown-toggle') as HTMLButtonElement;
