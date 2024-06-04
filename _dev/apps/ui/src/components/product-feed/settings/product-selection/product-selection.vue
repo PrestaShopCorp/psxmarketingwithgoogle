@@ -89,6 +89,7 @@
             @clickToDeleteFilter="deleteFilter(index)"
             @dataUpdated="updateFilter($event, index)"
             :filters="filters"
+            :index="index"
           />
         </div>
       </div>
@@ -96,6 +97,7 @@
         v-if="synchSelected === typeMethodsSynch.SYNCH_FILTERED_PRODUCT"
         variant="outline-secondary"
         class="mt-3"
+        id="add-filter"
         @click="addNewFilter"
         :disabled="!filtersAreValid"
       >
