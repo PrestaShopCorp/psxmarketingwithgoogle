@@ -38,6 +38,7 @@
       :previous-step="previousStep"
       @cancelProductFeedSettingsConfiguration="cancel()"
     />
+    <settings-footer />
   </div>
 </template>
 
@@ -57,9 +58,11 @@ import {DeliveryDetail, validateDeliveryDetail, validateEachCountryHasAtLeastOne
 import CustomRate from '@/components/product-feed/settings/delivery-time-and-rates/estimate-method/custom-rate.vue';
 import CountriesFormList from './estimate-method/countries-form-list.vue';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
+import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 
 export default Vue.extend({
   components: {
+    SettingsFooter,
     ActionsButtons,
     TargetCountries,
     ShippingSettings,

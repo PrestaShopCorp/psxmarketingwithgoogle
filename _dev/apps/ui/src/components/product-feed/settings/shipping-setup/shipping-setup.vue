@@ -65,6 +65,7 @@
       :next-step="nextStep"
       @cancelProductFeedSettingsConfiguration="cancel()"
     />
+    <settings-footer />
   </b-form>
 </template>
 
@@ -77,10 +78,12 @@ import ActionsButtons from '@/components/product-feed/settings/commons/actions-b
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
+import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 
 export default defineComponent({
   name: 'ShippingSetup',
   components: {
+    SettingsFooter,
     ActionsButtons,
     VueShowdown,
     BFormRadio,
