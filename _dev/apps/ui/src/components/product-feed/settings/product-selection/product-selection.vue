@@ -114,6 +114,7 @@
       :disable-continue="disableNextStep"
       @cancelProductFeedSettingsConfiguration="cancel"
     />
+    <settings-footer />
   </div>
 </template>
 
@@ -140,6 +141,7 @@ import MutationsTypes from '@/store/modules/product-feed/mutations-types';
 import GetterTypes from '@/store/modules/product-feed/getters-types';
 import {booleanToString, stringToBoolean} from '@/utils/StringToBoolean';
 import stringToNumber from '@/utils/StringToNumber';
+import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 
 const newFilter = () => ({
   id: crypto.randomUUID(),
@@ -151,6 +153,7 @@ const localStorageProductFilterSync = 'productFeed-productFilterSync';
 export default defineComponent({
   name: 'ProductFeedSettingsProductSelection',
   components: {
+    SettingsFooter,
     ActionsButtons,
     LineFilter,
     ProductCount,
