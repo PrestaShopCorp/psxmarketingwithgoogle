@@ -3,6 +3,7 @@
     <product-feed-settings
       :active-step="activeStep"
       @cancelProductFeedProcess="onCancelProductFeedSettingsConfiguration"
+      @saveProductFeedProcess="onSaveProductFeedSettingsConfiguration"
     />
     <!-- MODAL CANCEL -->
     <ProductFeedPopinCancel
@@ -28,6 +29,7 @@ export default {
     return {
       nextRoute: null,
       navigationResolver: null,
+      continue: false,
     };
   },
   computed: {
@@ -37,6 +39,14 @@ export default {
   },
   methods: {
     onCancelProductFeedSettingsConfiguration() {
+      this.continue = false;
+      this.$router.push({
+        name: 'configuration',
+        hash: '#product-feed-card',
+      });
+    },
+    onSaveProductFeedSettingsConfiguration() {
+      this.continue = true;
       this.$router.push({
         name: 'configuration',
         hash: '#product-feed-card',
@@ -73,6 +83,10 @@ export default {
     this.$store.dispatch('productFeed/WARMUP_STORE');
   },
   beforeRouteLeave(to, from, next) {
+    if (this.continue) {
+      next();
+      return;
+    }
     this.nextRoute = to;
     this.navigationResolver = next;
     this.$bvModal.show(
