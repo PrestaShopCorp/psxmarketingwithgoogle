@@ -430,6 +430,12 @@ export default defineComponent({
         this.updateValue(this.$props.filters.value);
       }
     }
+
+    const firstInput = document.querySelector(`#line-filter-${this.$props.filterIndex} .dropdown-toggle`) as HTMLButtonElement;
+
+    if (firstInput) {
+      firstInput.focus();
+    }
   },
 });
 </script>
