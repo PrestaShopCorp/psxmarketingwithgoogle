@@ -185,6 +185,7 @@ import EnhancedConversionsCard from '@/components/enhanced-conversions/enhanced-
 import ModalEcIntro from '@/components/enhanced-conversions/modal-ec-intro.vue';
 import {AccountInformations} from '@/store/modules/google-ads/state';
 import GettersTypesApp from '@/store/modules/app/getters-types';
+import {deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
 
 export default defineComponent({
   name: 'OnboardingPage',
@@ -448,6 +449,8 @@ export default defineComponent({
     },
   },
   mounted() {
+    deleteProductFeedDataFromLocalStorage();
+
     this.initAccountsComponent();
     this.initCloudSyncConsent();
 
