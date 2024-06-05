@@ -1,11 +1,3 @@
-input[type="radio"] {
-  &:focus, &:focus-visible {
-    background: red;
-    border: 1px solid red;
-    color: red;
-  }
-}
-
 .gs-product-selection {
   .methods-sync {
     max-width: 808px;
@@ -53,6 +45,12 @@ input[type="radio"] {
         background-color: $red-50;
         z-index: 2;
         position: relative;
+      }
+    }
+
+    .input-text-with-tag .input-text-with-tag-container input[type=text][disabled=disabled] {
+      &::placeholder {
+        color: $primary-500;
       }
     }
 
