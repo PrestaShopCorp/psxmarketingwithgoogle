@@ -33,7 +33,7 @@ export type VerificationStats = Pick<
 
 export type ProductFeedReport = {
   lastConfigurationUsed: IncrementalSyncContext|null;
-  productsInCatalog: string|null;
+  productsInCatalog: number|null;
   invalidProducts: number|null;
   validProducts: number|null;
 }

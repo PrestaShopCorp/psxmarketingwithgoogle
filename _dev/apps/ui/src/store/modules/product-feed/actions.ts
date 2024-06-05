@@ -91,7 +91,7 @@ export default {
       ),
       runIf(
         !state.report.productsInCatalog,
-        dispatch(ActionsTypes.REQUEST_PRODUCTS_ON_CLOUDSYNC),
+        dispatch(ActionsTypes.REQUEST_VERIFICATION_STATS),
       ),
       runIf(
         !state.report.invalidProducts,
@@ -388,15 +388,6 @@ export default {
     } catch (error) {
       console.log(error);
     }
-  },
-
-  async [ActionsTypes.REQUEST_PRODUCTS_ON_CLOUDSYNC]({commit}: Context) {
-    const json: {totalProducts: string} = await (await fetchOnboarding(
-      'GET',
-      'product-feeds/stats/shop',
-    )).json();
-
-    commit(MutationsTypes.SAVE_NUMBER_OF_PRODUCTS_ON_CLOUDSYNC, json.totalProducts);
   },
 
   async [ActionsTypes.REQUEST_PRODUCT_FEED_SYNC_CONTEXT]({commit}: Context) {

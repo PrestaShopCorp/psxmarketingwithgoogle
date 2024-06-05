@@ -183,21 +183,17 @@ export default {
   ) {
     state.report.lastConfigurationUsed = syncContext;
   },
-  [MutationsTypes.SAVE_NUMBER_OF_PRODUCTS_ON_CLOUDSYNC](
-    state: LocalState,
-    productsInCatalog: string,
-  ) {
-    state.report.productsInCatalog = productsInCatalog;
-  },
   [MutationsTypes.SAVE_VERIFICATION_STATS](
     state: LocalState,
     verificationStats: {
       validProducts: number;
       invalidProducts: number;
+      totalProducts: number;
     },
   ) {
     state.report.invalidProducts = verificationStats.invalidProducts;
     state.report.validProducts = verificationStats.validProducts;
+    state.report.productsInCatalog = verificationStats.totalProducts;
   },
 
   [MutationsTypes.SAVE_VERIFICATION_ISSUES](
