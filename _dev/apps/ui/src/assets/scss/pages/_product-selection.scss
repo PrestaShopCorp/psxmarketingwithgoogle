@@ -48,6 +48,23 @@
       }
     }
 
+    .input-text-with-tag .input-text-with-tag-container input[type=text][disabled=disabled] {
+      &::placeholder {
+        color: $primary-500;
+      }
+    }
+
+    .v-select {
+      &.vs--open {
+        z-index: 4;
+        .vs__dropdown-toggle {
+          box-shadow: none;
+          outline: #174EEF 2px solid !important;
+          outline-offset: 1px;
+        }
+      }
+    }
+
     .separator {
       display: flex;
       align-items: center;

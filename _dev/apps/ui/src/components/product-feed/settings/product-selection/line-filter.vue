@@ -177,7 +177,7 @@
             <button
               :class="{'disabled': deleteButtonDisabled}"
               :disabled="deleteButtonDisabled"
-              class="delete-filter"
+              class="btn delete-filter"
               @click="$emit('clickToDeleteFilter')"
             >
               <i class="material-icons ps_gs-fz-20">delete</i>
@@ -429,6 +429,12 @@ export default defineComponent({
       } else {
         this.updateValue(this.$props.filters.value);
       }
+    }
+
+    const firstInput = document.querySelector(`#line-filter-${this.$props.filterIndex} .dropdown-toggle`) as HTMLButtonElement;
+
+    if (firstInput) {
+      firstInput.focus();
     }
   },
 });
