@@ -59,6 +59,7 @@
         v-bind="$attrs"
         v-if="$route.params.step === ProductFeedSettingsPages.SUMMARY"
         @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
+        @save="productFeedSaveProcess"
       />
     </b-card-body>
   </b-card>
@@ -108,6 +109,9 @@ export default defineComponent({
   methods: {
     productFeedCancelProcess() {
       this.$emit('cancelProductFeedProcess');
+    },
+    productFeedSaveProcess() {
+      this.$emit('saveProductFeedProcess');
     },
   },
 });
