@@ -423,12 +423,17 @@ export default defineComponent({
     await this.$store.dispatch(`productFeed/${ActionsTypes.GET_SHOPS_PRODUCTS_INFOS}`);
     await this.$store.dispatch(`productFeed/${ActionsTypes.GET_PRODUCT_FILTER_SETTINGS}`);
 
-    const currentSync = localStorage.getItem(localStorageProductFilterSync);
-    const localFilters = getDataFromLocalStorage(localStorageProductFilter)
-      || this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER}`];
+    const currentSync = localStorage
+      .getItem(localStorageProductFilterSync) as ProductFilterMethodsSynch;
+    const localStorageFilters = getDataFromLocalStorage(localStorageProductFilter);
+    const storeApiFilters = this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER}`];
+    const localFilters = localStorageFilters
+      || storeApiFilters;
 
     if (currentSync) {
-      this.$store.commit(`productFeed/${MutationsTypes.SET_SYNC_METHOD}`, currentSync);
+      this.synchSelected = currentSync;
+    } else if (storeApiFilters?.length) {
+      this.synchSelected = ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT;
     }
 
     if (this.synchSelected === ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT
