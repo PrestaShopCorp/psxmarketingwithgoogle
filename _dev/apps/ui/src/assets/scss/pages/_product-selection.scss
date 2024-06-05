@@ -1,3 +1,11 @@
+input[type="radio"] {
+  &:focus, &:focus-visible {
+    background: red;
+    border: 1px solid red;
+    color: red;
+  }
+}
+
 .gs-product-selection {
   .methods-sync {
     max-width: 808px;
