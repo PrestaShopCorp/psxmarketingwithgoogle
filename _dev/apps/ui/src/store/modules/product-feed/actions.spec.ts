@@ -8,6 +8,7 @@ import {productValidationListMock} from '@/../.storybook/mock/api-routes/product
 import ActionsTypes from '@/store/modules/product-feed/actions-types';
 import actions from '@/store/modules/product-feed/actions';
 import {ProductStatus} from './state';
+import {formatMappingToApi} from '@/utils/AttributeMapping';
 
 const allDetailsFromState = {
   autoImportTaxSettings: false,
@@ -65,7 +66,7 @@ const allDetailsFromState = {
     ],
   },
   estimateCarriers: [],
-  attributeMapping: [
+  attributeMapping: formatMappingToApi([
     {
       category: 'commons',
       fields: [
@@ -107,7 +108,7 @@ const allDetailsFromState = {
         },
       ],
     },
-  ],
+  ]),
   selectedProductCategories: ['none'],
   requestSynchronizationNow: false,
 };
