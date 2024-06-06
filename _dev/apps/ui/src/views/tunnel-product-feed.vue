@@ -18,6 +18,7 @@
 import ProductFeedSettings from '../components/product-feed/product-feed-settings';
 import ProductFeedPopinCancel from '../components/product-feed/product-feed-popin-cancel';
 import {deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
+import ActionsTypes from '@/store/modules/product-feed/actions-types';
 
 export default {
   name: 'TunnelProductFeed',
@@ -45,9 +46,10 @@ export default {
         hash: '#product-feed-card',
       });
     },
-    onSaveProductFeedSettingsConfiguration() {
+    async onSaveProductFeedSettingsConfiguration() {
       this.continue = true;
-      this.$router.push({
+      await this.$store.dispatch(`productFeed/${ActionsTypes.SEND_PRODUCT_FEED_SETTINGS}`);
+      await this.$router.push({
         name: 'configuration',
         hash: '#product-feed-card',
       });
