@@ -29,6 +29,7 @@
 
           & > div {
             width: 100%;
+            height: 100%;
           }
         }
 
@@ -48,13 +49,19 @@
       }
     }
 
-    .input-text-with-tag .input-text-with-tag-container input[type=text][disabled=disabled] {
-      &::placeholder {
-        color: $primary-500;
+    .input-text-with-tag .input-text-with-tag-container {
+      height: 100%;
+      input[type=text][disabled=disabled] {
+        &::placeholder {
+          color: $primary-500;
+        }
       }
     }
 
     .v-select {
+      .vs__dropdown-toggle {
+        height: 100%;
+      }
       &.vs--open {
         z-index: 4;
         .vs__dropdown-toggle {
