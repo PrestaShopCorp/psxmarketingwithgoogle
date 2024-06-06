@@ -49,7 +49,7 @@ export const createProductFeedApiPayload = (settings:any) => ({
       additionalShippingSettings: settings.additionalShippingSettings,
     } : {}
   ),
-  attributeMapping: formatMappingToApi(settings.attributeMapping),
+  attributeMapping: settings.attributeMapping,
   productSelected: settings.productSelected,
   selectedProductCategories: settings.selectedProductCategories,
   requestSynchronizationNow: settings.requestSynchronizationNow,
@@ -217,7 +217,9 @@ export default {
       getDataFromLocalStorage('productFeed-estimateCarriers') || productFeedSettings.estimateCarriers,
     );
     // Attributes mapping
-    const attributeMapping = getDataFromLocalStorage('productFeed-attributeMapping') || state.attributeMapping || {};
+    const attributeMapping = (getDataFromLocalStorage('productFeed-attributeMapping')
+      ? formatMappingToApi(getDataFromLocalStorage('productFeed-attributeMapping'))
+      : state.attributeMapping) || {};
     // Product filter
     const productFiltered = getDataFromLocalStorage('productFeed-productFilter') || productFeedSettings.productFilter;
     // Product categories
@@ -250,7 +252,7 @@ export default {
       await fetchOnboarding(
         'POST',
         'product-filters',
-        {body: productFiltered},
+        {body: productFiltered || []},
       );
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
       commit(MutationsTypes.SAVE_CONFIGURATION_CONNECTED_ONCE, true);

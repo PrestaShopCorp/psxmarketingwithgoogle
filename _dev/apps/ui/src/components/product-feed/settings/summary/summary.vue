@@ -352,7 +352,7 @@ export default defineComponent({
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
-      this.postDatas();
+      this.$emit('save');
     },
     previousStep() {
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 5);
@@ -363,10 +363,6 @@ export default defineComponent({
         },
       });
       window.scrollTo(0, 0);
-    },
-    postDatas() {
-      this.$store.dispatch('productFeed/SEND_PRODUCT_FEED_SETTINGS');
-      this.$emit('save');
     },
   },
   mounted() {
