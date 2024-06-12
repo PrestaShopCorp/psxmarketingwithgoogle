@@ -92,13 +92,9 @@ class QueryBuilder
         $query->where('ps.id_shop = ' . (int) $this->shopId);
         $query->where('ps.active = 1');
 
-        foreach ($filters as $filter) {
-            if (!$initiatedRelations[$filter['attribute']]) {
-                $initiatedRelations[$filter['attribute']] = true;
-                $query = $this->builders[$filter['attribute']]->addRelations($query);
-            }
-
-            $query = $this->builders[$filter['attribute']]->addWhereFromFilter($query, $filter);
+        foreach ($filters as $index => $filter) {
+            $query = $this->builders[$filter['attribute']]->addRelations($query, $index);
+            $query = $this->builders[$filter['attribute']]->addWhereFromFilter($query, $filter, $index);
         }
 
         return $query;

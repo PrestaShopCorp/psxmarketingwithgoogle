@@ -24,7 +24,7 @@ use DbQuery;
 
 interface QueryBuilderInterface
 {
-    public function addWhereFromFilter(DbQuery $query, $filter): DbQuery;
+    public function addWhereFromFilter(DbQuery $query, $filter, int $index): DbQuery;
 
-    public function addRelations(DbQuery $query): DbQuery;
+    public function addRelations(DbQuery $query, int $index): DbQuery;
 }
