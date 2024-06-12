@@ -53,7 +53,7 @@ class FeatureQueryBuilder implements QueryBuilderInterface
         );
     }
 
-    public function addWhereFromFilter(DbQuery $query, $filter): DbQuery
+    public function addWhereFromFilter(DbQuery $query, $filter, int $index): DbQuery
     {
         $uniqueFeature = [];
 
@@ -67,31 +67,31 @@ class FeatureQueryBuilder implements QueryBuilderInterface
             case Condition::IS:
                 $queryConditions = [];
                 foreach ($uniqueFeature as $value) {
-                    $queryConditions[] = 'fvl.value = "' . pSQL($value['value']) . '"';
+                    $queryConditions[] = 'fvl' . $index . '.value = "' . pSQL($value['value']) . '"';
                 }
 
-                return $query->where('fl.name = "' . pSQL($uniqueFeature[0]['key']) . '" AND (' . implode(' OR ', $queryConditions) . ')');
+                return $query->where('fl' . $index . '.name = "' . pSQL($uniqueFeature[0]['key']) . '" AND (' . implode(' OR ', $queryConditions) . ')');
             case Condition::IS_NOT:
                 $queryConditions = [];
                 foreach ($uniqueFeature as $value) {
-                    $queryConditions[] = 'fvl.value <> "' . pSQL($value['value']) . '"';
+                    $queryConditions[] = 'fvl' . $index . '.value <> "' . pSQL($value['value']) . '"';
                 }
 
-                return $query->where('fl.name = "' . pSQL($uniqueFeature[0]['key']) . '" AND (' . implode(' AND ', $queryConditions) . ')');
+                return $query->where('fl' . $index . '.name = "' . pSQL($uniqueFeature[0]['key']) . '" AND (' . implode(' AND ', $queryConditions) . ')');
         }
 
         return $query;
     }
 
-    public function addRelations(DbQuery $query): DbQuery
+    public function addRelations(DbQuery $query, int $index): DbQuery
     {
         return $query
-            ->leftJoin('feature_product', 'fp', 'fp.id_product = p.id_product')
-            ->innerJoin('feature_shop', 'fs', 'fs.id_feature = fp.id_feature')
-            ->innerJoin('feature_lang', 'fl', 'fl.id_feature = fp.id_feature')
-            ->innerJoin('feature_value', 'fv', 'fv.id_feature = fp.id_feature')
-            ->innerJoin('feature_value_lang', 'fvl', '(fvl.id_feature_value = fv.id_feature_value AND fp.id_feature_value = fvl.id_feature_value)')
-            ->where('fs.id_shop = ' . (int) $this->context->shop->id)
-            ->where('fl.id_lang = ' . (int) $this->context->language->id);
+            ->leftJoin('feature_product', 'fp' . $index, 'fp' . $index . '.id_product = p.id_product')
+            ->innerJoin('feature_shop', 'fs' . $index, 'fs' . $index . '.id_feature = fp' . $index . '.id_feature')
+            ->innerJoin('feature_lang', 'fl' . $index, 'fl' . $index . '.id_feature = fp' . $index . '.id_feature')
+            ->innerJoin('feature_value', 'fv' . $index, 'fv' . $index . '.id_feature = fp' . $index . '.id_feature')
+            ->innerJoin('feature_value_lang', 'fvl' . $index, '(fvl' . $index . '.id_feature_value = fv' . $index . '.id_feature_value AND fp' . $index . '.id_feature_value = fvl' . $index . '.id_feature_value)')
+            ->where('fs' . $index . '.id_shop = ' . (int) $this->context->shop->id)
+            ->where('fl' . $index . '.id_lang = ' . (int) $this->context->language->id);
     }
 }

@@ -25,13 +25,13 @@ use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Condition;
 
 class BrandQueryBuilder implements QueryBuilderInterface
 {
-    public function addWhereFromFilter(DbQuery $query, $filter): DbQuery
+    public function addWhereFromFilter(DbQuery $query, $filter, int $index): DbQuery
     {
         switch ($filter['condition']) {
             case Condition::DOES_CONTAIN:
                 $queryConditions = [];
                 foreach ($filter['value'] as $value) {
-                    $queryConditions[] = 'm.name LIKE "%' . pSQL($value) . '%"';
+                    $queryConditions[] = 'm' . $index . '.name LIKE "%' . pSQL($value) . '%"';
                 }
 
                 return $query->where('(' . implode(' OR ', $queryConditions) . ')');
@@ -39,7 +39,7 @@ class BrandQueryBuilder implements QueryBuilderInterface
             case Condition::DOES_NOT_CONTAIN:
                 $queryConditions = [];
                 foreach ($filter['value'] as $value) {
-                    $queryConditions[] = 'm.name NOT LIKE "%' . pSQL($value) . '%"';
+                    $queryConditions[] = 'm' . $index . '.name NOT LIKE "%' . pSQL($value) . '%"';
                 }
 
                 return $query->where('(' . implode(' OR ', $queryConditions) . ')');
@@ -49,22 +49,22 @@ class BrandQueryBuilder implements QueryBuilderInterface
                     return $item['value'];
                 }, $filter['value']);
 
-                return $query->where('m.name IN ("' . implode('", "', array_map('pSQL', $filteredValues)) . '")');
+                return $query->where('m' . $index . '.name IN ("' . implode('", "', array_map('pSQL', $filteredValues)) . '")');
 
             case Condition::IS_NOT:
                 $filteredValues = array_map(function ($item) {
                     return $item['value'];
                 }, $filter['value']);
 
-                return $query->where('m.name NOT IN ("' . implode('", "', array_map('pSQL', $filteredValues)) . '")');
+                return $query->where('m' . $index . '.name NOT IN ("' . implode('", "', array_map('pSQL', $filteredValues)) . '")');
         }
 
         return $query;
     }
 
-    public function addRelations(DbQuery $query): DbQuery
+    public function addRelations(DbQuery $query, int $index): DbQuery
     {
-        return $query->innerJoin('manufacturer', 'm', 'm.id_manufacturer = p.id_manufacturer')
-            ->where('m.active = 1');
+        return $query->innerJoin('manufacturer', 'm' . $index, 'm' . $index . '.id_manufacturer = p.id_manufacturer')
+            ->where('m' . $index . '.active = 1');
     }
 }

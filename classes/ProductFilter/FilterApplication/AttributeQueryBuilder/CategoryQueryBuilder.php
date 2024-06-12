@@ -36,7 +36,7 @@ class CategoryQueryBuilder implements QueryBuilderInterface
         $this->context = $context;
     }
 
-    public function addWhereFromFilter(DbQuery $query, $filter): DbQuery
+    public function addWhereFromFilter(DbQuery $query, $filter, int $index): DbQuery
     {
         // At the time of implementation, CloudSync gets only the default category of the product.
         // We add the condition based on the default category here as well.
@@ -44,7 +44,7 @@ class CategoryQueryBuilder implements QueryBuilderInterface
             case Condition::DOES_CONTAIN:
                 $queryConditions = [];
                 foreach ($filter['value'] as $value) {
-                    $queryConditions[] = 'cl.name LIKE "%' . pSQL($value) . '%"';
+                    $queryConditions[] = 'cl' . $index . '.name LIKE "%' . pSQL($value) . '%"';
                 }
 
                 return $query->where('(' . implode(' OR ', $queryConditions) . ')');
@@ -52,7 +52,7 @@ class CategoryQueryBuilder implements QueryBuilderInterface
             case Condition::DOES_NOT_CONTAIN:
                 $queryConditions = [];
                 foreach ($filter['value'] as $value) {
-                    $queryConditions[] = 'cl.name NOT LIKE "%' . pSQL($value) . '%"';
+                    $queryConditions[] = 'cl' . $index . '.name NOT LIKE "%' . pSQL($value) . '%"';
                 }
 
                 return $query->where('(' . implode(' OR ', $queryConditions) . ')');
@@ -62,26 +62,25 @@ class CategoryQueryBuilder implements QueryBuilderInterface
                     return $item['id'];
                 }, $filter['value']);
 
-                return $query->where('c.id_category IN (' . implode(', ', array_map('intval', $filteredValues)) . ')');
+                return $query->where('c' . $index . '.id_category IN (' . implode(', ', array_map('intval', $filteredValues)) . ')');
 
             case Condition::IS_NOT:
                 $filteredValues = array_map(function ($item) {
                     return $item['id'];
                 }, $filter['value']);
 
-                return $query->where('c.id_category NOT IN (' . implode(', ', array_map('intval', $filteredValues)) . ')');
+                return $query->where('c' . $index . '.id_category NOT IN (' . implode(', ', array_map('intval', $filteredValues)) . ')');
         }
 
         return $query;
     }
 
-    public function addRelations(DbQuery $query): DbQuery
+    public function addRelations(DbQuery $query, int $index): DbQuery
     {
-        return $query->innerJoin('category_product', 'cp', 'cp.id_product = p.id_product')
-            ->innerJoin('category', 'c', 'c.id_category = cp.id_category')
-            ->innerJoin('category_lang', 'cl', 'c.id_category = cl.id_category')
-            ->where('cl.id_lang = ' . (int) $this->context->language->id)
-            ->where('c.active = 1');
-        // Unknown column 'c.id_category_default' in 'where clause'
+        return $query->innerJoin('category_product', 'cp' . $index, 'cp' . $index . '.id_product = p.id_product')
+            ->innerJoin('category', 'c' . $index, 'c' . $index . '.id_category = cp' . $index . '.id_category')
+            ->innerJoin('category_lang', 'cl' . $index, 'c' . $index . '.id_category = cl' . $index . '.id_category')
+            ->where('cl' . $index . '.id_lang = ' . (int) $this->context->language->id)
+            ->where('c' . $index . '.active = 1');
     }
 }
