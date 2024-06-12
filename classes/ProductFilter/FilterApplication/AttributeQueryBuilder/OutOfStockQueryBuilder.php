@@ -25,17 +25,17 @@ use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Condition;
 
 class OutOfStockQueryBuilder implements QueryBuilderInterface
 {
-    public function addWhereFromFilter(DbQuery $query, $filter): DbQuery
+    public function addWhereFromFilter(DbQuery $query, $filter, int $index): DbQuery
     {
         if ($filter['condition'] === Condition::IS) {
-            return $filter['value'] ? $query->where('sa.quantity <= 0') : $query->where('sa.quantity > 0');
+            return $filter['value'] ? $query->where('sa' . $index . '.quantity <= 0') : $query->where('sa' . $index . '.quantity > 0');
         }
 
         return $query;
     }
 
-    public function addRelations(DbQuery $query): DbQuery
+    public function addRelations(DbQuery $query, int $index): DbQuery
     {
-        return $query->innerJoin('stock_available', 'sa', 'p.id_product = sa.id_product');
+        return $query->innerJoin('stock_available', 'sa' . $index, 'sa' . $index . '.id_product = p.id_product');
     }
 }

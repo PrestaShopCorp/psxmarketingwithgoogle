@@ -25,31 +25,31 @@ use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Condition;
 
 class PriceQueryBuilder implements QueryBuilderInterface
 {
-    public function addWhereFromFilter(DbQuery $query, $filter): DbQuery
+    public function addWhereFromFilter(DbQuery $query, $filter, int $index): DbQuery
     {
         switch ($filter['condition']) {
             case Condition::GREATER:
                 return $query->where('(
                     p.price > ' . (float) $filter['value'] . '
-                    OR (p.price + pa.price) > ' . (float) $filter['value'] . '
+                    OR (p.price + pa' . $index . '.price) > ' . (float) $filter['value'] . '
                 )');
             case Condition::LOWER:
                 return $query->where('(
                     p.price < ' . (float) $filter['value'] . '
-                    OR (p.price + pa.price) < ' . (float) $filter['value'] . '
+                    OR (p.price + pa' . $index . '.price) < ' . (float) $filter['value'] . '
                 )');
             case Condition::IS:
                 return $query->where('(
                     p.price = ' . (float) $filter['value'] . '
-                    OR (p.price + pa.price) = ' . (float) $filter['value'] . '
+                    OR (p.price + pa' . $index . '.price) = ' . (float) $filter['value'] . '
                 )');
         }
 
         return $query;
     }
 
-    public function addRelations(DbQuery $query): DbQuery
+    public function addRelations(DbQuery $query, int $index): DbQuery
     {
-        return $query->leftJoin('product_attribute', 'pa', 'p.id_product = pa.id_product');
+        return $query->leftJoin('product_attribute', 'pa' . $index, 'pa' . $index . '.id_product = p.id_product');
     }
 }

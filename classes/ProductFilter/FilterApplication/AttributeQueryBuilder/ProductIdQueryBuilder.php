@@ -25,7 +25,7 @@ use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Condition;
 
 class ProductIdQueryBuilder implements QueryBuilderInterface
 {
-    public function addWhereFromFilter(DbQuery $query, $filter): DbQuery
+    public function addWhereFromFilter(DbQuery $query, $filter, int $index): DbQuery
     {
         switch ($filter['condition']) {
             case Condition::IS:
@@ -37,7 +37,7 @@ class ProductIdQueryBuilder implements QueryBuilderInterface
         return $query;
     }
 
-    public function addRelations(DbQuery $query): DbQuery
+    public function addRelations(DbQuery $query, int $index): DbQuery
     {
         // Do nothing, product data is already loaded
         return $query;
