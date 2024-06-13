@@ -76,9 +76,8 @@ class AttributesRepository
             ->innerJoin('feature_shop', 'fs', 'fs.id_feature = f.id_feature')
             ->innerJoin('feature_lang', 'fl', 'fl.id_feature = f.id_feature')
             ->innerJoin('feature_value', 'fv', 'fv.id_feature = f.id_feature')
-            ->innerJoin('feature_value_lang', 'fvl', 'fvl.id_feature_value = fv.id_feature_value')
-            ->where('fs.id_shop = ' . (int) $this->context->shop->id)
-            ->where('fl.id_lang = ' . (int) $this->context->language->id);
+            ->innerJoin('feature_value_lang', 'fvl', 'fvl.id_feature_value = fv.id_feature_value AND fvl.id_lang = fl.id_lang')
+            ->where('fs.id_shop = ' . (int) $this->context->shop->id);
 
         return Db::getInstance()->executeS($query);
     }
