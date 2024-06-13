@@ -90,8 +90,7 @@ class FeatureQueryBuilder implements QueryBuilderInterface
             ->innerJoin('feature_shop', 'fs' . $index, 'fs' . $index . '.id_feature = fp' . $index . '.id_feature')
             ->innerJoin('feature_lang', 'fl' . $index, 'fl' . $index . '.id_feature = fp' . $index . '.id_feature')
             ->innerJoin('feature_value', 'fv' . $index, 'fv' . $index . '.id_feature = fp' . $index . '.id_feature')
-            ->innerJoin('feature_value_lang', 'fvl' . $index, '(fvl' . $index . '.id_feature_value = fv' . $index . '.id_feature_value AND fp' . $index . '.id_feature_value = fvl' . $index . '.id_feature_value)')
-            ->where('fs' . $index . '.id_shop = ' . (int) $this->context->shop->id)
-            ->where('fl' . $index . '.id_lang = ' . (int) $this->context->language->id);
+            ->innerJoin('feature_value_lang', 'fvl' . $index, '(fvl' . $index . '.id_feature_value = fv' . $index . '.id_feature_value AND fp' . $index . '.id_feature_value = fvl' . $index . '.id_feature_value AND fl' . $index . '.id_lang = fvl' . $index . '.id_lang)')
+            ->where('fs' . $index . '.id_shop = ' . (int) $this->context->shop->id);
     }
 }
