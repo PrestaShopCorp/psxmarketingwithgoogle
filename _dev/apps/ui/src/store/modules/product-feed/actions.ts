@@ -52,7 +52,6 @@ export const createProductFeedApiPayload = (settings:any) => ({
   attributeMapping: settings.attributeMapping,
   productSelected: settings.productSelected,
   selectedProductCategories: settings.selectedProductCategories,
-  requestSynchronizationNow: settings.requestSynchronizationNow,
   languages: settings.languages,
 });
 
@@ -172,7 +171,6 @@ export default {
       if (json.selectedProductCategories) {
         commit(MutationsTypes.SET_SELECTED_PRODUCT_CATEGORIES, json.selectedProductCategories);
       }
-      commit(MutationsTypes.SET_SYNC_SCHEDULE, json?.requestSynchronizationNow || false);
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
 
       return json;
@@ -224,8 +222,6 @@ export default {
     const productFiltered = getDataFromLocalStorage('productFeed-productFilter') || productFeedSettings.productFilter;
     // Product categories
     const selectedProductCategories = getDataFromLocalStorage('productFeed-selectedProductCategories') || getters.GET_PRODUCT_CATEGORIES_SELECTED;
-    // Next synchronization request
-    const requestSynchronizationNow = getters.GET_SYNC_SCHEDULE;
 
     const newSettings = createProductFeedApiPayload({
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
@@ -239,7 +235,6 @@ export default {
       estimateCarriers,
       attributeMapping,
       selectedProductCategories,
-      requestSynchronizationNow,
       languages: rootState.app.psxMktgWithGoogleLanguages,
     });
 
