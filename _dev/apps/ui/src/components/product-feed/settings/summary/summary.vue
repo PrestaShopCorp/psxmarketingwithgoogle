@@ -355,11 +355,11 @@ export default defineComponent({
       this.$emit('save');
     },
     previousStep() {
-      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 5);
+      this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 4);
       this.$router.push({
         name: 'product-feed-settings',
         params: {
-          step: ProductFeedSettingsPages.SYNC_SCHEDULE,
+          step: ProductFeedSettingsPages.PRODUCT_SELECTION,
         },
       });
       window.scrollTo(0, 0);
