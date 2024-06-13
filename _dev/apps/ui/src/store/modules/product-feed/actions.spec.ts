@@ -110,7 +110,6 @@ const allDetailsFromState = {
     },
   ]),
   selectedProductCategories: ['none'],
-  requestSynchronizationNow: false,
 };
 
 describe('createProductFeedApiPayload', () => {
@@ -135,7 +134,6 @@ describe('createProductFeedApiPayload', () => {
         brand: [{ids: ['manufacturer'], type: 'product'}],
       },
       selectedProductCategories: ['none'],
-      requestSynchronizationNow: false,
     });
   });
 
@@ -210,7 +208,6 @@ describe('createProductFeedApiPayload', () => {
         brand: [{ids: ['manufacturer'], type: 'product'}],
       },
       selectedProductCategories: ['none'],
-      requestSynchronizationNow: false,
     });
   });
 
@@ -385,7 +382,6 @@ describe('createProductFeedApiPayload', () => {
         brand: [{ids: ['manufacturer'], type: 'product'}],
       },
       selectedProductCategories: ['none'],
-      requestSynchronizationNow: false,
     });
   });
 });

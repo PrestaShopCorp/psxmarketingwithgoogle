@@ -51,10 +51,6 @@
         v-if="$route.params.step === ProductFeedSettingsPages.PRODUCT_SELECTION"
         @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
       />
-      <sync-schedule
-        v-if="$route.params.step === ProductFeedSettingsPages.SYNC_SCHEDULE"
-        @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
-      />
       <product-feed-settings-summary
         v-bind="$attrs"
         v-if="$route.params.step === ProductFeedSettingsPages.SUMMARY"
@@ -74,7 +70,6 @@ import ShippingSetup from '@/components/product-feed/settings/shipping-setup/shi
 import DeliveryTimeAndRates from '@/components/product-feed/settings/delivery-time-and-rates/delivery-time-and-rates.vue';
 import AttributeMapping from '@/components/product-feed/settings/attribute-mapping/attribute-mapping.vue';
 import ProductSelection from '@/components/product-feed/settings/product-selection/product-selection.vue';
-import SyncSchedule from '@/components/product-feed/settings/sync-schedule/sync-schedule.vue';
 import ProductFeedSettingsSummary from '@/components/product-feed/settings/summary/summary.vue';
 
 export default defineComponent({
@@ -85,7 +80,6 @@ export default defineComponent({
     DeliveryTimeAndRates,
     AttributeMapping,
     ProductSelection,
-    SyncSchedule,
     ProductFeedSettingsSummary,
   },
   data() {

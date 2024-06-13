@@ -143,15 +143,6 @@ export default {
   [GettersTypes.GET_PRODUCT_CATEGORIES_SELECTED](state: LocalState) : SelectedProductCategories {
     return state.selectedProductCategories;
   },
-  [GettersTypes.GET_SYNC_SCHEDULE](state: LocalState) : boolean {
-    const requestSyncNow = getDataFromLocalStorage('productFeed-requestSynchronizationNow');
-
-    if (requestSyncNow !== null) {
-      state.requestSynchronizationNow = requestSyncNow;
-    }
-
-    return state.requestSynchronizationNow;
-  },
   [GettersTypes.GET_ATTRIBUTE_MAPPING](state: LocalState): AttributeResponseFromAPI {
     return state.attributeMapping;
   },
