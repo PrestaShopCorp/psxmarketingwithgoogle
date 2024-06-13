@@ -21,11 +21,7 @@
             class="ps_gs-productfeed-report-card--66"
             icon="event"
             :title="$t('productFeedSettings.summary.date')"
-            :description="
-              selectedSyncScheduleIsDefault
-                ? formatNextSyncDate
-                : $t('productFeedSettings.summary.syncScheduledNow')
-            "
+            :description="formatNextSyncDate"
           />
         </b-row>
       </b-container>
@@ -168,17 +164,10 @@
           v-model="acceptSyncSchedule"
         >
           <VueShowdown
-            v-if="selectedSyncScheduleIsDefault"
             :markdown="
               $t('productFeedSettings.summary.agreementCheckboxLabel1Default', {
                 time: formatNextSync,
               })
-            "
-          />
-          <VueShowdown
-            v-else
-            :markdown="
-              $t('productFeedSettings.summary.agreementCheckboxLabel1Instant')
             "
           />
         </b-form-checkbox>
@@ -335,12 +324,6 @@ export default defineComponent({
     },
     attributes() {
       return this.getMapping;
-    },
-    selectedSyncSchedule() {
-      return this.$store.getters['productFeed/GET_SYNC_SCHEDULE'];
-    },
-    selectedSyncScheduleIsDefault() {
-      return this.selectedSyncSchedule === false;
     },
   },
   methods: {

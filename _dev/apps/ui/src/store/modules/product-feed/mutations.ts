@@ -167,9 +167,6 @@ export default {
   ) {
     state.selectedProductCategories = payload;
   },
-  [MutationsTypes.SET_SYNC_SCHEDULE](state: LocalState, payload: boolean) {
-    state.requestSynchronizationNow = payload;
-  },
   [MutationsTypes.SET_RATE_CHOSEN](state: LocalState, payload: RateType) {
     state.settings.rate = payload;
   },
