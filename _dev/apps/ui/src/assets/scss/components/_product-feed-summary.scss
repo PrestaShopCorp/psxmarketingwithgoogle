@@ -1,6 +1,6 @@
 .product-feed-summary {
   background: $primary-200;
-  padding: 0.5rem 1rem 0.75rem;
+  padding: 0.5rem 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -8,15 +8,17 @@
   .product-feed-summary-step {
     position: relative;
     padding: 0.25rem 0;
-    &:after {
-      content: '';
-      display: block;
-      position: absolute;
-      width: 100%;
-      height: 1px;
-      background: $primary-400;
-      left: 0;
-      bottom: -0.25rem;
+    &:not(:last-child) {
+      :after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        background: $primary-400;
+        left: 0;
+        bottom: -0.25rem;
+      }
     }
 
     .product-feed-summary-step__title {
