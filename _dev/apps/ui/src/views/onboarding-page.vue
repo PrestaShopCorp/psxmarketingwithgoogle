@@ -167,7 +167,7 @@ import SectionTitle from '@/components/onboarding/section-title.vue';
 import GoogleAccountCard from '@/components/google-account/google-account-card.vue';
 import GoogleAdsAccountCard from '@/components/google-ads-account/google-ads-account-card.vue';
 import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
-import ProductFeedCard from '@/components/product-feed/product-feed-card.vue';
+import ProductFeedCard from '@/components/onboarding/product-feed-card.vue';
 import GoogleAccountPopinDisconnect from '@/components/google-account/google-account-popin-disconnect.vue';
 import MerchantCenterAccountPopinDisconnect from '@/components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
 import GoogleAdsAccountPopinDisconnect from '@/components/google-ads-account/google-ads-account-popin-disconnect.vue';
