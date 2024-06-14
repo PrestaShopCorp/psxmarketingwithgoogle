@@ -190,7 +190,13 @@ export default defineComponent({
         && recoveredFilter.value?.length) {
         const feature = this.getFeatureByOptions(recoveredFilter.value);
 
-        recoveredFilter.value = (recoveredFilter.value as FeatureOption[])
+        // we need to update recovered value with new from BO if exist
+        // because it can break if we got new language introduced.
+        const valueIdToMatch = new Set((recoveredFilter.value as FeatureOption[])
+          .map((item) => item.id));
+        const featureOptions = feature.values.filter((item) => valueIdToMatch.has(item.id));
+
+        recoveredFilter.value = (featureOptions as FeatureOption[])
           .filter((el) => el.language === this.currentCountry);
 
         if (feature) {
