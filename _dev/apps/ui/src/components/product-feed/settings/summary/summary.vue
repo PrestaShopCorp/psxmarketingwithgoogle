@@ -1,38 +1,26 @@
 <template>
   <div>
     <section>
-      <h3 class="ps_gs-fz-16 font-weight-600 mb-3">
-        {{ $t('productFeedSettings.summary.title1', [nextSyncInHours]) }}
-      </h3>
       <b-container
         fluid
         class="p-0 mb-4 mt-n1"
       >
-        <b-row
-          no-gutters
-          class="mx-n1"
+        <b-alert
+          class="alert--bordered"
+          variant="info"
+          show
         >
-          <product-feed-card-next-sync-card
-            icon="store_mall_directory"
-            :title="$t('productFeedSettings.summary.totalProducts')"
-            :description="nextSyncTotalProducts"
-          />
-          <product-feed-card-next-sync-card
-            class="ps_gs-productfeed-report-card--66"
-            icon="event"
-            :title="$t('productFeedSettings.summary.date')"
-            :description="formatNextSyncDate"
-          />
-        </b-row>
+          {{ $t('productFeedSettings.summary.nextSync', { date: formatNextSyncDate }) }}
+        </b-alert>
       </b-container>
     </section>
     <section>
       <h3 class="ps_gs-fz-16 font-weight-600 mb-3">
-        {{ $t('productFeedSettings.summary.title2') }}
+        {{ $t('productFeedSettings.summary.title') }}
       </h3>
       <b-container
         fluid
-        class="p-0 mb-3"
+        class="p-0 mb-4"
       >
         <product-feed-summary-cards
           :display-attribute-mapping-simple-card="false"
@@ -156,21 +144,12 @@
       </b-container>
       <b-form-group
         :label="$t('productFeedSettings.summary.agreementTitle')"
-        label-class="h4 font-weight-600 mb-3 d-block p-0 bg-transparent border-0"
+        label-class="h3 font-weight-700 mb-1 d-block p-0 bg-transparent border-0"
       >
-        <b-form-checkbox
-          data-test-id="buttonCheckbox"
-          class="ps_gs-checkbox"
-          v-model="acceptSyncSchedule"
-        >
-          <VueShowdown
-            :markdown="
-              $t('productFeedSettings.summary.agreementCheckboxLabel1Default', {
-                time: formatNextSync,
-              })
-            "
-          />
-        </b-form-checkbox>
+        <ul>
+          <li>{{ $t('productFeedSettings.summary.agreement1') }}</li>
+          <li>{{ $t('productFeedSettings.summary.agreement2') }}</li>
+        </ul>
         <b-form-checkbox
           data-test-id="buttonCheckbox"
           class="ps_gs-checkbox mt-n1"
@@ -178,7 +157,7 @@
         >
           <VueShowdown
             :markdown="
-              $t('productFeedSettings.summary.agreementCheckboxLabel2')
+              $t('productFeedSettings.summary.agreementCheckboxLabel')
             "
           />
         </b-form-checkbox>
@@ -216,7 +195,6 @@ import googleUrl from '@/assets/json/googleUrl.json';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import ProductFeedCardReportCard from '@/components/product-feed/product-feed-card-report-card.vue';
-import ProductFeedCardNextSyncCard from '@/components/product-feed/product-feed-card-next-sync-card.vue';
 import TableRowMapping from '@/components/product-feed/commons/table-row-mapping.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import ProductFeedSummaryCards from '@/components/product-feed/summary/product-feed-summary-cards.vue';
@@ -230,7 +208,6 @@ export default defineComponent({
     SettingsFooter,
     ActionsButtons,
     ProductFeedCardReportCard,
-    ProductFeedCardNextSyncCard,
     BTableSimple,
     VueShowdown,
     TableRowMapping,
@@ -241,13 +218,12 @@ export default defineComponent({
       ProductFeedSettingsPages,
       refurbishedInputs: ['condition'],
       apparelInputs: ['color', 'size', 'ageGroup', 'gender'],
-      acceptSyncSchedule: false,
       understandTerms: false,
     };
   },
   computed: {
     disabledExportButton() {
-      return !(this.acceptSyncSchedule && this.understandTerms);
+      return !this.understandTerms;
     },
     nextSyncInHours() {
       // Return how many hours left before next sync

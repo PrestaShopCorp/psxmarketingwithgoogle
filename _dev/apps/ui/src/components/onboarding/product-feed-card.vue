@@ -20,7 +20,7 @@
         <div class="d-flex align-items-start align-items-md-center mb-3">
           <img
             class="mr-2"
-            src="@/assets/images/product-feed-icon.svg"
+            src="../../assets/images/product-feed-icon.svg"
             width="32"
             height="32"
             alt=""
@@ -148,7 +148,7 @@
             fluid
             class="p-0 mb-0 mt-n1"
           >
-            <product-feed-summary-cards />
+            <product-feed-summary />
           </b-container>
         </div>
       </b-card>
@@ -162,15 +162,15 @@ import {defineComponent} from 'vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import googleUrl from '@/assets/json/googleUrl.json';
 import ProductFeedStepper from '@/components/product-feed/product-feed-stepper.vue';
+import ProductFeedSummary from '@/components/onboarding/product-feed-summary.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
-import ProductFeedSummaryCards from '@/components/product-feed/summary/product-feed-summary-cards.vue';
 
 export default defineComponent({
   name: 'ProductFeedCard',
   components: {
     ProductFeedStepper,
     VueShowdown,
-    ProductFeedSummaryCards,
+    ProductFeedSummary,
   },
   data() {
     return {
