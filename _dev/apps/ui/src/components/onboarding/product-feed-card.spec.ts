@@ -1,12 +1,11 @@
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
-import {shallowMount, mount} from '@vue/test-utils';
+import {shallowMount} from '@vue/test-utils';
 import {BAlert} from 'bootstrap-vue';
 import VueShowdown from 'vue-showdown';
 import config, {localVue, cloneStore} from '@/../tests/init';
 import ProductFeedCard from '@/components/onboarding/product-feed-card.vue';
-import ProductFeedCardReportCard from '@/components/product-feed/product-feed-card-report-card.vue';
 import ProductFeedStepper from '@/components/product-feed/product-feed-stepper.vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import ProductFeedSummary from '@/components/onboarding/product-feed-summary.vue';
