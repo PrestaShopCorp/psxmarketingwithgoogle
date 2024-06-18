@@ -31,6 +31,21 @@
     }
   }
 
+  &.btn-warning {
+    background-color: $yellow-50;
+    border-color: $yellow-500;
+    color: $primary-800;
+
+    &:hover {
+      background-color: $yellow-100;
+    }
+
+    &:active {
+      background-color: $yellow-300 !important;
+      color: $primary-800 !important;
+    }
+  }
+
   &.btn-info {
     border-color: $blue-500;
     background-color: $blue-50;

@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import {changeCountryCodeToName, getCurrencyFromCountry} from '@/utils/Countries';
-import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import ProductFeedSummaryStatus from '@/enums/product-feed/product-feed-summary-status';
 
 export default Vue.extend({
