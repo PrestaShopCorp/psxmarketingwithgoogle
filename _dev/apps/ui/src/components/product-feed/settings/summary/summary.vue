@@ -32,18 +32,20 @@
                 {{ $t('productFeedSettings.summaryTitles.selectedProducts') }}
               </template>
               <template>
-                <b-skeleton-wrapper :loading="productFilterStatus === ProductFeedCountStatus.PENDING">
+                <b-skeleton-wrapper
+                  :loading="loading"
+                >
                   <template #loading>
                     <b-skeleton
                       height="1.25rem"
                       width="50%"
                     />
                   </template>
-                  <div v-if="productFilterStatus === ProductFeedCountStatus.SUCCESS">
+                  <div v-if="productCountStatus === ProductFeedCountStatus.SUCCESS">
                     {{ productCountToDisplay }}
                   </div>
                   <b-alert
-                    v-if="productFilterStatus === ProductFeedCountStatus.ERROR"
+                    v-if="productCountStatus === ProductFeedCountStatus.ERROR"
                     variant="warning"
                     show
                   >
@@ -212,7 +214,7 @@ import duration from 'dayjs/plugin/duration';
 import {BTableSimple} from 'bootstrap-vue';
 import {VueShowdown} from 'vue-showdown';
 import {defineComponent} from 'vue';
-import {mapActions, mapGetters} from 'vuex';
+import {mapActions, mapGetters, mapMutations} from 'vuex';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import googleUrl from '@/assets/json/googleUrl.json';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
@@ -226,6 +228,10 @@ import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import ActionsTypes from '@/store/modules/product-feed/actions-types';
 import GetterTypes from '@/store/modules/product-feed/getters-types';
 import ProductFeedCountStatus from '@/enums/product-feed/product-feed-count-status';
+import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
+import {localStorageProductFilter, localStorageProductFilterSync} from '@/components/product-feed/settings/product-selection/product-selection-utilities';
+import MutationsTypes from '@/store/modules/product-feed/mutations-types';
+import {RequestState} from '@/store/types';
 
 dayjs.extend(duration);
 
@@ -245,23 +251,23 @@ export default defineComponent({
       ProductFeedSettingsPages,
       understandTerms: false,
       ProductFeedCountStatus,
+      loadingData: true,
     };
   },
   computed: {
     ...mapGetters({
       productCount: `productFeed/${GetterTypes.GET_PRODUCT_COUNT}`,
-      productFilterStatus: `productFeed/${GetterTypes.GET_PRODUCT_COUNT_STATUS}`,
+      productCountStatus: `productFeed/${GetterTypes.GET_PRODUCT_COUNT_STATUS}`,
+      productFilters: `productFeed/${GetterTypes.GET_PRODUCT_FILTER}`,
       nextSyncTotalProducts: `productFeed/${GetterTypes.GET_TOTAL_PRODUCTS_READY_TO_SYNC}`,
     }),
+    loading() {
+      return this.loadingData
+        || this.productCountStatus === ProductFeedCountStatus.PENDING
+        || this.$store.state.productFeed.warmedUp === RequestState.PENDING;
+    },
     disabledExportButton() {
       return !this.understandTerms;
-    },
-    nextSyncInHours() {
-      // Return how many hours left before next sync
-      const now = dayjs();
-      const nextSync = dayjs(this.nextSyncDate);
-
-      return dayjs.duration(nextSync.diff(now)).hours();
     },
     nextSyncDate() {
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS']
@@ -321,18 +327,21 @@ export default defineComponent({
             final.mapped !== undefined ? final.mapped : final.recommended,
         }));
     },
+    shippingSetup() {
+      return getDataFromLocalStorage('productFeed-shippingSetup') || this.getProductFeedSettings.shippingSetup;
+    },
     deliveryTimeAndRatesDescription() {
       if (this.$store.getters['productFeed/GET_PRODUCT_FEED_REQUIRED_RECONFIGURATION']) {
         return '--';
       }
 
-      if (this.getProductFeedSettings.shippingSetup === ShippingSetupOption.IMPORT
+      if (this.shippingSetup === ShippingSetupOption.IMPORT
         // Backward compatibility
         || this.getProductFeedSettings.autoImportShippingSettings
       ) {
         return this.$t('productFeedSettings.deliveryTimeAndRates.importOption.summary');
       }
-      if (this.getProductFeedSettings.shippingSetup === ShippingSetupOption.ESTIMATE) {
+      if (this.shippingSetup === ShippingSetupOption.ESTIMATE) {
         if (this.targetCountries.length === 1) {
           return this.$t('productFeedSettings.deliveryTimeAndRates.estimateStep.summary.singleCountry');
         }
@@ -349,13 +358,13 @@ export default defineComponent({
         return this.$t('productFeedSettings.shippingSetup.laterOption.summary');
       }
 
-      if (this.getProductFeedSettings.shippingSetup === ShippingSetupOption.IMPORT
+      if (this.shippingSetup === ShippingSetupOption.IMPORT
         // Backward compatibility
         || this.getProductFeedSettings.autoImportShippingSettings
       ) {
         return this.$t('productFeedSettings.shippingSetup.importOption.summary');
       }
-      if (this.getProductFeedSettings.shippingSetup === ShippingSetupOption.ESTIMATE) {
+      if (this.shippingSetup === ShippingSetupOption.ESTIMATE) {
         return this.$t('productFeedSettings.shippingSetup.estimateOption.summary');
       }
 
@@ -379,8 +388,10 @@ export default defineComponent({
   methods: {
     ...mapActions({
       requestAttributeMapping: `productFeed/${ActionsTypes.REQUEST_ATTRIBUTE_MAPPING}`,
+      requestShopAttribute: `productFeed/${ActionsTypes.REQUEST_SHOP_TO_GET_ATTRIBUTE}`,
       requestProductCount: `productFeed/${ActionsTypes.TRIGGER_PRODUCT_COUNT}`,
     }),
+    ...mapMutations({}),
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
@@ -402,11 +413,28 @@ export default defineComponent({
       window.scrollTo(0, 0);
     },
   },
-  mounted() {
-    this.requestAttributeMapping();
-    this.requestProductCount();
-  },
+  async mounted() {
+    this.loadingData = true;
 
+    await this.requestShopAttribute().then(() => {
+      this.requestAttributeMapping();
+    });
+
+    const currentSync = localStorage
+      .getItem(localStorageProductFilterSync) as ProductFilterMethodsSynch;
+
+    if (currentSync && currentSync === ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT) {
+      const localStorageFilters = getDataFromLocalStorage(localStorageProductFilter);
+      this.$store.commit(`productFeed/${MutationsTypes.SET_SYNC_METHOD}`, currentSync);
+      this.$store.commit(`productFeed/${MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS}`, {
+        name: 'productFilter', data: localStorageFilters,
+      });
+    }
+
+    await this.requestProductCount();
+
+    this.loadingData = false;
+  },
   googleUrl,
 });
 </script>

@@ -2,6 +2,7 @@ import Vue from 'vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import {changeCountryCodeToName, getCurrencyFromCountry} from '@/utils/Countries';
 import ProductFeedSummaryStatus from '@/enums/product-feed/product-feed-summary-status';
+import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 
 export default Vue.extend({
   data() {
@@ -14,10 +15,10 @@ export default Vue.extend({
       return this.$store.getters['productFeed/GET_PRODUCT_FEED_SETTINGS'];
     },
     isUS() {
-      return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'].includes('US');
+      return (getDataFromLocalStorage('productFeed-targetCountries') || this.$store.getters['productFeed/GET_TARGET_COUNTRIES']).includes('US');
     },
     targetCountries(): string[] {
-      return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'].map((country: string) => this.$t(
+      return (getDataFromLocalStorage('productFeed-targetCountries') || this.$store.getters['productFeed/GET_TARGET_COUNTRIES']).map((country: string) => this.$t(
         'general.countryWithCurrencyFormat',
         {
           country: changeCountryCodeToName(country),

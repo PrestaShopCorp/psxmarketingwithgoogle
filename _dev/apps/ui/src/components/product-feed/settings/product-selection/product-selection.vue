@@ -143,13 +143,7 @@ import {booleanToString, stringToBoolean} from '@/utils/StringToBoolean';
 import stringToNumber from '@/utils/StringToNumber';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
-
-const newFilter = () => ({
-  id: crypto.randomUUID(),
-});
-
-const localStorageProductFilter = 'productFeed-productFilter';
-const localStorageProductFilterSync = 'productFeed-productFilterSync';
+import {newFilter, localStorageProductFilter, localStorageProductFilterSync} from '@/components/product-feed/settings/product-selection/product-selection-utilities';
 
 export default defineComponent({
   name: 'ProductFeedSettingsProductSelection',
