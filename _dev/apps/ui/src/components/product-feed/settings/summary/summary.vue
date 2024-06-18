@@ -38,7 +38,7 @@
                   <template #loading>
                     <b-skeleton
                       height="1.25rem"
-                      width="50%"
+                      width="80%"
                     />
                   </template>
                   <div v-if="productCountStatus === ProductFeedCountStatus.SUCCESS">
@@ -73,7 +73,17 @@
                 {{ $t('productFeedSettings.summaryTitles.taxSettings') }}
               </template>
               <template>
-                {{ taxSettings }}
+                <b-skeleton-wrapper
+                  :loading="loading"
+                >
+                  <template #loading>
+                    <b-skeleton
+                      height="1.25rem"
+                      width="80%"
+                    />
+                  </template>
+                  {{ taxSettings }}
+                </b-skeleton-wrapper>
               </template>
             </product-feed-summary-card>
             <product-feed-summary-card
@@ -84,7 +94,17 @@
                 {{ $t('productFeedSettings.summaryTitles.shippingParameters') }}
               </template>
               <template>
-                {{ shippingSetupDescription }}
+                <b-skeleton-wrapper
+                  :loading="loading"
+                >
+                  <template #loading>
+                    <b-skeleton
+                      height="1.25rem"
+                      width="80%"
+                    />
+                  </template>
+                  {{ shippingSetupDescription }}
+                </b-skeleton-wrapper>
               </template>
             </product-feed-summary-card>
             <product-feed-summary-card>
@@ -103,13 +123,27 @@
                 {{ $t('productFeedSettings.summaryTitles.deliveryTimesAndRates') }}
               </template>
               <template>
-                <p>
-                  {{ $tc(
-                    'productFeedSettings.deliveryTimeAndRates.targetCountries',
-                    targetCountries.length,
-                  ) }}: {{ targetCountries.join(', ') }}
-                </p>
-                <span>{{ deliveryTimeAndRatesDescription }}</span>
+                <b-skeleton-wrapper
+                  :loading="loading"
+                >
+                  <template #loading>
+                    <b-skeleton
+                      height="1.25rem"
+                      width="80%"
+                    />
+                    <b-skeleton
+                      height="1.25rem"
+                      width="70%"
+                    />
+                  </template>
+                  <p>
+                    {{ $tc(
+                      'productFeedSettings.deliveryTimeAndRates.targetCountries',
+                      targetCountries.length,
+                    ) }}: {{ targetCountries.join(', ') }}
+                  </p>
+                  <span>{{ deliveryTimeAndRatesDescription }}</span>
+                </b-skeleton-wrapper>
               </template>
             </product-feed-summary-card>
           </div>
@@ -122,45 +156,58 @@
                 {{ $t('productFeedSettings.summaryTitles.attributesMapping') }}
               </template>
               <template>
-                <VueShowdown
-                  v-if="getNumberOfAttributesMapped"
-                  :markdown="
-                    $tc(
-                      'productFeedSettings.summary.attributeMapped',
-                      getNumberOfAttributesMapped,
-                      [getNumberOfAttributesMapped]
-                    )
-                  "
-                  :extensions="['no-p-tag']"
-                />
-                <div class="gs-table-attribute-mapping">
-                  <b-table-simple
-                    borderless
-                    table-class="gs-table-attribute-mapping--table"
-                  >
-                    <b-thead>
-                      <b-tr>
-                        <b-th class="gs-table-attribute-mapping--column">
-                          <p class="gs-table-attribute-mapping--column-title">
-                            {{ $t('productFeedSettings.summary.tableHeader1') }}
-                          </p>
-                        </b-th>
-                        <b-th class="gs-table-attribute-mapping--column">
-                          <p class="gs-table-attribute-mapping--column-title">
-                            {{ $t("productFeedSettings.summary.tableHeader2") }}
-                          </p>
-                        </b-th>
-                      </b-tr>
-                    </b-thead>
-                    <b-tbody>
-                      <TableRowMapping
-                        v-for="attribute in getMapping"
-                        :key="attribute.google"
-                        :attribute="attribute"
-                      />
-                    </b-tbody>
-                  </b-table-simple>
-                </div>
+                <b-skeleton-wrapper
+                  :loading="loading"
+                >
+                  <template #loading>
+                    <b-skeleton
+                      height="1.25rem"
+                      width="80%"
+                    />
+                    <b-skeleton
+                      height="10rem"
+                    />
+                  </template>
+                  <VueShowdown
+                    v-if="getNumberOfAttributesMapped"
+                    :markdown="
+                      $tc(
+                        'productFeedSettings.summary.attributeMapped',
+                        getNumberOfAttributesMapped,
+                        [getNumberOfAttributesMapped]
+                      )
+                    "
+                    :extensions="['no-p-tag']"
+                  />
+                  <div class="gs-table-attribute-mapping">
+                    <b-table-simple
+                      borderless
+                      table-class="gs-table-attribute-mapping--table"
+                    >
+                      <b-thead>
+                        <b-tr>
+                          <b-th class="gs-table-attribute-mapping--column">
+                            <p class="gs-table-attribute-mapping--column-title">
+                              {{ $t('productFeedSettings.summary.tableHeader1') }}
+                            </p>
+                          </b-th>
+                          <b-th class="gs-table-attribute-mapping--column">
+                            <p class="gs-table-attribute-mapping--column-title">
+                              {{ $t("productFeedSettings.summary.tableHeader2") }}
+                            </p>
+                          </b-th>
+                        </b-tr>
+                      </b-thead>
+                      <b-tbody>
+                        <TableRowMapping
+                          v-for="attribute in getMapping"
+                          :key="attribute.google"
+                          :attribute="attribute"
+                        />
+                      </b-tbody>
+                    </b-table-simple>
+                  </div>
+                </b-skeleton-wrapper>
               </template>
             </product-feed-summary-card>
           </div>
@@ -170,7 +217,7 @@
         :label="$t('productFeedSettings.summary.agreementTitle')"
         label-class="h3 font-weight-700 mb-1 d-block p-0 bg-transparent border-0"
       >
-        <ul>
+        <ul class="pl-4">
           <li>{{ $t('productFeedSettings.summary.agreement1') }}</li>
           <li>{{ $t('productFeedSettings.summary.agreement2') }}</li>
         </ul>
@@ -263,8 +310,8 @@ export default defineComponent({
     }),
     loading() {
       return this.loadingData
-        || this.productCountStatus === ProductFeedCountStatus.PENDING
-        || this.$store.state.productFeed.warmedUp === RequestState.PENDING;
+      || this.productCountStatus === ProductFeedCountStatus.PENDING
+      || this.$store.state.productFeed.warmedUp === RequestState.PENDING;
     },
     disabledExportButton() {
       return !this.understandTerms;
