@@ -27,6 +27,11 @@ export const productFeed: State = {
     lastUpdatedAt: "",
   },
   attributeMapping: {},
+  productCount: {
+    count: null,
+    status: null,
+    abortController: null,
+  },
   settings: {
     // Todo: Empty object to avoid trigger of refresh.
     // To fill with actual data.
@@ -246,7 +251,7 @@ export const productFeedIsConfigured: State = {
   report: {
     lastConfigurationUsed: {
       lastModificationDate: new Date(2023, 6, 31, 13, 37),
-      targetCountries: ['FR', 'GB', 'IT'], 
+      targetCountries: ['FR', 'GB', 'IT'],
       languages: ['it', 'fr', 'de'],
       currencies: ['EUR', 'GBP'],
     },
