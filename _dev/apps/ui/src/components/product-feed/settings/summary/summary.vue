@@ -22,125 +22,147 @@
         fluid
         class="p-0 mb-4"
       >
-        <product-feed-summary-cards
-          :display-attribute-mapping-simple-card="false"
-          display-sync-card
-        />
-        <b-row
-          no-gutters
-          class="mx-n1"
-        >
-          <b-col>
-            <product-feed-card-report-card
-              status="success"
-              :title="$t('productFeedSettings.summary.productAttributesMapping')"
-              :link="$t('cta.editProductAttributes')"
+        <div class="product-feed-summary-card-container">
+          <div class="product-feed-summary-card-column">
+            <product-feed-summary-card
               :link-to="{ name: 'product-feed-settings',
-                          step: 3,params: ProductFeedSettingsPages.ATTRIBUTE_MAPPING}"
-              size="full"
+                          step: 4, params: ProductFeedSettingsPages.PRODUCT_SELECTION }"
             >
-              <VueShowdown
-                v-if="getNumberOfAttributesMapped"
-                class="ps_gs-fz-12"
-                :markdown="
-                  $tc(
-                    'productFeedSettings.summary.attributeMapped',
-                    getNumberOfAttributesMapped,
-                    [getNumberOfAttributesMapped]
-                  )
-                "
-                :extensions="['no-p-tag']"
-              />
-              <b-table-simple
-                stacked="md"
-                class="mt-2 centered-mapping-summary"
-                borderless
-                table-class="border-bottom-0 ps_gs-table-attribute-mapping"
-              >
-                <b-thead>
-                  <b-tr
-                    class="ps-ps-header-attribute-mapping"
+              <template #title>
+                {{ $t('productFeedSettings.summaryTitles.selectedProducts') }}
+              </template>
+              <template>
+                <b-skeleton-wrapper :loading="productFilterStatus === ProductFeedCountStatus.PENDING">
+                  <template #loading>
+                    <b-skeleton
+                      height="1.25rem"
+                      width="50%"
+                    />
+                  </template>
+                  <div v-if="productFilterStatus === ProductFeedCountStatus.SUCCESS">
+                    {{ productCountToDisplay }}
+                  </div>
+                  <b-alert
+                    v-if="productFilterStatus === ProductFeedCountStatus.ERROR"
+                    variant="warning"
+                    show
                   >
-                    <b-th
-                      class="
-                        font-weight-600
-                        ps_gs-fz-12
-                        table-border-bottom
-                      "
-                    >
-                      <div class="text-center mb-2 float-left">
-                        <img
-                          class="rounded-circle mb-1"
-                          src="@/assets/images/google-icon-grey.svg"
-                          width="20"
-                          height="20"
-                        >
-                        <p>
-                          {{ $t('productFeedSettings.summary.tableHeader1') }}
-                        </p>
-                      </div>
-                    </b-th>
-                    <b-th
-                      class="
-                        font-weight-600
-                        ps_gs-fz-12
-                        table-border-bottom
-                      "
-                    >
-                      <div class="text-center mb-2 float-right">
-                        <img
-                          src="@/assets/images/table-chart.svg"
-                          class="mb-1"
-                          width="20"
-                          height="20"
-                        >
-                        <p>
-                          {{ $t("productFeedSettings.summary.tableHeader2") }}
-                        </p>
-                      </div>
-                    </b-th>
-                  </b-tr>
-                </b-thead>
-                <b-tbody>
-                  <TableRowMapping
-                    v-for="attribute in attributes"
-                    :key="attribute.google"
-                    :attribute="attribute"
-                  />
-                </b-tbody>
-              </b-table-simple>
-              <b-alert
-                class="mb-0 mt-3"
-                v-if="mandatoryAttributesNotMapped"
-                variant="warning"
-                show
-              >
+                    <div>
+                      <p class="d-flex align-items-center">
+                        {{ $t('productFeedSettings.summary.errorLoadDataSelectedProduct') }}
+                      </p>
+                      <b-btn
+                        @click="requestProductCount"
+                        variant="warning"
+                      >
+                        {{ $t('productFeedSettings.productSelection.productCount.tryAgain') }}
+                      </b-btn>
+                    </div>
+                  </b-alert>
+                </b-skeleton-wrapper>
+              </template>
+            </product-feed-summary-card>
+            <product-feed-summary-card
+              v-if="isUS"
+              :link-to="{ name: 'product-feed-settings',
+                          step: 2, params: ProductFeedSettingsPages.SHIPPING_SETTINGS }"
+            >
+              <template #title>
+                {{ $t('productFeedSettings.summaryTitles.taxSettings') }}
+              </template>
+              <template>
+                {{ taxSettings }}
+              </template>
+            </product-feed-summary-card>
+            <product-feed-summary-card
+              :link-to="{ name: 'product-feed-settings',
+                          step: 1, params: ProductFeedSettingsPages.SHIPPING_SETUP }"
+            >
+              <template #title>
+                {{ $t('productFeedSettings.summaryTitles.shippingParameters') }}
+              </template>
+              <template>
+                {{ shippingSetupDescription }}
+              </template>
+            </product-feed-summary-card>
+            <product-feed-summary-card>
+              <template #title>
+                {{ $t('productFeedSettings.summaryTitles.dataSyncConfiguration') }}
+              </template>
+              <template>
+                {{ getSyncSchedule }}
+              </template>
+            </product-feed-summary-card>
+            <product-feed-summary-card
+              :link-to="{ name: 'product-feed-settings',
+                          step: 2, params: ProductFeedSettingsPages.SHIPPING_SETTINGS }"
+            >
+              <template #title>
+                {{ $t('productFeedSettings.summaryTitles.deliveryTimesAndRates') }}
+              </template>
+              <template>
+                <p>
+                  {{ $tc(
+                    'productFeedSettings.deliveryTimeAndRates.targetCountries',
+                    targetCountries.length,
+                  ) }}: {{ targetCountries.join(', ') }}
+                </p>
+                <span>{{ deliveryTimeAndRatesDescription }}</span>
+              </template>
+            </product-feed-summary-card>
+          </div>
+          <div class="product-feed-summary-card-column">
+            <product-feed-summary-card
+              :link-to="{ name: 'product-feed-settings',
+                          step: 3, params: ProductFeedSettingsPages.ATTRIBUTE_MAPPING}"
+            >
+              <template #title>
+                {{ $t('productFeedSettings.summaryTitles.attributesMapping') }}
+              </template>
+              <template>
                 <VueShowdown
+                  v-if="getNumberOfAttributesMapped"
                   :markdown="
                     $tc(
-                      'productFeedSettings.summary.mandatoryAttributesNotMapped',
-                      mandatoryAttributesNotMapped,
-                      [mandatoryAttributesNotMapped]
+                      'productFeedSettings.summary.attributeMapped',
+                      getNumberOfAttributesMapped,
+                      [getNumberOfAttributesMapped]
                     )
                   "
                   :extensions="['no-p-tag']"
-                  tag="strong"
-                  class="font-weight-600"
                 />
-                <br>
-                <VueShowdown
-                  :markdown="
-                    $t('productFeedSettings.summary.noticeToCompleteMapping', [
-                      $options.googleUrl.learnRequirementsProductSpecification,
-                    ])
-                  "
-                  :extensions="['extended-link', 'no-p-tag']"
-                  tag="span"
-                />
-              </b-alert>
-            </product-feed-card-report-card>
-          </b-col>
-        </b-row>
+                <div class="gs-table-attribute-mapping">
+                  <b-table-simple
+                    borderless
+                    table-class="gs-table-attribute-mapping--table"
+                  >
+                    <b-thead>
+                      <b-tr>
+                        <b-th class="gs-table-attribute-mapping--column">
+                          <p class="gs-table-attribute-mapping--column-title">
+                            {{ $t('productFeedSettings.summary.tableHeader1') }}
+                          </p>
+                        </b-th>
+                        <b-th class="gs-table-attribute-mapping--column">
+                          <p class="gs-table-attribute-mapping--column-title">
+                            {{ $t("productFeedSettings.summary.tableHeader2") }}
+                          </p>
+                        </b-th>
+                      </b-tr>
+                    </b-thead>
+                    <b-tbody>
+                      <TableRowMapping
+                        v-for="attribute in getMapping"
+                        :key="attribute.google"
+                        :attribute="attribute"
+                      />
+                    </b-tbody>
+                  </b-table-simple>
+                </div>
+              </template>
+            </product-feed-summary-card>
+          </div>
+        </div>
       </b-container>
       <b-form-group
         :label="$t('productFeedSettings.summary.agreementTitle')"
@@ -190,15 +212,20 @@ import duration from 'dayjs/plugin/duration';
 import {BTableSimple} from 'bootstrap-vue';
 import {VueShowdown} from 'vue-showdown';
 import {defineComponent} from 'vue';
+import {mapActions, mapGetters} from 'vuex';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import googleUrl from '@/assets/json/googleUrl.json';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
-import ProductFeedCardReportCard from '@/components/product-feed/product-feed-card-report-card.vue';
-import TableRowMapping from '@/components/product-feed/commons/table-row-mapping.vue';
+import TableRowMapping from '@/components/product-feed/summary/table-row-mapping.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
-import ProductFeedSummaryCards from '@/components/product-feed/summary/product-feed-summary-cards.vue';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
+import productFeedSummaryCard from '@/components/product-feed/summary/product-feed-summary-card.vue';
+import ProductFeedMixin from '@/components/mixins/Product-Feed-Mixin';
+import {ShippingSetupOption} from '@/enums/product-feed/shipping';
+import ActionsTypes from '@/store/modules/product-feed/actions-types';
+import GetterTypes from '@/store/modules/product-feed/getters-types';
+import ProductFeedCountStatus from '@/enums/product-feed/product-feed-count-status';
 
 dayjs.extend(duration);
 
@@ -207,21 +234,25 @@ export default defineComponent({
   components: {
     SettingsFooter,
     ActionsButtons,
-    ProductFeedCardReportCard,
     BTableSimple,
     VueShowdown,
     TableRowMapping,
-    ProductFeedSummaryCards,
+    productFeedSummaryCard,
   },
+  mixins: [ProductFeedMixin],
   data() {
     return {
       ProductFeedSettingsPages,
-      refurbishedInputs: ['condition'],
-      apparelInputs: ['color', 'size', 'ageGroup', 'gender'],
       understandTerms: false,
+      ProductFeedCountStatus,
     };
   },
   computed: {
+    ...mapGetters({
+      productCount: `productFeed/${GetterTypes.GET_PRODUCT_COUNT}`,
+      productFilterStatus: `productFeed/${GetterTypes.GET_PRODUCT_COUNT_STATUS}`,
+      nextSyncTotalProducts: `productFeed/${GetterTypes.GET_TOTAL_PRODUCTS_READY_TO_SYNC}`,
+    }),
     disabledExportButton() {
       return !this.understandTerms;
     },
@@ -240,14 +271,6 @@ export default defineComponent({
       return this.$options.filters.timeConverterToStringifiedDate(
         this.nextSyncDate,
       );
-    },
-    formatNextSync() {
-      return this.$options.filters.timeConverterToHour(this.nextSyncDate);
-    },
-    nextSyncTotalProducts: {
-      get() {
-        return this.$store.getters['productFeed/GET_TOTAL_PRODUCTS_READY_TO_SYNC'];
-      },
     },
     selectedProductCategories() {
       return getDataFromLocalStorage('productFeed-selectedProductCategories') || this.$store.getters['productFeed/GET_PRODUCT_CATEGORIES_SELECTED'];
@@ -298,11 +321,66 @@ export default defineComponent({
             final.mapped !== undefined ? final.mapped : final.recommended,
         }));
     },
-    attributes() {
-      return this.getMapping;
+    deliveryTimeAndRatesDescription() {
+      if (this.$store.getters['productFeed/GET_PRODUCT_FEED_REQUIRED_RECONFIGURATION']) {
+        return '--';
+      }
+
+      if (this.getProductFeedSettings.shippingSetup === ShippingSetupOption.IMPORT
+        // Backward compatibility
+        || this.getProductFeedSettings.autoImportShippingSettings
+      ) {
+        return this.$t('productFeedSettings.deliveryTimeAndRates.importOption.summary');
+      }
+      if (this.getProductFeedSettings.shippingSetup === ShippingSetupOption.ESTIMATE) {
+        if (this.targetCountries.length === 1) {
+          return this.$t('productFeedSettings.deliveryTimeAndRates.estimateStep.summary.singleCountry');
+        }
+        return this.$t('productFeedSettings.deliveryTimeAndRates.estimateStep.summary.multiCountriesFlatRateForAll');
+      }
+
+      return this.$t('productFeedCard.missingInformation');
+    },
+    getSyncSchedule() {
+      return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'].syncSchedule;
+    },
+    shippingSetupDescription() {
+      if (this.$store.getters['productFeed/GET_PRODUCT_FEED_REQUIRED_RECONFIGURATION']) {
+        return this.$t('productFeedSettings.shippingSetup.laterOption.summary');
+      }
+
+      if (this.getProductFeedSettings.shippingSetup === ShippingSetupOption.IMPORT
+        // Backward compatibility
+        || this.getProductFeedSettings.autoImportShippingSettings
+      ) {
+        return this.$t('productFeedSettings.shippingSetup.importOption.summary');
+      }
+      if (this.getProductFeedSettings.shippingSetup === ShippingSetupOption.ESTIMATE) {
+        return this.$t('productFeedSettings.shippingSetup.estimateOption.summary');
+      }
+
+      return this.$t('productFeedCard.missingInformation');
+    },
+    productCountToDisplay() {
+      if (this.productCount < 1) {
+        return '--';
+      }
+      return this.productCount;
+    },
+    taxSettings() {
+      if (this.getProductFeedSettings.autoImportTaxSettings === undefined) {
+        return this.$t('productFeedCard.missingInformation');
+      }
+      return this.getProductFeedSettings.autoImportTaxSettings
+        ? this.$t('productFeedSettings.deliveryTimeAndRates.automatically')
+        : this.$t('productFeedSettings.deliveryTimeAndRates.manually');
     },
   },
   methods: {
+    ...mapActions({
+      requestAttributeMapping: `productFeed/${ActionsTypes.REQUEST_ATTRIBUTE_MAPPING}`,
+      requestProductCount: `productFeed/${ActionsTypes.TRIGGER_PRODUCT_COUNT}`,
+    }),
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
@@ -325,7 +403,8 @@ export default defineComponent({
     },
   },
   mounted() {
-    this.$store.dispatch('productFeed/REQUEST_ATTRIBUTE_MAPPING');
+    this.requestAttributeMapping();
+    this.requestProductCount();
   },
 
   googleUrl,

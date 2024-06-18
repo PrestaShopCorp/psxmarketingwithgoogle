@@ -262,6 +262,14 @@
       "shippingSettingsErrors": "This country is not compatible with your currency",
       "syncSchedule" : "Sync schedule"
     },
+    "summaryTitles": {
+      "selectedProducts": "Selected products ready for synchronization",
+      "shippingParameters": "Shipping parameters",
+      "taxSettings": "Tax settings",
+      "dataSyncConfiguration": "Data synchronization configuration",
+      "deliveryTimesAndRates": "Delivery times and rates",
+      "attributesMapping": "Product attributes mapping"
+    },
     "noticeDataStored": "Settings are saved at each step, will be submitted only at the final step.",
     "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step.",
     "shippingSetup": {
@@ -517,7 +525,7 @@
       "xItems": "{0} items",
       "productItems": "Product items",
       "tableHeader1": "Google product attributes",
-      "tableHeader2": "Your custom product fields",
+      "tableHeader2": "Product value",
       "totalProducts": "Active products ready for sync",
       "date": "Date",
       "nextSync": "The next synchronization is on {date}",
@@ -525,7 +533,8 @@
       "youSell": "**You sell** {0}",
       "dataSyncSetUp": "Data sync set up",
       "productAttributesMapping": "Category & product attribute mapping",
-      "attributeMapped": "One category have been mapped | {0} categories have been mapped",
+      "errorLoadDataSelectedProduct": "Unable to load data",
+      "attributeMapped": "One product attribute mapped | {0} product attributes mapped",
       "mandatoryAttributesNotMapped": "One Google attributes haven't been mapped to your custom fields | {0} Google attributes haven't been mapped to your custom fields.",
       "noticeToCompleteMapping": "We recommend mapping all your data otherwise your products might be rejected by Google.",
       "agreementTitle": "Conditions",
