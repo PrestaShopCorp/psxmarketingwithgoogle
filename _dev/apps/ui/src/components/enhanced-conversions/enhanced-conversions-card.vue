@@ -34,7 +34,7 @@
           @click.native.prevent="toggleFeature"
           :disabled="toggleIsDisabled"
         >
-          <span class="ps_gs-fz-14 text-dark d-block">
+          <span class="ps_gs-fz-14 d-block">
             {{
               GET_ENHANCED_CONVERSIONS_STATUS
                 ? $t("cta.enabled")

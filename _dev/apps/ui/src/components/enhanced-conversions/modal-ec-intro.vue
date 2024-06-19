@@ -3,7 +3,7 @@
     id="psxmarketingwithgoogle_modal_ec_intro"
     ref="psxmarketingwithgoogle_modal_ec_intro"
     :title="$t('modal.titleEnhancedConversionsIntro')"
-    @ok="ok"
+    @ok="openGoogleAdsTos"
     @hidden="hidden"
     :visible="!isModalAlreadyAknowledged()"
   >
@@ -17,21 +17,12 @@
       :extensions="['extended-link']"
       :markdown="$t('modal.textEnhancedConversionsIntro')"
     />
-    <VueShowdown
-      class="mt-1 mb-4"
-      :extensions="['extended-link']"
-      :markdown="$t('modal.textActivationEnhancedConversionsIntro')"
-      v-if="!tosAreSigned"
-    />
 
     <template slot="modal-ok">
-      {{ tosAreSigned ?
-        $t('cta.enableEnhancedConversions') :
-        $t('cta.signGadsToS')
-      }}
+      {{ $t('cta.enableEnhancedConversions') }}
     </template>
     <template slot="modal-cancel">
-      {{ $t('cta.cancel') }}
+      {{ $t('cta.close') }}
     </template>
   </ps-modal>
 </template>
@@ -46,25 +37,12 @@ export default defineComponent({
   components: {
     PsModal,
   },
-  props: {
-    tosAreSigned: {
-      type: Boolean,
-      required: true,
-    },
-  },
   computed: {
     linkToTermsOfServices(): string {
       return googleUrl.googleAdsConversionsTermsAndConditions;
     },
   },
   methods: {
-    async ok(): Promise<void> {
-      if (this.tosAreSigned) {
-        this.enableEnhancedConversions();
-        return;
-      }
-      this.openGoogleAdsTos();
-    },
     openGoogleAdsTos(): void {
       window.open(this.linkToTermsOfServices, '_blank')?.focus();
     },

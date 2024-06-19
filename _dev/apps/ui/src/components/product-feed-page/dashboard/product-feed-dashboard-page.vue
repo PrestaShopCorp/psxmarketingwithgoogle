@@ -14,10 +14,6 @@
       <alert-sign-gads-tos
         v-if="!GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED"
       />
-      <alert-ec-ready
-        v-else-if="GET_ENHANCED_CONVERSIONS_NEVER_ENABLED"
-        :is-on-configuration-page="false"
-      />
     </template>
     <sync-overview
       :in-need-of-configuration="inNeedOfConfiguration"
@@ -55,7 +51,6 @@ export default defineComponent({
       GettersTypesGoogleAds.GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED,
     ]),
     ...mapGetters('campaigns', [
-      GettersTypesCampaigns.GET_ENHANCED_CONVERSIONS_NEVER_ENABLED,
       GettersTypesCampaigns.GET_ACCOUNT_HAS_AT_LEAST_ONE_CAMPAIGN,
     ]),
     allDataLoaded(): boolean {

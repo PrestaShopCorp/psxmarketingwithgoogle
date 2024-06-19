@@ -24,7 +24,3 @@ EnhancedConversionsIntro.args = {
   tosAreSigned: false,
 }
 
-export const EnhancedConversionsIntroWithTosSigned:any = Template.bind({});
-EnhancedConversionsIntro.args = {
-  tosAreSigned: true,
-}
