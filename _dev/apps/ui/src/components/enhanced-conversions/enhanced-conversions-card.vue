@@ -1,7 +1,5 @@
 <template>
-  <section
-    v-if="GET_FEATURE_FLAG_ENHANCED_CONVERSIONS"
-  >
+  <section>
     <b-card
       no-body
       class="ps_gs-onboardingcard p-3"
@@ -57,7 +55,6 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {mapGetters} from 'vuex';
-import GettersTypesApp from '@/store/modules/app/getters-types';
 import GettersTypesCampaigns from '@/store/modules/campaigns/getters-types';
 import GettersTypesGoogleAds from '@/store/modules/google-ads/getters-types';
 import AlertEcReady from '@/components/enhanced-conversions/alert-ec-ready.vue';
@@ -75,9 +72,6 @@ export default defineComponent({
     };
   },
   computed: {
-    ...mapGetters('app', [
-      GettersTypesApp.GET_FEATURE_FLAG_ENHANCED_CONVERSIONS,
-    ]),
     ...mapGetters('campaigns', [
       GettersTypesCampaigns.GET_ENHANCED_CONVERSIONS_STATUS,
     ]),
