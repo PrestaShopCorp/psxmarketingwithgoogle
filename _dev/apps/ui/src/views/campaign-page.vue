@@ -17,10 +17,6 @@
         <alert-sign-gads-tos
           v-else-if="!GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED"
         />
-        <alert-ec-ready
-          v-else-if="GET_ENHANCED_CONVERSIONS_NEVER_ENABLED"
-          :is-on-configuration-page="false"
-        />
       </template>
 
       <key-metrics-controls
@@ -54,7 +50,6 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {mapGetters} from 'vuex';
-import GettersTypesCampaigns from '@/store/modules/campaigns/getters-types';
 import GettersTypesGoogleAds from '@/store/modules/google-ads/getters-types';
 import TrackingActivationModal from '@/components/campaigns/tracking-activation-modal.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
@@ -87,9 +82,6 @@ export default defineComponent({
   computed: {
     ...mapGetters('googleAds', [
       GettersTypesGoogleAds.GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED,
-    ]),
-    ...mapGetters('campaigns', [
-      GettersTypesCampaigns.GET_ENHANCED_CONVERSIONS_NEVER_ENABLED,
     ]),
     inNeedOfConfiguration() {
       return !this.googleAdsIsServing;
