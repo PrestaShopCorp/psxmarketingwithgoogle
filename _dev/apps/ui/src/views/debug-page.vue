@@ -271,7 +271,6 @@ import {mapGetters, mapState} from 'vuex';
 import GettersTypes from '@/store/modules/campaigns/getters-types';
 import GettersTypesApp from '@/store/modules/app/getters-types';
 import GettersTypesAccounts from '@/store/modules/accounts/getters-types';
-import {State as StateApp} from '@/store/modules/app/state';
 import {initReplay} from '@/utils/Sentry';
 
 export default defineComponent({

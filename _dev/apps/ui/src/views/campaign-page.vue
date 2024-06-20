@@ -15,7 +15,7 @@
           @clickToCreateCampaign="onClickToCreateCampaign"
         />
         <alert-sign-gads-tos
-          v-else-if="!GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED"
+          v-else-if="!GET_ENHANCED_CONVERSIONS_TOGGABLE"
         />
       </template>
 
@@ -50,7 +50,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {mapGetters} from 'vuex';
-import GettersTypesGoogleAds from '@/store/modules/google-ads/getters-types';
+import GettersTypesCampaigns from '@/store/modules/campaigns/getters-types';
 import TrackingActivationModal from '@/components/campaigns/tracking-activation-modal.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import BannerCampaigns from '@/components/commons/banner-campaigns.vue';
@@ -78,8 +78,8 @@ export default defineComponent({
     };
   },
   computed: {
-    ...mapGetters('googleAds', [
-      GettersTypesGoogleAds.GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED,
+    ...mapGetters('campaigns', [
+      GettersTypesCampaigns.GET_ENHANCED_CONVERSIONS_TOGGABLE,
     ]),
     inNeedOfConfiguration() {
       return !this.googleAdsIsServing;

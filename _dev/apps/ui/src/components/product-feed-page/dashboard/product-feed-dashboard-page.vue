@@ -12,7 +12,7 @@
       v-else-if="allDataLoaded && !inNeedOfConfiguration && GET_ACCOUNT_HAS_AT_LEAST_ONE_CAMPAIGN"
     >
       <alert-sign-gads-tos
-        v-if="!GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED"
+        v-if="!GET_ENHANCED_CONVERSIONS_TOGGABLE"
       />
     </template>
     <sync-overview
@@ -30,7 +30,6 @@ import SyncOverview from '@/components/product-feed-page/dashboard/sync-overview
 import PsToast from '@/components/commons/ps-toast.vue';
 import AlertSignGadsTos from '@/components/enhanced-conversions/alert-sign-gads-tos.vue';
 import GettersTypesCampaigns from '@/store/modules/campaigns/getters-types';
-import GettersTypesGoogleAds from '@/store/modules/google-ads/getters-types';
 
 export default defineComponent({
   components: {
@@ -45,11 +44,9 @@ export default defineComponent({
     },
   },
   computed: {
-    ...mapGetters('googleAds', [
-      GettersTypesGoogleAds.GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED,
-    ]),
     ...mapGetters('campaigns', [
       GettersTypesCampaigns.GET_ACCOUNT_HAS_AT_LEAST_ONE_CAMPAIGN,
+      GettersTypesCampaigns.GET_ENHANCED_CONVERSIONS_TOGGABLE,
     ]),
     allDataLoaded(): boolean {
       return this.$store.state.productFeed.warmedUp === RequestState.SUCCESS;

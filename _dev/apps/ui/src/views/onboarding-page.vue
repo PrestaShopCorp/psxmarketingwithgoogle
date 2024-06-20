@@ -138,9 +138,7 @@
     />
     <modal-ec-intro
       v-if="getGoogleAdsAccount
-        && accountHasAtLeastOneCampaign
-        && enhancedConversionsHasNeverBeenEnabled"
-      :tos-are-signed="!!getGoogleAdsAccount.acceptedCustomerDataTerms"
+        && accountHasAtLeastOneCampaign"
     />
     <PopinModuleConfigured
       ref="PopinModuleConfigured"
@@ -406,9 +404,6 @@ export default defineComponent({
     },
     remarketingTagIsSet() {
       return this.$store.getters['campaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
-    },
-    enhancedConversionsHasNeverBeenEnabled(): boolean {
-      return this.$store.getters['campaigns/GET_ENHANCED_CONVERSIONS_NEVER_ENABLED'];
     },
     stepsAreCompleted() {
       return {

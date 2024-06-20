@@ -50,6 +50,7 @@ export default defineComponent({
   methods: {
     openGoogleAdsTos(): void {
       window.open(this.linkToTermsOfServices, '_blank')?.focus();
+      this.enableEnhancedConversions();
     },
     async enableEnhancedConversions(): Promise<void> {
       await this.$store.dispatch('campaigns/SAVE_ENHANCED_CONVERSIONS_STATUS', true);
@@ -63,6 +64,9 @@ export default defineComponent({
     async acknowledgeFeature(): Promise<void> {
       await this.$store.dispatch('campaigns/SET_ENHANCED_CONVERSIONS_INTRODUCTION_STATUS', true);
     },
+  },
+  mounted() {
+    this.checkFeatureHasBeenIntroduced();
   },
 });
 </script>
