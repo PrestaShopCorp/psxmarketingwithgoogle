@@ -10,7 +10,7 @@
           variant="info"
           show
         >
-          {{ $t('productFeedSettings.summary.nextSync', { date: formatNextSyncDate }) }}
+          {{ $t('productFeedSettings.summary.nextSync', { date: formatNextSyncDate }) }}.
         </b-alert>
       </b-container>
     </section>
@@ -239,10 +239,13 @@
       :previous-step="previousStep"
       :disable-continue="disabledExportButton"
       :disable-tooltip="$t('productFeedSettings.summary.disabledButtonTooltip')"
-      :ok-label="$t('cta.saveAndExport')"
+      :ok-label="$t('cta.save')"
       @cancelProductFeedSettingsConfiguration="cancel()"
     />
-    <settings-footer :message="$t('freeListingCard.googleDelay')" />
+    <settings-footer
+      class="mr-1"
+      :message="$t('freeListingCard.googleDelay')"
+    />
     <VueShowdown
       :markdown="
         $t('productFeedSettings.export.prohibitedContentNotice', [
