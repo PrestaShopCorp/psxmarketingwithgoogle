@@ -23,7 +23,6 @@
       {{ $t('productFeedSettings.deliveryTimeAndRates.taxSettings') }}
     </ProductFeedSummaryStep>
     <ProductFeedSummaryStep
-      v-if="isUS"
       :status="attributeMappingStatus"
       :link-to="{ name: 'product-feed-settings',
                   step: 3, params: ProductFeedSettingsPages.ATTRIBUTE_MAPPING}"
@@ -31,7 +30,6 @@
       {{ $t('productFeedSettings.steps.attributeMapping') }}
     </ProductFeedSummaryStep>
     <ProductFeedSummaryStep
-      v-if="isUS"
       :status="productSelectionStatus"
       :link-to="{ name: 'product-feed-settings',
                   step: 4, params: ProductFeedSettingsPages.PRODUCT_SELECTION}"

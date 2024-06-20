@@ -29,9 +29,10 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, PropType} from 'vue';
 
 import ProductFeedSummaryStatus from '@/enums/product-feed/product-feed-summary-status';
+import {StepLink} from '@/components/onboarding/types';
 
 export default defineComponent({
   name: 'ProductFeedSummaryStep',
@@ -45,7 +46,7 @@ export default defineComponent({
       default: ProductFeedSummaryStatus.SUCCESS,
     },
     linkTo: {
-      type: Object,
+      type: Object as PropType<StepLink>,
       required: false,
       default: () => null,
     },
@@ -56,7 +57,7 @@ export default defineComponent({
     };
   },
   methods: {
-    goTo(link) {
+    goTo(link: StepLink) {
       this.$router.push({
         name: link.name,
         params: {

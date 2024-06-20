@@ -7,12 +7,12 @@
       <div>
         <div
           v-if="attributeArray.length"
-          class="gs-table-attribute-mapping--tag-container"
+          class="gs-table-attribute-mapping__tag-container"
         >
           <span
             v-for="(attributeItem, index) in attributeArray"
             :key="`attribute-${index}`"
-            class="gs-table-attribute-mapping--tag"
+            class="gs-table-attribute-mapping__tag"
           >{{ attributeItem }}</span>
         </div>
         <div v-else>
@@ -23,11 +23,14 @@
   </b-tr>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import {defineComponent, PropType} from 'vue';
+import {MappedAttribute} from '@/components/product-feed/settings/summary/types';
+
+export default defineComponent({
   props: {
     attribute: {
-      type: Object,
+      type: Object as PropType<MappedAttribute>,
       required: true,
     },
   },
@@ -36,5 +39,5 @@ export default {
       return this.$props.attribute.prestashop.split(', ');
     },
   },
-};
+});
 </script>
