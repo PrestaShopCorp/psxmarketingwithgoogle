@@ -5,7 +5,7 @@
     :title="$t('modal.titleEnhancedConversionsIntro')"
     @ok="openGoogleAdsTos"
     @hidden="hidden"
-    :visible="!isModalAlreadyAknowledged()"
+    :visible="displayModal"
   >
     <img
       src="@/assets/images/empty-cart.svg"
@@ -37,6 +37,11 @@ export default defineComponent({
   components: {
     PsModal,
   },
+  data() {
+    return {
+      displayModal: false as boolean,
+    };
+  },
   computed: {
     linkToTermsOfServices(): string {
       return googleUrl.googleAdsConversionsTermsAndConditions;
@@ -50,13 +55,13 @@ export default defineComponent({
       await this.$store.dispatch('campaigns/SAVE_ENHANCED_CONVERSIONS_STATUS', true);
     },
     hidden(): void {
-      this.doNotDisplayModalAnymore();
+      this.acknowledgeFeature();
     },
-    isModalAlreadyAknowledged(): boolean {
-      return !!JSON.parse(localStorage.getItem(`enhancedConversionsIntroAck-${this.shopId}`) || 'false');
+    async checkFeatureHasBeenIntroduced(): Promise<void> {
+      this.displayModal = !(await this.$store.dispatch('campaigns/GET_ENHANCED_CONVERSIONS_INTRODUCTION_STATUS'));
     },
-    doNotDisplayModalAnymore(): void {
-      localStorage.setItem(`enhancedConversionsIntroAck-${this.shopId}`, 'true');
+    async acknowledgeFeature(): Promise<void> {
+      await this.$store.dispatch('campaigns/SET_ENHANCED_CONVERSIONS_INTRODUCTION_STATUS', true);
     },
   },
 });

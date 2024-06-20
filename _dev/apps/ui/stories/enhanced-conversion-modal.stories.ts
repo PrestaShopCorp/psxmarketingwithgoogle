@@ -9,13 +9,13 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { ModalEcIntro},
   template: `
-    <div>
-      <span>ℹ️ If the modal does not appear, empty your local storage.</span>
-      <modal-ec-intro v-bind="$props" />
-    </div>
+    <modal-ec-intro v-bind="$props" ref="modalEcIntro" />
   `,
   beforeMount: () => {
     localStorage.clear();
+  },
+  mounted: function(this: any) {
+    this.$refs.modalEcIntro.$data.displayModal = true;
   }
 });
 
