@@ -397,7 +397,7 @@
       "allCategories": "All categories",
       "labelSelectBrand": "Select brand",
       "placeholderSelectBrand": "Search brand",
-      "prohibitedContentNotice": "Please review the [prohibited content guidelines]({0})[:target=\"_blank\"] to ensure that products in your feed don’t violate these policies.",
+      "prohibitedContentNotice": "Please review the [prohibited content guidelines]({0})[:target=\"_blank\"] to ensure that products in your feed do not violate these policies.",
       "frequency": {
         "daily": "Daily"
       },
@@ -528,7 +528,7 @@
       "tableHeader2": "Product value",
       "totalProducts": "Active products ready for sync",
       "date": "Date",
-      "nextSync": "The next synchronization is on {date}",
+      "nextSync": "The next synchronization is on {date}.",
       "time": "Time",
       "youSell": "**You sell** {0}",
       "dataSyncSetUp": "Data sync set up",

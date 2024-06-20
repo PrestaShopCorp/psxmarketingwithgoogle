@@ -143,7 +143,7 @@ export default defineComponent({
       }
       this.loading = true;
       this.$store.commit('productFeed/SET_SHIPPING_SETUP_SELECTED', this.shippingSetup);
-      this.$segment.track('[GGL] Product feed config - Step 1 with Config my shipping settings now', {
+      this.$segment.track('[GGL] Product feed config - Step 1 Shipping setup', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
