@@ -19,15 +19,16 @@
     #{$root}__row {
       #{$root}__column {
         vertical-align: top;
-        padding: 0.5rem 0 0 0;
+        padding: 0.5rem 0;
         font-size: 0.875rem;
         line-height: 1.25rem;
         color: $primary-800;
+        border-bottom: 1px solid $primary-400;
       }
-      &:not(:last-child) {
+      &:last-child {
         #{$root}__column {
-          border-bottom: 1px solid $primary-400;
-          padding: 0.5rem 0;
+          border-bottom: none;
+          padding: 0.5rem 0 0;
         }
       }
     }
