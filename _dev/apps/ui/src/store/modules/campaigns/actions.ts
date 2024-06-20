@@ -172,7 +172,11 @@ export default {
 
     return response.introduced;
   },
-  async [ActionsTypes.SAVE_ENHANCED_CONVERSIONS_INTRODUCTION_STATUS]({}: Context, payload: boolean): Promise<void> {
+  async [ActionsTypes.SAVE_ENHANCED_CONVERSIONS_INTRODUCTION_STATUS](
+    // eslint-disable-next-line no-empty-pattern
+    {}: Context,
+    payload: boolean,
+  ): Promise<void> {
     return (await fetchOnboarding(
       'POST',
       'conversion-actions/enhanced',

@@ -24,6 +24,7 @@
           variant="outline-primary"
           target="_blank"
           :href="linkToTermsOfServices"
+          @click="enableEnhancedConversions"
         >
           {{ $t('cta.enableEnhancedConversions') }}
         </b-button>
@@ -44,6 +45,11 @@ export default defineComponent({
     linkToInstructions(): string {
       // TODO: Replace with actual URL
       return 'perdu.com';
+    },
+  },
+  methods: {
+    async enableEnhancedConversions(): Promise<void> {
+      await this.$store.dispatch('campaigns/SAVE_ENHANCED_CONVERSIONS_STATUS', true);
     },
   },
 });
