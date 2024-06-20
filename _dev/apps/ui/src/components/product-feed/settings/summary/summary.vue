@@ -182,17 +182,17 @@
                   <div class="gs-table-attribute-mapping">
                     <b-table-simple
                       borderless
-                      table-class="gs-table-attribute-mapping--table"
+                      table-class="gs-table-attribute-mapping__table"
                     >
                       <b-thead>
                         <b-tr>
-                          <b-th class="gs-table-attribute-mapping--column">
-                            <p class="gs-table-attribute-mapping--column-title">
+                          <b-th class="gs-table-attribute-mapping__column">
+                            <p class="gs-table-attribute-mapping__column-title">
                               {{ $t('productFeedSettings.summary.tableHeader1') }}
                             </p>
                           </b-th>
-                          <b-th class="gs-table-attribute-mapping--column">
-                            <p class="gs-table-attribute-mapping--column-title">
+                          <b-th class="gs-table-attribute-mapping__column">
+                            <p class="gs-table-attribute-mapping__column-title">
                               {{ $t("productFeedSettings.summary.tableHeader2") }}
                             </p>
                           </b-th>
@@ -279,6 +279,7 @@ import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-metho
 import {localStorageProductFilter, localStorageProductFilterSync} from '@/components/product-feed/settings/product-selection/product-selection-utilities';
 import MutationsTypes from '@/store/modules/product-feed/mutations-types';
 import {RequestState} from '@/store/types';
+import {MappedAttribute} from '@/components/product-feed/settings/summary/types';
 
 dayjs.extend(duration);
 
@@ -350,7 +351,7 @@ export default defineComponent({
 
       return mapped;
     },
-    getMapping() {
+    getMapping(): MappedAttribute[] {
       return (getDataFromLocalStorage('productFeed-attributeMapping')
         || this.$store.getters[
           'productFeed/GET_FREE_LISTING_ATTRIBUTES_TO_MAP'
