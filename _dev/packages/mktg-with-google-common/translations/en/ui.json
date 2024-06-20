@@ -528,7 +528,7 @@
       "tableHeader2": "Product value",
       "totalProducts": "Active products ready for sync",
       "date": "Date",
-      "nextSync": "The next synchronization is on {date}",
+      "nextSync": "The next synchronization is on {date}.",
       "time": "Time",
       "youSell": "**You sell** {0}",
       "dataSyncSetUp": "Data sync set up",

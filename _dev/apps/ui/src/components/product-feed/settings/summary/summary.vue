@@ -10,7 +10,7 @@
           variant="info"
           show
         >
-          {{ $t('productFeedSettings.summary.nextSync', { date: formatNextSyncDate }) }}.
+          {{ $t('productFeedSettings.summary.nextSync', { date: formatNextSyncDate }) }}
         </b-alert>
       </b-container>
     </section>
