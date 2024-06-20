@@ -18,7 +18,7 @@
           :extensions="['extended-link']"
         />
       </p>
-      <div class="d-md-flex flex-grow-1 align-items-end mt-2 ml-1">
+      <div class="d-md-flex flex-grow-1 align-items-start mt-2 mt-md-0 ml-md-1">
         <b-button
           class="mx-1 mt-0 mr-md-1 text-nowrap ml-auto"
           variant="outline-primary"
