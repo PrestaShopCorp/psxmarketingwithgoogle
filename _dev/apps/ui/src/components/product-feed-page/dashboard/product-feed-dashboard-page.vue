@@ -28,14 +28,12 @@ import {mapGetters} from 'vuex';
 import {RequestState} from '@/store/types';
 import SyncOverview from '@/components/product-feed-page/dashboard/sync-overview.vue';
 import PsToast from '@/components/commons/ps-toast.vue';
-import AlertEcReady from '@/components/enhanced-conversions/alert-ec-ready.vue';
 import AlertSignGadsTos from '@/components/enhanced-conversions/alert-sign-gads-tos.vue';
 import GettersTypesCampaigns from '@/store/modules/campaigns/getters-types';
 import GettersTypesGoogleAds from '@/store/modules/google-ads/getters-types';
 
 export default defineComponent({
   components: {
-    AlertEcReady,
     AlertSignGadsTos,
     PsToast,
     SyncOverview,

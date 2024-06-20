@@ -44,10 +44,6 @@
       <alert-sign-gads-tos
         v-if="!GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED"
       />
-      <alert-ec-ready
-        v-else-if="showReadyToEnableFeature"
-        :is-on-configuration-page="true"
-      />
     </b-card>
   </section>
 </template>
@@ -57,19 +53,12 @@ import {defineComponent} from 'vue';
 import {mapGetters} from 'vuex';
 import GettersTypesCampaigns from '@/store/modules/campaigns/getters-types';
 import GettersTypesGoogleAds from '@/store/modules/google-ads/getters-types';
-import AlertEcReady from '@/components/enhanced-conversions/alert-ec-ready.vue';
 import AlertSignGadsTos from '@/components/enhanced-conversions/alert-sign-gads-tos.vue';
 
 export default defineComponent({
   name: 'EnhancedConversionsCard',
   components: {
-    AlertEcReady,
     AlertSignGadsTos,
-  },
-  data() {
-    return {
-      showReadyToEnableFeature: false as boolean,
-    };
   },
   computed: {
     ...mapGetters('campaigns', [
@@ -91,13 +80,6 @@ export default defineComponent({
         'campaigns/SAVE_ENHANCED_CONVERSIONS_STATUS',
         !this.GET_ENHANCED_CONVERSIONS_STATUS,
       );
-    },
-  },
-  watch: {
-    GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED(newValue: boolean): void {
-      if (newValue) {
-        this.showReadyToEnableFeature = true;
-      }
     },
   },
 });
