@@ -20,7 +20,7 @@
         <div class="d-flex align-items-start align-items-md-center mb-3">
           <img
             class="mr-2"
-            src="../../assets/images/product-feed-icon.svg"
+            src="@/assets/images/product-feed-icon.svg"
             width="32"
             height="32"
             alt=""
