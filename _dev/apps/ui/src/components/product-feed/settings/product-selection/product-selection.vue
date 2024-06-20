@@ -142,13 +142,8 @@ import GetterTypes from '@/store/modules/product-feed/getters-types';
 import {booleanToString, stringToBoolean} from '@/utils/StringToBoolean';
 import stringToNumber from '@/utils/StringToNumber';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
-
-const newFilter = () => ({
-  id: crypto.randomUUID(),
-});
-
-const localStorageProductFilter = 'productFeed-productFilter';
-const localStorageProductFilterSync = 'productFeed-productFilterSync';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import {newFilter, localStorageProductFilter, localStorageProductFilterSync} from '@/components/product-feed/settings/product-selection/product-selection-utilities';
 
 export default defineComponent({
   name: 'ProductFeedSettingsProductSelection',
@@ -189,7 +184,13 @@ export default defineComponent({
         && recoveredFilter.value?.length) {
         const feature = this.getFeatureByOptions(recoveredFilter.value);
 
-        recoveredFilter.value = (recoveredFilter.value as FeatureOption[])
+        // we need to update recovered value with new from BO if exist
+        // because it can break if we got new language introduced.
+        const valueIdToMatch = new Set((recoveredFilter.value as FeatureOption[])
+          .map((item) => item.id));
+        const featureOptions = feature.values.filter((item) => valueIdToMatch.has(item.id));
+
+        recoveredFilter.value = (featureOptions as FeatureOption[])
           .filter((el) => el.language === this.currentCountry);
 
         if (feature) {
@@ -352,11 +353,15 @@ export default defineComponent({
       this.checkMethodSyncBeforeMoveStep();
 
       localStorage.setItem(localStorageProductFilterSync, this.synchSelected);
-      this.$store.commit(`productFeed/${MutationsTypes.SET_ACTIVE_CONFIGURATION_STEP}`, 5);
+      this.$segment.track('[GGL] Product feed config - Step 4 Product selection', {
+        module: 'psxmarketingwithgoogle',
+        params: SegmentGenericParams,
+      });
+      this.$store.commit(`productFeed/${MutationsTypes.SET_ACTIVE_CONFIGURATION_STEP}`, 4);
       this.$router.push({
         name: 'product-feed-settings',
         params: {
-          step: ProductFeedSettingsPages.SYNC_SCHEDULE,
+          step: ProductFeedSettingsPages.SUMMARY,
         },
       });
       window.scrollTo(0, 0);

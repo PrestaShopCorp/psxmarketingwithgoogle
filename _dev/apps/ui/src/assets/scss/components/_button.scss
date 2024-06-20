@@ -5,7 +5,7 @@
   &:focus {
     box-shadow: none !important;
   }
-  
+
   &:focus-visible {
     box-shadow: none;
     outline: $blue-500 2px solid !important;
@@ -20,13 +20,28 @@
     background-color: $red-50;
     border-color: $red-500;
     color: $primary-800;
-    
+
     &:hover {
       background-color: $red-100;
     }
-    
+
     &:active {
       background-color: $red-300 !important;
+      color: $primary-800 !important;
+    }
+  }
+
+  &.btn-warning {
+    background-color: $yellow-50;
+    border-color: $yellow-500;
+    color: $primary-800;
+
+    &:hover {
+      background-color: $yellow-100;
+    }
+
+    &:active {
+      background-color: $yellow-300 !important;
       color: $primary-800 !important;
     }
   }
@@ -35,11 +50,11 @@
     border-color: $blue-500;
     background-color: $blue-50;
     color: $primary-800;
-    
+
     &:hover {
       background-color: $blue-100;
     }
-    
+
     &:active {
       color: $primary-800 !important;
       background-color: $blue-300 !important;
@@ -54,6 +69,10 @@
 .alert {
   border-width: 0px;
   border-radius: 0px;
+
+  &.alert--bordered {
+    border-width: 1px;
+  }
 }
 
 .btn-outline-secondary {
@@ -66,12 +85,12 @@
       background-color: $primary-300;
       color: $primary;
     }
-  
+
     &:focus {
       color: $primary;
       box-shadow: 0;
     }
-  
+
     &:active {
       background-color: $primary-400 !important;
       color: $primary-800 !important;

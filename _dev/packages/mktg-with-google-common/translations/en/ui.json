@@ -262,6 +262,14 @@
       "shippingSettingsErrors": "This country is not compatible with your currency",
       "syncSchedule" : "Sync schedule"
     },
+    "summaryTitles": {
+      "selectedProducts": "Selected products ready for synchronization",
+      "shippingParameters": "Shipping parameters",
+      "taxSettings": "Tax settings",
+      "dataSyncConfiguration": "Data synchronization configuration",
+      "deliveryTimesAndRates": "Delivery times and rates",
+      "attributesMapping": "Product attributes mapping"
+    },
     "noticeDataStored": "Settings are saved at each step, will be submitted only at the final step.",
     "submissionExplanation": "Please note that data would be stored at each step but would only be submitted at the final step.",
     "shippingSetup": {
@@ -513,25 +521,26 @@
       "radioLabel2": "Later, appproximatley at 2:00 AM (GMT+1) (When your shop have few visits)"
     },
     "summary": {
-      "title1": "Next synchronization is planned in {0} hours",
-      "title2": "Product feed settings summary",
+      "title": "Product feed summary",
       "xItems": "{0} items",
       "productItems": "Product items",
       "tableHeader1": "Google product attributes",
-      "tableHeader2": "Your custom product fields",
+      "tableHeader2": "Product value",
       "totalProducts": "Active products ready for sync",
       "date": "Date",
+      "nextSync": "The next synchronization is on {date}",
       "time": "Time",
       "youSell": "**You sell** {0}",
       "dataSyncSetUp": "Data sync set up",
       "productAttributesMapping": "Category & product attribute mapping",
-      "attributeMapped": "One category have been mapped | {0} categories have been mapped",
+      "errorLoadDataSelectedProduct": "Unable to load data",
+      "attributeMapped": "One product attribute mapped | {0} product attributes mapped",
       "mandatoryAttributesNotMapped": "One Google attributes haven't been mapped to your custom fields | {0} Google attributes haven't been mapped to your custom fields.",
       "noticeToCompleteMapping": "We recommend mapping all your data otherwise your products might be rejected by Google.",
-      "agreementTitle": "I understand and agree to the following conditions*",
-      "agreementCheckboxLabel1Instant": "The synchronization of my product feed will run after I click on save and export (It might take between 1 to 4 hours)",
-      "agreementCheckboxLabel1Default": "The synchronization of my product feed will take time at {time} (It might take between 1 to 4 hours)",
-      "agreementCheckboxLabel2": "Google products reviews may take between 3 to 5 business days",
+      "agreementTitle": "Conditions",
+      "agreement1": "The synchronization of my product feed will run after I click on save and export and may take 1-4 hours",
+      "agreement2": "Google products reviews may take 3-5 business days",
+      "agreementCheckboxLabel": "I understand and agree to the conditions above",
       "disabledButtonTooltip" : "Check our conditions before moving forward",
       "syncScheduledNow" : "Today, right after I save and export"
     }
@@ -541,7 +550,7 @@
     "intro": "Showcase your product for free in organically-ranked listing on Shopping tab.",
     "learnFreeListing": "Learn more about free listings",
     "seeFreeListing": "See my free listings in Merchant Center",
-    "googleDelay": "It takes 3-5 business days to review products",
+    "googleDelay": "Google takes 3-5 working days to review products",
     "alertEnableFreeListing": "Enable free listings to show your products on Shopping tab for free.",
     "alertCantEnableFreeListing": "You can't enable free listings right now. Try again later.",
     "alertCountryNotEligible": "The target country you have selected is not eligible for free listings and ads."

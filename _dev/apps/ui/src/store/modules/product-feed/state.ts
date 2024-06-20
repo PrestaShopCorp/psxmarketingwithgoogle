@@ -150,7 +150,6 @@ export interface State {
   attributesToMap: any;
   attributesFromShop: Array<AttributesInfos>;
   selectedProductCategories: SelectedProductCategories;
-  requestSynchronizationNow: boolean;
   attributeMapping: AttributeResponseFromAPI;
   report: ProductFeedReport;
   verificationIssues: ProductVerificationIssueOverall[]|null;
@@ -257,7 +256,6 @@ export const state: State = {
     disapprovedProducts: null,
   },
   attributesToMap,
-  requestSynchronizationNow: false,
   attributesFromShop: [],
   selectedProductCategories: [Categories.NONE],
   attributeMapping: {},
