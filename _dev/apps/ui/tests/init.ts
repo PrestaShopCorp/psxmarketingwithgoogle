@@ -83,6 +83,7 @@ config.mocks.$segment = {
 config.mocks.$i18n = {
   t: config.mocks.$t,
   tc: config.mocks.$tc,
+  locale: 'en',
 };
 
 config.mocks.fetch = {
