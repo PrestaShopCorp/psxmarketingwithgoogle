@@ -43,8 +43,14 @@ export default defineComponent({
       return googleUrl.googleAdsConversionsTermsAndConditions;
     },
     linkToInstructions(): string {
-      // TODO: Replace with actual URL
-      return 'perdu.com';
+      let locale = this.$i18n.locale.toLowerCase();
+      const allowedLocales = ['en', 'fr'];
+
+      if (allowedLocales.includes(locale)) {
+        locale = 'en';
+      }
+
+      return `https://storage.googleapis.com/psessentials-documentation/psxmarketingwithgoogle/enhanced_conversion_how_to_${locale}.pdf`;
     },
   },
   methods: {
