@@ -62,7 +62,7 @@ export default defineComponent({
       this.displayModal = !(await this.$store.dispatch('campaigns/GET_ENHANCED_CONVERSIONS_INTRODUCTION_STATUS'));
     },
     async acknowledgeFeature(): Promise<void> {
-      await this.$store.dispatch('campaigns/SET_ENHANCED_CONVERSIONS_INTRODUCTION_STATUS', true);
+      await this.$store.dispatch('campaigns/SAVE_ENHANCED_CONVERSIONS_INTRODUCTION_STATUS', true);
     },
   },
   mounted() {
