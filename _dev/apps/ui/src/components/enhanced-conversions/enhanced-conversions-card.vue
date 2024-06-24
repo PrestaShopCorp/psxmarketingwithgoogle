@@ -30,7 +30,7 @@
           class="mt-3 ps_gs-switch"
           :checked="GET_ENHANCED_CONVERSIONS_STATUS"
           @click.native.prevent="toggleFeature"
-          :disabled="!enhancedConversionIsToggable"
+          :disabled="!GET_ENHANCED_CONVERSIONS_TOGGABLE"
         >
           <span class="ps_gs-fz-14 d-block">
             {{
@@ -42,7 +42,7 @@
         </b-form-checkbox>
       </div>
       <alert-sign-gads-tos
-        v-if="!enhancedConversionIsToggable"
+        v-if="!GET_ENHANCED_CONVERSIONS_TOGGABLE"
       />
     </b-card>
   </section>
@@ -68,13 +68,10 @@ export default defineComponent({
     ...mapGetters('googleAds', [
       GettersTypesGoogleAds.GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED,
     ]),
-    enhancedConversionIsToggable(): boolean {
-      return this.GET_ENHANCED_CONVERSIONS_TOGGABLE;
-    },
   },
   methods: {
     async toggleFeature(): Promise<void> {
-      if (!this.enhancedConversionIsToggable) {
+      if (!this.GET_ENHANCED_CONVERSIONS_TOGGABLE) {
         return;
       }
       await this.$store.dispatch(
