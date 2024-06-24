@@ -549,11 +549,7 @@
         "intro": "Повысьте точность отслеживания конверсий и эффективность ставок. Эта функция работает вместе с существующими тегами конверсий, отправляя безопасные и конфиденциальные данные о конверсиях с вашего сайта в Google.",
         "signTosAlert": {
             "title": "Улучшите отслеживание конверсий и повысьте эффективность ставок для своих объявлений",
-            "text": "Включите расширенное отслеживание конверсий, просто предоставив согласие с условиями использования Google Рекламы"
-        },
-        "enableEnhancedConversionAlert": {
-            "title": "Включите функцию расширенного отслеживания конверсий",
-            "text": "Условия использования Google Рекламы обновлены. Чтобы включить новую функцию, перейдите на страницу настройки."
+            "text": "Enable enhanced conversion tracking by agreeing to Google Ads' terms of service and setting Google tag method in a few steps following these [instructions]({0})[:target=\"_blank\"] during activation to make sure the feature works properly."
         }
     },
     "smartShoppingCampaignCreation": {
@@ -1052,8 +1048,7 @@
         "disconnectedUserBo": "Вы были отключены от личного кабинета. Вы будете автоматически перенаправлены на страницу входа через {0} сек.",
         "titleDisconnectedUserBo": "Соединение потеряно",
         "titleEnhancedConversionsIntro": "Оцените эффективность вашей рекламы",
-        "textEnhancedConversionsIntro": "Повысьте точность отслеживания конверсий и расширьте возможности своей стратегии ставок с помощью нашей последней функции: расширенное отслеживание конверсий. Эта функция удобно интегрируется с существующими тегами конверсий, обеспечивая безопасную и конфиденциальную передачу данных о конверсии с вашего сайта в Google.",
-        "textActivationEnhancedConversionsIntro": "Чтобы включить эту функцию, просто предоставьте согласие с условиями использования Google Рекламы. Функция доступна на странице настройки в разделе тегов отслеживания конверсий."
+        "textEnhancedConversionsIntro": "Enhance your conversion tracking accuracy and empower your bidding strategy with our latest feature: Enhanced Conversion Tracking. This feature seamlessly integrates with your existing conversion tags, ensuring the secure and privacy-conscious transmission of conversion data from your website to Google. Be careful to follow these simple instructions during activation to make sure the feature works properly:\n1. Check the checkbox “Turn on enhanced conversions”\n2. Accept the Customer Data terms (if not already accepted in the past)\n3. Select “Google Tag” as the method\n4. Save your selections"
     },
     "tooltip": {
         "googleAccountRequired": "Требуется настройка аккаунта Google",
