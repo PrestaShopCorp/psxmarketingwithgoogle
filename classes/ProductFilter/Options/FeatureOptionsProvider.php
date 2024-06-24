@@ -20,7 +20,6 @@
 
 namespace PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options;
 
-use Context;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\AttributesRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\LanguageRepository;
 
@@ -37,18 +36,18 @@ class FeatureOptionsProvider implements OptionsProviderInterface
     protected $languageRepository;
 
     /**
-     * @var Context
+     * @var int
      */
-    private $context;
+    private $currentLanguageId;
 
     public function __construct(
         AttributesRepository $attributeRepository,
         LanguageRepository $languageRepository,
-        Context $context
+        int $currentLanguageId
     ) {
         $this->attributeRepository = $attributeRepository;
         $this->languageRepository = $languageRepository;
-        $this->context = $context;
+        $this->currentLanguageId = $currentLanguageId;
     }
 
     public function getOptions(): array
@@ -65,7 +64,7 @@ class FeatureOptionsProvider implements OptionsProviderInterface
                 ];
             }
 
-            if ($this->context->language->id === (int) $rawAttribute['id_lang']) {
+            if ($this->currentLanguageId === (int) $rawAttribute['id_lang']) {
                 $options[$rawAttribute['id_feature']]['key'] = $rawAttribute['feature_name'];
             }
 
