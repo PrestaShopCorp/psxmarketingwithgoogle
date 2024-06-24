@@ -549,11 +549,7 @@
         "intro": "Îmbunătățește acuratețea urmăririi conversiilor și deblochează licitații mai puternice. Această funcționalitate operează alături de etichetele de conversie existente, trimițând date de conversie sigure, care respectă confidențialitatea, de pe site-ul tău web către Google.",
         "signTosAlert": {
             "title": "Îmbunătățește-ți urmărirea conversiilor și deblochează licitații mai puternice pentru anunțurile tale",
-            "text": "Activează urmărirea îmbunătățită a conversiilor prin simpla acceptare a condițiilor de utilizare Google Ads"
-        },
-        "enableEnhancedConversionAlert": {
-            "title": "Gata să activezi funcționalitatea de urmărire îmbunătățită a conversiilor",
-            "text": "Condițiile de utilizare Google Ads sunt actualizate, accesează pagina de configurare pentru a activa noua funcționalitate"
+            "text": "Enable enhanced conversion tracking by agreeing to Google Ads' terms of service and setting Google tag method in a few steps following these [instructions]({0})[:target=\"_blank\"] during activation to make sure the feature works properly."
         }
     },
     "smartShoppingCampaignCreation": {
@@ -1052,8 +1048,7 @@
         "disconnectedUserBo": "Ai fost deconectat de la back-office. Vei fi redirecționat automat către pagina de conectare în {0} secunde.",
         "titleDisconnectedUserBo": "Conexiune pierdută",
         "titleEnhancedConversionsIntro": "Măsoară eficiența reclamelor tale",
-        "textEnhancedConversionsIntro": "Îmbunătățește acuratețea urmăririi conversiilor și consolidează strategia de licitare cu cea mai recentă funcționalitate a noastră: urmărirea îmbunătățită a conversiilor. Această funcționalitate se integrează perfect cu etichetele de conversie existente, asigurând transmiterea sigură și confidențială a datelor de conversie de pe site-ul tău web către Google.",
-        "textActivationEnhancedConversionsIntro": "Este ușor de activat. Trebuie doar să fii de acord cu condițiile de utilizare a serviciului în Google Ads. Funcționalitatea este accesibilă pe pagina configurației tale, sub eticheta de urmărire a conversiilor."
+        "textEnhancedConversionsIntro": "Enhance your conversion tracking accuracy and empower your bidding strategy with our latest feature: Enhanced Conversion Tracking. This feature seamlessly integrates with your existing conversion tags, ensuring the secure and privacy-conscious transmission of conversion data from your website to Google. Be careful to follow these simple instructions during activation to make sure the feature works properly:\n1. Check the checkbox “Turn on enhanced conversions”\n2. Accept the Customer Data terms (if not already accepted in the past)\n3. Select “Google Tag” as the method\n4. Save your selections"
     },
     "tooltip": {
         "googleAccountRequired": "Necesită configurarea contului Google",
