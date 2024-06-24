@@ -17,7 +17,7 @@ services:
     arguments:
       - '@PrestaShop\Module\PsxMarketingWithGoogle\Repository\AttributesRepository'
       - '@PrestaShop\Module\PsxMarketingWithGoogle\Repository\LanguageRepository'
-      - '@psxmarketingwithgoogle.context'
+      - '@=service("psxmarketingwithgoogle.context").language.id'
 
   PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\Resolver:
     class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\Resolver
