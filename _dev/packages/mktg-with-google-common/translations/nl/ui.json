@@ -549,11 +549,7 @@
         "intro": "Verbeter je nauwkeurigheid bij het bijhouden van conversies en ontgrendel krachtiger biedingen. Deze functie werkt naast je bestaande conversietags en stuurt veilige, privacyvriendelijke conversiegegevens van je website naar Google.",
         "signTosAlert": {
             "title": "Verbeter je conversietracking en ontgrendel krachtiger bieden op jouw advertenties",
-            "text": "Schakel verbeterde conversietracking in door simpelweg akkoord te gaan met de servicevoorwaarden van Google Ads"
-        },
-        "enableEnhancedConversionAlert": {
-            "title": "Klaar om de verbeterde conversietrackingfunctie in te schakelen",
-            "text": "De servicevoorwaarden van je Google Ads zijn up-to-date, ga naar je configuratiepagina om je nieuwe functie in te schakelen"
+            "text": "Enable enhanced conversion tracking by agreeing to Google Ads' terms of service and setting Google tag method in a few steps following these [instructions]({0})[:target=\"_blank\"] during activation to make sure the feature works properly."
         }
     },
     "smartShoppingCampaignCreation": {
@@ -1052,8 +1048,7 @@
         "disconnectedUserBo": "Je bent losgekoppeld van de backoffice. Je wordt binnen {0} seconden automatisch doorgestuurd naar de inlogpagina.",
         "titleDisconnectedUserBo": "Verbinding verbroken",
         "titleEnhancedConversionsIntro": "Meet de effectiviteit van je advertenties",
-        "textEnhancedConversionsIntro": "Verbeter de nauwkeurigheid van je conversietracking en versterk je biedstrategie met onze nieuwste functie: Verbeterde conversietracking. Deze functie kan naadloos worden geïntegreerd met je bestaande conversietags en zorgt voor de veilige en privacybewuste overdracht van conversiegegevens van je website naar Google.",
-        "textActivationEnhancedConversionsIntro": "Het activeren is eenvoudig – ga gewoon akkoord met de servicevoorwaarden op Google Ads. De functie is toegankelijk op de pagina van je configuratie onder de tag voor het bijhouden van conversies."
+        "textEnhancedConversionsIntro": "Enhance your conversion tracking accuracy and empower your bidding strategy with our latest feature: Enhanced Conversion Tracking. This feature seamlessly integrates with your existing conversion tags, ensuring the secure and privacy-conscious transmission of conversion data from your website to Google. Be careful to follow these simple instructions during activation to make sure the feature works properly:\n1. Check the checkbox “Turn on enhanced conversions”\n2. Accept the Customer Data terms (if not already accepted in the past)\n3. Select “Google Tag” as the method\n4. Save your selections"
     },
     "tooltip": {
         "googleAccountRequired": "Vereist configuratie Google-account",
