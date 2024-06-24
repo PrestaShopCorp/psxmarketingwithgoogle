@@ -549,11 +549,7 @@
         "intro": "Melhore a precisão do seu acompanhamento de conversões e desfrute de lances mais competitivos. Essa funcionalidade funciona junto com suas tags de conversão existentes, enviando dados de conversão seguros e em conformidade com as regras de privacidade do seu site para o Google.",
         "signTosAlert": {
             "title": "Aprimore seu acompanhamento de conversões e desfrute de lances mais competitivos para seus anúncios",
-            "text": "Ative o acompanhamento aprimorado de conversões simplesmente concordando com os termos de serviço do Google Ads"
-        },
-        "enableEnhancedConversionAlert": {
-            "title": "Pronto para ativar o recurso aprimorado de acompanhamento de conversões",
-            "text": "Os termos de serviço do Google Ads estão atualizados. Acesse a página de configurações para ativar o novo recurso"
+            "text": "Enable enhanced conversion tracking by agreeing to Google Ads' terms of service and setting Google tag method in a few steps following these [instructions]({0})[:target=\"_blank\"] during activation to make sure the feature works properly."
         }
     },
     "smartShoppingCampaignCreation": {
@@ -1052,8 +1048,7 @@
         "disconnectedUserBo": "Sua conexão com o backoffice foi interrompida. Você será redirecionado automaticamente para a página de login em {0} segundos.",
         "titleDisconnectedUserBo": "Ligação Perdida",
         "titleEnhancedConversionsIntro": "Avalie a eficiência dos seus anúncios",
-        "textEnhancedConversionsIntro": "Melhore a precisão do seu acompanhamento de conversões e aprimore sua estratégia de lances com nossa funcionalidade mais recente: o acompanhamento aprimorado de conversões. Essa funcionalidade se integra perfeitamente às suas tags de conversão existentes, garantindo a transmissão segura e em conformidade com as regras de privacidade dos dados de conversão do seu site para o Google.",
-        "textActivationEnhancedConversionsIntro": "A ativação é fácil: basta concordar com os termos de serviço do Google Ads. Essa funcionalidade está disponível na página de configurações abaixo da tag de acompanhamento de conversões."
+        "textEnhancedConversionsIntro": "Enhance your conversion tracking accuracy and empower your bidding strategy with our latest feature: Enhanced Conversion Tracking. This feature seamlessly integrates with your existing conversion tags, ensuring the secure and privacy-conscious transmission of conversion data from your website to Google. Be careful to follow these simple instructions during activation to make sure the feature works properly:\n1. Check the checkbox “Turn on enhanced conversions”\n2. Accept the Customer Data terms (if not already accepted in the past)\n3. Select “Google Tag” as the method\n4. Save your selections"
     },
     "tooltip": {
         "googleAccountRequired": "Requer a configuração da conta Google",
