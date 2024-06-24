@@ -2,7 +2,6 @@
   <b-alert
     show
     variant="info"
-    v-if="GET_FEATURE_FLAG_ENHANCED_CONVERSIONS"
   >
     <div
       class="d-flex flex-column flex-md-row justify-content-between"
@@ -12,18 +11,22 @@
           {{ $t('enhancedConversionTrackingCard.signTosAlert.title') }}
         </span>
         <br>
-        <span>
-          {{ $t('enhancedConversionTrackingCard.signTosAlert.text') }}
-        </span>
+        <VueShowdown
+          :markdown="$t('enhancedConversionTrackingCard.signTosAlert.text', [
+            linkToInstructions
+          ])"
+          :extensions="['extended-link']"
+        />
       </p>
-      <div class="d-md-flex flex-grow-1 text-center align-items-end mt-2">
+      <div class="d-md-flex flex-grow-1 align-items-start mt-2 mt-md-0 ml-md-1">
         <b-button
-          class="mx-1 mt-3 mt-md-0 mr-md-1 text-nowrap ml-auto"
+          class="mx-1 mt-0 mr-md-1 text-nowrap ml-auto"
           variant="outline-primary"
           target="_blank"
           :href="linkToTermsOfServices"
+          @click="enableEnhancedConversions"
         >
-          {{ $t('cta.goTo', [$t('cta.GoogleAds')]) }}
+          {{ $t('cta.enableEnhancedConversions') }}
         </b-button>
       </div>
     </div>
@@ -32,17 +35,27 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import {mapGetters} from 'vuex';
-import GettersTypesApp from '@/store/modules/app/getters-types';
 import googleUrl from '@/assets/json/googleUrl.json';
 
 export default defineComponent({
   computed: {
-    ...mapGetters('app', [
-      GettersTypesApp.GET_FEATURE_FLAG_ENHANCED_CONVERSIONS,
-    ]),
     linkToTermsOfServices(): string {
       return googleUrl.googleAdsConversionsTermsAndConditions;
+    },
+    linkToInstructions(): string {
+      let locale = this.$i18n.locale.toLowerCase();
+      const allowedLocales = ['en', 'fr'];
+
+      if (allowedLocales.includes(locale)) {
+        locale = 'en';
+      }
+
+      return `https://storage.googleapis.com/psessentials-documentation/psxmarketingwithgoogle/enhanced_conversion_how_to_${locale}.pdf`;
+    },
+  },
+  methods: {
+    async enableEnhancedConversions(): Promise<void> {
+      await this.$store.dispatch('campaigns/SAVE_ENHANCED_CONVERSIONS_STATUS', true);
     },
   },
 });

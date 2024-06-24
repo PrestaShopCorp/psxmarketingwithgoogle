@@ -137,11 +137,8 @@
       modal-id="SSCPopinActivateTrackingOnboardingPage"
     />
     <modal-ec-intro
-      v-if="GET_FEATURE_FLAG_ENHANCED_CONVERSIONS
-        && getGoogleAdsAccount
-        && accountHasAtLeastOneCampaign
-        && enhancedConversionsHasNeverBeenEnabled"
-      :tos-are-signed="!!getGoogleAdsAccount.acceptedCustomerDataTerms"
+      v-if="getGoogleAdsAccount
+        && accountHasAtLeastOneCampaign"
     />
     <PopinModuleConfigured
       ref="PopinModuleConfigured"
@@ -162,7 +159,6 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import {mapGetters} from 'vuex';
 import SectionTitle from '@/components/onboarding/section-title.vue';
 import GoogleAccountCard from '@/components/google-account/google-account-card.vue';
 import GoogleAdsAccountCard from '@/components/google-ads-account/google-ads-account-card.vue';
@@ -184,7 +180,6 @@ import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import EnhancedConversionsCard from '@/components/enhanced-conversions/enhanced-conversions-card.vue';
 import ModalEcIntro from '@/components/enhanced-conversions/modal-ec-intro.vue';
 import {AccountInformations} from '@/store/modules/google-ads/state';
-import GettersTypesApp from '@/store/modules/app/getters-types';
 
 export default defineComponent({
   name: 'OnboardingPage',
@@ -350,9 +345,6 @@ export default defineComponent({
     },
   },
   computed: {
-    ...mapGetters('app', [
-      GettersTypesApp.GET_FEATURE_FLAG_ENHANCED_CONVERSIONS,
-    ]),
     displayCmpAlert() {
       return !!this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'] && this.showCmpAlert;
     },
@@ -412,9 +404,6 @@ export default defineComponent({
     },
     remarketingTagIsSet() {
       return this.$store.getters['campaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
-    },
-    enhancedConversionsHasNeverBeenEnabled(): boolean {
-      return this.$store.getters['campaigns/GET_ENHANCED_CONVERSIONS_NEVER_ENABLED'];
     },
     stepsAreCompleted() {
       return {

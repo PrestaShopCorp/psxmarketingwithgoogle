@@ -56,8 +56,9 @@ Default.parameters = {
 export const WithTosSigned:any = Template.bind({});
 WithTosSigned.args = {
   beforeMount: function(this: any) {
-    (this.$store.state.campaigns as CampaignsState).trackingFeature.enhanced = false;
     (this.$store.state.googleAds as GoogleAdsState) = cloneDeep(googleAdsAccountChosenWithSignedTos);
+    (this.$store.state.campaigns as CampaignsState).trackingFeature.basic = true;
+    (this.$store.state.campaigns as CampaignsState).trackingFeature.enhanced = false;
   },
 }
 WithTosSigned.parameters = {

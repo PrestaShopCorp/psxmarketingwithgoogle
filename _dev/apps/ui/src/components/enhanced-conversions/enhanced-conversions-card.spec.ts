@@ -10,7 +10,6 @@ import {State as CampaignsState} from '@/store/modules/campaigns/state';
 import {State as GoogleAdsState} from '@/store/modules/google-ads/state';
 import {adsAccountStatus, googleAdsAccountChosen} from '@/../.storybook/mock/google-ads';
 import AlertSignGadsTos from './alert-sign-gads-tos.vue';
-import alertEcReadyVue from './alert-ec-ready.vue';
 
 describe('EnhancedConversionsCard', () => {
   describe('Toggle', () => {
@@ -69,14 +68,6 @@ describe('EnhancedConversionsCard', () => {
     it('An alert is displayed when ToS are not accepted', () => {
       expect(wrapper.findComponent(AlertSignGadsTos).exists()).toBe(true);
     });
-
-    it('Another alert is shown when ToS have just been accepted', async () => {
-      expect(wrapper.findComponent(alertEcReadyVue).exists()).toBe(false);
-      store.modules.googleAds.state.accountChosen.acceptedCustomerDataTerms = true;
-      await wrapper.vm.$nextTick();
-      expect(wrapper.findComponent(BFormCheckbox).props('disabled')).toBe(false);
-      expect(wrapper.findComponent(alertEcReadyVue).exists()).toBe(true);
-    });
   });
 });
 
@@ -87,7 +78,6 @@ const buildDefaultStore = (): ReturnType<typeof cloneStore> => {
 
   store.modules.campaigns.actions.SAVE_ENHANCED_CONVERSIONS_STATUS = vi.fn();
 
-  store.modules.app.state.featureFlags.enhancedConversions = true;
   return store;
 };
 const buildWrapper = (

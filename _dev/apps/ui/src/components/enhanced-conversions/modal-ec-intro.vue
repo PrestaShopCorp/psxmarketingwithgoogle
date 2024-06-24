@@ -3,9 +3,9 @@
     id="psxmarketingwithgoogle_modal_ec_intro"
     ref="psxmarketingwithgoogle_modal_ec_intro"
     :title="$t('modal.titleEnhancedConversionsIntro')"
-    @ok="ok"
+    @ok="openGoogleAdsTos"
     @hidden="hidden"
-    :visible="!isModalAlreadyAknowledged()"
+    :visible="displayModal"
   >
     <img
       src="@/assets/images/empty-cart.svg"
@@ -17,21 +17,12 @@
       :extensions="['extended-link']"
       :markdown="$t('modal.textEnhancedConversionsIntro')"
     />
-    <VueShowdown
-      class="mt-1 mb-4"
-      :extensions="['extended-link']"
-      :markdown="$t('modal.textActivationEnhancedConversionsIntro')"
-      v-if="!tosAreSigned"
-    />
 
     <template slot="modal-ok">
-      {{ tosAreSigned ?
-        $t('cta.enableEnhancedConversions') :
-        $t('cta.signGadsToS')
-      }}
+      {{ $t('cta.enableEnhancedConversions') }}
     </template>
     <template slot="modal-cancel">
-      {{ $t('cta.cancel') }}
+      {{ $t('cta.close') }}
     </template>
   </ps-modal>
 </template>
@@ -46,11 +37,10 @@ export default defineComponent({
   components: {
     PsModal,
   },
-  props: {
-    tosAreSigned: {
-      type: Boolean,
-      required: true,
-    },
+  data() {
+    return {
+      displayModal: false as boolean,
+    };
   },
   computed: {
     linkToTermsOfServices(): string {
@@ -58,28 +48,25 @@ export default defineComponent({
     },
   },
   methods: {
-    async ok(): Promise<void> {
-      if (this.tosAreSigned) {
-        this.enableEnhancedConversions();
-        return;
-      }
-      this.openGoogleAdsTos();
-    },
     openGoogleAdsTos(): void {
       window.open(this.linkToTermsOfServices, '_blank')?.focus();
+      this.enableEnhancedConversions();
     },
     async enableEnhancedConversions(): Promise<void> {
       await this.$store.dispatch('campaigns/SAVE_ENHANCED_CONVERSIONS_STATUS', true);
     },
     hidden(): void {
-      this.doNotDisplayModalAnymore();
+      this.acknowledgeFeature();
     },
-    isModalAlreadyAknowledged(): boolean {
-      return !!JSON.parse(localStorage.getItem(`enhancedConversionsIntroAck-${this.shopId}`) || 'false');
+    async checkFeatureHasBeenIntroduced(): Promise<void> {
+      this.displayModal = !(await this.$store.dispatch('campaigns/GET_ENHANCED_CONVERSIONS_INTRODUCTION_STATUS'));
     },
-    doNotDisplayModalAnymore(): void {
-      localStorage.setItem(`enhancedConversionsIntroAck-${this.shopId}`, 'true');
+    async acknowledgeFeature(): Promise<void> {
+      await this.$store.dispatch('campaigns/SET_ENHANCED_CONVERSIONS_INTRODUCTION_STATUS', true);
     },
+  },
+  mounted() {
+    this.checkFeatureHasBeenIntroduced();
   },
 });
 </script>
