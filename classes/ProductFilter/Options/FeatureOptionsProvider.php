@@ -22,6 +22,7 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options;
 
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\AttributesRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\LanguageRepository;
+use Context;
 
 class FeatureOptionsProvider implements OptionsProviderInterface
 {
@@ -35,12 +36,19 @@ class FeatureOptionsProvider implements OptionsProviderInterface
      */
     protected $languageRepository;
 
+    /**
+     * @var Context
+     */
+    private $context;
+
     public function __construct(
         AttributesRepository $attributeRepository,
-        LanguageRepository $languageRepository
+        LanguageRepository $languageRepository,
+        Context $context
     ) {
         $this->attributeRepository = $attributeRepository;
         $this->languageRepository = $languageRepository;
+        $this->context = $context;
     }
 
     public function getOptions(): array
@@ -49,29 +57,25 @@ class FeatureOptionsProvider implements OptionsProviderInterface
 
         $options = [];
         foreach ($rawData as $rawAttribute) {
-            if (isset($options[$rawAttribute['id_feature']])) {
-                $options[$rawAttribute['id_feature']]['values'][] = [
-                    'id' => $rawAttribute['id_feature_value'],
-                    // Repeat key to ease the creation of payload when value is selected
+            if (!isset($options[$rawAttribute['id_feature']])) {
+                $options[$rawAttribute['id_feature']] = [
+                    'id' => $rawAttribute['id_feature'],
                     'key' => $rawAttribute['feature_name'],
-                    'value' => $rawAttribute['value'],
-                    'language' => $this->languageRepository->getIsoById($rawAttribute['id_lang']),
+                    'values' => [],
                 ];
-                continue;
             }
 
-            $options[$rawAttribute['id_feature']] = [
-                'id' => $rawAttribute['id_feature'],
+            if ($this->context->language->id === (int) $rawAttribute['id_lang']) {
+
+                $options[$rawAttribute['id_feature']]['key'] = $rawAttribute['feature_name'];
+            }
+
+            $options[$rawAttribute['id_feature']]['values'][] = [
+                'id' => $rawAttribute['id_feature_value'],
+                // Repeat key to ease the creation of payload when value is selected
                 'key' => $rawAttribute['feature_name'],
-                'values' => [
-                    [
-                        'id' => $rawAttribute['id_feature_value'],
-                        // Repeat key to ease the creation of payload when value is selected
-                        'key' => $rawAttribute['feature_name'],
-                        'value' => $rawAttribute['value'],
-                        'language' => $this->languageRepository->getIsoById($rawAttribute['id_lang']),
-                    ],
-                ],
+                'value' => $rawAttribute['value'],
+                'language' => $this->languageRepository->getIsoById($rawAttribute['id_lang']),
             ];
         }
 
