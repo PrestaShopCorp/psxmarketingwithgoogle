@@ -285,7 +285,7 @@ import AppGettersTypes from '@/store/modules/app/getters-types';
 import GetterTypes from '@/store/modules/product-feed/getters-types';
 import ProductFeedCountStatus from '@/enums/product-feed/product-feed-count-status';
 import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
-import {localStorageProductFilter, localStorageProductFilterSync} from '@/components/product-feed/settings/product-selection/product-selection-utilities';
+import {localStorageProductFilter, localStorageProductFilterSync} from '@/components/product-feed/settings/product-selection/product-selection-localstorage';
 import MutationsTypes from '@/store/modules/product-feed/mutations-types';
 import {RequestState} from '@/store/types';
 import {MappedAttribute} from '@/components/product-feed/settings/summary/types';

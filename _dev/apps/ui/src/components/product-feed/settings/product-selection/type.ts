@@ -1,3 +1,5 @@
+import ProductFilterAttributes from '@/enums/product-feed/product-filter-attributes';
+
 export interface FeatureOption {
   id: number;
   key: string;
@@ -29,6 +31,15 @@ export type ProductFilterErrors = {
   attribute?: string,
   condition?: string,
   value?: string,
+  values?: ProductFiltersErrors
+}
+
+export type ProductFiltersErrors = { [key: number]: string }
+
+export type ProductFilterValidatorOptions = {
+  [ProductFilterAttributes.BRAND]: BrandOption[],
+  [ProductFilterAttributes.CATEGORY]: CategoryOption[],
+  [ProductFilterAttributes.FEATURE]: Feature[],
 }
 
 export type ProductFilter = {

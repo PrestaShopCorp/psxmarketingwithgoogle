@@ -1,10 +1,13 @@
 import ATTRIBUTE_MAP_CONDITION from '@/components/product-feed/settings/product-selection/attributeMapCondition';
 import {
   CleanProductFilter,
-  ProductFilterErrors,
+  ProductFilterErrors, ProductFiltersErrors, ProductFilterValidatorOptions,
 } from '@/components/product-feed/settings/product-selection/type';
 import i18n from '@/lib/i18n';
+import store from '@/store';
 import ProductFilterValueType from '@/enums/product-feed/product-filter-value-type';
+import ProductFilterAttributes from '@/enums/product-feed/product-filter-attributes';
+import GetterTypes from '@/store/modules/product-feed/getters-types';
 
 class FilterValidator {
   attributeError: string | null;
@@ -13,10 +16,21 @@ class FilterValidator {
 
   valueError: string | null;
 
+  valuesError: ProductFiltersErrors | null;
+
+  options: ProductFilterValidatorOptions;
+
   constructor() {
     this.attributeError = null;
     this.conditionError = null;
     this.valueError = null;
+    this.valuesError = null;
+    // You must be careful to load the data correctly before using the validator
+    this.options = {
+      [ProductFilterAttributes.BRAND]: store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER_BRANDS_OPTIONS}`],
+      [ProductFilterAttributes.CATEGORY]: store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER_CATEGORIES_OPTIONS}`],
+      [ProductFilterAttributes.FEATURE]: store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER_FEATURES_OPTIONS}`],
+    };
   }
 
   public get errors(): ProductFilterErrors {
@@ -32,6 +46,10 @@ class FilterValidator {
 
     if (this.valueError) {
       errors.value = this.valueError;
+    }
+
+    if (this.valuesError) {
+      errors.values = this.valuesError;
     }
 
     return errors;
