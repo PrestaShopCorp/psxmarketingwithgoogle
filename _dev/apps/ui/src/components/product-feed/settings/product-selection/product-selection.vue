@@ -144,6 +144,7 @@ import ProductFilterAttributes from '@/enums/product-feed/product-filter-attribu
 import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
 import ProductFilterValueType from '@/enums/product-feed/product-filter-value-type';
 import ActionsTypes from '@/store/modules/product-feed/actions-types';
+// eslint-disable-next-line import/no-named-default
 import {default as AppActionsTypes} from '@/store/modules/app/actions-types';
 import MutationsTypes from '@/store/modules/product-feed/mutations-types';
 import GetterTypes from '@/store/modules/product-feed/getters-types';
