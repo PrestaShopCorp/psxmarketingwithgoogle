@@ -14,15 +14,24 @@
     "moduleNeedActivation": "Marketing with Google is disabled, you will not be able to use any of it's features until you enable your module.",
     "moduleUpdateNeeded": {
       "ps_eventbus": {
-        "title": "**A newer version of PrestaShop CloudSync is requested**\n\n The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\nYou may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync."
+        "title": "A newer version of PrestaShop CloudSync is requested",
+        "paragraph": "The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\n You may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync."
       },
       "psxmarketingwithgoogle": {
-        "title": "**A newer version of PrestaShop Marketing With Google is available**\n\n It offers significant improvements and exciting features that will take your product usage to the next level.",
+        "title": "A newer version of PrestaShop Marketing With Google is available",
+        "paragraph": "It offers an exciting feature that will take your product usage to the next level. | It offers exciting features that will take your product usage to the next level.",
         "changes": {
-          "1.53.0": [
-            "Configure your product feed to target countries in several currencies",
-            "Get a better follow up of your product synchronization thanks to the new product feed page"
-          ]
+          "1.53.0": {
+            "features": [
+              "Configure your product feed to target countries in several currencies",
+              "Get a better follow up of your product synchronization thanks to the new product feed page"
+            ]
+          },
+          "1.73.0": {
+            "features": [
+              "Configure your product feed to choose which products you want to promote thanks to smart filtering"
+            ]
+          }
         }
       }
     },
@@ -1050,6 +1059,7 @@
     "select": "Select",
     "editContact": "Edit contact information",
     "update": "Update",
+    "updateModule": "Update module",
     "validateSelection" : "Validate Selection",
     "visitThe" : "Visit the {0} for more information",
     "createPmax": "Create Performance Max campaign",
