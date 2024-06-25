@@ -1,0 +1,11 @@
+.ps-tag {
+  border-radius: 999999px;
+  padding: 0.125rem 0.5rem;
+  color: $primary-800;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  &--info {
+    background: $blue-100;
+  }
+}

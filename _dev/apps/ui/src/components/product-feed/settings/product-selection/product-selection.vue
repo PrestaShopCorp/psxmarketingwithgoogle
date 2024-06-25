@@ -45,14 +45,21 @@
             </b-form-radio>
           </div>
           <div
-            class="col col-12 col-md border-primary-400 p-3 ml-md-1 mt-1 mt-md-0"
-            :class="{'checked': synchSelected === typeMethodsSynch.SYNCH_FILTERED_PRODUCT}"
+            class="col col-12 col-md border-primary-400 p-3 ml-md-1 mt-1 mt-md-0 ps_gs-radio-option"
+            :class="{'checked': synchSelected === typeMethodsSynch.SYNCH_FILTERED_PRODUCT, 'disabled': moduleNeedUpgradeForProductFilter }"
           >
+            <span
+              class="ps-tag ps-tag--info"
+              v-if="moduleNeedUpgradeForProductFilter"
+            >
+              {{ $t('productFeedSettings.productSelection.newFeature') }}
+            </span>
             <div>
               <b-form-radio
                 v-model="synchSelected"
                 name="customSyncRadio"
                 :value="typeMethodsSynch.SYNCH_FILTERED_PRODUCT"
+                :disabled="moduleNeedUpgradeForProductFilter"
               >
                 <h3 class="font-weight-700 mb-2 ps_gs-fz-14">
                   {{ $t('productFeedSettings.productSelection.methodSynch.synchFilteredProducts') }}
@@ -137,6 +144,7 @@ import ProductFilterAttributes from '@/enums/product-feed/product-filter-attribu
 import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
 import ProductFilterValueType from '@/enums/product-feed/product-filter-value-type';
 import ActionsTypes from '@/store/modules/product-feed/actions-types';
+import {default as AppActionsTypes} from '@/store/modules/app/actions-types';
 import MutationsTypes from '@/store/modules/product-feed/mutations-types';
 import GetterTypes from '@/store/modules/product-feed/getters-types';
 import {booleanToString, stringToBoolean} from '@/utils/StringToBoolean';
@@ -159,6 +167,7 @@ export default defineComponent({
       listFilters: [] as ProductFilter[],
       filtersAreValid: false,
       loading: true,
+      moduleNeedUpgradeForProductFilter: true,
     };
   },
   methods: {
@@ -425,34 +434,38 @@ export default defineComponent({
   async mounted() {
     this.loading = true;
     // get all data for filters
-    await this.$store.dispatch(`productFeed/${ActionsTypes.GET_SHOPS_PRODUCTS_INFOS}`);
-    await this.$store.dispatch(`productFeed/${ActionsTypes.GET_PRODUCT_FILTER_SETTINGS}`);
+    this.moduleNeedUpgradeForProductFilter = await this.$store.dispatch(`app/${AppActionsTypes.REQUEST_MODULE_NEED_UPGRADE}`, '1.73.0');
 
-    const currentSync = localStorage
-      .getItem(localStorageProductFilterSync) as ProductFilterMethodsSynch;
-    const localStorageFilters = getDataFromLocalStorage(localStorageProductFilter);
-    const storeApiFilters = this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER}`];
-    const localFilters = localStorageFilters
-      || storeApiFilters;
+    if (!this.moduleNeedUpgradeForProductFilter) {
+      await this.$store.dispatch(`productFeed/${ActionsTypes.GET_SHOPS_PRODUCTS_INFOS}`);
+      await this.$store.dispatch(`productFeed/${ActionsTypes.GET_PRODUCT_FILTER_SETTINGS}`);
 
-    if (currentSync) {
-      this.synchSelected = currentSync;
-    } else if (storeApiFilters?.length) {
-      this.synchSelected = ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT;
-    }
+      const currentSync = localStorage
+        .getItem(localStorageProductFilterSync) as ProductFilterMethodsSynch;
+      const localStorageFilters = getDataFromLocalStorage(localStorageProductFilter);
+      const storeApiFilters = this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER}`];
+      const localFilters = localStorageFilters
+        || storeApiFilters;
 
-    if (this.synchSelected === ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT
-      && localFilters?.length) {
-      this.listFilters = localFilters
-        .map((filter: CleanProductFilter) => this.recoverFilter(filter));
-      this.checkFiltersValidity(true);
-    } else {
-      this.listFilters = [newFilter()];
-    }
+      if (currentSync) {
+        this.synchSelected = currentSync;
+      } else if (storeApiFilters?.length) {
+        this.synchSelected = ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT;
+      }
 
-    if (this.synchSelected === ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT
-      || this.filtersAreValid) {
-      await this.$store.dispatch(`productFeed/${ActionsTypes.TRIGGER_PRODUCT_COUNT}`);
+      if (this.synchSelected === ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT
+        && localFilters?.length) {
+        this.listFilters = localFilters
+          .map((filter: CleanProductFilter) => this.recoverFilter(filter));
+        this.checkFiltersValidity(true);
+      } else {
+        this.listFilters = [newFilter()];
+      }
+
+      if (this.synchSelected === ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT
+        || this.filtersAreValid) {
+        await this.$store.dispatch(`productFeed/${ActionsTypes.TRIGGER_PRODUCT_COUNT}`);
+      }
     }
 
     this.loading = false;
