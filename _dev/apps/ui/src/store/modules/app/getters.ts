@@ -16,6 +16,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
+import semver from 'semver';
 import GettersTypes from './getters-types';
 import {State as LocalState, HelpInformations, DebugData} from './state';
 import countriesSelectionOptions from '../../../assets/json/countries.json';
@@ -113,4 +114,9 @@ export default {
       return currency ? currency.symbol : '';
     }
   },
+  [GettersTypes.GET_MODULE_NEED_UPGRADE]: (
+    state: LocalState,
+  ) => (
+    neededVersion: string,
+  ) => !semver.gte(state.psxMktgWithGoogleModuleVersion, neededVersion),
 };

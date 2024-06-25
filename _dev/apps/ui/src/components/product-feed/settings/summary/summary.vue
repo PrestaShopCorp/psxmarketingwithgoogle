@@ -41,8 +41,13 @@
                       width="80%"
                     />
                   </template>
-                  <div v-if="productCountStatus === ProductFeedCountStatus.SUCCESS">
-                    {{ productCountToDisplay }}
+                  <div
+                    v-if="productCountStatus === ProductFeedCountStatus.SUCCESS
+                      || moduleNeedUpgradeForProductFilter"
+                  >
+                    {{ moduleNeedUpgradeForProductFilter
+                      ? nextSyncTotalProducts
+                      : productCountToDisplay }}
                   </div>
                   <b-alert
                     v-if="productCountStatus === ProductFeedCountStatus.ERROR"
@@ -276,6 +281,7 @@ import productFeedSummaryCard from '@/components/product-feed/summary/product-fe
 import ProductFeedMixin from '@/components/mixins/Product-Feed-Mixin';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import ActionsTypes from '@/store/modules/product-feed/actions-types';
+import AppGettersTypes from '@/store/modules/app/getters-types';
 import GetterTypes from '@/store/modules/product-feed/getters-types';
 import ProductFeedCountStatus from '@/enums/product-feed/product-feed-count-status';
 import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
@@ -303,6 +309,7 @@ export default defineComponent({
       understandTerms: false,
       ProductFeedCountStatus,
       loadingData: true,
+      moduleNeedUpgradeForProductFilter: false,
     };
   },
   computed: {
@@ -441,6 +448,7 @@ export default defineComponent({
       requestAttributeMapping: `productFeed/${ActionsTypes.REQUEST_ATTRIBUTE_MAPPING}`,
       requestShopAttribute: `productFeed/${ActionsTypes.REQUEST_SHOP_TO_GET_ATTRIBUTE}`,
       requestProductCount: `productFeed/${ActionsTypes.TRIGGER_PRODUCT_COUNT}`,
+      requestTotalProductCount: `productFeed/${ActionsTypes.GET_TOTAL_PRODUCTS_READY_TO_SYNC}`,
     }),
     ...mapMutations({}),
     cancel() {
@@ -467,6 +475,8 @@ export default defineComponent({
   async mounted() {
     this.loadingData = true;
 
+    this.moduleNeedUpgradeForProductFilter = this.$store.getters[`app/${AppGettersTypes.GET_MODULE_NEED_UPGRADE}`]('1.73.0');
+
     await this.requestShopAttribute().then(() => {
       this.requestAttributeMapping();
     });
@@ -482,7 +492,11 @@ export default defineComponent({
       });
     }
 
-    await this.requestProductCount();
+    if (!this.moduleNeedUpgradeForProductFilter) {
+      await this.requestProductCount();
+    } else {
+      await this.requestTotalProductCount();
+    }
 
     this.loadingData = false;
   },

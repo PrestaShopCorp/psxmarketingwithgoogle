@@ -50,11 +50,11 @@
       <notification-panel />
       <AlertModuleUpdate
         module-name="ps_eventbus"
-        :needed-version="this.$store.state.app.cloudsyncVersionNeeded"
+        :needed-version="$store.state.app.cloudsyncVersionNeeded"
       />
       <AlertModuleUpdate
         module-name="psxmarketingwithgoogle"
-        :needed-version="this.$store.state.app.psxMktgWithGoogleModuleVersionNeeded"
+        :needed-version="$store.state.app.psxMktgWithGoogleModuleVersionNeeded"
       />
       <router-view />
       <div
