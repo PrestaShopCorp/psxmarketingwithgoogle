@@ -2,29 +2,36 @@
   <div class="mb-2 two-panel-max-width">
     <b-alert
       v-if="errorModule"
-      variant="warning"
-      class="mb-0 mt-3"
+      variant="info"
+      class="mb-0 mt-3 alert--bordered d-md-flex justify-content-between align-items-start"
       show
     >
-      <VueShowdown
-        :markdown="$t(`general.moduleUpdateNeeded.${moduleName}.title`)"
-      />
-      <ul v-if="featuresList">
-        <li
-          v-for="(feature, index) in featuresList"
-          :key="index"
+      <div>
+        <div class="h3 font-weight-600">
+          {{ $t(`general.moduleUpdateNeeded.${moduleName}.title`) }}
+        </div>
+        <VueShowdown
+          :markdown="paragraph"
+        />
+        <ul
+          class="feature-list"
+          v-if="featuresList"
         >
-          {{ feature }}
-        </li>
-      </ul>
+          <li
+            v-for="(feature, index) in featuresList"
+            :key="index"
+          >
+            {{ feature }}
+          </li>
+        </ul>
+      </div>
       <div
-        class="d-md-flex text-center align-items-center mt-2"
+        class="d-md-flex text-center align-items-center"
         v-if="upgradeLink"
       >
         <b-button
-          size="sm"
-          class="mx-1 mt-3 mt-md-0 md-4 mr-md-1"
-          variant="outline-secondary"
+          class="mx-1 mt-3 mt-md-0 md-4 mr-md-1 text-nowrap"
+          variant="info"
           target="_blank"
           @click="updateModule"
         >
@@ -34,7 +41,7 @@
           <span
             v-else
           >
-            {{ $t('cta.update') }}
+            {{ $t('cta.updateModule') }}
           </span>
         </b-button>
       </div>
@@ -72,21 +79,30 @@ export default defineComponent({
   },
 
   computed: {
+    paragraph(): string {
+      return this.$tc(`general.moduleUpdateNeeded.${this.moduleName}.paragraph`,
+        (this.featuresList ? this.featuresList.length : 0));
+    },
     featuresList(): string[] {
       if (this.installedVersion === null) {
         return [];
       }
 
       const features = [];
-      Object.keys(translations.general.moduleUpdateNeeded[this.moduleName].changes || {}).forEach(
+
+      Object.keys(translations.general.moduleUpdateNeeded[this.moduleName].changes
+        || {}).forEach(
         (version: string) => {
           if (semver.gt(version, this.installedVersion as string)) {
-            const featuresSubset = this.$t(`general.moduleUpdateNeeded.${this.moduleName}.changes["${version}"]`);
+            if (translations.general.moduleUpdateNeeded[this.moduleName]
+              .changes[version].features) {
+              const featuresSubset = this.$t(`general.moduleUpdateNeeded.${this.moduleName}.changes["${version}"].features`);
 
-            if (typeof featuresSubset === 'string') {
-              features.push(featuresSubset);
-            } else {
-              features.push(...featuresSubset);
+              if (typeof featuresSubset === 'string') {
+                features.push(featuresSubset);
+              } else {
+                features.push(...featuresSubset);
+              }
             }
           }
         },
