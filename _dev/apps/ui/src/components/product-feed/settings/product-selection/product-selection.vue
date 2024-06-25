@@ -150,7 +150,8 @@ import {booleanToString, stringToBoolean} from '@/utils/StringToBoolean';
 import stringToNumber from '@/utils/StringToNumber';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
-import {newFilter, localStorageProductFilter, localStorageProductFilterSync} from '@/components/product-feed/settings/product-selection/product-selection-utilities';
+import {newFilter, getFeatureByOptions} from '@/components/product-feed/settings/product-selection/product-selection-utilities';
+import {localStorageProductFilter, localStorageProductFilterSync} from '@/components/product-feed/settings/product-selection/product-selection-localstorage';
 import AppGettersTypes from '@/store/modules/app/getters-types';
 
 export default defineComponent({
@@ -171,17 +172,6 @@ export default defineComponent({
     };
   },
   methods: {
-    getFeatureByOptions(options: FeatureOption[]): Feature | undefined {
-      function featureContainValues(feature: Feature, values: FeatureOption[]) {
-        return values.some(
-          (value: FeatureOption) => feature.values.some(
-            (featureValue: FeatureOption) => featureValue.id === value.id,
-          ),
-        );
-      }
-
-      return this.features.find((feature: Feature) => featureContainValues(feature, options));
-    },
     // used to create new filter for front with saved filter.
     recoverFilter(filter: CleanProductFilter): ProductFilter {
       const recoveredFilter = {
@@ -191,7 +181,10 @@ export default defineComponent({
 
       if (recoveredFilter.attribute === ProductFilterAttributes.FEATURE
         && recoveredFilter.value?.length) {
-        const feature = this.getFeatureByOptions(recoveredFilter.value);
+        const feature = getFeatureByOptions(
+          this.features,
+          recoveredFilter.value as FeatureOption[],
+        );
 
         // we need to update recovered value with new from BO if exist
         // because it can break if we got new language introduced.
@@ -199,11 +192,20 @@ export default defineComponent({
           .map((item) => item.id));
         const featureOptions = feature.values.filter((item) => valueIdToMatch.has(item.id));
 
-        recoveredFilter.value = (featureOptions as FeatureOption[])
+        const mapMerge = new Map();
+
+        (recoveredFilter.value as FeatureOption[]).forEach(
+          (option) => mapMerge.set(option.id, option),
+        );
+        featureOptions.forEach((option) => mapMerge.set(option.id, option));
+
+        const combinedOptions = Array.from(mapMerge.values());
+
+        recoveredFilter.value = (combinedOptions as FeatureOption[])
           .filter((el) => el.language === this.currentCountry);
 
         if (feature) {
-          recoveredFilter.attribute = feature.id;
+          recoveredFilter.attribute = `${feature.id}`;
         }
       }
 
@@ -268,6 +270,20 @@ export default defineComponent({
     },
     getCleanFilters() {
       return this.listFilters.map((filter) => this.cleanFilter(filter));
+    },
+    initFilters(localFilters: CleanProductFilter[]) {
+      let validity = true;
+
+      localFilters.forEach((filter, index) => {
+        const validator = new FilterValidator();
+        validator.validate(filter);
+
+        if (!validator.isValid) {
+          validity = false;
+        }
+      });
+
+      this.filtersAreValid = validity;
     },
 
     checkFiltersValidity(sendError: boolean) {
@@ -402,6 +418,7 @@ export default defineComponent({
   computed: {
     ...mapGetters({
       productCountStatus: `productFeed/${GetterTypes.GET_PRODUCT_COUNT_STATUS}`,
+      features: `productFeed/${GetterTypes.GET_PRODUCT_FILTER_FEATURES_OPTIONS}`,
     }),
     synchSelected: {
       get(): ProductFilterMethodsSynch {
@@ -420,9 +437,6 @@ export default defineComponent({
       return this.productCountStatus
         && (this.synchSelected === ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT
         || (this.listFilters.length > 0 && this.filtersAreValid));
-    },
-    features(): Feature[] {
-      return this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER_FEATURES_OPTIONS}`];
     },
     currentCountry(): string {
       return window.i18nSettings.isoCode;
@@ -455,12 +469,13 @@ export default defineComponent({
 
       if (this.synchSelected === ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT
         && localFilters?.length) {
-        this.listFilters = localFilters
-          .map((filter: CleanProductFilter) => this.recoverFilter(filter));
-        this.checkFiltersValidity(true);
-      } else {
-        this.listFilters = [newFilter()];
-      }
+        this.initFilters(localFilters);
+      // this.listFilters = localFilters
+      //   .map((filter: CleanProductFilter) => this.recoverFilter(filter));
+      // this.checkFiltersValidity(true);
+    } else {
+      this.listFilters = [newFilter()];
+    }
 
       if (this.synchSelected === ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT
         || this.filtersAreValid) {
