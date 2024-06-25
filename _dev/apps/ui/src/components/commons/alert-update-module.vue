@@ -96,8 +96,8 @@ export default defineComponent({
         (version: string) => {
           if (semver.gt(version, this.installedVersion as string)) {
             if (translations.general.moduleUpdateNeeded[this.moduleName]
-              .changes[version].features) {
-              const featuresSubset = this.$t(`general.moduleUpdateNeeded.${this.moduleName}.changes["${version}"].features`);
+              .changes[version]) {
+              const featuresSubset = this.$t(`general.moduleUpdateNeeded.${this.moduleName}.changes["${version}"]`);
 
               if (typeof featuresSubset === 'string') {
                 features.push(featuresSubset);

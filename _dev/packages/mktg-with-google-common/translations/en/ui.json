@@ -21,17 +21,13 @@
         "title": "A newer version of PrestaShop Marketing With Google is available",
         "paragraph": "It offers an exciting feature that will take your product usage to the next level. | It offers exciting features that will take your product usage to the next level.",
         "changes": {
-          "1.53.0": {
-            "features": [
-              "Configure your product feed to target countries in several currencies",
-              "Get a better follow up of your product synchronization thanks to the new product feed page"
-            ]
-          },
-          "1.73.0": {
-            "features": [
-              "Configure your product feed to choose which products you want to promote thanks to smart filtering"
-            ]
-          }
+          "1.53.0": [
+            "Configure your product feed to target countries in several currencies",
+            "Get a better follow up of your product synchronization thanks to the new product feed page"
+          ],
+          "1.73.0": [
+            "Configure your product feed to choose which products you want to promote thanks to smart filtering"
+          ]
         }
       }
     },
