@@ -144,8 +144,6 @@ import ProductFilterAttributes from '@/enums/product-feed/product-filter-attribu
 import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
 import ProductFilterValueType from '@/enums/product-feed/product-filter-value-type';
 import ActionsTypes from '@/store/modules/product-feed/actions-types';
-// eslint-disable-next-line import/no-named-default
-import {default as AppActionsTypes} from '@/store/modules/app/actions-types';
 import MutationsTypes from '@/store/modules/product-feed/mutations-types';
 import GetterTypes from '@/store/modules/product-feed/getters-types';
 import {booleanToString, stringToBoolean} from '@/utils/StringToBoolean';
@@ -153,6 +151,7 @@ import stringToNumber from '@/utils/StringToNumber';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {newFilter, localStorageProductFilter, localStorageProductFilterSync} from '@/components/product-feed/settings/product-selection/product-selection-utilities';
+import AppGettersTypes from '@/store/modules/app/getters-types';
 
 export default defineComponent({
   name: 'ProductFeedSettingsProductSelection',
@@ -435,7 +434,7 @@ export default defineComponent({
   async mounted() {
     this.loading = true;
     // get all data for filters
-    this.moduleNeedUpgradeForProductFilter = await this.$store.dispatch(`app/${AppActionsTypes.REQUEST_MODULE_NEED_UPGRADE}`, '1.73.0');
+    this.moduleNeedUpgradeForProductFilter = this.$store.getters[`app/${AppGettersTypes.GET_MODULE_NEED_UPGRADE}`]('1.73.0');
 
     if (!this.moduleNeedUpgradeForProductFilter) {
       await this.$store.dispatch(`productFeed/${ActionsTypes.GET_SHOPS_PRODUCTS_INFOS}`);
