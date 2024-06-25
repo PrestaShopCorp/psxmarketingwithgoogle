@@ -19,6 +19,8 @@ import ProductFeedSettings from '../components/product-feed/product-feed-setting
 import ProductFeedPopinCancel from '../components/product-feed/product-feed-popin-cancel';
 import {deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
 import ActionsTypes from '@/store/modules/product-feed/actions-types';
+import MutationsTypes from '@/store/modules/product-feed/mutations-types';
+import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
 
 export default {
   name: 'TunnelProductFeed',
@@ -73,6 +75,8 @@ export default {
       deleteProductFeedDataFromLocalStorage();
       this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
       this.$store.dispatch('productFeed/REQUEST_ATTRIBUTE_MAPPING');
+      this.$store.dispatch(`productFeed/${ActionsTypes.GET_PRODUCT_FILTER_SETTINGS}`);
+      this.$store.commit(`productFeed/${MutationsTypes.SET_SYNC_METHOD}`, ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT);
       this.$refs.productFeedCancelModal.$refs.modal.hide();
 
       if (this.navigationResolver) {
