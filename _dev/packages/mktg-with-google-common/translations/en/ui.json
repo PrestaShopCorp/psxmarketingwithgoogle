@@ -464,6 +464,7 @@
       "learnHowToSetupShippingSettings": "Learn how to set up shipping"
     },
     "productSelection": {
+      "newFeature": "New feature",
       "and": "And",
       "addFilter": "Add filter",
       "methodSynch": {

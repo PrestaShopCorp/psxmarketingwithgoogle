@@ -33,7 +33,7 @@
   &.show button {
     border-color: $primary-800 !important;
   }
-  
+
   button {
     display: flex;
     align-items: center;
@@ -44,7 +44,7 @@
     background-color: white;
     color: $primary-800 !important;
     border-color: $primary-400;
-    
+
     &:hover {
       background-color: white;
       color: $primary-800 !important;
@@ -92,7 +92,7 @@
     &:hover {
       background-color: $primary-200;
     }
-    
+
     &:active {
       background-color: $primary-300;
       color: $primary-800;
@@ -168,7 +168,7 @@
     color: $primary-500 !important;
     border: 1px solid $primary-400;
     cursor: auto;
-    
+
     &:hover {
       color: $primary-500 !important;
     }
@@ -244,7 +244,7 @@
     &--highlight {
       background: $primary-200;
       color: $dark-gray;
-      
+
       .custom-control-label:before {
         color: white !important;
         border-color: $primary-800;
@@ -256,7 +256,7 @@
         background-size: 125%;
       }
     }
-    
+
     &--selected {
       background: $primary-200;
 
@@ -281,7 +281,7 @@
       height: 100%;
       background-color: white;
     }
-   
+
     .vs__dropdown-option {
       display: flex;
     }
@@ -397,19 +397,50 @@
         left: -25px;
         top: 2px;
       }
-    
+
       &:before {
         background-color: $primary-800;
       }
     }
   }
-  
+
   .custom-control-label::before {
     width: rem(20);
     height: rem(20);
     border: $primary-800 solid 2px;
     top: 0;
     left: -27px;
+  }
+
+  .ps_gs-radio-option {
+    &.disabled {
+      cursor: not-allowed;
+      position: relative;
+      .ps-tag {
+        position: absolute;
+        right: 0.5rem;
+        top: 0.5rem;
+        z-index: 2;
+      }
+      .custom-control.custom-radio {
+        .custom-control-input {
+          cursor: not-allowed;
+        }
+        .custom-control-label {
+          &:before {
+            background-color: $white;
+            border-color: $primary-400;
+          }
+          color: $primary-400;
+          cursor: not-allowed;
+          * {
+            color: $primary-400 !important;
+            cursor: not-allowed;
+          }
+        }
+
+      }
+    }
   }
 }
 
@@ -492,7 +523,7 @@ input[type=number].no-arrows {
     border-color: $primary-800;
     z-index: 2;
   }
-  
+
   &[disabled="disabled"],
   &[disabled="disabled"] + div .input-group-text {
     background-color: white !important;
