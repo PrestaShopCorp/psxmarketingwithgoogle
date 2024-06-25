@@ -34,6 +34,7 @@
           variant="info"
           target="_blank"
           @click="updateModule"
+          :disabled="loading"
         >
           <span v-if="loading">
             <span class="icon-busy icon-busy--dark" />
@@ -144,6 +145,10 @@ export default defineComponent({
     },
 
     async updateModule() {
+      if (this.loading) {
+        return;
+      }
+
       this.loading = true;
       try {
         await fetch(this.upgradeLink, {
