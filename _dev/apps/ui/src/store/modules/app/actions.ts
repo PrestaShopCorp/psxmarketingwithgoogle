@@ -102,32 +102,6 @@ export default {
       return error;
     }
   },
-
-  async [ActionsTypes.REQUEST_MODULE_NEED_UPGRADE](
-    {dispatch, state}: Context,
-    neededVersion: string,
-  ) {
-    const getModuleVersion = await dispatch(ActionsTypes.GET_MODULES_VERSIONS, 'psxmarketingwithgoogle');
-
-    let version: string | null = null;
-
-    if (getModuleVersion.version) {
-      version = getModuleVersion.version;
-    }
-    // Before v1.11.0, there is no such route, but we can try to get
-    // the version in psxMktgWithGoogleModuleVersion instead for the Google module
-    if (!version
-      && state.psxMktgWithGoogleModuleVersion
-    ) {
-      version = state.psxMktgWithGoogleModuleVersion;
-    }
-
-    if (!version) {
-      return true;
-    }
-
-    return !semver.gte(version, neededVersion);
-  },
   // eslint-disable-next-line no-empty-pattern
   async [ActionsTypes.TRIGGER_REGISTER_HOOK]({}: Context, hookName: string) {
     return fetchShop('registerHook', {hookName});

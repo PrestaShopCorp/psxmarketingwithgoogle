@@ -281,8 +281,7 @@ import productFeedSummaryCard from '@/components/product-feed/summary/product-fe
 import ProductFeedMixin from '@/components/mixins/Product-Feed-Mixin';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import ActionsTypes from '@/store/modules/product-feed/actions-types';
-// eslint-disable-next-line import/no-named-default
-import {default as AppActionsTypes} from '@/store/modules/app/actions-types';
+import AppGettersTypes from '@/store/modules/app/getters-types';
 import GetterTypes from '@/store/modules/product-feed/getters-types';
 import ProductFeedCountStatus from '@/enums/product-feed/product-feed-count-status';
 import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
@@ -476,7 +475,7 @@ export default defineComponent({
   async mounted() {
     this.loadingData = true;
 
-    this.moduleNeedUpgradeForProductFilter = await this.$store.dispatch(`app/${AppActionsTypes.REQUEST_MODULE_NEED_UPGRADE}`, '1.73.0');
+    this.moduleNeedUpgradeForProductFilter = this.$store.getters[`app/${AppGettersTypes.GET_MODULE_NEED_UPGRADE}`]('1.73.0');
 
     await this.requestShopAttribute().then(() => {
       this.requestAttributeMapping();
