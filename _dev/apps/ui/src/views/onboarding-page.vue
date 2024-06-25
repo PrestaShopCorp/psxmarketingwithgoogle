@@ -180,7 +180,6 @@ import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import EnhancedConversionsCard from '@/components/enhanced-conversions/enhanced-conversions-card.vue';
 import ModalEcIntro from '@/components/enhanced-conversions/modal-ec-intro.vue';
 import {AccountInformations} from '@/store/modules/google-ads/state';
-import GettersTypesApp from '@/store/modules/app/getters-types';
 import {deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
 
 export default defineComponent({

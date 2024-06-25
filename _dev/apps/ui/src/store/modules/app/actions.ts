@@ -104,7 +104,7 @@ export default {
   },
 
   async [ActionsTypes.REQUEST_MODULE_NEED_UPGRADE](
-    {dispatch, state, commit}: Context,
+    {dispatch, state}: Context,
     neededVersion: string,
   ) {
     const getModuleVersion = await dispatch(ActionsTypes.GET_MODULES_VERSIONS, 'psxmarketingwithgoogle');
