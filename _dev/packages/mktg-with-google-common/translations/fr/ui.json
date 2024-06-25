@@ -549,7 +549,7 @@
         "intro": "Améliorez la précision de votre suivi des conversions et définissez des enchères plus efficaces. Cette fonctionnalité fonctionne parallèlement à vos balises de conversion existantes, en envoyant des données de conversion sécurisées et confidentielles de votre site Web à Google.",
         "signTosAlert": {
             "title": "Améliorez votre suivi des conversions et définissez des enchères plus efficaces dans Google Ads",
-            "text": "Enable enhanced conversion tracking by agreeing to Google Ads' terms of service and setting Google tag method in a few steps following these [instructions]({0})[:target=\"_blank\"] during activation to make sure the feature works properly."
+            "text": "Activez le suivi avancé des conversions en acceptant les conditions d'utilisation des données client de Google Ads et en définissant la méthode balise Google en quelques étapes en suivant ces [instructions]({0})[:target=\"_blank\"] lors de l'activation pour vous assurer que la fonctionnalité fonctionne correctement."
         }
     },
     "smartShoppingCampaignCreation": {
@@ -1048,7 +1048,7 @@
         "disconnectedUserBo": "Vous avez été déconnecté du backoffice. Vous serez automatiquement redirigé vers la page de connexion dans {0} secondes.",
         "titleDisconnectedUserBo": "Connexion perdue",
         "titleEnhancedConversionsIntro": "Mesurer les performances de vos annonces",
-        "textEnhancedConversionsIntro": "Enhance your conversion tracking accuracy and empower your bidding strategy with our latest feature: Enhanced Conversion Tracking. This feature seamlessly integrates with your existing conversion tags, ensuring the secure and privacy-conscious transmission of conversion data from your website to Google. Be careful to follow these simple instructions during activation to make sure the feature works properly:\n1. Check the checkbox “Turn on enhanced conversions”\n2. Accept the Customer Data terms (if not already accepted in the past)\n3. Select “Google Tag” as the method\n4. Save your selections"
+        "textEnhancedConversionsIntro": "Améliorez la précision de votre suivi des conversions et renforcez votre stratégie d'enchères grâce à notre dernière fonctionnalité : Suivi avancé des conversion. Cette fonctionnalité s'intègre de manière transparente à vos balises de conversion existantes et garantit la transmission sécurisée et confidentielle des données de conversion de votre site Web à Google. Veillez à suivre ces instructions simples lors de l'activation afin de vous assurer que la fonctionnalité fonctionne correctement :\n1. Cochez la case \"Activer le suivi avancé des conversions\"\n2. Acceptez les conditions d'utilisation des données clients (si vous ne les avez pas déjà acceptées par le passé)\n3. Sélectionnez la méthode \"Balise Google\"\n4. Sauvegardez vos sélections"
     },
     "tooltip": {
         "googleAccountRequired": "Nécessite la configuration d'un compte Google",
