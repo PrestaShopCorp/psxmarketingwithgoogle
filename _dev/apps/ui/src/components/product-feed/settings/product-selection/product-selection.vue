@@ -466,6 +466,8 @@ export default defineComponent({
         || this.filtersAreValid) {
         await this.$store.dispatch(`productFeed/${ActionsTypes.TRIGGER_PRODUCT_COUNT}`);
       }
+    } else {
+      this.synchSelected = ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT;
     }
 
     this.loading = false;
