@@ -40,7 +40,7 @@ import googleUrl from '@/assets/json/googleUrl.json';
 export default defineComponent({
   computed: {
     linkToTermsOfServices(): string {
-      return googleUrl.googleAdsConversionsTermsAndConditions;
+      return googleUrl.googleAdsEnhancedCoversionSettings;
     },
     linkToInstructions(): string {
       let locale = this.$i18n.locale.toLowerCase();
