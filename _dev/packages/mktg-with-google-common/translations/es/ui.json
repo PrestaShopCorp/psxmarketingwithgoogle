@@ -1,1138 +1,1209 @@
 {
-    "general": {
-        "tabs": {
-            "productFeed": "Feed de productos",
-            "campaign": "Campañas",
-            "configuration": "Configurar",
-            "catalog": "Catálogo de productos",
-            "help": "Ayuda"
-        },
-        "versionDoesNotExist": "Parece que no se puede recuperar la versión del módulo. Inténtalo de nuevo.",
-        "moduleNeedActivation": "Marketing with Google está deshabilitado, no podrás utilizar ninguna de sus funciones hasta que habilites tu módulo.",
-        "moduleUpdateNeeded": {
-            "ps_eventbus": {
-                "title": "**Se requiere una versión de PrestaShop CloudSync más reciente **\n\n La versión del módulo PrestaShop CloudSync que se utiliza en esta tienda es anterior a la mínima requerida.\n\nPuedes utilizar PrestaShop Marketing with Google pero algunas funciones (como la sincronización de productos) no estarán disponibles hasta que actualices PrestaShop CloudSync."
-            },
-            "psxmarketingwithgoogle": {
-                "title": "**Hay disponible una nueva versión de PrestaShop Marketing with Google** \nOfrece mejoras significativas y características interesantes que potenciarán el uso de tu producto.",
-                "changes": {
-                    "1.53.0": [
-                        "Configura tu feed de productos para dirigirte a países en varias divisas",
-                        "Consigue un mejor seguimiento de la sincronización de tus productos gracias a la nueva página de feed de productos"
-                    ]
-                }
-            }
-        },
-        "adblockerActivated": "Por favor, desactiva tu bloqueador de anuncios para que el módulo funcione correctamente y actualiza tu navegador.",
-        "refreshPage": "Actualizar la página",
-        "mandatory": "son obligatorios",
-        "XIsMandatory": "{0} es obligatorio.",
-        "unableToFetchData": "No pudimos obtener datos, inténtalo más tarde",
-        "noResults": "No se encontraron datos",
-        "search": "Buscar",
-        "createAccount": "Crea tu cuenta",
-        "createNewAccount": "Si no tienes una cuenta, puedes {0} hoy mismo.",
-        "notAvailable": "No disponible",
-        "min": "Mín.",
-        "max": "Máx.",
-        "helpPage": "Página de ayuda",
-        "noResultsFoundForX": " No se han encontrado resultados para \"{0}\"",
-        "days": "Días",
-        "readMore": "Leer más",
-        "countryWithCurrencyFormat": "{country} ({currency})"
+  "general": {
+    "tabs": {
+      "productFeed": "Feed de productos",
+      "campaign": "Campañas",
+      "configuration": "Configurar",
+      "catalog": "Catálogo de productos",
+      "help": "Ayuda"
     },
-    "landingPage": {
-        "header": {
-            "title": "Marketing with Google",
-            "text": "Con PrestaShop Marketing, puedes llegar a compradores potenciales que están buscando online productos como los que ofreces. Utiliza este módulo para llegar a ellos en Google en 3 sencillos pasos."
-        },
-        "content": {
-            "content1": {
-                "title": "Sincroniza tu catálogo de productos con Google",
-                "text": "Conecta tu tienda a Google Merchant Center y sincroniza todo tu catálogo de productos en unos clics. Los atributos del producto como el precio y la disponibilidad se actualizarán automáticamente todos los días."
-            },
-            "content2": {
-                "title": "Activa las fichas de producto gratuitas para tus productos",
-                "text": "Las fichas de producto gratuitas permiten mostrar los atributos de tus productos, incluyendo la imagen y el precio en los listados de clasificación orgánica en la pestaña Shopping.  \n \nUna vez sincronizado tu catálogo, habilita fácilmente las fichas de producto gratuitas en tu panel de control y comienza a mostrar tus productos en la pestaña Shopping de forma gratuita.",
-                "footer": "Crea una nueva [cuenta de Merchant Center]({0})[:target=\"_blank\"] o vincula una existente.  \nPara mostrar tus productos en Google deberás cumplir los [requisitos de elegibilidad]({1})[:target=\"_blank\"]"
-            },
-            "content3": {
-                "title": "Aumenta tu alcance y tus ventas con Máximo rendimiento",
-                "text": "¿Quiere maximizar el rendimiento de tu campaña y encontrar a los clientes adecuados allí donde estén? Con una sola campaña, Máximo rendimiento recopila datos de los diferentes canales de Google y optimiza el rendimiento de tu campaña mostrándolos dónde tus anuncios tienen más posibilidades de materializarse en conversión."
-            }
-        },
-        "footer": {
-            "text": "Logra que tus productos se encuentren en Google con PrestaShop Marketing with Google",
-            "explanation": "En el Espacio Económico Europeo, Reino Unido o Suiza, las campañas Máximo rendimiento pueden utilizarse con cualquier servicio de comparación de precios (CSS) con el que trabajes. Los anuncios aparecerán en las páginas de resultados de búsqueda generales y en cualquier otro lugar donde el CSS se haya adherido."
+    "errorsMessages": {
+      "enterValue": "Enter a value."
+    },
+    "versionDoesNotExist": "Parece que no se puede recuperar la versión del módulo. Inténtalo de nuevo.",
+    "moduleNeedActivation": "Marketing with Google está deshabilitado, no podrás utilizar ninguna de sus funciones hasta que habilites tu módulo.",
+    "moduleUpdateNeeded": {
+      "ps_eventbus": {
+        "title": "A newer version of PrestaShop CloudSync is requested",
+        "paragraph": "The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\n You may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync."
+      },
+      "psxmarketingwithgoogle": {
+        "title": "A newer version of PrestaShop Marketing With Google is available",
+        "paragraph": "It offers an exciting feature that will take your product usage to the next level. | It offers exciting features that will take your product usage to the next level.",
+        "changes": {
+          "1.53.0": [
+            "Configura tu feed de productos para dirigirte a países en varias divisas",
+            "Consigue un mejor seguimiento de la sincronización de tus productos gracias a la nueva página de feed de productos"
+          ],
+          "1.73.0": [
+            "Configure your product feed to choose which products you want to promote thanks to smart filtering"
+          ]
         }
+      }
     },
-    "onboarding": {
-        "cmpAlert": {
-            "title": "GDPR updates",
-            "paragraph": "Starting March 2024, businesses advertising to users in the European Economic Area (EEA) must create a strong framework to collect and communicate end-users’ consent choices via consent banners integrated with Google’s Consent Mode. To build a strong foundation for measuring your ads you must set up a cookie banner through a supported, dedicated Consent Management Platform. If you do not already have one, we recommend that you use the following consent management platform, which is compliant with the new regulations: {link}",
-            "moduleGDPR": "Cookies GDPR Law (Blocker) + Google Consent Mode V2"
-        },
-        "sectionTitle": {
-            "psAccount": "Conecta tu tienda con tu cuenta PrestaShop",
-            "freeListing": {
-                "title": "Llega a más usuarios en Google con fichas de producto gratuitas\n",
-                "subtitle": "Las fichas de producto gratuitas te dan acceso a millones de compradores que buscan productos similares a los tuyos. Muestra tus productos de forma gratuita en las listas orgánicas en la pestaña Shopping cuando conectes tu cuenta Google con Google Merchant Center.",
-                "lastTitle": "Las empresas que utilizan conjuntamente los fichas de producto gratuitas y los anuncios en la pestaña Shopping han visto un incremento medio del >50% en clics y de >100% en las impresiones. (Datos internos de Google, julio de 2020)"
-            },
-            "smartShoppingCampaign": {
-                "title": "Anunciarse en Google con Máximo rendimiento",
-                "subtitle": "Conecta o crea tu cuenta Google Ads y lanza una campaña Máximo rendimiento para tus productos. Maximiza el rendimiento de una única campaña en varios canales de Google. Muestra tus anuncios donde tienen más posibilidades de generar conversión. \n\nY lo que es mejor, no pagas salvo que tus clientes hagan clic."
-            }
-        },
-        "productFeedNotice": "Ayuda a los clientes a encontrar tus productos más fácilmente en Google y anúncialos gratuitamente con fichas de producto gratuitas. Estas te ayudan a llegar a más clientes y lograr que visiten tu sitio."
+    "adblockerActivated": "Por favor, desactiva tu bloqueador de anuncios para que el módulo funcione correctamente y actualiza tu navegador.",
+    "refreshPage": "Actualizar la página",
+    "mandatory": "son obligatorios",
+    "XIsMandatory": "{0} es obligatorio.",
+    "unableToFetchData": "No pudimos obtener datos, inténtalo más tarde",
+    "noResults": "No se encontraron datos",
+    "search": "Buscar",
+    "createAccount": "Crea tu cuenta",
+    "createNewAccount": "Si no tienes una cuenta, puedes {0} hoy mismo.",
+    "notAvailable": "No disponible",
+    "min": "Mín.",
+    "max": "Máx.",
+    "helpPage": "Página de ayuda",
+    "noResultsFoundForX": " No se han encontrado resultados para \"{0}\"",
+    "days": "Días",
+    "readMore": "Leer más",
+    "countryWithCurrencyFormat": "{country} ({currency})"
+  },
+  "landingPage": {
+    "header": {
+      "title": "Marketing with Google",
+      "text": "Con PrestaShop Marketing, puedes llegar a compradores potenciales que están buscando online productos como los que ofreces. Utiliza este módulo para llegar a ellos en Google en 3 sencillos pasos."
     },
-    "multiShopSelector": {
-        "title": "Modo multitienda activado",
-        "subtitle": "Debes configurar tus tiendas una por una para este servicio pero podrás utilizar la misma cuenta.",
-        "selectStore": "Por favor, selecciona la primera tienda a configurar de la lista siguiente",
-        "tips": "Una vez configurada la primera tienda, puedes continuar con las demás seleccionándolas una a una en el selector de tiendas del menú horizontal",
-        "configure": "Configurar",
-        "group": "Grupo de tiendas"
+    "content": {
+      "content1": {
+        "title": "Sincroniza tu catálogo de productos con Google",
+        "text": "Conecta tu tienda a Google Merchant Center y sincroniza todo tu catálogo de productos en unos clics. Los atributos del producto como el precio y la disponibilidad se actualizarán automáticamente todos los días."
+      },
+      "content2": {
+        "title": "Activa las fichas de producto gratuitas para tus productos",
+        "text": "Las fichas de producto gratuitas permiten mostrar los atributos de tus productos, incluyendo la imagen y el precio en los listados de clasificación orgánica en la pestaña Shopping.  \n \nUna vez sincronizado tu catálogo, habilita fácilmente las fichas de producto gratuitas en tu panel de control y comienza a mostrar tus productos en la pestaña Shopping de forma gratuita.",
+        "footer": "Crea una nueva [cuenta de Merchant Center]({0})[:target=\"_blank\"] o vincula una existente.  \nPara mostrar tus productos en Google deberás cumplir los [requisitos de elegibilidad]({1})[:target=\"_blank\"]"
+      },
+      "content3": {
+        "title": "Aumenta tu alcance y tus ventas con Máximo rendimiento",
+        "text": "¿Quiere maximizar el rendimiento de tu campaña y encontrar a los clientes adecuados allí donde estén? Con una sola campaña, Máximo rendimiento recopila datos de los diferentes canales de Google y optimiza el rendimiento de tu campaña mostrándolos dónde tus anuncios tienen más posibilidades de materializarse en conversión."
+      }
     },
-    "googleAccountCard": {
-        "title": "Cuenta de Google",
-        "introDisabled": "Conecta tu cuenta de Google y vincúlala con Google Merchant Center para desbloquear las fichas de producto gratuitas.",
-        "introEnabled": "Accede mediante el módulo PrestaShop asociado con tu cuenta de correo electrónico Google Merchant Center y cuentas de Google Ads.",
-        "footerDissociating": "PrestaShop utiliza esta cuenta para gestionar y sincronizar las cuentas Merchant Center y Google Ads.",
-        "alertCantConnect": "No puedes conectarte a tu cuenta de Google en este momento. Vuelve a intentarlo más tarde.",
-        "alertTokenMissing": "No hemos podido autenticar tu cuenta. Inténtalo de nuevo o cambia de cuenta.",
-        "stepIsMandatory": "*Este paso es obligatorio",
-        "alertInfo": "Asegúrate de autorizar todos los permisos solicitados al autenticar tu cuenta de Google.  \nEsta acción es obligatoria para que este servicio funcione correctamente.",
-        "missingTokenScopes": "Faltan algunos permisos solicitados.  \nTodos los permisos solicitados son obligatorios para que este servicio funcione correctamente, gestiona tu cuenta y asegúrate de autorizarlos."
+    "footer": {
+      "text": "Logra que tus productos se encuentren en Google con PrestaShop Marketing with Google",
+      "explanation": "En el Espacio Económico Europeo, Reino Unido o Suiza, las campañas Máximo rendimiento pueden utilizarse con cualquier servicio de comparación de precios (CSS) con el que trabajes. Los anuncios aparecerán en las páginas de resultados de búsqueda generales y en cualquier otro lugar donde el CSS se haya adherido."
+    }
+  },
+  "onboarding": {
+    "cmpAlert": {
+      "title": "GDPR updates",
+      "paragraph": "Starting March 2024, businesses advertising to users in the European Economic Area (EEA) must create a strong framework to collect and communicate end-users’ consent choices via consent banners integrated with Google’s Consent Mode. To build a strong foundation for measuring your ads you must set up a cookie banner through a supported, dedicated Consent Management Platform. If you do not already have one, we recommend that you use the following consent management platform, which is compliant with the new regulations: {link}",
+      "moduleGDPR": "Cookies GDPR Law (Blocker) + Google Consent Mode V2"
     },
-    "mcaCard": {
-        "title": "Cuenta Merchant Center",
-        "introDisabled": "Vincula tu cuenta de Merchant Center con PrestaShop para facilitar la sincronización de los datos de tu tienda y tus productos.",
-        "claimCollides": "Tu sitio web ya ha sido reclamado.",
-        "claimOverwrite": "Para finalizar la creación de la cuenta de Merchant Center, es necesario sobrescribir la reclamación existente.",
-        "footerEU": "Para tiendas en el Espacio Económico Europeo, en el Reino Unido o en Suiza, tu cuenta Merchant Center debe estar asociada a un [Servicio de Comparación de Precios (CSS)]({0})[:target=\"_blank\"]. \nSi creas una nueva cuenta Merchant Center a través de esta aplicación, se asociará por defecto a Google Shopping, el CSS de Google. Puedes cambiar el CSS asociado a tu cuenta en cualquier momento y encontrar partnes CSS aquí. Una vez que hayas configurado tu cuenta Merchant Center, podrá utilizar nuestra herramienta independientemente del CSS que utilices.",
-        "shopInfoMissing": "Falta información de la tienda",
-        "shopInfoMissingDescription": "Para completar la información de la tienda que falta, accede a tu [cuenta Merchant Center]({0})[:target=\"_blank\"].",
-        "userIsNotAdmin": "Necesitas Acceso de administrador",
-        "userIsTestAccount": "Esta es una cuenta de prueba",
-        "googleMCA": "Cuenta de Google Merchant Center",
-        "shopMaintenance": "No puedes conectar una cuenta Google Merchant Center mientras el modo de mantenimiento está activo.  \n Cambia los parámetros de tu tienda.",
-        "linkingFailed": "No puedes conectarte a tu cuenta Merchant Center en este momento. Vuelve a intentarlo más tarde.",
-        "AccountValidationFailed": "Ha fallado la validación de la cuenta.",
-        "unlinkFailed": "Desconexión fallida. Actualiza la página e inténtalo de nuevo.",
-        "tryAgainLater": "No podemos verificar o reclamar el sitio actual. **Recomendamos que te asegures de que el sitio es accesible** y lo intentes de nuevo más tarde.",
-        "alertSuspended": "Suspensión de cuenta: acción requerida",
-        "alertSuspendedDescription": "Google ha suspendido tu cuenta de Merchant Center debido a infracciones de las políticas. Tus productos ya no se promocionan. Revisa el motivo de la suspensión, analiza tu cuenta y toma las medidas necesarias para cumplir los requisitos. {0}.",
-        "alertSuspendedLearnMore": "Más información sobre la suspensión de la cuenta",
-        "notManaged": "No está asociada a PrestaShop",
-        "overwriteFailed": "No se ha podido reclamar la URL del sitio web",
-        "overwriteToBeDoneManually": "Tu sitio web ya ha sido reclamado en otra cuenta Merchant Center. Como no somos administradores de tu cuenta, no podemos sobrescribir esta reclamación. Accede a tu [Google Merchant Center]({0})[:target=\"_blank\"] y cambia la URL del sitio web por esta: {1}",
-        "ineligibleForFreeListing": "Tu cuenta no es elegible para las fichas mejoradas en Google",
-        "ineligibleForFreeListingDescription": "Revisa la disconformidad en cuanto a producto así como tu cuenta en general.",
-        "claimOverwriteWithManualAction": "Para finalizar la conexión de tu cuenta Google Merchant Center, debes proporcionar la URL de tu sitio web ({0}) en tu cuenta Google Merchant Center.",
-        "noExistingAccount": "No hay cuenta existente",
-        "linkLearnMoreAbout": "Más información sobre \"{0}\"",
-        "newGmcNotListed": "A la espera de que se publique tu cuenta",
-        "newGmcNotListedDescription": "Si acabas de crear una nueva cuenta, significa que Google todavía la está construyendo. Tienes que esperar o volver más tarde. Esta operación puede tardar hasta 5 minutos por parte de Google. En otros casos, comprueba que tu GMC sigue existiendo y que todavía tienes derechos sobre ella.",
-        "phoneVerificationNeeded": "Verificación del número de teléfono",
-        "phoneVerificationNeededDescription": "Para poder utilizar tu cuenta Merchant Center, tienes que verificar tu número de teléfono",
-        "codeSent": "Código enviado",
-        "sendCode": "Enviar código",
-        "receiveCall": "Recibir llamada",
-        "phoneVerifiedContinue": "Se ha verificado tu número de teléfono, puedes continuar con la creación de tu cuenta.",
-        "enterCode": "Introduce tu código de verificación",
-        "validatingCode": "Validación del código",
-        "textMessageHasBeenSent": "Se ha enviado un mensaje de texto con un código de X dígitos",
-        "askAgain60sec": "Podrás pedir un nuevo código en 60 segundos",
-        "needPhoneVerification": "Necesitamos verificar tu identidad con tu número de teléfono",
-        "fillInputs": "Introduce tu número de teléfono y selecciona tu prefijo internacional",
-        "invalidCode": "El código no es válido",
-        "phoneNumberNotValid": "Tu número de teléfono es incorrecto, introduce solo números",
-        "code": "Código",
-        "contactMethod": "Elige el método de contacto que prefieras",
-        "dialCode": "Marca el código",
-        "phoneNumber": "Introduce tu número de teléfono",
-        "textMethod": "Mensaje de texto",
-        "callMethod": "Llamada telefónica",
-        "selectMethod": "Selecciona el método de contacto que prefieras para verificar tu identidad",
-        "alertTooManyRequests": "Has solicitado este servicio demasiadas veces con este número de teléfono. Tienes que esperar 24 horas para volver a intentarlo o cambiar tu número de teléfono.",
-        "alertSomethingHappened": "Ha ocurrido algo. Inténtalo de nuevo.",
-        "alertCodeExpired": "El código ha caducado. Pide otro",
-        "refreshAfterAddingWebsiteAddress": "Si has añadido información nueva en Google Merchant Center, actualiza tu página."
+    "sectionTitle": {
+      "psAccount": "Conecta tu tienda con tu cuenta PrestaShop",
+      "freeListing": {
+        "title": "Llega a más usuarios en Google con fichas de producto gratuitas\n",
+        "subtitle": "Las fichas de producto gratuitas te dan acceso a millones de compradores que buscan productos similares a los tuyos. Muestra tus productos de forma gratuita en las listas orgánicas en la pestaña Shopping cuando conectes tu cuenta Google con Google Merchant Center.",
+        "lastTitle": "Las empresas que utilizan conjuntamente los fichas de producto gratuitas y los anuncios en la pestaña Shopping han visto un incremento medio del >50% en clics y de >100% en las impresiones. (Datos internos de Google, julio de 2020)"
+      },
+      "smartShoppingCampaign": {
+        "title": "Anunciarse en Google con Máximo rendimiento",
+        "subtitle": "Conecta o crea tu cuenta Google Ads y lanza una campaña Máximo rendimiento para tus productos. Maximiza el rendimiento de una única campaña en varios canales de Google. Muestra tus anuncios donde tienen más posibilidades de generar conversión. \n\nY lo que es mejor, no pagas salvo que tus clientes hagan clic."
+      }
     },
-    "mcaRequirements": {
-        "steps": {
-            "websiteRequirements": "Requisitos de la tienda online",
-            "shopInfo": "Información de la tienda",
-            "phoneValidation": "Validación telefónica"
-        },
-        "title": "Crear una nueva cuenta de Merchant Center",
-        "legend": "Para participar en las fichas de producto gratuitas y anunciarte en Google debes aceptar y cumplir los siguientes requisitos:",
-        "legend2": "Se debe verificar y reclamar la URL del sitio web de la tienda antes de poder cargar los datos de los productos.  \n[Descubre cómo verificar y reclamar tu sitio web](https://support.google.com/merchants/answer/176793?hl=es).",
-        "footer": "Leer la versión completa de los requisitos de Google",
-        "accurateContactInformation": {
-            "title": "Confirmo que mis datos de contacto son correctos y válidos",
-            "description": "Los comerciantes deben tener al menos un método de contacto en su sitio web, que puede ser cualquier tipo.",
-            "link": "Descubrir cómo añadir información de contacto"
-        },
-        "secureCheckoutProcess": {
-            "title": "Confirmo que tengo un proceso claro de recogida de datos y checkout",
-            "description": "No utilizar indebidamente la información sobre el usuario, ni recogerla con fines poco claros o sin las medidas de seguridad adecuadas.",
-            "link": "Saber más sobre la recopilación y el uso indebido de datos"
-        },
-        "returnPolicy": {
-            "title": "Confirmo que mi política de devoluciones y reembolsos está configurada en mi sitio web",
-            "description": "La política de devoluciones y reembolsos debe ser clara (incluir requisitos y plazos) y fácilmente accesible en tu sitio web.",
-            "link": "Aprender a configurar las políticas de devolución"
-        },
-        "billingTerms": {
-            "title": "Confirmo que mis condiciones de facturación son claras y visibles",
-            "description": "El sitio web debe publicar de forma clara y visible las opciones de pago y todos los gastos que soportará el usuario, antes y después de la compra.",
-            "link": "Leer las directrices de Merchant Center"
-        },
-        "completeCheckoutProcess": {
-            "title": "Confirmo que dispongo de un proceso de checkout completo",
-            "description": "Los usuarios necesitan completar el proceso de compra con éxito.",
-            "link": "Saber más sobre los requisitos de checkout"
-        },
-        "websiteURL": "URL del sitio web",
-        "websiteURLDescription": "El sitio web utilizado para crear tu cuenta Merchant Center",
-        "storeName": "Nombre de la tienda",
-        "storeNameDescription": "Este nombre aparecerá en tus fichas gratuitas y en los anuncios de Shopping.",
-        "businessLocation": "Ubicación de la empresa",
-        "businessAddress": "Dirección de la empresa",
-        "businessPhone": "Número de teléfono de la empresa",
-        "businessZipCode": "Código postal",
-        "businessCity": "Ciudad",
-        "businessRegion": "Región",
-        "businessCountry": "País",
-        "changeCountryField": "Puedes [cambiar tu país]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] información en tu back office",
-        "changeRegionField": "Puedes [cambiar tu región]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] información en tu back office",
-        "changeAddressField": "Puedes [cambiar tu dirección de empresa]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] información en tu back office",
-        "changeZipCodeField": "Puedes [cambiar tu código postal]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] información en tu back office",
-        "changeCityField": "Puedes [cambiar tu ciudad]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] información en tu back office",
-        "changePhoneNumberField": "Puedes [cambiar tu número de teléfono de empresa]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] información en tu back office",
-        "siteContainsAdultContent": "Mi sitio web tiene contenido para adultos",
-        "seePolicyAdultContent": "Ver política de contenidos para adultos",
-        "labelReadAndAgree": "Al comprar anuncios Shopping, he leído y cumplo con los [Términos y Condiciones de Google]({0})[:target=\"_blank\"], incluyendo los [términos de servicio de Google Merchant Center]({1})[:target=\"_blank\"], [políticas Shopping ads]({2})[:target=\"_blank\"], y [Términos y Condiciones de Google Ads]({3})[:target=\"_blank\"].",
-        "alert": "Tu tienda se revisará, y si falta algún requisito, se suspenderá.",
-        "phoneFormat": "El número de teléfono de tu empresa no es un formato válido (solo se aceptan números), cámbialo.",
-        "updateData": "Si has realizado alguna modificación en tu back office, actualiza tu información para ver los cambios reflejados aquí."
+    "productFeedNotice": "Ayuda a los clientes a encontrar tus productos más fácilmente en Google y anúncialos gratuitamente con fichas de producto gratuitas. Estas te ayudan a llegar a más clientes y lograr que visiten tu sitio."
+  },
+  "multiShopSelector": {
+    "title": "Modo multitienda activado",
+    "subtitle": "Debes configurar tus tiendas una por una para este servicio pero podrás utilizar la misma cuenta.",
+    "selectStore": "Por favor, selecciona la primera tienda a configurar de la lista siguiente",
+    "tips": "Una vez configurada la primera tienda, puedes continuar con las demás seleccionándolas una a una en el selector de tiendas del menú horizontal",
+    "configure": "Configurar",
+    "group": "Grupo de tiendas"
+  },
+  "googleAccountCard": {
+    "title": "Cuenta de Google",
+    "introDisabled": "Conecta tu cuenta de Google y vincúlala con Google Merchant Center para desbloquear las fichas de producto gratuitas.",
+    "introEnabled": "Accede mediante el módulo PrestaShop asociado con tu cuenta de correo electrónico Google Merchant Center y cuentas de Google Ads.",
+    "footerDissociating": "PrestaShop utiliza esta cuenta para gestionar y sincronizar las cuentas Merchant Center y Google Ads.",
+    "alertCantConnect": "No puedes conectarte a tu cuenta de Google en este momento. Vuelve a intentarlo más tarde.",
+    "alertTokenMissing": "No hemos podido autenticar tu cuenta. Inténtalo de nuevo o cambia de cuenta.",
+    "stepIsMandatory": "*Este paso es obligatorio",
+    "alertInfo": "Asegúrate de autorizar todos los permisos solicitados al autenticar tu cuenta de Google.  \nEsta acción es obligatoria para que este servicio funcione correctamente.",
+    "missingTokenScopes": "Faltan algunos permisos solicitados.  \nTodos los permisos solicitados son obligatorios para que este servicio funcione correctamente, gestiona tu cuenta y asegúrate de autorizarlos."
+  },
+  "mcaCard": {
+    "title": "Cuenta Merchant Center",
+    "introDisabled": "Vincula tu cuenta de Merchant Center con PrestaShop para facilitar la sincronización de los datos de tu tienda y tus productos.",
+    "claimCollides": "Tu sitio web ya ha sido reclamado.",
+    "claimOverwrite": "Para finalizar la creación de la cuenta de Merchant Center, es necesario sobrescribir la reclamación existente.",
+    "footerEU": "Para tiendas en el Espacio Económico Europeo, en el Reino Unido o en Suiza, tu cuenta Merchant Center debe estar asociada a un [Servicio de Comparación de Precios (CSS)]({0})[:target=\"_blank\"]. \nSi creas una nueva cuenta Merchant Center a través de esta aplicación, se asociará por defecto a Google Shopping, el CSS de Google. Puedes cambiar el CSS asociado a tu cuenta en cualquier momento y encontrar partnes CSS aquí. Una vez que hayas configurado tu cuenta Merchant Center, podrá utilizar nuestra herramienta independientemente del CSS que utilices.",
+    "shopInfoMissing": "Falta información de la tienda",
+    "shopInfoMissingDescription": "Para completar la información de la tienda que falta, accede a tu [cuenta Merchant Center]({0})[:target=\"_blank\"].",
+    "userIsNotAdmin": "Necesitas Acceso de administrador",
+    "userIsTestAccount": "Esta es una cuenta de prueba",
+    "googleMCA": "Cuenta de Google Merchant Center",
+    "shopMaintenance": "No puedes conectar una cuenta Google Merchant Center mientras el modo de mantenimiento está activo.  \n Cambia los parámetros de tu tienda.",
+    "linkingFailed": "No puedes conectarte a tu cuenta Merchant Center en este momento. Vuelve a intentarlo más tarde.",
+    "AccountValidationFailed": "Ha fallado la validación de la cuenta.",
+    "unlinkFailed": "Desconexión fallida. Actualiza la página e inténtalo de nuevo.",
+    "tryAgainLater": "No podemos verificar o reclamar el sitio actual. **Recomendamos que te asegures de que el sitio es accesible** y lo intentes de nuevo más tarde.",
+    "alertSuspended": "Suspensión de cuenta: acción requerida",
+    "alertSuspendedDescription": "Google ha suspendido tu cuenta de Merchant Center debido a infracciones de las políticas. Tus productos ya no se promocionan. Revisa el motivo de la suspensión, analiza tu cuenta y toma las medidas necesarias para cumplir los requisitos. {0}.",
+    "alertSuspendedLearnMore": "Más información sobre la suspensión de la cuenta",
+    "notManaged": "No está asociada a PrestaShop",
+    "overwriteFailed": "No se ha podido reclamar la URL del sitio web",
+    "overwriteToBeDoneManually": "Tu sitio web ya ha sido reclamado en otra cuenta Merchant Center. Como no somos administradores de tu cuenta, no podemos sobrescribir esta reclamación. Accede a tu [Google Merchant Center]({0})[:target=\"_blank\"] y cambia la URL del sitio web por esta: {1}",
+    "ineligibleForFreeListing": "Tu cuenta no es elegible para las fichas mejoradas en Google",
+    "ineligibleForFreeListingDescription": "Revisa la disconformidad en cuanto a producto así como tu cuenta en general.",
+    "claimOverwriteWithManualAction": "Para finalizar la conexión de tu cuenta Google Merchant Center, debes proporcionar la URL de tu sitio web ({0}) en tu cuenta Google Merchant Center.",
+    "noExistingAccount": "No hay cuenta existente",
+    "linkLearnMoreAbout": "Más información sobre \"{0}\"",
+    "newGmcNotListed": "A la espera de que se publique tu cuenta",
+    "newGmcNotListedDescription": "Si acabas de crear una nueva cuenta, significa que Google todavía la está construyendo. Tienes que esperar o volver más tarde. Esta operación puede tardar hasta 5 minutos por parte de Google. En otros casos, comprueba que tu GMC sigue existiendo y que todavía tienes derechos sobre ella.",
+    "phoneVerificationNeeded": "Verificación del número de teléfono",
+    "phoneVerificationNeededDescription": "Para poder utilizar tu cuenta Merchant Center, tienes que verificar tu número de teléfono",
+    "codeSent": "Código enviado",
+    "sendCode": "Enviar código",
+    "receiveCall": "Recibir llamada",
+    "phoneVerifiedContinue": "Se ha verificado tu número de teléfono, puedes continuar con la creación de tu cuenta.",
+    "enterCode": "Introduce tu código de verificación",
+    "validatingCode": "Validación del código",
+    "textMessageHasBeenSent": "Se ha enviado un mensaje de texto con un código de X dígitos",
+    "askAgain60sec": "Podrás pedir un nuevo código en 60 segundos",
+    "needPhoneVerification": "Necesitamos verificar tu identidad con tu número de teléfono",
+    "fillInputs": "Introduce tu número de teléfono y selecciona tu prefijo internacional",
+    "invalidCode": "El código no es válido",
+    "phoneNumberNotValid": "Tu número de teléfono es incorrecto, introduce solo números",
+    "code": "Código",
+    "contactMethod": "Elige el método de contacto que prefieras",
+    "dialCode": "Marca el código",
+    "phoneNumber": "Introduce tu número de teléfono",
+    "textMethod": "Mensaje de texto",
+    "callMethod": "Llamada telefónica",
+    "selectMethod": "Selecciona el método de contacto que prefieras para verificar tu identidad",
+    "alertTooManyRequests": "Has solicitado este servicio demasiadas veces con este número de teléfono. Tienes que esperar 24 horas para volver a intentarlo o cambiar tu número de teléfono.",
+    "alertSomethingHappened": "Ha ocurrido algo. Inténtalo de nuevo.",
+    "alertCodeExpired": "El código ha caducado. Pide otro",
+    "refreshAfterAddingWebsiteAddress": "Si has añadido información nueva en Google Merchant Center, actualiza tu página."
+  },
+  "mcaRequirements": {
+    "steps": {
+      "websiteRequirements": "Requisitos de la tienda online",
+      "shopInfo": "Información de la tienda",
+      "phoneValidation": "Validación telefónica"
     },
-    "gmcAccountIssues": {
-        "title": "Más información sobre los problemas de la cuenta",
-        "description": "Se ha señalado tu cuenta por posibles problemas de rendimiento y cumplimiento. Revisa la información proporcionada para entender y resolver estos problemas inmediatamente"
+    "title": "Crear una nueva cuenta de Merchant Center",
+    "legend": "Para participar en las fichas de producto gratuitas y anunciarte en Google debes aceptar y cumplir los siguientes requisitos:",
+    "legend2": "Se debe verificar y reclamar la URL del sitio web de la tienda antes de poder cargar los datos de los productos.  \n[Descubre cómo verificar y reclamar tu sitio web](https://support.google.com/merchants/answer/176793?hl=es).",
+    "footer": "Leer la versión completa de los requisitos de Google",
+    "accurateContactInformation": {
+      "title": "Confirmo que mis datos de contacto son correctos y válidos",
+      "description": "Los comerciantes deben tener al menos un método de contacto en su sitio web, que puede ser cualquier tipo.",
+      "link": "Descubrir cómo añadir información de contacto"
     },
-    "productFeedCard": {
-        "title": "Feed de producto",
-        "intro": "Vincula los productos de tu catálogo para mostrarlos en las fichas gratuitas. Los precios y su disponibilidad se actualizan automáticamente todos los días, con lo que tus clientes accederán a los productos más recientes y con el precio justo que ofertas.",
-        "introToConfigure": "Es importante que envíes tu feed de productos en el formato correcto, ya que Google lo utiliza para asegurarse de que tus productos coinciden con las búsquedas correctas.",
-        "nextSync": "Próxima sincronización el {0}",
-        "mappedCategories": "{0}/{1} categorías mapeadas",
-        "alertFeedSettingSubmissionSuccess": "Has enviado correctamente los datos de tus productos a Merchant Center. Una vez aprobados, estarán disponibles para fichas gratuitas y anuncios.",
-        "alertFailed": "La sincronización del producto no se ha realizado correctamente. Comprueba los posibles motivos en [Merchant Center]({0})[:target=\"_blank\"] o contacta con [atención al cliente](mailto:support-google@prestashop.com).",
-        "alertShippingSettingsMissing": "Falta la información de envío.",
-        "alertShippingSettingsMissingDescription": "Para sincronizar correctamente tu feed de productos, añade la información de envío.",
-        "alertProductFeedDeactivated": "Si se desactiva la sincronización de productos, no se añadirán nuevos productos en GMC. La cuenta seguirá existiendo y los productos caducarán después de 30 días. Esto hace que los artículos del catálogo dejen de mostrarse en las fichas gratuitas y en las campañas publicitarias.",
-        "alertProductFeedExists": "**Ya existe un feed de productos**  \n<small>Ya existe tu feed de productos. Necesitas sobreescribirlo para sincronizar tu feed de productos PrestaShop. </small>",
-        "googleTaxonomyAssociation": "Asociación con la taxonomía de Productos de Google",
-        "optional": "Opcional",
-        "attributeDescription": "Con estos atributos, puedes organizar tus campañas publicitarias en Google Ads y anular la categoría asignada automáticamente por Google en algunos casos.",
-        "excludedProducts": "Productos excluidos",
-        "productsReadyToBeSynced": "Productos listos para ser sincronizados",
-        "productsWithProblems": "Productos con problemas",
-        "alertGoogleIsReviewingProducts": "Se están revisando tus productos \n La revisión de tus productos puede tardar entre 3 y 5 días. Una vez aprobados, estarán disponibles para fichas de producto y anuncios.",
-        "missingInformation": "Falta información",
-        "alertErrorApi": "Ahora mismo no puedes enviar los datos de tus productos a Google. Vuelve a intentarlo más tarde."
+    "secureCheckoutProcess": {
+      "title": "Confirmo que tengo un proceso claro de recogida de datos y checkout",
+      "description": "No utilizar indebidamente la información sobre el usuario, ni recogerla con fines poco claros o sin las medidas de seguridad adecuadas.",
+      "link": "Saber más sobre la recopilación y el uso indebido de datos"
     },
-    "productFeedSettings": {
-        "breadcrumb1": "Feed de producto",
-        "breadcrumb2": "Configuración del feed de producto",
-        "steps": {
-            "shippingSetup": "Configuración del envío",
-            "deliveryTimesAndRates": "Plazo de entrega y tarifas de envío",
-            "attributeMapping": "Mapeo de atributos",
-            "categoryMapping": "Mapeo de categorías",
-            "productSelection": "Product selection",
-            "summary": "Resumen",
-            "exportFeed": "Exportar feed",
-            "shippingSettingsErrors": "Este país no es compatible con tu moneda",
-            "syncSchedule": "Sincronizar hora"
+    "returnPolicy": {
+      "title": "Confirmo que mi política de devoluciones y reembolsos está configurada en mi sitio web",
+      "description": "La política de devoluciones y reembolsos debe ser clara (incluir requisitos y plazos) y fácilmente accesible en tu sitio web.",
+      "link": "Aprender a configurar las políticas de devolución"
+    },
+    "billingTerms": {
+      "title": "Confirmo que mis condiciones de facturación son claras y visibles",
+      "description": "El sitio web debe publicar de forma clara y visible las opciones de pago y todos los gastos que soportará el usuario, antes y después de la compra.",
+      "link": "Leer las directrices de Merchant Center"
+    },
+    "completeCheckoutProcess": {
+      "title": "Confirmo que dispongo de un proceso de checkout completo",
+      "description": "Los usuarios necesitan completar el proceso de compra con éxito.",
+      "link": "Saber más sobre los requisitos de checkout"
+    },
+    "websiteURL": "URL del sitio web",
+    "websiteURLDescription": "El sitio web utilizado para crear tu cuenta Merchant Center",
+    "storeName": "Nombre de la tienda",
+    "storeNameDescription": "Este nombre aparecerá en tus fichas gratuitas y en los anuncios de Shopping.",
+    "businessLocation": "Ubicación de la empresa",
+    "businessAddress": "Dirección de la empresa",
+    "businessPhone": "Número de teléfono de la empresa",
+    "businessZipCode": "Código postal",
+    "businessCity": "Ciudad",
+    "businessRegion": "Región",
+    "businessCountry": "País",
+    "changeCountryField": "Puedes [cambiar tu país]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] información en tu back office",
+    "changeRegionField": "Puedes [cambiar tu región]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] información en tu back office",
+    "changeAddressField": "Puedes [cambiar tu dirección de empresa]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] información en tu back office",
+    "changeZipCodeField": "Puedes [cambiar tu código postal]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] información en tu back office",
+    "changeCityField": "Puedes [cambiar tu ciudad]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] información en tu back office",
+    "changePhoneNumberField": "Puedes [cambiar tu número de teléfono de empresa]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] información en tu back office",
+    "siteContainsAdultContent": "Mi sitio web tiene contenido para adultos",
+    "seePolicyAdultContent": "Ver política de contenidos para adultos",
+    "labelReadAndAgree": "Al comprar anuncios Shopping, he leído y cumplo con los [Términos y Condiciones de Google]({0})[:target=\"_blank\"], incluyendo los [términos de servicio de Google Merchant Center]({1})[:target=\"_blank\"], [políticas Shopping ads]({2})[:target=\"_blank\"], y [Términos y Condiciones de Google Ads]({3})[:target=\"_blank\"].",
+    "alert": "Tu tienda se revisará, y si falta algún requisito, se suspenderá.",
+    "phoneFormat": "El número de teléfono de tu empresa no es un formato válido (solo se aceptan números), cámbialo.",
+    "updateData": "Si has realizado alguna modificación en tu back office, actualiza tu información para ver los cambios reflejados aquí."
+  },
+  "gmcAccountIssues": {
+    "title": "Más información sobre los problemas de la cuenta",
+    "description": "Se ha señalado tu cuenta por posibles problemas de rendimiento y cumplimiento. Revisa la información proporcionada para entender y resolver estos problemas inmediatamente"
+  },
+  "productFeedCard": {
+    "title": "Feed de producto",
+    "intro": "Vincula los productos de tu catálogo para mostrarlos en las fichas gratuitas. Los precios y su disponibilidad se actualizan automáticamente todos los días, con lo que tus clientes accederán a los productos más recientes y con el precio justo que ofertas.",
+    "introToConfigure": "Es importante que envíes tu feed de productos en el formato correcto, ya que Google lo utiliza para asegurarse de que tus productos coinciden con las búsquedas correctas.",
+    "nextSync": "Próxima sincronización el {0}",
+    "mappedCategories": "{0}/{1} categorías mapeadas",
+    "alertFeedSettingSubmissionSuccess": "Has enviado correctamente los datos de tus productos a Merchant Center. Una vez aprobados, estarán disponibles para fichas gratuitas y anuncios.",
+    "alertFailed": "La sincronización del producto no se ha realizado correctamente. Comprueba los posibles motivos en [Merchant Center]({0})[:target=\"_blank\"] o contacta con [atención al cliente](mailto:support-google@prestashop.com).",
+    "alertShippingSettingsMissing": "Falta la información de envío.",
+    "alertShippingSettingsMissingDescription": "Para sincronizar correctamente tu feed de productos, añade la información de envío.",
+    "alertProductFeedDeactivated": "Si se desactiva la sincronización de productos, no se añadirán nuevos productos en GMC. La cuenta seguirá existiendo y los productos caducarán después de 30 días. Esto hace que los artículos del catálogo dejen de mostrarse en las fichas gratuitas y en las campañas publicitarias.",
+    "alertProductFeedExists": "**Ya existe un feed de productos**  \n<small>Ya existe tu feed de productos. Necesitas sobreescribirlo para sincronizar tu feed de productos PrestaShop. </small>",
+    "googleTaxonomyAssociation": "Asociación con la taxonomía de Productos de Google",
+    "optional": "Opcional",
+    "attributeDescription": "Con estos atributos, puedes organizar tus campañas publicitarias en Google Ads y anular la categoría asignada automáticamente por Google en algunos casos.",
+    "excludedProducts": "Productos excluidos",
+    "productsReadyToBeSynced": "Productos listos para ser sincronizados",
+    "productsWithProblems": "Productos con problemas",
+    "alertGoogleIsReviewingProducts": "Se están revisando tus productos \n La revisión de tus productos puede tardar entre 3 y 5 días. Una vez aprobados, estarán disponibles para fichas de producto y anuncios.",
+    "missingInformation": "Falta información",
+    "alertErrorApi": "Ahora mismo no puedes enviar los datos de tus productos a Google. Vuelve a intentarlo más tarde."
+  },
+  "productFeedSettings": {
+    "breadcrumb1": "Feed de producto",
+    "breadcrumb2": "Configuración del feed de producto",
+    "steps": {
+      "shippingSetup": "Configuración del envío",
+      "deliveryTimesAndRates": "Plazo de entrega y tarifas de envío",
+      "attributeMapping": "Mapeo de atributos",
+      "productSelection": "Product Selection",
+      "categoryMapping": "Mapeo de categorías",
+      "summary": "Resumen",
+      "exportFeed": "Exportar feed",
+      "shippingSettingsErrors": "Este país no es compatible con tu moneda",
+      "syncSchedule": "Sincronizar hora"
+    },
+    "summaryTitles": {
+      "selectedProducts": "Selected products ready for synchronization",
+      "shippingParameters": "Shipping parameters",
+      "taxSettings": "Tax settings",
+      "dataSyncConfiguration": "Data synchronization configuration",
+      "deliveryTimesAndRates": "Delivery times and rates",
+      "attributesMapping": "Product attributes mapping"
+    },
+    "noticeDataStored": "Los ajustes se guardan en cada paso, se enviarán en el paso final.",
+    "submissionExplanation": "Ten en cuenta que los datos se almacenarán en cada paso pero no se enviarán hasta la etapa final.",
+    "shippingSetup": {
+      "title": "Configuración del envío",
+      "mandatoryStep": "Para que tus productos se muestren por Google Merchant Centre, la configuración del envío es un paso obligatorio.",
+      "stepExplanation": "Esto ayuda a que los clientes que buscan tus productos en Google vean tus tarifas y plazo de entrega.",
+      "estimateOption": {
+        "title": "Puedo calcular tarifas y tiempos de envío",
+        "description": "Puedes definir fácilmente una tarifa fija de envío y plazos de entrega. No se te pedirá que importes o actualices la información de envío desde el back office de PrestaShop.",
+        "summary": "Previsión"
+      },
+      "importOption": {
+        "title": "Me gustaría importar mi configuración de envío desde el back office de PrestaShop",
+        "description": "PrestaShop importará los ajustes de envío que ya están configurados en tu back office. Puedes elegir qué transportista quieres utilizar por país de destino.",
+        "summary": "Importado desde el back office"
+      },
+      "laterOption": {
+        "summary": "Configurar más tarde"
+      },
+      "validationErrors": {
+        "needOptionToBeChosen": "Necesitas seleccionar una opción para continuar"
+      }
+    },
+    "deliveryTimeAndRates": {
+      "tooltips": {
+        "carrierName": "El nombre del transportista te ayudará a identificar los transportistas cuando se cree con el método de estimación. Está limitado a 90 caracteres",
+        "freeShippingOverAmount": "Introduce el valor del gasto mínimo requerido para el envío gratuito",
+        "shippingRate": "Introduce la tarifa de envío que se aplica por debajo del importe mínimo requerido para el envío gratuito"
+      },
+      "title": "Plazo de entrega y tarifas de envío",
+      "rateAndDelivery": "Tarifas de envío y plazo de entrega",
+      "deliveryInfo": "Indica el número mínimo y máximo de días requeridos para la entrega",
+      "customRate": {
+        "title": "Elige una tarifa fija o personalizada para tus países de destino",
+        "rateTitle": "Misma tarifa para todos los países de destino",
+        "rateDesc": "Puedo calcular la misma tarifa y plazo de entrega para todos los países",
+        "customTitle": "Tarifas personalizadas por país",
+        "customDesc": "Me gustaría establecer diferentes tarifas y horarios para cada país"
+      },
+      "estimateStep": {
+        "estimateInputLabel": "Introducir transportista",
+        "error": "Rellena la información solicitada",
+        "carrierName": "Nombre del transportista",
+        "storeOffersTitle": "Mi tienda ofrece",
+        "storeOffers": {
+          "flatShippingRateForAllProducts": "Tarifa de envío fija para todos los productos",
+          "freeShippingForAllProducts": "Envío gratuito para todos los productos",
+          "freeShippingOverAmount": "Envío gratuito a partir de un determinado importe"
         },
-        "noticeDataStored": "Los ajustes se guardan en cada paso, se enviarán en el paso final.",
-        "submissionExplanation": "Ten en cuenta que los datos se almacenarán en cada paso pero no se enviarán hasta la etapa final.",
-        "shippingSetup": {
-            "title": "Configuración del envío",
-            "mandatoryStep": "Para que tus productos se muestren por Google Merchant Centre, la configuración del envío es un paso obligatorio.",
-            "stepExplanation": "Esto ayuda a que los clientes que buscan tus productos en Google vean tus tarifas y plazo de entrega.",
-            "estimateOption": {
-                "title": "Puedo calcular tarifas y tiempos de envío",
-                "description": "Puedes definir fácilmente una tarifa fija de envío y plazos de entrega. No se te pedirá que importes o actualices la información de envío desde el back office de PrestaShop.",
-                "summary": "Previsión"
-            },
-            "importOption": {
-                "title": "Me gustaría importar mi configuración de envío desde el back office de PrestaShop",
-                "description": "PrestaShop importará los ajustes de envío que ya están configurados en tu back office. Puedes elegir qué transportista quieres utilizar por país de destino.",
-                "summary": "Importado desde el back office"
-            },
-            "laterOption": {
-                "summary": "Configurar más tarde"
-            },
-            "validationErrors": {
-                "needOptionToBeChosen": "Necesitas seleccionar una opción para continuar"
-            }
-        },
-        "deliveryTimeAndRates": {
-            "tooltips": {
-                "carrierName": "El nombre del transportista te ayudará a identificar los transportistas cuando se cree con el método de estimación. Está limitado a 90 caracteres",
-                "freeShippingOverAmount": "Introduce el valor del gasto mínimo requerido para el envío gratuito",
-                "shippingRate": "Introduce la tarifa de envío que se aplica por debajo del importe mínimo requerido para el envío gratuito"
-            },
-            "title": "Plazo de entrega y tarifas de envío",
-            "rateAndDelivery": "Tarifas de envío y plazo de entrega",
-            "deliveryInfo": "Indica el número mínimo y máximo de días requeridos para la entrega",
-            "customRate": {
-                "title": "Elige una tarifa fija o personalizada para tus países de destino",
-                "rateTitle": "Misma tarifa para todos los países de destino",
-                "rateDesc": "Puedo calcular la misma tarifa y plazo de entrega para todos los países",
-                "customTitle": "Tarifas personalizadas por país",
-                "customDesc": "Me gustaría establecer diferentes tarifas y horarios para cada país"
-            },
-            "estimateStep": {
-                "estimateInputLabel": "Introducir transportista",
-                "error": "Rellena la información solicitada",
-                "carrierName": "Nombre del transportista",
-                "storeOffersTitle": "Mi tienda ofrece",
-                "storeOffers": {
-                    "flatShippingRateForAllProducts": "Tarifa de envío fija para todos los productos",
-                    "freeShippingForAllProducts": "Envío gratuito para todos los productos",
-                    "freeShippingOverAmount": "Envío gratuito a partir de un determinado importe"
-                },
-                "shippingRate": {
-                    "rate": "Gastos de envío",
-                    "rateDesc": "Introduce la tarifa de envío para todos los países de destino",
-                    "overAmount": "La entrega gratuita se aplica a partir de"
-                },
-                "summary": {
-                    "singleCountry": "Tarifa fija",
-                    "multiCountriesFlatRateForAll": "Tarifa fija para todos los países de destino"
-                },
-                "validationErrors": {
-                    "missingRateOption": "Para continuar, debes seleccionar una opción de clasificación e indicar tus tarifas y el tiempo de entrega como corresponda"
-                }
-            },
-            "importOption": {
-                "validationErrors": {
-                    "needAtLeastOneCarrier": "Debes habilitar, al menos, un transportista para continuar",
-                    "needAtLeastOneCarrierForEachCountry": "Para continuar, debes activar y completar al menos un transportista para cada país de destino seleccionado"
-                },
-                "summary": "Transportistas configurados desde el back office"
-            },
-            "productAvailaibleIn": "La lista desplegable de países coincidirá con los países y moneda que has configurado en tu tienda. Puedes seleccionar los países donde quieres que se muestren tus productos.",
-            "targetCountries": "País objetivo|Países objetivo",
-            "filterTitle": "Filtrar por país",
-            "ifMultipleCountries": "Si te diriges a varios países, el precio de cada producto se convertirá automáticamente a su divisa en Google. No obstante, deben haberse configurado en tu tienda los gastos de envío e impuestos para cada país seleccionado. Respeta las [políticas de compra específicas de cada país]({0})[:target=\"_blank\"] y la [normativa local]({1})[:target=\"_blank\"]",
-            "placeholderSelect": "Selecciona los países en los que están disponibles tus productos",
-            "shippingSettingsErrors": "Este país no es compatible con tu moneda",
-            "shippingSettings": "Configuración del envío",
-            "shippingSettingsTitle": "Configuración de envío de productos",
-            "shippingLabel1": "Configurar mis ajustes de envío ahora (recomendado)",
-            "shippingDescription1": "PrestaShop importará tu lista de transportistas desde la configuración de tu tienda y te permitirá proporcionar información adicional.",
-            "manually": "Manualmente",
-            "shippingLabel2": "Omitir y configurar más tarde en Google Merchant Center",
-            "shippingDescription2": "Tendrás que introducir la información de envío de tus productos en Google Merchant Center. ",
-            "noticeSetupShipping": "Tus productos no se sincronizarán hasta que configures la información sobre el envío de tus productos.",
-            "taxSettings": "Configuración de los impuestos",
-            "taxSettingsDescription": "Para que los usuarios entiendan el precio exacto que tendrán que pagar por un producto, debes presentar los impuestos que cobras. Selecciona cómo quieres configurar los impuestos.",
-            "autoImportTax": "Importar automáticamente la configuración de los impuestos",
-            "manualImportTax": "Configurar manualmente la configuración de impuestos en Google Merchant Center",
-            "appliedOnlyForUsa": "(se aplica solo a los Estados Unidos)",
-            "alertTaxes": "Debes mostrar los impuestos que cobras para que los usuarios entiendan el precio exacto que tendrán que pagar por tus productos.",
-            "carrierDescriptionHeader": "Transportista \n descripción",
-            "enableHeader": "Activar / \ndesactivar",
-            "shipToCustomerHeader": "Entrega a domicilio  \n",
-            "transitTimeHeader": "Plazo de entrega",
-            "countryHeader": "País",
-            "shipToCustomerTooltip": "Selecciona si este transportista entrega en la dirección del cliente o no lo hace (punto de servicio, recogida en tienda). Google solo permite habilitar a los transportistas que envían a una dirección.",
-            "handlingTimeTooltip": "Introduce el tiempo que tardas en preparar un pedido hasta que el transportista lo recoge en días laborables.",
-            "transitTimeTooltip": "Introduce cuánto tiempo tarda tu pedido en ser enviado al cliente una vez que sale de tus instalaciones.",
-            "shippingInformationTitle": "Gastos de envío y tiempo de tránsito",
-            "shippingInformationIntro": "Las tarifas de los transportistas habilitados se mostrarán a los clientes que miren tus productos en Google.",
-            "shippingTableNotice": "Google no permite la entrega con recogida en tienda, deshabilítala o cambia a otro método.",
-            "shippingSwitchCarrier": "Cambiar a habilitar/deshabilitar transportista",
-            "carriersDropdownHeader": "Copiar la información de envío a",
-            "carriersDropdownHiddenLabel": "Copiar información del transportista a otros transportistas",
-            "noCarriersTitle": "No tienes ningún transportista",
-            "noCarriersDescription": "Dirígete a la página de los transportistas para añadirlos",
-            "countryNeededTitle": "Seleccionar por país de destino",
-            "countryNeededDescription": "Introduce los países de destino para mostrar los ajustes de envío pertinentes en la tabla",
-            "addNewCarriers": "Añadir o actualizar transportistas",
-            "refreshCarriers": "Actualiza si has editado tus transportistas",
-            "switchToFlatRate": "Cambia a la configuración sobre la previsión del método de envío"
-        },
-        "export": {
-            "summarySyncDailyAt": "Sincronización diaria a {0}",
-            "synchronizationSchedule": "Exportar horario de sincronización",
-            "synchronizationTime": "Hora de sincronización",
-            "timeZone": "Zona horaria",
-            "exportMethod": "Método de exportación",
-            "allProducts": "Exportar todos los productos",
-            "byBrand": "Exportar por marca",
-            "byCategory": "Exportar por categoría",
-            "labelExcludeProducts": "Excluir productos específicos",
-            "placeholderExcludeProducts": "Buscar producto",
-            "selectCategoriesToExport": "Seleccionar las categorías a exportar",
-            "allCategories": "Todas las categorías",
-            "labelSelectBrand": "Seleccionar marca",
-            "placeholderSelectBrand": "Buscar marca",
-            "prohibitedContentNotice": "Revisa las [directrices sobre contenido prohibido]({0})[:target=\"_blank\"] para asegurarte de que los productos de tu feed no infringen estas políticas.",
-            "frequency": {
-                "daily": "Diario"
-            },
-            "teaser": {
-                "title": "Disponible en la próxima versión",
-                "badge": "Próximamente",
-                "syncScheduleCustomization": "Horario de sincronización personalizado",
-                "exportOption": "Opción de exportación",
-                "specificProductExclusion": "Exclusión de productos específicos"
-            }
-        },
-        "attributeMapping": {
-            "title1": "1. Elegir todas las características que aplican a tus productos",
-            "description1": "Te permitirá mapear los atributos obligatorios de los productos de Google en el siguiente paso según tu catálogo.",
-            "title2": "2. Mapear los atributos obligatorios de Google en tus campos personalizados",
-            "description2": "Rellena todos los valores para garantizar la validación de tus productos. Si falta un valor en tu catálogo, te recomendamos que lo crees y completes la configuración más tarde. Ten en cuenta que Google favorecerá los valores completados.",
-            "apparelAndAccessoriesTitle": "Vendo ropa y/o accesorios",
-            "apparelAndAccessoriesSubtitle": "es decir, ropa, bolsos, zapatos o sombreros",
-            "electronicsTitle": "Vendo electrodomésticos para el hogar y/o la cocina",
-            "electronicsSubtitle": "es decir, frigoríficos, lavavajillas, lavadoras, bombillas",
-            "variantSetsTitle": "Mis productos tienen conjuntos de variantes",
-            "variantSetsSubtitle": "es decir, diferentes estampados gráficos, patrones, tejidos o materiales",
-            "commonsTitle": "Ninguna de las anteriores",
-            "learnRequirementsProductSpecification": "Más información sobre los requisitos y los valores admitidos para la especificación de datos de producto de Shopping",
-            "footerNotice": "Describe los datos de tu producto mediante atributos. Además del mínimo requerido para las fichas de producto, puedes añadir otros atributos necesarios para las fichas mejoradas. La regla general es: cuantos más atributos, mejor.",
-            "addNewAttributes": "Añadir nuevos atributos en tu catálogo PrestaShop",
-            "refreshAttributes": "Actualiza si has editado tus atributos",
-            "requiredForSomeCategories": "Este campo es obligatorio para algunas categorías de productos. [Ver más]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
-            "sellApparelAndAccessories": "Ropa y accesorios",
-            "sellRefurbishedProducts": "Renovado",
-            "description": "Descripción",
-            "longDescription": "Descripción larga",
-            "description_short": "Descripción corta",
-            "energyEfficiencyClass": "Clasificación energética",
-            "maxEnergyEfficiencyClass": "Máxima calificación energética",
-            "minEnergyEfficiencyClass": "Mínima calificación energética",
-            "material": "Material",
-            "pattern": "Modelo",
-            "gtin": "GTIN",
-            "ean": "EAN13",
-            "mpn": "MPN",
-            "brand": "Marca",
-            "notAvailable": "Sin rellenar",
-            "specificTitle": "Específico",
-            "sellRefurbished": "Vendo productos reacondicionados",
-            "sellApparel": "Vendo ropa y accesorios",
-            "condition": "Condición",
-            "color": "Color",
-            "size": "Tamaño",
-            "ageGroup": "Grupo de edad",
-            "gender": "Género",
-            "theXField": "El campo \"{0}\"",
-            "thisCustomField": "Este campo personalizado",
-            "learnAboutShippingSettings": "Saber más sobre la configuración de los envíos",
-            "learnHowToSetupShippingSettings": "Aprende a configurar los envíos"
-        },
-        "productSelection": {
-            "methodSync": {
-                "title": "Select the method for products syncing",
-                "syncAllProducts": "Synchronize all products",
-                "syncAllProductsDesc": "The entire catalog will be synchronized.",
-                "syncFilteredProducts": "Synchronize filtered products",
-                "syncFilteredProductsDesc": "Only the products you select will be synchronized."
-            }
-        },
-        "syncSchedule": {
-            "title": "Horario de sincronización",
-            "subTitle": "Elija la hora cuando deseas que comience la primera sincronización, la exportación podría ralentizar tu tráfico",
-            "radioLabel1": "Ahora, después de terminar mi configuración (La exportación podría ralentizar tu tienda)",
-            "radioLabel2": "Más tarde, aproximadamente a las 2:00 AM (GMT 1) (Cuando tu tienda tenga pocas visitas)"
+        "shippingRate": {
+          "rate": "Gastos de envío",
+          "rateDesc": "Introduce la tarifa de envío para todos los países de destino",
+          "overAmount": "La entrega gratuita se aplica a partir de"
         },
         "summary": {
-            "title1": "La próxima sincronización se ha programado dentro de {0} horas",
-            "title2": "Resumen de la configuración del feed de productos",
-            "xItems": "{0} artículos",
-            "productItems": "Productos",
-            "tableHeader1": "Atributo de producto de Google",
-            "tableHeader2": "Tus campos de producto personalizados",
-            "totalProducts": "Productos activos listos para la sincronización",
-            "date": "Fecha",
-            "time": "Hora",
-            "youSell": "**Vendes** {0}",
-            "dataSyncSetUp": "Configuración de la sincronización de los datos",
-            "productAttributesMapping": "Mapeo de atributos de categoría y producto",
-            "attributeMapped": "Una categoría se ha mapeado | {0} categorías se han mapeado",
-            "mandatoryAttributesNotMapped": "No se ha mapeado un atributo de Google a tus campos personalizados | {0} atributos de Google no se han mapeado a tus campos personalizados.",
-            "noticeToCompleteMapping": "Te recomendamos mapear todos tus datos, si no Google podría rechazar tus productos.",
-            "agreementTitle": "Comprendo y acepto las siguientes condiciones*",
-            "agreementCheckboxLabel1Instant": "La sincronización de mi feed de productos se ejecutará después de que haga clic en guardar y exportar (puede tardar entre 1 y 4 horas)",
-            "agreementCheckboxLabel1Default": "La sincronización de mi feed de productos se producirá a {time} (Puede tardar entre 1 y 4 horas)",
-            "agreementCheckboxLabel2": "Las revisiones de productos de Google pueden tardar entre 3 y 5 días laborables",
-            "disabledButtonTooltip": "Comprueba nuestras condiciones antes de continuar",
-            "syncScheduledNow": "Hoy, justo después de guardar y exportar"
-        }
-    },
-    "freeListingCard": {
-        "title": "Muestra tus productos con fichas gratuitas",
-        "intro": "Muestra tu producto de forma gratuita en el listado de clasificación orgánica de la pestaña Shopping.",
-        "learnFreeListing": "Más información sobre las fichas de producto gratuitas",
-        "seeFreeListing": "Ver mis fichas de producto gratuitas en Merchant Center",
-        "googleDelay": "La revisión de los productos tarda entre 3 y 5 días laborables",
-        "alertEnableFreeListing": "Habilitar las fichas de producto para mostrar tus productos en la pestaña Shopping de forma gratuita.",
-        "alertCantEnableFreeListing": "No puedes habilitar las fichas de producto ahora mismo. Inténtalo más tarde.",
-        "alertCountryNotEligible": "El país de destino que has seleccionado no es elegible para fichas de producto gratuitas ni anuncios."
-    },
-    "googleAdsAccountCard": {
-        "title": "Cuenta de Google Ads",
-        "intro": "Crea campañas publicitarias para tus productos: encuentra el público adecuado en el momento oportuno.",
-        "text": "Una vez conectado, es posible que tengas que configurar los ajustes de facturación en tu cuenta de Google Ads.",
-        "labelSelect": "Puedes conectar una cuenta existente de Google Ads o crear una nueva en pocos pasos.",
-        "id": "ID de la cuenta de Google Ads",
-        "toUseGAdsNeedsAdminAccess": "Para utilizar una cuenta de Google Ads existente, debes tener acceso de administrador.",
-        "alertCantConnect": "No se ha podido conectar tu cuenta de Google Ads, inténtalo de nuevo.",
-        "alertBillingSettingsMissing": "Para lanzar las campañas Máximo rendimiento, debes añadir la configuración de facturación en tu cuenta Google Ads.",
-        "alertNeedRefreshAfterBilling": "Una vez completada la información de facturación en tu cuenta de Google Ads, actualiza la página para ver las actualizaciones.",
-        "alertNeedRefreshAfterInvitationLink": "Una vez aceptada la invitación en tu cuenta de Google Ads, actualiza la página para ver las actualizaciones.",
-        "alertNeedValidationFromEmail": "Haz clic aquí o comprueba tus correos electrónicos para validar tu cuenta.",
-        "alertSuspended": "Debes resolver los problemas en tu cuenta de Google Ads.",
-        "alertCancelled": "Debes reactivar tu cuenta en tu cuenta de Google Ads.",
-        "learnAboutAccountSuspension": "Más información sobre la suspensión de cuentas",
-        "learnAboutAccountCancellation": "Más información sobre la cancelación de cuentas"
-    },
-    "googleAdsAccountNew": {
-        "title": "Crear una nueva cuenta de Google Ads",
-        "steps": {
-            "email": "Correo electrónico",
-            "businessInfo": "Información de la empresa",
-            "termsOfService": "Términos de servicio"
+          "singleCountry": "Tarifa fija",
+          "multiCountriesFlatRateForAll": "Tarifa fija para todos los países de destino"
         },
-        "email": {
-            "title": "Tu dirección de correo electrónico de Google",
-            "description": "La siguiente dirección de correo electrónico es la proporcionada durante la conexión de tu cuenta de Google"
-        },
-        "business": {
-            "name": "Nombre de la empresa",
-            "title": "Información de la empresa",
-            "description": "La moneda que elijas para tu cuenta se fijará después, así que elígela con cuidado.",
-            "labelCountry": "País de facturación",
-            "placeholderCountry": "País",
-            "labelTimeZone": "Zona horaria",
-            "placeholderTimeZone": "Elige la hora",
-            "labelCurrency": "Moneda",
-            "placeholderCurrency": "Moneda"
-        },
-        "terms": {
-            "title": "Condiciones de servicio del Programa Google",
-            "label": "He leído y acepto [los términos y condiciones Google Ads]({0})[:target=\"_blank\" class=\"ps_gs-fz-12\"]"
+        "validationErrors": {
+          "missingRateOption": "Para continuar, debes seleccionar una opción de clasificación e indicar tus tarifas y el tiempo de entrega como corresponda"
         }
+      },
+      "importOption": {
+        "validationErrors": {
+          "needAtLeastOneCarrier": "Debes habilitar, al menos, un transportista para continuar",
+          "needAtLeastOneCarrierForEachCountry": "Para continuar, debes activar y completar al menos un transportista para cada país de destino seleccionado"
+        },
+        "summary": "Transportistas configurados desde el back office"
+      },
+      "productAvailaibleIn": "La lista desplegable de países coincidirá con los países y moneda que has configurado en tu tienda. Puedes seleccionar los países donde quieres que se muestren tus productos.",
+      "targetCountries": "País objetivo|Países objetivo",
+      "selectValue": "Select a value",
+      "filterTitle": "Filtrar por país",
+      "ifMultipleCountries": "Si te diriges a varios países, el precio de cada producto se convertirá automáticamente a su divisa en Google. No obstante, deben haberse configurado en tu tienda los gastos de envío e impuestos para cada país seleccionado. Respeta las [políticas de compra específicas de cada país]({0})[:target=\"_blank\"] y la [normativa local]({1})[:target=\"_blank\"]",
+      "placeholderSelect": "Selecciona los países en los que están disponibles tus productos",
+      "shippingSettingsErrors": "Este país no es compatible con tu moneda",
+      "shippingSettings": "Configuración del envío",
+      "shippingSettingsTitle": "Configuración de envío de productos",
+      "shippingLabel1": "Configurar mis ajustes de envío ahora (recomendado)",
+      "shippingDescription1": "PrestaShop importará tu lista de transportistas desde la configuración de tu tienda y te permitirá proporcionar información adicional.",
+      "manually": "Manualmente",
+      "shippingLabel2": "Omitir y configurar más tarde en Google Merchant Center",
+      "shippingDescription2": "Tendrás que introducir la información de envío de tus productos en Google Merchant Center. ",
+      "noticeSetupShipping": "Tus productos no se sincronizarán hasta que configures la información sobre el envío de tus productos.",
+      "taxSettings": "Configuración de los impuestos",
+      "taxSettingsDescription": "Para que los usuarios entiendan el precio exacto que tendrán que pagar por un producto, debes presentar los impuestos que cobras. Selecciona cómo quieres configurar los impuestos.",
+      "autoImportTax": "Importar automáticamente la configuración de los impuestos",
+      "manualImportTax": "Configurar manualmente la configuración de impuestos en Google Merchant Center",
+      "appliedOnlyForUsa": "(se aplica solo a los Estados Unidos)",
+      "alertTaxes": "Debes mostrar los impuestos que cobras para que los usuarios entiendan el precio exacto que tendrán que pagar por tus productos.",
+      "carrierDescriptionHeader": "Transportista \n descripción",
+      "enableHeader": "Activar / \ndesactivar",
+      "shipToCustomerHeader": "Entrega a domicilio  \n",
+      "transitTimeHeader": "Plazo de entrega",
+      "countryHeader": "País",
+      "shipToCustomerTooltip": "Selecciona si este transportista entrega en la dirección del cliente o no lo hace (punto de servicio, recogida en tienda). Google solo permite habilitar a los transportistas que envían a una dirección.",
+      "handlingTimeTooltip": "Introduce el tiempo que tardas en preparar un pedido hasta que el transportista lo recoge en días laborables.",
+      "transitTimeTooltip": "Introduce cuánto tiempo tarda tu pedido en ser enviado al cliente una vez que sale de tus instalaciones.",
+      "shippingInformationTitle": "Gastos de envío y tiempo de tránsito",
+      "shippingInformationIntro": "Las tarifas de los transportistas habilitados se mostrarán a los clientes que miren tus productos en Google.",
+      "shippingTableNotice": "Google no permite la entrega con recogida en tienda, deshabilítala o cambia a otro método.",
+      "shippingSwitchCarrier": "Cambiar a habilitar/deshabilitar transportista",
+      "carriersDropdownHeader": "Copiar la información de envío a",
+      "carriersDropdownHiddenLabel": "Copiar información del transportista a otros transportistas",
+      "noCarriersTitle": "No tienes ningún transportista",
+      "noCarriersDescription": "Dirígete a la página de los transportistas para añadirlos",
+      "countryNeededTitle": "Seleccionar por país de destino",
+      "countryNeededDescription": "Introduce los países de destino para mostrar los ajustes de envío pertinentes en la tabla",
+      "addNewCarriers": "Añadir o actualizar transportistas",
+      "refreshCarriers": "Actualiza si has editado tus transportistas",
+      "switchToFlatRate": "Cambia a la configuración sobre la previsión del método de envío"
     },
-    "smartShoppingCampaignCard": {
-        "title": "Aumenta tus ventas con campañas Máximo rendimiento",
-        "introNotConnected": "Conecta o crea tu cuenta Google Ads y lanza una campaña Máximo rendimiento para tus productos. Maximiza el rendimiento de una única campaña en varios canales de Google. Muestra tus anuncios donde tengan más posibilidades de generar conversión. Y lo que es mejor, no pagas salvo que se haga clic.",
-        "introConnected": "Con las campañas Máximo rendimiento, puedes anunciar tus productos y maximizar el rendimiento de tus anuncios en varios canales de Google mediante una sola campaña. Y lo que es mejor, ¡no pagas salvo que tus clientes hagan clic!",
-        "footer": "En el Espacio Económico Europeo, Reino Unido o Suiza, las campañas Máximo rendimiento pueden utilizarse con cualquier servicio de comparación de precios (CSS) con el que trabajes. Los anuncios aparecerán en las páginas de resultados de búsqueda generales y en cualquier otro lugar donde el CSS se haya adherido.",
-        "titleInfo": "¿Lo sabías?",
-        "contentInfo": "Los anunciantes que actualizan sus campañas de Shopping inteligentes a Máximo rendimiento notan un incremento medio del 12% en el valor de conversión, con el mismo o mejor retorno de la inversión publicitaria (ROAS)*",
-        "footerInfo": "* Datos de Google, Global, Anuncios, Sep-Oct 2021."
+    "export": {
+      "summarySyncDailyAt": "Sincronización diaria a {0}",
+      "synchronizationSchedule": "Exportar horario de sincronización",
+      "synchronizationTime": "Hora de sincronización",
+      "timeZone": "Zona horaria",
+      "exportMethod": "Método de exportación",
+      "allProducts": "Exportar todos los productos",
+      "byBrand": "Exportar por marca",
+      "byCategory": "Exportar por categoría",
+      "labelExcludeProducts": "Excluir productos específicos",
+      "placeholderExcludeProducts": "Buscar producto",
+      "selectCategoriesToExport": "Seleccionar las categorías a exportar",
+      "allCategories": "Todas las categorías",
+      "labelSelectBrand": "Seleccionar marca",
+      "placeholderSelectBrand": "Buscar marca",
+      "prohibitedContentNotice": "Please review the [prohibited content guidelines]({0})[:target=\"_blank\"] to ensure that products in your feed do not violate these policies.",
+      "frequency": {
+        "daily": "Diario"
+      },
+      "teaser": {
+        "title": "Disponible en la próxima versión",
+        "badge": "Próximamente",
+        "syncScheduleCustomization": "Horario de sincronización personalizado",
+        "exportOption": "Opción de exportación",
+        "specificProductExclusion": "Exclusión de productos específicos"
+      }
     },
-    "enhancedConversionTrackingCard": {
-        "title": "Seguimiento mejorado de las conversiones",
-        "intro": "Mejora la precisión de tu seguimiento de conversiones y consigue pujas más potentes. Esta función funciona junto con las etiquetas de conversión existentes y envía datos de conversión seguros y que respetan la privacidad desde tu sitio web a Google.",
-        "signTosAlert": {
-            "title": "Mejora tu seguimiento de conversiones y consigue pujas más potentes para tus Ads",
-            "text": "Enable enhanced conversion tracking by agreeing to Google Ads' terms of service and setting Google tag method in a few steps following these [instructions]({0})[:target=\"_blank\"] during activation to make sure the feature works properly."
+    "attributeMapping": {
+      "title1": "1. Elegir todas las características que aplican a tus productos",
+      "description1": "Te permitirá mapear los atributos obligatorios de los productos de Google en el siguiente paso según tu catálogo.",
+      "title2": "2. Mapear los atributos obligatorios de Google en tus campos personalizados",
+      "description2": "Rellena todos los valores para garantizar la validación de tus productos. Si falta un valor en tu catálogo, te recomendamos que lo crees y completes la configuración más tarde. Ten en cuenta que Google favorecerá los valores completados.",
+      "apparelAndAccessoriesTitle": "Vendo ropa y/o accesorios",
+      "apparelAndAccessoriesSubtitle": "es decir, ropa, bolsos, zapatos o sombreros",
+      "electronicsTitle": "Vendo electrodomésticos para el hogar y/o la cocina",
+      "electronicsSubtitle": "es decir, frigoríficos, lavavajillas, lavadoras, bombillas",
+      "variantSetsTitle": "Mis productos tienen conjuntos de variantes",
+      "variantSetsSubtitle": "es decir, diferentes estampados gráficos, patrones, tejidos o materiales",
+      "commonsTitle": "Ninguna de las anteriores",
+      "learnRequirementsProductSpecification": "Más información sobre los requisitos y los valores admitidos para la especificación de datos de producto de Shopping",
+      "footerNotice": "Describe los datos de tu producto mediante atributos. Además del mínimo requerido para las fichas de producto, puedes añadir otros atributos necesarios para las fichas mejoradas. La regla general es: cuantos más atributos, mejor.",
+      "addNewAttributes": "Añadir nuevos atributos en tu catálogo PrestaShop",
+      "refreshAttributes": "Actualiza si has editado tus atributos",
+      "requiredForSomeCategories": "Este campo es obligatorio para algunas categorías de productos. [Ver más]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
+      "sellApparelAndAccessories": "Ropa y accesorios",
+      "sellRefurbishedProducts": "Renovado",
+      "description": "Descripción",
+      "longDescription": "Descripción larga",
+      "description_short": "Descripción corta",
+      "energyEfficiencyClass": "Clasificación energética",
+      "maxEnergyEfficiencyClass": "Máxima calificación energética",
+      "minEnergyEfficiencyClass": "Mínima calificación energética",
+      "material": "Material",
+      "pattern": "Modelo",
+      "gtin": "GTIN",
+      "ean": "EAN13",
+      "mpn": "MPN",
+      "brand": "Marca",
+      "notAvailable": "Sin rellenar",
+      "specificTitle": "Específico",
+      "sellRefurbished": "Vendo productos reacondicionados",
+      "sellApparel": "Vendo ropa y accesorios",
+      "condition": "Condición",
+      "color": "Color",
+      "size": "Tamaño",
+      "ageGroup": "Grupo de edad",
+      "gender": "Género",
+      "theXField": "El campo \"{0}\"",
+      "thisCustomField": "Este campo personalizado",
+      "learnAboutShippingSettings": "Saber más sobre la configuración de los envíos",
+      "learnHowToSetupShippingSettings": "Aprende a configurar los envíos"
+    },
+    "productSelection": {
+      "newFeature": "New feature",
+      "and": "And",
+      "addFilter": "Add filter",
+      "methodSynch": {
+        "title": "Select the method for products syncing",
+        "synchAllProducts": "Synchronize all products",
+        "synchAllProductsDesc": "The entire catalog will be synchronized.",
+        "synchFilteredProducts": "Synchronize filtered products",
+        "synchFilteredProductsDesc": "Only the products you select will be synchronized."
+      },
+      "lineFilter": {
+        "errors": {
+          "empty": "This field is mandatory.",
+          "invalidEntry": "Entry is not valid.",
+          "invalidNumber": "A number is required.",
+          "invalidPositiveNumber": "A positive number is required.",
+          "invalidInteger": "A whole number is required."
+        },
+        "attributes": {
+          "label": "Attribute",
+          "placeholder": "Select an attribute",
+          "defaultAttributes": "Default attributes",
+          "features": "Feature | Features",
+          "price": "Price (tax excluded)",
+          "brand": "Brand",
+          "category": "Category",
+          "id": "Product ID",
+          "out_of_stock": "Out of stock"
+        },
+        "conditions": {
+          "label": "Condition",
+          "placeholder": "Select a condition",
+          "isEqualTo": "Is equal to",
+          "isNotEqualTo": "Is not equal to",
+          "isLessThan": "Is less than",
+          "isGreaterThan": "Is greater than",
+          "contains": "Contains",
+          "notContain": "Does not contain",
+          "isIn": "Is in",
+          "isNot": "Is not in",
+          "isFalse": "Is false",
+          "isTrue": "Is true"
+        },
+        "value": {
+          "label": "Value",
+          "selectValue": "Select a value",
+          "enterValue": "Enter a value",
+          "false": "Is false",
+          "true": "Is true"
         }
+      },
+      "productCount": {
+        "productSelected": "product selected. | products selected.",
+        "error": "We are not able to retrieve the requested data right now. Check your configuration and try again later.",
+        "pending": "Searching products...",
+        "pendingLong": "The search is taking longer than expected. Please wait and don’t refresh the page.",
+        "nothingFound": "We haven't found any products matching your selection. Change your filters and try again.",
+        "tryAgain": "Try again"
+      }
     },
-    "smartShoppingCampaignCreation": {
-        "allFilters": "Todos los filtros",
-        "breadcrumb1": "Campañas",
-        "breadcrumbCreateSSC": "Crear campaña Smart Shopping",
-        "breadcrumbEditSSC": "Modificar campaña Smart Shopping",
-        "breadcrumbCreatePMax": "Crear una campaña Máximo rendimiento",
-        "breadcrumbEditPMax": "Modificar una campaña Máximo rendimiento",
-        "inputNameHelper": "El nombre debe ser único y tener un máximo de 125 caracteres.",
-        "inputNameLabel": "Nombre de la campaña",
-        "inputNameTooltip": "Elige un nombre que describa claramente el tema de la campaña para que puedas encontrarla fácilmente en tu cuenta. El nombre de tu campaña no es visible para tus clientes.",
-        "inputNamePlaceholder": "Escribe el nombre de la campaña",
-        "inputCampaignNameInvalidFeedback": "El nombre debe ser único.",
-        "inputCampaignNameTooLongFeedback": "El nombre debe tener menos de 125 caracteres.",
-        "inputDurationHelper": "Recomendamos una duración mínima de 30 días para que Google pueda optimizar tu campaña.",
-        "inputDurationLabel": "Duración de la campaña",
-        "inputDurationTooltip": "Las campañas publicitarias no tienen fecha de finalización por defecto, por lo que los anuncios pueden funcionar indefinidamente. Puedes añadir una fecha de finalización para crear una campaña más corta.",
-        "inputDurationLabel1": "Fecha de inicio",
-        "inputDurationLabel2": "Fecha de finalización (opcional)",
-        "inputDurationInvalidFeedback": "La fecha de finalización debe fijarse en el futuro.",
-        "inputDatePickerHelper": "Utiliza las teclas del cursor para navegar por las fechas del calendario",
-        "inputCountryHelper": "Para dirigirte a varios países debes crear varias campañas.",
-        "inputCountryImutable": "No se puede cambiar el país después de la creación, si quieres dirigirte a un país diferente, tendrás que crear una nueva campaña",
-        "inputCountryLabel": "País objetivo",
-        "inputCountryTooltip": "Los anuncios de tu campaña son elegibles para mostrarse a los clientes en tus ubicaciones geográficas objetivo, o a los clientes que han seleccionado tu idioma objetivo al configurar ese idioma en su navegador.",
-        "inputFiltersLegend": "Filtros de productos",
-        "inputFiltersAllLabel": "Incluir todos los productos sincronizados",
-        "inputFiltersPartialLabel": "Seleccionar los productos utilizando los filtros de partición de productos",
-        "inputFiltersHelper": "Tómate tiempo para [leer las políticas de anuncios de Google Shopping]({0})[:target=\"_blank\"] algunos productos se prohíben o limitan.",
-        "inputBudgetHelper": "El presupuesto mínimo varía según el país objetivo. Selecciona un país para ver el mínimo exacto requerido.",
-        "inputBudgetHelperForTargetCountry": "El mínimo para {country} es {budget}, asegurando un alcance suficiente para tu campaña en esta región.",
-        "inputBudgetInvalidFeedback": "Tu presupuesto diario debe ser un número válido superior a 1. Para números decimales, utiliza un punto como separador.",
-        "inputBudgetBeforeThresholdFeedback": "El presupuesto mínimo requerido para este país objetivo es {budget}. Incrementa tu presupuesto para continuar.",
-        "inputBudgetFeedback": "Presupuesto diario de la campaña",
-        "inputBudgetTooltip": "Para garantizar el resultado de Ads, la base mínima depende de tu país objetivo, tu eliges el presupuesto y puedes ajustarlo en cualquier momento.",
-        "inputBudgetPlaceholder": "Cantidad",
-        "inputAllSyncedProducts": "No se han seleccionado filtros",
-        "formHelperTitle": "Activación de la campaña",
-        "formHelperDescription": "Tu campaña se ejecutará hasta que la interrumpas o hasta que se cumpla la fecha de finalización. Puedes pausarla en cualquier momento.",
-        "errorNoProducts": "Quieres lanzar una campaña pero Google Merchant Center no contiene aún ningún producto. Tu campaña se iniciará cuando Google haya aprobado, por lo menos, un producto.",
-        "errorApi": "No pudimos publicar tu campaña, vuelve a intentarlo",
-        "errorFetchingFilters": "No hemos podido recuperar todos los filtros de Google. Por ahora no puedes modificarlos.",
-        "recapTitle": "Resumen de la campaña",
-        "recapNoFiltersDescription": "Todos los productos sincronizados aprobados por Google",
-        "recapFooter": "Comprueba la información de tu campaña antes de validarla. Siempre puedes modificar algunos parámetros mientras la campaña se está ejecutando.",
-        "toggleCreationRemarketingTag": "Activar las etiquetas de remarketing en mi sitio",
-        "toggleCreationNewRemarketingTag": "Crea una nueva etiqueta de remarketing y seguimiento de conversiones en tu tienda",
-        "enableCreationRemarketingTag": "Habilitar la etiqueta de remarketing y seguimiento de conversiones",
-        "pauseCampaign": "Tu campaña se ejecutará hasta que la interrumpas o hasta que se cumpla la fecha de finalización. Puedes pausarla en cualquier momento.",
+    "syncSchedule": {
+      "title": "Horario de sincronización",
+      "subTitle": "Elija la hora cuando deseas que comience la primera sincronización, la exportación podría ralentizar tu tráfico",
+      "radioLabel1": "Ahora, después de terminar mi configuración (La exportación podría ralentizar tu tienda)",
+      "radioLabel2": "Más tarde, aproximadamente a las 2:00 AM (GMT 1) (Cuando tu tienda tenga pocas visitas)"
+    },
+    "summary": {
+      "title": "Product feed summary",
+      "xItems": "{0} artículos",
+      "productItems": "Productos",
+      "tableHeader1": "Atributo de producto de Google",
+      "tableHeader2": "Product value",
+      "totalProducts": "Productos activos listos para la sincronización",
+      "date": "Fecha",
+      "nextSync": "The next synchronization is on {date}.",
+      "time": "Hora",
+      "youSell": "**Vendes** {0}",
+      "dataSyncSetUp": "Configuración de la sincronización de los datos",
+      "productAttributesMapping": "Mapeo de atributos de categoría y producto",
+      "errorLoadDataSelectedProduct": "Unable to load data",
+      "attributeMapped": "One product attribute mapped | {0} product attributes mapped",
+      "mandatoryAttributesNotMapped": "No se ha mapeado un atributo de Google a tus campos personalizados | {0} atributos de Google no se han mapeado a tus campos personalizados.",
+      "noticeToCompleteMapping": "Te recomendamos mapear todos tus datos, si no Google podría rechazar tus productos.",
+      "agreementTitle": "Conditions",
+      "agreement1": "The synchronization of my product feed will run after I click on save and export and may take 1-4 hours",
+      "agreement2": "Google products reviews may take 3-5 business days",
+      "agreementCheckboxLabel": "I understand and agree to the conditions above",
+      "disabledButtonTooltip": "Comprueba nuestras condiciones antes de continuar",
+      "syncScheduledNow": "Hoy, justo después de guardar y exportar"
+    }
+  },
+  "freeListingCard": {
+    "title": "Muestra tus productos con fichas gratuitas",
+    "intro": "Muestra tu producto de forma gratuita en el listado de clasificación orgánica de la pestaña Shopping.",
+    "learnFreeListing": "Más información sobre las fichas de producto gratuitas",
+    "seeFreeListing": "Ver mis fichas de producto gratuitas en Merchant Center",
+    "googleDelay": "Google takes 3-5 working days to review products",
+    "alertEnableFreeListing": "Habilitar las fichas de producto para mostrar tus productos en la pestaña Shopping de forma gratuita.",
+    "alertCantEnableFreeListing": "No puedes habilitar las fichas de producto ahora mismo. Inténtalo más tarde.",
+    "alertCountryNotEligible": "El país de destino que has seleccionado no es elegible para fichas de producto gratuitas ni anuncios."
+  },
+  "googleAdsAccountCard": {
+    "title": "Cuenta de Google Ads",
+    "intro": "Crea campañas publicitarias para tus productos: encuentra el público adecuado en el momento oportuno.",
+    "text": "Una vez conectado, es posible que tengas que configurar los ajustes de facturación en tu cuenta de Google Ads.",
+    "labelSelect": "Puedes conectar una cuenta existente de Google Ads o crear una nueva en pocos pasos.",
+    "id": "ID de la cuenta de Google Ads",
+    "toUseGAdsNeedsAdminAccess": "Para utilizar una cuenta de Google Ads existente, debes tener acceso de administrador.",
+    "alertCantConnect": "No se ha podido conectar tu cuenta de Google Ads, inténtalo de nuevo.",
+    "alertBillingSettingsMissing": "Para lanzar las campañas Máximo rendimiento, debes añadir la configuración de facturación en tu cuenta Google Ads.",
+    "alertNeedRefreshAfterBilling": "Una vez completada la información de facturación en tu cuenta de Google Ads, actualiza la página para ver las actualizaciones.",
+    "alertNeedRefreshAfterInvitationLink": "Una vez aceptada la invitación en tu cuenta de Google Ads, actualiza la página para ver las actualizaciones.",
+    "alertNeedValidationFromEmail": "Haz clic aquí o comprueba tus correos electrónicos para validar tu cuenta.",
+    "alertSuspended": "Debes resolver los problemas en tu cuenta de Google Ads.",
+    "alertCancelled": "Debes reactivar tu cuenta en tu cuenta de Google Ads.",
+    "learnAboutAccountSuspension": "Más información sobre la suspensión de cuentas",
+    "learnAboutAccountCancellation": "Más información sobre la cancelación de cuentas"
+  },
+  "googleAdsAccountNew": {
+    "title": "Crear una nueva cuenta de Google Ads",
+    "steps": {
+      "email": "Correo electrónico",
+      "businessInfo": "Información de la empresa",
+      "termsOfService": "Términos de servicio"
+    },
+    "email": {
+      "title": "Tu dirección de correo electrónico de Google",
+      "description": "La siguiente dirección de correo electrónico es la proporcionada durante la conexión de tu cuenta de Google"
+    },
+    "business": {
+      "name": "Nombre de la empresa",
+      "title": "Información de la empresa",
+      "description": "La moneda que elijas para tu cuenta se fijará después, así que elígela con cuidado.",
+      "labelCountry": "País de facturación",
+      "placeholderCountry": "País",
+      "labelTimeZone": "Zona horaria",
+      "placeholderTimeZone": "Elige la hora",
+      "labelCurrency": "Moneda",
+      "placeholderCurrency": "Moneda"
+    },
+    "terms": {
+      "title": "Condiciones de servicio del Programa Google",
+      "label": "He leído y acepto [los términos y condiciones Google Ads]({0})[:target=\"_blank\" class=\"ps_gs-fz-12\"]"
+    }
+  },
+  "smartShoppingCampaignCard": {
+    "title": "Aumenta tus ventas con campañas Máximo rendimiento",
+    "introNotConnected": "Conecta o crea tu cuenta Google Ads y lanza una campaña Máximo rendimiento para tus productos. Maximiza el rendimiento de una única campaña en varios canales de Google. Muestra tus anuncios donde tengan más posibilidades de generar conversión. Y lo que es mejor, no pagas salvo que se haga clic.",
+    "introConnected": "Con las campañas Máximo rendimiento, puedes anunciar tus productos y maximizar el rendimiento de tus anuncios en varios canales de Google mediante una sola campaña. Y lo que es mejor, ¡no pagas salvo que tus clientes hagan clic!",
+    "footer": "En el Espacio Económico Europeo, Reino Unido o Suiza, las campañas Máximo rendimiento pueden utilizarse con cualquier servicio de comparación de precios (CSS) con el que trabajes. Los anuncios aparecerán en las páginas de resultados de búsqueda generales y en cualquier otro lugar donde el CSS se haya adherido.",
+    "titleInfo": "¿Lo sabías?",
+    "contentInfo": "Los anunciantes que actualizan sus campañas de Shopping inteligentes a Máximo rendimiento notan un incremento medio del 12% en el valor de conversión, con el mismo o mejor retorno de la inversión publicitaria (ROAS)*",
+    "footerInfo": "* Datos de Google, Global, Anuncios, Sep-Oct 2021."
+  },
+  "enhancedConversionTrackingCard": {
+    "title": "Seguimiento mejorado de las conversiones",
+    "intro": "Mejora la precisión de tu seguimiento de conversiones y consigue pujas más potentes. Esta función funciona junto con las etiquetas de conversión existentes y envía datos de conversión seguros y que respetan la privacidad desde tu sitio web a Google.",
+    "signTosAlert": {
+      "title": "Mejora tu seguimiento de conversiones y consigue pujas más potentes para tus Ads",
+      "text": "Enable enhanced conversion tracking by agreeing to Google Ads' terms of service and setting Google tag method in a few steps following these [instructions]({0})[:target=\"_blank\"] during activation to make sure the feature works properly."
+    }
+  },
+  "smartShoppingCampaignCreation": {
+    "allFilters": "Todos los filtros",
+    "breadcrumb1": "Campañas",
+    "breadcrumbCreateSSC": "Crear campaña Smart Shopping",
+    "breadcrumbEditSSC": "Modificar campaña Smart Shopping",
+    "breadcrumbCreatePMax": "Crear una campaña Máximo rendimiento",
+    "breadcrumbEditPMax": "Modificar una campaña Máximo rendimiento",
+    "inputNameHelper": "El nombre debe ser único y tener un máximo de 125 caracteres.",
+    "inputNameLabel": "Nombre de la campaña",
+    "inputNameTooltip": "Elige un nombre que describa claramente el tema de la campaña para que puedas encontrarla fácilmente en tu cuenta. El nombre de tu campaña no es visible para tus clientes.",
+    "inputNamePlaceholder": "Escribe el nombre de la campaña",
+    "inputCampaignNameInvalidFeedback": "El nombre debe ser único.",
+    "inputCampaignNameTooLongFeedback": "El nombre debe tener menos de 125 caracteres.",
+    "inputDurationHelper": "Recomendamos una duración mínima de 30 días para que Google pueda optimizar tu campaña.",
+    "inputDurationLabel": "Duración de la campaña",
+    "inputDurationTooltip": "Las campañas publicitarias no tienen fecha de finalización por defecto, por lo que los anuncios pueden funcionar indefinidamente. Puedes añadir una fecha de finalización para crear una campaña más corta.",
+    "inputDurationLabel1": "Fecha de inicio",
+    "inputDurationLabel2": "Fecha de finalización (opcional)",
+    "inputDurationInvalidFeedback": "La fecha de finalización debe fijarse en el futuro.",
+    "inputDatePickerHelper": "Utiliza las teclas del cursor para navegar por las fechas del calendario",
+    "inputCountryHelper": "Para dirigirte a varios países debes crear varias campañas.",
+    "inputCountryImutable": "No se puede cambiar el país después de la creación, si quieres dirigirte a un país diferente, tendrás que crear una nueva campaña",
+    "inputCountryLabel": "País objetivo",
+    "inputCountryTooltip": "Los anuncios de tu campaña son elegibles para mostrarse a los clientes en tus ubicaciones geográficas objetivo, o a los clientes que han seleccionado tu idioma objetivo al configurar ese idioma en su navegador.",
+    "inputFiltersLegend": "Filtros de productos",
+    "inputFiltersAllLabel": "Incluir todos los productos sincronizados",
+    "inputFiltersPartialLabel": "Seleccionar los productos utilizando los filtros de partición de productos",
+    "inputFiltersHelper": "Tómate tiempo para [leer las políticas de anuncios de Google Shopping]({0})[:target=\"_blank\"] algunos productos se prohíben o limitan.",
+    "inputBudgetHelper": "El presupuesto mínimo varía según el país objetivo. Selecciona un país para ver el mínimo exacto requerido.",
+    "inputBudgetHelperForTargetCountry": "El mínimo para {country} es {budget}, asegurando un alcance suficiente para tu campaña en esta región.",
+    "inputBudgetInvalidFeedback": "Tu presupuesto diario debe ser un número válido superior a 1. Para números decimales, utiliza un punto como separador.",
+    "inputBudgetBeforeThresholdFeedback": "El presupuesto mínimo requerido para este país objetivo es {budget}. Incrementa tu presupuesto para continuar.",
+    "inputBudgetFeedback": "Presupuesto diario de la campaña",
+    "inputBudgetTooltip": "Para garantizar el resultado de Ads, la base mínima depende de tu país objetivo, tu eliges el presupuesto y puedes ajustarlo en cualquier momento.",
+    "inputBudgetPlaceholder": "Cantidad",
+    "inputAllSyncedProducts": "No se han seleccionado filtros",
+    "formHelperTitle": "Activación de la campaña",
+    "formHelperDescription": "Tu campaña se ejecutará hasta que la interrumpas o hasta que se cumpla la fecha de finalización. Puedes pausarla en cualquier momento.",
+    "errorNoProducts": "Quieres lanzar una campaña pero Google Merchant Center no contiene aún ningún producto. Tu campaña se iniciará cuando Google haya aprobado, por lo menos, un producto.",
+    "errorApi": "No pudimos publicar tu campaña, vuelve a intentarlo",
+    "errorFetchingFilters": "No hemos podido recuperar todos los filtros de Google. Por ahora no puedes modificarlos.",
+    "recapTitle": "Resumen de la campaña",
+    "recapNoFiltersDescription": "Todos los productos sincronizados aprobados por Google",
+    "recapFooter": "Comprueba la información de tu campaña antes de validarla. Siempre puedes modificar algunos parámetros mientras la campaña se está ejecutando.",
+    "toggleCreationRemarketingTag": "Activar las etiquetas de remarketing en mi sitio",
+    "toggleCreationNewRemarketingTag": "Crea una nueva etiqueta de remarketing y seguimiento de conversiones en tu tienda",
+    "enableCreationRemarketingTag": "Habilitar la etiqueta de remarketing y seguimiento de conversiones",
+    "pauseCampaign": "Tu campaña se ejecutará hasta que la interrumpas o hasta que se cumpla la fecha de finalización. Puedes pausarla en cualquier momento.",
+    "alerts": {
+      "noTag": "Al no añadir la etiqueta automáticamente, Google no podrá enviar los resultados de las campañas",
+      "noConversionActions": "La etiqueta de seguimiento se ha activado, pero no hay ninguna acción de conversión configurada en la tienda. Se puede arreglar creando otras.",
+      "hasUnhandledFilters": "Al menos un filtro de esta campaña no es compatible con este módulo. Para evitar cualquier pérdida en tu configuración actual, solo se pueden modificar los detalles básicos de la campaña.",
+      "PMaxExplanationTitle": "Máximo rendimiento es un tipo de campaña basada en objetivos.",
+      "PMaxExplanation": "Máximo rendimiento es un tipo de campaña mejorada con la tecnología inteligente de Google. Puede ayudarte a optimizar tus anuncios en varios canales de Google y obtener mejores resultados para tu negocio.",
+      "PMaxExplanationPrecision": "Y lo que es mejor, no pagarás salvo que los clientes hagan clic.",
+      "PMaxExplanationLink": "Saber más sobre las campañas Máximo rendimiento"
+    },
+    "labelSelectedDimension": "Valor de la dimensión seleccionada",
+    "nbDimensionSelected": "Ninguna dimensión seleccionada | {0} dimensión seleccionada | {0} dimensiones seleccionadas",
+    "nbValuesSelected": "Ningún valor seleccionado | {0} valor seleccionado | {0} valores seleccionados",
+    "selectProductsTitle": "Elegir un filtro de producto",
+    "selectProductsSubtitle": "La campaña solo puede tener una dimensión con uno o varios valores.",
+    "toggleNewConversionTag": "Configurar nuevas etiquetas de seguimiento de la conversión en mi sitio",
+    "descriptiveMessage": "Solo se muestran las campañas Máximo rendimiento y las campañas Shopping inteligentes asociadas a tu cuenta de Google Merchant Center. \nSi deseas ver todas tus campañas, [accede a tu cuenta de Google Ads]({0})[:target=\"_blank\"].",
+    "nbProductsFiltersSelected": "Ningún filtro de producto seleccionado | {0} filtro de producto seleccionado | {0} filtros de producto seleccionados",
+    "dimensionXFilterSelected": "{0} filtro",
+    "categories": "Categoría",
+    "categoriesSubTitle": "Categoría de producto definida por Google para tu producto (por ejemplo: Ropa y Accesorios > Ropa > Abrigos y Chaquetas)",
+    "brands": "Marca",
+    "brandsSubTitle": "Marca del producto",
+    "products": "ID del Producto",
+    "productsSubTitle": "El identificador único de tu producto",
+    "conditions": "Estado del producto",
+    "conditionsSubTitle": "El estado de su producto en el momento de la venta (por ejemplo: nuevo, usado o reacondicionado)",
+    "popinTitle": "Filtros de productos de la campaña",
+    "popinTitleConfirmCancel": "Volver",
+    "xProducts": " ({0} producto) | ({0} producto) | ({0} productos)",
+    "productConditions": {
+      "unspecified": "Sin especificar",
+      "unknown": "Desconocido",
+      "new": "Nuevo",
+      "refurbished": "Renovado",
+      "used": "Usado"
+    },
+    "dimensionXFilterSelectedWithXProducts": "{0} filtro | {0} filtro ({1} producto) | {0} filtro ({1} productos)",
+    "filtersWithxValues": "{0} filtros | {0} filtros con {1} producto afectado | {0} filtros con {1} productos afectados",
+    "budgetTip": {
+      "content": "Para lograr el éxito de tu campaña, es esencial ajustar tu presupuesto diario según el país objetivo. Por ejemplo, se recomienda un punto de partida de {budget} por {country}. Al elegir tu país objetivo, puedes valorar el presupuesto idóneo para alcanzar tus objetivos. Recuerda que este presupuesto de base es algo más que una cifra; es un componente clave de la estrategia de tu campaña. Un presupuesto bien planificado facilita probar y ajustar, permitiéndote adaptar el gasto a los requisitos específicos de tu negocio y mejorar el resultado general de la campaña."
+    }
+  },
+  "productFeedPage": {
+    "breadcrumb": {
+      "productStatusDetails": "Productos rechazados",
+      "nonCompliantProducts": "Productos no conformes"
+    },
+    "alert": {
+      "googleIsReviewing": "Se están revisando tus productos \n La revisión de tus productos puede tardar entre 3 y 5 días. Una vez aprobados, estarán disponibles para fichas de producto y anuncios.",
+      "alertSuccess": "Te has inscrito. Una vez que tus productos sean aprobados, podrán aparecer en los resultados de búsqueda de la pestaña Google Shopping."
+    },
+    "syncSummary": {
+      "syncHistory": {
+        "title": {
+          "planned": "Sincronización planificada",
+          "started": "Sincronización iniciada",
+          "failed": "Sincronización fallida",
+          "completed": "Sincronización completada",
+          "next": "Próxima sincronización",
+          "notPlanned": "Sin sincronización planificada"
+        },
+        "subtitle": {
+          "willHappenOnDate": "Empezará el {0} a las {1}",
+          "happenedOnDate": "El {date}",
+          "error": "Debido a un problema técnico, la sincronización falló el {0} a las {1}. Se realizará otra dentro de unas horas."
+        }
+      }
+    },
+    "dashboardPage": {
+      "timeline": {},
+      "productFeedConfiguration": {
         "alerts": {
-            "noTag": "Al no añadir la etiqueta automáticamente, Google no podrá enviar los resultados de las campañas",
-            "noConversionActions": "La etiqueta de seguimiento se ha activado, pero no hay ninguna acción de conversión configurada en la tienda. Se puede arreglar creando otras.",
-            "hasUnhandledFilters": "Al menos un filtro de esta campaña no es compatible con este módulo. Para evitar cualquier pérdida en tu configuración actual, solo se pueden modificar los detalles básicos de la campaña.",
-            "PMaxExplanationTitle": "Máximo rendimiento es un tipo de campaña basada en objetivos.",
-            "PMaxExplanation": "Máximo rendimiento es un tipo de campaña mejorada con la tecnología inteligente de Google. Puede ayudarte a optimizar tus anuncios en varios canales de Google y obtener mejores resultados para tu negocio.",
-            "PMaxExplanationPrecision": "Y lo que es mejor, no pagarás salvo que los clientes hagan clic.",
-            "PMaxExplanationLink": "Saber más sobre las campañas Máximo rendimiento"
+          "productFeedCta": "configuración del feed de producto",
+          "boSettingsCta": "back office",
+          "noEligibleLanguagesTitle": "Idiomas no aptos",
+          "noEligibleLanguagesDesc": "Actualiza tus países de destino en tu {0} o añade los idiomas correspondientes en tu {1} para que coincidan con tus países de destino.",
+          "noEligibleCurrenciesTitle": "Monedas no aptas",
+          "noEligibleCurrenciesDesc": "Actualiza tus países de destino en tu {0} o añade las monedas correspondientes en tu {1} para que coincidan con tus países de destino que dan error."
         },
-        "labelSelectedDimension": "Valor de la dimensión seleccionada",
-        "nbDimensionSelected": "Ninguna dimensión seleccionada | {0} dimensión seleccionada | {0} dimensiones seleccionadas",
-        "nbValuesSelected": "Ningún valor seleccionado | {0} valor seleccionado | {0} valores seleccionados",
-        "selectProductsTitle": "Elegir un filtro de producto",
-        "selectProductsSubtitle": "La campaña solo puede tener una dimensión con uno o varios valores.",
-        "toggleNewConversionTag": "Configurar nuevas etiquetas de seguimiento de la conversión en mi sitio",
-        "descriptiveMessage": "Solo se muestran las campañas Máximo rendimiento y las campañas Shopping inteligentes asociadas a tu cuenta de Google Merchant Center. \nSi deseas ver todas tus campañas, [accede a tu cuenta de Google Ads]({0})[:target=\"_blank\"].",
-        "nbProductsFiltersSelected": "Ningún filtro de producto seleccionado | {0} filtro de producto seleccionado | {0} filtros de producto seleccionados",
-        "dimensionXFilterSelected": "{0} filtro",
-        "categories": "Categoría",
-        "categoriesSubTitle": "Categoría de producto definida por Google para tu producto (por ejemplo: Ropa y Accesorios > Ropa > Abrigos y Chaquetas)",
-        "brands": "Marca",
-        "brandsSubTitle": "Marca del producto",
-        "products": "ID del Producto",
-        "productsSubTitle": "El identificador único de tu producto",
-        "conditions": "Estado del producto",
-        "conditionsSubTitle": "El estado de su producto en el momento de la venta (por ejemplo: nuevo, usado o reacondicionado)",
-        "popinTitle": "Filtros de productos de la campaña",
-        "popinTitleConfirmCancel": "Volver",
-        "xProducts": " ({0} producto) | ({0} producto) | ({0} productos)",
-        "productConditions": {
-            "unspecified": "Sin especificar",
-            "unknown": "Desconocido",
-            "new": "Nuevo",
-            "refurbished": "Renovado",
-            "used": "Usado"
-        },
-        "dimensionXFilterSelectedWithXProducts": "{0} filtro | {0} filtro ({1} producto) | {0} filtro ({1} productos)",
-        "filtersWithxValues": "{0} filtros | {0} filtros con {1} producto afectado | {0} filtros con {1} productos afectados",
-        "budgetTip": {
-            "content": "Para lograr el éxito de tu campaña, es esencial ajustar tu presupuesto diario según el país objetivo. Por ejemplo, se recomienda un punto de partida de {budget} por {country}. Al elegir tu país objetivo, puedes valorar el presupuesto idóneo para alcanzar tus objetivos. Recuerda que este presupuesto de base es algo más que una cifra; es un componente clave de la estrategia de tu campaña. Un presupuesto bien planificado facilita probar y ajustar, permitiéndote adaptar el gasto a los requisitos específicos de tu negocio y mejorar el resultado general de la campaña."
+        "title": "Tu configuración del feed de productos",
+        "targetCountries": "País objetivo|Países objetivo:",
+        "languages": "Idioma:|Idiomas:",
+        "currencies": "Moneda:|Monedas:",
+        "noLanguage": "Idioma no apto",
+        "noCurrency": "Moneda no apta"
+      },
+      "productVerification": {
+        "stepTitle": "Productos verificados por PrestaShop antes de enviar a Google",
+        "stepDetails": "Antes de enviar todos tus productos (incluidas las variaciones), nos aseguramos de que cumplen las políticas de Google Merchant Center. Verificamos los productos **cada vez que se detecta un cambio**, y si hay algún producto no conforme, facilitamos orientación sobre lo que se debe hacer. Haz clic en productos no conformes para obtener más información.\n\nTras el envío, Google asigna un estado a cada producto: **Aprobado, A punto de caducar, Pendiente** o **Rechazado**.",
+        "reportCards": {
+          "selectedProducts": "My selected products",
+          "selectedProductsDescription": "Selected products with variations in product feed languages",
+          "verified": "Productos conformes",
+          "verifiedDescription": "Productos aprobados por PrestaShop listos para enviarse a Google.",
+          "nonCompliant": "Productos no conformes",
+          "nonCompliantDescription": "Productos que no cumplen los requerimientos de Google."
         }
-    },
-    "productFeedPage": {
-        "breadcrumb": {
-            "productStatusDetails": "Productos rechazados",
-            "nonCompliantProducts": "Productos no conformes"
-        },
-        "alert": {
-            "googleIsReviewing": "Se están revisando tus productos \n La revisión de tus productos puede tardar entre 3 y 5 días. Una vez aprobados, estarán disponibles para fichas de producto y anuncios.",
-            "alertSuccess": "Te has inscrito. Una vez que tus productos sean aprobados, podrán aparecer en los resultados de búsqueda de la pestaña Google Shopping."
-        },
-        "syncSummary": {
-            "syncHistory": {
-                "title": {
-                    "planned": "Sincronización planificada",
-                    "started": "Sincronización iniciada",
-                    "failed": "Sincronización fallida",
-                    "completed": "Sincronización completada",
-                    "next": "Próxima sincronización",
-                    "notPlanned": "Sin sincronización planificada"
-                },
-                "subtitle": {
-                    "willHappenOnDate": "Empezará el {0} a las {1}",
-                    "happenedOnDate": "El {date}",
-                    "error": "Debido a un problema técnico, la sincronización falló el {0} a las {1}. Se realizará otra dentro de unas horas."
-                }
-            }
-        },
-        "dashboardPage": {
-            "timeline": {},
-            "productFeedConfiguration": {
-                "alerts": {
-                    "productFeedCta": "configuración del feed de producto",
-                    "boSettingsCta": "back office",
-                    "noEligibleLanguagesTitle": "Idiomas no aptos",
-                    "noEligibleLanguagesDesc": "Actualiza tus países de destino en tu {0} o añade los idiomas correspondientes en tu {1} para que coincidan con tus países de destino.",
-                    "noEligibleCurrenciesTitle": "Monedas no aptas",
-                    "noEligibleCurrenciesDesc": "Actualiza tus países de destino en tu {0} o añade las monedas correspondientes en tu {1} para que coincidan con tus países de destino que dan error."
-                },
-                "title": "Tu configuración del feed de productos",
-                "targetCountries": "País objetivo|Países objetivo:",
-                "languages": "Idioma:|Idiomas:",
-                "currencies": "Moneda:|Monedas:",
-                "noLanguage": "Idioma no apto",
-                "noCurrency": "Moneda no apta"
-            },
-            "productVerification": {
-                "stepTitle": "Productos verificados por PrestaShop antes de enviar a Google",
-                "stepDetails": "Antes de enviar todos tus productos (incluidas las variaciones), nos aseguramos de que cumplen las políticas de Google Merchant Center. Verificamos los productos **cada vez que se detecta un cambio**, y si hay algún producto no conforme, facilitamos orientación sobre lo que se debe hacer. Haz clic en productos no conformes para obtener más información.\n\nTras el envío, Google asigna un estado a cada producto: **Aprobado, A punto de caducar, Pendiente** o **Rechazado**.",
-                "reportCards": {
-                    "productsInCatalog": "Mi catálogo de productos",
-                    "productsInCatalogDescription": "Productos activos con variaciones en los idiomas del feed de productos.",
-                    "verified": "Productos conformes",
-                    "verifiedDescription": "Productos aprobados por PrestaShop listos para enviarse a Google.",
-                    "nonCompliant": "Productos no conformes",
-                    "nonCompliantDescription": "Productos que no cumplen los requerimientos de Google."
-                }
-            },
-            "productsSentToGoogle": {
-                "stepTitle": "Productos enviados a Google",
-                "stepDetails": "Este informe muestra el estado de todos tus productos enviados a Google Merchant Center. Ten en cuenta que Google puede tardar unos días en revisar tus productos. Utiliza este informe para realizar un seguimiento del progreso de cada producto y asegurarse de que se han aprobado y están activos en Google Shopping.\n\n**Productos aprobados** están completamente aprobados y pueden aparecer en las fichas de producto gratuitas de Google.\n\n**Productos pendientes** están siendo procesados por Google. No aparecerán en los fichas hasta que se aprueben.\n\n**‘Productos a punto de caducar** dejarán de estar activos y no aparecerán en las fichas de Google en los próximos días.\n\n**Productos rechazados** están inactivos y no aparecen en las fichas de Google. Haz clic en la casilla Rechazados para más información.",
-                "reportCards": {
-                    "approved": "Aprobado",
-                    "approvedDescription": "Productos con variaciones bien sincronizados.",
-                    "pending": "Pendiente",
-                    "pendingDescription": "Productos en revisión por Google.",
-                    "expiring": "A punto de caducar",
-                    "expiringDescription": "Los productos no válidos se eliminarán pronto de Google.",
-                    "disapproved": "Rechazado",
-                    "disapprovedDescription": "Productos rechazados por Google."
-                }
-            }
-        },
-        "compliancyIssuesPage": {
-            "details": "Para conseguir pasar el escaneado de Google, soluciona las incidencias indicadas en esta tabla. Resolverlas te ayudará a que tus productos se incluyan en los canales de Google.",
-            "languageSelection": "Filtrar por idioma",
-            "languageSelected": "Filtrar por: {lang}",
-            "columns": {
-                "issues": "Incidencias",
-                "suggestedActions": "Acciones sugeridas",
-                "affectedProducts": "Productos afectados",
-                "languages": "Idiomas"
-            },
-            "actions": {
-                "listProducts": "Ver producto|Ver productos"
-            }
-        },
-        "compliancyIssueProductsPage": {
-            "details": "**Acción sugerida:** {action}",
-            "columns": {
-                "productsId": "ID del producto",
-                "productsTitle": "Título del producto",
-                "languages": "Idiomas",
-                "actions": "Acciones"
-            },
-            "productVariants": "variante {variantsCount}|variantes {variantsCount}"
-        },
-        "compliancyIssues": {
-            "nameMissing": "Facilitar un nombre",
-            "nameMissingAction": "Un nombre de producto es un identificador único utilizado para describir un producto, y es importante porque ayuda a mejorar la visibilidad en los resultados de los buscadores. En PrestaShop, los nombres de los productos se pueden introducir en Catálogo > Producto > sección \"Nombre del producto\".",
-            "imageMissing": "Facilitar una imagen",
-            "imageMissingAction": "Una imagen de un producto es una representación visual que ayuda a los clientes a entender cómo es el producto. Es importante tener imágenes de los productos ya que puede mejorar el atractivo del producto y las ventas, así como la experiencia general de compra. Las imágenes de producto se pueden añadir o editar en Catálogo > Producto > en la sección \"Imágenes\".",
-            "linkMissing": "Facilitar un enlace",
-            "linkMissingAction": "Los enlaces son obligatorios. Actualiza tu página de producto para generar un enlace.",
-            "descriptionMissing": "Facilitar una descripción",
-            "descriptionMissingAction": "Añade una descripción en tus productos. Si ya la tienes, comprueba el atributo elegido para la descripción en la configuración de asignación de atributos del módulo.",
-            "brandMissing": "Facilitar una marca",
-            "brandMissingAction": "Indica la marca del producto. Puedes añadir una Marca en Catálogo > Productos > Configuración básica en la sección Marca de cada producto.",
-            "identifierMissing": "Indica el GTIN o la marca y el MPN del producto",
-            "identifierMissingAction": "**Productos con GTIN**\n\nGTIN (Global Trade Item Number) es un **identificador único** utilizado para identificar productos. Los GTIN incluyen **UPC** (en Norteamérica), **EAN** (en Europa), **JAN** (en Japón) e **ISBN** (para libros). Puedes añadir un GTIN en Catálogo > Productos > Opciones > en Condición y Referencias para cada producto.\n\nEl identificador GTIN suele encontrarse en la etiqueta del código de barras del producto, en el embalaje o en la documentación, o contactando con el fabricante. \n\n**Productos sin GTIN**\n\nPara ayudar a identificar tus productos sin GTIN, puedes utilizar los atributos **MPN** y **marca**. \n\nMarca es la marca del producto o de tu empresa. También puedes utilizar el nombre de tu tienda como marca. Puedes añadir una marca en Catálogo > Productos > Configuración básica en la sección Marca para cada producto.\n\nUn atributo MPN o Manufacturer Part Number para indicar la referencia del fabricante de tu producto o el número identificador único que elijas.",
-            "priceMissing": "Indicar un precio",
-            "priceMissingAction": "Indica un precio para el producto."
-        },
-        "approvalTable": {
-            "description": "A continuación, encontrarás una lista de **{productTotal} productos** que no han superado el proceso de aprobación. Para cada producto, hemos proporcionado los motivos para facilitar las correcciones oportunas. Tras realizar las actualizaciones necesarias, estos productos se podrán sincronizar con Google Shopping.",
-            "filterTitle": "Filtrar por disponibilidad",
-            "NoFilter": "Todo",
-            "tableHeaderID": "ID",
-            "tableHeaderName": "Título del producto",
-            "tableHeaderLanguage": "Idioma",
-            "tableHeaderCurrency": "Moneda",
-            "tableHeaderCountry": "Países afectados",
-            "tableHeaderIssue": "Motivos",
-            "xResults": "{0} resultados",
-            "perPageLabel": "Mostrar:",
-            "goToLabel": "Ir a la página:",
-            "editX": "Editar {0}",
-            "noReasonFallback": "*No facilitado, comprueba [errores de cuenta en tu Merchant Center]({0})[:target=\"_blank\"].*"
-        },
-        "productIssuesModal": {
-            "title": "Más detalles sobre los problemas de tu producto",
-            "description": "Estos son los motivos de suspensión facilitados por Google. Toma las medidas necesarias para cumplir los requisitos y espera al siguiente análisis.",
-            "impactListFormat": "{language} [{currency}]: {impact}",
-            "footer": "Ve a tu [ficha de producto]({0})[:target=\"_blank\"] para realizar los cambios necesarios para cumplir los requisitos de Google y conseguir que se apruebe."
+      },
+      "productsSentToGoogle": {
+        "stepTitle": "Productos enviados a Google",
+        "stepDetails": "Este informe muestra el estado de todos tus productos enviados a Google Merchant Center. Ten en cuenta que Google puede tardar unos días en revisar tus productos. Utiliza este informe para realizar un seguimiento del progreso de cada producto y asegurarse de que se han aprobado y están activos en Google Shopping.\n\n**Productos aprobados** están completamente aprobados y pueden aparecer en las fichas de producto gratuitas de Google.\n\n**Productos pendientes** están siendo procesados por Google. No aparecerán en los fichas hasta que se aprueben.\n\n**‘Productos a punto de caducar** dejarán de estar activos y no aparecerán en las fichas de Google en los próximos días.\n\n**Productos rechazados** están inactivos y no aparecen en las fichas de Google. Haz clic en la casilla Rechazados para más información.",
+        "reportCards": {
+          "approved": "Aprobado",
+          "approvedDescription": "Productos con variaciones bien sincronizados.",
+          "pending": "Pendiente",
+          "pendingDescription": "Productos en revisión por Google.",
+          "expiring": "A punto de caducar",
+          "expiringDescription": "Los productos no válidos se eliminarán pronto de Google.",
+          "disapproved": "Rechazado",
+          "disapprovedDescription": "Productos rechazados por Google."
         }
+      }
     },
-    "keymetrics": {
-        "title": "Informe sobre las campañas Máximo rendimiento",
-        "accountSubtitle": "Analiza y optimiza tu presencia online con métricas detalladas que te ayudan a medir el impacto de tus acciones de marketing digital.",
-        "dailyResultTitle": "Resultados diarios",
-        "helpUnderstanding": "Consulta más información sobre cómo interpretar estas métricas visitando {0}",
-        "periods": {
-            "yesterday": "Ayer",
-            "last7Days": "Últimos 7 días",
-            "last30Days": "Últimos 30 días",
-            "3Months": "3 meses"
-        },
-        "impressions": "Impresiones",
-        "clicks": "Clics",
-        "conversions": "Conversiones",
-        "averageCostPerClick": "Coste medio / clic",
-        "costs": "Costes",
-        "sales": "Ventas",
-        "noData": "Todavía no hay datos",
-        "noCampaigns": "¿Listo para impulsar la promoción de tus productos? Crea tu campaña en unos clics"
+    "compliancyIssuesPage": {
+      "details": "Para conseguir pasar el escaneado de Google, soluciona las incidencias indicadas en esta tabla. Resolverlas te ayudará a que tus productos se incluyan en los canales de Google.",
+      "languageSelection": "Filtrar por idioma",
+      "languageSelected": "Filtrar por: {lang}",
+      "columns": {
+        "issues": "Incidencias",
+        "suggestedActions": "Acciones sugeridas",
+        "affectedProducts": "Productos afectados",
+        "languages": "Idiomas"
+      },
+      "actions": {
+        "listProducts": "Ver producto|Ver productos"
+      }
     },
-    "campaigns": {
-        "listTitle": "Lista de la campaña",
-        "status": {
-            "eligible": "Apto",
-            "eligiblelimited": "Apto (limitado)",
-            "ended": "Terminado",
-            "paused": "En pausa",
-            "not-eligible": "No apto",
-            "draft": "Borrador",
-            "pending": "Pendiente"
-        },
-        "dateLabel": {
-            "from": "Desde {startDate}",
-            "fromXToX": "Desde {startDate} hasta {endDate}",
-            "endedOnX": "Finalizado en {endDate}"
-        },
-        "labelCol": {
-            "campaign": "Título",
-            "status": "Estado",
-            "impressions": "Impresiones",
-            "clicks": "Clics",
-            "adSpend": "Gasto en publicidad",
-            "sales": "Ventas",
-            "costs": "Costes",
-            "conversions": "Conversiones",
-            "duration": "Fecha",
-            "target": "País de destino",
-            "actions": "Acciones",
-            "dailyBudget": "Presupuesto diario"
-        },
-        "tooltip": {
-            "lowBudget": "Tu presupuesto diario es demasiado bajo para tener una campaña efectiva, aumenta tu presupuesto para mejorar el rendimiento de la campaña."
-        }
+    "compliancyIssueProductsPage": {
+      "details": "**Acción sugerida:** {action}",
+      "columns": {
+        "productsId": "ID del producto",
+        "productsTitle": "Título del producto",
+        "languages": "Idiomas",
+        "actions": "Acciones"
+      },
+      "productVariants": "variante {variantsCount}|variantes {variantsCount}"
     },
-    "notConfiguredState": {
-        "title": "Termina tu configuración",
-        "titleOneLastStep": "Un último paso",
-        "textGoogleMissing": "Continúa tu configuración para comenzar a enviar productos a Google y crear campañas.",
-        "textOneMoreThing": "Una cosa más y ya está todo listo para enviar tus productos a Google.",
-        "textBoostYourSales": "Si quieres aumentar tus ventas; conéctate y crea campañas con Google Ads.",
-        "ctaClassic": "Ir a la página de configuración",
-        "ctaLinkMCA": "Vincula tu cuenta de Google Merchant Center",
-        "ctaExportFeed": "Sincroniza tus productos con Google",
-        "ctaLinkGoogleAds": "Conecta tu cuenta de Google Ads"
+    "compliancyIssues": {
+      "nameMissing": "Facilitar un nombre",
+      "nameMissingAction": "Un nombre de producto es un identificador único utilizado para describir un producto, y es importante porque ayuda a mejorar la visibilidad en los resultados de los buscadores. En PrestaShop, los nombres de los productos se pueden introducir en Catálogo > Producto > sección \"Nombre del producto\".",
+      "imageMissing": "Facilitar una imagen",
+      "imageMissingAction": "Una imagen de un producto es una representación visual que ayuda a los clientes a entender cómo es el producto. Es importante tener imágenes de los productos ya que puede mejorar el atractivo del producto y las ventas, así como la experiencia general de compra. Las imágenes de producto se pueden añadir o editar en Catálogo > Producto > en la sección \"Imágenes\".",
+      "linkMissing": "Facilitar un enlace",
+      "linkMissingAction": "Los enlaces son obligatorios. Actualiza tu página de producto para generar un enlace.",
+      "descriptionMissing": "Facilitar una descripción",
+      "descriptionMissingAction": "Añade una descripción en tus productos. Si ya la tienes, comprueba el atributo elegido para la descripción en la configuración de asignación de atributos del módulo.",
+      "brandMissing": "Facilitar una marca",
+      "brandMissingAction": "Indica la marca del producto. Puedes añadir una Marca en Catálogo > Productos > Configuración básica en la sección Marca de cada producto.",
+      "identifierMissing": "Indica el GTIN o la marca y el MPN del producto",
+      "identifierMissingAction": "**Productos con GTIN**\n\nGTIN (Global Trade Item Number) es un **identificador único** utilizado para identificar productos. Los GTIN incluyen **UPC** (en Norteamérica), **EAN** (en Europa), **JAN** (en Japón) e **ISBN** (para libros). Puedes añadir un GTIN en Catálogo > Productos > Opciones > en Condición y Referencias para cada producto.\n\nEl identificador GTIN suele encontrarse en la etiqueta del código de barras del producto, en el embalaje o en la documentación, o contactando con el fabricante. \n\n**Productos sin GTIN**\n\nPara ayudar a identificar tus productos sin GTIN, puedes utilizar los atributos **MPN** y **marca**. \n\nMarca es la marca del producto o de tu empresa. También puedes utilizar el nombre de tu tienda como marca. Puedes añadir una marca en Catálogo > Productos > Configuración básica en la sección Marca para cada producto.\n\nUn atributo MPN o Manufacturer Part Number para indicar la referencia del fabricante de tu producto o el número identificador único que elijas.",
+      "priceMissing": "Indicar un precio",
+      "priceMissingAction": "Indica un precio para el producto."
     },
-    "configuredState": {
-        "title": "¡Enhorabuena! ¡Todo listo!",
-        "text": "Has completado todos los pasos necesarios para sacar el máximo provecho de **Marketing with Google**",
-        "cta": "Ir a creación de campaña",
-        "firstStep": "Conecta tu tienda con la cuenta PrestaShop",
-        "secondStep": "Inicia sesión o crea tu cuenta Google",
-        "thirdStep": "Inicia sesión o crea tu cuenta Google Merchant Center",
-        "fourthStep": "Exporta y sincroniza tu catálogo de productos",
-        "fifthStep": "Inicia sesión o crea tu cuenta Google Ads",
-        "sixthStep": "**Próximo paso** crea tu primera campaña Máximo rendimiento"
+    "approvalTable": {
+      "description": "A continuación, encontrarás una lista de **{productTotal} productos** que no han superado el proceso de aprobación. Para cada producto, hemos proporcionado los motivos para facilitar las correcciones oportunas. Tras realizar las actualizaciones necesarias, estos productos se podrán sincronizar con Google Shopping.",
+      "filterTitle": "Filtrar por disponibilidad",
+      "NoFilter": "Todo",
+      "tableHeaderID": "ID",
+      "tableHeaderName": "Título del producto",
+      "tableHeaderLanguage": "Idioma",
+      "tableHeaderCurrency": "Moneda",
+      "tableHeaderCountry": "Países afectados",
+      "tableHeaderIssue": "Motivos",
+      "xResults": "{0} resultados",
+      "perPageLabel": "Mostrar:",
+      "goToLabel": "Ir a la página:",
+      "editX": "Editar {0}",
+      "noReasonFallback": "*No facilitado, comprueba [errores de cuenta en tu Merchant Center]({0})[:target=\"_blank\"].*"
     },
-    "help": {
-        "intro": "PrestaShop Marketing with Google facilita la conexión de tu tienda PrestaShop con Google, para que puedas mostrar tus productos a millones de compradores en varios canales de Google. Crea campañas Máximo rendimiento sin salir de tu panel de control de PrestaShop y consigue más tráfico.",
-        "helpCenter": "Centro de ayuda",
-        "allowsYouTo": {
-            "title": "Este módulo te permite:",
-            "easySync": "Sincroniza fácilmente tu catálogo de productos con Google para mantener actualizados automáticamente los detalles del producto, como el precio y la disponibilidad",
-            "freeListing": "Habilita las fichas de productos y amplía tu alcance mostrando tus productos a los compradores que buscan en la pestaña de Shopping, de forma gratuita",
-            "campaigns": "Comienza con las campañas Máximo rendimiento, establece un presupuesto diario y deja que el aprendizaje automático de Google optimice tus campañas",
-            "reporting": "Analiza el rendimiento de tu campaña sin salir de PrestaShop"
-        },
-        "help": {
-            "needHelp": "¿Necesitas ayuda? Encuentra aquí la documentación de este módulo.",
-            "downloadPdf": "Descargar PDF",
-            "couldntFindAnyAnswer": "¿No has encontrado ninguna respuesta a tu pregunta?",
-            "contactUs": "Contacto"
-        }
+    "productIssuesModal": {
+      "title": "Más detalles sobre los problemas de tu producto",
+      "description": "Estos son los motivos de suspensión facilitados por Google. Toma las medidas necesarias para cumplir los requisitos y espera al siguiente análisis.",
+      "impactListFormat": "{language} [{currency}]: {impact}",
+      "footer": "Ve a tu [ficha de producto]({0})[:target=\"_blank\"] para realizar los cambios necesarios para cumplir los requisitos de Google y conseguir que se apruebe."
+    }
+  },
+  "keymetrics": {
+    "title": "Informe sobre las campañas Máximo rendimiento",
+    "accountSubtitle": "Analiza y optimiza tu presencia online con métricas detalladas que te ayudan a medir el impacto de tus acciones de marketing digital.",
+    "dailyResultTitle": "Resultados diarios",
+    "helpUnderstanding": "Consulta más información sobre cómo interpretar estas métricas visitando {0}",
+    "periods": {
+      "yesterday": "Ayer",
+      "last7Days": "Últimos 7 días",
+      "last30Days": "Últimos 30 días",
+      "3Months": "3 meses"
     },
-    "faq": {
-        "title": "FAQ",
-        "noFaq": "No hay preguntas frecuentes disponibles."
+    "impressions": "Impresiones",
+    "clicks": "Clics",
+    "conversions": "Conversiones",
+    "averageCostPerClick": "Coste medio / clic",
+    "costs": "Costes",
+    "sales": "Ventas",
+    "noData": "Todavía no hay datos",
+    "noCampaigns": "¿Listo para impulsar la promoción de tus productos? Crea tu campaña en unos clics"
+  },
+  "campaigns": {
+    "listTitle": "Lista de la campaña",
+    "status": {
+      "eligible": "Apto",
+      "eligiblelimited": "Apto (limitado)",
+      "ended": "Terminado",
+      "paused": "En pausa",
+      "not-eligible": "No apto",
+      "draft": "Borrador",
+      "pending": "Pendiente"
     },
-    "glass": {
-        "message": "¿No puedes ver el navegador seguro de Google?  \nPulsa Continuar para volver a abrir la ventana y terminar la configuración.\n\nEs posible que tengas que activar las ventanas emergentes en tu navegador para continuar."
+    "dateLabel": {
+      "from": "Desde {startDate}",
+      "fromXToX": "Desde {startDate} hasta {endDate}",
+      "endedOnX": "Finalizado en {endDate}"
     },
-    "cta": {
-        "startConfiguring": "Empezar a configurar",
-        "connect": "Conectar",
-        "connecting": "Conectando...",
-        "validating": "Validando...",
-        "creating": "Creando...",
-        "dissociate": "Disociar",
-        "manageAccount": "Gestionar la cuenta",
-        "overwrite": "Sobrescribir",
-        "switchAccount": "Cambiar de cuenta",
-        "acceptInvitation": "Aceptar la invitación",
-        "continue": "Continuar",
-        "confirm": "Confirmar",
-        "disabled": "Desactivado",
-        "activateModule": "Activar módulo",
-        "enabled": "Activado",
-        "agree": "Estoy de acuerdo",
-        "connectAccount": "Conecta tu cuenta",
-        "connectingAccount": "Conectando la cuenta...",
-        "chooseExistingAccount": "Elige una cuenta existente",
-        "createNewAccount": "Crear una nueva cuenta",
-        "learnAboutAccountSuspension": "Más información sobre la suspensión de cuentas",
-        "learnAboutSiteClaiming": "Más información sobre la reclamación de sitios",
-        "learnMoreAboutSmartShoppingCampaigns": "Más información sobre las campañas de Shopping inteligentes",
-        "learnMore": "Más información",
-        "configureAndExportProductFeed": "Inicia la configuración",
-        "continueProductFeed": "Reanudar configuración",
-        "chooseAccount": "Elige tu cuenta",
-        "supportedCountries": "Países admitidos",
-        "cancel": "Cancelar",
-        "disconnectAccount": "Desconectar la cuenta",
-        "selectAccount": "Seleccionar cuenta",
-        "reviewAccount": "Revisar cuenta",
-        "addMapping": "Añadir mapeo",
-        "modifyMapping": "Modificar mapeo",
-        "learnAboutProductConfiguration": "Más información sobre la especificación de datos de productos",
-        "overwriteProductFeed": "Sobrescribir el feed de productos",
-        "whyDidntWork": "Comprueba por qué no ha funcionado",
-        "aboutProductCategory": "Lista de categorías de productos de Google",
-        "edit": "Editar",
-        "editSettings": "Editar la configuración",
-        "editRules": "Editar reglas",
-        "shopMaintenanceBtn": "Ir a la configuración de mantenimiento",
-        "editProductAttributes": "Editar categorías y atributos",
-        "forceSync": "Forzar sincronización",
-        "createNewGoogleAdsAccount": "Crea una nueva cuenta de Google Ads",
-        "back": "Volver",
-        "saveAndContinue": "Guardar y continuar",
-        "yes": "Sí",
-        "done": "Hecho",
-        "no": "No",
-        "disable": "Desactivar",
-        "disableProductFeed": "Desactivar el feed de productos",
-        "checkRequirements": "Comprobar los requisitos",
-        "storeMeetsRequirements": "Mi tienda cumple con todos los requisitos",
-        "createAccount": "Crear una cuenta",
-        "saveChange": "Guardar cambios",
-        "close": "Cerrar",
-        "viewDetailedStatuses": "Ver el estado del producto en detalle",
-        "setupTax": "Configurar impuestos",
-        "understandAndContinue": "Entender y continuar",
-        "reviewProblems": "Revisar problemas",
-        "saveAndExport": "Guardar y exportar",
-        "go": "Ir a",
-        "goTo": "Ir a {0}",
-        "continueWithoutSave": "Continuar sin guardar",
-        "save": "Guardar",
-        "disconnect": "Desconectar",
-        "export": "Exportar",
-        "learnAboutFreeListing": "Más información sobre fichas de producto gratuitas",
-        "addWebsiteAddress": "Añadir la dirección del sitio web",
-        "transferClaim": "Transferir reclamación",
-        "goToYourX": "Ir a tu {0}",
-        "createSmartShoppingCampaign": "Lanzar campaña Máximo rendimiento",
-        "addBillingSettings": "Añadir configuracion de facturación",
-        "createCampaign": "Crear campaña",
-        "createPMaxCampaign": "Crea una nueva campaña Máximo rendimiento",
-        "editCampaign": "Actualizar campaña",
-        "launchCampaign": "Lanzar campaña",
-        "resetDate": "Fijar la fecha de hoy",
-        "validate": "Validar",
-        "seeOnGoogleAds": "Consulta estas métricas en {0}",
-        "GoogleAds": "Google Ads",
-        "clickToSortDesc": "(Haz clic para ordenar de forma descendente)",
-        "clickToSortAsc": "(Haz clic para ordenar de forma ascendente)",
-        "selectFilters": "Seleccionar filtros",
-        "removeFilter": "Eliminar filtro | Eliminar filtros",
-        "selectAll": "Seleccionar todo",
-        "deselectAll": "Deseleccionar todo",
-        "clearAll": "Borrar todo",
-        "signInWithGoogle": "Iniciar sesión con Google",
-        "viewReporting": "Ver informe",
-        "pauseCampaign": "Pausar",
-        "resumeCampaign": "Activar",
-        "modifyTheCampaign": "Modificar",
-        "openActionsMenu": "Abrir el menú de acciones para la campaña {0}",
-        "viewInGoogleAds": "Ver en tu cuenta de Google Ads",
-        "previous": "Anterior",
-        "loginPage": "Ir a página de inicio de sesión",
-        "next": "Siguiente",
-        "goToPage": "Ir a la primera página | Ir a la página: {0} Ir a la última página",
-        "noEndDate": "Sin fecha de finalización",
-        "verifyPhoneNumber": "Verificar el número de teléfono",
-        "refreshInformations": "Actualizar la información",
-        "apply": "Aplicar",
-        "select": "Seleccionar",
-        "editContact": "Editar la información de contacto",
-        "update": "Actualizar",
-        "validateSelection": "Validar la selección",
-        "visitThe": "Visitar la página {0} para obtener más información",
-        "createPmax": "Crear una campaña Máximo rendimiento",
-        "understand": "Entendido",
-        "moreActions": "Más acciones",
-        "signGadsToS": "Firma los términos de servicio de Google Ads",
-        "enableEnhancedConversions": "Activa el seguimiento mejorado de conversión",
-        "loadNextPage": "Cargar los siguientes resultados"
-    },
-    "badge": {
-        "free": "Gratis",
-        "connected": "Conectada",
-        "active": "Activo",
-        "disapproved": "Desaprobado",
-        "pendingCreation": "Pendiente",
-        "creatingGmc": "Crear una cuenta en unos segundos...",
-        "creatingGmcTakingTime": "El proceso está tardando más de lo previsto, espera unos minutos y no actualices la página.",
-        "pendingCheck": "Estamos comprobando el estado de tu GMC...",
-        "pending": "Pendiente",
-        "expiring": "Caducando",
-        "checkingSiteClaim": "Comprobando la reclamación de tu sitio...",
-        "siteVerified": "Sitio verificado",
-        "productFeed": "Feed de productos",
-        "productFeedSettings": "Configuración del feed de productos",
-        "merchantCenterAccount": "Cuenta de Merchant Center",
-        "googleAccount": "Cuenta de Google",
-        "paid": "Pagado",
-        "googleAdsAccount": "Cuenta de Google Ads",
-        "readyToSync": "Listo para sincronizar",
-        "cantSync": "No se puede sincronizar",
-        "close": "Cerrar",
-        "suspended": "Suspendida",
-        "ineligibleForFreeListing": "No apto para las listas de producto gratuitas",
-        "urlUnclaimed": "Url no reclamada",
-        "urlUnverified": "Url no verificada",
-        "canceled": "Cancelada",
-        "testAccount": "Prueba",
-        "loading": "Cargando",
-        "new": "Nuevo"
-    },
-    "modal": {
-        "titleDisconnectionMerchantCenter": "¿Desconectar tu Merchant Center?",
-        "titleDisconnection": "¿Confirmar la desconexión?",
-        "titleoverwrite": "¿Sobrescribir la reclamación existente?",
-        "textDisconnectGoogleAccount": "Estás a punto de desconectar la cuenta de Google. Se eliminará el acceso a las cuentas de Google, Google Merchant Center y Google Ads.",
-        "textDisconnectMCA": "Al desconectarte de tu Merchant Center, se eliminará el acceso a tus anuncios de Google en este módulo y pondrá en pausa cualquier campaña en curso. ",
-        "textoverwrite": "Sobreescribir la reclamación existente desactivará tu cuenta anterior y pondrá en pausa las campañas existentes vinculadas a esa cuenta: fichas de producto gratuitas y campañas de Shopping.  \nSi estás ejecutando una campaña de Shopping diferente, te recomendamos que la interrumpas.",
-        "titleCancelWithoutSaving": "¿Cancelar sin guardar?",
-        "textCancelProductFeed": "Si continúas, perderás todos los cambios no guardados. Para enviar bien los datos de tus productos a Google, debes completar todos los pasos.",
-        "titleQuitWithoutSaving": "¿Salir sin guardar?",
-        "titleOverwriteProductFeed": "¿Sobrescribir el feed de productos existente?",
-        "textOverwriteProductFeed": "Al sobrescribir el feed de productos existente, este quedará eliminado. Deberás configurar un nuevo feed de productos.",
-        "titleDisconnectionGoogleAds": "¿Desconectar la cuenta de Google Ads?",
-        "textDisconnectGoogleAds": "La desconexión de tu cuenta de Google Ads eliminará la posibilidad de realizar campañas Máximo rendimiento desde el módulo.",
-        "pauseCampaigns": "Poner en pausa todas mis campañas",
-        "pauseCampaignsExplainations": "Al pausar todas tus campañas, la facturación se detendrá. Puedes reiniciar tus campañas en cualquier momento en tu cuenta de Google Ads.",
-        "removeTag": "Eliminar la etiqueta “Remarketing y conversión” de mi tienda",
-        "removeTagExplainations": "La eliminación de la etiqueta significa que Google ya no podrá realizar el seguimiento de tus campañas. Te recomendamos eliminarla solamente si piensas eliminar completamente el módulo o cambiar tu cuenta. Siempre puedes añadirla en el código de tu sitio.",
-        "titleActivateTracking": "Mide la eficacia de tus Ads",
-        "textActivateTracking": "Para ejecutar campañas Máximo rendimiento de forma efectiva, Google Ads requiere la capacidad de generar listas de remarketing y añadir etiquetas de seguimiento de conversiones a tu lista.\n\nAl hacer clic en Confirmar significa que aceptas que PrestaShop instale automáticamente snippets en tu tienda: \n- Añadir etiqueta de Google en mi tienda\n- Configurar las acciones de conversión : Páginas vistas, Añadir a la cesta, Compra",
-        "textConfirmCancel": "Si vuelves atrás perderás los valores seleccionados",
-        "disconnectedUserBo": "Has sido desconectado del back office. Se te redirigirá automáticamente a la página de inicio de sesión en {0} segundos.",
-        "titleDisconnectedUserBo": "Se ha perdido la conexión",
-        "titleEnhancedConversionsIntro": "Mide la eficacia de tus Ads",
-        "textEnhancedConversionsIntro": "Enhance your conversion tracking accuracy and empower your bidding strategy with our latest feature: Enhanced Conversion Tracking. This feature seamlessly integrates with your existing conversion tags, ensuring the secure and privacy-conscious transmission of conversion data from your website to Google. Be careful to follow these simple instructions during activation to make sure the feature works properly:\n1. Check the checkbox “Turn on enhanced conversions”\n2. Accept the Customer Data terms (if not already accepted in the past)\n3. Select “Google Tag” as the method\n4. Save your selections"
+    "labelCol": {
+      "campaign": "Título",
+      "status": "Estado",
+      "impressions": "Impresiones",
+      "clicks": "Clics",
+      "adSpend": "Gasto en publicidad",
+      "sales": "Ventas",
+      "costs": "Costes",
+      "conversions": "Conversiones",
+      "duration": "Fecha",
+      "target": "País de destino",
+      "actions": "Acciones",
+      "dailyBudget": "Presupuesto diario"
     },
     "tooltip": {
-        "googleAccountRequired": "Requiere la configuración de la cuenta de Google",
-        "merchantCenterAccountRequired": "Requiere la configuración de la cuenta de Merchant Center",
-        "productFeedRequired": "Requiere la configuración del feed de productos",
-        "googleAdsAccountRequired": "Requiere una cuenta de Google Ads configurada",
-        "mustCheckAllRequirements": "Debes comprobar todos los requisitos.",
-        "mustAgreeGoogleTerms": "Debes aceptar los términos y condiciones de Google",
-        "mustAgreeGoogleAdsTerms": "Debes aceptar los términos y condiciones",
-        "approvalStatusStatus": "Disponibilidad de tus productos para fichas de producto gratuitas y anuncios",
-        "approvalStatusLang": "marcador de posición",
-        "approvalStatusIssues": "Razón por la que Google no ha aprobado tu producto",
-        "attributeMapping": {
-            "description": "La descripción se recortará automáticamente si supera los 5.000 caracteres",
-            "ageGroup": "El grupo demográfico al que tu producto se dirige.",
-            "gtin": "Un código impreso en el embalaje del producto para ayudar a identificar un artículo determinado.",
-            "mpn": "Un número único que emiten los fabricantes para identificar productos individuales. Se trata de una serie de números y letras.",
-            "pattern": "El modelo o la impresión gráfica de tu producto"
-        },
-        "GMCForm": {
-            "businessAddress": "La dirección precumplimentada es la que has introducido en el back office",
-            "businessZipCode": "El código postal precumplimentado es el que has introducido en el back office",
-            "businessCity": "La ciudad precumplimentada es la que has introducido en el back office",
-            "businessPhone": "El número de teléfono precumplimentado es el que has introducido en el back office",
-            "businessCountry": "El país precumplimentado es el que has introducido en el back office",
-            "businessRegion": "La región precumplimentada es la que has introducido en el back office"
-        }
-    },
-    "toast": {
-        "alertGoogleAdsAccountSuccess": "¡Has configurado correctamente tu cuenta de Google Ads!",
-        "googleAccountConnectedOnceSuccess": "¡Has conectado tu cuenta de Google!",
-        "MCAConnectedOnceSuccess": "¡Has conectado tu cuenta de Merchant Center!",
-        "productFeedConfiguredOnceSuccess": "Ha enviado correctamente los datos de tus productos a Merchant Center. Una vez aprobados, estarán disponibles para fichas de producto gratuitas y anuncios.",
-        "attributesMapppingSuccess": "Los atributos de tu producto se han guardado correctamente. Revisa el resumen y haz clic en \"Exportar\" para enviarlo a Google",
-        "campaignCreatedSuccess": "¡Has creado tu campaña Máximo rendimiento con éxito!",
-        "phoneNumberVerifiedSuccess": "Tu número de teléfono se ha verificado. Se está creando la cuenta Merchant",
-        "enhancedConversionEnabledSuccess": "Activado el seguimiento de conversiones"
-    },
-    "stepper": {
-        "nextStep": "Siguiente: {0}",
-        "lastStep": "Último paso"
-    },
-    "attributesMapping": {
-        "types": {
-            "description": "Descripción",
-            "mpn": "MPN",
-            "brand": "Marca",
-            "color": "Color",
-            "gtin": "GTIN* (EAN, JAN, ISBN, UPC, ITF-14)",
-            "size": "Tamaño",
-            "ageGroup": "Grupo de edad",
-            "gender": "Género",
-            "energyEfficiencyClass": "Clasificación energética",
-            "minEnergyEfficiencyClass": "Clase de eficiencia mínima",
-            "maxEnergyEfficiencyClass": "Máxima calificación energética",
-            "material": "Material",
-            "pattern": "Modelo"
-        },
-        "options": {
-            "upc": "UPC",
-            "isbn": "ISBN",
-            "ean": "EAN",
-            "mpn": "MPN",
-            "description": "Descripción",
-            "description_short": "Descripción corta",
-            "longDescription": "Descripción larga",
-            "notAvailable": "No disponible"
-        },
-        "condition": "Condición",
-        "specificTitle": "Específico",
-        "sellRefurbished": "Vendo productos reacondicionados",
-        "sellApparel": "Vendo ropa y accesorios"
-    },
-    "banner": {
-        "titleAdsbanner": "¿Acabas de empezar en la publicidad de Google?",
-        "textAdsBannerLong": "Obtén {0} créditos Google Ads* cuando gastes al menos {0} para crear tus primeras campañas en PrestaShop o directamente a través de [Cuenta Google Ads]({1})[:target=\"_blank\"].",
-        "textAdsBanner": "Obtén {0} créditos Google Ads* cuando gastes al menos {0} para crear tu primera campaña.",
-        "legendLong": "*Tu vale se aplicará automáticamente desde el momento en que empieces a gastar. *El importe debe emplearse en los 60 días siguientes al gasto de la primera campaña y los créditos serán válidos durante 60 días una vez reconocidos. [Leer T&C]({0})[:target=\"_blank\"]",
-        "legend": "*Crea una nueva cuenta de Google Ads, el bono se aplicará automáticamente una vez que coincida con el gasto y tendrás 60 días para utilizar los créditos. [Leer T&C]({0})[:target=\"_blank\"]",
-        "legendWithoutTC": "*Crea una nueva cuenta de Google Ads, el bono se aplicará automáticamente una vez que coincida con el gasto y tendrás 60 días para utilizar los créditos.",
-        "ctaCreateFirstCampaign": "Crea tu primera campaña Máximo rendimiento",
-        "textCampaignsBanner": "Crea tu primera campaña y llega a compradores más interesados en todos los canales de Google. Deja que el aprendizaje automático de Google optimice la ubicación de tus anuncios y mejora eficazmente tu tráfico y tus ventas."
-    },
-    "tipsAndTricks": {
-        "title": "Consejo PrestaShop"
+      "lowBudget": "Tu presupuesto diario es demasiado bajo para tener una campaña efectiva, aumenta tu presupuesto para mejorar el rendimiento de la campaña."
     }
+  },
+  "notConfiguredState": {
+    "title": "Termina tu configuración",
+    "titleOneLastStep": "Un último paso",
+    "textGoogleMissing": "Continúa tu configuración para comenzar a enviar productos a Google y crear campañas.",
+    "textOneMoreThing": "Una cosa más y ya está todo listo para enviar tus productos a Google.",
+    "textBoostYourSales": "Si quieres aumentar tus ventas; conéctate y crea campañas con Google Ads.",
+    "ctaClassic": "Ir a la página de configuración",
+    "ctaLinkMCA": "Vincula tu cuenta de Google Merchant Center",
+    "ctaExportFeed": "Sincroniza tus productos con Google",
+    "ctaLinkGoogleAds": "Conecta tu cuenta de Google Ads"
+  },
+  "configuredState": {
+    "title": "¡Enhorabuena! ¡Todo listo!",
+    "text": "Has completado todos los pasos necesarios para sacar el máximo provecho de **Marketing with Google**",
+    "cta": "Ir a creación de campaña",
+    "firstStep": "Conecta tu tienda con la cuenta PrestaShop",
+    "secondStep": "Inicia sesión o crea tu cuenta Google",
+    "thirdStep": "Inicia sesión o crea tu cuenta Google Merchant Center",
+    "fourthStep": "Exporta y sincroniza tu catálogo de productos",
+    "fifthStep": "Inicia sesión o crea tu cuenta Google Ads",
+    "sixthStep": "**Próximo paso** crea tu primera campaña Máximo rendimiento"
+  },
+  "help": {
+    "intro": "PrestaShop Marketing with Google facilita la conexión de tu tienda PrestaShop con Google, para que puedas mostrar tus productos a millones de compradores en varios canales de Google. Crea campañas Máximo rendimiento sin salir de tu panel de control de PrestaShop y consigue más tráfico.",
+    "helpCenter": "Centro de ayuda",
+    "allowsYouTo": {
+      "title": "Este módulo te permite:",
+      "easySync": "Sincroniza fácilmente tu catálogo de productos con Google para mantener actualizados automáticamente los detalles del producto, como el precio y la disponibilidad",
+      "freeListing": "Habilita las fichas de productos y amplía tu alcance mostrando tus productos a los compradores que buscan en la pestaña de Shopping, de forma gratuita",
+      "campaigns": "Comienza con las campañas Máximo rendimiento, establece un presupuesto diario y deja que el aprendizaje automático de Google optimice tus campañas",
+      "reporting": "Analiza el rendimiento de tu campaña sin salir de PrestaShop"
+    },
+    "help": {
+      "needHelp": "¿Necesitas ayuda? Encuentra aquí la documentación de este módulo.",
+      "downloadPdf": "Descargar PDF",
+      "couldntFindAnyAnswer": "¿No has encontrado ninguna respuesta a tu pregunta?",
+      "contactUs": "Contacto"
+    }
+  },
+  "faq": {
+    "title": "FAQ",
+    "noFaq": "No hay preguntas frecuentes disponibles."
+  },
+  "glass": {
+    "message": "¿No puedes ver el navegador seguro de Google?  \nPulsa Continuar para volver a abrir la ventana y terminar la configuración.\n\nEs posible que tengas que activar las ventanas emergentes en tu navegador para continuar."
+  },
+  "cta": {
+    "startConfiguring": "Empezar a configurar",
+    "connect": "Conectar",
+    "connecting": "Conectando...",
+    "validating": "Validando...",
+    "creating": "Creando...",
+    "dissociate": "Disociar",
+    "manageAccount": "Gestionar la cuenta",
+    "overwrite": "Sobrescribir",
+    "switchAccount": "Cambiar de cuenta",
+    "acceptInvitation": "Aceptar la invitación",
+    "continue": "Continuar",
+    "confirm": "Confirmar",
+    "disabled": "Desactivado",
+    "activateModule": "Activar módulo",
+    "enabled": "Activado",
+    "agree": "Estoy de acuerdo",
+    "connectAccount": "Conecta tu cuenta",
+    "connectingAccount": "Conectando la cuenta...",
+    "chooseExistingAccount": "Elige una cuenta existente",
+    "createNewAccount": "Crear una nueva cuenta",
+    "learnAboutAccountSuspension": "Más información sobre la suspensión de cuentas",
+    "learnAboutSiteClaiming": "Más información sobre la reclamación de sitios",
+    "learnMoreAboutSmartShoppingCampaigns": "Más información sobre las campañas de Shopping inteligentes",
+    "learnMore": "Más información",
+    "configureAndExportProductFeed": "Inicia la configuración",
+    "continueProductFeed": "Reanudar configuración",
+    "chooseAccount": "Elige tu cuenta",
+    "supportedCountries": "Países admitidos",
+    "cancel": "Cancelar",
+    "disconnectAccount": "Desconectar la cuenta",
+    "selectAccount": "Seleccionar cuenta",
+    "reviewAccount": "Revisar cuenta",
+    "addMapping": "Añadir mapeo",
+    "modifyMapping": "Modificar mapeo",
+    "learnAboutProductConfiguration": "Más información sobre la especificación de datos de productos",
+    "overwriteProductFeed": "Sobrescribir el feed de productos",
+    "whyDidntWork": "Comprueba por qué no ha funcionado",
+    "aboutProductCategory": "Lista de categorías de productos de Google",
+    "edit": "Editar",
+    "editSettings": "Editar la configuración",
+    "editRules": "Editar reglas",
+    "shopMaintenanceBtn": "Ir a la configuración de mantenimiento",
+    "editProductAttributes": "Editar categorías y atributos",
+    "forceSync": "Forzar sincronización",
+    "createNewGoogleAdsAccount": "Crea una nueva cuenta de Google Ads",
+    "back": "Volver",
+    "saveAndContinue": "Guardar y continuar",
+    "yes": "Sí",
+    "done": "Hecho",
+    "no": "No",
+    "disable": "Desactivar",
+    "disableProductFeed": "Desactivar el feed de productos",
+    "checkRequirements": "Comprobar los requisitos",
+    "storeMeetsRequirements": "Mi tienda cumple con todos los requisitos",
+    "createAccount": "Crear una cuenta",
+    "saveChange": "Guardar cambios",
+    "close": "Cerrar",
+    "viewDetailedStatuses": "Ver el estado del producto en detalle",
+    "setupTax": "Configurar impuestos",
+    "understandAndContinue": "Entender y continuar",
+    "reviewProblems": "Revisar problemas",
+    "saveAndExport": "Guardar y exportar",
+    "go": "Ir a",
+    "goTo": "Ir a {0}",
+    "continueWithoutSave": "Continuar sin guardar",
+    "save": "Guardar",
+    "disconnect": "Desconectar",
+    "export": "Exportar",
+    "learnAboutFreeListing": "Más información sobre fichas de producto gratuitas",
+    "addWebsiteAddress": "Añadir la dirección del sitio web",
+    "transferClaim": "Transferir reclamación",
+    "goToYourX": "Ir a tu {0}",
+    "createSmartShoppingCampaign": "Lanzar campaña Máximo rendimiento",
+    "addBillingSettings": "Añadir configuracion de facturación",
+    "createCampaign": "Crear campaña",
+    "createPMaxCampaign": "Crea una nueva campaña Máximo rendimiento",
+    "editCampaign": "Actualizar campaña",
+    "launchCampaign": "Lanzar campaña",
+    "resetDate": "Fijar la fecha de hoy",
+    "validate": "Validar",
+    "seeOnGoogleAds": "Consulta estas métricas en {0}",
+    "GoogleAds": "Google Ads",
+    "clickToSortDesc": "(Haz clic para ordenar de forma descendente)",
+    "clickToSortAsc": "(Haz clic para ordenar de forma ascendente)",
+    "selectFilters": "Seleccionar filtros",
+    "removeFilter": "Eliminar filtro | Eliminar filtros",
+    "selectAll": "Seleccionar todo",
+    "deselectAll": "Deseleccionar todo",
+    "clearAll": "Borrar todo",
+    "signInWithGoogle": "Iniciar sesión con Google",
+    "viewReporting": "Ver informe",
+    "pauseCampaign": "Pausar",
+    "resumeCampaign": "Activar",
+    "modifyTheCampaign": "Modificar",
+    "openActionsMenu": "Abrir el menú de acciones para la campaña {0}",
+    "viewInGoogleAds": "Ver en tu cuenta de Google Ads",
+    "previous": "Anterior",
+    "loginPage": "Ir a página de inicio de sesión",
+    "next": "Siguiente",
+    "goToPage": "Ir a la primera página | Ir a la página: {0} Ir a la última página",
+    "noEndDate": "Sin fecha de finalización",
+    "verifyPhoneNumber": "Verificar el número de teléfono",
+    "refreshInformations": "Actualizar la información",
+    "apply": "Aplicar",
+    "select": "Seleccionar",
+    "editContact": "Editar la información de contacto",
+    "update": "Actualizar",
+    "updateModule": "Update module",
+    "validateSelection": "Validar la selección",
+    "visitThe": "Visitar la página {0} para obtener más información",
+    "createPmax": "Crear una campaña Máximo rendimiento",
+    "understand": "Entendido",
+    "moreActions": "Más acciones",
+    "signGadsToS": "Firma los términos de servicio de Google Ads",
+    "enableEnhancedConversions": "Activa el seguimiento mejorado de conversión",
+    "loadNextPage": "Cargar los siguientes resultados"
+  },
+  "badge": {
+    "free": "Gratis",
+    "connected": "Conectada",
+    "active": "Activo",
+    "disapproved": "Desaprobado",
+    "pendingCreation": "Pendiente",
+    "creatingGmc": "Crear una cuenta en unos segundos...",
+    "creatingGmcTakingTime": "El proceso está tardando más de lo previsto, espera unos minutos y no actualices la página.",
+    "pendingCheck": "Estamos comprobando el estado de tu GMC...",
+    "pending": "Pendiente",
+    "expiring": "Caducando",
+    "checkingSiteClaim": "Comprobando la reclamación de tu sitio...",
+    "siteVerified": "Sitio verificado",
+    "productFeed": "Feed de productos",
+    "productFeedSettings": "Configuración del feed de productos",
+    "merchantCenterAccount": "Cuenta de Merchant Center",
+    "googleAccount": "Cuenta de Google",
+    "paid": "Pagado",
+    "googleAdsAccount": "Cuenta de Google Ads",
+    "readyToSync": "Listo para sincronizar",
+    "cantSync": "No se puede sincronizar",
+    "close": "Cerrar",
+    "suspended": "Suspendida",
+    "ineligibleForFreeListing": "No apto para las listas de producto gratuitas",
+    "urlUnclaimed": "Url no reclamada",
+    "urlUnverified": "Url no verificada",
+    "canceled": "Cancelada",
+    "testAccount": "Prueba",
+    "loading": "Cargando",
+    "new": "Nuevo"
+  },
+  "modal": {
+    "titleDisconnectionMerchantCenter": "¿Desconectar tu Merchant Center?",
+    "titleDisconnection": "¿Confirmar la desconexión?",
+    "titleoverwrite": "¿Sobrescribir la reclamación existente?",
+    "textDisconnectGoogleAccount": "Estás a punto de desconectar la cuenta de Google. Se eliminará el acceso a las cuentas de Google, Google Merchant Center y Google Ads.",
+    "textDisconnectMCA": "Al desconectarte de tu Merchant Center, se eliminará el acceso a tus anuncios de Google en este módulo y pondrá en pausa cualquier campaña en curso. ",
+    "textoverwrite": "Sobreescribir la reclamación existente desactivará tu cuenta anterior y pondrá en pausa las campañas existentes vinculadas a esa cuenta: fichas de producto gratuitas y campañas de Shopping.  \nSi estás ejecutando una campaña de Shopping diferente, te recomendamos que la interrumpas.",
+    "titleCancelWithoutSaving": "¿Cancelar sin guardar?",
+    "textCancelProductFeed": "You will lose all unsaved changes if you continue. To successully submit your product data to Google, you need to complete all steps.",
+    "titleQuitWithoutSaving": "¿Salir sin guardar?",
+    "titleOverwriteProductFeed": "¿Sobrescribir el feed de productos existente?",
+    "textOverwriteProductFeed": "Al sobrescribir el feed de productos existente, este quedará eliminado. Deberás configurar un nuevo feed de productos.",
+    "titleDisconnectionGoogleAds": "¿Desconectar la cuenta de Google Ads?",
+    "textDisconnectGoogleAds": "La desconexión de tu cuenta de Google Ads eliminará la posibilidad de realizar campañas Máximo rendimiento desde el módulo.",
+    "pauseCampaigns": "Poner en pausa todas mis campañas",
+    "pauseCampaignsExplainations": "Al pausar todas tus campañas, la facturación se detendrá. Puedes reiniciar tus campañas en cualquier momento en tu cuenta de Google Ads.",
+    "removeTag": "Eliminar la etiqueta “Remarketing y conversión” de mi tienda",
+    "removeTagExplainations": "La eliminación de la etiqueta significa que Google ya no podrá realizar el seguimiento de tus campañas. Te recomendamos eliminarla solamente si piensas eliminar completamente el módulo o cambiar tu cuenta. Siempre puedes añadirla en el código de tu sitio.",
+    "titleActivateTracking": "Mide la eficacia de tus Ads",
+    "textActivateTracking": "Para ejecutar campañas Máximo rendimiento de forma efectiva, Google Ads requiere la capacidad de generar listas de remarketing y añadir etiquetas de seguimiento de conversiones a tu lista.\n\nAl hacer clic en Confirmar significa que aceptas que PrestaShop instale automáticamente snippets en tu tienda: \n- Añadir etiqueta de Google en mi tienda\n- Configurar las acciones de conversión : Páginas vistas, Añadir a la cesta, Compra",
+    "textConfirmCancel": "Si vuelves atrás perderás los valores seleccionados",
+    "disconnectedUserBo": "Has sido desconectado del back office. Se te redirigirá automáticamente a la página de inicio de sesión en {0} segundos.",
+    "titleDisconnectedUserBo": "Se ha perdido la conexión",
+    "titleEnhancedConversionsIntro": "Mide la eficacia de tus Ads",
+    "textEnhancedConversionsIntro": "Enhance your conversion tracking accuracy and empower your bidding strategy with our latest feature: Enhanced Conversion Tracking. This feature seamlessly integrates with your existing conversion tags, ensuring the secure and privacy-conscious transmission of conversion data from your website to Google.Be careful to follow these simple instructions during activation to make sure the feature works properly:\n1. Check the checkbox “Turn on enhanced conversions”\n2. Accept the Customer Data terms (if not already accepted in the past)\n3. Select “Google Tag” as the method\n4. Save your selections"
+  },
+  "tooltip": {
+    "googleAccountRequired": "Requiere la configuración de la cuenta de Google",
+    "merchantCenterAccountRequired": "Requiere la configuración de la cuenta de Merchant Center",
+    "productFeedRequired": "Requiere la configuración del feed de productos",
+    "googleAdsAccountRequired": "Requiere una cuenta de Google Ads configurada",
+    "mustCheckAllRequirements": "Debes comprobar todos los requisitos.",
+    "mustAgreeGoogleTerms": "Debes aceptar los términos y condiciones de Google",
+    "mustAgreeGoogleAdsTerms": "Debes aceptar los términos y condiciones",
+    "approvalStatusStatus": "Disponibilidad de tus productos para fichas de producto gratuitas y anuncios",
+    "approvalStatusLang": "marcador de posición",
+    "approvalStatusIssues": "Razón por la que Google no ha aprobado tu producto",
+    "attributeMapping": {
+      "description": "La descripción se recortará automáticamente si supera los 5.000 caracteres",
+      "ageGroup": "El grupo demográfico al que tu producto se dirige.",
+      "gtin": "Un código impreso en el embalaje del producto para ayudar a identificar un artículo determinado.",
+      "mpn": "Un número único que emiten los fabricantes para identificar productos individuales. Se trata de una serie de números y letras.",
+      "pattern": "El modelo o la impresión gráfica de tu producto"
+    },
+    "GMCForm": {
+      "businessAddress": "La dirección precumplimentada es la que has introducido en el back office",
+      "businessZipCode": "El código postal precumplimentado es el que has introducido en el back office",
+      "businessCity": "La ciudad precumplimentada es la que has introducido en el back office",
+      "businessPhone": "El número de teléfono precumplimentado es el que has introducido en el back office",
+      "businessCountry": "El país precumplimentado es el que has introducido en el back office",
+      "businessRegion": "La región precumplimentada es la que has introducido en el back office"
+    }
+  },
+  "toast": {
+    "alertGoogleAdsAccountSuccess": "¡Has configurado correctamente tu cuenta de Google Ads!",
+    "googleAccountConnectedOnceSuccess": "¡Has conectado tu cuenta de Google!",
+    "MCAConnectedOnceSuccess": "¡Has conectado tu cuenta de Merchant Center!",
+    "productFeedConfiguredOnceSuccess": "Ha enviado correctamente los datos de tus productos a Merchant Center. Una vez aprobados, estarán disponibles para fichas de producto gratuitas y anuncios.",
+    "attributesMapppingSuccess": "Los atributos de tu producto se han guardado correctamente. Revisa el resumen y haz clic en \"Exportar\" para enviarlo a Google",
+    "campaignCreatedSuccess": "¡Has creado tu campaña Máximo rendimiento con éxito!",
+    "phoneNumberVerifiedSuccess": "Tu número de teléfono se ha verificado. Se está creando la cuenta Merchant",
+    "enhancedConversionEnabledSuccess": "Activado el seguimiento de conversiones"
+  },
+  "stepper": {
+    "nextStep": "Siguiente: {0}",
+    "lastStep": "Último paso"
+  },
+  "attributesMapping": {
+    "types": {
+      "description": "Descripción",
+      "mpn": "MPN",
+      "brand": "Marca",
+      "color": "Color",
+      "gtin": "GTIN* (EAN, JAN, ISBN, UPC, ITF-14)",
+      "size": "Tamaño",
+      "ageGroup": "Grupo de edad",
+      "gender": "Género",
+      "energyEfficiencyClass": "Clasificación energética",
+      "minEnergyEfficiencyClass": "Clase de eficiencia mínima",
+      "maxEnergyEfficiencyClass": "Máxima calificación energética",
+      "material": "Material",
+      "pattern": "Modelo"
+    },
+    "options": {
+      "upc": "UPC",
+      "isbn": "ISBN",
+      "ean": "EAN",
+      "mpn": "MPN",
+      "description": "Descripción",
+      "description_short": "Descripción corta",
+      "longDescription": "Descripción larga",
+      "notAvailable": "No disponible"
+    },
+    "condition": "Condición",
+    "specificTitle": "Específico",
+    "sellRefurbished": "Vendo productos reacondicionados",
+    "sellApparel": "Vendo ropa y accesorios"
+  },
+  "banner": {
+    "titleAdsbanner": "¿Acabas de empezar en la publicidad de Google?",
+    "textAdsBannerLong": "Obtén {0} créditos Google Ads* cuando gastes al menos {0} para crear tus primeras campañas en PrestaShop o directamente a través de [Cuenta Google Ads]({1})[:target=\"_blank\"].",
+    "textAdsBanner": "Obtén {0} créditos Google Ads* cuando gastes al menos {0} para crear tu primera campaña.",
+    "legendLong": "*Tu vale se aplicará automáticamente desde el momento en que empieces a gastar. *El importe debe emplearse en los 60 días siguientes al gasto de la primera campaña y los créditos serán válidos durante 60 días una vez reconocidos. [Leer T&C]({0})[:target=\"_blank\"]",
+    "legend": "*Crea una nueva cuenta de Google Ads, el bono se aplicará automáticamente una vez que coincida con el gasto y tendrás 60 días para utilizar los créditos. [Leer T&C]({0})[:target=\"_blank\"]",
+    "legendWithoutTC": "*Crea una nueva cuenta de Google Ads, el bono se aplicará automáticamente una vez que coincida con el gasto y tendrás 60 días para utilizar los créditos.",
+    "ctaCreateFirstCampaign": "Crea tu primera campaña Máximo rendimiento",
+    "textCampaignsBanner": "Crea tu primera campaña y llega a compradores más interesados en todos los canales de Google. Deja que el aprendizaje automático de Google optimice la ubicación de tus anuncios y mejora eficazmente tu tráfico y tus ventas."
+  },
+  "tipsAndTricks": {
+    "title": "Consejo PrestaShop"
+  }
 }
