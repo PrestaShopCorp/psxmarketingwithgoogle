@@ -24,12 +24,27 @@ use Language;
 
 class LanguageRepository
 {
-    public function __construct()
+    /**
+     * @var int
+     */
+    private $shopId;
+
+    public function __construct(int $shopId)
     {
+        $this->shopId = $shopId;
     }
 
     public function getIsoById(int $id)
     {
         return Language::getIsoById($id);
+    }
+
+    public function getLanguages(): array
+    {
+        $languages = Language::getLanguages(false, $this->shopId);
+
+        return array_map(function ($language) {
+            return $language['iso_code'];
+        }, $languages);
     }
 }

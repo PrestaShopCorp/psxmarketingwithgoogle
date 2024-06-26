@@ -6,7 +6,7 @@
       ref="filter-quantity-to-show"
       :text="selectedFilterQuantityToShow"
       variant=" "
-      class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered w-auto ml-2"
+      class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown w-auto ml-2"
       menu-class="ps-dropdown"
       size="sm"
     >

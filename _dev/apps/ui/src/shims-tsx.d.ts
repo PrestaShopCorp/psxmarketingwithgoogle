@@ -12,6 +12,7 @@ declare global {
       psxMtgWithGoogleDefaultShopCountry: string,
       psxMktgWithGoogleActiveCountries: string[],
       psxMktgWithGoogleActiveCurrencies: string[],
+      psxMktgWithGoogleLanguages: string[],
       contextPsAccounts: any;
       contextPsEventBus: any
       translations: any;

@@ -24,6 +24,7 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Config\Env;
 use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CurrencyRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\Repository\LanguageRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ModuleRepository;
 use PrestaShop\PrestaShop\Core\Addon\Module\ModuleManagerBuilder;
 use PrestaShop\PsAccountsInstaller\Installer\Facade\PsAccounts;
@@ -55,6 +56,11 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
     private $currencyRepository;
 
     /**
+     * @var LanguageRepository
+     */
+    private $languageRepository;
+
+    /**
      * @var ModuleRepository
      */
     private $moduleRepository;
@@ -69,6 +75,7 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
         $this->configurationAdapter = $this->module->getService(ConfigurationAdapter::class);
         $this->countryRepository = $this->module->getService(CountryRepository::class);
         $this->currencyRepository = $this->module->getService(CurrencyRepository::class);
+        $this->languageRepository = $this->module->getService(LanguageRepository::class);
         $this->moduleRepository = new ModuleRepository($this->module->name);
     }
 
@@ -174,6 +181,7 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
             'psxMktgWithGoogleShopUrl' => $this->context->link->getBaseLink($this->context->shop->id),
             'psxMktgWithGoogleActiveCountries' => $this->countryRepository->getActiveCountries(),
             'psxMktgWithGoogleActiveCurrencies' => $this->currencyRepository->getActiveCurrencies(),
+            'psxMktgWithGoogleLanguages' => $this->languageRepository->getLanguages(),
             'psxMtgWithGoogleDefaultShopCountry' => $this->countryRepository->getShopDefaultCountry()['iso_code'],
             'psxMktgWithGoogleShopCurrency' => $this->currencyRepository->getShopCurrency(),
             'psxMktgWithGoogleRemarketingTagsStatus' => (bool) $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS),

@@ -5,8 +5,7 @@ const ProductFeedSettingsSteps = [
   ProductFeedSettingsPages.SHIPPING_SETUP,
   ProductFeedSettingsPages.SHIPPING_SETTINGS,
   ProductFeedSettingsPages.ATTRIBUTE_MAPPING,
-  // ProductFeedSettingsPages.PRODUCT_SELECTION,
-  ProductFeedSettingsPages.SYNC_SCHEDULE,
+  ProductFeedSettingsPages.PRODUCT_SELECTION,
   ProductFeedSettingsPages.SUMMARY,
 ];
 export default ProductFeedSettingsSteps;

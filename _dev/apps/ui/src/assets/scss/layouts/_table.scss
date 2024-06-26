@@ -26,33 +26,8 @@
   border: none;
 }
 
-.container-mapping-summary {
-  width: 100%;
-  table-layout: fixed;
-  border-collapse: collapse;
-  border-spacing: 0;
-  border: 0;
-  display: table;
-}
-
-.centered-mapping-summary {
-  width: 60%;
-  margin: 0 auto;
-}
-
 .mr-mid-4 {
   margin-right: 4.5rem !important;
-}
-
-.ellipsis-mapping-summary-text {
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.table-border-bottom {
-  border-bottom: 1px solid #EAEBEC!important;
 }
 
 .table-pre-scan-loader-wrapper {

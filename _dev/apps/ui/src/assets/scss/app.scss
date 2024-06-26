@@ -53,7 +53,7 @@
   @import "~prestakit/scss/search";
   @import "~prestakit/scss/floating-button";
   @import "~vue-select/src/scss/vue-select";
-  
+
   // abstracts
   @import "abstracts/functions";
 
@@ -104,6 +104,11 @@
   @import "components/timeline-configured";
   @import "components/tips-and-tricks";
   @import "components/tooltip";
+  @import "components/input-text-with-tag";
+  @import "components/product-feed-summary";
+  @import "components/product-feed-summary-card";
+  @import "components/gs-table-attribute-mapping";
+  @import "components/ps-tag";
 
   // page
   @import "pages/landingpage";
