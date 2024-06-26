@@ -1,1143 +1,1209 @@
 {
-    "general": {
-        "tabs": {
-            "productFeed": "Fluxul de produse",
-            "campaign": "Campaniile",
-            "configuration": "Configurare",
-            "catalog": "Catalog de produse",
-            "help": "Ajutor"
-        },
-        "versionDoesNotExist": "Se pare că versiunea modulului nu poate fi recuperată. Problema este la noi, te rugăm să încerci din nou.",
-        "moduleNeedActivation": "Marketingul cu Google este dezactivat, nu vei putea utiliza niciuna dintre funcțiile sale până când nu activezi modulul.",
-        "moduleUpdateNeeded": {
-            "ps_eventbus": {
-                "title": "**Se solicită o versiune mai nouă de PrestaShop CloudSync**\n\n Versiunea modulului PrestaShop CloudSync care rulează în acest magazin este mai veche decât minimul necesar.\n\nPoți utiliza serviciul de marketing PrestaShop Marketing with Google, dar unele funcționalități (de exemplu, sincronizarea produselor) nu vor fi disponibile până când nu faci upgrade la PrestaShop CloudSync."
-            },
-            "psxmarketingwithgoogle": {
-                "title": "**Este disponibilă o versiune mai nouă de PrestaShop Marketing with Google **\n\n Oferă îmbunătățiri semnificative și funcționalități interesante care vor duce utilizarea produselor tale la nivelul următor.",
-                "changes": {
-                    "1.53.0": [
-                        "Configurează fluxul de produse pentru a viza țări în mai multe monede",
-                        "Obține o urmărire mai bună a sincronizării produselor tale datorită noii pagini de flux de produse"
-                    ]
-                }
-            }
-        },
-        "adblockerActivated": "Dezactivează blocarea reclamelor pentru ca modulul să funcționeze corect și reîmprospătează browserul.",
-        "refreshPage": "Reîmprospătare pagină",
-        "mandatory": "sunt obligatorii",
-        "XIsMandatory": "{0} este obligatoriu.",
-        "unableToFetchData": "Nu am putut prelua datele, încearcă din nou mai târziu",
-        "noResults": "Nu au fost găsite date",
-        "search": "Căutare",
-        "createAccount": "creează-ți un cont",
-        "createNewAccount": "Dacă nu ai un cont, poți {0} astăzi.",
-        "notAvailable": "Indisponibil",
-        "min": "Min",
-        "max": "Max",
-        "helpPage": "Pagina Ajutor",
-        "noResultsFoundForX": " Nu s-au găsit rezultate pentru {0}",
-        "days": "Zile",
-        "readMore": "Citește mai mult",
-        "countryWithCurrencyFormat": "{country} ({currency})"
+  "general": {
+    "tabs": {
+      "productFeed": "Fluxul de produse",
+      "campaign": "Campaniile",
+      "configuration": "Configurare",
+      "catalog": "Catalog de produse",
+      "help": "Ajutor"
     },
-    "landingPage": {
-        "header": {
-            "title": "Marketing cu Google",
-            "text": "Cu Prestashop Marketing, poți ajunge la potențialii cumpărători care caută online produse precum cele pe care le oferi! Utilizează acest modul pentru a ajunge la ei pe Google în 3 pași simpli."
-        },
-        "content": {
-            "content1": {
-                "title": "Sincronizează-ți catalogul de produse cu Google",
-                "text": "Conectează-ți magazinul la Google Merchant Center și sincronizează întregul catalog de produse cu câteva clicuri. Caracteristicile produsului, cum ar fi prețul și disponibilitatea, vor fi actualizate automat în fiecare zi."
-            },
-            "content2": {
-                "title": "Activează listări gratuite pentru produsele tale.",
-                "text": "Listările gratuite îți permit să afișezi caracteristicile produsului, inclusiv imaginea și prețul, în listările cu clasificare SEO din fila Shopping.  \n \n Odată ce catalogul a fost sincronizat, activează listările gratuite pe panoul de bord și începe să-ți afișezi gratuit produsele în fila Shopping.",
-                "footer": "Creează un nou [cont Merchant Center]({0})[:target=\"_blank\"] sau conectează unul existent.  \nPentru a afișa produsele pe Google, va trebui să îndeplinești [cerințele de eligibilitate]({1})[:target=\"_blank\"]"
-            },
-            "content3": {
-                "title": "Stimulează-ți acoperirea și vânzările cu Performance Max",
-                "text": "Dorești să maximizezi performanța campaniei și să găsești clienții potriviți oriunde s-ar afla? Printr-o singură campanie, Performance Max colectează date de pe diferite canale Google și optimizează performanța campaniei, afișând reclamele care au șanse mai mari de a genera conversii."
-            }
-        },
-        "footer": {
-            "text": "Fă-ți produsele ușor de găsit pe Google cu PS Marketing cu Google",
-            "explanation": "În Spațiul Economic European, Regatul Unit sau Elveția, campaniile Performance Max pot fi utilizate cu orice serviciu de comparare a prețurilor (CSS) cu care lucrezi. Reclamele vor apărea pe paginile cu rezultate generale ale căutării și pe orice alte suprafețe la care a optat CSS."
+    "errorsMessages": {
+      "enterValue": "Enter a value."
+    },
+    "versionDoesNotExist": "Se pare că versiunea modulului nu poate fi recuperată. Problema este la noi, te rugăm să încerci din nou.",
+    "moduleNeedActivation": "Marketingul cu Google este dezactivat, nu vei putea utiliza niciuna dintre funcțiile sale până când nu activezi modulul.",
+    "moduleUpdateNeeded": {
+      "ps_eventbus": {
+        "title": "A newer version of PrestaShop CloudSync is requested",
+        "paragraph": "The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\n You may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync."
+      },
+      "psxmarketingwithgoogle": {
+        "title": "A newer version of PrestaShop Marketing With Google is available",
+        "paragraph": "It offers an exciting feature that will take your product usage to the next level. | It offers exciting features that will take your product usage to the next level.",
+        "changes": {
+          "1.53.0": [
+            "Configurează fluxul de produse pentru a viza țări în mai multe monede",
+            "Obține o urmărire mai bună a sincronizării produselor tale datorită noii pagini de flux de produse"
+          ],
+          "1.73.0": [
+            "Configure your product feed to choose which products you want to promote thanks to smart filtering"
+          ]
         }
+      }
     },
-    "onboarding": {
-        "cmpAlert": {
-            "title": "GDPR updates",
-            "paragraph": "Starting March 2024, businesses advertising to users in the European Economic Area (EEA) must create a strong framework to collect and communicate end-users’ consent choices via consent banners integrated with Google’s Consent Mode. To build a strong foundation for measuring your ads you must set up a cookie banner through a supported, dedicated Consent Management Platform. If you do not already have one, we recommend that you use the following consent management platform, which is compliant with the new regulations: {link}",
-            "moduleGDPR": "Cookies GDPR Law (Blocker) + Google Consent Mode V2"
-        },
-        "sectionTitle": {
-            "psAccount": "Conectează-ți magazinul la contul tău PrestaShop",
-            "freeListing": {
-                "title": "Ajungi la mai mulți oameni pe Google cu listări gratuite",
-                "subtitle": "Listările gratuite îți oferă acces la milioane de cumpărători care caută produse similare cu ale tale. Afișează-ți gratuit produsele în listele SEO din fila Shopping atunci când îți conectezi contul Google la Google Merchant Center.",
-                "lastTitle": "Afacerile care utilizează listări gratuite și reclame în fila Shopping au înregistrat împreună o creștere medie de >50% a clicurilor și o creștere de >100% a afișărilor. (Date interne Google, iulie 2020)"
-            },
-            "smartShoppingCampaign": {
-                "title": "Reclamă pe Google cu Performance Max",
-                "subtitle": "Conectează-te sau creează-ți un cont Google Ads și lansează o campanie Performance Max pentru produsele tale. Maximizează performanța campaniei tale pe mai multe canale Google, printr-o singură campanie. Afișează-ți reclamele acolo unde au șanse mai mari de a genera conversii.\n\n Și mai bine, nu plătești decât dacă clienții apasă pe reclamă."
-            }
-        },
-        "productFeedNotice": "Ajută-ți clienții să-ți găsească mai ușor produsele pe Google și listează-le gratuit cu reclame gratuite. Listările gratuite ajută la atragerea mai multor clienți și îi determină să viziteze site-ul tău."
+    "adblockerActivated": "Dezactivează blocarea reclamelor pentru ca modulul să funcționeze corect și reîmprospătează browserul.",
+    "refreshPage": "Reîmprospătare pagină",
+    "mandatory": "sunt obligatorii",
+    "XIsMandatory": "{0} este obligatoriu.",
+    "unableToFetchData": "Nu am putut prelua datele, încearcă din nou mai târziu",
+    "noResults": "Nu au fost găsite date",
+    "search": "Căutare",
+    "createAccount": "creează-ți un cont",
+    "createNewAccount": "Dacă nu ai un cont, poți {0} astăzi.",
+    "notAvailable": "Indisponibil",
+    "min": "Min",
+    "max": "Max",
+    "helpPage": "Pagina Ajutor",
+    "noResultsFoundForX": " Nu s-au găsit rezultate pentru {0}",
+    "days": "Zile",
+    "readMore": "Citește mai mult",
+    "countryWithCurrencyFormat": "{country} ({currency})"
+  },
+  "landingPage": {
+    "header": {
+      "title": "Marketing cu Google",
+      "text": "Cu Prestashop Marketing, poți ajunge la potențialii cumpărători care caută online produse precum cele pe care le oferi! Utilizează acest modul pentru a ajunge la ei pe Google în 3 pași simpli."
     },
-    "multiShopSelector": {
-        "title": "Mod multi-magazin activat",
-        "subtitle": "Trebuie să-ți configurezi magazinele unul câte unul pentru acest serviciu, dar vei putea utiliza același cont.",
-        "selectStore": "Selectează primul magazin de configurat din lista de mai jos",
-        "tips": "După ce ai terminat cu primul magazin, le poți configura pe celelalte selectându-le unul câte unul în selectorul magazinelor, în meniul orizontal",
-        "configure": "Configurare",
-        "group": "Grup de magazine"
+    "content": {
+      "content1": {
+        "title": "Sincronizează-ți catalogul de produse cu Google",
+        "text": "Conectează-ți magazinul la Google Merchant Center și sincronizează întregul catalog de produse cu câteva clicuri. Caracteristicile produsului, cum ar fi prețul și disponibilitatea, vor fi actualizate automat în fiecare zi."
+      },
+      "content2": {
+        "title": "Activează listări gratuite pentru produsele tale.",
+        "text": "Listările gratuite îți permit să afișezi caracteristicile produsului, inclusiv imaginea și prețul, în listările cu clasificare SEO din fila Shopping.  \n \n Odată ce catalogul a fost sincronizat, activează listările gratuite pe panoul de bord și începe să-ți afișezi gratuit produsele în fila Shopping.",
+        "footer": "Creează un nou [cont Merchant Center]({0})[:target=\"_blank\"] sau conectează unul existent.  \nPentru a afișa produsele pe Google, va trebui să îndeplinești [cerințele de eligibilitate]({1})[:target=\"_blank\"]"
+      },
+      "content3": {
+        "title": "Stimulează-ți acoperirea și vânzările cu Performance Max",
+        "text": "Dorești să maximizezi performanța campaniei și să găsești clienții potriviți oriunde s-ar afla? Printr-o singură campanie, Performance Max colectează date de pe diferite canale Google și optimizează performanța campaniei, afișând reclamele care au șanse mai mari de a genera conversii."
+      }
     },
-    "googleAccountCard": {
-        "title": "Cont Google",
-        "introDisabled": "Conectează-ți contul Google și asociază-l cu Google Merchant Center pentru a activa listările gratuite.",
-        "introEnabled": "Accesează prin modulul PrestaShop asociat contului tău de e-mail, Google Merchant Center și conturile Google Ads.",
-        "footerDissociating": "PrestaShop utilizează acest cont pentru a gestiona și sincroniza conturile Merchant Center și Google Ads.",
-        "alertCantConnect": "Momentan, nu te poți conecta la contul tău Google. Încearcă din nou mai târziu.",
-        "alertTokenMissing": "Nu ți-am putut autentifica contul. Încearcă din nou sau comută la un alt cont.",
-        "stepIsMandatory": "*Acest pas este obligatoriu",
-        "alertInfo": "Nu uita să accepți toate permisiunile solicitate atunci când îți autentifici contul Google.  \nAceastă acțiune este obligatorie pentru ca acest serviciu să funcționeze corect.",
-        "missingTokenScopes": "Unele permisiuni solicitate lipsesc.  \nToate permisiunile solicitate sunt obligatorii pentru ca acest serviciu să funcționeze corect, te rugăm să-ți gestionezi contul și să le accepți pe toate."
+    "footer": {
+      "text": "Fă-ți produsele ușor de găsit pe Google cu PS Marketing cu Google",
+      "explanation": "În Spațiul Economic European, Regatul Unit sau Elveția, campaniile Performance Max pot fi utilizate cu orice serviciu de comparare a prețurilor (CSS) cu care lucrezi. Reclamele vor apărea pe paginile cu rezultate generale ale căutării și pe orice alte suprafețe la care a optat CSS."
+    }
+  },
+  "onboarding": {
+    "cmpAlert": {
+      "title": "GDPR updates",
+      "paragraph": "Starting March 2024, businesses advertising to users in the European Economic Area (EEA) must create a strong framework to collect and communicate end-users’ consent choices via consent banners integrated with Google’s Consent Mode. To build a strong foundation for measuring your ads you must set up a cookie banner through a supported, dedicated Consent Management Platform. If you do not already have one, we recommend that you use the following consent management platform, which is compliant with the new regulations: {link}",
+      "moduleGDPR": "Cookies GDPR Law (Blocker) + Google Consent Mode V2"
     },
-    "mcaCard": {
-        "title": "Cont Merchant Center",
-        "introDisabled": "Conectează-ți contul Merchant Center la PrestaShop pentru a facilita sincronizarea datelor despre magazin și produs.",
-        "claimCollides": "Site-ul tău a fost deja revendicat.",
-        "claimOverwrite": "Pentru a finaliza crearea contului Merchant Center, trebuie să suprascrii revendicarea existentă.",
-        "footerEU": "Pentru magazinele din Spațiul Economic European, Regatul Unit sau Elveția, contul Merchant Center trebuie asociat cu un [serviciu de comparare cumpărături (CSS)]({0})[:target=\"_blank\"]. Pentru noile conturi Merchant Center create prin această aplicație, contul tău va fi asociat în mod implicit cu Google Shopping, CSS-ul Google. Poți schimba oricând CSS-ul asociat contului tău și poți găsi, de asemenea, partenerii CSS aici. După ce ți-ai configurat contul Merchant Center, poți folosi instrumentul nostru de înregistrare, indiferent de CSS-ul pe care îl folosești.",
-        "shopInfoMissing": "Informațiile magazinului lipsesc",
-        "shopInfoMissingDescription": "Pentru a completa informațiile lipsă despre magazin, accesează [cont Merchant Center]({0})[:target=\"_blank\"].",
-        "userIsNotAdmin": "Ai nevoie de acces de admin",
-        "userIsTestAccount": "Acesta este un cont de test",
-        "googleMCA": "Cont Google Merchant Center",
-        "shopMaintenance": "Nu poți conecta un cont Google Merchant Center cât timp modul Întreținere este activ.  \n Te rugăm să modifici parametrii magazinului.",
-        "linkingFailed": "Momentan, nu te poți conecta la contul tău Merchant Center. Încearcă din nou mai târziu.",
-        "AccountValidationFailed": "Validarea contului a eșuat",
-        "unlinkFailed": "Deconectarea a eșuat. Reîncarcă pagina și încearcă din nou.",
-        "tryAgainLater": "Nu putem verifica sau revendica site-ul curent. **Îți recomandăm să te asiguri că site-ul este accesibil** și să încerci din nou mai târziu.",
-        "alertSuspended": "Cont suspendat: acțiune necesară",
-        "alertSuspendedDescription": "Google ți-a suspendat contul Merchant Center din cauza încălcărilor politicii. Produsele tale nu mai sunt promovate. Consultă motivul suspendării, analizează-ți contul și ia măsurile necesare pentru a îndeplini cerințele. {0}.",
-        "alertSuspendedLearnMore": "Află mai multe despre suspendarea contului",
-        "notManaged": "Nu este asociat cu PrestaShop",
-        "overwriteFailed": "Revendicarea adresei URL a site-ului a eșuat",
-        "overwriteToBeDoneManually": "Site-ul a fost deja revendicat pe un alt cont Merchant Center. Deoarece nu suntem administratorul contului tău, nu putem suprascrie această revendicare pentru tine. Accesează [Google Merchant Center]({0})[:target=\"_blank\"] și modifică adresa URL a site-ului web cu aceasta: {1}",
-        "ineligibleForFreeListing": "Contul tău nu este eligibil pentru listări gratuite avansate pe Google",
-        "ineligibleForFreeListingDescription": "Te rugăm să examinezi dezaprobările la nivel de produs, precum și contul tău general.",
-        "claimOverwriteWithManualAction": "Pentru a finaliza conectarea contului tău la Google Merchant Center, trebuie să furnizezi adresa URL a site-ului ({0}) în contul tău Google Merchant Center.",
-        "noExistingAccount": "Niciun cont existent",
-        "linkLearnMoreAbout": "Află mai multe despre „{0}”",
-        "newGmcNotListed": "Se așteaptă publicarea contului tău",
-        "newGmcNotListedDescription": "Dacă tocmai ai creat un cont nou, înseamnă că Google încă îl construiește. Trebuie să aștepți sau să revii mai târziu. Această operațiune poate dura până la 5 minute din partea Google. În alte cazuri, verifică dacă GMC există încă și dacă ai în continuare drepturi asupra acestuia.",
-        "phoneVerificationNeeded": "Verificarea numărului de telefon",
-        "phoneVerificationNeededDescription": "Pentru a putea utiliza contul Merchant Center, trebuie să confirmi numărul de telefon",
-        "codeSent": "Cod trimis",
-        "sendCode": "Trimite codul",
-        "receiveCall": "Primire apel",
-        "phoneVerifiedContinue": "Numărul de telefon a fost verificat, poți continua crearea contului.",
-        "enterCode": "Te rugăm să introduci codul de verificare",
-        "validatingCode": "Se validează codul",
-        "textMessageHasBeenSent": "A fost trimis un mesaj text care conține un cod de X cifre",
-        "askAgain60sec": "Vei putea solicita un nou cod în 60 de secunde",
-        "needPhoneVerification": "Trebuie să îți verificăm identitatea folosind numărul de telefon",
-        "fillInputs": "Te rugăm să completezi numărul de telefon și să selectezi prefixul internațional",
-        "invalidCode": "Codul nu este valid",
-        "phoneNumberNotValid": "Numărul de telefon este incorect, te rugăm să introduci numai numere",
-        "code": "Cod",
-        "contactMethod": "Alege metoda de contact preferată",
-        "dialCode": "Cod de apelare",
-        "phoneNumber": "Introdu numărul de telefon",
-        "textMethod": "Mesaj text",
-        "callMethod": "Apel telefonic",
-        "selectMethod": "Te rugăm să selectezi metoda de contact dorită pentru a-ți verifica identitatea",
-        "alertTooManyRequests": "Ai solicitat acest serviciu de prea multe ori cu acest număr de telefon. Trebuie să aștepți 24 de ore pentru a încerca din nou sau pentru a schimba numărul de telefon.",
-        "alertSomethingHappened": "S-a întâmplat ceva. Problema este la noi, te rugăm să încerci din nou.",
-        "alertCodeExpired": "Codul a expirat. Te rugăm să soliciți altul",
-        "refreshAfterAddingWebsiteAddress": "Dacă ai adăugat o nouă informație în Google Merchant Center, reîmprospătează pagina."
+    "sectionTitle": {
+      "psAccount": "Conectează-ți magazinul la contul tău PrestaShop",
+      "freeListing": {
+        "title": "Ajungi la mai mulți oameni pe Google cu listări gratuite",
+        "subtitle": "Listările gratuite îți oferă acces la milioane de cumpărători care caută produse similare cu ale tale. Afișează-ți gratuit produsele în listele SEO din fila Shopping atunci când îți conectezi contul Google la Google Merchant Center.",
+        "lastTitle": "Afacerile care utilizează listări gratuite și reclame în fila Shopping au înregistrat împreună o creștere medie de >50% a clicurilor și o creștere de >100% a afișărilor. (Date interne Google, iulie 2020)"
+      },
+      "smartShoppingCampaign": {
+        "title": "Reclamă pe Google cu Performance Max",
+        "subtitle": "Conectează-te sau creează-ți un cont Google Ads și lansează o campanie Performance Max pentru produsele tale. Maximizează performanța campaniei tale pe mai multe canale Google, printr-o singură campanie. Afișează-ți reclamele acolo unde au șanse mai mari de a genera conversii.\n\n Și mai bine, nu plătești decât dacă clienții apasă pe reclamă."
+      }
     },
-    "mcaRequirements": {
-        "steps": {
-            "websiteRequirements": "Cerințe magazin online",
-            "shopInfo": "Informații despre magazin",
-            "phoneValidation": "Validare telefon"
-        },
-        "title": "Creează un cont nou Merchant Center",
-        "legend": "Pentru a participa la listări gratuite și a face publicitate pe Google, trebuie să confirmi și să respecți cerințele de mai jos:",
-        "legend2": "Adresa URL a site-ului web al magazinului trebuie verificată și revendicată înainte de a putea încărca date despre produse.  \n[Află cum să verifici și să-ți revendici site-ul.](https://support.google.com/merchants/answer/176793?hl=en&ref_topic=3163841)[:target=\"_blank\"].",
-        "footer": "Citește versiunea completă a cerințelor magazinului Google",
-        "accurateContactInformation": {
-            "title": "Confirm că informațiile mele de contact sunt corecte și valide",
-            "description": "Comercianții trebuie să aibă cel puțin o metodă de contact listată pe site-ul lor. Aceasta poate fi orice tip de metodă de contact.",
-            "link": "Descoperă cum să adaugi informații de contact"
-        },
-        "secureCheckoutProcess": {
-            "title": "Confirm că am checkout și colectarea datelor clare",
-            "description": "Nu utiliza în mod abuziv informații despre utilizatori și nici nu le colecta în scopuri neclare sau fără măsuri de securitate adecvate.",
-            "link": "Află mai multe despre colectarea și utilizarea iresponsabilă a datelor"
-        },
-        "returnPolicy": {
-            "title": "Confirm că politica mea de returnare și rambursare este configurată pe site-ul meu web",
-            "description": "Politica de returnare și rambursare trebuie să fie clară (să includă cerințe și termene) și ușor de accesat pe site-ul web.",
-            "link": "Află cum să configurezi politicile de returnare"
-        },
-        "billingTerms": {
-            "title": "Confirm că termenii și condițiile mele de facturare sunt clare și vizibile",
-            "description": "Site-ul web trebuie să dezvăluie în mod clar și vizibil opțiunile de plată și toate cheltuielile pe care utilizatorul le va suporta, înainte și după cumpărare.",
-            "link": "Citește recomandările Merchant Center"
-        },
-        "completeCheckoutProcess": {
-            "title": "Confirm că am finalizat procesul de finalizare a plății",
-            "description": "Utilizatorii trebuie să poată finaliza cu succes procesul de achiziție.",
-            "link": "Află mai multe despre condițiile de finalizare a plății"
-        },
-        "websiteURL": "URL site web",
-        "websiteURLDescription": "Site-ul folosit pentru a crea contul Merchant Center",
-        "storeName": "Numele magazinului",
-        "storeNameDescription": "Acest nume va apărea în listările tale gratuite și în reclamele de Shopping.",
-        "businessLocation": "Locația afacerii",
-        "businessAddress": "Adresa afacerii",
-        "businessPhone": "Numărul de telefon al afacerii",
-        "businessZipCode": "Cod poștal",
-        "businessCity": "Oraș",
-        "businessRegion": "Regiune",
-        "businessCountry": "Țară",
-        "changeCountryField": "Poți [schimba țara]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informații în back-office",
-        "changeRegionField": "Poți [schimba regiunea]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informații în back-office",
-        "changeAddressField": "Poți [schimba adresa firmei]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informații în back-office",
-        "changeZipCodeField": "Poți [schimba codul poștal]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informații în back-office",
-        "changeCityField": "Poți [schimba orașul]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informații în back-office",
-        "changePhoneNumberField": "Poți [schimba numărul de telefon al companiei]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informații în back-office",
-        "siteContainsAdultContent": "Site-ul meu conține conținut pentru adulți",
-        "seePolicyAdultContent": "Consultă politica privind conținutul pentru adulți",
-        "labelReadAndAgree": "Prin achiziționarea reclamelor de Shopping, am citit și sunt de acord să respect [Termenii și politicile Google]({0})[:target=\"_blank\"], inclusiv [Termenii și condițiile Google Merchant Center]({1})[:target=\"_blank\"], [Politicile privind reclamele pentru Shopping]({2})[:target=\"_blank\"] și [Termenii și condițiile Google Ads]({3})[:target=\"_blank\"].",
-        "alert": "Magazinul tău va fi examinat, și dacă una dintre aceste condiții lipsește, contul tău va fi suspendat.",
-        "phoneFormat": "Numărul tău de telefon de serviciu nu are un format valid (acceptă doar numere), te rugăm să îl modifici.",
-        "updateData": "Dacă ai făcut orice modificare în back-office, te rugăm să reîmprospătezi informațiile pentru a vedea modificările reflectate aici."
+    "productFeedNotice": "Ajută-ți clienții să-ți găsească mai ușor produsele pe Google și listează-le gratuit cu reclame gratuite. Listările gratuite ajută la atragerea mai multor clienți și îi determină să viziteze site-ul tău."
+  },
+  "multiShopSelector": {
+    "title": "Mod multi-magazin activat",
+    "subtitle": "Trebuie să-ți configurezi magazinele unul câte unul pentru acest serviciu, dar vei putea utiliza același cont.",
+    "selectStore": "Selectează primul magazin de configurat din lista de mai jos",
+    "tips": "După ce ai terminat cu primul magazin, le poți configura pe celelalte selectându-le unul câte unul în selectorul magazinelor, în meniul orizontal",
+    "configure": "Configurare",
+    "group": "Grup de magazine"
+  },
+  "googleAccountCard": {
+    "title": "Cont Google",
+    "introDisabled": "Conectează-ți contul Google și asociază-l cu Google Merchant Center pentru a activa listările gratuite.",
+    "introEnabled": "Accesează prin modulul PrestaShop asociat contului tău de e-mail, Google Merchant Center și conturile Google Ads.",
+    "footerDissociating": "PrestaShop utilizează acest cont pentru a gestiona și sincroniza conturile Merchant Center și Google Ads.",
+    "alertCantConnect": "Momentan, nu te poți conecta la contul tău Google. Încearcă din nou mai târziu.",
+    "alertTokenMissing": "Nu ți-am putut autentifica contul. Încearcă din nou sau comută la un alt cont.",
+    "stepIsMandatory": "*Acest pas este obligatoriu",
+    "alertInfo": "Nu uita să accepți toate permisiunile solicitate atunci când îți autentifici contul Google.  \nAceastă acțiune este obligatorie pentru ca acest serviciu să funcționeze corect.",
+    "missingTokenScopes": "Unele permisiuni solicitate lipsesc.  \nToate permisiunile solicitate sunt obligatorii pentru ca acest serviciu să funcționeze corect, te rugăm să-ți gestionezi contul și să le accepți pe toate."
+  },
+  "mcaCard": {
+    "title": "Cont Merchant Center",
+    "introDisabled": "Conectează-ți contul Merchant Center la PrestaShop pentru a facilita sincronizarea datelor despre magazin și produs.",
+    "claimCollides": "Site-ul tău a fost deja revendicat.",
+    "claimOverwrite": "Pentru a finaliza crearea contului Merchant Center, trebuie să suprascrii revendicarea existentă.",
+    "footerEU": "Pentru magazinele din Spațiul Economic European, Regatul Unit sau Elveția, contul Merchant Center trebuie asociat cu un [serviciu de comparare cumpărături (CSS)]({0})[:target=\"_blank\"]. Pentru noile conturi Merchant Center create prin această aplicație, contul tău va fi asociat în mod implicit cu Google Shopping, CSS-ul Google. Poți schimba oricând CSS-ul asociat contului tău și poți găsi, de asemenea, partenerii CSS aici. După ce ți-ai configurat contul Merchant Center, poți folosi instrumentul nostru de înregistrare, indiferent de CSS-ul pe care îl folosești.",
+    "shopInfoMissing": "Informațiile magazinului lipsesc",
+    "shopInfoMissingDescription": "Pentru a completa informațiile lipsă despre magazin, accesează [cont Merchant Center]({0})[:target=\"_blank\"].",
+    "userIsNotAdmin": "Ai nevoie de acces de admin",
+    "userIsTestAccount": "Acesta este un cont de test",
+    "googleMCA": "Cont Google Merchant Center",
+    "shopMaintenance": "Nu poți conecta un cont Google Merchant Center cât timp modul Întreținere este activ.  \n Te rugăm să modifici parametrii magazinului.",
+    "linkingFailed": "Momentan, nu te poți conecta la contul tău Merchant Center. Încearcă din nou mai târziu.",
+    "AccountValidationFailed": "Validarea contului a eșuat",
+    "unlinkFailed": "Deconectarea a eșuat. Reîncarcă pagina și încearcă din nou.",
+    "tryAgainLater": "Nu putem verifica sau revendica site-ul curent. **Îți recomandăm să te asiguri că site-ul este accesibil** și să încerci din nou mai târziu.",
+    "alertSuspended": "Cont suspendat: acțiune necesară",
+    "alertSuspendedDescription": "Google ți-a suspendat contul Merchant Center din cauza încălcărilor politicii. Produsele tale nu mai sunt promovate. Consultă motivul suspendării, analizează-ți contul și ia măsurile necesare pentru a îndeplini cerințele. {0}.",
+    "alertSuspendedLearnMore": "Află mai multe despre suspendarea contului",
+    "notManaged": "Nu este asociat cu PrestaShop",
+    "overwriteFailed": "Revendicarea adresei URL a site-ului a eșuat",
+    "overwriteToBeDoneManually": "Site-ul a fost deja revendicat pe un alt cont Merchant Center. Deoarece nu suntem administratorul contului tău, nu putem suprascrie această revendicare pentru tine. Accesează [Google Merchant Center]({0})[:target=\"_blank\"] și modifică adresa URL a site-ului web cu aceasta: {1}",
+    "ineligibleForFreeListing": "Contul tău nu este eligibil pentru listări gratuite avansate pe Google",
+    "ineligibleForFreeListingDescription": "Te rugăm să examinezi dezaprobările la nivel de produs, precum și contul tău general.",
+    "claimOverwriteWithManualAction": "Pentru a finaliza conectarea contului tău la Google Merchant Center, trebuie să furnizezi adresa URL a site-ului ({0}) în contul tău Google Merchant Center.",
+    "noExistingAccount": "Niciun cont existent",
+    "linkLearnMoreAbout": "Află mai multe despre „{0}”",
+    "newGmcNotListed": "Se așteaptă publicarea contului tău",
+    "newGmcNotListedDescription": "Dacă tocmai ai creat un cont nou, înseamnă că Google încă îl construiește. Trebuie să aștepți sau să revii mai târziu. Această operațiune poate dura până la 5 minute din partea Google. În alte cazuri, verifică dacă GMC există încă și dacă ai în continuare drepturi asupra acestuia.",
+    "phoneVerificationNeeded": "Verificarea numărului de telefon",
+    "phoneVerificationNeededDescription": "Pentru a putea utiliza contul Merchant Center, trebuie să confirmi numărul de telefon",
+    "codeSent": "Cod trimis",
+    "sendCode": "Trimite codul",
+    "receiveCall": "Primire apel",
+    "phoneVerifiedContinue": "Numărul de telefon a fost verificat, poți continua crearea contului.",
+    "enterCode": "Te rugăm să introduci codul de verificare",
+    "validatingCode": "Se validează codul",
+    "textMessageHasBeenSent": "A fost trimis un mesaj text care conține un cod de X cifre",
+    "askAgain60sec": "Vei putea solicita un nou cod în 60 de secunde",
+    "needPhoneVerification": "Trebuie să îți verificăm identitatea folosind numărul de telefon",
+    "fillInputs": "Te rugăm să completezi numărul de telefon și să selectezi prefixul internațional",
+    "invalidCode": "Codul nu este valid",
+    "phoneNumberNotValid": "Numărul de telefon este incorect, te rugăm să introduci numai numere",
+    "code": "Cod",
+    "contactMethod": "Alege metoda de contact preferată",
+    "dialCode": "Cod de apelare",
+    "phoneNumber": "Introdu numărul de telefon",
+    "textMethod": "Mesaj text",
+    "callMethod": "Apel telefonic",
+    "selectMethod": "Te rugăm să selectezi metoda de contact dorită pentru a-ți verifica identitatea",
+    "alertTooManyRequests": "Ai solicitat acest serviciu de prea multe ori cu acest număr de telefon. Trebuie să aștepți 24 de ore pentru a încerca din nou sau pentru a schimba numărul de telefon.",
+    "alertSomethingHappened": "S-a întâmplat ceva. Problema este la noi, te rugăm să încerci din nou.",
+    "alertCodeExpired": "Codul a expirat. Te rugăm să soliciți altul",
+    "refreshAfterAddingWebsiteAddress": "Dacă ai adăugat o nouă informație în Google Merchant Center, reîmprospătează pagina."
+  },
+  "mcaRequirements": {
+    "steps": {
+      "websiteRequirements": "Cerințe magazin online",
+      "shopInfo": "Informații despre magazin",
+      "phoneValidation": "Validare telefon"
     },
-    "gmcAccountIssues": {
-        "title": "Mai multe detalii despre problemele contului",
-        "description": "Contul tău a fost semnalizat din cauza unor potențiale probleme de performanță și conformitate. Te rugăm să consulți informațiile detaliate furnizate pentru a înțelege și a aborda aceste preocupări cu promptitudine"
+    "title": "Creează un cont nou Merchant Center",
+    "legend": "Pentru a participa la listări gratuite și a face publicitate pe Google, trebuie să confirmi și să respecți cerințele de mai jos:",
+    "legend2": "Adresa URL a site-ului web al magazinului trebuie verificată și revendicată înainte de a putea încărca date despre produse.  \n[Află cum să verifici și să-ți revendici site-ul.](https://support.google.com/merchants/answer/176793?hl=en&ref_topic=3163841)[:target=\"_blank\"].",
+    "footer": "Citește versiunea completă a cerințelor magazinului Google",
+    "accurateContactInformation": {
+      "title": "Confirm că informațiile mele de contact sunt corecte și valide",
+      "description": "Comercianții trebuie să aibă cel puțin o metodă de contact listată pe site-ul lor. Aceasta poate fi orice tip de metodă de contact.",
+      "link": "Descoperă cum să adaugi informații de contact"
     },
-    "productFeedCard": {
-        "title": "Fluxul de produse",
-        "intro": "Conectează-ți produsele din catalog pentru a prezenta produsele în listările gratuite. Prețurile și disponibilitatea produselor sunt actualizate automat zilnic, oferind clienților acces la cele mai recente și corecte prețuri pentru produsele tale la ofertă!",
-        "introToConfigure": "Este important să trimiți fluxul de produse în formatul corect, deoarece Google utilizează acest lucru pentru a se asigura că produsele se potrivesc interogărilor aferente.",
-        "nextSync": "Următoarea sincronizare pe {0}",
-        "mappedCategories": "{0}/{1} categorii mapate",
-        "alertFeedSettingSubmissionSuccess": "Ai trimis cu succes datele produselor tale la Merchant Center. Odată aprobate, acestea vor fi disponibile pentru listări și reclame gratuite.",
-        "alertFailed": "Sincronizarea produsului nu a reușit. Verifică motivele posibile în [Merchant Center]({0})[:target=\"_blank\"] sau contactează [suport clienți](mailto:support-google@prestashop.com).",
-        "alertShippingSettingsMissing": "Informațiile de expediere lipsesc.",
-        "alertShippingSettingsMissingDescription": "Pentru a sincroniza cu succes fluxul produselor, te rugăm să adaugi informații de expediere.",
-        "alertProductFeedDeactivated": "Dacă sincronizarea produsului este dezactivată, nu vor exista produse noi împinse în GMC. Contul în sine va continua să existe, iar produsele vor expira după 30 de zile. Acest lucru oprește afișarea articolelor din catalog atât în listările gratuite, cât și în campaniile publicitare.",
-        "alertProductFeedExists": "**Există deja un flux de produse **  \n<small>Fluxul de produse există deja. Trebuie să îl suprascrii pentru a sincroniza fluxul de produse PrestaShop. </small>",
-        "googleTaxonomyAssociation": "Asocierea taxonomică a Google Product",
-        "optional": "Opțional",
-        "attributeDescription": "Cu aceste caracteristici, poți să-ți organizezi campaniile publicitare în Google Ads și, în unele cazuri, să înlocuiești categoria atribuită automat de Google.",
-        "excludedProducts": "Produse excluse",
-        "productsReadyToBeSynced": "Produse gata de sincronizare",
-        "productsWithProblems": "Produse cu probleme",
-        "alertGoogleIsReviewingProducts": "Produsele tale sunt în curs de evaluare  \n Este posibil să dureze 3-5 zile pentru a-ți revizui produsele. Odată aprobate, acestea vor fi disponibile pentru listări și reclame gratuite.",
-        "missingInformation": "Informații lipsă",
-        "alertErrorApi": "Nu poți trimite date despre produsele tale la Google chiar acum. Încearcă din nou mai târziu."
+    "secureCheckoutProcess": {
+      "title": "Confirm că am checkout și colectarea datelor clare",
+      "description": "Nu utiliza în mod abuziv informații despre utilizatori și nici nu le colecta în scopuri neclare sau fără măsuri de securitate adecvate.",
+      "link": "Află mai multe despre colectarea și utilizarea iresponsabilă a datelor"
     },
-    "productFeedSettings": {
-        "breadcrumb1": "Fluxul de produse",
-        "breadcrumb2": "Setări flux de produse",
-        "steps": {
-            "shippingSetup": "Configurare expediere",
-            "deliveryTimesAndRates": "Timp de livrare și tarife",
-            "attributeMapping": "Maparea caracteristicilor",
-            "categoryMapping": "Maparea categoriilor",
-            "productSelection": "Product selection",
-            "summary": "Rezumat",
-            "exportFeed": "Exportare flux!",
-            "shippingSettingsErrors": "Această țară nu este compatibilă cu moneda ta",
-            "syncSchedule": "Sincronizează programul"
+    "returnPolicy": {
+      "title": "Confirm că politica mea de returnare și rambursare este configurată pe site-ul meu web",
+      "description": "Politica de returnare și rambursare trebuie să fie clară (să includă cerințe și termene) și ușor de accesat pe site-ul web.",
+      "link": "Află cum să configurezi politicile de returnare"
+    },
+    "billingTerms": {
+      "title": "Confirm că termenii și condițiile mele de facturare sunt clare și vizibile",
+      "description": "Site-ul web trebuie să dezvăluie în mod clar și vizibil opțiunile de plată și toate cheltuielile pe care utilizatorul le va suporta, înainte și după cumpărare.",
+      "link": "Citește recomandările Merchant Center"
+    },
+    "completeCheckoutProcess": {
+      "title": "Confirm că am finalizat procesul de finalizare a plății",
+      "description": "Utilizatorii trebuie să poată finaliza cu succes procesul de achiziție.",
+      "link": "Află mai multe despre condițiile de finalizare a plății"
+    },
+    "websiteURL": "URL site web",
+    "websiteURLDescription": "Site-ul folosit pentru a crea contul Merchant Center",
+    "storeName": "Numele magazinului",
+    "storeNameDescription": "Acest nume va apărea în listările tale gratuite și în reclamele de Shopping.",
+    "businessLocation": "Locația afacerii",
+    "businessAddress": "Adresa afacerii",
+    "businessPhone": "Numărul de telefon al afacerii",
+    "businessZipCode": "Cod poștal",
+    "businessCity": "Oraș",
+    "businessRegion": "Regiune",
+    "businessCountry": "Țară",
+    "changeCountryField": "Poți [schimba țara]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informații în back-office",
+    "changeRegionField": "Poți [schimba regiunea]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informații în back-office",
+    "changeAddressField": "Poți [schimba adresa firmei]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informații în back-office",
+    "changeZipCodeField": "Poți [schimba codul poștal]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informații în back-office",
+    "changeCityField": "Poți [schimba orașul]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informații în back-office",
+    "changePhoneNumberField": "Poți [schimba numărul de telefon al companiei]({0})[:target=\"_blank\" class=\"text-decoration-underline\"] informații în back-office",
+    "siteContainsAdultContent": "Site-ul meu conține conținut pentru adulți",
+    "seePolicyAdultContent": "Consultă politica privind conținutul pentru adulți",
+    "labelReadAndAgree": "Prin achiziționarea reclamelor de Shopping, am citit și sunt de acord să respect [Termenii și politicile Google]({0})[:target=\"_blank\"], inclusiv [Termenii și condițiile Google Merchant Center]({1})[:target=\"_blank\"], [Politicile privind reclamele pentru Shopping]({2})[:target=\"_blank\"] și [Termenii și condițiile Google Ads]({3})[:target=\"_blank\"].",
+    "alert": "Magazinul tău va fi examinat, și dacă una dintre aceste condiții lipsește, contul tău va fi suspendat.",
+    "phoneFormat": "Numărul tău de telefon de serviciu nu are un format valid (acceptă doar numere), te rugăm să îl modifici.",
+    "updateData": "Dacă ai făcut orice modificare în back-office, te rugăm să reîmprospătezi informațiile pentru a vedea modificările reflectate aici."
+  },
+  "gmcAccountIssues": {
+    "title": "Mai multe detalii despre problemele contului",
+    "description": "Contul tău a fost semnalizat din cauza unor potențiale probleme de performanță și conformitate. Te rugăm să consulți informațiile detaliate furnizate pentru a înțelege și a aborda aceste preocupări cu promptitudine"
+  },
+  "productFeedCard": {
+    "title": "Fluxul de produse",
+    "intro": "Conectează-ți produsele din catalog pentru a prezenta produsele în listările gratuite. Prețurile și disponibilitatea produselor sunt actualizate automat zilnic, oferind clienților acces la cele mai recente și corecte prețuri pentru produsele tale la ofertă!",
+    "introToConfigure": "Este important să trimiți fluxul de produse în formatul corect, deoarece Google utilizează acest lucru pentru a se asigura că produsele se potrivesc interogărilor aferente.",
+    "nextSync": "Următoarea sincronizare pe {0}",
+    "mappedCategories": "{0}/{1} categorii mapate",
+    "alertFeedSettingSubmissionSuccess": "Ai trimis cu succes datele produselor tale la Merchant Center. Odată aprobate, acestea vor fi disponibile pentru listări și reclame gratuite.",
+    "alertFailed": "Sincronizarea produsului nu a reușit. Verifică motivele posibile în [Merchant Center]({0})[:target=\"_blank\"] sau contactează [suport clienți](mailto:support-google@prestashop.com).",
+    "alertShippingSettingsMissing": "Informațiile de expediere lipsesc.",
+    "alertShippingSettingsMissingDescription": "Pentru a sincroniza cu succes fluxul produselor, te rugăm să adaugi informații de expediere.",
+    "alertProductFeedDeactivated": "Dacă sincronizarea produsului este dezactivată, nu vor exista produse noi împinse în GMC. Contul în sine va continua să existe, iar produsele vor expira după 30 de zile. Acest lucru oprește afișarea articolelor din catalog atât în listările gratuite, cât și în campaniile publicitare.",
+    "alertProductFeedExists": "**Există deja un flux de produse **  \n<small>Fluxul de produse există deja. Trebuie să îl suprascrii pentru a sincroniza fluxul de produse PrestaShop. </small>",
+    "googleTaxonomyAssociation": "Asocierea taxonomică a Google Product",
+    "optional": "Opțional",
+    "attributeDescription": "Cu aceste caracteristici, poți să-ți organizezi campaniile publicitare în Google Ads și, în unele cazuri, să înlocuiești categoria atribuită automat de Google.",
+    "excludedProducts": "Produse excluse",
+    "productsReadyToBeSynced": "Produse gata de sincronizare",
+    "productsWithProblems": "Produse cu probleme",
+    "alertGoogleIsReviewingProducts": "Produsele tale sunt în curs de evaluare  \n Este posibil să dureze 3-5 zile pentru a-ți revizui produsele. Odată aprobate, acestea vor fi disponibile pentru listări și reclame gratuite.",
+    "missingInformation": "Informații lipsă",
+    "alertErrorApi": "Nu poți trimite date despre produsele tale la Google chiar acum. Încearcă din nou mai târziu."
+  },
+  "productFeedSettings": {
+    "breadcrumb1": "Fluxul de produse",
+    "breadcrumb2": "Setări flux de produse",
+    "steps": {
+      "shippingSetup": "Configurare expediere",
+      "deliveryTimesAndRates": "Timp de livrare și tarife",
+      "attributeMapping": "Maparea caracteristicilor",
+      "productSelection": "Product Selection",
+      "categoryMapping": "Maparea categoriilor",
+      "summary": "Rezumat",
+      "exportFeed": "Exportare flux!",
+      "shippingSettingsErrors": "Această țară nu este compatibilă cu moneda ta",
+      "syncSchedule": "Sincronizează programul"
+    },
+    "summaryTitles": {
+      "selectedProducts": "Selected products ready for synchronization",
+      "shippingParameters": "Shipping parameters",
+      "taxSettings": "Tax settings",
+      "dataSyncConfiguration": "Data synchronization configuration",
+      "deliveryTimesAndRates": "Delivery times and rates",
+      "attributesMapping": "Product attributes mapping"
+    },
+    "noticeDataStored": "Setările sunt salvate la fiecare pas, vor fi trimise numai la pasul final.",
+    "submissionExplanation": "Reține că datele vor fi stocate la fiecare pas, dar vor fi trimise numai în etapa finală.",
+    "shippingSetup": {
+      "title": "Configurare expediere",
+      "mandatoryStep": "Pentru ca produsele să fie afișate de Google Merchant Center, expedierea este un pas obligatoriu.",
+      "stepExplanation": "Acest lucru poate ajuta clienții care se uită la produsele tale pe Google să vadă prețurile și timpii de livrare.",
+      "estimateOption": {
+        "title": "Pot estima tarifele și timpii de expediere",
+        "description": "Poți seta cu ușurință tariful de expediere și timpii de livrare. Nu ți se va cere să imporți sau să actualizezi informațiile de expediere din Prestashop back-office.",
+        "summary": "Metoda estimată"
+      },
+      "importOption": {
+        "title": "Aș dori să-mi import configurația de expediere din PrestaShop back-office",
+        "description": "Prestashop va importa setările de expediere care sunt deja configurate în back-office. Poți alege ce furnizor de servicii de expediere dorești să utilizezi pentru fiecare țară vizată.",
+        "summary": "Importat din back-office"
+      },
+      "laterOption": {
+        "summary": "Configurare ulterioară"
+      },
+      "validationErrors": {
+        "needOptionToBeChosen": "Trebuie să selectezi o opțiune pentru a continua"
+      }
+    },
+    "deliveryTimeAndRates": {
+      "tooltips": {
+        "carrierName": "Numele transportatorului te va ajuta să identifici transportatorii atunci când se creează cu metoda de estimare. Este limitat la 90 de caractere",
+        "freeShippingOverAmount": "Introdu valoarea cheltuielilor minime necesare pentru expediere gratuită",
+        "shippingRate": "Introdu tariful de expediere care se aplică sub suma minimă stabilită necesară pentru expedierea gratuită"
+      },
+      "title": "Timp de livrare și tarife",
+      "rateAndDelivery": "Tarifele și cronologia livrării",
+      "deliveryInfo": "Introdu zilele minime și maxime necesare pentru livrare",
+      "customRate": {
+        "title": "Alege un tarif fix sau personalizat pentru țările vizate",
+        "rateTitle": "Aceleași tarife pentru țările țintă",
+        "rateDesc": "Pot estima același tarif de expediere și timp de livrare pentru toate țările",
+        "customTitle": "Tarife personalizate în funcție de țară",
+        "customDesc": "Aș dori să stabilesc tarife și timpi diferiți pentru fiecare țară"
+      },
+      "estimateStep": {
+        "estimateInputLabel": "Introdu transportatorul",
+        "error": "Completează informațiile necesare",
+        "carrierName": "Denumirea transportatorului",
+        "storeOffersTitle": "Ofertele magazinului meu",
+        "storeOffers": {
+          "flatShippingRateForAllProducts": "Tarif de expediere fix pentru toate produsele",
+          "freeShippingForAllProducts": "Expediere gratuită pentru toate produsele",
+          "freeShippingOverAmount": "Expediere gratuită peste o sumă stabilită"
         },
-        "noticeDataStored": "Setările sunt salvate la fiecare pas, vor fi trimise numai la pasul final.",
-        "submissionExplanation": "Reține că datele vor fi stocate la fiecare pas, dar vor fi trimise numai în etapa finală.",
-        "shippingSetup": {
-            "title": "Configurare expediere",
-            "mandatoryStep": "Pentru ca produsele să fie afișate de Google Merchant Center, expedierea este un pas obligatoriu.",
-            "stepExplanation": "Acest lucru poate ajuta clienții care se uită la produsele tale pe Google să vadă prețurile și timpii de livrare.",
-            "estimateOption": {
-                "title": "Pot estima tarifele și timpii de expediere",
-                "description": "Poți seta cu ușurință tariful de expediere și timpii de livrare. Nu ți se va cere să imporți sau să actualizezi informațiile de expediere din Prestashop back-office.",
-                "summary": "Metoda estimată"
-            },
-            "importOption": {
-                "title": "Aș dori să-mi import configurația de expediere din PrestaShop back-office",
-                "description": "Prestashop va importa setările de expediere care sunt deja configurate în back-office. Poți alege ce furnizor de servicii de expediere dorești să utilizezi pentru fiecare țară vizată.",
-                "summary": "Importat din back-office"
-            },
-            "laterOption": {
-                "summary": "Configurare ulterioară"
-            },
-            "validationErrors": {
-                "needOptionToBeChosen": "Trebuie să selectezi o opțiune pentru a continua"
-            }
-        },
-        "deliveryTimeAndRates": {
-            "tooltips": {
-                "carrierName": "Numele transportatorului te va ajuta să identifici transportatorii atunci când se creează cu metoda de estimare. Este limitat la 90 de caractere",
-                "freeShippingOverAmount": "Introdu valoarea cheltuielilor minime necesare pentru expediere gratuită",
-                "shippingRate": "Introdu tariful de expediere care se aplică sub suma minimă stabilită necesară pentru expedierea gratuită"
-            },
-            "title": "Timp de livrare și tarife",
-            "rateAndDelivery": "Tarifele și cronologia livrării",
-            "deliveryInfo": "Introdu zilele minime și maxime necesare pentru livrare",
-            "customRate": {
-                "title": "Alege un tarif fix sau personalizat pentru țările vizate",
-                "rateTitle": "Aceleași tarife pentru țările țintă",
-                "rateDesc": "Pot estima același tarif de expediere și timp de livrare pentru toate țările",
-                "customTitle": "Tarife personalizate în funcție de țară",
-                "customDesc": "Aș dori să stabilesc tarife și timpi diferiți pentru fiecare țară"
-            },
-            "estimateStep": {
-                "estimateInputLabel": "Introdu transportatorul",
-                "error": "Completează informațiile necesare",
-                "carrierName": "Denumirea transportatorului",
-                "storeOffersTitle": "Ofertele magazinului meu",
-                "storeOffers": {
-                    "flatShippingRateForAllProducts": "Tarif de expediere fix pentru toate produsele",
-                    "freeShippingForAllProducts": "Expediere gratuită pentru toate produsele",
-                    "freeShippingOverAmount": "Expediere gratuită peste o sumă stabilită"
-                },
-                "shippingRate": {
-                    "rate": "Tarif de expediere",
-                    "rateDesc": "Introdu tariful de expediere pentru toate țările vizate",
-                    "overAmount": "Expedierea gratuită se aplică peste"
-                },
-                "summary": {
-                    "singleCountry": "Tarif forfetar",
-                    "multiCountriesFlatRateForAll": "Tarif forfetar pentru toate țările vizate"
-                },
-                "validationErrors": {
-                    "missingRateOption": "Pentru a continua, trebuie să selectezi o opțiune de evaluare și să indici tarifele și timpul de livrare în consecință"
-                }
-            },
-            "importOption": {
-                "validationErrors": {
-                    "needAtLeastOneCarrier": "Trebuie să activezi cel puțin un transportator pentru a continua",
-                    "needAtLeastOneCarrierForEachCountry": "Pentru a continua, trebuie să activezi și să finalizezi cel puțin un transportator pentru fiecare țară vizată selectată"
-                },
-                "summary": "Transportatori configurați din back-office"
-            },
-            "productAvailaibleIn": "Lista derulantă a țărilor de mai jos se va potrivi cu țările și moneda pe care le-ai configurat în magazinul tău. Poți selecta țările în care dorești să fie afișate produsele tale.",
-            "targetCountries": "Țară vizată | Țări vizate",
-            "filterTitle": "Filtrare după țară",
-            "ifMultipleCountries": "Dacă vizezi mai multe țări, fiecare preț al produselor va fi convertit automat în moneda corectă în Google. Cu toate acestea, magazinul tău trebuie să aibă tarife de expediere și taxe configurate pentru fiecare țară selectată. Te rugăm să respecți [politicile de cumpărături specifice țării]({0})[:target=\"_blank\"] și [regulamentul local]({1})[:target=\"_blank\"]",
-            "placeholderSelect": "Selectează țările în care sunt disponibile produsele tale",
-            "shippingSettingsErrors": "Această țară nu este compatibilă cu moneda ta",
-            "shippingSettings": "Setări expediere",
-            "shippingSettingsTitle": "Setări de expediere a produselor",
-            "shippingLabel1": "Configurează setările de expediere acum (recomandat)",
-            "shippingDescription1": "PrestaShop va importa lista de transportatori din setările magazinului și îți va permite să furnizezi informații suplimentare.",
-            "manually": "Manual",
-            "shippingLabel2": "Omite și configurează mai târziu în Google Merchant Center",
-            "shippingDescription2": "Va trebui să introduci singur informațiile despre expedierea produselor în Centrul Google Merchant. ",
-            "noticeSetupShipping": "Produsele nu se vor sincroniza până când nu configurezi informațiile de expediere a produselor.",
-            "taxSettings": "Setări fiscale",
-            "taxSettingsDescription": "Pentru ca utilizatorii să înțeleagă prețul exact pe care vor trebui să îl plătească pentru un produs, trebuie să menționezi taxele pe care le colectezi. Selectează modul în care dorești să configurezi setările fiscale.",
-            "autoImportTax": "Importă automat setările fiscale",
-            "manualImportTax": "Configurarea manuală a setărilor fiscale în Google Merchant Center",
-            "appliedOnlyForUsa": "(se aplică numai pentru SUA)",
-            "alertTaxes": "Trebuie să menționezi taxele pe care le colectezi, astfel încât utilizatorii să înțeleagă prețul exact pe care vor trebui să îl plătească pentru produse.",
-            "carrierDescriptionHeader": "Descrierea\ntransportatorului ",
-            "enableHeader": "Activare/\ndezactivare",
-            "shipToCustomerHeader": "Livrare\nla ușă ",
-            "transitTimeHeader": "Termen de livrare",
-            "countryHeader": "Țară",
-            "shipToCustomerTooltip": "Selectează dacă acest transportator livrează la adresa unui client sau nu (punct de service, preluare în magazin). Google permite activarea doar a transportatorilor care expediază la o adresă.",
-            "handlingTimeTooltip": "Introdu durata până la preluarea comenzii de către transportator în zilele lucrătoare.",
-            "transitTimeTooltip": "Introdu durata de expediere a comenzii către client după ce aceasta părăsește depozitul tău.",
-            "shippingInformationTitle": "Tarifele de expediere și timpul de tranzit",
-            "shippingInformationIntro": "Tarifele de la transportatorii activați vor fi afișate clienților care se uită la produsele tale pe Google.",
-            "shippingTableNotice": "Google nu poate accepta transportatori cu tip de preluare din magazin. Asigură-te că îi dezactivezi sau că treci la o altă metodă.",
-            "shippingSwitchCarrier": "Comutare la activare/dezactivare transportator",
-            "carriersDropdownHeader": "Copiază informațiile de expediere în",
-            "carriersDropdownHiddenLabel": "Copiază informațiile transportatorului la alți transportatori",
-            "noCarriersTitle": "Nu ai niciun transportator",
-            "noCarriersDescription": "Accesează pagina transportatorilor pentru a adăuga transportatori",
-            "countryNeededTitle": "Selectează țara vizată",
-            "countryNeededDescription": "Introdu țările vizate pentru a afișa setările de expediere relevante în tabel",
-            "addNewCarriers": "Adaugă sau actualizează transportatori",
-            "refreshCarriers": "Actualizează dacă ai editat transportatorii",
-            "switchToFlatRate": "Treci la configurarea estimării expedierii"
-        },
-        "export": {
-            "summarySyncDailyAt": "Sincronizare zilnică la {0}",
-            "synchronizationSchedule": "Exportă programul de sincronizare",
-            "synchronizationTime": "Timp de sincronizare",
-            "timeZone": "Fus orar",
-            "exportMethod": "Exportă metodă",
-            "allProducts": "Exportă toate produsele",
-            "byBrand": "Exportă după marcă",
-            "byCategory": "Exportă după categorii",
-            "labelExcludeProducts": "Exclude anumite produse",
-            "placeholderExcludeProducts": "Caută produs",
-            "selectCategoriesToExport": "Selectează categoriile de exportat",
-            "allCategories": "Toate categoriile",
-            "labelSelectBrand": "Selectează marca",
-            "placeholderSelectBrand": "Caută marca",
-            "prohibitedContentNotice": "Te rugăm să consulți [liniile directoare privind conținutul interzis]({0})[:target=\"_blank\"] pentru a te asigura că produsele din flux nu încalcă aceste politici.",
-            "frequency": {
-                "daily": "Zilnic"
-            },
-            "teaser": {
-                "title": "Disponibil în versiunea următoare",
-                "badge": "În curând",
-                "syncScheduleCustomization": "Program de sincronizare personalizat",
-                "exportOption": "Opțiune de export",
-                "specificProductExclusion": "Excluderea produsului specific"
-            }
-        },
-        "attributeMapping": {
-            "title1": "1. Alege toate caracteristicile care se aplică produselor tale",
-            "description1": "Acest lucru îți va permite să mapezi caracteristicile obligatorii ale produselor Google la pasul următor, în funcție de catalogul tău.",
-            "title2": "2. Mapează caracteristicile Google obligatorii în câmpurile tale personalizate",
-            "description2": "Completează toate valorile pentru a te asigura că produsele tale sunt validate. Dacă o valoare lipsește din catalog, îți recomandăm să o creezi și să finalizezi configurarea mai târziu. Reține că Google va favoriza primele valori completate.",
-            "apparelAndAccessoriesTitle": "Vând îmbrăcăminte și/sau accesorii,",
-            "apparelAndAccessoriesSubtitle": "adică îmbrăcăminte, genți, încălțăminte sau pălării",
-            "electronicsTitle": "Vând electrocasnice pentru casă și/sau bucătărie,",
-            "electronicsSubtitle": "adică frigidere, mașini de spălat vase, mașini de spălat rufe, becuri",
-            "variantSetsTitle": "Produsele mele au seturi de variante,",
-            "variantSetsSubtitle": "adică diferite imprimeuri grafice, modele, țesături sau materiale",
-            "commonsTitle": "Niciuna din cele de mai sus",
-            "learnRequirementsProductSpecification": "Află mai multe despre cerințele și valorile acceptate pentru specificațiile produselor de Shopping",
-            "footerNotice": "Descrie datele produselor utilizând caracteristici. În plus față de minimul necesar pentru listările gratuite standard, poți adăuga caracteristici suplimentare necesare pentru listările avansate. Regula generală este: cu cât mai multe caracteristici, cu atât mai bine.",
-            "addNewAttributes": "Adaugă caracteristici noi în catalogul PrestaShop",
-            "refreshAttributes": "Reîmprospătează dacă ai editat caracteristicile",
-            "requiredForSomeCategories": "Acest câmp este obligatoriu pentru anumite categorii de produse. [Vezi mai multe]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
-            "sellApparelAndAccessories": "Îmbrăcăminte și accesorii",
-            "sellRefurbishedProducts": "Recondiționat",
-            "description": "Descriere",
-            "longDescription": "Descriere lungă",
-            "description_short": "Scurtă descriere",
-            "energyEfficiencyClass": "Clasa de eficiență energetică",
-            "maxEnergyEfficiencyClass": "Clasa de eficiență energetică maximă",
-            "minEnergyEfficiencyClass": "Clasa de eficiență energetică minimă",
-            "material": "Material",
-            "pattern": "Imprimeu",
-            "gtin": "GTIN",
-            "ean": "EAN13",
-            "mpn": "MPN",
-            "brand": "Marca",
-            "notAvailable": "Neumplute",
-            "specificTitle": "Specific",
-            "sellRefurbished": "Vând produse recondiționate",
-            "sellApparel": "Vând îmbrăcăminte și/sau accesorii",
-            "condition": "Stare",
-            "color": "Culoare",
-            "size": "Dimensiune",
-            "ageGroup": "Grup de vârstă",
-            "gender": "Sex",
-            "theXField": "Câmpul „{0}”",
-            "thisCustomField": "Acest câmp personalizat",
-            "learnAboutShippingSettings": "Află mai multe despre setările de expediere",
-            "learnHowToSetupShippingSettings": "Află cum să configurezi expedierea"
-        },
-        "productSelection": {
-            "methodSync": {
-                "title": "Select the method for products syncing",
-                "syncAllProducts": "Synchronize all products",
-                "syncAllProductsDesc": "The entire catalog will be synchronized.",
-                "syncFilteredProducts": "Synchronize filtered products",
-                "syncFilteredProductsDesc": "Only the products you select will be synchronized."
-            }
-        },
-        "syncSchedule": {
-            "title": "Program de sincronizare",
-            "subTitle": "Alege ora la care dorești să înceapă prima sincronizare, exportul ar putea încetini traficul",
-            "radioLabel1": "Acum, după ce îmi termin configurația (exportul ar putea încetini magazinul)",
-            "radioLabel2": "Mai târziu, aproximativ la 2:00 (GMT+1) (când magazinul are mai puține vizite)"
+        "shippingRate": {
+          "rate": "Tarif de expediere",
+          "rateDesc": "Introdu tariful de expediere pentru toate țările vizate",
+          "overAmount": "Expedierea gratuită se aplică peste"
         },
         "summary": {
-            "title1": "Următoarea sincronizare este planificată în {0} ore",
-            "title2": "Rezumatul setărilor fluxului de produse",
-            "xItems": "{0} articole",
-            "productItems": "Articolele produselor",
-            "tableHeader1": "Caracteristicile produselor Google",
-            "tableHeader2": "Câmpurile tale de produse personalizate",
-            "totalProducts": "Produse active gata pentru sincronizare",
-            "date": "Data",
-            "time": "Ora",
-            "youSell": "**Vinzi** {0}",
-            "dataSyncSetUp": "Configurarea sincronizării datelor",
-            "productAttributesMapping": "Maparea categoriei și a caracteristicilor produsului",
-            "attributeMapped": "O categorie a fost mapată | {0} categorii au fost mapate",
-            "mandatoryAttributesNotMapped": "O caracteristică Google nu a fost mapată pentru câmpurile tale personalizate | {0} Caracteristicile Google nu au fost mapate pentru câmpurile tale personalizate.",
-            "noticeToCompleteMapping": "Îți recomandăm să mapezi toate datele, în caz contrar produsele tale ar putea fi respinse de Google.",
-            "agreementTitle": "Înțeleg și sunt de acord cu următoarele condiții*",
-            "agreementCheckboxLabel1Instant": "Sincronizarea fluxului meu de produse va rula după ce fac clic pe salvare și export (ar putea dura între 1 și 4 ore)",
-            "agreementCheckboxLabel1Default": "Sincronizarea fluxului meu de produse va dura {time} (ar putea dura între 1 și 4 ore)",
-            "agreementCheckboxLabel2": "Recenziile produselor Google pot dura între 3 și 5 zile lucrătoare",
-            "disabledButtonTooltip": "Vezi condițiile noastre înainte de a merge mai departe",
-            "syncScheduledNow": "Astăzi, imediat după ce salvez și export"
+          "singleCountry": "Tarif forfetar",
+          "multiCountriesFlatRateForAll": "Tarif forfetar pentru toate țările vizate"
+        },
+        "validationErrors": {
+          "missingRateOption": "Pentru a continua, trebuie să selectezi o opțiune de evaluare și să indici tarifele și timpul de livrare în consecință"
         }
-    },
-    "freeListingCard": {
-        "title": "Afișează-ți produsele cu listări gratuite",
-        "intro": "Prezintă-ți gratuit produsul în lista SEO din fila Shopping.",
-        "learnFreeListing": "Află mai multe despre listările gratuite",
-        "seeFreeListing": "Vezi listările mele gratuite în Merchant Center",
-        "googleDelay": "Este nevoie de 3-5 zile lucrătoare pentru a revizui produsele",
-        "alertEnableFreeListing": "Activează listările gratuite pentru a-ți afișa produsele gratuit în fila Shopping.",
-        "alertCantEnableFreeListing": "Nu poți activa listările gratuite chiar acum. Încearcă din nou mai târziu.",
-        "alertCountryNotEligible": "Țara vizată pe care ai selectat-o nu este eligibilă pentru listări și reclame gratuite."
-    },
-    "googleAdsAccountCard": {
-        "title": "Cont Google Ads",
-        "intro": "Creează campanii publicitare pentru produsele tale: găsește publicul potrivit la momentul potrivit.",
-        "text": "După conectare, se poate să fie necesar să configurezi setările de facturare în contul tău Google Ads.",
-        "labelSelect": "Poți conecta un cont Google Ads existent sau poți crea unul nou în câțiva pași simpli.",
-        "id": "ID cont Google Ads",
-        "toUseGAdsNeedsAdminAccess": "Pentru a utiliza un cont Google Ads existent, trebuie să ai acces de administrator.",
-        "alertCantConnect": "Contul tău Google Ads nu a putut fi conectat, problema este la noi. Încearcă din nou.",
-        "alertBillingSettingsMissing": "Pentru a lansa campanii Performance Max, trebuie să adaugi setările de facturare în contul tău Google Ads.",
-        "alertNeedRefreshAfterBilling": "După ce ai completat informațiile de facturare în contul Google Ads, reîmprospătează pagina pentru a vedea actualizările.",
-        "alertNeedRefreshAfterInvitationLink": "După ce invitația este acceptată în contul tău Google Ads, reîmprospătează pagina pentru a vedea actualizările.",
-        "alertNeedValidationFromEmail": "Te rugăm să faci clic aici sau să-ți verifici e-mailurile pentru a-ți valida contul.",
-        "alertSuspended": "Trebuie să rezolvi problemele din contul tău Google Ads.",
-        "alertCancelled": "Trebuie să-ți reactivezi contul Google Ads.",
-        "learnAboutAccountSuspension": "Află mai multe despre suspendarea contului",
-        "learnAboutAccountCancellation": "Află mai multe despre anularea contului"
-    },
-    "googleAdsAccountNew": {
-        "title": "Creează un cont Google Ads nou",
-        "steps": {
-            "email": "Adresă de e-mail",
-            "businessInfo": "Informații despre afacere",
-            "termsOfService": "Termenii de utilizare a serviciului"
+      },
+      "importOption": {
+        "validationErrors": {
+          "needAtLeastOneCarrier": "Trebuie să activezi cel puțin un transportator pentru a continua",
+          "needAtLeastOneCarrierForEachCountry": "Pentru a continua, trebuie să activezi și să finalizezi cel puțin un transportator pentru fiecare țară vizată selectată"
         },
-        "email": {
-            "title": "Adresa ta de e-mail Google",
-            "description": "Adresa de e-mail de mai jos este cea furnizată în timpul conectării contului tău Google"
+        "summary": "Transportatori configurați din back-office"
+      },
+      "productAvailaibleIn": "Lista derulantă a țărilor de mai jos se va potrivi cu țările și moneda pe care le-ai configurat în magazinul tău. Poți selecta țările în care dorești să fie afișate produsele tale.",
+      "targetCountries": "Țară vizată | Țări vizate",
+      "selectValue": "Select a value",
+      "filterTitle": "Filtrare după țară",
+      "ifMultipleCountries": "Dacă vizezi mai multe țări, fiecare preț al produselor va fi convertit automat în moneda corectă în Google. Cu toate acestea, magazinul tău trebuie să aibă tarife de expediere și taxe configurate pentru fiecare țară selectată. Te rugăm să respecți [politicile de cumpărături specifice țării]({0})[:target=\"_blank\"] și [regulamentul local]({1})[:target=\"_blank\"]",
+      "placeholderSelect": "Selectează țările în care sunt disponibile produsele tale",
+      "shippingSettingsErrors": "Această țară nu este compatibilă cu moneda ta",
+      "shippingSettings": "Setări expediere",
+      "shippingSettingsTitle": "Setări de expediere a produselor",
+      "shippingLabel1": "Configurează setările de expediere acum (recomandat)",
+      "shippingDescription1": "PrestaShop va importa lista de transportatori din setările magazinului și îți va permite să furnizezi informații suplimentare.",
+      "manually": "Manual",
+      "shippingLabel2": "Omite și configurează mai târziu în Google Merchant Center",
+      "shippingDescription2": "Va trebui să introduci singur informațiile despre expedierea produselor în Centrul Google Merchant. ",
+      "noticeSetupShipping": "Produsele nu se vor sincroniza până când nu configurezi informațiile de expediere a produselor.",
+      "taxSettings": "Setări fiscale",
+      "taxSettingsDescription": "Pentru ca utilizatorii să înțeleagă prețul exact pe care vor trebui să îl plătească pentru un produs, trebuie să menționezi taxele pe care le colectezi. Selectează modul în care dorești să configurezi setările fiscale.",
+      "autoImportTax": "Importă automat setările fiscale",
+      "manualImportTax": "Configurarea manuală a setărilor fiscale în Google Merchant Center",
+      "appliedOnlyForUsa": "(se aplică numai pentru SUA)",
+      "alertTaxes": "Trebuie să menționezi taxele pe care le colectezi, astfel încât utilizatorii să înțeleagă prețul exact pe care vor trebui să îl plătească pentru produse.",
+      "carrierDescriptionHeader": "Descrierea\ntransportatorului ",
+      "enableHeader": "Activare/\ndezactivare",
+      "shipToCustomerHeader": "Livrare\nla ușă ",
+      "transitTimeHeader": "Termen de livrare",
+      "countryHeader": "Țară",
+      "shipToCustomerTooltip": "Selectează dacă acest transportator livrează la adresa unui client sau nu (punct de service, preluare în magazin). Google permite activarea doar a transportatorilor care expediază la o adresă.",
+      "handlingTimeTooltip": "Introdu durata până la preluarea comenzii de către transportator în zilele lucrătoare.",
+      "transitTimeTooltip": "Introdu durata de expediere a comenzii către client după ce aceasta părăsește depozitul tău.",
+      "shippingInformationTitle": "Tarifele de expediere și timpul de tranzit",
+      "shippingInformationIntro": "Tarifele de la transportatorii activați vor fi afișate clienților care se uită la produsele tale pe Google.",
+      "shippingTableNotice": "Google nu poate accepta transportatori cu tip de preluare din magazin. Asigură-te că îi dezactivezi sau că treci la o altă metodă.",
+      "shippingSwitchCarrier": "Comutare la activare/dezactivare transportator",
+      "carriersDropdownHeader": "Copiază informațiile de expediere în",
+      "carriersDropdownHiddenLabel": "Copiază informațiile transportatorului la alți transportatori",
+      "noCarriersTitle": "Nu ai niciun transportator",
+      "noCarriersDescription": "Accesează pagina transportatorilor pentru a adăuga transportatori",
+      "countryNeededTitle": "Selectează țara vizată",
+      "countryNeededDescription": "Introdu țările vizate pentru a afișa setările de expediere relevante în tabel",
+      "addNewCarriers": "Adaugă sau actualizează transportatori",
+      "refreshCarriers": "Actualizează dacă ai editat transportatorii",
+      "switchToFlatRate": "Treci la configurarea estimării expedierii"
+    },
+    "export": {
+      "summarySyncDailyAt": "Sincronizare zilnică la {0}",
+      "synchronizationSchedule": "Exportă programul de sincronizare",
+      "synchronizationTime": "Timp de sincronizare",
+      "timeZone": "Fus orar",
+      "exportMethod": "Exportă metodă",
+      "allProducts": "Exportă toate produsele",
+      "byBrand": "Exportă după marcă",
+      "byCategory": "Exportă după categorii",
+      "labelExcludeProducts": "Exclude anumite produse",
+      "placeholderExcludeProducts": "Caută produs",
+      "selectCategoriesToExport": "Selectează categoriile de exportat",
+      "allCategories": "Toate categoriile",
+      "labelSelectBrand": "Selectează marca",
+      "placeholderSelectBrand": "Caută marca",
+      "prohibitedContentNotice": "Please review the [prohibited content guidelines]({0})[:target=\"_blank\"] to ensure that products in your feed do not violate these policies.",
+      "frequency": {
+        "daily": "Zilnic"
+      },
+      "teaser": {
+        "title": "Disponibil în versiunea următoare",
+        "badge": "În curând",
+        "syncScheduleCustomization": "Program de sincronizare personalizat",
+        "exportOption": "Opțiune de export",
+        "specificProductExclusion": "Excluderea produsului specific"
+      }
+    },
+    "attributeMapping": {
+      "title1": "1. Alege toate caracteristicile care se aplică produselor tale",
+      "description1": "Acest lucru îți va permite să mapezi caracteristicile obligatorii ale produselor Google la pasul următor, în funcție de catalogul tău.",
+      "title2": "2. Mapează caracteristicile Google obligatorii în câmpurile tale personalizate",
+      "description2": "Completează toate valorile pentru a te asigura că produsele tale sunt validate. Dacă o valoare lipsește din catalog, îți recomandăm să o creezi și să finalizezi configurarea mai târziu. Reține că Google va favoriza primele valori completate.",
+      "apparelAndAccessoriesTitle": "Vând îmbrăcăminte și/sau accesorii,",
+      "apparelAndAccessoriesSubtitle": "adică îmbrăcăminte, genți, încălțăminte sau pălării",
+      "electronicsTitle": "Vând electrocasnice pentru casă și/sau bucătărie,",
+      "electronicsSubtitle": "adică frigidere, mașini de spălat vase, mașini de spălat rufe, becuri",
+      "variantSetsTitle": "Produsele mele au seturi de variante,",
+      "variantSetsSubtitle": "adică diferite imprimeuri grafice, modele, țesături sau materiale",
+      "commonsTitle": "Niciuna din cele de mai sus",
+      "learnRequirementsProductSpecification": "Află mai multe despre cerințele și valorile acceptate pentru specificațiile produselor de Shopping",
+      "footerNotice": "Descrie datele produselor utilizând caracteristici. În plus față de minimul necesar pentru listările gratuite standard, poți adăuga caracteristici suplimentare necesare pentru listările avansate. Regula generală este: cu cât mai multe caracteristici, cu atât mai bine.",
+      "addNewAttributes": "Adaugă caracteristici noi în catalogul PrestaShop",
+      "refreshAttributes": "Reîmprospătează dacă ai editat caracteristicile",
+      "requiredForSomeCategories": "Acest câmp este obligatoriu pentru anumite categorii de produse. [Vezi mai multe]({0})[:target=\"_blank\" class=\"external_link-no_icon\"]",
+      "sellApparelAndAccessories": "Îmbrăcăminte și accesorii",
+      "sellRefurbishedProducts": "Recondiționat",
+      "description": "Descriere",
+      "longDescription": "Descriere lungă",
+      "description_short": "Scurtă descriere",
+      "energyEfficiencyClass": "Clasa de eficiență energetică",
+      "maxEnergyEfficiencyClass": "Clasa de eficiență energetică maximă",
+      "minEnergyEfficiencyClass": "Clasa de eficiență energetică minimă",
+      "material": "Material",
+      "pattern": "Imprimeu",
+      "gtin": "GTIN",
+      "ean": "EAN13",
+      "mpn": "MPN",
+      "brand": "Marca",
+      "notAvailable": "Neumplute",
+      "specificTitle": "Specific",
+      "sellRefurbished": "Vând produse recondiționate",
+      "sellApparel": "Vând îmbrăcăminte și/sau accesorii",
+      "condition": "Stare",
+      "color": "Culoare",
+      "size": "Dimensiune",
+      "ageGroup": "Grup de vârstă",
+      "gender": "Sex",
+      "theXField": "Câmpul „{0}”",
+      "thisCustomField": "Acest câmp personalizat",
+      "learnAboutShippingSettings": "Află mai multe despre setările de expediere",
+      "learnHowToSetupShippingSettings": "Află cum să configurezi expedierea"
+    },
+    "productSelection": {
+      "newFeature": "New feature",
+      "and": "And",
+      "addFilter": "Add filter",
+      "methodSynch": {
+        "title": "Select the method for products syncing",
+        "synchAllProducts": "Synchronize all products",
+        "synchAllProductsDesc": "The entire catalog will be synchronized.",
+        "synchFilteredProducts": "Synchronize filtered products",
+        "synchFilteredProductsDesc": "Only the products you select will be synchronized."
+      },
+      "lineFilter": {
+        "errors": {
+          "empty": "This field is mandatory.",
+          "invalidEntry": "Entry is not valid.",
+          "invalidNumber": "A number is required.",
+          "invalidPositiveNumber": "A positive number is required.",
+          "invalidInteger": "A whole number is required."
         },
-        "business": {
-            "name": "Denumirea afacerii",
-            "title": "Informațiile afacerii",
-            "description": "Moneda pe care o alegi pentru contul tău va fi fixă după aceea, deci alege-o cu atenție.",
-            "labelCountry": "Țara de facturare",
-            "placeholderCountry": "Țară",
-            "labelTimeZone": "Fus orar",
-            "placeholderTimeZone": "Alege ora",
-            "labelCurrency": "Monedă",
-            "placeholderCurrency": "Monedă"
+        "attributes": {
+          "label": "Attribute",
+          "placeholder": "Select an attribute",
+          "defaultAttributes": "Default attributes",
+          "features": "Feature | Features",
+          "price": "Price (tax excluded)",
+          "brand": "Brand",
+          "category": "Category",
+          "id": "Product ID",
+          "out_of_stock": "Out of stock"
         },
-        "terms": {
-            "title": "Condiții de utilizare pentru Google Program",
-            "label": "Am citit și sunt de acord cu [termenii și condițiile Google Ads]({0})[:target=\"_blank\" class=\"ps_gs-fz-12\"]"
+        "conditions": {
+          "label": "Condition",
+          "placeholder": "Select a condition",
+          "isEqualTo": "Is equal to",
+          "isNotEqualTo": "Is not equal to",
+          "isLessThan": "Is less than",
+          "isGreaterThan": "Is greater than",
+          "contains": "Contains",
+          "notContain": "Does not contain",
+          "isIn": "Is in",
+          "isNot": "Is not in",
+          "isFalse": "Is false",
+          "isTrue": "Is true"
+        },
+        "value": {
+          "label": "Value",
+          "selectValue": "Select a value",
+          "enterValue": "Enter a value",
+          "false": "Is false",
+          "true": "Is true"
         }
+      },
+      "productCount": {
+        "productSelected": "product selected. | products selected.",
+        "error": "We are not able to retrieve the requested data right now. Check your configuration and try again later.",
+        "pending": "Searching products...",
+        "pendingLong": "The search is taking longer than expected. Please wait and don’t refresh the page.",
+        "nothingFound": "We haven't found any products matching your selection. Change your filters and try again.",
+        "tryAgain": "Try again"
+      }
     },
-    "smartShoppingCampaignCard": {
-        "title": "Crește-ți vânzările cu campaniile Performance Max",
-        "introNotConnected": "Conectează-te sau creează-ți un cont Google Ads și lansează o campanie Performance Max pentru produsele tale. Maximizează performanța campaniei tale pe mai multe canale Google, printr-o singură campanie. Afișează-ți reclamele acolo unde au șanse mai mari de a genera conversii. Și mai bine, nu plătești decât dacă clienții apasă pe reclamă.",
-        "introConnected": "Cu Performance Max, poți să-ți promovezi produsele și să-ți maximizezi performanța reclamelor pe mai multe canale Google, printr-o singură campanie. Și mai bine, nu plătești decât dacă clienții apasă pe reclamă!",
-        "footer": "În Spațiul Economic European, Regatul Unit sau Elveția, campaniile Performance Max pot fi utilizate cu orice serviciu de comparare a prețurilor (CSS) cu care lucrezi. Reclamele vor apărea pe paginile cu rezultate generale ale căutării și pe orice alte suprafețe la care a optat CSS.",
-        "titleInfo": "Știai că?",
-        "contentInfo": "Agenții de publicitate care actualizează campaniile Smart Shopping la Performance Max înregistrează o creștere medie de 12% a valorii conversiei la aceeași rentabilitate sau o rentabilitate mai bună a cheltuielilor publicitare (ROAS)*",
-        "footerInfo": "* Google Data, Global, Ads, Sep–Oct 2021."
+    "syncSchedule": {
+      "title": "Program de sincronizare",
+      "subTitle": "Alege ora la care dorești să înceapă prima sincronizare, exportul ar putea încetini traficul",
+      "radioLabel1": "Acum, după ce îmi termin configurația (exportul ar putea încetini magazinul)",
+      "radioLabel2": "Mai târziu, aproximativ la 2:00 (GMT+1) (când magazinul are mai puține vizite)"
     },
-    "enhancedConversionTrackingCard": {
-        "title": "Urmărire îmbunătățită a conversiilor",
-        "intro": "Îmbunătățește acuratețea urmăririi conversiilor și deblochează licitații mai puternice. Această funcționalitate operează alături de etichetele de conversie existente, trimițând date de conversie sigure, care respectă confidențialitatea, de pe site-ul tău web către Google.",
-        "signTosAlert": {
-            "title": "Îmbunătățește-ți urmărirea conversiilor și deblochează licitații mai puternice pentru anunțurile tale",
-            "text": "Activează urmărirea îmbunătățită a conversiilor prin simpla acceptare a condițiilor de utilizare Google Ads"
+    "summary": {
+      "title": "Product feed summary",
+      "xItems": "{0} articole",
+      "productItems": "Articolele produselor",
+      "tableHeader1": "Caracteristicile produselor Google",
+      "tableHeader2": "Product value",
+      "totalProducts": "Produse active gata pentru sincronizare",
+      "date": "Data",
+      "nextSync": "The next synchronization is on {date}.",
+      "time": "Ora",
+      "youSell": "**Vinzi** {0}",
+      "dataSyncSetUp": "Configurarea sincronizării datelor",
+      "productAttributesMapping": "Maparea categoriei și a caracteristicilor produsului",
+      "errorLoadDataSelectedProduct": "Unable to load data",
+      "attributeMapped": "One product attribute mapped | {0} product attributes mapped",
+      "mandatoryAttributesNotMapped": "O caracteristică Google nu a fost mapată pentru câmpurile tale personalizate | {0} Caracteristicile Google nu au fost mapate pentru câmpurile tale personalizate.",
+      "noticeToCompleteMapping": "Îți recomandăm să mapezi toate datele, în caz contrar produsele tale ar putea fi respinse de Google.",
+      "agreementTitle": "Conditions",
+      "agreement1": "The synchronization of my product feed will run after I click on save and export and may take 1-4 hours",
+      "agreement2": "Google products reviews may take 3-5 business days",
+      "agreementCheckboxLabel": "I understand and agree to the conditions above",
+      "disabledButtonTooltip": "Vezi condițiile noastre înainte de a merge mai departe",
+      "syncScheduledNow": "Astăzi, imediat după ce salvez și export"
+    }
+  },
+  "freeListingCard": {
+    "title": "Afișează-ți produsele cu listări gratuite",
+    "intro": "Prezintă-ți gratuit produsul în lista SEO din fila Shopping.",
+    "learnFreeListing": "Află mai multe despre listările gratuite",
+    "seeFreeListing": "Vezi listările mele gratuite în Merchant Center",
+    "googleDelay": "Google takes 3-5 working days to review products",
+    "alertEnableFreeListing": "Activează listările gratuite pentru a-ți afișa produsele gratuit în fila Shopping.",
+    "alertCantEnableFreeListing": "Nu poți activa listările gratuite chiar acum. Încearcă din nou mai târziu.",
+    "alertCountryNotEligible": "Țara vizată pe care ai selectat-o nu este eligibilă pentru listări și reclame gratuite."
+  },
+  "googleAdsAccountCard": {
+    "title": "Cont Google Ads",
+    "intro": "Creează campanii publicitare pentru produsele tale: găsește publicul potrivit la momentul potrivit.",
+    "text": "După conectare, se poate să fie necesar să configurezi setările de facturare în contul tău Google Ads.",
+    "labelSelect": "Poți conecta un cont Google Ads existent sau poți crea unul nou în câțiva pași simpli.",
+    "id": "ID cont Google Ads",
+    "toUseGAdsNeedsAdminAccess": "Pentru a utiliza un cont Google Ads existent, trebuie să ai acces de administrator.",
+    "alertCantConnect": "Contul tău Google Ads nu a putut fi conectat, problema este la noi. Încearcă din nou.",
+    "alertBillingSettingsMissing": "Pentru a lansa campanii Performance Max, trebuie să adaugi setările de facturare în contul tău Google Ads.",
+    "alertNeedRefreshAfterBilling": "După ce ai completat informațiile de facturare în contul Google Ads, reîmprospătează pagina pentru a vedea actualizările.",
+    "alertNeedRefreshAfterInvitationLink": "După ce invitația este acceptată în contul tău Google Ads, reîmprospătează pagina pentru a vedea actualizările.",
+    "alertNeedValidationFromEmail": "Te rugăm să faci clic aici sau să-ți verifici e-mailurile pentru a-ți valida contul.",
+    "alertSuspended": "Trebuie să rezolvi problemele din contul tău Google Ads.",
+    "alertCancelled": "Trebuie să-ți reactivezi contul Google Ads.",
+    "learnAboutAccountSuspension": "Află mai multe despre suspendarea contului",
+    "learnAboutAccountCancellation": "Află mai multe despre anularea contului"
+  },
+  "googleAdsAccountNew": {
+    "title": "Creează un cont Google Ads nou",
+    "steps": {
+      "email": "Adresă de e-mail",
+      "businessInfo": "Informații despre afacere",
+      "termsOfService": "Termenii de utilizare a serviciului"
+    },
+    "email": {
+      "title": "Adresa ta de e-mail Google",
+      "description": "Adresa de e-mail de mai jos este cea furnizată în timpul conectării contului tău Google"
+    },
+    "business": {
+      "name": "Denumirea afacerii",
+      "title": "Informațiile afacerii",
+      "description": "Moneda pe care o alegi pentru contul tău va fi fixă după aceea, deci alege-o cu atenție.",
+      "labelCountry": "Țara de facturare",
+      "placeholderCountry": "Țară",
+      "labelTimeZone": "Fus orar",
+      "placeholderTimeZone": "Alege ora",
+      "labelCurrency": "Monedă",
+      "placeholderCurrency": "Monedă"
+    },
+    "terms": {
+      "title": "Condiții de utilizare pentru Google Program",
+      "label": "Am citit și sunt de acord cu [termenii și condițiile Google Ads]({0})[:target=\"_blank\" class=\"ps_gs-fz-12\"]"
+    }
+  },
+  "smartShoppingCampaignCard": {
+    "title": "Crește-ți vânzările cu campaniile Performance Max",
+    "introNotConnected": "Conectează-te sau creează-ți un cont Google Ads și lansează o campanie Performance Max pentru produsele tale. Maximizează performanța campaniei tale pe mai multe canale Google, printr-o singură campanie. Afișează-ți reclamele acolo unde au șanse mai mari de a genera conversii. Și mai bine, nu plătești decât dacă clienții apasă pe reclamă.",
+    "introConnected": "Cu Performance Max, poți să-ți promovezi produsele și să-ți maximizezi performanța reclamelor pe mai multe canale Google, printr-o singură campanie. Și mai bine, nu plătești decât dacă clienții apasă pe reclamă!",
+    "footer": "În Spațiul Economic European, Regatul Unit sau Elveția, campaniile Performance Max pot fi utilizate cu orice serviciu de comparare a prețurilor (CSS) cu care lucrezi. Reclamele vor apărea pe paginile cu rezultate generale ale căutării și pe orice alte suprafețe la care a optat CSS.",
+    "titleInfo": "Știai că?",
+    "contentInfo": "Agenții de publicitate care actualizează campaniile Smart Shopping la Performance Max înregistrează o creștere medie de 12% a valorii conversiei la aceeași rentabilitate sau o rentabilitate mai bună a cheltuielilor publicitare (ROAS)*",
+    "footerInfo": "* Google Data, Global, Ads, Sep–Oct 2021."
+  },
+  "enhancedConversionTrackingCard": {
+    "title": "Urmărire îmbunătățită a conversiilor",
+    "intro": "Îmbunătățește acuratețea urmăririi conversiilor și deblochează licitații mai puternice. Această funcționalitate operează alături de etichetele de conversie existente, trimițând date de conversie sigure, care respectă confidențialitatea, de pe site-ul tău web către Google.",
+    "signTosAlert": {
+      "title": "Îmbunătățește-ți urmărirea conversiilor și deblochează licitații mai puternice pentru anunțurile tale",
+      "text": "Enable enhanced conversion tracking by agreeing to Google Ads' terms of service and setting Google tag method in a few steps following these [instructions]({0})[:target=\"_blank\"] during activation to make sure the feature works properly."
+    }
+  },
+  "smartShoppingCampaignCreation": {
+    "allFilters": "Toate filtrele",
+    "breadcrumb1": "Campaniile",
+    "breadcrumbCreateSSC": "Creează o campanie Smart Shopping",
+    "breadcrumbEditSSC": "Modifică o campanie Smart Shopping",
+    "breadcrumbCreatePMax": "Creează o campanie Performance Max",
+    "breadcrumbEditPMax": "Modifică o campanie Performance Max",
+    "inputNameHelper": "Numele trebuie să fie unic și 125 caractere max.",
+    "inputNameLabel": "Denumire campanie",
+    "inputNameTooltip": "Alege un nume care descrie în mod clar tema campaniei, astfel încât să o poți găsi cu ușurință în contul tău. Numele campaniei nu este vizibil pentru clienți.",
+    "inputNamePlaceholder": "Introdu numele campaniei",
+    "inputCampaignNameInvalidFeedback": "Numele trebuie să fie unic.",
+    "inputCampaignNameTooLongFeedback": "Numele trebuie să aibă mai puțin de 125 de caractere.",
+    "inputDurationHelper": "Îți recomandăm o durată minimă de 30 de zile, astfel încât Google să poată optimiza campania.",
+    "inputDurationLabel": "Durata campaniei",
+    "inputDurationTooltip": "Campaniile publicitare nu au o dată de încheiere prestabilită, astfel încât reclamele să poată fi difuzate pe termen nelimitat. Poți adăuga oricând o dată de încheiere pentru a crea o campanie mai scurtă.",
+    "inputDurationLabel1": "Data de început",
+    "inputDurationLabel2": "Data de încheiere (opțional)",
+    "inputDurationInvalidFeedback": "Data de încheiere trebuie stabilită în viitor.",
+    "inputDatePickerHelper": "Utilizează tastele cursor pentru a naviga la datele din calendar",
+    "inputCountryHelper": "Pentru a viza mai multe țări, trebuie să creezi mai multe campanii.",
+    "inputCountryImutable": "Țara nu poate fi modificată după creare. Dacă dorești să vizezi o altă țară, va trebui să creezi o campanie nouă",
+    "inputCountryLabel": "Țară vizată",
+    "inputCountryTooltip": "Reclamele campaniei tale sunt eligibile pentru a fi afișate clienților din locațiile geografice vizate sau clienților care au selectat limba vizată ca setare lingvistică a browserului.",
+    "inputFiltersLegend": "Filtre produse",
+    "inputFiltersAllLabel": "Include toate produsele sincronizate",
+    "inputFiltersPartialLabel": "Selectează produse utilizând filtre de partiție pentru produse",
+    "inputFiltersHelper": "Ia-ți timp să [citești politicile privind reclamele ale Google Shopping]({0})[:target=\"_blank\"] unele produse sunt interzise sau restricționate.",
+    "inputBudgetHelper": "Bugetul minim variază în funcție de țara țintă. Te rugăm selectează o țară pentru a vedea minimul necesar.",
+    "inputBudgetHelperForTargetCountry": "Valoarea minimă pentru {country} este {budget}, asigurând o acoperire suficientă pentru campania ta din această regiune.",
+    "inputBudgetInvalidFeedback": "Bugetul zilnic trebuie să fie un număr valid mai mare decât 1. Pentru orice număr zecimal, te rugăm să folosești un punct ca separator.",
+    "inputBudgetBeforeThresholdFeedback": "Bugetul minim necesar pentru această țară țintă este de {budget}. Te rugăm să mărești bugetul pentru a continua.",
+    "inputBudgetFeedback": "Bugetul zilnic al campaniei",
+    "inputBudgetTooltip": "Pentru a asigura performanța anunțurilor, minimul de bază depinde de țara țintă, iar bugetul pe care îl alegi depinde în întregime de tine și îl poți ajusta în orice moment.",
+    "inputBudgetPlaceholder": "Suma",
+    "inputAllSyncedProducts": "Niciun filtru selectat",
+    "formHelperTitle": "Activarea campaniei",
+    "formHelperDescription": "Campania se va derula până când o întrerupi sau de îndată ce ajunge la data de încheiere. O poți întrerupe în orice moment.",
+    "errorNoProducts": "Dorești să lansezi o campanie, dar Google Merchant Center nu conține încă niciun produs. Campania va începe numai atunci când cel puțin un produs a fost aprobat de Google.",
+    "errorApi": "Nu am putut lansa campania, încearcă din nou",
+    "errorFetchingFilters": "Nu am reușit să recuperăm toate filtrele de la Google. Deocamdată nu le poți modifica.",
+    "recapTitle": "Rezumatul campaniei",
+    "recapNoFiltersDescription": "Toate produsele sincronizate aprobate de Google",
+    "recapFooter": "Verifică informațiile campaniei înainte de a o valida. Poți modifica oricând anumiți parametri în timp ce campania este în desfășurare.",
+    "toggleCreationRemarketingTag": "Activează etichetele de remarketing pe site-ul meu",
+    "toggleCreationNewRemarketingTag": "Creează o nouă etichetă de remarketing și de urmărire a conversiilor în magazinul tău.",
+    "enableCreationRemarketingTag": "Activează eticheta de remarketing și de urmărire a conversiilor",
+    "pauseCampaign": "Campania se va derula până când o întrerupi sau de îndată ce ajunge la data de încheiere. O poți întrerupe în orice moment.",
+    "alerts": {
+      "noTag": "Prin faptul că nu adaugă automat eticheta, Google nu va putea trimite rezultatele campaniilor",
+      "noConversionActions": "Eticheta de urmărire a fost activată, dar nu este nicio acțiune de conversie setată în magazin. Acest lucru poate fi rezolvat prin crearea unor etichete noi.",
+      "hasUnhandledFilters": "Cel puțin un filtru al acestei campanii nu este acceptat de acest modul. Pentru a preveni orice pierdere a configurației existente, pot fi modificate numai detaliile de bază ale campaniei.",
+      "PMaxExplanationTitle": "Performance Max este o nouă campanie bazată pe obiective.",
+      "PMaxExplanation": "Performance Max este un tip de campanie îmbunătățit, alimentat de tehnologia inteligentă Google. Te poate ajuta să-ți optimizezi reclamele pe mai multe canale Google și să obții rezultate mai bune pentru afacerea ta.",
+      "PMaxExplanationPrecision": "Și mai bine, nu plătești decât dacă clienții fac clic.",
+      "PMaxExplanationLink": "Află mai multe despre Performance Max"
+    },
+    "labelSelectedDimension": "Valoarea dimensiunii selectate",
+    "nbDimensionSelected": "Nicio dimensiune selectată | {0} dimensiune selectată | {0} dimensiuni selectate",
+    "nbValuesSelected": "Nicio valoare selectată | {0} valoare selectată | {0} valori selectate",
+    "selectProductsTitle": "Alege un filtru de produse",
+    "selectProductsSubtitle": "Campania poate avea o singură dimensiune cu una sau mai multe valori.",
+    "toggleNewConversionTag": "Setează noi etichete de urmărire a conversiilor pe site-ul meu",
+    "descriptiveMessage": "Sunt afișate numai campaniile Performance Max și Smart Shopping asociate contului tău Google Merchant Center. \nDacă dorești să vezi toate campaniile, [accesează Contul Google Ads]({0})[:target=\"_blank\"].",
+    "nbProductsFiltersSelected": "Niciun filtru de produs selectat | {0} filtru de produs selectat | {0} filtre de produse selectate",
+    "dimensionXFilterSelected": "Filtru {0}",
+    "categories": "Categorie",
+    "categoriesSubTitle": "Categoria de produse definită de Google pentru produsul tău (de exemplu: Îmbrăcăminte și accesorii > Îmbrăcăminte > Paltoane și jachete)",
+    "brands": "Marca",
+    "brandsSubTitle": "Numele mărcii produsului",
+    "products": "ID produs",
+    "productsSubTitle": "Identificatorul unic al produsului",
+    "conditions": "Starea produsului",
+    "conditionsSubTitle": "Starea produsului la momentul vânzării (de ex.: nou, folosit sau recondiționat)",
+    "popinTitle": "Filtrele produselor campaniei",
+    "popinTitleConfirmCancel": "Înapoi",
+    "xProducts": "({0} produs) | ({0} produs) | ({0} produse)",
+    "productConditions": {
+      "unspecified": "Nespecificat",
+      "unknown": "Necunoscut",
+      "new": "Nou",
+      "refurbished": "Recondiționat",
+      "used": "Utilizat"
+    },
+    "dimensionXFilterSelectedWithXProducts": "{0} filtru | {0} filtru ({1} produs) | {0} filtru ({1} produse)",
+    "filtersWithxValues": "{0} filtre | {0} filtre cu {1} produs afectat | {0} filtre cu {1} produse afectate",
+    "budgetTip": {
+      "content": "Pentru a asigura succesul campaniei, este esențial să ajustezi bugetul zilnic al anunțurilor în funcție de țara vizată. De exemplu, un punct de plecare de {budget} este recomandat pentru {country}. Alegând țara țintă, poți identifica bugetul ideal pentru a-ți îndeplini obiectivele. Reține că acest buget fundamental este mai mult decât o cifră – este o componentă-cheie a strategiei tale de campanie. Un buget bine planificat facilitează testarea și rafinarea eficientă a anunțurilor, permițându-ți să îți personalizezi cheltuielile în funcție de cerințele unice ale afacerii tale și să îmbunătățești performanța generală a campaniei."
+    }
+  },
+  "productFeedPage": {
+    "breadcrumb": {
+      "productStatusDetails": "Produse respinse",
+      "nonCompliantProducts": "Produse neconforme"
+    },
+    "alert": {
+      "googleIsReviewing": "Produsele tale sunt în curs de examinare.  \n Este posibil să dureze 3-5 zile pentru a ți se revizui produsele. Odată aprobate, produsele vor fi disponibile pentru listări și reclame gratuite.",
+      "alertSuccess": "Înscrierea a fost înregistrată cu succes. După ce produsele sunt aprobate, acestea pot apărea în rezultatele căutării în fila Google Shopping."
+    },
+    "syncSummary": {
+      "syncHistory": {
+        "title": {
+          "planned": "Sincronizare planificată",
+          "started": "Sincronizarea a început",
+          "failed": "Sincronizarea a eșuat",
+          "completed": "Sincronizare finalizată",
+          "next": "Următoarea sincronizare",
+          "notPlanned": "Nicio sincronizare planificată"
         },
-        "enableEnhancedConversionAlert": {
-            "title": "Gata să activezi funcționalitatea de urmărire îmbunătățită a conversiilor",
-            "text": "Condițiile de utilizare Google Ads sunt actualizate, accesează pagina de configurare pentru a activa noua funcționalitate"
+        "subtitle": {
+          "willHappenOnDate": "Va începe pe {0} la {1}",
+          "happenedOnDate": "Pe {date}",
+          "error": "Din cauza unei probleme tehnice, sincronizarea a eșuat pe {0} la {1}. O nouă sincronizare va rula în câteva ore."
         }
+      }
     },
-    "smartShoppingCampaignCreation": {
-        "allFilters": "Toate filtrele",
-        "breadcrumb1": "Campaniile",
-        "breadcrumbCreateSSC": "Creează o campanie Smart Shopping",
-        "breadcrumbEditSSC": "Modifică o campanie Smart Shopping",
-        "breadcrumbCreatePMax": "Creează o campanie Performance Max",
-        "breadcrumbEditPMax": "Modifică o campanie Performance Max",
-        "inputNameHelper": "Numele trebuie să fie unic și 125 caractere max.",
-        "inputNameLabel": "Denumire campanie",
-        "inputNameTooltip": "Alege un nume care descrie în mod clar tema campaniei, astfel încât să o poți găsi cu ușurință în contul tău. Numele campaniei nu este vizibil pentru clienți.",
-        "inputNamePlaceholder": "Introdu numele campaniei",
-        "inputCampaignNameInvalidFeedback": "Numele trebuie să fie unic.",
-        "inputCampaignNameTooLongFeedback": "Numele trebuie să aibă mai puțin de 125 de caractere.",
-        "inputDurationHelper": "Îți recomandăm o durată minimă de 30 de zile, astfel încât Google să poată optimiza campania.",
-        "inputDurationLabel": "Durata campaniei",
-        "inputDurationTooltip": "Campaniile publicitare nu au o dată de încheiere prestabilită, astfel încât reclamele să poată fi difuzate pe termen nelimitat. Poți adăuga oricând o dată de încheiere pentru a crea o campanie mai scurtă.",
-        "inputDurationLabel1": "Data de început",
-        "inputDurationLabel2": "Data de încheiere (opțional)",
-        "inputDurationInvalidFeedback": "Data de încheiere trebuie stabilită în viitor.",
-        "inputDatePickerHelper": "Utilizează tastele cursor pentru a naviga la datele din calendar",
-        "inputCountryHelper": "Pentru a viza mai multe țări, trebuie să creezi mai multe campanii.",
-        "inputCountryImutable": "Țara nu poate fi modificată după creare. Dacă dorești să vizezi o altă țară, va trebui să creezi o campanie nouă",
-        "inputCountryLabel": "Țară vizată",
-        "inputCountryTooltip": "Reclamele campaniei tale sunt eligibile pentru a fi afișate clienților din locațiile geografice vizate sau clienților care au selectat limba vizată ca setare lingvistică a browserului.",
-        "inputFiltersLegend": "Filtre produse",
-        "inputFiltersAllLabel": "Include toate produsele sincronizate",
-        "inputFiltersPartialLabel": "Selectează produse utilizând filtre de partiție pentru produse",
-        "inputFiltersHelper": "Ia-ți timp să [citești politicile privind reclamele ale Google Shopping]({0})[:target=\"_blank\"] unele produse sunt interzise sau restricționate.",
-        "inputBudgetHelper": "Bugetul minim variază în funcție de țara țintă. Te rugăm selectează o țară pentru a vedea minimul necesar.",
-        "inputBudgetHelperForTargetCountry": "Valoarea minimă pentru {country} este {budget}, asigurând o acoperire suficientă pentru campania ta din această regiune.",
-        "inputBudgetInvalidFeedback": "Bugetul zilnic trebuie să fie un număr valid mai mare decât 1. Pentru orice număr zecimal, te rugăm să folosești un punct ca separator.",
-        "inputBudgetBeforeThresholdFeedback": "Bugetul minim necesar pentru această țară țintă este de {budget}. Te rugăm să mărești bugetul pentru a continua.",
-        "inputBudgetFeedback": "Bugetul zilnic al campaniei",
-        "inputBudgetTooltip": "Pentru a asigura performanța anunțurilor, minimul de bază depinde de țara țintă, iar bugetul pe care îl alegi depinde în întregime de tine și îl poți ajusta în orice moment.",
-        "inputBudgetPlaceholder": "Suma",
-        "inputAllSyncedProducts": "Niciun filtru selectat",
-        "formHelperTitle": "Activarea campaniei",
-        "formHelperDescription": "Campania se va derula până când o întrerupi sau de îndată ce ajunge la data de încheiere. O poți întrerupe în orice moment.",
-        "errorNoProducts": "Dorești să lansezi o campanie, dar Google Merchant Center nu conține încă niciun produs. Campania va începe numai atunci când cel puțin un produs a fost aprobat de Google.",
-        "errorApi": "Nu am putut lansa campania, încearcă din nou",
-        "errorFetchingFilters": "Nu am reușit să recuperăm toate filtrele de la Google. Deocamdată nu le poți modifica.",
-        "recapTitle": "Rezumatul campaniei",
-        "recapNoFiltersDescription": "Toate produsele sincronizate aprobate de Google",
-        "recapFooter": "Verifică informațiile campaniei înainte de a o valida. Poți modifica oricând anumiți parametri în timp ce campania este în desfășurare.",
-        "toggleCreationRemarketingTag": "Activează etichetele de remarketing pe site-ul meu",
-        "toggleCreationNewRemarketingTag": "Creează o nouă etichetă de remarketing și de urmărire a conversiilor în magazinul tău.",
-        "enableCreationRemarketingTag": "Activează eticheta de remarketing și de urmărire a conversiilor",
-        "pauseCampaign": "Campania se va derula până când o întrerupi sau de îndată ce ajunge la data de încheiere. O poți întrerupe în orice moment.",
+    "dashboardPage": {
+      "timeline": {},
+      "productFeedConfiguration": {
         "alerts": {
-            "noTag": "Prin faptul că nu adaugă automat eticheta, Google nu va putea trimite rezultatele campaniilor",
-            "noConversionActions": "Eticheta de urmărire a fost activată, dar nu este nicio acțiune de conversie setată în magazin. Acest lucru poate fi rezolvat prin crearea unor etichete noi.",
-            "hasUnhandledFilters": "Cel puțin un filtru al acestei campanii nu este acceptat de acest modul. Pentru a preveni orice pierdere a configurației existente, pot fi modificate numai detaliile de bază ale campaniei.",
-            "PMaxExplanationTitle": "Performance Max este o nouă campanie bazată pe obiective.",
-            "PMaxExplanation": "Performance Max este un tip de campanie îmbunătățit, alimentat de tehnologia inteligentă Google. Te poate ajuta să-ți optimizezi reclamele pe mai multe canale Google și să obții rezultate mai bune pentru afacerea ta.",
-            "PMaxExplanationPrecision": "Și mai bine, nu plătești decât dacă clienții fac clic.",
-            "PMaxExplanationLink": "Află mai multe despre Performance Max"
+          "productFeedCta": "configurare flux de produse",
+          "boSettingsCta": "back-office",
+          "noEligibleLanguagesTitle": "Nicio limbă eligibilă",
+          "noEligibleLanguagesDesc": "Actualizează țările țintă din {0} sau adaugă limbile relevante din {1} pentru a se potrivi cu țările țintă.",
+          "noEligibleCurrenciesTitle": "Nicio monedă eligibilă",
+          "noEligibleCurrenciesDesc": "Actualizează țările țintă din {0} sau adaugă monedele relevante din {1} pentru a se potrivi cu țările țintă în eroare."
         },
-        "labelSelectedDimension": "Valoarea dimensiunii selectate",
-        "nbDimensionSelected": "Nicio dimensiune selectată | {0} dimensiune selectată | {0} dimensiuni selectate",
-        "nbValuesSelected": "Nicio valoare selectată | {0} valoare selectată | {0} valori selectate",
-        "selectProductsTitle": "Alege un filtru de produse",
-        "selectProductsSubtitle": "Campania poate avea o singură dimensiune cu una sau mai multe valori.",
-        "toggleNewConversionTag": "Setează noi etichete de urmărire a conversiilor pe site-ul meu",
-        "descriptiveMessage": "Sunt afișate numai campaniile Performance Max și Smart Shopping asociate contului tău Google Merchant Center. \nDacă dorești să vezi toate campaniile, [accesează Contul Google Ads]({0})[:target=\"_blank\"].",
-        "nbProductsFiltersSelected": "Niciun filtru de produs selectat | {0} filtru de produs selectat | {0} filtre de produse selectate",
-        "dimensionXFilterSelected": "Filtru {0}",
-        "categories": "Categorie",
-        "categoriesSubTitle": "Categoria de produse definită de Google pentru produsul tău (de exemplu: Îmbrăcăminte și accesorii > Îmbrăcăminte > Paltoane și jachete)",
-        "brands": "Marca",
-        "brandsSubTitle": "Numele mărcii produsului",
-        "products": "ID produs",
-        "productsSubTitle": "Identificatorul unic al produsului",
-        "conditions": "Starea produsului",
-        "conditionsSubTitle": "Starea produsului la momentul vânzării (de ex.: nou, folosit sau recondiționat)",
-        "popinTitle": "Filtrele produselor campaniei",
-        "popinTitleConfirmCancel": "Înapoi",
-        "xProducts": "({0} produs) | ({0} produs) | ({0} produse)",
-        "productConditions": {
-            "unspecified": "Nespecificat",
-            "unknown": "Necunoscut",
-            "new": "Nou",
-            "refurbished": "Recondiționat",
-            "used": "Utilizat"
-        },
-        "dimensionXFilterSelectedWithXProducts": "{0} filtru | {0} filtru ({1} produs) | {0} filtru ({1} produse)",
-        "filtersWithxValues": "{0} filtre | {0} filtre cu {1} produs afectat | {0} filtre cu {1} produse afectate",
-        "budgetTip": {
-            "content": "Pentru a asigura succesul campaniei, este esențial să ajustezi bugetul zilnic al anunțurilor în funcție de țara vizată. De exemplu, un punct de plecare de {budget} este recomandat pentru {country}. Alegând țara țintă, poți identifica bugetul ideal pentru a-ți îndeplini obiectivele. Reține că acest buget fundamental este mai mult decât o cifră – este o componentă-cheie a strategiei tale de campanie. Un buget bine planificat facilitează testarea și rafinarea eficientă a anunțurilor, permițându-ți să îți personalizezi cheltuielile în funcție de cerințele unice ale afacerii tale și să îmbunătățești performanța generală a campaniei."
+        "title": "Configurația fluxului tău de produse",
+        "targetCountries": "Țară vizată:|Țări vizate:",
+        "languages": "Limbă:|Limbi:",
+        "currencies": "Monedă:|Monede:",
+        "noLanguage": "Nicio limbă eligibilă",
+        "noCurrency": "Nicio monedă eligibilă"
+      },
+      "productVerification": {
+        "stepTitle": "Produse verificate de Prestashop înainte de a fi trimise către Google",
+        "stepDetails": "Înainte de a trimite toate produsele (inclusiv variațiile), asigurăm conformitatea acestora cu politicile Google Merchant Center. Verificăm produsele **de fiecare dată când se detectează o modificare**, iar dacă există produse neconforme, oferim îndrumări cu privire la pașii de urmat. Apasă pe produsele neconforme pentru mai multe informații.\n\nDupă trimitere, Google atribuie fiecărui produs o stare: **Aprobat, Expirat, În așteptare** sau **Respins**.",
+        "reportCards": {
+          "selectedProducts": "My selected products",
+          "selectedProductsDescription": "Selected products with variations in product feed languages",
+          "verified": "Produse conforme",
+          "verifiedDescription": "Produsele aprobate de PrestaShop sunt gata pentru a fi trimise către Google.",
+          "nonCompliant": "Produse neconforme",
+          "nonCompliantDescription": "Produse care nu îndeplinesc cerințele Google."
         }
-    },
-    "productFeedPage": {
-        "breadcrumb": {
-            "productStatusDetails": "Produse respinse",
-            "nonCompliantProducts": "Produse neconforme"
-        },
-        "alert": {
-            "googleIsReviewing": "Produsele tale sunt în curs de examinare.  \n Este posibil să dureze 3-5 zile pentru a ți se revizui produsele. Odată aprobate, produsele vor fi disponibile pentru listări și reclame gratuite.",
-            "alertSuccess": "Înscrierea a fost înregistrată cu succes. După ce produsele sunt aprobate, acestea pot apărea în rezultatele căutării în fila Google Shopping."
-        },
-        "syncSummary": {
-            "syncHistory": {
-                "title": {
-                    "planned": "Sincronizare planificată",
-                    "started": "Sincronizarea a început",
-                    "failed": "Sincronizarea a eșuat",
-                    "completed": "Sincronizare finalizată",
-                    "next": "Următoarea sincronizare",
-                    "notPlanned": "Nicio sincronizare planificată"
-                },
-                "subtitle": {
-                    "willHappenOnDate": "Va începe pe {0} la {1}",
-                    "happenedOnDate": "Pe {date}",
-                    "error": "Din cauza unei probleme tehnice, sincronizarea a eșuat pe {0} la {1}. O nouă sincronizare va rula în câteva ore."
-                }
-            }
-        },
-        "dashboardPage": {
-            "timeline": {},
-            "productFeedConfiguration": {
-                "alerts": {
-                    "productFeedCta": "configurare flux de produse",
-                    "boSettingsCta": "back-office",
-                    "noEligibleLanguagesTitle": "Nicio limbă eligibilă",
-                    "noEligibleLanguagesDesc": "Actualizează țările țintă din {0} sau adaugă limbile relevante din {1} pentru a se potrivi cu țările țintă.",
-                    "noEligibleCurrenciesTitle": "Nicio monedă eligibilă",
-                    "noEligibleCurrenciesDesc": "Actualizează țările țintă din {0} sau adaugă monedele relevante din {1} pentru a se potrivi cu țările țintă în eroare."
-                },
-                "title": "Configurația fluxului tău de produse",
-                "targetCountries": "Țară vizată:|Țări vizate:",
-                "languages": "Limbă:|Limbi:",
-                "currencies": "Monedă:|Monede:",
-                "noLanguage": "Nicio limbă eligibilă",
-                "noCurrency": "Nicio monedă eligibilă"
-            },
-            "productVerification": {
-                "stepTitle": "Produse verificate de Prestashop înainte de a fi trimise către Google",
-                "stepDetails": "Înainte de a trimite toate produsele (inclusiv variațiile), asigurăm conformitatea acestora cu politicile Google Merchant Center. Verificăm produsele **de fiecare dată când se detectează o modificare**, iar dacă există produse neconforme, oferim îndrumări cu privire la pașii de urmat. Apasă pe produsele neconforme pentru mai multe informații.\n\nDupă trimitere, Google atribuie fiecărui produs o stare: **Aprobat, Expirat, În așteptare** sau **Respins**.",
-                "reportCards": {
-                    "productsInCatalog": "Catalogul meu de produse",
-                    "productsInCatalogDescription": "Produse active cu variații în limbile fluxului de produse.",
-                    "verified": "Produse conforme",
-                    "verifiedDescription": "Produsele aprobate de PrestaShop sunt gata pentru a fi trimise către Google.",
-                    "nonCompliant": "Produse neconforme",
-                    "nonCompliantDescription": "Produse care nu îndeplinesc cerințele Google."
-                }
-            },
-            "productsSentToGoogle": {
-                "stepTitle": "Produse trimise către Google",
-                "stepDetails": "Acest raport afișează starea tuturor produselor care au fost trimise către Google Merchant Center. Reține, poate dura câteva zile până când Google examinează produsele. Poți utiliza acest raport pentru a urmări progresul fiecărui produs și pentru a te asigura că acesta este aprobat și activ în Google Shopping.\n\n**Produsele „Aprobate”** sunt pe deplin aprobate și eligibile pentru a apărea în listările gratuite de pe Google.\n\n**Produsele „În așteptare”** sunt în curs de procesare la Google. Acestea nu vor apărea în listări până când nu sunt aprobate.\n\n**Produsele care „Expiră”** vor deveni inactive și nu vor mai apărea în listările Google în următoarele zile.\n\n**Produsele „Respinse”** sunt inactive și nu apar în listările Google. Poți face clic pe caseta Respins pentru mai multe informații.",
-                "reportCards": {
-                    "approved": "Aprobat",
-                    "approvedDescription": "Produse cu variații sincronizate cu succes.",
-                    "pending": "În așteptare",
-                    "pendingDescription": "Produsele sunt în curs de examinare la Google.",
-                    "expiring": "Expiră",
-                    "expiringDescription": "Produsele nevalide vor fi eliminate în curând de pe Google.",
-                    "disapproved": "Respins",
-                    "disapprovedDescription": "Produse care sunt respinse de Google."
-                }
-            }
-        },
-        "compliancyIssuesPage": {
-            "details": "Pentru a asigura o pre-scanare reușită cu Google, remediază problemele prezentate în tabelul de mai jos. Rezolvarea acestor probleme te va ajuta să listezi produsul pe interfețele Google.",
-            "languageSelection": "Filtrează după limbă",
-            "languageSelected": "Filtrează după: {lang}",
-            "columns": {
-                "issues": "Probleme",
-                "suggestedActions": "Acțiuni sugerate",
-                "affectedProducts": "Produse afectate",
-                "languages": "Limbi"
-            },
-            "actions": {
-                "listProducts": "Vizualizare produs|Vizualizare produse"
-            }
-        },
-        "compliancyIssueProductsPage": {
-            "details": "**Acțiune sugerată:** {action}",
-            "columns": {
-                "productsId": "ID-ul produsului",
-                "productsTitle": "Titlul produsului",
-                "languages": "Limbi",
-                "actions": "Acțiuni"
-            },
-            "productVariants": "{variantsCount} variantă|{variantsCount} variante"
-        },
-        "compliancyIssues": {
-            "nameMissing": "Furnizează un nume",
-            "nameMissingAction": "Un nume de produs este un identificator unic utilizat pentru a descrie un produs și este important deoarece ajută la îmbunătățirea vizibilității în rezultatele motorului de căutare. În PrestaShop, numele produselor pot fi introduse în Catalog > Produs > în secțiunea „Nume produs”.",
-            "imageMissing": "Furnizează o imagine",
-            "imageMissingAction": "O imagine de produs este o reprezentare vizuală a unui produs, care ajută clienții să înțeleagă cum arată produsul. Este important să ai imagini ale produselor, deoarece acestea pot contribui la creșterea atractivității produselor și a vânzărilor și pot îmbunătăți experiența generală de cumpărături. Imaginile produsului pot fi adăugate sau editate în Catalog > Produs > în secțiunea „Imagini”.",
-            "linkMissing": "Furnizează un link",
-            "linkMissingAction": "Linkul de produs este obligatoriu. Actualizează pagina de produs pentru a genera un link de produs.",
-            "descriptionMissing": "Furnizează o descriere",
-            "descriptionMissingAction": "Adaugă o descriere în produsele tale. Dacă ai deja o descriere, verifică atributul ales pentru descriere în configurația de Mapare a atributelor a modulului.",
-            "brandMissing": "Furnizează o marcă",
-            "brandMissingAction": "Furnizează marca produsului. Poți adăuga o marcă în Catalog > Produse > Setări de bază în secțiunea Marcă pentru fiecare produs.",
-            "identifierMissing": "Transmite fie GTIN, fie marca și MPN pentru produs",
-            "identifierMissingAction": "**Produse cu GTIN**\n\nUn GTIN (Global Trade Item Number) este un **identificator unic** utilizat pentru identificarea produselor. GTIN include **UPC** (în America de Nord), **EAN** (în Europa), **JAN** (în Japonia) și **ISBN** (pentru cărți). Poți adăuga un GTIN în Catalog > Produse > Opțiuni > în Stare și referințe pentru fiecare produs.\n\nIdentificatorul GTIN poate fi găsit, de obicei, pe eticheta, ambalajul sau documentația cu codul de bare al produsului sau contactând producătorul. \n\n**Produse fără GTIN**\n\nPentru a ajuta la identificarea produselor tale fără GTIN, poți utiliza caracteristicile **MPN** și **marca**. \n\nMarca este marca produsului sau a companiei tale. De asemenea, poți utiliza numele magazinului tău ca marcă. Poți adăuga o marcă în Catalog > Produse > Setări de bază în secțiunea Marcă pentru fiecare produs.\n\nO caracteristică MPN sau numărul de catalog al producătorului pentru a indica referința producătorului produsului sau numărul unic de identificare la alegere.",
-            "priceMissing": "Furnizează un preț",
-            "priceMissingAction": "Furnizează un preț pentru produs."
-        },
-        "approvalTable": {
-            "description": "Mai jos, vei găsi o listă de **{productTotal} produse** care nu au trecut de procesul de aprobare. Pentru fiecare produs, am furnizat motivele dezaprobării pentru a facilita corecțiile rapide. După efectuarea actualizărilor necesare, aceste produse pot fi sincronizate cu Google Shopping.",
-            "filterTitle": "Filtrează după disponibilitate",
-            "NoFilter": "Toate",
-            "tableHeaderID": "ID",
-            "tableHeaderName": "Titlul produsului",
-            "tableHeaderLanguage": "Limbă",
-            "tableHeaderCurrency": "Monedă",
-            "tableHeaderCountry": "Țări afectate",
-            "tableHeaderIssue": "Motive",
-            "xResults": "{0} rezultate",
-            "perPageLabel": "Afișează:",
-            "goToLabel": "Mergi la pagina:",
-            "editX": "Editează {0}",
-            "noReasonFallback": "*Nu este furnizat, bifează [erori cont în Merchant Center]({0})[:target=\"_blank\"].*"
-        },
-        "productIssuesModal": {
-            "title": "Mai multe detalii despre problemele produsului tău",
-            "description": "Iată motivele suspendării furnizate de Google. Ia măsurile necesare pentru a îndeplini cerințele și așteaptă următoarea scanare.",
-            "impactListFormat": "{language} [{currency}]: {impact}",
-            "footer": "Accesează [fișa produsului]({0})[:target=\"_blank\"] pentru a face modificările necesare produsului tău pentru a îndeplini cerințele Google și a-l aproba."
+      },
+      "productsSentToGoogle": {
+        "stepTitle": "Produse trimise către Google",
+        "stepDetails": "Acest raport afișează starea tuturor produselor care au fost trimise către Google Merchant Center. Reține, poate dura câteva zile până când Google examinează produsele. Poți utiliza acest raport pentru a urmări progresul fiecărui produs și pentru a te asigura că acesta este aprobat și activ în Google Shopping.\n\n**Produsele „Aprobate”** sunt pe deplin aprobate și eligibile pentru a apărea în listările gratuite de pe Google.\n\n**Produsele „În așteptare”** sunt în curs de procesare la Google. Acestea nu vor apărea în listări până când nu sunt aprobate.\n\n**Produsele care „Expiră”** vor deveni inactive și nu vor mai apărea în listările Google în următoarele zile.\n\n**Produsele „Respinse”** sunt inactive și nu apar în listările Google. Poți face clic pe caseta Respins pentru mai multe informații.",
+        "reportCards": {
+          "approved": "Aprobat",
+          "approvedDescription": "Produse cu variații sincronizate cu succes.",
+          "pending": "În așteptare",
+          "pendingDescription": "Produsele sunt în curs de examinare la Google.",
+          "expiring": "Expiră",
+          "expiringDescription": "Produsele nevalide vor fi eliminate în curând de pe Google.",
+          "disapproved": "Respins",
+          "disapprovedDescription": "Produse care sunt respinse de Google."
         }
+      }
     },
-    "keymetrics": {
-        "title": "Raportarea campaniilor Performance Max",
-        "accountSubtitle": "Analizează și optimizează-ți prezența online cu valori detaliate care te ajută să măsori impactul eforturilor tale în ceea ce privește marketing-ul digital.",
-        "dailyResultTitle": "Rezultate zilnice",
-        "helpUnderstanding": "Descoperă mai multe informații despre cum să interpretezi aceste valori accesând {0}",
-        "periods": {
-            "yesterday": "Ieri",
-            "last7Days": "Ultimele 7 zile",
-            "last30Days": "Ultimele 30 de zile",
-            "3Months": "3 luni"
-        },
-        "impressions": "Afișări",
-        "clicks": "Clicuri",
-        "conversions": "Conversii",
-        "averageCostPerClick": "Cost mediu/clic",
-        "costs": "Costuri",
-        "sales": "Vânzări",
-        "noData": "Încă nu există date",
-        "noCampaigns": "Ești gata să îți amplifici promovarea produselor tale? Creează-ți campania cu câteva clicuri"
+    "compliancyIssuesPage": {
+      "details": "Pentru a asigura o pre-scanare reușită cu Google, remediază problemele prezentate în tabelul de mai jos. Rezolvarea acestor probleme te va ajuta să listezi produsul pe interfețele Google.",
+      "languageSelection": "Filtrează după limbă",
+      "languageSelected": "Filtrează după: {lang}",
+      "columns": {
+        "issues": "Probleme",
+        "suggestedActions": "Acțiuni sugerate",
+        "affectedProducts": "Produse afectate",
+        "languages": "Limbi"
+      },
+      "actions": {
+        "listProducts": "Vizualizare produs|Vizualizare produse"
+      }
     },
-    "campaigns": {
-        "listTitle": "Anunțul campaniei",
-        "status": {
-            "eligible": "Eligibil",
-            "eligiblelimited": "Eligibil (limitat)",
-            "ended": "Încheiată",
-            "paused": "În pauză",
-            "not-eligible": "Nu este eligibil",
-            "draft": "Ciornă",
-            "pending": "În așteptare"
-        },
-        "dateLabel": {
-            "from": "De la {startDate}",
-            "fromXToX": "De la {startDate} la {endDate}",
-            "endedOnX": "Încheiat la {endDate}"
-        },
-        "labelCol": {
-            "campaign": "Titlu",
-            "status": "Stare",
-            "impressions": "Afișări",
-            "clicks": "Clicuri",
-            "adSpend": "Cheltuieli publicitare",
-            "sales": "Vânzări",
-            "costs": "Costuri",
-            "conversions": "Conversii",
-            "duration": "Data",
-            "target": "Țară vizată",
-            "actions": "Acțiuni",
-            "dailyBudget": "Bugetul zilnic"
-        },
-        "tooltip": {
-            "lowBudget": "Bugetul tău zilnic este prea mic pentru a avea o campanie performantă, crește-ți bugetul pentru a îmbunătăți performanța campaniei."
-        }
+    "compliancyIssueProductsPage": {
+      "details": "**Acțiune sugerată:** {action}",
+      "columns": {
+        "productsId": "ID-ul produsului",
+        "productsTitle": "Titlul produsului",
+        "languages": "Limbi",
+        "actions": "Acțiuni"
+      },
+      "productVariants": "{variantsCount} variantă|{variantsCount} variante"
     },
-    "notConfiguredState": {
-        "title": "Finalizează configurația",
-        "titleOneLastStep": "Un ultim pas",
-        "textGoogleMissing": "Continuă configurarea pentru a începe să trimiți produse la Google și să creezi campanii.",
-        "textOneMoreThing": "Încă un pas și ești gata să trimiți produsele la Google.",
-        "textBoostYourSales": "Dacă dorești să crești vânzările, conectează-te și creează campanii cu Google Ads.",
-        "ctaClassic": "Mergi la pagina de configurare",
-        "ctaLinkMCA": "Conectează-ți contul Google Merchant Center",
-        "ctaExportFeed": "Sincronizează-ți produsele cu Google",
-        "ctaLinkGoogleAds": "Conectează-ți contul Google Ads"
+    "compliancyIssues": {
+      "nameMissing": "Furnizează un nume",
+      "nameMissingAction": "Un nume de produs este un identificator unic utilizat pentru a descrie un produs și este important deoarece ajută la îmbunătățirea vizibilității în rezultatele motorului de căutare. În PrestaShop, numele produselor pot fi introduse în Catalog > Produs > în secțiunea „Nume produs”.",
+      "imageMissing": "Furnizează o imagine",
+      "imageMissingAction": "O imagine de produs este o reprezentare vizuală a unui produs, care ajută clienții să înțeleagă cum arată produsul. Este important să ai imagini ale produselor, deoarece acestea pot contribui la creșterea atractivității produselor și a vânzărilor și pot îmbunătăți experiența generală de cumpărături. Imaginile produsului pot fi adăugate sau editate în Catalog > Produs > în secțiunea „Imagini”.",
+      "linkMissing": "Furnizează un link",
+      "linkMissingAction": "Linkul de produs este obligatoriu. Actualizează pagina de produs pentru a genera un link de produs.",
+      "descriptionMissing": "Furnizează o descriere",
+      "descriptionMissingAction": "Adaugă o descriere în produsele tale. Dacă ai deja o descriere, verifică atributul ales pentru descriere în configurația de Mapare a atributelor a modulului.",
+      "brandMissing": "Furnizează o marcă",
+      "brandMissingAction": "Furnizează marca produsului. Poți adăuga o marcă în Catalog > Produse > Setări de bază în secțiunea Marcă pentru fiecare produs.",
+      "identifierMissing": "Transmite fie GTIN, fie marca și MPN pentru produs",
+      "identifierMissingAction": "**Produse cu GTIN**\n\nUn GTIN (Global Trade Item Number) este un **identificator unic** utilizat pentru identificarea produselor. GTIN include **UPC** (în America de Nord), **EAN** (în Europa), **JAN** (în Japonia) și **ISBN** (pentru cărți). Poți adăuga un GTIN în Catalog > Produse > Opțiuni > în Stare și referințe pentru fiecare produs.\n\nIdentificatorul GTIN poate fi găsit, de obicei, pe eticheta, ambalajul sau documentația cu codul de bare al produsului sau contactând producătorul. \n\n**Produse fără GTIN**\n\nPentru a ajuta la identificarea produselor tale fără GTIN, poți utiliza caracteristicile **MPN** și **marca**. \n\nMarca este marca produsului sau a companiei tale. De asemenea, poți utiliza numele magazinului tău ca marcă. Poți adăuga o marcă în Catalog > Produse > Setări de bază în secțiunea Marcă pentru fiecare produs.\n\nO caracteristică MPN sau numărul de catalog al producătorului pentru a indica referința producătorului produsului sau numărul unic de identificare la alegere.",
+      "priceMissing": "Furnizează un preț",
+      "priceMissingAction": "Furnizează un preț pentru produs."
     },
-    "configuredState": {
-        "title": "Felicitări, ai terminat!",
-        "text": "Ai finalizat toți pașii necesari pentru a profita la maximum de **Marketing cu Google**",
-        "cta": "Accesează crearea campaniei",
-        "firstStep": "Conectează-ți magazinul la un cont PrestaShop",
-        "secondStep": "Conectează-te sau creează-ți un Cont Google",
-        "thirdStep": "Conectează-te sau creează-ți un cont Google Merchant Center",
-        "fourthStep": "Exportă și sincronizează catalogul de produse",
-        "fifthStep": "Conectează-te sau creează-ți un Cont Google Ads",
-        "sixthStep": "** Pasul următor ** creează prima ta campanie Performance Max"
+    "approvalTable": {
+      "description": "Mai jos, vei găsi o listă de **{productTotal} produse** care nu au trecut de procesul de aprobare. Pentru fiecare produs, am furnizat motivele dezaprobării pentru a facilita corecțiile rapide. După efectuarea actualizărilor necesare, aceste produse pot fi sincronizate cu Google Shopping.",
+      "filterTitle": "Filtrează după disponibilitate",
+      "NoFilter": "Toate",
+      "tableHeaderID": "ID",
+      "tableHeaderName": "Titlul produsului",
+      "tableHeaderLanguage": "Limbă",
+      "tableHeaderCurrency": "Monedă",
+      "tableHeaderCountry": "Țări afectate",
+      "tableHeaderIssue": "Motive",
+      "xResults": "{0} rezultate",
+      "perPageLabel": "Afișează:",
+      "goToLabel": "Mergi la pagina:",
+      "editX": "Editează {0}",
+      "noReasonFallback": "*Nu este furnizat, bifează [erori cont în Merchant Center]({0})[:target=\"_blank\"].*"
     },
-    "help": {
-        "intro": "PrestaShop Marketing facilitează conectarea magazinului tău la Google și promovarea produselor tale către milioane de cumpărători pe mai multe canale Google. Creează campanii Performance Max fără a părăsi panoul de bord PrestaShop și determină creșterea traficului.",
-        "helpCenter": "Centru de asistență",
-        "allowsYouTo": {
-            "title": "Acest modul îți permite să:",
-            "easySync": "Sincronizezi cu ușurință catalogul de produse cu Google pentru a păstra actualizate automat detaliile despre produse, cum ar fi prețul și disponibilitatea",
-            "freeListing": "Activezi listări gratuite și să extinzi acoperirea prin afișarea produselor tale cumpărătorilor care navighează pe fila Shopping, în mod gratuit",
-            "campaigns": "Începi campaniile Performance Max, să stabilești un buget zilnic și să permiți învățării automate de la Google să-ți optimizeze campaniile",
-            "reporting": "Analizează performanța campaniei tale fără a părăsi PrestaShop"
-        },
-        "help": {
-            "needHelp": "Ai nevoie de ajutor? Găsești aici documentația acestui modul.",
-            "downloadPdf": "Descarcă PDF",
-            "couldntFindAnyAnswer": "Nu ai găsit niciun răspuns la întrebarea ta?",
-            "contactUs": "Contactează-ne"
-        }
+    "productIssuesModal": {
+      "title": "Mai multe detalii despre problemele produsului tău",
+      "description": "Iată motivele suspendării furnizate de Google. Ia măsurile necesare pentru a îndeplini cerințele și așteaptă următoarea scanare.",
+      "impactListFormat": "{language} [{currency}]: {impact}",
+      "footer": "Accesează [fișa produsului]({0})[:target=\"_blank\"] pentru a face modificările necesare produsului tău pentru a îndeplini cerințele Google și a-l aproba."
+    }
+  },
+  "keymetrics": {
+    "title": "Raportarea campaniilor Performance Max",
+    "accountSubtitle": "Analizează și optimizează-ți prezența online cu valori detaliate care te ajută să măsori impactul eforturilor tale în ceea ce privește marketing-ul digital.",
+    "dailyResultTitle": "Rezultate zilnice",
+    "helpUnderstanding": "Descoperă mai multe informații despre cum să interpretezi aceste valori accesând {0}",
+    "periods": {
+      "yesterday": "Ieri",
+      "last7Days": "Ultimele 7 zile",
+      "last30Days": "Ultimele 30 de zile",
+      "3Months": "3 luni"
     },
-    "faq": {
-        "title": "ÎNTREBĂRI FRECVENTE",
-        "noFaq": "Nu există întrebări frecvente disponibile."
+    "impressions": "Afișări",
+    "clicks": "Clicuri",
+    "conversions": "Conversii",
+    "averageCostPerClick": "Cost mediu/clic",
+    "costs": "Costuri",
+    "sales": "Vânzări",
+    "noData": "Încă nu există date",
+    "noCampaigns": "Ești gata să îți amplifici promovarea produselor tale? Creează-ți campania cu câteva clicuri"
+  },
+  "campaigns": {
+    "listTitle": "Anunțul campaniei",
+    "status": {
+      "eligible": "Eligibil",
+      "eligiblelimited": "Eligibil (limitat)",
+      "ended": "Încheiată",
+      "paused": "În pauză",
+      "not-eligible": "Nu este eligibil",
+      "draft": "Ciornă",
+      "pending": "În așteptare"
     },
-    "glass": {
-        "message": "Nu poți vedea browserul securizat Google?  \nApasă Continuă pentru a relansa fereastra și a finaliza configurarea.\n\nPentru a continua, poate fi necesar să activezi ferestrele pop-up în browser."
+    "dateLabel": {
+      "from": "De la {startDate}",
+      "fromXToX": "De la {startDate} la {endDate}",
+      "endedOnX": "Încheiat la {endDate}"
     },
-    "cta": {
-        "startConfiguring": "Începe configurarea",
-        "connect": "Conectare",
-        "connecting": "Se conectează...",
-        "validating": "Se validează...",
-        "creating": "Se crează...",
-        "dissociate": "Disociere",
-        "manageAccount": "Gestionează contul",
-        "overwrite": "Suprascriere",
-        "switchAccount": "Schimbă contul",
-        "acceptInvitation": "Acceptare invitație",
-        "continue": "Continuare",
-        "confirm": "Confirmă",
-        "disabled": "Dezactivat",
-        "activateModule": "Activează modulul",
-        "enabled": "Activat",
-        "agree": "Sunt de acord",
-        "connectAccount": "Conectează-ți contul",
-        "connectingAccount": "Contul se conectează...",
-        "chooseExistingAccount": "Alege contul existent",
-        "createNewAccount": "Creează un cont nou",
-        "learnAboutAccountSuspension": "Află mai multe despre suspendarea contului",
-        "learnAboutSiteClaiming": "Află mai multe despre revendicarea site-ului",
-        "learnMoreAboutSmartShoppingCampaigns": "Află mai multe despre campaniile Smart Shopping",
-        "learnMore": "Află mai multe",
-        "configureAndExportProductFeed": "Pornește configurația",
-        "continueProductFeed": "Reluare configurare",
-        "chooseAccount": "Alege-ți contul",
-        "supportedCountries": "Țări acceptate",
-        "cancel": "Anulare",
-        "disconnectAccount": "Deconectare cont",
-        "selectAccount": "Selectare cont",
-        "reviewAccount": "Verifică contul",
-        "addMapping": "Adăugare mapare",
-        "modifyMapping": "Modificare mapare",
-        "learnAboutProductConfiguration": "Află mai multe despre specificațiile datelor produselor",
-        "overwriteProductFeed": "Suprascrie fluxul produselor",
-        "whyDidntWork": "Vezi de ce nu a funcționat",
-        "aboutProductCategory": "Lista categoriilor de produse Google",
-        "edit": "Editare",
-        "editSettings": "Modifică setările",
-        "editRules": "Modifică regulile",
-        "shopMaintenanceBtn": "Accesează setările de întreținere",
-        "editProductAttributes": "Modificare categorii și caracteristici",
-        "forceSync": "Forțează sincronizarea",
-        "createNewGoogleAdsAccount": "Creează un cont Google Ads nou",
-        "back": "Înapoi",
-        "saveAndContinue": "Salvează și continuă",
-        "yes": "Da",
-        "done": "Gata",
-        "no": "Nu",
-        "disable": "Dezactivează",
-        "disableProductFeed": "Dezactivează fluxul produselor",
-        "checkRequirements": "Vezi cerințele magazinului",
-        "storeMeetsRequirements": "Magazinul meu îndeplinește toate cerințele",
-        "createAccount": "Creare cont",
-        "saveChange": "Salvare modificare",
-        "close": "Închide",
-        "viewDetailedStatuses": "Vizualizeză starea detaliată a produselor",
-        "setupTax": "Configurare taxe",
-        "understandAndContinue": "Acceptă și continuă",
-        "reviewProblems": "Revizuirea problemelor",
-        "saveAndExport": "Salvează și exportă",
-        "go": "Accesează",
-        "goTo": "Accesează {0}",
-        "continueWithoutSave": "Continuă fără salvare",
-        "save": "Salvare",
-        "disconnect": "Deconectare",
-        "export": "Export",
-        "learnAboutFreeListing": "Află mai multe despre listările gratuite",
-        "addWebsiteAddress": "Adaugă adresă site",
-        "transferClaim": "Cerere de transfer",
-        "goToYourX": "Accesează {0}",
-        "createSmartShoppingCampaign": "Lansează campania Performance Max",
-        "addBillingSettings": "Adaugă setări de facturare",
-        "createCampaign": "Creează o campanie",
-        "createPMaxCampaign": "Creează o nouă campanie PMax",
-        "editCampaign": "Actualizează campania",
-        "launchCampaign": "Lansează campania",
-        "resetDate": "Setează data de astăzi",
-        "validate": "Validare",
-        "seeOnGoogleAds": "Vezi aceste valori pe {0}",
-        "GoogleAds": "Google Ads",
-        "clickToSortDesc": "(Fă clic pentru a sorta descrescător)",
-        "clickToSortAsc": "(Fă clic pentru a sorta crescător)",
-        "selectFilters": "Selectare filtre",
-        "removeFilter": "Elimină filtrul | Elimină filtrele",
-        "selectAll": "Selectează tot",
-        "deselectAll": "Deselectează tot",
-        "clearAll": "Șterge tot",
-        "signInWithGoogle": "Autentificare prin Google",
-        "viewReporting": "Vizualizare rapoarte",
-        "pauseCampaign": "Pauză",
-        "resumeCampaign": "Permite",
-        "modifyTheCampaign": "Modifică",
-        "openActionsMenu": "Deschide meniul de acțiuni pentru campania {0}",
-        "viewInGoogleAds": "Vizualizează în contul tău Google Ads",
-        "previous": "Înapoi",
-        "loginPage": "Mergi la pagina de autentificare",
-        "next": "Înainte",
-        "goToPage": "Mergi la prima pagină | Mergi la pagina: {0} | Mergi la ultima pagină",
-        "noEndDate": "Fără dată de sfârșit",
-        "verifyPhoneNumber": "Confirmă numărul de telefon",
-        "refreshInformations": "Actualizează informațiile",
-        "apply": "Aplică",
-        "select": "Selectează",
-        "editContact": "Modificare informații de contact",
-        "update": "Actualizare",
-        "validateSelection": "Validează selecția",
-        "visitThe": "Vizitează {0} pentru mai multe informații",
-        "createPmax": "Creează o campanie Performance Max",
-        "understand": "Înțeleg",
-        "moreActions": "Mai multe acțiuni",
-        "signGadsToS": "Semnează condițiile de utilizare a serviciului în Google Ads",
-        "enableEnhancedConversions": "Activează urmărirea îmbunătățită a conversiilor",
-        "loadNextPage": "Încarcă următoarele rezultate"
-    },
-    "badge": {
-        "free": "Gratuit",
-        "connected": "Conectat",
-        "active": "Activ",
-        "disapproved": "Respins",
-        "pendingCreation": "În așteptare",
-        "creatingGmc": "Crearea contului în câteva secunde...",
-        "creatingGmcTakingTime": "Procesarea durează mai mult decât era de așteptat, te rugăm să aștepți câteva momente și să nu reîmprospătezi pagina.",
-        "pendingCheck": "Îți verificăm statusul GMC...",
-        "pending": "În așteptare",
-        "expiring": "Expiră",
-        "checkingSiteClaim": "Se verifică revendicarea site-ului tău...",
-        "siteVerified": "Site verificat",
-        "productFeed": "Fluxul de produse",
-        "productFeedSettings": "Setări flux de produse",
-        "merchantCenterAccount": "Cont Merchant Center",
-        "googleAccount": "Cont Google",
-        "paid": "Plătit",
-        "googleAdsAccount": "Cont Google Ads",
-        "readyToSync": "Gata de sincronizare",
-        "cantSync": "Nu poate fi sincronizat",
-        "close": "Închide",
-        "suspended": "Suspendat",
-        "ineligibleForFreeListing": "Neeligibil pentru listări gratuite",
-        "urlUnclaimed": "URL nerevendicat",
-        "urlUnverified": "URL neverificat",
-        "canceled": "Anulat",
-        "testAccount": "Test",
-        "loading": "Se încarcă",
-        "new": "Nou"
-    },
-    "modal": {
-        "titleDisconnectionMerchantCenter": "Deconectezi Merchant Center?",
-        "titleDisconnection": "Confirmi deconectarea?",
-        "titleoverwrite": "Suprascrii revendicarea existentă?",
-        "textDisconnectGoogleAccount": "Ești pe cale să deconectezi contul Google. Acest lucru va elimina accesul la conturile Google, Google Merchant Center și Google Ads.",
-        "textDisconnectMCA": "Deconectarea Merchant Center va elimina accesul la Google Ads din acest modul și va întrerupe orice campanie în desfășurare. ",
-        "textoverwrite": "Suprascrierea revendicării existente îți va dezactiva contul anterior și va întrerupe campaniile existente legate de acel cont: listările gratuite și campaniile pentru Shopping.  \nDacă desfășori o altă campanie pentru Shopping, îți recomandăm să o întrerupi.",
-        "titleCancelWithoutSaving": "Anulezi fără să salvezi?",
-        "textCancelProductFeed": "Vei pierde toate modificările nesalvate dacă vei continua. Pentru a trimite cu succes datele despre produse la Google, trebuie să parcurgi toți pașii.",
-        "titleQuitWithoutSaving": "Ieși fără a salva?",
-        "titleOverwriteProductFeed": "Suprascrii fluxul de produse existent?",
-        "textOverwriteProductFeed": "Suprascrierea fluxului de produse existent îl va șterge. Va trebui să configurezi fluxul nou de produse.",
-        "titleDisconnectionGoogleAds": "Deconectezi contul Google Ads?",
-        "textDisconnectGoogleAds": "Deconectarea de la contul Google Ads va elimina posibilitatea de a rula campanii Performance Max din modul.",
-        "pauseCampaigns": "Întrerupe toate campaniile mele",
-        "pauseCampaignsExplainations": "Prin întreruperea tuturor campaniilor, facturarea se va opri. Poți reporni campaniile în orice moment în contul tău Google Ads.",
-        "removeTag": "Elimină eticheta „Remarketing și conversie” din magazinul meu",
-        "removeTagExplainations": "Eliminarea etichetei înseamnă că Google nu va mai putea urmări campaniile tale. Recomandăm să elimini eticheta numai dacă intenționezi să elimini complet modulul sau să schimbi contul. Poți oricând să-l adaugi singur în codul site-ului tău.",
-        "titleActivateTracking": "Măsoară eficiența reclamelor tale",
-        "textActivateTracking": "Pentru a rula eficient campaniile Performance Max, Google Ads necesită capacitatea de a genera liste de remarketing și de a adăuga etichete de urmărire a conversiilor în lista ta.\n\nDacă dai clic pe „Confirmă”, înseamnă că accepți că PrestaShop instalează automat fragmente de cod în magazinul tău:\n- Adaugă eticheta Google în magazinul meu\n- Configurează acțiunile de conversie: vizualizări de pagină, adăugare în coș, achiziție",
-        "textConfirmCancel": "Dacă revii, vei pierde valorile selectate",
-        "disconnectedUserBo": "Ai fost deconectat de la back-office. Vei fi redirecționat automat către pagina de conectare în {0} secunde.",
-        "titleDisconnectedUserBo": "Conexiune pierdută",
-        "titleEnhancedConversionsIntro": "Măsoară eficiența reclamelor tale",
-        "textEnhancedConversionsIntro": "Îmbunătățește acuratețea urmăririi conversiilor și consolidează strategia de licitare cu cea mai recentă funcționalitate a noastră: urmărirea îmbunătățită a conversiilor. Această funcționalitate se integrează perfect cu etichetele de conversie existente, asigurând transmiterea sigură și confidențială a datelor de conversie de pe site-ul tău web către Google.",
-        "textActivationEnhancedConversionsIntro": "Este ușor de activat. Trebuie doar să fii de acord cu condițiile de utilizare a serviciului în Google Ads. Funcționalitatea este accesibilă pe pagina configurației tale, sub eticheta de urmărire a conversiilor."
+    "labelCol": {
+      "campaign": "Titlu",
+      "status": "Stare",
+      "impressions": "Afișări",
+      "clicks": "Clicuri",
+      "adSpend": "Cheltuieli publicitare",
+      "sales": "Vânzări",
+      "costs": "Costuri",
+      "conversions": "Conversii",
+      "duration": "Data",
+      "target": "Țară vizată",
+      "actions": "Acțiuni",
+      "dailyBudget": "Bugetul zilnic"
     },
     "tooltip": {
-        "googleAccountRequired": "Necesită configurarea contului Google",
-        "merchantCenterAccountRequired": "Necesită configurarea contului Merchant Center",
-        "productFeedRequired": "Necesită configurarea fluxului de produse",
-        "googleAdsAccountRequired": "Necesită configurarea contului Google Ads",
-        "mustCheckAllRequirements": "Trebuie să îndeplinești toate cerințele.",
-        "mustAgreeGoogleTerms": "Trebuie să fii de acord cu Termenii și condițiile Google",
-        "mustAgreeGoogleAdsTerms": "Trebuie să accepți termenii și condițiile",
-        "approvalStatusStatus": "Disponibilitatea produselor tale pentru listări și reclame gratuite",
-        "approvalStatusLang": "text temporar",
-        "approvalStatusIssues": "Motivul pentru care produsul tău nu este aprobat pentru Google",
-        "attributeMapping": {
-            "description": "Descrierea va fi decupată automat dacă este mai mare de 5000",
-            "ageGroup": "Datele demografice vizate de produsul tău.",
-            "gtin": "Un cod imprimat pe ambalajul produsului pentru a ajuta la identificarea unui anumit articol.",
-            "mpn": "Un număr unic care este emis de producători pentru a identifica produsele individuale. Este o serie de cifre și litere.",
-            "pattern": "Modelul sau imprimeul produsului"
-        },
-        "GMCForm": {
-            "businessAddress": "Adresa completată anterior este cea pe care ai introdus-o în back-office",
-            "businessZipCode": "Codul poștal completat anterior este cel pe care l-ai introdus în back-office",
-            "businessCity": "Orașul completat anterior este cel pe care l-ai introdus în back-office",
-            "businessPhone": "Numărul de telefon completat anterior este cel pe care l-ai introdus în back-office",
-            "businessCountry": "Țara completată anterior este cea pe care ai introdus-o în back-office",
-            "businessRegion": "Regiunea completată anterior este cea pe care ai introdus-o în back-office"
-        }
-    },
-    "toast": {
-        "alertGoogleAdsAccountSuccess": "Ai configurat cu succes contul Google Ads!",
-        "googleAccountConnectedOnceSuccess": "Ți-ai conectat contul Google!",
-        "MCAConnectedOnceSuccess": "Ți-ai conectat contul Merchant Center!",
-        "productFeedConfiguredOnceSuccess": "Ai trimis cu succes datele produselor tale la Merchant Center. Odată aprobate, acestea vor fi disponibile pentru listări și reclame gratuite.",
-        "attributesMapppingSuccess": "Caracteristicile produsului tău au fost salvate cu succes. Revizuiește rezumatul, apoi fă clic pe „Export” pentru a le trimite la Google",
-        "campaignCreatedSuccess": "Ai creat cu succes campania Performance Max!",
-        "phoneNumberVerifiedSuccess": "Numărul de telefon a fost confirmat. Contul de comerciant este în curs de creare",
-        "enhancedConversionEnabledSuccess": "Urmărire îmbunătățită a conversiilor activată"
-    },
-    "stepper": {
-        "nextStep": "Înainte: {0}",
-        "lastStep": "Ultimul pas"
-    },
-    "attributesMapping": {
-        "types": {
-            "description": "Descriere",
-            "mpn": "MPN",
-            "brand": "Marca",
-            "color": "Culoare",
-            "gtin": "GTIN* (EAN, JAN, ISBN, UPC, ITF-14)",
-            "size": "Dimensiune",
-            "ageGroup": "Grup de vârstă",
-            "gender": "Sex",
-            "energyEfficiencyClass": "Clasa de eficiență energetică",
-            "minEnergyEfficiencyClass": "Clasa de eficiență energetică minimă",
-            "maxEnergyEfficiencyClass": "Clasa de eficiență energetică maximă",
-            "material": "Material",
-            "pattern": "Imprimeu"
-        },
-        "options": {
-            "upc": "UPC",
-            "isbn": "ISBN",
-            "ean": "EAN",
-            "mpn": "MPN",
-            "description": "Descriere",
-            "description_short": "Descriere scurtă",
-            "longDescription": "Descriere lungă",
-            "notAvailable": "Indisponibil"
-        },
-        "condition": "Stare",
-        "specificTitle": "Specific",
-        "sellRefurbished": "Vând produse recondiționate",
-        "sellApparel": "Vând îmbrăcăminte și/sau accesorii"
-    },
-    "banner": {
-        "titleAdsbanner": "Ești la început în publicitatea Google?",
-        "textAdsBannerLong": "Obține {0} credite Google Ads* atunci când cheltuiești cel puțin {0} pentru a crea primele campanii în PrestaShop sau direct prin [contul Google Ads]({1})[:target=\"_blank\"].",
-        "textAdsBanner": "Obține {0} credite Google Ads* atunci când cheltuiești cel puțin {0} pentru a crea primele campanii.",
-        "legendLong": "*Voucherul tău va fi aplicat automat din momentul în care începi să cheltuiești! *Suma trebuie cheltuită în termen de 60 de zile de la prima cheltuială a campaniei, iar creditele vor fi valabile timp de 60 de zile după ce au fost creditate. [Citește termenii și condițiile]({0})[:target=\"_blank\"]",
-        "legend": "*Creează un nou cont Google Ads, voucherul va fi aplicat automat după ce ai acumulat suficient cheltuieli și vei avea la dispoziție 60 de zile pentru a cheltui creditele. [Citește termenii și condițiile]({0})[:target=\"_blank\"]",
-        "legendWithoutTC": "* Creează un nou cont Google Ads, voucherul va fi aplicat automat după ce ai acumulat suficiente cheltuieli și vei avea la dispoziție 60 de zile pentru a cheltui creditele.",
-        "ctaCreateFirstCampaign": "Creează-ți prima campanie PMax",
-        "textCampaignsBanner": "Creează-ți prima campanie și contactează cumpărători mai relevanți, pe toate canalele Google. Profită de învățarea automată de la Google și optimizează-ți destinațiile de plasare a reclamelor și îmbunătățește-ți în mod eficient traficul și vânzările."
-    },
-    "tipsAndTricks": {
-        "title": "Sfat profesional PrestaShop"
+      "lowBudget": "Bugetul tău zilnic este prea mic pentru a avea o campanie performantă, crește-ți bugetul pentru a îmbunătăți performanța campaniei."
     }
+  },
+  "notConfiguredState": {
+    "title": "Finalizează configurația",
+    "titleOneLastStep": "Un ultim pas",
+    "textGoogleMissing": "Continuă configurarea pentru a începe să trimiți produse la Google și să creezi campanii.",
+    "textOneMoreThing": "Încă un pas și ești gata să trimiți produsele la Google.",
+    "textBoostYourSales": "Dacă dorești să crești vânzările, conectează-te și creează campanii cu Google Ads.",
+    "ctaClassic": "Mergi la pagina de configurare",
+    "ctaLinkMCA": "Conectează-ți contul Google Merchant Center",
+    "ctaExportFeed": "Sincronizează-ți produsele cu Google",
+    "ctaLinkGoogleAds": "Conectează-ți contul Google Ads"
+  },
+  "configuredState": {
+    "title": "Felicitări, ai terminat!",
+    "text": "Ai finalizat toți pașii necesari pentru a profita la maximum de **Marketing cu Google**",
+    "cta": "Accesează crearea campaniei",
+    "firstStep": "Conectează-ți magazinul la un cont PrestaShop",
+    "secondStep": "Conectează-te sau creează-ți un Cont Google",
+    "thirdStep": "Conectează-te sau creează-ți un cont Google Merchant Center",
+    "fourthStep": "Exportă și sincronizează catalogul de produse",
+    "fifthStep": "Conectează-te sau creează-ți un Cont Google Ads",
+    "sixthStep": "** Pasul următor ** creează prima ta campanie Performance Max"
+  },
+  "help": {
+    "intro": "PrestaShop Marketing facilitează conectarea magazinului tău la Google și promovarea produselor tale către milioane de cumpărători pe mai multe canale Google. Creează campanii Performance Max fără a părăsi panoul de bord PrestaShop și determină creșterea traficului.",
+    "helpCenter": "Centru de asistență",
+    "allowsYouTo": {
+      "title": "Acest modul îți permite să:",
+      "easySync": "Sincronizezi cu ușurință catalogul de produse cu Google pentru a păstra actualizate automat detaliile despre produse, cum ar fi prețul și disponibilitatea",
+      "freeListing": "Activezi listări gratuite și să extinzi acoperirea prin afișarea produselor tale cumpărătorilor care navighează pe fila Shopping, în mod gratuit",
+      "campaigns": "Începi campaniile Performance Max, să stabilești un buget zilnic și să permiți învățării automate de la Google să-ți optimizeze campaniile",
+      "reporting": "Analizează performanța campaniei tale fără a părăsi PrestaShop"
+    },
+    "help": {
+      "needHelp": "Ai nevoie de ajutor? Găsești aici documentația acestui modul.",
+      "downloadPdf": "Descarcă PDF",
+      "couldntFindAnyAnswer": "Nu ai găsit niciun răspuns la întrebarea ta?",
+      "contactUs": "Contactează-ne"
+    }
+  },
+  "faq": {
+    "title": "ÎNTREBĂRI FRECVENTE",
+    "noFaq": "Nu există întrebări frecvente disponibile."
+  },
+  "glass": {
+    "message": "Nu poți vedea browserul securizat Google?  \nApasă Continuă pentru a relansa fereastra și a finaliza configurarea.\n\nPentru a continua, poate fi necesar să activezi ferestrele pop-up în browser."
+  },
+  "cta": {
+    "startConfiguring": "Începe configurarea",
+    "connect": "Conectare",
+    "connecting": "Se conectează...",
+    "validating": "Se validează...",
+    "creating": "Se crează...",
+    "dissociate": "Disociere",
+    "manageAccount": "Gestionează contul",
+    "overwrite": "Suprascriere",
+    "switchAccount": "Schimbă contul",
+    "acceptInvitation": "Acceptare invitație",
+    "continue": "Continuare",
+    "confirm": "Confirmă",
+    "disabled": "Dezactivat",
+    "activateModule": "Activează modulul",
+    "enabled": "Activat",
+    "agree": "Sunt de acord",
+    "connectAccount": "Conectează-ți contul",
+    "connectingAccount": "Contul se conectează...",
+    "chooseExistingAccount": "Alege contul existent",
+    "createNewAccount": "Creează un cont nou",
+    "learnAboutAccountSuspension": "Află mai multe despre suspendarea contului",
+    "learnAboutSiteClaiming": "Află mai multe despre revendicarea site-ului",
+    "learnMoreAboutSmartShoppingCampaigns": "Află mai multe despre campaniile Smart Shopping",
+    "learnMore": "Află mai multe",
+    "configureAndExportProductFeed": "Pornește configurația",
+    "continueProductFeed": "Reluare configurare",
+    "chooseAccount": "Alege-ți contul",
+    "supportedCountries": "Țări acceptate",
+    "cancel": "Anulare",
+    "disconnectAccount": "Deconectare cont",
+    "selectAccount": "Selectare cont",
+    "reviewAccount": "Verifică contul",
+    "addMapping": "Adăugare mapare",
+    "modifyMapping": "Modificare mapare",
+    "learnAboutProductConfiguration": "Află mai multe despre specificațiile datelor produselor",
+    "overwriteProductFeed": "Suprascrie fluxul produselor",
+    "whyDidntWork": "Vezi de ce nu a funcționat",
+    "aboutProductCategory": "Lista categoriilor de produse Google",
+    "edit": "Editare",
+    "editSettings": "Modifică setările",
+    "editRules": "Modifică regulile",
+    "shopMaintenanceBtn": "Accesează setările de întreținere",
+    "editProductAttributes": "Modificare categorii și caracteristici",
+    "forceSync": "Forțează sincronizarea",
+    "createNewGoogleAdsAccount": "Creează un cont Google Ads nou",
+    "back": "Înapoi",
+    "saveAndContinue": "Salvează și continuă",
+    "yes": "Da",
+    "done": "Gata",
+    "no": "Nu",
+    "disable": "Dezactivează",
+    "disableProductFeed": "Dezactivează fluxul produselor",
+    "checkRequirements": "Vezi cerințele magazinului",
+    "storeMeetsRequirements": "Magazinul meu îndeplinește toate cerințele",
+    "createAccount": "Creare cont",
+    "saveChange": "Salvare modificare",
+    "close": "Închide",
+    "viewDetailedStatuses": "Vizualizeză starea detaliată a produselor",
+    "setupTax": "Configurare taxe",
+    "understandAndContinue": "Acceptă și continuă",
+    "reviewProblems": "Revizuirea problemelor",
+    "saveAndExport": "Salvează și exportă",
+    "go": "Accesează",
+    "goTo": "Accesează {0}",
+    "continueWithoutSave": "Continuă fără salvare",
+    "save": "Salvare",
+    "disconnect": "Deconectare",
+    "export": "Export",
+    "learnAboutFreeListing": "Află mai multe despre listările gratuite",
+    "addWebsiteAddress": "Adaugă adresă site",
+    "transferClaim": "Cerere de transfer",
+    "goToYourX": "Accesează {0}",
+    "createSmartShoppingCampaign": "Lansează campania Performance Max",
+    "addBillingSettings": "Adaugă setări de facturare",
+    "createCampaign": "Creează o campanie",
+    "createPMaxCampaign": "Creează o nouă campanie PMax",
+    "editCampaign": "Actualizează campania",
+    "launchCampaign": "Lansează campania",
+    "resetDate": "Setează data de astăzi",
+    "validate": "Validare",
+    "seeOnGoogleAds": "Vezi aceste valori pe {0}",
+    "GoogleAds": "Google Ads",
+    "clickToSortDesc": "(Fă clic pentru a sorta descrescător)",
+    "clickToSortAsc": "(Fă clic pentru a sorta crescător)",
+    "selectFilters": "Selectare filtre",
+    "removeFilter": "Elimină filtrul | Elimină filtrele",
+    "selectAll": "Selectează tot",
+    "deselectAll": "Deselectează tot",
+    "clearAll": "Șterge tot",
+    "signInWithGoogle": "Autentificare prin Google",
+    "viewReporting": "Vizualizare rapoarte",
+    "pauseCampaign": "Pauză",
+    "resumeCampaign": "Permite",
+    "modifyTheCampaign": "Modifică",
+    "openActionsMenu": "Deschide meniul de acțiuni pentru campania {0}",
+    "viewInGoogleAds": "Vizualizează în contul tău Google Ads",
+    "previous": "Înapoi",
+    "loginPage": "Mergi la pagina de autentificare",
+    "next": "Înainte",
+    "goToPage": "Mergi la prima pagină | Mergi la pagina: {0} | Mergi la ultima pagină",
+    "noEndDate": "Fără dată de sfârșit",
+    "verifyPhoneNumber": "Confirmă numărul de telefon",
+    "refreshInformations": "Actualizează informațiile",
+    "apply": "Aplică",
+    "select": "Selectează",
+    "editContact": "Modificare informații de contact",
+    "update": "Actualizare",
+    "updateModule": "Update module",
+    "validateSelection": "Validează selecția",
+    "visitThe": "Vizitează {0} pentru mai multe informații",
+    "createPmax": "Creează o campanie Performance Max",
+    "understand": "Înțeleg",
+    "moreActions": "Mai multe acțiuni",
+    "signGadsToS": "Semnează condițiile de utilizare a serviciului în Google Ads",
+    "enableEnhancedConversions": "Activează urmărirea îmbunătățită a conversiilor",
+    "loadNextPage": "Încarcă următoarele rezultate"
+  },
+  "badge": {
+    "free": "Gratuit",
+    "connected": "Conectat",
+    "active": "Activ",
+    "disapproved": "Respins",
+    "pendingCreation": "În așteptare",
+    "creatingGmc": "Crearea contului în câteva secunde...",
+    "creatingGmcTakingTime": "Procesarea durează mai mult decât era de așteptat, te rugăm să aștepți câteva momente și să nu reîmprospătezi pagina.",
+    "pendingCheck": "Îți verificăm statusul GMC...",
+    "pending": "În așteptare",
+    "expiring": "Expiră",
+    "checkingSiteClaim": "Se verifică revendicarea site-ului tău...",
+    "siteVerified": "Site verificat",
+    "productFeed": "Fluxul de produse",
+    "productFeedSettings": "Setări flux de produse",
+    "merchantCenterAccount": "Cont Merchant Center",
+    "googleAccount": "Cont Google",
+    "paid": "Plătit",
+    "googleAdsAccount": "Cont Google Ads",
+    "readyToSync": "Gata de sincronizare",
+    "cantSync": "Nu poate fi sincronizat",
+    "close": "Închide",
+    "suspended": "Suspendat",
+    "ineligibleForFreeListing": "Neeligibil pentru listări gratuite",
+    "urlUnclaimed": "URL nerevendicat",
+    "urlUnverified": "URL neverificat",
+    "canceled": "Anulat",
+    "testAccount": "Test",
+    "loading": "Se încarcă",
+    "new": "Nou"
+  },
+  "modal": {
+    "titleDisconnectionMerchantCenter": "Deconectezi Merchant Center?",
+    "titleDisconnection": "Confirmi deconectarea?",
+    "titleoverwrite": "Suprascrii revendicarea existentă?",
+    "textDisconnectGoogleAccount": "Ești pe cale să deconectezi contul Google. Acest lucru va elimina accesul la conturile Google, Google Merchant Center și Google Ads.",
+    "textDisconnectMCA": "Deconectarea Merchant Center va elimina accesul la Google Ads din acest modul și va întrerupe orice campanie în desfășurare. ",
+    "textoverwrite": "Suprascrierea revendicării existente îți va dezactiva contul anterior și va întrerupe campaniile existente legate de acel cont: listările gratuite și campaniile pentru Shopping.  \nDacă desfășori o altă campanie pentru Shopping, îți recomandăm să o întrerupi.",
+    "titleCancelWithoutSaving": "Anulezi fără să salvezi?",
+    "textCancelProductFeed": "You will lose all unsaved changes if you continue. To successully submit your product data to Google, you need to complete all steps.",
+    "titleQuitWithoutSaving": "Ieși fără a salva?",
+    "titleOverwriteProductFeed": "Suprascrii fluxul de produse existent?",
+    "textOverwriteProductFeed": "Suprascrierea fluxului de produse existent îl va șterge. Va trebui să configurezi fluxul nou de produse.",
+    "titleDisconnectionGoogleAds": "Deconectezi contul Google Ads?",
+    "textDisconnectGoogleAds": "Deconectarea de la contul Google Ads va elimina posibilitatea de a rula campanii Performance Max din modul.",
+    "pauseCampaigns": "Întrerupe toate campaniile mele",
+    "pauseCampaignsExplainations": "Prin întreruperea tuturor campaniilor, facturarea se va opri. Poți reporni campaniile în orice moment în contul tău Google Ads.",
+    "removeTag": "Elimină eticheta „Remarketing și conversie” din magazinul meu",
+    "removeTagExplainations": "Eliminarea etichetei înseamnă că Google nu va mai putea urmări campaniile tale. Recomandăm să elimini eticheta numai dacă intenționezi să elimini complet modulul sau să schimbi contul. Poți oricând să-l adaugi singur în codul site-ului tău.",
+    "titleActivateTracking": "Măsoară eficiența reclamelor tale",
+    "textActivateTracking": "Pentru a rula eficient campaniile Performance Max, Google Ads necesită capacitatea de a genera liste de remarketing și de a adăuga etichete de urmărire a conversiilor în lista ta.\n\nDacă dai clic pe „Confirmă”, înseamnă că accepți că PrestaShop instalează automat fragmente de cod în magazinul tău:\n- Adaugă eticheta Google în magazinul meu\n- Configurează acțiunile de conversie: vizualizări de pagină, adăugare în coș, achiziție",
+    "textConfirmCancel": "Dacă revii, vei pierde valorile selectate",
+    "disconnectedUserBo": "Ai fost deconectat de la back-office. Vei fi redirecționat automat către pagina de conectare în {0} secunde.",
+    "titleDisconnectedUserBo": "Conexiune pierdută",
+    "titleEnhancedConversionsIntro": "Măsoară eficiența reclamelor tale",
+    "textEnhancedConversionsIntro": "Enhance your conversion tracking accuracy and empower your bidding strategy with our latest feature: Enhanced Conversion Tracking. This feature seamlessly integrates with your existing conversion tags, ensuring the secure and privacy-conscious transmission of conversion data from your website to Google.Be careful to follow these simple instructions during activation to make sure the feature works properly:\n1. Check the checkbox “Turn on enhanced conversions”\n2. Accept the Customer Data terms (if not already accepted in the past)\n3. Select “Google Tag” as the method\n4. Save your selections"
+  },
+  "tooltip": {
+    "googleAccountRequired": "Necesită configurarea contului Google",
+    "merchantCenterAccountRequired": "Necesită configurarea contului Merchant Center",
+    "productFeedRequired": "Necesită configurarea fluxului de produse",
+    "googleAdsAccountRequired": "Necesită configurarea contului Google Ads",
+    "mustCheckAllRequirements": "Trebuie să îndeplinești toate cerințele.",
+    "mustAgreeGoogleTerms": "Trebuie să fii de acord cu Termenii și condițiile Google",
+    "mustAgreeGoogleAdsTerms": "Trebuie să accepți termenii și condițiile",
+    "approvalStatusStatus": "Disponibilitatea produselor tale pentru listări și reclame gratuite",
+    "approvalStatusLang": "text temporar",
+    "approvalStatusIssues": "Motivul pentru care produsul tău nu este aprobat pentru Google",
+    "attributeMapping": {
+      "description": "Descrierea va fi decupată automat dacă este mai mare de 5000",
+      "ageGroup": "Datele demografice vizate de produsul tău.",
+      "gtin": "Un cod imprimat pe ambalajul produsului pentru a ajuta la identificarea unui anumit articol.",
+      "mpn": "Un număr unic care este emis de producători pentru a identifica produsele individuale. Este o serie de cifre și litere.",
+      "pattern": "Modelul sau imprimeul produsului"
+    },
+    "GMCForm": {
+      "businessAddress": "Adresa completată anterior este cea pe care ai introdus-o în back-office",
+      "businessZipCode": "Codul poștal completat anterior este cel pe care l-ai introdus în back-office",
+      "businessCity": "Orașul completat anterior este cel pe care l-ai introdus în back-office",
+      "businessPhone": "Numărul de telefon completat anterior este cel pe care l-ai introdus în back-office",
+      "businessCountry": "Țara completată anterior este cea pe care ai introdus-o în back-office",
+      "businessRegion": "Regiunea completată anterior este cea pe care ai introdus-o în back-office"
+    }
+  },
+  "toast": {
+    "alertGoogleAdsAccountSuccess": "Ai configurat cu succes contul Google Ads!",
+    "googleAccountConnectedOnceSuccess": "Ți-ai conectat contul Google!",
+    "MCAConnectedOnceSuccess": "Ți-ai conectat contul Merchant Center!",
+    "productFeedConfiguredOnceSuccess": "Ai trimis cu succes datele produselor tale la Merchant Center. Odată aprobate, acestea vor fi disponibile pentru listări și reclame gratuite.",
+    "attributesMapppingSuccess": "Caracteristicile produsului tău au fost salvate cu succes. Revizuiește rezumatul, apoi fă clic pe „Export” pentru a le trimite la Google",
+    "campaignCreatedSuccess": "Ai creat cu succes campania Performance Max!",
+    "phoneNumberVerifiedSuccess": "Numărul de telefon a fost confirmat. Contul de comerciant este în curs de creare",
+    "enhancedConversionEnabledSuccess": "Urmărire îmbunătățită a conversiilor activată"
+  },
+  "stepper": {
+    "nextStep": "Înainte: {0}",
+    "lastStep": "Ultimul pas"
+  },
+  "attributesMapping": {
+    "types": {
+      "description": "Descriere",
+      "mpn": "MPN",
+      "brand": "Marca",
+      "color": "Culoare",
+      "gtin": "GTIN* (EAN, JAN, ISBN, UPC, ITF-14)",
+      "size": "Dimensiune",
+      "ageGroup": "Grup de vârstă",
+      "gender": "Sex",
+      "energyEfficiencyClass": "Clasa de eficiență energetică",
+      "minEnergyEfficiencyClass": "Clasa de eficiență energetică minimă",
+      "maxEnergyEfficiencyClass": "Clasa de eficiență energetică maximă",
+      "material": "Material",
+      "pattern": "Imprimeu"
+    },
+    "options": {
+      "upc": "UPC",
+      "isbn": "ISBN",
+      "ean": "EAN",
+      "mpn": "MPN",
+      "description": "Descriere",
+      "description_short": "Descriere scurtă",
+      "longDescription": "Descriere lungă",
+      "notAvailable": "Indisponibil"
+    },
+    "condition": "Stare",
+    "specificTitle": "Specific",
+    "sellRefurbished": "Vând produse recondiționate",
+    "sellApparel": "Vând îmbrăcăminte și/sau accesorii"
+  },
+  "banner": {
+    "titleAdsbanner": "Ești la început în publicitatea Google?",
+    "textAdsBannerLong": "Obține {0} credite Google Ads* atunci când cheltuiești cel puțin {0} pentru a crea primele campanii în PrestaShop sau direct prin [contul Google Ads]({1})[:target=\"_blank\"].",
+    "textAdsBanner": "Obține {0} credite Google Ads* atunci când cheltuiești cel puțin {0} pentru a crea primele campanii.",
+    "legendLong": "*Voucherul tău va fi aplicat automat din momentul în care începi să cheltuiești! *Suma trebuie cheltuită în termen de 60 de zile de la prima cheltuială a campaniei, iar creditele vor fi valabile timp de 60 de zile după ce au fost creditate. [Citește termenii și condițiile]({0})[:target=\"_blank\"]",
+    "legend": "*Creează un nou cont Google Ads, voucherul va fi aplicat automat după ce ai acumulat suficient cheltuieli și vei avea la dispoziție 60 de zile pentru a cheltui creditele. [Citește termenii și condițiile]({0})[:target=\"_blank\"]",
+    "legendWithoutTC": "* Creează un nou cont Google Ads, voucherul va fi aplicat automat după ce ai acumulat suficiente cheltuieli și vei avea la dispoziție 60 de zile pentru a cheltui creditele.",
+    "ctaCreateFirstCampaign": "Creează-ți prima campanie PMax",
+    "textCampaignsBanner": "Creează-ți prima campanie și contactează cumpărători mai relevanți, pe toate canalele Google. Profită de învățarea automată de la Google și optimizează-ți destinațiile de plasare a reclamelor și îmbunătățește-ți în mod eficient traficul și vânzările."
+  },
+  "tipsAndTricks": {
+    "title": "Sfat profesional PrestaShop"
+  }
 }
