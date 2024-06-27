@@ -44,7 +44,7 @@ export default defineComponent({
   },
   computed: {
     linkToTermsOfServices(): string {
-      return googleUrl.googleAdsConversionsTermsAndConditions;
+      return googleUrl.googleAdsEnhancedCoversionSettings;
     },
   },
   methods: {

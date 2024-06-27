@@ -19,7 +19,7 @@
   "googleTermsAndPolicies" : "https://policies.google.com/terms",
   "googleMerchantCenterTermsOfService" : "https://support.google.com/merchants/answer/160173",
   "googleAdsTermsAndConditions" : "https://support.google.com/localservices/answer/7501778",
-  "googleAdsConversionsTermsAndConditions": "https://ads.google.com/aw/conversions/customersettings?eppn=customerDataTerms",
+  "googleAdsEnhancedCoversionSettings": "https://ads.google.com/aw/conversions/customersettings?eppn=enhancedconversionsaccountlevelsettings",
   "merchantCenterAccount" : "https://merchants.google.com/mc/overview",
   "learnAboutSiteClaiming" : "https://support.google.com/merchants/answer/176793",
   "requestiongReReview" : "https://support.google.com/merchants/contact/suspended",
