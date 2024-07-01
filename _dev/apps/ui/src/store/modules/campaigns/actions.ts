@@ -177,11 +177,11 @@ export default {
     {}: Context,
     payload: boolean,
   ): Promise<void> {
-    return (await fetchOnboarding(
+    await fetchOnboarding(
       'POST',
       'conversion-actions/enhanced',
       {body: {introduced: payload}},
-    )).json();
+    );
   },
 
   async [ActionsTypes.CREATE_REMARKETING_DEFAULT_CONVERSION_ACTIONS](
