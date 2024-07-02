@@ -56,6 +56,14 @@
           color: $primary-500;
         }
       }
+
+      .tag.tag-error {
+        border: 1px solid $red-500;
+        background: $red-50;
+        .material-icons {
+          background: $red-50 !important;
+        }
+      }
     }
 
     .v-select {

@@ -137,7 +137,7 @@ import FilterValidator from '@/components/product-feed/settings/product-selectio
 import {
   ProductFilter,
   ProductFilterErrors,
-  CleanProductFilter, type FeatureOption, type Feature,
+  CleanProductFilter, type FeatureOption,
 } from '@/components/product-feed/settings/product-selection/type';
 import ATTRIBUTE_MAP_CONDITION from '@/components/product-feed/settings/product-selection/attributeMapCondition';
 import ProductFilterAttributes from '@/enums/product-feed/product-filter-attributes';
@@ -298,6 +298,7 @@ export default defineComponent({
           attribute: undefined,
           condition: undefined,
           value: undefined,
+          values: undefined,
           ...this.listFilters[index].errors,
         };
 
@@ -321,6 +322,17 @@ export default defineComponent({
           if (errors.value && !validator.errors.value) {
             delete errors.value;
           }
+          if (errors.values && !validator.errors.values) {
+            delete errors.values;
+          }
+        }
+
+        if (errors.value && validator.errors.value) {
+          errors.value = validator.errors.value;
+        }
+
+        if (errors.values && validator.errors.values) {
+          errors.values = validator.errors.values;
         }
 
         this.$set(
@@ -473,9 +485,9 @@ export default defineComponent({
       // this.listFilters = localFilters
       //   .map((filter: CleanProductFilter) => this.recoverFilter(filter));
       // this.checkFiltersValidity(true);
-    } else {
-      this.listFilters = [newFilter()];
-    }
+      } else {
+        this.listFilters = [newFilter()];
+      }
 
       if (this.synchSelected === ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT
         || this.filtersAreValid) {

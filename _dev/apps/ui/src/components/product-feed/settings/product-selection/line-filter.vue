@@ -157,14 +157,15 @@
             v-else-if="displayFreeField"
             :disabled="!conditionSelected.length"
             :default-value="valuesSelected"
-            :class="{'error-field': filters.errors?.value}"
+            :has-error="hasSingleErrorValue"
+            :values-on-error="filters.errors?.values"
             @dataUpdated="updateValues($event)"
           />
           <p
             class="error-message"
             v-if="hasError"
           >
-            {{ filters.errors?.value || '&nbsp;' }}
+            {{ (filters.errors?.value || '&nbsp;') }}
           </p>
         </div>
         <div>
@@ -301,7 +302,12 @@ export default defineComponent({
     hasError(): Boolean {
       return !!this.filters.errors?.attribute
         || !!this.filters.errors?.condition
-        || !!this.filters.errors?.value;
+        || !!this.filters.errors?.value
+        || !!this.filters.errors?.values;
+    },
+    hasSingleErrorValue(): Boolean {
+      return !!this.filters.errors?.value
+      && !this.filters.errors?.values;
     },
     // Features
     features(): Feature[] {

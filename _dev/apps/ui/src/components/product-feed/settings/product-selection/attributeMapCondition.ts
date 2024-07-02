@@ -1,8 +1,9 @@
 import ProductFilterAttributes from '@/enums/product-feed/product-filter-attributes';
 import ProductFilterValueType from '@/enums/product-feed/product-filter-value-type';
 import {ProductFilterConditions, ProductFilterConditionsTranslations} from '@/enums/product-feed/product-filter-condition';
+import {AttributeMapCondition} from '@/components/product-feed/settings/product-selection/type';
 
-const ATTRIBUTE_MAP_CONDITION = {
+const ATTRIBUTE_MAP_CONDITION: AttributeMapCondition = {
   [ProductFilterAttributes.BRAND]: {
     [ProductFilterConditions.DOES_CONTAIN]: {
       multiple: true,
