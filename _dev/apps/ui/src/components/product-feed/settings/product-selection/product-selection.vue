@@ -111,6 +111,13 @@
         <i class="material-icons ps_gs-fz-20">add</i>
         {{ $t('productFeedSettings.productSelection.addFilter') }}
       </b-button>
+      <b-alert
+        :show="displayGlobalError"
+        variant="danger"
+        class="mt-3"
+      >
+        {{ $tc('productFeedSettings.productSelection.featureDeleted', filterDeleted) }}
+      </b-alert>
       <ProductCount
         v-if="displayProductCount && !loading"
       />
@@ -169,6 +176,7 @@ export default defineComponent({
       filtersAreValid: false,
       loading: true,
       moduleNeedUpgradeForProductFilter: true,
+      filterDeleted: 0,
     };
   },
   methods: {
@@ -274,6 +282,8 @@ export default defineComponent({
     initFilters(localFilters: CleanProductFilter[]) {
       let validity = true;
 
+      const filterToPush = [];
+
       localFilters.forEach((filter, index) => {
         const validator = new FilterValidator();
         validator.validate(filter);
@@ -281,8 +291,16 @@ export default defineComponent({
         if (!validator.isValid) {
           validity = false;
         }
+
+        // we only need to push it if he has not filter error state
+        if (!validator.filterError) {
+          filterToPush.push(this.recoverFilter(filter));
+        } else {
+          this.filterDeleted += 1;
+        }
       });
 
+      this.listFilters = filterToPush;
       this.filtersAreValid = validity;
     },
 
@@ -444,6 +462,9 @@ export default defineComponent({
         }
         this.$store.dispatch(`productFeed/${ActionsTypes.TRIGGER_PRODUCT_COUNT}`);
       },
+    },
+    displayGlobalError(): boolean {
+      return this.filterDeleted > 0;
     },
     displayProductCount(): boolean {
       return this.productCountStatus

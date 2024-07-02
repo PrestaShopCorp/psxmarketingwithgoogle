@@ -1,6 +1,6 @@
 import ATTRIBUTE_MAP_CONDITION from '@/components/product-feed/settings/product-selection/attributeMapCondition';
 import {
-  CleanProductFilter, FilterConditionConfig,
+  CleanProductFilter, FeatureOption, FilterConditionConfig,
   ProductFilterErrors, ProductFilterValidatorOptions,
 } from '@/components/product-feed/settings/product-selection/type';
 import i18n from '@/lib/i18n';
@@ -8,6 +8,7 @@ import store from '@/store';
 import ProductFilterValueType from '@/enums/product-feed/product-filter-value-type';
 import ProductFilterAttributes from '@/enums/product-feed/product-filter-attributes';
 import GetterTypes from '@/store/modules/product-feed/getters-types';
+import {getFeatureByOptions} from '@/components/product-feed/settings/product-selection/product-selection-utilities';
 
 class FilterValidator {
   attributeError: string | null;
@@ -22,12 +23,15 @@ class FilterValidator {
 
   options: ProductFilterValidatorOptions;
 
+  filterError: boolean;
+
   constructor() {
     this.attributeError = null;
     this.conditionError = null;
     this.valueError = null;
     this.valuesErrorMessage = null;
     this.valuesOnError = [];
+    this.filterError = false;
     // You must be careful to load the data correctly before using the validator
     this.options = {
       [ProductFilterAttributes.BRAND]: store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER_BRANDS_OPTIONS}`],
@@ -69,6 +73,10 @@ class FilterValidator {
 
   public validate(filter: CleanProductFilter): void {
     this.validateAttribute(filter);
+    // we stop validation if the filter is on error
+    if (this.filterError) {
+      return;
+    }
     this.validateCondition(filter);
     this.validateValue(filter);
   }
@@ -83,7 +91,13 @@ class FilterValidator {
       this.attributeError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidEntry') as string;
     }
 
-    // TODO : add verification we can retrieve feature
+    // if we can't retrieve the feature we need to send error to wall filter
+    if (filter.attribute === ProductFilterAttributes.FEATURE && filter.value !== undefined) {
+      this.filterError = getFeatureByOptions(
+        this.options[ProductFilterAttributes.FEATURE],
+        filter.value as FeatureOption[],
+      ) === undefined;
+    }
   }
 
   private validateCondition(filter: CleanProductFilter) {
@@ -138,7 +152,7 @@ class FilterValidator {
       default:
     }
 
-    // test if value already exist
+    // todo: test if value already exist
   }
 
   private mustHaveSeveralValues(filter: CleanProductFilter): boolean {

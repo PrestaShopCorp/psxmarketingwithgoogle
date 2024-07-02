@@ -470,6 +470,7 @@
         "synchFilteredProducts": "Synchronize filtered products",
         "synchFilteredProductsDesc": "Only the products you select will be synchronized."
       },
+      "featureDeleted": "A feature has been deleted from your selection. Change your filters and try again. | Some features have been deleted from your selection. Change your filters and try again.",
       "lineFilter": {
         "errors": {
           "empty": "This field is mandatory.",
