@@ -1064,7 +1064,8 @@
     "moreActions": "More Actions",
     "signGadsToS": "Sign terms of service on Google Ads",
     "enableEnhancedConversions": "Activate enhanced conversion tracking",
-    "loadNextPage": "Load next results"
+    "loadNextPage": "Load next results",
+    "notifyAvailable": "Notify me when available"
   },
   "badge": {
     "free": "Free",
@@ -1121,7 +1122,11 @@
     "disconnectedUserBo": "You have been disconnected from the backoffice. You will be automatically redirected to the login page in {0} seconds.",
     "titleDisconnectedUserBo": "Connection lost",
     "titleEnhancedConversionsIntro": "Measure the effectiveness of your Ads",
-    "textEnhancedConversionsIntro": "Enhance your conversion tracking accuracy and empower your bidding strategy with our latest feature: Enhanced Conversion Tracking. This feature seamlessly integrates with your existing conversion tags, ensuring the secure and privacy-conscious transmission of conversion data from your website to Google.Be careful to follow these simple instructions during activation to make sure the feature works properly:\n1. Check the checkbox “Turn on enhanced conversions”\n2. Accept the Customer Data terms (if not already accepted in the past)\n3. Select “Google Tag” as the method\n4. Save your selections"
+    "textEnhancedConversionsIntro": "Enhance your conversion tracking accuracy and empower your bidding strategy with our latest feature: Enhanced Conversion Tracking. This feature seamlessly integrates with your existing conversion tags, ensuring the secure and privacy-conscious transmission of conversion data from your website to Google.Be careful to follow these simple instructions during activation to make sure the feature works properly:\n1. Check the checkbox “Turn on enhanced conversions”\n2. Accept the Customer Data terms (if not already accepted in the past)\n3. Select “Google Tag” as the method\n4. Save your selections",
+    "titlePreMonetization": "Pricing update",
+    "textPreMonetizationPrice": "Starting fromJuly 31, a monthly subscription of €14.99 excluding tax will be required to continue using PrestaShop Marketing*.",
+    "textPreMonetizationFreeTrial": "You’ll get a 14-day free trial when you subscribe. There's no automatic enrollment - it’s up to you to decide if you want to switch to the paid plan. You can cancel at any time.",
+    "textPreMonetizationHostedSubscribers": "*PrestaShop Marketing remains free for PrestaShop Hosted subscribers."
   },
   "tooltip" : {
     "googleAccountRequired" : "Requires Google account configuration",
