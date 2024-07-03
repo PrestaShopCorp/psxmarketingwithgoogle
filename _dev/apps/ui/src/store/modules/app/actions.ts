@@ -19,7 +19,6 @@
 
 import {ActionContext} from 'vuex';
 import {fetchShop} from 'mktg-with-google-common/api/shopClient';
-import semver from 'semver';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import {FullState} from '@/store/types';
@@ -118,5 +117,13 @@ export default {
           }
         });
     }
+  },
+
+  async [ActionsTypes.GET_BANNER_SUCCESS_LOCAL_STORAGE_MONETIZATION]({commit}: Context, value) {
+    commit(MutationsTypes.SET_BANNER_SUCCESS_PRE_MONETIZATION, value);
+  },
+
+  async [ActionsTypes.GET_BANNER_INFO_LOCAL_STORAGE_MONETIZATION]({commit}: Context, value) {
+    commit(MutationsTypes.SET_BANNER_INFO_PRE_MONETIZATION, value);
   },
 };
