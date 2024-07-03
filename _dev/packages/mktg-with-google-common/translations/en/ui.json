@@ -477,7 +477,8 @@
           "invalidEntry": "Entry is not valid.",
           "invalidNumber": "A number is required.",
           "invalidPositiveNumber": "A positive number is required.",
-          "invalidInteger": "A whole number is required."
+          "invalidInteger": "A whole number is required.",
+          "valueDoNotExist": "This value does not exist. | These values do not exist."
         },
         "attributes": {
           "label": "Attribute",

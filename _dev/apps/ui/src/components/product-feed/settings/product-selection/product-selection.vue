@@ -198,14 +198,14 @@ export default defineComponent({
         // because it can break if we got new language introduced.
         const valueIdToMatch = new Set((recoveredFilter.value as FeatureOption[])
           .map((item) => item.id));
-        const featureOptions = feature.values.filter((item) => valueIdToMatch.has(item.id));
+        const featureOptions = feature?.values.filter((item) => valueIdToMatch.has(item.id));
 
         const mapMerge = new Map();
 
         (recoveredFilter.value as FeatureOption[]).forEach(
           (option) => mapMerge.set(option.id, option),
         );
-        featureOptions.forEach((option) => mapMerge.set(option.id, option));
+        featureOptions?.forEach((option) => mapMerge.set(option.id, option));
 
         const combinedOptions = Array.from(mapMerge.values());
 
@@ -267,7 +267,13 @@ export default defineComponent({
           const completeValues: FeatureOption[] = [];
 
           (filter.value as FeatureOption[])?.forEach((value) => {
-            completeValues.push(...featureOptions.filter((el) => el.id === value.id));
+            const matchingOptions = featureOptions.filter((el) => el.id === value.id);
+
+            if (matchingOptions.length > 0) {
+              completeValues.push(...matchingOptions);
+            } else {
+              completeValues.push(value);
+            }
           });
 
           cleanFilter.value = completeValues;
@@ -282,9 +288,9 @@ export default defineComponent({
     initFilters(localFilters: CleanProductFilter[]) {
       let validity = true;
 
-      const filterToPush = [];
+      const recoveredFilters: ProductFilter[] = [];
 
-      localFilters.forEach((filter, index) => {
+      localFilters.forEach((filter) => {
         const validator = new FilterValidator();
         validator.validate(filter);
 
@@ -294,13 +300,17 @@ export default defineComponent({
 
         // we only need to push it if he has not filter error state
         if (!validator.filterError) {
-          filterToPush.push(this.recoverFilter(filter));
+          recoveredFilters.push({
+            ...this.recoverFilter(filter),
+            errors: validator.errors,
+            init: true,
+          });
         } else {
           this.filterDeleted += 1;
         }
       });
 
-      this.listFilters = filterToPush;
+      this.listFilters = recoveredFilters;
       this.filtersAreValid = validity;
     },
 
@@ -436,9 +446,21 @@ export default defineComponent({
       this.checkFiltersValidity(false);
       this.saveFiltersInStoreAndUpdateCount();
     },
-    updateFilter(event, index) {
-      this.$set(this.listFilters, index, {...this.listFilters[index], ...event});
-      this.checkFiltersValidity(false);
+    async updateFilter(event, index) {
+      let deleteInit = false;
+
+      if (this.listFilters[index].init
+        && event.attribute
+        && event.condition
+        && event.value !== null
+      ) {
+        deleteInit = true;
+        delete this.listFilters[index].init;
+      }
+
+      await this.$set(this.listFilters, index, {...this.listFilters[index], ...event});
+      this.checkFiltersValidity(deleteInit);
+
       this.saveFiltersInStoreAndUpdateCount();
     },
     cancel() {

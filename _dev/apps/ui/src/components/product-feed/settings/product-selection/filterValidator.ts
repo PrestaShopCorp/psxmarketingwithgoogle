@@ -1,6 +1,7 @@
 import ATTRIBUTE_MAP_CONDITION from '@/components/product-feed/settings/product-selection/attributeMapCondition';
 import {
-  CleanProductFilter, FeatureOption, FilterConditionConfig,
+  BrandOption, CategoryOption,
+  CleanProductFilter, Feature, FeatureOption, FilterConditionConfig,
   ProductFilterErrors, ProductFilterValidatorOptions,
 } from '@/components/product-feed/settings/product-selection/type';
 import i18n from '@/lib/i18n';
@@ -9,6 +10,7 @@ import ProductFilterValueType from '@/enums/product-feed/product-filter-value-ty
 import ProductFilterAttributes from '@/enums/product-feed/product-filter-attributes';
 import GetterTypes from '@/store/modules/product-feed/getters-types';
 import {getFeatureByOptions} from '@/components/product-feed/settings/product-selection/product-selection-utilities';
+import {AttributesTypes} from '@/store/modules/product-feed/state';
 
 class FilterValidator {
   attributeError: string | null;
@@ -74,10 +76,13 @@ class FilterValidator {
   public validate(filter: CleanProductFilter): void {
     this.validateAttribute(filter);
     // we stop validation if the filter is on error
-    if (this.filterError) {
+    if (this.filterError || !this.isValid) {
       return;
     }
     this.validateCondition(filter);
+    if (this.filterError || !this.isValid) {
+      return;
+    }
     this.validateValue(filter);
   }
 
@@ -153,6 +158,15 @@ class FilterValidator {
     }
 
     // todo: test if value already exist
+    if (
+      [
+        ProductFilterAttributes.FEATURE,
+        ProductFilterAttributes.BRAND,
+        ProductFilterAttributes.CATEGORY,
+      ].includes(filter.attribute as ProductFilterAttributes)
+    ) {
+      this.valueOptionExist(filter);
+    }
   }
 
   private mustHaveSeveralValues(filter: CleanProductFilter): boolean {
@@ -296,6 +310,42 @@ class FilterValidator {
     } else if (conditionRequirements.keys
       && !isObjectWithKeys(filter.value, conditionRequirements.keys)) {
       this.valueError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidEntry') as string;
+    }
+  }
+
+  private valueOptionExist(filter: CleanProductFilter) {
+    console.log(JSON.stringify(filter));
+    const optionExist = (
+      option: BrandOption | CategoryOption | FeatureOption,
+      optionsList: BrandOption[] | CategoryOption[] | FeatureOption[],
+    ): boolean => optionsList.some((opt) => opt.id === option.id);
+
+    let numberOfMissingOptions = 0;
+
+    let optionsList = this.options[filter.attribute];
+
+    if (filter.attribute === AttributesTypes.FEATURE) {
+      const currentFeature = getFeatureByOptions(
+        optionsList,
+        filter.value as FeatureOption[],
+      ) as Feature;
+      optionsList = currentFeature.values;
+    }
+
+    console.log(JSON.stringify(optionsList));
+
+    (filter.value as BrandOption[] | CategoryOption[] | FeatureOption[])
+      .forEach((option: BrandOption | CategoryOption | FeatureOption, index: number) => {
+        if (!optionExist(option, optionsList)) {
+          numberOfMissingOptions += 1;
+          this.valuesOnError.push(index);
+        }
+      });
+
+    console.log(JSON.stringify(this.valuesOnError));
+
+    if (numberOfMissingOptions > 0) {
+      this.valuesErrorMessage = i18n.tc('productFeedSettings.productSelection.lineFilter.errors.valueDoNotExist', numberOfMissingOptions);
     }
   }
 }

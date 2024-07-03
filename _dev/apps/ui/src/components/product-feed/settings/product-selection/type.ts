@@ -69,7 +69,8 @@ export type ProductFilter = {
   condition?: string,
   conditionType?: string,
   value?: ProductFilterValue | ProductFilterValues,
-  errors?: ProductFilterErrors
+  errors?: ProductFilterErrors,
+  init?: boolean
 }
 
 export type CleanProductFilter = {
