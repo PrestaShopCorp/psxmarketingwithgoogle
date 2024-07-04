@@ -332,8 +332,6 @@ class FilterValidator {
       optionsList = currentFeature.values;
     }
 
-    console.log(JSON.stringify(optionsList));
-
     (filter.value as BrandOption[] | CategoryOption[] | FeatureOption[])
       .forEach((option: BrandOption | CategoryOption | FeatureOption, index: number) => {
         if (!optionExist(option, optionsList)) {
@@ -341,8 +339,6 @@ class FilterValidator {
           this.valuesOnError.push(index);
         }
       });
-
-    console.log(JSON.stringify(this.valuesOnError));
 
     if (numberOfMissingOptions > 0) {
       this.valuesErrorMessage = i18n.tc('productFeedSettings.productSelection.lineFilter.errors.valueDoNotExist', numberOfMissingOptions);
