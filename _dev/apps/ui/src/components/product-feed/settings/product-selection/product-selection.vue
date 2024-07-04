@@ -525,9 +525,6 @@ export default defineComponent({
       if (this.synchSelected === ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT
         && localFilters?.length) {
         this.initFilters(localFilters);
-      // this.listFilters = localFilters
-      //   .map((filter: CleanProductFilter) => this.recoverFilter(filter));
-      // this.checkFiltersValidity(true);
       } else {
         this.listFilters = [newFilter()];
       }
