@@ -29,7 +29,6 @@
         :key="option.value"
         class="vs__selected"
         :class="{ 'vs__selected--error': valueIsOnError(option) }"
-        @click.stop.prevent
       >
         {{ option.value ?? option.name }}
         <button

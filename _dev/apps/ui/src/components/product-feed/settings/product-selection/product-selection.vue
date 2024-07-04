@@ -446,22 +446,23 @@ export default defineComponent({
       this.checkFiltersValidity(false);
       this.saveFiltersInStoreAndUpdateCount();
     },
-    async updateFilter(event, index) {
+    updateFilter(event, index) {
       let deleteInit = false;
 
       if (this.listFilters[index].init
         && event.attribute
         && event.condition
-        && event.value !== null
+        && (event.value !== null || event.value?.length > 0)
       ) {
         deleteInit = true;
         delete this.listFilters[index].init;
       }
 
-      await this.$set(this.listFilters, index, {...this.listFilters[index], ...event});
-      this.checkFiltersValidity(deleteInit);
-
-      this.saveFiltersInStoreAndUpdateCount();
+      this.$set(this.listFilters, index, {...this.listFilters[index], ...event});
+      this.$nextTick(() => {
+        this.checkFiltersValidity(deleteInit);
+        this.saveFiltersInStoreAndUpdateCount();
+      });
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');

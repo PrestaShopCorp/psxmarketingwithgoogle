@@ -11,6 +11,7 @@ import ProductFilterAttributes from '@/enums/product-feed/product-filter-attribu
 import GetterTypes from '@/store/modules/product-feed/getters-types';
 import {getFeatureByOptions} from '@/components/product-feed/settings/product-selection/product-selection-utilities';
 import {AttributesTypes} from '@/store/modules/product-feed/state';
+import {ProductFilterConditions} from '@/enums/product-feed/product-filter-condition';
 
 class FilterValidator {
   attributeError: string | null;
@@ -66,7 +67,8 @@ class FilterValidator {
   }
 
   public get isValid(): boolean {
-    return !this.attributeError
+    return !this.filterError
+      && !this.attributeError
       && !this.conditionError
       && !this.valueError
       && !this.valuesErrorMessage
@@ -76,11 +78,11 @@ class FilterValidator {
   public validate(filter: CleanProductFilter): void {
     this.validateAttribute(filter);
     // we stop validation if the filter is on error
-    if (this.filterError || !this.isValid) {
+    if (this.filterError || this.attributeError) {
       return;
     }
     this.validateCondition(filter);
-    if (this.filterError || !this.isValid) {
+    if (this.filterError || this.conditionError) {
       return;
     }
     this.validateValue(filter);
@@ -97,7 +99,11 @@ class FilterValidator {
     }
 
     // if we can't retrieve the feature we need to send error to wall filter
-    if (filter.attribute === ProductFilterAttributes.FEATURE && filter.value !== undefined) {
+    if (
+      filter.attribute === ProductFilterAttributes.FEATURE
+        && filter.condition === ''
+        && !this.mustHaveSeveralValues(filter)
+    ) {
       this.filterError = getFeatureByOptions(
         this.options[ProductFilterAttributes.FEATURE],
         filter.value as FeatureOption[],
@@ -119,11 +125,6 @@ class FilterValidator {
   }
 
   private validateValue(filter: CleanProductFilter) {
-    if (this.attributeError || this.conditionError) {
-      this.mustHaveOneValue(filter);
-      return;
-    }
-
     const conditionRequirements = ATTRIBUTE_MAP_CONDITION[filter.attribute][filter.condition];
 
     if (conditionRequirements.multiple) {
@@ -164,6 +165,10 @@ class FilterValidator {
         ProductFilterAttributes.BRAND,
         ProductFilterAttributes.CATEGORY,
       ].includes(filter.attribute as ProductFilterAttributes)
+      && [
+        ProductFilterConditions.IS,
+        ProductFilterConditions.IS_NOT,
+      ].includes(filter.condition as ProductFilterConditions)
     ) {
       this.valueOptionExist(filter);
     }
@@ -314,7 +319,6 @@ class FilterValidator {
   }
 
   private valueOptionExist(filter: CleanProductFilter) {
-    console.log(JSON.stringify(filter));
     const optionExist = (
       option: BrandOption | CategoryOption | FeatureOption,
       optionsList: BrandOption[] | CategoryOption[] | FeatureOption[],
