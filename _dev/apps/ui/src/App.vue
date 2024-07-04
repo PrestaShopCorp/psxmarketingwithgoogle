@@ -56,6 +56,8 @@
         module-name="psxmarketingwithgoogle"
         :needed-version="$store.state.app.psxMktgWithGoogleModuleVersionNeeded"
       />
+      <PreMonetizationBannerSuccess class="px-3"/>
+      <PreMonetizationBannerInfo />
       <router-view />
       <div
         class="ps_gs-landingpage-content__muted text-muted bg-transparent mt-4"
@@ -88,6 +90,8 @@ import AppMenu from '@/components/menu/app-menu.vue';
 import MenuItem from '@/components/menu/menu-item.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import AlertModuleUpdate from '@/components/commons/alert-update-module.vue';
+import PreMonetizationBannerSuccess from '@/components/monetization/pre-monetization-banner-success.vue';
+import PreMonetizationBannerInfo from '@/components/monetization/pre-monetization-banner-info.vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 import PopinUserNotConnectedToBo from '@/components/commons/user-not-connected-to-bo-popin.vue';
 import NotificationPanel from '@/components/enhanced-conversions/notification-panel.vue';
@@ -101,6 +105,8 @@ export default {
     AlertModuleUpdate,
     NotificationPanel,
     PopinUserNotConnectedToBo,
+    PreMonetizationBannerSuccess,
+    PreMonetizationBannerInfo,
   },
   data() {
     return {

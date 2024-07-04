@@ -63,6 +63,9 @@
       <hr class="my-4">
       <LandingPageFooter @hideLandingPage="hideLandingPage('footer')" />
     </div>
+
+    <!-- Modal Monetization Module -->
+    <PreMonetizationPopin ref="PreMonetizationPopin" />
   </b-card>
 </template>
 
@@ -72,6 +75,7 @@ import googleUrl from '@/assets/json/googleUrl.json';
 import LandingPageHeader from '../components/landing-page/landing-page-header';
 import LandingPageContent from '../components/landing-page/landing-page-content';
 import LandingPageFooter from '../components/landing-page/landing-page-footer';
+import PreMonetizationPopin from '../components/monetization/pre-monetization-popin';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {getPathToAdsPromotionImage} from '@/utils/ImageFromCurrency';
 import {searchPrice} from '@/utils/PriceFromCurrency';
@@ -82,6 +86,7 @@ export default {
     LandingPageHeader,
     LandingPageContent,
     LandingPageFooter,
+    PreMonetizationPopin,
   },
   methods: {
     hideLandingPage(where) {
@@ -104,6 +109,13 @@ export default {
       return searchPrice(this.$store.state.app.psxMktgWithGoogleShopCurrency.isoCode);
     },
 
+  },
+  mounted() {
+    if (this.$refs.PreMonetizationPopin.$refs.modal) {
+      this.$bvModal.show(
+        this.$refs.PreMonetizationPopin.$refs.modal.id,
+      );
+    }
   },
   googleUrl,
 };

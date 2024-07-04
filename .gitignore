@@ -9,6 +9,17 @@ config.yml
 views/css/app.css
 views/js/app.js
 views/js/chunk-vendors.js
+views/js/478.js
+views/js/ajs-destination.js
+views/js/auto-track.js
+views/js/fetchWarningMessage.js
+views/js/fetchWarningMessage.js.LICENSE.txt
+views/js/legacyVideos.js
+views/js/queryString.js
+views/js/remoteMiddleware.js
+views/js/schemaFilter.js
+views/js/tsub-middleware.js
+views/js/tsub-middleware.js.LICENSE.txt
 
 ### VisualStudioCode ###
 .vscode/*
