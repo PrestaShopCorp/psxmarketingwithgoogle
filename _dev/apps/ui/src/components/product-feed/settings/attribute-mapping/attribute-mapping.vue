@@ -196,6 +196,7 @@ export default defineComponent({
       loading: false,
       selectedProductCategories: [Categories.NONE] as SelectedProductCategories,
       mappingAttributes: [] as AttributeToMap[],
+      hasError: false,
     };
   },
   computed: {
@@ -280,6 +281,10 @@ export default defineComponent({
       return this.$t(`tooltip.attributeMapping.${name}`);
     },
     nextStep() {
+      this.mappingAttributes.forEach((attribute) => {
+        this.hasError = attribute.fields.some((value) => value.mapped?.length === 0);
+      });
+      if (this.hasError) return;
       this.$segment.track('[GGL] Product feed config - Step 3', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
