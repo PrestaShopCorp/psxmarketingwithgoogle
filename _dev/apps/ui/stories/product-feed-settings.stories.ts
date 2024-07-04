@@ -75,6 +75,7 @@ export default {
         )),
         rest.post('/', (req: any, res, ctx) => {
           const payload = req.body.action;
+          const {kind} = req.body;
 
           if (payload === 'getProductsReadyToSync') {
             return res(
@@ -84,6 +85,82 @@ export default {
             );
           } if (payload === 'getShopAttributes') {
             return res(ctx.json([]));
+          } if (payload === 'getProductFilterOptions') {
+            switch (kind) {
+              case 'feature':
+                return res(
+                  ctx.json([
+                    {
+                      id: '1',
+                      key: 'Composition',
+                      values: [
+                        {
+                          id: '4',
+                          key: 'Composition',
+                          value: 'Coton',
+                          language: 'fr',
+                        },
+                        {
+                          id: '5',
+                          key: 'Composition',
+                          value: 'Carton recycl\u00e9',
+                          language: 'fr',
+                        },
+                        {
+                          id: '6',
+                          key: 'Composition',
+                          value: 'Papier mat',
+                          language: 'fr',
+                        },
+                      ],
+                    },
+                    {
+                      id: '2',
+                      key: 'Propri\u00e9t\u00e9',
+                      values: [
+                        {
+                          id: '9',
+                          key: 'Propri\u00e9t\u00e9',
+                          value: 'Housse amovible',
+                          language: 'fr',
+                        },
+                      ],
+                    },
+                  ]),
+                );
+              case 'category':
+                return res(
+                  ctx.json([
+                    {
+                      id: '2',
+                      value: 'Accueil',
+                    },
+                    {
+                      id: '6',
+                      value: 'Accessoires',
+                    },
+                    {
+                      id: '7',
+                      value: 'Papeterie',
+                    },
+                    {
+                      id: '8',
+                      value: 'Accessoires de maison',
+                    },
+                    {
+                      id: '9',
+                      value: 'Art',
+                    },
+                  ]),
+                );
+              case 'brand':
+                return res(
+                  ctx.json([{id: '1', value: 'Studio Design'}]),
+                );
+              default:
+            }
+          } if (payload === 'countMatchingProductsFromFilters') {
+            return res(ctx.json({numberOfProducts: 120}));
           }
         }),
       ],
@@ -430,6 +507,7 @@ ProductSelection.argTypes = {
 ProductSelection.args = {
   beforeMount(this: any) {
     this.$store.state.app = cloneDeep(initialStateApp);
+    this.$store.state.app.psxMktgWithGoogleModuleVersion = '1.73.0';
     this.$store.state.productFeed = cloneDeep(productFeed);
     this.$store.state.productFeed.stepper = 4;
     this.$router.history.current.params.step = ProductFeedSettingsPages.PRODUCT_SELECTION;
@@ -445,6 +523,7 @@ Summary.argTypes = {
 Summary.args = {
   beforeMount(this: any) {
     this.$store.state.app = cloneDeep(initialStateApp);
+    this.$store.state.app.psxMktgWithGoogleModuleVersion = '1.73.0';
     this.$store.state.productFeed = cloneDeep(productFeedIsReadyForExport);
     this.$store.state.productFeed.stepper = 5;
     this.$router.history.current.params.step = ProductFeedSettingsPages.SUMMARY;
