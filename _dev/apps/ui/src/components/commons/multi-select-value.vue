@@ -29,6 +29,7 @@
         :key="option.value"
         class="vs__selected"
         :class="{ 'vs__selected--error': valueIsOnError(option) }"
+        @click.stop.prevent
       >
         {{ option.value ?? option.name }}
         <button
@@ -37,7 +38,8 @@
           class="vs__deselect"
           :title="`Deselect ${ option.value ?? option.name }`"
           :aria-label="`Deselect ${ option.value ?? option.name }`"
-          @click="deselect(option)"
+          @mousedown.stop.prevent="deselect(option)"
+          @keydown.enter="deselect(option)"
         >
           <Deselect />
         </button>
