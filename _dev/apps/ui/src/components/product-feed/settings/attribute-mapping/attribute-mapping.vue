@@ -282,9 +282,12 @@ export default defineComponent({
     },
     nextStep() {
       this.mappingAttributes.forEach((attribute) => {
-        this.hasError = attribute.fields.some((value) => value.mapped?.length === 0);
+        this.hasError = attribute.fields.some((value) => value.mapped?.length === 0)
+        || this.hasError;
       });
-      if (this.hasError) return;
+      if (this.hasError) {
+        return;
+      }
       this.$segment.track('[GGL] Product feed config - Step 3', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
