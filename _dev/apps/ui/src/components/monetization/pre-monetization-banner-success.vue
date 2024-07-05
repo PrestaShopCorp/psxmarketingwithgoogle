@@ -19,7 +19,6 @@ import {defineComponent} from 'vue';
 import {mapGetters} from 'vuex';
 import GettersTypes from '@/store/modules/app/getters-types';
 
-
 export default defineComponent({
   methods: {
     onClose() {
