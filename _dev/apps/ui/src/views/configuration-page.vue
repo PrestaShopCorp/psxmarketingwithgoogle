@@ -34,12 +34,5 @@ export default defineComponent({
       return this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT_SHOPS'];
     },
   },
-  mounted() {
-    if (this.$refs.PreMonetizationPopin.$refs.modal) {
-      this.$bvModal.show(
-        this.$refs.PreMonetizationPopin.$refs.modal.id,
-      );
-    }
-  },
 });
 </script>

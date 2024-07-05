@@ -1,9 +1,6 @@
 <template>
-  <div
-    class="p-0"
-  >
+  <div v-if="!!displayBanner">
     <b-alert
-      v-if="!!displayBanner"
       class="border border-info"
       variant="info"
       dismissible
@@ -39,15 +36,10 @@ import {mapGetters} from 'vuex';
 import GettersTypes from '@/store/modules/app/getters-types';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
-const localStorageDisplayBannerSuccess = 'banner-success-pre-monatization';
-const localStorageDisplayBannerInfo = 'banner-info-pre-monatization';
-
 export default defineComponent({
   methods: {
     onClose() {
-      localStorage.setItem(localStorageDisplayBannerInfo, '0');
-
-      this.$store.dispatch('app/GET_BANNER_INFO_LOCAL_STORAGE_MONETIZATION', 0);
+      this.$store.dispatch('app/SET_BANNER_INFO_LOCAL_STORAGE_MONETIZATION', 0);
     },
     trackEvent() {
       this.$segment.track('[GGL] Notify Pre-monetization', {
@@ -56,13 +48,10 @@ export default defineComponent({
       });
     },
     onNotify() {
-      localStorage.setItem(localStorageDisplayBannerInfo, '0');
-      localStorage.setItem(localStorageDisplayBannerSuccess, '1');
-
       this.trackEvent();
 
-      this.$store.dispatch('app/GET_BANNER_INFO_LOCAL_STORAGE_MONETIZATION', 0);
-      this.$store.dispatch('app/GET_BANNER_SUCCESS_LOCAL_STORAGE_MONETIZATION', 1);
+      this.$store.dispatch('app/SET_BANNER_INFO_LOCAL_STORAGE_MONETIZATION', 0);
+      this.$store.dispatch('app/SET_BANNER_SUCCESS_LOCAL_STORAGE_MONETIZATION', 1);
     },
   },
   computed: {

@@ -4,6 +4,7 @@
     ref="modal"
     v-bind="$attrs"
     hide-footer
+    visible
     @close="onClose"
     v-if="!!display"
   >
@@ -50,8 +51,6 @@ import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 const localStorageDisplayModal = 'modal-pre-monatization';
-const localStorageDisplayBannerSuccess = 'banner-success-pre-monatization';
-const localStorageDisplayBannerInfo = 'banner-info-pre-monatization';
 
 export default {
   name: 'PreMonetizationPopin',
@@ -71,22 +70,23 @@ export default {
       });
     },
     onClose() {
-      localStorage.setItem(localStorageDisplayBannerInfo, '1');
       localStorage.setItem(localStorageDisplayModal, '0');
 
-      this.$store.dispatch('app/GET_BANNER_INFO_LOCAL_STORAGE_MONETIZATION', 1);
+      this.$store.dispatch('app/SET_BANNER_INFO_LOCAL_STORAGE_MONETIZATION', 1);
 
       this.display = '0';
       this.$bvModal.hide('PreMonetizationPopin');
     },
     onClickNotify() {
-      localStorage.setItem(localStorageDisplayBannerSuccess, '1');
       localStorage.setItem(localStorageDisplayModal, '0');
 
       this.trackEvent();
       this.display = 0;
 
-      this.$store.dispatch('app/GET_BANNER_SUCCESS_LOCAL_STORAGE_MONETIZATION', 1);
+      this.$store.dispatch('app/SET_BANNER_SUCCESS_LOCAL_STORAGE_MONETIZATION', 1);
+    },
+    mounted() {
+      console.log('coucou');
     },
   },
 };

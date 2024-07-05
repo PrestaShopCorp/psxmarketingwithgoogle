@@ -1,9 +1,6 @@
 <template>
-  <div
-    class="p-0"
-  >
+  <div v-if="!!displayBanner">
     <b-alert
-      v-if="!!displayBanner"
       class="border border-success"
       variant="success"
       dismissible
@@ -22,13 +19,11 @@ import {defineComponent} from 'vue';
 import {mapGetters} from 'vuex';
 import GettersTypes from '@/store/modules/app/getters-types';
 
-const localStorageDisplayBannerSuccess = 'banner-success-pre-monatization';
 
 export default defineComponent({
   methods: {
     onClose() {
-      localStorage.setItem(localStorageDisplayBannerSuccess, '0');
-      this.$store.dispatch('app/GET_BANNER_SUCCESS_LOCAL_STORAGE_MONETIZATION', 0);
+      this.$store.dispatch('app/SET_BANNER_SUCCESS_LOCAL_STORAGE_MONETIZATION', 0);
     },
   },
   computed: {

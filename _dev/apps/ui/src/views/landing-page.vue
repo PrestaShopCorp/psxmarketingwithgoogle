@@ -110,13 +110,6 @@ export default {
     },
 
   },
-  mounted() {
-    if (this.$refs.PreMonetizationPopin.$refs.modal) {
-      this.$bvModal.show(
-        this.$refs.PreMonetizationPopin.$refs.modal.id,
-      );
-    }
-  },
   googleUrl,
 };
 </script>

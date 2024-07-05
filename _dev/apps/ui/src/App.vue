@@ -56,8 +56,8 @@
         module-name="psxmarketingwithgoogle"
         :needed-version="$store.state.app.psxMktgWithGoogleModuleVersionNeeded"
       />
-      <PreMonetizationBannerSuccess class="px-3"/>
-      <PreMonetizationBannerInfo />
+      <PreMonetizationBannerSuccess class="mb-2 two-panel-max-width" />
+      <PreMonetizationBannerInfo class="mb-2 two-panel-max-width" />
       <router-view />
       <div
         class="ps_gs-landingpage-content__muted text-muted bg-transparent mt-4"
@@ -141,6 +141,7 @@ export default {
     this.setCustomProperties();
 
     window.addEventListener('resize', this.resizeEventHandler);
+    this.$store.dispatch('app/SET_BANNER_SUCCESS_LOCAL_STORAGE_MONETIZATION', 0);
   },
   destroyed() {
     window.removeEventListener('resize', this.resizeEventHandler);
