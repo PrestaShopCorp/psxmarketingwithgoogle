@@ -88,11 +88,6 @@ class FilterValidator {
     }
 
     this.validateValue(filter);
-    if (this.valueError || this.valuesErrorMessage || this.valuesOnError.length > 0) {
-      return;
-    }
-
-    this.validateFeature(filter);
   }
 
   private validateAttribute(filter: CleanProductFilter) {
@@ -165,16 +160,6 @@ class FilterValidator {
       ].includes(filter.condition as ProductFilterConditions)
     ) {
       this.valueOptionExist(filter);
-    }
-  }
-
-  private validateFeature(filter: CleanProductFilter) {
-    // if we can't retrieve the feature we need to send error to wall filter
-    if (filter.attribute === ProductFilterAttributes.FEATURE) {
-      this.filterError = getFeatureByOptions(
-        this.options[ProductFilterAttributes.FEATURE],
-        filter.value as FeatureOption[],
-      ) === undefined;
     }
   }
 
@@ -337,7 +322,13 @@ class FilterValidator {
         optionsList,
         filter.value as FeatureOption[],
       ) as Feature;
-      optionsList = currentFeature.values;
+
+      if (currentFeature !== undefined) {
+        optionsList = currentFeature.values;
+      } else {
+        this.filterError = true;
+        return;
+      }
     }
 
     (filter.value as BrandOption[] | CategoryOption[] | FeatureOption[])
