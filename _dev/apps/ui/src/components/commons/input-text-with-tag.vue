@@ -9,12 +9,16 @@
         v-for="(tag, index) in tags"
         :key="index"
         class="tag"
+        :class="{ 'tag-error': valueIsOnError(index) }"
         :style="`flex-shrink: ${index}`"
       >
-        {{ tag }}<button
+        {{ tag }}
+        <button
           @click.stop.prevent="deleteTag(tag)"
           class="material-icons"
-        >close</button>
+        >
+          close
+        </button>
       </span>
       <input
         type="text"
@@ -59,6 +63,11 @@ export default defineComponent({
       required: false,
       default: () => [],
     },
+    valuesOnError: {
+      type: Array,
+      required: false,
+      default: () => [],
+    },
   },
   methods: {
     addTag() {
@@ -73,6 +82,11 @@ export default defineComponent({
     },
   },
   computed: {
+    valueIsOnError() {
+      return function (valueIndex: number) {
+        return this.$props.valuesOnError.find((el) => el === valueIndex) !== undefined;
+      };
+    },
     setPlaceholder() {
       return this.$i18n.t('productFeedSettings.productSelection.lineFilter.value.enterValue') as string;
     },

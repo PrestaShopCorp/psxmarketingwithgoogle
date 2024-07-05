@@ -10,6 +10,7 @@ import DeliveryType from "@/enums/product-feed/delivery-type";
 import { shippingPhpExport } from "./shipping-settings";
 import Categories from "@/enums/product-feed/attribute-mapping-categories";
 import { ShippingSetupOption } from "../../src/enums/product-feed/shipping";
+import ProductFilterMethodsSynch from "@/enums/product-feed/product-filter-methods-synch";
 
 export const productFeed: State = {
   isSyncSummaryLoadingInProgress: false,
@@ -32,6 +33,12 @@ export const productFeed: State = {
     status: null,
     abortController: null,
   },
+  productFilterOptions: {
+    features: [],
+    categories: [],
+    brands: [],
+  },
+  syncSelected: ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT,
   settings: {
     // Todo: Empty object to avoid trigger of refresh.
     // To fill with actual data.

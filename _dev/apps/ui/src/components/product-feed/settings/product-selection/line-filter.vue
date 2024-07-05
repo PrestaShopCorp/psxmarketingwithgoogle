@@ -145,11 +145,12 @@
           <multi-select-value
             v-else-if="displayMultiSelect"
             class="multi-select"
-            :class="{'error-field': filters.errors?.value}"
+            :class="{'error-field': hasSingleErrorValue}"
             :dropdown-options="currentAttributeOptions"
             :placeholder="placeholderMultiSelect"
             :disabled="!conditionSelected.length"
             :default-value="valuesSelected"
+            :values-on-error="filters.errors?.values"
             @dataUpdated="updateValues($event)"
           />
           <!-- VALUE / FREE FIELD -->
@@ -157,14 +158,15 @@
             v-else-if="displayFreeField"
             :disabled="!conditionSelected.length"
             :default-value="valuesSelected"
-            :class="{'error-field': filters.errors?.value}"
+            :has-error="hasSingleErrorValue"
+            :values-on-error="filters.errors?.values"
             @dataUpdated="updateValues($event)"
           />
           <p
             class="error-message"
             v-if="hasError"
           >
-            {{ filters.errors?.value || '&nbsp;' }}
+            {{ (filters.errors?.value || '&nbsp;') }}
           </p>
         </div>
         <div>
@@ -298,10 +300,15 @@ export default defineComponent({
     currentCountry(): string {
       return window.i18nSettings.isoCode;
     },
-    hasError(): Boolean {
+    hasError(): boolean {
       return !!this.filters.errors?.attribute
         || !!this.filters.errors?.condition
-        || !!this.filters.errors?.value;
+        || !!this.filters.errors?.value
+        || !!this.filters.errors?.values;
+    },
+    hasSingleErrorValue(): boolean {
+      return !!this.filters.errors?.value
+      && !this.filters.errors?.values;
     },
     // Features
     features(): Feature[] {

@@ -1,3 +1,24 @@
+import ProductFilterAttributes from '@/enums/product-feed/product-filter-attributes';
+import ProductFilterValueType from '@/enums/product-feed/product-filter-value-type';
+import {ProductFilterConditions, ProductFilterConditionsTranslations} from '@/enums/product-feed/product-filter-condition';
+
+export interface FilterConditionConfig {
+  multiple: boolean;
+  type: ProductFilterValueType;
+  translation: ProductFilterConditionsTranslations;
+  keys?: string[];
+  positive?: boolean;
+  integer?: boolean;
+}
+
+export type AttributeConditionMap = {
+  [condition in ProductFilterConditions]?: FilterConditionConfig;
+}
+
+export type AttributeMapCondition = {
+  [attribute in ProductFilterAttributes]?: AttributeConditionMap;
+}
+
 export interface FeatureOption {
   id: number;
   key: string;
@@ -22,13 +43,24 @@ export interface CategoryOption {
 }
 
 export type ProductFilterValue = number | string | boolean | null;
-// eslint-disable-next-line max-len
-export type ProductFilterValues = string[] | number[] | BrandOption[] | FeatureOption[] | CategoryOption[];
+
+export type ProductFilterValues = string[]
+  | number[]
+  | BrandOption[]
+  | FeatureOption[]
+  | CategoryOption[];
 
 export type ProductFilterErrors = {
   attribute?: string,
   condition?: string,
   value?: string,
+  values?: number[],
+}
+
+export type ProductFilterValidatorOptions = {
+  [ProductFilterAttributes.BRAND]: BrandOption[],
+  [ProductFilterAttributes.CATEGORY]: CategoryOption[],
+  [ProductFilterAttributes.FEATURE]: Feature[],
 }
 
 export type ProductFilter = {
@@ -37,7 +69,8 @@ export type ProductFilter = {
   condition?: string,
   conditionType?: string,
   value?: ProductFilterValue | ProductFilterValues,
-  errors?: ProductFilterErrors
+  errors?: ProductFilterErrors,
+  init?: boolean
 }
 
 export type CleanProductFilter = {

@@ -21,17 +21,42 @@
         v-html="highlightSearch(option.value ?? option.name)"
       />
     </template>
+    <template
+      v-if="valuesOnError.length"
+      #selected-option-container="{ option, deselect }"
+    >
+      <span
+        :key="option.value"
+        class="vs__selected"
+        :class="{ 'vs__selected--error': valueIsOnError(option) }"
+      >
+        {{ option.value ?? option.name }}
+        <button
+          ref="deselectButtons"
+          type="button"
+          class="vs__deselect"
+          :title="`Deselect ${ option.value ?? option.name }`"
+          :aria-label="`Deselect ${ option.value ?? option.name }`"
+          @mousedown.stop.prevent="deselect(option)"
+          @keydown.enter="deselect(option)"
+        >
+          <Deselect />
+        </button>
+      </span>
+    </template>
   </ps-select>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
 import PsSelect from '@/components/commons/ps-select.vue';
+import Deselect from '@/components/commons/ps-select-deselect.vue';
 
 export default defineComponent({
   name: 'MultiSelectValue',
   components: {
     PsSelect,
+    Deselect,
   },
   data() {
     return {
@@ -66,6 +91,23 @@ export default defineComponent({
       type: Array,
       required: false,
       default: () => [],
+    },
+    valuesOnError: {
+      type: Array,
+      required: false,
+      default: () => [],
+    },
+  },
+  computed: {
+    valueIsOnError() {
+      return function (value: any): boolean {
+        const valueIndex = this.$props.defaultValue.findIndex((el) => el.id === value.id);
+
+        if (valueIndex !== -1) {
+          return this.$props.valuesOnError.find((el) => el === valueIndex) !== undefined;
+        }
+        return false;
+      };
     },
   },
   methods: {

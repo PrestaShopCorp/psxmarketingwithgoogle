@@ -111,6 +111,13 @@
         <i class="material-icons ps_gs-fz-20">add</i>
         {{ $t('productFeedSettings.productSelection.addFilter') }}
       </b-button>
+      <b-alert
+        :show="displayGlobalError"
+        variant="danger"
+        class="mt-3"
+      >
+        {{ $tc('productFeedSettings.productSelection.featureDeleted', filterDeleted) }}
+      </b-alert>
       <ProductCount
         v-if="displayProductCount && !loading"
       />
@@ -137,7 +144,7 @@ import FilterValidator from '@/components/product-feed/settings/product-selectio
 import {
   ProductFilter,
   ProductFilterErrors,
-  CleanProductFilter, type FeatureOption, type Feature,
+  CleanProductFilter, type FeatureOption,
 } from '@/components/product-feed/settings/product-selection/type';
 import ATTRIBUTE_MAP_CONDITION from '@/components/product-feed/settings/product-selection/attributeMapCondition';
 import ProductFilterAttributes from '@/enums/product-feed/product-filter-attributes';
@@ -150,7 +157,8 @@ import {booleanToString, stringToBoolean} from '@/utils/StringToBoolean';
 import stringToNumber from '@/utils/StringToNumber';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
-import {newFilter, localStorageProductFilter, localStorageProductFilterSync} from '@/components/product-feed/settings/product-selection/product-selection-utilities';
+import {newFilter, getFeatureByOptions} from '@/components/product-feed/settings/product-selection/product-selection-utilities';
+import {localStorageProductFilter, localStorageProductFilterSync} from '@/components/product-feed/settings/product-selection/product-selection-localstorage';
 import AppGettersTypes from '@/store/modules/app/getters-types';
 
 export default defineComponent({
@@ -168,20 +176,10 @@ export default defineComponent({
       filtersAreValid: false,
       loading: true,
       moduleNeedUpgradeForProductFilter: true,
+      filterDeleted: 0,
     };
   },
   methods: {
-    getFeatureByOptions(options: FeatureOption[]): Feature | undefined {
-      function featureContainValues(feature: Feature, values: FeatureOption[]) {
-        return values.some(
-          (value: FeatureOption) => feature.values.some(
-            (featureValue: FeatureOption) => featureValue.id === value.id,
-          ),
-        );
-      }
-
-      return this.features.find((feature: Feature) => featureContainValues(feature, options));
-    },
     // used to create new filter for front with saved filter.
     recoverFilter(filter: CleanProductFilter): ProductFilter {
       const recoveredFilter = {
@@ -191,19 +189,31 @@ export default defineComponent({
 
       if (recoveredFilter.attribute === ProductFilterAttributes.FEATURE
         && recoveredFilter.value?.length) {
-        const feature = this.getFeatureByOptions(recoveredFilter.value);
+        const feature = getFeatureByOptions(
+          this.features,
+          recoveredFilter.value as FeatureOption[],
+        );
 
         // we need to update recovered value with new from BO if exist
         // because it can break if we got new language introduced.
         const valueIdToMatch = new Set((recoveredFilter.value as FeatureOption[])
           .map((item) => item.id));
-        const featureOptions = feature.values.filter((item) => valueIdToMatch.has(item.id));
+        const featureOptions = feature?.values.filter((item) => valueIdToMatch.has(item.id));
 
-        recoveredFilter.value = (featureOptions as FeatureOption[])
+        const mapMerge = new Map();
+
+        (recoveredFilter.value as FeatureOption[]).forEach(
+          (option) => mapMerge.set(option.id, option),
+        );
+        featureOptions?.forEach((option) => mapMerge.set(option.id, option));
+
+        const combinedOptions = Array.from(mapMerge.values());
+
+        recoveredFilter.value = (combinedOptions as FeatureOption[])
           .filter((el) => el.language === this.currentCountry);
 
         if (feature) {
-          recoveredFilter.attribute = feature.id;
+          recoveredFilter.attribute = `${feature.id}`;
         }
       }
 
@@ -257,7 +267,13 @@ export default defineComponent({
           const completeValues: FeatureOption[] = [];
 
           (filter.value as FeatureOption[])?.forEach((value) => {
-            completeValues.push(...featureOptions.filter((el) => el.id === value.id));
+            const matchingOptions = featureOptions.filter((el) => el.id === value.id);
+
+            if (matchingOptions.length > 0) {
+              completeValues.push(...matchingOptions);
+            } else {
+              completeValues.push(value);
+            }
           });
 
           cleanFilter.value = completeValues;
@@ -268,6 +284,34 @@ export default defineComponent({
     },
     getCleanFilters() {
       return this.listFilters.map((filter) => this.cleanFilter(filter));
+    },
+    initFilters(localFilters: CleanProductFilter[]) {
+      let validity = true;
+
+      const recoveredFilters: ProductFilter[] = [];
+
+      localFilters.forEach((filter) => {
+        const validator = new FilterValidator();
+        validator.validate(filter);
+
+        if (!validator.isValid) {
+          validity = false;
+        }
+
+        // we only need to push it if he has not filter error state
+        if (!validator.filterError) {
+          recoveredFilters.push({
+            ...this.recoverFilter(filter),
+            errors: validator.errors,
+            init: true,
+          });
+        } else {
+          this.filterDeleted += 1;
+        }
+      });
+
+      this.listFilters = recoveredFilters;
+      this.filtersAreValid = validity;
     },
 
     checkFiltersValidity(sendError: boolean) {
@@ -282,6 +326,7 @@ export default defineComponent({
           attribute: undefined,
           condition: undefined,
           value: undefined,
+          values: undefined,
           ...this.listFilters[index].errors,
         };
 
@@ -305,6 +350,17 @@ export default defineComponent({
           if (errors.value && !validator.errors.value) {
             delete errors.value;
           }
+          if (errors.values && !validator.errors.values) {
+            delete errors.values;
+          }
+        }
+
+        if (errors.value && validator.errors.value) {
+          errors.value = validator.errors.value;
+        }
+
+        if (errors.values && validator.errors.values) {
+          errors.values = validator.errors.values;
         }
 
         this.$set(
@@ -391,9 +447,22 @@ export default defineComponent({
       this.saveFiltersInStoreAndUpdateCount();
     },
     updateFilter(event, index) {
+      let deleteInit = false;
+
+      if (this.listFilters[index].init
+        && event.attribute
+        && event.condition
+        && (event.value !== null || event.value?.length > 0)
+      ) {
+        deleteInit = true;
+        delete this.listFilters[index].init;
+      }
+
       this.$set(this.listFilters, index, {...this.listFilters[index], ...event});
-      this.checkFiltersValidity(false);
-      this.saveFiltersInStoreAndUpdateCount();
+      this.$nextTick(() => {
+        this.checkFiltersValidity(deleteInit);
+        this.saveFiltersInStoreAndUpdateCount();
+      });
     },
     cancel() {
       this.$emit('cancelProductFeedSettingsConfiguration');
@@ -402,6 +471,7 @@ export default defineComponent({
   computed: {
     ...mapGetters({
       productCountStatus: `productFeed/${GetterTypes.GET_PRODUCT_COUNT_STATUS}`,
+      features: `productFeed/${GetterTypes.GET_PRODUCT_FILTER_FEATURES_OPTIONS}`,
     }),
     synchSelected: {
       get(): ProductFilterMethodsSynch {
@@ -416,13 +486,13 @@ export default defineComponent({
         this.$store.dispatch(`productFeed/${ActionsTypes.TRIGGER_PRODUCT_COUNT}`);
       },
     },
+    displayGlobalError(): boolean {
+      return this.filterDeleted > 0;
+    },
     displayProductCount(): boolean {
       return this.productCountStatus
         && (this.synchSelected === ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT
         || (this.listFilters.length > 0 && this.filtersAreValid));
-    },
-    features(): Feature[] {
-      return this.$store.getters[`productFeed/${GetterTypes.GET_PRODUCT_FILTER_FEATURES_OPTIONS}`];
     },
     currentCountry(): string {
       return window.i18nSettings.isoCode;
@@ -455,9 +525,7 @@ export default defineComponent({
 
       if (this.synchSelected === ProductFilterMethodsSynch.SYNCH_FILTERED_PRODUCT
         && localFilters?.length) {
-        this.listFilters = localFilters
-          .map((filter: CleanProductFilter) => this.recoverFilter(filter));
-        this.checkFiltersValidity(true);
+        this.initFilters(localFilters);
       } else {
         this.listFilters = [newFilter()];
       }

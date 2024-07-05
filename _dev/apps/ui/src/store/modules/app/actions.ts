@@ -19,7 +19,6 @@
 
 import {ActionContext} from 'vuex';
 import {fetchShop} from 'mktg-with-google-common/api/shopClient';
-import semver from 'semver';
 import MutationsTypes from './mutations-types';
 import ActionsTypes from './actions-types';
 import {FullState} from '@/store/types';

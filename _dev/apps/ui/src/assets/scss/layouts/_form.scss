@@ -225,15 +225,24 @@
     border-radius: 0;
     font-weight: 700;
     margin: 0;
-  }
-
-  .vs__deselect {
     text-shadow: none;
-    color: $black;
 
-    i {
-      font-size: rem(16);
-      color: inherit;
+    .vs__deselect {
+      i {
+        font-size: rem(16);
+        color: inherit;
+        background: $primary-300;
+      }
+    }
+
+    &--error {
+      border: 1px solid $red-500;
+      background: $red-50;
+      .vs__deselect {
+        i {
+          background: $red-50;
+        }
+      }
     }
   }
 
