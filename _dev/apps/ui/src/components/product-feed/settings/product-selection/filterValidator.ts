@@ -76,16 +76,23 @@ class FilterValidator {
   }
 
   public validate(filter: CleanProductFilter): void {
-    this.validateAttribute(filter);
     // we stop validation if the filter is on error
-    if (this.filterError || this.attributeError) {
+    this.validateAttribute(filter);
+    if (this.attributeError) {
       return;
     }
+
     this.validateCondition(filter);
-    if (this.filterError || this.conditionError) {
+    if (this.conditionError) {
       return;
     }
+
     this.validateValue(filter);
+    if (this.valueError || this.valuesErrorMessage || this.valuesOnError.length > 0) {
+      return;
+    }
+
+    this.validateFeature(filter);
   }
 
   private validateAttribute(filter: CleanProductFilter) {
@@ -96,18 +103,6 @@ class FilterValidator {
 
     if (!(Object.keys(ATTRIBUTE_MAP_CONDITION).includes(filter.attribute))) {
       this.attributeError = i18n.t('productFeedSettings.productSelection.lineFilter.errors.invalidEntry') as string;
-    }
-
-    // if we can't retrieve the feature we need to send error to wall filter
-    if (
-      filter.attribute === ProductFilterAttributes.FEATURE
-        && filter.condition === ''
-        && !this.mustHaveSeveralValues(filter)
-    ) {
-      this.filterError = getFeatureByOptions(
-        this.options[ProductFilterAttributes.FEATURE],
-        filter.value as FeatureOption[],
-      ) === undefined;
     }
   }
 
@@ -158,7 +153,6 @@ class FilterValidator {
       default:
     }
 
-    // todo: test if value already exist
     if (
       [
         ProductFilterAttributes.FEATURE,
@@ -171,6 +165,16 @@ class FilterValidator {
       ].includes(filter.condition as ProductFilterConditions)
     ) {
       this.valueOptionExist(filter);
+    }
+  }
+
+  private validateFeature(filter: CleanProductFilter) {
+    // if we can't retrieve the feature we need to send error to wall filter
+    if (filter.attribute === ProductFilterAttributes.FEATURE) {
+      this.filterError = getFeatureByOptions(
+        this.options[ProductFilterAttributes.FEATURE],
+        filter.value as FeatureOption[],
+      ) === undefined;
     }
   }
 
