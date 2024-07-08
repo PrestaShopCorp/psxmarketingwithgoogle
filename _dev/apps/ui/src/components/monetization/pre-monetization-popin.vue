@@ -75,18 +75,14 @@ export default {
       this.$store.dispatch('app/SET_BANNER_INFO_LOCAL_STORAGE_MONETIZATION', 1);
 
       this.display = '0';
-      this.$bvModal.hide('PreMonetizationPopin');
     },
     onClickNotify() {
       localStorage.setItem(localStorageDisplayModal, '0');
 
       this.trackEvent();
-      this.display = 0;
+      this.display = '0';
 
       this.$store.dispatch('app/SET_BANNER_SUCCESS_LOCAL_STORAGE_MONETIZATION', 1);
-    },
-    mounted() {
-      console.log('coucou');
     },
   },
 };
