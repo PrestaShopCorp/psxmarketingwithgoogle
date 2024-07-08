@@ -6,6 +6,7 @@
     hide-footer
     visible
     @close="onClose"
+    @hidden="onClose"
     v-if="!!display"
   >
     <template #modal-title>
