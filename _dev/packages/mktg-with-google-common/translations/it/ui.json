@@ -470,13 +470,15 @@
         "synchFilteredProducts": "Sincronizza prodotti filtrati",
         "synchFilteredProductsDesc": "Solo i prodotti selezionati verranno sincronizzati."
       },
+      "featureDeleted": "A feature has been deleted from your selection. Change your filters and try again. | Some features have been deleted from your selection. Change your filters and try again.",
       "lineFilter": {
         "errors": {
           "empty": "Questo campo è obbligatorio.",
           "invalidEntry": "L'elemento non è valido.",
           "invalidNumber": "È necessario un numero.",
           "invalidPositiveNumber": "È necessario un numero positivo.",
-          "invalidInteger": "È richiesto un numero intero."
+          "invalidInteger": "È richiesto un numero intero.",
+          "valueDoNotExist": "This value does not exist. | These values do not exist."
         },
         "attributes": {
           "label": "Attributo",

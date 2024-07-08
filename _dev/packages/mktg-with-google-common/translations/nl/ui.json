@@ -470,13 +470,15 @@
         "synchFilteredProducts": "Synchronize filtered products",
         "synchFilteredProductsDesc": "Only the products you select will be synchronized."
       },
+      "featureDeleted": "A feature has been deleted from your selection. Change your filters and try again. | Some features have been deleted from your selection. Change your filters and try again.",
       "lineFilter": {
         "errors": {
           "empty": "This field is mandatory.",
           "invalidEntry": "Entry is not valid.",
           "invalidNumber": "A number is required.",
           "invalidPositiveNumber": "A positive number is required.",
-          "invalidInteger": "A whole number is required."
+          "invalidInteger": "A whole number is required.",
+          "valueDoNotExist": "This value does not exist. | These values do not exist."
         },
         "attributes": {
           "label": "Attribute",
