@@ -200,12 +200,20 @@ export default defineComponent({
           .map((item) => item.id));
         const featureOptions = feature?.values.filter((item) => valueIdToMatch.has(item.id));
 
-        const mapMerge = new Map();
+        const mapMerge = new Map<string, FeatureOption>();
 
-        (recoveredFilter.value as FeatureOption[]).forEach(
-          (option) => mapMerge.set(option.id, option),
-        );
-        featureOptions?.forEach((option) => mapMerge.set(option.id, option));
+        (recoveredFilter.value as FeatureOption[]).forEach((option) => {
+          const key = `${option.id}-${option.language}`;
+          mapMerge.set(key, option);
+        });
+
+        featureOptions?.forEach((option) => {
+          const key = `${option.id}-${option.language}`;
+
+          if (!mapMerge.has(key)) {
+            mapMerge.set(key, option);
+          }
+        });
 
         const combinedOptions = Array.from(mapMerge.values());
 
