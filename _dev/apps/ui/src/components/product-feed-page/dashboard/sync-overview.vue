@@ -127,7 +127,7 @@ export default defineComponent({
     },
     hasProductSelected() {
       return this.verificationStats.productsInCatalog
-        ? this.verificationStats.productsInCatalog > 47 : null;
+        ? this.verificationStats.productsInCatalog > 0 : null;
     },
   },
   methods: {
