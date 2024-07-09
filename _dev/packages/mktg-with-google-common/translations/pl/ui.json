@@ -759,6 +759,7 @@
         "noCurrency": "Brak kwalifikującej się waluty"
       },
       "productVerification": {
+        "alertNoProductSelected": "Your product selection is empty. No products from your catalog are being sent to Google. Please update your product selection configuration.",
         "stepTitle": "Produkty zweryfikowane przez Prestashop przed wysłaniem do Google",
         "stepDetails": "Przed wysłaniem wszystkich produktów (w tym wariantów) zapewniamy ich zgodność z zasadami Google Merchant Center. Weryfikujemy produkty **za każdym razem, gdy zostanie wykryta zmiana**, a jeśli jakieś produkty nie spełniają wymagań, udzielamy wskazówek, co należy zrobić, by to zmienić. Kliknij w produkty niespełniające wymagań, aby uzyskać więcej informacji.\n\nPo zgłoszeniu Google przypisuje każdemu produktowi status: **Zatwierdzone, Wygasające, Oczekujące** lub **Odrzucone**.",
         "reportCards": {
