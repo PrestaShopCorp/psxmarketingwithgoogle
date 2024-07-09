@@ -35,7 +35,7 @@
         "
       >
         <b-alert
-          v-if="!hasProductSelected"
+          v-if="displayAlertNoProductSelected"
           show
           variant="danger"
           class="border border-danger d-sm-flex justify-content-sm-between flex-sm-row"
@@ -125,9 +125,9 @@ export default defineComponent({
     gmcAccountOverviewPage() {
       return getMerchantCenterWebsiteUrls(this.gmcAccountDetails.id).overview;
     },
-    hasProductSelected() {
+    displayAlertNoProductSelected(): boolean {
       return this.verificationStats.productsInCatalog
-        ? this.verificationStats.productsInCatalog > 0 : null;
+        ? this.verificationStats.productsInCatalog === 0 : false;
     },
   },
   methods: {
