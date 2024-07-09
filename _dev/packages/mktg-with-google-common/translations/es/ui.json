@@ -759,6 +759,7 @@
         "noCurrency": "Moneda no apta"
       },
       "productVerification": {
+        "alertNoProductSelected": "Your product selection is empty. No products from your catalog are being sent to Google. Please update your product selection configuration.",
         "stepTitle": "Productos verificados por PrestaShop antes de enviar a Google",
         "stepDetails": "Antes de enviar todos tus productos (incluidas las variaciones), nos aseguramos de que cumplen las políticas de Google Merchant Center. Verificamos los productos **cada vez que se detecta un cambio**, y si hay algún producto no conforme, facilitamos orientación sobre lo que se debe hacer. Haz clic en productos no conformes para obtener más información.\n\nTras el envío, Google asigna un estado a cada producto: **Aprobado, A punto de caducar, Pendiente** o **Rechazado**.",
         "reportCards": {

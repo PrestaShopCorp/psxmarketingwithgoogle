@@ -759,6 +759,7 @@
         "noCurrency": "Aucune devise éligible"
       },
       "productVerification": {
+        "alertNoProductSelected": "Your product selection is empty. No products from your catalog are being sent to Google. Please update your product selection configuration.",
         "stepTitle": "Produits vérifiés par PrestaShop avant d'être envoyés à Google",
         "stepDetails": "Avant d'envoyer tous vos produits (y compris les déclinaisons), nous nous assurons qu'ils sont conformes aux règles de Google Merchant Center. Nous vérifions les produits **à chaque fois qu'un changement est détecté**, et s'il y a des produits non conformes, nous vous indiquons ce qu'il faut faire. Cliquez sur les produits non conformes pour plus d'informations.\n\nAprès la soumission, Google attribue un statut à chaque produit : **Actif, Expirant, En attente ou Refusé**.",
         "reportCards": {
