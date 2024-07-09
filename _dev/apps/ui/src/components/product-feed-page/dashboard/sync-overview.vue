@@ -34,6 +34,23 @@
           border-top border-md-top-0 border-md-left border-600-20
         "
       >
+        <b-alert
+          v-if="!hasProductSelected"
+          show
+          variant="danger"
+          class="border border-danger d-sm-flex justify-content-sm-between flex-sm-row"
+        >
+          <p>
+            {{ $t('productFeedPage.dashboardPage.productVerification.alertNoProductSelected') }}
+          </p>
+          <b-button
+            variant="danger"
+            class="px-3 py-2 ml-3 ml-sm-0 mt-3 mt-sm-0 w-auto"
+            @click="goToProductSelection"
+          >
+            {{ $t('cta.edit') }}
+          </b-button>
+        </b-alert>
         <merchant-center-account-alert-suspended
           v-if="gmcAccountIsSuspended"
           :issues="gmcAccountDetails.accountIssues"
@@ -70,6 +87,7 @@ import {IncrementalSyncContext} from './feed-configuration/feed-configuration';
 import {MerchantCenterAccountContext, WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
 import {getMerchantCenterWebsiteUrls} from '@/components/merchant-center-account/merchant-center-account-links';
 import {VerificationStats} from '@/store/modules/product-feed/state';
+import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 
 export default defineComponent({
   components: {
@@ -106,6 +124,20 @@ export default defineComponent({
     },
     gmcAccountOverviewPage() {
       return getMerchantCenterWebsiteUrls(this.gmcAccountDetails.id).overview;
+    },
+    hasProductSelected() {
+      return this.verificationStats.productsInCatalog
+        ? this.verificationStats.productsInCatalog > 47 : null;
+    },
+  },
+  methods: {
+    goToProductSelection() {
+      this.$router.push({
+        name: 'product-feed-settings',
+        params: {
+          step: ProductFeedSettingsPages.PRODUCT_SELECTION,
+        },
+      });
     },
   },
   watch: {
