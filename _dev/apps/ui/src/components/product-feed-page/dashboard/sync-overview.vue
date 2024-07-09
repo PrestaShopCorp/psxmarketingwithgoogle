@@ -126,8 +126,7 @@ export default defineComponent({
       return getMerchantCenterWebsiteUrls(this.gmcAccountDetails.id).overview;
     },
     displayAlertNoProductSelected(): boolean {
-      return this.verificationStats.productsInCatalog
-        ? this.verificationStats.productsInCatalog === 0 : false;
+      return this.verificationStats.productsInCatalog === 0;
     },
   },
   methods: {
@@ -155,11 +154,6 @@ export default defineComponent({
         });
       }
     },
-  },
-  mounted() {
-    console.log('store', this.$store.getters['productFeed/GET_PRODUCT_FEED_VERIFICATION_STATS']);
-    console.log('display alert', this.displayAlertNoProductSelected);
-    console.log('computed store', this.verificationStats.productsInCatalog);
   },
 });
 </script>

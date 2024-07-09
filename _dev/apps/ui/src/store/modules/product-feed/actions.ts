@@ -402,8 +402,6 @@ export default {
       'product-feeds/stats/verification',
     )).json();
 
-    console.log('action json', json);
-
     commit(MutationsTypes.SAVE_VERIFICATION_STATS, json);
   },
 
