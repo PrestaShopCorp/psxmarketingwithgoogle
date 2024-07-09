@@ -280,6 +280,14 @@ export default defineComponent({
       return this.$t(`tooltip.attributeMapping.${name}`);
     },
     nextStep() {
+      let hasError = false;
+      this.mappingAttributes.forEach((attribute) => {
+        hasError = attribute.fields.some((value) => value.mapped?.length === 0)
+        || hasError;
+      });
+      if (hasError) {
+        return;
+      }
       this.$segment.track('[GGL] Product feed config - Step 3', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
