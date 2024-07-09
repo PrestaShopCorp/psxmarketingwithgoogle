@@ -1,10 +1,10 @@
 <!-- eslint-disable max-len -->
 <template>
-  <div class="input-text-with-tag">
-    <div
-      class="input-text-with-tag-container"
-      :class="{ 'has-error': hasError }"
-    >
+  <div
+    class="input-text-with-tag"
+    :class="{ 'has-error': hasError }"
+  >
+    <div class="input-text-with-tag-container">
       <span
         v-for="(tag, index) in tags"
         :key="index"

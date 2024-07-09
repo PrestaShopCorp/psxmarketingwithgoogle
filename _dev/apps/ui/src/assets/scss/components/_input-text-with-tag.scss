@@ -1,6 +1,15 @@
 .input-text-with-tag {
   padding: 2px 0;
 
+  &.has-error {
+    z-index: 2;
+
+    .input-text-with-tag-container {
+      background-color: $red-50;
+      border: solid $red-500 1px;
+    }
+  }
+
   .input-text-with-tag-container {
     background-color: white;
     min-height: 39px;
@@ -10,19 +19,14 @@
     flex-wrap: wrap;
     padding: 5px 12px;
     line-height: 19px;
-  
-    &.has-error {
-      background-color: $red-50;
-      border: solid #BA151A 1px;
-    }
-  
+
     .tag {
       display: flex;
       flex-grow: 1;
       max-width: fit-content;
       background-color: $primary-300;
       padding: 4px 8px;
-      
+
       .material-icons {
         background-color: $primary-300 !important;
         border: none;
@@ -30,7 +34,7 @@
         margin-left: 6px;
       }
     }
-  
+
     input[type="text"] {
       border: none;
       box-shadow: none;
@@ -38,7 +42,7 @@
       flex-shrink: 2;
       width: 60px;
       background-color: transparent;
-  
+
       &:focus-visible {
         border: none;
         outline: none;
