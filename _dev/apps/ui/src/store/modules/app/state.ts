@@ -1,5 +1,3 @@
-import {getDataFromLocalStorage} from '@/utils/LocalStorage';
-
 /**
  * 2007-2021 PrestaShop and Contributors
  *
@@ -50,8 +48,6 @@ export interface State {
   psxMktgWithGoogleModuleIsEnabled: boolean;
   psxMktgWithGoogleEnableLink: string;
   backOfficeUserIsLoggedIn: boolean;
-  bannerSuccessPreMonetization: string;
-  bannerInfoPreMonetization: string;
 }
 
 export interface ShopCurrency {
@@ -109,6 +105,4 @@ export const state: State = {
   psxMktgWithGoogleModuleIsEnabled: true,
   psxMktgWithGoogleEnableLink: '',
   backOfficeUserIsLoggedIn: true,
-  bannerSuccessPreMonetization: getDataFromLocalStorage('banner-success-pre-monatization') || 0,
-  bannerInfoPreMonetization: getDataFromLocalStorage('banner-info-pre-monatization') || 0,
 };

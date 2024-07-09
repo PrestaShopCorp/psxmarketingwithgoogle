@@ -1067,8 +1067,7 @@
     "moreActions": "More Actions",
     "signGadsToS": "Sign terms of service on Google Ads",
     "enableEnhancedConversions": "Activate enhanced conversion tracking",
-    "loadNextPage": "Load next results",
-    "notifyAvailable": "Notify me when available"
+    "loadNextPage": "Load next results"
   },
   "badge": {
     "free": "Free",
@@ -1209,11 +1208,7 @@
     "ctaCreateFirstCampaign": "Create your first PMax campaign",
     "textCampaignsBanner":  "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales.",
     "monetization": {
-      "textNotifyPreMonetization": "We’ll let you know when the paid plan is available.",
-      "titleInfo": "Pricing update",
-      "infoPrice": "Starting from July 31, a monthly subscription of €14.99 excluding tax will be required to continue using PrestaShop Marketing.",
-      "freeTrial": "You’ll get a 14-day free trial when you subscribe. There's no automatic enrollment - it’s up to you to decide if you want to switch to the paid plan. You can cancel at any time.",
-      "hostedSubscribers": "*PrestaShop Marketing remains free for PrestaShop Hosted subscribers."
+      
     }
   },
   "tipsAndTricks": {

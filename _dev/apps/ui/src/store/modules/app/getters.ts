@@ -119,10 +119,4 @@ export default {
   ) => (
     neededVersion: string,
   ) => !semver.gte(state.psxMktgWithGoogleModuleVersion, neededVersion),
-  [GettersTypes.GET_BANNER_SUCCESS_PRE_MONETIZATION](state: LocalState) {
-    return state.bannerSuccessPreMonetization;
-  },
-  [GettersTypes.GET_BANNER_INFO_PRE_MONETIZATION](state: LocalState) {
-    return state.bannerInfoPreMonetization;
-  },
 };

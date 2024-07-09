@@ -37,10 +37,4 @@ export default {
   [MutationsTypes.SAVE_USER_IS_LOGGED_OUT](state: LocalState) {
     state.backOfficeUserIsLoggedIn = false;
   },
-  [MutationsTypes.SET_BANNER_SUCCESS_PRE_MONETIZATION](state: LocalState, response: string) {
-    state.bannerSuccessPreMonetization = response;
-  },
-  [MutationsTypes.SET_BANNER_INFO_PRE_MONETIZATION](state: LocalState, response: string) {
-    state.bannerInfoPreMonetization = response;
-  },
 };
