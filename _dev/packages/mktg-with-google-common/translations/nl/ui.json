@@ -759,6 +759,7 @@
         "noCurrency": "Geen in aanmerking komende valuta"
       },
       "productVerification": {
+        "alertNoProductSelected": "Your product selection is empty. No products from your catalog are being sent to Google. Please update your product selection configuration.",
         "stepTitle": "Producten geverifieerd door Prestashop voordat ze naar Google werden verzonden",
         "stepDetails": "Voordat we al je producten (inclusief variaties) verzenden, zorgen we ervoor dat ze voldoen aan het Google Merchant Center-beleid. We verifiëren de producten **elke keer dat een verandering wordt gedetecteerd** en als er niet-conforme producten zijn, geven we advies over wat er moet gebeuren. Klik op niet-conforme producten voor meer informatie.\n\nNa indiening kent Google aan elk product een status toe: **Goedgekeurd, Verlopen, In behandeling** of **Afgekeurd**.",
         "reportCards": {
