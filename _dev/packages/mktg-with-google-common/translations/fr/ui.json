@@ -1209,7 +1209,7 @@
     "monetization": {
       "textNotifyPreMonetization": "Nous vous informerons lorsque le plan payant sera disponible.",
       "titleInfo": "Mise à jour de la tarification",
-      "infoPrice": "A partir du 31 juillet, un abonnement mensuel de 14,99 € HT sera nécessaire pour continuer à utiliser PrestaShop Marketing.",
+      "infoPrice": "À partir du 31 juillet, un abonnement mensuel de 19,99 € Ht sera nécessaire pour continuer à utiliser PrestaShop Marketing*. Pour faciliter cette transition, vous pouvez bénéficier d'un tarif spécial de 14,99 € HT jusqu'au 31 décembre 2024.",
       "freeTrial": "Vous bénéficiez d'une période d'essai gratuite de 14 jours lorsque vous vous abonnez. Il n'y a pas de souscription automatique - c'est à vous de décider si vous voulez passer au plan payant. Vous pouvez résilier votre abonnement à tout moment.",
       "hostedSubscribers": "*PrestaShop Marketing reste gratuit pour les abonnés PrestaShop Hosted."
     }
