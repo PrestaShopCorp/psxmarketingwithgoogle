@@ -188,6 +188,7 @@ export default {
       totalProducts: number;
     },
   ) {
+    console.log('mutation', verificationStats.invalidProducts);
     state.report.invalidProducts = verificationStats.invalidProducts;
     state.report.validProducts = verificationStats.validProducts;
     state.report.productsInCatalog = verificationStats.totalProducts;
