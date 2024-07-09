@@ -156,5 +156,10 @@ export default defineComponent({
       }
     },
   },
+  mounted() {
+    console.log('store', this.$store.getters['productFeed/GET_PRODUCT_FEED_VERIFICATION_STATS']);
+    console.log('display alert', this.displayAlertNoProductSelected);
+    console.log('computed store', this.verificationStats.productsInCatalog);
+  },
 });
 </script>
