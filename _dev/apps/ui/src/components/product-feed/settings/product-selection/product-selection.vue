@@ -466,6 +466,10 @@ export default defineComponent({
         delete this.listFilters[index].init;
       }
 
+      if (this.listFilters[index].attribute !== event.attribute) {
+        event.errors = {};
+      }
+
       this.$set(this.listFilters, index, {...this.listFilters[index], ...event});
       this.$nextTick(() => {
         this.checkFiltersValidity(deleteInit);
