@@ -1064,7 +1064,8 @@
     "moreActions": "Weitere Aktionen",
     "signGadsToS": "Unterschreiben Sie die Nutzungsbedingungen für Google-Ads",
     "enableEnhancedConversions": "Aktivieren Sie das erweiterte Conversion-Tracking",
-    "loadNextPage": "Nächste Ergebnisse laden"
+    "loadNextPage": "Nächste Ergebnisse laden",
+    "notifyAvailable": "Notify me when available"
   },
   "badge": {
     "free": "Kostenlos",
@@ -1203,7 +1204,14 @@
     "legend": "*Erstellen Sie ein neues Google-Ads-Konto. Der Gutschein wird automatisch eingelöst, sobald Sie den erforderlichen Betrag erreicht haben. Sie haben dann 60 Tage Zeit, um das Guthaben einzulösen. [Siehe AGB]({0})[:target=\"_blank\"]",
     "legendWithoutTC": "*Erstellen Sie ein neues Google-Ads-Konto. Der Gutschein wird automatisch eingelöst, sobald Sie den erforderlichen Betrag erreicht haben. Sie haben dann 60 Tage Zeit, um das Guthaben einzulösen.",
     "ctaCreateFirstCampaign": "Erstellen Sie Ihre erste PMax-Kampagne",
-    "textCampaignsBanner": "Erstellen Sie Ihre erste Kampagne und erreichen Sie mehr relevante Käufer über alle Kanäle von Google. Überlassen Sie es dem maschinellen Lernen von Google, Ihre Anzeigenplatzierungen zu optimieren und Ihren Traffic und Ihre Verkäufe effizient zu verbessern."
+    "textCampaignsBanner": "Erstellen Sie Ihre erste Kampagne und erreichen Sie mehr relevante Käufer über alle Kanäle von Google. Überlassen Sie es dem maschinellen Lernen von Google, Ihre Anzeigenplatzierungen zu optimieren und Ihren Traffic und Ihre Verkäufe effizient zu verbessern.",
+    "monetization": {
+      "textNotifyPreMonetization": "We’ll let you know when the paid plan is available.",
+      "titleInfo": "Pricing update",
+      "infoPrice": "Starting from July 31, a monthly subscription of €14.99 excluding tax will be required to continue using PrestaShop Marketing.",
+      "freeTrial": "You’ll get a 14-day free trial when you subscribe. There's no automatic enrollment - it’s up to you to decide if you want to switch to the paid plan. You can cancel at any time.",
+      "hostedSubscribers": "*PrestaShop Marketing remains free for PrestaShop Hosted subscribers."
+    }
   },
   "tipsAndTricks": {
     "title": "PrestaShop Profi-Tipp"

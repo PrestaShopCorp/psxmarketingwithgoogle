@@ -1064,7 +1064,8 @@
     "moreActions": "Más acciones",
     "signGadsToS": "Firma los términos de servicio de Google Ads",
     "enableEnhancedConversions": "Activa el seguimiento mejorado de conversión",
-    "loadNextPage": "Cargar los siguientes resultados"
+    "loadNextPage": "Cargar los siguientes resultados",
+    "notifyAvailable": "Notify me when available"
   },
   "badge": {
     "free": "Gratis",
@@ -1203,7 +1204,14 @@
     "legend": "*Crea una nueva cuenta de Google Ads, el bono se aplicará automáticamente una vez que coincida con el gasto y tendrás 60 días para utilizar los créditos. [Leer T&C]({0})[:target=\"_blank\"]",
     "legendWithoutTC": "*Crea una nueva cuenta de Google Ads, el bono se aplicará automáticamente una vez que coincida con el gasto y tendrás 60 días para utilizar los créditos.",
     "ctaCreateFirstCampaign": "Crea tu primera campaña Máximo rendimiento",
-    "textCampaignsBanner": "Crea tu primera campaña y llega a compradores más interesados en todos los canales de Google. Deja que el aprendizaje automático de Google optimice la ubicación de tus anuncios y mejora eficazmente tu tráfico y tus ventas."
+    "textCampaignsBanner": "Crea tu primera campaña y llega a compradores más interesados en todos los canales de Google. Deja que el aprendizaje automático de Google optimice la ubicación de tus anuncios y mejora eficazmente tu tráfico y tus ventas.",
+    "monetization": {
+      "textNotifyPreMonetization": "We’ll let you know when the paid plan is available.",
+      "titleInfo": "Pricing update",
+      "infoPrice": "Starting from July 31, a monthly subscription of €14.99 excluding tax will be required to continue using PrestaShop Marketing.",
+      "freeTrial": "You’ll get a 14-day free trial when you subscribe. There's no automatic enrollment - it’s up to you to decide if you want to switch to the paid plan. You can cancel at any time.",
+      "hostedSubscribers": "*PrestaShop Marketing remains free for PrestaShop Hosted subscribers."
+    }
   },
   "tipsAndTricks": {
     "title": "Consejo PrestaShop"

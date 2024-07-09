@@ -1064,7 +1064,8 @@
     "moreActions": "Plus d'Actions",
     "signGadsToS": "Signer les conditions d'utilisation sur Google Ads",
     "enableEnhancedConversions": "Activer le suivi avancé des conversions",
-    "loadNextPage": "Chargement des résultats suivants"
+    "loadNextPage": "Chargement des résultats suivants",
+    "notifyAvailable": "Notify me when available"
   },
   "badge": {
     "free": "Gratuit",
@@ -1203,7 +1204,14 @@
     "legend": "* Créez un nouveau compte Google Ads, le bon d'achat sera appliqué automatiquement dès que vous aurez atteint le montant des dépenses et vous aurez 60 jours pour les dépenser. [Lire les conditions d'utilisation]({0})[:target=\"_blank\"]",
     "legendWithoutTC": "* Créez un nouveau compte Google Ads, le bon d'achat sera appliqué automatiquement dès que vous aurez atteint le montant des dépenses et vous aurez 60 jours pour les dépenser.",
     "ctaCreateFirstCampaign": "Créez votre première campagne PMax",
-    "textCampaignsBanner": "Créez votre première campagne et touchez des acheteurs plus qualifiés sur tous les canaux de Google. Laissez le machine learning de Google optimiser vos placements publicitaires et améliorer efficacement votre trafic et vos ventes."
+    "textCampaignsBanner": "Créez votre première campagne et touchez des acheteurs plus qualifiés sur tous les canaux de Google. Laissez le machine learning de Google optimiser vos placements publicitaires et améliorer efficacement votre trafic et vos ventes.",
+    "monetization": {
+      "textNotifyPreMonetization": "We’ll let you know when the paid plan is available.",
+      "titleInfo": "Pricing update",
+      "infoPrice": "Starting from July 31, a monthly subscription of €14.99 excluding tax will be required to continue using PrestaShop Marketing.",
+      "freeTrial": "You’ll get a 14-day free trial when you subscribe. There's no automatic enrollment - it’s up to you to decide if you want to switch to the paid plan. You can cancel at any time.",
+      "hostedSubscribers": "*PrestaShop Marketing remains free for PrestaShop Hosted subscribers."
+    }
   },
   "tipsAndTricks": {
     "title": "Conseils et astuces PrestaShop"
