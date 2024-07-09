@@ -759,6 +759,7 @@
         "noCurrency": "Нет подходящей валюты"
       },
       "productVerification": {
+        "alertNoProductSelected": "Your product selection is empty. No products from your catalog are being sent to Google. Please update your product selection configuration.",
         "stepTitle": "Товары, проверенные Prestashop перед отправкой в Google",
         "stepDetails": "Перед отправкой всех ваших товаров (включая варианты) мы проверяем их соответствие правилам Google Merchant Center. Мы проверяем товары **каждый раз, когда обнаруживаем изменение**, и если есть какие-либо несоответствующие товары, мы предоставляем информацию о рекомендуемых действиях. Для получения дополнительной информации нажмите на несоответствующие товары.\n\nПосле отправки Google присваивает каждому товару статус: **Одобрено, Истекает срок, На рассмотрении** или **Отклонено**.",
         "reportCards": {
