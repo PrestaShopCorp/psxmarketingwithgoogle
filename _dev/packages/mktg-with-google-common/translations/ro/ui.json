@@ -759,6 +759,7 @@
         "noCurrency": "Nicio monedă eligibilă"
       },
       "productVerification": {
+        "alertNoProductSelected": "Your product selection is empty. No products from your catalog are being sent to Google. Please update your product selection configuration.",
         "stepTitle": "Produse verificate de Prestashop înainte de a fi trimise către Google",
         "stepDetails": "Înainte de a trimite toate produsele (inclusiv variațiile), asigurăm conformitatea acestora cu politicile Google Merchant Center. Verificăm produsele **de fiecare dată când se detectează o modificare**, iar dacă există produse neconforme, oferim îndrumări cu privire la pașii de urmat. Apasă pe produsele neconforme pentru mai multe informații.\n\nDupă trimitere, Google atribuie fiecărui produs o stare: **Aprobat, Expirat, În așteptare** sau **Respins**.",
         "reportCards": {
