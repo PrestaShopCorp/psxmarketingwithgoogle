@@ -3,6 +3,7 @@
     <b-alert
       show
       variant="danger"
+      :class="{'border border-danger': hasBorder}"
     >
       <p>
         <strong>{{ $t('mcaCard.alertSuspended') }}</strong><br>
@@ -43,6 +44,10 @@ import {AccountIssue} from '@/components/render-issues/types';
 export default defineComponent({
   name: 'MerchantCenterAccountAlertSuspended',
   props: {
+    hasBorder: {
+      type: Boolean,
+      default: false,
+    },
     issues: {
       type: Array as PropType<AccountIssue[]>,
       required: true,
