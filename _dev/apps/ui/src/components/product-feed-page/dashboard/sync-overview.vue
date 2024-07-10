@@ -55,6 +55,7 @@
           v-if="gmcAccountIsSuspended"
           :issues="gmcAccountDetails.accountIssues"
           :account-overview-url="gmcAccountOverviewPage"
+          has-border
         />
         <feed-configuration-card
           v-if="loading || incrementalSyncContext"
