@@ -1161,7 +1161,8 @@
     "attributesMapppingSuccess": "Your product attributes have been successfully saved. Review summary then click \"Export\" to submit them to Google",
     "campaignCreatedSuccess": "You have created your Performance Max campaign successfully!",
     "phoneNumberVerifiedSuccess": "Your phone number has been verified. The Merchant Account is being created",
-    "enhancedConversionEnabledSuccess": "Enhanced conversion tracking enabled"
+    "enhancedConversionEnabledSuccess": "Enhanced conversion tracking enabled",
+    "moduleUpdated": "Module updated"
   },
   "stepper": {
     "nextStep" : "Next: {0}",
@@ -1208,7 +1209,10 @@
     "ctaCreateFirstCampaign": "Create your first PMax campaign",
     "textCampaignsBanner":  "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales.",
     "monetization": {
-      
+      "popinUpdateTitle": "PrestaShop Marketing needs an update",
+      "popinUpdateText": "Your current version of the PrestaShop Marketing module is out of date. Update now to continue using the module.",
+      "bannerWarningTitle": "PrestaShop Marketing needs an update",
+      "bannerWarningText": "Your current version of the PrestaShop Marketing module is out of date. Daily synchronization with Google Merchant Center is paused. Update now to continue using the module."
     }
   },
   "tipsAndTricks": {

@@ -60,6 +60,14 @@
       background-color: $blue-300 !important;
     }
   }
+
+  .icon-spinner {
+    background-color: transparent;
+    width: 20px;
+    height: 20px;
+    border-left-color: transparent;
+    border-top-color: transparent;
+  }
 }
 
 .btn-sm {

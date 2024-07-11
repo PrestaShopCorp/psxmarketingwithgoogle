@@ -52,10 +52,6 @@
         module-name="ps_eventbus"
         :needed-version="$store.state.app.cloudsyncVersionNeeded"
       />
-      <AlertModuleUpdate
-        module-name="psxmarketingwithgoogle"
-        :needed-version="$store.state.app.psxMktgWithGoogleModuleVersionNeeded"
-      />
       <router-view />
       <div
         class="ps_gs-landingpage-content__muted text-muted bg-transparent mt-4"
