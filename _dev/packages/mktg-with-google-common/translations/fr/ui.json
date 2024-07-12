@@ -470,7 +470,7 @@
         "synchFilteredProducts": "Synchroniser des produits filtrés",
         "synchFilteredProductsDesc": "Seuls les produits sélectionnés seront synchronisés."
       },
-      "featureDeleted": "A feature has been deleted from your selection. Change your filters and try again. | Some features have been deleted from your selection. Change your filters and try again.",
+      "featureDeleted": "Une caractéristique a été supprimée de votre sélection. Modifiez vos filtres et réessayez. | Certaines caractéristiques ont été supprimées de votre sélection. Modifiez vos filtres et réessayez.",
       "lineFilter": {
         "errors": {
           "empty": "Ce champ est obligatoire.",
@@ -478,7 +478,7 @@
           "invalidNumber": "Un nombre est requis.",
           "invalidPositiveNumber": "Un nombre positif est requis.",
           "invalidInteger": "Un nombre entier est requis.",
-          "valueDoNotExist": "This value does not exist. | These values do not exist."
+          "valueDoNotExist": "Cette valeur n'existe pas. | Ces valeurs n'existent pas."
         },
         "attributes": {
           "label": "Attribut",
@@ -759,7 +759,7 @@
         "noCurrency": "Aucune devise éligible"
       },
       "productVerification": {
-        "alertNoProductSelected": "Your product selection is empty. No products from your catalog are being sent to Google. Please update your product selection configuration.",
+        "alertNoProductSelected": "Votre sélection de produits est vide. Aucun produit de votre catalogue n'est envoyé à Google. Veuillez mettre à jour la configuration de votre sélection de produits.",
         "stepTitle": "Produits vérifiés par PrestaShop avant d'être envoyés à Google",
         "stepDetails": "Avant d'envoyer tous vos produits (y compris les déclinaisons), nous nous assurons qu'ils sont conformes aux règles de Google Merchant Center. Nous vérifions les produits **à chaque fois qu'un changement est détecté**, et s'il y a des produits non conformes, nous vous indiquons ce qu'il faut faire. Cliquez sur les produits non conformes pour plus d'informations.\n\nAprès la soumission, Google attribue un statut à chaque produit : **Actif, Expirant, En attente ou Refusé**.",
         "reportCards": {
@@ -1066,7 +1066,7 @@
     "signGadsToS": "Signer les conditions d'utilisation sur Google Ads",
     "enableEnhancedConversions": "Activer le suivi avancé des conversions",
     "loadNextPage": "Chargement des résultats suivants",
-    "notifyAvailable": "Notify me when available"
+    "notifyAvailable": "Je souhaite être notifié(e)"
   },
   "badge": {
     "free": "Gratuit",
@@ -1207,11 +1207,11 @@
     "ctaCreateFirstCampaign": "Créez votre première campagne PMax",
     "textCampaignsBanner": "Créez votre première campagne et touchez des acheteurs plus qualifiés sur tous les canaux de Google. Laissez le machine learning de Google optimiser vos placements publicitaires et améliorer efficacement votre trafic et vos ventes.",
     "monetization": {
-      "textNotifyPreMonetization": "We’ll let you know when the paid plan is available.",
-      "titleInfo": "Pricing update",
-      "infoPrice": "Starting from July 31, a monthly subscription of €14.99 excluding tax will be required to continue using PrestaShop Marketing.",
-      "freeTrial": "You’ll get a 14-day free trial when you subscribe. There's no automatic enrollment - it’s up to you to decide if you want to switch to the paid plan. You can cancel at any time.",
-      "hostedSubscribers": "*PrestaShop Marketing remains free for PrestaShop Hosted subscribers."
+      "textNotifyPreMonetization": "Nous vous informerons lorsque le plan payant sera disponible.",
+      "titleInfo": "Mise à jour de la tarification",
+      "infoPrice": "A partir du 31 juillet, un abonnement mensuel de 14,99 € HT sera nécessaire pour continuer à utiliser PrestaShop Marketing.",
+      "freeTrial": "Vous bénéficiez d'une période d'essai gratuite de 14 jours lorsque vous vous abonnez. Il n'y a pas de souscription automatique - c'est à vous de décider si vous voulez passer au plan payant. Vous pouvez résilier votre abonnement à tout moment.",
+      "hostedSubscribers": "*PrestaShop Marketing reste gratuit pour les abonnés PrestaShop Hosted."
     }
   },
   "tipsAndTricks": {

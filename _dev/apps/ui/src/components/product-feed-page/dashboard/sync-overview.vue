@@ -55,6 +55,7 @@
           v-if="gmcAccountIsSuspended"
           :issues="gmcAccountDetails.accountIssues"
           :account-overview-url="gmcAccountOverviewPage"
+          has-border
         />
         <feed-configuration-card
           v-if="loading || incrementalSyncContext"
@@ -126,8 +127,7 @@ export default defineComponent({
       return getMerchantCenterWebsiteUrls(this.gmcAccountDetails.id).overview;
     },
     displayAlertNoProductSelected(): boolean {
-      return this.verificationStats.productsInCatalog
-        ? this.verificationStats.productsInCatalog === 0 : false;
+      return this.verificationStats.productsInCatalog === 0;
     },
   },
   methods: {
