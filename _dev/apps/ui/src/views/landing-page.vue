@@ -1,6 +1,11 @@
 <template>
   <div>
-    <monetization-messages />
+    <monetization-messages>
+      <template #content-modale>
+        {{ $t('banner.monetization.popinUpdateLandingPageText') }}
+      </template>
+    </monetization-messages>
+
     <b-card no-body>
       <div class="ps_gs-landingpage">
         <LandingPageHeader @hideLandingPage="hideLandingPage('header')" />

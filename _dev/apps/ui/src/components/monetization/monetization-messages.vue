@@ -8,7 +8,11 @@
       v-if="moduleNeedUpgrade && !moduleIsUpdated"
       @clickUpdateModule="moduleIsUpdated = true"
       @closeModale="modaleIsClosed = true"
-    />
+    >
+      <template #content>
+        <slot name="content-modale" />
+      </template>
+    </MonetizationPopinUpdateModule>
     <PsToast
       v-if="moduleIsUpdated"
       variant="success"

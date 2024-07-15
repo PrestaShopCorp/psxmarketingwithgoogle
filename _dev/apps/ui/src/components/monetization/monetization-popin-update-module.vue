@@ -15,8 +15,8 @@
       </h4>
       {{ $t('banner.monetization.popinUpdateTitle') }}
     </template>
-    <p>{{ $t('banner.monetization.popinUpdateText') }}</p>
-    <div class="mb-3 d-flex justify-content-end">
+    <slot name="content" />
+    <div class="mb-3 d-flex justify-content-end mt-3">
       <template>
         <b-button
           variant="primary"

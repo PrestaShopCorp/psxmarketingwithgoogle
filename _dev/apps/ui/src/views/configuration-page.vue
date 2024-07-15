@@ -1,6 +1,10 @@
 <template>
   <div id="configuration">
-    <monetization-messages />
+    <monetization-messages>
+      <template #content-modale>
+        {{ $t('banner.monetization.popinUpdateConfigurationText') }}
+      </template>
+    </monetization-messages>
 
     <multistore-page v-if="!psAccountsContext.isShopContext && shops.length" />
     <onboarding-page v-else />

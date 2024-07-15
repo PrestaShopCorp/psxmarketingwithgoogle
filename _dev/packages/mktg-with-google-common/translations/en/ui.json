@@ -1210,7 +1210,8 @@
     "textCampaignsBanner":  "Create your first campaign and reach more relevant shoppers across all Google’s channels. Let Google’s machine learning optimize your ad placements and efficiently improve your traffic and sales.",
     "monetization": {
       "popinUpdateTitle": "PrestaShop Marketing needs an update",
-      "popinUpdateText": "Your current version of the PrestaShop Marketing module is out of date. Update now to continue using the module.",
+      "popinUpdateLandingPageText": "Your current version of the PrestaShop Marketing module is out of date. Update now to continue using the module.",
+      "popinUpdateConfigurationText": "Your current version of the PrestaShop Marketing module is out of date. Daily synchronization with Google Merchant Center is paused. Update now to continue using the module.",
       "bannerWarningTitle": "PrestaShop Marketing needs an update",
       "bannerWarningText": "Your current version of the PrestaShop Marketing module is out of date. Daily synchronization with Google Merchant Center is paused. Update now to continue using the module."
     }
