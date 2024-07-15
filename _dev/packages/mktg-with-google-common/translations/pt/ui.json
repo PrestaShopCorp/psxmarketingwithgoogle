@@ -8,25 +8,25 @@
       "help": "Ajuda"
     },
     "errorsMessages": {
-      "enterValue": "Enter a value."
+      "enterValue": ">Insira um valor."
     },
     "versionDoesNotExist": "A versão do módulo não pôde ser encontrada. Tente novamente.",
     "moduleNeedActivation": "O Marketing with Google está desativado. Você não poderá usar nenhum dos recursos até ativar seu módulo.",
     "moduleUpdateNeeded": {
       "ps_eventbus": {
-        "title": "A newer version of PrestaShop CloudSync is requested",
-        "paragraph": "The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\n You may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync."
+        "title": ">É necessária uma versão mais recente do PrestaShop CloudSync",
+        "paragraph": ">A versão do módulo PrestaShop CloudSync em execução nesta loja é mais antiga do que o recomendado.\n\n Você pode usar o PrestaShop Marketing with Google, mas algumas funcionalidades (como a sincronização de produtos) não estarão disponíveis até que você atualize o PrestaShop CloudSync."
       },
       "psxmarketingwithgoogle": {
-        "title": "A newer version of PrestaShop Marketing With Google is available",
-        "paragraph": "It offers an exciting feature that will take your product usage to the next level. | It offers exciting features that will take your product usage to the next level.",
+        "title": ">Uma versão mais recente do PrestaShop Marketing With Google está disponível",
+        "paragraph": ">Ela oferece uma funcionalidade interessante que melhorará o uso do seu produto. | Ela oferece funcionalidades interessantes que melhorarão o uso do seu produto.",
         "changes": {
           "1.53.0": [
             "Configure seu feed de produtos para os países de destino em várias moedas",
             "Obtenha um melhor acompanhamento da sua sincronização de produto com a nova página de feed de produtos"
           ],
           "1.73.0": [
-            "Configure your product feed to choose which products you want to promote thanks to smart filtering"
+            ">Configure seu feed de produtos para escolher quais produtos você deseja promover graças à filtragem inteligente"
           ]
         }
       }
@@ -76,9 +76,9 @@
   },
   "onboarding": {
     "cmpAlert": {
-      "title": "GDPR updates",
-      "paragraph": "Starting March 2024, businesses advertising to users in the European Economic Area (EEA) must create a strong framework to collect and communicate end-users’ consent choices via consent banners integrated with Google’s Consent Mode. To build a strong foundation for measuring your ads you must set up a cookie banner through a supported, dedicated Consent Management Platform. If you do not already have one, we recommend that you use the following consent management platform, which is compliant with the new regulations: {link}",
-      "moduleGDPR": "Cookies GDPR Law (Blocker) + Google Consent Mode V2"
+      "title": ">Atualizações do RGPD",
+      "paragraph": ">A partir de março de 2024, as empresas que anunciam para usuários no Espaço Econômico Europeu (EEE) devem criar um mecanismo robusto de coleta e comunicação das escolhas de consentimento dos usuários finais por meio de banners de consentimento integrados ao Modo de Consentimento do Google. Para construir uma base sólida para monitorar seus anúncios, você deve configurar um banner de cookies por meio de uma Plataforma de Gerenciamento de Consentimento dedicada e suportada. Se ainda não tiver uma, recomendamos que utilize a seguinte plataforma de gerenciamento de consentimento, que está em conformidade com os novos regulamentos: {link}",
+      "moduleGDPR": ">Cookies da Lei RGPD (Bloqueador) + Modo de Consentimento do Google V2"
     },
     "sectionTitle": {
       "psAccount": "Conecte a sua conta PrestaShop",
@@ -260,7 +260,7 @@
       "shippingSetup": "Configurações de envio",
       "deliveryTimesAndRates": "Prazos e tarifas de entrega",
       "attributeMapping": "Mapeamento de atributos",
-      "productSelection": "Product Selection",
+      "productSelection": ">Seleção de Produto",
       "categoryMapping": "Mapeamento de categorias",
       "summary": "Resumo",
       "exportFeed": "Exportar feed",
@@ -268,12 +268,12 @@
       "syncSchedule": "Horário de sincronização"
     },
     "summaryTitles": {
-      "selectedProducts": "Selected products ready for synchronization",
-      "shippingParameters": "Shipping parameters",
-      "taxSettings": "Tax settings",
-      "dataSyncConfiguration": "Data synchronization configuration",
-      "deliveryTimesAndRates": "Delivery times and rates",
-      "attributesMapping": "Product attributes mapping"
+      "selectedProducts": ">Produtos selecionados prontos para sincronização",
+      "shippingParameters": ">Parâmetros de envio",
+      "taxSettings": ">Configurações fiscais",
+      "dataSyncConfiguration": ">Configuração de sincronização de dados",
+      "deliveryTimesAndRates": ">Prazos e tarifas de entrega",
+      "attributesMapping": ">Mapeamento de atributos de produtos"
     },
     "noticeDataStored": "As configurações são guardadas em cada etapa, e serão submetidas apenas na etapa final.",
     "submissionExplanation": "Observe que os dados serão armazenados em cada etapa, mas só serão enviados na etapa final.",
@@ -346,7 +346,7 @@
       },
       "productAvailaibleIn": "A lista de países abaixo corresponderia aos países e moedas que você configurou em sua loja. Você pode selecionar os países onde deseja que seus produtos sejam exibidos.",
       "targetCountries": "País de destino|Países de destino",
-      "selectValue": "Select a value",
+      "selectValue": ">Selecione um valor",
       "filterTitle": "Filtrar por país",
       "ifMultipleCountries": "Se visar vários países, o preço de cada produto será automaticamente convertido para a moeda correta no Google. No entanto, a sua loja deve ter configuradas as taxas de envio e impostos para cada país selecionado. Por favor respeite [políticas de compras específicas do país]({0})[:target=\"_blank\"] e [regulamento local]({1})[:target=\"_blank\"]",
       "placeholderSelect": "Selecione os países onde os seus produtos estão disponíveis",
@@ -402,7 +402,7 @@
       "allCategories": "Todas as categorias",
       "labelSelectBrand": "Selecione a marca",
       "placeholderSelectBrand": "Procurar marca",
-      "prohibitedContentNotice": "Please review the [prohibited content guidelines]({0})[:target=\"_blank\"] to ensure that products in your feed do not violate these policies.",
+      "prohibitedContentNotice": ">Reveja as [diretrizes de conteúdo proibido]({0})[:target=\"_blank\"] para garantir que os produtos no seu feed não violem estas políticas.",
       "frequency": {
         "daily": "Diário"
       },
@@ -460,66 +460,66 @@
       "learnHowToSetupShippingSettings": "Saiba como preparar o envio"
     },
     "productSelection": {
-      "newFeature": "New feature",
-      "and": "And",
-      "addFilter": "Add filter",
+      "newFeature": ">Nova funcionalidade",
+      "and": ">E",
+      "addFilter": ">Adicionar filtro",
       "methodSynch": {
-        "title": "Select the method for products syncing",
-        "synchAllProducts": "Synchronize all products",
-        "synchAllProductsDesc": "The entire catalog will be synchronized.",
-        "synchFilteredProducts": "Synchronize filtered products",
-        "synchFilteredProductsDesc": "Only the products you select will be synchronized."
+        "title": ">Selecione o método para sincronização de produtos",
+        "synchAllProducts": ">Sincronizar todos os produtos",
+        "synchAllProductsDesc": ">Todo o catálogo será sincronizado.",
+        "synchFilteredProducts": ">Sincronizar produtos filtrados",
+        "synchFilteredProductsDesc": ">Somente os produtos que você selecionar serão sincronizados."
       },
-      "featureDeleted": "A feature has been deleted from your selection. Change your filters and try again. | Some features have been deleted from your selection. Change your filters and try again.",
+      "featureDeleted": ">Uma funcionalidade foi excluída da sua seleção. Altere seus filtros e tente novamente. | Algumas funcionalidades foram excluídas da sua seleção. Altere seus filtros e tente novamente.",
       "lineFilter": {
         "errors": {
-          "empty": "This field is mandatory.",
-          "invalidEntry": "Entry is not valid.",
-          "invalidNumber": "A number is required.",
-          "invalidPositiveNumber": "A positive number is required.",
-          "invalidInteger": "A whole number is required.",
-          "valueDoNotExist": "This value does not exist. | These values do not exist."
+          "empty": ">Este campo é obrigatório.",
+          "invalidEntry": ">Dados inválidos.",
+          "invalidNumber": ">Insira um número.",
+          "invalidPositiveNumber": ">Insira um número positivo.",
+          "invalidInteger": ">Insira um número inteiro.",
+          "valueDoNotExist": ">Este valor não existe. | Estes valores não existem."
         },
         "attributes": {
-          "label": "Attribute",
-          "placeholder": "Select an attribute",
-          "defaultAttributes": "Default attributes",
-          "features": "Feature | Features",
-          "price": "Price (tax excluded)",
-          "brand": "Brand",
-          "category": "Category",
-          "id": "Product ID",
-          "out_of_stock": "Out of stock"
+          "label": ">Atributo",
+          "placeholder": ">Selecione um atributo",
+          "defaultAttributes": ">Atributos predefinidos",
+          "features": ">Funcionalidade | Funcionalidades",
+          "price": ">Preço (sem impostos)",
+          "brand": ">Marca",
+          "category": ">Categoria",
+          "id": ">ID do produto",
+          "out_of_stock": ">Fora de estoque"
         },
         "conditions": {
-          "label": "Condition",
-          "placeholder": "Select a condition",
-          "isEqualTo": "Is equal to",
-          "isNotEqualTo": "Is not equal to",
-          "isLessThan": "Is less than",
-          "isGreaterThan": "Is greater than",
-          "contains": "Contains",
-          "notContain": "Does not contain",
-          "isIn": "Is in",
-          "isNot": "Is not in",
-          "isFalse": "Is false",
-          "isTrue": "Is true"
+          "label": ">Condição",
+          "placeholder": ">Selecione uma condição",
+          "isEqualTo": ">É igual a",
+          "isNotEqualTo": ">Não é igual a",
+          "isLessThan": ">É menor que",
+          "isGreaterThan": ">É maior que",
+          "contains": ">Contém",
+          "notContain": ">Não contém",
+          "isIn": ">Está incluído",
+          "isNot": ">Não está incluído",
+          "isFalse": ">É falso",
+          "isTrue": ">É verdadeiro"
         },
         "value": {
-          "label": "Value",
-          "selectValue": "Select a value",
-          "enterValue": "Enter a value",
-          "false": "Is false",
-          "true": "Is true"
+          "label": ">Valor",
+          "selectValue": ">Selecione um valor",
+          "enterValue": ">Insira um valor",
+          "false": ">É falso",
+          "true": ">É verdadeiro"
         }
       },
       "productCount": {
-        "productSelected": "product selected. | products selected.",
-        "error": "We are not able to retrieve the requested data right now. Check your configuration and try again later.",
-        "pending": "Searching products...",
-        "pendingLong": "The search is taking longer than expected. Please wait and don’t refresh the page.",
-        "nothingFound": "We haven't found any products matching your selection. Change your filters and try again.",
-        "tryAgain": "Try again"
+        "productSelected": ">produto selecionado. | produtos selecionados.",
+        "error": ">Não é possível recuperar os dados solicitados no momento. Verifique sua configuração e tente novamente mais tarde.",
+        "pending": ">Buscando produtos...",
+        "pendingLong": ">A busca está demorando mais do que o esperado. Aguarde e não atualize a página.",
+        "nothingFound": ">Não encontramos nenhum produto que corresponda à sua seleção. Altere seus filtros e tente novamente.",
+        "tryAgain": ">Tente novamente"
       }
     },
     "syncSchedule": {
@@ -529,26 +529,26 @@
       "radioLabel2": "Mais tarde, appproximatley às 2:00 da manhã (GMT 1) (Quando a sua loja tiver poucas visitas)"
     },
     "summary": {
-      "title": "Product feed summary",
+      "title": ">Resumo do feed de produtos",
       "xItems": "{0} itens",
       "productItems": "Itens do produto",
       "tableHeader1": "Atributos do produto Google",
-      "tableHeader2": "Product value",
+      "tableHeader2": ">Valor do produto",
       "totalProducts": "Produtos ativos prontos para sincronia",
       "date": "Data",
-      "nextSync": "The next synchronization is on {date}.",
+      "nextSync": ">A próxima sincronização será em {date}.",
       "time": "Hora",
       "youSell": "**Vende*** {0}",
       "dataSyncSetUp": "Sincronização de dados configurada",
       "productAttributesMapping": "Mapeamento de categorias e atributos de produtos",
-      "errorLoadDataSelectedProduct": "Unable to load data",
-      "attributeMapped": "One product attribute mapped | {0} product attributes mapped",
+      "errorLoadDataSelectedProduct": ">Não foi possível carregar os dados",
+      "attributeMapped": ">Um atributo de produto mapeado | {0} atributos de produto mapeados",
       "mandatoryAttributesNotMapped": "Um atributo do Google não foi mapeado para seus campos personalizados | {0} atributos do Google não foram mapeados para seus campos personalizados.",
       "noticeToCompleteMapping": "Recomendamos mapear todos os seus dados, caso contrário seus produtos podem ser rejeitados pelo Google.",
-      "agreementTitle": "Conditions",
-      "agreement1": "The synchronization of my product feed will run after I click on save and export and may take 1-4 hours",
-      "agreement2": "Google products reviews may take 3-5 business days",
-      "agreementCheckboxLabel": "I understand and agree to the conditions above",
+      "agreementTitle": ">Condições",
+      "agreement1": ">A sincronização do meu feed de produtos será executada depois que eu clicar em salvar e exportar e pode levar de 1 a 4 horas",
+      "agreement2": ">As avaliações de produtos do Google podem levar de 3 a 5 dias úteis",
+      "agreementCheckboxLabel": ">Eu entendo e concordo com as condições acima",
       "disabledButtonTooltip": "Verifique as nossas condições antes de seguir em frente",
       "syncScheduledNow": "Hoje, logo após eu salvar e exportar"
     }
@@ -558,7 +558,7 @@
     "intro": "Mostre o seu produto gratuitamente na listagem de classificados orgânicos na guia Compras.",
     "learnFreeListing": "Saiba mais sobre listagens gratuitas",
     "seeFreeListing": "Ver os meus anúncios gratuitos no Merchant Center",
-    "googleDelay": "Google takes 3-5 working days to review products",
+    "googleDelay": ">O Google leva de 3 a 5 dias úteis para analisar os produtos",
     "alertEnableFreeListing": "Habilite anúncios gratuitos para mostrar seus produtos na guia Compras de graça.",
     "alertCantEnableFreeListing": "Não pode activar listagens grátis neste momento. Tente novamente mais tarde.",
     "alertCountryNotEligible": "O país de destino que você selecionou não é elegível para listagens e anúncios gratuitos."
@@ -621,7 +621,7 @@
     "intro": "Melhore a precisão do seu acompanhamento de conversões e desfrute de lances mais competitivos. Essa funcionalidade funciona junto com suas tags de conversão existentes, enviando dados de conversão seguros e em conformidade com as regras de privacidade do seu site para o Google.",
     "signTosAlert": {
       "title": "Aprimore seu acompanhamento de conversões e desfrute de lances mais competitivos para seus anúncios",
-      "text": "Enable enhanced conversion tracking by agreeing to Google Ads' terms of service and setting Google tag method in a few steps following these [instructions]({0})[:target=\"_blank\"] during activation to make sure the feature works properly."
+      "text": ">Ative o monitoramento aprimorado de conversões concordando com os termos de serviço do Google Ads e definindo o método de tags do Google em algumas etapas seguindo estas [instruções]({0})[:target=\"_blank\"] durante a ativação para garantir que o recurso funcione corretamente."
     }
   },
   "smartShoppingCampaignCreation": {
@@ -759,12 +759,12 @@
         "noCurrency": "Nenhuma moeda elegível"
       },
       "productVerification": {
-        "alertNoProductSelected": "Your product selection is empty. No products from your catalog are being sent to Google. Please update your product selection configuration.",
+        "alertNoProductSelected": ">A sua seleção de produtos está vazia. Nenhum produto do seu catálogo está sendo enviado para o Google. Atualize sua configuração de seleção de produtos.",
         "stepTitle": "Produtos verificados pela Prestashop antes de serem enviados para o Google",
         "stepDetails": "Antes de enviar seus produtos (inclusive as variações), garantimos que eles estejam em conformidade com as políticas do Google Merchant Center. Nós conferimos os produtos **toda vez que uma alteração é detectada** e orientamos você sobre o que fazer caso algum deles tenha alguma questão de conformidade. Clique em produtos não conformes para obter mais informações.\n\nApós o envio, o Google atribui a cada produto um status: **Ativo, Prestes a expirar, Pendente** ou **Reprovado**.",
         "reportCards": {
-          "selectedProducts": "My selected products",
-          "selectedProductsDescription": "Selected products with variations in product feed languages",
+          "selectedProducts": ">Meus produtos selecionados",
+          "selectedProductsDescription": ">Produtos selecionados com variações nos idiomas do feed de produtos",
           "verified": "Produtos conformes",
           "verifiedDescription": "Produtos aprovados pela PrestaShop que estão prontos para serem enviados ao Google.",
           "nonCompliant": "Produtos não conformes",
@@ -1057,7 +1057,7 @@
     "select": "Selecione",
     "editContact": "Editar informações de contato",
     "update": "Atualizar",
-    "updateModule": "Update module",
+    "updateModule": ">Atualizar módulo",
     "validateSelection": "Validar a seleção",
     "visitThe": "Visite {0} para mais informações ",
     "createPmax": "Criar campanha Performance Max",
@@ -1066,7 +1066,7 @@
     "signGadsToS": "Assinar os termos de serviço do Google Ads",
     "enableEnhancedConversions": "Ativar o acomanhamento avançado de conversões",
     "loadNextPage": "Carregar os próximos resultados",
-    "notifyAvailable": "Notify me when available"
+    "notifyAvailable": ">Avisar quando disponível"
   },
   "badge": {
     "free": "Grátis",
@@ -1107,7 +1107,7 @@
     "textDisconnectMCA": "Desconectar o seu Merchant Center irá remover o acesso ao seu Google Ads neste módulo e fazer uma pausa em qualquer campanha em curso. ",
     "textoverwrite": "A sobre-escritura de reclamações existentes irá desativar sua conta anterior e pausar as campanhas existentes vinculadas a essa conta - listagens gratuitas e campanhas de compras.  \nSe estiver a executar uma campanha de Compras diferente, recomendamos que a faça uma pausa.",
     "titleCancelWithoutSaving": "Cancelar sem poupar?",
-    "textCancelProductFeed": "You will lose all unsaved changes if you continue. To successully submit your product data to Google, you need to complete all steps.",
+    "textCancelProductFeed": ">Você perderá todas as alterações não salvas se continuar. Para enviar com sucesso os dados do seu produto para o Google você precisa concluir todas as etapas.",
     "titleQuitWithoutSaving": "Desistir sem guardar?",
     "titleOverwriteProductFeed": "Sobreescrever o feed dos produtos existentes?",
     "textOverwriteProductFeed": "Sobreescrever o feed do seu produto existente irá apagá-lo. Precisará de configurar o feed de novos produtos.",
@@ -1123,7 +1123,7 @@
     "disconnectedUserBo": "Sua conexão com o backoffice foi interrompida. Você será redirecionado automaticamente para a página de login em {0} segundos.",
     "titleDisconnectedUserBo": "Ligação Perdida",
     "titleEnhancedConversionsIntro": "Avalie a eficiência dos seus anúncios",
-    "textEnhancedConversionsIntro": "Enhance your conversion tracking accuracy and empower your bidding strategy with our latest feature: Enhanced Conversion Tracking. This feature seamlessly integrates with your existing conversion tags, ensuring the secure and privacy-conscious transmission of conversion data from your website to Google.Be careful to follow these simple instructions during activation to make sure the feature works properly:\n1. Check the checkbox “Turn on enhanced conversions”\n2. Accept the Customer Data terms (if not already accepted in the past)\n3. Select “Google Tag” as the method\n4. Save your selections"
+    "textEnhancedConversionsIntro": ">Melhore a precisão do seu monitoramento de conversões e aprimore sua estratégia de lances com nossa funcionalidade mais recente: o Monitoramento Aprimorado de Conversões. Essa funcionalidade se integra perfeitamente às suas tags de conversão existentes, garantindo a transmissão segura e em conformidade com as regras de privacidade dos dados de conversão do seu site para o Google. Siga estas instruções simples durante a ativação para garantir que o recurso funcione corretamente:\n1. Marque a caixa de seleção \"Ativar conversões aprimoradas\"\n2. Aceite os termos dos Dados do Cliente (se já não foram aceitos no passado)\n3. Selecione \"Google Tag\" como método\n4. Salve suas seleções"
   },
   "tooltip": {
     "googleAccountRequired": "Requer a configuração da conta Google",
@@ -1207,11 +1207,11 @@
     "ctaCreateFirstCampaign": "Criar sua primeira campanha PMax",
     "textCampaignsBanner": "Crie sua primeira campanha e atinja compradores mais relevantes em todos os canais do Google. Permita que o aprendizado de máquina do Google otimize o posicionamento dos seus anúncios e melhore seu tráfego e suas vendas de forma eficiente.",
     "monetization": {
-      "textNotifyPreMonetization": "We’ll let you know when the paid plan is available.",
-      "titleInfo": "Pricing update",
-      "infoPrice": "Starting from July 31, a monthly subscription of €19.99 excluding taxes will be required to continue using PrestaShop Marketing*. To ease this transition, you can take advantage of a special rate of €14.99 excluding taxes until December 31, 2024.",
-      "freeTrial": "You’ll get a 14-day free trial when you subscribe. There's no automatic enrollment - it’s up to you to decide if you want to switch to the paid plan. You can cancel at any time.",
-      "hostedSubscribers": "*PrestaShop Marketing remains free for PrestaShop Hosted subscribers."
+      "textNotifyPreMonetization": ">Avisaremos quando o plano pago estiver disponível.",
+      "titleInfo": ">Atualização de preços",
+      "infoPrice": ">A partir de 31 de julho será necessária uma assinatura mensal de € 19,99 (excluindo impostos) para continuar usando o PrestaShop Marketing*. Para facilitar essa transição, você pode aproveitar uma tarifa especial de € 14,99 (excluindo impostos) até 31 de dezembro de 2024.",
+      "freeTrial": ">Você receberá uma avaliação gratuita de 14 dias ao se inscrever. A inscrição não é automática - cabe a você decidir se deseja mudar para o plano pago. Você pode cancelar a qualquer momento.",
+      "hostedSubscribers": ">*O PrestaShop Marketing permanece gratuito para os assinantes do PrestaShop Hosting."
     }
   },
   "tipsAndTricks": {
