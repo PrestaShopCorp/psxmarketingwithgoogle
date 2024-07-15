@@ -8,25 +8,25 @@
       "help": "Help"
     },
     "errorsMessages": {
-      "enterValue": "Enter a value."
+      "enterValue": "Voer een waarde in."
     },
     "versionDoesNotExist": "Het lijkt erop dat de versie van de module niet kan worden opgehaald. Het is aan onze kant probeer het opnieuw.",
     "moduleNeedActivation": "Marketing met Google is uitgeschakeld. Je kunt geen van de functies gebruiken totdat je je module inschakelt.",
     "moduleUpdateNeeded": {
       "ps_eventbus": {
-        "title": "A newer version of PrestaShop CloudSync is requested",
-        "paragraph": "The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\n You may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync."
+        "title": ">Er is een nieuwere versie van PrestaShop CloudSync aangevraagd",
+        "paragraph": ">De versie van de module PrestaShop CloudSync die op deze winkel draait is ouder dan de vereiste minimumversie.\n\n Je kunt PrestaShop Marketing met Google gebruiken, maar sommige functies (zoals productsynchronisatie) zijn niet beschikbaar totdat je PrestaShop CloudSync upgradet."
       },
       "psxmarketingwithgoogle": {
-        "title": "A newer version of PrestaShop Marketing With Google is available",
-        "paragraph": "It offers an exciting feature that will take your product usage to the next level. | It offers exciting features that will take your product usage to the next level.",
+        "title": ">Er is een nieuwere versie van PrestaShop Marketing met Google beschikbaar",
+        "paragraph": ">Het biedt een opwindende functie die je productgebruik naar een hoger niveau tilt. | Het biedt opwindende functies die je productgebruik naar een hoger niveau tillen.",
         "changes": {
           "1.53.0": [
             "Configureer je productfeed voor doellanden in verschillende valuta's",
             "Krijg een betere opvolging van je productsynchronisatie dankzij de nieuwe productfeedpagina"
           ],
           "1.73.0": [
-            "Configure your product feed to choose which products you want to promote thanks to smart filtering"
+            ">Configureer je productfeed om te kiezen welke producten je wilt promoten dankzij slimme filtering"
           ]
         }
       }
@@ -76,9 +76,9 @@
   },
   "onboarding": {
     "cmpAlert": {
-      "title": "GDPR updates",
-      "paragraph": "Starting March 2024, businesses advertising to users in the European Economic Area (EEA) must create a strong framework to collect and communicate end-users’ consent choices via consent banners integrated with Google’s Consent Mode. To build a strong foundation for measuring your ads you must set up a cookie banner through a supported, dedicated Consent Management Platform. If you do not already have one, we recommend that you use the following consent management platform, which is compliant with the new regulations: {link}",
-      "moduleGDPR": "Cookies GDPR Law (Blocker) + Google Consent Mode V2"
+      "title": ">AVG-updates",
+      "paragraph": ">Vanaf maart 2024 moeten bedrijven die adverteren aan gebruikers in de Europese Economische Ruimte (EER) een sterk kader creëren om de toestemmingskeuzes van eindgebruikers te verzamelen en te communiceren via toestemmingsbalken die zijn geïntegreerd met Consent Mode van Google. Om een sterke basis te leggen voor het meten van uw advertenties moet je een cookiebalk instellen via een ondersteund, speciaal Toestemmingsbeheerplatform. Als je er nog geen hebt, raden we je aan het volgende toestemmingsbeheerplatform te gebruiken, dat voldoet aan de nieuwe regelgeving: {link}",
+      "moduleGDPR": ">Cookies AVG (Blocker) + Google Consent Mode V2"
     },
     "sectionTitle": {
       "psAccount": "Koppel uw Prestashop account",
@@ -260,7 +260,7 @@
       "shippingSetup": "Verzendinstellingen",
       "deliveryTimesAndRates": "Levertijd en -tarieven",
       "attributeMapping": "Attribuut in kaart brengen",
-      "productSelection": "Product Selection",
+      "productSelection": ">Productselectie",
       "categoryMapping": "Categorie in kaart brengen",
       "summary": "Samenvatting",
       "exportFeed": "Voer uit!",
@@ -268,12 +268,12 @@
       "syncSchedule": "Synchronisatie schema"
     },
     "summaryTitles": {
-      "selectedProducts": "Selected products ready for synchronization",
-      "shippingParameters": "Shipping parameters",
-      "taxSettings": "Tax settings",
-      "dataSyncConfiguration": "Data synchronization configuration",
-      "deliveryTimesAndRates": "Delivery times and rates",
-      "attributesMapping": "Product attributes mapping"
+      "selectedProducts": ">Geselecteerde producten klaar voor synchronisatie",
+      "shippingParameters": ">Verzendparameters",
+      "taxSettings": ">Belastinginstellingen",
+      "dataSyncConfiguration": ">Configuratie van gegevenssynchronisatie",
+      "deliveryTimesAndRates": ">Bezorgtijden en -tarieven",
+      "attributesMapping": ">Toewijzing van productkenmerken"
     },
     "noticeDataStored": "Instellingen worden bij elke stap opgeslagen en pas bij de laatste stap ingediend.",
     "submissionExplanation": "Houd er rekening mee dat gegevens bij elke stap worden opgeslagen, maar alleen bij de laatste stap worden ingediend.",
@@ -346,7 +346,7 @@
       },
       "productAvailaibleIn": "De vervolgkeuzelijst met landen hieronder komt overeen met de landen en valuta die je in je winkel hebt ingesteld. Je kunt de landen selecteren waar je wilt dat je producten worden weergegeven.",
       "targetCountries": "Doelland|Doellanden",
-      "selectValue": "Select a value",
+      "selectValue": ">Selecteer een waarde",
       "filterTitle": "Filter op land",
       "ifMultipleCountries": "Als u zich op meerdere landen richt, wordt elke productprijs in Google automatisch omgerekend naar de juiste valuta. Uw winkel moet echter wel verzend- en belastingtarieven hebben geconfigureerd voor elk geselecteerd land. Respecteer [landspecifiek winkelbeleid]({0})[:target=\"_blank\"] en [lokale regelgeving]({1})[:target=\"_blank\"]",
       "placeholderSelect": "Selecteer de landen waar uw producten beschikbaar zijn",
@@ -402,7 +402,7 @@
       "allCategories": "Alle categorieën",
       "labelSelectBrand": "Selecteer merk",
       "placeholderSelectBrand": "Zoek merk",
-      "prohibitedContentNotice": "Please review the [prohibited content guidelines]({0})[:target=\"_blank\"] to ensure that products in your feed do not violate these policies.",
+      "prohibitedContentNotice": ">Lees de [richtlijnen voor verboden inhoud]({0})[:target=\"_blank\"] om ervoor te zorgen dat producten in je feed dit beleid niet schenden.",
       "frequency": {
         "daily": "Dagelijks"
       },
@@ -460,66 +460,66 @@
       "learnHowToSetupShippingSettings": "Leer hoe u de verzending instelt"
     },
     "productSelection": {
-      "newFeature": "New feature",
-      "and": "And",
-      "addFilter": "Add filter",
+      "newFeature": ">Nieuw kenmerk",
+      "and": ">En",
+      "addFilter": ">Filter toevoegen",
       "methodSynch": {
-        "title": "Select the method for products syncing",
-        "synchAllProducts": "Synchronize all products",
-        "synchAllProductsDesc": "The entire catalog will be synchronized.",
-        "synchFilteredProducts": "Synchronize filtered products",
-        "synchFilteredProductsDesc": "Only the products you select will be synchronized."
+        "title": ">Selecteer de methode voor productsynchronisatie",
+        "synchAllProducts": ">Alle producten synchroniseren",
+        "synchAllProductsDesc": ">De hele catalogus wordt gesynchroniseerd.",
+        "synchFilteredProducts": ">Gefilterde producten synchroniseren",
+        "synchFilteredProductsDesc": ">Alleen de producten die je selecteert worden gesynchroniseerd."
       },
-      "featureDeleted": "A feature has been deleted from your selection. Change your filters and try again. | Some features have been deleted from your selection. Change your filters and try again.",
+      "featureDeleted": ">Een functie is uit je selectie verwijderd. Wijzig je filters en probeer het opnieuw. | Sommige functies zijn uit je selectie verwijderd. Wijzig je filters en probeer het opnieuw.",
       "lineFilter": {
         "errors": {
-          "empty": "This field is mandatory.",
-          "invalidEntry": "Entry is not valid.",
-          "invalidNumber": "A number is required.",
-          "invalidPositiveNumber": "A positive number is required.",
-          "invalidInteger": "A whole number is required.",
-          "valueDoNotExist": "This value does not exist. | These values do not exist."
+          "empty": ">Dit veld is verplicht.",
+          "invalidEntry": ">Invoer is ongeldig.",
+          "invalidNumber": ">Een getal is vereist.",
+          "invalidPositiveNumber": ">Een positief getal is vereist.",
+          "invalidInteger": ">Een geheel getal is vereist.",
+          "valueDoNotExist": ">Deze waarde bestaat niet. | Deze waarden bestaan niet."
         },
         "attributes": {
-          "label": "Attribute",
-          "placeholder": "Select an attribute",
-          "defaultAttributes": "Default attributes",
-          "features": "Feature | Features",
-          "price": "Price (tax excluded)",
-          "brand": "Brand",
-          "category": "Category",
-          "id": "Product ID",
-          "out_of_stock": "Out of stock"
+          "label": ">Kenmerk",
+          "placeholder": ">Selecteer een kenmerk",
+          "defaultAttributes": ">Standaardkenmerken",
+          "features": ">Kenmerk | Kenmerken",
+          "price": ">Prijs (excl. btw)",
+          "brand": ">Merk",
+          "category": ">Categorie",
+          "id": ">Product-ID",
+          "out_of_stock": ">Niet voorradig"
         },
         "conditions": {
-          "label": "Condition",
-          "placeholder": "Select a condition",
-          "isEqualTo": "Is equal to",
-          "isNotEqualTo": "Is not equal to",
-          "isLessThan": "Is less than",
-          "isGreaterThan": "Is greater than",
-          "contains": "Contains",
-          "notContain": "Does not contain",
-          "isIn": "Is in",
-          "isNot": "Is not in",
-          "isFalse": "Is false",
-          "isTrue": "Is true"
+          "label": ">Voorwaarde",
+          "placeholder": ">Selecteer een voorwaarde",
+          "isEqualTo": ">Is gelijk aan",
+          "isNotEqualTo": ">Is niet gelijk aan",
+          "isLessThan": ">Is kleiner dan",
+          "isGreaterThan": ">Is groter dan",
+          "contains": ">Bevat",
+          "notContain": ">Bevat niet",
+          "isIn": ">Is een element van",
+          "isNot": ">Is geen element van",
+          "isFalse": ">Is onwaar",
+          "isTrue": ">Is waar"
         },
         "value": {
-          "label": "Value",
-          "selectValue": "Select a value",
-          "enterValue": "Enter a value",
-          "false": "Is false",
-          "true": "Is true"
+          "label": ">Waarde",
+          "selectValue": ">Selecteer een waarde",
+          "enterValue": ">Voer een waarde in",
+          "false": ">Is onwaar",
+          "true": ">Is waar"
         }
       },
       "productCount": {
-        "productSelected": "product selected. | products selected.",
-        "error": "We are not able to retrieve the requested data right now. Check your configuration and try again later.",
-        "pending": "Searching products...",
-        "pendingLong": "The search is taking longer than expected. Please wait and don’t refresh the page.",
-        "nothingFound": "We haven't found any products matching your selection. Change your filters and try again.",
-        "tryAgain": "Try again"
+        "productSelected": ">product geselecteerd. | producten geselecteerd.",
+        "error": ">We kunnen de gevraagde gegevens op dit moment niet ophalen. Controleer je configuratie en probeer het later opnieuw.",
+        "pending": ">Producten zoeken ...",
+        "pendingLong": ">De zoekopdracht duurt langer dan verwacht. Wacht even en ververs de pagina niet.",
+        "nothingFound": ">We hebben geen producten gevonden die aan je selectie voldoen. Wijzig je filters en probeer het opnieuw.",
+        "tryAgain": ">Probeer het nog eens"
       }
     },
     "syncSchedule": {
@@ -529,26 +529,26 @@
       "radioLabel2": "Later, ongeveer om 2:00 AM (GMT 1) (Wanneer uw winkel weinig bezoeken heeft)"
     },
     "summary": {
-      "title": "Product feed summary",
+      "title": ">Productfeedoverzicht",
       "xItems": "{0} items",
       "productItems": "Productartikelen",
       "tableHeader1": "Google-productkenmerken",
-      "tableHeader2": "Product value",
+      "tableHeader2": ">Productwaarde",
       "totalProducts": "Actieve producten klaar voor synchronisatie",
       "date": "Datum",
-      "nextSync": "The next synchronization is on {date}.",
+      "nextSync": ">De volgende synchronisatie is op {date}.",
       "time": "Tijd",
       "youSell": "**U verkoopt** {0}",
       "dataSyncSetUp": "Gegevenssynchronisatie ingesteld",
       "productAttributesMapping": "Categorie- en productattribuuttoewijzing",
-      "errorLoadDataSelectedProduct": "Unable to load data",
-      "attributeMapped": "One product attribute mapped | {0} product attributes mapped",
+      "errorLoadDataSelectedProduct": ">Kan gegevens niet laden",
+      "attributeMapped": ">Eén productkenmerk toegewezen | {0} productkenmerken toegewezen",
       "mandatoryAttributesNotMapped": "Eén Google-attribuut is niet toegewezen aan je aangepaste velden | {0} Google-attributen zijn niet toegewezen aan je aangepaste velden.",
       "noticeToCompleteMapping": "We raden je aan al je gegevens toe te wijzen, anders kunnen je producten door Google worden afgewezen.",
-      "agreementTitle": "Conditions",
-      "agreement1": "The synchronization of my product feed will run after I click on save and export and may take 1-4 hours",
-      "agreement2": "Google products reviews may take 3-5 business days",
-      "agreementCheckboxLabel": "I understand and agree to the conditions above",
+      "agreementTitle": ">Voorwaarden",
+      "agreement1": ">De synchronisatie van mijn productfeed wordt uitgevoerd nadat ik op opslaan en exporteren heb geklikt en kan 1-4 uur duren",
+      "agreement2": ">Google-productbeoordelingen kunnen 3-5 werkdagen duren",
+      "agreementCheckboxLabel": ">Ik begrijp en ga akkoord met de bovenstaande voorwaarden",
       "disabledButtonTooltip": "Controleer onze voorwaarden voordat u verder gaat",
       "syncScheduledNow": "Vandaag, direct nadat ik heb opgeslagen en geëxporteerd"
     }
@@ -558,7 +558,7 @@
     "intro": "Laat uw product gratis zien in een organisch gerangschikte lijst op het tabblad Shopping.",
     "learnFreeListing": "Meer informatie over gratis vermeldingen",
     "seeFreeListing": "Zie mijn gratis advertenties in Merchant Center",
-    "googleDelay": "Google takes 3-5 working days to review products",
+    "googleDelay": ">Google doet er 3-5 werkdagen over om producten te beoordelen",
     "alertEnableFreeListing": "Schakel gratis vermeldingen in om uw producten gratis op het tabblad Shopping te tonen.",
     "alertCantEnableFreeListing": "U kunt nu geen gratis aanbiedingen inschakelen. Probeer het later nog eens.",
     "alertCountryNotEligible": "Het doelland dat u hebt geselecteerd, komt niet in aanmerking voor gratis advertenties."
@@ -621,7 +621,7 @@
     "intro": "Verbeter je nauwkeurigheid bij het bijhouden van conversies en ontgrendel krachtiger biedingen. Deze functie werkt naast je bestaande conversietags en stuurt veilige, privacyvriendelijke conversiegegevens van je website naar Google.",
     "signTosAlert": {
       "title": "Verbeter je conversietracking en ontgrendel krachtiger bieden op jouw advertenties",
-      "text": "Enable enhanced conversion tracking by agreeing to Google Ads' terms of service and setting Google tag method in a few steps following these [instructions]({0})[:target=\"_blank\"] during activation to make sure the feature works properly."
+      "text": ">Schakel uitgebreide conversietracking in door tijdens het activeren akkoord te gaan met de dienstvoorwaarden van Google Ads en de methode Google Tag in een paar stappen in te stellen volgens deze [instructies]({0})[:target=\"_blank\"] om ervoor te zorgen dat de functie goed werkt."
     }
   },
   "smartShoppingCampaignCreation": {
@@ -759,12 +759,12 @@
         "noCurrency": "Geen in aanmerking komende valuta"
       },
       "productVerification": {
-        "alertNoProductSelected": "Your product selection is empty. No products from your catalog are being sent to Google. Please update your product selection configuration.",
+        "alertNoProductSelected": ">Je productselectie is leeg. Er worden geen producten uit je catalogus naar Google verzonden. Werk de configuratie van je productselectie bij.",
         "stepTitle": "Producten geverifieerd door Prestashop voordat ze naar Google werden verzonden",
         "stepDetails": "Voordat we al je producten (inclusief variaties) verzenden, zorgen we ervoor dat ze voldoen aan het Google Merchant Center-beleid. We verifiëren de producten **elke keer dat een verandering wordt gedetecteerd** en als er niet-conforme producten zijn, geven we advies over wat er moet gebeuren. Klik op niet-conforme producten voor meer informatie.\n\nNa indiening kent Google aan elk product een status toe: **Goedgekeurd, Verlopen, In behandeling** of **Afgekeurd**.",
         "reportCards": {
-          "selectedProducts": "My selected products",
-          "selectedProductsDescription": "Selected products with variations in product feed languages",
+          "selectedProducts": ">Mijn geselecteerde producten",
+          "selectedProductsDescription": ">Geselecteerde producten met variaties in productfeedtalen",
           "verified": "Conforme producten",
           "verifiedDescription": "Door PrestaShop-goedgekeurde producten die klaar zijn om naar Google te worden verzonden.",
           "nonCompliant": "Non-conforme producten",
@@ -1057,7 +1057,7 @@
     "select": "Selecteer",
     "editContact": "Contactgegevens bewerken",
     "update": "Bijwerken",
-    "updateModule": "Update module",
+    "updateModule": ">Module bijwerken",
     "validateSelection": "Selectie bevestigen",
     "visitThe": "Bezoek de {0} voor meer informatie",
     "createPmax": "Maximale prestaties-campagne aanmaken",
@@ -1066,7 +1066,7 @@
     "signGadsToS": "Servicevoorwaarden ondertekenen op Google Ads",
     "enableEnhancedConversions": "Verbeterde conversietracking activeren",
     "loadNextPage": "Volgende resultaten laden",
-    "notifyAvailable": "Notify me when available"
+    "notifyAvailable": ">Informeer me wanneer dit beschikbaar is"
   },
   "badge": {
     "free": "Gratis",
@@ -1107,7 +1107,7 @@
     "textDisconnectMCA": "Als u uw Merchant Center loskoppelt, hebt u geen toegang meer tot uw Google-advertenties in deze module en wordt een lopende campagne onderbroken. ",
     "textoverwrite": "Het overschrijven van bestaande claim zal uw vorige account deactiveren en bestaande campagnes pauzeren die aan die account gekoppeld zijn- gratis listings en Shopping campagnes.  \nAls u een andere Shopping-campagne voert, raden wij u aan deze te pauzeren.",
     "titleCancelWithoutSaving": "Annuleren zonder op te slaan?",
-    "textCancelProductFeed": "You will lose all unsaved changes if you continue. To successully submit your product data to Google, you need to complete all steps.",
+    "textCancelProductFeed": ">Je verliest alle niet opgeslagen wijzigingen als je doorgaat. Om je productgegevens in te dienen bij Google, moet je alle stappen voltooien.",
     "titleQuitWithoutSaving": "Gestopt zonder te sparen?",
     "titleOverwriteProductFeed": "Bestaande product feed overschrijven?",
     "textOverwriteProductFeed": "Als u uw bestaande productfeed overschrijft, wordt deze verwijderd. U moet een nieuwe product feed configureren.",
@@ -1123,7 +1123,7 @@
     "disconnectedUserBo": "Je bent losgekoppeld van de backoffice. Je wordt binnen {0} seconden automatisch doorgestuurd naar de inlogpagina.",
     "titleDisconnectedUserBo": "Verbinding verbroken",
     "titleEnhancedConversionsIntro": "Meet de effectiviteit van je advertenties",
-    "textEnhancedConversionsIntro": "Enhance your conversion tracking accuracy and empower your bidding strategy with our latest feature: Enhanced Conversion Tracking. This feature seamlessly integrates with your existing conversion tags, ensuring the secure and privacy-conscious transmission of conversion data from your website to Google.Be careful to follow these simple instructions during activation to make sure the feature works properly:\n1. Check the checkbox “Turn on enhanced conversions”\n2. Accept the Customer Data terms (if not already accepted in the past)\n3. Select “Google Tag” as the method\n4. Save your selections"
+    "textEnhancedConversionsIntro": ">Verbeter de nauwkeurigheid van je conversietracking en versterk je biedstrategie met onze nieuwste functie: Verbeterde conversietracking. Deze functie kan naadloos worden geïntegreerd met je bestaande conversietags en zorgt voor de veilige en privacybewuste overdracht van conversiegegevens van je website naar Google. Volg deze eenvoudige instructies tijdens het activeren om ervoor te zorgen dat de functie goed werkt:\n1. Vink het selectievakje ‘Verbeterde conversies inschakelen’ aan\n2. Accepteer de voorwaarden voor klantgegevens (indien niet al in het verleden geaccepteerd)\n3. Selecteer ‘Google Tag’ als de methode\n4. Bewaar je selecties"
   },
   "tooltip": {
     "googleAccountRequired": "Vereist configuratie Google-account",
@@ -1207,11 +1207,11 @@
     "ctaCreateFirstCampaign": "Je eerste PMax-campagne aanmaken",
     "textCampaignsBanner": "Maak je eerste campagne aan en bereik meer relevante shoppers via alle kanalen van Google. Laat Google's machine learning je advertentieplaatsingen optimaliseren en je verkeer en verkoop efficiënt verbeteren.",
     "monetization": {
-      "textNotifyPreMonetization": "We’ll let you know when the paid plan is available.",
-      "titleInfo": "Pricing update",
-      "infoPrice": "Starting from July 31, a monthly subscription of €19.99 excluding taxes will be required to continue using PrestaShop Marketing*. To ease this transition, you can take advantage of a special rate of €14.99 excluding taxes until December 31, 2024.",
-      "freeTrial": "You’ll get a 14-day free trial when you subscribe. There's no automatic enrollment - it’s up to you to decide if you want to switch to the paid plan. You can cancel at any time.",
-      "hostedSubscribers": "*PrestaShop Marketing remains free for PrestaShop Hosted subscribers."
+      "textNotifyPreMonetization": ">We laten je weten wanneer het betaalde abonnement beschikbaar is.",
+      "titleInfo": ">Prijsupdate",
+      "infoPrice": ">Vanaf 31 juli is een maandabonnement van € 19,99 exclusief btw vereist om PrestaShop Marketing te blijven gebruiken*. Om deze overgang te vergemakkelijken, kun je tot 31 december 2024 profiteren van een speciaal tarief van € 14,99 exclusief btw.",
+      "freeTrial": ">Je krijgt een gratis proefperiode van 14 dagen wanneer je je abonneert. Er is geen automatische inschrijving: het is aan jou om te beslissen of je wilt overschakelen naar het betaalde abonnement. Opzeggen kan op elk gewenst moment.",
+      "hostedSubscribers": ">*PrestaShop Marketing blijft gratis voor PrestaShop Hosted-abonnees."
     }
   },
   "tipsAndTricks": {
