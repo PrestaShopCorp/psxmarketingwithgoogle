@@ -3,38 +3,88 @@
     <div class="row">
       <AlertCmp />
     </div>
+
+    <!-- PS Account -->
     <div class="row mb-4 ps_gs-onboardingpage">
       <div class="col-12 col-md-5">
         <div
-          class="is-sticky pb-3"
+          class="is-sticky pb-3 ml-4"
         >
           <section-title
-            :step-number="1"
             :step-title="$t('onboarding.sectionTitle.psAccount')"
             :is-enabled="true"
-            :is-done="stepsAreCompleted.step1"
           />
         </div>
       </div>
-      <div class="col-12 col-md-7">
+      <div class="col-12 col-md-7 mb-4">
         <prestashop-accounts
           class="ps_gs-ps-account-card"
         />
+      </div>
+
+      <!-- Subscription with billing -->
+      <div
+        class="col-12 col-md-5"
+      >
+        <div
+          class="is-sticky pb-3 ml-4"
+        >
+          <section-title
+            :step-title="$t('onboarding.sectionTitle.billing.title')"
+            :is-enabled="stepsAreCompleted.step1"
+          />
+          <div class="stepper-onboarding-subtitle">
+            <p class="text-justify ps_gs-fz-14">
+              {{ $t('onboarding.sectionTitle.billing.description') }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="col-12 col-md-7"
+      >
+        <billing-card :disabled="!stepsAreCompleted.step1" />
+      </div>
+
+      <!-- CloudSynch -->
+      <div
+        v-if="merchantIsSuscribed"
+        class="col-12 col-md-5"
+      >
+        <div
+          class="is-sticky pb-3 ml-4"
+        >
+          <section-title
+            :step-title="$t('onboarding.sectionTitle.cloudSync.title')"
+            :is-enabled="true"
+          />
+          <div class="stepper-onboarding-subtitle">
+            <p class="text-justify ps_gs-fz-14">
+              {{ $t('onboarding.sectionTitle.billing.description') }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        v-if="merchantIsSuscribed"
+        class="col-12 col-md-7"
+      >
         <div
           id="prestashop-cloudsync"
           class="my-3"
         />
       </div>
 
+      <!-- Google Account + GMC + Product Feed -->
       <div class="col-12 col-md-5">
         <div
-          class="is-sticky pb-3"
+          class="is-sticky pb-3 ml-4"
         >
           <section-title
-            :step-number="2"
             :step-title="$t('onboarding.sectionTitle.freeListing.title')"
-            :is-enabled="stepsAreCompleted.step1"
-            :is-done="stepsAreCompleted.step2"
+            :is-enabled="stepsAreCompleted.step2"
           />
           <div class="stepper-onboarding-subtitle">
             <p class="text-justify ps_gs-fz-14">
@@ -48,7 +98,7 @@
       </div>
       <div class="col-12 col-md-7 mb-3">
         <google-account-card
-          :is-enabled="stepsAreCompleted.step1"
+          :is-enabled="stepsAreCompleted.step2"
           :loading="googleIsLoading"
           :user="getGoogleAccount"
           :is-connected="googleAccountIsOnboarded"
@@ -71,15 +121,14 @@
         />
       </div>
 
+      <!-- Google Ads -->
       <div class="col-12 col-md-5">
         <div
-          class="is-sticky pb-3"
+          class="is-sticky pb-3 ml-4"
         >
           <section-title
-            :step-number="3"
             :step-title="$t('onboarding.sectionTitle.smartShoppingCampaign.title')"
-            :is-enabled="stepsAreCompleted.step2"
-            :is-done="stepsAreCompleted.step3"
+            :is-enabled="stepsAreCompleted.step3"
           />
           <div class="stepper-onboarding-subtitle">
             <VueShowdown
@@ -91,15 +140,15 @@
       </div>
       <div class="col-12 col-md-7">
         <GoogleAdsAccountCard
-          :is-enabled="stepsAreCompleted.step2"
+          :is-enabled="stepsAreCompleted.step3"
           :loading="googleAdsIsLoading"
           @selectGoogleAdsAccount="onGoogleAdsAccountSelected()"
           @disconnectionGoogleAdsAccount="onGoogleAdsAccountDisconnectionRequest"
           @creationGoogleAdsAccount="onGoogleAdsAccountTogglePopin"
         />
         <CampaignCard
-          v-if="stepsAreCompleted.step2"
-          :is-enabled="stepsAreCompleted.step3"
+          v-if="stepsAreCompleted.step3"
+          :is-enabled="stepsAreCompleted.step4"
           :loading="SSCIsLoading"
           @openPopin="proceedToCampaignCreation"
           @remarketingTagHasBeenActivated="checkAndOpenPopinConfigrationDone"
@@ -164,6 +213,7 @@ import GoogleAccountCard from '@/components/google-account/google-account-card.v
 import GoogleAdsAccountCard from '@/components/google-ads-account/google-ads-account-card.vue';
 import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
 import ProductFeedCard from '@/components/onboarding/product-feed-card.vue';
+import BillingCard from '@/components/onboarding/billing-card.vue';
 import GoogleAccountPopinDisconnect from '@/components/google-account/google-account-popin-disconnect.vue';
 import MerchantCenterAccountPopinDisconnect from '@/components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
 import GoogleAdsAccountPopinDisconnect from '@/components/google-ads-account/google-ads-account-popin-disconnect.vue';
@@ -191,6 +241,7 @@ export default defineComponent({
     GoogleAdsAccountCard,
     MerchantCenterAccountCard,
     ProductFeedCard,
+    BillingCard,
     CampaignCard,
     CampaignTracking,
     PromoCard,
@@ -215,6 +266,7 @@ export default defineComponent({
       phoneNumberVerified: false,
       cloudSyncSharingConsentScreenStarted: false,
       cloudSyncSharingConsentGiven: false,
+      merchantIsSuscribed: true,
     };
   },
   methods: {
@@ -235,7 +287,7 @@ export default defineComponent({
     checkAndOpenPopinConfigrationDone() {
       if (this.billingSettingsCompleted) {
         this.$bvModal.show(
-          this.$refs.PopinModuleConfigured.$refs.modal.id,
+          this.$refs.PopinModuleConfigured?.$refs.modal.id,
         );
       }
     },
@@ -250,12 +302,12 @@ export default defineComponent({
 
     onGoogleAccountDissociationRequest() {
       this.$bvModal.show(
-        this.$refs.googleAccountDisconnectModal.$refs.modal.id,
+        this.$refs.googleAccountDisconnectModal?.$refs.modal.id,
       );
     },
     onMerchantCenterAccountDissociationRequest() {
       this.$bvModal.show(
-        this.$refs.mcaDisconnectModal.$refs.modal.id,
+        this.$refs.mcaDisconnectModal?.$refs.modal.id,
       );
     },
     onPhoneNumberVerified() {
@@ -264,19 +316,19 @@ export default defineComponent({
     onGoogleAdsAccountDisconnectionRequest() {
       this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', false);
       this.$bvModal.show(
-        this.$refs.GoogleAdsAccountPopinDisconnect.$refs.modal.id,
+        this.$refs.GoogleAdsAccountPopinDisconnect?.$refs.modal.id,
       );
     },
     onGoogleAdsAccountTogglePopin() {
       this.$bvModal.show(
-        this.$refs.GoogleAdsAccountPopinNew.$refs.modal.id,
+        this.$refs.GoogleAdsAccountPopinNew?.$refs.modal.id,
       );
     },
     proceedToCampaignCreation() {
       // If the remarketing tag is not set yet, open the modal
       if (!this.accountHasAtLeastOneCampaign || !this.remarketingTagIsSet) {
         this.$bvModal.show(
-          this.$refs.SSCPopinActivateTrackingOnboardingPage.$refs.modal.id,
+          this.$refs.SSCPopinActivateTrackingOnboardingPage?.$refs.modal.id,
         );
         return;
       }
@@ -408,16 +460,17 @@ export default defineComponent({
     },
     stepsAreCompleted() {
       return {
-        step1: this.psAccountsIsOnboarded
-          && (this.cloudSyncSharingConsentGiven
+        step1: this.psAccountsIsOnboarded,
+        step2: this.merchantIsSuscribed
+        && (this.cloudSyncSharingConsentGiven
           || this.googleAccountIsOnboarded
           // Make CSC optional when the running PHP is not up to date
           || !window.contextPsEventbus
-          ),
-        step2: this.googleAccountIsOnboarded
+        ),
+        step3: this.googleAccountIsOnboarded
           && this.merchantCenterAccountIsChosen
           && this.productFeedIsConfigured,
-        step3: this.productFeedIsConfigured
+        step4: this.productFeedIsConfigured
         && this.googleAdsAccountIsChosen
         && this.billingSettingsCompleted,
       };

@@ -76,12 +76,22 @@
   },
   "onboarding": {
     "cmpAlert": {
-        "title": "GDPR updates",
-        "paragraph": "Starting March 2024, businesses advertising to users in the European Economic Area (EEA) must create a strong framework to collect and communicate end-users’ consent choices via consent banners integrated with Google’s Consent Mode. To build a strong foundation for measuring your ads you must set up a cookie banner through a supported, dedicated Consent Management Platform. If you do not already have one, we recommend that you use the following consent management platform, which is compliant with the new regulations: {link}",
-        "moduleGDPR": "Cookies GDPR Law (Blocker) + Google Consent Mode V2"
-      },
-      "sectionTitle": {
+      "title": "GDPR updates",
+      "paragraph": "Starting March 2024, businesses advertising to users in the European Economic Area (EEA) must create a strong framework to collect and communicate end-users’ consent choices via consent banners integrated with Google’s Consent Mode. To build a strong foundation for measuring your ads you must set up a cookie banner through a supported, dedicated Consent Management Platform. If you do not already have one, we recommend that you use the following consent management platform, which is compliant with the new regulations: {link}",
+      "moduleGDPR": "Cookies GDPR Law (Blocker) + Google Consent Mode V2"
+    },
+    "sectionTitle": {
       "psAccount": "Link your shop to your PrestaShop account",
+      "billing": {
+        "title": "Billing information",
+        "description": "Access and manage your subscription and related payment method.",
+        "alertNoSynchro": "Your catalog synchronization with Google Merchant Center is paused because PrestaShop Marketing now requires a €14.99 excl. tax/month subscription. ",
+        "cardText": "Subscribe to PrestaShop Marketing with Google for €X excl. tax /month. 14-day free trial. Cancel anytime."
+      },
+      "cloudSync": {
+        "title": "Allow data sharing",
+        "description": "Help us enhance your experience and improve our service by giving consent to securely share relevant data with us."
+      },
       "freeListing": {
         "title": "Reach more people on Google with free listings",
         "subtitle": "Free listings give you access to millions of shoppers searching for products similar to yours. Display your products for free in organically ranked listings on the Shopping tab when you connect your Google account to Google Merchant Center.",
@@ -1067,7 +1077,8 @@
     "moreActions": "More Actions",
     "signGadsToS": "Sign terms of service on Google Ads",
     "enableEnhancedConversions": "Activate enhanced conversion tracking",
-    "loadNextPage": "Load next results"
+    "loadNextPage": "Load next results",
+    "startFreeTrial": "Start free trial"
   },
   "badge": {
     "free": "Free",
