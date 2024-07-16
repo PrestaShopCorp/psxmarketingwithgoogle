@@ -76,9 +76,9 @@
   },
   "onboarding": {
     "cmpAlert": {
-      "title": "GDPR updates",
-      "paragraph": "Starting March 2024, businesses advertising to users in the European Economic Area (EEA) must create a strong framework to collect and communicate end-users’ consent choices via consent banners integrated with Google’s Consent Mode. To build a strong foundation for measuring your ads you must set up a cookie banner through a supported, dedicated Consent Management Platform. If you do not already have one, we recommend that you use the following consent management platform, which is compliant with the new regulations: {link}",
-      "moduleGDPR": "Cookies GDPR Law (Blocker) + Google Consent Mode V2"
+      "title": "Aggiornamenti sul GDPR",
+      "paragraph": "A partire da marzo 2024, le aziende che fanno pubblicità agli utenti dello Spazio economico europeo (SEE) devono creare un quadro solido per raccogliere e comunicare le scelte di consenso degli utenti finali tramite banner di consenso integrati con la modalità di consenso di Google. Per creare una solida base per la misurazione degli annunci è necessario impostare un banner di consenso attraverso una piattaforma di gestione del consenso dedicata e supportata. Se non ne hai già una, ti consigliamo di utilizzare la seguente piattaforma di gestione del consenso, conforme alle nuove normative: {link}",
+      "moduleGDPR": "Legge Cookie GDPR (Blocker) + Modalità Consenso Google V2"
     },
     "sectionTitle": {
       "psAccount": "Collega il tuo shop al tuo account PrestaShop",
@@ -470,7 +470,7 @@
         "synchFilteredProducts": "Sincronizza prodotti filtrati",
         "synchFilteredProductsDesc": "Solo i prodotti selezionati verranno sincronizzati."
       },
-      "featureDeleted": "A feature has been deleted from your selection. Change your filters and try again. | Some features have been deleted from your selection. Change your filters and try again.",
+      "featureDeleted": "Una funzione è stata cancellata dalla selezione. Cambia i filtri e riprova. | Alcune funzionalità sono state eliminate dalla selezione. Cambia i filtri e riprova.",
       "lineFilter": {
         "errors": {
           "empty": "Questo campo è obbligatorio.",
@@ -478,7 +478,7 @@
           "invalidNumber": "È necessario un numero.",
           "invalidPositiveNumber": "È necessario un numero positivo.",
           "invalidInteger": "È richiesto un numero intero.",
-          "valueDoNotExist": "This value does not exist. | These values do not exist."
+          "valueDoNotExist": "Questo valore non esiste. | Questi valori non esistono."
         },
         "attributes": {
           "label": "Attributo",
@@ -621,7 +621,7 @@
     "intro": "Migliora l'accuratezza del monitoraggio delle conversioni e sblocca offerte più potenti. Questa funzione si affianca ai tag di conversione esistenti, inviando a Google dati di conversione sicuri e rispettosi della privacy del tuo sito web.",
     "signTosAlert": {
       "title": "Migliora il monitoraggio delle conversioni e sblocca offerte più potenti alle tue Ads",
-      "text": "Enable enhanced conversion tracking by agreeing to Google Ads' terms of service and setting Google tag method in a few steps following these [instructions]({0})[:target=\"_blank\"] during activation to make sure the feature works properly."
+      "text": "Abilita il monitoraggio delle conversioni migliorato accettando i termini di servizio di Google Ads e impostando il metodo Google tag in pochi passi seguendo questi [instructions]({0})[:target=\"_blank\"] durante l'attivazione per assicurarsi che la funzionalità funzioni correttamente."
     }
   },
   "smartShoppingCampaignCreation": {
@@ -759,7 +759,7 @@
         "noCurrency": "Nessuna valuta idonea"
       },
       "productVerification": {
-        "alertNoProductSelected": "Your product selection is empty. No products from your catalog are being sent to Google. Please update your product selection configuration.",
+        "alertNoProductSelected": "La selezione del prodotto è vuota. Nessun prodotto del tuo catalogo verrà inviato a Google. Aggiorna la configurazione della selezione del prodotto.",
         "stepTitle": "Prodotti verificati da PrestaShop prima dell'invio a Google",
         "stepDetails": "Prima di inviare tutti i tuoi prodotti (comprese le varianti), ci assicuriamo che siano conformi alle politiche del Merchant center di Google. Verifichiamo i prodotti **ogni volta che viene rilevata una modifica** e, in caso di prodotti non conformi, forniamo indicazioni su cosa è necessario fare. Per ulteriori informazioni, clicca sui prodotti non conformi.\n\nDopo l'invio, Google assegna a ciascun prodotto uno stato: **Approvato, in scadenza, in sospeso** o **Non approvato**.",
         "reportCards": {
@@ -1066,7 +1066,7 @@
     "signGadsToS": "Firma le condizioni di servizio su Google Ads",
     "enableEnhancedConversions": "Attivare il monitoraggio avanzato delle conversioni",
     "loadNextPage": "Carica i risultati successivi",
-    "notifyAvailable": "Notify me when available"
+    "notifyAvailable": "Notificami quando disponibile"
   },
   "badge": {
     "free": "Gratis",
@@ -1207,11 +1207,11 @@
     "ctaCreateFirstCampaign": "Crea la tua prima campagna PMax",
     "textCampaignsBanner": "Crea la tua prima campagna e raggiungi il tuo target di acquirenti su tutti i canali di Google. Lascia che il machine learning di Google ottimizzi gli inserimenti dei tuoi annunci e migliora in modo efficiente il traffico e le vendite.",
     "monetization": {
-      "textNotifyPreMonetization": "We’ll let you know when the paid plan is available.",
-      "titleInfo": "Pricing update",
-      "infoPrice": "Starting from July 31, a monthly subscription of €19.99 excluding taxes will be required to continue using PrestaShop Marketing*. To ease this transition, you can take advantage of a special rate of €14.99 excluding taxes until December 31, 2024.",
-      "freeTrial": "You’ll get a 14-day free trial when you subscribe. There's no automatic enrollment - it’s up to you to decide if you want to switch to the paid plan. You can cancel at any time.",
-      "hostedSubscribers": "*PrestaShop Marketing remains free for PrestaShop Hosted subscribers."
+      "textNotifyPreMonetization": "Ti faremo sapere quando il piano a pagamento sarà disponibile.",
+      "titleInfo": "Aggiornamento dei prezzi",
+      "infoPrice": "A partire dal 31 luglio, per continuare a utilizzare PrestaShop Marketing* sarà necessario un abbonamento mensile di 19,99 euro, tasse escluse. Per agevolare questa transizione, è possibile usufruire di una tariffa speciale di 14,99 euro tasse escluse fino al 31 dicembre 2024.",
+      "freeTrial": "Al momento dell'iscrizione, riceverai una prova gratuita di 14 giorni. Non è prevista l'iscrizione automatica: sarai tu a decidere se passare al piano a pagamento. Potrai cancellarti in qualsiasi momento.",
+      "hostedSubscribers": "*PrestaShop Marketing rimane gratuito per gli abbonati a PrestaShop Hosted."
     }
   },
   "tipsAndTricks": {
