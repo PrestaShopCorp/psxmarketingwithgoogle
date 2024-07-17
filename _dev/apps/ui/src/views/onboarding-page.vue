@@ -2,13 +2,14 @@
   <div class="pt-2 container">
     <div class="row">
       <AlertCmp />
+      <MonetizationBannerInformation v-if="!googleAccountIsOnboarded" />
     </div>
 
     <!-- PS Account -->
     <div class="row mb-4 ps_gs-onboardingpage">
       <div class="col-12 col-md-5">
         <div
-          class="is-sticky pb-3 ml-4"
+          class="is-sticky pb-3"
         >
           <section-title
             :step-title="$t('onboarding.sectionTitle.psAccount')"
@@ -27,11 +28,11 @@
         class="col-12 col-md-5"
       >
         <div
-          class="is-sticky pb-3 ml-4"
+          class="is-sticky pb-3"
         >
           <section-title
             :step-title="$t('onboarding.sectionTitle.billing.title')"
-            :is-enabled="stepsAreCompleted.step1"
+            :is-enabled="stepsAreCompleted.step1 && !googleAccountIsOnboarded"
           />
           <div class="stepper-onboarding-subtitle">
             <p class="text-justify ps_gs-fz-14">
@@ -53,7 +54,7 @@
         class="col-12 col-md-5"
       >
         <div
-          class="is-sticky pb-3 ml-4"
+          class="is-sticky pb-3"
         >
           <section-title
             :step-title="$t('onboarding.sectionTitle.cloudSync.title')"
@@ -80,11 +81,11 @@
       <!-- Google Account + GMC + Product Feed -->
       <div class="col-12 col-md-5">
         <div
-          class="is-sticky pb-3 ml-4"
+          class="is-sticky pb-3"
         >
           <section-title
             :step-title="$t('onboarding.sectionTitle.freeListing.title')"
-            :is-enabled="stepsAreCompleted.step2"
+            :is-enabled="stepsAreCompleted.step2 || googleAccountIsOnboarded"
           />
           <div class="stepper-onboarding-subtitle">
             <p class="text-justify ps_gs-fz-14">
@@ -98,7 +99,7 @@
       </div>
       <div class="col-12 col-md-7 mb-3">
         <google-account-card
-          :is-enabled="stepsAreCompleted.step2"
+          :is-enabled="stepsAreCompleted.step2 || googleAccountIsOnboarded"
           :loading="googleIsLoading"
           :user="getGoogleAccount"
           :is-connected="googleAccountIsOnboarded"
@@ -124,7 +125,7 @@
       <!-- Google Ads -->
       <div class="col-12 col-md-5">
         <div
-          class="is-sticky pb-3 ml-4"
+          class="is-sticky pb-3"
         >
           <section-title
             :step-title="$t('onboarding.sectionTitle.smartShoppingCampaign.title')"
@@ -226,6 +227,7 @@ import PsToast from '@/components/commons/ps-toast.vue';
 import PopinModuleConfigured from '@/components/commons/popin-configured.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import AlertCmp from '@/components/commons/alert-cmp.vue';
+import MonetizationBannerInformation from '@/components/monetization/monetization-banner-information.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import EnhancedConversionsCard from '@/components/enhanced-conversions/enhanced-conversions-card.vue';
 import ModalEcIntro from '@/components/enhanced-conversions/modal-ec-intro.vue';
@@ -254,6 +256,7 @@ export default defineComponent({
     TrackingActivationModal,
     PopinModuleConfigured,
     AlertCmp,
+    MonetizationBannerInformation,
   },
   data() {
     return {
@@ -266,7 +269,7 @@ export default defineComponent({
       phoneNumberVerified: false,
       cloudSyncSharingConsentScreenStarted: false,
       cloudSyncSharingConsentGiven: false,
-      merchantIsSuscribed: true,
+      merchantIsSuscribed: false,
     };
   },
   methods: {

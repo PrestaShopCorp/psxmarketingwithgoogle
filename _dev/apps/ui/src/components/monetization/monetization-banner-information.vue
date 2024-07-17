@@ -1,0 +1,41 @@
+<template>
+  <div class="col-12 mb-4">
+    <div class="row bg-ocean-blue-500 px-5 py-4 m-auto w-100">
+      <div class="col-md-4">
+        <img
+          src="@/assets/images/included-in-subscription.svg"
+        >
+      </div>
+      <div class="col-md-8">
+        <h3 class="h2 font-family-prestasfont text-primary">
+          {{ $t('banner.monetization.bannerInfoTitle') }}
+        </h3>
+        <div
+          v-for="(item, index) in advantages"
+          :key="index"
+          class="d-flex align-items-center mt-1"
+        >
+          <i class="material-icons-round ps_gs-fz-24 mr-1">check_circle</i>
+          <span class="font-weight-600">{{ item }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import {defineComponent} from 'vue';
+
+export default defineComponent({
+  name: 'MonetizationBannerInformation',
+  data() {
+    return {
+      advantages: [
+        this.$t('banner.monetization.bannerInfoAdvantage1'),
+        this.$t('banner.monetization.bannerInfoAdvantage2'),
+        this.$t('banner.monetization.bannerInfoAdvantage3'),
+      ],
+    };
+  },
+});
+</script>
