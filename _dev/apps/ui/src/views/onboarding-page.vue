@@ -2,8 +2,15 @@
   <div class="pt-2 container">
     <div class="row">
       <AlertCmp />
-      <MonetizationBannerInformation v-if="!googleAccountIsOnboarded" />
+      <MonetizationBannerInformation v-if="!googleAccountIsOnboarded && !merchantIsSuscribed" />
     </div>
+
+    <b-button
+      variant="primary"
+      @click="toogleSubscription"
+    >
+      {{ !merchantIsSuscribed ? "Is subribed" : "Not subscribed" }}
+    </b-button>
 
     <!-- PS Account -->
     <div class="row mb-4 ps_gs-onboardingpage">
@@ -32,7 +39,7 @@
         >
           <section-title
             :step-title="$t('onboarding.sectionTitle.billing.title')"
-            :is-enabled="stepsAreCompleted.step1 && !googleAccountIsOnboarded"
+            :is-enabled="stepsAreCompleted.step1 && googleAccountIsOnboarded"
           />
           <div class="stepper-onboarding-subtitle">
             <p class="text-justify ps_gs-fz-14">
@@ -43,14 +50,17 @@
       </div>
 
       <div
-        class="col-12 col-md-7"
+        class="col-12 col-md-7 mb-3"
       >
+        <monetization-banner-warning-synchro
+          v-if="googleAccountIsOnboarded && !merchantIsSuscribed"
+        />
         <billing-card :disabled="!stepsAreCompleted.step1" />
       </div>
 
       <!-- CloudSynch -->
       <div
-        v-if="merchantIsSuscribed"
+        v-show="merchantIsSuscribed"
         class="col-12 col-md-5"
       >
         <div
@@ -69,7 +79,7 @@
       </div>
 
       <div
-        v-if="merchantIsSuscribed"
+        v-show="merchantIsSuscribed"
         class="col-12 col-md-7"
       >
         <div
@@ -228,6 +238,7 @@ import PopinModuleConfigured from '@/components/commons/popin-configured.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import AlertCmp from '@/components/commons/alert-cmp.vue';
 import MonetizationBannerInformation from '@/components/monetization/monetization-banner-information.vue';
+import MonetizationBannerWarningSynchro from '@/components/monetization/monetization-banner-warning-synchro.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import EnhancedConversionsCard from '@/components/enhanced-conversions/enhanced-conversions-card.vue';
 import ModalEcIntro from '@/components/enhanced-conversions/modal-ec-intro.vue';
@@ -257,6 +268,7 @@ export default defineComponent({
     PopinModuleConfigured,
     AlertCmp,
     MonetizationBannerInformation,
+    MonetizationBannerWarningSynchro,
   },
   data() {
     return {
@@ -394,10 +406,15 @@ export default defineComponent({
       });
     },
     initAccountsComponent() {
+      console.log('googleAccountIsOnboarded', this.googleAccountIsOnboarded);
       if (!window.psaccountsVue) {
         return;
       }
       window.psaccountsVue.init();
+    },
+    toogleSubscription() {
+      // Just for the test pending the procedure
+      this.merchantIsSuscribed = !this.merchantIsSuscribed;
     },
   },
   computed: {
