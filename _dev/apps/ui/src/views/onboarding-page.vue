@@ -3,6 +3,15 @@
     <div class="row">
       <AlertCmp />
       <MonetizationBannerInformation v-if="!googleAccountIsOnboarded && !merchantIsSuscribed" />
+      <b-alert
+        v-if="displayBannerSuccessMonetization"
+        show
+        variant="success"
+        class="border border-success mx-3 w-100"
+        dismissible
+      >
+        {{ $t('banner.monetization.bannerSuccessBilling') }}
+      </b-alert>
     </div>
 
     <b-button
@@ -52,10 +61,18 @@
       <div
         class="col-12 col-md-7 mb-3"
       >
-        <monetization-banner-warning-synchro
+        <b-alert
           v-if="googleAccountIsOnboarded && !merchantIsSuscribed"
+          show
+          variant="warning"
+          class="border border-warning"
+        >
+          {{ $t('banner.monetization.bannerNoSynchro') }}
+        </b-alert>
+        <billing-card
+          :disabled="!stepsAreCompleted.step1"
+          @clickToSubscibe="launchMonetization()"
         />
-        <billing-card :disabled="!stepsAreCompleted.step1" />
       </div>
 
       <!-- CloudSynch -->
@@ -238,7 +255,6 @@ import PopinModuleConfigured from '@/components/commons/popin-configured.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import AlertCmp from '@/components/commons/alert-cmp.vue';
 import MonetizationBannerInformation from '@/components/monetization/monetization-banner-information.vue';
-import MonetizationBannerWarningSynchro from '@/components/monetization/monetization-banner-warning-synchro.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import EnhancedConversionsCard from '@/components/enhanced-conversions/enhanced-conversions-card.vue';
 import ModalEcIntro from '@/components/enhanced-conversions/modal-ec-intro.vue';
@@ -268,7 +284,6 @@ export default defineComponent({
     PopinModuleConfigured,
     AlertCmp,
     MonetizationBannerInformation,
-    MonetizationBannerWarningSynchro,
   },
   data() {
     return {
@@ -282,6 +297,7 @@ export default defineComponent({
       cloudSyncSharingConsentScreenStarted: false,
       cloudSyncSharingConsentGiven: false,
       merchantIsSuscribed: false,
+      displayBannerSuccessMonetization: false,
     };
   },
   methods: {
@@ -412,9 +428,13 @@ export default defineComponent({
       }
       window.psaccountsVue.init();
     },
+    launchMonetization() {
+      this.displayBannerSuccessMonetization = true;
+    },
     toogleSubscription() {
       // Just for the test pending the procedure
       this.merchantIsSuscribed = !this.merchantIsSuscribed;
+      if (this.merchantIsSuscribed) this.displayBannerSuccessMonetization = true;
     },
   },
   computed: {

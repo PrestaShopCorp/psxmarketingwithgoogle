@@ -1229,7 +1229,8 @@
       "bannerInfoAdvantage1": "Seamlessly connect and link all your Google accounts",
       "bannerInfoAdvantage2": "Gain access to comprehensive monitoring of your product catalog",
       "bannerInfoAdvantage3": "Reach the right audience at the right time with Performance Max campaigns",
-      "bannerNoSynchro": "Your catalog synchronization with Google Merchant Center is paused because PrestaShop Marketing now requires a €14.99 excl. tax/month subscription."
+      "bannerNoSynchro": "Your catalog synchronization with Google Merchant Center is paused because PrestaShop Marketing now requires a €14.99 excl. tax/month subscription.",
+      "bannerSuccessBilling": "Your subscription is now active, and your daily synchronization has resumed. Your next billing date is May 12, 2024."
     }
   },
   "tipsAndTricks": {

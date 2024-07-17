@@ -6,6 +6,7 @@
         variant="primary"
         class="ml-lg-3 text-nowrap"
         :disabled="disabled"
+        @click="$emit('clickToSubscibe')"
       >
         {{ $t('cta.startFreeTrial') }}
       </b-button>
