@@ -34,7 +34,6 @@ export default defineComponent({
   data() {
     return {
       loading: false,
-      upgradeLink: null,
     };
   },
   methods: {
@@ -47,10 +46,8 @@ export default defineComponent({
       try {
         const res = await this.$store.dispatch(`app/${ActionsTypes.GET_MODULES_VERSIONS}`, 'psxmarketingwithgoogle');
 
-        this.upgradeLink = res?.upgradeLink;
-
-        if (this.upgradeLink) {
-          await fetch(this.upgradeLink, {
+        if (res?.upgradeLink) {
+          await fetch(res?.upgradeLink, {
             method: 'POST',
             headers: {'Content-Type': 'application/json', Accept: 'application/json'},
           });
