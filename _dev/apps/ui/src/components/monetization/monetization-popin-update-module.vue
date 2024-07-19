@@ -15,6 +15,7 @@
       </h4>
       {{ $t('banner.monetization.popinUpdateTitle') }}
     </template>
+    <div v-if="text">{{ text }}</div>
     <slot name="content" />
     <div class="mb-3 d-flex justify-content-end mt-3">
       <template>
@@ -43,6 +44,12 @@ import PsModal from '../commons/ps-modal';
 export default defineComponent({
   components: {
     PsModal,
+  },
+  props: {
+    text: {
+      type: String,
+      default: '',
+    },
   },
   data() {
     return {

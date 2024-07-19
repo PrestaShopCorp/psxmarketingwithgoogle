@@ -1,7 +1,7 @@
 import MonetizatizationBannerInformation from '../src/components/monetization/monetization-banner-information.vue';
 
 export default {
-  title: 'Onboarding/Banner',
+  title: 'Onboarding/Banners',
   component: MonetizatizationBannerInformation,
 };
 
@@ -12,5 +12,5 @@ const Template = (args, {argTypes}) => ({
     '<MonetizatizationBannerInformation v-bind="$props" />',
 });
 
-export const BannerInformation: any = Template.bind({});
-BannerInformation.args = {};
+export const MonetizationInformation: any = Template.bind({});
+MonetizationInformation.args = {};
