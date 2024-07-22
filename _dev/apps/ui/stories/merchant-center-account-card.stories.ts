@@ -7,6 +7,7 @@ import {
   merchantCenterAccountConnected,
   merchantCenterNewGmcNotListed,
   merchantCenterAccountSuspended,
+  merchantCenterAccountUnverifiedAndUnclaimed,
 } from '../.storybook/mock/merchant-center-account';
 import {WebsiteClaimErrorReason} from '../src/store/modules/accounts/state';
 import {rest} from 'msw';
@@ -162,7 +163,7 @@ checkingInProgress.args = {
   isEnabled: true,
   loading: false,
   initialMcaStatus: Object.assign({},
-    merchantCenterAccountConnected,
+    merchantCenterAccountUnverifiedAndUnclaimed,
     {
       gmcStatus: WebsiteClaimErrorReason.PendingCheck,
     },
@@ -174,7 +175,7 @@ VerificationAndClaimingInProgress.args = {
   isEnabled: true,
   loading: false,
   initialMcaStatus: Object.assign({},
-    merchantCenterAccountConnected,
+    merchantCenterAccountUnverifiedAndUnclaimed,
     {
       gmcStatus: WebsiteClaimErrorReason.PendingCheck,
     },
@@ -218,7 +219,7 @@ OverwriteNeeded.args = {
   isEnabled: true,
   loading: false,
   initialMcaStatus: Object.assign({},
-    merchantCenterAccountConnected,
+    merchantCenterAccountUnverifiedAndUnclaimed,
     {
       gmcStatus: WebsiteClaimErrorReason.OverwriteNeeded,
     },
@@ -230,7 +231,7 @@ OverwriteNeededWithManualAction.args = {
   isEnabled: true,
   loading: false,
   initialMcaStatus: Object.assign({},
-    merchantCenterAccountConnected,
+    merchantCenterAccountUnverifiedAndUnclaimed,
     {
       gmcStatus: WebsiteClaimErrorReason.OverwriteNeededWithManualAction,
     },
@@ -296,7 +297,7 @@ creationInProgress.args = {
   isEnabled: true,
   loading: false,
   initialMcaStatus: Object.assign({},
-    merchantCenterAccountConnected,
+    merchantCenterAccountUnverifiedAndUnclaimed,
     {
       gmcStatus: WebsiteClaimErrorReason.PendingCreation,
     },
@@ -308,7 +309,7 @@ creationInProgressLong.args = {
   isEnabled: true,
   loading: false,
   initialMcaStatus: Object.assign({},
-    merchantCenterAccountConnected,
+    merchantCenterAccountUnverifiedAndUnclaimed,
     {
       gmcStatus: WebsiteClaimErrorReason.StillPendingCreation,
     },

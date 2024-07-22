@@ -39,7 +39,7 @@
 
 <script lang="ts">
 import {PropType, defineComponent} from 'vue';
-import {VueShowdown} from 'vue-showdown';
+import VueShowdown from 'vue-showdown';
 import StatusCardComponent, {StatusCardParameters} from '../status-card.vue';
 import {VerificationStats} from '@/store/modules/product-feed/state';
 
@@ -61,8 +61,8 @@ export default defineComponent({
   computed: {
     statusCards(): StatusCardParameters[] {
       return [{
-        title: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.productsInCatalog'),
-        description: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.productsInCatalogDescription'),
+        title: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.selectedProducts'),
+        description: this.$t('productFeedPage.dashboardPage.productVerification.reportCards.selectedProductsDescription'),
         value: this.verificationsStats.productsInCatalog,
         variant: 'info',
         icon: 'redeem',

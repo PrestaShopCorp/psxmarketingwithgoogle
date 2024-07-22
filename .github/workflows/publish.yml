@@ -22,13 +22,13 @@ jobs:
           echo PATCH=$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 3) >> $GITHUB_OUTPUT
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v4
         with:
           version: ${{ env.PNPM_VERSION }}
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
@@ -60,11 +60,22 @@ jobs:
         with:
           paths: 'crowdin.yml'
 
+      - name: Create directory with repo name and copy files
+        run: |
+          repo_name="${{ github.event.repository.name }}"
+          mkdir "$repo_name"
+          shopt -s dotglob nullglob
+          for file in *; do
+            if [ "$file" != "$repo_name" ]; then
+              mv "$file" "$repo_name/"
+            fi
+          done
+
       - name: Create & upload artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ github.event.repository.name }}
-          path: ../
+          path: '.'
 
   upload_release_asset_production:
     name: Upload the production zip asset to the release
@@ -72,13 +83,13 @@ jobs:
     needs: build
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4
         with:
           name: ${{ github.event.repository.name }}
+          path: '.'
 
       - name: Prepare the production zip
         run: |
-          cd ${{ github.event.repository.name }}
           zip -r ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}.zip ${{ github.event.repository.name }} -x '*.git*'
 
       - name: Publish the production zip
@@ -86,7 +97,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./${{ github.event.repository.name }}/${{ github.event.repository.name }}-${{ github.event.release.tag_name }}.zip
+          asset_path: ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}.zip
           asset_name: ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}.zip
           asset_content_type: application/zip
 
@@ -96,27 +107,30 @@ jobs:
     needs: build
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4
         with:
           name: ${{ github.event.repository.name }}
+          path: '.'
+
+      - name: auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.G_CREDENTIAL_PREPRODUCTION }}
 
       - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@v0
+        uses: google-github-actions/setup-gcloud@v2
         with:
           project_id: ${{ secrets.G_PROJECT_PREPRODUCTION }}
-          service_account_key: ${{ secrets.G_CREDENTIAL_PREPRODUCTION }}
-          export_default_credentials: true
 
       - name: Copy env files
         run: |
           gcloud components install beta
-          gcloud beta secrets versions access latest --secret="google-shopping-module" >> psxmarketingwithgoogle/psxmarketingwithgoogle/.env
+          gcloud beta secrets versions access latest --secret="google-shopping-module" >> ${{ github.event.repository.name }}/.env
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.G_CREDENTIAL_PREPRODUCTION }}
 
       - name: Prepare the preproduction zip
         run: |
-          cd ${{ github.event.repository.name }}
           zip -r ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_preproduction.zip ${{ github.event.repository.name }} -x '*.git*'
 
       - name: Publish the preproduction zip
@@ -124,7 +138,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./${{ github.event.repository.name }}/${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_preproduction.zip
+          asset_path: ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_preproduction.zip
           asset_name: ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_preproduction.zip
           asset_content_type: application/zip
 
@@ -134,27 +148,30 @@ jobs:
     needs: build
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4
         with:
           name: ${{ github.event.repository.name }}
+          path: '.'
+
+      - name: auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.G_CREDENTIAL_PREPRODUCTION }}
 
       - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@v0
+        uses: google-github-actions/setup-gcloud@v2
         with:
           project_id: ${{ secrets.G_PROJECT_INTEGRATION }}
-          service_account_key: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
-          export_default_credentials: true
 
       - name: Copy env files
         run: |
           gcloud components install beta
-          gcloud beta secrets versions access latest --secret="google-shopping-module" >> psxmarketingwithgoogle/psxmarketingwithgoogle/.env
+          gcloud beta secrets versions access latest --secret="google-shopping-module" >> ${{ github.event.repository.name }}/.env
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
 
       - name: Prepare the integration zip
         run: |
-          cd ${{ github.event.repository.name }}
           zip -r ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_integration.zip ${{ github.event.repository.name }}  -x '*.git*'
 
       - name: Publish the integration zip
@@ -162,7 +179,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./${{ github.event.repository.name }}/${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_integration.zip
+          asset_path: ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_integration.zip
           asset_name: ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_integration.zip
           asset_content_type: application/zip
 
@@ -173,7 +190,7 @@ jobs:
     if: github.event.release.prerelease == false
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Download release asset
         uses: dsaltares/fetch-gh-release-asset@1.1.1
@@ -196,7 +213,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.release.prerelease == false
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Sentry Release PHP
         uses: getsentry/action-release@v1
         env:
@@ -219,13 +236,13 @@ jobs:
           echo MINOR=$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 2) >> $GITHUB_OUTPUT
           echo PATCH=$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 3) >> $GITHUB_OUTPUT
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v4
         with:
           version: ${{ env.PNPM_VERSION }}
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm

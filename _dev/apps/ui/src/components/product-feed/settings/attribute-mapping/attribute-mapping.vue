@@ -280,6 +280,14 @@ export default defineComponent({
       return this.$t(`tooltip.attributeMapping.${name}`);
     },
     nextStep() {
+      let hasError = false;
+      this.mappingAttributes.forEach((attribute) => {
+        hasError = attribute.fields.some((value) => value.mapped?.length === 0)
+        || hasError;
+      });
+      if (hasError) {
+        return;
+      }
       this.$segment.track('[GGL] Product feed config - Step 3', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
@@ -290,7 +298,7 @@ export default defineComponent({
       this.$router.push({
         name: 'product-feed-settings',
         params: {
-          step: ProductFeedSettingsPages.SYNC_SCHEDULE,
+          step: ProductFeedSettingsPages.PRODUCT_SELECTION,
         },
       });
       window.scrollTo(0, 0);

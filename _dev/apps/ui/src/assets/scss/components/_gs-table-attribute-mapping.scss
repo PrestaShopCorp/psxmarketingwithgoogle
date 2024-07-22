@@ -1,0 +1,48 @@
+.gs-table-attribute-mapping {
+  $root: '.gs-table-attribute-mapping';
+  margin: 1rem 0;
+  background: $primary-200;
+  padding: 1rem 0.75rem;
+  #{$root}__table {
+    table-layout: fixed;
+    margin: 0;
+    #{$root}__column {
+      border-bottom: 1px solid $primary-400;
+      padding: 0;
+      #{$root}__column-title {
+        font-weight: 700;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        color: $primary-800;
+      }
+    }
+    #{$root}__row {
+      #{$root}__column {
+        vertical-align: top;
+        padding: 0.5rem 0;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        color: $primary-800;
+        border-bottom: 1px solid $primary-400;
+      }
+      &:last-child {
+        #{$root}__column {
+          border-bottom: none;
+          padding: 0.5rem 0 0;
+        }
+      }
+    }
+    #{$root}__tag-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      #{$root}__tag {
+        background: $primary-300;
+        border-radius: 999px;
+        padding: 0.125rem 0.5rem;
+        font-weight: 500;
+        text-transform: lowercase;
+      }
+    }
+  }
+}

@@ -44,14 +44,15 @@
         v-if="$route.params.step === ProductFeedSettingsPages.ATTRIBUTE_MAPPING"
         @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
       />
-      <sync-schedule
-        v-if="$route.params.step === ProductFeedSettingsPages.SYNC_SCHEDULE"
+      <product-selection
+        v-if="$route.params.step === ProductFeedSettingsPages.PRODUCT_SELECTION"
         @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
       />
       <product-feed-settings-summary
         v-bind="$attrs"
         v-if="$route.params.step === ProductFeedSettingsPages.SUMMARY"
         @cancelProductFeedSettingsConfiguration="productFeedCancelProcess"
+        @save="productFeedSaveProcess"
       />
     </b-card-body>
   </b-card>
@@ -65,7 +66,7 @@ import ProductFeedStepper from '@/components/product-feed/product-feed-stepper.v
 import ShippingSetup from '@/components/product-feed/settings/shipping-setup/shipping-setup.vue';
 import DeliveryTimeAndRates from '@/components/product-feed/settings/delivery-time-and-rates/delivery-time-and-rates.vue';
 import AttributeMapping from '@/components/product-feed/settings/attribute-mapping/attribute-mapping.vue';
-import SyncSchedule from '@/components/product-feed/settings/sync-schedule/sync-schedule.vue';
+import ProductSelection from '@/components/product-feed/settings/product-selection/product-selection.vue';
 import ProductFeedSettingsSummary from '@/components/product-feed/settings/summary/summary.vue';
 
 export default defineComponent({
@@ -75,7 +76,7 @@ export default defineComponent({
     ShippingSetup,
     DeliveryTimeAndRates,
     AttributeMapping,
-    SyncSchedule,
+    ProductSelection,
     ProductFeedSettingsSummary,
   },
   data() {
@@ -99,6 +100,9 @@ export default defineComponent({
   methods: {
     productFeedCancelProcess() {
       this.$emit('cancelProductFeedProcess');
+    },
+    productFeedSaveProcess() {
+      this.$emit('saveProductFeedProcess');
     },
   },
 });

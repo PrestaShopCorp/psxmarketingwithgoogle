@@ -36,6 +36,11 @@ import {AttributeResponseFromAPI} from '@/utils/AttributeMapping';
 import {CustomCarrier} from '@/providers/shipping-rate-provider';
 import {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
 import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
+import {
+  BrandOption, CategoryOption, CleanProductFilter, Feature,
+} from '@/components/product-feed/settings/product-selection/type';
+import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
+import ProductFeedCountStatus from '@/enums/product-feed/product-feed-count-status';
 
 export default {
   [GettersTypes.GET_PRODUCT_FEED_IS_CONFIGURED](state: LocalState): boolean {
@@ -138,15 +143,6 @@ export default {
   [GettersTypes.GET_PRODUCT_CATEGORIES_SELECTED](state: LocalState) : SelectedProductCategories {
     return state.selectedProductCategories;
   },
-  [GettersTypes.GET_SYNC_SCHEDULE](state: LocalState) : boolean {
-    const requestSyncNow = getDataFromLocalStorage('productFeed-requestSynchronizationNow');
-
-    if (requestSyncNow !== null) {
-      state.requestSynchronizationNow = requestSyncNow;
-    }
-
-    return state.requestSynchronizationNow;
-  },
   [GettersTypes.GET_ATTRIBUTE_MAPPING](state: LocalState): AttributeResponseFromAPI {
     return state.attributeMapping;
   },
@@ -173,8 +169,11 @@ export default {
     if (getDataFromLocalStorage('productFeed-attributeMapping') !== null) {
       state.stepper = 4;
     }
-    if (getDataFromLocalStorage('productFeed-requestSynchronizationNow') !== null) {
+    if (getDataFromLocalStorage('productFeed-productFilter') !== null) {
       state.stepper = 5;
+    }
+    if (getDataFromLocalStorage('productFeed-requestSynchronizationNow') !== null) {
+      state.stepper = 6;
     }
 
     return state.stepper;
@@ -188,6 +187,9 @@ export default {
   },
   [GettersTypes.GET_ESTIMATE_CARRIERS](state: LocalState): CustomCarrier[] {
     return state.settings.estimateCarriers;
+  },
+  [GettersTypes.GET_PRODUCT_FILTER](state: LocalState): CleanProductFilter[] {
+    return state.settings.productFilter;
   },
   [GettersTypes.GET_PRODUCT_FEED_SYNC_CONTEXT](
     state: LocalState,
@@ -206,5 +208,28 @@ export default {
   },
   [GettersTypes.GET_PRODUCTS_VALIDATION_PAGE_SIZE](state: LocalState): number {
     return state.gmcProductsByStatus.request.numberOfProductsPerPage;
+  },
+
+  // Product Filter
+  [GettersTypes.GET_PRODUCT_FILTER_FEATURES_OPTIONS](state: LocalState): Feature[] {
+    return state.productFilterOptions.features;
+  },
+  [GettersTypes.GET_PRODUCT_FILTER_BRANDS_OPTIONS](state: LocalState): BrandOption[] {
+    return state.productFilterOptions.brands;
+  },
+  [GettersTypes.GET_PRODUCT_FILTER_CATEGORIES_OPTIONS](state: LocalState): CategoryOption[] {
+    return state.productFilterOptions.categories;
+  },
+  [GettersTypes.GET_PRODUCT_COUNT](state: LocalState): number|null {
+    return state.productCount.count;
+  },
+  [GettersTypes.GET_PRODUCT_COUNT_STATUS](state: LocalState): ProductFeedCountStatus|null {
+    return state.productCount.status;
+  },
+  [GettersTypes.GET_PRODUCT_COUNT_ABORT_CONTROLLER](state: LocalState): AbortController|null {
+    return state.productCount.abortController;
+  },
+  [GettersTypes.GET_METHOD_SYNC](state: LocalState): ProductFilterMethodsSynch {
+    return state.syncSelected;
   },
 };

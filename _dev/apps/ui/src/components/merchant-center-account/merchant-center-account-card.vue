@@ -30,7 +30,7 @@
           <b-badge
             class="mx-3"
             :variant="mcaStatusBadge.color"
-            v-if="mcaConfigured"
+            v-if="isLinkedGmcFullyFetched"
           >
             {{ $t(`badge.${mcaStatusBadge.text}`) }}
           </b-badge>
@@ -98,7 +98,6 @@
             :markdown="this.$i18n.t('mcaCard.introDisabled')"
             :extensions="['no-p-tag', 'extended-b-link']"
             v-if="gmcAccountDetails.id === null"
-            :vue-template="true"
           />
           <b-form class="mb-2 mt-3">
             <div class="d-md-flex text-center">
@@ -107,7 +106,7 @@
                 ref="mcaSelection"
                 :text="gmcLabel(selectedMcaIndex) || $t('cta.selectAccount')"
                 variant=" "
-                class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown bordered"
+                class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown"
                 :toggle-class="{'ps-dropdown__placeholder' : selectedMcaIndex === null}"
                 menu-class="ps-dropdown"
 
@@ -125,9 +124,8 @@
                   v-if="!mcaListLoading && mcaSelectionOptionsAndGroups.length === 0"
                   :disabled="true"
                   variant="dark"
-                  link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
                 >
-                  <span class="mr-2">
+                  <span>
                     {{ $t('mcaCard.noExistingAccount') }}
                   </span>
                 </b-dropdown-item>
@@ -137,9 +135,8 @@
                   @click="selectedMcaIndex = option.i"
                   :disabled="!isGmcUserAdmin(option.i)"
                   variant="dark"
-                  link-class="d-flex flex-wrap flex-md-nowrap align-items-center px-3"
                 >
-                  <span class="mr-2">
+                  <span>
                     {{ gmcLabel(option.i) }}
                   </span>
                   <span
@@ -161,8 +158,8 @@
                   :key="index"
                 >
                   <template #header>
-                    <div class="text-muted px-3">
-                      <span class="font-weight-600 ps_gs-fz-13 mr-2">
+                    <div>
+                      <span class="font-weight-600 ps_gs-fz-13">
                         {{ group.mca.name }}
                       </span>
                       <span class="ps_gs-fz-12">
@@ -177,7 +174,6 @@
                     @click="selectedMcaIndex = option.i"
                     :disabled="!isGmcUserAdmin(option.i)"
                     variant="dark"
-                    link-class="d-flex flex-wrap flex-md-nowrap align-items-center pl-4 pr-3"
                   >
                     <span class="mr-auto">{{ gmcLabel(option.i, true) }}</span>
                     <span

@@ -1,4 +1,5 @@
-import ProductFeedCard from '../src/components/product-feed/product-feed-card.vue'
+import cloneDeep from 'lodash.clonedeep';
+import ProductFeedCard from '@/components/onboarding/product-feed-card.vue';
 import {
   productFeed,
   productFeedIsReadyForExport,
@@ -8,7 +9,6 @@ import {
   productFeedStatusSyncFailed,
   productFeedErrorAPI,
 } from '../.storybook/mock/product-feed';
-import cloneDeep from 'lodash.clonedeep';
 
 export default {
   title: 'Product feed/Card',
@@ -18,16 +18,16 @@ export default {
   },
 };
 
-const Template = (args, { argTypes }) => ({
+const Template = (args, {argTypes}) => ({
   props: Object.keys(argTypes),
-  components: { ProductFeedCard },
+  components: {ProductFeedCard},
   template: '<ProductFeedCard v-bind="$props" />',
   beforeMount: args.beforeMount,
 });
 
 export const Disabled:any = Template.bind({});
 Disabled.args = {
-  beforeMount: function(this: any) {
+  beforeMount(this: any) {
     this.$store.state.productFeed = cloneDeep(productFeed);
   },
   isEnabled: false,
@@ -37,7 +37,7 @@ Disabled.args = {
 
 export const NotConfiguredAndCanStart:any = Template.bind({});
 NotConfiguredAndCanStart.args = {
-  beforeMount: function(this: any) {
+  beforeMount(this: any) {
     this.$store.state.productFeed = cloneDeep(productFeed);
   },
   isEnabled: true,
@@ -46,7 +46,7 @@ NotConfiguredAndCanStart.args = {
 
 export const NotConfiguredAndCanContinue:any = Template.bind({});
 NotConfiguredAndCanContinue.args = {
-  beforeMount: function(this: any) {
+  beforeMount(this: any) {
     this.$store.state.productFeed = cloneDeep(productFeed);
     this.$store.state.productFeed.stepper = 3;
   },
@@ -58,7 +58,7 @@ NotConfiguredAndCanContinue.args = {
 
 export const ReadyForExport:any = Template.bind({});
 ReadyForExport.args = {
-  beforeMount: function(this: any) {
+  beforeMount(this: any) {
     this.$store.state.productFeed = cloneDeep(productFeedIsReadyForExport);
   },
   isEnabled: true,
@@ -67,7 +67,7 @@ ReadyForExport.args = {
 
 export const Failed:any = Template.bind({});
 Failed.args = {
-  beforeMount: function(this: any) {
+  beforeMount(this: any) {
     this.$store.state.productFeed = cloneDeep(productFeedStatusSyncFailed);
   },
   isEnabled: true,
@@ -76,7 +76,7 @@ Failed.args = {
 
 export const MissingShippingSettings:any = Template.bind({});
 MissingShippingSettings.args = {
-  beforeMount: function(this: any) {
+  beforeMount(this: any) {
     this.$store.state.productFeed = cloneDeep(productFeedMissingFields);
   },
   isEnabled: true,
@@ -85,7 +85,7 @@ MissingShippingSettings.args = {
 
 export const OverwriteNeeded:any = Template.bind({});
 OverwriteNeeded.args = {
-  beforeMount: function(this: any) {
+  beforeMount(this: any) {
     this.$store.state.productFeed = cloneDeep(productFeed);
   },
   isEnabled: true,
@@ -101,12 +101,12 @@ OverwriteNeeded.decorators = [() => ({
       </h2>
       <story />
     </div>
-  `
+  `,
 })];
 
 export const ConfiguredNoTax:any = Template.bind({});
 ConfiguredNoTax.args = {
-  beforeMount: function(this: any) {
+  beforeMount(this: any) {
     this.$store.state.productFeed = cloneDeep(productFeedIsConfigured);
   },
   isEnabled: true,
@@ -116,7 +116,7 @@ ConfiguredNoTax.args = {
 // TODO batch 2
 export const ConfiguredTax:any = Template.bind({});
 ConfiguredTax.args = {
-  beforeMount: function(this: any) {
+  beforeMount(this: any) {
     this.$store.state.productFeed = cloneDeep(productFeedIsConfiguredWithTax);
   },
   isEnabled: true,
@@ -125,7 +125,7 @@ ConfiguredTax.args = {
 
 export const ApiError:any = Template.bind({});
 ApiError.args = {
-  beforeMount: function(this: any) {
+  beforeMount(this: any) {
     this.$store.state.productFeed = cloneDeep(productFeedErrorAPI);
   },
   isEnabled: true,

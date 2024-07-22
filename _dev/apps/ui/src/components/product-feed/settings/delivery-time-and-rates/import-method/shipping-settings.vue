@@ -15,12 +15,11 @@
         menu-class="ps-dropdown"
         :text="countryChosen ? $options.filters.changeCountriesCodesToNames([countryChosen])[0]
           : $t('productFeedSettings.deliveryTimeAndRates.filterTitle')"
-        class="mb-2 ps-dropdown psxmarketingwithgoogle-dropdown bordered maxw-sm-250 ml-2"
+        class="mb-2 ps-dropdown psxmarketingwithgoogle-dropdown maxw-sm-250 ml-2"
       >
         <b-dropdown-item
           :disabled="!countryChosen"
           variant="dark"
-          link-class="flex-wrap px-3 d-flex flex-md-nowrap align-items-center"
           @click="countryChosen = null"
         >
           {{ $t('productFeedSettings.deliveryTimeAndRates.filterTitle') }}

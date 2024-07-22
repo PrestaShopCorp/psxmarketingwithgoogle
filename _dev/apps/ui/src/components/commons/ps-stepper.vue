@@ -25,11 +25,10 @@
           class="ps_gs-stepper-step__step d-flex align-items-center justify-content-center"
           :class="{vertical}"
         >
-          <b-icon-check
+          <i
             v-if="isClickable(index, step.notClickable)"
-            variant="white"
-            font-scale="2"
-          />
+            class="material-icons ps_gs-fz-18 mx-auto"
+          >check</i>
           <b-icon-slash
             v-else-if="step.notClickable && isComplete(index)"
             variant="white"

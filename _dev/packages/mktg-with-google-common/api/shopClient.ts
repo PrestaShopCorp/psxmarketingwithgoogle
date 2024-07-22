@@ -14,7 +14,7 @@ export const initShopClient = (params: Options) => {
   options.onShopSessionLoggedOut = params.onShopSessionLoggedOut;
 };
 
-export const fetchShop = async (action: string, params?: { [key: string]: unknown }) => {
+export const fetchShop = async (action: string, params?: { [key: string]: unknown }, signal?: AbortSignal) => {
   if (!options.shopUrl.length) {
     throw new Error(`Cannot call action ${action}, API is not initialized (missing shop URL)`);
   }
@@ -26,6 +26,7 @@ export const fetchShop = async (action: string, params?: { [key: string]: unknow
       action,
       ...params,
     }),
+    signal
   });
 
   if (response.redirected && response.url.indexOf('AdminLogin') !== -1) {

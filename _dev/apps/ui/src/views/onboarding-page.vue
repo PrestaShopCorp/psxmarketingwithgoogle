@@ -6,6 +6,31 @@
       :steps-are-completed="stepsAreCompleted.step1"
       @onCloudsyncConsentUpdated="cloudSyncSharingConsentGiven = $event"
     />
+    <div class="row">
+      <AlertCmp />
+    </div>
+    <div class="row mb-4 ps_gs-onboardingpage">
+      <div class="col-12 col-md-5">
+        <div
+          class="is-sticky pb-3"
+        >
+          <section-title
+            :step-number="1"
+            :step-title="$t('onboarding.sectionTitle.psAccount')"
+            :is-enabled="true"
+            :is-done="stepsAreCompleted.step1"
+          />
+        </div>
+      </div>
+      <div class="col-12 col-md-7">
+        <prestashop-accounts
+          class="ps_gs-ps-account-card"
+        />
+        <div
+          id="prestashop-cloudsync"
+          class="my-3"
+        />
+      </div>
 
     <two-panel-cols
       :title="$t('onboarding.sectionTitle.freeListing.title')"
@@ -88,11 +113,8 @@
       modal-id="SSCPopinActivateTrackingOnboardingPage"
     />
     <modal-ec-intro
-      v-if="GET_FEATURE_FLAG_ENHANCED_CONVERSIONS
-        && getGoogleAdsAccount
-        && accountHasAtLeastOneCampaign
-        && enhancedConversionsHasNeverBeenEnabled"
-      :tos-are-signed="!!getGoogleAdsAccount.acceptedCustomerDataTerms"
+      v-if="getGoogleAdsAccount
+        && accountHasAtLeastOneCampaign"
     />
     <PopinModuleConfigured
       ref="PopinModuleConfigured"
@@ -108,16 +130,18 @@
     >
       <p>{{ insideToast }}</p>
     </PsToast>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {mapGetters} from 'vuex';
+import SectionTitle from '@/components/onboarding/section-title.vue';
 import GoogleAccountCard from '@/components/google-account/google-account-card.vue';
 import GoogleAdsAccountCard from '@/components/google-ads-account/google-ads-account-card.vue';
 import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
-import ProductFeedCard from '@/components/product-feed/product-feed-card.vue';
+import ProductFeedCard from '@/components/onboarding/product-feed-card.vue';
 import GoogleAccountPopinDisconnect from '@/components/google-account/google-account-popin-disconnect.vue';
 import MerchantCenterAccountPopinDisconnect from '@/components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
 import GoogleAdsAccountPopinDisconnect from '@/components/google-ads-account/google-ads-account-popin-disconnect.vue';
@@ -130,12 +154,14 @@ import TrackingActivationModal from '@/components/campaigns/tracking-activation-
 import PsToast from '@/components/commons/ps-toast.vue';
 import PopinModuleConfigured from '@/components/commons/popin-configured.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import AlertCmp from '@/components/commons/alert-cmp.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import EnhancedConversionsCard from '@/components/enhanced-conversions/enhanced-conversions-card.vue';
 import ModalEcIntro from '@/components/enhanced-conversions/modal-ec-intro.vue';
 import {AccountInformations} from '@/store/modules/google-ads/state';
 import GettersTypesApp from '@/store/modules/app/getters-types';
 import TwoPanelCols from '@/components/onboarding/two-panel-cols.vue';
+import {deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
 
 export default defineComponent({
   name: 'OnboardingPage',
@@ -158,6 +184,7 @@ export default defineComponent({
     TrackingActivationModal,
     PopinModuleConfigured,
     TwoPanelCols,
+    AlertCmp,
   },
   data() {
     return {
@@ -265,6 +292,9 @@ export default defineComponent({
       GettersTypesApp.GET_FEATURE_FLAG_ENHANCED_CONVERSIONS,
       GettersTypesApp.GET_BILLING_SUBSCRIPTION_ACTIVE,
     ]),
+    displayCmpAlert() {
+      return !!this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'] && this.showCmpAlert;
+    },
     shops() {
       return this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT_SHOPS'];
     },
@@ -322,9 +352,6 @@ export default defineComponent({
     remarketingTagIsSet() {
       return this.$store.getters['campaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
     },
-    enhancedConversionsHasNeverBeenEnabled(): boolean {
-      return this.$store.getters['campaigns/GET_ENHANCED_CONVERSIONS_NEVER_ENABLED'];
-    },
     stepsAreCompleted() {
       return {
         step1: this.psAccountsIsOnboarded
@@ -358,6 +385,16 @@ export default defineComponent({
     },
   },
   mounted() {
+    deleteProductFeedDataFromLocalStorage();
+
+    this.initAccountsComponent();
+    this.initCloudSyncConsent();
+
+    window.addEventListener('load', () => {
+      this.initAccountsComponent();
+      this.initCloudSyncConsent();
+    });
+
     // Try to retrieve Google account details. If the merchant is not onboarded,
     // this action will dispatch another one to generate the authentication route.
     // We do it if the state is empty

@@ -1,0 +1,37 @@
+.product-feed-summary {
+  background: $primary-200;
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  .product-feed-summary-step {
+    position: relative;
+    padding: 0.25rem 0;
+    &:not(:last-child) {
+      :after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        background: $primary-400;
+        left: 0;
+        bottom: -0.25rem;
+      }
+    }
+
+    .product-feed-summary-step__title {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+
+    .product-feed-summary-step__link {
+      font-weight: 500;
+      font-size: 0.75rem;
+      line-height: 1.125rem;
+      color: $primary-800;
+      padding: 0 0.5rem;
+    }
+  }
+}

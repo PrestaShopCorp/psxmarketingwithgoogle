@@ -44,6 +44,14 @@ export default {
     return state.trackingFeature.basic !== null
       && state.trackingFeature.enhanced === null;
   },
+  [GettersTypes.GET_ENHANCED_CONVERSIONS_TOGGABLE](
+    state: LocalState,
+    getters,
+    rootState,
+    rootGetters,
+  ): boolean {
+    return !getters.GET_ENHANCED_CONVERSIONS_NEVER_ENABLED && rootGetters['googleAds/GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED'];
+  },
   [GettersTypes.GET_ERROR_CAMPAIGN_NAME](state: LocalState): boolean|null {
     return state.errorCampaignNameExists;
   },

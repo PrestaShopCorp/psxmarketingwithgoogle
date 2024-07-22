@@ -65,6 +65,7 @@
       :next-step="nextStep"
       @cancelProductFeedSettingsConfiguration="cancel()"
     />
+    <settings-footer />
   </b-form>
 </template>
 
@@ -77,10 +78,12 @@ import ActionsButtons from '@/components/product-feed/settings/commons/actions-b
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
+import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 
 export default defineComponent({
   name: 'ShippingSetup',
   components: {
+    SettingsFooter,
     ActionsButtons,
     VueShowdown,
     BFormRadio,
@@ -140,7 +143,7 @@ export default defineComponent({
       }
       this.loading = true;
       this.$store.commit('productFeed/SET_SHIPPING_SETUP_SELECTED', this.shippingSetup);
-      this.$segment.track('[GGL] Product feed config - Step 1 with Config my shipping settings now', {
+      this.$segment.track('[GGL] Product feed config - Step 1 Shipping setup', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });

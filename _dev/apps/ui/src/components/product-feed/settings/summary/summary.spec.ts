@@ -4,14 +4,13 @@ import Vuex from 'vuex';
 import {shallowMount} from '@vue/test-utils';
 import {cloneStore, localVue} from '@/../tests/init';
 import ProductFeedSettingsSummary from '@/components/product-feed/settings/summary/summary.vue';
-import ProductFeedCardNextSyncCard from '@/components/product-feed/product-feed-card-next-sync-card.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
+import ProductFeedSummaryCard from '@/components/product-feed/summary/product-feed-summary-card.vue';
 
 import {
   Summary,
 } from '@/../stories/product-feed-settings.stories';
-import productFeedSummaryCards from '../../summary/product-feed-summary-cards.vue';
 
 describe('summary', () => {
   const mockRoute = {
@@ -42,8 +41,7 @@ describe('summary', () => {
       store: new Vuex.Store(cloneStore()),
     });
 
-    expect(wrapper.findComponent(productFeedSummaryCards).exists()).toBeTruthy();
-    expect(wrapper.findComponent(ProductFeedCardNextSyncCard).exists()).toBeTruthy();
+    expect(wrapper.findComponent(ProductFeedSummaryCard).exists()).toBeTruthy();
   });
   it('shows button cancel and triggers previous step on click', async () => {
     const wrapper = shallowMount(ProductFeedSettingsSummary, {

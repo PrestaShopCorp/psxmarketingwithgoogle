@@ -1,0 +1,76 @@
+services:
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\BrandOptionsProvider:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\BrandOptionsProvider
+    public: true
+    arguments:
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Repository\ManufacturerRepository'
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\CategoryOptionsProvider:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\CategoryOptionsProvider
+    public: true
+    arguments:
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Repository\CategoryRepository'
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\FeatureOptionsProvider:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\FeatureOptionsProvider
+    public: true
+    arguments:
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Repository\AttributesRepository'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Repository\LanguageRepository'
+      - '@=service("psxmarketingwithgoogle.context").language.id'
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\Resolver:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\Resolver
+    public: true
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\FilterValidator:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\FilterValidator
+    public: true
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\BrandQueryBuilder:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\BrandQueryBuilder
+    public: true
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\CategoryQueryBuilder:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\CategoryQueryBuilder
+    public: true
+    arguments:
+      - '@psxmarketingwithgoogle.context'
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\FeatureQueryBuilder:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\FeatureQueryBuilder
+    public: true
+    arguments:
+      - '@psxmarketingwithgoogle.context'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Repository\LanguageRepository'
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\OutOfStockQueryBuilder:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\OutOfStockQueryBuilder
+    public: true
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\PriceQueryBuilder:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\PriceQueryBuilder
+    public: true
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\ProductIdQueryBuilder:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\ProductIdQueryBuilder
+    public: true
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\QueryBuilder:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\QueryBuilder
+    public: true
+    arguments:
+      - '@=service("psxmarketingwithgoogle.shop").id'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\BrandQueryBuilder'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\CategoryQueryBuilder'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\FeatureQueryBuilder'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\OutOfStockQueryBuilder'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\PriceQueryBuilder'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\ProductIdQueryBuilder'
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\ProductEnumerator:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\ProductEnumerator
+    public: true
+    arguments:
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\FilterValidator'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\QueryBuilder'

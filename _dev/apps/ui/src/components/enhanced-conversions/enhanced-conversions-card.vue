@@ -1,7 +1,5 @@
 <template>
-  <section
-    v-if="GET_FEATURE_FLAG_ENHANCED_CONVERSIONS"
-  >
+  <section>
     <b-card
       no-body
       class="ps_gs-onboardingcard p-3"
@@ -32,9 +30,9 @@
           class="mt-3 ps_gs-switch"
           :checked="GET_ENHANCED_CONVERSIONS_STATUS"
           @click.native.prevent="toggleFeature"
-          :disabled="toggleIsDisabled"
+          :disabled="!GET_ENHANCED_CONVERSIONS_TOGGABLE"
         >
-          <span class="ps_gs-fz-14 text-dark d-block">
+          <span class="ps_gs-fz-14 d-block">
             {{
               GET_ENHANCED_CONVERSIONS_STATUS
                 ? $t("cta.enabled")
@@ -44,11 +42,7 @@
         </b-form-checkbox>
       </div>
       <alert-sign-gads-tos
-        v-if="!GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED"
-      />
-      <alert-ec-ready
-        v-else-if="showReadyToEnableFeature"
-        :is-on-configuration-page="true"
+        v-if="!GET_ENHANCED_CONVERSIONS_TOGGABLE"
       />
     </b-card>
   </section>
@@ -57,53 +51,33 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {mapGetters} from 'vuex';
-import GettersTypesApp from '@/store/modules/app/getters-types';
 import GettersTypesCampaigns from '@/store/modules/campaigns/getters-types';
 import GettersTypesGoogleAds from '@/store/modules/google-ads/getters-types';
-import AlertEcReady from '@/components/enhanced-conversions/alert-ec-ready.vue';
 import AlertSignGadsTos from '@/components/enhanced-conversions/alert-sign-gads-tos.vue';
 
 export default defineComponent({
   name: 'EnhancedConversionsCard',
   components: {
-    AlertEcReady,
     AlertSignGadsTos,
   },
-  data() {
-    return {
-      showReadyToEnableFeature: false as boolean,
-    };
-  },
   computed: {
-    ...mapGetters('app', [
-      GettersTypesApp.GET_FEATURE_FLAG_ENHANCED_CONVERSIONS,
-    ]),
     ...mapGetters('campaigns', [
       GettersTypesCampaigns.GET_ENHANCED_CONVERSIONS_STATUS,
+      GettersTypesCampaigns.GET_ENHANCED_CONVERSIONS_TOGGABLE,
     ]),
     ...mapGetters('googleAds', [
       GettersTypesGoogleAds.GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED,
     ]),
-    toggleIsDisabled(): boolean {
-      return !this.GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED;
-    },
   },
   methods: {
     async toggleFeature(): Promise<void> {
-      if (this.toggleIsDisabled) {
+      if (!this.GET_ENHANCED_CONVERSIONS_TOGGABLE) {
         return;
       }
       await this.$store.dispatch(
         'campaigns/SAVE_ENHANCED_CONVERSIONS_STATUS',
         !this.GET_ENHANCED_CONVERSIONS_STATUS,
       );
-    },
-  },
-  watch: {
-    GET_CONVERSIONS_TERMS_OF_SERVICES_SIGNED(newValue: boolean): void {
-      if (newValue) {
-        this.showReadyToEnableFeature = true;
-      }
     },
   },
 });

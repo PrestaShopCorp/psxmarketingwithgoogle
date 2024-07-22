@@ -36,6 +36,8 @@ import {
 import {RateType} from '@/enums/product-feed/rate';
 import {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
 import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
+import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
+import ProductFeedCountStatus from '@/enums/product-feed/product-feed-count-status';
 
 type payloadObject = {
   name: string, data: string
@@ -94,6 +96,7 @@ export default {
       estimateCarriers: [],
       shippingSettings: [],
       deliveryDetails: [],
+      productFilter: [],
       autoImportTaxSettings: false,
       autoImportShippingSettings: undefined,
       targetCountries: null,
@@ -164,9 +167,6 @@ export default {
   ) {
     state.selectedProductCategories = payload;
   },
-  [MutationsTypes.SET_SYNC_SCHEDULE](state: LocalState, payload: boolean) {
-    state.requestSynchronizationNow = payload;
-  },
   [MutationsTypes.SET_RATE_CHOSEN](state: LocalState, payload: RateType) {
     state.settings.rate = payload;
   },
@@ -180,21 +180,17 @@ export default {
   ) {
     state.report.lastConfigurationUsed = syncContext;
   },
-  [MutationsTypes.SAVE_NUMBER_OF_PRODUCTS_ON_CLOUDSYNC](
-    state: LocalState,
-    productsInCatalog: string,
-  ) {
-    state.report.productsInCatalog = productsInCatalog;
-  },
   [MutationsTypes.SAVE_VERIFICATION_STATS](
     state: LocalState,
     verificationStats: {
       validProducts: number;
       invalidProducts: number;
+      totalProducts: number;
     },
   ) {
     state.report.invalidProducts = verificationStats.invalidProducts;
     state.report.validProducts = verificationStats.validProducts;
+    state.report.productsInCatalog = verificationStats.totalProducts;
   },
 
   [MutationsTypes.SAVE_VERIFICATION_ISSUES](
@@ -288,5 +284,28 @@ export default {
     status: ProductStatus,
   }): void {
     state.gmcProductsByStatus.request.offsets[payload.status] = payload.offset;
+  },
+
+  // Product filters
+  [MutationsTypes.SET_PRODUCT_FILTER_OPTIONS](state: LocalState, payload: payloadObject): void {
+    state.productFilterOptions[payload.name] = payload.data;
+  },
+  [MutationsTypes.SET_PRODUCT_COUNT](state: LocalState, payload: number): void {
+    state.productCount.count = payload;
+  },
+  [MutationsTypes.SET_PRODUCT_COUNT_STATUS](
+    state: LocalState,
+    payload: ProductFeedCountStatus,
+  ): void {
+    state.productCount.status = payload;
+  },
+  [MutationsTypes.SET_PRODUCT_COUNT_ABORT_CONTROLLER](
+    state: LocalState,
+    payload: AbortController | null,
+  ) {
+    state.productCount.abortController = payload;
+  },
+  [MutationsTypes.SET_SYNC_METHOD](state: LocalState, payload: ProductFilterMethodsSynch): void {
+    state.syncSelected = payload;
   },
 };

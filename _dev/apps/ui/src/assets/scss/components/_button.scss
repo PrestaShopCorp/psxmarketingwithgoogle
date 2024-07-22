@@ -1,5 +1,65 @@
 .btn {
   border-radius: 0;
+  font-weight: 500;
+
+  &:focus {
+    box-shadow: none !important;
+  }
+
+  &:focus-visible {
+    box-shadow: none;
+    outline: $blue-500 2px solid !important;
+    outline-offset: 2px;
+
+    &:active {
+      box-shadow: none !important;
+    }
+  }
+
+  &.btn-danger {
+    background-color: $red-50;
+    border-color: $red-500;
+    color: $primary-800;
+
+    &:hover {
+      background-color: $red-100;
+    }
+
+    &:active {
+      background-color: $red-300 !important;
+      color: $primary-800 !important;
+    }
+  }
+
+  &.btn-warning {
+    background-color: $yellow-50;
+    border-color: $yellow-500;
+    color: $primary-800;
+
+    &:hover {
+      background-color: $yellow-100;
+    }
+
+    &:active {
+      background-color: $yellow-300 !important;
+      color: $primary-800 !important;
+    }
+  }
+
+  &.btn-info {
+    border-color: $blue-500;
+    background-color: $blue-50;
+    color: $primary-800;
+
+    &:hover {
+      background-color: $blue-100;
+    }
+
+    &:active {
+      color: $primary-800 !important;
+      background-color: $blue-300 !important;
+    }
+  }
 }
 
 .btn-sm {
@@ -9,6 +69,14 @@
 .alert {
   border-width: 0px;
   border-radius: 0px;
+
+  &.alert--bordered {
+    border-width: 1px;
+  }
+
+  .feature-list {
+    margin-top: 0.656rem;
+  }
 }
 
 .btn-outline-secondary {
@@ -16,22 +84,54 @@
   text-decoration: none;
   background-color: $white;
 
-  &:hover {
-    background-color: $primary-300;
-    color: $primary;
+  &:not([disabled="disabled"]) {
+    &:hover {
+      background-color: $primary-300;
+      color: $primary;
+    }
+
+    &:focus {
+      color: $primary;
+      box-shadow: 0;
+    }
+
+    &:active {
+      background-color: $primary-400 !important;
+      color: $primary-800 !important;
+      outline: none;
+    }
   }
 
-  &:focus {
-    color: $primary;
-  }
 }
 
-.alert .btn-secondary {
-  color: $white;
-  text-decoration: none;
-
-  &:hover {
+.alert {
+  .btn {
+    &[class*="btn-outline"] {
+      color: $primary-800;
+      font-weight: 500;
+    }
+    &:hover {
+      &.btn-outline-info {
+        background-color: $blue-100;
+      }
+      &.btn-outline-warning {
+        background-color: $yellow-100;
+      }
+      &.btn-outline-success {
+        background-color: $green-100;
+      }
+      &.btn-outline-danger {
+        background-color: $red-100;
+      }
+    }
+  }
+  .btn-secondary {
     color: $white;
+    text-decoration: none;
+
+    &:hover {
+      color: $white;
+    }
   }
 }
 

@@ -4,4 +4,6 @@ imports:
   - { resource: billing.yml }  
   - { resource: installer.yml }
   - { resource: builder.yml }
+  - { resource: installer.yml }
+  - { resource: product_filter.yml }
   - { resource: provider.yml }

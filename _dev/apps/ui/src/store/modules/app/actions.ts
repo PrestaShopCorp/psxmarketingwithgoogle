@@ -118,4 +118,14 @@ export default {
         });
     }
   },
+
+  async [ActionsTypes.SET_BANNER_SUCCESS_LOCAL_STORAGE_MONETIZATION]({commit}: Context, value) {
+    localStorage.setItem('banner-success-pre-monatization', value);
+    commit(MutationsTypes.SET_BANNER_SUCCESS_PRE_MONETIZATION, value);
+  },
+
+  async [ActionsTypes.SET_BANNER_INFO_LOCAL_STORAGE_MONETIZATION]({commit}: Context, value) {
+    localStorage.setItem('banner-info-pre-monatization', value);
+    commit(MutationsTypes.SET_BANNER_INFO_PRE_MONETIZATION, value);
+  },
 };

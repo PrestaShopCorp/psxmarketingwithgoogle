@@ -164,6 +164,26 @@ export default {
     commit(MutationsTypes.TOGGLE_STATUS_ENHANCED_CONVERSIONS, payload);
   },
 
+  async [ActionsTypes.GET_ENHANCED_CONVERSIONS_INTRODUCTION_STATUS](): Promise<boolean> {
+    const response: {introduced: boolean} = await (await fetchOnboarding(
+      'GET',
+      'conversion-actions/enhanced',
+    )).json();
+
+    return response.introduced;
+  },
+  async [ActionsTypes.SAVE_ENHANCED_CONVERSIONS_INTRODUCTION_STATUS](
+    // eslint-disable-next-line no-empty-pattern
+    {}: Context,
+    payload: boolean,
+  ): Promise<void> {
+    await fetchOnboarding(
+      'POST',
+      'conversion-actions/enhanced',
+      {body: {introduced: payload}},
+    );
+  },
+
   async [ActionsTypes.CREATE_REMARKETING_DEFAULT_CONVERSION_ACTIONS](
     {dispatch}: Context,
   ) {

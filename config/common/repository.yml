@@ -14,6 +14,12 @@ services:
     arguments:
       - '@psxmarketingwithgoogle.context'
 
+  PrestaShop\Module\PsxMarketingWithGoogle\Repository\CategoryRepository:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\CategoryRepository
+    public: true
+    arguments:
+      - '@psxmarketingwithgoogle.context'
+
   PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository
     public: true
@@ -33,6 +39,14 @@ services:
   PrestaShop\Module\PsxMarketingWithGoogle\Repository\LanguageRepository:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\LanguageRepository
     public: true
+    arguments:
+      - '@=service("psxmarketingwithgoogle.shop").id'
+
+  PrestaShop\Module\PsxMarketingWithGoogle\Repository\ManufacturerRepository:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\ManufacturerRepository
+    public: true
+    arguments:
+      - '@psxmarketingwithgoogle.context'
 
   PrestaShop\Module\PsxMarketingWithGoogle\Repository\ProductRepository:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Repository\ProductRepository

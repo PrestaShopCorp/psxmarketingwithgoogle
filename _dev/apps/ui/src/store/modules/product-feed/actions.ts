@@ -1,25 +1,29 @@
-import {ActionContext} from 'vuex';
-import {fetchOnboarding, fetchShop, HttpClientError} from 'mktg-with-google-common';
-import MutationsTypes from './mutations-types';
-import ActionsTypes from './actions-types';
-import {getDataFromLocalStorage, deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
-import {
-  DeliveryDetail, getEnabledCarriers,
-  mergeShippingDetailsSourcesForProductFeedConfiguration,
-  ShopShippingInterface, validateDeliveryDetail,
-} from '@/providers/shipping-settings-provider';
-import {runIf} from '@/utils/Promise';
+import {HttpClientError, fetchOnboarding, fetchShop} from 'mktg-with-google-common';
+import type {ActionContext} from 'vuex';
+import type {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
+import type {ProductIssue} from '@/components/render-issues/types';
+import type ProductsStatusType from '@/enums/product-feed/products-status-type';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {fromApi, toApi} from '@/providers/shipping-rate-provider';
 import {
+  type DeliveryDetail,
+  type ShopShippingInterface, getEnabledCarriers,
+  mergeShippingDetailsSourcesForProductFeedConfiguration, validateDeliveryDetail,
+} from '@/providers/shipping-settings-provider';
+import appGetters from '@/store/modules/app/getters-types';
+import {type FullState, RequestState} from '@/store/types';
+import {formatMappingToApi} from '@/utils/AttributeMapping';
+import {deleteProductFeedDataFromLocalStorage, getDataFromLocalStorage} from '@/utils/LocalStorage';
+import {runIf} from '@/utils/Promise';
+import ActionsTypes from './actions-types';
+import MutationsTypes from './mutations-types';
+import type {
   ProductFeedSettings, ProductVerificationIssue, ProductVerificationIssueProduct, State,
 } from './state';
-import {formatMappingToApi} from '@/utils/AttributeMapping';
-import {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
-import {FullState, RequestState} from '@/store/types';
-import appGetters from '@/store/modules/app/getters-types';
-import {ProductIssue} from '@/components/render-issues/types';
-import ProductsStatusType from '@/enums/product-feed/products-status-type';
+import GetterTypes from '@/store/modules/product-feed/getters-types';
+import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
+import ProductFeedCountStatus from '@/enums/product-feed/product-feed-count-status';
+import debounce from '@/utils/Debounce';
 
 type Context = ActionContext<State, FullState>;
 
@@ -45,9 +49,10 @@ export const createProductFeedApiPayload = (settings:any) => ({
       additionalShippingSettings: settings.additionalShippingSettings,
     } : {}
   ),
-  attributeMapping: formatMappingToApi(settings.attributeMapping),
+  attributeMapping: settings.attributeMapping,
+  productSelected: settings.productSelected,
   selectedProductCategories: settings.selectedProductCategories,
-  requestSynchronizationNow: settings.requestSynchronizationNow,
+  languages: settings.languages,
 });
 
 export default {
@@ -85,7 +90,7 @@ export default {
       ),
       runIf(
         !state.report.productsInCatalog,
-        dispatch(ActionsTypes.REQUEST_PRODUCTS_ON_CLOUDSYNC),
+        dispatch(ActionsTypes.REQUEST_VERIFICATION_STATS),
       ),
       runIf(
         !state.report.invalidProducts,
@@ -109,6 +114,20 @@ export default {
       commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'nextJobAt', data: json.nextJobAt});
       commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'success', data: json.success});
       commit(MutationsTypes.SET_LAST_SYNCHRONISATION, {name: 'syncSchedule', data: json.syncSchedule});
+    } catch (error) {
+      console.error(error);
+    }
+  },
+
+  async [ActionsTypes.GET_PRODUCT_FILTER_SETTINGS](
+    {commit}: Context,
+  ) {
+    try {
+      const json = await (await fetchOnboarding('GET', 'product-filters')).json();
+
+      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+        name: 'productFilter', data: json,
+      });
     } catch (error) {
       console.error(error);
     }
@@ -152,7 +171,6 @@ export default {
       if (json.selectedProductCategories) {
         commit(MutationsTypes.SET_SELECTED_PRODUCT_CATEGORIES, json.selectedProductCategories);
       }
-      commit(MutationsTypes.SET_SYNC_SCHEDULE, json?.requestSynchronizationNow || false);
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
 
       return json;
@@ -168,7 +186,7 @@ export default {
   },
 
   async [ActionsTypes.SEND_PRODUCT_FEED_SETTINGS]({
-    state, getters, commit,
+    state, rootState, getters, commit,
   }: Context) {
     commit(MutationsTypes.API_ERROR, false);
 
@@ -197,10 +215,13 @@ export default {
       getDataFromLocalStorage('productFeed-estimateCarriers') || productFeedSettings.estimateCarriers,
     );
     // Attributes mapping
-    const attributeMapping = getDataFromLocalStorage('productFeed-attributeMapping') || state.attributeMapping || {};
+    const attributeMapping = (getDataFromLocalStorage('productFeed-attributeMapping')
+      ? formatMappingToApi(getDataFromLocalStorage('productFeed-attributeMapping'))
+      : state.attributeMapping) || {};
+    // Product filter
+    const productFiltered = getDataFromLocalStorage('productFeed-productFilter') || productFeedSettings.productFilter;
+    // Product categories
     const selectedProductCategories = getDataFromLocalStorage('productFeed-selectedProductCategories') || getters.GET_PRODUCT_CATEGORIES_SELECTED;
-    // Next synchronization request
-    const requestSynchronizationNow = getters.GET_SYNC_SCHEDULE;
 
     const newSettings = createProductFeedApiPayload({
       autoImportTaxSettings: productFeedSettings.autoImportTaxSettings,
@@ -214,7 +235,7 @@ export default {
       estimateCarriers,
       attributeMapping,
       selectedProductCategories,
-      requestSynchronizationNow,
+      languages: rootState.app.psxMktgWithGoogleLanguages,
     });
 
     try {
@@ -222,6 +243,11 @@ export default {
         'POST',
         'incremental-sync/settings',
         {body: newSettings},
+      );
+      await fetchOnboarding(
+        'POST',
+        'product-filters',
+        {body: productFiltered || []},
       );
       commit(MutationsTypes.TOGGLE_CONFIGURATION_FINISHED, true);
       commit(MutationsTypes.SAVE_CONFIGURATION_CONNECTED_ONCE, true);
@@ -244,6 +270,10 @@ export default {
       commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
         name: 'shippingSettings',
         data: productFeedSettings.shippingSettings,
+      });
+      commit(MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS, {
+        name: 'productFilter',
+        data: productFeedSettings.productFilter,
       });
       commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, newSettings.attributeMapping);
     } catch (error) {
@@ -338,11 +368,13 @@ export default {
       'incremental-sync/force-now',
     );
   },
+
   async [ActionsTypes.REQUEST_SHOP_TO_GET_ATTRIBUTE]({commit}: Context) {
     const json = await fetchShop('getShopAttributes');
     commit(MutationsTypes.SAVE_ATTRIBUTES_SHOP, json);
     return json;
   },
+
   async [ActionsTypes.REQUEST_ATTRIBUTE_MAPPING]({commit}: Context) {
     try {
       const json = await (await fetchOnboarding(
@@ -353,14 +385,6 @@ export default {
     } catch (error) {
       console.log(error);
     }
-  },
-  async [ActionsTypes.REQUEST_PRODUCTS_ON_CLOUDSYNC]({commit}: Context) {
-    const json: {totalProducts: string} = await (await fetchOnboarding(
-      'GET',
-      'product-feeds/stats/shop',
-    )).json();
-
-    commit(MutationsTypes.SAVE_NUMBER_OF_PRODUCTS_ON_CLOUDSYNC, json.totalProducts);
   },
 
   async [ActionsTypes.REQUEST_PRODUCT_FEED_SYNC_CONTEXT]({commit}: Context) {
@@ -474,5 +498,75 @@ export default {
     )).json();
 
     return result.issues || [];
+  },
+
+  /* PRODUCT FILTERS */
+  async [ActionsTypes.GET_SHOP_PRODUCT_FEATURES_OPTIONS](
+    {commit}: Context,
+  ) {
+    const result = await fetchShop('getShopAttributes', {action: 'getProductFilterOptions', kind: 'feature'});
+    commit(MutationsTypes.SET_PRODUCT_FILTER_OPTIONS, {name: 'features', data: result});
+  },
+
+  async [ActionsTypes.GET_SHOP_CATEGORIES_OPTIONS](
+    {commit}: Context,
+  ) {
+    const result = await fetchShop('getShopAttributes', {action: 'getProductFilterOptions', kind: 'category'});
+    commit(MutationsTypes.SET_PRODUCT_FILTER_OPTIONS, {name: 'categories', data: result});
+  },
+
+  async [ActionsTypes.GET_SHOP_BRANDS_OPTIONS](
+    {commit}: Context,
+  ) {
+    const result = await fetchShop('getShopAttributes', {action: 'getProductFilterOptions', kind: 'brand'});
+    commit(MutationsTypes.SET_PRODUCT_FILTER_OPTIONS, {name: 'brands', data: result});
+  },
+
+  async [ActionsTypes.GET_SHOPS_PRODUCTS_INFOS]({dispatch}: Context) {
+    await dispatch(ActionsTypes.GET_SHOP_PRODUCT_FEATURES_OPTIONS);
+    await dispatch(ActionsTypes.GET_SHOP_CATEGORIES_OPTIONS);
+    await dispatch(ActionsTypes.GET_SHOP_BRANDS_OPTIONS);
+  },
+
+  [ActionsTypes.GET_PRODUCT_COUNT]: debounce(async (context : Context) => {
+    const {commit, state, getters} = context;
+
+    const filters = (getters[GetterTypes.GET_METHOD_SYNC]
+        === ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT)
+      ? []
+      : state.settings.productFilter;
+
+    const abortController = getters[GetterTypes.GET_PRODUCT_COUNT_ABORT_CONTROLLER];
+
+    if (abortController) {
+      abortController.abort();
+    }
+
+    const controller = new AbortController();
+    const {signal} = controller;
+
+    commit(MutationsTypes.SET_PRODUCT_COUNT_ABORT_CONTROLLER, controller);
+
+    try {
+      const response = await fetchShop('countMatchingProductsFromFilters', {filters}, signal);
+      commit(MutationsTypes.SET_PRODUCT_COUNT_STATUS, ProductFeedCountStatus.SUCCESS);
+      commit(MutationsTypes.SET_PRODUCT_COUNT, response.numberOfProducts);
+    } catch (error: any) {
+      if (error.name !== 'AbortError') {
+        commit(MutationsTypes.SET_PRODUCT_COUNT_STATUS, ProductFeedCountStatus.ERROR);
+      }
+    } finally {
+      commit(MutationsTypes.SET_PRODUCT_COUNT_ABORT_CONTROLLER, null);
+    }
+  }, 500),
+
+  async [ActionsTypes.TRIGGER_PRODUCT_COUNT]({commit, dispatch}: Context) {
+    commit(MutationsTypes.SET_PRODUCT_COUNT_STATUS, null);
+    // we used this to restart loading status on product count pending
+    setTimeout(async () => {
+      commit(MutationsTypes.SET_PRODUCT_COUNT_STATUS, ProductFeedCountStatus.PENDING);
+      commit(MutationsTypes.SET_PRODUCT_COUNT, null);
+      await dispatch(ActionsTypes.GET_PRODUCT_COUNT);
+    }, 1);
   },
 };

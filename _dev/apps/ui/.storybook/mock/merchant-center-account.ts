@@ -5,10 +5,10 @@ export const merchantCenterAccountNotConnected: MerchantCenterAccountContext = {
   ...state.googleMerchantAccount,
 };
 
-export const merchantCenterAccountConnected: MerchantCenterAccountContext = {
+export const merchantCenterAccountUnverifiedAndUnclaimed: MerchantCenterAccountContext = {
   ...merchantCenterAccountNotConnected,
-  isClaimed: true,
-  isVerified: true,
+  isClaimed: false,
+  isVerified: false,
   id: '246797534',
   name: 'Maison Royer',
   websiteUrl: "http://perdu.com",
@@ -20,6 +20,12 @@ export const merchantCenterAccountConnected: MerchantCenterAccountContext = {
       }
   ],
 }
+
+export const merchantCenterAccountConnected: MerchantCenterAccountContext = {
+  ...merchantCenterAccountUnverifiedAndUnclaimed,
+  isClaimed: true,
+  isVerified: true,
+};
 
 export const merchantCenterAccountConnectedOnce: MerchantCenterAccountContext = {
     ...merchantCenterAccountConnected,

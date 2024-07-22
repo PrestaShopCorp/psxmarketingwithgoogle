@@ -16,6 +16,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
+import semver from 'semver';
 import GettersTypes from './getters-types';
 import {State as LocalState, HelpInformations, DebugData} from './state';
 import countriesSelectionOptions from '../../../assets/json/countries.json';
@@ -113,9 +114,16 @@ export default {
       return currency ? currency.symbol : '';
     }
   },
-
-  [GettersTypes.GET_FEATURE_FLAG_ENHANCED_CONVERSIONS](state: LocalState): boolean {
-    return state.featureFlags.enhancedConversions;
+  [GettersTypes.GET_MODULE_NEED_UPGRADE]: (
+    state: LocalState,
+  ) => (
+    neededVersion: string,
+  ) => !semver.gte(state.psxMktgWithGoogleModuleVersion, neededVersion),
+  [GettersTypes.GET_BANNER_SUCCESS_PRE_MONETIZATION](state: LocalState) {
+    return state.bannerSuccessPreMonetization;
+  },
+  [GettersTypes.GET_BANNER_INFO_PRE_MONETIZATION](state: LocalState) {
+    return state.bannerInfoPreMonetization;
   },
 
   [GettersTypes.GET_BILLING_SUBSCRIPTION_ACTIVE](state: LocalState): boolean {
