@@ -1,11 +1,5 @@
 <template>
-  <div class="pt-2 container ps_gs-onboardingpage">
-    <onboarding-deps-container
-      :ps-accounts-onboarded="psAccountsIsOnboarded"
-      :billing-running="GET_BILLING_SUBSCRIPTION_ACTIVE"
-      :steps-are-completed="stepsAreCompleted.step1"
-      @onCloudsyncConsentUpdated="cloudSyncSharingConsentGiven = $event"
-    />
+  <div class="pt-2 container">
     <div class="row">
       <AlertCmp />
       <monetization-banner-information v-if="!googleAccountIsOnboarded && !merchantIsSuscribed" />
@@ -20,25 +14,15 @@
       </b-alert>
     </div>
 
-    <!-- PS Account -->
     <div class="row mb-4 ps_gs-onboardingpage">
-      <div class="col-12 col-md-5">
-        <div
-          class="is-sticky pb-3"
-        >
-          <section-title
-            :step-number="1"
-            :step-title="$t('onboarding.sectionTitle.psAccount')"
-            :is-enabled="true"
-            :is-done="stepsAreCompleted.step1"
-          />
-        </div>
-      </div>
-      <div class="col-12 col-md-7">
-        <prestashop-accounts
-          class="ps_gs-ps-account-card"
-        />
-      </div>
+      <!-- PSAccount -->
+      <onboarding-deps-container
+        ref="onboardingDeps"
+        :ps-accounts-onboarded="psAccountsIsOnboarded"
+        :billing-running="GET_BILLING_SUBSCRIPTION_ACTIVE"
+        :steps-are-completed="stepsAreCompleted.step1"
+        @onCloudsyncConsentUpdated="cloudSyncSharingConsentGiven = $event"
+      />
 
       <!-- Subscription with billing -->
       <div
@@ -224,6 +208,7 @@ import GoogleAdsPopinNew from '@/components/google-ads-account/google-ads-accoun
 import CampaignCard from '@/components/campaigns/campaign-card.vue';
 import CampaignTracking from '@/components/campaigns/campaign-tracking.vue';
 import OnboardingDepsContainer from '@/components/onboarding/onboarding-deps-container.vue';
+import BillingCard from '@/components/onboarding/billing-card.vue';
 import PromoCard from '@/components/promo/promo-card.vue';
 import TrackingActivationModal from '@/components/campaigns/tracking-activation-modal.vue';
 import PsToast from '@/components/commons/ps-toast.vue';
@@ -247,6 +232,7 @@ export default defineComponent({
     GoogleAdsAccountCard,
     MerchantCenterAccountCard,
     OnboardingDepsContainer,
+    BillingCard,
     ProductFeedCard,
     CampaignCard,
     CampaignTracking,
@@ -274,6 +260,8 @@ export default defineComponent({
       phoneNumberVerified: false,
       cloudSyncSharingConsentScreenStarted: false,
       cloudSyncSharingConsentGiven: false,
+      merchantIsSuscribed: true,
+      displayBannerSuccessMonetization: false,
     };
   },
   methods: {
@@ -464,12 +452,12 @@ export default defineComponent({
   mounted() {
     deleteProductFeedDataFromLocalStorage();
 
-    this.initAccountsComponent();
-    this.initCloudSyncConsent();
+    this.$refs.onboardingDeps?.initAccountsComponent();
+    this.$refs.onboardingDeps?.initCloudSyncConsent();
 
     window.addEventListener('load', () => {
-      this.initAccountsComponent();
-      this.initCloudSyncConsent();
+      this.$refs.onboardingDeps?.initAccountsComponent();
+      this.$refs.onboardingDeps?.initCloudSyncConsent();
     });
 
     // Try to retrieve Google account details. If the merchant is not onboarded,

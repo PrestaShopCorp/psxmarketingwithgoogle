@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="col-12">
     <two-panel-cols
       :title="$t('onboarding.sectionTitle.psAccount')"
     >
