@@ -5,7 +5,6 @@
   >
     <b-card-header
       header-tag="nav"
-      header-class="px-3 py-1"
     >
       <ol class="list-inline mb-0 d-sm-flex align-items-center ps_gs-breadcrumb">
         <li class="list-inline-item ps_gs-breadcrumb__item">
@@ -28,9 +27,7 @@
         </li>
       </ol>
     </b-card-header>
-    <b-card-body
-      body-class="p-3 p-md-4"
-    >
+    <b-card-body>
       <product-feed-stepper
         :active-step="getActiveStep"
       />

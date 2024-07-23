@@ -1,3 +1,5 @@
+import {ISubscription} from '@prestashopcorp/billing-cdc/dist/@types/Subscription';
+
 /**
  * 2007-2021 PrestaShop and Contributors
  *
@@ -48,6 +50,12 @@ export interface State {
   psxMktgWithGoogleModuleIsEnabled: boolean;
   psxMktgWithGoogleEnableLink: string;
   backOfficeUserIsLoggedIn: boolean;
+  featureFlags: {
+    enhancedConversions: boolean;
+  },
+  billing: {
+    subscription?: ISubscription;
+  },
 }
 
 export interface ShopCurrency {
@@ -105,4 +113,10 @@ export const state: State = {
   psxMktgWithGoogleModuleIsEnabled: true,
   psxMktgWithGoogleEnableLink: '',
   backOfficeUserIsLoggedIn: true,
+  featureFlags: {
+    enhancedConversions: false,
+  },
+  billing: {
+    subscription: window.psBillingSubscription,
+  },
 };

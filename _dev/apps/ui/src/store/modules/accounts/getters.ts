@@ -12,8 +12,8 @@ import GetterTypes from './getters-types';
 export default {
   /* PrestaShop Account */
   [GetterTypes.GET_PS_ACCOUNTS_IS_ONBOARDED](state: LocalState): boolean {
-    return state.contextPsAccounts.user.emailIsValidated
-      && state.contextPsAccounts.user.email !== '' && state.contextPsAccounts.isShopContext;
+    return state.contextPsAccounts.user?.emailIsValidated
+      && state.contextPsAccounts.user?.email !== '' && state.contextPsAccounts.isShopContext;
   },
   [GetterTypes.GET_PS_ACCOUNTS_CONTEXT](state: LocalState): PrestaShopAccountsContext {
     return state.contextPsAccounts;

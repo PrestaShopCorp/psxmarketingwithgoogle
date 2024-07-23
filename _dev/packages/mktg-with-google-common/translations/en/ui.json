@@ -5,6 +5,7 @@
       "campaign": "Campaigns",
       "configuration": "Configure",
       "catalog": "Product catalog",
+      "billing": "Subscription",
       "help": "Help"
     },
     "errorsMessages": {
@@ -82,20 +83,19 @@
     },
     "sectionTitle": {
       "psAccount": "Link your shop to your PrestaShop account",
-      "billing": {
+      "psbilling": {
         "title": "Billing information",
         "description": "Access and manage your subscription and related payment method.",
         "alertNoSynchro": "Your catalog synchronization with Google Merchant Center is paused because PrestaShop Marketing now requires a €14.99 excl. tax/month subscription. ",
         "cardText": "Subscribe to PrestaShop Marketing with Google for €X excl. tax /month. 14-day free trial. Cancel anytime."
       },
-      "cloudSync": {
+      "pscloudSync": {
         "title": "Allow data sharing",
-        "description": "Help us enhance your experience and improve our service by giving consent to securely share relevant data with us."
+        "subTitle": "Help us enhance your experience and improve our service by giving consent to securely share relevant data with us."
       },
       "freeListing": {
         "title": "Reach more people on Google with free listings",
-        "subtitle": "Free listings give you access to millions of shoppers searching for products similar to yours. Display your products for free in organically ranked listings on the Shopping tab when you connect your Google account to Google Merchant Center.",
-        "lastTitle": "Businesses using free listings and ads on the Shopping tab together have seen an average >50% increase in clicks and >100% increase in impressions. (Google Internal Data, July 2020)"
+        "subtitle": "Free listings give you access to millions of shoppers searching for products similar to yours. Display your products for free in organically ranked listings on the Shopping tab when you connect your Google account to Google Merchant Center."
       },
       "smartShoppingCampaign": {
         "title": "Advertise on Google with Performance Max",
@@ -111,6 +111,12 @@
     "tips": "After you are done with the first shop, you can configure the others by selecting them one by one in the shop selector, in the horizontal menu",
     "configure": "Configure",
     "group": "Shop group"
+  },
+  "billingFacade": {
+    "title": "Payment details",
+    "nextPayment": "Your subscription is active, next billing on {date}",
+    "willEnd": "Your subscription will end on {date}.",
+    "managePayment": "Manage payments"
   },
   "googleAccountCard": {
     "title": "Google account",
@@ -270,7 +276,6 @@
       "shippingSetup": "Shipping setup",
       "deliveryTimesAndRates": "Delivery time & rates",
       "attributeMapping": "Attribute mapping",
-      "productSelection": "Product Selection",
       "categoryMapping": "Category mapping",
       "summary": "Summary",
       "exportFeed": "Export feed!",
@@ -532,12 +537,6 @@
         "tryAgain": "Try again"
       }
     },
-    "syncSchedule": {
-      "title": "Synchronization schedule",
-      "subTitle": "Choose the time when you want the first synchronization to start, the export might slow down your traffic",
-      "radioLabel1": "Now, after I finish my configuration (The export might slow down your shop)",
-      "radioLabel2": "Later, appproximatley at 2:00 AM (GMT+1) (When your shop have few visits)"
-    },
     "summary": {
       "title": "Product feed summary",
       "xItems": "{0} items",
@@ -562,6 +561,10 @@
       "disabledButtonTooltip" : "Check our conditions before moving forward",
       "syncScheduledNow" : "Today, right after I save and export"
     }
+  },
+  "billing": {
+    "planTitle": "Plan & billing information",
+    "invoicesTitle": "Invoices"
   },
   "freeListingCard": {
     "title": "Show your products with free listings",

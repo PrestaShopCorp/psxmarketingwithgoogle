@@ -4,9 +4,7 @@
     class="ps_gs-onboardingcard"
   >
     <template #header>
-      <p class="mb-0 ps_gs-onboardingcard__title">
-        {{ $t("productFeedSettings.breadcrumb1") }}
-      </p>
+      {{ $t("productFeedSettings.breadcrumb1") }}
     </template>
     <div class="d-md-flex position-relative">
       <div
@@ -15,7 +13,7 @@
       >
         <NotConfiguredCard />
       </div>
-      <div class="flex-shrink-0 d-flex flex-column p-3 pt-4">
+      <div class="flex-shrink-0 d-flex flex-column p-3 pt-0">
         <SyncHistory
           v-slot="{ syncStates }"
           :in-need-of-configuration="inNeedOfConfiguration"
@@ -30,7 +28,7 @@
       <div
         class="
           flex-grow-1
-          p-3 pt-4
+          p-3 pt-0
           border-top border-md-top-0 border-md-left border-600-20
         "
       >

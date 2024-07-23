@@ -13,9 +13,7 @@ const Template = (args, { argTypes }) => ({
         no-body
       >
         <template #header>
-          <h1 class="mb-0 ps_gs-onboardingcard__title">
-            {{ $t("productFeedSettings.breadcrumb1") }}
-          </h1>
+          {{ $t("productFeedSettings.breadcrumb1") }}
         </template>
       </b-card>
 

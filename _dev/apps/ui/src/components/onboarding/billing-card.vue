@@ -2,7 +2,7 @@
   <b-card class="p-2">
     <b-card-body class="d-lg-flex">
       <p class="mb-lg-0">
-        {{ $t('onboarding.sectionTitle.billing.cardText') }}
+        {{ $t('onboarding.sectionTitle.psbilling.cardText') }}
       </p>
       <b-button
         variant="primary"

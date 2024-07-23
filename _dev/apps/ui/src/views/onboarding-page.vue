@@ -1,8 +1,14 @@
 <template>
-  <div class="pt-2 container">
+  <div class="pt-2 container ps_gs-onboardingpage">
+    <onboarding-deps-container
+      :ps-accounts-onboarded="psAccountsIsOnboarded"
+      :billing-running="GET_BILLING_SUBSCRIPTION_ACTIVE"
+      :steps-are-completed="stepsAreCompleted.step1"
+      @onCloudsyncConsentUpdated="cloudSyncSharingConsentGiven = $event"
+    />
     <div class="row">
       <AlertCmp />
-      <MonetizationBannerInformation v-if="!googleAccountIsOnboarded && !merchantIsSuscribed" />
+      <monetization-banner-information v-if="!googleAccountIsOnboarded && !merchantIsSuscribed" />
       <b-alert
         v-if="displayBannerSuccessMonetization"
         show
@@ -14,13 +20,6 @@
       </b-alert>
     </div>
 
-    <b-button
-      variant="primary"
-      @click="toogleSubscription"
-    >
-      {{ !merchantIsSuscribed ? "Is subribed" : "Not subscribed" }}
-    </b-button>
-
     <!-- PS Account -->
     <div class="row mb-4 ps_gs-onboardingpage">
       <div class="col-12 col-md-5">
@@ -28,12 +27,14 @@
           class="is-sticky pb-3"
         >
           <section-title
+            :step-number="1"
             :step-title="$t('onboarding.sectionTitle.psAccount')"
             :is-enabled="true"
+            :is-done="stepsAreCompleted.step1"
           />
         </div>
       </div>
-      <div class="col-12 col-md-7 mb-4">
+      <div class="col-12 col-md-7">
         <prestashop-accounts
           class="ps_gs-ps-account-card"
         />
@@ -57,7 +58,6 @@
           </div>
         </div>
       </div>
-
       <div
         class="col-12 col-md-7 mb-3"
       >
@@ -94,7 +94,6 @@
           </div>
         </div>
       </div>
-
       <div
         v-show="merchantIsSuscribed"
         class="col-12 col-md-7"
@@ -106,27 +105,12 @@
       </div>
 
       <!-- Google Account + GMC + Product Feed -->
-      <div class="col-12 col-md-5">
-        <div
-          class="is-sticky pb-3"
-        >
-          <section-title
-            :step-title="$t('onboarding.sectionTitle.freeListing.title')"
-            :is-enabled="stepsAreCompleted.step2 || googleAccountIsOnboarded"
-          />
-          <div class="stepper-onboarding-subtitle">
-            <p class="text-justify ps_gs-fz-14">
-              {{ $t('onboarding.sectionTitle.freeListing.subtitle') }}
-            </p>
-            <p class="text-muted ps_gs-fz-13">
-              {{ $t('onboarding.sectionTitle.freeListing.lastTitle') }}
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-7 mb-3">
+      <two-panel-cols
+        :title="$t('onboarding.sectionTitle.freeListing.title')"
+        :description="$t('onboarding.sectionTitle.freeListing.subtitle')"
+      >
         <google-account-card
-          :is-enabled="stepsAreCompleted.step2 || googleAccountIsOnboarded"
+          :is-enabled="stepsAreCompleted.step1"
           :loading="googleIsLoading"
           :user="getGoogleAccount"
           :is-connected="googleAccountIsOnboarded"
@@ -147,39 +131,29 @@
           :is-enabled="merchantCenterAccountIsChosen"
           :loading="productFeedIsLoading"
         />
-      </div>
+      </two-panel-cols>
 
       <!-- Google Ads -->
-      <div class="col-12 col-md-5">
-        <div
-          class="is-sticky pb-3"
-        >
-          <section-title
-            :step-title="$t('onboarding.sectionTitle.smartShoppingCampaign.title')"
-            :is-enabled="stepsAreCompleted.step3"
-          />
-          <div class="stepper-onboarding-subtitle">
-            <VueShowdown
-              class="text-justify ps_gs-fz-14"
-              :markdown="$t('onboarding.sectionTitle.smartShoppingCampaign.subtitle')"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-7">
+      <two-panel-cols
+        :title="$t('onboarding.sectionTitle.smartShoppingCampaign.title')"
+        :description="$t('onboarding.sectionTitle.smartShoppingCampaign.subtitle')"
+      >
         <GoogleAdsAccountCard
-          :is-enabled="stepsAreCompleted.step3"
+          :is-enabled="stepsAreCompleted.step2"
           :loading="googleAdsIsLoading"
           @selectGoogleAdsAccount="onGoogleAdsAccountSelected()"
           @disconnectionGoogleAdsAccount="onGoogleAdsAccountDisconnectionRequest"
           @creationGoogleAdsAccount="onGoogleAdsAccountTogglePopin"
         />
         <CampaignCard
-          v-if="stepsAreCompleted.step3"
-          :is-enabled="stepsAreCompleted.step4"
+          v-if="stepsAreCompleted.step2"
+          :is-enabled="stepsAreCompleted.step3"
           :loading="SSCIsLoading"
           @openPopin="proceedToCampaignCreation"
           @remarketingTagHasBeenActivated="checkAndOpenPopinConfigrationDone"
+        />
+        <CampaignTracking
+          v-if="remarketingTagIsSet !== null && accountHasAtLeastOneCampaign"
         />
         <CampaignTracking
           v-if="remarketingTagIsSet !== null && accountHasAtLeastOneCampaign"
@@ -188,89 +162,92 @@
           v-if="remarketingTagIsSet !== null && accountHasAtLeastOneCampaign"
         />
         <PromoCard />
-      </div>
+      </two-panel-cols>
+
+      <!-- Modals -->
+      <GoogleAccountPopinDisconnect
+        ref="googleAccountDisconnectModal"
+      />
+
+      <MerchantCenterAccountPopinDisconnect
+        ref="mcaDisconnectModal"
+      />
+
+      <GoogleAdsAccountPopinDisconnect
+        ref="GoogleAdsAccountPopinDisconnect"
+      />
+
+      <GoogleAdsPopinNew
+        ref="GoogleAdsAccountPopinNew"
+        :user="getGoogleAccount"
+        @cancelGoogleAdsCreationNewAccount="onGoogleAdsAccountTogglePopin"
+      />
+      <TrackingActivationModal
+        ref="SSCPopinActivateTrackingOnboardingPage"
+        modal-id="SSCPopinActivateTrackingOnboardingPage"
+      />
+      <modal-ec-intro
+        v-if="getGoogleAdsAccount
+          && accountHasAtLeastOneCampaign"
+      />
+      <PopinModuleConfigured
+        ref="PopinModuleConfigured"
+        @openPopinRemarketingTag="proceedToCampaignCreation"
+      />
+      <!-- Toasts -->
+      <PsToast
+        v-if="toastIsVisible"
+        variant="success"
+        @hidden="toastIsClosed"
+        :visible="toastIsVisible"
+        toaster="b-toaster-top-right"
+      >
+        <p>{{ insideToast }}</p>
+      </PsToast>
     </div>
-
-    <!-- Modals -->
-    <GoogleAccountPopinDisconnect
-      ref="googleAccountDisconnectModal"
-    />
-
-    <MerchantCenterAccountPopinDisconnect
-      ref="mcaDisconnectModal"
-    />
-
-    <GoogleAdsAccountPopinDisconnect
-      ref="GoogleAdsAccountPopinDisconnect"
-    />
-
-    <GoogleAdsPopinNew
-      ref="GoogleAdsAccountPopinNew"
-      :user="getGoogleAccount"
-      @cancelGoogleAdsCreationNewAccount="onGoogleAdsAccountTogglePopin"
-    />
-    <TrackingActivationModal
-      ref="SSCPopinActivateTrackingOnboardingPage"
-      modal-id="SSCPopinActivateTrackingOnboardingPage"
-    />
-    <modal-ec-intro
-      v-if="getGoogleAdsAccount
-        && accountHasAtLeastOneCampaign"
-    />
-    <PopinModuleConfigured
-      ref="PopinModuleConfigured"
-      @openPopinRemarketingTag="proceedToCampaignCreation"
-    />
-    <!-- Toasts -->
-    <PsToast
-      v-if="toastIsVisible"
-      variant="success"
-      @hidden="toastIsClosed"
-      :visible="toastIsVisible"
-      toaster="b-toaster-top-right"
-    >
-      <p>{{ insideToast }}</p>
-    </PsToast>
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
+import {mapGetters} from 'vuex';
+import MonetizationBannerInformation from '@/components/monetization/monetization-banner-information.vue';
 import SectionTitle from '@/components/onboarding/section-title.vue';
 import GoogleAccountCard from '@/components/google-account/google-account-card.vue';
 import GoogleAdsAccountCard from '@/components/google-ads-account/google-ads-account-card.vue';
 import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
 import ProductFeedCard from '@/components/onboarding/product-feed-card.vue';
-import BillingCard from '@/components/onboarding/billing-card.vue';
 import GoogleAccountPopinDisconnect from '@/components/google-account/google-account-popin-disconnect.vue';
 import MerchantCenterAccountPopinDisconnect from '@/components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
 import GoogleAdsAccountPopinDisconnect from '@/components/google-ads-account/google-ads-account-popin-disconnect.vue';
 import GoogleAdsPopinNew from '@/components/google-ads-account/google-ads-account-popin-new.vue';
 import CampaignCard from '@/components/campaigns/campaign-card.vue';
 import CampaignTracking from '@/components/campaigns/campaign-tracking.vue';
+import OnboardingDepsContainer from '@/components/onboarding/onboarding-deps-container.vue';
 import PromoCard from '@/components/promo/promo-card.vue';
 import TrackingActivationModal from '@/components/campaigns/tracking-activation-modal.vue';
 import PsToast from '@/components/commons/ps-toast.vue';
 import PopinModuleConfigured from '@/components/commons/popin-configured.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import AlertCmp from '@/components/commons/alert-cmp.vue';
-import MonetizationBannerInformation from '@/components/monetization/monetization-banner-information.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import EnhancedConversionsCard from '@/components/enhanced-conversions/enhanced-conversions-card.vue';
 import ModalEcIntro from '@/components/enhanced-conversions/modal-ec-intro.vue';
 import {AccountInformations} from '@/store/modules/google-ads/state';
+import GettersTypesApp from '@/store/modules/app/getters-types';
+import TwoPanelCols from '@/components/onboarding/two-panel-cols.vue';
 import {deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
 
 export default defineComponent({
   name: 'OnboardingPage',
   components: {
-    SectionTitle,
+    MonetizationBannerInformation,
     EnhancedConversionsCard,
     GoogleAccountCard,
     GoogleAdsAccountCard,
     MerchantCenterAccountCard,
+    OnboardingDepsContainer,
     ProductFeedCard,
-    BillingCard,
     CampaignCard,
     CampaignTracking,
     PromoCard,
@@ -282,8 +259,9 @@ export default defineComponent({
     PsToast,
     TrackingActivationModal,
     PopinModuleConfigured,
+    TwoPanelCols,
     AlertCmp,
-    MonetizationBannerInformation,
+    SectionTitle,
   },
   data() {
     return {
@@ -296,8 +274,6 @@ export default defineComponent({
       phoneNumberVerified: false,
       cloudSyncSharingConsentScreenStarted: false,
       cloudSyncSharingConsentGiven: false,
-      merchantIsSuscribed: false,
-      displayBannerSuccessMonetization: false,
     };
   },
   methods: {
@@ -387,57 +363,12 @@ export default defineComponent({
           this.googleAdsIsLoading = false;
         }));
     },
-    initCloudSyncConsent() {
-      // If data related to CloudSync consent screen is available...
-      if (!window.cloudSyncSharingConsent) {
-        return;
-      }
-
-      // ... and the component is not already loaded
-      if (this.cloudSyncSharingConsentScreenStarted) {
-        return;
-      }
-      this.cloudSyncSharingConsentScreenStarted = true;
-
-      console.log('CloudSync Sharing Consent feature detected. Loading...');
-      const msc = window.cloudSyncSharingConsent;
-      msc.init();
-      msc.on('OnboardingCompleted', (isCompleted) => {
-        if (isCompleted) {
-          this.$segment.track('[GGL] Consent to share data of CloudSync', {
-            module: 'psxmarketingwithgoogle',
-            params: SegmentGenericParams,
-          });
-          this.cloudSyncSharingConsentGiven = isCompleted;
-        }
-      });
-      msc.isOnboardingCompleted((isCompleted) => {
-        // Identify only when we get a valid boolean value
-        if (!!isCompleted === isCompleted) {
-          this.$segment.identify(this.$store.state.accounts.shopIdPsAccounts, {
-            ggl_user_has_given_consent_to_use_cloudsync: isCompleted,
-          });
-          this.cloudSyncSharingConsentGiven = isCompleted;
-        }
-      });
-    },
-    initAccountsComponent() {
-      console.log('googleAccountIsOnboarded', this.googleAccountIsOnboarded);
-      if (!window.psaccountsVue) {
-        return;
-      }
-      window.psaccountsVue.init();
-    },
-    launchMonetization() {
-      this.displayBannerSuccessMonetization = true;
-    },
-    toogleSubscription() {
-      // Just for the test pending the procedure
-      this.merchantIsSuscribed = !this.merchantIsSuscribed;
-      if (this.merchantIsSuscribed) this.displayBannerSuccessMonetization = true;
-    },
   },
   computed: {
+    ...mapGetters('app', [
+      GettersTypesApp.GET_FEATURE_FLAG_ENHANCED_CONVERSIONS,
+      GettersTypesApp.GET_BILLING_SUBSCRIPTION_ACTIVE,
+    ]),
     displayCmpAlert() {
       return !!this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'] && this.showCmpAlert;
     },
@@ -501,7 +432,7 @@ export default defineComponent({
     stepsAreCompleted() {
       return {
         step1: this.psAccountsIsOnboarded,
-        step2: this.merchantIsSuscribed
+        step2: this.GET_BILLING_SUBSCRIPTION_ACTIVE
         && (this.cloudSyncSharingConsentGiven
           || this.googleAccountIsOnboarded
           // Make CSC optional when the running PHP is not up to date
