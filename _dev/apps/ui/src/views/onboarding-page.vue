@@ -121,7 +121,6 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {mapGetters} from 'vuex';
-import MonetizationBannerInformation from '@/components/monetization/monetization-banner-information.vue';
 import GoogleAccountCard from '@/components/google-account/google-account-card.vue';
 import GoogleAdsAccountCard from '@/components/google-ads-account/google-ads-account-card.vue';
 import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
@@ -150,7 +149,6 @@ import {deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
 export default defineComponent({
   name: 'OnboardingPage',
   components: {
-    MonetizationBannerInformation,
     EnhancedConversionsCard,
     GoogleAccountCard,
     GoogleAdsAccountCard,
