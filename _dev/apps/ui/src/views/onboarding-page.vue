@@ -2,7 +2,9 @@
   <div class="pt-2 container">
     <div class="row">
       <AlertCmp />
-      <monetization-banner-information v-if="!googleAccountIsOnboarded && !merchantIsSuscribed" />
+      <monetization-banner-information
+        v-if="!googleAccountIsOnboarded && !GET_BILLING_SUBSCRIPTION_ACTIVE"
+      />
       <b-alert
         v-if="displayBannerSuccessMonetization"
         show
@@ -15,78 +17,13 @@
     </div>
 
     <div class="row mb-4 ps_gs-onboardingpage">
-      <!-- PSAccount -->
+      <!-- PSAccount + Subscription billing -->
       <onboarding-deps-container
-        ref="onboardingDeps"
         :ps-accounts-onboarded="psAccountsIsOnboarded"
         :billing-running="GET_BILLING_SUBSCRIPTION_ACTIVE"
         :steps-are-completed="stepsAreCompleted.step1"
         @onCloudsyncConsentUpdated="cloudSyncSharingConsentGiven = $event"
       />
-
-      <!-- Subscription with billing -->
-      <div
-        class="col-12 col-md-5"
-      >
-        <div
-          class="is-sticky pb-3"
-        >
-          <section-title
-            :step-title="$t('onboarding.sectionTitle.billing.title')"
-            :is-enabled="stepsAreCompleted.step1 && googleAccountIsOnboarded"
-          />
-          <div class="stepper-onboarding-subtitle">
-            <p class="text-justify ps_gs-fz-14">
-              {{ $t('onboarding.sectionTitle.billing.description') }}
-            </p>
-          </div>
-        </div>
-      </div>
-      <div
-        class="col-12 col-md-7 mb-3"
-      >
-        <b-alert
-          v-if="googleAccountIsOnboarded && !merchantIsSuscribed"
-          show
-          variant="warning"
-          class="border border-warning"
-        >
-          {{ $t('banner.monetization.bannerNoSynchro') }}
-        </b-alert>
-        <billing-card
-          :disabled="!stepsAreCompleted.step1"
-          @clickToSubscibe="launchMonetization()"
-        />
-      </div>
-
-      <!-- CloudSynch -->
-      <div
-        v-show="merchantIsSuscribed"
-        class="col-12 col-md-5"
-      >
-        <div
-          class="is-sticky pb-3"
-        >
-          <section-title
-            :step-title="$t('onboarding.sectionTitle.cloudSync.title')"
-            :is-enabled="true"
-          />
-          <div class="stepper-onboarding-subtitle">
-            <p class="text-justify ps_gs-fz-14">
-              {{ $t('onboarding.sectionTitle.billing.description') }}
-            </p>
-          </div>
-        </div>
-      </div>
-      <div
-        v-show="merchantIsSuscribed"
-        class="col-12 col-md-7"
-      >
-        <div
-          id="prestashop-cloudsync"
-          class="my-3"
-        />
-      </div>
 
       <!-- Google Account + GMC + Product Feed -->
       <two-panel-cols
@@ -196,7 +133,6 @@
 import {defineComponent} from 'vue';
 import {mapGetters} from 'vuex';
 import MonetizationBannerInformation from '@/components/monetization/monetization-banner-information.vue';
-import SectionTitle from '@/components/onboarding/section-title.vue';
 import GoogleAccountCard from '@/components/google-account/google-account-card.vue';
 import GoogleAdsAccountCard from '@/components/google-ads-account/google-ads-account-card.vue';
 import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
@@ -208,7 +144,6 @@ import GoogleAdsPopinNew from '@/components/google-ads-account/google-ads-accoun
 import CampaignCard from '@/components/campaigns/campaign-card.vue';
 import CampaignTracking from '@/components/campaigns/campaign-tracking.vue';
 import OnboardingDepsContainer from '@/components/onboarding/onboarding-deps-container.vue';
-import BillingCard from '@/components/onboarding/billing-card.vue';
 import PromoCard from '@/components/promo/promo-card.vue';
 import TrackingActivationModal from '@/components/campaigns/tracking-activation-modal.vue';
 import PsToast from '@/components/commons/ps-toast.vue';
@@ -232,7 +167,6 @@ export default defineComponent({
     GoogleAdsAccountCard,
     MerchantCenterAccountCard,
     OnboardingDepsContainer,
-    BillingCard,
     ProductFeedCard,
     CampaignCard,
     CampaignTracking,
@@ -247,7 +181,6 @@ export default defineComponent({
     PopinModuleConfigured,
     TwoPanelCols,
     AlertCmp,
-    SectionTitle,
   },
   data() {
     return {
@@ -260,7 +193,6 @@ export default defineComponent({
       phoneNumberVerified: false,
       cloudSyncSharingConsentScreenStarted: false,
       cloudSyncSharingConsentGiven: false,
-      merchantIsSuscribed: true,
       displayBannerSuccessMonetization: false,
     };
   },
@@ -419,17 +351,17 @@ export default defineComponent({
     },
     stepsAreCompleted() {
       return {
-        step1: this.psAccountsIsOnboarded,
-        step2: this.GET_BILLING_SUBSCRIPTION_ACTIVE
-        && (this.cloudSyncSharingConsentGiven
-          || this.googleAccountIsOnboarded
-          // Make CSC optional when the running PHP is not up to date
-          || !window.contextPsEventbus
-        ),
-        step3: this.googleAccountIsOnboarded
+        step1: this.psAccountsIsOnboarded
+          && this.GET_BILLING_SUBSCRIPTION_ACTIVE
+          && (this.cloudSyncSharingConsentGiven
+            || this.googleAccountIsOnboarded
+            // Make CSC optional when the running PHP is not up to date
+            || !window.contextPsEventbus
+          ),
+        step2: this.googleAccountIsOnboarded
           && this.merchantCenterAccountIsChosen
           && this.productFeedIsConfigured,
-        step4: this.productFeedIsConfigured
+        step3: this.productFeedIsConfigured
         && this.googleAdsAccountIsChosen
         && this.billingSettingsCompleted,
       };
@@ -451,14 +383,6 @@ export default defineComponent({
   },
   mounted() {
     deleteProductFeedDataFromLocalStorage();
-
-    this.$refs.onboardingDeps?.initAccountsComponent();
-    this.$refs.onboardingDeps?.initCloudSyncConsent();
-
-    window.addEventListener('load', () => {
-      this.$refs.onboardingDeps?.initAccountsComponent();
-      this.$refs.onboardingDeps?.initCloudSyncConsent();
-    });
 
     // Try to retrieve Google account details. If the merchant is not onboarded,
     // this action will dispatch another one to generate the authentication route.

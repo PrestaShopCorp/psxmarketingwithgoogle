@@ -1,9 +1,9 @@
 <template>
   <b-card no-body>
     <b-card-header
-      class="d-flex"
+      class="d-flex mb-2"
     >
-      <span class="step-is-done rounded-circle bg-success d-flex align-items-center mr-1">
+      <span class="step-is-done rounded-circle bg-success d-flex align-items-center mr-2">
         <i
           class="material-icons-round text-light ps_gs-fz-16 ml-auto mr-auto"
         >check</i>
@@ -11,7 +11,7 @@
       {{ $t('billingFacade.title') }}
     </b-card-header>
     <b-card-body
-      class="d-flex align-items-center"
+      class="d-flex align-items-center mb-3"
     >
       <i
         class="material-icons-round ps_gs-fz-48 mr-3"

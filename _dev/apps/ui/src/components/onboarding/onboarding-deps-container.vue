@@ -12,6 +12,14 @@
       :title="$t('onboarding.sectionTitle.psbilling.title')"
       :description="$t('onboarding.sectionTitle.psbilling.subTitle')"
     >
+      <b-alert
+        v-if="!billingRunning && merchantCenterAccountIsChosen"
+        show
+        variant="warning"
+        class="border border-warning"
+      >
+        {{ $t('banner.monetization.bannerNoSynchro') }}
+      </b-alert>
       <div
         v-show="!billingRunning"
         id="ps-billing-in-catalog-tab"
@@ -31,7 +39,6 @@
       <div
         id="prestashop-cloudsync"
         class="p-0"
-        v-show="billingRunning"
       />
     </two-panel-cols>
   </div>
@@ -78,6 +85,9 @@ export default defineComponent({
     },
     billingSubscription(): ISubscription|undefined {
       return (this.$store.state.app as AppState).billing.subscription;
+    },
+    merchantCenterAccountIsChosen() {
+      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
     },
   },
   methods: {

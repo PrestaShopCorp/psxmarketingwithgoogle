@@ -85,11 +85,11 @@
       "psAccount": "Link your shop to your PrestaShop account",
       "psbilling": {
         "title": "Billing information",
-        "description": "Access and manage your subscription and related payment method.",
+        "subTitle": "Access and manage your subscription and related payment method.",
         "alertNoSynchro": "Your catalog synchronization with Google Merchant Center is paused because PrestaShop Marketing now requires a €14.99 excl. tax/month subscription. ",
         "cardText": "Subscribe to PrestaShop Marketing with Google for €X excl. tax /month. 14-day free trial. Cancel anytime."
       },
-      "pscloudSync": {
+      "pscloudsync": {
         "title": "Allow data sharing",
         "subTitle": "Help us enhance your experience and improve our service by giving consent to securely share relevant data with us."
       },
