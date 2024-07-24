@@ -1,7 +1,7 @@
 <template>
   <div class="w-100">
     <monetization-banner-information
-      v-if="!googleAccountOnboarded && !billingSubscription"
+      v-if="!googleAccountOnboarded && !billingRunning"
     />
     <two-panel-cols
       :title="$t('onboarding.sectionTitle.psAccount')"
@@ -56,12 +56,14 @@ import {State as AppState} from '@/store/modules/app/state';
 import {billingUpdateCallback, initialize} from '@/lib/billing';
 import SegmentGenericParams from '../../utils/SegmentGenericParams';
 import TwoPanelCols from './two-panel-cols.vue';
+import MonetizationBannerInformation from '../monetization/monetization-banner-information.vue';
 
 export default defineComponent({
   name: 'OnboardingDepsContainer',
   components: {
     CardBillingConnected,
     TwoPanelCols,
+    MonetizationBannerInformation,
   },
   props: {
     psAccountsOnboarded: {
@@ -109,6 +111,7 @@ export default defineComponent({
             params: SegmentGenericParams,
           });
           this.$emit('onCloudsyncConsentUpdated', isCompleted);
+          console.log('isCompleted1', isCompleted);
         }
       });
       msc.isOnboardingCompleted((isCompleted) => {
@@ -118,7 +121,9 @@ export default defineComponent({
             ggl_user_has_given_consent_to_use_cloudsync: isCompleted,
           });
           this.$emit('onCloudsyncConsentUpdated', isCompleted);
+          console.log('isCompleted3', isCompleted);
         }
+        console.log('isCompleted2', isCompleted);
       });
     },
     initAccountsComponent() {
@@ -140,11 +145,6 @@ export default defineComponent({
       );
       this.openBillingModal = openCheckout;
     },
-    startSubscription($event: string): void {
-      if (this.openBillingModal) {
-        this.openBillingModal($event);
-      }
-    },
   },
   mounted() {
     this.initAccountsComponent();
@@ -153,6 +153,9 @@ export default defineComponent({
     window.addEventListener('load', () => {
       this.initCloudSyncConsent();
     });
+    console.log('this.billingRunning', this.billingRunning);
+    console.log('this.billingContext', this.billingContext);
+    console.log('this.billingSubscription', this.billingSubscription);
   },
   watch: {
     psAccountsOnboarded: {
