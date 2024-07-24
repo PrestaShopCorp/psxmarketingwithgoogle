@@ -2,24 +2,13 @@
   <div class="pt-2 container">
     <div class="row">
       <AlertCmp />
-      <monetization-banner-information
-        v-if="!googleAccountIsOnboarded && !GET_BILLING_SUBSCRIPTION_ACTIVE"
-      />
-      <b-alert
-        v-if="displayBannerSuccessMonetization"
-        show
-        variant="success"
-        class="border border-success mx-3 w-100"
-        dismissible
-      >
-        {{ $t('banner.monetization.bannerSuccessBilling') }}
-      </b-alert>
     </div>
 
     <div class="row mb-4 ps_gs-onboardingpage">
       <!-- PSAccount + Subscription billing -->
       <onboarding-deps-container
         :ps-accounts-onboarded="psAccountsIsOnboarded"
+        :google-account-onboarded="googleAccountIsOnboarded"
         :billing-running="GET_BILLING_SUBSCRIPTION_ACTIVE"
         :steps-are-completed="stepsAreCompleted.step1"
         @onCloudsyncConsentUpdated="cloudSyncSharingConsentGiven = $event"
@@ -350,6 +339,7 @@ export default defineComponent({
       return this.$store.getters['campaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
     },
     stepsAreCompleted() {
+      console.log('this.psAccountsIsOnboarded', this.psAccountsIsOnboarded);
       return {
         step1: this.psAccountsIsOnboarded
           && this.GET_BILLING_SUBSCRIPTION_ACTIVE

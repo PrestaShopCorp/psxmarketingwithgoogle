@@ -1,11 +1,10 @@
 <template>
-  <div class="row mb-4">
+  <div class="row mb-4 col-12">
     <div class="col-12 col-md-5">
       <div
         class="is-sticky pb-3 pt-2"
       >
         <h2>{{ title }}</h2>
-
         <p v-if="description">
           {{ description }}
         </p>

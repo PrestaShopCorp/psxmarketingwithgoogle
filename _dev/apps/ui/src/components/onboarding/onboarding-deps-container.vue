@@ -1,5 +1,8 @@
 <template>
-  <div class="col-12">
+  <div class="w-100">
+    <monetization-banner-information
+      v-if="!googleAccountOnboarded && !billingSubscription"
+    />
     <two-panel-cols
       :title="$t('onboarding.sectionTitle.psAccount')"
     >
@@ -65,6 +68,10 @@ export default defineComponent({
       type: Boolean,
       required: true,
     },
+    googleAccountOnboarded: {
+      type: Boolean,
+      required: true,
+    },
     billingRunning: {
       type: Boolean,
       required: true,
@@ -93,7 +100,7 @@ export default defineComponent({
   methods: {
     initCloudSyncConsent() {
       // If data related to CloudSync consent screen is available...
-      if (!window.cloudSyncSharingConsent || !this.psAccountsOnboarded) {
+      if (!window.cloudSyncSharingConsent) {
         return;
       }
 
@@ -147,6 +154,9 @@ export default defineComponent({
     this.initAccountsComponent();
     this.initBillingComponent();
     this.initCloudSyncConsent();
+    window.addEventListener('load', () => {
+      this.initCloudSyncConsent();
+    });
   },
   watch: {
     psAccountsOnboarded: {
