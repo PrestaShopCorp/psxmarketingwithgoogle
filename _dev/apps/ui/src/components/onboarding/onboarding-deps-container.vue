@@ -76,10 +76,6 @@ export default defineComponent({
       type: Boolean,
       required: true,
     },
-    stepsAreCompleted: {
-      type: Boolean,
-      required: true,
-    },
   },
   data() {
     return {
