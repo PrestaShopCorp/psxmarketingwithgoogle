@@ -337,7 +337,6 @@ export default defineComponent({
       return this.$store.getters['campaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
     },
     stepsAreCompleted() {
-      console.log('this.psAccountsIsOnboarded', this.psAccountsIsOnboarded);
       return {
         step1: this.psAccountsIsOnboarded
           && this.GET_BILLING_SUBSCRIPTION_ACTIVE
