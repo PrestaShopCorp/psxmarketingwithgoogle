@@ -4,7 +4,7 @@
     class="ps_gs-card-collapse"
   >
     <b-card-header
-      class="p-0"
+      class="p-0 m-0"
     >
       <b-button
         block

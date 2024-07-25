@@ -1,0 +1,25 @@
+.card {
+  border-radius: 0;
+  border-width: 1px;
+  border-color: $primary-400;
+
+  .card-header {
+    padding: unset;
+    background-color: unset;
+    border-bottom: unset;
+
+    margin: 24px;
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  .card-body {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .step-is-done {
+    width: 24px;
+    height: 24px;
+  }
+}
