@@ -1,17 +1,24 @@
 <template>
-  <b-card no-body>
+  <b-card
+    no-body
+    class="border-primary-400 p-4"
+  >
     <b-card-header
-      class="d-flex mb-2"
+      class="d-flex border-0 font-weight-600 ps_gs-fz-16 bg-transparent p-0"
     >
-      <span class="step-is-done rounded-circle bg-success d-flex align-items-center mr-2">
+      <span
+        class="
+        rounded-circle bg-success d-flex align-items-center mr-2 icon-24 justify-content-center
+      "
+      >
         <i
-          class="material-icons-round text-light ps_gs-fz-16 ml-auto mr-auto"
+          class="material-icons-round text-light ps_gs-fz-16"
         >check</i>
       </span>
       {{ $t('billingFacade.title') }}
     </b-card-header>
     <b-card-body
-      class="d-flex align-items-center mb-3"
+      class="d-flex align-items-center p-0 mt-4"
     >
       <i
         class="material-icons-round ps_gs-fz-48 mr-3"

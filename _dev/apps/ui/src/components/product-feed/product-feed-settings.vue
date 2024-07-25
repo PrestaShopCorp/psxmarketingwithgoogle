@@ -27,7 +27,7 @@
         </li>
       </ol>
     </b-card-header>
-    <b-card-body>
+    <b-card-body class="p-3 p-md-4">
       <product-feed-stepper
         :active-step="getActiveStep"
       />
