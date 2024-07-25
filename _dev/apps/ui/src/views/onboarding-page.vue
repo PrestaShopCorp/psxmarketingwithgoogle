@@ -20,7 +20,7 @@
         :description="$t('onboarding.sectionTitle.freeListing.subtitle')"
       >
         <google-account-card
-          :is-enabled="stepsAreCompleted.step1"
+          :is-enabled="stepsAreCompleted.step1 || googleAccountIsOnboarded"
           :loading="googleIsLoading"
           :user="getGoogleAccount"
           :is-connected="googleAccountIsOnboarded"
@@ -341,9 +341,6 @@ export default defineComponent({
         step1: this.psAccountsIsOnboarded
           && this.GET_BILLING_SUBSCRIPTION_ACTIVE
           && (this.cloudSyncSharingConsentGiven
-            || this.googleAccountIsOnboarded
-            // Make CSC optional when the running PHP is not up to date
-            || !window.contextPsEventbus
           ),
         step2: this.googleAccountIsOnboarded
           && this.merchantCenterAccountIsChosen

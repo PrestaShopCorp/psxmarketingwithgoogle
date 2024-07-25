@@ -391,13 +391,6 @@ ImportDeliveryTimeAndRatesBug.argTypes = {
     control: 'boolean',
   },
 };
-console.log(
-  getEnabledCarriers(shippingBugExport),
-  mergeShippingDetailsSourcesForProductFeedConfiguration(
-    getEnabledCarriers(shippingBugExport),
-    [],
-  ),
-);
 ImportDeliveryTimeAndRatesBug.args = {
   beforeMount(this: any) {
     this.$store.state.app = cloneDeep(initialStateApp);

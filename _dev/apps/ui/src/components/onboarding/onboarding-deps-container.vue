@@ -98,7 +98,7 @@ export default defineComponent({
   methods: {
     initCloudSyncConsent() {
       // If data related to CloudSync consent screen is available...
-      if (!window.cloudSyncSharingConsent) {
+      if (!window.cloudSyncSharingConsent || !this.psAccountsOnboarded) {
         return;
       }
 
@@ -111,7 +111,6 @@ export default defineComponent({
             params: SegmentGenericParams,
           });
           this.$emit('onCloudsyncConsentUpdated', isCompleted);
-          console.log('isCompleted1', isCompleted);
         }
       });
       msc.isOnboardingCompleted((isCompleted) => {
@@ -121,9 +120,7 @@ export default defineComponent({
             ggl_user_has_given_consent_to_use_cloudsync: isCompleted,
           });
           this.$emit('onCloudsyncConsentUpdated', isCompleted);
-          console.log('isCompleted3', isCompleted);
         }
-        console.log('isCompleted2', isCompleted);
       });
     },
     initAccountsComponent() {
@@ -153,9 +150,6 @@ export default defineComponent({
     window.addEventListener('load', () => {
       this.initCloudSyncConsent();
     });
-    console.log('this.billingRunning', this.billingRunning);
-    console.log('this.billingContext', this.billingContext);
-    console.log('this.billingSubscription', this.billingSubscription);
   },
   watch: {
     psAccountsOnboarded: {
