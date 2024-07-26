@@ -21,7 +21,7 @@ const billingNavigationGuard: NavigationGuard = (to, from, next) => {
     return next({name: 'Configuration'});
   }
 
-  if (!store.getters[`app/${GettersTypesApp.GET_BILLING_SUBSCRIPTION_ACTIVE}`]) {
+  if (!store.getters[`app/${GettersTypesApp.GET_BILLING_SUBSCRIPTION_ACTIVE}`] && !store.getters[`accounts/${GettersTypesAccounts.GET_GOOGLE_ACCOUNT_IS_ONBOARDED}`]) {
     return next({name: 'Configuration'});
   }
 
