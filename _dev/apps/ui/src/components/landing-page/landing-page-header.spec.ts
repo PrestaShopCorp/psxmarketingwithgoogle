@@ -1,10 +1,10 @@
 // Import this file first to init mock on window
 import {MountOptions, shallowMount} from '@vue/test-utils';
 import Vuex from 'vuex';
+import cloneDeep from 'lodash.clonedeep';
 import {initialStateApp} from '../../../.storybook/mock/state-app';
 import config, {cloneStore, localVue} from '@/../tests/init';
 import LandingPageHeader from '@/components/landing-page/landing-page-header.vue';
-import cloneDeep from 'lodash.clonedeep';
 
 const buildWrapper = (
   options: MountOptions<any> = {},
