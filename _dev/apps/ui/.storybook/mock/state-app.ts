@@ -10,7 +10,8 @@ export const initialStateApp: State = {
   psxMktgWithGoogleShopCurrency: {
     isoCode: 'EUR',
   },
-  psxMktgWithGoogleModuleVersionNeeded: '1.80.0',
+  psxMktgWithGoogleModuleVersionNeeded: '1.74.0',
+  psxMktgWithGoogleModuleVersion: '1.74.0',
   cloudsyncVersionNeeded: '1.6.5',
   shopIsOnMaintenanceMode: false,
   psxMktgWithGoogleProductDetailUrl: 'https://my-shop.com/admin-dev/index.php/sell/catalog/products/1?token=blabla',
