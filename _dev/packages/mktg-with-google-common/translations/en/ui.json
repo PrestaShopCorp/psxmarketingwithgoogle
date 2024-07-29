@@ -1081,7 +1081,8 @@
     "signGadsToS": "Sign terms of service on Google Ads",
     "enableEnhancedConversions": "Activate enhanced conversion tracking",
     "loadNextPage": "Load next results",
-    "startFreeTrial": "Start free trial"
+    "startFreeTrial": "Start free trial",
+    "subscribe": "Subscribe"
   },
   "badge": {
     "free": "Free",
@@ -1232,7 +1233,9 @@
       "bannerInfoAdvantage1": "Seamlessly connect and link all your Google accounts",
       "bannerInfoAdvantage2": "Gain access to comprehensive monitoring of your product catalog",
       "bannerInfoAdvantage3": "Reach the right audience at the right time with Performance Max campaigns",
-      "bannerSuccessBilling": "Your subscription is now active, and your daily synchronization has resumed. Your next billing date is May 12, 2024."
+      "bannerSuccessBilling": "Your subscription is now active, and your daily synchronization has resumed. Your next billing date is May 12, 2024.",
+      "alertSubscriptionCancelTitle": "You’ve canceled your PrestaShop Marketing with Google subscription.",
+      "alertSubscriptionCancelSubtitle": "Your subscription will still be active until 8 October, 2023, You can re-subscribe anytime to continue using the module."
     }
   },
   "tipsAndTricks": {

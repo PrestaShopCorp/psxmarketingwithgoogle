@@ -8,9 +8,7 @@
       <!-- PSAccount + Subscription billing -->
       <onboarding-deps-container
         :ps-accounts-onboarded="psAccountsIsOnboarded"
-        :google-account-onboarded="googleAccountIsOnboarded"
         :billing-running="GET_BILLING_SUBSCRIPTION_ACTIVE"
-        :steps-are-completed="stepsAreCompleted.step1"
         @onCloudsyncConsentUpdated="cloudSyncSharingConsentGiven = $event"
       />
 

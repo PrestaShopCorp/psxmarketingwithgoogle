@@ -1,11 +1,5 @@
 <template>
   <div id="configuration">
-    <monetization-messages class="container px-4">
-      <template #content-modale>
-        {{ $t('banner.monetization.popinUpdateConfigurationText') }}
-      </template>
-    </monetization-messages>
-
     <multistore-page v-if="!psAccountsContext.isShopContext && shops.length" />
     <onboarding-page v-else />
   </div>
@@ -15,13 +9,11 @@
 import {defineComponent} from 'vue';
 import MultistorePage from './multistore-page.vue';
 import OnboardingPage from './onboarding-page.vue';
-import MonetizationMessages from '@/components/monetization/monetization-messages.vue';
 
 export default defineComponent({
   components: {
     OnboardingPage,
     MultistorePage,
-    MonetizationMessages,
   },
   computed: {
     psAccountsContext() {

@@ -1,8 +1,14 @@
 <template>
   <div class="w-100">
-    <monetization-banner-information
-      v-if="!googleAccountOnboarded && !billingRunning"
-    />
+    <monetization-messages
+      class="container"
+      page="configuration"
+    >
+      <template #content-modale>
+        {{ $t('banner.monetization.popinUpdateConfigurationText') }}
+      </template>
+    </monetization-messages>
+
     <two-panel-cols
       :title="$t('onboarding.sectionTitle.psAccount')"
     >
@@ -56,21 +62,17 @@ import {State as AppState} from '@/store/modules/app/state';
 import {billingUpdateCallback, initialize} from '@/lib/billing';
 import SegmentGenericParams from '../../utils/SegmentGenericParams';
 import TwoPanelCols from './two-panel-cols.vue';
-import MonetizationBannerInformation from '../monetization/monetization-banner-information.vue';
+import MonetizationMessages from '@/components/monetization/monetization-messages.vue';
 
 export default defineComponent({
   name: 'OnboardingDepsContainer',
   components: {
     CardBillingConnected,
     TwoPanelCols,
-    MonetizationBannerInformation,
+    MonetizationMessages,
   },
   props: {
     psAccountsOnboarded: {
-      type: Boolean,
-      required: true,
-    },
-    googleAccountOnboarded: {
       type: Boolean,
       required: true,
     },
