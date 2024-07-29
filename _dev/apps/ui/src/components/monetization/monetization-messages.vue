@@ -1,21 +1,8 @@
 <template>
   <div>
-    <MonetizatizationAlertWarningUpdateModule
-      v-if="modaleIsClosed && !moduleIsUpdated"
+    <MonetizationAlertWarningUpdateModule
+      v-if="moduleNeedUpgrade && modaleIsClosed && !moduleIsUpdated"
       @moduleUpdated="clickModuleUpdated"
-    />
-    <MonetizationBannerInformation
-      v-else-if="!googleAccountIsOnboarded
-        && !GET_BILLING_SUBSCRIPTION_ACTIVE
-        && page === 'configuration'"
-      class="mb-3"
-    />
-    <MonetizationAlertSubscriptionCancel
-      v-if="moduleIsUpdated
-        && subscription
-        && subscription.cancelled_at
-        && page === 'configuration'"
-      @startSubscription="($event) => $emit('startSubscription', $event)"
     />
     <MonetizationPopinUpdateModule
       v-if="moduleNeedUpgrade && !moduleIsUpdated"
@@ -26,6 +13,20 @@
         <slot name="content-modale" />
       </template>
     </MonetizationPopinUpdateModule>
+    <MonetizationBannerInformation
+      v-else-if="!moduleNeedUpgrade
+        && !googleAccountIsOnboarded
+        && !GET_BILLING_SUBSCRIPTION_ACTIVE
+        && page === 'configuration'"
+      class="mb-3"
+    />
+    <MonetizationAlertSubscriptionCancel
+      v-if="!moduleNeedUpgrade
+        && subscription
+        && subscription.cancelled_at
+        && page === 'configuration'"
+      @startSubscription="($event) => $emit('startSubscription', $event)"
+    />
     <PsToast
       v-if="moduleIsUpdated"
       variant="success"
@@ -43,7 +44,7 @@ import {defineComponent, PropType} from 'vue';
 import {mapGetters} from 'vuex';
 import {ISubscription} from '@prestashopcorp/billing-cdc';
 import MonetizationPopinUpdateModule from '@/components/monetization/monetization-popin-update-module.vue';
-import MonetizatizationAlertWarningUpdateModule from '@/components/monetization/monetization-alert-warning-update-module.vue';
+import MonetizationAlertWarningUpdateModule from '@/components/monetization/monetization-alert-warning-update-module.vue';
 import MonetizationBannerInformation from '@/components/monetization/monetization-banner-information.vue';
 import PsToast from '@/components/commons/ps-toast.vue';
 import AppGettersTypes from '@/store/modules/app/getters-types';
@@ -55,7 +56,7 @@ export default defineComponent({
   components: {
     MonetizationBannerInformation,
     MonetizationPopinUpdateModule,
-    MonetizatizationAlertWarningUpdateModule,
+    MonetizationAlertWarningUpdateModule,
     MonetizationAlertSubscriptionCancel,
     PsToast,
   },
@@ -90,9 +91,6 @@ export default defineComponent({
     clickModuleUpdated() {
       this.moduleIsUpdated = true;
     },
-  },
-  mounted() {
-    console.log('clara subscription', this.subscription);
   },
 });
 </script>

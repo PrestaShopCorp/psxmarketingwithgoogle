@@ -19,7 +19,7 @@
       />
     </two-panel-cols>
     <two-panel-cols
-      v-if="billingContext"
+      v-if="billingContext && !moduleNeedUpgrade"
       :title="$t('onboarding.sectionTitle.psbilling.title')"
       :description="$t('onboarding.sectionTitle.psbilling.subTitle')"
     >
@@ -65,6 +65,8 @@ import {billingUpdateCallback, initialize} from '@/lib/billing';
 import SegmentGenericParams from '../../utils/SegmentGenericParams';
 import TwoPanelCols from './two-panel-cols.vue';
 import MonetizationMessages from '@/components/monetization/monetization-messages.vue';
+import AppGettersTypes from '@/store/modules/app/getters-types';
+import AccountGettersTypes from '@/store/modules/accounts/getters-types';
 
 export default defineComponent({
   name: 'OnboardingDepsContainer',
@@ -96,7 +98,10 @@ export default defineComponent({
       return (this.$store.state.app as AppState).billing.subscription;
     },
     merchantCenterAccountIsChosen() {
-      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
+      return this.$store.getters[`accounts/${AccountGettersTypes.GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED}`];
+    },
+    moduleNeedUpgrade() {
+      return this.$store.getters[`app/${AppGettersTypes.GET_MODULE_NEED_UPGRADE}`](this.$store.state.app.psxMktgWithGoogleModuleVersionNeeded);
     },
   },
   methods: {

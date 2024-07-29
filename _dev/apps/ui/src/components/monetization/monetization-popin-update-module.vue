@@ -38,10 +38,10 @@
   </ps-modal>
 </template>
 
-<script>
+<script lang="ts">
 import {defineComponent} from 'vue';
 import ActionsTypes from '@/store/modules/app/actions-types';
-import PsModal from '../commons/ps-modal';
+import PsModal from '@/components/commons/ps-modal.vue';
 
 export default defineComponent({
   components: {
