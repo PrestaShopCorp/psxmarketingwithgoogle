@@ -1,5 +1,5 @@
 <template>
-  <div class="row col-12 mx-auto mb-2">
+  <div class="row mx-auto mb-2">
     <div class="col-12 col-md-5">
       <div
         class="is-sticky pb-3 pt-2"
