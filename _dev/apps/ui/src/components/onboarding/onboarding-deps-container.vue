@@ -32,7 +32,6 @@
       <card-billing-connected
         v-if="billingRunning && billingSubscription"
         :subscription="billingSubscription"
-        class="mt-3"
       />
     </two-panel-cols>
     <two-panel-cols
@@ -42,7 +41,7 @@
     >
       <div
         id="prestashop-cloudsync"
-        class="p-0 mb-2"
+        class="p-0"
       />
     </two-panel-cols>
   </div>
