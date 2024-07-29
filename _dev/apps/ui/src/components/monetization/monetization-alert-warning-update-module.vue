@@ -1,6 +1,6 @@
 <template>
   <b-alert
-    class="border border-warning d-md-flex align-items-md-center container"
+    class="border border-warning d-md-flex align-items-md-center"
     variant="warning"
     show
   >
@@ -31,6 +31,7 @@ import {defineComponent} from 'vue';
 import ActionsTypes from '@/store/modules/app/actions-types';
 
 export default defineComponent({
+  name: 'MonetizationAlertWarningUpdateMondule',
   data() {
     return {
       loading: false,
