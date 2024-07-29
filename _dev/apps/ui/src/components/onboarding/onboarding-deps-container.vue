@@ -3,6 +3,8 @@
     <monetization-messages
       class="container"
       page="configuration"
+      :subscription="billingSubscription"
+      @startSubscription="startSubscription"
     >
       <template #content-modale>
         {{ $t('banner.monetization.popinUpdateConfigurationText') }}
@@ -143,6 +145,11 @@ export default defineComponent({
         billingUpdateCallback(window.psBilling, this.$store.state.app),
       );
       this.openBillingModal = openCheckout;
+    },
+    startSubscription($event: string): void {
+      if (this.openBillingModal) {
+        this.openBillingModal($event);
+      }
     },
   },
   mounted() {

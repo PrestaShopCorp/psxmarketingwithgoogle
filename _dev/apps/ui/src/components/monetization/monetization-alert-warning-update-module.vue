@@ -13,7 +13,7 @@
       </p>
     </div>
     <b-button
-      class="mt-3 btn btn-warning px-3 py-2 ml-3 d-flex flex-shrink-0"
+      class="mt-3 mt-md-0 btn btn-warning px-3 py-2 ml-3 d-flex flex-shrink-0"
       variant="warning"
       @click="updateModule"
     >

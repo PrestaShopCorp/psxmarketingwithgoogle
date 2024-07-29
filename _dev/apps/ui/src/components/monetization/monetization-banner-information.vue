@@ -1,5 +1,5 @@
 <template>
-  <div class="row bg-ocean-blue-500 px-5 py-4 m-auto w-100">
+  <div class="row bg-ocean-blue-500 px-5 py-4 mx-auto w-100">
     <div class="col-md-4">
       <img
         src="@/assets/images/included-in-subscription.svg"

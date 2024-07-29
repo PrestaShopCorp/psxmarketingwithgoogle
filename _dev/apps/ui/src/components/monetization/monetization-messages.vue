@@ -1,13 +1,21 @@
 <template>
   <div>
-    <MonetizationBannerInformation
-      v-if="!googleAccountIsOnboarded
-        && !GET_BILLING_SUBSCRIPTION_ACTIVE
-        && page === 'configuration'"
-    />
     <MonetizatizationAlertWarningUpdateModule
       v-if="modaleIsClosed && !moduleIsUpdated"
       @moduleUpdated="clickModuleUpdated"
+    />
+    <MonetizationBannerInformation
+      v-else-if="!googleAccountIsOnboarded
+        && !GET_BILLING_SUBSCRIPTION_ACTIVE
+        && page === 'configuration'"
+      class="mb-3"
+    />
+    <MonetizationAlertSubscriptionCancel
+      v-if="moduleIsUpdated
+        && subscription
+        && subscription.cancelled_at
+        && page === 'configuration'"
+      @startSubscription="($event) => $emit('startSubscription', $event)"
     />
     <MonetizationPopinUpdateModule
       v-if="moduleNeedUpgrade && !moduleIsUpdated"
@@ -31,14 +39,16 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, PropType} from 'vue';
 import {mapGetters} from 'vuex';
+import {ISubscription} from '@prestashopcorp/billing-cdc';
 import MonetizationPopinUpdateModule from '@/components/monetization/monetization-popin-update-module.vue';
 import MonetizatizationAlertWarningUpdateModule from '@/components/monetization/monetization-alert-warning-update-module.vue';
 import MonetizationBannerInformation from '@/components/monetization/monetization-banner-information.vue';
 import PsToast from '@/components/commons/ps-toast.vue';
 import AppGettersTypes from '@/store/modules/app/getters-types';
 import AccountsGettersTypes from '@/store/modules/accounts/getters-types';
+import MonetizationAlertSubscriptionCancel from './monetization-alert-subscription-cancel.vue';
 
 export default defineComponent({
   name: 'MonetizationMessage',
@@ -46,9 +56,14 @@ export default defineComponent({
     MonetizationBannerInformation,
     MonetizationPopinUpdateModule,
     MonetizatizationAlertWarningUpdateModule,
+    MonetizationAlertSubscriptionCancel,
     PsToast,
   },
   props: {
+    subscription: {
+      type: Object as PropType<ISubscription>,
+      default: null,
+    },
     page: {
       type: String,
       default: null,
@@ -75,6 +90,9 @@ export default defineComponent({
     clickModuleUpdated() {
       this.moduleIsUpdated = true;
     },
+  },
+  mounted() {
+    console.log('clara subscription', this.subscription);
   },
 });
 </script>
