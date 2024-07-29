@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MonetizatizationBannerWarningUpdateModule
+    <MonetizatizationAlertWarningUpdateModule
       v-if="modaleIsClosed && !moduleIsUpdated"
       @moduleUpdated="clickModuleUpdated"
     />
@@ -28,14 +28,14 @@
 <script>
 import {defineComponent} from 'vue';
 import MonetizationPopinUpdateModule from '@/components/monetization/monetization-popin-update-module.vue';
-import MonetizatizationBannerWarningUpdateModule from '@/components/monetization/monetization-banner-warning-update-module.vue';
+import MonetizatizationAlertWarningUpdateModule from '@/components/monetization/monetization-alert-warning-update-module.vue';
 import PsToast from '@/components/commons/ps-toast.vue';
 import AppGettersTypes from '@/store/modules/app/getters-types';
 
 export default defineComponent({
   components: {
     MonetizationPopinUpdateModule,
-    MonetizatizationBannerWarningUpdateModule,
+    MonetizatizationAlertWarningUpdateModule,
     PsToast,
   },
   data() {

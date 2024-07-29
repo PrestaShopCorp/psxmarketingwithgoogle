@@ -1,15 +1,15 @@
-import MonetizatizationBannerWarningUpdateModule from '../src/components/monetization/monetization-banner-warning-update-module.vue';
+import MonetizatizationAlertWarningUpdateModule from '../src/components/monetization/monetization-alert-warning-update-module.vue';
 
 export default {
-  title: 'Onboarding/Banners',
-  component: MonetizatizationBannerWarningUpdateModule,
+  title: 'Onboarding/Alerts',
+  component: MonetizatizationAlertWarningUpdateModule,
 };
 
 const Template = (args, {argTypes}) => ({
   props: Object.keys(argTypes),
-  components: {MonetizatizationBannerWarningUpdateModule},
+  components: {MonetizatizationAlertWarningUpdateModule},
   template:
-    '<div><MonetizatizationBannerWarningUpdateModule v-bind="$props" /></div>',
+    '<div><MonetizatizationAlertWarningUpdateModule v-bind="$props" /></div>',
 });
 
 export const UpdateModule: any = Template.bind({});
