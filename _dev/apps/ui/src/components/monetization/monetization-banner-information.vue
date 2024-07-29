@@ -1,5 +1,5 @@
 <template>
-  <div class="col-12 mb-4">
+  <div class="px-4 mb-4">
     <div class="row bg-ocean-blue-500 px-5 py-4 m-auto w-100">
       <div class="col-md-4">
         <img

@@ -1,6 +1,6 @@
 <template>
   <div id="configuration">
-    <monetization-messages>
+    <monetization-messages class="container px-4">
       <template #content-modale>
         {{ $t('banner.monetization.popinUpdateConfigurationText') }}
       </template>
