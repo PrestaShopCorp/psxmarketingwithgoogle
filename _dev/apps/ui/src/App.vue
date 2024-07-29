@@ -20,13 +20,13 @@
       >
         <AppMenu>
           <MenuItem
-            v-if="!currentlyOnLandingPage"
+            v-if="!currentlyOnLandingPage && GET_BILLING_SUBSCRIPTION_ACTIVE"
             :route="{name: 'campaign'}"
           >
             {{ $t('general.tabs.campaign') }}
           </MenuItem>
           <MenuItem
-            v-if="!currentlyOnLandingPage"
+            v-if="!currentlyOnLandingPage && GET_BILLING_SUBSCRIPTION_ACTIVE"
             :route="{name: 'product-feed'}"
           >
             {{ $t('general.tabs.productFeed') }}
