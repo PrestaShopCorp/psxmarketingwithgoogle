@@ -19,11 +19,12 @@
         v-if="!billingRunning && merchantCenterAccountIsChosen"
         show
         variant="warning"
-        class="border border-warning"
+        class="border border-warning mt-2 mb-0"
       >
-        {{ $t('banner.monetization.bannerNoSynchro') }}
+        {{ $t('onboarding.sectionTitle.psbilling.alertNoSynchro') }}
       </b-alert>
       <div
+        class="mb-1"
         v-show="!billingRunning"
         id="ps-billing-in-catalog-tab"
       />
