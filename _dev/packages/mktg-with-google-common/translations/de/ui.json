@@ -5,6 +5,7 @@
       "campaign": "Kampagnen",
       "configuration": "Konfigurieren",
       "catalog": "Produktkatalog",
+      "billing": "Abonnement",
       "help": "Hilfe"
     },
     "errorsMessages": {
@@ -82,10 +83,19 @@
     },
     "sectionTitle": {
       "psAccount": "Verbinden Sie Ihr PrestaShop-Konto",
+      "psbilling": {
+        "title": "Zahlungsinformation",
+        "subTitle": "Zugriff und Verwaltung Ihres Abonnements und der zugehörigen Zahlungsmethoden.",
+        "alertNoSynchro": "Your catalog synchronization with Google Merchant Center is paused because PrestaShop Marketing now requires a €14.99 excl. tax/month subscription. ",
+        "cardText": "Subscribe to PrestaShop Marketing with Google for €X excl. tax /month. 14-day free trial. Cancel anytime."
+      },
+      "pscloudsync": {
+        "title": "Datenfreigabe zulassen",
+        "subTitle": "Helfen Sie uns, Ihre Erfahrung zu verbessern und unseren Service zu optimieren, indem Sie uns Ihre Zustimmung geben, relevante Daten sicher mit uns zu teilen."
+      },
       "freeListing": {
         "title": "Erreichen Sie mehr Personen auf Google mit kostenlosen Inseraten",
-        "subtitle": "Durch kostenlose Inserate erreichen Sie Millionen von Käufern, die nach Produkten wie Ihren suchen. Lassen Sie Ihre Produkte kostenlos in organisch geordneten Suchen im Tab „Shopping“ anzeigen. Dazu müssen Sie Ihr Google-Konto mit dem Google Merchant Center verbinden.",
-        "lastTitle": "Unternehmen, die kostenlose Inserate und Werbeanzeigen im Tab „Shopping“ nutzen, verzeichnen insgesamt einen Anstieg der Klicks um über 50 % und einen Anstieg der Impressions um über 100 % (interne Daten von Google, Juli 2020)."
+        "subtitle": "Durch kostenlose Inserate erreichen Sie Millionen von Käufern, die nach Produkten wie Ihren suchen. Lassen Sie Ihre Produkte kostenlos in organisch geordneten Suchen im Tab „Shopping“ anzeigen. Dazu müssen Sie Ihr Google-Konto mit dem Google Merchant Center verbinden."
       },
       "smartShoppingCampaign": {
         "title": "Werbung auf Google mit Leistung max.",
@@ -101,6 +111,12 @@
     "tips": "Nachdem Sie mit dem ersten Shop fertig sind, können Sie die anderen Shops konfigurieren, indem Sie sie nacheinander im Shop-Selektor im horizontalen Menü auswählen",
     "configure": "Konfigurieren",
     "group": "Gruppe einkaufen"
+  },
+  "billingFacade": {
+    "title": "Zahlungsdetails",
+    "nextPayment": "Ihr Abonnement ist aktiv, die nächste Abrechnung erfolgt am {date}",
+    "willEnd": "Ihr Abonnement endet am {date}.",
+    "managePayment": "Zahlungen verwalten"
   },
   "googleAccountCard": {
     "title": "Google-Konto",
@@ -260,7 +276,6 @@
       "shippingSetup": "Versandeinstellungen",
       "deliveryTimesAndRates": "Lieferzeit & Versandkosten",
       "attributeMapping": "Attribut-Zuordnung",
-      "productSelection": ">Produktauswahl",
       "categoryMapping": "Kategorie Mapping",
       "summary": "Zusammenfassung",
       "exportFeed": "Feed exportieren!",
@@ -522,12 +537,6 @@
         "tryAgain": ">Erneut versuchen"
       }
     },
-    "syncSchedule": {
-      "title": "Zeitplan für die Synchronisierung",
-      "subTitle": "Wählen Sie den Zeitpunkt, zu dem die erste Synchronisierung beginnen soll, da der Export Ihren Datenverkehr verlangsamen kann.",
-      "radioLabel1": "Nachdem ich meine Konfiguration abgeschlossen habe (der Export könnte Ihren Shop verlangsamen)",
-      "radioLabel2": "Später, etwa um 2:00 Uhr morgens (GMT +1) (Wenn Ihr Geschäft wenig besucht wird)"
-    },
     "summary": {
       "title": ">Zusammenfassung Produkt-Feed",
       "xItems": "{0} Artikel",
@@ -552,6 +561,10 @@
       "disabledButtonTooltip": "Prüfen Sie unsere Bedingungen, bevor Sie weitermachen",
       "syncScheduledNow": "Heute, gleich nachdem ich gespeichert und exportiert habe"
     }
+  },
+  "billing": {
+    "planTitle": "Abo- & Abrechnungsinformationen",
+    "invoicesTitle": "Rechnungen"
   },
   "freeListingCard": {
     "title": "Zeigen Sie Ihre Produkte mit kostenlosen Inseraten",
@@ -1066,7 +1079,8 @@
     "signGadsToS": "Unterschreiben Sie die Nutzungsbedingungen für Google-Ads",
     "enableEnhancedConversions": "Aktivieren Sie das erweiterte Conversion-Tracking",
     "loadNextPage": "Nächste Ergebnisse laden",
-    "notifyAvailable": ">Mich bei Verfügbarkeit benachrichtigen"
+    "startFreeTrial": "Kostenlose Testversion starten",
+    "subscribe": "Subscribe"
   },
   "badge": {
     "free": "Kostenlos",
@@ -1160,7 +1174,8 @@
     "attributesMapppingSuccess": "Ihre Produktattribute wurden erfolgreich gespeichert. Überprüfen Sie die Zusammenfassung und klicken Sie auf \"Exportieren\", um sie an Google zu übermitteln",
     "campaignCreatedSuccess": "Sie haben Ihre Leistung max. Kampagne erfolgreich erstellt!",
     "phoneNumberVerifiedSuccess": "Ihre Rufnummer wurde verifiziert. Das Händlerkonto wird gerade erstellt",
-    "enhancedConversionEnabledSuccess": "Erweitertes Conversion-Tracking aktiviert"
+    "enhancedConversionEnabledSuccess": "Erweitertes Conversion-Tracking aktiviert",
+    "moduleUpdated": "Module updated"
   },
   "stepper": {
     "nextStep": "Nächste: {0}",
@@ -1207,11 +1222,18 @@
     "ctaCreateFirstCampaign": "Erstellen Sie Ihre erste PMax-Kampagne",
     "textCampaignsBanner": "Erstellen Sie Ihre erste Kampagne und erreichen Sie mehr relevante Käufer über alle Kanäle von Google. Überlassen Sie es dem maschinellen Lernen von Google, Ihre Anzeigenplatzierungen zu optimieren und Ihren Traffic und Ihre Verkäufe effizient zu verbessern.",
     "monetization": {
-      "textNotifyPreMonetization": ">Wir informieren Sie, wenn das kostenpflichtige Abo verfügbar ist.",
-      "titleInfo": ">Preisgestaltung aktualisieren",
-      "infoPrice": ">Ab dem 31. Juli ist ein Monatsabonnement in Höhe von 19,99 € ohne Steuern erforderlich, um PrestaShop Marketing* weiterhin nutzen zu können. Um diesen Übergang zu erleichtern, können Sie bis zum 31. Dezember 2024 einen Sonderpreis von 14,99 € ohne Steuern in Anspruch nehmen.",
-      "freeTrial": ">Sie erhalten eine 14-tägige kostenlose Testversion, wenn Sie sich anmelden. Es gibt keine automatische Registrierung – es liegt an Ihnen, zu entscheiden, ob Sie zum kostenpflichtigen Plan wechseln möchten. Sie können jederzeit kündigen. ",
-      "hostedSubscribers": ">*PrestaShop-Marketing bleibt für PrestaShop-Hosting-Abonnenten kostenlos."
+      "popinUpdateTitle": "PrestaShop Marketing needs an update",
+      "popinUpdateLandingPageText": "Your current version of the PrestaShop Marketing module is out of date. Update now to continue using the module.",
+      "popinUpdateConfigurationText": "Your current version of the PrestaShop Marketing module is out of date. Daily synchronization with Google Merchant Center is paused. Update now to continue using the module.",
+      "bannerWarningTitle": "PrestaShop Marketing needs an update",
+      "bannerWarningText": "Your current version of the PrestaShop Marketing module is out of date. Daily synchronization with Google Merchant Center is paused. Update now to continue using the module.",
+      "bannerInfoTitle": "Keep your productS updated & visible on Google surfaces",
+      "bannerInfoAdvantage1": "Seamlessly connect and link all your Google accounts",
+      "bannerInfoAdvantage2": "Gain access to comprehensive monitoring of your product catalog",
+      "bannerInfoAdvantage3": "Reach the right audience at the right time with Performance Max campaigns",
+      "bannerSuccessBilling": "Your subscription is now active, and your daily synchronization has resumed. Your next billing date is May 12, 2024.",
+      "alertSubscriptionCancelTitle": "You’ve canceled your PrestaShop Marketing with Google subscription.",
+      "alertSubscriptionCancelSubtitle": "Your subscription will still be active until {0}, You can re-subscribe anytime to continue using the module."
     }
   },
   "tipsAndTricks": {
