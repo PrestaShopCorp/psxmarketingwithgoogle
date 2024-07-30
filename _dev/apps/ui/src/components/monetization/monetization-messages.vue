@@ -25,13 +25,6 @@
     </MonetizationPopinUpdateModule>
 
     <!-- Messages for module monetization -->
-    <MonetizationBannerInformation
-      v-if="!moduleNeedUpgrade
-        && !googleAccountIsOnboarded
-        && !GET_BILLING_SUBSCRIPTION_ACTIVE
-        && page === 'configuration'"
-      class="mb-3"
-    />
     <MonetizationAlertEndSubscription
       v-if="!moduleNeedUpgrade
         && subscription
@@ -42,14 +35,7 @@
       :title="$t('banner.monetization.alertSubscriptionCancelTitle')"
       :subtitle="$t('banner.monetization.alertSubscriptionCancelSubtitle', [endOfSubscriptionDate])"
       @startSubscription="($event) => $emit('startSubscription', $event)"
-    >
-      <h3 class="h3">
-        {{ $t('banner.monetization.alertSubscriptionCancelTitle') }}
-      </h3>
-      <p>
-        {{ $t('banner.monetization.alertSubscriptionCancelSubtitle', [endOfSubscriptionDate]) }}
-      </p>
-    </MonetizationAlertEndSubscription>
+    />
     <MonetizationAlertEndSubscription
       v-else-if="!moduleNeedUpgrade
         && subscription
@@ -61,6 +47,13 @@
       :subtitle="
         $t('banner.monetization.alertSubscriptionExpiredSubtitle', [endOfSubscriptionDate])"
       @startSubscription="($event) => $emit('startSubscription', $event)"
+    />
+    <MonetizationBannerInformation
+      v-if="!moduleNeedUpgrade
+        && !googleAccountIsOnboarded
+        && !GET_BILLING_SUBSCRIPTION_ACTIVE
+        && page === 'configuration'"
+      class="mb-3"
     />
   </div>
 </template>
