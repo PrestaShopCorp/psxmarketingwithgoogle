@@ -9,11 +9,13 @@
       <onboarding-deps-container
         :ps-accounts-onboarded="psAccountsIsOnboarded"
         :billing-running="GET_BILLING_SUBSCRIPTION_ACTIVE"
+        :subscription="billingSubscription"
         @onCloudsyncConsentUpdated="cloudSyncSharingConsentGiven = $event"
       />
 
       <!-- Google Account + GMC + Product Feed -->
       <two-panel-cols
+        v-if="googleFeatureAreAvailable"
         :title="$t('onboarding.sectionTitle.freeListing.title')"
         :description="$t('onboarding.sectionTitle.freeListing.subtitle')"
       >
@@ -43,6 +45,7 @@
 
       <!-- Google Ads -->
       <two-panel-cols
+        v-if="googleFeatureAreAvailable"
         :title="$t('onboarding.sectionTitle.smartShoppingCampaign.title')"
         :description="$t('onboarding.sectionTitle.smartShoppingCampaign.subtitle')"
       >
@@ -119,6 +122,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {mapGetters} from 'vuex';
+import {ISubscription} from '@prestashopcorp/billing-cdc/dist/@types/Subscription';
 import GoogleAccountCard from '@/components/google-account/google-account-card.vue';
 import GoogleAdsAccountCard from '@/components/google-ads-account/google-ads-account-card.vue';
 import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
@@ -143,6 +147,7 @@ import {AccountInformations} from '@/store/modules/google-ads/state';
 import GettersTypesApp from '@/store/modules/app/getters-types';
 import TwoPanelCols from '@/components/onboarding/two-panel-cols.vue';
 import {deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
+import {State as AppState} from '@/store/modules/app/state';
 
 export default defineComponent({
   name: 'OnboardingPage',
@@ -361,6 +366,12 @@ export default defineComponent({
         return this.$t('toast.phoneNumberVerifiedSuccess');
       }
       return '';
+    },
+    billingSubscription(): ISubscription|undefined {
+      return (this.$store.state.app as AppState).billing.subscription;
+    },
+    googleFeatureAreAvailable() {
+      return this.GET_BILLING_SUBSCRIPTION_ACTIVE || !this.billingSubscription?.cancelled_at;
     },
   },
   mounted() {
