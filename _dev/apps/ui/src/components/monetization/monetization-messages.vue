@@ -55,9 +55,6 @@
         && page === 'configuration'"
       class="mb-3"
     />
-    <MonetizationBannerInformation
-      class="mb-3"
-    />
   </div>
 </template>
 
