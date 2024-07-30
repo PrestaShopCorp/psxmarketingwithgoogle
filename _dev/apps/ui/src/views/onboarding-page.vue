@@ -372,7 +372,7 @@ export default defineComponent({
     },
     googleFeatureAreAvailable() {
       return this.GET_BILLING_SUBSCRIPTION_ACTIVE || !this.billingSubscription?.cancelled_at;
-    }
+    },
   },
   mounted() {
     deleteProductFeedDataFromLocalStorage();
