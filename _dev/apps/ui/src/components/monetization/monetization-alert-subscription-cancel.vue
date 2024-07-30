@@ -41,6 +41,6 @@ export default defineComponent({
         {dateStyle: 'long'},
       );
     },
-  }
+  },
 });
 </script>
