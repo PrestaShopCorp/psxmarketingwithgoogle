@@ -1235,7 +1235,10 @@
       "bannerInfoAdvantage3": "Reach the right audience at the right time with Performance Max campaigns",
       "bannerSuccessBilling": "Your subscription is now active, and your daily synchronization has resumed. Your next billing date is May 12, 2024.",
       "alertSubscriptionCancelTitle": "You’ve canceled your PrestaShop Marketing with Google subscription.",
-      "alertSubscriptionCancelSubtitle": "Your subscription will still be active until {0}, You can re-subscribe anytime to continue using the module."
+      "alertSubscriptionCancelSubtitle": "Your subscription will still be active until {0}, You can re-subscribe anytime to continue using the module.",
+      "alertSubscriptionExpiredTitle": "Your PrestaShop Marketing with Google subscription has expired",
+      "alertSubscriptionExpiredSubtitle": "Your Google accounts have been disconnected. You can re-subscribe anytime to continue using the module."
+      
     }
   },
   "tipsAndTricks": {

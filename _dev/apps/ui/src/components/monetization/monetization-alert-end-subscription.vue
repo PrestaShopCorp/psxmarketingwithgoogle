@@ -6,10 +6,10 @@
   >
     <div>
       <h3 class="h3">
-        {{ $t('banner.monetization.alertSubscriptionCancelTitle') }}
+        {{ title }}
       </h3>
       <p>
-        {{ $t('banner.monetization.alertSubscriptionCancelSubtitle', [endOfSubscriptionDate]) }}
+        {{ subtitle }}
       </p>
     </div>
     <b-button
@@ -23,23 +23,18 @@
 </template>
 
 <script lang="ts">
-import {ISubscription} from '@prestashopcorp/billing-cdc';
-import {defineComponent, PropType} from 'vue';
+import {defineComponent} from 'vue';
 
 export default defineComponent({
   name: 'MonetizationAlertSubscriptionCancel',
   props: {
-    subscription: {
-      type: Object as PropType<ISubscription>,
+    title: {
+      type: String,
       default: null,
     },
-  },
-  computed: {
-    endOfSubscriptionDate(): string {
-      return new Date(this.subscription.cancelled_at * 1000).toLocaleDateString(
-        this.$i18n.locale,
-        {dateStyle: 'long'},
-      );
+    subtitle: {
+      type: String,
+      default: null,
     },
   },
 });
