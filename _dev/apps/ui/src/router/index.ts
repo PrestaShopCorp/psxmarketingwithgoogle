@@ -18,14 +18,16 @@ Vue.use(VueRouter);
 
 const billingNavigationGuard: NavigationGuard = (to, from, next) => {
   if (!store.getters[`accounts/${GettersTypesAccounts.GET_PS_ACCOUNTS_IS_ONBOARDED}`]) {
-    return next({name: 'Configuration'});
+    next({name: 'configuration'});
+    return;
   }
 
-  if (!store.getters[`app/${GettersTypesApp.GET_BILLING_SUBSCRIPTION_ACTIVE}`] && !store.getters[`accounts/${GettersTypesAccounts.GET_GOOGLE_ACCOUNT_IS_ONBOARDED}`]) {
-    return next({name: 'Configuration'});
+  if (!store.getters[`app/${GettersTypesApp.GET_BILLING_SUBSCRIPTION_ACTIVE}`]) {
+    next({name: 'configuration'});
+    return;
   }
 
-  return next();
+  next();
 };
 
 const initialPath = async (to, from, next) => {
