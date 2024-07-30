@@ -25,6 +25,7 @@
         && subscription
         && subscription.cancelled_at
         && page === 'configuration'"
+      :subscription="subscription"
       @startSubscription="($event) => $emit('startSubscription', $event)"
     />
     <PsToast
