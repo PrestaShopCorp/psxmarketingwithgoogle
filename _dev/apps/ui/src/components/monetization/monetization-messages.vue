@@ -13,13 +13,6 @@
         <slot name="content-modale" />
       </template>
     </MonetizationPopinUpdateModule>
-    <MonetizationBannerInformation
-      v-else-if="!moduleNeedUpgrade
-        && !googleAccountIsOnboarded
-        && !GET_BILLING_SUBSCRIPTION_ACTIVE
-        && page === 'configuration'"
-      class="mb-3"
-    />
     <MonetizationAlertSubscriptionCancel
       v-if="!moduleNeedUpgrade
         && subscription
@@ -28,6 +21,13 @@
         && page === 'configuration'"
       :subscription="subscription"
       @startSubscription="($event) => $emit('startSubscription', $event)"
+    />
+    <MonetizationBannerInformation
+      v-else-if="!moduleNeedUpgrade
+        && !googleAccountIsOnboarded
+        && !GET_BILLING_SUBSCRIPTION_ACTIVE
+        && page === 'configuration'"
+      class="mb-3"
     />
     <PsToast
       v-if="moduleIsUpdated"
