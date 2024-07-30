@@ -23,6 +23,7 @@
     <MonetizationAlertSubscriptionCancel
       v-if="!moduleNeedUpgrade
         && subscription
+        && GET_BILLING_SUBSCRIPTION_ACTIVE
         && subscription.cancelled_at
         && page === 'configuration'"
       :subscription="subscription"
