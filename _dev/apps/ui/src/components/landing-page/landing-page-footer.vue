@@ -9,6 +9,7 @@
           size="lg"
           variant="primary"
           @click="$emit('hideLandingPage')"
+          :disabled="moduleNeedUpgrade"
           data-test-id="lp-footer-cta"
         >
           {{ $t("cta.startConfiguring") }}
@@ -18,9 +19,16 @@
   </footer>
 </template>
 
-<script>
+<script lang="ts">
+import {defineComponent} from 'vue';
+import AppGettersTypes from '@/store/modules/app/getters-types';
 
-export default {
+export default defineComponent({
   name: 'LandingPageFooter',
-};
+  computed: {
+    moduleNeedUpgrade() {
+      return this.$store.getters[`app/${AppGettersTypes.GET_MODULE_NEED_UPGRADE}`](this.$store.state.app.psxMktgWithGoogleModuleVersionNeeded);
+    },
+  },
+});
 </script>

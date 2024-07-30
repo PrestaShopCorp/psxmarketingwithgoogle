@@ -46,3 +46,4 @@ _dev/apps/ui/storybook-static
 .vscode/launch.json
 .pnpm-store
 views/js/fetchVerificationTag.js*
+views/js/translations/*.js

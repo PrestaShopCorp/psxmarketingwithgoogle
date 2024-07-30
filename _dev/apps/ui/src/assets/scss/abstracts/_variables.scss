@@ -33,6 +33,7 @@ $blue-100: #D1DCFC;
 $blue-50: #E8EDFD;
 
 $ocean-blue-50: #E4F4F8;
+$ocean-blue-500: #A4DBE8;
 
 $grey_dark: $primary-700;
 $grey_muted: $primary-700;
@@ -65,7 +66,6 @@ $info: $blue;
 $success: $green;
 $danger: $red;
 $warning: $yellow;
-$light: $primary-400;
 $primary-lighten: $light-blue-050;
 $text-muted: $primary-600;
 
@@ -118,6 +118,7 @@ $custom-control-indicator-focus-border-color: $primary-600;
 // Fonts
 $font-family-sans-serif: "IBM Plex Sans","Open Sans",Helvetica,Arial,sans-serif;
 $headings-font-family: $font-family-sans-serif;
+$prestafont-font-family: 'Prestafont';
 
 $h1-font-size: 2rem;
 $h2-font-size: 1.5rem;

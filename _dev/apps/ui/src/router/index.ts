@@ -1,6 +1,7 @@
 import Vue from 'vue';
-import VueRouter, {RouteConfig} from 'vue-router';
+import VueRouter, {NavigationGuard, RouteConfig} from 'vue-router';
 import store from '@/store';
+import BillingTab from '@/views/billing-tab.vue';
 import CampaignPage from '@/views/campaign-page.vue';
 import CampaignForm from '@/views/campaign-form.vue';
 import ConfigurationPage from '@/views/configuration-page.vue';
@@ -11,8 +12,23 @@ import ProductFeedPage from '@/views/product-feed-page.vue';
 import TunnelProductFeed from '@/views/tunnel-product-feed.vue';
 import ActionsTypesAccounts from '@/store/modules/accounts/actions-types';
 import GettersTypesAccounts from '@/store/modules/accounts/getters-types';
+import GettersTypesApp from '@/store/modules/app/getters-types';
 
 Vue.use(VueRouter);
+
+const billingNavigationGuard: NavigationGuard = (to, from, next) => {
+  if (!store.getters[`accounts/${GettersTypesAccounts.GET_PS_ACCOUNTS_IS_ONBOARDED}`]) {
+    next({name: 'configuration'});
+    return;
+  }
+
+  if (!store.getters[`app/${GettersTypesApp.GET_BILLING_SUBSCRIPTION_ACTIVE}`]) {
+    next({name: 'configuration'});
+    return;
+  }
+
+  next();
+};
 
 const initialPath = async (to, from, next) => {
   if (!store.getters[`accounts/${GettersTypesAccounts.GET_PS_ACCOUNTS_IS_ONBOARDED}`]) {
@@ -44,6 +60,7 @@ const routes: Array<RouteConfig> = [
     path: '/configuration/product-feed-settings/:step',
     name: 'product-feed-settings',
     component: TunnelProductFeed,
+    beforeEnter: billingNavigationGuard,
   },
   {
     path: '/help',
@@ -54,21 +71,25 @@ const routes: Array<RouteConfig> = [
     path: '/product-feed',
     name: 'product-feed',
     component: ProductFeedPage,
+    beforeEnter: billingNavigationGuard,
     children: [
       {
         path: 'status',
         name: 'product-feed-status',
         component: ProductFeedPage,
+        beforeEnter: billingNavigationGuard,
       },
       {
         path: 'non-compliant-products/:error',
         name: 'product-feed-verification-error-products',
         component: ProductFeedPage,
+        beforeEnter: billingNavigationGuard,
       },
       {
         path: 'non-compliant-products',
         name: 'product-feed-verification-errors',
         component: ProductFeedPage,
+        beforeEnter: billingNavigationGuard,
       },
     ],
   },
@@ -76,18 +97,27 @@ const routes: Array<RouteConfig> = [
     path: '/campaign',
     name: 'campaign',
     component: CampaignPage,
+    beforeEnter: billingNavigationGuard,
     children: [
       {
         path: 'creation',
         name: 'campaign-creation',
         component: CampaignForm,
+        beforeEnter: billingNavigationGuard,
       },
       {
         path: 'edit/:id',
         name: 'campaign-edition',
         component: CampaignForm,
+        beforeEnter: billingNavigationGuard,
       },
     ],
+  },
+  {
+    path: '/billing',
+    name: 'Billing',
+    component: BillingTab,
+    beforeEnter: billingNavigationGuard,
   },
   {
     path: '/debug',

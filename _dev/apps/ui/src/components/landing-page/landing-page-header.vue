@@ -21,6 +21,7 @@
           class="my-2"
           @click="$emit('hideLandingPage')"
           data-test-id="lp-header-cta"
+          :disabled="moduleNeedUpgrade"
         >
           {{ $t('cta.startConfiguring') }}
         </b-button>
@@ -28,3 +29,17 @@
     </div>
   </header>
 </template>
+
+<script lang="ts">
+import {defineComponent} from 'vue';
+import AppGettersTypes from '@/store/modules/app/getters-types';
+
+export default defineComponent({
+  name: 'LandingPageHeader',
+  computed: {
+    moduleNeedUpgrade() {
+      return this.$store.getters[`app/${AppGettersTypes.GET_MODULE_NEED_UPGRADE}`](this.$store.state.app.psxMktgWithGoogleModuleVersionNeeded);
+    },
+  },
+});
+</script>

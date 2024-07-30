@@ -6,9 +6,7 @@
       v-if="campaignList.length || loading || fetchingCampaigns || apiFailed"
     >
       <template #header>
-        <p class="mb-0 ps_gs-onboardingcard__title">
-          {{ $t('campaigns.listTitle') }}
-        </p>
+        {{ $t('campaigns.listTitle') }}
       </template>
       <b-card-body
         body-class="p-0"

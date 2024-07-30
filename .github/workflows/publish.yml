@@ -156,7 +156,7 @@ jobs:
       - name: auth
         uses: google-github-actions/auth@v2
         with:
-          credentials_json: ${{ secrets.G_CREDENTIAL_PREPRODUCTION }}
+          credentials_json: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
 
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v2

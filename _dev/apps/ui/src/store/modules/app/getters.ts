@@ -119,10 +119,14 @@ export default {
   ) => (
     neededVersion: string,
   ) => !semver.gte(state.psxMktgWithGoogleModuleVersion, neededVersion),
-  [GettersTypes.GET_BANNER_SUCCESS_PRE_MONETIZATION](state: LocalState) {
-    return state.bannerSuccessPreMonetization;
+
+  [GettersTypes.GET_BILLING_SUBSCRIPTION_ACTIVE](state: LocalState): boolean {
+    return !!state.billing.subscription
+      // Using the type from billing-cdc prevents the module to work
+      && state.billing.subscription.status !== 'cancelled';
   },
-  [GettersTypes.GET_BANNER_INFO_PRE_MONETIZATION](state: LocalState) {
-    return state.bannerInfoPreMonetization;
+  [GettersTypes.GET_BILLING_SUBSCRIPTION_EXPIRING](state: LocalState): boolean {
+    return !!state.billing.subscription
+      && !!state.billing.subscription.cancelled_at;
   },
 };

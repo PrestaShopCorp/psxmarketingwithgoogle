@@ -1,4 +1,4 @@
-import {getDataFromLocalStorage} from '@/utils/LocalStorage';
+import {ISubscription} from '@prestashopcorp/billing-cdc/dist/@types/Subscription';
 
 /**
  * 2007-2021 PrestaShop and Contributors
@@ -50,8 +50,12 @@ export interface State {
   psxMktgWithGoogleModuleIsEnabled: boolean;
   psxMktgWithGoogleEnableLink: string;
   backOfficeUserIsLoggedIn: boolean;
-  bannerSuccessPreMonetization: string;
-  bannerInfoPreMonetization: string;
+  featureFlags: {
+    enhancedConversions: boolean;
+  },
+  billing: {
+    subscription?: ISubscription;
+  },
 }
 
 export interface ShopCurrency {
@@ -109,6 +113,10 @@ export const state: State = {
   psxMktgWithGoogleModuleIsEnabled: true,
   psxMktgWithGoogleEnableLink: '',
   backOfficeUserIsLoggedIn: true,
-  bannerSuccessPreMonetization: getDataFromLocalStorage('banner-success-pre-monatization') || 0,
-  bannerInfoPreMonetization: getDataFromLocalStorage('banner-info-pre-monatization') || 0,
+  featureFlags: {
+    enhancedConversions: false,
+  },
+  billing: {
+    subscription: window.psBillingSubscription,
+  },
 };
