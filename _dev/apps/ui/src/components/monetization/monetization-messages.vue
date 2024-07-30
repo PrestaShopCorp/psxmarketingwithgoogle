@@ -1,5 +1,15 @@
 <template>
   <div>
+    <!-- Module update messages -->
+    <PsToast
+      v-if="moduleIsUpdated"
+      variant="success"
+      :visible="moduleIsUpdated"
+      toaster="b-toaster-top-right"
+      body-class="border border-success"
+    >
+      <p>{{ $t("toast.moduleUpdated") }}</p>
+    </PsToast>
     <MonetizationAlertWarningUpdateModule
       v-if="moduleNeedUpgrade && modaleIsClosed && !moduleIsUpdated"
       @moduleUpdated="clickModuleUpdated"
@@ -13,31 +23,45 @@
         <slot name="content-modale" />
       </template>
     </MonetizationPopinUpdateModule>
+
+    <!-- Messages for module monetization -->
     <MonetizationBannerInformation
-      v-else-if="!moduleNeedUpgrade
+      v-if="!moduleNeedUpgrade
         && !googleAccountIsOnboarded
         && !GET_BILLING_SUBSCRIPTION_ACTIVE
         && page === 'configuration'"
       class="mb-3"
     />
-    <MonetizationAlertSubscriptionCancel
+    <MonetizationAlertEndSubscription
       v-if="!moduleNeedUpgrade
         && subscription
         && GET_BILLING_SUBSCRIPTION_ACTIVE
         && subscription.cancelled_at
         && page === 'configuration'"
       :subscription="subscription"
+      :title="$t('banner.monetization.alertSubscriptionCancelTitle')"
+      :subtitle="$t('banner.monetization.alertSubscriptionCancelSubtitle', [endOfSubscriptionDate])"
+      @startSubscription="($event) => $emit('startSubscription', $event)"
+    >
+      <h3 class="h3">
+        {{ $t('banner.monetization.alertSubscriptionCancelTitle') }}
+      </h3>
+      <p>
+        {{ $t('banner.monetization.alertSubscriptionCancelSubtitle', [endOfSubscriptionDate]) }}
+      </p>
+    </MonetizationAlertEndSubscription>
+    <MonetizationAlertEndSubscription
+      v-else-if="!moduleNeedUpgrade
+        && subscription
+        && !GET_BILLING_SUBSCRIPTION_ACTIVE
+        && subscription.cancelled_at
+        && page === 'configuration'"
+      :subscription="subscription"
+      :title="$t('banner.monetization.alertSubscriptionExpiredTitle')"
+      :subtitle="
+        $t('banner.monetization.alertSubscriptionExpiredSubtitle', [endOfSubscriptionDate])"
       @startSubscription="($event) => $emit('startSubscription', $event)"
     />
-    <PsToast
-      v-if="moduleIsUpdated"
-      variant="success"
-      :visible="moduleIsUpdated"
-      toaster="b-toaster-top-right"
-      body-class="border border-success"
-    >
-      <p>{{ $t("toast.moduleUpdated") }}</p>
-    </PsToast>
   </div>
 </template>
 
@@ -51,7 +75,7 @@ import MonetizationBannerInformation from '@/components/monetization/monetizatio
 import PsToast from '@/components/commons/ps-toast.vue';
 import AppGettersTypes from '@/store/modules/app/getters-types';
 import AccountsGettersTypes from '@/store/modules/accounts/getters-types';
-import MonetizationAlertSubscriptionCancel from './monetization-alert-subscription-cancel.vue';
+import MonetizationAlertEndSubscription from './monetization-alert-end-subscription.vue';
 
 export default defineComponent({
   name: 'MonetizationMessage',
@@ -59,7 +83,7 @@ export default defineComponent({
     MonetizationBannerInformation,
     MonetizationPopinUpdateModule,
     MonetizationAlertWarningUpdateModule,
-    MonetizationAlertSubscriptionCancel,
+    MonetizationAlertEndSubscription,
     PsToast,
   },
   props: {
@@ -87,6 +111,12 @@ export default defineComponent({
     },
     googleAccountIsOnboarded() {
       return this.$store.getters[`accounts/${AccountsGettersTypes.GET_GOOGLE_ACCOUNT_IS_ONBOARDED}`];
+    },
+    endOfSubscriptionDate(): string {
+      return new Date(this.subscription.cancelled_at * 1000).toLocaleDateString(
+        this.$i18n.locale,
+        {dateStyle: 'long'},
+      );
     },
   },
   methods: {

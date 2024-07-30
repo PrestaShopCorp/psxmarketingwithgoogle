@@ -3,7 +3,7 @@
     <monetization-messages
       class="container"
       page="configuration"
-      :subscription="billingSubscription"
+      :subscription="subscription"
       @startSubscription="startSubscription"
     >
       <template #content-modale>
@@ -38,8 +38,8 @@
       />
       <div id="ps-modal-in-catalog-tab" />
       <card-billing-connected
-        v-if="billingRunning && billingSubscription"
-        :subscription="billingSubscription"
+        v-if="billingRunning && subscription"
+        :subscription="subscription"
       />
     </two-panel-cols>
     <two-panel-cols
@@ -56,11 +56,10 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, PropType} from 'vue';
 import {ISubscription} from '@prestashopcorp/billing-cdc/dist/@types/Subscription';
 import {IContextAuthentication, IContextBase} from '@prestashopcorp/billing-cdc/dist/@types/context/ContextRoot';
 import CardBillingConnected from './card-billing-connected.vue';
-import {State as AppState} from '@/store/modules/app/state';
 import {billingUpdateCallback, initialize} from '@/lib/billing';
 import SegmentGenericParams from '../../utils/SegmentGenericParams';
 import TwoPanelCols from './two-panel-cols.vue';
@@ -76,6 +75,10 @@ export default defineComponent({
     MonetizationMessages,
   },
   props: {
+    subscription: {
+      type: Object as PropType<ISubscription>,
+      default: null,
+    },
     psAccountsOnboarded: {
       type: Boolean,
       required: true,
@@ -93,9 +96,6 @@ export default defineComponent({
   computed: {
     billingContext(): IContextBase<IContextAuthentication>|undefined {
       return window.psBillingContext;
-    },
-    billingSubscription(): ISubscription|undefined {
-      return (this.$store.state.app as AppState).billing.subscription;
     },
     merchantCenterAccountIsChosen() {
       return this.$store.getters[`accounts/${AccountGettersTypes.GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED}`];
