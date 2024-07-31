@@ -6,9 +6,9 @@
       >
     </div>
     <div class="col-md-8">
-      <h3 class="h2 font-family-prestasfont text-primary">
+      <p class="h2 font-family-prestafont text-primary">
         {{ $t('banner.monetization.bannerInfoTitle') }}
-      </h3>
+      </p>
       <div
         v-for="(item, index) in advantages"
         :key="index"
