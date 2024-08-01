@@ -2,7 +2,7 @@
   <div>
     <monetization-messages>
       <template #content-modale>
-        {{ $t('banner.monetization.popinUpdateLandingPageText') }}
+        {{ $t('monetization.popinUpdateLandingPageText') }}
       </template>
     </monetization-messages>
 

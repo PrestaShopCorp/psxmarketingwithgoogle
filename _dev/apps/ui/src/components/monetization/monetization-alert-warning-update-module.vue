@@ -6,10 +6,10 @@
   >
     <div>
       <h3 class="h3">
-        {{ $t('banner.monetization.bannerWarningTitle') }}
+        {{ $t('monetization.bannerWarningTitle') }}
       </h3>
       <p>
-        {{ $t('banner.monetization.bannerWarningText') }}
+        {{ $t('monetization.bannerWarningText') }}
       </p>
     </div>
     <b-button
@@ -42,21 +42,20 @@ export default defineComponent({
       if (this.loading) {
         return;
       }
-
       this.loading = true;
       try {
         const res = await this.$store.dispatch(`app/${ActionsTypes.GET_MODULES_VERSIONS}`, 'psxmarketingwithgoogle');
 
-        if (res?.upgradeLink) {
-          await fetch(res?.upgradeLink, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-          });
+        await fetch(res?.upgradeLink, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+        });
 
-          this.$emit('moduleUpdated');
-        }
+        this.$emit('updateSuccess', true);
+        window.location.reload();
       } catch (err) {
         console.error(err);
+        this.$emit('updateSuccess', false);
       } finally {
         this.loading = false;
       }
