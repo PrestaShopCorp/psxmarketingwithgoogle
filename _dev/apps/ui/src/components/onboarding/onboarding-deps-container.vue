@@ -7,7 +7,7 @@
       @startSubscription="startSubscription"
     >
       <template #content-modale>
-        {{ $t('banner.monetization.popinUpdateConfigurationText') }}
+        {{ $t('monetization.popinUpdateConfigurationText') }}
       </template>
     </monetization-messages>
 

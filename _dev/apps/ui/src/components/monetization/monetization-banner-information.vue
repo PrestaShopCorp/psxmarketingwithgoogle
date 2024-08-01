@@ -7,7 +7,7 @@
     </div>
     <div class="col-md-8">
       <p class="h2 font-family-prestafont text-primary">
-        {{ $t('banner.monetization.bannerInfoTitle') }}
+        {{ $t('monetization.bannerInfoTitle') }}
       </p>
       <div
         v-for="(item, index) in advantages"
@@ -29,9 +29,9 @@ export default defineComponent({
   data() {
     return {
       advantages: [
-        this.$t('banner.monetization.bannerInfoAdvantage1'),
-        this.$t('banner.monetization.bannerInfoAdvantage2'),
-        this.$t('banner.monetization.bannerInfoAdvantage3'),
+        this.$t('monetization.bannerInfoAdvantage1'),
+        this.$t('monetization.bannerInfoAdvantage2'),
+        this.$t('monetization.bannerInfoAdvantage3'),
       ],
     };
   },

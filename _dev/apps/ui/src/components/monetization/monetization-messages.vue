@@ -2,22 +2,42 @@
   <div>
     <!-- Module update messages -->
     <PsToast
-      v-if="moduleIsUpdated"
+      v-if="moduleUpdateSuccess"
       variant="success"
-      :visible="moduleIsUpdated"
+      :visible="moduleUpdateSuccess"
       toaster="b-toaster-top-right"
       body-class="border border-success"
     >
-      <p>{{ $t("toast.moduleUpdated") }}</p>
+      <div>
+        <h3 class="mb-1">
+          {{ $t("monetization.successUpdatedTitle") }}
+        </h3>
+        <p>{{ $t("monetization.successUpdatedSubtitle") }}</p>
+      </div>
     </PsToast>
+    <PsToast
+      v-if="moduleUpdateSuccess === false && modaleIsClosed"
+      :visible="moduleUpdateSuccess === false && !moduleUpdateSuccess && modaleIsClosed"
+      variant="warning"
+      toaster="b-toaster-top-right"
+      body-class="border border-warning"
+    >
+      <div>
+        <h3 class="mb-1">
+          {{ $t("monetization.failedUpdatedTitle") }}
+        </h3>
+        <p>{{ $t("monetization.failedUpdatedSubtitle") }}</p>
+      </div>
+    </PsToast>
+
     <MonetizationAlertWarningUpdateModule
-      v-if="moduleNeedUpgrade && modaleIsClosed && !moduleIsUpdated"
-      @moduleUpdated="clickModuleUpdated"
+      v-if="moduleNeedUpgrade && modaleIsClosed && moduleUpdateSuccess !== true"
+      @updateSuccess="($event) => moduleUpdateSuccess = $event"
     />
     <MonetizationPopinUpdateModule
-      v-if="moduleNeedUpgrade && !moduleIsUpdated"
-      @clickUpdateModule="moduleIsUpdated = true"
+      v-if="moduleNeedUpgrade && moduleUpdateSuccess === null"
       @closeModale="modaleIsClosed = true"
+      @updateSuccess="($event) => moduleUpdateSuccess = $event"
     >
       <template #content>
         <slot name="content-modale" />
@@ -32,8 +52,8 @@
         && subscription.cancelled_at
         && page === 'configuration'"
       :subscription="subscription"
-      :title="$t('banner.monetization.alertSubscriptionCancelTitle')"
-      :subtitle="$t('banner.monetization.alertSubscriptionCancelSubtitle', [endOfSubscriptionDate])"
+      :title="$t('monetization.alertSubscriptionCancelTitle')"
+      :subtitle="$t('monetization.alertSubscriptionCancelSubtitle', [endOfSubscriptionDate])"
       @startSubscription="($event) => $emit('startSubscription', $event)"
     />
     <MonetizationAlertEndSubscription
@@ -43,9 +63,9 @@
         && subscription.cancelled_at
         && page === 'configuration'"
       :subscription="subscription"
-      :title="$t('banner.monetization.alertSubscriptionExpiredTitle')"
+      :title="$t('monetization.alertSubscriptionExpiredTitle')"
       :subtitle="
-        $t('banner.monetization.alertSubscriptionExpiredSubtitle', [endOfSubscriptionDate])"
+        $t('monetization.alertSubscriptionExpiredSubtitle', [endOfSubscriptionDate])"
       @startSubscription="($event) => $emit('startSubscription', $event)"
     />
     <MonetizationBannerInformation
@@ -91,7 +111,7 @@ export default defineComponent({
   },
   data() {
     return {
-      moduleIsUpdated: false,
+      moduleUpdateSuccess: null as boolean|null,
       modaleIsClosed: false,
     };
   },
@@ -110,11 +130,6 @@ export default defineComponent({
         this.$i18n.locale,
         {dateStyle: 'long'},
       );
-    },
-  },
-  methods: {
-    clickModuleUpdated() {
-      this.moduleIsUpdated = true;
     },
   },
 });
