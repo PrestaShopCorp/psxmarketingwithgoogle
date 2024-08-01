@@ -1174,8 +1174,7 @@
     "attributesMapppingSuccess": "Los atributos de tu producto se han guardado correctamente. Revisa el resumen y haz clic en \"Exportar\" para enviarlo a Google",
     "campaignCreatedSuccess": "¡Has creado tu campaña Máximo rendimiento con éxito!",
     "phoneNumberVerifiedSuccess": "Tu número de teléfono se ha verificado. Se está creando la cuenta Merchant",
-    "enhancedConversionEnabledSuccess": "Activado el seguimiento de conversiones",
-    "moduleUpdated": "Module updated"
+    "enhancedConversionEnabledSuccess": "Activado el seguimiento de conversiones"
   },
   "stepper": {
     "nextStep": "Siguiente: {0}",
@@ -1220,25 +1219,29 @@
     "legend": "*Crea una nueva cuenta de Google Ads, el bono se aplicará automáticamente una vez que coincida con el gasto y tendrás 60 días para utilizar los créditos. [Leer T&C]({0})[:target=\"_blank\"]",
     "legendWithoutTC": "*Crea una nueva cuenta de Google Ads, el bono se aplicará automáticamente una vez que coincida con el gasto y tendrás 60 días para utilizar los créditos.",
     "ctaCreateFirstCampaign": "Crea tu primera campaña Máximo rendimiento",
-    "textCampaignsBanner": "Crea tu primera campaña y llega a compradores más interesados en todos los canales de Google. Deja que el aprendizaje automático de Google optimice la ubicación de tus anuncios y mejora eficazmente tu tráfico y tus ventas.",
-    "monetization": {
-      "popinUpdateTitle": "PrestaShop Marketing needs an update",
-      "popinUpdateLandingPageText": "Your current version of the PrestaShop Marketing module is out of date. Update now to continue using the module.",
-      "popinUpdateConfigurationText": "Your current version of the PrestaShop Marketing module is out of date. Daily synchronization with Google Merchant Center is paused. Update now to continue using the module.",
-      "bannerWarningTitle": "PrestaShop Marketing needs an update",
-      "bannerWarningText": "Your current version of the PrestaShop Marketing module is out of date. Daily synchronization with Google Merchant Center is paused. Update now to continue using the module.",
-      "bannerInfoTitle": "Keep your products updated & visible on Google surfaces",
-      "bannerInfoAdvantage1": "Seamlessly connect and link all your Google accounts",
-      "bannerInfoAdvantage2": "Gain access to comprehensive monitoring of your product catalog",
-      "bannerInfoAdvantage3": "Reach the right audience at the right time with Performance Max campaigns",
-      "bannerSuccessBilling": "Your subscription is now active, and your daily synchronization has resumed. Your next billing date is May 12, 2024.",
-      "alertSubscriptionCancelTitle": "You’ve canceled your PrestaShop Marketing with Google subscription.",
-      "alertSubscriptionCancelSubtitle": "Your subscription will still be active until {0}, You can re-subscribe anytime to continue using the module.",
-      "alertSubscriptionExpiredTitle": "Your PrestaShop Marketing with Google subscription has expired",
-      "alertSubscriptionExpiredSubtitle": "Your Google accounts have been disconnected. You can re-subscribe anytime to continue using the module."
-    }
+    "textCampaignsBanner": "Crea tu primera campaña y llega a compradores más interesados en todos los canales de Google. Deja que el aprendizaje automático de Google optimice la ubicación de tus anuncios y mejora eficazmente tu tráfico y tus ventas."
   },
   "tipsAndTricks": {
     "title": "Consejo PrestaShop"
+  },
+  "monetization": {
+    "successUpdatedTitle": "Module updated",
+    "successUpdatedSubtitle": "This page will restart automatically. ",
+    "failedUpdatedTitle": "Module update failed",
+    "failedUpdatedSubtitle": "Sorry, we couldn't update the module. Please try again.",
+    "popinUpdateTitle": "PrestaShop Marketing needs an update",
+    "popinUpdateLandingPageText": "Your current version of the PrestaShop Marketing module is out of date. Update now to continue using the module.",
+    "popinUpdateConfigurationText": "Your current version of the PrestaShop Marketing module is out of date. Daily synchronization with Google Merchant Center is paused. Update now to continue using the module.",
+    "bannerWarningTitle": "PrestaShop Marketing needs an update",
+    "bannerWarningText": "Your current version of the PrestaShop Marketing module is out of date. Daily synchronization with Google Merchant Center is paused. Update now to continue using the module.",
+    "bannerInfoTitle": "Keep your products updated & visible on Google surfaces",
+    "bannerInfoAdvantage1": "Seamlessly connect and link all your Google accounts",
+    "bannerInfoAdvantage2": "Gain access to comprehensive monitoring of your product catalog",
+    "bannerInfoAdvantage3": "Reach the right audience at the right time with Performance Max campaigns",
+    "bannerSuccessBilling": "Your subscription is now active, and your daily synchronization has resumed. Your next billing date is May 12, 2024.",
+    "alertSubscriptionCancelTitle": "You’ve canceled your PrestaShop Marketing with Google subscription.",
+    "alertSubscriptionCancelSubtitle": "Your subscription will still be active until {0}, you can re-subscribe anytime to continue using the module.",
+    "alertSubscriptionExpiredTitle": "Your PrestaShop Marketing with Google subscription has expired",
+    "alertSubscriptionExpiredSubtitle": "Your Google accounts have been disconnected. You can re-subscribe anytime to continue using the module."
   }
 }
