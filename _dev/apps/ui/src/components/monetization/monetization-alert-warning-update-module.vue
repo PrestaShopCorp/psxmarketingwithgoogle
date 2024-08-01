@@ -46,7 +46,7 @@ export default defineComponent({
       try {
         const res = await this.$store.dispatch(`app/${ActionsTypes.GET_MODULES_VERSIONS}`, 'psxmarketingwithgoogle');
 
-        await fetch('http://zzefzefazc.com', {
+        await fetch(res?.upgradeLink, {
           method: 'POST',
           headers: {'Content-Type': 'application/json', Accept: 'application/json'},
         });
