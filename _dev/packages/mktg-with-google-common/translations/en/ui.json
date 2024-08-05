@@ -86,7 +86,7 @@
       "psbilling": {
         "title": "Billing information",
         "subTitle": "Access and manage your subscription and related payment method.",
-        "alertNoSynchro": "Your catalog synchronization with Google Merchant Center is paused because PrestaShop Marketing now requires a €14.99 excl. tax/month subscription. ",
+        "alertNoSynchro": "Your catalog synchronization with Google Merchant Center is paused because PrestaShop Marketing now requires a €14.99 excl. tax/month subscription. "
       },
       "pscloudsync": {
         "title": "Allow data sharing",
