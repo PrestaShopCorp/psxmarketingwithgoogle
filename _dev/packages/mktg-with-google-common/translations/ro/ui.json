@@ -5,6 +5,7 @@
       "campaign": "Campaniile",
       "configuration": "Configurare",
       "catalog": "Catalog de produse",
+      "billing": "Abonare",
       "help": "Ajutor"
     },
     "errorsMessages": {
@@ -82,10 +83,18 @@
     },
     "sectionTitle": {
       "psAccount": "Conectează-ți magazinul la contul tău PrestaShop",
+      "psbilling": {
+        "title": "Informații privind facturarea",
+        "subTitle": "Accesează și gestionează abonamentul și metoda de plată aferentă.",
+        "alertNoSynchro": "Your catalog synchronization with Google Merchant Center is paused because PrestaShop Marketing now requires a €14.99 excl. tax/month subscription. "
+      },
+      "pscloudsync": {
+        "title": "Permite partajarea datelor",
+        "subTitle": "Ajută-ne să îmbunătățim experiența ta și serviciile noastre, acordându-ne consimțământul pentru a partaja în siguranță date relevante cu noi."
+      },
       "freeListing": {
         "title": "Ajungi la mai mulți oameni pe Google cu listări gratuite",
-        "subtitle": "Listările gratuite îți oferă acces la milioane de cumpărători care caută produse similare cu ale tale. Afișează-ți gratuit produsele în listele SEO din fila Shopping atunci când îți conectezi contul Google la Google Merchant Center.",
-        "lastTitle": "Afacerile care utilizează listări gratuite și reclame în fila Shopping au înregistrat împreună o creștere medie de >50% a clicurilor și o creștere de >100% a afișărilor. (Date interne Google, iulie 2020)"
+        "subtitle": "Listările gratuite îți oferă acces la milioane de cumpărători care caută produse similare cu ale tale. Afișează-ți gratuit produsele în listele SEO din fila Shopping atunci când îți conectezi contul Google la Google Merchant Center."
       },
       "smartShoppingCampaign": {
         "title": "Reclamă pe Google cu Performance Max",
@@ -101,6 +110,12 @@
     "tips": "După ce ai terminat cu primul magazin, le poți configura pe celelalte selectându-le unul câte unul în selectorul magazinelor, în meniul orizontal",
     "configure": "Configurare",
     "group": "Grup de magazine"
+  },
+  "billingFacade": {
+    "title": "Detaliile plății",
+    "nextPayment": "Abonamentul tău este activ, următoarea facturare este pe {date}",
+    "willEnd": "Abonamentul tău se va încheia la {date}.",
+    "managePayment": "Gestionează plățile"
   },
   "googleAccountCard": {
     "title": "Cont Google",
@@ -260,7 +275,7 @@
       "shippingSetup": "Configurare expediere",
       "deliveryTimesAndRates": "Timp de livrare și tarife",
       "attributeMapping": "Maparea caracteristicilor",
-      "productSelection": "Product Selection",
+      "productSelection": "Product selection",
       "categoryMapping": "Maparea categoriilor",
       "summary": "Rezumat",
       "exportFeed": "Exportare flux!",
@@ -522,12 +537,6 @@
         "tryAgain": "Try again"
       }
     },
-    "syncSchedule": {
-      "title": "Program de sincronizare",
-      "subTitle": "Alege ora la care dorești să înceapă prima sincronizare, exportul ar putea încetini traficul",
-      "radioLabel1": "Acum, după ce îmi termin configurația (exportul ar putea încetini magazinul)",
-      "radioLabel2": "Mai târziu, aproximativ la 2:00 (GMT+1) (când magazinul are mai puține vizite)"
-    },
     "summary": {
       "title": "Product feed summary",
       "xItems": "{0} articole",
@@ -552,6 +561,10 @@
       "disabledButtonTooltip": "Vezi condițiile noastre înainte de a merge mai departe",
       "syncScheduledNow": "Astăzi, imediat după ce salvez și export"
     }
+  },
+  "billing": {
+    "planTitle": "Informații despre plan și facturare",
+    "invoicesTitle": "Facturi"
   },
   "freeListingCard": {
     "title": "Afișează-ți produsele cu listări gratuite",
@@ -1066,7 +1079,8 @@
     "signGadsToS": "Semnează condițiile de utilizare a serviciului în Google Ads",
     "enableEnhancedConversions": "Activează urmărirea îmbunătățită a conversiilor",
     "loadNextPage": "Încarcă următoarele rezultate",
-    "notifyAvailable": "Notify me when available"
+    "startFreeTrial": "Începe perioada de probă gratuită",
+    "subscribe": "Subscribe"
   },
   "badge": {
     "free": "Gratuit",
@@ -1205,16 +1219,28 @@
     "legend": "*Creează un nou cont Google Ads, voucherul va fi aplicat automat după ce ai acumulat suficient cheltuieli și vei avea la dispoziție 60 de zile pentru a cheltui creditele. [Citește termenii și condițiile]({0})[:target=\"_blank\"]",
     "legendWithoutTC": "* Creează un nou cont Google Ads, voucherul va fi aplicat automat după ce ai acumulat suficiente cheltuieli și vei avea la dispoziție 60 de zile pentru a cheltui creditele.",
     "ctaCreateFirstCampaign": "Creează-ți prima campanie PMax",
-    "textCampaignsBanner": "Creează-ți prima campanie și contactează cumpărători mai relevanți, pe toate canalele Google. Profită de învățarea automată de la Google și optimizează-ți destinațiile de plasare a reclamelor și îmbunătățește-ți în mod eficient traficul și vânzările.",
-    "monetization": {
-      "textNotifyPreMonetization": "We’ll let you know when the paid plan is available.",
-      "titleInfo": "Pricing update",
-      "infoPrice": "Starting from July 31, a monthly subscription of €14.99 excluding tax will be required to continue using PrestaShop Marketing.",
-      "freeTrial": "You’ll get a 14-day free trial when you subscribe. There's no automatic enrollment - it’s up to you to decide if you want to switch to the paid plan. You can cancel at any time.",
-      "hostedSubscribers": "*PrestaShop Marketing remains free for PrestaShop Hosted subscribers."
-    }
+    "textCampaignsBanner": "Creează-ți prima campanie și contactează cumpărători mai relevanți, pe toate canalele Google. Profită de învățarea automată de la Google și optimizează-ți destinațiile de plasare a reclamelor și îmbunătățește-ți în mod eficient traficul și vânzările."
   },
   "tipsAndTricks": {
     "title": "Sfat profesional PrestaShop"
+  },
+  "monetization": {
+    "successUpdatedTitle": "Module updated",
+    "successUpdatedSubtitle": "This page will restart automatically. ",
+    "failedUpdatedTitle": "Module update failed",
+    "failedUpdatedSubtitle": "Sorry, we couldn't update the module. Please try again.",
+    "popinUpdateTitle": "PrestaShop Marketing needs an update",
+    "popinUpdateLandingPageText": "Your current version of the PrestaShop Marketing module is out of date. Update now to continue using the module.",
+    "popinUpdateConfigurationText": "Your current version of the PrestaShop Marketing module is out of date. Daily synchronization with Google Merchant Center is paused. Update now to continue using the module.",
+    "bannerWarningTitle": "PrestaShop Marketing needs an update",
+    "bannerWarningText": "Your current version of the PrestaShop Marketing module is out of date. Daily synchronization with Google Merchant Center is paused. Update now to continue using the module.",
+    "bannerInfoTitle": "Keep your products updated & visible on Google surfaces",
+    "bannerInfoAdvantage1": "Seamlessly connect and link all your Google accounts",
+    "bannerInfoAdvantage2": "Gain access to comprehensive monitoring of your product catalog",
+    "bannerInfoAdvantage3": "Reach the right audience at the right time with Performance Max campaigns",
+    "alertSubscriptionCancelTitle": "You’ve canceled your PrestaShop Marketing with Google subscription.",
+    "alertSubscriptionCancelSubtitle": "Your subscription will still be active until {0}, you can re-subscribe anytime to continue using the module.",
+    "alertSubscriptionExpiredTitle": "Your PrestaShop Marketing with Google subscription has expired",
+    "alertSubscriptionExpiredSubtitle": "Your Google accounts have been disconnected. You can re-subscribe anytime to continue using the module."
   }
 }
