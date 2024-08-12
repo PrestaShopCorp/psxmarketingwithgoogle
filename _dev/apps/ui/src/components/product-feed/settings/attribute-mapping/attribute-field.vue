@@ -38,6 +38,7 @@
         </b-form-checkbox-group>
       </b-dropdown-form>
       <b-dropdown-item-button
+        v-if="field.name === 'description'"
         button-class="rounded-0 text-dark"
         @click="attributesChecked = []"
       >

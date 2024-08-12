@@ -282,7 +282,7 @@ export default defineComponent({
     nextStep() {
       let hasError = false;
       this.mappingAttributes.forEach((attribute) => {
-        hasError = attribute.fields.some((value) => value.mapped?.length === 0)
+        hasError = attribute.fields.some((value) => value.name !== 'description' && value.mapped?.length === 0)
         || hasError;
       });
       if (hasError) {
@@ -337,7 +337,13 @@ export default defineComponent({
         // Reload previously saved data each time the selected categories are updated.
         // If the merchant mapped a field, then updates the category on products,
         // configuration will be reset.
-        this.mappingAttributes = JSON.parse(JSON.stringify(newValue));
+        this.mappingAttributes = newValue.map((attribute) => ({
+          ...attribute,
+          fields: attribute.fields.map((field) => ({
+            ...field,
+            mapped: field.mapped === null ? field.recommended : field.mapped,
+          })),
+        }));
       },
       immediate: true,
     },
