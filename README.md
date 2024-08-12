@@ -44,7 +44,7 @@ Retrieve dependencies with composer
 ```
 composer install
 # or
-make docker-build-composer
+make composer-install
 ```
 
 Composer has been configured in authoritative mode, which means it won't look in the filesystem when a class is not found in the current autoloader.
@@ -76,6 +76,17 @@ pnpm install
 
 pnpm -r dev
 ```
+
+## Dev environment
+
+For getting a locally shop with the module installed, you can use the following commands:
+```
+make docker-up
+```
+
+It will create a docker container with a PrestaShop instance and the module installed and a phpMyAdmin instance.
+You can configure the port for multiple instances & choose a specific version of PrestaShop.
+All configuration is in the folder `e2e-env`.
 
 ## Testing
 

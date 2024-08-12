@@ -1,0 +1,65 @@
+name: psxmarketingwithgoogle
+services:
+  prestashop:
+    image: ${DOCKER_IMAGE_PRESTASHOP:-prestashop/prestashop-flashlight:latest}
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      - ..:/var/www/html/modules/psxmarketingwithgoogle:rw
+      - ./init-scripts:/tmp/init-scripts:ro
+    environment:
+      - ON_INIT_SCRIPT_FAILURE=fail
+      - DEBUG_MODE=true
+      - INIT_SCRIPTS_USER=root
+      - INIT_SCRIPTS_DIR=/tmp/init-scripts
+      - PS_DOMAIN=localhost:${HOST_PORT_BIND_PRESTASHOP:-8000}
+    ports:
+      - ${HOST_PORT_BIND_PRESTASHOP:-8000}:80
+    networks:
+      - prestashop
+
+  mysql:
+    image: mariadb:lts
+    container_name: prestashop-mysql
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "--host=localhost",
+          "--user=prestashop",
+          "--password=prestashop",
+        ]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_USER=prestashop
+      - MYSQL_PASSWORD=prestashop
+      - MYSQL_ROOT_PASSWORD=prestashop
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=prestashop
+    ports:
+      - ${HOST_PORT_BIND_MYSQL:-3306}:3306
+    networks:
+      - prestashop
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - ${HOST_PORT_BIND_PHP_MY_ADMIN:-6060}:80
+    environment:
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
+      - PMA_USER=prestashop
+      - PMA_PASSWORD=prestashop
+      - MYSQL_ROOT_PASSWORD=prestashop
+    networks:
+      - prestashop
+
+networks:
+  prestashop:
+    driver: bridge
