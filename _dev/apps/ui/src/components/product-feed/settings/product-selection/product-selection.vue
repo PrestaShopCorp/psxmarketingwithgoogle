@@ -145,6 +145,7 @@ import {
   ProductFilter,
   ProductFilterErrors,
   CleanProductFilter, type FeatureOption,
+  ProductFilterValues,
 } from '@/components/product-feed/settings/product-selection/type';
 import ATTRIBUTE_MAP_CONDITION from '@/components/product-feed/settings/product-selection/attributeMapCondition';
 import ProductFilterAttributes from '@/enums/product-feed/product-filter-attributes';
@@ -188,7 +189,7 @@ export default defineComponent({
       };
 
       if (recoveredFilter.attribute === ProductFilterAttributes.FEATURE
-        && recoveredFilter.value?.length) {
+        && (recoveredFilter.value as ProductFilterValues)?.length) {
         const feature = getFeatureByOptions(
           this.features,
           recoveredFilter.value as FeatureOption[],
@@ -252,12 +253,12 @@ export default defineComponent({
 
       switch (ATTRIBUTE_MAP_CONDITION[cleanFilter.attribute][cleanFilter.condition].type) {
         case ProductFilterValueType.BOOLEAN:
-          cleanFilter.value = multipleValue ? filter.value?.map(
+          cleanFilter.value = multipleValue ? (filter.value as ProductFilterValues)?.map(
             (value) => stringToBoolean(value),
           ) : stringToBoolean(filter.value);
           break;
         case ProductFilterValueType.NUMBER:
-          cleanFilter.value = multipleValue ? filter.value?.map(
+          cleanFilter.value = multipleValue ? (filter.value as ProductFilterValues)?.map(
             (value) => stringToNumber(value),
           ) : stringToNumber(filter.value);
           break;
