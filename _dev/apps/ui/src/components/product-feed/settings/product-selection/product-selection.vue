@@ -517,7 +517,7 @@ export default defineComponent({
   async mounted() {
     this.loading = true;
     // get all data for filters
-    this.moduleNeedUpgradeForProductFilter = this.$store.getters[`app/${AppGettersTypes.GET_MODULE_NEED_UPGRADE}`]('1.73.0');
+    this.moduleNeedUpgradeForProductFilter = await this.$store.getters[`app/${AppGettersTypes.GET_MODULE_NEED_UPGRADE}`]('psxmarketingwithgoogle', '1.73.0');
 
     if (!this.moduleNeedUpgradeForProductFilter) {
       await this.$store.dispatch(`productFeed/${ActionsTypes.GET_SHOPS_PRODUCTS_INFOS}`);

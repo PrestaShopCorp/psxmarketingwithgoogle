@@ -54,10 +54,12 @@
         />
       </div>
       <notification-panel />
-      <AlertModuleUpdate
-        module-name="ps_eventbus"
-        :needed-version="$store.state.app.cloudsyncVersionNeeded"
-      />
+      <div class="pt-2 container">
+        <AlertModuleUpdate
+          v-if="modulePsEventbusNeedUpgrade"
+          module-name="ps_eventbus"
+        />
+      </div>
       <router-view />
       <div
         class="ps_gs-landingpage-content__muted text-muted bg-transparent mt-4"
@@ -94,7 +96,7 @@ import AlertModuleUpdate from '@/components/commons/alert-update-module.vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 import PopinUserNotConnectedToBo from '@/components/commons/user-not-connected-to-bo-popin.vue';
 import NotificationPanel from '@/components/enhanced-conversions/notification-panel.vue';
-import GettersTypesApp from '@/store/modules/app/getters-types';
+import AppGettersTypes from '@/store/modules/app/getters-types';
 
 let resizeEventTimer;
 
@@ -109,11 +111,12 @@ export default {
   data() {
     return {
       countdown: 15,
+      modulePsEventbusNeedUpgrade: false,
     };
   },
   computed: {
     ...mapGetters('app', [
-      GettersTypesApp.GET_BILLING_SUBSCRIPTION_ACTIVE,
+      AppGettersTypes.GET_BILLING_SUBSCRIPTION_ACTIVE,
     ]),
     shopId() {
       return window.shopIdPsAccounts;
@@ -135,6 +138,7 @@ export default {
         this.$store.commit('app/SAVE_USER_IS_LOGGED_OUT');
       },
     });
+    this.checkModulePsEventbusNeedUpgrade();
   },
   mounted() {
     this.$root.identifySegment();
@@ -155,7 +159,7 @@ export default {
     },
     setCustomProperties() {
       const root = document.documentElement;
-      const header = document.querySelector('#content .page-head');
+      const header = document.querySelector('#content .page-head') as HTMLElement;
 
       if (!header) {
         return;
@@ -177,6 +181,9 @@ export default {
         },
         params: SegmentGenericParams,
       });
+    },
+    async checkModulePsEventbusNeedUpgrade() {
+      this.modulePsEventbusNeedUpgrade = await this.$store.getters[`app/${AppGettersTypes.GET_MODULE_NEED_UPGRADE}`]('ps_eventbus');
     },
   },
   watch: {

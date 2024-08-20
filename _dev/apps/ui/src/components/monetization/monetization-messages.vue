@@ -1,48 +1,44 @@
 <template>
   <div>
-    <!-- Module update messages -->
-    <PsToast
-      v-if="moduleUpdateSuccess"
-      variant="success"
-      :visible="moduleUpdateSuccess"
-      toaster="b-toaster-top-right"
-      body-class="border border-success"
-    >
-      <div>
-        <h3 class="mb-1">
-          {{ $t("monetization.successUpdatedTitle") }}
-        </h3>
-        <p>{{ $t("monetization.successUpdatedSubtitle") }}</p>
-      </div>
-    </PsToast>
-    <PsToast
-      v-if="moduleUpdateSuccess === false && modaleIsClosed"
-      :visible="moduleUpdateSuccess === false && !moduleUpdateSuccess && modaleIsClosed"
-      variant="warning"
-      toaster="b-toaster-top-right"
-      body-class="border border-warning"
-    >
-      <div>
-        <h3 class="mb-1">
-          {{ $t("monetization.failedUpdatedTitle") }}
-        </h3>
-        <p>{{ $t("monetization.failedUpdatedSubtitle") }}</p>
-      </div>
-    </PsToast>
-
-    <MonetizationAlertWarningUpdateModule
-      v-if="moduleNeedUpgrade && modaleIsClosed && moduleUpdateSuccess !== true"
+    <AlertModuleUpdate
+      v-if="moduleNeedUpgrade && modaleIsClosed"
+      module-name="psxmarketingwithgoogle"
       @updateSuccess="($event) => moduleUpdateSuccess = $event"
-    />
-    <MonetizationPopinUpdateModule
-      v-if="moduleNeedUpgrade && moduleUpdateSuccess === null"
+    >
+      <template #title>
+        <h3 class="h3">
+          {{ $t('monetization.updateTitle') }}
+        </h3>
+      </template>
+      <template #content>
+        <p>
+          {{ $t('monetization.bannerWarningText') }}
+        </p>
+      </template>
+    </AlertModuleUpdate>
+
+    <PopinUpdateModule
+      v-if="moduleNeedUpgrade"
+      module-name="psxmarketingwithgoogle"
       @closeModale="modaleIsClosed = true"
       @updateSuccess="($event) => moduleUpdateSuccess = $event"
     >
+      <template #title>
+        <h2>
+          <span
+            class="rounded-circle
+            bg-ocean-blue-50 d-inline-flex align-items-center justify-content-center mr-2"
+            style="width: 40px; height: 40px;"
+          >
+            <i class="material-icons ps_gs-fz-24">update</i>
+          </span>
+          {{ $t('monetization.updateTitle') }}
+        </h2>
+      </template>
       <template #content>
         <slot name="content-modale" />
       </template>
-    </MonetizationPopinUpdateModule>
+    </PopinUpdateModule>
 
     <!-- Messages for module monetization -->
     <MonetizationAlertEndSubscription
@@ -82,10 +78,9 @@
 import {defineComponent, PropType} from 'vue';
 import {mapGetters} from 'vuex';
 import {ISubscription} from '@prestashopcorp/billing-cdc';
-import MonetizationPopinUpdateModule from '@/components/monetization/monetization-popin-update-module.vue';
-import MonetizationAlertWarningUpdateModule from '@/components/monetization/monetization-alert-warning-update-module.vue';
+import PopinUpdateModule from '@/components/commons/popin-update-module.vue';
 import MonetizationBannerInformation from '@/components/monetization/monetization-banner-information.vue';
-import PsToast from '@/components/commons/ps-toast.vue';
+import AlertModuleUpdate from '@/components/commons/alert-update-module.vue';
 import AppGettersTypes from '@/store/modules/app/getters-types';
 import AccountsGettersTypes from '@/store/modules/accounts/getters-types';
 import MonetizationAlertEndSubscription from './monetization-alert-end-subscription.vue';
@@ -94,10 +89,9 @@ export default defineComponent({
   name: 'MonetizationMessage',
   components: {
     MonetizationBannerInformation,
-    MonetizationPopinUpdateModule,
-    MonetizationAlertWarningUpdateModule,
     MonetizationAlertEndSubscription,
-    PsToast,
+    PopinUpdateModule,
+    AlertModuleUpdate,
   },
   props: {
     subscription: {
@@ -113,15 +107,13 @@ export default defineComponent({
     return {
       moduleUpdateSuccess: null as boolean|null,
       modaleIsClosed: false,
+      moduleNeedUpgrade: false,
     };
   },
   computed: {
     ...mapGetters('app', [
       AppGettersTypes.GET_BILLING_SUBSCRIPTION_ACTIVE,
     ]),
-    moduleNeedUpgrade() {
-      return this.$store.getters[`app/${AppGettersTypes.GET_MODULE_NEED_UPGRADE}`](this.$store.state.app.psxMktgWithGoogleModuleVersionNeeded);
-    },
     googleAccountIsOnboarded() {
       return this.$store.getters[`accounts/${AccountsGettersTypes.GET_GOOGLE_ACCOUNT_IS_ONBOARDED}`];
     },
@@ -131,6 +123,14 @@ export default defineComponent({
         {dateStyle: 'long'},
       );
     },
+  },
+  methods: {
+    async checkModuleNeedUpgrade() {
+      this.moduleNeedUpgrade = await this.$store.getters[`app/${AppGettersTypes.GET_MODULE_NEED_UPGRADE}`]('psxmarketingwithgoogle');
+    },
+  },
+  created() {
+    this.checkModuleNeedUpgrade();
   },
 });
 </script>

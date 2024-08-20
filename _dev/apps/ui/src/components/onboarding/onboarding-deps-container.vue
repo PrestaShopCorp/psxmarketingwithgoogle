@@ -91,6 +91,7 @@ export default defineComponent({
   data() {
     return {
       openBillingModal: null as Function|null,
+      moduleNeedUpgrade: false,
     };
   },
   computed: {
@@ -99,9 +100,6 @@ export default defineComponent({
     },
     merchantCenterAccountIsChosen() {
       return this.$store.getters[`accounts/${AccountGettersTypes.GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED}`];
-    },
-    moduleNeedUpgrade() {
-      return this.$store.getters[`app/${AppGettersTypes.GET_MODULE_NEED_UPGRADE}`](this.$store.state.app.psxMktgWithGoogleModuleVersionNeeded);
     },
   },
   methods: {
@@ -156,6 +154,9 @@ export default defineComponent({
         this.openBillingModal($event);
       }
     },
+    async checkModuleNeedUpgrade() {
+      this.moduleNeedUpgrade = await this.$store.getters[`app/${AppGettersTypes.GET_MODULE_NEED_UPGRADE}`]('psxmarketingwithgoogle');
+    },
   },
   mounted() {
     this.initAccountsComponent();
@@ -164,6 +165,7 @@ export default defineComponent({
     window.addEventListener('load', () => {
       this.initCloudSyncConsent();
     });
+    this.checkModuleNeedUpgrade();
   },
   watch: {
     psAccountsOnboarded: {

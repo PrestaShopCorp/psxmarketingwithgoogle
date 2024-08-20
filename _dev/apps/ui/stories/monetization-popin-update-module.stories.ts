@@ -1,15 +1,15 @@
-import MonetizatizationPopinUpdateModule from '../src/components/monetization/monetization-popin-update-module.vue';
+import PopinUpdateModule from '../src/components/commons/popin-update-module.vue';
 
 export default {
   title: 'Onboarding/Popins',
-  component: MonetizatizationPopinUpdateModule,
+  component: PopinUpdateModule,
 };
 
 const Template = (args, {argTypes}) => ({
   props: Object.keys(argTypes),
-  components: {MonetizatizationPopinUpdateModule},
+  components: {PopinUpdateModule},
   template:
-    '<MonetizatizationPopinUpdateModule v-bind="$props" />',
+    '<PopinUpdateModule v-bind="$props" />',
 });
 
 export const UpdateModule: any = Template.bind({});
