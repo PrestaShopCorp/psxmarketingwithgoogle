@@ -9,25 +9,25 @@
       "help": "Ajuda"
     },
     "errorsMessages": {
-      "enterValue": ">Insira um valor."
+      "enterValue": "Insira um valor."
     },
     "versionDoesNotExist": "A versão do módulo não pôde ser encontrada. Tente novamente.",
     "moduleNeedActivation": "O Marketing with Google está desativado. Você não poderá usar nenhum dos recursos até ativar seu módulo.",
     "moduleUpdateNeeded": {
       "ps_eventbus": {
         "title": "É necessária uma versão mais recente do PrestaShop CloudSync",
-        "paragraph": ">A versão do módulo PrestaShop CloudSync em execução nesta loja é mais antiga do que o recomendado.\n\n Você pode usar o PrestaShop Marketing with Google, mas algumas funcionalidades (como a sincronização de produtos) não estarão disponíveis até que você atualize o PrestaShop CloudSync."
+        "paragraph": "A versão do módulo PrestaShop CloudSync em execução nesta loja é mais antiga do que o recomendado.\n\n Você pode usar o PrestaShop Marketing with Google, mas algumas funcionalidades (como a sincronização de produtos) não estarão disponíveis até que você atualize o PrestaShop CloudSync."
       },
       "psxmarketingwithgoogle": {
-        "title": ">Uma versão mais recente do PrestaShop Marketing With Google está disponível",
-        "paragraph": ">Ela oferece uma funcionalidade interessante que melhorará o uso do seu produto. | Ela oferece funcionalidades interessantes que melhorarão o uso do seu produto.",
+        "title": "Uma versão mais recente do PrestaShop Marketing With Google está disponível",
+        "paragraph": "Ela oferece uma funcionalidade interessante que melhorará o uso do seu produto. | Ela oferece funcionalidades interessantes que melhorarão o uso do seu produto.",
         "changes": {
           "1.53.0": [
             "Configure seu feed de produtos para os países de destino em várias moedas",
             "Obtenha um melhor acompanhamento da sua sincronização de produto com a nova página de feed de produtos"
           ],
           "1.73.0": [
-            ">Configure seu feed de produtos para escolher quais produtos você deseja promover graças à filtragem inteligente"
+            "Configure seu feed de produtos para escolher quais produtos você deseja promover graças à filtragem inteligente"
           ]
         }
       }
@@ -77,9 +77,9 @@
   },
   "onboarding": {
     "cmpAlert": {
-      "title": ">Atualizações do RGPD",
-      "paragraph": ">A partir de março de 2024, as empresas que anunciam para usuários no Espaço Econômico Europeu (EEE) devem criar um mecanismo robusto de coleta e comunicação das escolhas de consentimento dos usuários finais por meio de banners de consentimento integrados ao Modo de Consentimento do Google. Para construir uma base sólida para monitorar seus anúncios, você deve configurar um banner de cookies por meio de uma Plataforma de Gerenciamento de Consentimento dedicada e suportada. Se ainda não tiver uma, recomendamos que utilize a seguinte plataforma de gerenciamento de consentimento, que está em conformidade com os novos regulamentos: {link}",
-      "moduleGDPR": ">Cookies da Lei RGPD (Bloqueador) + Modo de Consentimento do Google V2"
+      "title": "Atualizações do RGPD",
+      "paragraph": "A partir de março de 2024, as empresas que anunciam para usuários no Espaço Econômico Europeu (EEE) devem criar um mecanismo robusto de coleta e comunicação das escolhas de consentimento dos usuários finais por meio de banners de consentimento integrados ao Modo de Consentimento do Google. Para construir uma base sólida para monitorar seus anúncios, você deve configurar um banner de cookies por meio de uma Plataforma de Gerenciamento de Consentimento dedicada e suportada. Se ainda não tiver uma, recomendamos que utilize a seguinte plataforma de gerenciamento de consentimento, que está em conformidade com os novos regulamentos: {link}",
+      "moduleGDPR": "Cookies da Lei RGPD (Bloqueador) + Modo de Consentimento do Google V2"
     },
     "sectionTitle": {
       "psAccount": "Conecte a sua conta PrestaShop",
