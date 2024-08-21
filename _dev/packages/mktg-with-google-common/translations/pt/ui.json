@@ -488,76 +488,76 @@
       "featureDeleted": "Uma funcionalidade foi excluída da sua seleção. Altere seus filtros e tente novamente. | Algumas funcionalidades foram excluídas da sua seleção. Altere seus filtros e tente novamente.",
       "lineFilter": {
         "errors": {
-          "empty": ">Este campo é obrigatório.",
-          "invalidEntry": ">Dados inválidos.",
-          "invalidNumber": ">Insira um número.",
-          "invalidPositiveNumber": ">Insira um número positivo.",
-          "invalidInteger": ">Insira um número inteiro.",
-          "valueDoNotExist": ">Este valor não existe. | Estes valores não existem."
+          "empty": "Este campo é obrigatório.",
+          "invalidEntry": "Dados inválidos.",
+          "invalidNumber": "Insira um número.",
+          "invalidPositiveNumber": "Insira um número positivo.",
+          "invalidInteger": "Insira um número inteiro.",
+          "valueDoNotExist": "Este valor não existe. | Estes valores não existem."
         },
         "attributes": {
-          "label": ">Atributo",
-          "placeholder": ">Selecione um atributo",
-          "defaultAttributes": ">Atributos predefinidos",
-          "features": ">Funcionalidade | Funcionalidades",
-          "price": ">Preço (sem impostos)",
-          "brand": ">Marca",
-          "category": ">Categoria",
-          "id": ">ID do produto",
-          "out_of_stock": ">Fora de estoque"
+          "label": "Atributo",
+          "placeholder": "Selecione um atributo",
+          "defaultAttributes": "Atributos predefinidos",
+          "features": "Funcionalidade | Funcionalidades",
+          "price": "Preço (sem impostos)",
+          "brand": "Marca",
+          "category": "Categoria",
+          "id": "ID do produto",
+          "out_of_stock": "Fora de estoque"
         },
         "conditions": {
-          "label": ">Condição",
-          "placeholder": ">Selecione uma condição",
-          "isEqualTo": ">É igual a",
-          "isNotEqualTo": ">Não é igual a",
-          "isLessThan": ">É menor que",
-          "isGreaterThan": ">É maior que",
-          "contains": ">Contém",
-          "notContain": ">Não contém",
-          "isIn": ">Está incluído",
-          "isNot": ">Não está incluído",
-          "isFalse": ">É falso",
-          "isTrue": ">É verdadeiro"
+          "label": "Condição",
+          "placeholder": "Selecione uma condição",
+          "isEqualTo": "É igual a",
+          "isNotEqualTo": "Não é igual a",
+          "isLessThan": "É menor que",
+          "isGreaterThan": "É maior que",
+          "contains": "Contém",
+          "notContain": "Não contém",
+          "isIn": "Está incluído",
+          "isNot": "Não está incluído",
+          "isFalse": "É falso",
+          "isTrue": "É verdadeiro"
         },
         "value": {
-          "label": ">Valor",
-          "selectValue": ">Selecione um valor",
-          "enterValue": ">Insira um valor",
-          "false": ">É falso",
-          "true": ">É verdadeiro"
+          "label": "Valor",
+          "selectValue": "Selecione um valor",
+          "enterValue": "Insira um valor",
+          "false": "É falso",
+          "true": "É verdadeiro"
         }
       },
       "productCount": {
-        "productSelected": ">produto selecionado. | produtos selecionados.",
-        "error": ">Não é possível recuperar os dados solicitados no momento. Verifique sua configuração e tente novamente mais tarde.",
-        "pending": ">Buscando produtos...",
-        "pendingLong": ">A busca está demorando mais do que o esperado. Aguarde e não atualize a página.",
-        "nothingFound": ">Não encontramos nenhum produto que corresponda à sua seleção. Altere seus filtros e tente novamente.",
-        "tryAgain": ">Tente novamente"
+        "productSelected": "produto selecionado. | produtos selecionados.",
+        "error": "Não é possível recuperar os dados solicitados no momento. Verifique sua configuração e tente novamente mais tarde.",
+        "pending": "Buscando produtos...",
+        "pendingLong": "A busca está demorando mais do que o esperado. Aguarde e não atualize a página.",
+        "nothingFound": "Não encontramos nenhum produto que corresponda à sua seleção. Altere seus filtros e tente novamente.",
+        "tryAgain": "Tente novamente"
       }
     },
     "summary": {
-      "title": ">Resumo do feed de produtos",
+      "title": "Resumo do feed de produtos",
       "xItems": "{0} itens",
       "productItems": "Itens do produto",
       "tableHeader1": "Atributos do produto Google",
-      "tableHeader2": ">Valor do produto",
+      "tableHeader2": "Valor do produto",
       "totalProducts": "Produtos ativos prontos para sincronia",
       "date": "Data",
-      "nextSync": ">A próxima sincronização será em {date}.",
+      "nextSync": "A próxima sincronização será em {date}.",
       "time": "Hora",
       "youSell": "**Vende*** {0}",
       "dataSyncSetUp": "Sincronização de dados configurada",
       "productAttributesMapping": "Mapeamento de categorias e atributos de produtos",
-      "errorLoadDataSelectedProduct": ">Não foi possível carregar os dados",
-      "attributeMapped": ">Um atributo de produto mapeado | {0} atributos de produto mapeados",
+      "errorLoadDataSelectedProduct": "Não foi possível carregar os dados",
+      "attributeMapped": "Um atributo de produto mapeado | {0} atributos de produto mapeados",
       "mandatoryAttributesNotMapped": "Um atributo do Google não foi mapeado para seus campos personalizados | {0} atributos do Google não foram mapeados para seus campos personalizados.",
       "noticeToCompleteMapping": "Recomendamos mapear todos os seus dados, caso contrário seus produtos podem ser rejeitados pelo Google.",
-      "agreementTitle": ">Condições",
-      "agreement1": ">A sincronização do meu feed de produtos será executada depois que eu clicar em salvar e exportar e pode levar de 1 a 4 horas",
-      "agreement2": ">As avaliações de produtos do Google podem levar de 3 a 5 dias úteis",
-      "agreementCheckboxLabel": ">Eu entendo e concordo com as condições acima",
+      "agreementTitle": "Condições",
+      "agreement1": "A sincronização do meu feed de produtos será executada depois que eu clicar em salvar e exportar e pode levar de 1 a 4 horas",
+      "agreement2": "As avaliações de produtos do Google podem levar de 3 a 5 dias úteis",
+      "agreementCheckboxLabel": "Eu entendo e concordo com as condições acima",
       "disabledButtonTooltip": "Verifique as nossas condições antes de seguir em frente",
       "syncScheduledNow": "Hoje, logo após eu salvar e exportar"
     }
@@ -571,7 +571,7 @@
     "intro": "Mostre o seu produto gratuitamente na listagem de classificados orgânicos na guia Compras.",
     "learnFreeListing": "Saiba mais sobre listagens gratuitas",
     "seeFreeListing": "Ver os meus anúncios gratuitos no Merchant Center",
-    "googleDelay": ">O Google leva de 3 a 5 dias úteis para analisar os produtos",
+    "googleDelay": "O Google leva de 3 a 5 dias úteis para analisar os produtos",
     "alertEnableFreeListing": "Habilite anúncios gratuitos para mostrar seus produtos na guia Compras de graça.",
     "alertCantEnableFreeListing": "Não pode activar listagens grátis neste momento. Tente novamente mais tarde.",
     "alertCountryNotEligible": "O país de destino que você selecionou não é elegível para listagens e anúncios gratuitos."
@@ -634,7 +634,7 @@
     "intro": "Melhore a precisão do seu acompanhamento de conversões e desfrute de lances mais competitivos. Essa funcionalidade funciona junto com suas tags de conversão existentes, enviando dados de conversão seguros e em conformidade com as regras de privacidade do seu site para o Google.",
     "signTosAlert": {
       "title": "Aprimore seu acompanhamento de conversões e desfrute de lances mais competitivos para seus anúncios",
-      "text": ">Ative o monitoramento aprimorado de conversões concordando com os termos de serviço do Google Ads e definindo o método de tags do Google em algumas etapas seguindo estas [instruções]({0})[:target=\"_blank\"] durante a ativação para garantir que o recurso funcione corretamente."
+      "text": "Ative o monitoramento aprimorado de conversões concordando com os termos de serviço do Google Ads e definindo o método de tags do Google em algumas etapas seguindo estas [instruções]({0})[:target=\"_blank\"] durante a ativação para garantir que o recurso funcione corretamente."
     }
   },
   "smartShoppingCampaignCreation": {
@@ -772,12 +772,12 @@
         "noCurrency": "Nenhuma moeda elegível"
       },
       "productVerification": {
-        "alertNoProductSelected": ">A sua seleção de produtos está vazia. Nenhum produto do seu catálogo está sendo enviado para o Google. Atualize sua configuração de seleção de produtos.",
+        "alertNoProductSelected": "A sua seleção de produtos está vazia. Nenhum produto do seu catálogo está sendo enviado para o Google. Atualize sua configuração de seleção de produtos.",
         "stepTitle": "Produtos verificados pela Prestashop antes de serem enviados para o Google",
         "stepDetails": "Antes de enviar seus produtos (inclusive as variações), garantimos que eles estejam em conformidade com as políticas do Google Merchant Center. Nós conferimos os produtos **toda vez que uma alteração é detectada** e orientamos você sobre o que fazer caso algum deles tenha alguma questão de conformidade. Clique em produtos não conformes para obter mais informações.\n\nApós o envio, o Google atribui a cada produto um status: **Ativo, Prestes a expirar, Pendente** ou **Reprovado**.",
         "reportCards": {
-          "selectedProducts": ">Meus produtos selecionados",
-          "selectedProductsDescription": ">Produtos selecionados com variações nos idiomas do feed de produtos",
+          "selectedProducts": "Meus produtos selecionados",
+          "selectedProductsDescription": "Produtos selecionados com variações nos idiomas do feed de produtos",
           "verified": "Produtos conformes",
           "verifiedDescription": "Produtos aprovados pela PrestaShop que estão prontos para serem enviados ao Google.",
           "nonCompliant": "Produtos não conformes",
@@ -1070,7 +1070,7 @@
     "select": "Selecione",
     "editContact": "Editar informações de contato",
     "update": "Atualizar",
-    "updateModule": ">Atualizar módulo",
+    "updateModule": "Atualizar módulo",
     "validateSelection": "Validar a seleção",
     "visitThe": "Visite {0} para mais informações ",
     "createPmax": "Criar campanha Performance Max",
@@ -1121,7 +1121,7 @@
     "textDisconnectMCA": "Desconectar o seu Merchant Center irá remover o acesso ao seu Google Ads neste módulo e fazer uma pausa em qualquer campanha em curso. ",
     "textoverwrite": "A sobre-escritura de reclamações existentes irá desativar sua conta anterior e pausar as campanhas existentes vinculadas a essa conta - listagens gratuitas e campanhas de compras.  \nSe estiver a executar uma campanha de Compras diferente, recomendamos que a faça uma pausa.",
     "titleCancelWithoutSaving": "Cancelar sem poupar?",
-    "textCancelProductFeed": ">Você perderá todas as alterações não salvas se continuar. Para enviar com sucesso os dados do seu produto para o Google você precisa concluir todas as etapas.",
+    "textCancelProductFeed": "Você perderá todas as alterações não salvas se continuar. Para enviar com sucesso os dados do seu produto para o Google você precisa concluir todas as etapas.",
     "titleQuitWithoutSaving": "Desistir sem guardar?",
     "titleOverwriteProductFeed": "Sobreescrever o feed dos produtos existentes?",
     "textOverwriteProductFeed": "Sobreescrever o feed do seu produto existente irá apagá-lo. Precisará de configurar o feed de novos produtos.",
@@ -1137,7 +1137,7 @@
     "disconnectedUserBo": "Sua conexão com o backoffice foi interrompida. Você será redirecionado automaticamente para a página de login em {0} segundos.",
     "titleDisconnectedUserBo": "Ligação Perdida",
     "titleEnhancedConversionsIntro": "Avalie a eficiência dos seus anúncios",
-    "textEnhancedConversionsIntro": ">Melhore a precisão do seu monitoramento de conversões e aprimore sua estratégia de lances com nossa funcionalidade mais recente: o Monitoramento Aprimorado de Conversões. Essa funcionalidade se integra perfeitamente às suas tags de conversão existentes, garantindo a transmissão segura e em conformidade com as regras de privacidade dos dados de conversão do seu site para o Google. Siga estas instruções simples durante a ativação para garantir que o recurso funcione corretamente:\n1. Marque a caixa de seleção \"Ativar conversões aprimoradas\"\n2. Aceite os termos dos Dados do Cliente (se já não foram aceitos no passado)\n3. Selecione \"Google Tag\" como método\n4. Salve suas seleções"
+    "textEnhancedConversionsIntro": "Melhore a precisão do seu monitoramento de conversões e aprimore sua estratégia de lances com nossa funcionalidade mais recente: o Monitoramento Aprimorado de Conversões. Essa funcionalidade se integra perfeitamente às suas tags de conversão existentes, garantindo a transmissão segura e em conformidade com as regras de privacidade dos dados de conversão do seu site para o Google. Siga estas instruções simples durante a ativação para garantir que o recurso funcione corretamente:\n1. Marque a caixa de seleção \"Ativar conversões aprimoradas\"\n2. Aceite os termos dos Dados do Cliente (se já não foram aceitos no passado)\n3. Selecione \"Google Tag\" como método\n4. Salve suas seleções"
   },
   "tooltip": {
     "googleAccountRequired": "Requer a configuração da conta Google",
