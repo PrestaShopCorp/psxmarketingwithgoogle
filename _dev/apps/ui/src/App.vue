@@ -97,6 +97,7 @@ import googleUrl from '@/assets/json/googleUrl.json';
 import PopinUserNotConnectedToBo from '@/components/commons/user-not-connected-to-bo-popin.vue';
 import NotificationPanel from '@/components/enhanced-conversions/notification-panel.vue';
 import AppGettersTypes from '@/store/modules/app/getters-types';
+import ActionsTypes from '@/store/modules/app/actions-types';
 
 let resizeEventTimer;
 
@@ -183,7 +184,9 @@ export default {
       });
     },
     async checkModulePsEventbusNeedUpgrade() {
-      this.modulePsEventbusNeedUpgrade = await this.$store.getters[`app/${AppGettersTypes.GET_MODULE_NEED_UPGRADE}`]('ps_eventbus');
+      const res = await this.$store.dispatch(`app/${ActionsTypes.GET_MODULES_VERSIONS}`, 'ps_eventbus');
+
+      this.modulePsEventbusNeedUpgrade = await this.$store.getters[`app/${AppGettersTypes.GET_MODULE_NEED_UPGRADE}`]('ps_eventbus', res.version);
     },
   },
   watch: {

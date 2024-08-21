@@ -475,7 +475,7 @@ export default defineComponent({
   async mounted() {
     this.loadingData = true;
 
-    this.moduleNeedUpgradeForProductFilter = await this.$store.getters[`app/${AppGettersTypes.GET_MODULE_NEED_UPGRADE}`]('psxmarketingwithgoogle', '1.73.0');
+    this.moduleNeedUpgradeForProductFilter = await this.$store.getters[`app/${AppGettersTypes.GET_MODULE_NEED_UPGRADE}`]('psxmarketingwithgoogle', undefined, '1.73.0');
 
     await this.requestShopAttribute().then(() => {
       this.requestAttributeMapping();

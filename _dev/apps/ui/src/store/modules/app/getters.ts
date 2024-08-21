@@ -22,8 +22,6 @@ import {State as LocalState, HelpInformations, DebugData} from './state';
 import countriesSelectionOptions from '../../../assets/json/countries.json';
 import symbols from '@/assets/json/symbols.json';
 import prestashopUrls from '@/assets/json/prestashopUrl.json';
-import store from '@/store';
-import ActionsTypes from '@/store/modules/app/actions-types';
 
 export default {
   [GettersTypes.GET_IS_COUNTRY_MEMBER_OF_EU](state: LocalState): boolean {
@@ -120,19 +118,18 @@ export default {
     state: LocalState,
   ) => async (
     moduleName: 'psxmarketingwithgoogle' | 'ps_eventbus',
+    currentVesion?: string,
     versionNeeded?: string,
   ) => {
     if (moduleName === 'psxmarketingwithgoogle') {
       return !semver.gte(
         versionNeeded ?? state.psxMktgWithGoogleModuleVersion,
-        state.psxMktgWithGoogleModuleVersionNeeded,
+        currentVesion ?? state.psxMktgWithGoogleModuleVersionNeeded,
       );
-    } if (moduleName === 'ps_eventbus') {
-      const res = await store.dispatch(`app/${ActionsTypes.GET_MODULES_VERSIONS}`, 'ps_eventbus');
-
-      return !semver.gte(res.version, state.cloudsyncVersionNeeded);
+    } if (moduleName === 'ps_eventbus' && currentVesion) {
+      return !semver.gte(currentVesion, state.cloudsyncVersionNeeded);
     }
-    throw new Error('Module name not found');
+    throw new Error('Module name not found or the current version is missing');
   },
 
   [GettersTypes.GET_BILLING_SUBSCRIPTION_ACTIVE](state: LocalState): boolean {
