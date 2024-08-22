@@ -1,10 +1,10 @@
 <template>
-  <div class="pt-2 container">
+  <div class="pt-2">
     <div class="row">
       <AlertCmp />
     </div>
 
-    <div class="row mb-4 ps_gs-onboardingpage">
+    <div class="mb-4 ps_gs-onboardingpage">
       <!-- PSAccount + Subscription billing -->
       <onboarding-deps-container
         :ps-accounts-onboarded="psAccountsIsOnboarded"

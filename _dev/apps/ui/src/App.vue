@@ -54,12 +54,11 @@
         />
       </div>
       <notification-panel />
-      <div class="container">
-        <AlertModuleUpdate
-          v-if="modulePsEventbusNeedUpgrade"
-          module-name="ps_eventbus"
-        />
-      </div>
+      <AlertModuleUpdate
+        v-if="modulePsEventbusNeedUpgrade"
+        module-name="ps_eventbus"
+        :class-alert="currentlyConfigurationPage ? 'container' : undefined"
+      />
       <router-view />
       <div
         class="ps_gs-landingpage-content__muted text-muted bg-transparent mt-4"
@@ -127,6 +126,9 @@ export default {
     },
     currentlyOnLandingPage() {
       return this.$route.name === 'landing-page';
+    },
+    currentlyConfigurationPage() {
+      return this.$route.name === 'configuration';
     },
     backOfficeUserIsLoggedIn() {
       return this.$store.state.app.backOfficeUserIsLoggedIn;

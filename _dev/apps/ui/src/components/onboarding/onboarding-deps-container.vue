@@ -1,7 +1,6 @@
 <template>
-  <div class="w-100">
+  <div>
     <monetization-messages
-      class="container"
       page="configuration"
       :subscription="subscription"
       @startSubscription="startSubscription"

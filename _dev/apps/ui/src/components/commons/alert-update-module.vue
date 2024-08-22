@@ -32,6 +32,7 @@
     <div
       v-if="!moduleIsUpdated"
       class="mb-2 two-panel-max-width"
+      :class="classAlert"
     >
       <b-alert
         variant="warning"
@@ -105,6 +106,10 @@ export default defineComponent({
     moduleName: {
       type: String,
       required: true,
+    },
+    classAlert: {
+      type: String,
+      default: undefined,
     },
   },
   components: {PsToast},

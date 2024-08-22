@@ -2,7 +2,7 @@
   <div>
     <b-card
       no-body
-      class="m-3"
+      class="my-3"
     >
       <b-card-header>
         {{ $t('billing.planTitle') }}
@@ -18,7 +18,7 @@
 
     <b-card
       no-body
-      class="m-3"
+      class="my-3"
     >
       <b-card-header>
         {{ $t('billing.invoicesTitle') }}

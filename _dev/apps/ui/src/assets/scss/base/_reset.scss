@@ -8,3 +8,11 @@
   color: $primary-800;
   text-align: left;
 }
+
+& > *:not(.ps_gs-sticky-head) {
+  padding-left: 15px;
+  padding-right: 15px;
+  max-width: 1198px;
+  margin-left: auto;
+  margin-right: auto;
+}

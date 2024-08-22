@@ -23,7 +23,7 @@
     <card-faq
       :informations="helpInformations"
       :loading="loading"
-      class="m-3"
+      class="my-3"
     />
   </div>
 </template>

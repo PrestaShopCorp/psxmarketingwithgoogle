@@ -116,7 +116,7 @@ export default {
   },
   [GettersTypes.GET_MODULE_NEED_UPGRADE]: (
     state: LocalState,
-  ) => async (
+  ) => (
     moduleName: 'psxmarketingwithgoogle' | 'ps_eventbus',
     currentVesion?: string,
     versionNeeded?: string,

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <AlertModuleUpdate
       v-if="moduleNeedUpgrade && modaleIsClosed"
       module-name="psxmarketingwithgoogle"
@@ -65,11 +65,11 @@
       @startSubscription="($event) => $emit('startSubscription', $event)"
     />
     <MonetizationBannerInformation
+      class="mb-3"
       v-if="!moduleNeedUpgrade
         && !googleAccountIsOnboarded
         && !GET_BILLING_SUBSCRIPTION_ACTIVE
         && page === 'configuration'"
-      class="mb-3"
     />
   </div>
 </template>

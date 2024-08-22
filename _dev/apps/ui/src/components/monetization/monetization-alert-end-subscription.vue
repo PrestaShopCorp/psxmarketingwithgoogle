@@ -1,6 +1,6 @@
 <template>
   <b-alert
-    class="border border-info d-md-flex align-items-md-center justify-content-md-between container"
+    class="border border-info d-md-flex align-items-md-center justify-content-md-between"
     variant="info"
     show
   >
