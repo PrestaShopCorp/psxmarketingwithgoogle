@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div :class="page === 'configuration' ? 'container' : ''">
     <AlertModuleUpdate
       v-if="moduleNeedUpgrade && modaleIsClosed"
       module-name="psxmarketingwithgoogle"
