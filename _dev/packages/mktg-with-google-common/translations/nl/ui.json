@@ -15,7 +15,7 @@
     "moduleNeedActivation": "Marketing met Google is uitgeschakeld. Je kunt geen van de functies gebruiken totdat je je module inschakelt.",
     "moduleUpdateNeeded": {
       "ps_eventbus": {
-        "title": "Er is een nieuwere versie van PrestaShop Clouds aangevraagd",
+        "title": "Er is een nieuwere versie van PrestaShop CloudSync aangevraagd",
         "paragraph": "De versie van de module PrestaShop CloudSync die op deze winkel draait is ouder dan de vereiste minimumversie.\n\n Je kunt PrestaShop Marketing met Google gebruiken, maar sommige functies (zoals productsynchronisatie) zijn niet beschikbaar totdat je PrestaShop CloudSync upgradet."
       },
       "psxmarketingwithgoogle": {
