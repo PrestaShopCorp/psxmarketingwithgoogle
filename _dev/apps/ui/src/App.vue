@@ -16,7 +16,7 @@
     <template v-else>
       <div
         id="head_tabs"
-        class="ps_gs-sticky-head page-head-tabs"
+        class="ps_gs-sticky-head"
       >
         <AppMenu>
           <MenuItem
@@ -54,7 +54,7 @@
         />
       </div>
       <notification-panel />
-      <div class="pt-2 container">
+      <div class="container">
         <AlertModuleUpdate
           v-if="modulePsEventbusNeedUpgrade"
           module-name="ps_eventbus"
