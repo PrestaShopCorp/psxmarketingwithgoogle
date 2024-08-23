@@ -57,16 +57,19 @@
       <AlertModuleUpdate
         v-if="modulePsEventbusNeedUpgrade"
         module-name="ps_eventbus"
-        :class-alert="currentlyConfigurationPage ? 'container' : undefined"
+        :class-alert="
+          currentlyConfigurationPage ? 'container' :
+          currentlyOnLandingPage ? 'container-md' : undefined"
       />
       <router-view />
       <div
-        class="ps_gs-landingpage-content__muted text-muted bg-transparent mt-4"
+        class="mt-4 container-md"
         v-if="currentlyOnLandingPage"
       >
         <VueShowdown
           :markdown="$t('landingPage.footer.explanation')"
           :extensions="['extended-link']"
+          class="text-justify-center"
         />
       </div>
       <div

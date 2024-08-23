@@ -1,20 +1,22 @@
 <template>
   <div
-    class="ps_gs-landingpage-content d-flex flex-column flex-md-row align-items-center mb-2"
+    class="ps_gs-landingpage-content d-flex flex-column flex-md-row"
   >
-    <figure class="ps_gs-landingpage-content__figure flex-shrink-0 mr-md-3 mb-md-0">
+    <figure
+      class="ps_gs-landingpage-content__figure flex-shrink-0 mr-md-4 mb-md-0"
+      :class="backgroundColor"
+    >
       <slot />
     </figure>
-    <div>
-      <h3 class="ps_gs-landingpage-content__title mb-3">
+    <div class="text-center text-md-left">
+      <h3 class="mb-2">
         {{ contentTitle }}
       </h3>
       <VueShowdown
         :markdown="contentText"
-        class="ps_gs-landingpage-content__text"
       />
       <div
-        class="ps_gs-landingpage-content__muted text-muted"
+        class="ps_gs-fz-12 text-muted"
       >
         <VueShowdown
           v-if="contentFooter"
@@ -44,7 +46,10 @@ export default {
     },
     contentFooter: {
       type: String,
-      required: false,
+      default: null,
+    },
+    backgroundColor: {
+      type: String,
       default: null,
     },
   },

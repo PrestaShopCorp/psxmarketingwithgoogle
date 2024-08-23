@@ -6,18 +6,25 @@
   &#{$root}--small-padding {
     padding: rem(16);
   }
+  
+  .ps_gs-landingpage-content {
+    margin-bottom: rem(40);
 
-  @include media-breakpoint-up(md) {
-    padding: rem(32);
-
-    .ps_gs-landingpage-content__figure {
-      width: 30%;
+    &__figure {
+      padding: rem(24);
+      height: max-content;
+      
+      @include media-breakpoint-down(md) {
+        width: max-content;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: rem(24);
+      }
     }
+    
   }
 
-  &-content + hr {
-    @include media-breakpoint-up(md) {
-      margin-top: rem(50) !important;
-    }
+  @include media-breakpoint-up(md) {
+    padding: rem(40) rem(64);
   }
 }
