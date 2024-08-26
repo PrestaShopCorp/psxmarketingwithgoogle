@@ -86,7 +86,7 @@
       "psbilling": {
         "title": "Betaalinformatie",
         "subTitle": "Toegang tot en beheer van je abonnement en bijbehorende betaalmethode.",
-        "alertNoSynchro": "Your catalog synchronization with Google Merchant Center is paused because PrestaShop Marketing now requires a €14.99 excl. tax/month subscription. "
+        "alertNoSynchro": "Je catalogussynchronisatie met Google Merchant Center is gepauzeerd omdat PrestaShop Marketing nu een abonnement van € 14,99 excl. btw/maand vereist. "
       },
       "pscloudsync": {
         "title": "Sta het delen van data toe",
@@ -275,7 +275,7 @@
       "shippingSetup": "Verzendinstellingen",
       "deliveryTimesAndRates": "Levertijd en -tarieven",
       "attributeMapping": "Attribuut in kaart brengen",
-      "productSelection": "Product selection",
+      "productSelection": "Productselectie",
       "categoryMapping": "Categorie in kaart brengen",
       "summary": "Samenvatting",
       "exportFeed": "Voer uit!",
@@ -531,7 +531,7 @@
       "productCount": {
         "productSelected": "product geselecteerd. | producten geselecteerd.",
         "error": "We kunnen de gevraagde gegevens op dit moment niet ophalen. Controleer je configuratie en probeer het later opnieuw.",
-        "pending": "Producten zoeken ...",
+        "pending": "Producten zoeken...",
         "pendingLong": "De zoekopdracht duurt langer dan verwacht. Wacht even en ververs de pagina niet.",
         "nothingFound": "We hebben geen producten gevonden die aan je selectie voldoen. Wijzig je filters en probeer het opnieuw.",
         "tryAgain": "Probeer het nog eens"
@@ -1080,7 +1080,7 @@
     "enableEnhancedConversions": "Verbeterde conversietracking activeren",
     "loadNextPage": "Volgende resultaten laden",
     "startFreeTrial": "Begin gratis proefperiode",
-    "subscribe": "Subscribe"
+    "subscribe": "Abonneren"
   },
   "badge": {
     "free": "Gratis",
@@ -1225,22 +1225,22 @@
     "title": "Pro-tip van PrestaShop"
   },
   "monetization": {
-    "successUpdatedTitle": "Module updated",
-    "successUpdatedSubtitle": "This page will restart automatically. ",
-    "failedUpdatedTitle": "Module update failed",
-    "failedUpdatedSubtitle": "Sorry, we couldn't update the module. Please try again.",
-    "popinUpdateTitle": "PrestaShop Marketing needs an update",
-    "popinUpdateLandingPageText": "Your current version of the PrestaShop Marketing module is out of date. Update now to continue using the module.",
-    "popinUpdateConfigurationText": "Your current version of the PrestaShop Marketing module is out of date. Daily synchronization with Google Merchant Center is paused. Update now to continue using the module.",
-    "bannerWarningTitle": "PrestaShop Marketing needs an update",
-    "bannerWarningText": "Your current version of the PrestaShop Marketing module is out of date. Daily synchronization with Google Merchant Center is paused. Update now to continue using the module.",
-    "bannerInfoTitle": "Keep your products updated & visible on Google surfaces",
-    "bannerInfoAdvantage1": "Seamlessly connect and link all your Google accounts",
-    "bannerInfoAdvantage2": "Gain access to comprehensive monitoring of your product catalog",
-    "bannerInfoAdvantage3": "Reach the right audience at the right time with Performance Max campaigns",
-    "alertSubscriptionCancelTitle": "You’ve canceled your PrestaShop Marketing with Google subscription.",
-    "alertSubscriptionCancelSubtitle": "Your subscription will still be active until {0}, you can re-subscribe anytime to continue using the module.",
-    "alertSubscriptionExpiredTitle": "Your PrestaShop Marketing with Google subscription has expired",
-    "alertSubscriptionExpiredSubtitle": "Your Google accounts have been disconnected. You can re-subscribe anytime to continue using the module."
+    "successUpdatedTitle": "Module bijgewerkt",
+    "successUpdatedSubtitle": "Deze pagina wordt automatisch opnieuw opgestart. ",
+    "failedUpdatedTitle": "Module-update mislukt",
+    "failedUpdatedSubtitle": "Sorry, we kunnen de module niet bijwerken. Probeer het opnieuw.",
+    "popinUpdateTitle": "PrestaShop Marketing heeft een update nodig",
+    "popinUpdateLandingPageText": "Je huidige versie van de PrestaShop Marketing-module is verouderd. Werk nu bij om de module te blijven gebruiken.",
+    "popinUpdateConfigurationText": "Je huidige versie van de PrestaShop Marketing-module is verouderd. Dagelijkse synchronisatie met Google Merchant Center is gepauzeerd. Werk nu bij om de module te blijven gebruiken.",
+    "bannerWarningTitle": "PrestaShop Marketing heeft een update nodig",
+    "bannerWarningText": "Je huidige versie van de PrestaShop Marketing-module is verouderd. Dagelijkse synchronisatie met Google Merchant Center is gepauzeerd. Werk nu bij om de module te blijven gebruiken.",
+    "bannerInfoTitle": "Houd je producten up-to-date en zichtbaar op Google-oppervlakken",
+    "bannerInfoAdvantage1": "Verbind en koppel al je Google-accounts naadloos",
+    "bannerInfoAdvantage2": "Krijg toegang tot uitgebreide monitoring van je productcatalogus",
+    "bannerInfoAdvantage3": "Bereik de juiste doelgroep op het juiste moment met Performance Max-campagnes",
+    "alertSubscriptionCancelTitle": "Je hebt je PrestaShop Marketing met Google-abonnement geannuleerd.",
+    "alertSubscriptionCancelSubtitle": "Je abonnement is nog steeds actief tot {0}. Je kunt je op elk gewenst moment opnieuw abonneren om de module te blijven gebruiken.",
+    "alertSubscriptionExpiredTitle": "Je PrestaShop Marketing met Google-abonnement is verlopen",
+    "alertSubscriptionExpiredSubtitle": "Je Google-accounts zijn ontkoppeld. Je kunt je op elk gewenst moment opnieuw abonneren om de module te blijven gebruiken."
   }
 }

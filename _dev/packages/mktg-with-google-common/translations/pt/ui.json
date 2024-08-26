@@ -86,7 +86,7 @@
       "psbilling": {
         "title": "Dados de faturamento",
         "subTitle": "Acesse e gerencie sua assinatura e a forma de pagamento relacionada.",
-        "alertNoSynchro": "Your catalog synchronization with Google Merchant Center is paused because PrestaShop Marketing now requires a €14.99 excl. tax/month subscription. "
+        "alertNoSynchro": "A sincronização do seu catálogo com o Google Merchant Center foi pausada porque o PrestaShop Marketing agora requer uma assinatura de € 14,99 (impostos/mês não incluídas). "
       },
       "pscloudsync": {
         "title": "Permitir compartilhamento de dados",
@@ -275,7 +275,7 @@
       "shippingSetup": "Configurações de envio",
       "deliveryTimesAndRates": "Prazos e tarifas de entrega",
       "attributeMapping": "Mapeamento de atributos",
-      "productSelection": "Product selection",
+      "productSelection": "Variedade de produtos",
       "categoryMapping": "Mapeamento de categorias",
       "summary": "Resumo",
       "exportFeed": "Exportar feed",
@@ -1080,7 +1080,7 @@
     "enableEnhancedConversions": "Ativar o acomanhamento avançado de conversões",
     "loadNextPage": "Carregar os próximos resultados",
     "startFreeTrial": "Iniciar avaliação gratuita",
-    "subscribe": "Subscribe"
+    "subscribe": "Assinar"
   },
   "badge": {
     "free": "Grátis",
@@ -1225,22 +1225,22 @@
     "title": "Dica profissional do PrestaShop"
   },
   "monetization": {
-    "successUpdatedTitle": "Module updated",
-    "successUpdatedSubtitle": "This page will restart automatically. ",
-    "failedUpdatedTitle": "Module update failed",
-    "failedUpdatedSubtitle": "Sorry, we couldn't update the module. Please try again.",
-    "popinUpdateTitle": "PrestaShop Marketing needs an update",
-    "popinUpdateLandingPageText": "Your current version of the PrestaShop Marketing module is out of date. Update now to continue using the module.",
-    "popinUpdateConfigurationText": "Your current version of the PrestaShop Marketing module is out of date. Daily synchronization with Google Merchant Center is paused. Update now to continue using the module.",
-    "bannerWarningTitle": "PrestaShop Marketing needs an update",
-    "bannerWarningText": "Your current version of the PrestaShop Marketing module is out of date. Daily synchronization with Google Merchant Center is paused. Update now to continue using the module.",
-    "bannerInfoTitle": "Keep your products updated & visible on Google surfaces",
-    "bannerInfoAdvantage1": "Seamlessly connect and link all your Google accounts",
-    "bannerInfoAdvantage2": "Gain access to comprehensive monitoring of your product catalog",
-    "bannerInfoAdvantage3": "Reach the right audience at the right time with Performance Max campaigns",
-    "alertSubscriptionCancelTitle": "You’ve canceled your PrestaShop Marketing with Google subscription.",
-    "alertSubscriptionCancelSubtitle": "Your subscription will still be active until {0}, you can re-subscribe anytime to continue using the module.",
-    "alertSubscriptionExpiredTitle": "Your PrestaShop Marketing with Google subscription has expired",
-    "alertSubscriptionExpiredSubtitle": "Your Google accounts have been disconnected. You can re-subscribe anytime to continue using the module."
+    "successUpdatedTitle": "Módulo atualizado",
+    "successUpdatedSubtitle": "Esta página será reiniciada automaticamente. ",
+    "failedUpdatedTitle": "Falha na atualização do módulo",
+    "failedUpdatedSubtitle": "Não foi possível atualizar o módulo. Tente novamente.",
+    "popinUpdateTitle": "O PrestaShop Marketing precisa de uma atualização",
+    "popinUpdateLandingPageText": "A sua versão atual do módulo PrestaShop Marketing está desatualizada. Atualize agora para continuar usando o módulo.",
+    "popinUpdateConfigurationText": "A sua versão atual do módulo PrestaShop Marketing está desatualizada. A sincronização diária com o Google Merchant Center foi pausada. Atualize agora para continuar usando o módulo.",
+    "bannerWarningTitle": "O PrestaShop Marketing precisa de uma atualização",
+    "bannerWarningText": "A sua versão atual do módulo PrestaShop Marketing está desatualizada. A sincronização diária com o Google Merchant Center foi pausada. Atualize agora para continuar usando o módulo.",
+    "bannerInfoTitle": "Mantenha seus produtos atualizados e visíveis nas superfícies do Google",
+    "bannerInfoAdvantage1": "Conecte e vincule todas as suas contas do Google com facilidade",
+    "bannerInfoAdvantage2": "Obtenha acesso a um monitoramento abrangente do seu catálogo de produtos",
+    "bannerInfoAdvantage3": "Alcance o público certo no momento certo com as campanhas Performance Max",
+    "alertSubscriptionCancelTitle": "Você cancelou sua assinatura do PrestaShop Marketing with Google.",
+    "alertSubscriptionCancelSubtitle": "Sua assinatura ainda estará ativa até {0}. Você pode assinar novamente a qualquer momento para continuar usando o módulo.",
+    "alertSubscriptionExpiredTitle": "Sua assinatura do PrestaShop Marketing with Google expirou",
+    "alertSubscriptionExpiredSubtitle": "Suas contas do Google foram desconectadas. Você pode assinar novamente a qualquer momento para continuar usando o módulo."
   }
 }

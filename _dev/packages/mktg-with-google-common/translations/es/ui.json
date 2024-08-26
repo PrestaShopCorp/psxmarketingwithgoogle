@@ -86,7 +86,7 @@
       "psbilling": {
         "title": "Datos de facturación",
         "subTitle": "Accede y gestiona tu suscripción y método de pago.",
-        "alertNoSynchro": "Your catalog synchronization with Google Merchant Center is paused because PrestaShop Marketing now requires a €14.99 excl. tax/month subscription. "
+        "alertNoSynchro": "Tu catálogo se ha dejado de sincronizar con Google Merchant Center porque ahora PrestaShop Marketing funciona por suscripción (14,99 €, impuestos no incluidos). "
       },
       "pscloudsync": {
         "title": "Permitir compartir datos",
@@ -275,7 +275,7 @@
       "shippingSetup": "Configuración del envío",
       "deliveryTimesAndRates": "Plazo de entrega y tarifas de envío",
       "attributeMapping": "Mapeo de atributos",
-      "productSelection": "Product selection",
+      "productSelection": "Selección de productos",
       "categoryMapping": "Mapeo de categorías",
       "summary": "Resumen",
       "exportFeed": "Exportar feed",
@@ -550,7 +550,7 @@
       "youSell": "**Vendes** {0}",
       "dataSyncSetUp": "Configuración de la sincronización de los datos",
       "productAttributesMapping": "Mapeo de atributos de categoría y producto",
-      "errorLoadDataSelectedProduct": "No se puede cargar los datos.",
+      "errorLoadDataSelectedProduct": "No se puede cargar los datos",
       "attributeMapped": "Un atributo de producto asignado | {0} atributos de producto asignados",
       "mandatoryAttributesNotMapped": "No se ha mapeado un atributo de Google a tus campos personalizados | {0} atributos de Google no se han mapeado a tus campos personalizados.",
       "noticeToCompleteMapping": "Te recomendamos mapear todos tus datos, si no Google podría rechazar tus productos.",
@@ -1080,7 +1080,7 @@
     "enableEnhancedConversions": "Activa el seguimiento mejorado de conversión",
     "loadNextPage": "Cargar los siguientes resultados",
     "startFreeTrial": "Comenzar la prueba gratis",
-    "subscribe": "Subscribe"
+    "subscribe": "Suscribirse"
   },
   "badge": {
     "free": "Gratis",
@@ -1225,22 +1225,22 @@
     "title": "Consejo PrestaShop"
   },
   "monetization": {
-    "successUpdatedTitle": "Module updated",
-    "successUpdatedSubtitle": "This page will restart automatically. ",
-    "failedUpdatedTitle": "Module update failed",
-    "failedUpdatedSubtitle": "Sorry, we couldn't update the module. Please try again.",
-    "popinUpdateTitle": "PrestaShop Marketing needs an update",
-    "popinUpdateLandingPageText": "Your current version of the PrestaShop Marketing module is out of date. Update now to continue using the module.",
-    "popinUpdateConfigurationText": "Your current version of the PrestaShop Marketing module is out of date. Daily synchronization with Google Merchant Center is paused. Update now to continue using the module.",
-    "bannerWarningTitle": "PrestaShop Marketing needs an update",
-    "bannerWarningText": "Your current version of the PrestaShop Marketing module is out of date. Daily synchronization with Google Merchant Center is paused. Update now to continue using the module.",
-    "bannerInfoTitle": "Keep your products updated & visible on Google surfaces",
-    "bannerInfoAdvantage1": "Seamlessly connect and link all your Google accounts",
-    "bannerInfoAdvantage2": "Gain access to comprehensive monitoring of your product catalog",
-    "bannerInfoAdvantage3": "Reach the right audience at the right time with Performance Max campaigns",
-    "alertSubscriptionCancelTitle": "You’ve canceled your PrestaShop Marketing with Google subscription.",
-    "alertSubscriptionCancelSubtitle": "Your subscription will still be active until {0}, you can re-subscribe anytime to continue using the module.",
-    "alertSubscriptionExpiredTitle": "Your PrestaShop Marketing with Google subscription has expired",
-    "alertSubscriptionExpiredSubtitle": "Your Google accounts have been disconnected. You can re-subscribe anytime to continue using the module."
+    "successUpdatedTitle": "Módulo actualizado",
+    "successUpdatedSubtitle": "Esta página se reiniciará automáticamente. ",
+    "failedUpdatedTitle": "Error al actualizar el módulo",
+    "failedUpdatedSubtitle": "Lo sentimos, no hemos podido actualizar el módulo. Inténtalo de nuevo.",
+    "popinUpdateTitle": "PrestaShop Marketing necesita una actualización",
+    "popinUpdateLandingPageText": "Tu versión actual del módulo PrestaShop Marketing se ha quedado obsoleta. Actualiza el módulo ahora para seguir usándolo.",
+    "popinUpdateConfigurationText": "Tu versión actual del módulo PrestaShop Marketing se ha quedado obsoleta. La sincronización diaria con Google Merchant Center se ha puesto en pausa. Actualiza el módulo ahora para seguir usándolo.",
+    "bannerWarningTitle": "PrestaShop Marketing necesita una actualización",
+    "bannerWarningText": "Tu versión actual del módulo PrestaShop Marketing se ha quedado obsoleta. La sincronización diaria con Google Merchant Center se ha puesto en pausa. Actualiza el módulo ahora para seguir usándolo.",
+    "bannerInfoTitle": "Mantén tus productos actualizados y visibles en las superficies de Google",
+    "bannerInfoAdvantage1": "Conecta y vincula fácilmente todas tus cuentas de Google",
+    "bannerInfoAdvantage2": "Accede a una monitorización completa de tu catálogo de productos",
+    "bannerInfoAdvantage3": "Llega al público adecuado en el momento justo con las campañas Máximo rendimiento",
+    "alertSubscriptionCancelTitle": "Has cancelado tu suscripción a PrestaShop Marketing with Google.",
+    "alertSubscriptionCancelSubtitle": "La suscripción seguirá activa hasta el {0}. Puedes volver a suscribirte cuando quieras para seguir usando el módulo.",
+    "alertSubscriptionExpiredTitle": "Tu suscripción a PrestaShop Marketing with Google ha caducado",
+    "alertSubscriptionExpiredSubtitle": "Tus cuentas de Google se han desconectado. Puedes volver a suscribirte cuando quieras para seguir usando el módulo."
   }
 }
