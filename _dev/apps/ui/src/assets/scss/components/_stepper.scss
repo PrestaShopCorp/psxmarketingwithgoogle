@@ -9,6 +9,10 @@ $stepWidthMobile: rem(42);
       flex-direction: column;
     }
   }
+
+  li:first-child {
+    z-index: 2;
+  }
 }
 
 .ps_gs-stepper-step {
