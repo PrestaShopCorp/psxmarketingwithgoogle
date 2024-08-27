@@ -56,11 +56,11 @@ export default {
     return state.googleAccount.authenticationUrl;
   },
   [GetterTypes.GET_GOOGLE_ACCOUNT_WEBSITE_CLAIMING_OVERRIDE_STATUS](state: LocalState)
-    : WebsiteClaimErrorReason|null {
+    : WebsiteClaimErrorReason | null {
     if (state.googleMerchantAccount.gmcStatus) {
       return state.googleMerchantAccount.gmcStatus;
     }
-    if (state.googleMerchantAccount.accountIssues.length) {
+    if (state.googleMerchantAccount.isSuspended.status) {
       return WebsiteClaimErrorReason.Suspended;
     }
     return null;

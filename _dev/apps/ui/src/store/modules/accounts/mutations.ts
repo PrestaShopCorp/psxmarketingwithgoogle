@@ -73,9 +73,7 @@ export default {
       isEnhancedFreeListingCompliant: {
         status: true,
       },
-      accountIssues: {
-        issues: [],
-      },
+      accountIssues: [],
     };
   },
   [MutationsTypes.SAVE_WEBSITE_VERIFICATION_AND_CLAIMING_STATUS](

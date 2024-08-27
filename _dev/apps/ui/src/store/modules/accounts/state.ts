@@ -74,6 +74,11 @@ export interface GoogleAccountToken {
   expiry_date: number,
 }
 
+export interface SuspendedStatus {
+  issues: Array<string>,
+  status: boolean,
+}
+
 export type GoogleAccountContext = GoogleAccount
 & GoogleAccountToken & {
   authenticationUrl: string|Error,
@@ -93,6 +98,7 @@ export type MerchantCenterAccountContext = GoogleMerchantAccount & {
   // Allow the spinner to be displayed while claiming is done
   isVerified: boolean,
   isClaimed: boolean,
+  isSuspended: SuspendedStatus,
   isPhoneVerified: ShoppingWebsiteStatusFlag,
   isEnhancedFreeListingCompliant: ShoppingWebsiteStatusFlag,
   accountIssues: AccountIssue[],
@@ -149,6 +155,10 @@ export const state: State = {
     id: null,
     isVerified: false,
     isClaimed: false,
+    isSuspended: {
+      issues: [],
+      status: false,
+    },
     isPhoneVerified: {
       status: true,
     },
