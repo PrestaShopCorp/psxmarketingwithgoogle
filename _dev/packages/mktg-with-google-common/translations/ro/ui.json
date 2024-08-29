@@ -1174,7 +1174,13 @@
     "attributesMapppingSuccess": "Caracteristicile produsului tău au fost salvate cu succes. Revizuiește rezumatul, apoi fă clic pe „Export” pentru a le trimite la Google",
     "campaignCreatedSuccess": "Ai creat cu succes campania Performance Max!",
     "phoneNumberVerifiedSuccess": "Numărul de telefon a fost confirmat. Contul de comerciant este în curs de creare",
-    "enhancedConversionEnabledSuccess": "Urmărire îmbunătățită a conversiilor activată"
+    "enhancedConversionEnabledSuccess": "Urmărire îmbunătățită a conversiilor activată",
+    "moduleUpdated": {
+      "successTitle": "Module updated",
+      "successSubtitle": "This page will restart automatically. ",
+      "failedTitle": "Module update failed",
+      "failedSubtitle": "Sorry, we couldn't update the module. Please try again."
+    }
   },
   "stepper": {
     "nextStep": "Înainte: {0}",
@@ -1225,14 +1231,9 @@
     "title": "Sfat profesional PrestaShop"
   },
   "monetization": {
-    "successUpdatedTitle": "Module updated",
-    "successUpdatedSubtitle": "This page will restart automatically. ",
-    "failedUpdatedTitle": "Module update failed",
-    "failedUpdatedSubtitle": "Sorry, we couldn't update the module. Please try again.",
-    "popinUpdateTitle": "PrestaShop Marketing needs an update",
+    "updateTitle": "PrestaShop Marketing needs an update",
     "popinUpdateLandingPageText": "Your current version of the PrestaShop Marketing module is out of date. Update now to continue using the module.",
     "popinUpdateConfigurationText": "Your current version of the PrestaShop Marketing module is out of date. Daily synchronization with Google Merchant Center is paused. Update now to continue using the module.",
-    "bannerWarningTitle": "PrestaShop Marketing needs an update",
     "bannerWarningText": "Your current version of the PrestaShop Marketing module is out of date. Daily synchronization with Google Merchant Center is paused. Update now to continue using the module.",
     "bannerInfoTitle": "Keep your products updated & visible on Google surfaces",
     "bannerInfoAdvantage1": "Seamlessly connect and link all your Google accounts",
