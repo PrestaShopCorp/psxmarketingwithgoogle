@@ -1174,7 +1174,13 @@
     "attributesMapppingSuccess": "Les attributs produit ont été enregistrés avec succès. Vérifiez le récapitulatif puis cliquez sur \"Exporter\" pour les soumettre à Google.",
     "campaignCreatedSuccess": "Vous avez créé votre campagne Performance Max avec succès !",
     "phoneNumberVerifiedSuccess": "Votre numéro de téléphone a été vérifié. Le compte marchand est en cours de création",
-    "enhancedConversionEnabledSuccess": "Suivi avancé des conversions activé"
+    "enhancedConversionEnabledSuccess": "Suivi avancé des conversions activé",
+    "moduleUpdated": {
+      "successTitle": "Module updated",
+      "successSubtitle": "This page will restart automatically. ",
+      "failedTitle": "Module update failed",
+      "failedSubtitle": "Sorry, we couldn't update the module. Please try again."
+    }
   },
   "stepper": {
     "nextStep": "Suivant : {0}",
@@ -1225,14 +1231,9 @@
     "title": "Conseils et astuces PrestaShop"
   },
   "monetization": {
-    "successUpdatedTitle": "Module mis à jour",
-    "successUpdatedSubtitle": "Cette page va redémarrer automatiquement.\n\n\n\n\n",
-    "failedUpdatedTitle": "Échec de la mise à jour du module",
-    "failedUpdatedSubtitle": "Désolé, nous n’avons pas pu mettre à jour le module. Veuillez réessayer.",
-    "popinUpdateTitle": "PrestaShop Marketing a besoin d’une mise à jour",
+    "updateTitle": "PrestaShop Marketing needs an update",
     "popinUpdateLandingPageText": "Votre version actuelle du module de marketing PrestaShop n’est pas à jour. Mettez à jour maintenant pour continuer à utiliser le module.",
     "popinUpdateConfigurationText": "Votre version actuelle du module de marketing PrestaShop n’est pas à jour. La synchronisation quotidienne avec Google Merchant Center est interrompue. Mettez à jour maintenant pour continuer à utiliser le module.",
-    "bannerWarningTitle": "PrestaShop Marketing a besoin d’une mise à jour",
     "bannerWarningText": "Votre version actuelle du module de marketing PrestaShop n’est pas à jour. La synchronisation quotidienne avec Google Merchant Center est interrompue. Mettez à jour maintenant pour continuer à utiliser le module.",
     "bannerInfoTitle": "Gardez vos produits à jour et visibles sur les surfaces Google",
     "bannerInfoAdvantage1": "Connectez et reliez tous vos comptes Google en toute transparence",
