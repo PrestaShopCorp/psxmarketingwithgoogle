@@ -1174,7 +1174,13 @@
     "attributesMapppingSuccess": "Gli attributi del tuo prodotto sono stati salvati con successo. Rivedi il riepilogo e poi clicca su \"Esporta\" per inviarli a Google",
     "campaignCreatedSuccess": "Hai creato la tua campagna Performance Max con successo!",
     "phoneNumberVerifiedSuccess": "Il tuo numero di telefono è stato verificato. Il Merchant Account è stato creato",
-    "enhancedConversionEnabledSuccess": "Monitoraggio delle conversioni migliorato"
+    "enhancedConversionEnabledSuccess": "Monitoraggio delle conversioni migliorato",
+    "moduleUpdated": {
+      "successTitle": "Module updated",
+      "successSubtitle": "This page will restart automatically. ",
+      "failedTitle": "Module update failed",
+      "failedSubtitle": "Sorry, we couldn't update the module. Please try again."
+    }
   },
   "stepper": {
     "nextStep": "Avanti: {0}",
@@ -1225,14 +1231,9 @@
     "title": "PrestaShop pro tip"
   },
   "monetization": {
-    "successUpdatedTitle": "Modulo aggiornato",
-    "successUpdatedSubtitle": "Questa pagina si riavvierà automaticamente. ",
-    "failedUpdatedTitle": "Aggiornamento del modulo non riuscito",
-    "failedUpdatedSubtitle": "Spiacenti, non siamo riusciti ad aggiornare il modulo. Riprova.",
-    "popinUpdateTitle": "PrestaShop Marketing necessita di un aggiornamento",
+    "updateTitle": "PrestaShop Marketing needs an update",
     "popinUpdateLandingPageText": "La tua versione attuale del modulo PrestaShop Marketing non è aggiornata. Aggiorna ora per continuare a utilizzare il modulo.",
     "popinUpdateConfigurationText": "La tua versione attuale del modulo PrestaShop Marketing non è aggiornata. La sincronizzazione giornaliera con Google Merchant Center è sospesa. Aggiorna ora per continuare a utilizzare il modulo.",
-    "bannerWarningTitle": "PrestaShop Marketing necessita di un aggiornamento",
     "bannerWarningText": "La tua versione attuale del modulo PrestaShop Marketing non è aggiornata. La sincronizzazione giornaliera con Google Merchant Center è sospesa. Aggiorna ora per continuare a utilizzare il modulo.",
     "bannerInfoTitle": "Mantieni i tuoi prodotti aggiornati e visibili sulle superfici di Google",
     "bannerInfoAdvantage1": "Connetti e collega senza problemi tutti i tuoi account Google",
