@@ -1174,7 +1174,13 @@
     "attributesMapppingSuccess": "Twoje atrybuty produktu zostały pomyślnie zapisane. Sprawdź w podsumowaniu, czy wszystko się zgadza, następnie kliknij „Eksport\", aby przesłać je do Google.",
     "campaignCreatedSuccess": "Kampania Performance Max została utworzona pomyślnie!",
     "phoneNumberVerifiedSuccess": "Twój numer telefonu został zweryfikowany. Konto Merchanta jest w trakcie tworzenia.",
-    "enhancedConversionEnabledSuccess": "Rozszerzone śledzenie konwersji jest włączone"
+    "enhancedConversionEnabledSuccess": "Rozszerzone śledzenie konwersji jest włączone",
+    "moduleUpdated": {
+      "successTitle": "Module updated",
+      "successSubtitle": "This page will restart automatically. ",
+      "failedTitle": "Module update failed",
+      "failedSubtitle": "Sorry, we couldn't update the module. Please try again."
+    }
   },
   "stepper": {
     "nextStep": "Następny: {0}",
@@ -1225,14 +1231,9 @@
     "title": "Wskazówka PrestaShop"
   },
   "monetization": {
-    "successUpdatedTitle": "Moduł został zaktualizowany",
-    "successUpdatedSubtitle": "Ta strona zostanie zrestartuje się automatycznie. ",
-    "failedUpdatedTitle": "Aktualizacja modułu nie powiodła się",
-    "failedUpdatedSubtitle": "Przepraszamy, nie udało się zaktualizować modułu. Spróbuj ponownie.",
-    "popinUpdateTitle": "PrestaShop Marketing wymaga aktualizacji",
+    "updateTitle": "PrestaShop Marketing needs an update",
     "popinUpdateLandingPageText": "Twoja bieżąca wersja modułu PrestaShop Marketing jest nieaktualna. Zaktualizuj teraz, aby kontynuować korzystanie z modułu.",
     "popinUpdateConfigurationText": "Twoja bieżąca wersja modułu PrestaShop Marketing jest nieaktualna. Codzienna synchronizacja z Google Merchant Center została wstrzymana. Zaktualizuj teraz, aby kontynuować korzystanie z modułu.",
-    "bannerWarningTitle": "PrestaShop Marketing wymaga aktualizacji",
     "bannerWarningText": "Twoja bieżąca wersja modułu PrestaShop Marketing jest nieaktualna. Codzienna synchronizacja z Google Merchant Center została wstrzymana. Zaktualizuj teraz, aby kontynuować korzystanie z modułu.",
     "bannerInfoTitle": "Aktualizuj swoje produkty i dbaj o ich widoczność w przestrzeni Google",
     "bannerInfoAdvantage1": "Powiąż z łatwością wszystkie swoje konta Google",
