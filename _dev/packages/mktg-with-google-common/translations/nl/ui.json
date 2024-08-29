@@ -1174,7 +1174,13 @@
     "attributesMapppingSuccess": "Uw producteigenschappen zijn succesvol opgeslagen. Bekijk de samenvatting en klik op \"Exporteren\" om ze naar Google te sturen",
     "campaignCreatedSuccess": "U hebt uw Maximale prestaties-campagne met succes aangemaakt!",
     "phoneNumberVerifiedSuccess": "Uw telefoonnummer is geverifieerd. De Merchant Account wordt aangemaakt",
-    "enhancedConversionEnabledSuccess": "Verbeterde conversietracking ingeschakeld"
+    "enhancedConversionEnabledSuccess": "Verbeterde conversietracking ingeschakeld",
+    "moduleUpdated": {
+      "successTitle": "Module updated",
+      "successSubtitle": "This page will restart automatically. ",
+      "failedTitle": "Module update failed",
+      "failedSubtitle": "Sorry, we couldn't update the module. Please try again."
+    }
   },
   "stepper": {
     "nextStep": "Volgende: {0}",
@@ -1225,14 +1231,9 @@
     "title": "Pro-tip van PrestaShop"
   },
   "monetization": {
-    "successUpdatedTitle": "Module bijgewerkt",
-    "successUpdatedSubtitle": "Deze pagina wordt automatisch opnieuw opgestart. ",
-    "failedUpdatedTitle": "Module-update mislukt",
-    "failedUpdatedSubtitle": "Sorry, we kunnen de module niet bijwerken. Probeer het opnieuw.",
-    "popinUpdateTitle": "PrestaShop Marketing heeft een update nodig",
+    "updateTitle": "PrestaShop Marketing needs an update",
     "popinUpdateLandingPageText": "Je huidige versie van de PrestaShop Marketing-module is verouderd. Werk nu bij om de module te blijven gebruiken.",
     "popinUpdateConfigurationText": "Je huidige versie van de PrestaShop Marketing-module is verouderd. Dagelijkse synchronisatie met Google Merchant Center is gepauzeerd. Werk nu bij om de module te blijven gebruiken.",
-    "bannerWarningTitle": "PrestaShop Marketing heeft een update nodig",
     "bannerWarningText": "Je huidige versie van de PrestaShop Marketing-module is verouderd. Dagelijkse synchronisatie met Google Merchant Center is gepauzeerd. Werk nu bij om de module te blijven gebruiken.",
     "bannerInfoTitle": "Houd je producten up-to-date en zichtbaar op Google-oppervlakken",
     "bannerInfoAdvantage1": "Verbind en koppel al je Google-accounts naadloos",

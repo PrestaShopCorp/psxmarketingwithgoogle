@@ -1174,7 +1174,13 @@
     "attributesMapppingSuccess": "Ihre Produktattribute wurden erfolgreich gespeichert. Überprüfen Sie die Zusammenfassung und klicken Sie auf \"Exportieren\", um sie an Google zu übermitteln",
     "campaignCreatedSuccess": "Sie haben Ihre Leistung max. Kampagne erfolgreich erstellt!",
     "phoneNumberVerifiedSuccess": "Ihre Rufnummer wurde verifiziert. Das Händlerkonto wird gerade erstellt",
-    "enhancedConversionEnabledSuccess": "Erweitertes Conversion-Tracking aktiviert"
+    "enhancedConversionEnabledSuccess": "Erweitertes Conversion-Tracking aktiviert",
+    "moduleUpdated": {
+      "successTitle": "Module updated",
+      "successSubtitle": "This page will restart automatically. ",
+      "failedTitle": "Module update failed",
+      "failedSubtitle": "Sorry, we couldn't update the module. Please try again."
+    }
   },
   "stepper": {
     "nextStep": "Nächste: {0}",
@@ -1225,14 +1231,9 @@
     "title": "PrestaShop Profi-Tipp"
   },
   "monetization": {
-    "successUpdatedTitle": "Modul aktualisiert",
-    "successUpdatedSubtitle": "Diese Seite wird automatisch aktualisiert. ",
-    "failedUpdatedTitle": "Modulaktualisierung fehlgeschlagen",
-    "failedUpdatedSubtitle": "Leider konnten wir das Modul nicht aktualisieren. Bitte versuchen Sie es erneut.",
-    "popinUpdateTitle": "PrestaShop Marketing braucht ein Update",
+    "updateTitle": "PrestaShop Marketing needs an update",
     "popinUpdateLandingPageText": "Ihre aktuelle Version des Moduls „PrestaShop Marketing“ ist veraltet. Aktualisieren Sie jetzt, um das Modul weiterhin zu nutzen.",
     "popinUpdateConfigurationText": "Ihre aktuelle Version des Moduls „PrestaShop Marketing“ ist veraltet. Die tägliche Synchronisierung mit dem Google Merchant Center wurde ausgesetzt. Aktualisieren Sie jetzt, um das Modul weiterhin zu nutzen.",
-    "bannerWarningTitle": "PrestaShop Marketing braucht ein Update",
     "bannerWarningText": "Ihre aktuelle Version des Moduls „PrestaShop Marketing“ ist veraltet. Die tägliche Synchronisierung mit dem Google Merchant Center wurde ausgesetzt. Aktualisieren Sie jetzt, um das Modul weiterhin zu nutzen.",
     "bannerInfoTitle": "Halten Sie Ihre Produkte auf dem neuesten Stand und auf Google-Oberflächen sichtbar",
     "bannerInfoAdvantage1": "Verbinden und verknüpfen Sie alle Ihre Google-Konten nahtlos",
