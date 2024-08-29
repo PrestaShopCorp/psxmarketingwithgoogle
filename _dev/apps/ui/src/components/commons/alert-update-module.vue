@@ -1,85 +1,137 @@
 <template>
-  <div class="mb-2 two-panel-max-width">
-    <b-alert
-      v-if="errorModule"
-      variant="info"
-      class="mb-0 mt-3 alert--bordered d-md-flex justify-content-between align-items-start"
-      show
+  <div>
+    <PsToast
+      v-if="moduleIsUpdated"
+      variant="success"
+      :visible="moduleIsUpdated"
+      toaster="b-toaster-top-right"
+      body-class="border border-success"
     >
       <div>
-        <div class="h3 font-weight-600">
-          {{ $t(`general.moduleUpdateNeeded.${moduleName}.title`) }}
-        </div>
-        <VueShowdown
-          :markdown="paragraph"
-        />
-        <ul
-          class="feature-list"
-          v-if="featuresList"
-        >
-          <li
-            v-for="(feature, index) in featuresList"
-            :key="index"
-          >
-            {{ feature }}
-          </li>
-        </ul>
+        <h3 class="mb-1">
+          {{ $t("toast.moduleUpdated.successTitle") }}
+        </h3>
+        <p>{{ $t("toast.moduleUpdated.successSubtitle") }}</p>
       </div>
-      <div
-        class="d-md-flex text-center align-items-center"
-        v-if="upgradeLink"
+    </PsToast>
+    <PsToast
+      v-if="displayFailedToast"
+      :visible="displayFailedToast"
+      variant="warning"
+      toaster="b-toaster-top-right"
+      body-class="border border-warning"
+    >
+      <div>
+        <h3 class="mb-1">
+          {{ $t("toast.moduleUpdated.failedTitle") }}
+        </h3>
+        <p>{{ $t("toast.moduleUpdated.failedSubtitle") }}</p>
+      </div>
+    </PsToast>
+
+    <div
+      v-if="!moduleIsUpdated"
+      class="mb-2 two-panel-max-width"
+      :class="classAlert"
+    >
+      <b-alert
+        variant="warning"
+        class="mb-0 border border-warning d-md-flex justify-content-between align-items-start"
+        show
       >
-        <b-button
-          class="mx-1 mt-3 mt-md-0 md-4 mr-md-1 text-nowrap"
-          variant="info"
-          target="_blank"
-          @click="updateModule"
-          :disabled="loading"
-        >
-          <span v-if="loading">
-            <span class="icon-busy icon-busy--dark" />
-          </span>
-          <span
+        <div>
+          <slot
+            v-if="hasTitleSlot"
+            name="title"
+          />
+          <div
+            class="h3 font-weight-600"
             v-else
           >
-            {{ $t('cta.updateModule') }}
-          </span>
-        </b-button>
-      </div>
-    </b-alert>
+            {{ $t('general.moduleUpdateNeeded.' + moduleName + '.title') }}
+          </div>
+          <slot
+            v-if="hasContentSlot"
+            name="content"
+          />
+          <VueShowdown
+            v-else
+            :markdown="paragraph"
+          />
+          <ul
+            class="feature-list"
+            v-if="featuresList"
+          >
+            <li
+              v-for="(feature, index) in featuresList"
+              :key="index"
+            >
+              {{ feature }}
+            </li>
+          </ul>
+        </div>
+        <div
+          class="d-md-flex text-center align-items-center"
+          v-if="upgradeLink"
+        >
+          <b-button
+            class="mx-1 mt-3 mt-md-0 md-4 mr-md-1 text-nowrap"
+            variant="warning"
+            target="_blank"
+            @click="handleUpdateModule"
+            :disabled="loading"
+          >
+            <span v-if="loading">
+              <span class="icon-busy icon-busy--dark mr-2" />
+            </span>
+            <span>
+              {{ $t('cta.updateModule') }}
+            </span>
+          </b-button>
+        </div>
+      </b-alert>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import semver from 'semver';
 import {defineComponent} from 'vue';
+import semver from 'semver';
 import translations from 'mktg-with-google-common/translations/en/ui.json';
+import useUpdateModule from './update-module-utilities';
+import PsToast from '@/components/commons/ps-toast.vue';
 
 export default defineComponent({
-  name: 'AlertUpdateModule',
   props: {
     moduleName: {
       type: String,
-      default: null,
       required: true,
     },
-    neededVersion: {
+    classAlert: {
       type: String,
-      default: null,
-      required: true,
+      default: undefined,
     },
   },
-
+  components: {PsToast},
   data() {
     return {
       loading: false,
       errorModule: false,
       upgradeLink: null,
       installedVersion: null as string|null,
+      moduleIsUpdated: false,
+      displayFailedToast: false,
+      updateModule: null as (() => Promise<boolean>) | null,
     };
   },
 
   computed: {
+    hasTitleSlot() {
+      return !!this.$slots.title;
+    },
+    hasContentSlot() {
+      return !!this.$slots.content;
+    },
     paragraph(): string {
       return this.$tc(`general.moduleUpdateNeeded.${this.moduleName}.paragraph`,
         (this.featuresList ? this.featuresList.length : 0));
@@ -89,7 +141,7 @@ export default defineComponent({
         return [];
       }
 
-      const features = [];
+      const features: string[] = [];
 
       Object.keys(translations.general.moduleUpdateNeeded[this.moduleName].changes
         || {}).forEach(
@@ -113,58 +165,32 @@ export default defineComponent({
   },
 
   methods: {
-    async checkForInstalledVersion() {
-      const res = await this.$store.dispatch('app/GET_MODULES_VERSIONS', this.moduleName);
-
-      let version = null;
-
-      if (res.version) {
-        version = res.version;
-      }
-      // Before v1.11.0, there is no such route, but we can try to get
-      // the version in psxMktgWithGoogleModuleVersion instead for the Google module
-      if (!version
-        && this.moduleName === 'psxmarketingwithgoogle'
-        && this.$store.state.app.psxMktgWithGoogleModuleVersion
-      ) {
-        version = this.$store.state.app.psxMktgWithGoogleModuleVersion;
-      }
-
-      if (!version) {
-        return;
-      }
-
-      // if module version >= version needed
-      if (semver.gte(version, this.neededVersion)) {
-        this.errorModule = false;
-        return;
-      }
-      this.upgradeLink = res?.upgradeLink;
-      this.installedVersion = version;
-      this.errorModule = true;
-    },
-
-    async updateModule() {
-      if (this.loading) {
-        return;
-      }
-
+    async handleUpdateModule() {
       this.loading = true;
-      try {
-        await fetch(this.upgradeLink, {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-        });
-        await this.checkForInstalledVersion();
-      } catch (err) {
-        console.error(err);
-      } finally {
-        this.loading = false;
-      }
+
+      const {updateModule} = useUpdateModule(
+        this.moduleName,
+        () => {
+          this.$emit('updateSuccess', true);
+          this.moduleIsUpdated = true;
+          window.location.reload();
+        },
+        (err) => {
+          console.error(err);
+          this.$emit('updateSuccess', false);
+          this.displayFailedToast = true;
+        },
+      );
+      await updateModule();
+
+      this.loading = false;
     },
   },
-  created() {
-    this.checkForInstalledVersion();
+  async mounted() {
+    const {getLinkUpgrade} = useUpdateModule(
+      this.moduleName,
+    );
+    this.upgradeLink = await getLinkUpgrade();
   },
 });
 </script>

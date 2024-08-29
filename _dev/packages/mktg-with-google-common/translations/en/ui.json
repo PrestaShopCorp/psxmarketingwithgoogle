@@ -1176,7 +1176,13 @@
     "attributesMapppingSuccess": "Your product attributes have been successfully saved. Review summary then click \"Export\" to submit them to Google",
     "campaignCreatedSuccess": "You have created your Performance Max campaign successfully!",
     "phoneNumberVerifiedSuccess": "Your phone number has been verified. The Merchant Account is being created",
-    "enhancedConversionEnabledSuccess": "Enhanced conversion tracking enabled"
+    "enhancedConversionEnabledSuccess": "Enhanced conversion tracking enabled",
+    "moduleUpdated": {
+      "successTitle": "Module updated",
+      "successSubtitle": "This page will restart automatically. ",
+      "failedTitle": "Module update failed",
+      "failedSubtitle": "Sorry, we couldn't update the module. Please try again."
+    }
   },
   "stepper": {
     "nextStep" : "Next: {0}",
@@ -1227,14 +1233,9 @@
     "title": "PrestaShop pro tip"
   },
   "monetization": {
-      "successUpdatedTitle": "Module updated",
-      "successUpdatedSubtitle": "This page will restart automatically. ",
-      "failedUpdatedTitle": "Module update failed",
-      "failedUpdatedSubtitle": "Sorry, we couldn't update the module. Please try again.",
-      "popinUpdateTitle": "PrestaShop Marketing needs an update",
+      "updateTitle": "PrestaShop Marketing needs an update",
       "popinUpdateLandingPageText": "Your current version of the PrestaShop Marketing module is out of date. Update now to continue using the module.",
       "popinUpdateConfigurationText": "Your current version of the PrestaShop Marketing module is out of date. Daily synchronization with Google Merchant Center is paused. Update now to continue using the module.",
-      "bannerWarningTitle": "PrestaShop Marketing needs an update",
       "bannerWarningText": "Your current version of the PrestaShop Marketing module is out of date. Daily synchronization with Google Merchant Center is paused. Update now to continue using the module.",
       "bannerInfoTitle": "Keep your products updated & visible on Google surfaces",
       "bannerInfoAdvantage1": "Seamlessly connect and link all your Google accounts",

@@ -117,8 +117,20 @@ export default {
   [GettersTypes.GET_MODULE_NEED_UPGRADE]: (
     state: LocalState,
   ) => (
-    neededVersion: string,
-  ) => !semver.gte(state.psxMktgWithGoogleModuleVersion, neededVersion),
+    moduleName: 'psxmarketingwithgoogle' | 'ps_eventbus',
+    currentVesion?: string,
+    versionNeeded?: string,
+  ) => {
+    if (moduleName === 'psxmarketingwithgoogle') {
+      return !semver.gte(
+        versionNeeded ?? state.psxMktgWithGoogleModuleVersion,
+        currentVesion ?? state.psxMktgWithGoogleModuleVersionNeeded,
+      );
+    } if (moduleName === 'ps_eventbus' && currentVesion) {
+      return !semver.gte(currentVesion, state.cloudsyncVersionNeeded);
+    }
+    throw new Error('Module name not found or the current version is missing');
+  },
 
   [GettersTypes.GET_BILLING_SUBSCRIPTION_ACTIVE](state: LocalState): boolean {
     return !!state.billing.subscription

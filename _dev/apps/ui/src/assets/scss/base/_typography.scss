@@ -3,12 +3,12 @@
   line-height: 1.4em;
 }
 
-#configuration {
-  max-width: inherit;
-}
-
 .font-family-prestafont {
   font-family: $prestafont-font-family;
+}
+
+h2 {
+  font-weight: 600;
 }
 
 .ps_gs-section-title {

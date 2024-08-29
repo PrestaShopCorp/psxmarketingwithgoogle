@@ -145,6 +145,7 @@ import {
   ProductFilter,
   ProductFilterErrors,
   CleanProductFilter, type FeatureOption,
+  ProductFilterValues,
 } from '@/components/product-feed/settings/product-selection/type';
 import ATTRIBUTE_MAP_CONDITION from '@/components/product-feed/settings/product-selection/attributeMapCondition';
 import ProductFilterAttributes from '@/enums/product-feed/product-filter-attributes';
@@ -188,7 +189,7 @@ export default defineComponent({
       };
 
       if (recoveredFilter.attribute === ProductFilterAttributes.FEATURE
-        && recoveredFilter.value?.length) {
+        && (recoveredFilter.value as ProductFilterValues)?.length) {
         const feature = getFeatureByOptions(
           this.features,
           recoveredFilter.value as FeatureOption[],
@@ -252,12 +253,12 @@ export default defineComponent({
 
       switch (ATTRIBUTE_MAP_CONDITION[cleanFilter.attribute][cleanFilter.condition].type) {
         case ProductFilterValueType.BOOLEAN:
-          cleanFilter.value = multipleValue ? filter.value?.map(
+          cleanFilter.value = multipleValue ? (filter.value as ProductFilterValues)?.map(
             (value) => stringToBoolean(value),
           ) : stringToBoolean(filter.value);
           break;
         case ProductFilterValueType.NUMBER:
-          cleanFilter.value = multipleValue ? filter.value?.map(
+          cleanFilter.value = multipleValue ? (filter.value as ProductFilterValues)?.map(
             (value) => stringToNumber(value),
           ) : stringToNumber(filter.value);
           break;
@@ -516,7 +517,7 @@ export default defineComponent({
   async mounted() {
     this.loading = true;
     // get all data for filters
-    this.moduleNeedUpgradeForProductFilter = this.$store.getters[`app/${AppGettersTypes.GET_MODULE_NEED_UPGRADE}`]('1.73.0');
+    this.moduleNeedUpgradeForProductFilter = await this.$store.getters[`app/${AppGettersTypes.GET_MODULE_NEED_UPGRADE}`]('psxmarketingwithgoogle', '1.73.0');
 
     if (!this.moduleNeedUpgradeForProductFilter) {
       await this.$store.dispatch(`productFeed/${ActionsTypes.GET_SHOPS_PRODUCTS_INFOS}`);

@@ -25,10 +25,18 @@ import AppGettersTypes from '@/store/modules/app/getters-types';
 
 export default defineComponent({
   name: 'LandingPageFooter',
-  computed: {
-    moduleNeedUpgrade() {
-      return this.$store.getters[`app/${AppGettersTypes.GET_MODULE_NEED_UPGRADE}`](this.$store.state.app.psxMktgWithGoogleModuleVersionNeeded);
+  data() {
+    return {
+      moduleNeedUpgrade: false,
+    };
+  },
+  methods: {
+    async checkModuleNeedUpgrade() {
+      this.moduleNeedUpgrade = await this.$store.getters[`app/${AppGettersTypes.GET_MODULE_NEED_UPGRADE}`]('psxmarketingwithgoogle');
     },
+  },
+  created() {
+    this.checkModuleNeedUpgrade();
   },
 });
 </script>
