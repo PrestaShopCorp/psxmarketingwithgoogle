@@ -1174,7 +1174,13 @@
     "attributesMapppingSuccess": "Os atributos do seu produto foram salvos com sucesso. Resumo da revisão e clique em \"Exportar\" para enviá-los ao Google",
     "campaignCreatedSuccess": "Criou com sucesso a sua campanha de Máximo desempenho!",
     "phoneNumberVerifiedSuccess": "O seu número de telefone foi verificado. A Conta do Comerciante está sendo criada",
-    "enhancedConversionEnabledSuccess": "Acompanhamento avançado de conversões ativado"
+    "enhancedConversionEnabledSuccess": "Acompanhamento avançado de conversões ativado",
+    "moduleUpdated": {
+      "successTitle": "Module updated",
+      "successSubtitle": "This page will restart automatically. ",
+      "failedTitle": "Module update failed",
+      "failedSubtitle": "Sorry, we couldn't update the module. Please try again."
+    }
   },
   "stepper": {
     "nextStep": "A seguir: {0}",
@@ -1225,14 +1231,9 @@
     "title": "Dica profissional do PrestaShop"
   },
   "monetization": {
-    "successUpdatedTitle": "Módulo atualizado",
-    "successUpdatedSubtitle": "Esta página será reiniciada automaticamente. ",
-    "failedUpdatedTitle": "Falha na atualização do módulo",
-    "failedUpdatedSubtitle": "Não foi possível atualizar o módulo. Tente novamente.",
-    "popinUpdateTitle": "O PrestaShop Marketing precisa de uma atualização",
+    "updateTitle": "PrestaShop Marketing needs an update",
     "popinUpdateLandingPageText": "A sua versão atual do módulo PrestaShop Marketing está desatualizada. Atualize agora para continuar usando o módulo.",
     "popinUpdateConfigurationText": "A sua versão atual do módulo PrestaShop Marketing está desatualizada. A sincronização diária com o Google Merchant Center foi pausada. Atualize agora para continuar usando o módulo.",
-    "bannerWarningTitle": "O PrestaShop Marketing precisa de uma atualização",
     "bannerWarningText": "A sua versão atual do módulo PrestaShop Marketing está desatualizada. A sincronização diária com o Google Merchant Center foi pausada. Atualize agora para continuar usando o módulo.",
     "bannerInfoTitle": "Mantenha seus produtos atualizados e visíveis nas superfícies do Google",
     "bannerInfoAdvantage1": "Conecte e vincule todas as suas contas do Google com facilidade",
