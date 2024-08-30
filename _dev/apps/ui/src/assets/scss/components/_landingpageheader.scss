@@ -1,8 +1,10 @@
 .ps_gs-landingpage-header {
-  &__text {
-    font-size: rem(14);
-    font-weight: 600;
-    line-height: rem(22.5);
+  &__logo {
+    height: rem(160);
+
+    img {
+      width: rem(230);
+    }
   }
 
   &__benefits {

@@ -1,10 +1,10 @@
 <template>
-  <footer class="ps_gs-landingpage-footer text-center">
+  <footer class="text-center">
     <b-row class="flex-column flex-sm-row">
       <b-col>
-        <p class="ps_gs-landingpage-footer__text mb-3">
+        <h4 class="mb-3">
           {{ $t("landingPage.footer.text") }}
-        </p>
+        </h4>
         <b-button
           size="lg"
           variant="primary"
@@ -12,7 +12,7 @@
           :disabled="moduleNeedUpgrade"
           data-test-id="lp-footer-cta"
         >
-          {{ $t("cta.startConfiguring") }}
+          {{ $t("cta.getStarted") }}
         </b-button>
       </b-col>
     </b-row>

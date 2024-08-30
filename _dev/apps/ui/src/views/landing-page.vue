@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container-md">
     <monetization-messages>
       <template #content-modale>
         {{ $t('monetization.popinUpdateLandingPageText') }}
@@ -9,19 +9,19 @@
     <b-card no-body>
       <div class="ps_gs-landingpage">
         <LandingPageHeader @hideLandingPage="hideLandingPage('header')" />
-        <hr class="my-4">
+        <hr>
         <LandingPageContent
           :svg-image="false"
           content-image=""
           :content-title="$t('landingPage.content.content1.title')"
           :content-text="$t('landingPage.content.content1.text')"
+          background-color="bg-amber-100"
         >
           <img
             src="@/assets/images/120x120_MARKETING_BACK-OFFICE_01.png"
-            class="img-fluid d-block mx-auto"
             alt=""
-            width="120"
-            height="120"
+            width="80"
+            height="80"
           >
         </LandingPageContent>
         <LandingPageContent
@@ -31,25 +31,27 @@
             $options.googleUrl.createNewMerchantCenter,
             $options.googleUrl.eligibilityRequirements
           ])"
+          background-color="bg-ocean-blue-50"
         >
           <img
             src="@/assets/images/120x120_MARKETING_BACK-OFFICE_02.png"
             class="img-fluid d-block mx-auto"
             alt=""
-            width="120"
-            height="120"
+            width="80"
+            height="80"
           >
         </LandingPageContent>
         <LandingPageContent
           :content-title="$t('landingPage.content.content3.title')"
           :content-text="$t('landingPage.content.content3.text')"
+          background-color="bg-green-50"
         >
           <img
             src="@/assets/images/120x120_MARKETING_BACK-OFFICE_03.png"
             class="img-fluid d-block mx-auto"
             alt=""
-            width="120"
-            height="120"
+            width="80"
+            height="80"
           >
         </LandingPageContent>
         <LandingPageContent
@@ -58,16 +60,17 @@
           :content-footer="$t('banner.legendLong', [
             $options.googleUrl.googleAdsTermsAndCondition
           ])"
+          background-color="bg-red-50"
         >
           <img
             :src="pathToAdsPromotionImage"
             class="img-fluid d-block mx-auto"
             alt=""
-            width="132"
-            height="132"
+            width="80"
+            height="80"
           >
         </LandingPageContent>
-        <hr class="my-4">
+        <hr>
         <LandingPageFooter @hideLandingPage="hideLandingPage('footer')" />
       </div>
     </b-card>
