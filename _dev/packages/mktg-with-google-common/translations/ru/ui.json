@@ -52,26 +52,27 @@
   },
   "landingPage": {
     "header": {
-      "title": "Маркетинг с помощью Google",
-      "text": "С помощью Prestashop Marketing можно привлечь потенциальных покупателей, которые ищут в Интернете товары, подобные вашим. Интегрируйте модуль с Google за 3 простых шага."
+      "titleAccessibility": "Marketing With Google",
+      "title": "Welcome to PrestaShop Marketing with Google",
+      "text": "With Prestashop Marketing, you can reach potential buyers who are searching online for products like the ones you offer! Use this module to reach them on Google in 5 easy steps."
     },
     "content": {
       "content1": {
         "title": "Синхронизация каталога продукции с Google",
-        "text": "Подключите свой магазин к Google Merchant Center и синхронизируйте весь каталог товаров в несколько кликов. Атрибуты товара, такие как цена и наличие, будут автоматически обновляться каждый день."
+        "text": "Link your store to Google Merchant Center and effortlessly sync your complete product catalog using product filters. Price and availability attributes will automatically refresh daily."
       },
       "content2": {
         "title": "Включите бесплатные объявления о продаже ваших товаров",
-        "text": "Бесплатные объявления позволяют показывать атрибуты вашего товара, включая изображение и цену, в органично ранжированных объявлениях на вкладке \"Покупки\".  \n \n После синхронизации каталога включите бесплатные объявления на приборной панели и начните бесплатно показывать свои товары на вкладке \"Покупки\".",
+        "text": "Free listings display your product attributes, including image and price, in organically-ranked Shopping tab listings. Simply sync your catalog, enable free listings on your dashboard, and begin showcasing your products on the Shopping tab at no cost.",
         "footer": "Создайте новый аккаунт [Merchant Center]({0})[:target=\"_blank\"] или привяжите существующий.  \nДля показа ваших товаров в Google вам необходимо соответствовать [требованиям приемлемости]({1})[:target=\"_blank\"]"
       },
       "content3": {
         "title": "Увеличьте охват и продажи с помощью Performance Max",
-        "text": "Хотите повысить эффективность рекламы и привлечь клиентов из любой точки мира? В рамках одной кампании Performance Max собирает данные в различных каналах Google и оптимизирует эффективность ваших объявлений, выявляя способы размещения с более высокими шансами на конверсию."
+        "text": "Maximize campaign performance and reach the right customers across various Google channels with Performance Max. This unified campaign collects data and optimizes performance by identifying optimal ad placement for driving conversions."
       }
     },
     "footer": {
-      "text": "Найдите свою продукцию в Google с помощью PS Marketing with Google",
+      "text": "Get your products found on Google with PrestaShop Marketing with Google",
       "explanation": "В Европейском экономическом пространстве, Великобритании и Швейцарии кампании Performance Max можно использовать с любым сервисом сравнения цен (CSS). Реклама будет отображаться на страницах общих результатов поиска и на любых других платформах, к которым подключен CSS."
     }
   },
@@ -963,7 +964,7 @@
     "message": "Не видите защищенный браузер Google?  \nНажмите кнопку Продолжить, чтобы перезапустить окно и завершить настройку.\n\nДля продолжения может потребоваться активировать всплывающие окна в браузере."
   },
   "cta": {
-    "startConfiguring": "Начните настройку",
+    "getStarted": "Приступить к работе",
     "connect": "Подключайтесь",
     "connecting": "Подключение...",
     "validating": "Проверка...",
