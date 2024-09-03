@@ -52,26 +52,27 @@
   },
   "landingPage": {
     "header": {
-      "title": "Marketing with Google",
-      "text": "Con PrestaShop Marketing, puedes llegar a compradores potenciales que están buscando online productos como los que ofreces. Utiliza este módulo para llegar a ellos en Google en 3 sencillos pasos."
+      "titleAccessibility": "Marketing With Google",
+      "title": "Welcome to PrestaShop Marketing with Google",
+      "text": "With Prestashop Marketing, you can reach potential buyers who are searching online for products like the ones you offer! Use this module to reach them on Google in 5 easy steps."
     },
     "content": {
       "content1": {
         "title": "Sincroniza tu catálogo de productos con Google",
-        "text": "Conecta tu tienda a Google Merchant Center y sincroniza todo tu catálogo de productos en unos clics. Los atributos del producto como el precio y la disponibilidad se actualizarán automáticamente todos los días."
+        "text": "Link your store to Google Merchant Center and effortlessly sync your complete product catalog using product filters. Price and availability attributes will automatically refresh daily."
       },
       "content2": {
         "title": "Activa las fichas de producto gratuitas para tus productos",
-        "text": "Las fichas de producto gratuitas permiten mostrar los atributos de tus productos, incluyendo la imagen y el precio en los listados de clasificación orgánica en la pestaña Shopping.  \n \nUna vez sincronizado tu catálogo, habilita fácilmente las fichas de producto gratuitas en tu panel de control y comienza a mostrar tus productos en la pestaña Shopping de forma gratuita.",
+        "text": "Free listings display your product attributes, including image and price, in organically-ranked Shopping tab listings. Simply sync your catalog, enable free listings on your dashboard, and begin showcasing your products on the Shopping tab at no cost.",
         "footer": "Crea una nueva [cuenta de Merchant Center]({0})[:target=\"_blank\"] o vincula una existente.  \nPara mostrar tus productos en Google deberás cumplir los [requisitos de elegibilidad]({1})[:target=\"_blank\"]"
       },
       "content3": {
         "title": "Aumenta tu alcance y tus ventas con Máximo rendimiento",
-        "text": "¿Quiere maximizar el rendimiento de tu campaña y encontrar a los clientes adecuados allí donde estén? Con una sola campaña, Máximo rendimiento recopila datos de los diferentes canales de Google y optimiza el rendimiento de tu campaña mostrándolos dónde tus anuncios tienen más posibilidades de materializarse en conversión."
+        "text": "Maximize campaign performance and reach the right customers across various Google channels with Performance Max. This unified campaign collects data and optimizes performance by identifying optimal ad placement for driving conversions."
       }
     },
     "footer": {
-      "text": "Logra que tus productos se encuentren en Google con PrestaShop Marketing with Google",
+      "text": "Get your products found on Google with PrestaShop Marketing with Google",
       "explanation": "En el Espacio Económico Europeo, Reino Unido o Suiza, las campañas Máximo rendimiento pueden utilizarse con cualquier servicio de comparación de precios (CSS) con el que trabajes. Los anuncios aparecerán en las páginas de resultados de búsqueda generales y en cualquier otro lugar donde el CSS se haya adherido."
     }
   },
@@ -963,7 +964,7 @@
     "message": "¿No puedes ver el navegador seguro de Google?  \nPulsa Continuar para volver a abrir la ventana y terminar la configuración.\n\nEs posible que tengas que activar las ventanas emergentes en tu navegador para continuar."
   },
   "cta": {
-    "startConfiguring": "Empezar a configurar",
+    "getStarted": "Empezar",
     "connect": "Conectar",
     "connecting": "Conectando...",
     "validating": "Validando...",
