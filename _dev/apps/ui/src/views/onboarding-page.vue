@@ -14,6 +14,7 @@
       />
 
       <!-- Google Account + GMC + Product Feed -->
+      !this.billingSubscription?.cancelled_at {{!billingSubscription?.cancelled_at}}
       <two-panel-cols
         v-if="googleFeatureAreAvailable"
         :title="$t('onboarding.sectionTitle.freeListing.title')"

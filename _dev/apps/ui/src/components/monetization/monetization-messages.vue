@@ -64,6 +64,9 @@
         $t('monetization.alertSubscriptionExpiredSubtitle', [endOfSubscriptionDate])"
       @startSubscription="($event) => $emit('startSubscription', $event)"
     />
+    !moduleNeedUpgrade {{!moduleNeedUpgrade}} <br>
+    !googleAccountIsOnboarded {{!googleAccountIsOnboarded}} <br>
+    !GET_BILLING_SUBSCRIPTION_ACTIVE {{!GET_BILLING_SUBSCRIPTION_ACTIVE}} <br>
     <MonetizationBannerInformation
       class="mb-3"
       v-if="!moduleNeedUpgrade
