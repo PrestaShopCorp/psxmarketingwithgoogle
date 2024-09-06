@@ -148,7 +148,7 @@ export default defineComponent({
       );
       this.openBillingModal = openCheckout;
     },
-    startSubscription($event: string): void {
+    startSubscription($event: string) {
       if (this.openBillingModal) {
         this.openBillingModal($event);
       }

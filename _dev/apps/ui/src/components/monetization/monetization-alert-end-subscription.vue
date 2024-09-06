@@ -15,7 +15,7 @@
     <b-button
       class="mt-3 mt-md-0 btn btn-info px-3 py-2 ml-3 d-flex flex-shrink-0"
       variant="info"
-      @click="$emit('startSubscription', 'subscription_reactivation')"
+      @click="$emit('startSubscription')"
     >
       {{ $t('cta.subscribe') }}
     </b-button>
