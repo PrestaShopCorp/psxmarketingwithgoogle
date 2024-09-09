@@ -52,27 +52,27 @@
   },
   "landingPage": {
     "header": {
-      "titleAccessibility": "Marketing With Google",
-      "title": "Welcome to PrestaShop Marketing with Google",
-      "text": "With Prestashop Marketing, you can reach potential buyers who are searching online for products like the ones you offer! Use this module to reach them on Google in 5 easy steps."
+      "titleAccessibility": "PrestaShop Marketing With Google",
+      "title": "Benvenuto su PrestaShop Marketing with Google",
+      "text": "Con Prestashop Marketing with Google, puoi raggiungere i potenziali acquirenti che cercano online prodotti come quelli che offri! Utilizza questo modulo per raggiungerli su Google in 5 semplici passi."
     },
     "content": {
       "content1": {
         "title": "Sincronizza il tuo catalogo prodotti con Google",
-        "text": "Link your store to Google Merchant Center and effortlessly sync your complete product catalog using product filters. Price and availability attributes will automatically refresh daily."
+        "text": "Collega il tuo store al Google Merchant Center e sincronizza facilmente il catalogo completo dei prodotti utilizzando i filtri. Gli attributi del prezzo e della disponibilità si aggiorneranno automaticamente ogni giorno."
       },
       "content2": {
         "title": "Abilita le schede di prodotto gratuite",
-        "text": "Free listings display your product attributes, including image and price, in organically-ranked Shopping tab listings. Simply sync your catalog, enable free listings on your dashboard, and begin showcasing your products on the Shopping tab at no cost.",
+        "text": "Le schede di prodotto gratuite mostrano gli attributi dei prodotti, compresi immagine e prezzo, nelle schede di prodotto gratuite della scheda Shopping classificate organicamente. È sufficiente sincronizzare il tuo catalogo, attivare le inserzioni gratuite nella tua dashboard ed iniziare a mostrare i prodotti nella scheda Shopping senza alcun costo.",
         "footer": "Crea un nuovo [account Merchant Center]({0})[:target=\"_blank\"] o collegane uno esistente.  \nPer mostrare i tuoi prodotti su Google dovrai soddisfare i [requisiti di idoneità]({1})[:target=\"_blank\"]"
       },
       "content3": {
         "title": "Migliora la tua portata e le tue vendite con Performance Max",
-        "text": "Maximize campaign performance and reach the right customers across various Google channels with Performance Max. This unified campaign collects data and optimizes performance by identifying optimal ad placement for driving conversions."
+        "text": "Massimizza le prestazioni delle campagne e raggiungi i clienti giusti attraverso i vari canali di Google con Performance Max. Questa campagna unificata raccoglie dati e ottimizza le prestazioni identificando il posizionamento ottimale degli annunci per favorire le conversioni."
       }
     },
     "footer": {
-      "text": "Get your products found on Google with PrestaShop Marketing with Google",
+      "text": "Mostra i tuoi prodotti su Google con PrestaShop Marketing with Google",
       "explanation": "Nello Spazio Economico Europeo, nel Regno Unito o in Svizzera, le campagne Performance Max possono essere utilizzate con qualsiasi Servizio di Comparison Shopping (CSS) con cui lavori. Gli annunci verranno visualizzati sulle pagine dei risultati di ricerca generali e su qualsiasi altra piattaforma per la quale il CSS abbia optato."
     }
   },
@@ -1177,10 +1177,10 @@
     "phoneNumberVerifiedSuccess": "Il tuo numero di telefono è stato verificato. Il Merchant Account è stato creato",
     "enhancedConversionEnabledSuccess": "Monitoraggio delle conversioni migliorato",
     "moduleUpdated": {
-      "successTitle": "Module updated",
-      "successSubtitle": "This page will restart automatically. ",
-      "failedTitle": "Module update failed",
-      "failedSubtitle": "Sorry, we couldn't update the module. Please try again."
+      "successTitle": "Modulo aggiornato",
+      "successSubtitle": "Questa pagina si riavvierà automaticamente. ",
+      "failedTitle": "Aggiornamento del modulo non riuscito",
+      "failedSubtitle": "Spiacenti, non è stato possibile aggiornare il modulo. Riprovare."
     }
   },
   "stepper": {
@@ -1232,11 +1232,11 @@
     "title": "PrestaShop pro tip"
   },
   "monetization": {
-    "updateTitle": "PrestaShop Marketing needs an update",
+    "updateTitle": "PrestaShop Marketing with Google necessita di un aggiornamento",
     "popinUpdateLandingPageText": "La tua versione attuale del modulo PrestaShop Marketing non è aggiornata. Aggiorna ora per continuare a utilizzare il modulo.",
     "popinUpdateConfigurationText": "La tua versione attuale del modulo PrestaShop Marketing non è aggiornata. La sincronizzazione giornaliera con Google Merchant Center è sospesa. Aggiorna ora per continuare a utilizzare il modulo.",
     "bannerWarningText": "La tua versione attuale del modulo PrestaShop Marketing non è aggiornata. La sincronizzazione giornaliera con Google Merchant Center è sospesa. Aggiorna ora per continuare a utilizzare il modulo.",
-    "bannerInfoTitle": "Mantieni i tuoi prodotti aggiornati e visibili sulle superfici di Google",
+    "bannerInfoTitle": "Mantieni i tuoi prodotti aggiornati e visibili sulle piattaforme di Google",
     "bannerInfoAdvantage1": "Connetti e collega senza problemi tutti i tuoi account Google",
     "bannerInfoAdvantage2": "Accedi a un monitoraggio completo del tuo catalogo prodotti",
     "bannerInfoAdvantage3": "Raggiungi il pubblico giusto al momento giusto con le campagne Performance Max",
