@@ -52,14 +52,14 @@
   },
   "landingPage": {
     "header": {
-      "titleAccessibility": "Marketing With Google",
-      "title": "Welcome to PrestaShop Marketing with Google",
-      "text": "With Prestashop Marketing, you can reach potential buyers who are searching online for products like the ones you offer! Use this module to reach them on Google in 5 easy steps."
+      "titleAccessibility": "PrestaShop Marketing with Google",
+      "title": "Bienvenido a PrestaShop Marketing with Google",
+      "text": "Con Prestashop Marketing, puedes llegar a posibles compradores que buscan online productos como los que tú ofreces. Utiliza este módulo para llegar hasta ellos en Google con 5 pasos sencillos."
     },
     "content": {
       "content1": {
         "title": "Sincroniza tu catálogo de productos con Google",
-        "text": "Link your store to Google Merchant Center and effortlessly sync your complete product catalog using product filters. Price and availability attributes will automatically refresh daily."
+        "text": "Vincula tu tienda a Google Merchant Center y sincroniza sin esfuerzo todo tu catálogo de productos usando filtros. Los atributos de precio y disponibilidad se actualizarán automáticamente a diario."
       },
       "content2": {
         "title": "Activa las fichas de producto gratuitas para tus productos",
@@ -68,11 +68,11 @@
       },
       "content3": {
         "title": "Aumenta tu alcance y tus ventas con Máximo rendimiento",
-        "text": "Maximize campaign performance and reach the right customers across various Google channels with Performance Max. This unified campaign collects data and optimizes performance by identifying optimal ad placement for driving conversions."
+        "text": "Aumenta el rendimiento de la campaña y llega a los clientes adecuados en los distintos canales de Google con Máximo rendimiento. Esta campaña recopila datos y optimiza el resultado, identificando la mejor ubicación de los anuncios para impulsar las conversiones."
       }
     },
     "footer": {
-      "text": "Get your products found on Google with PrestaShop Marketing with Google",
+      "text": "Consigue que tus productos se encuentren en Google con PrestaShop Marketing with Google",
       "explanation": "En el Espacio Económico Europeo, Reino Unido o Suiza, las campañas Máximo rendimiento pueden utilizarse con cualquier servicio de comparación de precios (CSS) con el que trabajes. Los anuncios aparecerán en las páginas de resultados de búsqueda generales y en cualquier otro lugar donde el CSS se haya adherido."
     }
   },
@@ -87,7 +87,7 @@
       "psbilling": {
         "title": "Datos de facturación",
         "subTitle": "Accede y gestiona tu suscripción y método de pago.",
-        "alertNoSynchro": "Tu catálogo se ha dejado de sincronizar con Google Merchant Center porque ahora PrestaShop Marketing funciona por suscripción (14,99 €, impuestos no incluidos). "
+        "alertNoSynchro": "Tu catálogo se ha dejado de sincronizar con Google Merchant Center porque ahora PrestaShop Marketing funciona por suscripción (14,99 € /mes sin IVA). "
       },
       "pscloudsync": {
         "title": "Permitir compartir datos",
@@ -1177,10 +1177,10 @@
     "phoneNumberVerifiedSuccess": "Tu número de teléfono se ha verificado. Se está creando la cuenta Merchant",
     "enhancedConversionEnabledSuccess": "Activado el seguimiento de conversiones",
     "moduleUpdated": {
-      "successTitle": "Module updated",
-      "successSubtitle": "This page will restart automatically. ",
-      "failedTitle": "Module update failed",
-      "failedSubtitle": "Sorry, we couldn't update the module. Please try again."
+      "successTitle": "Módulo actualizado",
+      "successSubtitle": "Esta página se reiniciará automáticamente. ",
+      "failedTitle": "Error al actualizar el módulo",
+      "failedSubtitle": "Lo sentimos, no hemos podido actualizar el módulo. Inténtalo de nuevo."
     }
   },
   "stepper": {
@@ -1232,11 +1232,11 @@
     "title": "Consejo PrestaShop"
   },
   "monetization": {
-    "updateTitle": "PrestaShop Marketing needs an update",
+    "updateTitle": "PrestaShop Marketing necesita una actualización",
     "popinUpdateLandingPageText": "Tu versión actual del módulo PrestaShop Marketing se ha quedado obsoleta. Actualiza el módulo ahora para seguir usándolo.",
     "popinUpdateConfigurationText": "Tu versión actual del módulo PrestaShop Marketing se ha quedado obsoleta. La sincronización diaria con Google Merchant Center se ha puesto en pausa. Actualiza el módulo ahora para seguir usándolo.",
     "bannerWarningText": "Tu versión actual del módulo PrestaShop Marketing se ha quedado obsoleta. La sincronización diaria con Google Merchant Center se ha puesto en pausa. Actualiza el módulo ahora para seguir usándolo.",
-    "bannerInfoTitle": "Mantén tus productos actualizados y visibles en las superficies de Google",
+    "bannerInfoTitle": "Mantén tus productos actualizados y visibles en los canales de Google",
     "bannerInfoAdvantage1": "Conecta y vincula fácilmente todas tus cuentas de Google",
     "bannerInfoAdvantage2": "Accede a una monitorización completa de tu catálogo de productos",
     "bannerInfoAdvantage3": "Llega al público adecuado en el momento justo con las campañas Máximo rendimiento",
