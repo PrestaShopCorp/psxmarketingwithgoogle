@@ -50,7 +50,7 @@
       :subscription="subscription"
       :title="$t('monetization.alertSubscriptionCancelTitle')"
       :subtitle="$t('monetization.alertSubscriptionCancelSubtitle', [endOfSubscriptionDate])"
-      @startSubscription="($event) => $emit('startSubscription', $event)"
+      @startSubscription="handleStartSubscription('subscription_reactivation')"
     />
     <MonetizationAlertEndSubscription
       v-else-if="!moduleNeedUpgrade
@@ -62,7 +62,7 @@
       :title="$t('monetization.alertSubscriptionExpiredTitle')"
       :subtitle="
         $t('monetization.alertSubscriptionExpiredSubtitle', [endOfSubscriptionDate])"
-      @startSubscription="($event) => $emit('startSubscription', $event)"
+      @startSubscription="handleStartSubscription('subscription_funnel')"
     />
     <MonetizationBannerInformation
       class="mb-3"
@@ -127,6 +127,9 @@ export default defineComponent({
   methods: {
     async checkModuleNeedUpgrade() {
       this.moduleNeedUpgrade = await this.$store.getters[`app/${AppGettersTypes.GET_MODULE_NEED_UPGRADE}`]('psxmarketingwithgoogle');
+    },
+    handleStartSubscription(subscriptionActionType) {
+      this.$emit('startSubscription', subscriptionActionType);
     },
   },
   created() {
