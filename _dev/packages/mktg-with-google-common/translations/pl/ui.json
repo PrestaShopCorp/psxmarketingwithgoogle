@@ -53,7 +53,7 @@
   "landingPage": {
     "header": {
       "titleAccessibility": "Marketing with Google",
-      "title": "Witamj w PrestaShop Marketing with Google",
+      "title": "Witaj w PrestaShop Marketing with Google",
       "text": "Dzięki PrestaShop Marketing możesz trafić do potencjalnych kupujących, którzy szukają online produktów takich jak te, które oferujesz! Skorzystaj z tego modułu, aby dotrzeć do nich poprzez Google w 5 prostych krokach."
     },
     "content": {
@@ -63,16 +63,16 @@
       },
       "content2": {
         "title": "Włącz wyświetlanie bezpłatnych informacji o produktach",
-        "text": "Free listings display your product attributes, including image and price, in organically-ranked Shopping tab listings. Simply sync your catalog, enable free listings on your dashboard, and begin showcasing your products on the Shopping tab at no cost.",
+        "text": "Bezpłatne wyświetlanie produktów pozwala na zaprezentowanie atrybutów produktu, w tym zdjęcia i ceny, w organicznie rankingowanych ofertach na karcie Zakupy. Wystarczy zsynchronizować katalog i włączyć bezpłatne wyświetlanie produktów na pulpicie nawigacyjnym.",
         "footer": "Utwórz nowe [konto Merchant Center]({0})[:target=\"_blank\"] lub połącz istniejące.  \nAby pokazać swoje produkty w Google, musisz spełnić [wymagania dotyczące kwalifikowalności]({1})[:target=\"_blank\"]."
       },
       "content3": {
         "title": "Zwiększ Twój zasięg i Twoją sprzedaż dzięki Performance Max",
-        "text": "Maximize campaign performance and reach the right customers across various Google channels with Performance Max. This unified campaign collects data and optimizes performance by identifying optimal ad placement for driving conversions."
+        "text": "Maksymalizuj wydajność kampanii i docieraj do właściwych klientów w różnych kanałach Google dzięki Performance Max. Ta ujednolicona kampania gromadzi dane i optymalizuje wydajność, identyfikując optymalne rozmieszczenie reklam w celu zwiększenia konwersji."
       }
     },
     "footer": {
-      "text": "Get your products found on Google with PrestaShop Marketing with Google",
+      "text": "Pozwól, by Twoje produkty zostały znalezione w Google dzięki modułowi PrestaShop Marketing with Google",
       "explanation": "Na terenie Europejskiego Obszaru Gospodarczego, Wielkiej Brytanii i Szwajcarii kampanie Performance Max mogą być stosowane we wszystkich porównywarkach internetowych (CSS), których używasz. Reklamy będą wyświetlane na stronach ogólnych wyników wyszukiwania oraz na wszelkich innych powierzchniach, na które wyraził zgodę CSS."
     }
   },
@@ -1178,7 +1178,7 @@
     "enhancedConversionEnabledSuccess": "Rozszerzone śledzenie konwersji jest włączone",
     "moduleUpdated": {
       "successTitle": "Moduł został zaktualizowany",
-      "successSubtitle": "Ta strona zostanie zrestartuje się automatycznie. ",
+      "successSubtitle": "Ta strona zostanie automatycznie zrestartowana. ",
       "failedTitle": "Aktualizacja modułu nie powiodła się",
       "failedSubtitle": "Przepraszamy, nie udało się zaktualizować modułu. Spróbuj ponownie."
     }
