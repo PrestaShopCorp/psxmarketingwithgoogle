@@ -52,27 +52,27 @@
   },
   "landingPage": {
     "header": {
-      "titleAccessibility": "Marketing With Google",
-      "title": "Welcome to PrestaShop Marketing with Google",
-      "text": "With Prestashop Marketing, you can reach potential buyers who are searching online for products like the ones you offer! Use this module to reach them on Google in 5 easy steps."
+      "titleAccessibility": "Marketing met Google",
+      "title": "Welkom bij PrestaShop Marketing met Google",
+      "text": "Met Prestashop Marketing bereik je potentiële kopers die online zoeken naar producten die jij aanbiedt. Gebruik deze module om hen op Google te bereiken in 5 eenvoudige stappen."
     },
     "content": {
       "content1": {
         "title": "Synchroniseer uw productcatalogus met Google",
-        "text": "Link your store to Google Merchant Center and effortlessly sync your complete product catalog using product filters. Price and availability attributes will automatically refresh daily."
+        "text": "Koppel je winkel aan Google Merchant Center en synchroniseer moeiteloos je volledige productcatalogus met behulp van productfilters. Prijs- en beschikbaarheidskenmerken worden automatisch dagelijks vernieuwd."
       },
       "content2": {
         "title": "Maak gratis vermeldingen voor uw producten mogelijk",
-        "text": "Free listings display your product attributes, including image and price, in organically-ranked Shopping tab listings. Simply sync your catalog, enable free listings on your dashboard, and begin showcasing your products on the Shopping tab at no cost.",
+        "text": "Gratis advertenties tonen je productkenmerken, inclusief afbeelding en prijs, in organisch gerangschikte Shopping-tabbladen. Synchroniseer eenvoudig je catalogus, schakel gratis advertenties in op je dashboard, en begin je producten gratis te presenteren op het tabblad Winkelen.",
         "footer": "Maak een nieuw [Merchant Center-account]({0})[:target=\"_blank\"] of koppel een bestaand account.  \nOm uw producten op Google te tonen, moet u voldoen aan de [geschiktheidsvereisten]({1})[:target=\"_blank\"]"
       },
       "content3": {
         "title": "Verhoog uw bereik en verkoop met Maximale prestaties",
-        "text": "Maximize campaign performance and reach the right customers across various Google channels with Performance Max. This unified campaign collects data and optimizes performance by identifying optimal ad placement for driving conversions."
+        "text": "Maximaliseer campagneprestaties en bereik de juiste klanten via verschillende Google-kanalen met Performance Max. Deze verenigde campagne verzamelt data en optimaliseert de prestaties door optimale advertentieplaatsing te identificeren voor het genereren van conversies."
       }
     },
     "footer": {
-      "text": "Get your products found on Google with PrestaShop Marketing with Google",
+      "text": "Zorg dat je producten gevonden worden op Google met PrestaShop Marketing met Google",
       "explanation": "In de Europese Economische Ruimte, het Verenigd Koninkrijk of Zwitserland kunnen maximale prestaties-campagnes worden gebruikt met elke Comparison Shopping Service (CSS) waarmee u werkt. De advertenties worden getoond op algemene zoekresultatenpagina's en op alle andere oppervlakken waar de CSS zich voor heeft opgegeven."
     }
   },
@@ -1177,10 +1177,10 @@
     "phoneNumberVerifiedSuccess": "Uw telefoonnummer is geverifieerd. De Merchant Account wordt aangemaakt",
     "enhancedConversionEnabledSuccess": "Verbeterde conversietracking ingeschakeld",
     "moduleUpdated": {
-      "successTitle": "Module updated",
-      "successSubtitle": "This page will restart automatically. ",
-      "failedTitle": "Module update failed",
-      "failedSubtitle": "Sorry, we couldn't update the module. Please try again."
+      "successTitle": "Module bijgewerkt",
+      "successSubtitle": "Deze pagina wordt automatisch opnieuw opgestart. ",
+      "failedTitle": "Updaten van module mislukt",
+      "failedSubtitle": "Sorry, we kunnen de module niet bijwerken. Probeer het opnieuw."
     }
   },
   "stepper": {
@@ -1232,7 +1232,7 @@
     "title": "Pro-tip van PrestaShop"
   },
   "monetization": {
-    "updateTitle": "PrestaShop Marketing needs an update",
+    "updateTitle": "PrestaShop Marketing heeft een update nodig",
     "popinUpdateLandingPageText": "Je huidige versie van de PrestaShop Marketing-module is verouderd. Werk nu bij om de module te blijven gebruiken.",
     "popinUpdateConfigurationText": "Je huidige versie van de PrestaShop Marketing-module is verouderd. Dagelijkse synchronisatie met Google Merchant Center is gepauzeerd. Werk nu bij om de module te blijven gebruiken.",
     "bannerWarningText": "Je huidige versie van de PrestaShop Marketing-module is verouderd. Dagelijkse synchronisatie met Google Merchant Center is gepauzeerd. Werk nu bij om de module te blijven gebruiken.",
