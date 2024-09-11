@@ -1,8 +1,6 @@
 name: Publish
 
-on:
-  release:
-    types: [created, edited]
+on: [push, pull_request]
 
 env:
   PNPM_VERSION: 8
