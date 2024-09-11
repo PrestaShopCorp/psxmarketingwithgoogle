@@ -71,3 +71,7 @@ jobs:
             fi
           done
 
+      - name: Debug
+        run: cd ${{github.event.repository.name}} && ls -la
+
+
