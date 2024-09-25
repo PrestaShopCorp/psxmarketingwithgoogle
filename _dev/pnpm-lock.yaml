@@ -280,11 +280,11 @@ importers:
         specifier: ^4.9.5
         version: 4.9.5
       webpack:
-        specifier: ^5.76.0
-        version: 5.90.0(webpack-cli@5.0.1)
+        specifier: ^5.94.0
+        version: 5.94.0(webpack-cli@5.0.1)
       webpack-cli:
         specifier: ^5.0.1
-        version: 5.0.1(webpack@5.90.0)
+        version: 5.0.1(webpack@5.94.0)
 
   apps/warning-messages:
     dependencies:
@@ -338,11 +338,11 @@ importers:
         specifier: ^4.9.5
         version: 4.9.5
       webpack:
-        specifier: ^5.76.0
-        version: 5.90.0(webpack-cli@5.0.1)
+        specifier: ^5.94.0
+        version: 5.94.0(webpack-cli@5.0.1)
       webpack-cli:
         specifier: ^5.0.1
-        version: 5.0.1(webpack@5.90.0)
+        version: 5.0.1(webpack@5.94.0)
 
   packages/mktg-with-google-common: {}
 
@@ -15286,10 +15286,10 @@ snapshots:
 
   '@webassemblyjs/helper-wasm-section@1.11.6':
     dependencies:
-      '@webassemblyjs/ast': 1.11.6
-      '@webassemblyjs/helper-buffer': 1.11.6
+      '@webassemblyjs/ast': 1.12.1
+      '@webassemblyjs/helper-buffer': 1.12.1
       '@webassemblyjs/helper-wasm-bytecode': 1.11.6
-      '@webassemblyjs/wasm-gen': 1.11.6
+      '@webassemblyjs/wasm-gen': 1.12.1
 
   '@webassemblyjs/ieee754@1.11.6':
     dependencies:
@@ -15303,18 +15303,18 @@ snapshots:
 
   '@webassemblyjs/wasm-edit@1.11.6':
     dependencies:
-      '@webassemblyjs/ast': 1.11.6
-      '@webassemblyjs/helper-buffer': 1.11.6
+      '@webassemblyjs/ast': 1.12.1
+      '@webassemblyjs/helper-buffer': 1.12.1
       '@webassemblyjs/helper-wasm-bytecode': 1.11.6
-      '@webassemblyjs/helper-wasm-section': 1.11.6
-      '@webassemblyjs/wasm-gen': 1.11.6
-      '@webassemblyjs/wasm-opt': 1.11.6
-      '@webassemblyjs/wasm-parser': 1.11.6
-      '@webassemblyjs/wast-printer': 1.11.6
+      '@webassemblyjs/helper-wasm-section': 1.12.1
+      '@webassemblyjs/wasm-gen': 1.12.1
+      '@webassemblyjs/wasm-opt': 1.12.1
+      '@webassemblyjs/wasm-parser': 1.12.1
+      '@webassemblyjs/wast-printer': 1.12.1
 
   '@webassemblyjs/wasm-gen@1.11.6':
     dependencies:
-      '@webassemblyjs/ast': 1.11.6
+      '@webassemblyjs/ast': 1.12.1
       '@webassemblyjs/helper-wasm-bytecode': 1.11.6
       '@webassemblyjs/ieee754': 1.11.6
       '@webassemblyjs/leb128': 1.11.6
@@ -15322,14 +15322,14 @@ snapshots:
 
   '@webassemblyjs/wasm-opt@1.11.6':
     dependencies:
-      '@webassemblyjs/ast': 1.11.6
-      '@webassemblyjs/helper-buffer': 1.11.6
-      '@webassemblyjs/wasm-gen': 1.11.6
-      '@webassemblyjs/wasm-parser': 1.11.6
+      '@webassemblyjs/ast': 1.12.1
+      '@webassemblyjs/helper-buffer': 1.12.1
+      '@webassemblyjs/wasm-gen': 1.12.1
+      '@webassemblyjs/wasm-parser': 1.12.1
 
   '@webassemblyjs/wasm-parser@1.11.6':
     dependencies:
-      '@webassemblyjs/ast': 1.11.6
+      '@webassemblyjs/ast': 1.12.1
       '@webassemblyjs/helper-api-error': 1.11.6
       '@webassemblyjs/helper-wasm-bytecode': 1.11.6
       '@webassemblyjs/ieee754': 1.11.6
@@ -15338,18 +15338,18 @@ snapshots:
 
   '@webassemblyjs/wast-printer@1.11.6':
     dependencies:
-      '@webassemblyjs/ast': 1.11.6
+      '@webassemblyjs/ast': 1.12.1
       '@xtuc/long': 4.2.2
 
   '@webpack-cli/configtest@2.0.1(webpack-cli@5.0.1(webpack@5.90.0))(webpack@5.90.0(webpack-cli@5.0.1))':
     dependencies:
-      webpack: 5.90.0(webpack-cli@5.0.1)
-      webpack-cli: 5.0.1(webpack@5.90.0)
+      webpack: 5.94.0(webpack-cli@5.0.1)
+      webpack-cli: 5.0.1(webpack@5.94.0)
 
   '@webpack-cli/info@2.0.1(webpack-cli@5.0.1(webpack@5.90.0))(webpack@5.90.0(webpack-cli@5.0.1))':
     dependencies:
-      webpack: 5.90.0(webpack-cli@5.0.1)
-      webpack-cli: 5.0.1(webpack@5.90.0)
+      webpack: 5.94.0(webpack-cli@5.0.1)
+      webpack-cli: 5.0.1(webpack@5.94.0)
 
   '@webpack-cli/serve@2.0.1(webpack-cli@5.0.1(webpack@5.90.0))(webpack@5.90.0(webpack-cli@5.0.1))':
     dependencies:
@@ -17022,7 +17022,7 @@ snapshots:
       lodash: 4.17.21
       resolve: 1.22.1
       semver: 5.7.2
-      webpack: 5.90.0(esbuild@0.17.19)
+      webpack: 5.94.0(esbuild@0.17.19)
     transitivePeerDependencies:
       - supports-color
 
@@ -21221,7 +21221,7 @@ snapshots:
       schema-utils: 3.3.0
       serialize-javascript: 6.0.2
       terser: 5.27.0
-      webpack: 5.90.0(webpack-cli@5.0.1)
+      webpack: 5.94.0(webpack-cli@5.0.1)
 
   terser@5.27.0:
     dependencies:
@@ -21398,7 +21398,7 @@ snapshots:
       micromatch: 4.0.5
       semver: 7.5.3
       typescript: 4.9.5
-      webpack: 5.90.0(webpack-cli@5.0.1)
+      webpack: 5.94.0(webpack-cli@5.0.1)
 
   ts-map@1.0.3: {}
 
@@ -22112,7 +22112,7 @@ snapshots:
       import-local: 3.1.0
       interpret: 3.1.1
       rechoir: 0.8.0
-      webpack: 5.90.0(webpack-cli@5.0.1)
+      webpack: 5.94.0(webpack-cli@5.0.1)
       webpack-merge: 5.8.0
 
   webpack-dev-middleware@5.3.4(webpack@5.90.0(esbuild@0.17.19)):
@@ -22181,16 +22181,15 @@ snapshots:
 
   webpack@5.90.0(esbuild@0.17.19):
     dependencies:
-      '@types/eslint-scope': 3.7.7
       '@types/estree': 1.0.5
-      '@webassemblyjs/ast': 1.11.6
-      '@webassemblyjs/wasm-edit': 1.11.6
-      '@webassemblyjs/wasm-parser': 1.11.6
+      '@webassemblyjs/ast': 1.12.1
+      '@webassemblyjs/wasm-edit': 1.12.1
+      '@webassemblyjs/wasm-parser': 1.12.1
       acorn: 8.11.3
-      acorn-import-assertions: 1.9.0(acorn@8.11.3)
+      acorn-import-attributes: 1.9.5(acorn@8.11.3)
       browserslist: 4.22.3
       chrome-trace-event: 1.0.3
-      enhanced-resolve: 5.15.0
+      enhanced-resolve: 5.17.1
       es-module-lexer: 1.4.1
       eslint-scope: 5.1.1
       events: 3.3.0
@@ -22212,16 +22211,15 @@ snapshots:
 
   webpack@5.90.0(webpack-cli@5.0.1):
     dependencies:
-      '@types/eslint-scope': 3.7.7
       '@types/estree': 1.0.5
-      '@webassemblyjs/ast': 1.11.6
-      '@webassemblyjs/wasm-edit': 1.11.6
-      '@webassemblyjs/wasm-parser': 1.11.6
+      '@webassemblyjs/ast': 1.12.1
+      '@webassemblyjs/wasm-edit': 1.12.1
+      '@webassemblyjs/wasm-parser': 1.12.1
       acorn: 8.11.3
-      acorn-import-assertions: 1.9.0(acorn@8.11.3)
+      acorn-import-attributes: 1.9.5(acorn@8.11.3)
       browserslist: 4.22.3
       chrome-trace-event: 1.0.3
-      enhanced-resolve: 5.15.0
+      enhanced-resolve: 5.17.1
       es-module-lexer: 1.4.1
       eslint-scope: 5.1.1
       events: 3.3.0
