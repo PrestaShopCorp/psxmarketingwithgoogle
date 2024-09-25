@@ -28,7 +28,7 @@
     "@segment/analytics-next": "^1.56.0",
     "@sentry/tracing": "^7.99.0",
     "@sentry/vue": "^7.99.0",
-    "bootstrap": "^5.0.0",
+    "bootstrap": "^5.3.3",
     "bootstrap-vue": "^2.22.0",
     "chart.js": "^4.3.3",
     "chartjs-adapter-date-fns": "^2.0.0",
