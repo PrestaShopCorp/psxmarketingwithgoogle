@@ -5,7 +5,7 @@
     class="ps_gs-alert-tips-and-tricks p-0 pt-2 pb-2"
   >
     <div class="d-flex ps_gs-fz-16 font-weight-500 text-primary">
-      <i class="material-icons-outlined ps_gs-fz-20 mr-1 mb-0 align-center">
+      <i class="material-icons-round ps_gs-fz-20 mr-1 mb-0 align-center">
         lightbulb
       </i>
       {{ $t('tipsAndTricks.title') }}
