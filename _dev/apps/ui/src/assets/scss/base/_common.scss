@@ -1,4 +1,4 @@
-a {
+a:not(.btn) {
   text-decoration-color: $primary-500 !important;
   text-decoration-thickness: auto;
   text-underline-offset: 2px;
@@ -11,7 +11,7 @@ a {
     text-decoration-color: $primary-800 !important;
   }
  
-  &:visited {
+  &:visited:not(.nav-link):not(.ps_gs-breadcrumb__link) {
     color: $purple-700;
   }
 
