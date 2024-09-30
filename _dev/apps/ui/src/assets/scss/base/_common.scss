@@ -1,4 +1,4 @@
-a {
+a:not(.btn) {
   text-decoration-color: $primary-500 !important;
   text-decoration-thickness: auto;
   text-underline-offset: 2px;
