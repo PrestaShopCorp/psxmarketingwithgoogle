@@ -1,5 +1,6 @@
 import {OfferType} from '@/enums/product-feed/offer';
 import {RateType} from '@/enums/product-feed/rate';
+import store from '@/store';
 
 export type freeShippingOverAmount = {
   shippingCost: number|null;
@@ -149,6 +150,9 @@ export function toApi(customerCarrier: CustomCarrier[]): CustomCarrier[] {
     }
     if (carrier.freeShippingOverAmount.shippingCost === null) {
       carrier.freeShippingOverAmount.shippingCost = 0;
+    }
+    if (carrier.currency !== store.state.app.psxMktgWithGoogleShopCurrency.isoCode) {
+      carrier.currency = store.state.app.psxMktgWithGoogleShopCurrency.isoCode;
     }
   });
 
