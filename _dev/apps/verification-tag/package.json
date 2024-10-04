@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@segment/analytics-next": "^1.44.0",
-    "@sentry/browser": "^7.39.0",
+    "@sentry/browser": "^7.119.1",
     "@sentry/tracing": "^7.39.0",
     "mktg-with-google-common": "workspace:*"
   }
