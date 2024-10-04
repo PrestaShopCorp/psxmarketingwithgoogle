@@ -135,7 +135,7 @@ export function generateEmptyCarrier(
   };
 }
 
-export function toApi(customerCarrier: CustomCarrier[]): CustomCarrier[] {
+export function toApi(customerCarrier: CustomCarrier[], currencyShop): CustomCarrier[] {
   if (customerCarrier === null || customerCarrier.length === 0) {
     return [];
   }
@@ -151,8 +151,8 @@ export function toApi(customerCarrier: CustomCarrier[]): CustomCarrier[] {
     if (carrier.freeShippingOverAmount.shippingCost === null) {
       carrier.freeShippingOverAmount.shippingCost = 0;
     }
-    if (carrier.currency !== store.state.app.psxMktgWithGoogleShopCurrency.isoCode) {
-      carrier.currency = store.state.app.psxMktgWithGoogleShopCurrency.isoCode ?? '';
+    if (carrier.currency !== currencyShop) {
+      carrier.currency = currencyShop;
     }
   });
 

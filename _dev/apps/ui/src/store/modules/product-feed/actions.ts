@@ -212,7 +212,7 @@ export default {
     // Delivery times & rates - Estimate method
     const rate = getDataFromLocalStorage('productFeed-rateChosen') || productFeedSettings.rate || undefined;
     const estimateCarriers = toApi(
-      getDataFromLocalStorage('productFeed-estimateCarriers') || productFeedSettings.estimateCarriers,
+      getDataFromLocalStorage('productFeed-estimateCarriers') || productFeedSettings.estimateCarriers, rootState.app.psxMktgWithGoogleShopCurrency.isoCode,
     );
     // Attributes mapping
     const attributeMapping = (getDataFromLocalStorage('productFeed-attributeMapping')
