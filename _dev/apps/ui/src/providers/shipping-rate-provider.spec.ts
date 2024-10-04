@@ -160,7 +160,8 @@ describe('Product Feed / Step 2 Option 1 / Estimate Shipping', () => {
         },
       },
     ];
-    const transform = toApi(validCarrierFromView);
+    const currencyShop = 'EUR';
+    const transform = toApi(validCarrierFromView, currencyShop);
 
     expect(transform).toEqual([
       {
@@ -169,7 +170,7 @@ describe('Product Feed / Step 2 Option 1 / Estimate Shipping', () => {
         minDeliveryTime: 5,
         maxDeliveryTime: 7,
         countries: [],
-        currency: '',
+        currency: 'EUR',
         freeShippingOverAmount: {
           shippingCost: 0,
           orderPrice: 0,
@@ -199,7 +200,8 @@ describe('Product Feed / Step 2 Option 1 / Estimate Shipping', () => {
         },
       },
     ];
-    const transform = toApi(validCarrierFromView);
+    const currencyShop = 'EUR';
+    const transform = toApi(validCarrierFromView, currencyShop);
 
     expect(transform).toEqual([
       {
@@ -208,7 +210,7 @@ describe('Product Feed / Step 2 Option 1 / Estimate Shipping', () => {
         minDeliveryTime: 5,
         maxDeliveryTime: 7,
         countries: [],
-        currency: '',
+        currency: 'EUR',
         freeShippingOverAmount: {
           shippingCost: 2.99,
           orderPrice: 42.99,
@@ -221,7 +223,7 @@ describe('Product Feed / Step 2 Option 1 / Estimate Shipping', () => {
   });
 
   it('should return an empty array if estimateCarriers is empty', () => {
-    const transform = toApi([]);
+    const transform = toApi([], '');
 
     expect(transform).toEqual([]);
   });
