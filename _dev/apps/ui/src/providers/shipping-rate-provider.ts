@@ -152,7 +152,7 @@ export function toApi(customerCarrier: CustomCarrier[]): CustomCarrier[] {
       carrier.freeShippingOverAmount.shippingCost = 0;
     }
     if (carrier.currency !== store.state.app.psxMktgWithGoogleShopCurrency.isoCode) {
-      carrier.currency = store.state.app.psxMktgWithGoogleShopCurrency.isoCode;
+      carrier.currency = store.state.app.psxMktgWithGoogleShopCurrency.isoCode ?? '';
     }
   });
 
