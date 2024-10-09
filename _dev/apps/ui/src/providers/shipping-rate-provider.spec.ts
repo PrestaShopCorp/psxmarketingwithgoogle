@@ -170,7 +170,7 @@ describe('Product Feed / Step 2 Option 1 / Estimate Shipping', () => {
         minDeliveryTime: 5,
         maxDeliveryTime: 7,
         countries: [],
-        currency: 'EUR',
+        currency: '',
         freeShippingOverAmount: {
           shippingCost: 0,
           orderPrice: 0,
@@ -210,10 +210,50 @@ describe('Product Feed / Step 2 Option 1 / Estimate Shipping', () => {
         minDeliveryTime: 5,
         maxDeliveryTime: 7,
         countries: [],
-        currency: 'EUR',
+        currency: '',
         freeShippingOverAmount: {
           shippingCost: 2.99,
           orderPrice: 42.99,
+        },
+        flatShippingRate: {
+          shippingCost: 0,
+        },
+      },
+    ]);
+  });
+
+  it('should be the shop currency if offer is freeShipping', () => {
+    const validCarrierFromView: CustomCarrier[] = [
+      {
+        carrierName: 'DLH',
+        offer: OfferType.FREE_SHIPPING,
+        minDeliveryTime: 5,
+        maxDeliveryTime: 7,
+        countries: [],
+        currency: '',
+        freeShippingOverAmount: {
+          shippingCost: 0,
+          orderPrice: 0,
+        },
+        flatShippingRate: {
+          shippingCost: 0,
+        },
+      },
+    ];
+    const currencyShop = 'EUR';
+    const transform = toApi(validCarrierFromView, currencyShop);
+
+    expect(transform).toEqual([
+      {
+        carrierName: 'DLH',
+        offer: OfferType.FREE_SHIPPING,
+        minDeliveryTime: 5,
+        maxDeliveryTime: 7,
+        countries: [],
+        currency: 'EUR',
+        freeShippingOverAmount: {
+          shippingCost: 0,
+          orderPrice: 0,
         },
         flatShippingRate: {
           shippingCost: 0,
