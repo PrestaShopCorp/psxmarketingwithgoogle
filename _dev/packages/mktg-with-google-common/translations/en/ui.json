@@ -216,7 +216,7 @@
     },
     "completeCheckoutProcess": {
       "title": "I confirm that I have a complete checkout process",
-      "description": "Users need to be able to successully complete purchase process.",
+      "description": "Users need to be able to successfully complete purchase process.",
       "link": "Learn about checkout requirements"
     },
     "websiteURL": "Website URL",
@@ -1124,7 +1124,7 @@
     "textDisconnectMCA": "Disconnecting your Merchant Center will remove access to your Google Ads in this module and pause any running campaign. ",
     "textoverwrite": "Overwriting existing claim will deactivate your previous account and pause existing campaigns tied to that account- free listings and Shopping campaigns.  \nIf you are running a different Shopping campaign, we recommend pausing it.",
     "titleCancelWithoutSaving": "Cancel without saving?",
-    "textCancelProductFeed": "You will lose all unsaved changes if you continue. To successully submit your product data to Google, you need to complete all steps.",
+    "textCancelProductFeed": "You will lose all unsaved changes if you continue. To successfully submit your product data to Google, you need to complete all steps.",
     "titleQuitWithoutSaving": "Quit without saving?",
     "titleOverwriteProductFeed": "Overwrite existing product feed?",
     "textOverwriteProductFeed": "Overwriting your existing product feed will delete it. You will need to configure new product feed.",
