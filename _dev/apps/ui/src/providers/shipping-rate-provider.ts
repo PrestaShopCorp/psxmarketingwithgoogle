@@ -151,7 +151,7 @@ export function toApi(customerCarrier: CustomCarrier[], currencyShop): CustomCar
     if (carrier.freeShippingOverAmount.shippingCost === null) {
       carrier.freeShippingOverAmount.shippingCost = 0;
     }
-    if (carrier.offer === 'freeShipping') {
+    if (carrier.offer === OfferType.FREE_SHIPPING) {
       carrier.currency = currencyShop;
     }
   });
