@@ -216,7 +216,7 @@
     },
     "completeCheckoutProcess": {
       "title": "Я подтверждаю, что на моем сайте действует полная процедура оформления заказа",
-      "description": "Пользователи должны иметь возможность успешно завершить процесс покупки.",
+      "description": "Users need to be able to successfully complete purchase process.",
       "link": "Узнайте о требованиях к кассе"
     },
     "websiteURL": "URL сайта",
@@ -1122,7 +1122,7 @@
     "textDisconnectMCA": "Отключение Merchant Center приведет к удалению доступа к объявлениям Google Ads в этом модуле и приостановке любой запущенной кампании. ",
     "textoverwrite": "Перезапись существующего заявления приведет к деактивации вашей предыдущей учетной записи и приостановке существующих кампаний, связанных с этой учетной записью - бесплатных объявлений и кампаний Shopping.  \nЕсли вы запускаете другую кампанию Shopping, мы рекомендуем приостановить ее.",
     "titleCancelWithoutSaving": "Отменить без сохранения?",
-    "textCancelProductFeed": "You will lose all unsaved changes if you continue. To successully submit your product data to Google, you need to complete all steps.",
+    "textCancelProductFeed": "You will lose all unsaved changes if you continue. To successfully submit your product data to Google, you need to complete all steps.",
     "titleQuitWithoutSaving": "Выйти из игры без сохранения?",
     "titleOverwriteProductFeed": "Переписать существующую ленту продуктов?",
     "textOverwriteProductFeed": "Перезапись существующей ленты товаров приведет к ее удалению. Вам необходимо настроить новую ленту продуктов.",
