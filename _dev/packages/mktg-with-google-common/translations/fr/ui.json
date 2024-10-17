@@ -48,7 +48,8 @@
     "noResultsFoundForX": " Aucun résultat trouvé pour {0}",
     "days": "Jours",
     "readMore": "En savoir plus",
-    "countryWithCurrencyFormat": "{country} ({currency})"
+    "countryWithCurrencyFormat": "{country} ({currency})",
+    "urlSupport": "https://prestashop-academy.com/fr/nous-contacter"
   },
   "landingPage": {
     "header": {

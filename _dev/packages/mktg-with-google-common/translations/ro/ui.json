@@ -48,7 +48,8 @@
     "noResultsFoundForX": " Nu s-au găsit rezultate pentru {0}",
     "days": "Zile",
     "readMore": "Citește mai mult",
-    "countryWithCurrencyFormat": "{country} ({currency})"
+    "countryWithCurrencyFormat": "{country} ({currency})",
+    "urlSupport": "https://prestashop-academy.com/gb/contact-us"
   },
   "landingPage": {
     "header": {
