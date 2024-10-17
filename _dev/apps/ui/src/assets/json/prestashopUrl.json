@@ -1,3 +1,8 @@
 {
-  "contactForm": "https://help-center.prestashop.com/contact"
+  "contactForm": {
+    "en": "https://prestashop-academy.com/gb/contact-us",
+    "fr": "https://prestashop-academy.com/fr/nous-contacter",
+    "it": "https://prestashop-academy.com/it/contattaci",
+    "es": "https://prestashop-academy.com/es/contactenos"
+  }
 }
