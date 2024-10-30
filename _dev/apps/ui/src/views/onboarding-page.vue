@@ -66,9 +66,6 @@
         <CampaignTracking
           v-if="remarketingTagIsSet !== null && accountHasAtLeastOneCampaign"
         />
-        <CampaignTracking
-          v-if="remarketingTagIsSet !== null && accountHasAtLeastOneCampaign"
-        />
         <EnhancedConversionsCard
           v-if="remarketingTagIsSet !== null && accountHasAtLeastOneCampaign"
         />
