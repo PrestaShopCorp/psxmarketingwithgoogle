@@ -11,7 +11,7 @@
     :class="{'maxw-sm-500': notFullWidth }"
   >
     <template #option="option">
-      <div class="d-flex flex-wrap flex-md-nowrap align-items-center pr-3">
+      <div class="flex-wrap pr-3 d-flex flex-md-nowrap align-items-center">
         <span
           class="mr-2"
           v-html="highlightSearch(option.name)"
@@ -34,7 +34,7 @@ export default defineComponent({
   },
   data() {
     return {
-      countriesChosen: [],
+      countriesChosen: [] as string[],
       searchString: '',
     };
   },
@@ -42,9 +42,6 @@ export default defineComponent({
     defaultValue: {
       type: [String, Array],
       required: true,
-      default() {
-        return [];
-      },
     },
     dropdownOptions: {
       type: Array,

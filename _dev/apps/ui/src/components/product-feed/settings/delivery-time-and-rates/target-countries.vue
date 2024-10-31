@@ -2,7 +2,7 @@
   <b-form>
     <b-form-group
       :label="$tc('productFeedSettings.deliveryTimeAndRates.targetCountries', 3)"
-      label-class="title-size-h3 font-weight-600 mb-2 d-block p-0 bg-transparent border-0"
+      label-class="p-0 mb-2 bg-transparent border-0 title-size-h3 font-weight-600 d-block"
     >
       <label class="mb-2">
         {{ $t('productFeedSettings.deliveryTimeAndRates.productAvailaibleIn') }}
@@ -24,8 +24,8 @@
       v-if="isUS && shippingSetupOption"
       class="pb-2"
     >
-      <div class="d-flex flex-wrap align-items-center mb-3">
-        <span class="h4 mb-0 font-weight-600 mr-1">
+      <div class="flex-wrap mb-3 d-flex align-items-center">
+        <span class="mb-0 mr-1 h4 font-weight-600">
           {{ $t('productFeedSettings.deliveryTimeAndRates.taxSettings') }}
         </span>
         <span class="text-muted ps_gs-fz-12">
@@ -110,9 +110,12 @@ export default {
     activeCountriesWithCurrency(): string[] {
       return this.$store.getters['app/GET_ACTIVE_COUNTRIES_FOR_ACTIVE_CURRENCY'];
     },
+    deliveryDetails(): DeliveryDetail[] {
+      return this.$store.state.productFeed.settings.deliveryDetails;
+    },
     activeCountriesWhereShipppingExist(): string[] {
       const arrayOfCountries: string[] = [];
-      this.$store.state.productFeed.settings.deliveryDetails.forEach((carrier: DeliveryDetail) => {
+      this.deliveryDetails.forEach((carrier: DeliveryDetail) => {
         if (!carrier.country.length) {
           return;
         }
@@ -136,6 +139,10 @@ export default {
       }
       this.$emit('countrySelected', null);
     },
+  },
+  mounted() {
+    // Refresh component
+    this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS');
   },
 };
 </script>
