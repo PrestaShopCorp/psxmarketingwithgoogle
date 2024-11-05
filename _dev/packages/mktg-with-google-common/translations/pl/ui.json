@@ -216,7 +216,7 @@
     },
     "completeCheckoutProcess": {
       "title": "Potwierdzam, że mam kompletny proces zakupowy",
-      "description": "Users need to be able to successfully complete purchase process.",
+      "description": "Użytkownicy powinni mieć możliwość pomyślnego sfinalizowania zakupów.",
       "link": "Dowiedz się więcej o wymaganiach dotyczących finalizacji zakupów"
     },
     "websiteURL": "Adres URL strony",
@@ -1122,7 +1122,7 @@
     "textDisconnectMCA": "Odłączenie Twojego konta Merchant Center spowoduje usunięcie dostępu do Google Ads w tym module i wstrzymanie każdej uruchomionej kampanii.",
     "textoverwrite": "Nadpisanie istniejącego roszczenia spowoduje dezaktywację poprzedniego konta i wstrzymanie istniejących kampanii powiązanych z tym kontem - bezpłatnych informacji i kampanii Zakupy.  \nJeśli prowadzisz inną kampanię Zakupy, zalecamy jej wstrzymanie.",
     "titleCancelWithoutSaving": "Anulować bez zapisywania?",
-    "textCancelProductFeed": "You will lose all unsaved changes if you continue. To successfully submit your product data to Google, you need to complete all steps.",
+    "textCancelProductFeed": "Jeśli będziesz kontynuować, utracisz wszystkie niezapisane zmiany. Aby pomyślnie przesłać dane produktu do Google, należy wykonać wszystkie kroki.",
     "titleQuitWithoutSaving": "Wyjść bez zapisywania?",
     "titleOverwriteProductFeed": "Nadpisać istniejący plik danych produktu?",
     "textOverwriteProductFeed": "Nadpisanie istniejącego pliku danych produktu spowoduje jego usunięcie. Konieczne będzie skonfigurowanie nowego pliku danych produktu.",
