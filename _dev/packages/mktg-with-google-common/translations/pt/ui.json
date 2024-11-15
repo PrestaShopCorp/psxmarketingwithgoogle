@@ -216,7 +216,7 @@
     },
     "completeCheckoutProcess": {
       "title": "Confirmo que tenho um processo de checkout completo",
-      "description": "Users need to be able to successfully complete purchase process.",
+      "description": "Os usuários precisam de ser capazes de concluir o processo de compra.",
       "link": "Saiba mais sobre os requisitos de checkout"
     },
     "websiteURL": "URL do site",
@@ -1122,7 +1122,7 @@
     "textDisconnectMCA": "Desconectar o seu Merchant Center irá remover o acesso ao seu Google Ads neste módulo e fazer uma pausa em qualquer campanha em curso. ",
     "textoverwrite": "A sobre-escritura de reclamações existentes irá desativar sua conta anterior e pausar as campanhas existentes vinculadas a essa conta - listagens gratuitas e campanhas de compras.  \nSe estiver a executar uma campanha de Compras diferente, recomendamos que a faça uma pausa.",
     "titleCancelWithoutSaving": "Cancelar sem poupar?",
-    "textCancelProductFeed": "You will lose all unsaved changes if you continue. To successfully submit your product data to Google, you need to complete all steps.",
+    "textCancelProductFeed": "Você perderá todas as alterações não salvas se prosseguir. Para enviar com sucesso os dados do seu produto para o Google, você precisa concluir todas as etapas.",
     "titleQuitWithoutSaving": "Desistir sem guardar?",
     "titleOverwriteProductFeed": "Sobreescrever o feed dos produtos existentes?",
     "textOverwriteProductFeed": "Sobreescrever o feed do seu produto existente irá apagá-lo. Precisará de configurar o feed de novos produtos.",
