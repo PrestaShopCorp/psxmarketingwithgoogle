@@ -216,7 +216,7 @@
     },
     "completeCheckoutProcess": {
       "title": "Confirmo que dispongo de un proceso de checkout completo",
-      "description": "Los usuarios necesitan completar el proceso de compra con éxito.",
+      "description": "Los usuarios deben poder completar bien el proceso de compra.",
       "link": "Saber más sobre los requisitos de checkout"
     },
     "websiteURL": "URL del sitio web",
