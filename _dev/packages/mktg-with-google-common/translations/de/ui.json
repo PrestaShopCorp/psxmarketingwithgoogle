@@ -216,7 +216,7 @@
     },
     "completeCheckoutProcess": {
       "title": "Ich bestätige, dass ich einen vollständigen Bezahlvorgang habe",
-      "description": "Users need to be able to successfully complete purchase process.",
+      "description": "Die Nutzer müssen in der Lage sein, den Kaufvorgang erfolgreich abzuschließen.",
       "link": "Erfahren Sie mehr über die Anforderungen an die Kasse"
     },
     "websiteURL": "Website-URL",
@@ -1122,7 +1122,7 @@
     "textDisconnectMCA": "Wenn Sie die Verbindung zu Ihrem Merchant Center unterbrechen, wird der Zugriff auf Ihre Google-Anzeigen in diesem Modul entfernt und alle laufenden Kampagnen werden angehalten. ",
     "textoverwrite": "Durch das Überschreiben eines bestehenden Anspruchs wird Ihr vorheriges Konto deaktiviert und bestehende Kampagnen, die mit diesem Konto verknüpft sind - kostenlose Inserate und Shopping-Kampagnen - werden pausiert.  \nWenn Sie eine andere Shopping-Kampagne durchführen, empfehlen wir, diese zu pausieren.",
     "titleCancelWithoutSaving": "Abbrechen ohne zu speichern?",
-    "textCancelProductFeed": "You will lose all unsaved changes if you continue. To successfully submit your product data to Google, you need to complete all steps.",
+    "textCancelProductFeed": "Sie verlieren alle nicht gespeicherten Änderungen, wenn Sie fortfahren. Um Ihre Produktdaten erfolgreich an Google zu übermitteln, müssen Sie alle Schritte ausführen.",
     "titleQuitWithoutSaving": "Beenden ohne zu speichern?",
     "titleOverwriteProductFeed": "Bestehendes Produkt-Feed überschreiben?",
     "textOverwriteProductFeed": "Durch das Überschreiben Ihres bestehenden Produkt-Feeds wird dieser gelöscht. Sie müssen einen neuen Produkt-Feed konfigurieren.",
