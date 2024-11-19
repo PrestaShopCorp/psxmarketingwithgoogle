@@ -216,7 +216,7 @@
     },
     "completeCheckoutProcess": {
       "title": "Confirm că am finalizat procesul de finalizare a plății",
-      "description": "Users need to be able to successfully complete purchase process.",
+      "description": "Utilizatorii trebuie să poată finaliza cu succes procesul de achiziție.",
       "link": "Află mai multe despre condițiile de finalizare a plății"
     },
     "websiteURL": "URL site web",
