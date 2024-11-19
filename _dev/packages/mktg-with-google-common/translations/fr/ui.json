@@ -216,7 +216,7 @@
     },
     "completeCheckoutProcess": {
       "title": "Je confirme que je dispose d'un processus de paiement complet",
-      "description": "Users need to be able to successfully complete purchase process.",
+      "description": "Les utilisateurs doivent être en mesure de mener à bien le processus d'achat.",
       "link": "En savoir plus sur les conditions de paiement"
     },
     "websiteURL": "URL du site web",
@@ -1122,7 +1122,7 @@
     "textDisconnectMCA": "La déconnexion de votre Merchant Center supprimera l'accès à vos annonces Google dans ce module et mettra en pause toute campagne en cours. ",
     "textoverwrite": "Écraser la demande existante désactivera votre compte précédent et mettra en pause les campagnes et les fiches gratuites existantes liées à ce compte.  \nSi vous lancez une autre campagne Shopping, nous vous recommandons de la mettre en pause.",
     "titleCancelWithoutSaving": "Annuler sans sauvegarder ?",
-    "textCancelProductFeed": "You will lose all unsaved changes if you continue. To successfully submit your product data to Google, you need to complete all steps.",
+    "textCancelProductFeed": "Vous perdrez toutes les modifications non enregistrées si vous continuez. Pour soumettre vos données de produit à Google avec succès, vous devez compléter toutes les étapes.",
     "titleQuitWithoutSaving": "Quitter sans sauvegarder ?",
     "titleOverwriteProductFeed": "Écraser le flux de produits existant ?",
     "textOverwriteProductFeed": "Écraser votre flux de produits existant le supprimera. Vous devrez configurer un nouveau flux de produits.",
