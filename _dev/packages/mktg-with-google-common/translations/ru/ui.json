@@ -216,7 +216,7 @@
     },
     "completeCheckoutProcess": {
       "title": "Я подтверждаю, что на моем сайте действует полная процедура оформления заказа",
-      "description": "Users need to be able to successfully complete purchase process.",
+      "description": "Пользователи должны иметь возможность успешно завершить процесс покупки.",
       "link": "Узнайте о требованиях к кассе"
     },
     "websiteURL": "URL сайта",
