@@ -216,7 +216,7 @@
     },
     "completeCheckoutProcess": {
       "title": "Ik bevestig dat ik een volledig afrekenproces heb",
-      "description": "Users need to be able to successfully complete purchase process.",
+      "description": "Gebruikers moeten het aankoopproces succesvol kunnen afronden.",
       "link": "Meer informatie over kassavereisten"
     },
     "websiteURL": "Website URL",
@@ -1122,7 +1122,7 @@
     "textDisconnectMCA": "Als u uw Merchant Center loskoppelt, hebt u geen toegang meer tot uw Google-advertenties in deze module en wordt een lopende campagne onderbroken. ",
     "textoverwrite": "Het overschrijven van bestaande claim zal uw vorige account deactiveren en bestaande campagnes pauzeren die aan die account gekoppeld zijn- gratis listings en Shopping campagnes.  \nAls u een andere Shopping-campagne voert, raden wij u aan deze te pauzeren.",
     "titleCancelWithoutSaving": "Annuleren zonder op te slaan?",
-    "textCancelProductFeed": "You will lose all unsaved changes if you continue. To successfully submit your product data to Google, you need to complete all steps.",
+    "textCancelProductFeed": "Je verliest alle niet opgeslagen wijzigingen als je doorgaat. Om je productgegevens in te dienen bij Google, moet je alle stappen voltooien.",
     "titleQuitWithoutSaving": "Gestopt zonder te sparen?",
     "titleOverwriteProductFeed": "Bestaande product feed overschrijven?",
     "textOverwriteProductFeed": "Als u uw bestaande productfeed overschrijft, wordt deze verwijderd. U moet een nieuwe product feed configureren.",
