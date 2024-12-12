@@ -40,3 +40,13 @@
     display: none;
   }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const hasNoBootstrapClass = document.querySelector('#content.nobootstrap');
+  if (hasNoBootstrapClass === null) {
+    document.querySelector('#content').classList.add('nobootstrap');
+    document.querySelector('#content').classList.remove('bootstrap');
+  }
+});
+</script>

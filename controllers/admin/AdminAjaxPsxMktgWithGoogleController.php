@@ -156,43 +156,40 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
                 $this->listMatchingProductsFromFilters($inputs);
                 break;
             default:
-                http_response_code(400);
-                $this->ajaxDie(json_encode(['success' => false, 'message' => $this->l('Action is missing or incorrect.')]));
+                $this->render(json_encode(['success' => false, 'message' => $this->module->l('Action is missing or incorrect.')]), 400);
         }
     }
 
     private function setWebsiteVerificationMeta(array $inputs)
     {
         if (!isset($inputs['websiteVerificationMeta'])) {
-            http_response_code(400);
-            $this->ajaxDie(json_encode([
+            $this->render(json_encode([
                 'success' => false,
                 'message' => 'Missing Meta key',
-            ]));
+            ]), 400);
         }
         $websiteVerificationMeta = $inputs['websiteVerificationMeta'];
         $this->configurationAdapter->deleteByName(Config::PSX_MKTG_WITH_GOOGLE_WEBSITE_VERIFICATION_META);
 
         if ($websiteVerificationMeta === false) {
-            $this->ajaxDie(json_encode(['success' => true, 'method' => 'delete']));
+            $this->render(json_encode(['success' => true, 'method' => 'delete']), 200);
         } else {
             // base64 encoded to avoid prestashop sanitization
             $this->configurationAdapter->updateValue(
                 Config::PSX_MKTG_WITH_GOOGLE_WEBSITE_VERIFICATION_META,
                 base64_encode($websiteVerificationMeta)
             );
-            $this->ajaxDie(json_encode(['success' => true, 'method' => 'insert']));
+            $this->render(json_encode(['success' => true, 'method' => 'insert']), 200);
         }
     }
 
     private function setGMCInformations(array $inputs)
     {
         if (!isset($inputs['gmcInformations'])) {
-            http_response_code(400);
-            $this->ajaxDie(json_encode([
+            $this->render(json_encode([
                 'success' => false,
                 'message' => 'missing gmc informations',
-            ]));
+            ]), 400);
         }
 
         $informations = $inputs['gmcInformations'];
@@ -201,17 +198,17 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             $informations['id']
         );
 
-        $this->ajaxDie(json_encode(['success' => true]));
+        $this->render(json_encode(['success' => true]), 200);
     }
 
     private function getProductsReadyToSync(array $inputs)
     {
-        $this->ajaxDie(json_encode([
+        $this->render(json_encode([
             'total' => $this->productRepository->getProductsTotal(
                 $this->context->shop->id,
                 ['onlyActive' => true]
             ),
-        ]));
+        ]), 200);
     }
 
     private function getShopConfigurationForGMC()
@@ -240,7 +237,7 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             $data['store']['region'] = State::getNameById($this->configurationAdapter->get('PS_SHOP_STATE_ID'));
         }
 
-        $this->ajaxDie(json_encode($data));
+        $this->render(json_encode($data), 200);
     }
 
     private function getCarrierValues()
@@ -250,7 +247,7 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
 
         $carrierLines = $carrierDataProvider->getFormattedData();
 
-        $this->ajaxDie(json_encode($carrierLines));
+        $this->render(json_encode($carrierLines), 200);
     }
 
     private function getWebsiteRequirementStatus()
@@ -258,19 +255,18 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         $requirements = json_decode($this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_WEBSITE_REQUIREMENTS_STATUS))
             ?: [];
 
-        $this->ajaxDie(json_encode([
+        $this->render(json_encode([
             'requirements' => $requirements,
-        ]));
+        ]), 200);
     }
 
     private function setWebsiteRequirementStatus(array $inputs)
     {
         if (!isset($inputs['requirements']) || !is_array($inputs['requirements'])) {
-            http_response_code(400);
-            $this->ajaxDie(json_encode([
+            $this->render(json_encode([
                 'success' => false,
                 'message' => 'Missing requirements key or value must be an array',
-            ]));
+            ]), 400);
         }
 
         $requirements = $inputs['requirements'];
@@ -286,10 +282,10 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
 
         foreach ($requirements as $value) {
             if (!in_array($value, $allowedKeys)) {
-                $this->ajaxDie(json_encode([
+                $this->render(json_encode([
                     'success' => false,
                     'message' => 'Unknown requirement key ' . $value,
-                ]));
+                ]), 400);
             }
         }
 
@@ -298,7 +294,7 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             json_encode($requirements)
         );
 
-        $this->ajaxDie(json_encode(['success' => true]));
+        $this->render(json_encode(['success' => true]), 200);
     }
 
     public function getShopConfigurationForAds()
@@ -306,13 +302,13 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         $defaultTimeZone = date_default_timezone_get();
         $timeZone = new DateTime('now', new DateTimeZone($defaultTimeZone));
 
-        $this->ajaxDie(json_encode([
+        $this->render(json_encode([
             'timezone' => [
                 'offset' => $timeZone->format('P'),
                 'text' => $defaultTimeZone,
             ],
             'currency' => $this->currencyRepository->getShopCurrency()['isoCode'],
-        ]));
+        ]), 200);
     }
 
     private function getRemarketingTagsStatus()
@@ -325,20 +321,19 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             null // Default value
         );
 
-        $this->ajaxDie(json_encode([
+        $this->render(json_encode([
             'remarketingTagsStatus' => (bool) $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS),
             'enhancedConversionStatus' => $enhancedConversionStatus !== null ? (bool) $enhancedConversionStatus : null,
-        ]));
+        ]), 200);
     }
 
     private function toggleRemarketingTags(array $inputs)
     {
         if (!isset($inputs['isRemarketingEnabled']) || !isset($inputs['tagSnippet'])) {
-            http_response_code(400);
-            $this->ajaxDie(json_encode([
+            $this->render(json_encode([
                 'success' => false,
                 'message' => 'Missing isRemarketingEnabled or tagSnippet key',
-            ]));
+            ]), 400);
         }
 
         if ((bool) $inputs['isRemarketingEnabled']) {
@@ -354,17 +349,16 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             $this->configurationAdapter->deleteByName(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS);
             $this->configurationAdapter->deleteByName(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_TAG);
         }
-        $this->ajaxDie(json_encode(['success' => true]));
+        $this->render(json_encode(['success' => true]), 200);
     }
 
     private function setEnhancedConversions(array $inputs)
     {
         if (!isset($inputs['enable'])) {
-            http_response_code(400);
-            $this->ajaxDie(json_encode([
+            $this->render(json_encode([
                 'success' => false,
                 'message' => 'Missing enable key',
-            ]));
+            ]), 400);
         }
         /** @var EnhancedConversionToggle $enhancedConversionToggle */
         $enhancedConversionToggle = $this->module->getService(EnhancedConversionToggle::class);
@@ -375,38 +369,35 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             $success = $enhancedConversionToggle->disable();
         }
 
-        $this->ajaxDie(json_encode([
+        $this->render(json_encode([
             'success' => $success,
-        ]));
+        ]), 200);
     }
 
     private function setConversionActionLabel(array $inputs)
     {
         if (!isset($inputs['conversionActions'])) {
-            http_response_code(400);
-            $this->ajaxDie(json_encode([
+            $this->render(json_encode([
                 'success' => false,
                 'message' => 'Missing conversionActions key',
-            ]));
+            ]), 400);
         }
 
         $newTags = [];
 
         foreach ($inputs['conversionActions'] as $index => $conversionAction) {
             if (!isset($conversionAction['category']) || !isset($conversionAction['tag'])) {
-                http_response_code(400);
-                $this->ajaxDie(json_encode([
+                $this->render(json_encode([
                     'success' => false,
                     'message' => 'Missing category or tag key at index ' . $index,
-                ]));
+                ]), 400);
             }
 
             if (!in_array($conversionAction['category'], Config::REMARKETING_CONVERSION_LABELS)) {
-                http_response_code(400);
-                $this->ajaxDie(json_encode([
+                $this->render(json_encode([
                     'success' => false,
                     'message' => 'Unhandled conversion category at index ' . $index,
-                ]));
+                ]), 400);
             }
             $newTags[$conversionAction['category']] = $conversionAction['tag'];
         }
@@ -420,7 +411,7 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
                 )
             )
         );
-        $this->ajaxDie(json_encode(['success' => true]));
+        $this->render(json_encode(['success' => true]), 200);
     }
 
     private function getConversionActionLabels()
@@ -433,9 +424,9 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
                 'tag' => $tag,
             ];
         }
-        $this->ajaxDie(json_encode([
+        $this->render(json_encode([
             'conversionActionLabels' => $labels,
-        ]));
+        ]), 200);
     }
 
     private function getDebugData()
@@ -456,21 +447,22 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             );
         }
 
-        $this->ajaxDie(json_encode([
+        $this->render(json_encode([
             'urlEventBusHealthCheck' => $this->context->link->getModuleLink(
                 'ps_eventbus',
                 'apiHealthCheck'
             ),
             'typesOfSync' => $typesOfSync,
-        ]));
+        ]), 200);
     }
 
     public function getShopAttributes()
     {
-        $this->ajaxDie(
+        $this->render(
             json_encode(
                 $this->attributesRepository->getAllAttributes()
-            )
+            ),
+            200
         );
     }
 
@@ -481,11 +473,10 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
     public function getProductFilterOptions(array $inputs)
     {
         if (!isset($inputs['kind'])) {
-            http_response_code(400);
-            $this->ajaxDie(json_encode([
+            $this->render(json_encode([
                 'success' => false,
                 'message' => 'Missing kind key',
-            ]));
+            ]), 400);
         }
 
         $attributeKind = $inputs['kind'];
@@ -498,28 +489,27 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             /** @var OptionsProviderInterface $optionsProvider */
             $optionsProvider = $this->module->getService($providerName);
 
-            $this->ajaxDie(
+            $this->render(
                 json_encode(
                     $optionsProvider->getOptions()
-                )
+                ),
+                200
             );
         } catch (InvalidArgumentException $e) {
-            http_response_code(400);
-            $this->ajaxDie(json_encode([
+            $this->render(json_encode([
                 'success' => false,
                 'message' => $e->getMessage(),
-            ]));
+            ]), 400);
         }
     }
 
     public function countMatchingProductsFromFilters(array $inputs)
     {
         if (!isset($inputs['filters'])) {
-            http_response_code(400);
-            $this->ajaxDie(json_encode([
+            $this->render(json_encode([
                 'success' => false,
                 'message' => 'Missing filters key',
-            ]));
+            ]), 400);
         }
 
         $filters = $inputs['filters'];
@@ -527,21 +517,21 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         /** @var ProductEnumerator $productEnumerator */
         $productEnumerator = $this->module->getService(ProductEnumerator::class);
 
-        $this->ajaxDie(
+        $this->render(
             json_encode([
                 'numberOfProducts' => $productEnumerator->countProductsMatchingFilters($filters),
-            ])
+            ]),
+            200
         );
     }
 
     public function listMatchingProductsFromFilters(array $inputs)
     {
         if (!isset($inputs['filters'])) {
-            http_response_code(400);
-            $this->ajaxDie(json_encode([
+            $this->render(json_encode([
                 'success' => false,
                 'message' => 'Missing filters key',
-            ]));
+            ]), 400);
         }
 
         $filters = $inputs['filters'];
@@ -549,35 +539,27 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         /** @var ProductEnumerator $productEnumerator */
         $productEnumerator = $this->module->getService(ProductEnumerator::class);
 
-        $this->ajaxDie(
-            json_encode($productEnumerator->listProductsMatchingFilters($filters, []))
+        $this->render(
+            json_encode($productEnumerator->listProductsMatchingFilters($filters, [])),
+            200
         );
     }
 
     private function getModuleStatus(array $inputs)
     {
         if (!isset($inputs['moduleName'])) {
-            http_response_code(400);
-            $this->ajaxDie(json_encode([
+            $this->render(json_encode([
                 'success' => false,
                 'message' => 'Missing moduleName key',
-            ]));
+            ]), 400);
         }
 
-        $this->ajaxDie(
+        $this->render(
             json_encode(
                 (new ModuleRepository($inputs['moduleName']))->getInformationsAboutModule()
-            )
+            ),
+            200
         );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function ajaxDie($value = null, $controller = null, $method = null)
-    {
-        header('Content-Type: application/json');
-        parent::ajaxDie($value, $controller, $method);
     }
 
     /**
@@ -587,14 +569,15 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
     {
         $faq = new Faq($this->module->module_key, _PS_VERSION_, $this->context->language->iso_code);
 
-        $this->ajaxDie(
+        $this->render(
             json_encode(
                 [
                     'faq' => $faq->getFaq(),
                     'doc' => $this->getUserDocumentation(),
                     'contactUs' => 'support-google@prestashop.com',
                 ]
-            )
+            ),
+            200
         );
     }
 
@@ -618,17 +601,17 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
     private function registerHook(array $inputs)
     {
         if (!isset($inputs['hookName'])) {
-            http_response_code(400);
-            $this->ajaxDie(json_encode([
+            $this->render(json_encode([
                 'success' => false,
                 'message' => 'Missing hookName key',
-            ]));
+            ]), 400);
         }
 
-        $this->ajaxDie(
+        $this->render(
             json_encode([
                 'success' => $this->module->registerHook($inputs['hookName']),
-            ])
+            ]),
+            200
         );
     }
 
@@ -649,5 +632,22 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         curl_close($ch);
 
         return $retcode < 400;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    private function render($response, $code)
+    {
+        header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
+        header('Content-Type: application/json;charset=utf-8');
+        header("HTTP/1.1 $code");
+
+        if (_PS_VERSION_ === '9.0.0') {
+            parent::ajaxRender($response);
+            exit;
+        }
+
+        parent::ajaxDie($response, null, null);
     }
 }
