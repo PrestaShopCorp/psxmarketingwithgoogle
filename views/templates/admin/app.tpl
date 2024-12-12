@@ -40,3 +40,14 @@
     display: none;
   }
 </style>
+
+<script>
+// it's used to avoid breaking the menu on the module
+document.addEventListener('DOMContentLoaded', function () {
+  const hasNoBootstrapClass = document.querySelector('#content.nobootstrap');
+  if (hasNoBootstrapClass === null) {
+    document.querySelector('#content').classList.add('nobootstrap');
+    document.querySelector('#content').classList.remove('bootstrap');
+  }
+});
+</script>
