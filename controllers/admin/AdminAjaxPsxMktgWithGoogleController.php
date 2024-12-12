@@ -643,6 +643,11 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         header('Content-Type: application/json;charset=utf-8');
         header("HTTP/1.1 $code");
 
-        parent::ajaxRender($response);
+        if (_PS_VERSION_ === '9.0.0') {
+            parent::ajaxRender($response);
+            exit;
+        }
+
+        parent::ajaxDie($response, null, null);
     }
 }
