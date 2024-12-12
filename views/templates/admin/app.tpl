@@ -42,7 +42,7 @@
 </style>
 
 <script>
-// If we don't have the noboostrap class, add it to the content div
+// it's used to avoid breaking the menu on the module
 document.addEventListener('DOMContentLoaded', function () {
   const hasNoBootstrapClass = document.querySelector('#content.nobootstrap');
   if (hasNoBootstrapClass === null) {
