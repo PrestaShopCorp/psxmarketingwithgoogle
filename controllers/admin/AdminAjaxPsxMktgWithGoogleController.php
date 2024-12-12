@@ -156,7 +156,7 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
                 $this->listMatchingProductsFromFilters($inputs);
                 break;
             default:
-                $this->render(json_encode(['success' => false, 'message' => $this->module->getTranslator('Action is missing or incorrect.')]), 400);
+                $this->render(json_encode(['success' => false, 'message' => $this->module->l('Action is missing or incorrect.')]), 400);
         }
     }
 
