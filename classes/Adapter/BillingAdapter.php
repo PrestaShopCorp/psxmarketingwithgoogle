@@ -28,12 +28,9 @@ class BillingAdapter
 
     /**
      * @var string
-     **/
+     */
     private $jwt;
 
-    /**
-     * @var string
-     **/
     public function __construct($jwt)
     {
         $this->jwt = $jwt;
