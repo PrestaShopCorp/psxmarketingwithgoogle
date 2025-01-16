@@ -39,7 +39,7 @@ jobs:
       - run: composer install
 
       - name: Run PHP-CS-Fixer
-        run: vendor/bin/php-cs-fixer fix --dry-run
+        run: PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix --dry-run
 
   phpstan:
     name: PHPStan
