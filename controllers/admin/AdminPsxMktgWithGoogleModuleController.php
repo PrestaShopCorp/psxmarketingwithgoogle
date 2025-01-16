@@ -18,6 +18,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
+use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\BillingAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Env;
@@ -29,7 +30,6 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ModuleRepository;
 use PrestaShop\PrestaShop\Core\Addon\Module\ModuleManagerBuilder;
 use PrestaShop\PsAccountsInstaller\Installer\Facade\PsAccounts;
 use PrestaShopCorp\Billing\Presenter\BillingPresenter;
-use PrestaShopCorp\Billing\Services\BillingService;
 
 class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
 {
@@ -112,10 +112,10 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
 
             // Load the context for PrestaShop Billing
             $billingFacade = $this->module->getService(BillingPresenter::class);
-            $billingService = $this->module->getService(BillingService::class);
+            $billingAdapter = new BillingAdapter($tokenPsAccounts);
             $partnerLogo = $this->module->getLocalPath() . 'logo.png';
-            $currentSubscription = $billingService->getCurrentSubscription();
-
+            $fetchSubscriptions = $billingAdapter->getCurrentSubscription($shopIdPsAccounts, $this->module->name);
+            $currentSubscription = json_decode($fetchSubscriptions->getBody(), true);
             // PrestaShop Billing
             Media::addJsDef($billingFacade->present([
                 'logo' => $partnerLogo,
@@ -125,7 +125,7 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
                 'emailSupport' => 'no-reply@prestashop.com',
             ]));
             Media::addJsDef([
-                'psBillingSubscription' => (!empty($currentSubscription['success']) ? $currentSubscription['body'] : null),
+                'psBillingSubscription' => $fetchSubscriptions->getStatusCode() === 200 ? $currentSubscription : null,
             ]);
         } catch (Exception $e) {
             $shopIdPsAccounts = null;
