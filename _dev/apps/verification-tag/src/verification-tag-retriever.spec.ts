@@ -1,7 +1,14 @@
 import { HttpClientError } from "mktg-with-google-common";
 import { runRetrievalOfVerificationTag } from "./verification-tag-retriever";
+import * as Sentry from '@sentry/browser';
+
+jest.mock('@sentry/browser');
 
 describe('runRetrievalOfVerificationTag', () => {
+  beforeEach(() => {
+    jest.clearAllMocks(); // Clear any previous mock calls
+  });
+
   it('runs the whole process', async () => {
     // prepare
     const fetchOnboardingMock = jest.fn();
@@ -83,5 +90,56 @@ describe('runRetrievalOfVerificationTag', () => {
     // assert
     expect(fetchOnboardingMock).toBeCalledTimes(1);
     expect(fetchShopMock).toBeCalledTimes(0);
+  });
+
+  it('handles 403 Forbidden error gracefully', async () => {
+    // prepare
+    const fetchOnboardingMock = jest.fn();
+    const fetchShopMock = jest.fn();
+    fetchOnboardingMock.mockImplementationOnce(() => {
+      throw new HttpClientError("subscription not found", 403);
+    });
+
+    // act
+    await runRetrievalOfVerificationTag(fetchOnboardingMock, fetchShopMock);
+
+    // assert
+    expect(fetchOnboardingMock).toBeCalledTimes(1);
+    expect(fetchShopMock).toBeCalledTimes(0);
+    expect(Sentry.captureException).not.toHaveBeenCalled(); // Ensure Sentry is not called
+  });
+
+  it('handles 404 Not Found error', async () => {
+    // prepare
+    const fetchOnboardingMock = jest.fn();
+    const fetchShopMock = jest.fn();
+    fetchOnboardingMock.mockImplementationOnce(() => {
+      throw new HttpClientError("oh no", 404);
+    });
+
+    // act
+    await runRetrievalOfVerificationTag(fetchOnboardingMock, fetchShopMock);
+
+    // assert
+    expect(fetchOnboardingMock).toBeCalledTimes(1);
+    expect(fetchShopMock).toBeCalledTimes(0);
+    expect(Sentry.captureException).toHaveBeenCalled(); // Ensure Sentry is called
+  });
+
+  it('stops when token retrieval fails', async () => {
+    // prepare
+    const fetchOnboardingMock = jest.fn();
+    const fetchShopMock = jest.fn();
+    fetchOnboardingMock.mockImplementationOnce(() => {
+      throw new HttpClientError("Token retrieval failed", 500);
+    });
+
+    // act
+    await runRetrievalOfVerificationTag(fetchOnboardingMock, fetchShopMock);
+
+    // assert
+    expect(fetchOnboardingMock).toBeCalledTimes(1);
+    expect(fetchShopMock).toBeCalledTimes(0);
+    expect(Sentry.captureException).toHaveBeenCalled(); // Ensure Sentry is called
   });
 });

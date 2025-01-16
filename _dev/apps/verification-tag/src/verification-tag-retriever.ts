@@ -22,7 +22,7 @@ export const runRetrievalOfVerificationTag = async (
         onResponse: responseHandler,
       },
     )).json();
-      
+
     // 2- Store token in shop
     await fetchShop("setWebsiteVerificationMeta", {
       websiteVerificationMeta: token,
@@ -48,14 +48,18 @@ export const runRetrievalOfVerificationTag = async (
         onResponse: responseHandler,
       },
     );
-  
+
     console.info('Marketing with Google - Google Verification tag has been refreshed.');
     analytics?.track('[GGL] Re-verification & claiming Succeeded');
   } catch (e) {
     console.error('Marketing with Google - Google Verification tag refresh failed.', e);
     analytics?.track('[GGL] Re-verification & claiming Failed');
     scope.setTag('correlationId', correlationId);
-    Sentry.captureException(e, scope);
+
+    // Send error to Sentry if it's not a 403 Forbidden error
+    if (e.code !== 403) {
+      Sentry.captureException(e, scope);
+    }
   }
 };
 
@@ -82,4 +86,3 @@ const responseHandler = async (response: Response) => {
   }
   return response;
 };
-
