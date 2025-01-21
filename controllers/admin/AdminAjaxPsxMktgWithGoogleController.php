@@ -23,6 +23,7 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\Module\PsxMarketingWithGoogle\Conversion\EnhancedConversionToggle;
 use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler;
+use PrestaShop\Module\PsxMarketingWithGoogle\Http\HttpClient;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\ProductEnumerator;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\OptionsProviderInterface;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\Resolver;
@@ -32,7 +33,6 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CurrencyRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ModuleRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ProductRepository;
-use PrestaShop\Module\PsxMarketingWithGoogle\Http\HttpClient;
 
 class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
 {

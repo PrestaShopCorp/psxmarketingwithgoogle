@@ -87,9 +87,9 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
         if (Tools::getValue('message') !== false || Tools::getValue('from') !== false) {
             $this->ajax = true;
             if (version_compare(_PS_VERSION_, '9.0.0', '>=')) {
-                $this->content = $this->context->smarty->display($this->module->getLocalPath() . '/views/templates/admin/googlePopin.tpl', null,null, false);
+                $this->content = $this->context->smarty->display($this->module->getLocalPath() . '/views/templates/admin/googlePopin.tpl');
             } else {
-                $this->content = $this->context->smarty->fetch('module:psxmarketingwithgoogle/views/templates/admin/googlePopin.tpl', null,null, false);
+                $this->content = $this->context->smarty->fetch('module:psxmarketingwithgoogle/views/templates/admin/googlePopin.tpl');
             }
 
             return;
