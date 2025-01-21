@@ -32,7 +32,7 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CurrencyRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ModuleRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ProductRepository;
-use PrestaShop\ModuleLibFaq\Faq;
+use PrestaShop\Module\PsxMarketingWithGoogle\Http\HttpClient;
 
 class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
 {
@@ -567,12 +567,21 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
      */
     public function retrieveFaq()
     {
-        $faq = new Faq($this->module->module_key, _PS_VERSION_, $this->context->language->iso_code);
+        $faq = [
+            'categories' => [],
+        ];
+
+        $request = new HttpClient('https://api.addons.prestashop.com');
+        $result = $request->get('/request/faq/' . $this->module->module_key . '/' . _PS_VERSION_ . '/' . $this->context->language->iso_code, []);
+
+        if ($result->getStatusCode() === 200) {
+            $faq['categories'] = json_decode($result->getBody(), true);
+        }
 
         $this->render(
             json_encode(
                 [
-                    'faq' => $faq->getFaq(),
+                    'faq' => $faq['categories'],
                     'doc' => $this->getUserDocumentation(),
                     'contactUs' => 'support-google@prestashop.com',
                 ]
