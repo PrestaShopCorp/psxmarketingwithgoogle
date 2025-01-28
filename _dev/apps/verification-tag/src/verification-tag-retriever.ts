@@ -56,8 +56,8 @@ export const runRetrievalOfVerificationTag = async (
     analytics?.track('[GGL] Re-verification & claiming Failed');
     scope.setTag('correlationId', correlationId);
 
-    // Send error to Sentry if it's not a 403 Forbidden error
-    if (e.code !== 403) {
+    // Send error to Sentry if it's not a 403 or 404 Forbidden error
+    if (e.code !== 403 && e.code !== 404) {
       Sentry.captureException(e, scope);
     }
   }
@@ -65,7 +65,7 @@ export const runRetrievalOfVerificationTag = async (
 
 const responseHandler = async (response: Response) => {
   if (!response.ok) {
-    const error = new HttpClientError(response.statusText, response.status);
+    const error = new HttpClientError('Verification tag refresh failed', response.status);
 
     try {
       const content = await response.text();

@@ -123,7 +123,7 @@ describe('runRetrievalOfVerificationTag', () => {
     // assert
     expect(fetchOnboardingMock).toBeCalledTimes(1);
     expect(fetchShopMock).toBeCalledTimes(0);
-    expect(Sentry.captureException).toHaveBeenCalled(); // Ensure Sentry is called
+    expect(Sentry.captureException).not.toHaveBeenCalled(); // Ensure Sentry is not called
   });
 
   it('stops when token retrieval fails', async () => {
