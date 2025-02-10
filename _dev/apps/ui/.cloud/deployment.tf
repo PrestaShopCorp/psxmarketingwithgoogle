@@ -47,7 +47,7 @@ resource "kubernetes_deployment" "storybook" {
 
         container {
           name = "ui"
-          image = "eu.gcr.io/${local.project}/googleshopping-storybook:latest"
+          image = "europe-west1-docker.pkg.dev/${local.project}/googleshopping-storybook:latest"
           image_pull_policy = "Always"
         }
       }
