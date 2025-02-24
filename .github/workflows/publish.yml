@@ -53,7 +53,9 @@ jobs:
 
       - name: Write .env file with specific CDN URL
         if: "github.event.release.prerelease"
-        run: echo 'PSX_MKTG_WITH_GOOGLE_CDN_URL=https://storage.googleapis.com/psxmarketing-cdn/${{ steps.get_tag.outputs.MAJOR }}.${{ steps.get_tag.outputs.MINOR }}.${{ steps.get_tag.outputs.PATCH }}/js/' >> .env
+        run: |
+          echo 'PSX_MKTG_WITH_GOOGLE_CDN_URL=https://storage.googleapis.com/psxmarketing-cdn/${{ steps.get_tag.outputs.MAJOR }}.${{ steps.get_tag.outputs.MINOR }}.${{ steps.get_tag.outputs.PATCH }}/js/' >> .env
+          echo 'USE_BILLING_SANDBOX=1' >> .env
 
       - name: Clean-up project
         uses: PrestaShopCorp/github-action-clean-before-deploy@v1.0

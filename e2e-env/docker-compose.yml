@@ -11,9 +11,10 @@ services:
     environment:
       - ON_INIT_SCRIPT_FAILURE=fail
       - DEBUG_MODE=true
+      - SSL_REDIRECT=true
       - INIT_SCRIPTS_USER=root
       - INIT_SCRIPTS_DIR=/tmp/init-scripts
-      - PS_DOMAIN=localhost:${HOST_PORT_BIND_PRESTASHOP:-8000}
+      - PS_DOMAIN=${TUNNEL_NAME}
     ports:
       - ${HOST_PORT_BIND_PRESTASHOP:-8000}:80
     networks:
@@ -57,6 +58,18 @@ services:
       - PMA_USER=prestashop
       - PMA_PASSWORD=prestashop
       - MYSQL_ROOT_PASSWORD=prestashop
+    networks:
+      - prestashop
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    command: tunnel run ${TUNNEL_NAME}
+    environment:
+      - TUNNEL_CRED_FILE=/credentials.json
+      - TUNNEL_URL=http://prestashop:80
+      - TUNNEL_HTTP_HOST_HEADER=${TUNNEL_NAME}
+    volumes:
+      - ~/.cloudflared/credentials.json:/credentials.json
     networks:
       - prestashop
 

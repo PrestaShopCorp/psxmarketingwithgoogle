@@ -1,4 +1,5 @@
 imports:
+  - { resource: common/parameters.yml }
   - { resource: common/adapter.yml }
   - { resource: common/buffer.yml }
   - { resource: common/config.yml }

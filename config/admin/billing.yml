@@ -4,6 +4,7 @@ services:
     arguments:
     - '@PrestaShop\PsAccountsInstaller\Installer\Facade\PsAccounts'
     - '@psxmarketingwithgoogle.context'
+    - '@psxmarketingwithgoogle.billing_env'
 
   PrestaShopCorp\Billing\Presenter\BillingPresenter:
     class: 'PrestaShopCorp\Billing\Presenter\BillingPresenter'

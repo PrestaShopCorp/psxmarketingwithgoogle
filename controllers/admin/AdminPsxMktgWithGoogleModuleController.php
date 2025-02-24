@@ -95,8 +95,11 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
             return;
         }
 
+        $billingUrl = (bool) $this->env->get('USE_BILLING_SANDBOX') ? $this->env->get('PSX_MKTG_WITH_GOOGLE_BILLING_CDC_PREPROD_URL') : $this->env->get('PSX_MKTG_WITH_GOOGLE_BILLING_CDC_URL');
+
         $this->context->smarty->assign([
             'pathApp' => (bool) $this->env->get('USE_LOCAL_VUE_APP') ? $this->module->getPathUri() . 'views/js/psxmarketingwithgoogle-ui.js' : $this->env->get('PSX_MKTG_WITH_GOOGLE_CDN_URL') . 'psxmarketingwithgoogle-ui.js',
+            'billingUrl' => $billingUrl,
             'psxMktgWithGoogleControllerLink' => $this->context->link->getAdminLink('AdminAjaxPsxMktgWithGoogle'),
             'psxMktgWithGoogleLiveMode' => (bool) $this->env->get('USE_LIVE_VUE_APP'),
         ]);
@@ -116,7 +119,7 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
 
             // Load the context for PrestaShop Billing
             $billingFacade = $this->module->getService(BillingPresenter::class);
-            $billingAdapter = new BillingAdapter($tokenPsAccounts);
+            $billingAdapter = new BillingAdapter($tokenPsAccounts, (bool) $this->env->get('USE_BILLING_SANDBOX'));
             $partnerLogo = $this->module->getLocalPath() . 'logo.png';
             $fetchSubscriptions = $billingAdapter->getCurrentSubscription($shopIdPsAccounts, $this->module->name);
             $currentSubscription = json_decode($fetchSubscriptions->getBody(), true);
