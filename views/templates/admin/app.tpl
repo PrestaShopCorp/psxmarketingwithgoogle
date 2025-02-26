@@ -19,11 +19,11 @@
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<link href="https://assets.prestashop3.com/ext/cloudsync-merchant-sync-consent/latest/cloudsync-cdc.js" rel=preload as=script>
+<link href="{$cloudSyncUrl|escape:'htmlall':'UTF-8'}" rel=preload as=script>
 <link href="https://unpkg.com/prestashop_accounts_vue_components@5" rel=preload as=script>
 
 <div id="psxMktgWithGoogleApp"></div>
-<script src="https://assets.prestashop3.com/ext/cloudsync-merchant-sync-consent/latest/cloudsync-cdc.js"></script>
+<script src="{$cloudSyncUrl|escape:'htmlall':'UTF-8'}"></script>
 <script src="https://unpkg.com/prestashop_accounts_vue_components@5"></script>
 <script src="{$billingUrl|escape:'htmlall':'UTF-8'}" rel=preload></script>
 

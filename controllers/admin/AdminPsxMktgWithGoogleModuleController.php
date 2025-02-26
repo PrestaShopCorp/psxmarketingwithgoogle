@@ -74,34 +74,64 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
 
         $this->module->getService(ErrorHandler::class);
         $this->env = $this->module->getService(Env::class);
-        $this->configurationAdapter = $this->module->getService(ConfigurationAdapter::class);
-        $this->countryRepository = $this->module->getService(CountryRepository::class);
-        $this->currencyRepository = $this->module->getService(CurrencyRepository::class);
-        $this->languageRepository = $this->module->getService(LanguageRepository::class);
+        $this->configurationAdapter = $this->module->getService(
+            ConfigurationAdapter::class
+        );
+        $this->countryRepository = $this->module->getService(
+            CountryRepository::class
+        );
+        $this->currencyRepository = $this->module->getService(
+            CurrencyRepository::class
+        );
+        $this->languageRepository = $this->module->getService(
+            LanguageRepository::class
+        );
         $this->moduleRepository = new ModuleRepository($this->module->name);
     }
 
     public function initContent()
     {
         // from google response
-        if (Tools::getValue('message') !== false || Tools::getValue('from') !== false) {
+        if (
+            Tools::getValue('message') !== false ||
+            Tools::getValue('from') !== false
+        ) {
             $this->ajax = true;
             if (version_compare(_PS_VERSION_, '9.0.0', '>=')) {
-                $this->content = $this->context->smarty->display($this->module->getLocalPath() . '/views/templates/admin/googlePopin.tpl');
+                $this->content = $this->context->smarty->display(
+                    $this->module->getLocalPath() .
+                        '/views/templates/admin/googlePopin.tpl'
+                );
             } else {
-                $this->content = $this->context->smarty->fetch('module:psxmarketingwithgoogle/views/templates/admin/googlePopin.tpl');
+                $this->content = $this->context->smarty->fetch(
+                    'module:psxmarketingwithgoogle/views/templates/admin/googlePopin.tpl'
+                );
             }
 
             return;
         }
 
-        $billingUrl = (bool) $this->env->get('USE_BILLING_SANDBOX') ? $this->env->get('PSX_MKTG_WITH_GOOGLE_BILLING_CDC_PREPROD_URL') : $this->env->get('PSX_MKTG_WITH_GOOGLE_BILLING_CDC_URL');
+        $billingUrl = (bool) $this->env->get('USE_BILLING_SANDBOX')
+            ? $this->env->get('PSX_MKTG_WITH_GOOGLE_BILLING_CDC_PREPROD_URL')
+            : $this->env->get('PSX_MKTG_WITH_GOOGLE_BILLING_CDC_URL');
+        $cloudsyncUrl = (bool) $this->env->get('USE_CLOUDSYNC_SANDBOX')
+            ? $this->env->get('PSX_MKTG_WITH_GOOGLE_CLOUDSYNC_CDC_PREPROD_URL')
+            : $this->env->get('PSX_MKTG_WITH_GOOGLE_CLOUDSYNC_CDC_URL');
 
         $this->context->smarty->assign([
-            'pathApp' => (bool) $this->env->get('USE_LOCAL_VUE_APP') ? $this->module->getPathUri() . 'views/js/psxmarketingwithgoogle-ui.js' : $this->env->get('PSX_MKTG_WITH_GOOGLE_CDN_URL') . 'psxmarketingwithgoogle-ui.js',
+            'pathApp' => (bool) $this->env->get('USE_LOCAL_VUE_APP')
+                ? $this->module->getPathUri() .
+                    'views/js/psxmarketingwithgoogle-ui.js'
+                : $this->env->get('PSX_MKTG_WITH_GOOGLE_CDN_URL') .
+                    'psxmarketingwithgoogle-ui.js',
             'billingUrl' => $billingUrl,
-            'psxMktgWithGoogleControllerLink' => $this->context->link->getAdminLink('AdminAjaxPsxMktgWithGoogle'),
-            'psxMktgWithGoogleLiveMode' => (bool) $this->env->get('USE_LIVE_VUE_APP'),
+            'cloudSyncUrl' => $cloudsyncUrl,
+            'psxMktgWithGoogleControllerLink' => $this->context->link->getAdminLink(
+                'AdminAjaxPsxMktgWithGoogle'
+            ),
+            'psxMktgWithGoogleLiveMode' => (bool) $this->env->get(
+                'USE_LIVE_VUE_APP'
+            ),
         ]);
 
         try {
@@ -109,7 +139,9 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
              * PrestaShop Account *
              **********************/
 
-            $psAccountsService = $this->module->getService(PsAccounts::class)->getPsAccountsService();
+            $psAccountsService = $this->module
+                ->getService(PsAccounts::class)
+                ->getPsAccountsService();
             $shopIdPsAccounts = $psAccountsService->getShopUuidV4();
             $tokenPsAccounts = $psAccountsService->getOrRefreshToken();
 
@@ -119,20 +151,33 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
 
             // Load the context for PrestaShop Billing
             $billingFacade = $this->module->getService(BillingPresenter::class);
-            $billingAdapter = new BillingAdapter($tokenPsAccounts, (bool) $this->env->get('USE_BILLING_SANDBOX'));
+            $billingAdapter = new BillingAdapter(
+                $tokenPsAccounts,
+                (bool) $this->env->get('USE_BILLING_SANDBOX')
+            );
             $partnerLogo = $this->module->getLocalPath() . 'logo.png';
-            $fetchSubscriptions = $billingAdapter->getCurrentSubscription($shopIdPsAccounts, $this->module->name);
-            $currentSubscription = json_decode($fetchSubscriptions->getBody(), true);
+            $fetchSubscriptions = $billingAdapter->getCurrentSubscription(
+                $shopIdPsAccounts,
+                $this->module->name
+            );
+            $currentSubscription = json_decode(
+                $fetchSubscriptions->getBody(),
+                true
+            );
             // PrestaShop Billing
-            Media::addJsDef($billingFacade->present([
-                'logo' => $partnerLogo,
-                'tosLink' => 'https://prestashop.com/prestashop-account-terms-conditions/',
-                'privacyLink' => 'https://prestashop.com/prestashop-account-privacy/',
-                // This field is deprecated but a valid email must be provided to ensure backward compatibility
-                'emailSupport' => 'no-reply@prestashop.com',
-            ]));
+            Media::addJsDef(
+                $billingFacade->present([
+                    'logo' => $partnerLogo,
+                    'tosLink' => 'https://prestashop.com/prestashop-account-terms-conditions/',
+                    'privacyLink' => 'https://prestashop.com/prestashop-account-privacy/',
+                    // This field is deprecated but a valid email must be provided to ensure backward compatibility
+                    'emailSupport' => 'no-reply@prestashop.com',
+                ])
+            );
             Media::addJsDef([
-                'psBillingSubscription' => $fetchSubscriptions->getStatusCode() === 200 ? $currentSubscription : null,
+                'psBillingSubscription' => $fetchSubscriptions->getStatusCode() === 200
+                        ? $currentSubscription
+                        : null,
             ]);
         } catch (Exception $e) {
             $shopIdPsAccounts = null;
@@ -147,12 +192,20 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
 
         if ($moduleManager->isInstalled('ps_eventbus')) {
             $eventbusModule = \Module::getInstanceByName('ps_eventbus');
-            if ($eventbusModule && version_compare($eventbusModule->version, '1.9.0', '>=')) {
+            if (
+                $eventbusModule &&
+                version_compare($eventbusModule->version, '1.9.0', '>=')
+            ) {
                 /* @phpstan-ignore-next-line */
-                $eventbusPresenterService = $eventbusModule->getService('PrestaShop\Module\PsEventbus\Service\PresenterService');
+                $eventbusPresenterService = $eventbusModule->getService(
+                    "PrestaShop\Module\PsEventbus\Service\PresenterService"
+                );
 
                 Media::addJsDef([
-                    'contextPsEventbus' => $eventbusPresenterService->expose($this->module, ['info', 'products', 'currencies', 'categories']),
+                    'contextPsEventbus' => $eventbusPresenterService->expose(
+                        $this->module,
+                        ['info', 'products', 'currencies', 'categories']
+                    ),
                 ]);
             }
         }
@@ -162,9 +215,10 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
          ************************************/
 
         Media::addJsDef([
-            'contextPsAccounts' => (object) $this->module->getService(PsAccounts::class)
-            ->getPsAccountsPresenter()
-            ->present($this->module->name),
+            'contextPsAccounts' => (object) $this->module
+                ->getService(PsAccounts::class)
+                ->getPsAccountsPresenter()
+                ->present($this->module->name),
             'i18nSettings' => [
                 'isoCode' => $this->context->language->iso_code,
                 'languageLocale' => $this->context->language->language_code,
@@ -191,11 +245,20 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
             'psVersion' => _PS_VERSION_,
             'phpVersion' => phpversion(),
             'psxMktgWithGoogleModuleVersion' => $this->module->version,
-            'psxMktgWithGoogleOnProductionEnvironment' => $this->env->get('PSX_MKTG_WITH_GOOGLE_API_URL') === Config::PSX_MKTG_WITH_GOOGLE_API_URL,
-            'psxMktgWithGoogleSegmentId' => $this->env->get('PSX_MKTG_WITH_GOOGLE_SEGMENT_API_KEY'),
-            'psxMktgWithGoogleDsnSentry' => $this->env->get('PSX_MKTG_WITH_GOOGLE_SENTRY_CREDENTIALS_VUE'),
-            'psxMktgWithGoogleApiUrl' => $this->env->get('PSX_MKTG_WITH_GOOGLE_API_URL'),
-            'psxMktgWithGoogleAdminUrl' => $this->context->link->getAdminLink('AdminPsxMktgWithGoogleModule'),
+            'psxMktgWithGoogleOnProductionEnvironment' => $this->env->get('PSX_MKTG_WITH_GOOGLE_API_URL') ===
+                Config::PSX_MKTG_WITH_GOOGLE_API_URL,
+            'psxMktgWithGoogleSegmentId' => $this->env->get(
+                'PSX_MKTG_WITH_GOOGLE_SEGMENT_API_KEY'
+            ),
+            'psxMktgWithGoogleDsnSentry' => $this->env->get(
+                'PSX_MKTG_WITH_GOOGLE_SENTRY_CREDENTIALS_VUE'
+            ),
+            'psxMktgWithGoogleApiUrl' => $this->env->get(
+                'PSX_MKTG_WITH_GOOGLE_API_URL'
+            ),
+            'psxMktgWithGoogleAdminUrl' => $this->context->link->getAdminLink(
+                'AdminPsxMktgWithGoogleModule'
+            ),
             'psxMktgWithGoogleAdminAjaxUrl' => $this->context->link->getAdminLink(
                 'AdminAjaxPsxMktgWithGoogle',
                 true,
@@ -204,15 +267,26 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
                     'ajax' => 1,
                 ]
             ),
-            'psxMktgWithGoogleMaintenanceSettingsUrl' => Tools::getShopDomainSsl(true) . $this->context->link->getAdminLink(
-                'AdminMaintenance'
+            'psxMktgWithGoogleMaintenanceSettingsUrl' => Tools::getShopDomainSsl(true) .
+                $this->context->link->getAdminLink('AdminMaintenance'),
+            'psxMktgWithGoogleCarriersUrl' => $this->context->link->getAdminLink(
+                'AdminCarriers'
             ),
-            'psxMktgWithGoogleCarriersUrl' => $this->context->link->getAdminLink('AdminCarriers'),
-            'psxMktgWithGoogleAttributesUrl' => $this->context->link->getAdminLink('AdminAttributesGroups'),
-            'psxMktgWithGoogleStoreSettingsUrl' => $this->context->link->getAdminLink('AdminStores'),
-            'psxMktgWithGoogleProductsUrl' => $this->context->link->getAdminLink('AdminProducts'),
-            'psxMktgWithGoogleCurrenciesUrl' => $this->context->link->getAdminLink('AdminCurrencies'),
-            'psxMktgWithGoogleLanguagesUrl' => $this->context->link->getAdminLink('AdminLanguages'),
+            'psxMktgWithGoogleAttributesUrl' => $this->context->link->getAdminLink(
+                'AdminAttributesGroups'
+            ),
+            'psxMktgWithGoogleStoreSettingsUrl' => $this->context->link->getAdminLink(
+                'AdminStores'
+            ),
+            'psxMktgWithGoogleProductsUrl' => $this->context->link->getAdminLink(
+                'AdminProducts'
+            ),
+            'psxMktgWithGoogleCurrenciesUrl' => $this->context->link->getAdminLink(
+                'AdminCurrencies'
+            ),
+            'psxMktgWithGoogleLanguagesUrl' => $this->context->link->getAdminLink(
+                'AdminLanguages'
+            ),
             'psxMktgWithGoogleProductDetailUrl' => $this->context->link->getAdminLink(
                 'AdminProducts',
                 true,
@@ -221,16 +295,24 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
             'psxMktgWithGoogleEnableLink' => $this->moduleRepository->getEnableLink(),
             'psxMktgWithGoogleModuleIsEnabled' => $this->moduleRepository->moduleIsEnabled(),
             'isCountryMemberOfEuropeanUnion' => $this->countryRepository->isCompatibleForCSS(),
-            'psxMktgWithGoogleShopUrl' => $this->context->link->getBaseLink($this->context->shop->id),
+            'psxMktgWithGoogleShopUrl' => $this->context->link->getBaseLink(
+                $this->context->shop->id
+            ),
             'psxMktgWithGoogleActiveCountries' => $this->countryRepository->getActiveCountries(),
             'psxMktgWithGoogleActiveCurrencies' => $this->currencyRepository->getActiveCurrencies(),
             'psxMktgWithGoogleLanguages' => $this->languageRepository->getLanguages(),
-            'psxMtgWithGoogleDefaultShopCountry' => $this->countryRepository->getShopDefaultCountry()['iso_code'],
+            'psxMtgWithGoogleDefaultShopCountry' => $this->countryRepository->getShopDefaultCountry()[
+                'iso_code'
+            ],
             'psxMktgWithGoogleShopCurrency' => $this->currencyRepository->getShopCurrency(),
-            'psxMktgWithGoogleRemarketingTagsStatus' => (bool) $this->configurationAdapter->get(Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS),
+            'psxMktgWithGoogleRemarketingTagsStatus' => (bool) $this->configurationAdapter->get(
+                Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS
+            ),
         ]);
 
-        $this->content = $this->context->smarty->fetch($this->module->getLocalPath() . '/views/templates/admin/app.tpl');
+        $this->content = $this->context->smarty->fetch(
+            $this->module->getLocalPath() . '/views/templates/admin/app.tpl'
+        );
 
         parent::initContent();
     }
