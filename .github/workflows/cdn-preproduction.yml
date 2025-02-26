@@ -39,7 +39,6 @@ jobs:
         with:
           workflow: ${{ env.WORKFLOW }}
           repo: PrestaShopCorp/services-deployment
-          token: ${{ secrets.ACCESS_TOKEN_GITHUB }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           ref: 'refs/heads/main'
           inputs: '{ "version": "${{ steps.get_tag.outputs.TAG }}", "nodeVersion": "${{ env.NODE_VERSION }}", "pnpmVersion": "${{ env.PNPM_VERSION }}", "vuejsPath": "${{ env.VUE_PATH }}", "vuejsBuildPath": "${{ env.BUILD_PATH }}", "isRelease": "false", "environment": "preproduction", "assetsUrl": "${{ steps.get_assets_url.outputs.URL }}" }'
-
