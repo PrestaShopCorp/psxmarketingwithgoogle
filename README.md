@@ -130,6 +130,7 @@ keys that can be found in `classes/config/Config.php`.
 * To use the UI built in the `views/` folder, set on your .env `USE_LOCAL_VUE_APP` at 1.
 * To use the developer environment with hot-reload, set `USE_LIVE_VUE_APP=1`. The template will call the dev server at http://localhost:5173 by default. Customising this value is possible by modifying `app.tpl` and `vite.config.ts`.
 * To modify the base URL of the API for a local one: `PSX_MKTG_WITH_GOOGLE_API_URL=https://localhost:8080`
+* To use the sandbox for the billing API set on your .env `USE_BILLING_SANDBOX` at 1.
 
 Other values are managed by the Vue.js application and are provided in the [`_dev/apps/ui/.env` file](_dev/apps/ui/.env), different from the optional `.env` in the root folder.
 
