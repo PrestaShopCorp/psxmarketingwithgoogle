@@ -111,12 +111,8 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
             return;
         }
 
-        $billingUrl = (bool) $this->env->get('USE_BILLING_SANDBOX')
-            ? $this->env->get('PSX_MKTG_WITH_GOOGLE_BILLING_CDC_PREPROD_URL')
-            : $this->env->get('PSX_MKTG_WITH_GOOGLE_BILLING_CDC_URL');
-        $cloudsyncUrl = (bool) $this->env->get('USE_CLOUDSYNC_SANDBOX')
-            ? $this->env->get('PSX_MKTG_WITH_GOOGLE_CLOUDSYNC_CDC_PREPROD_URL')
-            : $this->env->get('PSX_MKTG_WITH_GOOGLE_CLOUDSYNC_CDC_URL');
+        $billingUrl = $this->env->get('PSX_MKTG_WITH_GOOGLE_BILLING_CDC_URL');
+        $cloudsyncUrl = $this->env->get('PSX_MKTG_WITH_GOOGLE_CLOUDSYNC_CDC_URL');
 
         $this->context->smarty->assign([
             'pathApp' => (bool) $this->env->get('USE_LOCAL_VUE_APP')

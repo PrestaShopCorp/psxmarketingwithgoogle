@@ -25,9 +25,7 @@ class Config
     public const PSX_MKTG_WITH_GOOGLE_API_URL = 'https://googleshopping-api.psessentials.net';
     public const PSX_MKTG_WITH_GOOGLE_CDN_URL = 'https://storage.googleapis.com/psxmarketing-cdn/v1.x.x/js/';
     public const PSX_MKTG_WITH_GOOGLE_BILLING_CDC_URL = 'https://unpkg.com/@prestashopcorp/billing-cdc/dist/bundle.js';
-    public const PSX_MKTG_WITH_GOOGLE_BILLING_CDC_PREPROD_URL = 'https://unpkg.com/@prestashopcorp/billing-cdc@preprod/dist/bundle.js';
     public const PSX_MKTG_WITH_GOOGLE_CLOUDSYNC_CDC_URL = 'https://assets.prestashop3.com/ext/cloudsync-merchant-sync-consent/latest/cloudsync-cdc.js';
-    public const PSX_MKTG_WITH_GOOGLE_CLOUDSYNC_CDC_PREPROD_URL = 'https://integration-assets.prestashop3.com/ext/cloudsync-merchant-sync-consent/latest/cloudsync-cdc.js';
 
     public const HOOK_LIST = [
         'displayBackOfficeHeader',
