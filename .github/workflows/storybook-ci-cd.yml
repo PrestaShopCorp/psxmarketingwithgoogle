@@ -13,8 +13,8 @@ env:
   PATH: _dev/
 
 jobs:
-  alpha:
-    name: Alpha - Storybook
+  integration:
+    name: Integration - Storybook
     runs-on: ubuntu-latest
     if: contains(github.event.pull_request.labels.*.name, 'Storybook Test')
 
@@ -30,10 +30,10 @@ jobs:
           repo: PrestaShopCorp/services-deployment
           token: ${{ secrets.ACCESS_TOKEN_GITHUB }}
           ref: 'refs/heads/main'
-          inputs: '{ "branch": "${{ steps.branch.outputs.current_branch }}", "nodeVersion": "${{ env.NODE_VERSION }}", "path": "${{ env.PATH }}", "issue": "${{ github.event.number }}" }'
+          inputs: '{ "branch": "${{ steps.branch.outputs.current_branch }}", "nodeVersion": "${{ env.NODE_VERSION }}", "path": "${{ env.PATH }}", "issue": "${{ github.event.number }}", "sha": "${{ github.sha }}", "environment": "integration" }'
 
-  stable:
-    name: Stable - Storybook
+  production:
+    name: Production - Storybook
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
 
@@ -49,4 +49,4 @@ jobs:
           repo: PrestaShopCorp/services-deployment
           token: ${{ secrets.ACCESS_TOKEN_GITHUB }}
           ref: 'refs/heads/main'
-          inputs: '{ "branch": "${{ steps.branch.outputs.current_branch }}", "nodeVersion": "${{ env.NODE_VERSION }}", "path": "${{ env.PATH }}", "environment": "stable" }'
+          inputs: '{ "branch": "${{ steps.branch.outputs.current_branch }}", "nodeVersion": "${{ env.NODE_VERSION }}", "path": "${{ env.PATH }}","sha": "${{ github.sha }}", "environment": "production" }'
