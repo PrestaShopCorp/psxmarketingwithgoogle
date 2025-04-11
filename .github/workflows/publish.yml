@@ -55,7 +55,6 @@ jobs:
         if: "github.event.release.prerelease"
         run: |
           echo 'PSX_MKTG_WITH_GOOGLE_CDN_URL=https://storage.googleapis.com/psxmarketing-cdn/${{ steps.get_tag.outputs.MAJOR }}.${{ steps.get_tag.outputs.MINOR }}.${{ steps.get_tag.outputs.PATCH }}/js/' >> .env
-          echo 'USE_BILLING_SANDBOX=1' >> .env
 
       - name: Clean-up project
         uses: PrestaShopCorp/github-action-clean-before-deploy@v1.0
@@ -132,6 +131,9 @@ jobs:
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.G_CREDENTIAL_PREPRODUCTION }}
 
+      - name: Set the different env variable for preproduction
+        run: echo 'USE_BILLING_SANDBOX=1' >> .env
+
       - name: Prepare the preproduction zip
         run: |
           zip -r ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}_preproduction.zip ${{ github.event.repository.name }} -x '*.git*'
@@ -172,6 +174,9 @@ jobs:
           gcloud beta secrets versions access latest --secret="google-shopping-module" >> ${{ github.event.repository.name }}/.env
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
+
+      - name: Set the different env variable for integration
+        run: echo 'USE_BILLING_SANDBOX=1' >> .env
 
       - name: Prepare the integration zip
         run: |
