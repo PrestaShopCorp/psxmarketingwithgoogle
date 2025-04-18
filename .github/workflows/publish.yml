@@ -114,17 +114,8 @@ jobs:
           name: ${{ github.event.repository.name }}
           path: "."
 
-      - name: Get tag
-        id: get_tag
+      - name: Write .env file with specific variables
         run: |
-          echo TAG=$(echo $GITHUB_REF | cut -d / -f 3) >> $GITHUB_OUTPUT
-          echo MAJOR=$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 1) >> $GITHUB_OUTPUT
-          echo MINOR=$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 2) >> $GITHUB_OUTPUT
-          echo PATCH=$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 3) >> $GITHUB_OUTPUT
-
-      - name: Write .env file with specific CDN URL
-        run: |
-          echo 'PSX_MKTG_WITH_GOOGLE_CDN_URL=https://storage.googleapis.com/psxmarketing-cdn/${{ steps.get_tag.outputs.MAJOR }}.${{ steps.get_tag.outputs.MINOR }}.${{ steps.get_tag.outputs.PATCH }}/js/' >> .env
           echo 'PSX_MKTG_WITH_GOOGLE_API_URL=https://googleshopping-api.psessentials-integration.net' >> .env
           echo 'USE_BILLING_SANDBOX=1' >> .env
 
@@ -152,17 +143,8 @@ jobs:
           name: ${{ github.event.repository.name }}
           path: "."
 
-      - name: Get tag
-        id: get_tag
+      - name: Write .env file with specific variables
         run: |
-          echo TAG=$(echo $GITHUB_REF | cut -d / -f 3) >> $GITHUB_OUTPUT
-          echo MAJOR=$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 1) >> $GITHUB_OUTPUT
-          echo MINOR=$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 2) >> $GITHUB_OUTPUT
-          echo PATCH=$(echo $GITHUB_REF | cut -d / -f 3 | cut -d '.' -f 3) >> $GITHUB_OUTPUT
-
-      - name: Write .env file with specific CDN URL
-        run: |
-          echo 'PSX_MKTG_WITH_GOOGLE_CDN_URL=https://storage.googleapis.com/psxmarketing-cdn/${{ steps.get_tag.outputs.MAJOR }}.${{ steps.get_tag.outputs.MINOR }}.${{ steps.get_tag.outputs.PATCH }}/js/' >> .env
           echo 'PSX_MKTG_WITH_GOOGLE_API_URL=https://googleshopping-api.preproduction-essentials.prestashop.net' >> .env
           echo 'USE_BILLING_SANDBOX=1' >> .env
 
