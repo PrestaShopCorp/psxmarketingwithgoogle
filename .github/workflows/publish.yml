@@ -114,22 +114,10 @@ jobs:
           name: ${{ github.event.repository.name }}
           path: "."
 
-      - name: auth
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json: ${{ secrets.G_CREDENTIAL_PREPRODUCTION }}
-
-      - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@v2
-        with:
-          project_id: ${{ secrets.G_PROJECT_PREPRODUCTION }}
-
-      - name: Copy env files
+      - name: Write .env file with specific variables
         run: |
-          gcloud components install beta
-          gcloud beta secrets versions access latest --secret="google-shopping-module" >> ${{ github.event.repository.name }}/.env
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.G_CREDENTIAL_PREPRODUCTION }}
+          echo 'PSX_MKTG_WITH_GOOGLE_API_URL=https://googleshopping-api.psessentials-integration.net' >> .env
+          echo 'USE_BILLING_SANDBOX=1' >> .env
 
       - name: Prepare the preproduction zip
         run: |
@@ -155,22 +143,11 @@ jobs:
           name: ${{ github.event.repository.name }}
           path: "."
 
-      - name: auth
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
-
-      - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@v2
-        with:
-          project_id: ${{ secrets.G_PROJECT_INTEGRATION }}
-
-      - name: Copy env files
+      - name: Write .env file with specific variables
         run: |
-          gcloud components install beta
-          gcloud beta secrets versions access latest --secret="google-shopping-module" >> ${{ github.event.repository.name }}/.env
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.G_CREDENTIAL_INTEGRATION }}
+          echo 'PSX_MKTG_WITH_GOOGLE_API_URL=https://googleshopping-api.preproduction-essentials.prestashop.net' >> .env
+          echo 'USE_BILLING_SANDBOX=1' >> .env
+
 
       - name: Prepare the integration zip
         run: |
