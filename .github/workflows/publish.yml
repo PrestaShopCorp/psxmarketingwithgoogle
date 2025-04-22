@@ -112,6 +112,7 @@ jobs:
 
       - name: Write .env file with specific variables
         run: |
+          ls -la
           echo 'PSX_MKTG_WITH_GOOGLE_API_URL=https://googleshopping-api.psessentials-integration.net' >> psxmarketingwithgoogle/.env
           echo 'USE_BILLING_SANDBOX=1' >> psxmarketingwithgoogle/.env
           cat psxmarketingwithgoogle/.env
