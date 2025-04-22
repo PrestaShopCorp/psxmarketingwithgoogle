@@ -116,7 +116,7 @@ jobs:
 
       - name: Write .env file with specific variables
         run: |
-          echo 'PSX_MKTG_WITH_GOOGLE_API_URL=https://googleshopping-api.psessentials-integration.net' >> ${{ github.event.repository.name }}/.env
+          echo 'PSX_MKTG_WITH_GOOGLE_API_URL=https://googleshopping-api.preproduction-essentials.prestashop.net' >> ${{ github.event.repository.name }}/.env
           echo 'USE_BILLING_SANDBOX=1' >> ${{ github.event.repository.name }}/.env
 
       - name: Prepare the preproduction zip
@@ -145,7 +145,7 @@ jobs:
 
       - name: Write .env file with specific variables
         run: |
-          echo 'PSX_MKTG_WITH_GOOGLE_API_URL=https://googleshopping-api.preproduction-essentials.prestashop.net' >> ${{ github.event.repository.name }}/.env
+          echo 'PSX_MKTG_WITH_GOOGLE_API_URL=https://googleshopping-api.psessentials-integration.net' >> ${{ github.event.repository.name }}/.env
           echo 'USE_BILLING_SANDBOX=1' >> ${{ github.event.repository.name }}/.env
 
 
