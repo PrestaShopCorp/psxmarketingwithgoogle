@@ -1,9 +1,8 @@
 name: Publish
 
-# on:
-#   release:
-#     types: [published]
-on: [push, pull_request]
+on:
+  release:
+    types: [published]
 
 env:
   PNPM_VERSION: 8
@@ -51,6 +50,11 @@ jobs:
 
       - name: Install composer dependencies
         run: composer install --no-dev -o
+
+      - name: Write .env file with specific CDN URL
+        if: "github.event.release.prerelease"
+        run: |
+          echo 'PSX_MKTG_WITH_GOOGLE_CDN_URL=https://storage.googleapis.com/psxmarketing-cdn/${{ steps.get_tag.outputs.MAJOR }}.${{ steps.get_tag.outputs.MINOR }}.${{ steps.get_tag.outputs.PATCH }}/js/' >> .env
 
       - name: Clean-up project
         uses: PrestaShopCorp/github-action-clean-before-deploy@v1.0
@@ -112,10 +116,8 @@ jobs:
 
       - name: Write .env file with specific variables
         run: |
-          ls -la
-          echo 'PSX_MKTG_WITH_GOOGLE_API_URL=https://googleshopping-api.psessentials-integration.net' >> psxmarketingwithgoogle/.env
-          echo 'USE_BILLING_SANDBOX=1' >> psxmarketingwithgoogle/.env
-          cat psxmarketingwithgoogle/.env
+          echo 'PSX_MKTG_WITH_GOOGLE_API_URL=https://googleshopping-api.psessentials-integration.net' >> ${{ github.event.repository.name }}/.env
+          echo 'USE_BILLING_SANDBOX=1' >> ${{ github.event.repository.name }}/.env
 
       - name: Prepare the preproduction zip
         run: |
@@ -143,8 +145,8 @@ jobs:
 
       - name: Write .env file with specific variables
         run: |
-          echo 'PSX_MKTG_WITH_GOOGLE_API_URL=https://googleshopping-api.preproduction-essentials.prestashop.net' >> psxmarketingwithgoogle/.env
-          echo 'USE_BILLING_SANDBOX=1' >> psxmarketingwithgoogle/.env
+          echo 'PSX_MKTG_WITH_GOOGLE_API_URL=https://googleshopping-api.preproduction-essentials.prestashop.net' >> ${{ github.event.repository.name }}/.env
+          echo 'USE_BILLING_SANDBOX=1' >> ${{ github.event.repository.name }}/.env
 
 
       - name: Prepare the integration zip
