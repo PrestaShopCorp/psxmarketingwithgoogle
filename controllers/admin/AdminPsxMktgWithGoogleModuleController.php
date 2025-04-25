@@ -111,7 +111,7 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
             return;
         }
 
-        $billingUrl = $this->env->get('PSX_MKTG_WITH_GOOGLE_BILLING_CDC_URL');
+        $billingUrl = (bool) $this->env->get('USE_BILLING_PREPROD') ? $this->env->get('PSX_MKTG_WITH_GOOGLE_BILLING_PREPROD_CDC_URL') : $this->env->get('PSX_MKTG_WITH_GOOGLE_BILLING_CDC_URL');
         $cloudsyncUrl = $this->env->get('PSX_MKTG_WITH_GOOGLE_CLOUDSYNC_CDC_URL');
 
         $this->context->smarty->assign([
@@ -149,7 +149,8 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
             $billingFacade = $this->module->getService(BillingPresenter::class);
             $billingAdapter = new BillingAdapter(
                 $tokenPsAccounts,
-                (bool) $this->env->get('USE_BILLING_SANDBOX')
+                (bool) $this->env->get('USE_BILLING_SANDBOX'),
+                (bool) $this->env->get('USE_BILLING_PREPROD')
             );
             $partnerLogo = $this->module->getLocalPath() . 'logo.png';
             $fetchSubscriptions = $billingAdapter->getCurrentSubscription(
