@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6844d0c729b7c71a07d5daab1e7a8127",
+    "content-hash": "25a19d54652d5caeb32fe5035f434e77",
     "packages": [
         {
             "name": "brick/phonenumber",
@@ -659,53 +659,6 @@
                 "source": "https://github.com/PrestaShopCorp/module-lib-cache-directory-provider/tree/master"
             },
             "time": "2020-09-08T14:13:23+00:00"
-        },
-        {
-            "name": "prestashop/module-lib-faq",
-            "version": "v2.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/PrestaShopCorp/module-lib-faq.git",
-                "reference": "23be3438f0764c9ceb712ce07bd309124e2a355f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/PrestaShopCorp/module-lib-faq/zipball/23be3438f0764c9ceb712ce07bd309124e2a355f",
-                "reference": "23be3438f0764c9ceb712ce07bd309124e2a355f",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.2 || ^8.0",
-                "prestashop/module-lib-guzzle-adapter": "^0"
-            },
-            "require-dev": {
-                "guzzlehttp/guzzle": "^7.4",
-                "php-http/mock-client": "^1.5",
-                "phpunit/phpunit": "~5.7",
-                "prestashop/php-dev-tools": "^4.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "PrestaShop\\ModuleLibFaq\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "AFL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "PrestaShop SA",
-                    "email": "contact@prestashop.com"
-                }
-            ],
-            "description": "Library allowing modules to load FAQ from PrestaShop servers",
-            "support": {
-                "issues": "https://github.com/PrestaShopCorp/module-lib-faq/issues",
-                "source": "https://github.com/PrestaShopCorp/module-lib-faq/tree/v2.2"
-            },
-            "time": "2022-06-20T15:21:37+00:00"
         },
         {
             "name": "prestashop/module-lib-guzzle-adapter",
@@ -5102,5 +5055,5 @@
     "platform-overrides": {
         "php": "7.2.5"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
