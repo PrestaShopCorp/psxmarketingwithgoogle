@@ -233,7 +233,7 @@ class PsxMarketingWithGoogle extends Module
             }
         }
 
-        if (version_compare(PS_VERSION, '9.0.0', '<')) {
+        if (version_compare(_PS_VERSION_, '9.0.0', '<')) {
             $this->context->controller->addCSS($this->getPathUri() . 'views/css/admin/menu.css');
         }
     }
