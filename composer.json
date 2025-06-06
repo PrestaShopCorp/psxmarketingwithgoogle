@@ -15,10 +15,9 @@
         "php": ">=7.2",
         "vlucas/phpdotenv": "^3.4",
         "segmentio/analytics-php": "^1.5",
-        "prestashop/module-lib-faq": "^2.0",
         "prestashop/module-lib-service-container": "^2.0",
         "prestashop/prestashop-accounts-installer": "dev-main",
-        "prestashopcorp/module-lib-billing": "^3.3",
+        "prestashopcorp/module-lib-billing": "^4.0",
         "symfony/polyfill-php80": "^1.23.1",
         "sentry/sentry": "^1.11",
         "brick/phonenumber": "^0.4.1"
