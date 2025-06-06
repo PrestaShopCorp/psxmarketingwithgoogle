@@ -233,7 +233,9 @@ class PsxMarketingWithGoogle extends Module
             }
         }
 
-        $this->context->controller->addCSS($this->getPathUri() . 'views/css/admin/menu.css');
+        if (version_compare(_PS_VERSION_, '9.0.0', '<')) {
+            $this->context->controller->addCSS($this->getPathUri() . 'views/css/admin/menu.css');
+        }
     }
 
     public function hookDisplayHeader()
