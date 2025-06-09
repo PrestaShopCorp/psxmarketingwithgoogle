@@ -45,7 +45,7 @@ export default {
     const {domain} = rootGetters['accounts/GET_PS_ACCOUNTS_CONTEXT'].currentShop;
     const languageCode = rootGetters[`app/${GettersTypes.GET_CURRENT_LANGUAGE}`];
 
-    return `${prestashopUrls.contactForm[languageCode] ?? prestashopUrls.contactForm.en}?utm_source=back-office&utm_medium=psx&psx=psxmarketingwithgoogle&shop_domain=${domain}`;
+    return `${prestashopUrls.contactForm[languageCode] ?? prestashopUrls.contactForm.en}?form=support&subject=psgoogle&url=${domain}`;
   },
   [GettersTypes.GET_DEBUG_DATA](state: LocalState): DebugData {
     return state.debugData;
