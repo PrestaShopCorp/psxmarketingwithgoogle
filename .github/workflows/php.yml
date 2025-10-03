@@ -39,7 +39,7 @@ jobs:
       - run: composer install
 
       - name: Run PHP-CS-Fixer
-        uses: prestashopcorp/github-action-php-cs-fixer@master
+        run: ./vendor/bin/php-cs-fixer
 
   phpstan:
     name: PHPStan
