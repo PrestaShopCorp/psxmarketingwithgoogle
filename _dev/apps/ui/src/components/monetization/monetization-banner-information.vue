@@ -14,7 +14,7 @@
         :key="index"
         class="d-flex align-items-center mt-1"
       >
-        <i class="material-icons material-icons-rounded ps_gs-fz-24 mr-1">check_circle</i>
+        <i class="material-icons ps_gs-fz-24 mr-1">check_circle</i>
         <span class="font-weight-600">{{ item }}</span>
       </div>
     </div>
