@@ -308,6 +308,7 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
         ]);
 
         if ($moduleManager->isInstalled('ps_accounts')) {
+            /** @var PsAccounts $accountsModule */
             $accountsModule = \Module::getInstanceByName('ps_accounts');
             if (version_compare($accountsModule->version, '7', '>=')) {
                 $accountsCdn = $accountsModule->getParameter('ps_accounts.accounts_cdn_url');
@@ -315,7 +316,7 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
         }
 
         $this->context->smarty->assign([
-            'ps_account_cdn_url' => $accountsCdn ?? 'https://unpkg.com/prestashop_accounts_vue_components@5'
+            'ps_account_cdn_url' => $accountsCdn ?? 'https://unpkg.com/prestashop_accounts_vue_components@5',
         ]);
 
         $this->content = $this->context->smarty->fetch(
