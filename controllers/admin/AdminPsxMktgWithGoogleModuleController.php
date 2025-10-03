@@ -309,7 +309,7 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
 
         if ($moduleManager->isInstalled('ps_accounts')) {
             $accountsModule = \Module::getInstanceByName('ps_accounts');
-            if (version_compare($accountsModule->version, '7', '>=')) {
+            if ($accountsModule && version_compare($accountsModule->version, '7', '>=')) {
                 $accountsCdn = $accountsModule->getParameter('ps_accounts.accounts_cdn_url');
             }
         }
