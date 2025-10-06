@@ -24,6 +24,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup PHP Action
+        uses: shivammathur/setup-php@2.35.5
+        with:
+          php-version: '8.1'
+
       - name: Cache vendor folder
         uses: actions/cache@v3
         with:
@@ -39,7 +44,7 @@ jobs:
       - run: composer install
 
       - name: Run PHP-CS-Fixer
-        uses: prestashopcorp/github-action-php-cs-fixer@master
+        run: ./vendor/bin/php-cs-fixer
 
   phpstan:
     name: PHPStan

@@ -307,6 +307,18 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
             ),
         ]);
 
+        if ($moduleManager->isInstalled('ps_accounts')) {
+            $accountsModule = \Module::getInstanceByName('ps_accounts');
+            if ($accountsModule && version_compare($accountsModule->version, '7', '>=')) {
+                /* @phpstan-ignore-next-line */
+                $accountsCdn = $accountsModule->getParameter('ps_accounts.accounts_cdn_url');
+            }
+        }
+
+        $this->context->smarty->assign([
+            'ps_account_cdn_url' => $accountsCdn ?? 'https://unpkg.com/prestashop_accounts_vue_components@5',
+        ]);
+
         $this->content = $this->context->smarty->fetch(
             $this->module->getLocalPath() . '/views/templates/admin/app.tpl'
         );
