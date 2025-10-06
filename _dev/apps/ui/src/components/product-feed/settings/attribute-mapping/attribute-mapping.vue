@@ -99,7 +99,7 @@
                   :title="tooltipFormat(field.name)"
                 >
                   <span
-                    class="material-icons material-icons-round
+                    class="material-icons material-icons
                     mb-0 ps_gs-fz-16 w-16 text-secondary"
                   >
                     help_outline

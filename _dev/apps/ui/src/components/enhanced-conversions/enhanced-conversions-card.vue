@@ -8,7 +8,7 @@
         class="d-md-flex flex-wrap align-items-center justify-content-between mb-3"
       >
         <div class="d-flex align-items-center">
-          <span class="material-icons-round ps_gs-fz-32 mr-2"> touch_app </span>
+          <span class="material-icons ps_gs-fz-32 mr-2"> touch_app </span>
           <b-card-text
             class="flex-grow-1 ps_gs-onboardingcard__title text-left mb-0"
           >
