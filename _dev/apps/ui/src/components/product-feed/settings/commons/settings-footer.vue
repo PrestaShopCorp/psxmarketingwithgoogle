@@ -4,7 +4,7 @@
     text-right"
   >
     <span
-      class="material-icons material-icons d-inline-block
+      class="material-icons material-icons-round d-inline-block
         align-middle mr-1 ps_gs-fz-14 text-secondary"
     >
       help_outline
