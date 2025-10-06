@@ -2,12 +2,12 @@
   <b-card no-body>
     <b-card-header class="d-flex mb-2">
       <span class="step-is-done rounded-circle bg-success d-flex align-items-center mr-2">
-        <i class="material-icons-round text-light ps_gs-fz-16 ml-auto mr-auto">check</i>
+        <i class="material-icons text-light ps_gs-fz-16 ml-auto mr-auto">check</i>
       </span>
       {{ $t('billingFacade.title') }}
     </b-card-header>
     <b-card-body class="d-flex align-items-center mb-3">
-      <i class="material-icons-round ps_gs-fz-48 mr-3">credit_card</i>
+      <i class="material-icons ps_gs-fz-48 mr-3">credit_card</i>
       {{ billingStatusText }}
       <div class="d-md-flex ml-auto text-center">
         <b-button
