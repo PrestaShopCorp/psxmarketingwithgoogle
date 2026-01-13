@@ -42,12 +42,9 @@
                     />
                   </template>
                   <div
-                    v-if="productCountStatus === ProductFeedCountStatus.SUCCESS
-                      || moduleNeedUpgradeForProductFilter"
+                    v-if="productCountStatus === ProductFeedCountStatus.SUCCESS"
                   >
-                    {{ moduleNeedUpgradeForProductFilter
-                      ? nextSyncTotalProducts
-                      : productCountToDisplay }}
+                    {{ productCountToDisplay }}
                   </div>
                   <b-alert
                     v-if="productCountStatus === ProductFeedCountStatus.ERROR"
@@ -281,7 +278,6 @@ import productFeedSummaryCard from '@/components/product-feed/summary/product-fe
 import ProductFeedMixin from '@/components/mixins/Product-Feed-Mixin';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import ActionsTypes from '@/store/modules/product-feed/actions-types';
-import AppGettersTypes from '@/store/modules/app/getters-types';
 import GetterTypes from '@/store/modules/product-feed/getters-types';
 import ProductFeedCountStatus from '@/enums/product-feed/product-feed-count-status';
 import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
@@ -309,7 +305,6 @@ export default defineComponent({
       understandTerms: false,
       ProductFeedCountStatus,
       loadingData: true,
-      moduleNeedUpgradeForProductFilter: false,
     };
   },
   computed: {
@@ -475,8 +470,6 @@ export default defineComponent({
   async mounted() {
     this.loadingData = true;
 
-    this.moduleNeedUpgradeForProductFilter = await this.$store.getters[`app/${AppGettersTypes.GET_MODULE_NEED_UPGRADE}`]('psxmarketingwithgoogle', undefined, '1.73.0');
-
     await this.requestShopAttribute().then(() => {
       this.requestAttributeMapping();
     });
@@ -492,11 +485,7 @@ export default defineComponent({
       });
     }
 
-    if (!this.moduleNeedUpgradeForProductFilter) {
-      await this.requestProductCount();
-    } else {
-      await this.requestTotalProductCount();
-    }
+    await this.requestProductCount();
 
     this.loadingData = false;
   },
