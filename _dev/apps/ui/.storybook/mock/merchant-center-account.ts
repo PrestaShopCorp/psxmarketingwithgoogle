@@ -68,23 +68,6 @@ export const merchantCenterNewGmcNotListed: MerchantCenterAccountContext = {
   name: null,
 }
 
-export const merchantCenterPhoneVerificationNeeded: MerchantCenterAccountContext = {
-  ...merchantCenterAccountConnected,
-  isClaimed: true,
-  isVerified: true,
-  id: '246797534',
-  name: 'Maison Royer',
-  websiteUrl: "http://perdu.com",
-  adultContent: false,
-  claimError: '',
-  users: [
-    {
-        "emailAddress": "someonesadress@prestashop.com",
-        "admin": true
-    }
-  ],
-}
-
 export const merchantCenterAccountSuspended: MerchantCenterAccountContext = {
   ...merchantCenterAccountConnected,
   accountIssues: [

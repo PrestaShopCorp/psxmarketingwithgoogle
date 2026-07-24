@@ -316,14 +316,3 @@ creationInProgressLong.args = {
   ),
 };
 
-export const phoneVerificationNeeded:any = Template.bind({});
-phoneVerificationNeeded.args = {
-  isEnabled: true,
-  loading: false,
-  initialMcaStatus: Object.assign({},
-    merchantCenterAccountConnected,
-    {
-      gmcStatus: WebsiteClaimErrorReason.PhoneVerificationNeeded,
-    },
-  ),
-};

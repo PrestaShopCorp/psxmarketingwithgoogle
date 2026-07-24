@@ -425,6 +425,22 @@
           </p>
         </b-alert>
         <b-alert
+          v-else-if="error === WebsiteClaimErrorReason.PendingUserInvitation"
+          show
+          variant="info"
+          class="mb-0 mt-3"
+        >
+          <p class="mb-0">
+            <strong>{{ $t('mcaCard.pendingUserInvitation') }}</strong><br>
+            <VueShowdown
+              tag="p"
+              class="ps_gs-fz-12"
+              :markdown="$t('mcaCard.pendingUserInvitationDescription')"
+              :extensions="['no-p-tag']"
+            />
+          </p>
+        </b-alert>
+        <b-alert
           v-if="error === WebsiteClaimErrorReason.UnlinkFailed"
           show
           variant="danger"
@@ -454,39 +470,12 @@
             </b-button>
           </div>
         </b-alert>
-        <b-alert
-          v-if="error === WebsiteClaimErrorReason.PhoneVerificationNeeded"
-          show
-          variant="warning"
-          class="mb-0 mt-2"
-        >
-          <p class="mb-0">
-            <strong>{{ $t('mcaCard.phoneVerificationNeeded') }}</strong><br>
-            <span class="ps_gs-fz-12">
-              {{ $t('mcaCard.phoneVerificationNeededDescription') }}
-            </span>
-          </p>
-          <div class="d-md-flex text-center align-items-center mt-2">
-            <b-button
-              class="btn mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1 btn-outline-secondary btn-sm"
-              size="sm"
-              variant="outline-secondary"
-              @click="verifyPhoneNumber"
-            >
-              {{ $t('cta.verifyPhoneNumber') }}
-            </b-button>
-          </div>
-        </b-alert>
         <MerchantCenterAccountPopinOverwriteClaim
           ref="mcaPopinOverrideClaim"
         />
         <MerchantCenterAccountPopinWebsiteRequirements
           :new-mca="mcaIsNotConnected"
           ref="MerchantCenterAccountPopinNewMca"
-        />
-        <PhoneVerificationPopin
-          ref="PhoneVerificationPopin"
-          @phoneNumberVerified="phoneNumberVerified"
         />
         <AlertModuleDisabled />
       </b-card>
@@ -508,7 +497,6 @@ import {getMerchantCenterWebsiteUrls} from '@/components/merchant-center-account
 import MerchantCenterAccountAlertSuspended from '@/components/merchant-center-account/merchant-center-account-alert-suspended.vue';
 import MerchantCenterAccountPopinOverwriteClaim from '@/components/merchant-center-account/merchant-center-account-popin-overwrite-claim.vue';
 import MerchantCenterAccountPopinWebsiteRequirements from '@/components/merchant-center-account/merchant-center-account-popin-website-requirements.vue';
-import PhoneVerificationPopin from '@/components/merchant-center-account/phone-verification/phone-verification-popin.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import AlertModuleDisabled from '@/components/commons/alert-module-disabled.vue';
 
@@ -519,7 +507,6 @@ export default defineComponent({
     MerchantCenterAccountPopinOverwriteClaim,
     MerchantCenterAccountPopinWebsiteRequirements,
     VueShowdown,
-    PhoneVerificationPopin,
     BAlert,
     AlertModuleDisabled,
   },
@@ -599,16 +586,11 @@ export default defineComponent({
     },
     mcaStatusBadge() {
       switch (this.error) {
-        case WebsiteClaimErrorReason.Pending:
         case WebsiteClaimErrorReason.PendingCheck:
+        case WebsiteClaimErrorReason.PendingUserInvitation:
           return {
             color: 'warning',
             text: 'pending',
-          };
-        case WebsiteClaimErrorReason.Expiring:
-          return {
-            color: 'warning',
-            text: 'expiring',
           };
         case WebsiteClaimErrorReason.Suspended:
           return {
@@ -636,12 +618,6 @@ export default defineComponent({
             color: 'warning',
             text: 'pendingCreation',
           };
-        case WebsiteClaimErrorReason.PhoneVerificationNeeded:
-          this.$store.dispatch('accounts/REQUEST_SHOP_INFORMATIONS');
-          return {
-            color: 'warning',
-            text: 'pending',
-          };
         default:
           return {
             color: 'success',
@@ -665,6 +641,10 @@ export default defineComponent({
         case WebsiteClaimErrorReason.PendingCreation:
           return 'creatingGmc';
         case WebsiteClaimErrorReason.PendingCheck:
+          return 'pendingCheck';
+        case WebsiteClaimErrorReason.PendingUserInvitation:
+          // While polling for the merchant to accept the invite, show the same
+          // "checking your GMC status" loader as a page refresh.
           return 'pendingCheck';
         default:
           return null;
@@ -756,21 +736,11 @@ export default defineComponent({
     refresh() {
       this.$router.go();
     },
-    verifyPhoneNumber() {
-      if (this.$refs.PhoneVerificationPopin) {
-        this.$bvModal.show(
-          this.$refs.PhoneVerificationPopin.$refs.modal.id,
-        );
-      }
-    },
     segmentClicked() {
       this.$segment.track('[GGL] Visit GMC info link', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
-    },
-    phoneNumberVerified() {
-      this.$emit('phoneNumberHasBeenVerified');
     },
   },
   updated() {

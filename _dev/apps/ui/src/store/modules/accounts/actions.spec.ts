@@ -67,3 +67,71 @@ describe('Action SAVE_SELECTED_GOOGLE_MERCHANT_ACCOUNT', () => {
     expect(commit).not.toHaveBeenCalledWith(MutationsTypes.SAVE_GMC, payload.selectedAccount);
   });
 });
+
+describe('Action TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS', () => {
+  it('short-circuits to the PendingUserInvitation override and skips claiming reads while the invite is unaccepted', async () => {
+    const state = {googleMerchantAccount: {pendingUserInvitation: true}};
+
+    await actions[ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS](
+      {
+        commit,
+        dispatch,
+        state,
+        rootState: {app: {}},
+      },
+      'saucisse-id',
+    );
+
+    expect(commit).toHaveBeenCalledWith(
+      MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+      WebsiteClaimErrorReason.PendingUserInvitation,
+    );
+    // Verify/claim reads 403 until the invite is accepted, so they must be gated
+    // — instead we start polling for acceptance.
+    expect(dispatch).toHaveBeenCalledWith(
+      ActionsTypes.AWAIT_USER_INVITATION_ACCEPTANCE,
+      'saucisse-id',
+    );
+    expect(dispatch).not.toHaveBeenCalledWith(
+      ActionsTypes.REQUEST_WEBSITE_CLAIMING_STATUS,
+      'saucisse-id',
+    );
+  });
+});
+
+describe('Action AWAIT_USER_INVITATION_ACCEPTANCE', () => {
+  it('resumes the claiming flow once the invite is accepted', async () => {
+    // Invite already accepted (pendingUserInvitation cleared) -> no polling, just resume.
+    const state = {googleMerchantAccount: {pendingUserInvitation: false}};
+    const getters = {
+      GET_GOOGLE_ACCOUNT_WEBSITE_CLAIMING_OVERRIDE_STATUS:
+        WebsiteClaimErrorReason.PendingUserInvitation,
+    };
+
+    await actions[ActionsTypes.AWAIT_USER_INVITATION_ACCEPTANCE](
+      {dispatch, state, getters},
+      'saucisse-id',
+    );
+
+    expect(dispatch).toHaveBeenCalledWith(
+      ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS,
+      'saucisse-id',
+    );
+    expect(dispatch).not.toHaveBeenCalledWith(ActionsTypes.REQUEST_NEW_GMC_DETAILS);
+  });
+
+  it('bails out without resuming when the claiming override is no longer pending-invitation', async () => {
+    const state = {googleMerchantAccount: {pendingUserInvitation: true}};
+    const getters = {
+      GET_GOOGLE_ACCOUNT_WEBSITE_CLAIMING_OVERRIDE_STATUS:
+        WebsiteClaimErrorReason.PendingCheck,
+    };
+
+    await actions[ActionsTypes.AWAIT_USER_INVITATION_ACCEPTANCE](
+      {dispatch, state, getters},
+      'saucisse-id',
+    );
+
+    expect(dispatch).not.toHaveBeenCalled();
+  });
+});
