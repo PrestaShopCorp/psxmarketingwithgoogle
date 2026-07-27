@@ -35,7 +35,6 @@
           :is-linking="isMcaLinking"
           @selectMerchantCenterAccount="onMerchantCenterAccountSelected($event)"
           @dissociateMerchantCenterAccount="onMerchantCenterAccountDissociationRequest"
-          @phoneNumberHasBeenVerified="onPhoneNumberVerified"
         />
         <ProductFeedCard
           :is-enabled="merchantCenterAccountIsChosen"
@@ -177,7 +176,6 @@ export default defineComponent({
       MCAIsLoading: false,
       productFeedIsLoading: false,
       SSCIsLoading: false,
-      phoneNumberVerified: false,
       cloudSyncSharingConsentScreenStarted: false,
       cloudSyncSharingConsentGiven: false,
       displayBannerSuccessMonetization: false,
@@ -224,9 +222,6 @@ export default defineComponent({
         this.$refs.mcaDisconnectModal?.$refs.modal.id,
       );
     },
-    onPhoneNumberVerified() {
-      this.phoneNumberVerified = true;
-    },
     onGoogleAdsAccountDisconnectionRequest() {
       this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', false);
       this.$bvModal.show(
@@ -259,8 +254,6 @@ export default defineComponent({
         this.$store.commit('productFeed/SAVE_CONFIGURATION_CONNECTED_ONCE', false);
       } else if (this.googleAdsAccountConnectedOnce) {
         this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', false);
-      } else if (this.phoneNumberVerified) {
-        this.phoneNumberVerified = false;
       }
     },
     triggerLoadOfGoogleAdsAccount() {
@@ -321,8 +314,7 @@ export default defineComponent({
         || this.merchantCenterAccountConnectedOnce
         || this.productFeedIsConfiguredOnce
         || (this.googleAdsAccountConnectedOnce
-            && this.billingSettingsCompleted)
-        || this.phoneNumberVerified;
+            && this.billingSettingsCompleted);
     },
     showCSSForMCA() {
       return this.$store.getters['app/GET_IS_COUNTRY_MEMBER_OF_EU'];
@@ -359,8 +351,6 @@ export default defineComponent({
         return this.$t('toast.productFeedConfiguredOnceSuccess');
       } if (this.googleAdsAccountConnectedOnce) {
         return this.$t('toast.alertGoogleAdsAccountSuccess');
-      } if (this.phoneNumberVerified) {
-        return this.$t('toast.phoneNumberVerifiedSuccess');
       }
       return '';
     },

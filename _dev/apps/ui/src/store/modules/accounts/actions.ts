@@ -68,6 +68,17 @@ export default {
     }: Context,
     correlationId: string,
   ) {
+    // Verify/claim reads are denied (403) until the shop's admin-user
+    // invitation to the sub-account is accepted. Show the banner and poll for
+    // acceptance so the flow resumes on its own (no manual page refresh).
+    if (state.googleMerchantAccount.pendingUserInvitation) {
+      commit(
+        MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+        WebsiteClaimErrorReason.PendingUserInvitation,
+      );
+      dispatch(ActionsTypes.AWAIT_USER_INVITATION_ACCEPTANCE, correlationId);
+      return;
+    }
     commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.PendingCheck);
     try {
       let {isVerified, isClaimed} = await dispatch(
@@ -100,9 +111,6 @@ export default {
         );
       } else if (state.googleMerchantAccount.accountIssues.length) {
         commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
-      } else if (state.googleMerchantAccount.isPhoneVerified.status === false) {
-        commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
-          WebsiteClaimErrorReason.PhoneVerificationNeeded);
       } else {
         commit(MutationsTypes.SAVE_MCA_CONNECTED_ONCE, true);
         commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, null);
@@ -500,28 +508,39 @@ export default {
       accountIsFoundOnGoogleAPI = !!await dispatch(ActionsTypes.REQUEST_NEW_GMC_DETAILS);
     }
 
-    commit(
-      MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
-      WebsiteClaimErrorReason.PhoneVerificationNeeded,
-    );
+    dispatch(ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS);
   },
 
-  // eslint-disable-next-line no-empty-pattern
-  async [ActionsTypes.REQUEST_VERIFICATION_CODE]({}: Context, payload) {
-    return (await fetchOnboarding(
-      'POST',
-      'merchant-accounts/phone-verification/request-code',
-      {body: payload},
-    )).json();
-  },
+  async [ActionsTypes.AWAIT_USER_INVITATION_ACCEPTANCE](
+    {dispatch, state, getters}: Context,
+    correlationId: string,
+  ) {
+    // Poll the account until the shop's admin accepts the sub-account invite,
+    // then resume verify/claim automatically — otherwise the pending-invitation
+    // banner would stick until a manual page refresh. Bails out if the claiming
+    // override moves off PendingUserInvitation (e.g. the merchant navigates away).
+    while (
+      getters.GET_GOOGLE_ACCOUNT_WEBSITE_CLAIMING_OVERRIDE_STATUS
+        === WebsiteClaimErrorReason.PendingUserInvitation
+      && state.googleMerchantAccount.pendingUserInvitation
+    ) {
+      // eslint-disable-next-line no-await-in-loop
+      await new Promise((resolve) => { setTimeout(resolve, 5000); });
+      // eslint-disable-next-line no-await-in-loop
+      await dispatch(ActionsTypes.REQUEST_NEW_GMC_DETAILS);
+    }
 
-  // eslint-disable-next-line no-empty-pattern
-  async [ActionsTypes.SEND_VERIFICATION_CODE]({}: Context, payload) {
-    return (await fetchOnboarding(
-      'POST',
-      'merchant-accounts/phone-verification/verify',
-      {body: payload},
-    )).json();
+    // Invite accepted (pendingUserInvitation cleared) while still on the banner
+    // -> resume the verify/claim flow the merchant originally triggered.
+    if (
+      getters.GET_GOOGLE_ACCOUNT_WEBSITE_CLAIMING_OVERRIDE_STATUS
+        === WebsiteClaimErrorReason.PendingUserInvitation
+    ) {
+      dispatch(
+        ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS,
+        correlationId,
+      );
+    }
   },
 
   // eslint-disable-next-line no-empty-pattern

@@ -60,6 +60,8 @@ export interface GoogleMerchantAccount extends contentApi.Schema$Account {
   aggregatorId?: string;
   aggregatorName?: string;
   subAccountNotManagedByPrestashop?: boolean;
+  // True while the shop's admin-user invitation to this account is unaccepted
+  pendingUserInvitation?: boolean;
 }
 
 export interface GoogleAccount {
@@ -99,7 +101,6 @@ export type MerchantCenterAccountContext = GoogleMerchantAccount & {
   isVerified: boolean,
   isClaimed: boolean,
   isSuspended: SuspendedStatus,
-  isPhoneVerified: ShoppingWebsiteStatusFlag,
   isEnhancedFreeListingCompliant: ShoppingWebsiteStatusFlag,
   accountIssues: AccountIssue[],
   gmcStatus: WebsiteClaimErrorReason|null,
@@ -132,7 +133,7 @@ export enum WebsiteClaimErrorReason {
   PendingCheck = 'PendingCheck',
   PendingCreation = 'PendingCreation',
   StillPendingCreation = 'StillPendingCreation',
-  PhoneVerificationNeeded = 'PhoneVerificationNeeded',
+  PendingUserInvitation = 'PendingUserInvitation',
   // States with errors
   Suspended = 'Suspended',
 }
@@ -158,9 +159,6 @@ export const state: State = {
     isSuspended: {
       issues: [],
       status: false,
-    },
-    isPhoneVerified: {
-      status: true,
     },
     isEnhancedFreeListingCompliant: {
       status: true,
