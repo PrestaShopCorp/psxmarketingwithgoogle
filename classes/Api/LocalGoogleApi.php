@@ -13,6 +13,7 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Merchant\MerchantAccountService;
 use PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleConnectionService;
 use PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleCredentialRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthRedirectUriResolver;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\SyncProcessor;
 use Throwable;
 
 final class LocalGoogleApi
@@ -34,6 +35,10 @@ final class LocalGoogleApi
         'POST merchant-accounts/select' => 'selectMerchantAccount',
         'GET merchant-data-sources' => 'dataSources',
         'POST merchant-data-sources' => 'createDataSource',
+        'POST sync/jobs' => 'createSyncJob',
+        'POST sync/jobs/run' => 'runSyncBatch',
+        'GET sync/jobs/status' => 'syncStatus',
+        'POST sync/jobs/retry' => 'retrySyncJob',
     ];
 
     /** @var GoogleCredentialRepository */
@@ -54,13 +59,17 @@ final class LocalGoogleApi
     /** @var MerchantAccountService|null */
     private $merchant;
 
+    /** @var SyncProcessor|null */
+    private $syncProcessor;
+
     public function __construct(
         GoogleCredentialRepository $credentials,
         GoogleConnectionService $connections,
         GoogleOAuthRedirectUriResolver $redirectUris,
         ?callable $shopIdProvider = null,
         ?callable $employeeIdProvider = null,
-        ?MerchantAccountService $merchant = null
+        ?MerchantAccountService $merchant = null,
+        ?SyncProcessor $syncProcessor = null
     ) {
         $this->credentials = $credentials;
         $this->connections = $connections;
@@ -68,6 +77,7 @@ final class LocalGoogleApi
         $this->shopIdProvider = $shopIdProvider;
         $this->employeeIdProvider = $employeeIdProvider;
         $this->merchant = $merchant;
+        $this->syncProcessor = $syncProcessor;
     }
 
     /** @param array<string, mixed> $body */
@@ -223,6 +233,78 @@ final class LocalGoogleApi
     }
 
     /** @param array<string, mixed> $body */
+    private function createSyncJob(array $body): Response
+    {
+        if (['full'] !== array_keys($body) || !is_bool($body['full'])) {
+            return $this->error(422, 'invalid_request');
+        }
+
+        return $this->json(200, [
+            'jobId' => $this->syncProcessor()->create($this->shopId(), $body['full']),
+        ]);
+    }
+
+    /** @param array<string, mixed> $body */
+    private function runSyncBatch(array $body): Response
+    {
+        $keys = array_keys($body);
+        sort($keys);
+        if (!in_array($keys, [['jobId'], ['jobId', 'limit']], true)
+            || !$this->isPositiveInt($body['jobId'])
+            || (array_key_exists('limit', $body) && !$this->isPositiveInt($body['limit']))
+        ) {
+            return $this->error(422, 'invalid_request');
+        }
+        $jobId = $body['jobId'];
+        $limit = array_key_exists('limit', $body) ? $body['limit'] : 25;
+        $shopId = $this->shopId();
+
+        return $this->syncJobResponse(function () use ($shopId, $jobId, $limit): Response {
+            return $this->json(200, $this->safeJobCounts(
+                $this->syncProcessor()->runBatchForShop($shopId, $jobId, $limit),
+                $jobId
+            ));
+        });
+    }
+
+    /** @param array<string, mixed> $body */
+    private function syncStatus(array $body): Response
+    {
+        if (['jobId'] !== array_keys($body) || !$this->isPositiveInt($body['jobId'])) {
+            return $this->error(422, 'invalid_request');
+        }
+        $jobId = $body['jobId'];
+        $shopId = $this->shopId();
+
+        return $this->syncJobResponse(function () use ($shopId, $jobId): Response {
+            $status = $this->syncProcessor()->statusForShop($shopId, $jobId);
+            $payload = $this->safeJobCounts($status, $jobId);
+            $payload['errors'] = $this->safeSyncErrors($status['errors'] ?? null);
+
+            return $this->json(200, $payload);
+        });
+    }
+
+    /** @param array<string, mixed> $body */
+    private function retrySyncJob(array $body): Response
+    {
+        if (['jobId'] !== array_keys($body) || !$this->isPositiveInt($body['jobId'])) {
+            return $this->error(422, 'invalid_request');
+        }
+        $jobId = $body['jobId'];
+        $shopId = $this->shopId();
+
+        return $this->syncJobResponse(function () use ($shopId, $jobId): Response {
+            $retriedJobId = $this->syncProcessor()->retryFailedForShop($shopId, $jobId);
+            if ($retriedJobId !== $jobId) {
+                throw new \RuntimeException('Synchronization retried an unexpected job.');
+            }
+
+            return $this->json(200, ['jobId' => $jobId]);
+        });
+    }
+
+    /** @param array<string, mixed> $body */
     private function validCredentialEnvelope(array $body): bool
     {
         if (['web'] !== array_keys($body) || !is_array($body['web']) || array_is_list($body['web'])) {
@@ -248,6 +330,116 @@ final class LocalGoogleApi
         }
 
         return true;
+    }
+
+    /** @param mixed $value */
+    private function isPositiveInt($value): bool
+    {
+        return is_int($value) && 0 < $value;
+    }
+
+    /**
+     * @param array<string, mixed> $status
+     *
+     * @return array{jobId: int, status: string, total: int, succeeded: int, failed: int, skipped: int, pending: int}
+     */
+    private function safeJobCounts(array $status, int $jobId): array
+    {
+        $state = $status['status'] ?? null;
+        if (($status['id_job'] ?? null) !== $jobId
+            || !is_string($state)
+            || !in_array($state, ['pending', 'running', 'completed', 'partial', 'failed'], true)
+        ) {
+            throw new \RuntimeException('Synchronization returned an invalid job status.');
+        }
+        foreach (['total', 'succeeded', 'failed', 'skipped', 'pending'] as $count) {
+            if (!isset($status[$count]) || !is_int($status[$count]) || 0 > $status[$count]) {
+                throw new \RuntimeException('Synchronization returned invalid job counts.');
+            }
+        }
+        if ($status['total'] !== $status['succeeded'] + $status['failed'] + $status['skipped'] + $status['pending']) {
+            throw new \RuntimeException('Synchronization returned inconsistent job counts.');
+        }
+
+        return [
+            'jobId' => $jobId,
+            'status' => $state,
+            'total' => $status['total'],
+            'succeeded' => $status['succeeded'],
+            'failed' => $status['failed'],
+            'skipped' => $status['skipped'],
+            'pending' => $status['pending'],
+        ];
+    }
+
+    /**
+     * @param mixed $errors
+     *
+     * @return array<int, array{offerKey: string, code: string, field: string|null, message: string}>
+     */
+    private function safeSyncErrors($errors): array
+    {
+        if (!is_array($errors) || !array_is_list($errors)) {
+            throw new \RuntimeException('Synchronization returned invalid error summaries.');
+        }
+        $safe = [];
+        foreach (array_slice($errors, 0, 25) as $error) {
+            if (!is_array($error)
+                || !is_string($error['offer_key'] ?? null)
+                || !is_string($error['code'] ?? null)
+                || (null !== ($error['field'] ?? null) && !is_string($error['field']))
+                || !is_string($error['message'] ?? null)
+            ) {
+                throw new \RuntimeException('Synchronization returned an invalid error summary.');
+            }
+            $code = trim((string) preg_replace('/[^A-Za-z0-9_.:-]+/', '_', trim($error['code'])), '_');
+            $message = strip_tags($error['message']);
+            $message = (string) preg_replace(
+                '/\bBearer\s+[A-Za-z0-9._~+\/=:-]+/i',
+                'Bearer [REDACTED]',
+                $message
+            );
+            $message = (string) preg_replace(
+                '/("(?:access_token|refresh_token|client_secret|cron_token)"\s*:\s*")[^"]*(")/i',
+                '$1[REDACTED]$2',
+                $message
+            );
+            $message = (string) preg_replace(
+                '/\b(access_token|refresh_token|client_secret|cron_token)\s*[=:]\s*[^\s&,;]+/i',
+                '$1=[REDACTED]',
+                $message
+            );
+            $message = $this->sanitizeOperatorText($message, 500);
+            $safe[] = [
+                'offerKey' => 1 === preg_match('/^[1-9][0-9]*-(?:0|[1-9][0-9]*)$/D', $error['offer_key'])
+                    ? $error['offer_key']
+                    : 'unknown',
+                'code' => substr('' === $code ? 'sync_error' : $code, 0, 64),
+                'field' => $this->sanitizeOperatorText($error['field'] ?? null, 191),
+                'message' => null === $message || '' === $message ? 'Synchronization failed.' : $message,
+            ];
+        }
+
+        return $safe;
+    }
+
+    private function sanitizeOperatorText(?string $value, int $maxLength): ?string
+    {
+        if (null === $value) {
+            return null;
+        }
+        $value = strip_tags($value);
+        $value = (string) preg_replace('/[\x00-\x1F\x7F]+/u', ' ', $value);
+        $value = trim((string) preg_replace('/\s+/u', ' ', $value));
+        if ('' === $value) {
+            return null;
+        }
+        $characters = preg_split('//u', $value, -1, PREG_SPLIT_NO_EMPTY);
+        if (false === $characters) {
+            return substr($value, 0, $maxLength);
+        }
+
+        return implode('', array_slice($characters, 0, $maxLength));
     }
 
     private function shopId(): int
@@ -286,6 +478,27 @@ final class LocalGoogleApi
         }
 
         return $this->merchant;
+    }
+
+    private function syncProcessor(): SyncProcessor
+    {
+        if (null === $this->syncProcessor) {
+            throw new \LogicException('Product synchronization is unavailable.');
+        }
+
+        return $this->syncProcessor;
+    }
+
+    /** @param callable(): Response $operation */
+    private function syncJobResponse(callable $operation): Response
+    {
+        try {
+            return $operation();
+        } catch (\UnexpectedValueException $exception) {
+            unset($exception);
+
+            return $this->error(404, 'sync_job_not_found');
+        }
     }
 
     private function googleError(GoogleApiException $exception): Response

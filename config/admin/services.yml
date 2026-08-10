@@ -18,3 +18,4 @@ services:
       - ~
       - ~
       - '@PrestaShop\Module\PsxMarketingWithGoogle\Merchant\MerchantAccountService'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\SyncProcessor'

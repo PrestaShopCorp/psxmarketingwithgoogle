@@ -13,6 +13,13 @@ use PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleCredentialRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthClient;
 use PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthRedirectUriResolver;
 use PrestaShop\Module\PsxMarketingWithGoogle\OAuth\OAuthStateRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogOfferSourceInterface;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogProduct;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\GoogleConnectionProviderInterface;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\MerchantProductGatewayInterface;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\MerchantProductMapper;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\SyncJobStoreInterface;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\SyncProcessor;
 use PrestaShop\Module\PsxMarketingWithGoogle\Security\SecretBox;
 
 class LocalGoogleApiTest extends TestCase
@@ -219,6 +226,177 @@ class LocalGoogleApiTest extends TestCase
         self::assertSame(['code' => 'route_not_found'], $this->json($response));
     }
 
+    public function testCreateSyncJobRejectsAnyKeyOutsideTheExactFullBooleanEnvelope(): void
+    {
+        $response = $this->api->dispatch('POST', 'sync/jobs', [
+            'full' => true,
+            'jobId' => 91,
+        ]);
+
+        self::assertSame(422, $response->getStatusCode());
+        self::assertSame(['code' => 'invalid_request'], $this->json($response));
+    }
+
+    public function testCreateSyncJobReturnsOnlyTheNewJobId(): void
+    {
+        $api = $this->syncApi(new ApiSyncJobStore());
+
+        $response = $api->dispatch('POST', 'sync/jobs', ['full' => true]);
+
+        self::assertSame(200, $response->getStatusCode());
+        self::assertSame(['jobId' => 91], $this->json($response));
+        self::assertStringNotContainsString('never-return-this-access-token', $response->getBody());
+    }
+
+    public function testRunSyncBatchCapsTheBatchAndReturnsOnlySafeJobCounts(): void
+    {
+        $jobs = new ApiSyncJobStore();
+        $jobs->seedJob(91, 1);
+        $api = $this->syncApi($jobs, 2);
+
+        $response = $api->dispatch('POST', 'sync/jobs/run', [
+            'limit' => 100,
+            'jobId' => 91,
+        ]);
+
+        self::assertSame(200, $response->getStatusCode());
+        self::assertSame([
+            'jobId' => 91,
+            'status' => 'pending',
+            'total' => 30,
+            'succeeded' => 4,
+            'failed' => 3,
+            'skipped' => 2,
+            'pending' => 21,
+        ], $this->json($response));
+        self::assertSame([25], $jobs->claimLimits);
+        self::assertStringNotContainsString('never-return-this-refresh-token', $response->getBody());
+        self::assertStringNotContainsString('accounts/123/dataSources/456', $response->getBody());
+    }
+
+    public function testSyncStatusReturnsOnlySafeCountsAndBoundedSanitizedErrors(): void
+    {
+        $jobs = new ApiSyncJobStore();
+        $jobs->seedJob(91, 1);
+
+        $response = $this->syncApi($jobs, 2)->dispatch('GET', 'sync/jobs/status', ['jobId' => 91]);
+        $payload = $this->json($response);
+
+        self::assertSame(200, $response->getStatusCode());
+        self::assertSame([
+            'jobId',
+            'status',
+            'total',
+            'succeeded',
+            'failed',
+            'skipped',
+            'pending',
+            'errors',
+        ], array_keys($payload));
+        self::assertCount(25, $payload['errors']);
+        self::assertSame(['offerKey', 'code', 'field', 'message'], array_keys($payload['errors'][0]));
+        self::assertSame('1-0', $payload['errors'][0]['offerKey']);
+        self::assertSame('merchant_validation', $payload['errors'][0]['code']);
+        self::assertSame('title', $payload['errors'][0]['field']);
+        self::assertLessThanOrEqual(500, mb_strlen($payload['errors'][0]['message'], 'UTF-8'));
+        self::assertStringNotContainsString('<script>', $response->getBody());
+        self::assertStringNotContainsString('never-return-this-error-secret', $response->getBody());
+        self::assertStringNotContainsString('never-return-this-bearer-token', $response->getBody());
+        self::assertStringNotContainsString('accounts/123/dataSources/456', $response->getBody());
+    }
+
+    public function testRetrySyncJobReturnsOnlyTheOwnedJobId(): void
+    {
+        $jobs = new ApiSyncJobStore();
+        $jobs->seedJob(91, 1);
+
+        $response = $this->syncApi($jobs, 2)->dispatch('POST', 'sync/jobs/retry', ['jobId' => 91]);
+
+        self::assertSame(200, $response->getStatusCode());
+        self::assertSame(['jobId' => 91], $this->json($response));
+        self::assertSame([[1, 91]], $jobs->retryCalls);
+    }
+
+    /**
+     * @dataProvider invalidSyncEnvelopeProvider
+     *
+     * @param array<string, mixed> $body
+     */
+    public function testSyncRoutesRejectInvalidExactEnvelopes(string $method, string $path, array $body): void
+    {
+        $response = $this->api->dispatch($method, $path, $body);
+
+        self::assertSame(422, $response->getStatusCode());
+        self::assertSame(['code' => 'invalid_request'], $this->json($response));
+    }
+
+    /** @return array<string, array{0: string, 1: string, 2: array<string, mixed>}> */
+    public function invalidSyncEnvelopeProvider(): array
+    {
+        return [
+            'create missing full' => ['POST', 'sync/jobs', []],
+            'create string full' => ['POST', 'sync/jobs', ['full' => 'true']],
+            'create integer full' => ['POST', 'sync/jobs', ['full' => 1]],
+            'create float full' => ['POST', 'sync/jobs', ['full' => 1.0]],
+            'create null full' => ['POST', 'sync/jobs', ['full' => null]],
+            'create unknown key' => ['POST', 'sync/jobs', ['full' => true, 'unknown' => false]],
+            'run missing job' => ['POST', 'sync/jobs/run', []],
+            'run numeric-string job' => ['POST', 'sync/jobs/run', ['jobId' => '91']],
+            'run zero job' => ['POST', 'sync/jobs/run', ['jobId' => 0]],
+            'run negative job' => ['POST', 'sync/jobs/run', ['jobId' => -1]],
+            'run boolean job' => ['POST', 'sync/jobs/run', ['jobId' => true]],
+            'run float job' => ['POST', 'sync/jobs/run', ['jobId' => 91.0]],
+            'run numeric-string limit' => ['POST', 'sync/jobs/run', ['jobId' => 91, 'limit' => '25']],
+            'run zero limit' => ['POST', 'sync/jobs/run', ['jobId' => 91, 'limit' => 0]],
+            'run negative limit' => ['POST', 'sync/jobs/run', ['jobId' => 91, 'limit' => -1]],
+            'run boolean limit' => ['POST', 'sync/jobs/run', ['jobId' => 91, 'limit' => true]],
+            'run float limit' => ['POST', 'sync/jobs/run', ['jobId' => 91, 'limit' => 25.0]],
+            'run null limit' => ['POST', 'sync/jobs/run', ['jobId' => 91, 'limit' => null]],
+            'run unknown key' => ['POST', 'sync/jobs/run', ['jobId' => 91, 'unknown' => 25]],
+            'status missing job' => ['GET', 'sync/jobs/status', []],
+            'status numeric-string job' => ['GET', 'sync/jobs/status', ['jobId' => '91']],
+            'status zero job' => ['GET', 'sync/jobs/status', ['jobId' => 0]],
+            'status negative job' => ['GET', 'sync/jobs/status', ['jobId' => -1]],
+            'status boolean job' => ['GET', 'sync/jobs/status', ['jobId' => true]],
+            'status float job' => ['GET', 'sync/jobs/status', ['jobId' => 91.0]],
+            'status unknown key' => ['GET', 'sync/jobs/status', ['jobId' => 91, 'unknown' => true]],
+            'retry missing job' => ['POST', 'sync/jobs/retry', []],
+            'retry numeric-string job' => ['POST', 'sync/jobs/retry', ['jobId' => '91']],
+            'retry zero job' => ['POST', 'sync/jobs/retry', ['jobId' => 0]],
+            'retry negative job' => ['POST', 'sync/jobs/retry', ['jobId' => -1]],
+            'retry boolean job' => ['POST', 'sync/jobs/retry', ['jobId' => true]],
+            'retry float job' => ['POST', 'sync/jobs/retry', ['jobId' => 91.0]],
+            'retry unknown key' => ['POST', 'sync/jobs/retry', ['jobId' => 91, 'unknown' => true]],
+        ];
+    }
+
+    /** @dataProvider ownedSyncJobRouteProvider */
+    public function testSyncJobRoutesHideUnknownAndCrossShopJobs(string $method, string $path): void
+    {
+        $jobs = new ApiSyncJobStore();
+        $jobs->seedJob(92, 2);
+        $api = $this->syncApi($jobs);
+
+        $crossShop = $api->dispatch($method, $path, ['jobId' => 92]);
+        $unknown = $api->dispatch($method, $path, ['jobId' => 999]);
+
+        self::assertSame(404, $crossShop->getStatusCode());
+        self::assertSame($crossShop->getStatusCode(), $unknown->getStatusCode());
+        self::assertSame(['code' => 'sync_job_not_found'], $this->json($crossShop));
+        self::assertSame($this->json($crossShop), $this->json($unknown));
+        self::assertStringNotContainsString('shop', $crossShop->getBody());
+    }
+
+    /** @return array<string, array{0: string, 1: string}> */
+    public function ownedSyncJobRouteProvider(): array
+    {
+        return [
+            'run' => ['POST', 'sync/jobs/run'],
+            'status' => ['GET', 'sync/jobs/status'],
+            'retry' => ['POST', 'sync/jobs/retry'],
+        ];
+    }
+
     /** @return array<string, mixed> */
     private function json(Response $response): array
     {
@@ -226,6 +404,57 @@ class LocalGoogleApiTest extends TestCase
         self::assertIsArray($decoded);
 
         return $decoded;
+    }
+
+    private function connections(): GoogleConnectionService
+    {
+        return new GoogleConnectionService(
+            new OAuthStateRepository($this->db),
+            $this->credentials,
+            new GoogleOAuthClient(new ApiNullGoogleTransport())
+        );
+    }
+
+    private function redirectUris(): GoogleOAuthRedirectUriResolver
+    {
+        return new GoogleOAuthRedirectUriResolver(static function (int $shopId): array {
+            self::assertSame(1, $shopId);
+
+            return [
+                'domain_ssl' => 'thetinylux.com',
+                'physical_uri' => '/',
+                'virtual_uri' => '',
+            ];
+        });
+    }
+
+    private function syncApi(ApiSyncJobStore $jobs, int $processorContextShopId = 1): LocalGoogleApi
+    {
+        $context = (object) [
+            'shop' => (object) ['id' => $processorContextShopId],
+            'language' => (object) ['id' => 2, 'iso_code' => 'en'],
+        ];
+
+        return new LocalGoogleApi(
+            $this->credentials,
+            $this->connections(),
+            $this->redirectUris(),
+            static function (): int {
+                return 1;
+            },
+            static function (): int {
+                return 7;
+            },
+            null,
+            new SyncProcessor(
+                $jobs,
+                new ApiSyncCatalog(),
+                new ApiSyncConnection(),
+                new ApiSyncMerchant(),
+                new MerchantProductMapper(),
+                $context
+            )
+        );
     }
 
     private function configureCredentialDatabaseFake(): void
@@ -265,5 +494,208 @@ final class ApiNullGoogleTransport implements GoogleTransportInterface
         unset($method, $url, $headers, $body);
 
         return new Response(500, 'No network request is permitted in local API tests.');
+    }
+}
+
+final class ApiSyncJobStore implements SyncJobStoreInterface
+{
+    /** @var array<int, int> */
+    private $owners = [];
+
+    /** @var int[] */
+    public $claimLimits = [];
+
+    /** @var array<int, array{0: int, 1: int}> */
+    public $retryCalls = [];
+
+    public function seedJob(int $jobId, int $shopId): void
+    {
+        $this->owners[$jobId] = $shopId;
+    }
+
+    public function createJob(int $shopId, array $snapshot, array $offerKeys): int
+    {
+        unset($snapshot, $offerKeys);
+        $this->owners[91] = $shopId;
+
+        return 91;
+    }
+
+    public function findJob(int $shopId, int $jobId): array
+    {
+        $this->assertOwned($shopId, $jobId);
+
+        return [
+            'id_job' => $jobId,
+            'id_shop' => $shopId,
+            'merchant_account' => '123',
+            'data_source' => 'accounts/123/dataSources/456',
+            'id_lang' => 2,
+            'content_language' => 'en',
+            'feed_label' => 'US',
+            'full_sync' => true,
+        ];
+    }
+
+    public function recoverStale(int $shopId, int $jobId, int $ageSeconds = 900): int
+    {
+        unset($ageSeconds);
+        $this->assertOwned($shopId, $jobId);
+
+        return 0;
+    }
+
+    public function claimPending(int $shopId, int $jobId, int $limit = 25): array
+    {
+        $this->assertOwned($shopId, $jobId);
+        $this->claimLimits[] = $limit;
+
+        return [];
+    }
+
+    public function recordSuccess(int $shopId, int $jobId, int $itemId): void
+    {
+        unset($itemId);
+        $this->assertOwned($shopId, $jobId);
+    }
+
+    public function recordSkipped(int $shopId, int $jobId, int $itemId): void
+    {
+        unset($itemId);
+        $this->assertOwned($shopId, $jobId);
+    }
+
+    public function recordFailure(
+        int $shopId,
+        int $jobId,
+        int $itemId,
+        bool $retryable,
+        string $errorCode,
+        ?string $errorField,
+        string $errorMessage
+    ): void {
+        unset($itemId, $retryable, $errorCode, $errorField, $errorMessage);
+        $this->assertOwned($shopId, $jobId);
+    }
+
+    public function retryFailed(int $shopId, int $jobId): int
+    {
+        $this->assertOwned($shopId, $jobId);
+        $this->retryCalls[] = [$shopId, $jobId];
+
+        return $jobId;
+    }
+
+    public function recount(int $shopId, int $jobId): array
+    {
+        $this->assertOwned($shopId, $jobId);
+
+        return [
+            'id_job' => $jobId,
+            'status' => 'pending',
+            'total' => 30,
+            'succeeded' => 4,
+            'failed' => 3,
+            'skipped' => 2,
+            'pending' => 21,
+            'merchant_account' => '123',
+            'data_source' => 'accounts/123/dataSources/456',
+            'refresh_token' => 'never-return-this-refresh-token',
+        ];
+    }
+
+    public function errorSummaries(int $shopId, int $jobId, int $limit = 25): array
+    {
+        $this->assertOwned($shopId, $jobId);
+        $errors = [];
+        for ($index = 0; 30 > $index; ++$index) {
+            $errors[] = [
+                'offer_key' => ($index + 1) . '-0',
+                'code' => 0 === $index ? ' merchant validation ' : 'merchant_validation',
+                'field' => 0 === $index ? "<b>title</b>\0" : 'title',
+                'message' => 0 === $index
+                    ? '<script>Operator detail</script> Bearer never-return-this-bearer-token '
+                        . '{"refresh_token":"never-return-this-error-secret"} '
+                        . str_repeat('x', 600)
+                    : 'Product data needs attention.',
+                'refresh_token' => 'never-return-this-error-secret',
+            ];
+        }
+
+        return array_slice($errors, 0, $limit);
+    }
+
+    private function assertOwned(int $shopId, int $jobId): void
+    {
+        if (($this->owners[$jobId] ?? null) !== $shopId) {
+            throw new \UnexpectedValueException('Sync job does not exist for this shop.');
+        }
+    }
+}
+
+final class ApiSyncCatalog implements CatalogOfferSourceInterface
+{
+    public function offerKeys(int $shopId, int $languageId): array
+    {
+        unset($shopId, $languageId);
+
+        return [];
+    }
+
+    public function offer(string $offerKey, int $shopId, int $languageId): ?CatalogProduct
+    {
+        unset($offerKey, $shopId, $languageId);
+
+        return null;
+    }
+}
+
+final class ApiSyncConnection implements GoogleConnectionProviderInterface
+{
+    public function status(int $shopId): array
+    {
+        unset($shopId);
+
+        return [
+            'connected' => true,
+            'googleEmail' => 'owner@example.com',
+            'merchantAccount' => '123',
+            'dataSource' => 'accounts/123/dataSources/456',
+        ];
+    }
+
+    public function accessToken(int $shopId): string
+    {
+        unset($shopId);
+
+        return 'never-return-this-access-token';
+    }
+}
+
+final class ApiSyncMerchant implements MerchantProductGatewayInterface
+{
+    public function listDataSources(string $accessToken, string $accountId): array
+    {
+        unset($accessToken, $accountId);
+
+        return [[
+            'name' => 'accounts/123/dataSources/456',
+            'input' => 'API',
+            'primaryProductDataSource' => [
+                'contentLanguage' => 'en',
+                'feedLabel' => 'US',
+            ],
+        ]];
+    }
+
+    public function insertProductInput(
+        string $accessToken,
+        string $accountId,
+        string $dataSourceName,
+        array $payload
+    ): array {
+        unset($accessToken, $accountId, $dataSourceName);
+
+        return $payload;
     }
 }

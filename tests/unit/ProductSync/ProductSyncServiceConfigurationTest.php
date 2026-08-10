@@ -7,6 +7,24 @@ use Symfony\Component\Yaml\Yaml;
 
 class ProductSyncServiceConfigurationTest extends TestCase
 {
+    public function testAdminLocalApiInjectsSyncProcessorAfterMerchantService(): void
+    {
+        if (!class_exists(Yaml::class)) {
+            self::markTestSkipped('Symfony YAML is provided by the PrestaShop runtime.');
+        }
+        $admin = Yaml::parseFile(dirname(__DIR__, 3) . '/config/admin/services.yml');
+
+        self::assertSame([
+            '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleCredentialRepository',
+            '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleConnectionService',
+            '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthRedirectUriResolver',
+            null,
+            null,
+            '@PrestaShop\Module\PsxMarketingWithGoogle\Merchant\MerchantAccountService',
+            '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\SyncProcessor',
+        ], $admin['services']['PrestaShop\Module\PsxMarketingWithGoogle\Api\LocalGoogleApi']['arguments']);
+    }
+
     public function testServiceFileDeclaresExplicitRuntimeAndFilterDependencies(): void
     {
         $content = file_get_contents(dirname(__DIR__, 3) . '/config/admin/product_sync.yml');
