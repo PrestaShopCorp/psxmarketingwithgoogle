@@ -82,7 +82,7 @@ async function loginIfNeeded(page, email, password) {
   await page.waitForLoadState('domcontentloaded');
 }
 
-async function openModule(page, adminUrl) {
+async function openModule(page, adminUrl, beforeModuleNavigation) {
   await page.goto(adminUrl.href, { waitUntil: 'domcontentloaded' });
   await loginIfNeeded(
     page,
@@ -98,7 +98,14 @@ async function openModule(page, adminUrl) {
   const moduleLink = page.locator(
     'a[href*="AdminPsxMktgWithGoogleModule"], a[href*="psxmarketingwithgoogle"]',
   ).filter({ hasText: /Tiny Lux Google|Google/i }).first();
+  if (!(await visible(moduleLink))) {
+    const marketingMenu = page.locator('a').filter({ hasText: /Marketing/i }).filter({ visible: true }).first();
+    assert.equal(await visible(marketingMenu), true, 'Marketing Back Office menu is missing');
+    await marketingMenu.click();
+    await moduleLink.waitFor({ state: 'visible' });
+  }
   assert.equal(await visible(moduleLink), true, 'Tiny Lux Google Back Office link is missing');
+  beforeModuleNavigation();
   await moduleLink.click();
   await page.waitForLoadState('domcontentloaded');
   return moduleRoot;
@@ -128,6 +135,7 @@ async function main() {
   const browserErrors = [];
   const failedRequests = [];
   const forbiddenHosts = new Set();
+  const localApiResponses = [];
   const observedPages = new WeakSet();
 
   const observePage = (observedPage) => {
@@ -166,10 +174,32 @@ async function main() {
       forbiddenHosts.add('invalid-host');
     }
   });
+  context.on('response', (response) => {
+    try {
+      const responseUrl = new URL(response.url());
+      if (responseUrl.searchParams.get('controller') === 'AdminTinyLuxGoogleApi') {
+        localApiResponses.push({
+          status: response.status(),
+          contentType: response.headers()['content-type'] ?? '',
+        });
+      }
+    } catch {
+      // Invalid response URLs are already handled by the request host policy.
+    }
+  });
 
   try {
-    const moduleRoot = await openModule(page, adminUrl);
+    const moduleRoot = await openModule(page, adminUrl, () => {
+      browserErrors.length = 0;
+      failedRequests.length = 0;
+      forbiddenHosts.clear();
+      localApiResponses.length = 0;
+    });
     await moduleRoot.waitFor({ state: 'visible' });
+    await moduleRoot.getByText('Developer token required', { exact: false }).first().waitFor({
+      state: 'visible',
+      timeout: 15000,
+    });
 
     assertAllowedShopUrl(page.url(), allowedHosts, 'Back Office');
     assert.equal(new URL(page.url()).host.toLowerCase(), adminUrl.host.toLowerCase(),
@@ -184,6 +214,16 @@ async function main() {
     assert.doesNotMatch(moduleText, /PrestaShop/i);
     assert.doesNotMatch(moduleText, /Billing information/i);
     assert.doesNotMatch(moduleText, /CloudSync/i);
+    assert.ok(localApiResponses.length > 0, 'Tiny Lux Google made no local API requests');
+    assert.equal(
+      localApiResponses.every((response) =>
+        response.status >= 200
+        && response.status < 300
+        && /application\/json/i.test(response.contentType)
+      ),
+      true,
+      'Tiny Lux Google local API did not return successful JSON responses',
+    );
 
     const overlaySelectors = [
       'vite-error-overlay',

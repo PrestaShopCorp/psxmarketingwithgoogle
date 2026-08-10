@@ -9,7 +9,45 @@ export default defineConfig(({ mode }) => ({
   base: './',
   plugins: [
     vue(),
-    cssInjectedByJsPlugin(),
+    cssInjectedByJsPlugin({
+      preRenderCSSCode: (cssCode) => cssCode.replaceAll(
+        '../woff2/',
+        '__TINY_LUX_MODULE_ASSETS__woff2/',
+      ),
+      injectCodeFunction: function injectTinyLuxCss(cssCode) {
+        try {
+          if (typeof document === 'undefined') {
+            return;
+          }
+
+          let assetBase = globalThis.tinyLuxGoogleAssetsBaseUrl;
+          if (typeof assetBase !== 'string' || assetBase.length === 0) {
+            const moduleScript = Array.from(document.scripts).find(
+              (script) => script.src.includes(
+                '/modules/psxmarketingwithgoogle/views/js/psxmarketingwithgoogle-ui.js',
+              ),
+            );
+
+            assetBase = moduleScript ? new URL('../', moduleScript.src).href : '';
+          }
+
+          const resolvedAssetBase = new URL(assetBase, document.baseURI);
+          if (resolvedAssetBase.origin !== window.location.origin) {
+            throw new Error('Tiny Lux Google asset base must use the shop origin.');
+          }
+
+          const style = document.createElement('style');
+
+          style.appendChild(document.createTextNode(cssCode.replaceAll(
+            '__TINY_LUX_MODULE_ASSETS__',
+            resolvedAssetBase.href,
+          )));
+          document.head.appendChild(style);
+        } catch (error) {
+          console.error('vite-plugin-css-injected-by-js', error);
+        }
+      },
+    }),
     VitePluginReactRemoveAttributes({
       attributes: ['data-test-id'],
     }),

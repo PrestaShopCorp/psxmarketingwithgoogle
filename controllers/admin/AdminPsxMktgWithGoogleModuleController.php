@@ -156,6 +156,7 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
             'psxMktgWithGoogleOnProductionEnvironment' => false,
             'psxMktgWithGoogleApiUrl' => $localApiUrl,
             'tinyLuxGoogleApiUrl' => $localApiUrl,
+            'tinyLuxGoogleAssetsBaseUrl' => $this->module->getPathUri() . 'views/',
             'tinyLuxGoogleOAuthRedirectUri' => $googleConnection['redirectUri'],
             'tinyLuxGoogleConnection' => (object) $googleConnection,
             'psxMktgWithGoogleAdminUrl' => $this->context->link->getAdminLink(

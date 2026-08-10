@@ -254,6 +254,14 @@ try:
         if main_versions != [expected_version]:
             reject(f"main module version is not exactly {expected_version}")
 
+        upgrade_php = payloads[f"{module}/upgrade/upgrade-2.0.0.php"].decode("utf-8")
+        if "installTabs()" not in upgrade_php or "unset($module)" in upgrade_php:
+            reject("2.0.0 upgrade does not register newly introduced admin controllers")
+
+        ui_javascript = payloads[f"{module}/views/js/psxmarketingwithgoogle-ui.js"]
+        if re.search(br'''url\((?:["']?)\.\./woff2/''', ui_javascript):
+            reject("injected UI CSS contains document-relative font URLs")
+
         for entry_name, body in payloads.items():
             if private_key.search(body) or high_confidence_token.search(body):
                 reject(f"plaintext credential material in archive entry: {entry_name!r}")

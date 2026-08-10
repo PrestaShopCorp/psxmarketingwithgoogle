@@ -10,7 +10,13 @@ if (!defined('_PS_VERSION_')) {
 
 function upgrade_module_2_0_0($module)
 {
-    unset($module);
+    $installer = new PrestaShop\Module\PsxMarketingWithGoogle\Database\Installer(
+        $module,
+        $module->getService(PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler::class)
+    );
+    if (!$installer->installTabs()) {
+        return false;
+    }
 
     if (!(bool) include dirname(__DIR__) . '/sql/install.php') {
         return false;
