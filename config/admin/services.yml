@@ -4,6 +4,7 @@ imports:
   - { resource: builder.yml }
   - { resource: installer.yml }
   - { resource: product_filter.yml }
+  - { resource: product_sync.yml }
   - { resource: provider.yml }
 
 services:

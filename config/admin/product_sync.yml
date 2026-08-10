@@ -1,0 +1,34 @@
+services:
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\MerchantProductMapper:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\MerchantProductMapper
+    public: true
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\LegacyPrestaShopProductRuntime:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\LegacyPrestaShopProductRuntime
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\PrestaShopProductRuntimeInterface:
+    alias: PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\LegacyPrestaShopProductRuntime
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\PrestaShopCatalogGateway:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\PrestaShopCatalogGateway
+    arguments:
+      - '@psxmarketingwithgoogle.context'
+      - '@psxmarketingwithgoogle.link'
+      - '@psxmarketingwithgoogle.db'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\PrestaShopProductRuntimeInterface'
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\PrestaShopCatalogProductProvider:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\PrestaShopCatalogProductProvider
+    arguments:
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\PrestaShopCatalogGateway'
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogProductProviderInterface:
+    alias: PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\PrestaShopCatalogProductProvider
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogProductSource:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogProductSource
+    public: true
+    arguments:
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\ProductEnumerator'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogProductProviderInterface'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\MerchantProductMapper'

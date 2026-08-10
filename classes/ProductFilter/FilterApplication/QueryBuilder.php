@@ -21,6 +21,7 @@
 namespace PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication;
 
 use DbQuery;
+use InvalidArgumentException;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\AttributeType;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\BrandQueryBuilder;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\AttributeQueryBuilder\CategoryQueryBuilder;
@@ -32,6 +33,8 @@ use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\Att
 
 class QueryBuilder
 {
+    private const MAX_PAGE_SIZE = 250;
+
     /**
      * @var int
      */
@@ -70,14 +73,38 @@ class QueryBuilder
         return $query;
     }
 
-    public function buildQueryToList(array $filters): DbQuery
+    public function buildQueryToList(array $filters, array $paginationParams = []): DbQuery
     {
         $query = $this->buildCommonQuery($filters);
 
         // TODO: Selection of columns seems to depend on filters.
         $query->select('DISTINCT p.id_product, p.*');
+        if ([] !== $paginationParams) {
+            $this->validatePagination($paginationParams);
+            $query->orderBy('p.id_product ASC');
+            $query->limit($paginationParams['limit'], $paginationParams['offset']);
+        }
 
         return $query;
+    }
+
+    private function validatePagination(array $paginationParams): void
+    {
+        $keys = array_keys($paginationParams);
+        sort($keys);
+        $expectedKeys = ['limit', 'offset', 'orderBy', 'orderWay'];
+        sort($expectedKeys);
+        if ($expectedKeys !== $keys
+            || !is_int($paginationParams['offset'])
+            || 0 > $paginationParams['offset']
+            || !is_int($paginationParams['limit'])
+            || 0 >= $paginationParams['limit']
+            || self::MAX_PAGE_SIZE < $paginationParams['limit']
+            || 'id_product' !== $paginationParams['orderBy']
+            || 'ASC' !== $paginationParams['orderWay']
+        ) {
+            throw new InvalidArgumentException('Product pagination parameters are invalid.');
+        }
     }
 
     protected function buildCommonQuery(array $filters): DbQuery

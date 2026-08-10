@@ -59,7 +59,7 @@ class ProductEnumerator
         $this->filterValidator->validate($filters);
 
         return $this->execute(
-            $this->queryBuilder->buildQueryToList($filters)
+            $this->queryBuilder->buildQueryToList($filters, $paginationParams)
         );
     }
 
