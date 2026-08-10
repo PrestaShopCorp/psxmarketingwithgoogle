@@ -1,11 +1,5 @@
 <template>
   <div class="container-md">
-    <monetization-messages>
-      <template #content-modale>
-        {{ $t('monetization.popinUpdateLandingPageText') }}
-      </template>
-    </monetization-messages>
-
     <b-card no-body>
       <div class="ps_gs-landingpage">
         <LandingPageHeader @hideLandingPage="hideLandingPage('header')" />
@@ -83,7 +77,6 @@ import googleUrl from '@/assets/json/googleUrl.json';
 import LandingPageHeader from '@/components/landing-page/landing-page-header';
 import LandingPageContent from '@/components/landing-page/landing-page-content';
 import LandingPageFooter from '@/components/landing-page/landing-page-footer';
-import MonetizationMessages from '@/components/monetization/monetization-messages.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {getPathToAdsPromotionImage} from '@/utils/ImageFromCurrency';
 import {searchPrice} from '@/utils/PriceFromCurrency';
@@ -94,7 +87,6 @@ export default {
     LandingPageHeader,
     LandingPageContent,
     LandingPageFooter,
-    MonetizationMessages,
   },
   methods: {
     hideLandingPage(where) {

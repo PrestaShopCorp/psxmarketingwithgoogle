@@ -20,13 +20,13 @@
       >
         <AppMenu>
           <MenuItem
-            v-if="!currentlyOnLandingPage && GET_BILLING_SUBSCRIPTION_ACTIVE"
+            v-if="!currentlyOnLandingPage"
             :route="{name: 'campaign'}"
           >
             {{ $t('general.tabs.campaign') }}
           </MenuItem>
           <MenuItem
-            v-if="!currentlyOnLandingPage && GET_BILLING_SUBSCRIPTION_ACTIVE"
+            v-if="!currentlyOnLandingPage"
             :route="{name: 'product-feed'}"
           >
             {{ $t('general.tabs.productFeed') }}
@@ -35,12 +35,6 @@
             :route="{name: 'configuration'}"
           >
             {{ $t('general.tabs.configuration') }}
-          </MenuItem>
-          <MenuItem
-            :route="{name: 'Billing'}"
-            v-if="GET_BILLING_SUBSCRIPTION_ACTIVE"
-          >
-            {{ $t('general.tabs.billing') }}
           </MenuItem>
           <MenuItem
             :route="{name: 'help'}"
@@ -89,7 +83,6 @@
 </template>
 
 <script lang="ts">
-import {mapGetters} from 'vuex';
 import {initShopClient} from 'mktg-with-google-common/api/shopClient';
 import AppMenu from '@/components/menu/app-menu.vue';
 import MenuItem from '@/components/menu/menu-item.vue';
@@ -118,9 +111,6 @@ export default {
     };
   },
   computed: {
-    ...mapGetters('app', [
-      AppGettersTypes.GET_BILLING_SUBSCRIPTION_ACTIVE,
-    ]),
     shopId() {
       return window.shopIdPsAccounts;
     },

@@ -7,19 +7,15 @@
         "prepend-autoloader": false,
         "classmap-authoritative": true,
         "platform": {
-            "php": "7.2.5"
+            "php": "8.1.0"
         },
         "platform-check": false
     },
     "require": {
-        "php": ">=7.2",
+        "php": ">=8.1",
         "vlucas/phpdotenv": "^3.4",
-        "segmentio/analytics-php": "^1.5",
         "prestashop/module-lib-service-container": "^2.0",
-        "prestashop/prestashop-accounts-installer": "dev-main",
-        "prestashopcorp/module-lib-billing": "^4.0",
         "symfony/polyfill-php80": "^1.23.1",
-        "sentry/sentry": "^1.11",
         "brick/phonenumber": "^0.4.1"
     },
     "require-dev": {
@@ -43,7 +39,11 @@
             "PrestaShop\\Module\\PsxMarketingWithGoogle\\Tests\\Integration\\": "tests/integration"
         }
     },
-    "author": "PrestaShop",
+    "authors": [
+        {
+            "name": "Tiny Lux"
+        }
+    ],
     "license": "AFL-3.0",
     "type": "prestashop-module"
 }

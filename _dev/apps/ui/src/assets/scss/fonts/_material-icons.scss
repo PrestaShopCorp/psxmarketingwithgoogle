@@ -1,23 +1,38 @@
-/* fallback */
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/materialicons/v140/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+  src: url('material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.woff2') format('woff2');
 }
-/* fallback */
+
 @font-face {
   font-family: 'Material Icons Outlined';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/materialiconsoutlined/v109/gok-H7zzDkdnRel8-DQ6KAXJ69wP1tGnf4ZGhUce.woff2) format('woff2');
+  src: url('material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.woff2') format('woff2');
 }
-/* fallback */
+
 @font-face {
   font-family: 'Material Icons Round';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/materialiconsround/v108/LDItaoyNOAY6Uewc665JcIzCKsKc_M9flwmP.woff2) format('woff2');
+  src: url('material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.woff2') format('woff2');
 }
 
-
+.material-icons,
+.material-icons-outlined,
+.material-icons-round {
+  display: inline-block;
+  font-family: 'Material Icons';
+  font-size: 24px;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: normal;
+  line-height: 1;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}

@@ -22,13 +22,6 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\Config;
 
 class Config
 {
-    public const PSX_MKTG_WITH_GOOGLE_API_URL = 'https://googleshopping-api.psessentials.net';
-    public const PSX_MKTG_WITH_GOOGLE_CDN_URL = 'https://storage.googleapis.com/psxmarketing-cdn/v1.x.x/js/';
-    public const PSX_MKTG_WITH_GOOGLE_BILLING_CDC_URL = 'https://unpkg.com/@prestashopcorp/billing-cdc/dist/bundle.js';
-    public const PSX_MKTG_WITH_GOOGLE_BILLING_PREPROD_CDC_URL = 'https://unpkg.com/@prestashopcorp/billing-cdc@preprod/dist/bundle.js';
-    public const PSX_MKTG_WITH_GOOGLE_CLOUDSYNC_CDC_URL = 'https://assets.prestashop3.com/ext/cloudsync-merchant-sync-consent/latest/cloudsync-cdc.js';
-    public const PSX_MKTG_WITH_GOOGLE_CLOUDSYNC_PREPROD_CDC_URL = 'https://integration-assets.prestashop3.com/ext/cloudsync-merchant-sync-consent/latest/cloudsync-cdc.js';
-
     public const HOOK_LIST = [
         'displayBackOfficeHeader',
         'displayHeader',
@@ -44,14 +37,7 @@ class Config
         'AdminPsgoogleshippingModule',
     ];
 
-    public const PSX_MKTG_WITH_GOOGLE_SENTRY_CREDENTIALS_PHP = 'https://446479f8bca645fa8838c1a5f99dceba@o298402.ingest.sentry.io/5949536';
-    public const PSX_MKTG_WITH_GOOGLE_SENTRY_CREDENTIALS_VUE = 'https://6504c60594bd490eab93afa78f274e35@o298402.ingest.sentry.io/5984715';
-    public const USE_LOCAL_VUE_APP = false;
-    public const USE_LIVE_VUE_APP = false;
     public const USE_BILLING_SANDBOX = 0;
-    public const USE_BILLING_PREPROD = 0;
-    public const USE_CLOUDSYNC_PREPROD = 0;
-    public const PSX_MKTG_WITH_GOOGLE_SEGMENT_API_KEY = 'RqYiLJKyoWv13t9aKxBvza6vsCsRpPpC';
 
     public const PSX_MKTG_WITH_GOOGLE_WEBSITE_VERIFICATION_META = 'PSX_MKTG_WITH_GOOGLE_WEBSITE_VERIFICATION_META';
     public const PSX_MKTG_WITH_GOOGLE_WEBSITE_REQUIREMENTS_STATUS = 'PSX_MKTG_WITH_GOOGLE_WEBSITE_REQUIREMENTS_STATUS';

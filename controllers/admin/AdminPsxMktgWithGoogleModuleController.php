@@ -18,30 +18,18 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\BillingAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
-use PrestaShop\Module\PsxMarketingWithGoogle\Config\Env;
-use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CurrencyRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\LanguageRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\ModuleRepository;
-use PrestaShop\PrestaShop\Core\Addon\Module\ModuleManagerBuilder;
-use PrestaShop\PsAccountsInstaller\Installer\Facade\PsAccounts;
-use PrestaShopCorp\Billing\Presenter\BillingPresenter;
 
 class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
 {
     /** @var PsxMarketingWithGoogle */
     public $module;
 
-    /**
-     * @var Env
-     */
-    private $env;
-
-    /**
     /**
      * @var ConfigurationAdapter
      */
@@ -72,8 +60,6 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
         parent::__construct();
         $this->bootstrap = false;
 
-        $this->module->getService(ErrorHandler::class);
-        $this->env = $this->module->getService(Env::class);
         $this->configurationAdapter = $this->module->getService(
             ConfigurationAdapter::class
         );
@@ -111,111 +97,17 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
             return;
         }
 
-        $billingUrl = (bool) $this->env->get('USE_BILLING_PREPROD') ? $this->env->get('PSX_MKTG_WITH_GOOGLE_BILLING_PREPROD_CDC_URL') : $this->env->get('PSX_MKTG_WITH_GOOGLE_BILLING_CDC_URL');
-        $cloudsyncUrl = (bool) $this->env->get('USE_CLOUDSYNC_PREPROD') ? $this->env->get('PSX_MKTG_WITH_GOOGLE_CLOUDSYNC_PREPROD_CDC_URL') : $this->env->get('PSX_MKTG_WITH_GOOGLE_CLOUDSYNC_CDC_URL');
-
         $this->context->smarty->assign([
-            'pathApp' => (bool) $this->env->get('USE_LOCAL_VUE_APP')
-                ? $this->module->getPathUri() .
-                    'views/js/psxmarketingwithgoogle-ui.js'
-                : $this->env->get('PSX_MKTG_WITH_GOOGLE_CDN_URL') .
-                    'psxmarketingwithgoogle-ui.js',
-            'billingUrl' => $billingUrl,
-            'cloudSyncUrl' => $cloudsyncUrl,
-            'psxMktgWithGoogleControllerLink' => $this->context->link->getAdminLink(
-                'AdminAjaxPsxMktgWithGoogle'
-            ),
-            'psxMktgWithGoogleLiveMode' => (bool) $this->env->get(
-                'USE_LIVE_VUE_APP'
-            ),
+            'pathApp' => $this->module->getPathUri() . 'views/js/psxmarketingwithgoogle-ui.js',
         ]);
-
-        try {
-            /**********************
-             * PrestaShop Account *
-             **********************/
-
-            $psAccountsService = $this->module
-                ->getService(PsAccounts::class)
-                ->getPsAccountsService();
-            $shopIdPsAccounts = $psAccountsService->getShopUuidV4();
-            $tokenPsAccounts = $psAccountsService->getOrRefreshToken();
-
-            /**********************
-             * PrestaShop Billing *
-             **********************/
-
-            // Load the context for PrestaShop Billing
-            $billingFacade = $this->module->getService(BillingPresenter::class);
-            $billingAdapter = new BillingAdapter(
-                $tokenPsAccounts,
-                (bool) $this->env->get('USE_BILLING_SANDBOX'),
-                (bool) $this->env->get('USE_BILLING_PREPROD')
-            );
-            $partnerLogo = $this->module->getLocalPath() . 'logo.png';
-            $fetchSubscriptions = $billingAdapter->getCurrentSubscription(
-                $shopIdPsAccounts,
-                $this->module->name
-            );
-            $currentSubscription = json_decode(
-                $fetchSubscriptions->getBody(),
-                true
-            );
-            // PrestaShop Billing
-            Media::addJsDef(
-                $billingFacade->present([
-                    'logo' => $partnerLogo,
-                    'tosLink' => 'https://prestashop.com/prestashop-account-terms-conditions/',
-                    'privacyLink' => 'https://prestashop.com/prestashop-account-privacy/',
-                    // This field is deprecated but a valid email must be provided to ensure backward compatibility
-                    'emailSupport' => 'no-reply@prestashop.com',
-                ])
-            );
-            Media::addJsDef([
-                'psBillingSubscription' => $fetchSubscriptions->getStatusCode() === 200
-                        ? $currentSubscription
-                        : null,
-            ]);
-        } catch (Exception $e) {
-            $shopIdPsAccounts = null;
-            $tokenPsAccounts = null;
-        }
-
-        /************************
-         * PrestaShop CloudSync *
-         ************************/
-
-        $moduleManager = ModuleManagerBuilder::getInstance()->build();
-
-        if ($moduleManager->isInstalled('ps_eventbus')) {
-            $eventbusModule = \Module::getInstanceByName('ps_eventbus');
-            if (
-                $eventbusModule &&
-                version_compare($eventbusModule->version, '1.9.0', '>=')
-            ) {
-                /* @phpstan-ignore-next-line */
-                $eventbusPresenterService = $eventbusModule->getService(
-                    "PrestaShop\Module\PsEventbus\Service\PresenterService"
-                );
-
-                Media::addJsDef([
-                    'contextPsEventbus' => $eventbusPresenterService->expose(
-                        $this->module,
-                        ['info', 'products', 'currencies', 'categories']
-                    ),
-                ]);
-            }
-        }
 
         /************************************
          * PrestaShop Marketing with Google *
          ************************************/
 
         Media::addJsDef([
-            'contextPsAccounts' => (object) $this->module
-                ->getService(PsAccounts::class)
-                ->getPsAccountsPresenter()
-                ->present($this->module->name),
+            'contextPsAccounts' => (object) [],
+            'contextPsEventbus' => (object) [],
             'i18nSettings' => [
                 'isoCode' => $this->context->language->iso_code,
                 'languageLocale' => $this->context->language->language_code,
@@ -237,22 +129,13 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
                     'ajax' => 1,
                 ]
             ),
-            'shopIdPsAccounts' => $shopIdPsAccounts,
-            'tokenPsAccounts' => $tokenPsAccounts,
+            'shopIdPsAccounts' => '',
+            'tokenPsAccounts' => '',
             'psVersion' => _PS_VERSION_,
             'phpVersion' => phpversion(),
             'psxMktgWithGoogleModuleVersion' => $this->module->version,
-            'psxMktgWithGoogleOnProductionEnvironment' => $this->env->get('PSX_MKTG_WITH_GOOGLE_API_URL') ===
-                Config::PSX_MKTG_WITH_GOOGLE_API_URL,
-            'psxMktgWithGoogleSegmentId' => $this->env->get(
-                'PSX_MKTG_WITH_GOOGLE_SEGMENT_API_KEY'
-            ),
-            'psxMktgWithGoogleDsnSentry' => $this->env->get(
-                'PSX_MKTG_WITH_GOOGLE_SENTRY_CREDENTIALS_VUE'
-            ),
-            'psxMktgWithGoogleApiUrl' => $this->env->get(
-                'PSX_MKTG_WITH_GOOGLE_API_URL'
-            ),
+            'psxMktgWithGoogleOnProductionEnvironment' => false,
+            'psxMktgWithGoogleApiUrl' => '',
             'psxMktgWithGoogleAdminUrl' => $this->context->link->getAdminLink(
                 'AdminPsxMktgWithGoogleModule'
             ),
@@ -305,18 +188,6 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
             'psxMktgWithGoogleRemarketingTagsStatus' => (bool) $this->configurationAdapter->get(
                 Config::PSX_MKTG_WITH_GOOGLE_REMARKETING_STATUS
             ),
-        ]);
-
-        if ($moduleManager->isInstalled('ps_accounts')) {
-            $accountsModule = \Module::getInstanceByName('ps_accounts');
-            if ($accountsModule && version_compare($accountsModule->version, '7', '>=')) {
-                /* @phpstan-ignore-next-line */
-                $accountsCdn = $accountsModule->getParameter('ps_accounts.accounts_cdn_url');
-            }
-        }
-
-        $this->context->smarty->assign([
-            'ps_account_cdn_url' => $accountsCdn ?? 'https://unpkg.com/prestashop_accounts_vue_components@5',
         ]);
 
         $this->content = $this->context->smarty->fetch(

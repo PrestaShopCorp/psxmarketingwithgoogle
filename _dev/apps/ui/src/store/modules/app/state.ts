@@ -1,5 +1,3 @@
-import {ISubscription} from '@prestashopcorp/billing-cdc/dist/@types/Subscription';
-
 /**
  * 2007-2021 PrestaShop and Contributors
  *
@@ -52,9 +50,6 @@ export interface State {
   backOfficeUserIsLoggedIn: boolean;
   featureFlags: {
     enhancedConversions: boolean;
-  },
-  billing: {
-    subscription?: ISubscription;
   },
 }
 
@@ -115,8 +110,5 @@ export const state: State = {
   backOfficeUserIsLoggedIn: true,
   featureFlags: {
     enhancedConversions: false,
-  },
-  billing: {
-    subscription: window.psBillingSubscription,
   },
 };

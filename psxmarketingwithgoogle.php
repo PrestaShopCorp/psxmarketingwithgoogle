@@ -21,16 +21,12 @@
 use Dotenv\Dotenv;
 use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
-use PrestaShop\Module\PsxMarketingWithGoogle\Config\Env;
 use PrestaShop\Module\PsxMarketingWithGoogle\Database\Installer;
 use PrestaShop\Module\PsxMarketingWithGoogle\Database\Uninstaller;
 use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler;
 use PrestaShop\Module\PsxMarketingWithGoogle\Handler\RemarketingHookHandler;
-use PrestaShop\Module\PsxMarketingWithGoogle\Provider\VerificationTagDataProvider;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\TabRepository;
-use PrestaShop\Module\PsxMarketingWithGoogle\Tracker\Segment;
 use PrestaShop\ModuleLibServiceContainer\DependencyInjection\ServiceContainer;
-use PrestaShop\PsAccountsInstaller\Installer\Facade\PsAccounts;
 
 if (!defined('_PS_VERSION_')) {
     exit;
@@ -74,23 +70,22 @@ class PsxMarketingWithGoogle extends Module
     {
         $this->name = 'psxmarketingwithgoogle';
         $this->tab = 'advertising_marketing';
-        $this->version = '1.76.0';
-        $this->author = 'PrestaShop';
+        $this->version = '2.0.0';
+        $this->author = 'Tiny Lux';
         $this->need_instance = 0;
-        $this->module_key = '16b273e77e02c0cc36cd006463951593';
         $this->controllerAdmin = 'AdminAjaxPsxMktgWithGoogle';
         $this->bootstrap = false;
 
         parent::__construct();
 
-        $this->displayName = $this->l('Marketing with Google');
-        $this->description = $this->l('PrestaShop Marketing makes it easy to connect your store with Google and promote your products to millions of shoppers across multiple Google channels. Create Performance Max campaigns without leaving your PrestaShop dashboard and drive more traffic.');
+        $this->displayName = $this->l('Tiny Lux Google');
+        $this->description = $this->l('Connect Tiny Lux directly to Google Merchant Center and synchronize your catalog.');
         $this->psVersionIs17 = (bool) version_compare(_PS_VERSION_, '1.7', '>=');
         $this->css_path = $this->_path . 'views/css/';
         $this->js_path = $this->_path . 'views/js/';
         $this->docs_path = $this->_path . 'docs/';
         $this->confirmUninstall = $this->l('Are you sure you want to uninstall this module?');
-        $this->ps_versions_compliancy = ['min' => '1.7.5.0', 'max' => _PS_VERSION_];
+        $this->ps_versions_compliancy = ['min' => '9.0.0', 'max' => _PS_VERSION_];
 
         // If PHP is not compliant, we will not load composer and the autoloader
         if (!$this->isPhpVersionCompliant()) {
@@ -119,7 +114,7 @@ class PsxMarketingWithGoogle extends Module
     public function install()
     {
         if (!$this->isPhpVersionCompliant()) {
-            $this->_errors[] = $this->l('This requires PHP 7.2 to work properly. Please upgrade your server configuration.');
+            $this->_errors[] = $this->l('This requires PHP 8.1 to work properly. Please upgrade your server configuration.');
 
             // We return true during the installation of PrestaShop to not stop the whole process,
             // Otherwise we warn properly the installation failed.
@@ -130,11 +125,7 @@ class PsxMarketingWithGoogle extends Module
         // does not have the _PS_ADMIN_DIR_ in this environment.
         // prestashop/module-lib-service-container:1.3.1 is known as incompatible
         // $installer = $this->getService(Installer::class);
-        $installer = new Installer(
-            $this,
-            $this->getService(Segment::class),
-            $this->getService(ErrorHandler::class)
-        );
+        $installer = new Installer($this, $this->getService(ErrorHandler::class));
 
         if (!$installer->install()) {
             $this->_errors = $installer->getErrors();
@@ -168,7 +159,6 @@ class PsxMarketingWithGoogle extends Module
 
         $uninstaller = new Uninstaller(
             $this->getService(TabRepository::class),
-            $this->getService(Segment::class),
             $this->getService(ErrorHandler::class)
         );
 
@@ -178,9 +168,7 @@ class PsxMarketingWithGoogle extends Module
 
     public function getContent()
     {
-        // With the version prestashop/prestashop-accounts-auth:2.1.9, a successful login will redirect
-        // to the module configuration page with extra parameters.
-        // We filter the default parameters so the extra ones remain present on the controller we redirect to.
+        // Keep any extra parameters on the controller we redirect to.
         unset($_GET['controller'], $_GET['configure'], $_GET['token'], $_GET['controllerUri']);
 
         Tools::redirectAdmin($this->context->link->getAdminLink('AdminPsxMktgWithGoogleModule') . '&' . http_build_query($_GET));
@@ -196,41 +184,6 @@ class PsxMarketingWithGoogle extends Module
                 'moduleLink' => $this->context->link->getAdminLink('AdminPsxMktgWithGoogleModule'),
             ]);
             $this->context->controller->addJs($this->getPathUri() . 'views/js/hook/shippingWarning.js');
-        }
-
-        if ($this->context->controller->controller_name === 'AdminDashboard') {
-            $env = $this->getService(Env::class);
-            try {
-                $psAccountsService = $this->getService(PsAccounts::class)->getPsAccountsService();
-                $tokenPsAccounts = $psAccountsService->getOrRefreshToken();
-                $shopIdPsAccounts = $psAccountsService->getShopUuidV4();
-            } catch (Exception $e) {
-                $tokenPsAccounts = null;
-                $shopIdPsAccounts = null;
-            }
-
-            if (!empty($tokenPsAccounts) && !empty($shopIdPsAccounts)) {
-                Media::addJsDef([
-                    'psxMktgWithGoogleApiUrl' => $env->get('PSX_MKTG_WITH_GOOGLE_API_URL'),
-                    'psxMktgWithGoogleControllerLink' => $this->context->link->getAdminLink('AdminAjaxPsxMktgWithGoogle'),
-                    'psxMktgWithGoogleAdminUrl' => $this->context->link->getAdminLink('AdminPsxMktgWithGoogleModule'),
-                    'psxMktgWithGoogleTokenPsAccounts' => $tokenPsAccounts,
-                    'psxMktgWithGoogleShopIdPsAccounts' => $shopIdPsAccounts,
-                    'psxMktgWithGoogleDsnSentry' => $env->get('PSX_MKTG_WITH_GOOGLE_SENTRY_CREDENTIALS_VUE'),
-                    'psxMktgWithGoogleSegmentId' => $env->get('PSX_MKTG_WITH_GOOGLE_SEGMENT_API_KEY'),
-                    'psxMktgWithGoogleOnProductionEnvironment' => $env->get('PSX_MKTG_WITH_GOOGLE_API_URL') === Config::PSX_MKTG_WITH_GOOGLE_API_URL,
-                    'i18nSettings' => [
-                        'isoCode' => $this->context->language->iso_code,
-                        'languageLocale' => $this->context->language->language_code,
-                    ],
-                ]);
-                if ($this->getService(VerificationTagDataProvider::class)->isUpdateRequested()) {
-                    $verificationTagJsPath = (bool) $env->get('USE_LOCAL_VUE_APP') ? $this->getPathUri() . 'views/js/fetchVerificationTag.js' : $env->get('PSX_MKTG_WITH_GOOGLE_CDN_URL') . 'fetchVerificationTag.js';
-                    $this->context->controller->addJs($verificationTagJsPath);
-                }
-                $warningMessageJsPath = (bool) $env->get('USE_LOCAL_VUE_APP') ? $this->getPathUri() . 'views/js/fetchWarningMessage.js' : $env->get('PSX_MKTG_WITH_GOOGLE_CDN_URL') . 'fetchWarningMessage.js';
-                $this->context->controller->addJs($warningMessageJsPath);
-            }
         }
 
         if (version_compare(_PS_VERSION_, '9.0.0', '<')) {
@@ -281,6 +234,6 @@ class PsxMarketingWithGoogle extends Module
 
     private function isPhpVersionCompliant()
     {
-        return 70200 <= PHP_VERSION_ID;
+        return 80100 <= PHP_VERSION_ID;
     }
 }

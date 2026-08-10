@@ -1,5 +1,3 @@
-import {AnalyticsBrowser} from '@segment/analytics-next';
-
 declare module '*.vue' {
   import Vue from 'vue';
 
@@ -9,7 +7,12 @@ declare module '*.vue' {
 declare module 'vue/types/vue' {
 
   interface Vue {
-    $segment: AnalyticsBrowser,
+    $segment: {
+      alias: (...args: unknown[]) => void,
+      identify: (...args: unknown[]) => void,
+      setAnonymousId: (...args: unknown[]) => void,
+      track: (...args: unknown[]) => void,
+    },
   }
 }
 

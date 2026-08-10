@@ -20,71 +20,15 @@
 
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Handler;
 
-use Exception;
-use Module;
-use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
-use PrestaShop\PsAccountsInstaller\Installer\Facade\PsAccounts;
-use PsxMarketingWithGoogle;
-
 /**
  * Handle Error.
  */
 class ErrorHandler
 {
     /**
-     * @var ModuleFilteredRavenClient
-     */
-    protected $client;
-
-    /**
      * @var ErrorHandler
      */
     private static $instance;
-
-    public function __construct()
-    {
-        /** @var PsxMarketingWithGoogle */
-        $module = Module::getInstanceByName('psxmarketingwithgoogle');
-
-        $this->client = new ModuleFilteredRavenClient(
-            Config::PSX_MKTG_WITH_GOOGLE_SENTRY_CREDENTIALS_PHP,
-            [
-                'level' => 'warning',
-                'tags' => [
-                    'php_version' => phpversion(),
-                    'psxmarketingwithgoogle_version' => $module->version,
-                    'prestashop_version' => _PS_VERSION_,
-                    'psxmarketingwithgoogle_is_enabled' => \Module::isEnabled('psxmarketingwithgoogle'),
-                    'psxmarketingwithgoogle_is_installed' => \Module::isInstalled('psxmarketingwithgoogle'),
-                ],
-                'release' => "v{$module->version}",
-            ]
-        );
-
-        try {
-            $psAccountsService = $module->getService(PsAccounts::class)->getPsAccountsService();
-            $this->client->user_context([
-                'id' => $psAccountsService->getShopUuidV4(),
-            ]);
-        } catch (Exception $e) {
-            // Do nothing
-        }
-
-        // We use realpath to get errors even if module is behind a symbolic link
-        $this->client->setAppPath(realpath(_PS_MODULE_DIR_ . $module->name . '/'));
-        // - Do no not add the shop root folder, it will exclude everything even if specified in the app path.
-        // - Excluding vendor/ avoids errors comming from one of your libraries library when called by another module.
-        $this->client->setExcludedAppPaths([
-            realpath(_PS_MODULE_DIR_ . $module->name . '/vendor/'),
-        ]);
-        $this->client->setExcludedDomains(['127.0.0.1', 'localhost', '.local']);
-
-        if (version_compare(phpversion(), '7.4.0', '>=') && version_compare(_PS_VERSION_, '1.7.8.0', '<')) {
-            return;
-        }
-
-        $this->client->install();
-    }
 
     /**
      * @param \Exception $error
@@ -98,7 +42,6 @@ class ErrorHandler
      */
     public function handle($error, $code = null, $throw = true, $data = null)
     {
-        $this->client->captureException($error, $data);
         if ($code && true === $throw) {
             http_response_code($code);
             throw $error;

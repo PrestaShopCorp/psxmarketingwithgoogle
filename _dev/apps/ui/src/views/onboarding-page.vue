@@ -5,17 +5,8 @@
     </div>
 
     <div class="mb-4 ps_gs-onboardingpage">
-      <!-- PSAccount + Subscription billing -->
-      <onboarding-deps-container
-        :ps-accounts-onboarded="psAccountsIsOnboarded"
-        :billing-running="GET_BILLING_SUBSCRIPTION_ACTIVE"
-        :subscription="billingSubscription"
-        @onCloudsyncConsentUpdated="cloudSyncSharingConsentGiven = $event"
-      />
-
       <!-- Google Account + GMC + Product Feed -->
       <two-panel-cols
-        v-if="googleFeatureAreAvailable"
         :title="$t('onboarding.sectionTitle.freeListing.title')"
         :description="$t('onboarding.sectionTitle.freeListing.subtitle')"
       >
@@ -44,7 +35,6 @@
 
       <!-- Google Ads -->
       <two-panel-cols
-        v-if="googleFeatureAreAvailable"
         :title="$t('onboarding.sectionTitle.smartShoppingCampaign.title')"
         :description="$t('onboarding.sectionTitle.smartShoppingCampaign.subtitle')"
       >
@@ -117,8 +107,6 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import {mapGetters} from 'vuex';
-import {ISubscription} from '@prestashopcorp/billing-cdc/dist/@types/Subscription';
 import GoogleAccountCard from '@/components/google-account/google-account-card.vue';
 import GoogleAdsAccountCard from '@/components/google-ads-account/google-ads-account-card.vue';
 import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
@@ -129,21 +117,17 @@ import GoogleAdsAccountPopinDisconnect from '@/components/google-ads-account/goo
 import GoogleAdsPopinNew from '@/components/google-ads-account/google-ads-account-popin-new.vue';
 import CampaignCard from '@/components/campaigns/campaign-card.vue';
 import CampaignTracking from '@/components/campaigns/campaign-tracking.vue';
-import OnboardingDepsContainer from '@/components/onboarding/onboarding-deps-container.vue';
 import PromoCard from '@/components/promo/promo-card.vue';
 import TrackingActivationModal from '@/components/campaigns/tracking-activation-modal.vue';
 import PsToast from '@/components/commons/ps-toast.vue';
 import PopinModuleConfigured from '@/components/commons/popin-configured.vue';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import AlertCmp from '@/components/commons/alert-cmp.vue';
 import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import EnhancedConversionsCard from '@/components/enhanced-conversions/enhanced-conversions-card.vue';
 import ModalEcIntro from '@/components/enhanced-conversions/modal-ec-intro.vue';
 import {AccountInformations} from '@/store/modules/google-ads/state';
-import GettersTypesApp from '@/store/modules/app/getters-types';
 import TwoPanelCols from '@/components/onboarding/two-panel-cols.vue';
 import {deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
-import {State as AppState} from '@/store/modules/app/state';
 
 export default defineComponent({
   name: 'OnboardingPage',
@@ -152,7 +136,6 @@ export default defineComponent({
     GoogleAccountCard,
     GoogleAdsAccountCard,
     MerchantCenterAccountCard,
-    OnboardingDepsContainer,
     ProductFeedCard,
     CampaignCard,
     CampaignTracking,
@@ -176,8 +159,6 @@ export default defineComponent({
       MCAIsLoading: false,
       productFeedIsLoading: false,
       SSCIsLoading: false,
-      cloudSyncSharingConsentScreenStarted: false,
-      cloudSyncSharingConsentGiven: false,
       displayBannerSuccessMonetization: false,
     };
   },
@@ -265,10 +246,6 @@ export default defineComponent({
     },
   },
   computed: {
-    ...mapGetters('app', [
-      GettersTypesApp.GET_FEATURE_FLAG_ENHANCED_CONVERSIONS,
-      GettersTypesApp.GET_BILLING_SUBSCRIPTION_ACTIVE,
-    ]),
     displayCmpAlert() {
       return !!this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'] && this.showCmpAlert;
     },
@@ -330,10 +307,7 @@ export default defineComponent({
     },
     stepsAreCompleted() {
       return {
-        step1: this.psAccountsIsOnboarded
-          && this.GET_BILLING_SUBSCRIPTION_ACTIVE
-          && (this.cloudSyncSharingConsentGiven
-          ),
+        step1: true,
         step2: this.googleAccountIsOnboarded
           && this.merchantCenterAccountIsChosen
           && this.productFeedIsConfigured,
@@ -354,12 +328,6 @@ export default defineComponent({
       }
       return '';
     },
-    billingSubscription(): ISubscription|undefined {
-      return (this.$store.state.app as AppState).billing.subscription;
-    },
-    googleFeatureAreAvailable() {
-      return this.GET_BILLING_SUBSCRIPTION_ACTIVE || !this.billingSubscription?.cancelled_at;
-    },
   },
   mounted() {
     deleteProductFeedDataFromLocalStorage();
@@ -371,12 +339,6 @@ export default defineComponent({
       this.googleIsLoading = true;
       this.MCAIsLoading = true;
       this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS').then(() => {
-        if (!this.googleAccountIsOnboarded) {
-          this.$segment.track('[GGL] PS Account connected', {
-            module: 'psxmarketingwithgoogle',
-            params: SegmentGenericParams,
-          });
-        }
         this.$store.dispatch('googleAds/WARMUP_STORE');
         this.$store.dispatch('productFeed/WARMUP_STORE');
       }).finally(() => {

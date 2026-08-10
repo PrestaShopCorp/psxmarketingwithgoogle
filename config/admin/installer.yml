@@ -4,7 +4,6 @@ services:
     public: true
     arguments:
       - '@psxmarketingwithgoogle'
-      - '@PrestaShop\Module\PsxMarketingWithGoogle\Tracker\Segment'
       - '@PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler'
 
   PrestaShop\Module\PsxMarketingWithGoogle\Database\Uninstaller:
@@ -12,5 +11,4 @@ services:
     public: true
     arguments:
       - '@PrestaShop\Module\PsxMarketingWithGoogle\Repository\TabRepository'
-      - '@PrestaShop\Module\PsxMarketingWithGoogle\Tracker\Segment'
       - '@PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler'

@@ -132,14 +132,4 @@ export default {
     }
     throw new Error('Module name not found or the current version is missing');
   },
-
-  [GettersTypes.GET_BILLING_SUBSCRIPTION_ACTIVE](state: LocalState): boolean {
-    return !!state.billing.subscription
-      // Using the type from billing-cdc prevents the module to work
-      && state.billing.subscription.status !== 'cancelled';
-  },
-  [GettersTypes.GET_BILLING_SUBSCRIPTION_EXPIRING](state: LocalState): boolean {
-    return !!state.billing.subscription
-      && !!state.billing.subscription.cancelled_at;
-  },
 };

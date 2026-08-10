@@ -15,7 +15,6 @@
 
   // Mixins
   @import "~prestakit/scss/mixins/fonts";
-  @import "~prestakit/scss/imports"; // need fonts first
   @import "~prestakit/scss/mixins/close-button";
   @import "~prestakit/scss/mixins/shadows";
   @import "~prestakit/scss/mixins/buttons";
@@ -66,7 +65,7 @@
 
   // Fonts
   @import "fonts/material-icons";
-  @import "fonts/ibm-plex-sans";
+  @import "fonts/open-sans";
 
   // page
   @import "layouts/form";
@@ -115,5 +114,3 @@
   @import "pages/attribute-mapping";
   @import "pages/product-selection";
 }
-
-

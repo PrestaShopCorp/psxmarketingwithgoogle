@@ -1,4 +1,4 @@
-import {HttpClientError, fetchOnboarding, fetchShop} from 'mktg-with-google-common';
+import {fetchOnboarding, fetchShop} from 'mktg-with-google-common';
 import type {ActionContext} from 'vuex';
 import type {IncrementalSyncContext} from '@/components/product-feed-page/dashboard/feed-configuration/feed-configuration';
 import type {ProductIssue} from '@/components/render-issues/types';
@@ -342,20 +342,8 @@ export default {
     return result;
   },
 
-  async [ActionsTypes.REQUEST_SYNCHRONISATION]({rootState}: Context, full = false) {
-    const response = await fetch(`https://api.cloudsync.prestashop.com/sync/v1/sync/trigger${full ? '-full' : ''}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
-      },
-      body: JSON.stringify({shopId: rootState.accounts.shopIdPsAccounts}),
-    });
-
-    if (!response.ok) {
-      throw new HttpClientError(response.statusText, response.status);
-    }
+  async [ActionsTypes.REQUEST_SYNCHRONISATION]() {
+    return false;
   },
 
   async [ActionsTypes.REQUEST_FULL_SYNCHRONISATION]({dispatch}: Context) {

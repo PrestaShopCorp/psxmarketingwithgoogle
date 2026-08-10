@@ -25,7 +25,6 @@ use Language;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\Module\PsxMarketingWithGoogle\Exception\MktgWithGoogleInstallerException;
 use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler;
-use PrestaShop\Module\PsxMarketingWithGoogle\Tracker\Segment;
 use PsxMarketingWithGoogle;
 use Tab;
 
@@ -41,19 +40,13 @@ class Installer
     private $errors = [];
 
     /**
-     * @var Segment
-     */
-    private $segment;
-
-    /**
      * @var ErrorHandler
      */
     private $errorHandler;
 
-    public function __construct(PsxMarketingWithGoogle $module, Segment $segment, ErrorHandler $errorHandler)
+    public function __construct(PsxMarketingWithGoogle $module, ErrorHandler $errorHandler)
     {
         $this->module = $module;
-        $this->segment = $segment;
         $this->errorHandler = $errorHandler;
     }
 
@@ -62,9 +55,6 @@ class Installer
      */
     public function install()
     {
-        $this->segment->setMessage('PSX Marketing With Google installed');
-        $this->segment->track();
-
         return $this->installConfiguration() &&
             $this->installTabs() &&
             $this->installTables();
@@ -205,7 +195,7 @@ class Installer
             [
                 'className' => 'AdminPsxMktgWithGoogleModule',
                 'parent' => 'Marketing',
-                'name' => 'Google',
+                'name' => 'Tiny Lux Google',
                 'module' => $this->module->name,
                 'active' => true,
                 'icon' => '',

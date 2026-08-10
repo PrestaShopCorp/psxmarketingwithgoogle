@@ -17,23 +17,9 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  *}
 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-<link href="{$cloudSyncUrl|escape:'htmlall':'UTF-8'}" rel=preload as=script>
-<link href="{$ps_account_cdn_url|escape:'htmlall':'UTF-8'}" rel=preload as=script>
-
 <div id="psxMktgWithGoogleApp"></div>
-<script src="{$cloudSyncUrl|escape:'htmlall':'UTF-8'}"></script>
-<script src="{$ps_account_cdn_url|escape:'htmlall':'UTF-8'}"></script>
-<script src="{$billingUrl|escape:'htmlall':'UTF-8'}" rel=preload></script>
-
-{if $psxMktgWithGoogleLiveMode}
-  <script type="module" src="http://localhost:5173/@vite/client"></script>
-  <script type="module" src="http://localhost:5173/src/main.ts"></script>
-{else}
-  <link href="{$pathApp|escape:'htmlall':'UTF-8'}" rel=preload as=script>
-  <script src="{$pathApp|escape:'htmlall':'UTF-8'}" type="module"></script>
-{/if}
+<link href="{$pathApp|escape:'htmlall':'UTF-8'}" rel=preload as=script>
+<script src="{$pathApp|escape:'htmlall':'UTF-8'}" type="module"></script>
 <style>
   /** Hide native multistore module activation panel, because of visual regressions on non-bootstrap content */
   #content.nobootstrap div.bootstrap.panel {

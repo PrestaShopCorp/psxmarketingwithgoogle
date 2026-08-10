@@ -25,7 +25,6 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\Module\PsxMarketingWithGoogle\Exception\MktgWithGoogleInstallerException;
 use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\TabRepository;
-use PrestaShop\Module\PsxMarketingWithGoogle\Tracker\Segment;
 
 class Uninstaller
 {
@@ -37,22 +36,15 @@ class Uninstaller
     private $tabRepository;
 
     /**
-     * @var Segment
-     */
-    private $segment;
-
-    /**
      * @var ErrorHandler
      */
     private $errorHandler;
 
     public function __construct(
         TabRepository $tabRepository,
-        Segment $segment,
         ErrorHandler $errorHandler
     ) {
         $this->tabRepository = $tabRepository;
-        $this->segment = $segment;
         $this->errorHandler = $errorHandler;
     }
 
@@ -63,9 +55,6 @@ class Uninstaller
      */
     public function uninstall()
     {
-        $this->segment->setMessage('PS Google shopping uninstalled');
-        $this->segment->track();
-
         /* todo: remove ignore when first configuration is added to the list */
         /* @phpstan-ignore-next-line */
         foreach (array_keys(Config::CONFIGURATION_LIST) as $name) {
