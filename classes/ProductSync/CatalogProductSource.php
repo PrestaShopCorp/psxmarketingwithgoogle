@@ -11,7 +11,7 @@ use InvalidArgumentException;
 use LogicException;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\ProductEnumerator;
 
-final class CatalogProductSource
+final class CatalogProductSource implements CatalogOfferSourceInterface
 {
     private const MAX_PAGE_SIZE = 250;
 
@@ -74,6 +74,73 @@ final class CatalogProductSource
         }
 
         return $products;
+    }
+
+    /** @return string[] */
+    public function offerKeys(int $shopId, int $languageId): array
+    {
+        if (0 >= $shopId || 0 >= $languageId) {
+            throw new InvalidArgumentException('Catalog offer-key arguments are invalid.');
+        }
+        $this->provider->assertContext($shopId, $languageId);
+        $filters = $this->filterSettings->filtersForShop($shopId);
+        $offerKeys = [];
+        $offset = 0;
+        $previousProductId = 0;
+        $previousAttributeId = -1;
+
+        do {
+            $rows = $this->productEnumerator->listProductOffersMatchingFilters($filters, [
+                'offset' => $offset,
+                'limit' => self::MAX_PAGE_SIZE,
+                'orderBy' => 'id_product',
+                'orderWay' => 'ASC',
+            ]);
+            if (count($rows) > self::MAX_PAGE_SIZE) {
+                throw new LogicException('Offer enumeration returned an oversized page.');
+            }
+            foreach ($rows as $row) {
+                $productId = $this->positiveId($row, 'id_product');
+                $attributeId = $this->nonNegativeId($row, 'id_product_attribute');
+                if ($productId < $previousProductId
+                    || ($productId === $previousProductId && $attributeId <= $previousAttributeId)
+                ) {
+                    throw new LogicException('Offer enumeration did not advance.');
+                }
+                $previousProductId = $productId;
+                $previousAttributeId = $attributeId;
+                $offerKeys[] = $productId . '-' . $attributeId;
+            }
+            $offset += count($rows);
+        } while (self::MAX_PAGE_SIZE === count($rows));
+
+        return $offerKeys;
+    }
+
+    public function offer(string $offerKey, int $shopId, int $languageId): ?CatalogProduct
+    {
+        if (0 >= $shopId
+            || 0 >= $languageId
+            || 1 !== preg_match('/^([1-9][0-9]*)-(0|[1-9][0-9]*)$/D', $offerKey, $matches)
+            || 4294967295 < (int) $matches[1]
+            || 4294967295 < (int) $matches[2]
+        ) {
+            throw new InvalidArgumentException('Catalog offer identity is invalid.');
+        }
+        $this->provider->assertContext($shopId, $languageId);
+        try {
+            $product = $this->provider->product((int) $matches[1], (int) $matches[2], $shopId, $languageId);
+        } catch (CatalogOfferNotFoundException $exception) {
+            unset($exception);
+
+            return null;
+        }
+        if ($offerKey !== $product->offerId()) {
+            throw new LogicException('Catalog provider returned an unstable offer identity.');
+        }
+        $this->assertCatalogUrls($product);
+
+        return $product;
     }
 
     private function validatePage(int $shopId, int $languageId, int $offset, int $limit): void

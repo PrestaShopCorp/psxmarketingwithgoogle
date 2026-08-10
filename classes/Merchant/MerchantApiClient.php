@@ -11,16 +11,21 @@ use InvalidArgumentException;
 use JsonException;
 use PrestaShop\Module\PsxMarketingWithGoogle\Google\GoogleApiException;
 use PrestaShop\Module\PsxMarketingWithGoogle\Google\GoogleTransportInterface;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\MerchantProductGatewayInterface;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\Rfc3986UrlValidator;
 
-final class MerchantApiClient
+final class MerchantApiClient implements MerchantProductGatewayInterface
 {
     private const ACCOUNTS_ROOT = 'https://merchantapi.googleapis.com/accounts/v1';
     private const DATASOURCES_ROOT = 'https://merchantapi.googleapis.com/datasources/v1';
+    private const PRODUCTS_ROOT = 'https://merchantapi.googleapis.com/products/v1';
     private const DISPLAY_NAME = 'Tiny Lux PrestaShop API';
     private const MAX_PAGES = 100;
     private const MAX_ITEMS = 1000;
     private const MAX_PAGE_TOKEN_BYTES = 2048;
     private const MAX_ACCESS_TOKEN_BYTES = 16384;
+    private const MAX_PRODUCT_INPUT_BYTES = 32768;
+    private const MAX_PRODUCT_RESPONSE_BYTES = 65536;
 
     /** @var GoogleTransportInterface */
     private $transport;
@@ -213,6 +218,53 @@ final class MerchantApiClient
     /**
      * @param array<string, mixed> $payload
      *
+     * @return array<string, mixed>
+     */
+    public function insertProductInput(
+        string $accessToken,
+        string $accountId,
+        string $dataSourceName,
+        array $payload
+    ): array {
+        $this->assertAccountId($accountId);
+        if (1 !== preg_match(
+            '#^accounts/' . preg_quote($accountId, '#') . '/dataSources/[0-9]{1,20}$#D',
+            $dataSourceName
+        )) {
+            throw new InvalidArgumentException('Data source resource is invalid for the Merchant account.');
+        }
+        $this->assertProductInput($payload);
+        $offerId = $payload['offerId'];
+        $contentLanguage = $payload['contentLanguage'];
+        $feedLabel = $payload['feedLabel'];
+        $body = json_encode($payload, JSON_UNESCAPED_SLASHES);
+        if (!is_string($body) || self::MAX_PRODUCT_INPUT_BYTES < strlen($body)) {
+            throw new InvalidArgumentException('Merchant ProductInput payload is invalid.');
+        }
+
+        $response = $this->requestJson(
+            'POST',
+            self::PRODUCTS_ROOT . '/accounts/' . $accountId . '/productInputs:insert'
+            . '?dataSource=' . rawurlencode($dataSourceName),
+            $accessToken,
+            $body,
+            false,
+            self::MAX_PRODUCT_RESPONSE_BYTES
+        );
+        if ([] === $response
+            || $offerId !== ($response['offerId'] ?? null)
+            || $contentLanguage !== ($response['contentLanguage'] ?? null)
+            || $feedLabel !== ($response['feedLabel'] ?? null)
+        ) {
+            throw $this->invalidResponse();
+        }
+
+        return $response;
+    }
+
+    /**
+     * @param array<string, mixed> $payload
+     *
      * @return array<int, mixed>
      */
     private function listField(array $payload, string $field): array
@@ -310,7 +362,8 @@ final class MerchantApiClient
         string $url,
         string $accessToken,
         ?string $body,
-        bool $developerRegistration = false
+        bool $developerRegistration = false,
+        int $maxResponseBytes = 1048576
     ): array {
         $this->assertAccessToken($accessToken);
         $headers = [
@@ -327,7 +380,10 @@ final class MerchantApiClient
         }
 
         $raw = $response->getBody();
-        if ('' === $raw || '{' !== substr(ltrim($raw), 0, 1)) {
+        if ('' === $raw
+            || $maxResponseBytes < strlen($raw)
+            || '{' !== substr(ltrim($raw), 0, 1)
+        ) {
             throw $this->invalidResponse();
         }
         try {
@@ -402,6 +458,97 @@ final class MerchantApiClient
         }
     }
 
+    /** @param array<string, mixed> $payload */
+    private function assertProductInput(array $payload): void
+    {
+        if (!$this->hasExactKeys($payload, ['offerId', 'contentLanguage', 'feedLabel', 'productAttributes'])
+            || !is_string($payload['offerId'])
+            || 1 !== preg_match('/^[A-Za-z0-9._-]{1,50}$/D', $payload['offerId'])
+            || !is_string($payload['contentLanguage'])
+            || !is_string($payload['feedLabel'])
+            || !is_array($payload['productAttributes'])
+            || array_is_list($payload['productAttributes'])
+        ) {
+            throw new InvalidArgumentException('Merchant ProductInput payload is invalid.');
+        }
+        $this->assertContentLanguage($payload['contentLanguage']);
+        $this->assertFeedLabel($payload['feedLabel']);
+
+        $attributes = $payload['productAttributes'];
+        $required = ['title', 'description', 'link', 'imageLink', 'availability', 'condition', 'price'];
+        $allowed = array_merge($required, ['brand', 'gtins', 'mpn']);
+        $actual = array_keys($attributes);
+        if ([] !== array_diff($required, $actual) || [] !== array_diff($actual, $allowed)) {
+            throw new InvalidArgumentException('Merchant ProductInput payload is invalid.');
+        }
+        if (!$this->boundedText($attributes['title'], 150)
+            || !$this->boundedText($attributes['description'], 5000)
+            || !$this->validProductUrl($attributes['link'])
+            || !$this->validProductUrl($attributes['imageLink'])
+            || !in_array($attributes['availability'], ['IN_STOCK', 'OUT_OF_STOCK'], true)
+            || 'NEW' !== $attributes['condition']
+            || !is_array($attributes['price'])
+            || !$this->hasExactKeys($attributes['price'], ['amountMicros', 'currencyCode'])
+            || !is_string($attributes['price']['amountMicros'])
+            || 1 !== preg_match('/^(?:0|[1-9][0-9]{0,18})$/D', $attributes['price']['amountMicros'])
+            || $this->greaterThanInt64($attributes['price']['amountMicros'])
+            || !is_string($attributes['price']['currencyCode'])
+            || 1 !== preg_match('/^[A-Z]{3}$/D', $attributes['price']['currencyCode'])
+        ) {
+            throw new InvalidArgumentException('Merchant ProductInput payload is invalid.');
+        }
+        foreach (['brand', 'mpn'] as $optionalText) {
+            if (array_key_exists($optionalText, $attributes)
+                && !$this->boundedText($attributes[$optionalText], 70)
+            ) {
+                throw new InvalidArgumentException('Merchant ProductInput payload is invalid.');
+            }
+        }
+        if (array_key_exists('gtins', $attributes)
+            && (!is_array($attributes['gtins'])
+                || !array_is_list($attributes['gtins'])
+                || 1 !== count($attributes['gtins'])
+                || !is_string($attributes['gtins'][0])
+                || 1 !== preg_match('/^(?:[0-9]{8}|[0-9]{12}|[0-9]{13}|[0-9]{14})$/D', $attributes['gtins'][0]))
+        ) {
+            throw new InvalidArgumentException('Merchant ProductInput payload is invalid.');
+        }
+    }
+
+    /** @param array<string, mixed> $value
+     * @param string[] $keys
+     */
+    private function hasExactKeys(array $value, array $keys): bool
+    {
+        $actual = array_keys($value);
+        sort($actual);
+        sort($keys);
+
+        return $actual === $keys;
+    }
+
+    /** @param mixed $value */
+    private function boundedText($value, int $maxCharacters): bool
+    {
+        return is_string($value)
+            && '' !== $value
+            && $maxCharacters >= mb_strlen($value, 'UTF-8')
+            && 0 === preg_match('/[\x00-\x1F\x7F]/', $value);
+    }
+
+    /** @param mixed $url */
+    private function validProductUrl($url): bool
+    {
+        return is_string($url)
+            && 2000 >= strlen($url)
+            && Rfc3986UrlValidator::isValidHttpUrl($url);
+    }
+
+    private function greaterThanInt64(string $value): bool
+    {
+        return 19 === strlen($value) && strcmp($value, '9223372036854775807') > 0;
+    }
+
     private function validGcpId(string $gcpId): bool
     {
         return 1 === preg_match('/^[0-9]{1,30}$/D', $gcpId)
@@ -417,16 +564,14 @@ final class MerchantApiClient
 
     private function assertFeedLabel(string $feedLabel): void
     {
-        if (1 !== preg_match('/^[A-Z0-9-]{1,20}$/D', $feedLabel)) {
+        if (1 !== preg_match('/^[A-Z0-9_-]{1,20}$/D', $feedLabel)) {
             throw new InvalidArgumentException('Feed label has an invalid format.');
         }
     }
 
     private function assertContentLanguage(string $contentLanguage): void
     {
-        if (35 < strlen($contentLanguage)
-            || 1 !== preg_match('/^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8}){0,3}$/D', $contentLanguage)
-        ) {
+        if (1 !== preg_match('/^[a-z]{2}$/D', $contentLanguage)) {
             throw new InvalidArgumentException('Content language has an invalid format.');
         }
     }

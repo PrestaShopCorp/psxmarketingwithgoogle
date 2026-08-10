@@ -3,12 +3,46 @@
 namespace PrestaShop\Module\PsxMarketingWithGoogle\Tests\Unit\ProductSync;
 
 use PHPUnit\Framework\TestCase;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogOfferNotFoundException;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\PrestaShopCatalogGateway;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\PrestaShopProductRuntimeInterface;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\ProductValidationException;
 
 class PrestaShopCatalogGatewayTest extends TestCase
 {
+    public function testInactiveSnapshottedProductHasDistinctRemovedOutcome(): void
+    {
+        self::assertTrue(class_exists(CatalogOfferNotFoundException::class), 'Removed catalog offers need a distinct outcome.');
+        $runtime = new GatewayProductRuntimeFake();
+        $runtime->product->active = false;
+        $gateway = new PrestaShopCatalogGateway(
+            GatewayContextFactory::context(),
+            new GatewayLinkFake(),
+            new GatewayDatabaseFake(),
+            $runtime,
+            'ps_'
+        );
+
+        $this->expectException(CatalogOfferNotFoundException::class);
+        $gateway->offer(42, 0, 1, 2);
+    }
+
+    public function testDeletedSnapshottedCombinationHasDistinctRemovedOutcome(): void
+    {
+        $runtime = new GatewayProductRuntimeFake();
+        $runtime->combination->id = 0;
+        $gateway = new PrestaShopCatalogGateway(
+            GatewayContextFactory::context(),
+            new GatewayLinkFake(),
+            new GatewayDatabaseFake(),
+            $runtime,
+            'ps_'
+        );
+
+        $this->expectException(CatalogOfferNotFoundException::class);
+        $gateway->offer(42, 7, 1, 2);
+    }
+
     public function testUsesTrustedActiveContextWithoutMutatingIt(): void
     {
         $context = GatewayContextFactory::context();

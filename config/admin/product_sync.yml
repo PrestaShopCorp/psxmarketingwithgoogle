@@ -53,3 +53,31 @@ services:
       - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\ProductEnumerator'
       - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogProductProviderInterface'
       - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogFilterSettingsInterface'
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogOfferSourceInterface:
+    alias: PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogProductSource
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\SyncJobRepository:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\SyncJobRepository
+    arguments:
+      - '@psxmarketingwithgoogle.db'
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\SyncJobStoreInterface:
+    alias: PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\SyncJobRepository
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\GoogleConnectionProviderInterface:
+    alias: PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleConnectionService
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\MerchantProductGatewayInterface:
+    alias: PrestaShop\Module\PsxMarketingWithGoogle\Merchant\MerchantApiClient
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\SyncProcessor:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\SyncProcessor
+    public: true
+    arguments:
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\SyncJobStoreInterface'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogOfferSourceInterface'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\GoogleConnectionProviderInterface'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\MerchantProductGatewayInterface'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\MerchantProductMapper'
+      - '@psxmarketingwithgoogle.context'

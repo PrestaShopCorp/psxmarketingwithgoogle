@@ -10,8 +10,9 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\OAuth;
 use DateTimeImmutable;
 use InvalidArgumentException;
 use PrestaShop\Module\PsxMarketingWithGoogle\Google\GoogleApiException;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\GoogleConnectionProviderInterface;
 
-final class GoogleConnectionService
+final class GoogleConnectionService implements GoogleConnectionProviderInterface
 {
     private const STATE_TTL = '+10 minutes';
     private const TOKEN_EXPIRY_SAFETY_SECONDS = 60;

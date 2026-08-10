@@ -22,6 +22,198 @@ class MerchantApiClientTest extends TestCase
         $this->client = new MerchantApiClient($this->transport);
     }
 
+    public function testInsertProductInputUsesExactMerchantV1UrlAndJsonBody(): void
+    {
+        self::assertTrue(
+            method_exists($this->client, 'insertProductInput'),
+            'Merchant v1 ProductInput insertion must be implemented.'
+        );
+        $payload = [
+            'offerId' => 'lamp-42',
+            'contentLanguage' => 'en',
+            'feedLabel' => 'US_MAIN',
+            'productAttributes' => [
+                'title' => 'Tiny Lux Lamp',
+                'description' => 'Hand-finished lamp',
+                'link' => 'https://thetinylux.com/products/lamp-42',
+                'imageLink' => 'https://thetinylux.com/img/lamp-42.jpg',
+                'availability' => 'IN_STOCK',
+                'condition' => 'NEW',
+                'price' => ['amountMicros' => '449990000', 'currencyCode' => 'USD'],
+            ],
+        ];
+        $this->transport->queueJson(200, $payload + [
+            'name' => 'accounts/123/productInputs/en~US_MAIN~lamp-42',
+        ]);
+
+        $response = $this->client->insertProductInput(
+            'access-token-value',
+            '123',
+            'accounts/123/dataSources/456',
+            $payload
+        );
+
+        self::assertSame('lamp-42', $response['offerId']);
+        self::assertSame('POST', $this->transport->requests[0]['method']);
+        self::assertSame(
+            'https://merchantapi.googleapis.com/products/v1/accounts/123/productInputs:insert'
+            . '?dataSource=accounts%2F123%2FdataSources%2F456',
+            $this->transport->requests[0]['url']
+        );
+        self::assertSame(
+            '{"offerId":"lamp-42","contentLanguage":"en","feedLabel":"US_MAIN",'
+            . '"productAttributes":{"title":"Tiny Lux Lamp","description":"Hand-finished lamp",'
+            . '"link":"https://thetinylux.com/products/lamp-42",'
+            . '"imageLink":"https://thetinylux.com/img/lamp-42.jpg","availability":"IN_STOCK",'
+            . '"condition":"NEW","price":{"amountMicros":"449990000","currencyCode":"USD"}}}',
+            $this->transport->requests[0]['body']
+        );
+        self::assertContains('Authorization: Bearer access-token-value', $this->transport->requests[0]['headers']);
+        self::assertContains('Content-Type: application/json', $this->transport->requests[0]['headers']);
+    }
+
+    public function testInsertProductInputRejectsInvalidOwnershipTokenAndExactPayloadShapeBeforeTransport(): void
+    {
+        $valid = $this->validProductInput();
+        $invalidInputs = [
+            ['token' => "bad\ntoken", 'account' => '123', 'source' => 'accounts/123/dataSources/456', 'payload' => $valid],
+            ['token' => str_repeat('t', 16385), 'account' => '123', 'source' => 'accounts/123/dataSources/456', 'payload' => $valid],
+            ['token' => 'token', 'account' => '123', 'source' => 'accounts/999/dataSources/456', 'payload' => $valid],
+            ['token' => 'token', 'account' => '123', 'source' => 'accounts/123/dataSources/456', 'payload' => $valid + ['channel' => 'ONLINE']],
+            ['token' => 'token', 'account' => '123', 'source' => 'accounts/123/dataSources/456', 'payload' => array_diff_key($valid, ['offerId' => true])],
+            [
+                'token' => 'token',
+                'account' => '123',
+                'source' => 'accounts/123/dataSources/456',
+                'payload' => array_replace($valid, ['productAttributes' => $valid['productAttributes'] + ['customAttribute' => 'x']]),
+            ],
+            [
+                'token' => 'token',
+                'account' => '123',
+                'source' => 'accounts/123/dataSources/456',
+                'payload' => array_replace($valid, ['productAttributes' => array_diff_key(
+                    $valid['productAttributes'],
+                    ['price' => true]
+                )]),
+            ],
+            [
+                'token' => 'token',
+                'account' => '123',
+                'source' => 'accounts/123/dataSources/456',
+                'payload' => array_replace($valid, ['productAttributes' => array_replace(
+                    $valid['productAttributes'],
+                    ['link' => 'https://user:pass@evil.example/product']
+                )]),
+            ],
+            [
+                'token' => 'token',
+                'account' => '123',
+                'source' => 'accounts/123/dataSources/456',
+                'payload' => array_replace($valid, ['productAttributes' => array_replace(
+                    $valid['productAttributes'],
+                    ['title' => str_repeat('T', 151)]
+                )]),
+            ],
+            [
+                'token' => 'token',
+                'account' => '123',
+                'source' => 'accounts/123/dataSources/456',
+                'payload' => array_replace($valid, ['productAttributes' => array_replace(
+                    $valid['productAttributes'],
+                    ['link' => 'https://thetinylux.com/' . str_repeat('p', 1978)]
+                )]),
+            ],
+            [
+                'token' => 'token',
+                'account' => '123',
+                'source' => 'accounts/123/dataSources/456',
+                'payload' => array_replace($valid, ['productAttributes' => array_replace(
+                    $valid['productAttributes'],
+                    ['description' => str_repeat('x', 70000)]
+                )]),
+            ],
+        ];
+
+        foreach ($invalidInputs as $index => $input) {
+            try {
+                $this->client->insertProductInput(
+                    $input['token'],
+                    $input['account'],
+                    $input['source'],
+                    $input['payload']
+                );
+                self::fail('Invalid Merchant ProductInput case ' . $index . ' reached transport.');
+            } catch (\InvalidArgumentException $exception) {
+                self::assertSame([], $this->transport->requests, 'Invalid case ' . $index . ' must fail before transport.');
+            }
+        }
+    }
+
+    public function testInsertProductInputRejectsEmptyListOversizedAndIdentityMismatchedResponses(): void
+    {
+        $invalidResponses = [
+            '',
+            '[]',
+            '{}',
+            json_encode(array_replace($this->validProductInput(), ['offerId' => 'other-offer']), JSON_UNESCAPED_SLASHES),
+            json_encode($this->validProductInput() + ['padding' => str_repeat('x', 70000)], JSON_UNESCAPED_SLASHES),
+        ];
+
+        foreach ($invalidResponses as $index => $body) {
+            self::assertIsString($body);
+            $transport = new MerchantRecordingTransport();
+            $transport->queue(new Response(200, $body));
+            $client = new MerchantApiClient($transport);
+            try {
+                $client->insertProductInput(
+                    'access-token-value',
+                    '123',
+                    'accounts/123/dataSources/456',
+                    $this->validProductInput()
+                );
+                self::fail('Malformed Merchant response case ' . $index . ' must be rejected.');
+            } catch (GoogleApiException $exception) {
+                self::assertSame('google_invalid_response', $exception->safeCode());
+                self::assertStringNotContainsString('lamp-42', $exception->getMessage());
+                self::assertStringNotContainsString('padding', $exception->getMessage());
+            }
+        }
+    }
+
+    public function testDataSourceValidationAllowsUnderscoreAndRejectsRegionalOrThreeLetterLanguage(): void
+    {
+        $this->client->validateDataSourceConfiguration('US_MAIN', 'en');
+        self::assertSame([], $this->transport->requests);
+
+        foreach (['eng', 'en-US'] as $language) {
+            try {
+                $this->client->validateDataSourceConfiguration('US_MAIN', $language);
+                self::fail('Only exact two-letter lowercase content language is syncable.');
+            } catch (\InvalidArgumentException $exception) {
+                self::assertSame([], $this->transport->requests);
+            }
+        }
+    }
+
+    /** @return array<string, mixed> */
+    private function validProductInput(): array
+    {
+        return [
+            'offerId' => 'lamp-42',
+            'contentLanguage' => 'en',
+            'feedLabel' => 'US_MAIN',
+            'productAttributes' => [
+                'title' => 'Tiny Lux Lamp',
+                'description' => 'Hand-finished lamp',
+                'link' => 'https://thetinylux.com/products/lamp-42',
+                'imageLink' => 'https://thetinylux.com/img/lamp-42.jpg',
+                'availability' => 'IN_STOCK',
+                'condition' => 'NEW',
+                'price' => ['amountMicros' => '449990000', 'currencyCode' => 'USD'],
+            ],
+        ];
+    }
+
     public function testListAccountsNormalizesResourceNamesAndPaginatesWithEncodedTokens(): void
     {
         $this->transport->queueJson(200, [
@@ -312,8 +504,10 @@ class MerchantApiClientTest extends TestCase
         return [
             'lowercase feed label' => ['en', 'gb'],
             'feed label too long' => ['en', str_repeat('A', 21)],
-            'feed label punctuation' => ['en', 'GB_1'],
+            'feed label punctuation' => ['en', 'GB.1'],
             'uppercase language' => ['EN', 'GB'],
+            'three-letter language' => ['eng', 'GB'],
+            'regional language' => ['en-GB', 'GB'],
             'language injection' => ['en/../../x', 'GB'],
         ];
     }

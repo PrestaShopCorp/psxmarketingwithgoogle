@@ -65,5 +65,34 @@ class ProductSyncServiceConfigurationTest extends TestCase
             '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogFilterSettingsInterface',
         ], $services['PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogProductSource']['arguments']);
         self::assertTrue($services['PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogProductSource']['public']);
+        self::assertSame(
+            'PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogProductSource',
+            $services['PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogOfferSourceInterface']['alias']
+        );
+        self::assertSame(
+            ['@psxmarketingwithgoogle.db'],
+            $services['PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\SyncJobRepository']['arguments']
+        );
+        self::assertSame(
+            'PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\SyncJobRepository',
+            $services['PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\SyncJobStoreInterface']['alias']
+        );
+        self::assertSame(
+            'PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleConnectionService',
+            $services['PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\GoogleConnectionProviderInterface']['alias']
+        );
+        self::assertSame(
+            'PrestaShop\Module\PsxMarketingWithGoogle\Merchant\MerchantApiClient',
+            $services['PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\MerchantProductGatewayInterface']['alias']
+        );
+        self::assertSame([
+            '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\SyncJobStoreInterface',
+            '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogOfferSourceInterface',
+            '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\GoogleConnectionProviderInterface',
+            '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\MerchantProductGatewayInterface',
+            '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\MerchantProductMapper',
+            '@psxmarketingwithgoogle.context',
+        ], $services['PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\SyncProcessor']['arguments']);
+        self::assertTrue($services['PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\SyncProcessor']['public']);
     }
 }

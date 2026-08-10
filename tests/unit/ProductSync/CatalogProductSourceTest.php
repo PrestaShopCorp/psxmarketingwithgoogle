@@ -9,6 +9,7 @@ use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\AttributeType;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Condition;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\ProductEnumerator;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogFilterSettingsInterface;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogOfferNotFoundException;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogProduct;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogProductProviderInterface;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogProductSource;
@@ -16,6 +17,53 @@ use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\ProductValidationExcept
 
 class CatalogProductSourceTest extends TestCase
 {
+    public function testOfferKeysEnumerateTheWholeFilteredCatalogWithoutHydratingMerchantPayloads(): void
+    {
+        self::assertTrue(method_exists(CatalogProductSource::class, 'offerKeys'), 'Offer-key snapshots must be implemented.');
+        $offers = [];
+        for ($productId = 1; 251 >= $productId; ++$productId) {
+            $offers[] = [$productId, 0];
+        }
+        $enumerator = new RecordingProductOfferEnumerator($offers);
+        $settings = new RecordingCatalogFilterSettings([1 => []]);
+        $provider = new RecordingCatalogProvider(static function (): CatalogProduct {
+            throw new LogicException('Offer-key enumeration must not hydrate Merchant payloads.');
+        });
+        $source = $this->source($enumerator, $provider, $settings);
+
+        $keys = $source->offerKeys(1, 2);
+
+        self::assertCount(251, $keys);
+        self::assertSame('1-0', $keys[0]);
+        self::assertSame('251-0', $keys[250]);
+        self::assertSame([], $provider->hydrations);
+        self::assertSame([1], $settings->readShopIds);
+        self::assertSame([0, 250], array_column(array_column($enumerator->calls, 'pagination'), 'offset'));
+    }
+
+    public function testOfferRehydratesOneCanonicalIdentityAndReturnsNullWhenItNoLongerExists(): void
+    {
+        self::assertTrue(method_exists(CatalogProductSource::class, 'offer'), 'Single-offer rehydration must be implemented.');
+        self::assertTrue(class_exists(CatalogOfferNotFoundException::class), 'Missing catalog offers need a distinct outcome.');
+        $provider = new RecordingCatalogProvider(static function (int $productId, int $attributeId): CatalogProduct {
+            if (99 === $productId) {
+                throw new CatalogOfferNotFoundException();
+            }
+
+            return RecordingCatalogProvider::catalogProduct(
+                $productId,
+                $attributeId,
+                'https://thetinylux.com/products/' . $productId,
+                'https://thetinylux.com/img/' . $productId . '.jpg'
+            );
+        });
+        $source = $this->source(new RecordingProductOfferEnumerator([]), $provider);
+
+        self::assertSame('42-7', $source->offer('42-7', 1, 2)->offerId());
+        self::assertNull($source->offer('99-0', 1, 2));
+        self::assertSame([[42, 7], [99, 0]], $provider->hydrations);
+    }
+
     public function testHydratesTheAlreadyFlattenedOfferPageInCanonicalOrder(): void
     {
         $enumerator = new RecordingProductOfferEnumerator([[10, 0], [20, 3], [20, 13]]);

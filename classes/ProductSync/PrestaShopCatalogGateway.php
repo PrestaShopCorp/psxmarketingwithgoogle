@@ -163,11 +163,14 @@ final class PrestaShopCatalogGateway implements PrestaShopCatalogGatewayInterfac
         try {
             $product = $this->runtime->product($productId, $languageId, $shopId, $this->context);
             if ((int) $product->id !== $productId || !(bool) $product->active) {
-                throw new ProductValidationException([['field' => 'product', 'code' => 'invalid_catalog_data']]);
+                throw new CatalogOfferNotFoundException();
             }
             $combination = null;
             if (0 !== $attributeId) {
                 $combination = $this->runtime->combination($attributeId, $languageId, $shopId);
+                if (0 >= (int) $combination->id) {
+                    throw new CatalogOfferNotFoundException();
+                }
                 if ((int) $combination->id !== $attributeId || (int) $combination->id_product !== $productId) {
                     throw new ProductValidationException([['field' => 'product', 'code' => 'invalid_catalog_data']]);
                 }
@@ -217,6 +220,8 @@ final class PrestaShopCatalogGateway implements PrestaShopCatalogGatewayInterfac
                 'mpn' => $mpn,
             ];
         } catch (ProductValidationException $exception) {
+            throw $exception;
+        } catch (CatalogOfferNotFoundException $exception) {
             throw $exception;
         } catch (Throwable $exception) {
             unset($exception);

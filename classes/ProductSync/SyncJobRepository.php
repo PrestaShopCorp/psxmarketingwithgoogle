@@ -15,7 +15,7 @@ use RuntimeException;
 use Throwable;
 use UnexpectedValueException;
 
-final class SyncJobRepository
+final class SyncJobRepository implements SyncJobStoreInterface
 {
     /** @var object */
     private $db;
@@ -413,18 +413,74 @@ final class SyncJobRepository
             throw new RuntimeException('Unable to read the oldest active sync job.');
         }
 
-        foreach (['id_job', 'id_shop', 'id_lang', 'total', 'succeeded', 'failed', 'skipped'] as $field) {
-            if (!array_key_exists($field, $row) || !is_numeric($row[$field])) {
-                throw new RuntimeException('Unable to read the oldest active sync job.');
-            }
-            $row[$field] = (int) $row[$field];
-        }
-        if (!array_key_exists('full_sync', $row)) {
-            throw new RuntimeException('Unable to read the oldest active sync job.');
-        }
-        $row['full_sync'] = (bool) $row['full_sync'];
+        return $this->normalizeJobRow($row);
+    }
 
-        return $row;
+    /** @return array<string, mixed> */
+    public function findJob(int $shopId, int $jobId): array
+    {
+        $this->assertPositiveId($shopId, 'Shop');
+        $this->assertPositiveId($jobId, 'Job');
+        $this->assertOwnedJob($shopId, $jobId);
+        $row = $this->db->getRow(
+            'SELECT id_job, id_shop, merchant_account, data_source, id_lang, content_language,'
+            . ' feed_label, full_sync, status, total, succeeded, failed, skipped, created_at, started_at, finished_at'
+            . ' FROM `' . $this->table(Config::SYNC_JOB_TABLE) . '`'
+            . ' WHERE id_job = ' . $jobId
+            . ' AND id_shop = ' . $shopId
+        );
+        if (!is_array($row)) {
+            throw new RuntimeException('Unable to read the sync job.');
+        }
+
+        return $this->normalizeJobRow($row);
+    }
+
+    /**
+     * @return array<int, array{offer_key: string, code: string, field: string|null, message: string}>
+     */
+    public function errorSummaries(int $shopId, int $jobId, int $limit = 25): array
+    {
+        $this->assertPositiveId($shopId, 'Shop');
+        $this->assertPositiveId($jobId, 'Job');
+        if (0 >= $limit) {
+            throw new InvalidArgumentException('Error summary limit must be positive.');
+        }
+        $limit = min(25, $limit);
+        $this->assertOwnedJob($shopId, $jobId);
+        $rows = $this->db->executeS(
+            'SELECT offer_key, error_code, error_field, error_message'
+            . ' FROM `' . $this->table(Config::SYNC_ITEM_TABLE) . '`'
+            . ' WHERE id_job = ' . $jobId
+            . ' AND error_code IS NOT NULL'
+            . ' ORDER BY id_item ASC LIMIT ' . $limit
+        );
+        if (!is_array($rows)) {
+            throw new RuntimeException('Unable to read sync item errors.');
+        }
+
+        $summaries = [];
+        foreach ($rows as $row) {
+            if (!is_array($row)
+                || !isset($row['offer_key'], $row['error_code'], $row['error_message'])
+                || !is_string($row['offer_key'])
+                || !is_string($row['error_code'])
+                || !is_string($row['error_message'])
+                || (isset($row['error_field']) && !is_string($row['error_field']))
+            ) {
+                throw new RuntimeException('Unable to read sync item errors.');
+            }
+            $summaries[] = [
+                'offer_key' => 1 === preg_match('/^[1-9][0-9]*-(?:0|[1-9][0-9]*)$/D', $row['offer_key'])
+                    ? $row['offer_key']
+                    : 'unknown',
+                'code' => $this->sanitizeErrorCode($row['error_code']),
+                'field' => $this->sanitizeOperatorText($row['error_field'] ?? null, 191),
+                'message' => $this->sanitizeErrorMessage($row['error_message']),
+            ];
+        }
+
+        return $summaries;
     }
 
     private function assertPositiveId(int $id, string $name): void
@@ -432,6 +488,26 @@ final class SyncJobRepository
         if (0 >= $id) {
             throw new InvalidArgumentException($name . ' ID must be positive.');
         }
+    }
+
+    /** @param array<string, mixed> $row
+     *
+     * @return array<string, mixed>
+     */
+    private function normalizeJobRow(array $row): array
+    {
+        foreach (['id_job', 'id_shop', 'id_lang', 'total', 'succeeded', 'failed', 'skipped'] as $field) {
+            if (!array_key_exists($field, $row) || !is_numeric($row[$field])) {
+                throw new RuntimeException('Unable to read the sync job.');
+            }
+            $row[$field] = (int) $row[$field];
+        }
+        if (!array_key_exists('full_sync', $row)) {
+            throw new RuntimeException('Unable to read the sync job.');
+        }
+        $row['full_sync'] = (bool) $row['full_sync'];
+
+        return $row;
     }
 
     private function recordTerminalStatus(int $shopId, int $jobId, int $itemId, string $status): void
@@ -501,12 +577,11 @@ final class SyncJobRepository
             throw new InvalidArgumentException('PrestaShop language ID must be positive.');
         }
         if (!is_string($snapshot['content_language'])
-            || 35 < strlen($snapshot['content_language'])
-            || 1 !== preg_match('/^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8}){0,3}$/D', $snapshot['content_language'])) {
+            || 1 !== preg_match('/^[a-z]{2}$/D', $snapshot['content_language'])) {
             throw new InvalidArgumentException('Content language has an invalid format.');
         }
         if (!is_string($snapshot['feed_label'])
-            || 1 !== preg_match('/^[A-Z0-9-]{1,20}$/D', $snapshot['feed_label'])) {
+            || 1 !== preg_match('/^[A-Z0-9_-]{1,20}$/D', $snapshot['feed_label'])) {
             throw new InvalidArgumentException('Feed label has an invalid format.');
         }
         if (!is_bool($snapshot['full_sync'])) {

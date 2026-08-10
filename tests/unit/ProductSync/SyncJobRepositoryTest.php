@@ -52,8 +52,8 @@ final class SyncJobRepositoryTest extends TestCase
             'merchant_id' => '123456',
             'data_source' => 'accounts/123456/dataSources/42',
             'prestashop_language_id' => 3,
-            'content_language' => 'en-GB',
-            'feed_label' => 'GB',
+            'content_language' => 'en',
+            'feed_label' => 'GB_MAIN',
             'full_sync' => true,
         ], ['20-0', '3-2', '3-0', '20-0']);
 
@@ -64,8 +64,8 @@ final class SyncJobRepositoryTest extends TestCase
             'merchant_account' => '123456',
             'data_source' => 'accounts/123456/dataSources/42',
             'id_lang' => 3,
-            'content_language' => 'en-GB',
-            'feed_label' => 'GB',
+            'content_language' => 'en',
+            'feed_label' => 'GB_MAIN',
             'full_sync' => 1,
             'status' => 'pending',
             'total' => 3,
@@ -293,6 +293,66 @@ final class SyncJobRepositoryTest extends TestCase
         self::assertNull($repository->findOldestActiveJob(9));
     }
 
+    public function testFindJobReturnsTheOwnedDurableRoutingSnapshot(): void
+    {
+        self::assertTrue(method_exists(SyncJobRepository::class, 'findJob'), 'Owned job lookup must be implemented.');
+        $database = new SyncJobDatabaseFake();
+        $database->seedJob(41, 7, 'running');
+        $repository = new SyncJobRepository($database, '');
+
+        self::assertSame([
+            'id_job' => 41,
+            'id_shop' => 7,
+            'merchant_account' => '123456',
+            'data_source' => 'accounts/123456/dataSources/42',
+            'id_lang' => 1,
+            'content_language' => 'en',
+            'feed_label' => 'US',
+            'full_sync' => true,
+            'status' => 'running',
+            'total' => 0,
+            'succeeded' => 0,
+            'failed' => 0,
+            'skipped' => 0,
+            'created_at' => '2026-01-01 00:00:00',
+            'started_at' => null,
+            'finished_at' => null,
+        ], $repository->findJob(7, 41));
+
+        $this->expectException(\UnexpectedValueException::class);
+        $repository->findJob(8, 41);
+    }
+
+    public function testErrorSummariesAreShopOwnedBoundedAndExposeOnlySafeOperatorFields(): void
+    {
+        self::assertTrue(
+            method_exists(SyncJobRepository::class, 'errorSummaries'),
+            'Bounded item error summaries must be implemented.'
+        );
+        $database = new SyncJobDatabaseFake();
+        $database->seedJob(41, 7, 'failed');
+        for ($itemId = 1; 30 >= $itemId; ++$itemId) {
+            $database->seedItem($itemId, 41, $itemId . '-0');
+            $database->itemRows[$itemId - 1]['status'] = 'failed';
+            $database->itemRows[$itemId - 1]['error_code'] = 'invalid_product';
+            $database->itemRows[$itemId - 1]['error_field'] = 'title';
+            $database->itemRows[$itemId - 1]['error_message'] = 'Product data needs attention.';
+        }
+        $repository = new SyncJobRepository($database, '');
+
+        $summaries = $repository->errorSummaries(7, 41, 100);
+
+        self::assertCount(25, $summaries);
+        self::assertSame(range(1, 25), array_map('intval', array_column($summaries, 'offer_key')));
+        self::assertSame(
+            ['offer_key', 'code', 'field', 'message'],
+            array_keys($summaries[0])
+        );
+        self::assertSame('invalid_product', $summaries[0]['code']);
+        self::assertSame('title', $summaries[0]['field']);
+        self::assertSame('Product data needs attention.', $summaries[0]['message']);
+    }
+
     /**
      * @dataProvider invalidCreateInputProvider
      *
@@ -381,6 +441,8 @@ final class SyncJobRepositoryTest extends TestCase
             'overlong data source' => [array_replace($valid, ['data_source' => 'accounts/123456/dataSources/' . str_repeat('1', 102)]), ['1-0']],
             'invalid PrestaShop language ID' => [array_replace($valid, ['prestashop_language_id' => 0]), ['1-0']],
             'invalid content language' => [array_replace($valid, ['content_language' => 'EN_us']), ['1-0']],
+            'three-letter content language' => [array_replace($valid, ['content_language' => 'eng']), ['1-0']],
+            'regional content language' => [array_replace($valid, ['content_language' => 'en-GB']), ['1-0']],
             'overlong content language' => [array_replace($valid, ['content_language' => 'en-' . str_repeat('a', 33)]), ['1-0']],
             'invalid feed label' => [array_replace($valid, ['feed_label' => 'us']), ['1-0']],
             'overlong feed label' => [array_replace($valid, ['feed_label' => str_repeat('U', 21)]), ['1-0']],
@@ -624,6 +686,23 @@ final class SyncJobDatabaseFake
      */
     public function executeS(string $statement): array
     {
+        if (false !== strpos($statement, 'error_code IS NOT NULL')) {
+            preg_match('/WHERE id_job = ([0-9]+)/', $statement, $jobMatch);
+            preg_match('/LIMIT ([0-9]+)/', $statement, $limitMatch);
+            $rows = array_values(array_filter($this->itemRows, static function (array $row) use ($jobMatch): bool {
+                return (int) $jobMatch[1] === $row['id_job'] && null !== $row['error_code'];
+            }));
+            usort($rows, static function (array $left, array $right): int {
+                return $left['id_item'] <=> $right['id_item'];
+            });
+
+            return array_map(static function (array $row): array {
+                return array_intersect_key($row, array_flip([
+                    'offer_key', 'error_code', 'error_field', 'error_message',
+                ]));
+            }, array_slice($rows, 0, (int) $limitMatch[1]));
+        }
+
         preg_match("/claim_token = '([a-f0-9]{32})'/", $statement, $tokenMatch);
         preg_match('/WHERE id_job = ([0-9]+)/', $statement, $jobMatch);
 
@@ -647,6 +726,29 @@ final class SyncJobDatabaseFake
             });
 
             return $matches[0] ?? false;
+        }
+
+        if (false !== strpos($statement, 'WHERE id_job =')
+            && false === strpos($statement, 'COUNT(*) AS total')) {
+            preg_match('/WHERE id_job = ([0-9]+)/', $statement, $jobMatch);
+            preg_match('/AND id_shop = ([0-9]+)/', $statement, $shopMatch);
+            foreach ($this->jobRows as $row) {
+                if ((int) $jobMatch[1] === ($row['id_job'] ?? null)
+                    && (int) $shopMatch[1] === $row['id_shop']) {
+                    $selected = [];
+                    foreach ([
+                        'id_job', 'id_shop', 'merchant_account', 'data_source', 'id_lang', 'content_language',
+                        'feed_label', 'full_sync', 'status', 'total', 'succeeded', 'failed', 'skipped',
+                        'created_at', 'started_at', 'finished_at',
+                    ] as $field) {
+                        $selected[$field] = $row[$field];
+                    }
+
+                    return $selected;
+                }
+            }
+
+            return false;
         }
 
         if (false === strpos($statement, 'COUNT(*) AS total')) {
