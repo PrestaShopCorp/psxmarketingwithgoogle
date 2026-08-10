@@ -3,17 +3,18 @@ import mutations from './mutations';
 import actions from './actions';
 import {state as initialState} from './state';
 
-const {
-  contextPsAccounts,
-  shopIdPsAccounts,
-  tokenPsAccounts,
-}: any = window;
+const localConnection = window.tinyLuxGoogleConnection;
 
 const state = {
   ...initialState,
-  contextPsAccounts: contextPsAccounts || {},
-  shopIdPsAccounts: shopIdPsAccounts || '',
-  tokenPsAccounts: tokenPsAccounts || '',
+  googleAccount: {
+    ...initialState.googleAccount,
+    ...localConnection,
+    details: {
+      ...initialState.googleAccount.details,
+      email: localConnection?.googleEmail || undefined,
+    },
+  },
 };
 
 export default {

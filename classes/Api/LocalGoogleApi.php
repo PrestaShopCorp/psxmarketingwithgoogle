@@ -9,6 +9,7 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\Api;
 
 use PrestaShop\Module\PsxMarketingWithGoogle\Google\GoogleApiException;
 use PrestaShop\Module\PsxMarketingWithGoogle\Http\Response;
+use PrestaShop\Module\PsxMarketingWithGoogle\Merchant\MerchantAccountService;
 use PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleConnectionService;
 use PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleCredentialRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthRedirectUriResolver;
@@ -29,6 +30,10 @@ final class LocalGoogleApi
         'GET oauth/authorized-url' => 'authorizationUrl',
         'GET oauth' => 'connectionStatus',
         'DELETE oauth' => 'disconnect',
+        'GET merchant-accounts' => 'merchantAccounts',
+        'POST merchant-accounts/select' => 'selectMerchantAccount',
+        'GET merchant-data-sources' => 'dataSources',
+        'POST merchant-data-sources' => 'createDataSource',
     ];
 
     /** @var GoogleCredentialRepository */
@@ -46,18 +51,23 @@ final class LocalGoogleApi
     /** @var callable|null */
     private $employeeIdProvider;
 
+    /** @var MerchantAccountService|null */
+    private $merchant;
+
     public function __construct(
         GoogleCredentialRepository $credentials,
         GoogleConnectionService $connections,
         GoogleOAuthRedirectUriResolver $redirectUris,
         ?callable $shopIdProvider = null,
-        ?callable $employeeIdProvider = null
+        ?callable $employeeIdProvider = null,
+        ?MerchantAccountService $merchant = null
     ) {
         $this->credentials = $credentials;
         $this->connections = $connections;
         $this->redirectUris = $redirectUris;
         $this->shopIdProvider = $shopIdProvider;
         $this->employeeIdProvider = $employeeIdProvider;
+        $this->merchant = $merchant;
     }
 
     /** @param array<string, mixed> $body */
@@ -71,9 +81,11 @@ final class LocalGoogleApi
         try {
             return $this->$handler($body);
         } catch (GoogleApiException $exception) {
+            return $this->googleError($exception);
+        } catch (\InvalidArgumentException $exception) {
             unset($exception);
 
-            return $this->error(412, 'google_not_configured');
+            return $this->error(422, 'invalid_request');
         } catch (Throwable $exception) {
             unset($exception);
 
@@ -158,6 +170,59 @@ final class LocalGoogleApi
     }
 
     /** @param array<string, mixed> $body */
+    private function merchantAccounts(array $body): Response
+    {
+        if ([] !== $body) {
+            return $this->error(422, 'invalid_request');
+        }
+
+        return $this->json(200, ['accounts' => $this->merchant()->accounts($this->shopId())]);
+    }
+
+    /** @param array<string, mixed> $body */
+    private function selectMerchantAccount(array $body): Response
+    {
+        if (['accountId'] !== array_keys($body) || !is_string($body['accountId'])) {
+            return $this->error(422, 'invalid_request');
+        }
+
+        return $this->json(200, [
+            'account' => $this->merchant()->select($this->shopId(), $body['accountId']),
+        ]);
+    }
+
+    /** @param array<string, mixed> $body */
+    private function dataSources(array $body): Response
+    {
+        if ([] !== $body) {
+            return $this->error(422, 'invalid_request');
+        }
+
+        return $this->json(200, ['dataSources' => $this->merchant()->dataSources($this->shopId())]);
+    }
+
+    /** @param array<string, mixed> $body */
+    private function createDataSource(array $body): Response
+    {
+        $keys = array_keys($body);
+        sort($keys);
+        if (['contentLanguage', 'feedLabel'] !== $keys
+            || !is_string($body['feedLabel'])
+            || !is_string($body['contentLanguage'])
+        ) {
+            return $this->error(422, 'invalid_request');
+        }
+
+        return $this->json(200, [
+            'dataSource' => $this->merchant()->createDataSource(
+                $this->shopId(),
+                $body['feedLabel'],
+                $body['contentLanguage']
+            ),
+        ]);
+    }
+
+    /** @param array<string, mixed> $body */
     private function validCredentialEnvelope(array $body): bool
     {
         if (['web'] !== array_keys($body) || !is_array($body['web']) || array_is_list($body['web'])) {
@@ -212,6 +277,32 @@ final class LocalGoogleApi
     private function clientIdSuffix(string $clientId): string
     {
         return substr($clientId, -self::CLIENT_ID_SUFFIX_LENGTH);
+    }
+
+    private function merchant(): MerchantAccountService
+    {
+        if (null === $this->merchant) {
+            throw new \LogicException('Merchant services are unavailable.');
+        }
+
+        return $this->merchant;
+    }
+
+    private function googleError(GoogleApiException $exception): Response
+    {
+        $status = $exception->statusCode();
+        $safeCode = $exception->safeCode();
+        if (null === $status) {
+            return $this->error(412, 'google_not_configured');
+        }
+        if (in_array($status, [401, 403, 404, 409, 429], true)) {
+            return $this->error($status, $safeCode);
+        }
+        if (500 <= $status || $exception->isRetryable()) {
+            return $this->error(503, 'google_retryable');
+        }
+
+        return $this->error(502, 'google_request_failed');
     }
 
     /** @param array<string, mixed> $payload */

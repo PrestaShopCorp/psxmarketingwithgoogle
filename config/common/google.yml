@@ -45,3 +45,17 @@ services:
       - '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\OAuthStateRepository'
       - '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleConnectionService'
       - '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthRedirectUriResolver'
+
+  PrestaShop\Module\PsxMarketingWithGoogle\Merchant\MerchantApiClient:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\Merchant\MerchantApiClient
+    public: false
+    arguments:
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Google\GoogleTransportInterface'
+
+  PrestaShop\Module\PsxMarketingWithGoogle\Merchant\MerchantAccountService:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\Merchant\MerchantAccountService
+    public: true
+    arguments:
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleConnectionService'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Merchant\MerchantApiClient'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleCredentialRepository'

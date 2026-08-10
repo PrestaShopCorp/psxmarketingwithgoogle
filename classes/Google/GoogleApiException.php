@@ -14,14 +14,36 @@ final class GoogleApiException extends RuntimeException
     /** @var bool */
     private $retryable;
 
-    public function __construct(string $message, bool $retryable = false)
-    {
+    /** @var int|null */
+    private $statusCode;
+
+    /** @var string */
+    private $safeCode;
+
+    public function __construct(
+        string $message,
+        bool $retryable = false,
+        ?int $statusCode = null,
+        string $safeCode = 'google_request_failed'
+    ) {
         parent::__construct($message);
         $this->retryable = $retryable;
+        $this->statusCode = $statusCode;
+        $this->safeCode = $safeCode;
     }
 
     public function isRetryable(): bool
     {
         return $this->retryable;
+    }
+
+    public function statusCode(): ?int
+    {
+        return $this->statusCode;
+    }
+
+    public function safeCode(): string
+    {
+        return $this->safeCode;
     }
 }

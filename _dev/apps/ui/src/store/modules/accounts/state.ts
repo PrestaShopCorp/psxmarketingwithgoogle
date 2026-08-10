@@ -21,23 +21,6 @@ import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
 import {oauth2_v2 as oauthApi} from '@googleapis/oauth2/v2';
 import {AccountIssue} from '@/components/render-issues/types';
 
-export interface PrestaShopAccountsContext {
-  user: {
-    email: string|null,
-    emailIsValidated: boolean,
-    isSuperAdmin: boolean,
-  },
-  currentShop: {
-      id: string;
-      name: string;
-      domain: string;
-      domainSsl: string;
-      url: string;
-  },
-  isShopContext: boolean,
-  shops: object[],
-}
-
 export interface ShopInformations {
   shop: {
     name: string,
@@ -57,8 +40,6 @@ export interface ShopInformations {
 }
 
 export interface GoogleMerchantAccount extends contentApi.Schema$Account {
-  aggregatorId?: string;
-  aggregatorName?: string;
   subAccountNotManagedByPrestashop?: boolean;
   // True while the shop's admin-user invitation to this account is unaccepted
   pendingUserInvitation?: boolean;
@@ -74,6 +55,17 @@ export interface GoogleConnectionStatus {
   googleEmail: string|null,
   merchantAccount: string|null,
   dataSource: string|null,
+}
+
+export interface MerchantDataSource {
+  id: string,
+  name: string,
+  displayName: string,
+  input: string,
+  primaryProductDataSource?: {
+    feedLabel: string,
+    contentLanguage: string,
+  },
 }
 
 export interface SuspendedStatus {
@@ -109,17 +101,13 @@ export type MerchantCenterAccountContext = GoogleMerchantAccount & {
   connectedOnce: boolean,
   connectedAutomatically: boolean,
   shopInfo: ShopInformations,
-  aggregatorId? : string,
 };
 
 export interface State {
   warmedUp: boolean,
-  contextPsAccounts: PrestaShopAccountsContext|any;
-  shopIdPsAccounts: string;
-  tokenPsAccounts: string;
   googleAccount: GoogleAccountContext;
   googleMerchantAccount: MerchantCenterAccountContext;
-  mcaPrestashopId: string;
+  merchantDataSources: MerchantDataSource[];
 }
 
 export enum WebsiteClaimErrorReason {
@@ -140,9 +128,6 @@ export enum WebsiteClaimErrorReason {
 
 export const state: State = {
   warmedUp: false,
-  contextPsAccounts: {},
-  shopIdPsAccounts: '',
-  tokenPsAccounts: '',
   googleAccount: {
     connected: false,
     googleEmail: null,
@@ -189,5 +174,5 @@ export const state: State = {
       },
     },
   },
-  mcaPrestashopId: import.meta.env.VITE_AGGREGATOR_ID || '',
+  merchantDataSources: [],
 };

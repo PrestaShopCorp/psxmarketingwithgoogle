@@ -4,7 +4,7 @@ import {
   GoogleMerchantAccount,
   GoogleConnectionStatus,
   MerchantCenterAccountContext, WebsiteClaimErrorReason,
-  ShopInformations,
+  ShopInformations, MerchantDataSource,
 } from './state';
 
 export default {
@@ -57,6 +57,25 @@ export default {
       ...state.googleMerchantAccount,
       ...selectedAccount,
     };
+    state.googleAccount.merchantAccount = selectedAccount.id || null;
+  },
+  [MutationsTypes.SAVE_DATA_SOURCE_LIST](
+    state: LocalState,
+    dataSources: MerchantDataSource[],
+  ) {
+    state.merchantDataSources = dataSources;
+  },
+  [MutationsTypes.SAVE_DATA_SOURCE](state: LocalState, dataSource: MerchantDataSource) {
+    state.googleAccount.dataSource = dataSource.name;
+    const existing = state.merchantDataSources.findIndex(
+      (source) => source.name === dataSource.name,
+    );
+
+    if (existing === -1) {
+      state.merchantDataSources.push(dataSource);
+    } else {
+      state.merchantDataSources.splice(existing, 1, dataSource);
+    }
   },
   [MutationsTypes.ADD_NEW_GMC](state: LocalState, googleMerchantAccount: GoogleMerchantAccount) {
     if (state.googleAccount.mcaSelectionOptions) {
@@ -75,6 +94,9 @@ export default {
       },
       accountIssues: [],
     };
+    state.googleAccount.merchantAccount = null;
+    state.googleAccount.dataSource = null;
+    state.merchantDataSources = [];
   },
   [MutationsTypes.SAVE_WEBSITE_VERIFICATION_AND_CLAIMING_STATUS](
     state: LocalState,

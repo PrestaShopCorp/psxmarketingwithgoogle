@@ -37,13 +37,11 @@ export default {
     payload,
   ) {
     const {selectedAccount, correlationId} = payload;
-    const aggregator = selectedAccount.aggregatorId ? `?aggregator_id=${selectedAccount.aggregatorId}` : '';
-    const route = `merchant-accounts/${selectedAccount.id}/link${aggregator}`;
-
-    await fetchOnboarding(
+    const merchantResponse = await fetchOnboarding(
       'POST',
-      route,
+      'merchant-accounts/select',
       {
+        body: {accountId: selectedAccount.id},
         correlationId,
         onResponse: async (response) => {
           if (!response.ok) {
@@ -53,14 +51,15 @@ export default {
             );
             throw new HttpClientError(response.statusText, response.status);
           }
+          return response;
         },
       },
     );
+    const json = await merchantResponse.json();
+    commit(MutationsTypes.SAVE_GMC, json.account);
+    dispatch(ActionsTypes.REQUEST_DATA_SOURCE_LIST);
 
-    dispatch(ActionsTypes.SEND_GMC_INFORMATION_TO_SHOP, {
-      id: selectedAccount.id,
-    });
-    commit(MutationsTypes.SAVE_GMC, selectedAccount);
+    return json.account;
   },
 
   async [ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS](
@@ -157,6 +156,8 @@ export default {
       commit(MutationsTypes.SET_GOOGLE_ACCOUNT, connection);
       if (!connection.connected) {
         dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
+      } else {
+        dispatch(ActionsTypes.REQUEST_GMC_LIST);
       }
 
       return connection;
@@ -180,30 +181,58 @@ export default {
         'GET',
         'merchant-accounts',
       )).json();
-      commit(MutationsTypes.SAVE_GMC_LIST, json);
+      const {accounts} = json;
+      commit(MutationsTypes.SAVE_GMC_LIST, accounts);
 
-      // Now we have the GMC merchant's list, if he already linked one, then must fill it now
-      if (state.googleMerchantAccount.id) {
-        const linkedGmc = json.find((gmc) => gmc.id === state.googleMerchantAccount.id)
-          // Cannot find linked GMC. Maybe it's a freshly created one, in this case previous HTTP
-          // call has failed. Then try another way...
-          || await dispatch(ActionsTypes.REQUEST_NEW_GMC_DETAILS);
+      if (state.googleAccount.merchantAccount) {
+        const linkedGmc = accounts.find(
+          (gmc) => gmc.id === state.googleAccount.merchantAccount,
+        );
 
         if (linkedGmc) {
           commit(MutationsTypes.SAVE_GMC, linkedGmc);
-          dispatch(ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS);
+          dispatch(ActionsTypes.REQUEST_DATA_SOURCE_LIST);
         }
       }
+
+      return accounts;
     } catch (error) {
       commit(MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING, WebsiteClaimErrorReason.LinkingFailed);
       console.error(`Could not request GMC list: ${(<any>error)?.message}`);
     }
+    return [];
+  },
+
+  async [ActionsTypes.REQUEST_DATA_SOURCE_LIST]({commit}: Context) {
+    const json = await (await fetchOnboarding(
+      'GET',
+      'merchant-data-sources',
+    )).json();
+    commit(MutationsTypes.SAVE_DATA_SOURCE_LIST, json.dataSources);
+
+    return json.dataSources;
+  },
+
+  async [ActionsTypes.CREATE_DATA_SOURCE]({commit}: Context, payload) {
+    const json = await (await fetchOnboarding(
+      'POST',
+      'merchant-data-sources',
+      {
+        body: {
+          feedLabel: payload.feedLabel,
+          contentLanguage: payload.contentLanguage,
+        },
+      },
+    )).json();
+    commit(MutationsTypes.SAVE_DATA_SOURCE, json.dataSource);
+
+    return json.dataSource;
   },
 
   async [ActionsTypes.DISSOCIATE_GOOGLE_ACCOUNT]({
-    commit, state, dispatch,
+    commit, dispatch,
   }: Context) {
-    const correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
+    const correlationId = `tiny-lux-${Math.floor(Date.now() / 1000)}`;
     await fetchOnboarding('DELETE', 'oauth', {correlationId});
 
     commit(MutationsTypes.REMOVE_GMC);
@@ -223,7 +252,7 @@ export default {
     if (state.googleMerchantAccount.id) {
       if (!correlationId) {
         // eslint-disable-next-line no-param-reassign
-        correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
+        correlationId = `tiny-lux-${Math.floor(Date.now() / 1000)}`;
       }
       await fetchOnboarding(
         'DELETE',
@@ -277,8 +306,8 @@ export default {
   },
 
   /** Merchant Center Account - Website verification */
-  async [ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_PROCESS]({dispatch, state}: Context) {
-    const correlationId = `${state.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`;
+  async [ActionsTypes.TRIGGER_WEBSITE_VERIFICATION_PROCESS]({dispatch}: Context) {
+    const correlationId = `tiny-lux-${Math.floor(Date.now() / 1000)}`;
     try {
       // 1- Get site verification token from onboarding API
       const {token} = await dispatch(ActionsTypes.REQUEST_SITE_VERIFICATION_TOKEN, correlationId);
@@ -401,53 +430,6 @@ export default {
       commit(MutationsTypes.SAVE_SHOP_INFORMATIONS, json);
     } catch (error) {
       console.error(`Could not request shop information: ${(<any>error)?.message}`);
-    }
-  },
-
-  async [ActionsTypes.REQUEST_TO_SAVE_NEW_GMC]({
-    rootState, dispatch, commit,
-  }: Context, payload) {
-    try {
-      const json = await (await fetchOnboarding(
-        'POST',
-        'merchant-accounts/',
-        {body: payload},
-      )).json();
-
-      const accountId = json.account_id;
-      const newGmc = {
-        aggregatorId: json.aggregator_id,
-        kind: 'content#account',
-        id: accountId,
-        name: payload.shop_name,
-        websiteUrl: payload.shop_url,
-        adultContent: payload.adult_content,
-        users: [
-          {
-            emailAddress: rootState.accounts.googleAccount.details.email,
-            admin: true,
-          },
-        ],
-        businessInformation: {
-          address: {
-            country: payload.location,
-          },
-        },
-        subAccountNotManagedByPrestashop: false,
-      };
-
-      commit(MutationsTypes.ADD_NEW_GMC, newGmc);
-      commit(MutationsTypes.SAVE_GMC, newGmc);
-      await dispatch(ActionsTypes.SEND_GMC_INFORMATION_TO_SHOP, {
-        id: accountId,
-      });
-
-      dispatch(ActionsTypes.AWAIT_GMC_CREATION);
-    } catch (error) {
-      commit(
-        MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
-        WebsiteClaimErrorReason.LinkingFailed,
-      );
     }
   },
 

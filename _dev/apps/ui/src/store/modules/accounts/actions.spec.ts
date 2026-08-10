@@ -20,12 +20,12 @@ beforeEach(() => {
   commit = vi.fn();
   dispatch = vi.fn();
   initOnboardingClient({
-    apiUrl: 'http://perdu.com',
+    apiUrl: 'https://admin.test/local-google-api',
   });
   payload = {
     selectedAccount: {
-      aggregatorId: '1',
-      id: '1',
+      id: '123',
+      name: 'Tiny Lux',
     },
     correlationId: 'saucisse-id',
   };
@@ -33,7 +33,7 @@ beforeEach(() => {
 
 describe('Action SAVE_SELECTED_GOOGLE_MERCHANT_ACCOUNT', () => {
   it('should save selected google merchant account on success', async () => {
-    fetchMock.mockResponse(JSON.stringify({message: 'User linked'}));
+    fetchMock.mockResponse(JSON.stringify({account: payload.selectedAccount}));
 
     await actions[ActionsTypes.SAVE_SELECTED_GOOGLE_MERCHANT_ACCOUNT](
       {
@@ -44,6 +44,14 @@ describe('Action SAVE_SELECTED_GOOGLE_MERCHANT_ACCOUNT', () => {
     );
 
     expect(commit).toHaveBeenCalledWith(MutationsTypes.SAVE_GMC, payload.selectedAccount);
+    expect(dispatch).toHaveBeenCalledWith(ActionsTypes.REQUEST_DATA_SOURCE_LIST);
+    expect(JSON.parse(String(fetchMock.mock.calls[0][1]?.body))).toEqual({
+      method: 'POST',
+      path: 'merchant-accounts/select',
+      body: {accountId: '123'},
+    });
+    expect(String(fetchMock.mock.calls[0][0])).toBe('https://admin.test/local-google-api');
+    expect(fetchMock.mock.calls[0][1]?.headers).not.toHaveProperty('Authorization');
   });
 
   it('warns when the GMC link fails ', async () => {
@@ -85,7 +93,7 @@ describe('Action REQUEST_GOOGLE_ACCOUNT_DETAILS', () => {
     expect(result).toEqual(connection);
     expect(commit).toHaveBeenCalledTimes(1);
     expect(commit).toHaveBeenCalledWith(MutationsTypes.SET_GOOGLE_ACCOUNT, connection);
-    expect(dispatch).not.toHaveBeenCalledWith(ActionsTypes.REQUEST_GMC_LIST);
+    expect(dispatch).toHaveBeenCalledWith(ActionsTypes.REQUEST_GMC_LIST);
     expect(dispatch).not.toHaveBeenCalledWith(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
     expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(JSON.parse(String(fetchMock.mock.calls[0][1]?.body))).toEqual({
@@ -116,6 +124,70 @@ describe('Action REQUEST_GOOGLE_ACCOUNT_DETAILS', () => {
     expect(dispatch).toHaveBeenCalledWith(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
     expect(dispatch).not.toHaveBeenCalledWith(ActionsTypes.REQUEST_GMC_LIST);
     expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('Local Merchant account and data-source actions', () => {
+  it('normalizes the wrapped local account list and restores the selected account', async () => {
+    const accounts = [
+      {id: '123', name: 'Tiny Lux'},
+      {id: '456', name: 'Outlet'},
+    ];
+    fetchMock.mockResponse(JSON.stringify({accounts}));
+
+    const result = await actions[ActionsTypes.REQUEST_GMC_LIST]({
+      commit,
+      dispatch,
+      state: {
+        googleAccount: {merchantAccount: '123'},
+        googleMerchantAccount: {id: null},
+      },
+    });
+
+    expect(result).toEqual(accounts);
+    expect(commit).toHaveBeenCalledWith(MutationsTypes.SAVE_GMC_LIST, accounts);
+    expect(commit).toHaveBeenCalledWith(MutationsTypes.SAVE_GMC, accounts[0]);
+    expect(dispatch).toHaveBeenCalledWith(ActionsTypes.REQUEST_DATA_SOURCE_LIST);
+    expect(JSON.parse(String(fetchMock.mock.calls[0][1]?.body))).toEqual({
+      method: 'GET',
+      path: 'merchant-accounts',
+      body: null,
+    });
+  });
+
+  it('loads and creates API data sources through the local admin API only', async () => {
+    const dataSource = {
+      id: '456',
+      name: 'accounts/123/dataSources/456',
+      displayName: 'Tiny Lux PrestaShop API',
+      input: 'API',
+      primaryProductDataSource: {feedLabel: 'GB', contentLanguage: 'en'},
+    };
+    fetchMock
+      .mockResponseOnce(JSON.stringify({dataSources: [dataSource]}))
+      .mockResponseOnce(JSON.stringify({dataSource}));
+
+    const listed = await actions[ActionsTypes.REQUEST_DATA_SOURCE_LIST]({commit});
+    const created = await actions[ActionsTypes.CREATE_DATA_SOURCE](
+      {commit},
+      {feedLabel: 'GB', contentLanguage: 'en'},
+    );
+
+    expect(listed).toEqual([dataSource]);
+    expect(created).toEqual(dataSource);
+    expect(commit).toHaveBeenCalledWith(MutationsTypes.SAVE_DATA_SOURCE_LIST, [dataSource]);
+    expect(commit).toHaveBeenCalledWith(MutationsTypes.SAVE_DATA_SOURCE, dataSource);
+    expect(JSON.parse(String(fetchMock.mock.calls[1][1]?.body))).toEqual({
+      method: 'POST',
+      path: 'merchant-data-sources',
+      body: {feedLabel: 'GB', contentLanguage: 'en'},
+    });
+    fetchMock.mock.calls.forEach(([url, options]) => {
+      expect(String(url)).toBe('https://admin.test/local-google-api');
+      expect(options?.headers).not.toHaveProperty('Authorization');
+      expect(String(options?.body)).not.toContain('access-token');
+      expect(String(options?.body)).not.toContain('aggregator');
+    });
   });
 });
 

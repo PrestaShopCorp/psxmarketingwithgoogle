@@ -14,3 +14,6 @@ services:
       - '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleCredentialRepository'
       - '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleConnectionService'
       - '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthRedirectUriResolver'
+      - ~
+      - ~
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Merchant\MerchantAccountService'
