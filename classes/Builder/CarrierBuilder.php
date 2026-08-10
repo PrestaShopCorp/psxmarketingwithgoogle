@@ -203,7 +203,7 @@ class CarrierBuilder
         $taxRulesGroupId = (int) $carrier->getIdTaxRulesGroup();
         $carrierTaxesByZone = $this->taxRepository->getCarrierTaxesByTaxRulesGroupId($taxRulesGroupId);
 
-        if (!$carrierTaxesByZone[0]['country_iso_code']) {
+        if (empty($carrierTaxesByZone) || empty($carrierTaxesByZone[0]['country_iso_code'])) {
             return [];
         }
 
