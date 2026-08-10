@@ -208,6 +208,14 @@ class Installer
                 'active' => true,
                 'icon' => '',
             ],
+            [
+                'className' => 'AdminTinyLuxGoogleApi',
+                'parent' => -1,
+                'name' => 'Tiny Lux Google API',
+                'module' => $this->module->name,
+                'active' => true,
+                'icon' => '',
+            ],
         ];
     }
 }

@@ -392,7 +392,6 @@ describe('Product Feed actions', () => {
     fetchMock.enableMocks();
     initOnboardingClient({
       apiUrl: 'http://perdu.com',
-      token: 'token',
     });
 
     it('loads & returns the disapproved products', async () => {

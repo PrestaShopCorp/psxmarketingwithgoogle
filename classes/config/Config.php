@@ -26,8 +26,6 @@ class Config
     public const OAUTH_STATE_TABLE = 'psxmarketingwithgoogle_oauth_state';
     public const SYNC_JOB_TABLE = 'psxmarketingwithgoogle_sync_job';
     public const SYNC_ITEM_TABLE = 'psxmarketingwithgoogle_sync_item';
-    public const GOOGLE_OAUTH_REDIRECT_URI = 'https://thetinylux.com/module/tlgoogleshopping/oauth';
-
     public const HOOK_LIST = [
         'displayBackOfficeHeader',
         'displayHeader',
@@ -40,8 +38,9 @@ class Config
     public const CONFIGURATION_LIST = [];
 
     public const MODULE_ADMIN_CONTROLLERS = [
-        'AdminAjaxPsgoogleshipping',
-        'AdminPsgoogleshippingModule',
+        'AdminAjaxPsxMktgWithGoogle',
+        'AdminPsxMktgWithGoogleModule',
+        'AdminTinyLuxGoogleApi',
     ];
 
     public const USE_BILLING_SANDBOX = 0;

@@ -2,7 +2,6 @@ import {HttpClientError} from './HttpClientError';
 
 type Options = {
   apiUrl: string,
-  token: string,
 };
 // ToDo: Check if the updated TS linter works after migrating to Vue3
 // eslint-disable-next-line no-unused-vars
@@ -16,15 +15,11 @@ type QueryParams = {
 
 // Allowed methods with the API
 export type HttpMethod = 'GET'|'POST'|'DELETE';
-export const noCorrelationIdValue: string = 'no-correlation-id-provided';
-
 const options: Options = {
   apiUrl: '',
-  token: '',
 };
 export const initOnboardingClient = (params: Options) => {
   options.apiUrl = params.apiUrl;
-  options.token = params.token;
 };
 
 const onResponseDefault: ResponseHandler = async (response) => {
@@ -42,19 +37,13 @@ export const fetchOnboarding = async (
   if (!options.apiUrl.length) {
     throw new Error('Cannot call onboarding API, client is not initialized (missing URL)');
   }
-  if (!options.token.length) {
-    throw new Error('Cannot call onboarding API, client is not initialized (missing token)');
-  }
-
-  const response = await fetch(`${options.apiUrl}/${path}`, {
-    method,
+  const response = await fetch(options.apiUrl, {
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      Authorization: `Bearer ${options.token}`,
-      'x-correlation-id': queryParams?.correlationId || noCorrelationIdValue,
     },
-    body: queryParams?.body && JSON.stringify(queryParams?.body),
+    body: JSON.stringify({method, path, body: queryParams?.body || null}),
   });
 
   return queryParams?.onResponse ? queryParams?.onResponse(response) : onResponseDefault(response);

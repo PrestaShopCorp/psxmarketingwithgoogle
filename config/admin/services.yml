@@ -5,3 +5,12 @@ imports:
   - { resource: installer.yml }
   - { resource: product_filter.yml }
   - { resource: provider.yml }
+
+services:
+  PrestaShop\Module\PsxMarketingWithGoogle\Api\LocalGoogleApi:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\Api\LocalGoogleApi
+    public: true
+    arguments:
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleCredentialRepository'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleConnectionService'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthRedirectUriResolver'

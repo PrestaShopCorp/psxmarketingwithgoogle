@@ -46,7 +46,6 @@ beforeEach(() => {
 
   initOnboardingClient({
     apiUrl: 'http://some-route',
-    token: 'some-token',
   });
   initShopClient({
     shopUrl: 'http://some-route',

@@ -21,7 +21,6 @@ beforeEach(() => {
   dispatch = vi.fn();
   initOnboardingClient({
     apiUrl: 'http://perdu.com',
-    token: 'token',
   });
   payload = {
     selectedAccount: {

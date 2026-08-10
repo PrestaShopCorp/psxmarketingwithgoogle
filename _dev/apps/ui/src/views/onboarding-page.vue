@@ -4,6 +4,11 @@
       <AlertCmp />
     </div>
 
+    <GoogleCredentialsForm
+      :connection="googleConnection"
+      @configured="onGoogleCredentialsConfigured"
+    />
+
     <div class="mb-4 ps_gs-onboardingpage">
       <!-- Google Account + GMC + Product Feed -->
       <two-panel-cols
@@ -128,6 +133,7 @@ import ModalEcIntro from '@/components/enhanced-conversions/modal-ec-intro.vue';
 import {AccountInformations} from '@/store/modules/google-ads/state';
 import TwoPanelCols from '@/components/onboarding/two-panel-cols.vue';
 import {deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
+import GoogleCredentialsForm from '@/components/settings/google-credentials-form.vue';
 
 export default defineComponent({
   name: 'OnboardingPage',
@@ -150,6 +156,7 @@ export default defineComponent({
     PopinModuleConfigured,
     TwoPanelCols,
     AlertCmp,
+    GoogleCredentialsForm,
   },
   data() {
     return {
@@ -160,9 +167,14 @@ export default defineComponent({
       productFeedIsLoading: false,
       SSCIsLoading: false,
       displayBannerSuccessMonetization: false,
+      googleConnection: {...window.tinyLuxGoogleConnection},
     };
   },
   methods: {
+    onGoogleCredentialsConfigured(connection) {
+      this.googleConnection = {...this.googleConnection, ...connection};
+      this.$store.dispatch('accounts/REQUEST_ROUTE_TO_GOOGLE_AUTH');
+    },
     onMerchantCenterAccountSelected(selectedAccount) {
       this.isMcaLinking = true;
       const correlationId = `${Math.floor(Date.now() / 1000)}`;

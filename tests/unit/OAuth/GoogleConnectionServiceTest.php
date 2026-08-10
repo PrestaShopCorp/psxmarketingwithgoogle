@@ -15,6 +15,7 @@ use PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleConnectionService;
 use PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleCredentialRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthCallback;
 use PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthClient;
+use PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthRedirectUriResolver;
 use PrestaShop\Module\PsxMarketingWithGoogle\OAuth\OAuthStateRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Security\SecretBox;
 use UnexpectedValueException;
@@ -199,12 +200,11 @@ class GoogleConnectionServiceTest extends TestCase
         $this->saveClientConfiguration();
         $state = $this->states->issue(1, 7, new DateTimeImmutable('+5 minutes'));
         $transport = new ServiceGoogleTransport();
-        $callback = new GoogleOAuthCallback($this->states, $this->service($transport));
+        $callback = $this->oauthCallback($transport);
 
         $redirect = $callback->handle(
             ['error' => 'access_denied', 'state' => $state],
-            'https://thetinylux.com/admin/module',
-            self::REDIRECT_URI
+            'https://thetinylux.com/admin/module'
         );
 
         self::assertSame('https://thetinylux.com/admin/module?oauth_result=denied', $redirect);
@@ -217,18 +217,17 @@ class GoogleConnectionServiceTest extends TestCase
     {
         $this->saveClientConfiguration();
         $transport = new ServiceGoogleTransport();
-        $callback = new GoogleOAuthCallback($this->states, $this->service($transport));
+        $callback = $this->oauthCallback($transport);
         $backOfficeUrl = 'https://thetinylux.com/admin/module';
 
         self::assertSame(
             $backOfficeUrl . '?oauth_result=invalid_request',
-            $callback->handle([], $backOfficeUrl, self::REDIRECT_URI)
+            $callback->handle([], $backOfficeUrl)
         );
         $state = $this->states->issue(1, 7, new DateTimeImmutable('+5 minutes'));
         $redirect = $callback->handle(
             ['id_shop' => '999', 'code' => 'authorization-code-value', 'state' => $state],
-            $backOfficeUrl,
-            self::REDIRECT_URI
+            $backOfficeUrl
         );
 
         self::assertSame($backOfficeUrl . '?oauth_result=invalid_request', $redirect);
@@ -243,12 +242,11 @@ class GoogleConnectionServiceTest extends TestCase
         $this->saveClientConfiguration();
         $state = $this->states->issue(1, 7, new DateTimeImmutable('+5 minutes'));
         $transport = new ServiceGoogleTransport($this->successfulConnectionResponses());
-        $callback = new GoogleOAuthCallback($this->states, $this->service($transport));
+        $callback = $this->oauthCallback($transport);
 
         $redirect = $callback->handle(
             ['code' => 'authorization-code-value', 'state' => $state],
-            'https://thetinylux.com/admin/module?token=admin-token-value',
-            self::REDIRECT_URI
+            'https://thetinylux.com/admin/module?token=admin-token-value'
         );
 
         self::assertSame(
@@ -258,6 +256,35 @@ class GoogleConnectionServiceTest extends TestCase
         self::assertStringNotContainsString('authorization-code-value', $redirect);
         self::assertStringNotContainsString($state, $redirect);
         self::assertStringNotContainsString('refresh-token-value', $redirect);
+    }
+
+    public function testAuthorizationAndStateDerivedExchangeUseTheSameTrustedDevRedirectUri(): void
+    {
+        $this->credentials->save(2, [
+            'client_id' => 'dev-client-id',
+            'client_secret' => 'dev-client-secret-value',
+            'cron_token' => 'dev-cron-token-value',
+        ]);
+        $transport = new ServiceGoogleTransport($this->successfulConnectionResponses());
+        $service = $this->service($transport);
+        $resolver = $this->redirectResolver();
+
+        $authorizationUrl = $service->authorizationUrl(2, 7, $resolver->resolve(2));
+        parse_str((string) parse_url($authorizationUrl, PHP_URL_QUERY), $authorizationQuery);
+        self::assertSame(
+            'https://preview.trycloudflare.com/prestashop/module/tlgoogleshopping/oauth',
+            $authorizationQuery['redirect_uri']
+        );
+
+        $callback = new GoogleOAuthCallback($this->states, $service, $resolver);
+        $callback->handle(
+            ['code' => 'authorization-code-value', 'state' => $authorizationQuery['state']],
+            'https://preview.trycloudflare.com/admin/module'
+        );
+
+        parse_str((string) $transport->requests[0]['body'], $exchangeBody);
+        self::assertSame($authorizationQuery['redirect_uri'], $exchangeBody['redirect_uri']);
+        self::assertSame('dev-client-id', $exchangeBody['client_id']);
     }
 
     public function testProductionRouteAliasRegistersAndDispatchesToTechnicalModuleController(): void
@@ -292,6 +319,34 @@ class GoogleConnectionServiceTest extends TestCase
             $this->credentials,
             new GoogleOAuthClient($transport)
         );
+    }
+
+    private function oauthCallback(ServiceGoogleTransport $transport): GoogleOAuthCallback
+    {
+        return new GoogleOAuthCallback(
+            $this->states,
+            $this->service($transport),
+            $this->redirectResolver()
+        );
+    }
+
+    private function redirectResolver(): GoogleOAuthRedirectUriResolver
+    {
+        return new GoogleOAuthRedirectUriResolver(static function (int $shopId): array {
+            if (2 === $shopId) {
+                return [
+                    'domain_ssl' => 'preview.trycloudflare.com',
+                    'physical_uri' => '/prestashop/',
+                    'virtual_uri' => '',
+                ];
+            }
+
+            return [
+                'domain_ssl' => 'thetinylux.com',
+                'physical_uri' => '/',
+                'virtual_uri' => '',
+            ];
+        });
     }
 
     private function saveClientConfiguration(?string $refreshToken = null): void

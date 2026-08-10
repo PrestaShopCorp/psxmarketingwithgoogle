@@ -9,6 +9,17 @@ declare global {
   //   interface ElementClass extends Vue {}
 
     interface Window {
+      tinyLuxGoogleApiUrl: string;
+      tinyLuxGoogleOAuthRedirectUri: string;
+      tinyLuxGoogleConnection: {
+        configured: boolean,
+        clientIdSuffix: string,
+        redirectUri: string,
+        connected: boolean,
+        googleEmail: string|null,
+        merchantAccount: string|null,
+        dataSource: string|null,
+      };
       psxMtgWithGoogleDefaultShopCountry: string,
       psxMktgWithGoogleActiveCountries: string[],
       psxMktgWithGoogleActiveCurrencies: string[],

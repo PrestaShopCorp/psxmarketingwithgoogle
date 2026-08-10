@@ -130,16 +130,11 @@ export default {
     }
   },
 
-  async [ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH]({commit, state, rootState}: Context) {
-    const urlState = btoa(JSON.stringify({
-      redirectUri: rootState.app.psxMktgWithGoogleAdminUrl,
-      shopId: state.shopIdPsAccounts,
-      shopUrl: rootState.app.psxMktgWithGoogleShopUrl,
-    }));
+  async [ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH]({commit}: Context) {
     try {
       const json = await (await fetchOnboarding(
         'GET',
-        `oauth/authorized-url?state=${urlState}`,
+        'oauth/authorized-url',
       )).json();
 
       commit(MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL, json.authorizedUrl);

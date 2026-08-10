@@ -34,9 +34,14 @@ services:
       - '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleCredentialRepository'
       - '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthClient'
 
+  PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthRedirectUriResolver:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthRedirectUriResolver
+    public: true
+
   PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthCallback:
     class: PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthCallback
     public: true
     arguments:
       - '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\OAuthStateRepository'
       - '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleConnectionService'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthRedirectUriResolver'

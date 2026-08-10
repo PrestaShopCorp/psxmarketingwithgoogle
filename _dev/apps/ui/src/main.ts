@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import {BootstrapVue} from 'bootstrap-vue';
 import VueShowdown from 'vue-showdown';
+import {initOnboardingClient} from 'mktg-with-google-common/api/onboardingClient';
 import router from './router';
 import store from './store';
 import App from './App.vue';
@@ -24,6 +25,8 @@ const segment = Object.freeze({
   track: () => undefined,
 });
 Vue.prototype.$segment = segment;
+
+initOnboardingClient({apiUrl: window.tinyLuxGoogleApiUrl});
 
 new Vue({
   router,

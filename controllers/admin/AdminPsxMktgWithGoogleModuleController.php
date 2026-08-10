@@ -19,6 +19,7 @@
  */
 
 use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
+use PrestaShop\Module\PsxMarketingWithGoogle\Api\LocalGoogleApi;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CountryRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\CurrencyRepository;
@@ -101,6 +102,36 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
             'pathApp' => $this->module->getPathUri() . 'views/js/psxmarketingwithgoogle-ui.js',
         ]);
 
+        $localApiUrl = $this->context->link->getAdminLink(
+            'AdminTinyLuxGoogleApi',
+            true,
+            [],
+            ['ajax' => 1]
+        );
+        $googleConnection = [
+            'configured' => false,
+            'clientIdSuffix' => '',
+            'redirectUri' => '',
+            'connected' => false,
+            'googleEmail' => null,
+            'merchantAccount' => null,
+            'dataSource' => null,
+        ];
+        try {
+            /** @var LocalGoogleApi $localApi */
+            $localApi = $this->module->getService(LocalGoogleApi::class);
+            $settings = json_decode($localApi->dispatch('GET', 'settings/status')->getBody(), true);
+            $connection = json_decode($localApi->dispatch('GET', 'oauth')->getBody(), true);
+            if (is_array($settings)) {
+                $googleConnection = array_merge($googleConnection, $settings);
+            }
+            if (is_array($connection)) {
+                $googleConnection = array_merge($googleConnection, $connection);
+            }
+        } catch (Throwable $exception) {
+            unset($exception);
+        }
+
         /************************************
          * PrestaShop Marketing with Google *
          ************************************/
@@ -135,7 +166,10 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
             'phpVersion' => phpversion(),
             'psxMktgWithGoogleModuleVersion' => $this->module->version,
             'psxMktgWithGoogleOnProductionEnvironment' => false,
-            'psxMktgWithGoogleApiUrl' => '',
+            'psxMktgWithGoogleApiUrl' => $localApiUrl,
+            'tinyLuxGoogleApiUrl' => $localApiUrl,
+            'tinyLuxGoogleOAuthRedirectUri' => $googleConnection['redirectUri'],
+            'tinyLuxGoogleConnection' => (object) $googleConnection,
             'psxMktgWithGoogleAdminUrl' => $this->context->link->getAdminLink(
                 'AdminPsxMktgWithGoogleModule'
             ),

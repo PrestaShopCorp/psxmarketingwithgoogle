@@ -5,7 +5,6 @@
  * @license https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthCallback;
 
 class PsxmarketingwithgoogleOauthModuleFrontController extends ModuleFrontController
@@ -35,8 +34,7 @@ class PsxmarketingwithgoogleOauthModuleFrontController extends ModuleFrontContro
         $backOfficeUrl = $this->context->link->getAdminLink('AdminPsxMktgWithGoogleModule');
         Tools::redirectAdmin($callback->handle(
             $query,
-            $backOfficeUrl,
-            Config::GOOGLE_OAUTH_REDIRECT_URI
+            $backOfficeUrl
         ));
     }
 }

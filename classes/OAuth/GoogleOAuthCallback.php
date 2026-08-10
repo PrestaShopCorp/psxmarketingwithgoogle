@@ -17,16 +17,23 @@ final class GoogleOAuthCallback
     /** @var GoogleConnectionService */
     private $connections;
 
-    public function __construct(OAuthStateRepository $states, GoogleConnectionService $connections)
-    {
+    /** @var GoogleOAuthRedirectUriResolver */
+    private $redirectUris;
+
+    public function __construct(
+        OAuthStateRepository $states,
+        GoogleConnectionService $connections,
+        GoogleOAuthRedirectUriResolver $redirectUris
+    ) {
         $this->states = $states;
         $this->connections = $connections;
+        $this->redirectUris = $redirectUris;
     }
 
     /**
      * @param array<string, mixed> $query
      */
-    public function handle(array $query, string $backOfficeUrl, string $redirectUri): string
+    public function handle(array $query, string $backOfficeUrl): string
     {
         if (array_key_exists('id_shop', $query)) {
             return $this->redirect($backOfficeUrl, 'invalid_request');
@@ -59,7 +66,12 @@ final class GoogleOAuthCallback
                 return $this->redirect($backOfficeUrl, 'invalid_request');
             }
 
-            $this->connections->complete($shopId, $state, $code, $redirectUri);
+            $this->connections->complete(
+                $shopId,
+                $state,
+                $code,
+                $this->redirectUris->resolve($shopId)
+            );
 
             return $this->redirect($backOfficeUrl, 'connected');
         } catch (Throwable $exception) {
