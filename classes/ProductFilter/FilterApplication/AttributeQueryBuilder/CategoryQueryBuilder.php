@@ -38,7 +38,7 @@ class CategoryQueryBuilder implements QueryBuilderInterface
 
     public function addWhereFromFilter(DbQuery $query, $filter, int $index): DbQuery
     {
-        // At the time of implementation, CloudSync gets only the default category of the product.
+        // Product synchronization uses only the default category of the product.
         // We add the condition based on the default category here as well.
         switch ($filter['condition']) {
             case Condition::DOES_CONTAIN:

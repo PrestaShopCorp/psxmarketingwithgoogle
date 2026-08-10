@@ -1,5 +1,0 @@
-services:
-  psxmarketingwithgoogle.billing_env:
-    class: 'PrestaShop\Module\PsxMarketingWithGoogle\Factory\ParametersFactory'
-    public: true
-    factory: ['PrestaShop\Module\PsxMarketingWithGoogle\Factory\ParametersFactory', 'getBillingEnv']

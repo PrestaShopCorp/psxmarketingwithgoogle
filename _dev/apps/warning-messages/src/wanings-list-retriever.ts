@@ -1,11 +1,9 @@
-import * as Sentry from "@sentry/browser";
 import {
   fetchOnboarding as fetchOnboardingType,
   HttpClientError,
 } from "mktg-with-google-common";
 
 const correlationId = `${Math.floor(Date.now() / 1000)}`;
-const scope = new Sentry.Scope();
 
 export const getListOfWarnings = async (
   fetchOnboarding: typeof fetchOnboardingType,
@@ -48,15 +46,11 @@ const responseHandler = async (response: Response) => {
     const error = new HttpClientError(response.statusText, response.status);
 
     try {
-      const content = await response.text();
-      scope.setExtra("responseContent", content);
+      await response.text();
     } catch {
       // Do nothing
     }
 
-    scope.setTransactionName(response.url);
-    scope.setTag('correlationId', correlationId);
-    Sentry.captureException(error, scope);
     throw error;
   }
   return response;

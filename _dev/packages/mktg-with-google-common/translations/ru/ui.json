@@ -5,7 +5,6 @@
       "campaign": "Кампании",
       "configuration": "Настроить",
       "catalog": "Каталог продукции",
-      "billing": "Подписка",
       "help": "Помощь"
     },
     "errorsMessages": {
@@ -14,10 +13,6 @@
     "versionDoesNotExist": "Возможно, не удалось получить версию модуля из-за проблемы на нашей стороне. Повторите попытку.",
     "moduleNeedActivation": "Интеграция PrestaShop Marketing с Google отключена. Включите модуль, чтобы пользоваться его функциями.",
     "moduleUpdateNeeded": {
-      "ps_eventbus": {
-        "title": "A newer version of PrestaShop CloudSync is requested",
-        "paragraph": "The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\n You may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync."
-      },
       "psxmarketingwithgoogle": {
         "title": "A newer version of PrestaShop Marketing With Google is available",
         "paragraph": "It offers an exciting feature that will take your product usage to the next level. | It offers exciting features that will take your product usage to the next level.",
@@ -77,22 +72,7 @@
     }
   },
   "onboarding": {
-    "cmpAlert": {
-      "title": "GDPR updates",
-      "paragraph": "Starting March 2024, businesses advertising to users in the European Economic Area (EEA) must create a strong framework to collect and communicate end-users’ consent choices via consent banners integrated with Google’s Consent Mode. To build a strong foundation for measuring your ads you must set up a cookie banner through a supported, dedicated Consent Management Platform. If you do not already have one, we recommend that you use the following consent management platform, which is compliant with the new regulations: {link}",
-      "moduleGDPR": "Cookies GDPR Law (Blocker) + Google Consent Mode V2"
-    },
     "sectionTitle": {
-      "psAccount": "Подключите свою учетную запись PrestaShop",
-      "psbilling": {
-        "title": "Платежная информация",
-        "subTitle": "Перейдите к настройкам подписки и способа оплаты.",
-        "alertNoSynchro": "Your catalog synchronization with Google Merchant Center is paused because PrestaShop Marketing now requires a €14.99 excl. tax/month subscription. "
-      },
-      "pscloudsync": {
-        "title": "Разрешить доступ к данным",
-        "subTitle": "Помогите нам улучшить качество сервиса: дайте согласие на безопасный обмен данными, которые относятся к предоставлению услуг."
-      },
       "freeListing": {
         "title": "Увеличьте охват пользователей Google с помощью бесплатных объявлений",
         "subtitle": "Бесплатные объявления открывают доступ к миллионам покупателей, которые ищут товары, подобные вашим. Расскажите о своих товарах бесплатно, воспользовавшись органично ранжируемыми объявлениями на вкладке «Покупки». Для этого просто подключите свой аккаунт Google к Google Merchant Center."
@@ -111,12 +91,6 @@
     "tips": "После того, как вы закончили с первым магазином, вы можете настроить остальные, выбирая их по очереди в селекторе магазинов в горизонтальном меню",
     "configure": "Настроить",
     "group": "Группа магазинов"
-  },
-  "billingFacade": {
-    "title": "Детали оплаты",
-    "nextPayment": "Подписка действует. Следующее списание средств произойдет {date}",
-    "willEnd": "Срок действия вашей подписки истечет {date}.",
-    "managePayment": "Управление платежами"
   },
   "googleAccountCard": {
     "title": "аккаунт Google",
@@ -541,10 +515,6 @@
       "syncScheduledNow": "Сегодня, сразу после сохранения и экспорта"
     }
   },
-  "billing": {
-    "planTitle": "Тарифный план и платежная информация",
-    "invoicesTitle": "Счета-фактуры"
-  },
   "freeListingCard": {
     "title": "Покажите свои товары с помощью бесплатных объявлений",
     "intro": "Бесплатно демонстрируйте свой продукт в органически ранжированном листинге на вкладке Shopping.",
@@ -910,7 +880,6 @@
     "title": "Поздравляем, всё готово!",
     "text": "Вы выполнили все необходимые шаги, чтобы получить максимальную отдачу от **Интеграции PrestaShop Marketing с Google**",
     "cta": "Создать кампанию",
-    "firstStep": "Привяжите свой магазин к учетной записи PrestaShop",
     "secondStep": "Войдите в существующую учетную запись Google или создайте новую",
     "thirdStep": "Войдите в учетную запись Google Merchant Center или создайте новую",
     "fourthStep": "Экспортируйте и синхронизируйте каталог продукции",

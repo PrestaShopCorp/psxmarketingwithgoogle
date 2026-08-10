@@ -23,9 +23,7 @@ declare global {
       psxMtgWithGoogleDefaultShopCountry: string,
       psxMktgWithGoogleActiveCountries: string[],
       psxMktgWithGoogleActiveCurrencies: string[],
-      contextPsEventbus: any
       psxMktgWithGoogleLanguages: string[],
-      contextPsEventBus: any
       translations: any;
       i18nSettings: {
         isoCode: string, // ⚠️ Deprecated, this value can be invalid (i.e will return gb with en-gb)
@@ -52,7 +50,6 @@ declare global {
       psxMktgWithGoogleModuleIsEnabled: boolean,
       psxMktgWithGoogleEnableLink: string,
       // Other apps
-      psaccountsVue?: any,
     }
   //   interface IntrinsicElements {
   //     [elem: string]: any;

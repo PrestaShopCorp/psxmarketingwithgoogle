@@ -35,7 +35,7 @@
 <script>
 import {BAlert, BListGroup, BListGroupItem} from 'bootstrap-vue';
 /**
- * This sub-component can be used in a custom integration when the `PsAccounts`
+ * This sub-component can be used in a custom integration when the account
  * component does not meets special needs. This part will display a selector
  * to let the user choose which shop to choose before linking process (each shop
  * in a multi-shop context has to be linked separately, possibly with a different

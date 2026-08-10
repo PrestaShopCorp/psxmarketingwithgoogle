@@ -65,7 +65,7 @@ export default {
   },
   computed: {
     GDPRModuleLink() {
-      return `https://addons.prestashop.com/${this.$i18n.locale}/legal/21644-cookies-gdpr-law-blocker-google-consent-mode-v2.html`;
+      return 'https://support.google.com/merchants/answer/14199870';
     },
     displayAlert() {
       return this.display && this.$store.getters[`googleAds/${GettersTypes.GET_GOOGLE_ADS_ACCOUNT_CHOSEN}`];

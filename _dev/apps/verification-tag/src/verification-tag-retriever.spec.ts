@@ -1,8 +1,5 @@
 import { HttpClientError } from "mktg-with-google-common";
 import { runRetrievalOfVerificationTag } from "./verification-tag-retriever";
-import * as Sentry from '@sentry/browser';
-
-jest.mock('@sentry/browser');
 
 describe('runRetrievalOfVerificationTag', () => {
   beforeEach(() => {
@@ -106,7 +103,6 @@ describe('runRetrievalOfVerificationTag', () => {
     // assert
     expect(fetchOnboardingMock).toBeCalledTimes(1);
     expect(fetchShopMock).toBeCalledTimes(0);
-    expect(Sentry.captureException).not.toHaveBeenCalled(); // Ensure Sentry is not called
   });
 
   it('handles 404 Not Found error', async () => {
@@ -123,7 +119,6 @@ describe('runRetrievalOfVerificationTag', () => {
     // assert
     expect(fetchOnboardingMock).toBeCalledTimes(1);
     expect(fetchShopMock).toBeCalledTimes(0);
-    expect(Sentry.captureException).not.toHaveBeenCalled(); // Ensure Sentry is not called
   });
 
   it('stops when token retrieval fails', async () => {
@@ -140,6 +135,5 @@ describe('runRetrievalOfVerificationTag', () => {
     // assert
     expect(fetchOnboardingMock).toBeCalledTimes(1);
     expect(fetchShopMock).toBeCalledTimes(0);
-    expect(Sentry.captureException).toHaveBeenCalled(); // Ensure Sentry is called
   });
 });

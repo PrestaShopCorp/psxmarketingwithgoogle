@@ -137,8 +137,6 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
          ************************************/
 
         Media::addJsDef([
-            'contextPsAccounts' => (object) [],
-            'contextPsEventbus' => (object) [],
             'i18nSettings' => [
                 'isoCode' => $this->context->language->iso_code,
                 'languageLocale' => $this->context->language->language_code,
@@ -152,16 +150,6 @@ class AdminPsxMktgWithGoogleModuleController extends ModuleAdminController
                     'ajax' => 1,
                 ]
             ),
-            'psGoogleCallEventBus' => $this->context->link->getAdminLink(
-                'AdminAjaxPsxMktgWithGoogle',
-                true,
-                [],
-                [
-                    'ajax' => 1,
-                ]
-            ),
-            'shopIdPsAccounts' => '',
-            'tokenPsAccounts' => '',
             'psVersion' => _PS_VERSION_,
             'phpVersion' => phpversion(),
             'psxMktgWithGoogleModuleVersion' => $this->module->version,

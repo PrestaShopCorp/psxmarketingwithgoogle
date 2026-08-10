@@ -5,7 +5,6 @@
       "campaign": "Campagnes",
       "configuration": "Configuration",
       "catalog": "Catalogue produit",
-      "billing": "Abonnement",
       "help": "Aide"
     },
     "errorsMessages": {
@@ -14,10 +13,6 @@
     "versionDoesNotExist": "Il semble que la version du module ne puisse être récupérée. C'est de notre côté, veuillez réessayer.",
     "moduleNeedActivation": "Le module Marketing with Google est désactivé. Vous ne pourrez utiliser aucune de ses fonctionnalités tant que vous n'aurez pas activé votre module.",
     "moduleUpdateNeeded": {
-      "ps_eventbus": {
-        "title": "Une version plus récente de PrestaShop CloudSync est demandée",
-        "paragraph": "La version du module PrestaShop CloudSync exécutée sur cette boutique est plus ancienne que le minimum requis.\n\nVous pouvez utiliser PrestaShop Marketing with Google, mais certaines fonctionnalités (par exemple, la synchronisation des produits) ne seront pas disponibles tant que vous n'aurez pas mis à niveau PrestaShop CloudSync."
-      },
       "psxmarketingwithgoogle": {
         "title": "Une version plus récente de PrestaShop Marketing With Google est disponible",
         "paragraph": "Elle offre une fonctionnalité intéressante qui vous permettra de passer à la vitesse supérieure dans l'usage du produit. | Elle offre des fonctionnalités intéressantes qui vous permettront de passer à la vitesse supérieure dans l'usage du produit.",
@@ -77,22 +72,7 @@
     }
   },
   "onboarding": {
-    "cmpAlert": {
-      "title": "Mises à jour RGPD",
-      "paragraph": "À partir de mars 2024, les entreprises qui font de la publicité auprès des utilisateurs de l'Espace économique européen (EEE) doivent créer un cadre solide pour collecter et communiquer les choix de consentement des utilisateurs finaux par le biais de bannières de consentement compatibles avec le mode de consentement de Google. Afin d'établir une base solide pour mesurer vos publicités, vous devez mettre en place une bannière de cookies par l'intermédiaire d'une plateforme de gestion des consentements dédiée et prise en charge. Si vous n'en avez pas encore, nous vous recommandons d'utiliser la plateforme de gestion du consentement suivante, qui est conforme à la nouvelle réglementation : {link}",
-      "moduleGDPR": "Loi Cookies RGPD (Bloqueur) + Google Consent Mode V2"
-    },
     "sectionTitle": {
-      "psAccount": "Connectez votre compte PrestaShop",
-      "psbilling": {
-        "title": "Informations de facturation",
-        "subTitle": "Accéder et gérer votre abonnement et le mode de paiement associé.",
-        "alertNoSynchro": "La synchronisation de votre catalogue avec Google Merchant Center est en pause car PrestaShop Marketing nécessite désormais un abonnement de 14,99 € HT/mois."
-      },
-      "pscloudsync": {
-        "title": "Autoriser le partage de données",
-        "subTitle": "Aidez-nous à améliorer votre expérience et à améliorer notre service en consentant à partager en toute sécurité des données pertinentes avec nous."
-      },
       "freeListing": {
         "title": "Touchez davantage de personnes sur Google avec les fiches gratuites",
         "subtitle": "Les fiches gratuites vous donnent accès à des millions d'acheteurs à la recherche de produits similaires aux vôtres. Affichez gratuitement vos produits dans des listes classées organiquement dans l'onglet \"Shopping\" lorsque vous connectez votre compte Google à Google Merchant Center."
@@ -111,12 +91,6 @@
     "tips": "Une fois que vous avez terminé avec la première boutique, vous pouvez configurer les autres en les sélectionnant une par une dans le sélecteur de boutique",
     "configure": "Configuration",
     "group": "Groupe de boutiques"
-  },
-  "billingFacade": {
-    "title": "Détails de paiement",
-    "nextPayment": "Votre abonnement est actif, prochaine facturation le {date}",
-    "willEnd": "Votre abonnement prendra fin le {date}.",
-    "managePayment": "Gérer les paiements"
   },
   "googleAccountCard": {
     "title": "Compte Google",
@@ -541,10 +515,6 @@
       "syncScheduledNow": "Aujourd'hui, juste après avoir enregistré et exporté"
     }
   },
-  "billing": {
-    "planTitle": "Informations sur l'abonnement et la facturation",
-    "invoicesTitle": "Factures"
-  },
   "freeListingCard": {
     "title": "Afficher gratuitement vos produits dans l'onglet \"Google Shopping\"",
     "intro": "Afficher gratuitement vos produits en fiches gratuites dans l'onglet Shopping.",
@@ -910,7 +880,6 @@
     "title": "Félicitations, vous êtes prêt !",
     "text": "Vous avez terminé toutes les étapes nécessaires pour tirer le meilleur parti de **Marketing avec Google**",
     "cta": "Créer une campagne",
-    "firstStep": "Liez votre boutique à un compte PrestaShop",
     "secondStep": "Connectez-vous à votre compte Google",
     "thirdStep": "Connectez-vous ou créez votre compte Google Merchant Center",
     "fourthStep": "Exporter et synchroniser votre catalogue de produits",

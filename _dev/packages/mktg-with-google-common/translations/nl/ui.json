@@ -5,7 +5,6 @@
       "campaign": "Campagnes",
       "configuration": "Configureer",
       "catalog": "Productcatalogus",
-      "billing": "Abonnement",
       "help": "Help"
     },
     "errorsMessages": {
@@ -14,10 +13,6 @@
     "versionDoesNotExist": "Het lijkt erop dat de versie van de module niet kan worden opgehaald. Het is aan onze kant probeer het opnieuw.",
     "moduleNeedActivation": "Marketing met Google is uitgeschakeld. Je kunt geen van de functies gebruiken totdat je je module inschakelt.",
     "moduleUpdateNeeded": {
-      "ps_eventbus": {
-        "title": "Er is een nieuwere versie van PrestaShop CloudSync aangevraagd",
-        "paragraph": "De versie van de module PrestaShop CloudSync die op deze winkel draait is ouder dan de vereiste minimumversie.\n\n Je kunt PrestaShop Marketing met Google gebruiken, maar sommige functies (zoals productsynchronisatie) zijn niet beschikbaar totdat je PrestaShop CloudSync upgradet."
-      },
       "psxmarketingwithgoogle": {
         "title": "Er is een nieuwere versie van PrestaShop Marketing met Google beschikbaar",
         "paragraph": "Het biedt een opwindende functie die je productgebruik naar een hoger niveau tilt. | Het biedt opwindende functies die je productgebruik naar een hoger niveau tillen.",
@@ -77,22 +72,7 @@
     }
   },
   "onboarding": {
-    "cmpAlert": {
-      "title": "AVG-updates",
-      "paragraph": "Vanaf maart 2024 moeten bedrijven die adverteren aan gebruikers in de Europese Economische Ruimte (EER) een sterk kader creëren om de toestemmingskeuzes van eindgebruikers te verzamelen en te communiceren via toestemmingsbalken die zijn geïntegreerd met Consent Mode van Google. Om een sterke basis te leggen voor het meten van uw advertenties moet je een cookiebalk instellen via een ondersteund, speciaal Toestemmingsbeheerplatform. Als je er nog geen hebt, raden we je aan het volgende toestemmingsbeheerplatform te gebruiken, dat voldoet aan de nieuwe regelgeving: {link}",
-      "moduleGDPR": "Cookies AVG (Blocker) + Google Consent Mode V2"
-    },
     "sectionTitle": {
-      "psAccount": "Koppel uw Prestashop account",
-      "psbilling": {
-        "title": "Betaalinformatie",
-        "subTitle": "Toegang tot en beheer van je abonnement en bijbehorende betaalmethode.",
-        "alertNoSynchro": "Je catalogussynchronisatie met Google Merchant Center is gepauzeerd omdat PrestaShop Marketing nu een abonnement van € 14,99 excl. btw/maand vereist. "
-      },
-      "pscloudsync": {
-        "title": "Sta het delen van data toe",
-        "subTitle": "Help ons je ervaring te verbeteren en onze service te verbeteren door toestemming te geven om relevante gegevens veilig met ons te delen."
-      },
       "freeListing": {
         "title": "Bereik meer mensen op Google door je producten gratis aan te bieden",
         "subtitle": "Gratis advertenties geven je toegang tot miljoenen shoppers die op zoek zijn naar producten die vergelijkbaar zijn met de jouwe. Toon je producten gratis in organisch gerangschikte advertenties op het tabblad Winkelen wanneer je je Google-account koppelt aan Google Merchant Center."
@@ -111,12 +91,6 @@
     "tips": "Nadat U klaar bent met de eerste shop, kunt U de andere configureren door ze één voor één te selecteren in de shop selector, in het horizontale menu",
     "configure": "Configureer",
     "group": "Winkelgroep"
-  },
-  "billingFacade": {
-    "title": "Betaalgegevens",
-    "nextPayment": "Je abonnement is actief, volgende facturering op {date}",
-    "willEnd": "Je abonnement eindigt op {date}.",
-    "managePayment": "Beheer betalingen"
   },
   "googleAccountCard": {
     "title": "Google-account",
@@ -541,10 +515,6 @@
       "syncScheduledNow": "Vandaag, direct nadat ik heb opgeslagen en geëxporteerd"
     }
   },
-  "billing": {
-    "planTitle": "Abonnement- en factureringsinformatie",
-    "invoicesTitle": "Facturen"
-  },
   "freeListingCard": {
     "title": "Toon uw producten met gratis vermeldingen",
     "intro": "Laat uw product gratis zien in een organisch gerangschikte lijst op het tabblad Shopping.",
@@ -910,7 +880,6 @@
     "title": "Gefeliciteerd! Je bent er helemaal klaar voor !",
     "text": "Je hebt alle vereiste stappen voltooid om het meeste uit **Marketing met Google** te halen",
     "cta": "Naar aanmaken van campagnes",
-    "firstStep": "Je winkel koppelen aan een PrestaShop-account",
     "secondStep": "Meld je aan of maak je Google-account aan",
     "thirdStep": "Meld je aan of maak je Google Merchant Center-account aan",
     "fourthStep": "Je productcatalogus exporteren en synchroniseren",

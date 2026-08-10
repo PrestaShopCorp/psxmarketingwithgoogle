@@ -5,7 +5,6 @@
       "campaign": "Kampagnen",
       "configuration": "Konfigurieren",
       "catalog": "Produktkatalog",
-      "billing": "Abonnement",
       "help": "Hilfe"
     },
     "errorsMessages": {
@@ -14,10 +13,6 @@
     "versionDoesNotExist": "Es scheint, dass die Version des Moduls nicht abgerufen werden kann. Es liegt an unserer Seite, bitte versuchen Sie es erneut.",
     "moduleNeedActivation": "Marketing mit Google ist deaktiviert. Sie können die Funktionen erst nutzen, wenn Ihr Modul aktiviert wird.",
     "moduleUpdateNeeded": {
-      "ps_eventbus": {
-        "title": "Eine neuere Version von PrestaShop CloudSync ist erforderlich",
-        "paragraph": "Die Version des Moduls PrestaShop CloudSync, die für diesen Shop ausgeführt wird, ist älter als die mindestens erforderliche Version.\n\n Sie können PrestaShop Marketing mit Google verwenden, aber einige Funktionen (z. B. die Produktsynchronisierung) sind erst verfügbar, wenn Sie ein Upgrade auf PrestaShop CloudSync durchführen."
-      },
       "psxmarketingwithgoogle": {
         "title": "Eine neuere Version von PrestaShop Marketing mit Google ist verfügbar",
         "paragraph": "Sie bietet eine spannende Funktion, mit der Sie bei der Produktnutzung völlig neue Wege gehen können. | Sie bietet spannende Funktionen, mit denen Sie bei der Produktnutzung völlig neue Wege gehen können.",
@@ -77,22 +72,7 @@
     }
   },
   "onboarding": {
-    "cmpAlert": {
-      "title": "DSGVO-Updates",
-      "paragraph": "Ab März 2024 müssen Unternehmen, die für Nutzer im Europäischen Wirtschaftsraum (EWR) werben, einen starken Rahmen schaffen, um die Einwilligungsentscheidungen der Endnutzer über Einwilligungsbanner zu sammeln und zu kommunizieren, die in den Einwilligungsmodus von Google integriert sind. Um eine solide Grundlage für die Messung Ihrer Anzeigen zu schaffen, müssen Sie ein Cookie-Banner über eine unterstützte, dedizierte Consent-Management-Plattform einrichten. Wenn Sie noch keine haben, empfehlen wir Ihnen, die folgende Plattform für das Einwilligungsmanagement zu verwenden, die den neuen Vorschriften entspricht: {link}",
-      "moduleGDPR": "Cookies DSGVO-Gesetz (Blocker) + Google Consent Mode V2"
-    },
     "sectionTitle": {
-      "psAccount": "Verbinden Sie Ihr PrestaShop-Konto",
-      "psbilling": {
-        "title": "Zahlungsinformation",
-        "subTitle": "Zugriff und Verwaltung Ihres Abonnements und der zugehörigen Zahlungsmethoden.",
-        "alertNoSynchro": "Die Synchronisierung Ihres Katalogs mit dem Google Merchant Center wurde ausgesetzt, da für PrestaShop Marketing jetzt ein Abonnement für 14,99 €/Monat ohne MwSt. erforderlich ist. "
-      },
-      "pscloudsync": {
-        "title": "Datenfreigabe zulassen",
-        "subTitle": "Helfen Sie uns, Ihre Erfahrung zu verbessern und unseren Service zu optimieren, indem Sie uns Ihre Zustimmung geben, relevante Daten sicher mit uns zu teilen."
-      },
       "freeListing": {
         "title": "Erreichen Sie mehr Personen auf Google mit kostenlosen Inseraten",
         "subtitle": "Durch kostenlose Inserate erreichen Sie Millionen von Käufern, die nach Produkten wie Ihren suchen. Lassen Sie Ihre Produkte kostenlos in organisch geordneten Suchen im Tab „Shopping“ anzeigen. Dazu müssen Sie Ihr Google-Konto mit dem Google Merchant Center verbinden."
@@ -111,12 +91,6 @@
     "tips": "Nachdem Sie mit dem ersten Shop fertig sind, können Sie die anderen Shops konfigurieren, indem Sie sie nacheinander im Shop-Selektor im horizontalen Menü auswählen",
     "configure": "Konfigurieren",
     "group": "Gruppe einkaufen"
-  },
-  "billingFacade": {
-    "title": "Zahlungsdetails",
-    "nextPayment": "Ihr Abonnement ist aktiv, die nächste Abrechnung erfolgt am {date}",
-    "willEnd": "Ihr Abonnement endet am {date}.",
-    "managePayment": "Zahlungen verwalten"
   },
   "googleAccountCard": {
     "title": "Google-Konto",
@@ -541,10 +515,6 @@
       "syncScheduledNow": "Heute, gleich nachdem ich gespeichert und exportiert habe"
     }
   },
-  "billing": {
-    "planTitle": "Abo- & Abrechnungsinformationen",
-    "invoicesTitle": "Rechnungen"
-  },
   "freeListingCard": {
     "title": "Zeigen Sie Ihre Produkte mit kostenlosen Inseraten",
     "intro": "Präsentieren Sie Ihr Produkt kostenlos in einem organischen Verzeichnis auf der Registerkarte Shopping.",
@@ -910,7 +880,6 @@
     "title": "Herzlichen Glückwunsch. Die Einrichtung ist abgeschlossen!",
     "text": "Sie haben alle erforderlichen Schritte abgeschlossen, um **Marketing mit Google** bestmöglich zu nutzen",
     "cta": "Zur Kampagnenerstellung",
-    "firstStep": "Verknüpfen Sie Ihr Geschäft mit einem PrestaShop Account",
     "secondStep": "Melden Sie sich mit Ihrem Google-Konto an oder erstellen Sie ein Konto",
     "thirdStep": "Melden Sie sich mit Ihrem Google-Merchant-Center-Konto an oder erstellen Sie ein Konto",
     "fourthStep": "Exportieren und synchronisieren Sie Ihren Produktkatalog",

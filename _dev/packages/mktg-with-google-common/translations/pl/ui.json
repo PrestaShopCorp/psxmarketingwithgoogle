@@ -5,7 +5,6 @@
       "campaign": "Kampanie",
       "configuration": "Konfiguruj",
       "catalog": "Katalog produktów",
-      "billing": "Subskrypcja",
       "help": "Pomoc"
     },
     "errorsMessages": {
@@ -14,10 +13,6 @@
     "versionDoesNotExist": "Wygląda na to, że ta wersja modułu nie może zostać pobrana. To kwestia problemu po naszej stronie. Proszę spróbować ponownie.",
     "moduleNeedActivation": "Marketing with Google jest wyłączony. Nie możesz korzystać z żadnych jego funkcji, dopóki nie włączysz tego modułu.",
     "moduleUpdateNeeded": {
-      "ps_eventbus": {
-        "title": "Wymagana jest nowsza wersja PrestaShop CloudSync",
-        "paragraph": "Wersja modułu PrestaShop CloudSync uruchomiona w tym sklepie jest starsza niż wymagane minimum.\n\nMożesz korzystać z PrestaShop Marketing with Google, ale niektóre funkcje (np. synchronizacja produktów) nie będą dostępne, dopóki nie zaktualizujesz PrestaShop CloudSync."
-      },
       "psxmarketingwithgoogle": {
         "title": "Dostępna jest nowsza wersja PrestaShop Marketing with Google",
         "paragraph": "Oferuje nową funkcję, która ułatwi Ci korzystanie z produktu. | Oferuje nowe funkcje, które ułatwią Ci korzystanie z produktu.",
@@ -77,22 +72,7 @@
     }
   },
   "onboarding": {
-    "cmpAlert": {
-      "title": "Aktualizacje RODO",
-      "paragraph": "Od marca 2024 r. firmy reklamujące się w Europie muszą uzyskać zgodę użytkowników na wykorzystanie plików cookie. Aby to zrobić, trzeba dodać do swojej strony specjalny baner. Jeśli jeszcze go nie masz, polecamy skorzystać z platformy do zarządzania zgodami, takiej jak {link}. To pomoże Ci spełnić nowe przepisy i nadal skutecznie mierzyć wyniki swoich reklam",
-      "moduleGDPR": "Cookies GDPR Law (Blocker) + Google Consent Mode V2"
-    },
     "sectionTitle": {
-      "psAccount": "Podłącz Twoje konto PrestaShop",
-      "psbilling": {
-        "title": "Informacje rozliczeniowe",
-        "subTitle": "Dostęp i zarządzanie subskrypcją oraz powiązaną metodą płatności.",
-        "alertNoSynchro": "Synchronizacja Twojego katalogu z Google Merchant Center została wstrzymana, ponieważ PrestaShop Marketing wymaga teraz subskrypcji w cenie 14,99 EUR bez podatku/miesiąc. "
-      },
-      "pscloudsync": {
-        "title": "Zezwalaj na udostępnianie danych",
-        "subTitle": "Pomóż nam poprawić Twoje doświadczenia i udoskonalić nasze usługi, wyrażając zgodę na bezpieczne udostępnianie nam odpowiednich danych."
-      },
       "freeListing": {
         "title": "Dotrzyj to większej liczby osób dzięki wyświetlaniu bezpłatnych informacji o produktach",
         "subtitle": "Bezpłatne informacje dają Ci dostęp do milionów kupujących, którzy szukają produktów podobnych do Twoich. Po połączeniu Twojego konta Google z Google Merchant Center, możesz wyświetlać Twoje produkty za darmo w organicznie uszeregowanych listach na karcie Zakupy."
@@ -111,12 +91,6 @@
     "tips": "Po zakończeniu pracy nad pierwszym sklepem, możesz skonfigurować pozostałe, wybierając je kolejno z listy sklepów w menu poziomym",
     "configure": "Konfiguruj",
     "group": "Grupa sklepów"
-  },
-  "billingFacade": {
-    "title": "Szczegóły płatności",
-    "nextPayment": "Subskrypcja jest aktywna, następne rozliczenie: {date}",
-    "willEnd": "Twoja subskrypcja zakończy się {date}.",
-    "managePayment": "Zarządzaj płatnościami"
   },
   "googleAccountCard": {
     "title": "Konto Google",
@@ -541,10 +515,6 @@
       "syncScheduledNow": "Dzisiaj, zaraz po zapisaniu i wyeksportowaniu"
     }
   },
-  "billing": {
-    "planTitle": "Informacje o planie i rozliczeniach",
-    "invoicesTitle": "Faktury"
-  },
   "freeListingCard": {
     "title": "Pokaż swoje produkty dzięki bezpłatnym informacjom",
     "intro": "Zaprezentuj Twój produkt bezpłatnie w organicznych wynikach wyszukiwania w karcie Zakupy.",
@@ -910,7 +880,6 @@
     "title": "Gratulacje, wszystko gotowe!",
     "text": "Ukończono wszystkie wymagane kroki, aby uzyskać jak najwięcej korzyści z **Marketing with Google**",
     "cta": "Przejdź do tworzenia kampanii",
-    "firstStep": "Podłącz Twój sklep do konta PrestaShop",
     "secondStep": "Zaloguj się lub utwórz Twoje konto Google",
     "thirdStep": "Utwórz lub połącz Twoje konto Google Merchant Center",
     "fourthStep": "Eksportuj i synchronizuj Twój katalog produktów",

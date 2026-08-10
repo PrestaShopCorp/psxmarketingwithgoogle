@@ -23,10 +23,6 @@
   },
   "dependencies": {
     "@googleapis/content": "^6.2.0",
-    "@googleapis/oauth2": "^0.2.0",
-    "@segment/analytics-next": "^1.56.0",
-    "@sentry/tracing": "^7.99.0",
-    "@sentry/vue": "^7.99.0",
     "bootstrap": "^4.6.2",
     "bootstrap-vue": "^2.22.0",
     "chart.js": "^4.3.3",
@@ -40,7 +36,6 @@
     "mktg-with-google-common": "workspace:*",
     "open-sans-fonts": "^1.6.2",
     "prestakit": "^1.2.6",
-    "secure-ls": "^1.2.6",
     "semver": "^7.5.3",
     "showdown": "^1.9.1",
     "ts-loader": "^8.4.0",
@@ -50,8 +45,7 @@
     "vue-select": "^3.20.0",
     "vue-showdown": "^2.4.1",
     "vuex": "^3.6.0",
-    "vuex-module-decorators": "^0.17.0",
-    "vuex-persistedstate": "^4.1.0"
+    "vuex-module-decorators": "^0.17.0"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "^7.0.26",

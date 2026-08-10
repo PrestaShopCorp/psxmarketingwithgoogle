@@ -127,9 +127,6 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             case 'getConversionActionLabels':
                 $this->getConversionActionLabels();
                 break;
-            case 'getDebugData':
-                $this->getDebugData();
-                break;
             case 'setGMCInformations':
                 $this->setGMCInformations($inputs);
                 break;
@@ -422,33 +419,6 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         }
         $this->render(json_encode([
             'conversionActionLabels' => $labels,
-        ]), 200);
-    }
-
-    private function getDebugData()
-    {
-        $typesOfSync = [];
-        try {
-            $sql = new DbQuery();
-            $sql->select('ets.type, ets.lang_iso, ets.full_sync_finished, ets.last_sync_date');
-            $sql->from('eventbus_type_sync', 'ets');
-            $sql->where('ets.id_shop = ' . (int) $this->context->shop->id);
-            $sql->orderBy('ets.last_sync_date DESC');
-            $typesOfSync = \Db::getInstance()->executeS($sql);
-        } catch (Exception $e) {
-            $this->errorHandler->handle(
-                $e,
-                $e->getCode(),
-                false
-            );
-        }
-
-        $this->render(json_encode([
-            'urlEventBusHealthCheck' => $this->context->link->getModuleLink(
-                'ps_eventbus',
-                'apiHealthCheck'
-            ),
-            'typesOfSync' => $typesOfSync,
         ]), 200);
     }
 

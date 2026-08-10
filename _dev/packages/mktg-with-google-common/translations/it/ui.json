@@ -5,7 +5,6 @@
       "campaign": "Campagne",
       "configuration": "Configurazione",
       "catalog": "Catalogo prodotti",
-      "billing": "Abbonamento",
       "help": "Assistenza"
     },
     "errorsMessages": {
@@ -14,10 +13,6 @@
     "versionDoesNotExist": "A quanto pare, per un problema del nostro software, la versione del modulo non può essere recuperata. Ti preghiamo di riprovare.",
     "moduleNeedActivation": "Il modulo Marketing con Google è disabilitato. Non potrai utilizzare alcuna delle sue funzionalità finché non lo abiliterai.",
     "moduleUpdateNeeded": {
-      "ps_eventbus": {
-        "title": "È richiesta una versione più recente di PrestaShop CloudSync",
-        "paragraph": "La versione del modulo PrestaShop CloudSync in esecuzione su questo store è precedente al minimo richiesto.\n\nPuoi utilizzare PrestaShop Marketing with Google, ma alcune funzionalità (come la sincronizzazione dei prodotti, ad esempio) non saranno disponibili fino a quando non aggiornerai PrestaShop CloudSync."
-      },
       "psxmarketingwithgoogle": {
         "title": "È disponibile una versione più recente di PrestaShop Marketing With Google",
         "paragraph": "Offre un'interessante funzione che porterà l'utilizzo del prodotto a un livello superiore. | Offre funzioni interessanti che porteranno l'utilizzo del prodotto a un livello superiore.",
@@ -77,22 +72,7 @@
     }
   },
   "onboarding": {
-    "cmpAlert": {
-      "title": "Aggiornamenti sul GDPR",
-      "paragraph": "A partire da marzo 2024, le aziende che fanno pubblicità agli utenti dello Spazio economico europeo (SEE) devono creare un quadro solido per raccogliere e comunicare le scelte di consenso degli utenti finali tramite banner di consenso integrati con la modalità di consenso di Google. Per creare una solida base per la misurazione degli annunci è necessario impostare un banner di consenso attraverso una piattaforma di gestione del consenso dedicata e supportata. Se non ne hai già una, ti consigliamo di utilizzare la seguente piattaforma di gestione del consenso, conforme alle nuove normative: {link}",
-      "moduleGDPR": "Legge Cookie GDPR (Blocker) + Modalità Consenso Google V2"
-    },
     "sectionTitle": {
-      "psAccount": "Collega il tuo shop al tuo account PrestaShop",
-      "psbilling": {
-        "title": "Dati di fatturazione",
-        "subTitle": "Accedi, gestisci il tuo abbonamento e il relativo metodo di pagamento.",
-        "alertNoSynchro": "La sincronizzazione del tuo catalogo con Google Merchant Center è sospesa perché PrestaShop Marketing ora richiede un abbonamento mensile di 14,99€ tasse escluse. "
-      },
-      "pscloudsync": {
-        "title": "Consenti la condivisione dati",
-        "subTitle": "Aiutaci a migliorare la tua esperienza e migliorare il nostro servizio dando il consenso per condividere in modo sicuro i dati rilevanti con noi."
-      },
       "freeListing": {
         "title": "Raggiungi più persone su Google con le schede di prodotto gratuite",
         "subtitle": "Le schede di prodotto gratuite ti consentono di accedere a milioni di acquirenti intenti a cercare prodotti simili ai tuoi. Mostra gratuitamente i tuoi prodotti negli annunci classificati organicamente all'interno della scheda Shopping quando colleghi il tuo account Google al Google Merchant Center."
@@ -111,12 +91,6 @@
     "tips": "Una volta configurato il primo shop, potrai continuare con gli altri, selezionandoli uno per volta tramite il selettore del menu orizzontale",
     "configure": "Configurare",
     "group": "Gruppo degli shop"
-  },
-  "billingFacade": {
-    "title": "Dettagli di pagamento",
-    "nextPayment": "L'abbonamento è attivo, la prossima fatturazione avverrà il {date}",
-    "willEnd": "L'abbonamento è stato interrotto il {date}.",
-    "managePayment": "Gestisci Pagamenti"
   },
   "googleAccountCard": {
     "title": "Account Google",
@@ -541,10 +515,6 @@
       "syncScheduledNow": "Oggi, subito dopo aver salvato ed esportato"
     }
   },
-  "billing": {
-    "planTitle": "Informazioni sul piano e sulla fatturazione",
-    "invoicesTitle": "Fatture"
-  },
   "freeListingCard": {
     "title": "Mostra i tuoi prodotti con le schede di prodotto gratuite",
     "intro": "Metti in mostra il tuo prodotto gratuitamente in un elenco classificato organicamente nella scheda Shopping.",
@@ -910,7 +880,6 @@
     "title": "Congratulazioni, è tutto pronto!",
     "text": "Hai completato tutti i passaggi richiesti per ottenere il massimo da **Marketing con Google**",
     "cta": "Vai alla creazione della campagna",
-    "firstStep": "Collega il tuo shop a un account PrestaShop",
     "secondStep": "Accedi o crea il tuo account Google",
     "thirdStep": "Crea o collega il tuo account Google Merchant Center",
     "fourthStep": "Esporta e sincronizza il tuo catalogo prodotti",
