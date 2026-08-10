@@ -85,7 +85,15 @@ required = {
 root_directories = {
     "_dev", "scripts", "dist", "attachments", "node_modules", ".superpowers", "e2e-env",
 }
-forbidden_segments = {"test", "tests", "doc", "docs", "example", "examples", ".git", ".github"}
+forbidden_segments = {
+    "test", "tests", "doc", "docs", "example", "examples", "bench", "benches",
+    "benchmark", "benchmarks", ".git", ".github", ".circleci", ".gitlab", ".travis",
+    ".buildkite", ".teamcity",
+}
+forbidden_vendor_roots = {
+    "bin", "doctrine", "friendsofphp", "myclabs", "nikic", "phar-io", "php-cs-fixer",
+    "phpstan", "phpunit", "psr", "sebastian", "squizlabs", "theseer",
+}
 root_files = {
     "makefile", "composer.json", "composer.lock", "composer.phar", "crowdin.yml",
     ".editorconfig", ".gitignore", ".php-cs-fixer.dist.php",
@@ -93,6 +101,20 @@ root_files = {
 credential_filename = re.compile(
     r"(?:client[_-]?secret|credentials?|oauth[_-]?(?:client|secret)).*\.json$|\.(?:pem|key|p12|pfx)$",
     re.IGNORECASE,
+)
+development_metadata_filename = re.compile(
+    r'''(?ix)^(?:
+      (?:phpunit|psalm|phpcs|phpmd)(?:[-._][a-z0-9_-]+)?\.xml(?:\.dist)?
+      |phpstan(?:[-._][a-z0-9_-]+)?\.neon(?:\.dist)?
+      |infection\.(?:json|json5)(?:\.dist)?
+      |(?:behat|phpspec)\.(?:yml|yaml)(?:\.dist)?
+      |phpbench\.(?:json|xml)(?:\.dist)?
+      |(?:grumphp|codecov|appveyor|azure-pipelines|bitbucket-pipelines)\.(?:yml|yaml)
+      |\.(?:travis|gitlab-ci|coveralls|scrutinizer)\.(?:yml|yaml)
+      |\.php-cs-fixer(?:\.dist)?\.php
+      |(?:rector|pest)\.php
+      |\.gitignore|\.gitattributes
+    )$''',
 )
 private_key = re.compile(br"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----")
 high_confidence_token = re.compile(
@@ -170,6 +192,10 @@ def validate_path(info, raw_name, seen_raw, seen_normalized, roots):
         reject(f"source/development directory in archive: {raw_name!r}")
     if any(segment in forbidden_segments for segment in normalized_parts[1:]):
         reject(f"test/doc/VCS directory in archive: {raw_name!r}")
+    if (len(normalized_parts) > 2
+            and normalized_parts[1] == "vendor"
+            and normalized_parts[2] in forbidden_vendor_roots):
+        reject(f"development-only vendor remnant in archive: {raw_name!r}")
     if len(normalized_parts) == 2 and folded_basename in root_files:
         reject(f"source/development root file in archive: {raw_name!r}")
     if folded_basename.startswith(("readme", "changelog", "contributing")):
@@ -178,6 +204,8 @@ def validate_path(info, raw_name, seen_raw, seen_normalized, roots):
         reject(f"environment, map, or log file in archive: {raw_name!r}")
     if credential_filename.search(folded_basename):
         reject(f"credential-like filename in archive: {raw_name!r}")
+    if development_metadata_filename.fullmatch(folded_basename):
+        reject(f"test/benchmark/CI metadata in archive: {raw_name!r}")
 
 
 try:

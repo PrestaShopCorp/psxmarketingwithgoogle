@@ -111,11 +111,53 @@ find "$stage/$module" -type f \
 
 find "$stage/$module/vendor" -depth -type d \
   \( -iname test -o -iname tests -o -iname doc -o -iname docs \
-     -o -iname example -o -iname examples -o -name '.github' \) \
+     -o -iname example -o -iname examples -o -iname bench -o -iname benches \
+     -o -iname benchmark -o -iname benchmarks -o -name '.github' \
+     -o -name '.circleci' -o -name '.gitlab' -o -name '.travis' \
+     -o -name '.buildkite' -o -name '.teamcity' \) \
   -exec rm -rf -- {} +
 find "$stage/$module/vendor" -type f \
-  \( -iname 'README*' -o -iname 'CHANGELOG*' -o -iname 'CONTRIBUTING*' \) \
+  \( -iname 'README*' -o -iname 'CHANGELOG*' -o -iname 'CONTRIBUTING*' \
+     -o -iname 'phpunit*.xml' -o -iname 'phpunit*.xml.dist' \
+     -o -iname 'infection.json' -o -iname 'infection.json.dist' \
+     -o -iname 'phpstan*.neon' -o -iname 'phpstan*.neon.dist' \
+     -o -iname 'psalm*.xml' -o -iname 'psalm*.xml.dist' \
+     -o -iname 'phpcs*.xml' -o -iname 'phpcs*.xml.dist' \
+     -o -iname 'phpmd*.xml' -o -iname 'phpmd*.xml.dist' \
+     -o -iname 'behat.yml' -o -iname 'behat.yml.dist' \
+     -o -iname 'behat.yaml' -o -iname 'behat.yaml.dist' \
+     -o -iname 'phpspec.yml' -o -iname 'phpspec.yml.dist' \
+     -o -iname 'phpspec.yaml' -o -iname 'phpspec.yaml.dist' \
+     -o -iname 'phpbench.json' -o -iname 'phpbench.json.dist' \
+     -o -iname 'phpbench.xml' -o -iname 'phpbench.xml.dist' \
+     -o -iname 'grumphp.yml' -o -iname 'grumphp.yaml' \
+     -o -iname '.travis.yml' -o -iname '.travis.yaml' \
+     -o -iname '.gitlab-ci.yml' -o -iname '.gitlab-ci.yaml' \
+     -o -iname '.coveralls.yml' -o -iname '.coveralls.yaml' \
+     -o -iname '.scrutinizer.yml' -o -iname '.scrutinizer.yaml' \
+     -o -iname 'codecov.yml' -o -iname 'codecov.yaml' \
+     -o -iname 'appveyor.yml' -o -iname 'appveyor.yaml' \
+     -o -iname 'azure-pipelines.yml' -o -iname 'azure-pipelines.yaml' \
+     -o -iname 'bitbucket-pipelines.yml' -o -iname 'bitbucket-pipelines.yaml' \
+     -o -iname '.php-cs-fixer.php' -o -iname '.php-cs-fixer.dist.php' \
+     -o -iname 'rector.php' -o -iname 'pest.php' \
+     -o -name '.gitignore' -o -name '.gitattributes' \) \
   -delete
+
+for development_vendor_root in \
+  bin doctrine friendsofphp myclabs nikic phar-io php-cs-fixer \
+  phpstan phpunit psr sebastian squizlabs theseer
+do
+  development_vendor_path="$stage/$module/vendor/$development_vendor_root"
+  [[ -d "$development_vendor_path" ]] || continue
+  non_index_file=$(find "$development_vendor_path" -type f ! -name index.php -print -quit) \
+    || fail "cannot inspect development vendor remnant: $development_vendor_root"
+  unsafe_entry=$(find "$development_vendor_path" ! -type d ! -type f -print -quit) \
+    || fail "cannot inspect development vendor entry types: $development_vendor_root"
+  [[ -z "$non_index_file" && -z "$unsafe_entry" ]] \
+    || fail "refusing to prune non-placeholder vendor tree: $development_vendor_root"
+  rm -rf "$development_vendor_path"
+done
 
 rm -f "$stage/$module/composer.json" "$stage/$module/composer.lock"
 
