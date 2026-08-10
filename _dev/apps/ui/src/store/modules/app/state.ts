@@ -40,8 +40,6 @@ export interface State {
   psxMktgWithGoogleProductDetailUrl: string;
   psxMktgWithGoogleStoreSettingsUrl: string;
   psxMktgWithGoogleOnProductionEnvironment: boolean;
-  debugData: DebugData;
-  adBlockerExists: boolean;
   psxMktgWithGoogleModuleVersionNeeded: string;
   psxMktgWithGoogleModuleIsEnabled: boolean;
   psxMktgWithGoogleEnableLink: string;
@@ -53,11 +51,6 @@ export interface State {
 
 export interface ShopCurrency {
   isoCode: string;
-}
-
-export interface DebugData {
-  urlEventBusHealthCheck?: string;
-  typesOfSync: string[];
 }
 
 export const state: State = {
@@ -85,10 +78,6 @@ export const state: State = {
   psxMktgWithGoogleProductDetailUrl: '',
   psxMktgWithGoogleStoreSettingsUrl: '',
   psxMktgWithGoogleOnProductionEnvironment: false,
-  debugData: {
-    typesOfSync: [],
-  },
-  adBlockerExists: false,
   psxMktgWithGoogleModuleVersion: '',
   psxMktgWithGoogleModuleVersionNeeded: import.meta.env.VITE_MIN_VERSION_NEEDED_MKTG_GOOGLE || '',
   psxMktgWithGoogleModuleIsEnabled: true,

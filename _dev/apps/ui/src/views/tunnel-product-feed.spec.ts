@@ -9,9 +9,7 @@ describe('tunnel-product-feed.vue', () => {
   let store;
   beforeEach(() => {
     actions = {
-      GET_PRODUCT_FEED_SETTINGS: vi.fn(),
-      GET_PRODUCT_FEED_SYNC_STATUS: vi.fn(),
-      GET_TOTAL_PRODUCTS_READY_TO_SYNC: vi.fn(),
+      WARMUP_STORE: vi.fn(),
     };
     store = cloneStore();
     store.modules.productFeed.actions = {
@@ -20,13 +18,11 @@ describe('tunnel-product-feed.vue', () => {
     };
   });
 
-  it('dispatches actions before Create', () => {
+  it('warms up the local durable sync state before create', () => {
     shallowMount(TunnelProductFeed, {
       ...config,
       store: new Vuex.Store(store),
     });
-    expect(actions.GET_PRODUCT_FEED_SETTINGS).toHaveBeenCalled();
-    expect(actions.GET_PRODUCT_FEED_SYNC_STATUS).toHaveBeenCalled();
-    expect(actions.GET_TOTAL_PRODUCTS_READY_TO_SYNC).toHaveBeenCalled();
+    expect(actions.WARMUP_STORE).toHaveBeenCalledOnce();
   });
 });

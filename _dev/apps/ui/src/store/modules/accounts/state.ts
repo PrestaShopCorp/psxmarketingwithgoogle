@@ -1,130 +1,51 @@
-/**
- * 2007-2021 PrestaShop and Contributors
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
- * that is bundled with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * https://opensource.org/licenses/AFL-3.0
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@prestashop.com so we can send you a copy immediately.
- *
- * @author    PrestaShop SA <contact@prestashop.com>
- * @copyright 2007-2021 PrestaShop SA and Contributors
- * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
- * International Registered Trademark & Property of PrestaShop SA
- */
-
-import {content_v2_1 as contentApi} from '@googleapis/content/v2.1';
-import {oauth2_v2 as oauthApi} from '@googleapis/oauth2/v2';
-import {AccountIssue} from '@/components/render-issues/types';
-
-export interface ShopInformations {
-  shop: {
-    name: string,
-    url: string,
-  },
-  store: {
-    streetAddress: string,
-    locality: string,
-    region: string,
-    postalCode: string,
-    country: {
-      name: string,
-      isoCode: string,
-    },
-    phone: string,
-  }
+export interface GoogleMerchantAccount {
+  id: string|null;
+  name?: string|null;
 }
 
-export interface GoogleMerchantAccount extends contentApi.Schema$Account {
-  subAccountNotManagedByPrestashop?: boolean;
-  // True while the shop's admin-user invitation to this account is unaccepted
-  pendingUserInvitation?: boolean;
-}
-
-export interface GoogleAccount {
-  details: oauthApi.Schema$Userinfo,
-  mcaSelectionOptions: GoogleMerchantAccount[] | null,
+export interface GoogleAccountDetails {
+  email?: string|null;
+  picture?: string|null;
 }
 
 export interface GoogleConnectionStatus {
-  configured?: boolean,
-  connected: boolean,
-  googleEmail: string|null,
-  merchantAccount: string|null,
-  dataSource: string|null,
+  configured?: boolean;
+  clientIdSuffix?: string;
+  redirectUri?: string;
+  connected: boolean;
+  googleEmail: string|null;
+  merchantAccount: string|null;
+  dataSource: string|null;
 }
 
 export interface MerchantDataSource {
-  id: string,
-  name: string,
-  displayName: string,
-  input: string,
+  id: string;
+  name: string;
+  displayName: string;
+  input: string;
   primaryProductDataSource?: {
-    feedLabel: string,
-    contentLanguage: string,
-  },
+    feedLabel: string;
+    contentLanguage: string;
+  };
 }
 
-export interface SuspendedStatus {
-  issues: Array<string>,
-  status: boolean,
-}
-
-export type GoogleAccountContext = GoogleAccount
-& GoogleConnectionStatus & {
-  authenticationUrl: string|Error,
-  connectedOnce: boolean,
-  missingTokenScopes: Array<string>,
-  from?: string,
-  message?: string,
-  status?: string,
-}
-
-export type ShoppingWebsiteStatusFlag = {
-  status: boolean;
-  issues?: contentApi.Schema$AccountStatusAccountLevelIssue[];
-}
+export type GoogleAccountContext = GoogleConnectionStatus & {
+  details: GoogleAccountDetails;
+  mcaSelectionOptions: GoogleMerchantAccount[]|null;
+  authenticationUrl: string|Error;
+  connectedOnce: boolean;
+};
 
 export type MerchantCenterAccountContext = GoogleMerchantAccount & {
-  // Allow the spinner to be displayed while claiming is done
-  isVerified: boolean,
-  isClaimed: boolean,
-  isSuspended: SuspendedStatus,
-  isEnhancedFreeListingCompliant: ShoppingWebsiteStatusFlag,
-  accountIssues: AccountIssue[],
-  gmcStatus: WebsiteClaimErrorReason|null,
-  websiteRequirements: Array<String>,
-  // Display toast component once
-  connectedOnce: boolean,
-  connectedAutomatically: boolean,
-  shopInfo: ShopInformations,
+  connectedOnce: boolean;
+  selectionError: 'LinkingFailed'|null;
 };
 
 export interface State {
-  warmedUp: boolean,
+  warmedUp: boolean;
   googleAccount: GoogleAccountContext;
   googleMerchantAccount: MerchantCenterAccountContext;
   merchantDataSources: MerchantDataSource[];
-}
-
-export enum WebsiteClaimErrorReason {
-  // States with warnings
-  LinkingFailed = 'LinkingFailed',
-  ShopInfoMissing = 'ShopInfoMissing',
-  OverwriteNeeded = 'OverwriteNeeded',
-  AccountValidationFailed = 'AccountValidationFailed',
-  OverwriteNeededWithManualAction = 'OverwriteNeededWithManualAction',
-  UnlinkFailed = 'UnlinkFailed',
-  PendingCheck = 'PendingCheck',
-  PendingCreation = 'PendingCreation',
-  StillPendingCreation = 'StillPendingCreation',
-  PendingUserInvitation = 'PendingUserInvitation',
-  // States with errors
-  Suspended = 'Suspended',
 }
 
 export const state: State = {
@@ -139,42 +60,12 @@ export const state: State = {
     mcaSelectionOptions: null,
     authenticationUrl: '',
     connectedOnce: false,
-    missingTokenScopes: [],
   },
   googleMerchantAccount: {
     id: null,
-    isVerified: false,
-    isClaimed: false,
-    isSuspended: {
-      issues: [],
-      status: false,
-    },
-    isEnhancedFreeListingCompliant: {
-      status: true,
-    },
-    accountIssues: [],
-    gmcStatus: null,
-    users: [],
+    name: null,
     connectedOnce: false,
-    connectedAutomatically: true,
-    websiteRequirements: [],
-    shopInfo: {
-      shop: {
-        name: '',
-        url: '',
-      },
-      store: {
-        streetAddress: '',
-        locality: '',
-        region: '',
-        postalCode: '',
-        country: {
-          name: '',
-          isoCode: '',
-        },
-        phone: '',
-      },
-    },
+    selectionError: null,
   },
   merchantDataSources: [],
 };

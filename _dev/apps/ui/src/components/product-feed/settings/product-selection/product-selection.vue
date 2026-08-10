@@ -157,7 +157,6 @@ import GetterTypes from '@/store/modules/product-feed/getters-types';
 import {booleanToString, stringToBoolean} from '@/utils/StringToBoolean';
 import stringToNumber from '@/utils/StringToNumber';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {newFilter, getFeatureByOptions} from '@/components/product-feed/settings/product-selection/product-selection-utilities';
 import {localStorageProductFilter, localStorageProductFilterSync} from '@/components/product-feed/settings/product-selection/product-selection-localstorage';
 import AppGettersTypes from '@/store/modules/app/getters-types';
@@ -427,10 +426,6 @@ export default defineComponent({
       this.checkMethodSyncBeforeMoveStep();
 
       localStorage.setItem(localStorageProductFilterSync, this.synchSelected);
-      this.$segment.track('[GGL] Product feed config - Step 4 Product selection', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-      });
       this.$store.commit(`productFeed/${MutationsTypes.SET_ACTIVE_CONFIGURATION_STEP}`, 4);
       this.$router.push({
         name: 'product-feed-settings',

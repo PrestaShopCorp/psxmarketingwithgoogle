@@ -8,15 +8,14 @@
         <b-card>
           <b-skeleton width="85%" />
           <b-skeleton width="55%" />
-          <b-skeleton width="70%" />
         </b-card>
       </template>
       <b-card
         no-body
-        class="ps_gs-onboardingcard p-3"
-        :class="{ 'ps_gs-onboardingcard--disabled': !isEnabled }"
+        class="ps_gs-onboardingcard p-3 mb-3"
+        :class="{'ps_gs-onboardingcard--disabled': !isEnabled}"
       >
-        <div class="d-flex align-items-start align-items-md-center mb-3">
+        <div class="d-flex align-items-center mb-3">
           <img
             class="mr-2"
             src="@/assets/images/google-merchant-center-icon.svg"
@@ -25,154 +24,61 @@
             alt=""
           >
           <b-card-text class="ps_gs-onboardingcard__title text-left mb-0">
-            {{ $t('mcaCard.title') }}
+            {{ $t('tinyLuxGoogle.merchantTitle') }}
           </b-card-text>
           <b-badge
-            class="mx-3"
-            :variant="mcaStatusBadge.color"
-            v-if="isLinkedGmcFullyFetched"
+            v-if="selectedAccount.id"
+            variant="success"
+            class="ml-3"
           >
-            {{ $t(`badge.${mcaStatusBadge.text}`) }}
+            {{ $t('badge.connected') }}
           </b-badge>
-          <div
-            class="flex-grow-1 d-flex-md flex-md-grow-1 flex-shrink-0 text-right"
-            v-if="gmcAccountDetails.id === null"
-          >
-            <b-button
-              size="sm"
-              variant="primary"
-              :disabled="selectedMcaIndex === null || isLinking || shopIsOnMaintenanceMode"
-              class="mt-3 mt-md-0 ml-md-3"
-              @click="selectMerchantCenterAccount"
-            >
-              {{ $t('cta.connectAccount') }}
-            </b-button>
-          </div>
-          <div
-            v-else-if="!isChangingAccount"
-            class="mx-auto d-flex-md mr-md-0 flex-md-shrink-0 text-center"
-          >
-            <b-dropdown
-              no-caret
-              size="sm"
-              right
-              variant="primary"
-              menu-class="ps-dropdown__menu-small rounded"
-              toggle-class="px-1"
-              boundary="window"
-              :toggle-attrs="{title: $t('cta.moreActions')}"
-            >
-              <template #button-content>
-                <i class="material-icons">
-                  more_horiz
-                </i>
-                <span class="sr-only" />
-              </template>
-              <b-dropdown-item
-                data-test="change-merchant-account"
-                @click="startChangingMerchantAccount"
-              >
-                {{ $t("cta.switchAccount") }}
-              </b-dropdown-item>
-              <b-dropdown-item
-                target="_blank"
-                :href="merchantCenterWebsitePageUrl.businessInfo"
-              >
-                {{ $t("cta.editContact") }}
-              </b-dropdown-item>
-            </b-dropdown>
-          </div>
         </div>
+
         <div
-          v-if="isEnabled && (gmcAccountDetails.id === null || isChangingAccount)"
+          v-if="isEnabled"
           class="ml-2 ps_gs-onboardingcard__content"
         >
-          <VueShowdown
-            @click.native="segmentClicked"
-            class="mb-1"
-            tag="p"
-            :markdown="this.$i18n.t('mcaCard.introDisabled')"
-            :extensions="['no-p-tag', 'extended-b-link']"
-            v-if="gmcAccountDetails.id === null"
-          />
-          <b-form class="mb-2 mt-3">
-            <div class="d-md-flex text-center">
-              <b-dropdown
+          <template v-if="!selectedAccount.id || isChangingAccount">
+            <p>
+              {{ $t('tinyLuxGoogle.merchantIntro') }}
+            </p>
+            <div class="d-md-flex align-items-center">
+              <select
                 id="mcaSelection"
-                ref="mcaSelection"
-                :text="gmcLabel(selectedMcaIndex) || $t('cta.selectAccount')"
-                variant=" "
-                class="flex-grow-1 ps-dropdown psxmarketingwithgoogle-dropdown"
-                :toggle-class="{'ps-dropdown__placeholder' : selectedMcaIndex === null}"
-                menu-class="ps-dropdown"
-
-                size="sm"
-                :disabled="isLinking || shopIsOnMaintenanceMode"
+                v-model.number="selectedMcaIndex"
+                class="custom-select custom-select-sm flex-grow-1"
+                :disabled="isLinking || accountOptions.length === 0"
               >
-                <b-dropdown-item
-                  link-class="px-3"
-                  :disabled="true"
-                  v-if="mcaListLoading"
+                <option :value="null">
+                  {{ accountOptions.length
+                    ? $t('cta.selectAccount')
+                    : $t('tinyLuxGoogle.noMerchant') }}
+                </option>
+                <option
+                  v-for="(account, index) in accountOptions"
+                  :key="account.id"
+                  :value="index"
                 >
-                  <i class="icon-busy icon-busy--dark" />
-                </b-dropdown-item>
-                <b-dropdown-item
-                  v-if="!mcaListLoading && mcaSelectionOptionsAndGroups.length === 0"
-                  :disabled="true"
-                  variant="dark"
-                >
-                  <span>
-                    {{ $t('mcaCard.noExistingAccount') }}
-                  </span>
-                </b-dropdown-item>
-                <b-dropdown-item
-                  v-for="(option) in mcaSelectionOptionsAndGroups[0]"
-                  :key="option.id"
-                  @click="selectedMcaIndex = option.i"
-                  variant="dark"
-                >
-                  <span>
-                    {{ gmcLabel(option.i) }}
-                  </span>
-                  <span
-                    v-if="option.subAccountNotManagedByPrestashop"
-                    class="ps_gs-fz-12"
-                  >
-                    {{ $t('mcaCard.notManaged') }}
-                  </span>
-                </b-dropdown-item>
-                <b-dropdown-group
-                  header-classes="px-0"
-                  v-for="(group, index) in mcaSelectionOptionsAndGroups[1]"
-                  :key="index"
-                >
-                  <template #header>
-                    <div>
-                      <span class="font-weight-600 ps_gs-fz-13">
-                        {{ group.mca.name }}
-                      </span>
-                      <span class="ps_gs-fz-12">
-                        {{ group.mca.info }}
-                      </span>
-                    </div>
-                  </template>
-
-                  <b-dropdown-item
-                    v-for="(option) in group.gmcs"
-                    :key="option.id"
-                    @click="selectedMcaIndex = option.i"
-                    variant="dark"
-                  >
-                    <span class="mr-auto">{{ gmcLabel(option.i, true) }}</span>
-                  </b-dropdown-item>
-                </b-dropdown-group>
-              </b-dropdown>
-              <template v-if="isChangingAccount">
+                  {{ gmcLabel(index) }}
+                </option>
+              </select>
+              <b-button
+                v-if="!isChangingAccount"
+                size="sm"
+                variant="primary"
+                class="mt-2 mt-md-0 ml-md-2"
+                :disabled="selectedMcaIndex === null || isLinking"
+                @click="selectMerchantCenterAccount"
+              >
+                {{ $t('cta.connectAccount') }}
+              </b-button>
+              <template v-else>
                 <b-button
                   data-test="confirm-merchant-account-change"
                   size="sm"
                   variant="primary"
-                  class="mt-3 mt-md-0 ml-md-3"
+                  class="mt-2 mt-md-0 ml-md-2"
                   :disabled="!hasNewMerchantAccountSelection || isLinking"
                   @click="selectMerchantCenterAccount"
                 >
@@ -182,7 +88,7 @@
                   data-test="cancel-merchant-account-change"
                   size="sm"
                   variant="outline-secondary"
-                  class="mt-3 mt-md-0 ml-md-2"
+                  class="mt-2 mt-md-0 ml-md-2"
                   :disabled="isLinking"
                   @click="cancelMerchantAccountChange"
                 >
@@ -190,290 +96,53 @@
                 </b-button>
               </template>
             </div>
-          </b-form>
-          <div class="mt-3">
-            <b-alert
-              v-if="shopIsOnMaintenanceMode"
-              show
-              variant="warning"
-              class="mb-0 mt-2"
-            >
-              <VueShowdown
-                class="mb-0"
-                :markdown="$t('mcaCard.shopMaintenance')"
-                :extensions="['no-p-tag']"
-                tag="p"
-              />
-              <div class="d-md-flex text-center align-items-center mt-2">
-                <b-button
-                  class="btn mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1 btn-outline-secondary btn-sm"
-                  size="sm"
-                  variant="outline-secondary"
-                  :href="this.$store.state.app.psxMktgWithGoogleMaintenanceSettingsUrl"
-                  target="_blank"
-                >
-                  {{ $t("cta.shopMaintenanceBtn") }}
-                </b-button>
-              </div>
-            </b-alert>
+          </template>
 
-            <VueShowdown
-              v-if="isEU"
-              class="mt-4 mb-0 text-muted ps_gs-fz-12"
-              :markdown="$t('mcaCard.footerEU', [
-                this.$options.googleUrl.comparisonShoppingServices,
-                this.$options.googleUrl.findCssPartners
-              ])"
-              :extensions="['extended-link']"
-            />
-          </div>
-        </div>
-        <!--
-      ToDo: Consider moving the "associated state" in a dedicated component
-      As we only use data from the vuex store
-    -->
-        <b-alert
-          v-if="isLinkedGmcStillCreating"
-          show
-          variant="warning"
-          class="mb-0 mt-2"
-        >
-          <p class="mb-0">
-            <strong>{{ $t('mcaCard.newGmcNotListed') }}</strong><br>
-            <span class="ps_gs-fz-12">
-              {{ $t('mcaCard.newGmcNotListedDescription') }}
-            </span>
-          </p>
-        </b-alert>
-        <div
-          v-if="isLinkedGmcFullyFetched"
-          class="d-flex flex-wrap flex-md-nowrap justify-content-between
-            ml-2 ps_gs-onboardingcard__content"
-        >
-          <div>
-            <div class="d-flex align-items-center">
-              <a
-                :href="merchantCenterWebsitePageUrl.overview"
-                :title="$t('cta.goToYourX', [$t('badge.merchantCenterAccount')])"
-                target="_blank"
-                class="external_link-no_icon link-regular"
-              >
-                {{ gmcAccountDetails.name }} - {{ gmcAccountDetails.id }}
-              </a>
-              <span
-                v-if="loaderText"
-                class="text-muted ml-4"
-              >
-                <i class="icon-busy icon-busy--dark mr-1" />
-                {{ $t(`badge.${loaderText}`) }}
-              </span>
-              <span
-                v-if="displaySiteVerified"
-                class="text-muted"
-              >
-
-                <i class="material-icons mr-1 ps_gs-fz-12 text-success">done</i>
-                {{ $t('badge.siteVerified') }}
-              </span>
-            </div>
-          </div>
-        </div>
-        <merchant-center-account-alert-suspended
-          v-if="error === WebsiteClaimErrorReason.Suspended"
-          :issues="gmcAccountDetails.accountIssues"
-          :account-overview-url="merchantCenterWebsitePageUrl.overview"
-          class="mb-0 mt-3"
-        />
-        <b-alert
-          v-else-if="error === WebsiteClaimErrorReason.OverwriteNeeded"
-          show
-          variant="warning"
-          class="mb-0 mt-3"
-        >
-          <p class="mb-0">
-            <strong>{{ $t('mcaCard.claimCollides') }}</strong><br>
-            <span class="ps_gs-fz-12">
-              {{ $t('mcaCard.claimOverwrite') }}
-            </span><br>
-            <a
-              :href="$options.googleUrl.learnAboutSiteClaiming"
-              target="_blank"
-              class="d-inline-block text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
-            >
-              {{ $t('cta.learnAboutSiteClaiming') }}
-            </a>
-          </p>
-        </b-alert>
-        <b-alert
-          v-else-if="error === WebsiteClaimErrorReason.OverwriteNeededWithManualAction
-            && !needToRefresh"
-          show
-          variant="warning"
-          class="mb-0 mt-3"
-        >
-          <p class="mb-0">
-            <strong>{{ $t('mcaCard.claimCollides') }}</strong><br>
-            <span class="ps_gs-fz-12">
-              {{ $t('mcaCard.claimOverwriteWithManualAction', [websiteUrl]) }}
-            </span><br>
-            <a
-              :href="$options.googleUrl.learnAboutSiteClaiming"
-              target="_blank"
-              class="d-inline-block text-muted ps_gs-fz-12 font-weight-normal mt-3 mt-md-0"
-            >
-              {{ $t('cta.learnAboutSiteClaiming') }}
-            </a>
-          </p>
-          <div class="d-md-flex text-center align-items-center mt-2">
+          <div
+            v-else
+            class="d-flex align-items-center justify-content-between"
+          >
+            <span>{{ selectedAccount.name }} - {{ selectedAccount.id }}</span>
             <b-button
-              @click="checkAgainForOverwriteNeededWithManualAction"
+              data-test="change-merchant-account"
               size="sm"
-              class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1 text-decoration-none"
               variant="outline-secondary"
-              :href="merchantCenterWebsitePageUrl.website"
-              target="_blank"
+              @click="startChangingMerchantAccount"
             >
-              {{ $t("cta.addWebsiteAddress") }}
+              {{ $t('cta.switchAccount') }}
             </b-button>
           </div>
-        </b-alert>
-        <b-alert
-          v-else-if="error === WebsiteClaimErrorReason.OverwriteNeededWithManualAction
-            && needToRefresh"
-          show
-          variant="warning"
-          class="mb-0 mt-3"
-        >
-          <p class="mb-0">
-            {{ $t('mcaCard.refreshAfterAddingWebsiteAddress') }}<br>
-          </p>
-          <div class="d-md-flex text-center align-items-center mt-2">
-            <b-button
-              @click="refresh"
-              variant="outline-secondary"
-            >
-              {{ $t("general.refreshPage") }}
-            </b-button>
-          </div>
-        </b-alert>
-        <b-alert
-          v-else-if="error === WebsiteClaimErrorReason.ShopInfoMissing"
-          show
-          variant="warning"
-          class="mb-0 mt-3"
-        >
-          <div>
-            <strong>{{ $t('mcaCard.shopInfoMissing') }}</strong>
-            <VueShowdown
-              class="mb-0 ps_gs-fz-12"
-              tag="p"
-              :markdown="$t('mcaCard.shopInfoMissingDescription', [
-                merchantCenterWebsitePageUrl.businessInfo
-              ])"
-              :extensions="['extended-link', 'no-p-tag']"
-            />
-          </div>
-        </b-alert>
-        <b-alert
-          v-else-if="error === WebsiteClaimErrorReason.AccountValidationFailed"
-          show
-          variant="warning"
-          class="mb-0 mt-3"
-        >
-          <p class="mb-0">
-            <strong>{{ $t('mcaCard.AccountValidationFailed') }}</strong><br>
-            <VueShowdown
-              tag="p"
-              class="ps_gs-fz-12"
-              :markdown="$t('mcaCard.tryAgainLater')"
-              :extensions="['no-p-tag']"
-            />
-          </p>
-        </b-alert>
-        <b-alert
-          v-else-if="error === WebsiteClaimErrorReason.PendingUserInvitation"
-          show
-          variant="info"
-          class="mb-0 mt-3"
-        >
-          <p class="mb-0">
-            <strong>{{ $t('mcaCard.pendingUserInvitation') }}</strong><br>
-            <VueShowdown
-              tag="p"
-              class="ps_gs-fz-12"
-              :markdown="$t('mcaCard.pendingUserInvitationDescription')"
-              :extensions="['no-p-tag']"
-            />
-          </p>
-        </b-alert>
-        <b-alert
-          v-if="error === WebsiteClaimErrorReason.UnlinkFailed"
-          show
-          variant="danger"
-          class="mb-0 mt-3"
-        >
-          <p class="mb-0">
-            {{ $t('mcaCard.unlinkFailed') }}
-          </p>
-        </b-alert>
-        <b-alert
-          v-if="error === WebsiteClaimErrorReason.LinkingFailed"
-          show
-          variant="warning"
-          class="mb-0 mt-3"
-        >
-          <p class="mb-0">
-            {{ $t('mcaCard.linkingFailed') }}
-          </p>
-          <div class="d-md-flex text-center align-items-center mt-2">
+
+          <b-alert
+            v-if="linkingFailed"
+            show
+            variant="warning"
+            class="mt-3 mb-0"
+          >
+            <p class="mb-2">
+              {{ $t('mcaCard.linkingFailed') }}
+            </p>
             <b-button
               size="sm"
-              class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1"
               variant="outline-secondary"
               @click="refresh"
             >
               {{ $t('general.refreshPage') }}
             </b-button>
-          </div>
-        </b-alert>
-        <AlertModuleDisabled />
+          </b-alert>
+        </div>
       </b-card>
     </b-skeleton-wrapper>
   </section>
 </template>
 
 <script lang="ts">
-import uniqBy from 'lodash.uniqby';
 import {defineComponent} from 'vue';
-import {VueShowdown} from 'vue-showdown';
 import {BAlert} from 'bootstrap-vue';
-import googleUrl from '@/assets/json/googleUrl.json';
-import {
-  MerchantCenterAccountContext,
-  WebsiteClaimErrorReason,
-} from '@/store/modules/accounts/state';
-import {getMerchantCenterWebsiteUrls} from '@/components/merchant-center-account/merchant-center-account-links';
-import MerchantCenterAccountAlertSuspended from '@/components/merchant-center-account/merchant-center-account-alert-suspended.vue';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
-import AlertModuleDisabled from '@/components/commons/alert-module-disabled.vue';
 
 export default defineComponent({
   name: 'MerchantCenterAccountCard',
-  components: {
-    MerchantCenterAccountAlertSuspended,
-    VueShowdown,
-    BAlert,
-    AlertModuleDisabled,
-  },
-  data() {
-    return {
-      selectedMcaIndex: null,
-      isChangingAccount: false,
-      WebsiteClaimErrorReason,
-      displaySiteVerified: false,
-      needToRefresh: false,
-    };
-  },
+  components: {BAlert},
   props: {
     isEnabled: {
       type: Boolean,
@@ -483,150 +152,33 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
-    isEU: {
-      type: Boolean,
-    },
     isLinking: {
       type: Boolean,
       default: false,
     },
   },
+  data() {
+    return {
+      selectedMcaIndex: null as number|null,
+      isChangingAccount: false,
+    };
+  },
   computed: {
-    mcaSelectionOptions() {
-      return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_MCA_LIST'];
+    accountOptions() {
+      return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_MCA_LIST'] || [];
     },
-    mcaSelectionOptionsAndGroups() {
-      if (!this.mcaSelectionOptions?.length) {
-        return [];
-      }
-      const list = this.mcaSelectionOptions
-        .map((account) => {
-          if (account.aggregatorName) {
-            const managed = account.subAccountNotManagedByPrestashop ? this.$t('mcaCard.notManaged') : null;
-
-            return {...account, aggregatorManagement: managed};
-          }
-          return account;
-        })
-        .map((account, i) => ({i, ...account}));
-      const groups = uniqBy(
-        list
-          .filter((gmc) => !!gmc.aggregatorName)
-          .map((account) => ({name: account.aggregatorName, info: account.aggregatorManagement})),
-        'name',
-      );
-
-      return [
-        list.filter((gmc) => !gmc.aggregatorName),
-        groups.map((mca) => ({mca, gmcs: list.filter((gmc) => gmc.aggregatorName === mca.name)})),
-      ];
-    },
-    shopIsOnMaintenanceMode() {
-      return this.$store.getters['app/GET_STATUS_SHOP_MAINTENANCE']
-       && !this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
-    },
-    mcaListLoading() {
-      return this.mcaSelectionOptions === null;
-    },
-    mcaConfigured() {
-      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
-    },
-    gmcAccountDetails(): MerchantCenterAccountContext {
+    selectedAccount() {
       return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT'];
     },
-    mcaIsNotConnected() {
-      return !(this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_IS_CONNECTED']);
+    linkingFailed(): boolean {
+      return this.$store.getters['accounts/GET_MERCHANT_SELECTION_ERROR']
+        === 'LinkingFailed';
     },
-    error() {
-      return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_WEBSITE_CLAIMING_OVERRIDE_STATUS'];
-    },
-    mcaStatusBadge() {
-      switch (this.error) {
-        case WebsiteClaimErrorReason.PendingCheck:
-        case WebsiteClaimErrorReason.PendingUserInvitation:
-          return {
-            color: 'warning',
-            text: 'pending',
-          };
-        case WebsiteClaimErrorReason.Suspended:
-          return {
-            color: 'danger',
-            text: 'suspended',
-          };
-        case WebsiteClaimErrorReason.OverwriteNeeded:
-          return {
-            color: 'warning',
-            text: 'pending',
-          };
-        case WebsiteClaimErrorReason.AccountValidationFailed:
-          return {
-            color: 'warning',
-            text: 'pending',
-          };
-        case WebsiteClaimErrorReason.OverwriteNeededWithManualAction:
-          return {
-            color: 'warning',
-            text: 'pending',
-          };
-        case WebsiteClaimErrorReason.PendingCreation:
-        case WebsiteClaimErrorReason.StillPendingCreation:
-          return {
-            color: 'warning',
-            text: 'pendingCreation',
-          };
-        default:
-          return {
-            color: 'success',
-            text: 'connected',
-          };
-      }
-    },
-    merchantCenterWebsitePageUrl() {
-      return getMerchantCenterWebsiteUrls(this.gmcAccountDetails.id);
-    },
-    websiteUrl() {
-      return this.$store.state.accounts.googleMerchantAccount.websiteUrl;
-    },
-    loaderText() {
-      if (this.isLinking) {
-        return 'checkingSiteClaim';
-      }
-      switch (this.error) {
-        case WebsiteClaimErrorReason.StillPendingCreation:
-          return 'creatingGmcTakingTime';
-        case WebsiteClaimErrorReason.PendingCreation:
-          return 'creatingGmc';
-        case WebsiteClaimErrorReason.PendingCheck:
-          return 'pendingCheck';
-        case WebsiteClaimErrorReason.PendingUserInvitation:
-          // While polling for the merchant to accept the invite, show the same
-          // "checking your GMC status" loader as a page refresh.
-          return 'pendingCheck';
-        default:
-          return null;
-      }
-    },
-    isLinkedGmcStillCreating() {
-      return this.isEnabled
-        && !this.isChangingAccount
-        && this.gmcAccountDetails.id !== null
-        && !this.mcaListLoading
-        && (this.gmcAccountDetails.name === null || this.gmcAccountDetails.name === undefined);
-    },
-    isLinkedGmcFullyFetched() {
-      return this.isEnabled
-        && !this.isChangingAccount
-        && this.gmcAccountDetails.id !== null
-        && !this.mcaListLoading
-        && this.gmcAccountDetails.name !== null
-        && this.gmcAccountDetails.name !== undefined;
-    },
-    hasNewMerchantAccountSelection() {
-      if (this.selectedMcaIndex === null || !this.mcaSelectionOptions?.[this.selectedMcaIndex]) {
+    hasNewMerchantAccountSelection(): boolean {
+      if (this.selectedMcaIndex === null || !this.accountOptions[this.selectedMcaIndex]) {
         return false;
       }
-
-      return this.mcaSelectionOptions[this.selectedMcaIndex].id !== this.gmcAccountDetails.id;
+      return this.accountOptions[this.selectedMcaIndex].id !== this.selectedAccount.id;
     },
   },
   methods: {
@@ -634,20 +186,12 @@ export default defineComponent({
       if (this.selectedMcaIndex === null) {
         return;
       }
+      const selected = this.accountOptions[this.selectedMcaIndex];
 
-      const selectedAccount = this.mcaSelectionOptions?.[this.selectedMcaIndex];
-
-      if (!selectedAccount
-        || (this.isChangingAccount && selectedAccount.id === this.gmcAccountDetails.id)
-      ) {
+      if (!selected || (this.isChangingAccount && selected.id === this.selectedAccount.id)) {
         return;
       }
-      this.$segment.track('[GGL] Connect my existing GMC', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-      });
-      this.$emit('selectMerchantCenterAccount', selectedAccount);
-      this.$store.commit('accounts/SAVE_MCA_CONNECTED_AUTOMATICALLY', false);
+      this.$emit('selectMerchantCenterAccount', selected);
       this.cancelMerchantAccountChange();
     },
     startChangingMerchantAccount() {
@@ -658,48 +202,17 @@ export default defineComponent({
       this.selectedMcaIndex = null;
       this.isChangingAccount = false;
     },
-    checkAgainForOverwriteNeededWithManualAction() {
-      this.needToRefresh = true;
-    },
-    gmcLabel(index) {
-      if (this.mcaSelectionOptions && this.mcaSelectionOptions[index]) {
-        const gmc = this.mcaSelectionOptions[index];
+    gmcLabel(index: number|null): string|null {
+      if (index === null || !this.accountOptions[index]) {
+        return null;
+      }
+      const account = this.accountOptions[index];
 
-        return `${gmc.id} - ${gmc.name}`;
-      }
-      return null;
-    },
-    setFocusOnSelectMCA() {
-      if (this.$refs.mcaSelection?.$refs?.toggle) {
-        this.$refs.mcaSelection.$refs.toggle.focus();
-      }
+      return `${account.id} - ${account.name}`;
     },
     refresh() {
       this.$router.go();
     },
-    segmentClicked() {
-      this.$segment.track('[GGL] Visit GMC info link', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-      });
-    },
   },
-  updated() {
-    this.setFocusOnSelectMCA();
-  },
-  mounted() {
-    this.setFocusOnSelectMCA();
-  },
-  watch: {
-    mcaConfigured(newVal, oldVal) {
-      if (oldVal === false && newVal === true) {
-        this.displaySiteVerified = true;
-        setTimeout(() => {
-          this.displaySiteVerified = false;
-        }, 2000);
-      }
-    },
-  },
-  googleUrl,
 });
 </script>

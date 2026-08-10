@@ -45,6 +45,20 @@ describe('google-account-card.vue', () => {
     expect(wrapper.find('.ps_gs-onboardingcard--disabled').exists()).toBeFalsy();
   });
 
+  it('uses the local OAuth authorization URL as a same-window link', () => {
+    const wrapper = mount(GoogleAccountCard, {
+      ...config,
+      propsData: NotConnected.args,
+      stubs: {VueShowdown: true},
+    });
+
+    const connect = wrapper.find('[data-test-id="btn-connect"]');
+    expect(connect.element.tagName).toBe('A');
+    expect(connect.attributes('href')).toBe('#');
+    expect(connect.attributes('target')).toBeUndefined();
+    expect(connect.text()).toBe('Sign in with Google');
+  });
+
   it('refresh button available when there is an API error and calls refresh function', async () => {
     const wrapper = mount(GoogleAccountCard, {
       mocks: {
@@ -65,7 +79,7 @@ describe('google-account-card.vue', () => {
     expect(mockRouter.go).toHaveBeenCalledTimes(1);
   });
 
-  it('warning visible and connect button not disabled when couldn\'t connect', () => {
+  it('shows a local retry instead of a dead OAuth link when authorization is unavailable', () => {
     const wrapper = mount(GoogleAccountCard, {
       ...config,
       propsData: CouldNotConnect.args,
@@ -76,9 +90,8 @@ describe('google-account-card.vue', () => {
     // Check if alert is visible
     expect(wrapper.find('.alert').exists()).toBeTruthy();
 
-    // Check if connect button exists and is not disabled
-    expect(wrapper.find('[data-test-id="btn-connect"]').exists()).toBeTruthy();
-    expect(wrapper.find('[data-test-id="btn-connect"]').attributes('disabled')).toBeFalsy();
+    expect(wrapper.find('[data-test-id="btn-connect"]').exists()).toBe(false);
+    expect(wrapper.find('[data-test-id="btn-refresh"]').exists()).toBe(true);
   });
 
   it('account email visible when connected', () => {
@@ -94,53 +107,16 @@ describe('google-account-card.vue', () => {
     expect(wrapper.find('a').text()).toBe('v.godard@maisonroyer.com');
   });
 
-  it('fully reloads after a connected account completes the OAuth popup callback', () => {
+  it('emits a local disconnect request for a connected account', async () => {
     const store = new Vuex.Store(cloneStore());
-    const dispatch = vi.spyOn(store, 'dispatch').mockResolvedValue(null);
-    const wrapper = (mount as any)(GoogleAccountCard, {
+    const wrapper = mount(GoogleAccountCard, {
       ...config,
-      mocks: {
-        $router: mockRouter,
-      },
       store,
       propsData: Connected.args,
-      stubs: {
-        VueShowdown: true,
-      },
     });
 
-    wrapper.vm.popupMessageListener({data: '?from=SVC&message=ok&status=success'});
+    await wrapper.find('[data-test="disconnect-google"]').trigger('click');
 
-    expect(mockRouter.go).toHaveBeenCalledTimes(1);
-    expect(dispatch).not.toHaveBeenCalled();
-  });
-
-  it('refreshes account details without reloading after a disconnected OAuth popup callback', async () => {
-    const store = new Vuex.Store(cloneStore());
-    const dispatch = vi.spyOn(store, 'dispatch').mockResolvedValue({
-      connected: true,
-      googleEmail: 'owner@example.com',
-      merchantAccount: null,
-      dataSource: null,
-    });
-    const wrapper = (mount as any)(GoogleAccountCard, {
-      ...config,
-      mocks: {
-        $router: mockRouter,
-      },
-      store,
-      propsData: NotConnected.args,
-      stubs: {
-        VueShowdown: true,
-      },
-    });
-
-    wrapper.vm.popupMessageListener({data: '?from=SVC&message=ok&status=success'});
-    await new Promise((resolve) => { setTimeout(resolve, 0); });
-
-    expect(mockRouter.go).not.toHaveBeenCalled();
-    expect(dispatch).toHaveBeenCalledTimes(1);
-    expect(dispatch).toHaveBeenCalledWith('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS');
-    expect(wrapper.emitted('connectGoogleAccount')).toHaveLength(1);
+    expect(wrapper.emitted('dissociateGoogleAccount')).toHaveLength(1);
   });
 });

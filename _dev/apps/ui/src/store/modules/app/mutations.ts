@@ -18,18 +18,9 @@
  */
 
 import MutationsTypes from './mutations-types';
-import {
-  State as LocalState,
-  DebugData,
-} from './state';
+import {State as LocalState} from './state';
 
 export default {
-  [MutationsTypes.SAVE_DEBUG_DATA](state: LocalState, response: DebugData) {
-    state.debugData = response;
-  },
-  [MutationsTypes.AD_BLOCKER_EXISTS](state: LocalState) {
-    state.adBlockerExists = !state.adBlockerExists;
-  },
   [MutationsTypes.SAVE_USER_IS_LOGGED_OUT](state: LocalState) {
     state.backOfficeUserIsLoggedIn = false;
   },

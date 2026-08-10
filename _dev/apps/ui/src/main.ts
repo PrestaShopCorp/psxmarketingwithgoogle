@@ -18,22 +18,11 @@ Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
 Vue.use(VueShowdown);
 
-const segment = Object.freeze({
-  alias: () => undefined,
-  identify: () => undefined,
-  setAnonymousId: () => undefined,
-  track: () => undefined,
-});
-Vue.prototype.$segment = segment;
-
 initOnboardingClient({apiUrl: window.tinyLuxGoogleApiUrl});
 
 new Vue({
   router,
   store,
   i18n,
-  methods: {
-    identifySegment: () => undefined,
-  },
   render: (h) => h(App),
 }).$mount('#psxMktgWithGoogleApp');

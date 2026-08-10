@@ -43,6 +43,9 @@ import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-metho
 import ProductFeedCountStatus from '@/enums/product-feed/product-feed-count-status';
 
 export default {
+  [GettersTypes.GET_SYNC_JOB](state: LocalState) {
+    return state.syncJob;
+  },
   [GettersTypes.GET_PRODUCT_FEED_IS_CONFIGURED](state: LocalState): boolean {
     return state.isConfigured;
   },

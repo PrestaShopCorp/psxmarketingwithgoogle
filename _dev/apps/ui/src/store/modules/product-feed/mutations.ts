@@ -32,6 +32,7 @@ import {
   ProductVerificationIssueOverall,
   ProductVerificationIssueProduct,
   ProductVerificationIssue,
+  SyncJob,
 } from './state';
 import {RateType} from '@/enums/product-feed/rate';
 import {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
@@ -44,6 +45,9 @@ type payloadObject = {
 }
 
 export default {
+  [MutationsTypes.SET_SYNC_JOB](state: LocalState, job: SyncJob|null) {
+    state.syncJob = job;
+  },
   [MutationsTypes.SET_LAST_SYNCHRONISATION](state: LocalState, payload: payloadObject) {
     state.status[payload.name] = payload.data;
   },

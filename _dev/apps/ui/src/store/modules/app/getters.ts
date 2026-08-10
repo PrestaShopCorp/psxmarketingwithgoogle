@@ -18,7 +18,7 @@
  */
 import semver from 'semver';
 import GettersTypes from './getters-types';
-import {State as LocalState, DebugData} from './state';
+import {State as LocalState} from './state';
 import countriesSelectionOptions from '../../../assets/json/countries.json';
 import symbols from '@/assets/json/symbols.json';
 import prestashopUrls from '@/assets/json/prestashopUrl.json';
@@ -41,9 +41,6 @@ export default {
     const languageCode = (new Intl.Locale(window.i18nSettings.languageLocale)).language;
 
     return `${prestashopUrls.contactForm[languageCode] ?? prestashopUrls.contactForm.en}?form=support&subject=psgoogle&url=${domain}`;
-  },
-  [GettersTypes.GET_DEBUG_DATA](state: LocalState): DebugData {
-    return state.debugData;
   },
   [GettersTypes.GET_STATUS_SHOP_MAINTENANCE](state: LocalState): boolean {
     return state.shopIsOnMaintenanceMode;
@@ -68,9 +65,6 @@ export default {
   },
   [GettersTypes.GET_STORE_INFORMATION_URL](state: LocalState): string {
     return state.psxMktgWithGoogleStoreSettingsUrl;
-  },
-  [GettersTypes.GET_ADD_BLOCKER_STATUS](state: LocalState): boolean {
-    return state.adBlockerExists;
   },
   [GettersTypes.GET_ACTIVE_COUNTRIES](): string[] {
     return countriesSelectionOptions.map((e) => e.country);

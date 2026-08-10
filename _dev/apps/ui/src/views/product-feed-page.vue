@@ -1,51 +1,31 @@
 <template>
-  <div>
-    <disapproved-products-page v-if="$route.name === 'product-feed-status'" />
-    <non-compliant-products-details-page
-      v-else-if="$route.name === 'product-feed-verification-error-products'"
-      :verification-issue-name="$route.params.error"
+  <main class="pt-3 tiny-lux-product-feed-page">
+    <header class="mb-4">
+      <h1 class="h2 mb-2">
+        {{ $t('tinyLuxGoogle.syncTitle') }}
+      </h1>
+      <p class="text-muted mb-0">
+        {{ $t('tinyLuxGoogle.syncIntro') }}
+      </p>
+    </header>
+    <ProductFeedCard
+      :is-enabled="merchantCenterIsSelected"
+      :loading="false"
     />
-    <non-compliant-products-page
-      v-else-if="$route.name === 'product-feed-verification-errors'"
-    />
-    <product-feed-dashboard-page
-      v-else
-      :in-need-of-configuration="inNeedOfConfiguration"
-    />
-  </div>
+  </main>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import DisapprovedProductsPage from '@/components/product-feed-page/disapproved-products-page/disapproved-products-page.vue';
-import NonCompliantProductsPage from '@/components/product-feed-page/non-compliant-products-page/non-compliant-products-page.vue';
-import NonCompliantProductsDetailsPage from '@/components/product-feed-page/non-compliant-products-details-page/non-compliant-products-details-page.vue';
-import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
-import ProductFeedDashboardPage from '@/components/product-feed-page/dashboard/product-feed-dashboard-page.vue';
+import ProductFeedCard from '@/components/onboarding/product-feed-card.vue';
 
 export default defineComponent({
-  components: {
-    DisapprovedProductsPage,
-    NonCompliantProductsPage,
-    NonCompliantProductsDetailsPage,
-    ProductFeedDashboardPage,
-  },
+  name: 'ProductFeedPage',
+  components: {ProductFeedCard},
   computed: {
-    inNeedOfConfiguration() {
-      return !this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
+    merchantCenterIsSelected(): boolean {
+      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
     },
   },
-  methods: {
-    async getDatas() {
-      await this.$store.dispatch('productFeed/WARMUP_STORE');
-    },
-  },
-  async created() {
-    if (this.inNeedOfConfiguration) {
-      await this.$store.dispatch('accounts/WARMUP_STORE');
-    }
-    await this.getDatas();
-  },
-  CampaignTypes,
 });
 </script>

@@ -1,35 +1,42 @@
 <template>
-  <div class="pt-2">
+  <div class="pt-2 tiny-lux-google-onboarding">
     <div class="row">
       <AlertCmp />
     </div>
 
+    <header class="mb-4">
+      <h1 class="h2 mb-2">
+        {{ $t('tinyLuxGoogle.title') }}
+      </h1>
+      <p class="mb-0 text-muted">
+        {{ $t('tinyLuxGoogle.intro') }}
+      </p>
+    </header>
+
     <GoogleCredentialsForm
+      v-if="!localGoogleIsConfigured"
       :connection="googleConnection"
       @configured="onGoogleCredentialsConfigured"
     />
 
     <div class="mb-4 ps_gs-onboardingpage">
-      <!-- Google Account + GMC + Product Feed -->
       <two-panel-cols
-        :title="$t('onboarding.sectionTitle.freeListing.title')"
-        :description="$t('onboarding.sectionTitle.freeListing.subtitle')"
+        :title="$t('tinyLuxGoogle.connectTitle')"
+        :description="$t('tinyLuxGoogle.connectDescription')"
       >
         <google-account-card
-          :is-enabled="stepsAreCompleted.step1 || googleAccountIsOnboarded"
+          v-if="localGoogleIsConfigured"
+          :is-enabled="true"
           :loading="googleIsLoading"
-          :user="getGoogleAccount"
-          :is-connected="googleAccountIsOnboarded"
+          :user="googleAccount"
           @connectGoogleAccount="onGoogleAccountConnection"
           @dissociateGoogleAccount="onGoogleAccountDissociationRequest"
         />
         <MerchantCenterAccountCard
           :is-enabled="googleAccountIsOnboarded"
-          :is-connected="merchantCenterAccountIsChosen"
-          :loading="MCAIsLoading"
-          :is-e-u="showCSSForMCA"
-          :is-linking="isMcaLinking"
-          @selectMerchantCenterAccount="onMerchantCenterAccountSelected($event)"
+          :loading="merchantIsLoading"
+          :is-linking="isMerchantLinking"
+          @selectMerchantCenterAccount="onMerchantCenterAccountSelected"
         />
         <ProductFeedCard
           :is-enabled="merchantCenterAccountIsChosen"
@@ -37,139 +44,99 @@
         />
       </two-panel-cols>
 
-      <!-- Google Ads -->
       <two-panel-cols
-        :title="$t('onboarding.sectionTitle.smartShoppingCampaign.title')"
-        :description="$t('onboarding.sectionTitle.smartShoppingCampaign.subtitle')"
+        :title="$t('tinyLuxGoogle.adsTitle')"
+        :description="$t('tinyLuxGoogle.adsDescription')"
       >
-        <GoogleAdsAccountCard
-          :is-enabled="stepsAreCompleted.step2"
-          :loading="googleAdsIsLoading"
-          @selectGoogleAdsAccount="onGoogleAdsAccountSelected()"
-          @disconnectionGoogleAdsAccount="onGoogleAdsAccountDisconnectionRequest"
-          @creationGoogleAdsAccount="onGoogleAdsAccountTogglePopin"
-        />
-        <CampaignCard
-          v-if="stepsAreCompleted.step2"
-          :is-enabled="stepsAreCompleted.step3"
-          :loading="SSCIsLoading"
-          @openPopin="proceedToCampaignCreation"
-          @remarketingTagHasBeenActivated="checkAndOpenPopinConfigrationDone"
-        />
-        <CampaignTracking
-          v-if="remarketingTagIsSet !== null && accountHasAtLeastOneCampaign"
-        />
-        <EnhancedConversionsCard
-          v-if="remarketingTagIsSet !== null && accountHasAtLeastOneCampaign"
-        />
-        <PromoCard />
+        <section class="card ps_gs-onboardingcard p-3 mb-3 ps_gs-onboardingcard--disabled">
+          <h2 class="h4 mb-2">
+            {{ $t('tinyLuxGoogle.adsTitle') }}
+          </h2>
+          <p class="mb-0">
+            {{ $t('tinyLuxGoogle.developerTokenRequired') }}
+          </p>
+        </section>
       </two-panel-cols>
-
-      <!-- Modals -->
-      <GoogleAccountPopinDisconnect
-        ref="googleAccountDisconnectModal"
-      />
-
-      <GoogleAdsAccountPopinDisconnect
-        ref="GoogleAdsAccountPopinDisconnect"
-      />
-
-      <GoogleAdsPopinNew
-        ref="GoogleAdsAccountPopinNew"
-        :user="getGoogleAccount"
-        @cancelGoogleAdsCreationNewAccount="onGoogleAdsAccountTogglePopin"
-      />
-      <TrackingActivationModal
-        ref="SSCPopinActivateTrackingOnboardingPage"
-        modal-id="SSCPopinActivateTrackingOnboardingPage"
-      />
-      <modal-ec-intro
-        v-if="getGoogleAdsAccount
-          && accountHasAtLeastOneCampaign"
-      />
-      <PopinModuleConfigured
-        ref="PopinModuleConfigured"
-        @openPopinRemarketingTag="proceedToCampaignCreation"
-      />
-      <!-- Toasts -->
-      <PsToast
-        v-if="toastIsVisible"
-        variant="success"
-        @hidden="toastIsClosed"
-        :visible="toastIsVisible"
-        toaster="b-toaster-top-right"
-      >
-        <p>{{ insideToast }}</p>
-      </PsToast>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
+import AlertCmp from '@/components/commons/alert-cmp.vue';
 import GoogleAccountCard from '@/components/google-account/google-account-card.vue';
-import GoogleAdsAccountCard from '@/components/google-ads-account/google-ads-account-card.vue';
 import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
 import ProductFeedCard from '@/components/onboarding/product-feed-card.vue';
-import GoogleAccountPopinDisconnect from '@/components/google-account/google-account-popin-disconnect.vue';
-import GoogleAdsAccountPopinDisconnect from '@/components/google-ads-account/google-ads-account-popin-disconnect.vue';
-import GoogleAdsPopinNew from '@/components/google-ads-account/google-ads-account-popin-new.vue';
-import CampaignCard from '@/components/campaigns/campaign-card.vue';
-import CampaignTracking from '@/components/campaigns/campaign-tracking.vue';
-import PromoCard from '@/components/promo/promo-card.vue';
-import TrackingActivationModal from '@/components/campaigns/tracking-activation-modal.vue';
-import PsToast from '@/components/commons/ps-toast.vue';
-import PopinModuleConfigured from '@/components/commons/popin-configured.vue';
-import AlertCmp from '@/components/commons/alert-cmp.vue';
-import {CampaignTypes} from '@/enums/reporting/CampaignStatus';
-import EnhancedConversionsCard from '@/components/enhanced-conversions/enhanced-conversions-card.vue';
-import ModalEcIntro from '@/components/enhanced-conversions/modal-ec-intro.vue';
-import {AccountInformations} from '@/store/modules/google-ads/state';
 import TwoPanelCols from '@/components/onboarding/two-panel-cols.vue';
-import {deleteProductFeedDataFromLocalStorage} from '@/utils/LocalStorage';
 import GoogleCredentialsForm from '@/components/settings/google-credentials-form.vue';
+
+const emptyConnection = {
+  configured: false,
+  clientIdSuffix: '',
+  redirectUri: '',
+  connected: false,
+  googleEmail: null,
+  merchantAccount: null,
+  dataSource: null,
+};
 
 export default defineComponent({
   name: 'OnboardingPage',
   components: {
-    EnhancedConversionsCard,
+    AlertCmp,
     GoogleAccountCard,
-    GoogleAdsAccountCard,
+    GoogleCredentialsForm,
     MerchantCenterAccountCard,
     ProductFeedCard,
-    CampaignCard,
-    CampaignTracking,
-    PromoCard,
-    GoogleAccountPopinDisconnect,
-    ModalEcIntro,
-    GoogleAdsAccountPopinDisconnect,
-    GoogleAdsPopinNew,
-    PsToast,
-    TrackingActivationModal,
-    PopinModuleConfigured,
     TwoPanelCols,
-    AlertCmp,
-    GoogleCredentialsForm,
   },
   data() {
     return {
-      isMcaLinking: false,
-      googleAdsIsLoading: false,
+      googleConnection: {
+        ...emptyConnection,
+        ...(window.tinyLuxGoogleConnection || {}),
+      },
       googleIsLoading: false,
-      MCAIsLoading: false,
+      merchantIsLoading: false,
       productFeedIsLoading: false,
-      SSCIsLoading: false,
-      displayBannerSuccessMonetization: false,
-      googleConnection: {...window.tinyLuxGoogleConnection},
+      isMerchantLinking: false,
     };
   },
+  computed: {
+    localGoogleIsConfigured(): boolean {
+      return this.$store.getters['accounts/GET_LOCAL_GOOGLE_IS_CONFIGURED'];
+    },
+    googleAccountIsOnboarded(): boolean {
+      return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_IS_ONBOARDED'];
+    },
+    googleAccount() {
+      return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT'];
+    },
+    merchantCenterAccountIsChosen(): boolean {
+      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
+    },
+  },
   methods: {
-    onGoogleCredentialsConfigured(connection) {
+    async onGoogleCredentialsConfigured(connection) {
       this.googleConnection = {...this.googleConnection, ...connection};
-      this.$store.dispatch('accounts/REQUEST_ROUTE_TO_GOOGLE_AUTH');
+      this.$store.commit('accounts/SET_GOOGLE_ACCOUNT', {
+        ...this.googleAccount,
+        ...connection,
+        connected: false,
+        googleEmail: null,
+        merchantAccount: null,
+        dataSource: null,
+      });
+      await this.$store.dispatch('accounts/REQUEST_ROUTE_TO_GOOGLE_AUTH');
+    },
+    onGoogleAccountConnection() {
+      this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', true);
+    },
+    async onGoogleAccountDissociationRequest() {
+      await this.$store.dispatch('accounts/DISSOCIATE_GOOGLE_ACCOUNT');
     },
     async onMerchantCenterAccountSelected(selectedAccount) {
-      this.isMcaLinking = true;
+      this.isMerchantLinking = true;
       try {
         await this.$store.dispatch(
           'accounts/SAVE_SELECTED_GOOGLE_MERCHANT_ACCOUNT',
@@ -177,208 +144,19 @@ export default defineComponent({
         );
         this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', true);
       } finally {
-        this.isMcaLinking = false;
+        this.isMerchantLinking = false;
       }
-    },
-    checkAndOpenPopinConfigrationDone() {
-      if (this.billingSettingsCompleted) {
-        this.$bvModal.show(
-          this.$refs.PopinModuleConfigured?.$refs.modal.id,
-        );
-      }
-    },
-    onGoogleAdsAccountSelected() {
-      this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', true);
-      this.checkAndOpenPopinConfigrationDone();
-    },
-    onGoogleAccountConnection() {
-      this.$store.dispatch('app/TRIGGER_REGISTER_HOOKS');
-      this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', true);
-    },
-
-    onGoogleAccountDissociationRequest() {
-      this.$bvModal.show(
-        this.$refs.googleAccountDisconnectModal?.$refs.modal.id,
-      );
-    },
-    onGoogleAdsAccountDisconnectionRequest() {
-      this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', false);
-      this.$bvModal.show(
-        this.$refs.GoogleAdsAccountPopinDisconnect?.$refs.modal.id,
-      );
-    },
-    onGoogleAdsAccountTogglePopin() {
-      this.$bvModal.show(
-        this.$refs.GoogleAdsAccountPopinNew?.$refs.modal.id,
-      );
-    },
-    proceedToCampaignCreation() {
-      // If the remarketing tag is not set yet, open the modal
-      if (!this.accountHasAtLeastOneCampaign || !this.remarketingTagIsSet) {
-        this.$bvModal.show(
-          this.$refs.SSCPopinActivateTrackingOnboardingPage?.$refs.modal.id,
-        );
-        return;
-      }
-      this.$router.push({
-        name: 'campaign-creation',
-      });
-    },
-    toastIsClosed() {
-      if (this.googleAccountConnectedOnce) {
-        this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', false);
-      } else if (this.merchantCenterAccountConnectedOnce) {
-        this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', false);
-      } else if (this.productFeedIsConfiguredOnce) {
-        this.$store.commit('productFeed/SAVE_CONFIGURATION_CONNECTED_ONCE', false);
-      } else if (this.googleAdsAccountConnectedOnce) {
-        this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', false);
-      }
-    },
-    triggerLoadOfGoogleAdsAccount() {
-      this.googleAdsIsLoading = true;
-      this.$store.dispatch('googleAds/GET_GOOGLE_ADS_LIST').then(() => this.$store.dispatch('googleAds/GET_GOOGLE_ADS_ACCOUNT')
-        .finally(() => {
-          this.googleAdsIsLoading = false;
-        }));
     },
   },
-  computed: {
-    displayCmpAlert() {
-      return !!this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'] && this.showCmpAlert;
-    },
-    psAccountsIsOnboarded() {
-      return this.$store.getters['accounts/GET_LOCAL_GOOGLE_IS_CONFIGURED'];
-    },
-    googleAccountIsOnboarded() {
-      return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_IS_ONBOARDED'];
-    },
-    getGoogleAccount() {
-      return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT'];
-    },
-    googleAccountConnectedOnce() {
-      return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_CONNECTED_ONCE'];
-    },
-    merchantCenterAccountIsChosen() {
-      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED'];
-    },
-    merchantCenterAccountConnectedOnce() {
-      return this.$store.getters['accounts/GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_CONNECTED_ONCE']
-      && !this.$store.state.accounts.googleMerchantAccount.connectedAutomatically;
-    },
-    productFeedIsConfiguredOnce() {
-      return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED_ONCE'];
-    },
-    googleAdsAccountConnectedOnce() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE'];
-    },
-    getGoogleAdsAccount(): AccountInformations|null {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'];
-    },
-    googleAdsAccountIsChosen() {
-      return this.getGoogleAdsAccount && this.getGoogleAdsAccount.id.length > 0;
-    },
-    billingSettingsCompleted() {
-      return this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_IS_SERVING'];
-    },
-    toastIsVisible() {
-      return this.googleAccountConnectedOnce
-        || this.merchantCenterAccountConnectedOnce
-        || this.productFeedIsConfiguredOnce
-        || (this.googleAdsAccountConnectedOnce
-            && this.billingSettingsCompleted);
-    },
-    showCSSForMCA() {
-      return this.$store.getters['app/GET_IS_COUNTRY_MEMBER_OF_EU'];
-    },
-    productFeedIsConfigured() {
-      return this.$store.getters['productFeed/GET_PRODUCT_FEED_IS_CONFIGURED'];
-    },
-    accountHasAtLeastOneCampaign(): boolean {
-      return this.$store.getters['campaigns/GET_ACCOUNT_HAS_AT_LEAST_ONE_CAMPAIGN'];
-    },
-    remarketingTagIsSet() {
-      return this.$store.getters['campaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
-    },
-    stepsAreCompleted() {
-      return {
-        step1: true,
-        step2: this.googleAccountIsOnboarded
-          && this.merchantCenterAccountIsChosen
-          && this.productFeedIsConfigured,
-        step3: this.productFeedIsConfigured
-        && this.googleAdsAccountIsChosen
-        && this.billingSettingsCompleted,
-      };
-    },
-    insideToast() {
-      if (this.googleAccountConnectedOnce) {
-        return this.$t('toast.googleAccountConnectedOnceSuccess');
-      } if (this.merchantCenterAccountConnectedOnce) {
-        return this.$t('toast.MCAConnectedOnceSuccess');
-      } if (this.productFeedIsConfiguredOnce) {
-        return this.$t('toast.productFeedConfiguredOnceSuccess');
-      } if (this.googleAdsAccountConnectedOnce) {
-        return this.$t('toast.alertGoogleAdsAccountSuccess');
-      }
-      return '';
-    },
-  },
-  mounted() {
-    deleteProductFeedDataFromLocalStorage();
-
-    // Try to retrieve Google account details. If the merchant is not onboarded,
-    // this action will dispatch another one to generate the authentication route.
-    // We do it if the state is empty
-    if (this.psAccountsIsOnboarded === true && !this.googleAccountIsOnboarded) {
-      this.googleIsLoading = true;
-      this.MCAIsLoading = true;
-      this.$store.dispatch('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS').then(() => {
-        this.$store.dispatch('googleAds/WARMUP_STORE');
-        this.$store.dispatch('productFeed/WARMUP_STORE');
-      }).finally(() => {
-        this.googleIsLoading = false;
-        this.MCAIsLoading = false;
-      });
-    }
-    if (this.productFeedIsConfigured) {
-      this.triggerLoadOfGoogleAdsAccount();
+  async created() {
+    this.googleIsLoading = true;
+    this.merchantIsLoading = true;
+    try {
+      await this.$store.dispatch('accounts/WARMUP_STORE');
+    } finally {
+      this.googleIsLoading = false;
+      this.merchantIsLoading = false;
     }
   },
-  beforeDestroy() {
-    this.$store.commit('accounts/SAVE_GOOGLE_ACCOUNT_CONNECTED_ONCE', false);
-    this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', false);
-    this.$store.commit('productFeed/SAVE_CONFIGURATION_CONNECTED_ONCE', false);
-    this.$store.commit('googleAds/SAVE_GOOGLE_ADS_ACCOUNT_CONNECTED_ONCE', false);
-  },
-  watch: {
-    merchantCenterAccountIsChosen(newVal, oldVal) {
-      if (oldVal === false && newVal === true) {
-        this.productFeedIsLoading = true;
-        this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SETTINGS');
-        this.$store.dispatch('productFeed/REQUEST_ATTRIBUTE_MAPPING');
-        this.$store.dispatch('productFeed/GET_PRODUCT_FEED_SYNC_STATUS').finally(() => {
-          this.productFeedIsLoading = false;
-        });
-      }
-    },
-    productFeedIsConfigured(newVal, oldVal) {
-      if (oldVal === false && newVal === true) {
-        this.triggerLoadOfGoogleAdsAccount();
-      }
-    },
-    googleAdsAccountIsChosen(newVal, oldVal) {
-      if (oldVal === null && newVal === true) {
-        this.SSCIsLoading = true;
-        this.$store.dispatch('campaigns/GET_CAMPAIGNS_LIST').finally(() => {
-          this.SSCIsLoading = false;
-        });
-        this.$store.dispatch('campaigns/GET_REMARKETING_TRACKING_TAG_STATUS_MODULE');
-        this.$store.dispatch('campaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED');
-      }
-    },
-
-  },
-  CampaignTypes,
 });
 </script>

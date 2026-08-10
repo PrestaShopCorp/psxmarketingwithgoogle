@@ -13,6 +13,7 @@ use PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleCredentialRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthClient;
 use PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthRedirectUriResolver;
 use PrestaShop\Module\PsxMarketingWithGoogle\OAuth\OAuthStateRepository;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogFilterSettingsInterface;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogOfferSourceInterface;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogProduct;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\GoogleConnectionProviderInterface;
@@ -224,6 +225,82 @@ class LocalGoogleApiTest extends TestCase
 
         self::assertSame(404, $response->getStatusCode());
         self::assertSame(['code' => 'route_not_found'], $this->json($response));
+    }
+
+    public function testProductFiltersAreReadForTheAuthenticatedShopOnly(): void
+    {
+        $filters = [[
+            'attribute' => 'active',
+            'condition' => 'equals',
+            'value' => true,
+        ]];
+        $settings = $this->createMock(CatalogFilterSettingsInterface::class);
+        $settings->expects(self::once())
+            ->method('filtersForShop')
+            ->with(1)
+            ->willReturn($filters);
+
+        $response = $this->filterApi($settings)->dispatch('GET', 'product-filters');
+
+        self::assertSame(200, $response->getStatusCode());
+        self::assertSame(['filters' => $filters], $this->json($response));
+    }
+
+    public function testProductFiltersAreReplacedForTheAuthenticatedShopAndEchoedSafely(): void
+    {
+        $filters = [[
+            'attribute' => 'price',
+            'condition' => 'greater_than',
+            'value' => 20,
+        ]];
+        $settings = $this->createMock(CatalogFilterSettingsInterface::class);
+        $settings->expects(self::once())
+            ->method('replaceForShop')
+            ->with(1, $filters);
+
+        $response = $this->filterApi($settings)->dispatch('POST', 'product-filters', [
+            'filters' => $filters,
+        ]);
+
+        self::assertSame(200, $response->getStatusCode());
+        self::assertSame(['filters' => $filters], $this->json($response));
+    }
+
+    /** @dataProvider invalidProductFiltersEnvelopeProvider */
+    public function testProductFiltersRejectMalformedExactEnvelopes(string $method, array $body): void
+    {
+        $settings = $this->createMock(CatalogFilterSettingsInterface::class);
+        $response = $this->filterApi($settings)->dispatch($method, 'product-filters', $body);
+
+        self::assertSame(422, $response->getStatusCode());
+        self::assertSame(['code' => 'invalid_request'], $this->json($response));
+    }
+
+    /** @return array<string, array{0: string, 1: array<string, mixed>}> */
+    public function invalidProductFiltersEnvelopeProvider(): array
+    {
+        return [
+            'GET body must be empty' => ['GET', ['filters' => []]],
+            'POST missing filters' => ['POST', []],
+            'POST filters must be a list' => ['POST', ['filters' => ['attribute' => 'active']]],
+            'POST unknown key' => ['POST', ['filters' => [], 'unknown' => true]],
+        ];
+    }
+
+    public function testProductFiltersHideValidationInternals(): void
+    {
+        $settings = $this->createMock(CatalogFilterSettingsInterface::class);
+        $settings->method('replaceForShop')->willThrowException(
+            new \InvalidArgumentException('sensitive filter validation detail')
+        );
+
+        $response = $this->filterApi($settings)->dispatch('POST', 'product-filters', [
+            'filters' => [['not' => 'canonical']],
+        ]);
+
+        self::assertSame(422, $response->getStatusCode());
+        self::assertSame(['code' => 'invalid_request'], $this->json($response));
+        self::assertStringNotContainsString('sensitive', $response->getBody());
     }
 
     public function testCreateSyncJobRejectsAnyKeyOutsideTheExactFullBooleanEnvelope(): void
@@ -454,6 +531,24 @@ class LocalGoogleApiTest extends TestCase
                 new MerchantProductMapper(),
                 $context
             )
+        );
+    }
+
+    private function filterApi(CatalogFilterSettingsInterface $settings): LocalGoogleApi
+    {
+        return new LocalGoogleApi(
+            $this->credentials,
+            $this->connections(),
+            $this->redirectUris(),
+            static function (): int {
+                return 1;
+            },
+            static function (): int {
+                return 7;
+            },
+            null,
+            null,
+            $settings
         );
     }
 

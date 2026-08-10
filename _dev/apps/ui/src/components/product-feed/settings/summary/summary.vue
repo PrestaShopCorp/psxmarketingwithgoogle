@@ -272,7 +272,6 @@ import googleUrl from '@/assets/json/googleUrl.json';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
 import TableRowMapping from '@/components/product-feed/summary/table-row-mapping.vue';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 import productFeedSummaryCard from '@/components/product-feed/summary/product-feed-summary-card.vue';
 import ProductFeedMixin from '@/components/mixins/Product-Feed-Mixin';
@@ -450,10 +449,6 @@ export default defineComponent({
       this.$emit('cancelProductFeedSettingsConfiguration');
     },
     saveAll() {
-      this.$segment.track('[GGL] Product feed config - Export catalog', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-      });
       this.$emit('save');
     },
     previousStep() {

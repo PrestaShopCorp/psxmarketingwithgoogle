@@ -136,6 +136,24 @@ export interface ProductCount {
   abortController: AbortController | null,
 }
 
+export type SyncJobError = {
+  offerKey: string,
+  code: string,
+  field: string,
+  message: string,
+};
+
+export type SyncJob = {
+  jobId: number,
+  status: string,
+  total: number,
+  succeeded: number,
+  failed: number,
+  skipped: number,
+  pending: number,
+  errors: SyncJobError[],
+};
+
 export interface State {
   warmedUp: RequestState,
   isSyncSummaryLoadingInProgress: boolean;
@@ -172,6 +190,7 @@ export interface State {
   },
   productCount: ProductCount;
   syncSelected: ProductFilterMethodsSynch;
+  syncJob: SyncJob|null;
 }
 
 export enum ProductStatus {
@@ -249,6 +268,7 @@ export const state: State = {
     abortController: null,
   },
   syncSelected: ProductFilterMethodsSynch.SYNCH_ALL_PRODUCT,
+  syncJob: null,
   validationSummary: {
     activeProducts: null,
     expiringProducts: null,

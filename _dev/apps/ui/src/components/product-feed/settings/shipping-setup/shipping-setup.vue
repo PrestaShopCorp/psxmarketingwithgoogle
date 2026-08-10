@@ -75,7 +75,6 @@ import {BFormRadio, BFormGroup} from 'bootstrap-vue';
 import {defineComponent} from 'vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import ActionsButtons from '@/components/product-feed/settings/commons/actions-buttons.vue';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 import SettingsFooter from '@/components/product-feed/settings/commons/settings-footer.vue';
@@ -143,10 +142,6 @@ export default defineComponent({
       }
       this.loading = true;
       this.$store.commit('productFeed/SET_SHIPPING_SETUP_SELECTED', this.shippingSetup);
-      this.$segment.track('[GGL] Product feed config - Step 1 Shipping setup', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-      });
       this.$store.dispatch('productFeed/GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS').then(() => {
         this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 2);
         this.$router.push({

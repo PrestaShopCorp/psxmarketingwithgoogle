@@ -1,11 +1,7 @@
 import Vue from 'vue';
 import VueRouter, {RouteConfig} from 'vue-router';
 import store from '@/store';
-import CampaignPage from '@/views/campaign-page.vue';
-import CampaignForm from '@/views/campaign-form.vue';
 import ConfigurationPage from '@/views/configuration-page.vue';
-import LandingPage from '@/views/landing-page.vue';
-import DebugPage from '@/views/debug-page.vue';
 import HelpPage from '@/views/help-page.vue';
 import ProductFeedPage from '@/views/product-feed-page.vue';
 import TunnelProductFeed from '@/views/tunnel-product-feed.vue';
@@ -23,26 +19,11 @@ export const accountNavigationGuard = (to, from, next) => {
 };
 
 export const initialPath = async (to, from, next) => {
-  if (!store.getters[`accounts/${GettersTypesAccounts.GET_LOCAL_GOOGLE_IS_CONFIGURED}`]) {
-    next({name: 'landing-page'});
-    return;
-  }
-
   await store.dispatch(`accounts/${ActionsTypesAccounts.WARMUP_STORE}`);
-  if (!store.getters[`accounts/${GettersTypesAccounts.GET_GOOGLE_ACCOUNT_IS_ONBOARDED}`]) {
-    next({name: 'landing-page'});
-    return;
-  }
-
   next({name: 'configuration'});
 };
 
 const routes: Array<RouteConfig> = [
-  {
-    path: '/landing-page',
-    name: 'landing-page',
-    component: LandingPage,
-  },
   {
     path: '/configuration',
     name: 'configuration',
@@ -64,51 +45,6 @@ const routes: Array<RouteConfig> = [
     name: 'product-feed',
     component: ProductFeedPage,
     beforeEnter: accountNavigationGuard,
-    children: [
-      {
-        path: 'status',
-        name: 'product-feed-status',
-        component: ProductFeedPage,
-        beforeEnter: accountNavigationGuard,
-      },
-      {
-        path: 'non-compliant-products/:error',
-        name: 'product-feed-verification-error-products',
-        component: ProductFeedPage,
-        beforeEnter: accountNavigationGuard,
-      },
-      {
-        path: 'non-compliant-products',
-        name: 'product-feed-verification-errors',
-        component: ProductFeedPage,
-        beforeEnter: accountNavigationGuard,
-      },
-    ],
-  },
-  {
-    path: '/campaign',
-    name: 'campaign',
-    component: CampaignPage,
-    beforeEnter: accountNavigationGuard,
-    children: [
-      {
-        path: 'creation',
-        name: 'campaign-creation',
-        component: CampaignForm,
-        beforeEnter: accountNavigationGuard,
-      },
-      {
-        path: 'edit/:id',
-        name: 'campaign-edition',
-        component: CampaignForm,
-        beforeEnter: accountNavigationGuard,
-      },
-    ],
-  },
-  {
-    path: '/debug',
-    name: 'Debug',
-    component: DebugPage,
   },
   {
     path: '/',
@@ -117,7 +53,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/*',
-    name: 'root',
+    name: 'catch-all',
     beforeEnter: initialPath,
   },
 ];

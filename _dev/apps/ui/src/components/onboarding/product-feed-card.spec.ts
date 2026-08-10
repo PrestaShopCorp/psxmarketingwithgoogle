@@ -1,193 +1,156 @@
 import Vuex from 'vuex';
-
-// Import this file first to init mock on window
 import {shallowMount} from '@vue/test-utils';
-import {BAlert} from 'bootstrap-vue';
-import VueShowdown from 'vue-showdown';
-import config, {localVue, cloneStore} from '@/../tests/init';
-import ProductFeedCard from '@/components/onboarding/product-feed-card.vue';
-import ProductFeedStepper from '@/components/product-feed/product-feed-stepper.vue';
-import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
-import ProductFeedSummary from '@/components/onboarding/product-feed-summary.vue';
+import config, {cloneStore, localVue} from '@/../tests/init';
+import ProductFeedCard from './product-feed-card.vue';
 
-import {
-  productFeed,
-  productFeedIsReadyForExport,
-  productFeedIsConfigured,
-  productFeedMissingFields,
-  productFeedStatusSyncFailed,
-  productFeedErrorAPI,
-} from '../../../.storybook/mock/product-feed';
-
-describe('product-feed-card.vue', () => {
-  const mockRoute = {
-    name: 'product-feed-settings',
-    params: {
-      step: ProductFeedSettingsPages.SHIPPING_SETUP,
-    },
-  };
-  const mockRouter = {
-    push: vi.fn(),
-  };
-
-  let storeDisabledOrNotConfigured;
-  let storePartiallyConfigured;
-  let storeConfigured;
-  let storeMissingFields;
-  let storeApiError;
-  let storeReadyForExport;
-  let storeSyncFailed;
+describe('product-feed-card.vue local synchronization', () => {
   beforeEach(() => {
-    storeDisabledOrNotConfigured = cloneStore();
-    storeDisabledOrNotConfigured.modules.productFeed.state = {
-      ...storeDisabledOrNotConfigured.modules.productFeed.state,
-      ...productFeed,
-    };
-    storePartiallyConfigured = cloneStore();
-    storePartiallyConfigured.modules.productFeed.state = {
-      ...storePartiallyConfigured.modules.productFeed.state,
-      ...productFeed,
-      stepper: 2,
-    };
-    storeConfigured = cloneStore();
-    storeConfigured.modules.productFeed.state = {
-      ...storeConfigured.modules.productFeed.state,
-      ...productFeedIsConfigured,
-    };
-    storeMissingFields = cloneStore();
-    storeMissingFields.modules.productFeed.state = {
-      ...storeMissingFields.modules.productFeed.state,
-      ...productFeedMissingFields,
-    };
-    storeApiError = cloneStore();
-    storeApiError.modules.productFeed.state = {
-      ...storeApiError.modules.productFeed.state,
-      ...productFeedErrorAPI,
-    };
-    storeReadyForExport = cloneStore();
-    storeReadyForExport.modules.productFeed.state = {
-      ...storeReadyForExport.modules.productFeed.state,
-      ...productFeedIsReadyForExport,
-    };
-    storeSyncFailed = cloneStore();
-    storeSyncFailed.modules.productFeed.state = {
-      ...storeSyncFailed.modules.productFeed.state,
-      ...productFeedStatusSyncFailed,
-    };
+    localStorage.clear();
   });
 
-  it('is disabled when not activated', () => {
+  it('keeps product synchronization disabled until Merchant Center is selected', () => {
     const wrapper = shallowMount(ProductFeedCard, {
-      propsData: {
-        isEnabled: false,
-        badges: [],
-        loading: false,
-      },
-      ...config,
-      store: new Vuex.Store(storeDisabledOrNotConfigured),
-    });
-    expect(wrapper.find('.ps_gs-onboardingcard').classes('ps_gs-onboardingcard--disabled')).toBe(true);
-    expect(wrapper.findComponent(BAlert).exists()).toBeFalsy();
-  });
-
-  it('does not show stepper at 1 when enabled', () => {
-    const wrapper = shallowMount(ProductFeedCard, {
-      propsData: {
-        isEnabled: true,
-        loading: false,
-        ...config,
-      },
-      store: new Vuex.Store(storeDisabledOrNotConfigured),
-    });
-    expect(wrapper.findComponent(ProductFeedStepper).exists()).toBeFalsy();
-    expect(wrapper.findComponent(BAlert).exists()).toBeFalsy();
-    expect(wrapper.find('b-button').exists()).toBeTruthy();
-  });
-
-  it('shows stepper at 2 when enabled', () => {
-    const wrapper = shallowMount(ProductFeedCard, {
-      propsData: {
-        isEnabled: true,
-        loading: false,
-        ...config,
-      },
-      store: new Vuex.Store(storePartiallyConfigured),
-    });
-    expect(wrapper.findComponent(ProductFeedStepper).exists()).toBeTruthy();
-    expect(wrapper.findComponent(ProductFeedStepper).props('activeStep')).toBe(2);
-    expect(wrapper.findComponent(BAlert).exists()).toBeFalsy();
-    expect(wrapper.find('b-button').exists()).toBeTruthy();
-  });
-
-  it('shows button and triggers configuration on click', async () => {
-    const wrapper = shallowMount(ProductFeedCard, {
-      mocks: {
-        $route: mockRoute,
-        $router: mockRouter,
-      },
-      ...config,
-      propsData: {
-        isEnabled: true,
-        loading: false,
-      },
-      store: new Vuex.Store(storeDisabledOrNotConfigured),
-    });
-    await wrapper.find('b-button').trigger('click');
-    expect(mockRouter.push).toHaveBeenCalledTimes(1);
-    expect(mockRouter.push).toHaveBeenCalledWith(mockRoute);
-  });
-
-  it('shows product feed card ready if already configured', () => {
-    const wrapper = shallowMount(ProductFeedCard, {
-      propsData: {
-        isEnabled: true,
-        loading: false,
-      },
       ...config,
       localVue,
-      store: new Vuex.Store(storeConfigured),
+      store: new Vuex.Store(cloneStore()),
+      propsData: {isEnabled: false, loading: false},
     });
-    expect(wrapper.findComponent(BAlert).exists()).toBeFalsy();
-    expect(wrapper.findComponent(ProductFeedSummary).exists()).toBeTruthy();
-    expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
+
+    expect(wrapper.find('.ps_gs-onboardingcard--disabled').exists()).toBe(true);
+    expect(wrapper.find('[data-test="create-data-source"]').exists()).toBe(false);
+    expect(wrapper.find('[data-test="start-sync"]').exists()).toBe(false);
   });
 
-  it('shows product feed card ready for export at first configuration', () => {
+  it('creates or reuses a primary API data source through the local account store', async () => {
+    const store = new Vuex.Store(cloneStore());
+    const dispatch = vi.spyOn(store, 'dispatch').mockResolvedValue({
+      id: '456',
+      name: 'accounts/123/dataSources/456',
+      input: 'API',
+    });
     const wrapper = shallowMount(ProductFeedCard, {
-      propsData: {
-        isEnabled: true,
-        loading: false,
-      },
       ...config,
       localVue,
-      stubs: {
-        VueShowdown: true,
-      },
-      store: new Vuex.Store(storeReadyForExport),
+      store,
+      propsData: {isEnabled: true, loading: false},
     });
-    expect(wrapper.find('b-alert')).toBeTruthy();
-    expect(wrapper.find('b-alert').attributes('variant')).toBe('info');
-    expect(wrapper.findComponent(ProductFeedSummary).exists()).toBeTruthy();
-    expect(wrapper.findComponent(VueShowdown.VueShowdown).exists()).toBeTruthy();
+
+    await wrapper.find('[data-test="create-data-source"]').trigger('click');
+
+    expect(dispatch).toHaveBeenCalledWith('accounts/CREATE_DATA_SOURCE', {
+      contentLanguage: 'fr',
+      feedLabel: 'GB',
+    });
   });
 
-  it('shows error when api error', () => {
+  it('keeps the retained product mapping and filter route available', async () => {
+    const storeDefinition = cloneStore();
+    storeDefinition.modules.accounts.state.googleAccount.dataSource = 'accounts/123/dataSources/456';
+    const push = vi.fn();
     const wrapper = shallowMount(ProductFeedCard, {
-      propsData: {
-        isEnabled: true,
-        loading: false,
-        ...config,
-      },
-      stubs: {
-        VueShowdown: true,
-        BAlert,
-      },
-      store: new Vuex.Store(storeApiError),
+      ...config,
+      localVue,
+      store: new Vuex.Store(storeDefinition),
+      mocks: {...config.mocks, $router: {push}},
+      propsData: {isEnabled: true, loading: false},
     });
-    expect(wrapper.findComponent(ProductFeedStepper).exists()).toBeFalsy();
-    expect(wrapper.find('b-button').attributes('disabled')).toBe('true');
-    expect(wrapper.find('b-button').text()).toEqual('Start your configuration');
-    expect(wrapper.findComponent(BAlert).exists()).toBeTruthy();
-    expect(wrapper.findComponent(BAlert).find('b-button').text()).toEqual('Refresh page');
+
+    await wrapper.find('[data-test="configure-products"]').trigger('click');
+
+    expect(push).toHaveBeenCalledWith({
+      name: 'product-feed-settings',
+      params: {step: 'target-country'},
+    });
+  });
+
+  it('starts a durable local synchronization after a data source is ready', async () => {
+    const storeDefinition = cloneStore();
+    storeDefinition.modules.accounts.state.googleAccount.dataSource = 'accounts/123/dataSources/456';
+    const store = new Vuex.Store(storeDefinition);
+    const dispatch = vi.spyOn(store, 'dispatch').mockResolvedValue({
+      jobId: 91,
+      status: 'completed',
+      total: 10,
+      succeeded: 10,
+      failed: 0,
+      skipped: 0,
+      pending: 0,
+      errors: [],
+    });
+    const wrapper = shallowMount(ProductFeedCard, {
+      ...config,
+      localVue,
+      store,
+      propsData: {isEnabled: true, loading: false},
+    });
+
+    const synchronize = wrapper.find('[data-test="start-sync"]');
+    expect(synchronize.text()).toBe('Synchronize products');
+    await synchronize.trigger('click');
+
+    expect(dispatch).toHaveBeenCalledWith('productFeed/START_SYNC_JOB', {full: true});
+  });
+
+  it('polls status only while a durable synchronization job is active', async () => {
+    vi.useFakeTimers();
+    const storeDefinition = cloneStore();
+    storeDefinition.modules.accounts.state.googleAccount.dataSource = 'accounts/123/dataSources/456';
+    storeDefinition.modules.productFeed.state.syncJob = {
+      jobId: 91,
+      status: 'running',
+      total: 10,
+      succeeded: 4,
+      failed: 0,
+      skipped: 0,
+      pending: 6,
+      errors: [],
+    };
+    const store = new Vuex.Store(storeDefinition);
+    const completed = {
+      jobId: 91,
+      status: 'completed',
+      total: 10,
+      succeeded: 10,
+      failed: 0,
+      skipped: 0,
+      pending: 0,
+      errors: [],
+    };
+    const dispatch = vi.spyOn(store, 'dispatch').mockResolvedValue(completed);
+    const wrapper = shallowMount(ProductFeedCard, {
+      ...config,
+      localVue,
+      store,
+      propsData: {isEnabled: true, loading: false},
+    });
+
+    try {
+      await vi.advanceTimersByTimeAsync(1500);
+      expect(dispatch).toHaveBeenCalledTimes(1);
+      expect(dispatch).toHaveBeenCalledWith('productFeed/GET_SYNC_JOB_STATUS', {jobId: 91});
+      await vi.advanceTimersByTimeAsync(5000);
+      expect(dispatch).toHaveBeenCalledTimes(1);
+    } finally {
+      wrapper.destroy();
+      vi.useRealTimers();
+    }
+  });
+
+  it('renders a generic local operation failure without leaking the thrown value', async () => {
+    const store = new Vuex.Store(cloneStore());
+    vi.spyOn(store, 'dispatch').mockRejectedValue(new Error('secret-upstream-payload'));
+    const wrapper = shallowMount(ProductFeedCard, {
+      ...config,
+      localVue,
+      store,
+      propsData: {isEnabled: true, loading: false},
+    });
+
+    await wrapper.find('[data-test="create-data-source"]').trigger('click');
+    await new Promise((resolve) => { setTimeout(resolve, 0); });
+    await wrapper.vm.$nextTick();
+
+    expect(wrapper.text()).toContain('The operation could not be completed. Try again.');
+    expect(wrapper.text()).not.toContain('secret-upstream-payload');
   });
 });

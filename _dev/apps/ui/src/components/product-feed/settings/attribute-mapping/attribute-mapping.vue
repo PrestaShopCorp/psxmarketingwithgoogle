@@ -179,7 +179,6 @@ import CategoryButton from './category-button.vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 import Categories, {SelectedProductCategories} from '@/enums/product-feed/attribute-mapping-categories';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 import {AttributeToMap, mergeAttributeMappings} from '@/utils/AttributeMapping';
 
@@ -288,10 +287,6 @@ export default defineComponent({
       if (hasError) {
         return;
       }
-      this.$segment.track('[GGL] Product feed config - Step 3', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-      });
       localStorage.setItem('productFeed-attributeMapping', JSON.stringify(this.mappingAttributes));
       localStorage.setItem('productFeed-selectedProductCategories', JSON.stringify(this.selectedProductCategories));
       this.$store.commit('productFeed/SET_ACTIVE_CONFIGURATION_STEP', 4);

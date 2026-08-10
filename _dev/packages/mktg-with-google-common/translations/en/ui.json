@@ -50,6 +50,32 @@
     "readMore": "Read more",
     "countryWithCurrencyFormat": "{country} ({currency})"
   },
+  "tinyLuxGoogle": {
+    "title": "Tiny Lux Google",
+    "intro": "Connect your Google account, select Merchant Center, and synchronize your products.",
+    "connectTitle": "Connect your Google account",
+    "connectDescription": "Use your own Google OAuth client and Merchant Center account.",
+    "googleIntro": "Sign in directly with the Google account that can access your Merchant Center.",
+    "merchantTitle": "Select Merchant Center",
+    "merchantIntro": "Select an accessible Merchant Center account.",
+    "noMerchant": "No Merchant Center account found",
+    "syncTitle": "Synchronize products",
+    "syncIntro": "Configure product mapping and filters, then monitor the durable Merchant synchronization job.",
+    "dataSourceIntro": "Create or reuse a primary API data source for this shop.",
+    "dataSourceButton": "Prepare product data source",
+    "dataSourceReady": "Your Merchant Center API data source is ready.",
+    "configureProducts": "Configure product mapping and filters",
+    "of": "of",
+    "productsSynchronized": "products synchronized",
+    "failed": "failed",
+    "skipped": "skipped",
+    "pending": "pending",
+    "retryFailed": "Retry failed products",
+    "operationFailed": "The operation could not be completed. Try again.",
+    "adsTitle": "Google Ads",
+    "adsDescription": "Advertising will be available after a Google Ads API Developer Token is configured.",
+    "developerTokenRequired": "Developer token required."
+  },
   "landingPage": {
     "header": {
       "titleAccessibility": "Marketing With Google",

@@ -8,16 +8,15 @@
         <b-card>
           <b-skeleton width="85%" />
           <b-skeleton width="55%" />
-          <b-skeleton width="70%" />
         </b-card>
       </template>
       <b-card
+        id="product-feed-card"
         no-body
         class="ps_gs-onboardingcard p-3 mb-3"
-        :class="{ 'ps_gs-onboardingcard--disabled': !isEnabled }"
-        id="product-feed-card"
+        :class="{'ps_gs-onboardingcard--disabled': !isEnabled}"
       >
-        <div class="d-flex align-items-start align-items-md-center mb-3">
+        <div class="d-flex align-items-center mb-3">
           <img
             class="mr-2"
             src="@/assets/images/product-feed-icon.svg"
@@ -25,131 +24,70 @@
             height="32"
             alt=""
           >
-          <div class="flex-grow-1 d-flex flex-column align-items-md-center flex-md-row">
-            <b-card-text
-              class="flex-grow-1 flex-sm-wrap
-              ps_gs-onboardingcard__title text-left mb-0"
+          <b-card-text class="ps_gs-onboardingcard__title text-left mb-0">
+            {{ $t('tinyLuxGoogle.syncTitle') }}
+          </b-card-text>
+        </div>
+
+        <div
+          v-if="isEnabled"
+          class="ml-2 ps_gs-onboardingcard__content"
+        >
+          <template v-if="!dataSourceIsReady">
+            <p>
+              {{ $t('tinyLuxGoogle.dataSourceIntro') }}
+            </p>
+            <b-button
+              data-test="create-data-source"
+              size="sm"
+              variant="primary"
+              :disabled="operationIsRunning"
+              @click="createDataSource"
             >
-              {{ $t("productFeedCard.title") }}
-            </b-card-text>
-            <div
-              class="flex-shrink-1 d-flex-md text-right"
-              v-if="toConfigure"
-            >
+              {{ $t('tinyLuxGoogle.dataSourceButton') }}
+            </b-button>
+          </template>
+
+          <template v-else>
+            <p class="mb-3">
+              {{ $t('tinyLuxGoogle.dataSourceReady') }}
+            </p>
+            <div class="d-flex flex-wrap mb-3">
               <b-button
+                data-test="configure-products"
+                size="sm"
+                variant="outline-secondary"
+                class="mr-2 mb-2"
+                @click="startConfiguration"
+              >
+                {{ $t('tinyLuxGoogle.configureProducts') }}
+              </b-button>
+              <b-button
+                data-test="start-sync"
                 size="sm"
                 variant="primary"
-                @click="startConfiguration"
-                :disabled="!isEnabled || isErrorApi"
+                class="mb-2"
+                :disabled="operationIsRunning || jobIsActive"
+                @click="startSynchronization"
               >
-                {{ getActiveStep > 1 ?
-                  $t("cta.continueProductFeed") : $t("cta.configureAndExportProductFeed")
-                }}
+                {{ $t('tinyLuxGoogle.syncTitle') }}
               </b-button>
             </div>
-            <div
-              v-else
-              class="flex-shrink-1 align-items-end mb-1"
-            >
-              <i18n
-                :path="syncStatus === 'schedule'
-                  ? 'productFeedPage.syncStatus.scheduleOn'
-                  : 'productFeedCard.nextSync'"
-                class="mt-3 mt-md-0 text-right font-weight-600"
-                tag="div"
-              >
-                <b-button
-                  variant="link"
-                  class="bg-transparent p-0 border-0
-                    font-weight-600 ps_gs-fz-13 ml-auto"
-                  @click="goToProductFeed()"
-                >
-                  {{ nextSyncTime }}
-                </b-button>
-              </i18n>
-            </div>
-          </div>
-        </div>
-        <div
-          v-if="(isEnabled && toConfigure) || isErrorApi"
-          class="ml-2 ps_gs-onboardingcard__content"
-        >
-          <p v-if="getActiveStep > 1">
-            {{ $t("productFeedCard.introToConfigure") }}<br>
-            <a
-              :href="$options.googleUrl.productConfiguration"
-              target="_blank"
-            >
-              {{ $t("cta.learnAboutProductConfiguration") }}
-            </a>
-          </p>
-          <p v-else>
-            {{ $t("productFeedCard.intro") }}
-          </p>
-          <product-feed-stepper
-            v-if="getActiveStep > 1"
-            :active-step="getActiveStep"
-            vertical
-          />
-        </div>
-        <div
-          v-if="isEnabled && isErrorApi"
-          class="mt-3"
-        >
+            <SyncJobStatus
+              v-if="syncJob"
+              :job="syncJob"
+              @retry="retryFailed"
+            />
+          </template>
+
           <b-alert
-            variant="warning"
+            v-if="operationError"
             show
-          >
-            <VueShowdown
-              :markdown="$t('productFeedCard.alertErrorApi')"
-            />
-            <div
-              class="mt-1"
-            >
-              <b-button
-                @click="refresh"
-                variant="outline-secondary"
-              >
-                {{ $t("general.refreshPage") }}
-              </b-button>
-            </div>
-          </b-alert>
-        </div>
-        <div
-          v-if="isEnabled && !toConfigure && !isErrorApi"
-          class="ml-2 ps_gs-onboardingcard__content"
-        >
-          <b-alert
-            :variant="alert === 'FeedSettingSubmissionSuccess' ? 'info' : 'warning'"
-            :show="!!alert && alert !== 'ShippingSettingsMissing'"
-          >
-            <VueShowdown
-              :markdown="$t(`productFeedCard.alert${alert}`, alertLink)"
-              :extensions="['extended-link']"
-            />
-            <div
-              v-if="alert === 'ProductFeedExists'"
-              class="mt-1"
-            >
-              <b-button variant="outline-secondary">
-                {{ $t("cta.overwrite") }}
-              </b-button>
-            </div>
-          </b-alert>
-          <b-alert
             variant="warning"
-            :show="!!alert && alert === 'ShippingSettingsMissing'"
+            class="mt-3 mb-0"
           >
-            <p>
-              {{ $t("productFeedCard.alertShippingSettingsMissingDescription") }}
-            </p>
+            {{ $t('tinyLuxGoogle.operationFailed') }}
           </b-alert>
-          <b-container
-            fluid
-            class="p-0 mb-0 mt-n1"
-          >
-            <product-feed-summary />
-          </b-container>
         </div>
       </b-card>
     </b-skeleton-wrapper>
@@ -157,26 +95,17 @@
 </template>
 
 <script lang="ts">
-import {VueShowdown} from 'vue-showdown';
 import {defineComponent} from 'vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
-import googleUrl from '@/assets/json/googleUrl.json';
-import ProductFeedStepper from '@/components/product-feed/product-feed-stepper.vue';
-import ProductFeedSummary from '@/components/onboarding/product-feed-summary.vue';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import SyncJobStatus from '@/components/product-feed/sync-job-status.vue';
+import {SyncJob} from '@/store/modules/product-feed/state';
+
+const ACTIVE_JOB_STATUSES = ['pending', 'running'];
+const POLL_DELAY_MS = 1500;
 
 export default defineComponent({
   name: 'ProductFeedCard',
-  components: {
-    ProductFeedStepper,
-    VueShowdown,
-    ProductFeedSummary,
-  },
-  data() {
-    return {
-      ProductFeedSettingsPages,
-    };
-  },
+  components: {SyncJobStatus},
   props: {
     isEnabled: {
       type: Boolean,
@@ -189,81 +118,126 @@ export default defineComponent({
       required: true,
     },
   },
+  data() {
+    return {
+      operationIsRunning: false,
+      operationError: false,
+      pollTimer: null as ReturnType<typeof setTimeout>|null,
+    };
+  },
   computed: {
-    getProductFeedStatus() {
-      return this.$store.getters['productFeed/GET_PRODUCT_FEED_STATUS'];
+    dataSourceIsReady(): boolean {
+      return Boolean(this.$store.state.accounts.googleAccount.dataSource);
     },
-    getActiveStep(): number {
+    syncJob(): SyncJob|null {
+      return this.$store.getters['productFeed/GET_SYNC_JOB'];
+    },
+    jobIsActive(): boolean {
+      return this.isActive(this.syncJob);
+    },
+    activeStep(): number {
       return this.$store.getters['productFeed/GET_STEP'];
-    },
-    nextSyncTime(): string {
-      if (this.getProductFeedStatus.nextJobAt) {
-        return new Date(this.getProductFeedStatus.nextJobAt).toLocaleString(
-          window.i18nSettings.languageLocale.substring(0, 2),
-        );
-      }
-      return '--';
-    },
-    toConfigure() {
-      return !this.$store.state.productFeed.isConfigured;
-    },
-    alertLink() {
-      if (this.alert === 'Failed') {
-        return [this.$options.googleUrl.syncFailed];
-      }
-      return null;
-    },
-    alert() {
-      if (this.getProductFeedStatus.success === false && this.getProductFeedStatus.jobEndedAt
-      && this.getProductFeedStatus.lastUpdatedAt) {
-        return 'Failed';
-      }
-      if (this.$store.getters['productFeed/GET_PRODUCT_FEED_REQUIRED_RECONFIGURATION']) {
-        return 'ShippingSettingsMissing';
-      }
-      if (
-        this.getProductFeedStatus.lastUpdatedAt === null
-      && this.getProductFeedStatus.success === false
-      ) {
-        return 'FeedSettingSubmissionSuccess';
-      }
-      // TODO: ProductFeedExists > Overwrite needed
-      // if (something) {
-      //   return 'ProductFeedExists';
-      // }
-      return null;
-    },
-    syncStatus() {
-      return this.$store.getters['productFeed/GET_SYNC_STATUS'];
-    },
-    isErrorApi() {
-      return this.$store.state.productFeed.errorAPI;
     },
   },
   methods: {
+    isActive(job: SyncJob|null): boolean {
+      return Boolean(job && ACTIVE_JOB_STATUSES.includes(job.status));
+    },
+    async createDataSource() {
+      this.operationIsRunning = true;
+      this.operationError = false;
+      try {
+        const {language} = new Intl.Locale(window.i18nSettings.languageLocale);
+        const feedLabel = this.$store.state.app.psxMtgWithGoogleDefaultShopCountry
+          || this.$store.state.app.psxMktgWithGoogleActiveCountries[0]
+          || 'GB';
+        await this.$store.dispatch('accounts/CREATE_DATA_SOURCE', {
+          contentLanguage: language,
+          feedLabel: String(feedLabel).toUpperCase(),
+        });
+      } catch (error) {
+        this.operationError = true;
+      } finally {
+        this.operationIsRunning = false;
+      }
+    },
     startConfiguration() {
-      const step = Object.values(ProductFeedSettingsPages)[this.getActiveStep - 1];
+      const step = Object.values(ProductFeedSettingsPages)[Math.max(0, this.activeStep - 1)];
 
       this.$router.push({
         name: 'product-feed-settings',
-        params: {
-          step,
-        },
-      });
-      this.$segment.track('[GGL] Start Product feed configuration', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
+        params: {step},
       });
     },
-    refresh() {
-      this.$router.go(0);
+    async startSynchronization() {
+      this.operationIsRunning = true;
+      this.operationError = false;
+      try {
+        const job = await this.$store.dispatch('productFeed/START_SYNC_JOB', {full: true});
+
+        if (this.isActive(job)) {
+          this.scheduleNextPoll();
+        }
+      } catch (error) {
+        this.operationError = true;
+      } finally {
+        this.operationIsRunning = false;
+      }
     },
-    goToProductFeed() {
-      this.$router.push({
-        name: 'product-feed',
-      });
+    async retryFailed(jobId: number) {
+      this.operationIsRunning = true;
+      this.operationError = false;
+      try {
+        const job = await this.$store.dispatch('productFeed/RETRY_FAILED_SYNC_JOB', {jobId});
+
+        if (this.isActive(job)) {
+          this.scheduleNextPoll();
+        }
+      } catch (error) {
+        this.operationError = true;
+      } finally {
+        this.operationIsRunning = false;
+      }
+    },
+    scheduleNextPoll() {
+      this.stopPolling();
+      if (!this.jobIsActive) {
+        return;
+      }
+      this.pollTimer = setTimeout(async () => {
+        this.pollTimer = null;
+        try {
+          let job = await this.$store.dispatch('productFeed/GET_SYNC_JOB_STATUS', {
+            jobId: this.syncJob?.jobId,
+          });
+
+          if (this.isActive(job)) {
+            job = await this.$store.dispatch('productFeed/RUN_SYNC_JOB', {
+              jobId: job.jobId,
+            });
+          }
+          if (this.isActive(job)) {
+            this.scheduleNextPoll();
+          }
+        } catch (error) {
+          this.operationError = true;
+        }
+      }, POLL_DELAY_MS);
+    },
+    stopPolling() {
+      if (this.pollTimer) {
+        clearTimeout(this.pollTimer);
+        this.pollTimer = null;
+      }
     },
   },
-  googleUrl,
+  mounted() {
+    if (this.jobIsActive) {
+      this.scheduleNextPoll();
+    }
+  },
+  beforeDestroy() {
+    this.stopPolling();
+  },
 });
 </script>

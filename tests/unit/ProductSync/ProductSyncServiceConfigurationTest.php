@@ -58,6 +58,7 @@ class ProductSyncServiceConfigurationTest extends TestCase
             null,
             '@PrestaShop\Module\PsxMarketingWithGoogle\Merchant\MerchantAccountService',
             '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\SyncProcessor',
+            '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogFilterSettingsInterface',
         ], $admin['services']['PrestaShop\Module\PsxMarketingWithGoogle\Api\LocalGoogleApi']['arguments']);
     }
 

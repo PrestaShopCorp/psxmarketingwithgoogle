@@ -4,11 +4,14 @@ import {initOnboardingClient} from 'mktg-with-google-common/api/onboardingClient
 import {createProductFeedApiPayload} from './actions';
 import {shippingPhpExportWithIssues} from '@/../.storybook/mock/shipping-settings';
 import {ShopShippingCollectionType, ShopShippingInterface} from '@/providers/shipping-settings-provider';
-import {productValidationListMock} from '@/../.storybook/mock/api-routes/product-validations';
 import ActionsTypes from '@/store/modules/product-feed/actions-types';
 import actions from '@/store/modules/product-feed/actions';
-import {ProductStatus} from './state';
+import MutationsTypes from '@/store/modules/product-feed/mutations-types';
+import {RequestState} from '@/store/types';
 import {formatMappingToApi} from '@/utils/AttributeMapping';
+
+const fetchMock = createFetchMock(vi);
+fetchMock.enableMocks();
 
 const allDetailsFromState = {
   autoImportTaxSettings: false,
@@ -386,64 +389,174 @@ describe('createProductFeedApiPayload', () => {
   });
 });
 
-describe('Product Feed actions', () => {
-  describe(ActionsTypes.REQUEST_REPORTING_PRODUCTS_BY_STATUS_LIST, () => {
-    const fetchMock = createFetchMock(vi);
-    fetchMock.enableMocks();
-    initOnboardingClient({
-      apiUrl: 'http://perdu.com',
+describe('durable local synchronization actions', () => {
+  const job = {
+    jobId: 91,
+    status: 'running',
+    total: 10,
+    succeeded: 4,
+    failed: 1,
+    skipped: 0,
+    pending: 5,
+    errors: [],
+  };
+
+  beforeEach(() => {
+    fetchMock.resetMocks();
+    localStorage.clear();
+    initOnboardingClient({apiUrl: 'https://admin.test/local-google-api'});
+  });
+
+  it('loads server-authoritative filters while retained settings and mappings stay local', async () => {
+    const filters = [{attribute: 'active', condition: 'equals', value: true}];
+    fetchMock.mockResponse(JSON.stringify({filters}));
+    const commit = vi.fn();
+    const state = {
+      settings: {productFilter: []},
+      attributeMapping: {},
+    };
+
+    const settings = await actions[ActionsTypes.GET_PRODUCT_FEED_SETTINGS]({
+      commit,
+      state,
+      rootGetters: {},
     });
+    await actions[ActionsTypes.GET_PRODUCT_FILTER_SETTINGS]({commit, state});
+    await actions[ActionsTypes.REQUEST_ATTRIBUTE_MAPPING]({commit, state});
 
-    it('loads & returns the disapproved products', async () => {
-      fetchMock.resetMocks();
-      fetchMock.mockResponse(JSON.stringify({...productValidationListMock}));
-
-      const commit = vi.fn();
-      const getters = {
-        GET_PRODUCTS_VALIDATION_PAGE_SIZE: 100,
-      };
-
-      const payload = {
-        status: ProductStatus.Disapproved,
-        limit: 100,
-      };
-
-      const result = await actions[ActionsTypes.REQUEST_REPORTING_PRODUCTS_BY_STATUS_LIST](
-        {
-          commit,
-          getters,
-        },
-        payload,
-      );
-
-      expect(commit).toHaveBeenCalledTimes(3);
-      expect(result).toEqual(productValidationListMock.results);
+    expect(settings).toBe(state.settings);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(JSON.parse(String(fetchMock.mock.calls[0][1]?.body))).toEqual({
+      method: 'GET',
+      path: 'product-filters',
+      body: null,
     });
+    expect(commit).toHaveBeenCalledWith(
+      MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS,
+      {name: 'productFilter', data: filters},
+    );
+  });
 
-    it('resets the products list when the number of products to load per page changes', async () => {
-      fetchMock.resetMocks();
-      fetchMock.mockResponse(JSON.stringify({...productValidationListMock}));
+  it('persists final filters through the exact local API envelope', async () => {
+    const filters = [{attribute: 'price', condition: 'greater_than', value: 20}];
+    fetchMock.mockResponse(JSON.stringify({filters}));
+    const commit = vi.fn();
 
-      const commit = vi.fn();
-      const getters = {
-        GET_PRODUCTS_VALIDATION_PAGE_SIZE: 100,
-      };
+    const result = await actions[ActionsTypes.SAVE_PRODUCT_FILTER_SETTINGS](
+      {commit},
+      {filters},
+    );
 
-      const payload = {
-        status: ProductStatus.Disapproved,
-        limit: 50,
-      };
+    expect(result).toEqual(filters);
+    expect(JSON.parse(String(fetchMock.mock.calls[0][1]?.body))).toEqual({
+      method: 'POST',
+      path: 'product-filters',
+      body: {filters},
+    });
+    expect(commit).toHaveBeenCalledWith(
+      MutationsTypes.SET_SELECTED_PRODUCT_FEED_SETTINGS,
+      {name: 'productFilter', data: filters},
+    );
+  });
 
-      const result = await actions[ActionsTypes.REQUEST_REPORTING_PRODUCTS_BY_STATUS_LIST](
-        {
-          commit,
-          getters,
-        },
-        payload,
-      );
+  it('warms up only the persisted durable job through the local status route', async () => {
+    localStorage.setItem('tinyLuxGoogleSyncJobId', '91');
+    const dispatch = vi.fn().mockResolvedValue(job);
+    const state = {warmedUp: RequestState.IDLE};
 
-      expect(commit).toHaveBeenCalledTimes(6);
-      expect(result).toEqual(productValidationListMock.results);
+    await actions[ActionsTypes.WARMUP_STORE]({dispatch, state, getters: {}});
+
+    expect(dispatch).toHaveBeenCalledTimes(1);
+    expect(dispatch).toHaveBeenCalledWith(ActionsTypes.GET_SYNC_JOB_STATUS, {jobId: 91});
+    expect(state.warmedUp).toBe(RequestState.SUCCESS);
+  });
+
+  it('creates and runs a bounded local synchronization job', async () => {
+    fetchMock.mockResponses(
+      [JSON.stringify({jobId: 91}), {status: 200}],
+      [JSON.stringify(job), {status: 200}],
+    );
+    const commit = vi.fn();
+    const dispatch = vi.fn(async (action, payload) => (
+      actions[action]({commit, dispatch}, payload)
+    ));
+
+    const result = await actions[ActionsTypes.START_SYNC_JOB](
+      {commit, dispatch},
+      {full: true},
+    );
+
+    expect(result).toEqual(job);
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(JSON.parse(String(fetchMock.mock.calls[0][1]?.body))).toEqual({
+      method: 'POST',
+      path: 'sync/jobs',
+      body: {full: true},
+    });
+    expect(JSON.parse(String(fetchMock.mock.calls[1][1]?.body))).toEqual({
+      method: 'POST',
+      path: 'sync/jobs/run',
+      body: {jobId: 91, limit: 25},
+    });
+    expect(commit).toHaveBeenLastCalledWith(MutationsTypes.SET_SYNC_JOB, job);
+  });
+
+  it('loads durable counts and sanitized failures by job id', async () => {
+    const partial = {
+      ...job,
+      status: 'partial',
+      succeeded: 8,
+      failed: 2,
+      pending: 0,
+      errors: [{
+        offerKey: 'lamp-1',
+        code: 'invalid_value',
+        field: 'title',
+        message: 'The title is too long.',
+      }],
+    };
+    fetchMock.mockResponse(JSON.stringify(partial));
+    const commit = vi.fn();
+
+    const result = await actions[ActionsTypes.GET_SYNC_JOB_STATUS](
+      {commit},
+      {jobId: 91},
+    );
+
+    expect(result).toEqual(partial);
+    expect(JSON.parse(String(fetchMock.mock.calls[0][1]?.body))).toEqual({
+      method: 'GET',
+      path: 'sync/jobs/status',
+      body: {jobId: 91},
+    });
+    expect(commit).toHaveBeenCalledWith(MutationsTypes.SET_SYNC_JOB, partial);
+  });
+
+  it('retries only failed products and resumes the same durable job', async () => {
+    fetchMock.mockResponses(
+      [JSON.stringify({jobId: 91}), {status: 200}],
+      [JSON.stringify(job), {status: 200}],
+    );
+    const commit = vi.fn();
+    const dispatch = vi.fn(async (action, payload) => (
+      actions[action]({commit, dispatch}, payload)
+    ));
+
+    const result = await actions[ActionsTypes.RETRY_FAILED_SYNC_JOB](
+      {commit, dispatch},
+      {jobId: 91},
+    );
+
+    expect(result).toEqual(job);
+    expect(JSON.parse(String(fetchMock.mock.calls[0][1]?.body))).toEqual({
+      method: 'POST',
+      path: 'sync/jobs/retry',
+      body: {jobId: 91},
+    });
+    expect(JSON.parse(String(fetchMock.mock.calls[1][1]?.body))).toEqual({
+      method: 'POST',
+      path: 'sync/jobs/run',
+      body: {jobId: 91, limit: 25},
     });
   });
 });

@@ -4,7 +4,7 @@ import config, {cloneStore} from '@/../tests/init';
 import App from '@/App.vue';
 
 describe('App local Google compatibility', () => {
-  it('renders and tracks without removed PrestaShop Accounts identity state', () => {
+  it('renders without remote health checks or telemetry events', () => {
     const track = vi.fn();
     const store = new Vuex.Store(cloneStore());
     vi.spyOn(store, 'dispatch').mockResolvedValue(undefined);
@@ -19,10 +19,8 @@ describe('App local Google compatibility', () => {
       stubs: ['router-view'],
     });
 
-    expect(() => wrapper.vm.throwSegmentEvent()).not.toThrow();
-    expect(track).toHaveBeenCalledWith('[GGL] Clicked on reporting tab', expect.not.objectContaining({
-      userId: expect.anything(),
-    }));
+    expect(store.dispatch).not.toHaveBeenCalledWith('app/CHECK_FOR_AD_BLOCKER');
+    expect(track).not.toHaveBeenCalled();
     expect(wrapper.find('#helper-shopid').exists()).toBe(false);
   });
 });

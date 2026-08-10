@@ -37,7 +37,7 @@ describe('local Google route guards', () => {
     expect(next).toHaveBeenCalledWith({name: 'configuration'});
   });
 
-  it('routes an unconfigured local store to landing without warmup', async () => {
+  it('routes an unconfigured local store directly to configuration after warmup', async () => {
     store.state.accounts.googleAccount.configured = false;
     store.state.accounts.googleAccount.connected = false;
     const dispatch = vi.spyOn(store, 'dispatch').mockResolvedValue(undefined);
@@ -45,7 +45,7 @@ describe('local Google route guards', () => {
 
     await initialPath({}, {}, next);
 
-    expect(dispatch).not.toHaveBeenCalled();
-    expect(next).toHaveBeenCalledWith({name: 'landing-page'});
+    expect(dispatch).toHaveBeenCalledWith('accounts/WARMUP_STORE');
+    expect(next).toHaveBeenCalledWith({name: 'configuration'});
   });
 });

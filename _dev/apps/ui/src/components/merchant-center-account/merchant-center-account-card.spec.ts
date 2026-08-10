@@ -8,7 +8,6 @@ import config, {addBootstrapToVue, cloneStore, localVue} from '@/../tests/init';
 
 import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
 import actionsTypes from '../../store/modules/accounts/actions-types';
-import {WebsiteClaimErrorReason} from '../../store/modules/accounts/state';
 
 const fetchMock = createFetchMock(vi);
 fetchMock.enableMocks();
@@ -137,25 +136,6 @@ describe('merchant-center-account-card.vue', () => {
     expect(wrapper.text()).toContain('Tiny Lux - 123');
     expect(wrapper.emitted('selectMerchantCenterAccount')).toBeUndefined();
   });
-
-  it('does not render the dormant transfer-claim control', () => {
-    const store = new Vuex.Store(cloneStore());
-    const account = {id: '123', name: 'Tiny Lux'};
-    store.commit('accounts/SAVE_GMC_LIST', [account]);
-    store.commit('accounts/SAVE_GMC', account);
-    store.commit(
-      'accounts/SAVE_STATUS_OVERRIDE_CLAIMING',
-      WebsiteClaimErrorReason.OverwriteNeeded,
-    );
-    const wrapper = mount(MerchantCenterAccountCard, {
-      propsData: {isEnabled: true, loading: false},
-      ...config,
-      localVue,
-      store,
-    });
-
-    expect(wrapper.text()).not.toContain('Transfer claim');
-  });
 });
 
 describe('merchant-center-account-card.vue / API errors', () => {
@@ -175,8 +155,8 @@ describe('merchant-center-account-card.vue / API errors', () => {
     await wrapper.vm.$store.dispatch(`accounts/${actionsTypes.REQUEST_GMC_LIST}`);
 
     // Status is on linking failed
-    expect(wrapper.vm.$store.state.accounts.googleMerchantAccount.gmcStatus)
-      .toEqual(WebsiteClaimErrorReason.LinkingFailed);
+    expect(wrapper.vm.$store.state.accounts.googleMerchantAccount.selectionError)
+      .toEqual('LinkingFailed');
     // Alert exists
     expect(wrapper.findComponent(BAlert).exists()).toBeTruthy();
     // With reload button

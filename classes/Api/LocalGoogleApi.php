@@ -13,6 +13,7 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Merchant\MerchantAccountService;
 use PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleConnectionService;
 use PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleCredentialRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthRedirectUriResolver;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogFilterSettingsInterface;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\SyncProcessor;
 use Throwable;
 
@@ -35,6 +36,8 @@ final class LocalGoogleApi
         'POST merchant-accounts/select' => 'selectMerchantAccount',
         'GET merchant-data-sources' => 'dataSources',
         'POST merchant-data-sources' => 'createDataSource',
+        'GET product-filters' => 'productFilters',
+        'POST product-filters' => 'replaceProductFilters',
         'POST sync/jobs' => 'createSyncJob',
         'POST sync/jobs/run' => 'runSyncBatch',
         'GET sync/jobs/status' => 'syncStatus',
@@ -62,6 +65,9 @@ final class LocalGoogleApi
     /** @var SyncProcessor|null */
     private $syncProcessor;
 
+    /** @var CatalogFilterSettingsInterface|null */
+    private $filterSettings;
+
     public function __construct(
         GoogleCredentialRepository $credentials,
         GoogleConnectionService $connections,
@@ -69,7 +75,8 @@ final class LocalGoogleApi
         ?callable $shopIdProvider = null,
         ?callable $employeeIdProvider = null,
         ?MerchantAccountService $merchant = null,
-        ?SyncProcessor $syncProcessor = null
+        ?SyncProcessor $syncProcessor = null,
+        ?CatalogFilterSettingsInterface $filterSettings = null
     ) {
         $this->credentials = $credentials;
         $this->connections = $connections;
@@ -78,6 +85,7 @@ final class LocalGoogleApi
         $this->employeeIdProvider = $employeeIdProvider;
         $this->merchant = $merchant;
         $this->syncProcessor = $syncProcessor;
+        $this->filterSettings = $filterSettings;
     }
 
     /** @param array<string, mixed> $body */
@@ -230,6 +238,33 @@ final class LocalGoogleApi
                 $body['contentLanguage']
             ),
         ]);
+    }
+
+    /** @param array<string, mixed> $body */
+    private function productFilters(array $body): Response
+    {
+        if ([] !== $body) {
+            return $this->error(422, 'invalid_request');
+        }
+
+        return $this->json(200, [
+            'filters' => $this->filterSettings()->filtersForShop($this->shopId()),
+        ]);
+    }
+
+    /** @param array<string, mixed> $body */
+    private function replaceProductFilters(array $body): Response
+    {
+        if (['filters'] !== array_keys($body)
+            || !is_array($body['filters'])
+            || !array_is_list($body['filters'])
+        ) {
+            return $this->error(422, 'invalid_request');
+        }
+        $shopId = $this->shopId();
+        $this->filterSettings()->replaceForShop($shopId, $body['filters']);
+
+        return $this->json(200, ['filters' => $body['filters']]);
     }
 
     /** @param array<string, mixed> $body */
@@ -487,6 +522,15 @@ final class LocalGoogleApi
         }
 
         return $this->syncProcessor;
+    }
+
+    private function filterSettings(): CatalogFilterSettingsInterface
+    {
+        if (null === $this->filterSettings) {
+            throw new \LogicException('Product filter settings are unavailable.');
+        }
+
+        return $this->filterSettings;
     }
 
     /** @param callable(): Response $operation */
