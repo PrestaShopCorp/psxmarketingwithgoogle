@@ -271,7 +271,7 @@ describe('Local Merchant account and data-source actions', () => {
       state: {googleAccount: {merchantAccount: '123'}},
     });
     const created = await actions[ActionsTypes.CREATE_DATA_SOURCE](
-      {commit},
+      {commit, state: {googleAccount: {merchantAccount: '123'}}},
       {feedLabel: 'GB', contentLanguage: 'en'},
     );
 
@@ -290,6 +290,37 @@ describe('Local Merchant account and data-source actions', () => {
       expect(String(options?.body)).not.toContain('access-token');
       expect(String(options?.body)).not.toContain('aggregator');
     });
+  });
+
+  it('ignores a late created data source after the selected Merchant account changes', async () => {
+    const accountState = {googleAccount: {merchantAccount: '123'}};
+    const dataSource = {
+      id: '456',
+      name: 'accounts/123/dataSources/456',
+      displayName: 'Tiny Lux PrestaShop API',
+      input: 'API',
+      primaryProductDataSource: {feedLabel: 'GB', contentLanguage: 'en'},
+    };
+    let releaseResponse;
+    const responseReady = new Promise((resolve) => {
+      releaseResponse = resolve;
+    });
+    fetchMock.mockResponseOnce(async () => {
+      await responseReady;
+
+      return JSON.stringify({dataSource});
+    });
+
+    const creation = actions[ActionsTypes.CREATE_DATA_SOURCE](
+      {commit, state: accountState},
+      {feedLabel: 'GB', contentLanguage: 'en'},
+    );
+    await flushMicrotasks();
+    accountState.googleAccount.merchantAccount = '999';
+    releaseResponse();
+
+    await expect(creation).resolves.toBeNull();
+    expect(commit).not.toHaveBeenCalledWith(MutationsTypes.SAVE_DATA_SOURCE, dataSource);
   });
 });
 

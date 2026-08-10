@@ -224,7 +224,8 @@ export default {
     return json.dataSources;
   },
 
-  async [ActionsTypes.CREATE_DATA_SOURCE]({commit}: Context, payload) {
+  async [ActionsTypes.CREATE_DATA_SOURCE]({commit, state}: Context, payload) {
+    const requestedAccount = state.googleAccount.merchantAccount;
     const json = await (await fetchOnboarding(
       'POST',
       'merchant-data-sources',
@@ -235,6 +236,10 @@ export default {
         },
       },
     )).json();
+
+    if (requestedAccount !== state.googleAccount.merchantAccount) {
+      return null;
+    }
     commit(MutationsTypes.SAVE_DATA_SOURCE, json.dataSource);
 
     return json.dataSource;

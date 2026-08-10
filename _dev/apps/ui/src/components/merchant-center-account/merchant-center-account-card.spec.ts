@@ -72,6 +72,90 @@ describe('merchant-center-account-card.vue', () => {
     expect(() => wrapper.vm.selectMerchantCenterAccount()).not.toThrow();
     expect(wrapper.emitted('selectMerchantCenterAccount')?.[0]).toEqual([{id: '123', name: 'Tiny Lux'}]);
   });
+
+  it('changes a connected Merchant account only after another account is confirmed', async () => {
+    const store = new Vuex.Store(cloneStore());
+    const accounts = [
+      {id: '123', name: 'Tiny Lux'},
+      {id: '999', name: 'Outlet'},
+    ];
+    store.commit('accounts/SAVE_GMC_LIST', accounts);
+    store.commit('accounts/SAVE_GMC', accounts[0]);
+    const wrapper = mount(MerchantCenterAccountCard, {
+      propsData: {isEnabled: true, loading: false},
+      ...config,
+      localVue,
+      store,
+    });
+
+    const changeAccount = wrapper.find('[data-test="change-merchant-account"]');
+    expect(changeAccount.exists()).toBe(true);
+    await changeAccount.trigger('click');
+    expect(wrapper.find('#mcaSelection').exists()).toBe(true);
+
+    await wrapper.setData({selectedMcaIndex: 0});
+    expect(wrapper.find('[data-test="confirm-merchant-account-change"]').attributes('disabled'))
+      .toBe('disabled');
+    expect(wrapper.emitted('selectMerchantCenterAccount')).toBeUndefined();
+
+    await wrapper.setData({selectedMcaIndex: 1});
+    const confirm = wrapper.find('[data-test="confirm-merchant-account-change"]');
+    expect(confirm.exists()).toBe(true);
+    expect(confirm.attributes('disabled')).toBeUndefined();
+    await confirm.trigger('click');
+
+    expect(wrapper.emitted('selectMerchantCenterAccount')?.[0]).toEqual([accounts[1]]);
+    expect(wrapper.text()).not.toContain('create your account');
+    expect(wrapper.text()).not.toContain('Disconnect');
+    expect(wrapper.text()).not.toContain('Transfer claim');
+  });
+
+  it('cancels connected Merchant account selection without persisting', async () => {
+    const store = new Vuex.Store(cloneStore());
+    const accounts = [
+      {id: '123', name: 'Tiny Lux'},
+      {id: '999', name: 'Outlet'},
+    ];
+    store.commit('accounts/SAVE_GMC_LIST', accounts);
+    store.commit('accounts/SAVE_GMC', accounts[0]);
+    const wrapper = mount(MerchantCenterAccountCard, {
+      propsData: {isEnabled: true, loading: false},
+      ...config,
+      localVue,
+      store,
+    });
+
+    const changeAccount = wrapper.find('[data-test="change-merchant-account"]');
+    expect(changeAccount.exists()).toBe(true);
+    await changeAccount.trigger('click');
+    await wrapper.setData({selectedMcaIndex: 1});
+    const cancel = wrapper.find('[data-test="cancel-merchant-account-change"]');
+    expect(cancel.exists()).toBe(true);
+    await cancel.trigger('click');
+
+    expect(wrapper.find('#mcaSelection').exists()).toBe(false);
+    expect(wrapper.text()).toContain('Tiny Lux - 123');
+    expect(wrapper.emitted('selectMerchantCenterAccount')).toBeUndefined();
+  });
+
+  it('does not render the dormant transfer-claim control', () => {
+    const store = new Vuex.Store(cloneStore());
+    const account = {id: '123', name: 'Tiny Lux'};
+    store.commit('accounts/SAVE_GMC_LIST', [account]);
+    store.commit('accounts/SAVE_GMC', account);
+    store.commit(
+      'accounts/SAVE_STATUS_OVERRIDE_CLAIMING',
+      WebsiteClaimErrorReason.OverwriteNeeded,
+    );
+    const wrapper = mount(MerchantCenterAccountCard, {
+      propsData: {isEnabled: true, loading: false},
+      ...config,
+      localVue,
+      store,
+    });
+
+    expect(wrapper.text()).not.toContain('Transfer claim');
+  });
 });
 
 describe('merchant-center-account-card.vue / API errors', () => {

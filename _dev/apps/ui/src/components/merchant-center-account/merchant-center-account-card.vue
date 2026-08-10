@@ -49,7 +49,7 @@
             </b-button>
           </div>
           <div
-            v-else
+            v-else-if="!isChangingAccount"
             class="mx-auto d-flex-md mr-md-0 flex-md-shrink-0 text-center"
           >
             <b-dropdown
@@ -69,6 +69,12 @@
                 <span class="sr-only" />
               </template>
               <b-dropdown-item
+                data-test="change-merchant-account"
+                @click="startChangingMerchantAccount"
+              >
+                {{ $t("cta.switchAccount") }}
+              </b-dropdown-item>
+              <b-dropdown-item
                 target="_blank"
                 :href="merchantCenterWebsitePageUrl.businessInfo"
               >
@@ -78,7 +84,7 @@
           </div>
         </div>
         <div
-          v-if="isEnabled && gmcAccountDetails.id === null"
+          v-if="isEnabled && (gmcAccountDetails.id === null || isChangingAccount)"
           class="ml-2 ps_gs-onboardingcard__content"
         >
           <VueShowdown
@@ -101,7 +107,7 @@
                 menu-class="ps-dropdown"
 
                 size="sm"
-                :disabled="isLinking || !!error || shopIsOnMaintenanceMode"
+                :disabled="isLinking || shopIsOnMaintenanceMode"
               >
                 <b-dropdown-item
                   link-class="px-3"
@@ -161,6 +167,28 @@
                   </b-dropdown-item>
                 </b-dropdown-group>
               </b-dropdown>
+              <template v-if="isChangingAccount">
+                <b-button
+                  data-test="confirm-merchant-account-change"
+                  size="sm"
+                  variant="primary"
+                  class="mt-3 mt-md-0 ml-md-3"
+                  :disabled="!hasNewMerchantAccountSelection || isLinking"
+                  @click="selectMerchantCenterAccount"
+                >
+                  {{ $t('cta.saveChange') }}
+                </b-button>
+                <b-button
+                  data-test="cancel-merchant-account-change"
+                  size="sm"
+                  variant="outline-secondary"
+                  class="mt-3 mt-md-0 ml-md-2"
+                  :disabled="isLinking"
+                  @click="cancelMerchantAccountChange"
+                >
+                  {{ $t('cta.cancel') }}
+                </b-button>
+              </template>
             </div>
           </b-form>
           <div class="mt-3">
@@ -275,16 +303,6 @@
               {{ $t('cta.learnAboutSiteClaiming') }}
             </a>
           </p>
-          <div class="d-md-flex text-center align-items-center mt-2">
-            <b-button
-              size="sm"
-              class="mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1"
-              variant="outline-secondary"
-              @click="overrideClaim"
-            >
-              {{ $t("cta.transferClaim") }}
-            </b-button>
-          </div>
         </b-alert>
         <b-alert
           v-else-if="error === WebsiteClaimErrorReason.OverwriteNeededWithManualAction
@@ -450,6 +468,7 @@ export default defineComponent({
   data() {
     return {
       selectedMcaIndex: null,
+      isChangingAccount: false,
       WebsiteClaimErrorReason,
       displaySiteVerified: false,
       needToRefresh: false,
@@ -589,33 +608,55 @@ export default defineComponent({
     },
     isLinkedGmcStillCreating() {
       return this.isEnabled
+        && !this.isChangingAccount
         && this.gmcAccountDetails.id !== null
         && !this.mcaListLoading
         && (this.gmcAccountDetails.name === null || this.gmcAccountDetails.name === undefined);
     },
     isLinkedGmcFullyFetched() {
       return this.isEnabled
+        && !this.isChangingAccount
         && this.gmcAccountDetails.id !== null
         && !this.mcaListLoading
         && this.gmcAccountDetails.name !== null
         && this.gmcAccountDetails.name !== undefined;
     },
+    hasNewMerchantAccountSelection() {
+      if (this.selectedMcaIndex === null || !this.mcaSelectionOptions?.[this.selectedMcaIndex]) {
+        return false;
+      }
+
+      return this.mcaSelectionOptions[this.selectedMcaIndex].id !== this.gmcAccountDetails.id;
+    },
   },
   methods: {
     selectMerchantCenterAccount() {
+      if (this.selectedMcaIndex === null) {
+        return;
+      }
+
+      const selectedAccount = this.mcaSelectionOptions?.[this.selectedMcaIndex];
+
+      if (!selectedAccount
+        || (this.isChangingAccount && selectedAccount.id === this.gmcAccountDetails.id)
+      ) {
+        return;
+      }
       this.$segment.track('[GGL] Connect my existing GMC', {
         module: 'psxmarketingwithgoogle',
         params: SegmentGenericParams,
       });
-      this.$emit('selectMerchantCenterAccount', this.mcaSelectionOptions[this.selectedMcaIndex]);
+      this.$emit('selectMerchantCenterAccount', selectedAccount);
       this.$store.commit('accounts/SAVE_MCA_CONNECTED_AUTOMATICALLY', false);
+      this.cancelMerchantAccountChange();
     },
-    overrideClaim() {
-      if (this.$refs.mcaPopinOverrideClaim) {
-        this.$bvModal.show(
-          this.$refs.mcaPopinOverrideClaim.$refs.modal.id,
-        );
-      }
+    startChangingMerchantAccount() {
+      this.selectedMcaIndex = null;
+      this.isChangingAccount = true;
+    },
+    cancelMerchantAccountChange() {
+      this.selectedMcaIndex = null;
+      this.isChangingAccount = false;
     },
     checkAgainForOverwriteNeededWithManualAction() {
       this.needToRefresh = true;
