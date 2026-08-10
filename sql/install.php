@@ -43,6 +43,12 @@ $sql = [
     'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'psxmarketingwithgoogle_sync_job` (
         `id_job` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
         `id_shop` INT UNSIGNED NOT NULL,
+        `merchant_account` VARCHAR(64) NOT NULL,
+        `data_source` VARCHAR(128) NOT NULL,
+        `id_lang` INT UNSIGNED NOT NULL,
+        `content_language` VARCHAR(35) NOT NULL,
+        `feed_label` VARCHAR(20) NOT NULL,
+        `full_sync` TINYINT(1) UNSIGNED NOT NULL,
         `status` ENUM(\'pending\',\'running\',\'completed\',\'partial\',\'failed\') NOT NULL,
         `total` INT UNSIGNED NOT NULL DEFAULT 0,
         `succeeded` INT UNSIGNED NOT NULL DEFAULT 0,
@@ -52,7 +58,8 @@ $sql = [
         `started_at` DATETIME NULL,
         `finished_at` DATETIME NULL,
         PRIMARY KEY (`id_job`),
-        INDEX `idx_psxmg_sync_job_shop_status` (`id_shop`, `status`)
+        INDEX `idx_psxmg_sync_job_shop_status` (`id_shop`, `status`),
+        INDEX `idx_psxmg_sync_job_oldest` (`id_shop`, `status`, `created_at`, `id_job`)
     ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8mb4;',
     'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'psxmarketingwithgoogle_sync_item` (
         `id_item` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -60,13 +67,17 @@ $sql = [
         `offer_key` VARCHAR(191) NOT NULL,
         `status` ENUM(\'pending\',\'running\',\'success\',\'failed\',\'skipped\') NOT NULL,
         `attempts` TINYINT UNSIGNED NOT NULL DEFAULT 0,
+        `claim_token` CHAR(32) NULL,
+        `next_attempt_at` DATETIME NULL,
         `error_code` VARCHAR(64) NULL,
         `error_field` VARCHAR(191) NULL,
         `error_message` VARCHAR(500) NULL,
         `updated_at` DATETIME NOT NULL,
         PRIMARY KEY (`id_item`),
         UNIQUE KEY `uniq_psxmg_sync_item_job_offer` (`id_job`, `offer_key`),
-        INDEX `idx_psxmg_sync_item_job_status` (`id_job`, `status`)
+        INDEX `idx_psxmg_sync_item_job_status` (`id_job`, `status`),
+        INDEX `idx_psxmg_sync_item_eligible` (`id_job`, `status`, `next_attempt_at`, `id_item`),
+        INDEX `idx_psxmg_sync_item_claim` (`id_job`, `claim_token`)
     ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8mb4;',
 ];
 
