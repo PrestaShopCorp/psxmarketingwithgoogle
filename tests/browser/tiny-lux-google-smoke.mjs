@@ -209,7 +209,7 @@ async function main() {
     const moduleText = (await moduleRoot.innerText()).trim();
     assert.ok(moduleText.length > 80, 'Tiny Lux Google module rendered a blank shell');
     assert.match(moduleText, /Tiny Lux Google/);
-    assert.match(moduleText, /Sign in with Google/);
+    assert.match(moduleText, /Connect your Google account/);
     assert.match(moduleText, /Developer token required/);
     assert.doesNotMatch(moduleText, /PrestaShop/i);
     assert.doesNotMatch(moduleText, /Billing information/i);

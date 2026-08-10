@@ -149,10 +149,14 @@ class AdminTinyLuxGoogleApiController extends ModuleAdminController
     protected function hasAuthenticatedEmployee(): bool
     {
         try {
+            // Legacy ModuleAdminController requests authenticate through the
+            // back-office cookie and populate Context::employee. They do not
+            // populate Symfony's user provider, so Employee::isLoggedBack()
+            // incorrectly reports false here. Token and view permission are
+            // enforced immediately after this context identity check.
             return isset($this->context->employee)
                 && $this->context->employee instanceof Employee
-                && 0 < (int) $this->context->employee->id
-                && $this->context->employee->isLoggedBack();
+                && 0 < (int) $this->context->employee->id;
         } catch (Throwable $exception) {
             unset($exception);
 

@@ -9,6 +9,20 @@ require_once __DIR__ . '/../../../controllers/admin/AdminTinyLuxGoogleApiControl
 
 class AdminTinyLuxGoogleApiControllerTest extends TestCase
 {
+    public function testLegacyAdminEmployeeContextIsAcceptedWithoutSymfonyUserProviderState(): void
+    {
+        $controller = (new \ReflectionClass(EmployeeAuthenticationProbeController::class))
+            ->newInstanceWithoutConstructor();
+        $employee = (new \ReflectionClass(\Employee::class))->newInstanceWithoutConstructor();
+        $employee->id = 42;
+        $controller->setEmployee($employee);
+
+        self::assertTrue($controller->hasAuthenticatedLegacyEmployee());
+
+        $employee->id = 0;
+        self::assertFalse($controller->hasAuthenticatedLegacyEmployee());
+    }
+
     public function testUnauthenticatedEmployeeIsTerminatedBeforeTokenBodyOrDispatch(): void
     {
         $controller = new TestableTinyLuxGoogleApiController(false, true, true);
@@ -198,6 +212,20 @@ class AdminTinyLuxGoogleApiControllerTest extends TestCase
         self::assertIsArray($decoded);
 
         return $decoded;
+    }
+}
+
+class EmployeeAuthenticationProbeController extends \AdminTinyLuxGoogleApiController
+{
+    public function setEmployee(\Employee $employee): void
+    {
+        $this->context = new \stdClass();
+        $this->context->employee = $employee;
+    }
+
+    public function hasAuthenticatedLegacyEmployee(): bool
+    {
+        return parent::hasAuthenticatedEmployee();
     }
 }
 
