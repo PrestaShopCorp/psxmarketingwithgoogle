@@ -99,6 +99,32 @@ class CatalogProductSourceTest extends TestCase
         }
     }
 
+    public function testRejectsNonAsciiOrMalformedRfc3986CatalogUrlsBeforeEmission(): void
+    {
+        $provider = new RecordingCatalogProvider(static function (int $productId, int $attributeId): CatalogProduct {
+            return RecordingCatalogProvider::catalogProduct(
+                $productId,
+                $attributeId,
+                "https://thetinylux.com/caf\u{00E9}",
+                'https://thetinylux.com/img/lamp%GG|large.jpg'
+            );
+        });
+        $source = $this->source(new RecordingProductOfferEnumerator([[42, 0]]), $provider);
+
+        try {
+            $source->page(1, 2, 0, 1);
+            self::fail('A source must not emit non-ASCII or malformed RFC3986 URLs.');
+        } catch (ProductValidationException $exception) {
+            self::assertSame([
+                ['field' => 'link', 'code' => 'invalid_url'],
+                ['field' => 'imageLink', 'code' => 'invalid_url'],
+            ], $exception->errors());
+            self::assertSame('Merchant product validation failed.', $exception->getMessage());
+            self::assertStringNotContainsString('caf', $exception->getMessage());
+            self::assertStringNotContainsString('%GG', $exception->getMessage());
+        }
+    }
+
     public function testRejectsDuplicateOrNonAdvancingFlattenedOfferReferences(): void
     {
         $source = $this->source(

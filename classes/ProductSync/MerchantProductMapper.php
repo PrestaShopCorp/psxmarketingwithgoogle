@@ -12,7 +12,6 @@ final class MerchantProductMapper
     private const TITLE_MAX_CHARACTERS = 150;
     private const DESCRIPTION_MAX_CHARACTERS = 5000;
     private const OPTIONAL_TEXT_MAX_CHARACTERS = 70;
-    private const URL_MAX_CHARACTERS = 2000;
     private const MAX_AMOUNT_MICROS = '9223372036854775807';
 
     /** @return array<string, mixed> */
@@ -146,23 +145,7 @@ final class MerchantProductMapper
 
             return;
         }
-        if (self::URL_MAX_CHARACTERS < $this->length($url)
-            || $this->containsControl($url)
-            || 1 === preg_match('/\s/u', $url)
-            || false !== strpos($url, '\\')
-        ) {
-            $errors[] = ['field' => $field, 'code' => 'invalid_url'];
-
-            return;
-        }
-        $parts = parse_url($url);
-        if (!is_array($parts)
-            || !isset($parts['scheme'], $parts['host'])
-            || !in_array(strtolower($parts['scheme']), ['http', 'https'], true)
-            || isset($parts['user'])
-            || isset($parts['pass'])
-            || '' === $parts['host']
-        ) {
+        if (!Rfc3986UrlValidator::isValidHttpUrl($url)) {
             $errors[] = ['field' => $field, 'code' => 'invalid_url'];
         }
     }

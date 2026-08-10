@@ -76,10 +76,10 @@ class MerchantProductMapperTest extends TestCase
         self::assertSame('First Second Third', $mapped['productAttributes']['description']);
     }
 
-    public function testAcceptsMerchantV1MaximumTitleAndUrlLengthsInUnicodeCharacters(): void
+    public function testAcceptsMerchantV1MaximumTitleAndAsciiUrlLengths(): void
     {
         $urlPrefix = 'https://example.com/';
-        $link = $urlPrefix . str_repeat("\u{00E9}", 2000 - mb_strlen($urlPrefix, 'UTF-8'));
+        $link = $urlPrefix . str_repeat('a', 2000 - strlen($urlPrefix));
         $feedLabel = str_repeat('A', 17) . '_GB';
 
         $mapped = $this->mapper->map($this->product([
@@ -89,9 +89,25 @@ class MerchantProductMapperTest extends TestCase
         ]), 'en', $feedLabel);
 
         self::assertSame(150, mb_strlen($mapped['productAttributes']['title'], 'UTF-8'));
-        self::assertSame(2000, mb_strlen($mapped['productAttributes']['link'], 'UTF-8'));
-        self::assertSame(2000, mb_strlen($mapped['productAttributes']['imageLink'], 'UTF-8'));
+        self::assertSame(2000, strlen($mapped['productAttributes']['link']));
+        self::assertSame(2000, strlen($mapped['productAttributes']['imageLink']));
         self::assertSame($feedLabel, $mapped['feedLabel']);
+    }
+
+    public function testAcceptsLocalhostPortWithEncodedQueryAndFragment(): void
+    {
+        $url = 'https://localhost:8080/products/lamp?name=Tiny%20Lux&variant=7#details';
+
+        $mapped = $this->mapper->map($this->product([
+            'link' => $url,
+            'imageLink' => 'https://localhost:8080/img/lamp%20large.jpg',
+        ]), 'en', 'GB');
+
+        self::assertSame($url, $mapped['productAttributes']['link']);
+        self::assertSame(
+            'https://localhost:8080/img/lamp%20large.jpg',
+            $mapped['productAttributes']['imageLink']
+        );
     }
 
     public function testTruncatesDescriptionToFiveThousandUnicodeCharacters(): void
@@ -216,8 +232,16 @@ class MerchantProductMapperTest extends TestCase
             'title over 150 Unicode characters' => [['title' => str_repeat("\u{706F}", 151)], 'en', 'GB', 'title', 'too_long'],
             'empty description after normalization' => [['description' => '<p> </p>'], 'en', 'GB', 'description', 'required'],
             'relative product URL' => [['link' => '/products/lamp'], 'en', 'GB', 'link', 'invalid_url'],
-            'product URL over 2000 Unicode characters' => [['link' => 'https://example.com/' . str_repeat('a', 1981)], 'en', 'GB', 'link', 'invalid_url'],
-            'image URL over 2000 Unicode characters' => [['imageLink' => 'https://example.com/' . str_repeat('a', 1981)], 'en', 'GB', 'imageLink', 'invalid_url'],
+            'product URL over 2000 ASCII bytes' => [['link' => 'https://example.com/' . str_repeat('a', 1981)], 'en', 'GB', 'link', 'invalid_url'],
+            'image URL over 2000 ASCII bytes' => [['imageLink' => 'https://example.com/' . str_repeat('a', 1981)], 'en', 'GB', 'imageLink', 'invalid_url'],
+            'raw Unicode product URL' => [['link' => "https://example.com/caf\u{00E9}"], 'en', 'GB', 'link', 'invalid_url'],
+            'raw Unicode image URL' => [['imageLink' => "https://example.com/caf\u{00E9}.jpg"], 'en', 'GB', 'imageLink', 'invalid_url'],
+            'short percent escape' => [['link' => 'https://example.com/lamp%2'], 'en', 'GB', 'link', 'invalid_url'],
+            'non-hex percent escape' => [['imageLink' => 'https://example.com/lamp%GG.jpg'], 'en', 'GB', 'imageLink', 'invalid_url'],
+            'forbidden braces' => [['link' => 'https://example.com/{lamp}'], 'en', 'GB', 'link', 'invalid_url'],
+            'forbidden pipe' => [['imageLink' => 'https://example.com/lamp|large.jpg'], 'en', 'GB', 'imageLink', 'invalid_url'],
+            'forbidden quote' => [['link' => 'https://example.com/"lamp"'], 'en', 'GB', 'link', 'invalid_url'],
+            'forbidden angle brackets' => [['imageLink' => 'https://example.com/<lamp>.jpg'], 'en', 'GB', 'imageLink', 'invalid_url'],
             'URL credentials' => [['link' => 'https://user:secret@evil.example/lamp'], 'en', 'GB', 'link', 'invalid_url'],
             'URL control character' => [['link' => "https://evil.example/lamp\nnext"], 'en', 'GB', 'link', 'invalid_url'],
             'non-http image URL' => [['imageLink' => 'ftp://evil.example/lamp.jpg'], 'en', 'GB', 'imageLink', 'invalid_url'],

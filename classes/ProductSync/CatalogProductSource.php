@@ -14,7 +14,6 @@ use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\Pro
 final class CatalogProductSource
 {
     private const MAX_PAGE_SIZE = 250;
-    private const URL_MAX_CHARACTERS = 2000;
 
     /** @var ProductEnumerator */
     private $productEnumerator;
@@ -145,23 +144,7 @@ final class CatalogProductSource
 
             return;
         }
-        if (self::URL_MAX_CHARACTERS < mb_strlen($url, 'UTF-8')
-            || 1 === preg_match('/[\x00-\x1F\x7F]/', $url)
-            || 1 === preg_match('/\s/u', $url)
-            || false !== strpos($url, '\\')
-        ) {
-            $errors[] = ['field' => $field, 'code' => 'invalid_url'];
-
-            return;
-        }
-        $parts = parse_url($url);
-        if (!is_array($parts)
-            || !isset($parts['scheme'], $parts['host'])
-            || !in_array(strtolower($parts['scheme']), ['http', 'https'], true)
-            || '' === $parts['host']
-            || isset($parts['user'])
-            || isset($parts['pass'])
-        ) {
+        if (!Rfc3986UrlValidator::isValidHttpUrl($url)) {
             $errors[] = ['field' => $field, 'code' => 'invalid_url'];
         }
     }
