@@ -1,227 +1,180 @@
-![Marketing With Google logo](views/img/google-icon.svg)
+![Tiny Lux Google](views/img/google-icon.svg)
 
-# Marketing With Google (psxmarketingwithgoogle)
+# Tiny Lux Google 2.0.0
 
-[![JS tests](https://github.com/PrestaShopCorp/psxmarketingwithgoogle/actions/workflows/js.yml/badge.svg)](https://github.com/PrestaShopCorp/psxmarketingwithgoogle/actions/workflows/js.yml)
-[![Storybook CI/CD](https://github.com/PrestaShopCorp/psxmarketingwithgoogle/actions/workflows/storybook-ci-cd.yml/badge.svg)](https://github.com/PrestaShopCorp/psxmarketingwithgoogle/actions/workflows/storybook-ci-cd.yml)
-[![PHP tests](https://github.com/PrestaShopCorp/psxmarketingwithgoogle/actions/workflows/php.yml/badge.svg)](https://github.com/PrestaShopCorp/psxmarketingwithgoogle/actions/workflows/php.yml)
+Tiny Lux Google is an in-place fork of the `psxmarketingwithgoogle` module. It
+connects a shop directly to Google OAuth, Merchant Center, and Merchant API v1.
+It does not use a PrestaShop Account, Billing, CloudSync, EventBus, Segment, or
+Sentry service.
 
-## About
+Google Ads is deliberately unavailable in 2.0.0. The Back Office shows
+**Developer token required** and makes no Google Ads API request.
 
-**Sync your product catalog with Google**
+## Requirements
 
-Connect your store to Google Merchant Center and synchronize your entire product catalog in a few clicks. Product attributes such as price and availability will be automatically updated everyday.
+- PrestaShop 9.1.4 (PHP 8.1 or newer).
+- An HTTPS shop URL that Google can reach.
+- A Google Cloud OAuth 2.0 **Web application** client.
+- Merchant API enabled in that Google Cloud project.
+- A Google user with access to an existing Merchant Center account.
+- The Cloud project registered for Merchant API access with that Merchant
+  Center account.
 
-**Enable free listings for your products**
+## Install or upgrade
 
-Free listings allow to show your product attributes, including image and price in organically-ranked listings on the Shopping tab. 
+The technical module name remains `psxmarketingwithgoogle`, so 2.0.0 upgrades
+the existing module in place.
 
-Once your catalog has been synchronised, enable free listings on your dashboard and start showing your products on the Shopping tab for free.
+For a fresh installation, upload
+`psxmarketingwithgoogle-v2.0.0-tinylux.zip` in the Back Office module manager,
+then install and enable **Tiny Lux Google**.
 
-**Boost your reach and sales with Performance Max**
+Before upgrading an existing installation:
 
-Want to maximize your campaign performance and find the right customers wherever they are? From one single campaign, Performance Max collects data across different Google channels, and optimises your campaign performance by showing where your ads have higher chances of driving conversion.
+1. Back up the current module directory, database, and module configuration.
+2. Disable `psxmarketingwithgoogle`.
+3. Replace its directory with the single `psxmarketingwithgoogle/` directory
+   extracted from the 2.0.0 archive.
+4. Run the module upgrade and clear the application cache.
+5. Enable the module and confirm that its version is `2.0.0`.
 
-## Download & Installation
+For a console-managed shop, steps 4 and 5 are:
 
-Modules archives can be found and downloaded:
-* On the [PrestaShop Addons Marketplace](https://addons.prestashop.com/en/essentials/85751-prestashop-marketing-with-google-.html) (Latest stable release only)
-* On the [releases page](https://github.com/PrestaShopCorp/psxmarketingwithgoogle/releases) of this repository (Stable & beta releases available)
-
-
-Downloaded archives can be uploaded on PrestaShop instances, as detailed in the [user documentation](https://doc.prestashop.com/display/PS17/Modules+Selection#ModulesSelection-Uploadingamodulemanually).
-
-## Building
-
-This part covers the steps to get this project ready locally.
-
-In order to run on a PrestaShop instance, dependencies needs to be downloaded and the JS application built.
-
-### PHP
-
-Retrieve dependencies with composer
-
-```
-composer install
-# or
-make composer-install
-```
-
-Composer has been configured in authoritative mode, which means it won't look in the filesystem when a class is not found in the current autoloader.
-When a class is added or deleted, it is required to rerun the above command.
-
-### VueJS
-
-With Node 20+, the following commands need to be run in the `_dev/` folder and requires pnpm to be installed. If you do not have it:
-
-```
-npm install -g pnpm
+```bash
+php bin/console prestashop:module upgrade psxmarketingwithgoogle --no-interaction
+php bin/console cache:clear --no-warmup
+php bin/console prestashop:module enable psxmarketingwithgoogle --no-interaction
 ```
 
-To build the application in production mode:
+The 2.0.0 migration creates encrypted connection/state storage and durable sync
+job/item tables. Do not delete the existing catalog configuration during an
+upgrade.
 
-```
-pnpm install
-pnpm -r build
+## Configure Google OAuth callbacks
 
-# or 
+In Google Cloud Console, open the Web application OAuth client and add the
+appropriate value under **Authorized redirect URIs**. This server-side flow
+does not require an Authorized JavaScript origin.
 
-make vuejs
-```
+Production must use this exact callback:
 
-To compile and watch for new changes (development mode):
-
-```
-pnpm install
-
-pnpm -r dev
+```text
+https://thetinylux.com/module/tlgoogleshopping/oauth
 ```
 
-## Dev environment
+For a public development shop at `dev-shop.example`, use:
 
-For getting a locally shop with the module installed, you can use the following commands:
-```
-make docker-up
-```
-
-It will create a docker container with a PrestaShop instance and the module installed and a phpMyAdmin instance.
-You can configure the port for multiple instances & choose a specific version of PrestaShop.
-All configuration is in the folder `e2e-env`.
-
-## Testing
-
-Tests will be run at each commit on this repository or any pull-request. These commands reproduce the checks done by the CI.
-
-* JS checks: Unit tests & coding standards
-
-```
-pnpm -r lint
-pnpm -r test:unit
-
-# or
-
-make test-front
+```text
+https://dev-shop.example/module/tlgoogleshopping/oauth
 ```
 
-* PHP checks: Unit tests, coding standards...
+If the shop is installed below a base path, that path precedes `/module/...`.
+The canonical value is the exact HTTPS callback displayed in the Tiny Lux
+Google credential card. Set the shop's public SSL domain first, add that exact
+value to the Google client, and ensure the downloaded JSON lists it in
+`web.redirect_uris` before importing the file. A localhost callback is not a
+substitute for the public development callback.
 
+## Import credentials securely
+
+Open **Tiny Lux Google** in the Back Office. In **Google OAuth web client**,
+select the downloaded Web-client JSON. The authenticated local controller
+validates the file and callback, encrypts the Client Secret with the shop key,
+and invalidates any connection that belonged to a previous client. The secret
+and refresh token are never returned to the browser after storage.
+
+The credential JSON is deployment input only:
+
+- never copy it into the module directory;
+- never commit it or place it in a release archive;
+- do not paste it into logs, tickets, command history, or screenshots; and
+- delete temporary server/container copies immediately after successful
+  encrypted import.
+
+After import, select **Sign in with Google**, complete consent, select the
+intended Merchant Center account, and create or reuse the module's API data
+source.
+
+## Controlled product synchronization
+
+Start with a small manual job from the product-feed area. Process a bounded
+batch, review its succeeded/failed/skipped/pending totals, and confirm the offer
+IDs in Merchant Center before scheduling the full catalog. Retrying a partial
+job processes failed and pending items only; successful offer identities are
+not duplicated.
+
+Permanent product validation errors must be corrected in the catalog or
+mapping before retry. Transient Merchant errors use bounded backoff.
+
+## Protected cron
+
+Credential import creates a high-entropy, encrypted per-shop cron token. It is
+intentionally excluded from browser responses. A trusted deployment operator
+must transfer it directly from server-side secret provisioning to the
+scheduler's secret store without logging it.
+
+Run the protected endpoint daily (and often enough to keep Merchant product
+data current):
+
+```text
+GET https://<shop-host>/module/psxmarketingwithgoogle/cron?shop=<shop-id>&token=<secret>&limit=25
 ```
-vendor/bin/php-cs-fixer fix
 
-vendor/bin/phpunit tests/
+The route also has the public alias `/module/tlgoogleshopping/cron`. `shop` and
+`limit` are positive integers; the batch limit is capped at 25. Treat the full
+URL as a secret because its query contains the token. Configure the reverse
+proxy and scheduler to redact the query string from access logs. A failed
+authorization response does not reveal whether a shop, job, or account exists.
 
-docker run -tid --rm -v ps-volume:/var/www/html --name temp-ps prestashop/prestashop; docker run --rm --volumes-from temp-ps -v $PWD:/web/module -e _PS_ROOT_DIR_=/var/www/html --workdir=/web/module phpstan/phpstan analyse --configuration=/web/module/tests/phpstan/phpstan.neon;
+## Build and verify the release
 
-php vendor/bin/header-stamp --license=vendor/prestashop/header-stamp/assets/afl.txt --exclude=vendor,tests,_dev
+Node 20+, pnpm 8.15.9, Composer 2, PHP, a JDK `jar` command, `unzip`, `zipinfo`,
+and `rg` are required. Docker runs the pinned Node builder.
 
-# or
-
-make test-back
+```bash
+scripts/build-ready-package.sh
+tests/package-ready-contract.sh dist/psxmarketingwithgoogle-v2.0.0-tinylux.zip
+sha256sum -c dist/psxmarketingwithgoogle-v2.0.0-tinylux.zip.sha256
+tests/runtime-network-contract.sh
 ```
 
-## Environment customization
+The package build compiles all local UI and auxiliary assets, creates a
+production-only authoritative Composer autoloader, and rejects source/dev/test
+material, maps, logs, credential files, removed runtime dependencies, forbidden
+service hosts, and plaintext credential patterns.
 
-By default, PHP & JS will define data to the application that are related to the production.
+The public browser smoke is environment-driven and never starts OAuth or a
+sync:
 
-In case you need to modify these variables while maintaining this project, you may
-overwrite them in a freshly `.env` file created in the root directory of this module, by using the
-keys that can be found in `classes/config/Config.php`.
+```bash
+TINY_LUX_ADMIN_URL='https://<public-host>/<admin-path>/?controller=AdminPsxMktgWithGoogleModule' \
+TINY_LUX_STOREFRONT_URL='https://<public-host>/' \
+TINY_LUX_ADMIN_EMAIL='<back-office-email>' \
+TINY_LUX_ADMIN_PASSWORD='<back-office-password>' \
+TINY_LUX_BASIC_AUTH_USER='<optional-user>' \
+TINY_LUX_BASIC_AUTH_PASSWORD='<optional-password>' \
+TINY_LUX_PLAYWRIGHT_ROOT='/path/to/repository-with-playwright' \
+node tests/browser/tiny-lux-google-smoke.mjs
+```
 
-* To use the UI built in the `views/` folder, set on your .env `USE_LOCAL_VUE_APP` at 1.
-* To use the developer environment with hot-reload, set `USE_LIVE_VUE_APP=1`. The template will call the dev server at http://localhost:5173 by default. Customising this value is possible by modifying `app.tpl` and `vite.config.ts`.
-* To modify the base URL of the API for a local one: `PSX_MKTG_WITH_GOOGLE_API_URL=https://localhost:8080`
-* To use the sandbox for the billing API set on your .env `USE_BILLING_SANDBOX` at 1.
+Omit both Basic Auth variables when the public shop does not use Basic Auth.
+`TINY_LUX_PLAYWRIGHT_ROOT` is optional when `playwright` resolves from the
+current workspace.
 
-Other values are managed by the Vue.js application and are provided in the [`_dev/apps/ui/.env` file](_dev/apps/ui/.env), different from the optional `.env` in the root folder.
+## Rollback
 
+If migration or verification fails:
 
-## Releasing
+1. disable the 2.0.0 module;
+2. restore the backed-up module directory;
+3. restore the pre-upgrade module configuration and affected module tables;
+4. clear the application cache; and
+5. enable the previous stable module and verify the storefront and Back Office.
 
-### QA Review
-
-Each version need to be tested by the QA team before being sent to production.
-This step is done once all pull-requests are merged in the base branch (`master` for instance).
-
-To create a pre-release:
-* Get the new version  by following the Semantic Versioning convention (SemVer),
-* Check the version in the main class of the module and `config.xml` match the upcoming version, or update the values accordingly,
-* Start creating a new release on the [releases page](https://github.com/PrestaShopCorp/pasmarketingwithgoogle/releases) with a tag that matches the version provided in the main class in the format `v1.XX.XX-beta.XX`.
-* **Make sure to check the option "Set as a pre-release"**
-* A proposal of change-log can be generated by GitHub to list all the merged pull-requests since the previous release. This list can be relevant for the QA team and can be sent as-is.
-* Publish the release.
-
-When created, several zip files will be attached to the release. Each of them is linked to a specific API environment (production, pre-production or integration), and the production zip is the one being sent to the marketplace.
-
-### Deploying to production
-
-Publishing on the marketplace can be done by creating a release on GitHub.
-
-To publish a release:
-* Use the version from the pre-release or get the new version by following the Semantic Versioning convention (SemVer),
-* Check the version in the main class of the module and `config.xml` match the upcoming version, or update the values accordingly,
-* Start creating a new release on the [releases page](https://github.com/PrestaShopCorp/pasmarketingwithgoogle/releases) with a tag that matches the version provided in the main class.
-* A proposal of change-log can be generated by GitHub to list all the merged pull-requests since the previous release. Because this change-log will be sent to the marketplace along the archive, it is recommended to make it understandable to merchants.
-* Publish the release.
-
-When created, several zip files will be attached to the release. Each of them is linked to a specific API environment (production, pre-production or integration), and the production zip is the one being sent to the marketplace.
-
-## Documentation
-
-### User help
-
-Documentation is hosted [online](
-https://storage.googleapis.com/psessentials-documentation/psxmarketingwithgoogle/user_guide_en.pdf), and is available in several languages. Translated documentation in your language can be found in the module configuration page, in the "Help" tab.
-
-### Storybook
-
-All components and pages of this module are available on a dedicated website running Storybook. 
-It is updated on each push to the `master` branch.  
-[Integration Storybook](https://google-storybook-integration.prestashop.com/)  
-[Preproduction Storybook](https://google-storybook-preproduction.prestashop.com/)  
-[Production Storybook](https://google-storybook.prestashop.com/)
-
-> [!WARNING]
-> In case Storybook fails while loading with an error "Failed to fetch dynamically imported module: [...]/preview-[...].js", disable your ad-blocker and try again.
-
-### Hook
-
-The module registers itself to several hooks and adds the following features:
-
-* actionCartUpdateQuantityBefore
-  * Conversion tracking: Trigger the Conversion Action "Add to Cart"
-* displayBackOfficeHeader
-  * Menu: Fix the display of the Marketing tab
-  * Website Verification: Trigger the verification & claim process every 30 days in the background of the BO dashboard.
-  * Warning Messages: Display alerts on the BO dashboard about Marketing With Google
-  * Warning Messages: Display a notice after the edition of a carrier advising to reconfigure shipping settings on the module
-* displayHeader
-  * Website verification: Display the Google Verification Tag
-  * Conversion tracking: Display the Google Tag to init gtag()
-  * Conversion tracking: Provide user data for [Enhanced conversions](https://support.google.com/google-ads/answer/9888656)
-  * Conversion tracking: Purge & display events that could not be displayed (i.e triggered from Ajax requests)
-* displayOrderConfirmation
-  * Conversion tracking: Trigger the Conversion Action "Purchase"
-* displayTop
-  * Conversion tracking: Trigger the Conversion Action "Page view"
-
-### Localization
-
-Translated data is stored in the folder `_dev/packages/mktg-with-google-common/translations`.
-
-Each hour, Crowdin will run several tasks on the repository:
-* Data in the `en/` folder will be synchronized to Crowdin as source strings,
-* Updates in the translated content on Crowdin will be sent back to the repository with a pull-request.
-
-## Contributing
-
-PrestaShop modules are open source extensions to the PrestaShop e-commerce platform. Everyone is welcome and even encouraged to contribute with their own improvements!
-
-Just make sure to follow our contribution guidelines.
-
-## Reporting issues
-
-You can report issues with this module by using the link available in the module configuration page, in the "Help" tab.
+Do not delete the shared shop database volume or unrelated shop data. Preserve
+the failed 2.0.0 database backup for diagnosis, but never place its encrypted
+or plaintext credential material in source control or a support attachment.
 
 ## License
 
-This module is released under the Academic Free License 3.0
+Academic Free License 3.0.
