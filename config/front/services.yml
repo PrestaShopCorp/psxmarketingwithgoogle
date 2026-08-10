@@ -1,2 +1,29 @@
 imports:
   - { resource: ../common.yml }
+  - { resource: ../admin/product_filter.yml }
+  - { resource: ../admin/product_sync.yml }
+
+services:
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CronAuthorization:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CronAuthorization
+    arguments:
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleCredentialRepository'
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CronContextSwitcher:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CronContextSwitcher
+    arguments:
+      - '@psxmarketingwithgoogle.context'
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CronRunner:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CronRunner
+    arguments:
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\SyncJobRepository'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CronContextSwitcher'
+      - '@psxmarketingwithgoogle'
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CronRequestHandler:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CronRequestHandler
+    public: true
+    arguments:
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CronAuthorization'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CronRunner'

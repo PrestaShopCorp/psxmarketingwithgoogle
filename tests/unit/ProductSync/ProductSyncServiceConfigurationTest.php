@@ -7,6 +7,42 @@ use Symfony\Component\Yaml\Yaml;
 
 class ProductSyncServiceConfigurationTest extends TestCase
 {
+    public function testFrontContainerWiresCronWithoutEagerSyncProcessorInjection(): void
+    {
+        if (!class_exists(Yaml::class)) {
+            self::markTestSkipped('Symfony YAML is provided by the PrestaShop runtime.');
+        }
+        $front = Yaml::parseFile(dirname(__DIR__, 3) . '/config/front/services.yml');
+
+        self::assertSame([
+            ['resource' => '../common.yml'],
+            ['resource' => '../admin/product_filter.yml'],
+            ['resource' => '../admin/product_sync.yml'],
+        ], $front['imports']);
+        $services = $front['services'];
+        self::assertSame([
+            '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleCredentialRepository',
+        ], $services['PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CronAuthorization']['arguments']);
+        self::assertSame([
+            '@psxmarketingwithgoogle.context',
+        ], $services['PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CronContextSwitcher']['arguments']);
+        self::assertSame([
+            '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\SyncJobRepository',
+            '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CronContextSwitcher',
+            '@psxmarketingwithgoogle',
+        ], $services['PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CronRunner']['arguments']);
+        self::assertSame([
+            '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CronAuthorization',
+            '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CronRunner',
+        ], $services['PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CronRequestHandler']['arguments']);
+        self::assertTrue($services['PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CronRequestHandler']['public']);
+        self::assertNotContains(
+            '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\SyncProcessor',
+            $services['PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CronRunner']['arguments'],
+            true
+        );
+    }
+
     public function testAdminLocalApiInjectsSyncProcessorAfterMerchantService(): void
     {
         if (!class_exists(Yaml::class)) {

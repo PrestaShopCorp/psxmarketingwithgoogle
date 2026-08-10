@@ -303,11 +303,22 @@ class GoogleConnectionServiceTest extends TestCase
                 'keywords' => [],
                 'params' => ['fc' => 'module', 'module' => 'psxmarketingwithgoogle'],
             ],
+            'module-tlgoogleshopping-cron' => [
+                'controller' => 'cron',
+                'rule' => 'module/tlgoogleshopping/cron',
+                'keywords' => [],
+                'params' => ['fc' => 'module', 'module' => 'psxmarketingwithgoogle'],
+            ],
         ], $module->hookModuleRoutes());
 
         require_once __DIR__ . '/../../../controllers/front/oauth.php';
         self::assertTrue(is_subclass_of(
             'PsxmarketingwithgoogleOauthModuleFrontController',
+            \ModuleFrontController::class
+        ));
+        require_once __DIR__ . '/../../../controllers/front/cron.php';
+        self::assertTrue(is_subclass_of(
+            'PsxmarketingwithgoogleCronModuleFrontController',
             \ModuleFrontController::class
         ));
     }

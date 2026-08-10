@@ -223,6 +223,12 @@ class PsxMarketingWithGoogle extends Module
                 'keywords' => [],
                 'params' => ['fc' => 'module', 'module' => $this->name],
             ],
+            'module-tlgoogleshopping-cron' => [
+                'controller' => 'cron',
+                'rule' => 'module/tlgoogleshopping/cron',
+                'keywords' => [],
+                'params' => ['fc' => 'module', 'module' => $this->name],
+            ],
         ];
     }
 
