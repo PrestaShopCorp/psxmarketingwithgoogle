@@ -16,6 +16,8 @@ export default {
       merchantAccount: null,
       dataSource: null,
     };
+    const accountChanged = response !== null
+      && state.googleAccount.merchantAccount !== response.merchantAccount;
     state.googleAccount = {
       ...state.googleAccount,
       ...connection,
@@ -24,6 +26,11 @@ export default {
         email: connection.googleEmail,
       },
     };
+    if (accountChanged) {
+      state.googleAccount.dataSource = null;
+      state.merchantDataSources = [];
+      state.googleMerchantAccount.id = null;
+    }
   },
   [MutationsTypes.REMOVE_GOOGLE_ACCOUNT](state: LocalState) {
     state.googleAccount.connected = false;
@@ -53,11 +60,21 @@ export default {
 
   /** Merchant Center Account mutations */
   [MutationsTypes.SAVE_GMC](state: LocalState, selectedAccount: GoogleMerchantAccount) {
+    const selectedId = selectedAccount.id || null;
+    const accountChanged = (state.googleAccount.merchantAccount !== null
+      && state.googleAccount.merchantAccount !== selectedId)
+      || (state.googleMerchantAccount.id !== null
+        && state.googleMerchantAccount.id !== selectedId);
+
+    if (accountChanged) {
+      state.googleAccount.dataSource = null;
+      state.merchantDataSources = [];
+    }
     state.googleMerchantAccount = {
       ...state.googleMerchantAccount,
       ...selectedAccount,
     };
-    state.googleAccount.merchantAccount = selectedAccount.id || null;
+    state.googleAccount.merchantAccount = selectedId;
   },
   [MutationsTypes.SAVE_DATA_SOURCE_LIST](
     state: LocalState,

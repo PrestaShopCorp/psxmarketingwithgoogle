@@ -59,12 +59,6 @@
           class="text-justify-center"
         />
       </div>
-      <div
-        v-if="shopId"
-        id="helper-shopid"
-      >
-        {{ shopId }}
-      </div>
     </template>
 
     <PopinUserNotConnectedToBo
@@ -94,9 +88,6 @@ export default {
     PopinUserNotConnectedToBo,
   },
   computed: {
-    shopId() {
-      return window.shopIdPsAccounts;
-    },
     adBlockerExist() {
       return this.$store.getters['app/GET_ADD_BLOCKER_STATUS'];
     },
@@ -116,7 +107,7 @@ export default {
     });
   },
   mounted() {
-    this.$root.identifySegment();
+    this.$root.identifySegment?.();
     this.$store.dispatch('app/CHECK_FOR_AD_BLOCKER');
     this.setCustomProperties();
 
@@ -149,18 +140,13 @@ export default {
     throwSegmentEvent() {
       this.$segment.track('[GGL] Clicked on reporting tab', {
         module: 'psxmarketingwithgoogle',
-        userId: this.$store.state.accounts.shopIdPsAccounts,
-        traits: {
-          email: this.$store.state.accounts.contextPsAccounts.user.email,
-          psx_pg_report_last_activity: new Date(),
-        },
         params: SegmentGenericParams,
       });
     },
   },
   watch: {
     $route() {
-      this.$root.identifySegment();
+      this.$root.identifySegment?.();
     },
   },
   googleUrl,

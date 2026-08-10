@@ -69,16 +69,6 @@
                 <span class="sr-only" />
               </template>
               <b-dropdown-item
-                @click="checkWebsiteRequirements"
-              >
-                {{ $t("cta.checkRequirements") }}
-              </b-dropdown-item>
-              <b-dropdown-item
-                @click="dissociateMerchantCenterAccount"
-              >
-                {{ $t("cta.disconnect") }}
-              </b-dropdown-item>
-              <b-dropdown-item
                 target="_blank"
                 :href="merchantCenterWebsitePageUrl.businessInfo"
               >
@@ -133,7 +123,6 @@
                   v-for="(option) in mcaSelectionOptionsAndGroups[0]"
                   :key="option.id"
                   @click="selectedMcaIndex = option.i"
-                  :disabled="!isGmcUserAdmin(option.i)"
                   variant="dark"
                 >
                   <span>
@@ -144,12 +133,6 @@
                     class="ps_gs-fz-12"
                   >
                     {{ $t('mcaCard.notManaged') }}
-                  </span>
-                  <span
-                    v-if="!isGmcUserAdmin(option.i)"
-                    class="ps_gs-fz-12 ml-auto"
-                  >
-                    {{ $t('mcaCard.userIsNotAdmin') }}
                   </span>
                 </b-dropdown-item>
                 <b-dropdown-group
@@ -172,40 +155,15 @@
                     v-for="(option) in group.gmcs"
                     :key="option.id"
                     @click="selectedMcaIndex = option.i"
-                    :disabled="!isGmcUserAdmin(option.i)"
                     variant="dark"
                   >
                     <span class="mr-auto">{{ gmcLabel(option.i, true) }}</span>
-                    <span
-                      v-if="!isGmcUserAdmin(option.i)"
-                      class="ps_gs-fz-12"
-                    >
-                      {{ $t('mcaCard.userIsNotAdmin') }}
-                    </span>
                   </b-dropdown-item>
                 </b-dropdown-group>
               </b-dropdown>
             </div>
           </b-form>
           <div class="mt-3">
-            <i18n
-              v-if="!hasGmcCreatedFromModule"
-              path="general.createNewAccount"
-              class="ps_gs-fz-12 mt-3 mt-md-0"
-              tag="div"
-            >
-              <a
-                rel="openPopin"
-                class="with-hover text-decoration-underline"
-                :class="shopIsOnMaintenanceMode ? 'bg-transparent text-secondary' : ''"
-                :disabled="shopIsOnMaintenanceMode"
-                role="button"
-                @click.prevent="checkWebsiteRequirements"
-              >
-                {{ $t('general.createAccount') }}
-              </a>
-            </i18n>
-
             <b-alert
               v-if="shopIsOnMaintenanceMode"
               show
@@ -258,16 +216,6 @@
               {{ $t('mcaCard.newGmcNotListedDescription') }}
             </span>
           </p>
-          <div class="d-md-flex text-center align-items-center mt-2">
-            <b-button
-              class="btn mx-1 mt-3 mt-md-0 ml-md-0 mr-md-1 btn-outline-secondary btn-sm"
-              size="sm"
-              variant="outline-secondary"
-              @click="dissociateMerchantCenterAccount"
-            >
-              {{ $t("cta.disconnect") }}
-            </b-button>
-          </div>
         </b-alert>
         <div
           v-if="isLinkedGmcFullyFetched"
@@ -470,13 +418,6 @@
             </b-button>
           </div>
         </b-alert>
-        <MerchantCenterAccountPopinOverwriteClaim
-          ref="mcaPopinOverrideClaim"
-        />
-        <MerchantCenterAccountPopinWebsiteRequirements
-          :new-mca="mcaIsNotConnected"
-          ref="MerchantCenterAccountPopinNewMca"
-        />
         <AlertModuleDisabled />
       </b-card>
     </b-skeleton-wrapper>
@@ -495,8 +436,6 @@ import {
 } from '@/store/modules/accounts/state';
 import {getMerchantCenterWebsiteUrls} from '@/components/merchant-center-account/merchant-center-account-links';
 import MerchantCenterAccountAlertSuspended from '@/components/merchant-center-account/merchant-center-account-alert-suspended.vue';
-import MerchantCenterAccountPopinOverwriteClaim from '@/components/merchant-center-account/merchant-center-account-popin-overwrite-claim.vue';
-import MerchantCenterAccountPopinWebsiteRequirements from '@/components/merchant-center-account/merchant-center-account-popin-website-requirements.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import AlertModuleDisabled from '@/components/commons/alert-module-disabled.vue';
 
@@ -504,8 +443,6 @@ export default defineComponent({
   name: 'MerchantCenterAccountCard',
   components: {
     MerchantCenterAccountAlertSuspended,
-    MerchantCenterAccountPopinOverwriteClaim,
-    MerchantCenterAccountPopinWebsiteRequirements,
     VueShowdown,
     BAlert,
     AlertModuleDisabled,
@@ -663,11 +600,6 @@ export default defineComponent({
         && this.gmcAccountDetails.name !== null
         && this.gmcAccountDetails.name !== undefined;
     },
-    hasGmcCreatedFromModule() {
-      const isFromModule = this.mcaSelectionOptions?.findIndex((option) => 'aggregatorId' in option && option.aggregatorId === this.$store.state.accounts.mcaPrestashopId);
-
-      return isFromModule >= 0;
-    },
   },
   methods: {
     selectMerchantCenterAccount() {
@@ -677,13 +609,6 @@ export default defineComponent({
       });
       this.$emit('selectMerchantCenterAccount', this.mcaSelectionOptions[this.selectedMcaIndex]);
       this.$store.commit('accounts/SAVE_MCA_CONNECTED_AUTOMATICALLY', false);
-    },
-    dissociateMerchantCenterAccount() {
-      this.$segment.track('[GGL] Disconnect Gmc Account', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-      });
-      this.$emit('dissociateMerchantCenterAccount');
     },
     overrideClaim() {
       if (this.$refs.mcaPopinOverrideClaim) {
@@ -703,34 +628,9 @@ export default defineComponent({
       }
       return null;
     },
-    isGmcUserAdmin(index) {
-      if (!this.mcaSelectionOptions || !this.mcaSelectionOptions[index]) {
-        return false;
-      }
-      let isAdmin = false;
-      this.mcaSelectionOptions[index].users.forEach((user) => {
-        // Only continue if the user email matches the onboarded Google Account one
-        if (this.$store.state.accounts.googleAccount.details.email
-        && user.emailAddress
-        && this.$store.state.accounts.googleAccount.details.email.toUpperCase()
-        !== user.emailAddress.toUpperCase()) {
-          return;
-        }
-
-        isAdmin = user.admin || isAdmin;
-      });
-      return isAdmin;
-    },
     setFocusOnSelectMCA() {
       if (this.$refs.mcaSelection?.$refs?.toggle) {
         this.$refs.mcaSelection.$refs.toggle.focus();
-      }
-    },
-    checkWebsiteRequirements() {
-      if (this.$refs.MerchantCenterAccountPopinNewMca) {
-        this.$bvModal.show(
-          this.$refs.MerchantCenterAccountPopinNewMca.$refs.modal.id,
-        );
       }
     },
     refresh() {
@@ -748,10 +648,6 @@ export default defineComponent({
   },
   mounted() {
     this.setFocusOnSelectMCA();
-    this.$root.$on('startGmcAccountCreation', this.checkWebsiteRequirements);
-  },
-  beforeDestroy() {
-    this.$root.$off('startGmcAccountCreation', this.checkWebsiteRequirements);
   },
   watch: {
     mcaConfigured(newVal, oldVal) {

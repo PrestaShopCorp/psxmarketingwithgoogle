@@ -36,11 +36,9 @@ export default {
   [GettersTypes.GET_SHOP_CURRENCIES](state: LocalState): string[] {
     return state.psxMktgWithGoogleActiveCurrencies;
   },
-  [GettersTypes.GET_SUPPORT_URL](
-    state: LocalState, getters, rootState, rootGetters,
-  ): string {
-    const {domain} = rootGetters['accounts/GET_PS_ACCOUNTS_CONTEXT'].currentShop;
-    const languageCode = rootGetters[`app/${GettersTypes.GET_CURRENT_LANGUAGE}`];
+  [GettersTypes.GET_SUPPORT_URL](): string {
+    const domain = window.location?.hostname || '';
+    const languageCode = (new Intl.Locale(window.i18nSettings.languageLocale)).language;
 
     return `${prestashopUrls.contactForm[languageCode] ?? prestashopUrls.contactForm.en}?form=support&subject=psgoogle&url=${domain}`;
   },

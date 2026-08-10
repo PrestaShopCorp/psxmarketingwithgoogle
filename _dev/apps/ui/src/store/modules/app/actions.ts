@@ -50,7 +50,6 @@ export default {
           headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
-            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
           },
         });
     } catch (error) {
@@ -72,7 +71,6 @@ export default {
           headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
-            Authorization: `Bearer ${rootState.accounts.tokenPsAccounts}`,
           },
         });
 

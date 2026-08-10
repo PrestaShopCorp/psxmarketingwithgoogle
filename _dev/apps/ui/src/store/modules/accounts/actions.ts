@@ -7,7 +7,6 @@ import {
 } from '@/store/modules/accounts/state';
 import MutationsTypes from './mutations-types';
 import MutationsTypesProductFeed from '../product-feed/mutations-types';
-import MutationsTypesGoogleAds from '../google-ads/mutations-types';
 import ActionsTypes from './actions-types';
 import NeedOverwriteError from '../../../utils/NeedOverwriteError';
 import CannotOverwriteError from '../../../utils/CannotOverwriteError';
@@ -36,13 +35,12 @@ export default {
     }: Context,
     payload,
   ) {
-    const {selectedAccount, correlationId} = payload;
+    const {selectedAccount} = payload;
     const merchantResponse = await fetchOnboarding(
       'POST',
       'merchant-accounts/select',
       {
         body: {accountId: selectedAccount.id},
-        correlationId,
         onResponse: async (response) => {
           if (!response.ok) {
             commit(
@@ -57,7 +55,15 @@ export default {
     );
     const json = await merchantResponse.json();
     commit(MutationsTypes.SAVE_GMC, json.account);
-    dispatch(ActionsTypes.REQUEST_DATA_SOURCE_LIST);
+    try {
+      await dispatch(ActionsTypes.REQUEST_DATA_SOURCE_LIST);
+    } catch (error) {
+      commit(
+        MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+        WebsiteClaimErrorReason.LinkingFailed,
+      );
+      throw error;
+    }
 
     return json.account;
   },
@@ -155,14 +161,14 @@ export default {
 
       commit(MutationsTypes.SET_GOOGLE_ACCOUNT, connection);
       if (!connection.connected) {
-        dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
+        await dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
       } else {
-        dispatch(ActionsTypes.REQUEST_GMC_LIST);
+        await dispatch(ActionsTypes.REQUEST_GMC_LIST);
       }
 
       return connection;
     } catch (error) {
-      dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
+      await dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
       commit(MutationsTypes.SET_GOOGLE_ACCOUNT, null);
       if (error instanceof HttpClientError && (error.code === 404 || error.code === 412)) {
         // This is likely caused by a missing Google account, so let's retrieve the URL
@@ -191,7 +197,7 @@ export default {
 
         if (linkedGmc) {
           commit(MutationsTypes.SAVE_GMC, linkedGmc);
-          dispatch(ActionsTypes.REQUEST_DATA_SOURCE_LIST);
+          await dispatch(ActionsTypes.REQUEST_DATA_SOURCE_LIST);
         }
       }
 
@@ -203,11 +209,16 @@ export default {
     return [];
   },
 
-  async [ActionsTypes.REQUEST_DATA_SOURCE_LIST]({commit}: Context) {
+  async [ActionsTypes.REQUEST_DATA_SOURCE_LIST]({commit, state}: Context) {
+    const requestedAccount = state.googleAccount.merchantAccount;
     const json = await (await fetchOnboarding(
       'GET',
       'merchant-data-sources',
     )).json();
+
+    if (requestedAccount !== state.googleAccount.merchantAccount) {
+      return [];
+    }
     commit(MutationsTypes.SAVE_DATA_SOURCE_LIST, json.dataSources);
 
     return json.dataSources;
@@ -241,43 +252,6 @@ export default {
     commit(MutationsTypes.REMOVE_GOOGLE_ACCOUNT);
     commit(MutationsTypes.SET_GOOGLE_ACCOUNT, null);
     dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
-    return true;
-  },
-
-  async [ActionsTypes.DISSOCIATE_GMC]({
-    commit,
-    state,
-    dispatch,
-  }: Context, correlationId: string) {
-    if (state.googleMerchantAccount.id) {
-      if (!correlationId) {
-        // eslint-disable-next-line no-param-reassign
-        correlationId = `tiny-lux-${Math.floor(Date.now() / 1000)}`;
-      }
-      await fetchOnboarding(
-        'DELETE',
-        'merchant-accounts',
-        {
-          correlationId,
-          onResponse: async (response) => {
-            if (!response.ok) {
-              commit(
-                MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
-                WebsiteClaimErrorReason.UnlinkFailed,
-              );
-              throw new HttpClientError(response.statusText, response.status);
-            }
-          },
-        },
-      );
-    }
-    dispatch(ActionsTypes.SAVE_WEBSITE_VERIFICATION_META, false);
-    commit(MutationsTypes.REMOVE_GMC);
-    commit(MutationsTypes.SAVE_MCA_CONNECTED_ONCE, false);
-    commit(`googleAds/${MutationsTypesGoogleAds.SET_GOOGLE_ADS_ACCOUNT}`, null, {root: true});
-    commit(`productFeed/${MutationsTypesProductFeed.REMOVE_PRODUCT_FEED}`, null, {root: true});
-    commit(`productFeed/${MutationsTypesProductFeed.SET_ACTIVE_CONFIGURATION_STEP}`, 1, {root: true});
-    commit(`productFeed/${MutationsTypesProductFeed.TOGGLE_CONFIGURATION_FINISHED}`, false, {root: true});
     return true;
   },
 

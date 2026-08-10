@@ -83,25 +83,32 @@ final class MerchantAccountService
         $this->client->validateDataSourceConfiguration($feedLabel, $contentLanguage);
         $accountId = $this->selectedAccount($shopId);
         $accessToken = $this->connections->accessToken($shopId);
-        $existingTinyLux = null;
+        $expectedPrimary = [
+            'feedLabel' => $feedLabel,
+            'contentLanguage' => $contentLanguage,
+        ];
+        $matchingTinyLux = [];
+        $hasConflict = false;
         foreach ($this->client->listDataSources($accessToken, $accountId) as $dataSource) {
             if (MerchantApiClient::displayName() === $dataSource['displayName']) {
-                $existingTinyLux = $dataSource;
-                break;
+                if ('API' !== $dataSource['input']
+                    || !isset($dataSource['primaryProductDataSource'])
+                    || $expectedPrimary !== $dataSource['primaryProductDataSource']
+                ) {
+                    $hasConflict = true;
+                } else {
+                    $matchingTinyLux[] = $dataSource;
+                }
             }
         }
-        if (null !== $existingTinyLux) {
-            $expectedPrimary = [
-                'feedLabel' => $feedLabel,
-                'contentLanguage' => $contentLanguage,
-            ];
-            if ('API' !== $existingTinyLux['input']
-                || !isset($existingTinyLux['primaryProductDataSource'])
-                || $expectedPrimary !== $existingTinyLux['primaryProductDataSource']
-            ) {
-                throw new GoogleApiException('A Tiny Lux data source already exists with different settings.', false, 409, 'data_source_conflict');
-            }
-            $dataSource = $existingTinyLux;
+        if ($hasConflict) {
+            throw new GoogleApiException('A Tiny Lux data source already exists with different settings.', false, 409, 'data_source_conflict');
+        }
+        if ([] !== $matchingTinyLux) {
+            usort($matchingTinyLux, static function (array $left, array $right): int {
+                return strcmp($left['name'], $right['name']);
+            });
+            $dataSource = $matchingTinyLux[0];
         } else {
             $dataSource = $this->client->createPrimaryDataSource(
                 $accessToken,

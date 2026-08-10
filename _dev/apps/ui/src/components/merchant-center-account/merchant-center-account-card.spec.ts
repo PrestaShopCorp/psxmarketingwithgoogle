@@ -1,10 +1,10 @@
 import Vuex from 'vuex';
 
 // Import this file first to init mock on window
-import {shallowMount} from '@vue/test-utils';
+import {mount, shallowMount} from '@vue/test-utils';
 import {BAlert} from 'bootstrap-vue';
 import createFetchMock from 'vitest-fetch-mock';
-import config, {cloneStore} from '@/../tests/init';
+import config, {addBootstrapToVue, cloneStore, localVue} from '@/../tests/init';
 
 import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
 import actionsTypes from '../../store/modules/accounts/actions-types';
@@ -14,6 +14,10 @@ const fetchMock = createFetchMock(vi);
 fetchMock.enableMocks();
 
 describe('merchant-center-account-card.vue', () => {
+  beforeAll(() => {
+    addBootstrapToVue();
+  });
+
   it('does show almot nothing when it is not actived yet', () => {
     const wrapper = shallowMount(MerchantCenterAccountCard, {
       propsData: {
@@ -47,19 +51,26 @@ describe('merchant-center-account-card.vue', () => {
     expect(wrapper.findComponent(BAlert).exists()).toBeFalsy();
   });
 
-  it('show the link to create an account when enabled', () => {
-    const wrapper = shallowMount(MerchantCenterAccountCard, {
+  it('renders and selects a normalized local Merchant account without legacy user metadata', async () => {
+    const store = new Vuex.Store(cloneStore());
+    store.commit('accounts/SAVE_GMC_LIST', [{id: '123', name: 'Tiny Lux'}]);
+    const wrapper = mount(MerchantCenterAccountCard, {
       propsData: {
         isEnabled: true,
+        loading: false,
       },
       ...config,
-      store: new Vuex.Store(cloneStore()),
+      localVue,
+      store,
     });
 
-    // Check enabled state
-    expect(wrapper.find('.ps_gs-onboardingcard').classes('ps_gs-onboardingcard--disabled')).toBe(false);
-    // Check button to create an account exists
-    expect(wrapper.find('.text-decoration-underline').text()).toBe('create your account');
+    expect(wrapper.text()).toContain('123 - Tiny Lux');
+    expect(wrapper.text()).not.toContain('create your account');
+    expect(wrapper.text()).not.toContain('Disconnect');
+
+    await wrapper.setData({selectedMcaIndex: 0});
+    expect(() => wrapper.vm.selectMerchantCenterAccount()).not.toThrow();
+    expect(wrapper.emitted('selectMerchantCenterAccount')?.[0]).toEqual([{id: '123', name: 'Tiny Lux'}]);
   });
 });
 

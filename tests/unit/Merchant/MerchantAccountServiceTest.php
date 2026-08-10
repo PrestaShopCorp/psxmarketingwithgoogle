@@ -225,6 +225,87 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\Tests\Unit\Merchant {
             }
         }
 
+        /**
+         * @dataProvider tinyLuxSourceOrderingProvider
+         *
+         * @param array<int, array<string, mixed>> $dataSources
+         */
+        public function testCreateDataSourceRejectsAnyConflictingTinyLuxSourceRegardlessOfOrdering(array $dataSources): void
+        {
+            $this->credentials->save(1, ['merchant_account' => '123', 'data_source' => null]);
+            $this->transport->queueJson(200, ['dataSources' => $dataSources]);
+
+            try {
+                $this->service->createDataSource(1, 'GB', 'en');
+                self::fail('Any conflicting Tiny Lux source must fail the operation.');
+            } catch (GoogleApiException $exception) {
+                self::assertSame(409, $exception->statusCode());
+                self::assertSame('data_source_conflict', $exception->safeCode());
+                self::assertNull($this->credentials->find(1)['data_source']);
+                self::assertCount(1, $this->transport->requests);
+            }
+        }
+
+        /** @return array<string, array{0: array<int, array<string, mixed>>}> */
+        public function tinyLuxSourceOrderingProvider(): array
+        {
+            $exact = [
+                'name' => 'accounts/123/dataSources/100',
+                'displayName' => 'Tiny Lux PrestaShop API',
+                'input' => 'API',
+                'primaryProductDataSource' => ['feedLabel' => 'GB', 'contentLanguage' => 'en'],
+            ];
+            $conflict = [
+                'name' => 'accounts/123/dataSources/200',
+                'displayName' => 'Tiny Lux PrestaShop API',
+                'input' => 'FILE',
+                'primaryProductDataSource' => ['feedLabel' => 'GB', 'contentLanguage' => 'en'],
+            ];
+
+            return [
+                'exact then conflict' => [[$exact, $conflict]],
+                'conflict then exact' => [[$conflict, $exact]],
+            ];
+        }
+
+        public function testCreateDataSourceChoosesDeterministicExactTinyLuxSource(): void
+        {
+            $this->credentials->save(1, ['merchant_account' => '123', 'data_source' => null]);
+            $this->transport->queueJson(200, ['dataSources' => [
+                [
+                    'name' => 'accounts/123/dataSources/900',
+                    'displayName' => 'Tiny Lux PrestaShop API',
+                    'input' => 'API',
+                    'primaryProductDataSource' => ['feedLabel' => 'GB', 'contentLanguage' => 'en'],
+                ],
+                [
+                    'name' => 'accounts/123/dataSources/100',
+                    'displayName' => 'Tiny Lux PrestaShop API',
+                    'input' => 'API',
+                    'primaryProductDataSource' => ['feedLabel' => 'GB', 'contentLanguage' => 'en'],
+                ],
+            ]]);
+
+            $source = $this->service->createDataSource(1, 'GB', 'en');
+
+            self::assertSame('accounts/123/dataSources/100', $source['name']);
+            self::assertSame($source['name'], $this->credentials->find(1)['data_source']);
+            self::assertCount(1, $this->transport->requests);
+        }
+
+        public function testMalformedMerchantResponseMapsToSanitizedLocalBadGateway(): void
+        {
+            $sensitiveBody = '{"accounts":[{"name":"accounts/not-valid","accountName":"server-only-access-token"}]}';
+            $this->transport->queue(new \PrestaShop\Module\PsxMarketingWithGoogle\Http\Response(200, $sensitiveBody));
+
+            $response = $this->localApi()->dispatch('GET', 'merchant-accounts');
+
+            self::assertSame(502, $response->getStatusCode());
+            self::assertSame(['code' => 'google_invalid_response'], $this->json($response));
+            self::assertStringNotContainsString($sensitiveBody, $response->getBody());
+            self::assertStringNotContainsString('server-only-access-token', $response->getBody());
+        }
+
         public function testCreateDataSourceRejectsCrossAccountResponseBeforePersistence(): void
         {
             $this->credentials->save(1, ['merchant_account' => '123', 'data_source' => null]);

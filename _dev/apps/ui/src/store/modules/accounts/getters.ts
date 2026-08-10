@@ -23,15 +23,19 @@ export default {
   [GetterTypes.GET_GOOGLE_ACCOUNT_CONNECTED_ONCE](state: LocalState) : boolean {
     return state.googleAccount.connectedOnce;
   },
+  [GetterTypes.GET_LOCAL_GOOGLE_IS_CONFIGURED](state: LocalState): boolean {
+    return state.googleAccount.configured === true;
+  },
+  [GetterTypes.GET_LOCAL_GOOGLE_IS_READY](state: LocalState): boolean {
+    return state.googleAccount.configured === true && state.googleAccount.connected === true;
+  },
   /* Merchant Center Account */
   [GetterTypes.GET_GOOGLE_MERCHANT_CENTER_ACCOUNT](state: LocalState) :
     MerchantCenterAccountContext {
     return state.googleMerchantAccount;
   },
   [GetterTypes.GET_GOOGLE_MERCHANT_CENTER_ACCOUNT_IS_CONFIGURED](state: LocalState) : boolean {
-    return !!(state.googleMerchantAccount.id
-      && state.googleMerchantAccount.isClaimed
-      && state.googleMerchantAccount.isVerified);
+    return !!state.googleMerchantAccount.id;
   },
   [GetterTypes.GET_GOOGLE_ACCOUNT_AUTHENTICATION_URL](state: LocalState) : String|Error {
     return state.googleAccount.authenticationUrl;

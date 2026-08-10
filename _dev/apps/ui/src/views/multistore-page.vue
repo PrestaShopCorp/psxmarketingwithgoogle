@@ -27,7 +27,7 @@ export default {
   },
   computed: {
     shops() {
-      return this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT_SHOPS'];
+      return [];
     },
   },
 };

@@ -53,9 +53,6 @@
             </ul>
           </li>
           <li>
-            <strong>Shop ID</strong>: {{ shopId }}
-          </li>
-          <li>
             <strong>Using the production API</strong>:
             {{ psxMktgWithGoogleOnProductionEnvironment?'✅':'❌' }}
             ({{ psxMktgWithGoogleApiUrl }})
@@ -98,37 +95,6 @@
       <b-card-body
         body-class="p-3"
       >
-        <span
-          id="tooltip-gmc-creation"
-          class="d-inline-block"
-          tabindex="0"
-        >
-          <b-button
-            class="mt-3 mr-3 text-nowrap d-block"
-            variant="outline-primary"
-            size="sm"
-            @click="triggerGmcAccountCreation"
-            :disabled="!GET_GOOGLE_ACCOUNT_IS_ONBOARDED || GET_GOOGLE_MERCHANT_CENTER_IS_CONNECTED"
-          >
-            <img
-              src="@/assets/images/google-merchant-center-icon.svg"
-              width="16"
-              height="16"
-              alt=""
-              class="float-left mr-1"
-            >
-            Start GMC account creation
-          </b-button>
-        </span>
-        <b-tooltip
-          target="tooltip-gmc-creation"
-          triggers="hover"
-          container="#psxMktgWithGoogleApp"
-          v-if="GET_GOOGLE_ACCOUNT_IS_ONBOARDED && GET_GOOGLE_MERCHANT_CENTER_IS_CONNECTED"
-        >
-          Disconnect from your GMC account first
-        </b-tooltip>
-
         <b-button
           class="mt-3 mr-3 d-block"
           variant="outline-danger"
@@ -290,9 +256,6 @@ export default defineComponent({
       psxMktgWithGoogleOnProductionEnvironment:
         (state) => state.app.psxMktgWithGoogleOnProductionEnvironment,
     }),
-    shopId() {
-      return window.shopIdPsAccounts || 'none yet';
-    },
     moduleIsEnabled() {
       return this.$store.state.app.psxMktgWithGoogleModuleIsEnabled;
     },
@@ -352,12 +315,6 @@ export default defineComponent({
       } finally {
         this.sync.loading = false;
       }
-    },
-    async triggerGmcAccountCreation() {
-      await this.$router.push({
-        name: 'configuration',
-      });
-      this.$root.$emit('startGmcAccountCreation');
     },
     throwErrorForSentry() {
       throw new Error('Test error for sentry');

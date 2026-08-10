@@ -66,6 +66,23 @@ class MerchantApiClientTest extends TestCase
         $this->client->listAccounts('access-token-value');
     }
 
+    public function testMalformedUpstreamResponseHasExplicitSanitizedBadGatewayMetadata(): void
+    {
+        $sensitiveBody = '{"accounts":[{"name":"accounts/other","accountName":"access-token-value"}]}';
+        $this->transport->queue(new Response(200, $sensitiveBody));
+
+        try {
+            $this->client->listAccounts('access-token-value');
+            self::fail('Malformed upstream resources must be rejected.');
+        } catch (GoogleApiException $exception) {
+            self::assertSame(502, $exception->statusCode());
+            self::assertSame('google_invalid_response', $exception->safeCode());
+            self::assertFalse($exception->isRetryable());
+            self::assertStringNotContainsString($sensitiveBody, $exception->getMessage());
+            self::assertStringNotContainsString('access-token-value', $exception->getMessage());
+        }
+    }
+
     /** @return array<string, array{0: array<string, mixed>}> */
     public function malformedAccountResponseProvider(): array
     {

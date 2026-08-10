@@ -262,9 +262,11 @@ export default defineComponent({
   watch: {
     loading(newVal, oldVal) {
       if (oldVal === true && newVal === false) {
-        this.$segment.identify(this.$store.state.accounts.shopIdPsAccounts, {
+        this.$segment.track('[GGL] Product feed compatibility loaded', {
+          module: 'psxmarketingwithgoogle',
           ggl_sync_has_currencies_issues: !!this.targetCountriesInError.length,
           ggl_sync_has_languages_issues: !this.languages.length,
+          params: SegmentGenericParams,
         });
       }
     },

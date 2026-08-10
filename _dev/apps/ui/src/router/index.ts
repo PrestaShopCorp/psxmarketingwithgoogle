@@ -14,16 +14,16 @@ import GettersTypesAccounts from '@/store/modules/accounts/getters-types';
 
 Vue.use(VueRouter);
 
-const accountNavigationGuard = (to, from, next) => {
-  if (!store.getters[`accounts/${GettersTypesAccounts.GET_PS_ACCOUNTS_IS_ONBOARDED}`]) {
+export const accountNavigationGuard = (to, from, next) => {
+  if (!store.getters[`accounts/${GettersTypesAccounts.GET_LOCAL_GOOGLE_IS_READY}`]) {
     next({name: 'configuration'});
     return;
   }
   next();
 };
 
-const initialPath = async (to, from, next) => {
-  if (!store.getters[`accounts/${GettersTypesAccounts.GET_PS_ACCOUNTS_IS_ONBOARDED}`]) {
+export const initialPath = async (to, from, next) => {
+  if (!store.getters[`accounts/${GettersTypesAccounts.GET_LOCAL_GOOGLE_IS_CONFIGURED}`]) {
     next({name: 'landing-page'});
     return;
   }

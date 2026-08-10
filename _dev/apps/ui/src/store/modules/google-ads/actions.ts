@@ -142,14 +142,14 @@ export default {
       console.error(error);
     }
   },
-  async [ActionsTypes.DISSOCIATE_GOOGLE_ADS_ACCOUNT]({commit, rootState}: Context,
+  async [ActionsTypes.DISSOCIATE_GOOGLE_ADS_ACCOUNT]({commit}: Context,
     correlationId: string) {
     commit(MutationsTypes.SET_GOOGLE_ADS_STATUS, '');
     await fetchOnboarding(
       'DELETE',
       'ads-accounts',
       {
-        correlationId: correlationId || `${rootState.accounts.shopIdPsAccounts}-${Math.floor(Date.now() / 1000)}`,
+        correlationId: correlationId || `tiny-lux-${Date.now()}-${Math.random().toString(36).slice(2)}`,
       },
     ).finally(() => {
       commit(MutationsTypes.SET_GOOGLE_ADS_ACCOUNT, null);

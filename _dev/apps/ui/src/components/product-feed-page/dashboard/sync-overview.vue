@@ -87,6 +87,7 @@ import {MerchantCenterAccountContext, WebsiteClaimErrorReason} from '@/store/mod
 import {getMerchantCenterWebsiteUrls} from '@/components/merchant-center-account/merchant-center-account-links';
 import {VerificationStats} from '@/store/modules/product-feed/state';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
+import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default defineComponent({
   components: {
@@ -141,7 +142,8 @@ export default defineComponent({
   watch: {
     loading(newVal, oldVal) {
       if (oldVal === true && newVal === false) {
-        this.$segment.identify(this.$store.state.accounts.shopIdPsAccounts, {
+        this.$segment.track('[GGL] Product feed sync status loaded', {
+          module: 'psxmarketingwithgoogle',
           ggl_gmc_account_is_suspended: this.gmcAccountIsSuspended,
           ggl_sync_is_multi_target_countries:
             (this.incrementalSyncContext?.targetCountries.length || 0) > 1,
@@ -150,6 +152,7 @@ export default defineComponent({
           ggl_sync_is_multi_currencies: (this.incrementalSyncContext?.currencies.length || 0) > 1,
           ggl_user_has_compliant_products: !!this.verificationStats.validProducts,
           ggl_user_has_non_compliant_products: !!this.verificationStats.validProducts,
+          params: SegmentGenericParams,
         });
       }
     },

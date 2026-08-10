@@ -30,7 +30,6 @@
           :is-e-u="showCSSForMCA"
           :is-linking="isMcaLinking"
           @selectMerchantCenterAccount="onMerchantCenterAccountSelected($event)"
-          @dissociateMerchantCenterAccount="onMerchantCenterAccountDissociationRequest"
         />
         <ProductFeedCard
           :is-enabled="merchantCenterAccountIsChosen"
@@ -69,10 +68,6 @@
       <!-- Modals -->
       <GoogleAccountPopinDisconnect
         ref="googleAccountDisconnectModal"
-      />
-
-      <MerchantCenterAccountPopinDisconnect
-        ref="mcaDisconnectModal"
       />
 
       <GoogleAdsAccountPopinDisconnect
@@ -117,7 +112,6 @@ import GoogleAdsAccountCard from '@/components/google-ads-account/google-ads-acc
 import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
 import ProductFeedCard from '@/components/onboarding/product-feed-card.vue';
 import GoogleAccountPopinDisconnect from '@/components/google-account/google-account-popin-disconnect.vue';
-import MerchantCenterAccountPopinDisconnect from '@/components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
 import GoogleAdsAccountPopinDisconnect from '@/components/google-ads-account/google-ads-account-popin-disconnect.vue';
 import GoogleAdsPopinNew from '@/components/google-ads-account/google-ads-account-popin-new.vue';
 import CampaignCard from '@/components/campaigns/campaign-card.vue';
@@ -147,7 +141,6 @@ export default defineComponent({
     CampaignTracking,
     PromoCard,
     GoogleAccountPopinDisconnect,
-    MerchantCenterAccountPopinDisconnect,
     ModalEcIntro,
     GoogleAdsAccountPopinDisconnect,
     GoogleAdsPopinNew,
@@ -175,19 +168,17 @@ export default defineComponent({
       this.googleConnection = {...this.googleConnection, ...connection};
       this.$store.dispatch('accounts/REQUEST_ROUTE_TO_GOOGLE_AUTH');
     },
-    onMerchantCenterAccountSelected(selectedAccount) {
+    async onMerchantCenterAccountSelected(selectedAccount) {
       this.isMcaLinking = true;
-      const correlationId = `${Math.floor(Date.now() / 1000)}`;
-      this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_MERCHANT_ACCOUNT', {selectedAccount, correlationId})
-        // must wait before to ask for status
-        .then(() => new Promise((resolve) => { setTimeout(resolve, 1000); }))
-        .then(() => {
-          this.$store.dispatch('accounts/TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS', correlationId);
-        })
-        .finally(() => {
-          this.isMcaLinking = false;
-          this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', true);
-        });
+      try {
+        await this.$store.dispatch(
+          'accounts/SAVE_SELECTED_GOOGLE_MERCHANT_ACCOUNT',
+          {selectedAccount},
+        );
+        this.$store.commit('accounts/SAVE_MCA_CONNECTED_ONCE', true);
+      } finally {
+        this.isMcaLinking = false;
+      }
     },
     checkAndOpenPopinConfigrationDone() {
       if (this.billingSettingsCompleted) {
@@ -208,11 +199,6 @@ export default defineComponent({
     onGoogleAccountDissociationRequest() {
       this.$bvModal.show(
         this.$refs.googleAccountDisconnectModal?.$refs.modal.id,
-      );
-    },
-    onMerchantCenterAccountDissociationRequest() {
-      this.$bvModal.show(
-        this.$refs.mcaDisconnectModal?.$refs.modal.id,
       );
     },
     onGoogleAdsAccountDisconnectionRequest() {
@@ -261,11 +247,8 @@ export default defineComponent({
     displayCmpAlert() {
       return !!this.$store.getters['googleAds/GET_GOOGLE_ADS_ACCOUNT_CHOSEN'] && this.showCmpAlert;
     },
-    shops() {
-      return this.$store.getters['accounts/GET_PS_ACCOUNTS_CONTEXT_SHOPS'];
-    },
     psAccountsIsOnboarded() {
-      return this.$store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED'];
+      return this.$store.getters['accounts/GET_LOCAL_GOOGLE_IS_CONFIGURED'];
     },
     googleAccountIsOnboarded() {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_IS_ONBOARDED'];

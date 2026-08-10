@@ -23,7 +23,6 @@ declare global {
       psxMtgWithGoogleDefaultShopCountry: string,
       psxMktgWithGoogleActiveCountries: string[],
       psxMktgWithGoogleActiveCurrencies: string[],
-      contextPsAccounts?: any;
       contextPsEventbus: any
       psxMktgWithGoogleLanguages: string[],
       contextPsEventBus: any
@@ -35,8 +34,6 @@ declare global {
       psxMktgWithGoogleApiUrl: string;
       psxMktgWithGoogleAdminUrl: string;
       psxMktgWithGoogleShopUrl: string;
-      shopIdPsAccounts: string;
-      tokenPsAccounts: string;
       psxMktgWithGoogleModuleVersion: string,
       phpVersion: string,
       psVersion: string,

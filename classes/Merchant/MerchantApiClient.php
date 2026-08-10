@@ -373,7 +373,12 @@ final class MerchantApiClient
 
     private function invalidResponse(): GoogleApiException
     {
-        return new GoogleApiException('Google returned an invalid Merchant response.');
+        return new GoogleApiException(
+            'Google returned an invalid Merchant response.',
+            false,
+            502,
+            'google_invalid_response'
+        );
     }
 
     private function missingDeveloperRegistration(): GoogleApiException

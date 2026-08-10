@@ -14,6 +14,13 @@ let commit;
 let dispatch;
 let payload;
 
+const flushMicrotasks = async () => {
+  for (let index = 0; index < 10; index += 1) {
+    // eslint-disable-next-line no-await-in-loop
+    await Promise.resolve();
+  }
+};
+
 beforeEach(() => {
   fetchMock.resetMocks();
 
@@ -52,6 +59,37 @@ describe('Action SAVE_SELECTED_GOOGLE_MERCHANT_ACCOUNT', () => {
     });
     expect(String(fetchMock.mock.calls[0][0])).toBe('https://admin.test/local-google-api');
     expect(fetchMock.mock.calls[0][1]?.headers).not.toHaveProperty('Authorization');
+  });
+
+  it('waits for the new account data sources and reports their failure deterministically', async () => {
+    fetchMock.mockResponse(JSON.stringify({account: payload.selectedAccount}));
+    let rejectDataSources;
+    dispatch.mockImplementation((action) => {
+      if (action === ActionsTypes.REQUEST_DATA_SOURCE_LIST) {
+        return new Promise((resolve, reject) => {
+          rejectDataSources = reject;
+        });
+      }
+      return Promise.resolve();
+    });
+    let settled = false;
+    const selection = actions[ActionsTypes.SAVE_SELECTED_GOOGLE_MERCHANT_ACCOUNT](
+      {dispatch, commit},
+      payload,
+    ).finally(() => {
+      settled = true;
+    });
+
+    await flushMicrotasks();
+    expect(dispatch).toHaveBeenCalledWith(ActionsTypes.REQUEST_DATA_SOURCE_LIST);
+    expect(settled).toBe(false);
+    rejectDataSources(new Error('data source lookup failed'));
+
+    await expect(selection).rejects.toThrow('data source lookup failed');
+    expect(commit).toHaveBeenCalledWith(
+      MutationsTypes.SAVE_STATUS_OVERRIDE_CLAIMING,
+      WebsiteClaimErrorReason.LinkingFailed,
+    );
   });
 
   it('warns when the GMC link fails ', async () => {
@@ -101,6 +139,36 @@ describe('Action REQUEST_GOOGLE_ACCOUNT_DETAILS', () => {
       path: 'oauth',
       body: null,
     });
+  });
+
+  it('waits for the connected account list before resolving status warmup', async () => {
+    const connection = {
+      connected: true,
+      googleEmail: 'owner@example.com',
+      merchantAccount: '123',
+      dataSource: null,
+    };
+    fetchMock.mockResponse(JSON.stringify(connection));
+    let resolveAccounts;
+    dispatch.mockImplementation((action) => {
+      if (action === ActionsTypes.REQUEST_GMC_LIST) {
+        return new Promise((resolve) => {
+          resolveAccounts = resolve;
+        });
+      }
+      return Promise.resolve();
+    });
+    let settled = false;
+    const warmup = actions[ActionsTypes.REQUEST_GOOGLE_ACCOUNT_DETAILS]({commit, dispatch})
+      .finally(() => {
+        settled = true;
+      });
+
+    await flushMicrotasks();
+    expect(dispatch).toHaveBeenCalledWith(ActionsTypes.REQUEST_GMC_LIST);
+    expect(settled).toBe(false);
+    resolveAccounts([]);
+    await warmup;
   });
 
   it('keeps the account disconnected and requests an authorization URL locally', async () => {
@@ -155,6 +223,37 @@ describe('Local Merchant account and data-source actions', () => {
     });
   });
 
+  it('waits for restored-account data sources before resolving the Merchant list', async () => {
+    const accounts = [{id: '123', name: 'Tiny Lux'}];
+    fetchMock.mockResponse(JSON.stringify({accounts}));
+    let resolveDataSources;
+    dispatch.mockImplementation((action) => {
+      if (action === ActionsTypes.REQUEST_DATA_SOURCE_LIST) {
+        return new Promise((resolve) => {
+          resolveDataSources = resolve;
+        });
+      }
+      return Promise.resolve();
+    });
+    let settled = false;
+    const request = actions[ActionsTypes.REQUEST_GMC_LIST]({
+      commit,
+      dispatch,
+      state: {
+        googleAccount: {merchantAccount: '123'},
+        googleMerchantAccount: {id: null},
+      },
+    }).finally(() => {
+      settled = true;
+    });
+
+    await flushMicrotasks();
+    expect(dispatch).toHaveBeenCalledWith(ActionsTypes.REQUEST_DATA_SOURCE_LIST);
+    expect(settled).toBe(false);
+    resolveDataSources([]);
+    await expect(request).resolves.toEqual(accounts);
+  });
+
   it('loads and creates API data sources through the local admin API only', async () => {
     const dataSource = {
       id: '456',
@@ -167,7 +266,10 @@ describe('Local Merchant account and data-source actions', () => {
       .mockResponseOnce(JSON.stringify({dataSources: [dataSource]}))
       .mockResponseOnce(JSON.stringify({dataSource}));
 
-    const listed = await actions[ActionsTypes.REQUEST_DATA_SOURCE_LIST]({commit});
+    const listed = await actions[ActionsTypes.REQUEST_DATA_SOURCE_LIST]({
+      commit,
+      state: {googleAccount: {merchantAccount: '123'}},
+    });
     const created = await actions[ActionsTypes.CREATE_DATA_SOURCE](
       {commit},
       {feedLabel: 'GB', contentLanguage: 'en'},

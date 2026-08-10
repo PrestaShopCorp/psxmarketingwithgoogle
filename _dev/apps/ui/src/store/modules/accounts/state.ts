@@ -51,6 +51,7 @@ export interface GoogleAccount {
 }
 
 export interface GoogleConnectionStatus {
+  configured?: boolean,
   connected: boolean,
   googleEmail: string|null,
   merchantAccount: string|null,
@@ -129,6 +130,7 @@ export enum WebsiteClaimErrorReason {
 export const state: State = {
   warmedUp: false,
   googleAccount: {
+    configured: false,
     connected: false,
     googleEmail: null,
     merchantAccount: null,

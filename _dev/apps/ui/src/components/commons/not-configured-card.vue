@@ -31,9 +31,6 @@
 <script>
 export default {
   computed: {
-    psAccountsIsOnboarded() {
-      return this.$store.getters['accounts/GET_PS_ACCOUNTS_IS_ONBOARDED'];
-    },
     googleAccountIsOnboarded() {
       return this.$store.getters['accounts/GET_GOOGLE_ACCOUNT_IS_ONBOARDED'];
     },

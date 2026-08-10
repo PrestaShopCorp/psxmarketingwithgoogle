@@ -295,6 +295,9 @@ final class LocalGoogleApi
         if (null === $status) {
             return $this->error(412, 'google_not_configured');
         }
+        if (502 === $status && 'google_invalid_response' === $safeCode) {
+            return $this->error(502, 'google_invalid_response');
+        }
         if (in_array($status, [401, 403, 404, 409, 429], true)) {
             return $this->error($status, $safeCode);
         }

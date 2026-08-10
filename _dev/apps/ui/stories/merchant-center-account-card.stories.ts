@@ -1,5 +1,4 @@
 import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
-import MerchantCenterAccountPopinDisconnect from '@/components/merchant-center-account/merchant-center-account-popin-disconnect.vue';
 import {initialStateApp, stateWithMaintenanceModeOn} from '../.storybook/mock/state-app';
 import {googleAccountConnected} from '../.storybook/mock/google-account';
 import {
@@ -57,16 +56,12 @@ export default {
 
 const Template = (args, {argTypes}) => ({
   props: Object.keys(argTypes),
-  components: {MerchantCenterAccountCard, MerchantCenterAccountPopinDisconnect},
+  components: {MerchantCenterAccountCard},
   template: `
     <div>
       <MerchantCenterAccountCard
         v-bind="$props"
         @selectMerchantCenterAccount="fakeConnection($event)"
-        @dissociateMerchantCenterAccount="onMerchantCenterAccountDissociated"
-      />
-      <MerchantCenterAccountPopinDisconnect
-        ref="mcaDisconnectModal"
       />
     </div>`,
   beforeMount(this: any) {
@@ -82,18 +77,11 @@ const Template = (args, {argTypes}) => ({
   methods: {
     fakeConnection(selectedAccount) {
       // @ts-ignore
-      this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_MERCHANT_ACCOUNT', {selectedAccount, correlationId: ''});
+      this.$store.dispatch('accounts/SAVE_SELECTED_GOOGLE_MERCHANT_ACCOUNT', {selectedAccount});
       setTimeout(() => {
         // @ts-ignore
         this.$store.commit('accounts/SAVE_WEBSITE_VERIFICATION_AND_CLAIMING_STATUS', {isClaimed: true, isVerified: true});
       }, 2000);
-    },
-    onMerchantCenterAccountDissociated() {
-      // @ts-ignore
-      this.$bvModal.show(
-        // @ts-ignore
-        this.$refs.mcaDisconnectModal.$refs.modal.id,
-      );
     },
   },
 });
@@ -315,4 +303,3 @@ creationInProgressLong.args = {
     },
   ),
 };
-

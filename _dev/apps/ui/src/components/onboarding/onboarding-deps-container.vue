@@ -122,8 +122,10 @@ export default defineComponent({
       msc.isOnboardingCompleted((isCompleted) => {
         // Identify only when we get a valid boolean value
         if (!!isCompleted === isCompleted) {
-          this.$segment.identify(this.$store.state.accounts.shopIdPsAccounts, {
-            ggl_user_has_given_consent_to_use_cloudsync: isCompleted,
+          this.$segment.track('[GGL] CloudSync consent status loaded', {
+            module: 'psxmarketingwithgoogle',
+            consentGiven: isCompleted,
+            params: SegmentGenericParams,
           });
           this.$emit('onCloudsyncConsentUpdated', isCompleted);
         }
