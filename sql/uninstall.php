@@ -17,7 +17,12 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
-$sql = [];
+$sql = [
+    'DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'psxmarketingwithgoogle_sync_item`',
+    'DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'psxmarketingwithgoogle_sync_job`',
+    'DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'psxmarketingwithgoogle_oauth_state`',
+    'DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'psxmarketingwithgoogle_connection`',
+];
 
 foreach ($sql as $query) {
     if (Db::getInstance()->execute($query) == false) {

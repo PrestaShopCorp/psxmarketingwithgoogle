@@ -1,0 +1,17 @@
+services:
+  PrestaShop\Module\PsxMarketingWithGoogle\Security\SecretBox:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\Security\SecretBox
+    public: true
+
+  PrestaShop\Module\PsxMarketingWithGoogle\OAuth\OAuthStateRepository:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\OAuth\OAuthStateRepository
+    public: true
+    arguments:
+      - '@psxmarketingwithgoogle.db'
+
+  PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleCredentialRepository:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleCredentialRepository
+    public: true
+    arguments:
+      - '@psxmarketingwithgoogle.db'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Security\SecretBox'

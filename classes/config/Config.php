@@ -22,6 +22,11 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\Config;
 
 class Config
 {
+    public const CONNECTION_TABLE = 'psxmarketingwithgoogle_connection';
+    public const OAUTH_STATE_TABLE = 'psxmarketingwithgoogle_oauth_state';
+    public const SYNC_JOB_TABLE = 'psxmarketingwithgoogle_sync_job';
+    public const SYNC_ITEM_TABLE = 'psxmarketingwithgoogle_sync_item';
+
     public const HOOK_LIST = [
         'displayBackOfficeHeader',
         'displayHeader',
