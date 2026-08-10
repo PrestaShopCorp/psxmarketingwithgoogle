@@ -3,6 +3,7 @@
 namespace Builder;
 
 use Carrier;
+use Context;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
@@ -14,6 +15,34 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Repository\StateRepository;
 use PrestaShop\Module\PsxMarketingWithGoogle\Repository\TaxRepository;
 use RangePrice;
 use RangeWeight;
+
+class CarrierTestDouble extends Carrier
+{
+    private $taxRuleId;
+
+    private $rangeTable;
+
+    public function __construct($taxRuleId, $rangeTable)
+    {
+        $this->taxRuleId = $taxRuleId;
+        $this->rangeTable = $rangeTable;
+    }
+
+    public function getIdTaxRulesGroup(?Context $context = null)
+    {
+        return $this->taxRuleId;
+    }
+
+    public function getRangeTable()
+    {
+        return $this->rangeTable;
+    }
+
+    public function getZones()
+    {
+        return [['id_zone' => 1]];
+    }
+}
 
 class CarrierBuilderTest extends TestCase
 {
@@ -198,9 +227,9 @@ class CarrierBuilderTest extends TestCase
                 'mockedFreeShippingAtPrice' => $freeShippingStartsAtPriceRange,
                 'mockedFreeShippingAtWeight' => $freeShippingStartsAtWeightRange,
                 'mockedDeliveryBy' => [],
-                'mockedCountryIsoCodeByZone' => $countryIsoCode,
-                'mockedStateIsoCodeByZone' => $false,
-                'mockedCarrierTaxesByZone' => $priceFree,
+                'mockedCountryIsoCodeByZone' => [],
+                'mockedStateIsoCodeByZone' => [],
+                'mockedCarrierTaxesByZone' => [],
                 'mockedCarrierRange' => $rangePrice,
                 'result' => [
                     [
@@ -231,6 +260,7 @@ class CarrierBuilderTest extends TestCase
                             'delay' => $freeCarrierDelay,
                             'currency' => $currency,
                             'weight_unit' => $weightUnit,
+                            'country_ids' => '',
                         ],
                     ],
                 ],
@@ -292,6 +322,7 @@ class CarrierBuilderTest extends TestCase
                             'delay' => $carrierDelay,
                             'currency' => $currency,
                             'weight_unit' => $weightUnit,
+                            'country_ids' => $countryIsoCode,
                         ],
                     ],
                     [
@@ -310,7 +341,7 @@ class CarrierBuilderTest extends TestCase
                     ],
                     [
                         'collection' => (string) $carrierTaxesCollection,
-                        'id' => $carrierReference . '-' . $firstZoneId,
+                        'id' => $carrierReference,
                         'properties' => [
                             'id_reference' => (string) $carrierReference,
                             'id_carrier_tax' => (string) $carrierTaxesRatesGroupId,
@@ -378,6 +409,7 @@ class CarrierBuilderTest extends TestCase
                             'delay' => $carrierDelay,
                             'currency' => $currency,
                             'weight_unit' => $weightUnit,
+                            'country_ids' => $countryIsoCode,
                         ],
                     ],
                     [
@@ -396,7 +428,7 @@ class CarrierBuilderTest extends TestCase
                     ],
                     [
                         'collection' => (string) $carrierTaxesCollection,
-                        'id' => $carrierReference . '-' . $firstZoneId,
+                        'id' => $carrierReference,
                         'properties' => [
                             'id_reference' => (string) $carrierReference,
                             'id_carrier_tax' => (string) $carrierTaxesRatesGroupId,
@@ -432,15 +464,11 @@ class CarrierBuilderTest extends TestCase
         $delay,
         $rangeTable
     ) {
-        $carrier = $this->getMockBuilder(Carrier::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $carrier = new CarrierTestDouble($taxRuleId, $rangeTable);
 
         $carrier->id = $id;
         $carrier->id_reference = $reference;
         $carrier->name = $name;
-        $carrier->expects($this->any())->method('getIdTaxRulesGroup')->willReturn($taxRuleId);
-        $carrier->expects($this->any())->method('getRangeTable')->willReturn($rangeTable);
         $carrier->url = $url;
         $carrier->active = $isActive;
         $carrier->deleted = $isDeleted;
@@ -543,7 +571,7 @@ class CarrierBuilderTest extends TestCase
         $taxRepository = $this->getMockBuilder(TaxRepository::class)
             ->disableOriginalConstructor()
             ->getMock();
-        $taxRepository->expects($this->any())->method('getCarrierTaxesByZone')->willReturn($mockedCarrierTaxesByZone);
+        $taxRepository->expects($this->any())->method('getCarrierTaxesByTaxRulesGroupId')->willReturn($mockedCarrierTaxesByZone);
 
         return $taxRepository;
     }
