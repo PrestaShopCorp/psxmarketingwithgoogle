@@ -62,10 +62,10 @@ Production must use this exact callback:
 https://thetinylux.com/module/tlgoogleshopping/oauth
 ```
 
-For a public development shop at `dev-shop.example`, use:
+The current public development callback used to verify this release is:
 
 ```text
-https://dev-shop.example/module/tlgoogleshopping/oauth
+https://condo-harvey-checklist-rain.trycloudflare.com/module/tlgoogleshopping/oauth
 ```
 
 If the shop is installed below a base path, that path precedes `/module/...`.
@@ -74,6 +74,13 @@ Google credential card. Set the shop's public SSL domain first, add that exact
 value to the Google client, and ensure the downloaded JSON lists it in
 `web.redirect_uris` before importing the file. A localhost callback is not a
 substitute for the public development callback.
+
+The current development hostname is a Cloudflare quick-tunnel address and can
+rotate. When it rotates, replace the old development callback in Google Cloud,
+then re-download and reimport the credential. If the deployment controller
+appends the current callback to `web.redirect_uris` for validation, that edit
+must exist only in the in-memory import payload; do not write an edited
+credential JSON to the module, repository, logs, or another persistent file.
 
 ## Import credentials securely
 
@@ -128,20 +135,33 @@ authorization response does not reveal whether a shop, job, or account exists.
 
 ## Build and verify the release
 
-Node 20+, pnpm 8.15.9, Composer 2, PHP, a JDK `jar` command, `unzip`, `zipinfo`,
-and `rg` are required. Docker runs the pinned Node builder.
+Docker, Git, `tar`, `sha256sum`, PHP, Python 3, `unzip`, and `rg` are required.
+Host Node, Composer, and JDK tools are not release inputs. The builder requires
+these exact container images to be present locally and fails before staging if
+one is absent:
+
+```text
+node@sha256:2cf067cfed83d5ea958367df9f966191a942351a2df77d6f0193e162b5febfc0
+composer@sha256:b09bccd91a78fe8a9ab4b33d707b862e8fe54fec17782e32683ad2a69c46867d
+python@sha256:519591d6871b7bc437060736b9f7456b8731f1499a57e22e6c285135ae657bf7
+```
 
 ```bash
 scripts/build-ready-package.sh
 tests/package-ready-contract.sh dist/psxmarketingwithgoogle-v2.0.0-tinylux.zip
+tests/package-ready-contract-self-test.sh dist/psxmarketingwithgoogle-v2.0.0-tinylux.zip
 sha256sum -c dist/psxmarketingwithgoogle-v2.0.0-tinylux.zip.sha256
 tests/runtime-network-contract.sh
+node tests/browser/tiny-lux-google-smoke.test.mjs
 ```
 
 The package build compiles all local UI and auxiliary assets, creates a
-production-only authoritative Composer autoloader, and rejects source/dev/test
-material, maps, logs, credential files, removed runtime dependencies, forbidden
-service hosts, and plaintext credential patterns.
+production-only authoritative Composer autoloader, and writes the deterministic
+ZIP from a digest-pinned Python container. It rejects unsafe or colliding ZIP
+names, non-regular entries, source/dev/test material, every `.env*` file, maps,
+logs, credential files and values, development Composer packages, removed
+runtime dependencies, forbidden service hosts, and plaintext credential
+patterns.
 
 The public browser smoke is environment-driven and never starts OAuth or a
 sync:

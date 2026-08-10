@@ -3,6 +3,12 @@ import { createRequire } from 'node:module';
 import path from 'node:path';
 import process from 'node:process';
 
+import {
+  allowedShopHosts,
+  assertAllowedShopUrl,
+  requestedHostIsForbidden,
+} from './tiny-lux-google-smoke-helpers.mjs';
+
 const require = createRequire(import.meta.url);
 const secretValues = [
   process.env.TINY_LUX_ADMIN_EMAIL,
@@ -101,6 +107,7 @@ async function openModule(page, adminUrl) {
 async function main() {
   const adminUrl = publicUrl('TINY_LUX_ADMIN_URL');
   const storefrontUrl = publicUrl('TINY_LUX_STOREFRONT_URL');
+  const allowedHosts = allowedShopHosts(adminUrl, storefrontUrl);
   const basicUser = process.env.TINY_LUX_BASIC_AUTH_USER?.trim();
   const basicPassword = process.env.TINY_LUX_BASIC_AUTH_PASSWORD?.trim();
   assert.equal(
@@ -121,30 +128,39 @@ async function main() {
   const browserErrors = [];
   const failedRequests = [];
   const forbiddenHosts = new Set();
-  const forbiddenHostPattern = /prestashop|psessentials|cloudsync|segment|sentry/i;
+  const observedPages = new WeakSet();
 
-  page.on('console', (message) => {
-    if (message.type() === 'error') {
-      browserErrors.push(`console: ${sanitize(message.text())}`);
+  const observePage = (observedPage) => {
+    if (observedPages.has(observedPage)) {
+      return;
     }
-  });
-  page.on('pageerror', (error) => {
-    browserErrors.push(`page: ${sanitize(error.message)}`);
-  });
-  page.on('requestfailed', (request) => {
+    observedPages.add(observedPage);
+    observedPage.on('console', (message) => {
+      if (message.type() === 'error') {
+        browserErrors.push(`console: ${sanitize(message.text())}`);
+      }
+    });
+    observedPage.on('pageerror', (error) => {
+      browserErrors.push(`page: ${sanitize(error.message)}`);
+    });
+  };
+  context.on('page', observePage);
+  observePage(page);
+
+  context.on('requestfailed', (request) => {
     let hostname = 'invalid-host';
     try {
-      hostname = new URL(request.url()).hostname;
+      hostname = new URL(request.url()).host;
     } catch {
       // Keep the safe placeholder; never retain a request URL.
     }
     failedRequests.push(`${request.method()} ${hostname}`);
   });
-  page.on('request', (request) => {
+  context.on('request', (request) => {
     try {
-      const hostname = new URL(request.url()).hostname;
-      if (forbiddenHostPattern.test(hostname)) {
-        forbiddenHosts.add(hostname);
+      const hostname = new URL(request.url()).host;
+      if (requestedHostIsForbidden(request.url(), allowedHosts)) {
+        forbiddenHosts.add(hostname.toLowerCase());
       }
     } catch {
       forbiddenHosts.add('invalid-host');
@@ -155,8 +171,9 @@ async function main() {
     const moduleRoot = await openModule(page, adminUrl);
     await moduleRoot.waitFor({ state: 'visible' });
 
-    assert.equal(page.url().startsWith(`${adminUrl.protocol}//${adminUrl.host}`), true,
-      'Back Office page left the expected shop host');
+    assertAllowedShopUrl(page.url(), allowedHosts, 'Back Office');
+    assert.equal(new URL(page.url()).host.toLowerCase(), adminUrl.host.toLowerCase(),
+      'Back Office page left the expected admin host');
     assert.match(await page.title(), /Tiny Lux|Google/i, 'Back Office page identity is incorrect');
 
     const moduleText = (await moduleRoot.innerText()).trim();
@@ -191,10 +208,14 @@ async function main() {
     assert.equal(await safeControl.evaluate((element) => element === document.activeElement), true,
       'The module did not respond to a focus interaction');
 
-    const storefrontResponse = await context.request.get(storefrontUrl.href, {
-      failOnStatusCode: false,
+    const storefrontPage = await context.newPage();
+    observePage(storefrontPage);
+    const storefrontResponse = await storefrontPage.goto(storefrontUrl.href, {
+      waitUntil: 'domcontentloaded',
     });
+    assert.notEqual(storefrontResponse, null, 'Storefront navigation returned no HTTP response');
     assert.equal(storefrontResponse.status(), 200, 'Storefront did not return HTTP 200');
+    assertAllowedShopUrl(storefrontPage.url(), allowedHosts, 'Storefront');
 
     assert.deepEqual([...forbiddenHosts], [], 'A forbidden runtime hostname was requested');
     assert.deepEqual(failedRequests, [], 'One or more browser requests failed');
