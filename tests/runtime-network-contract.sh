@@ -2,7 +2,8 @@
 set -euo pipefail
 
 root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)
-forbidden='googleshopping-api\.psessentials\.net|api\.cloudsync\.prestashop\.com|api\.addons\.prestashop\.com|storage\.googleapis\.com/psessentials-documentation|assets\.prestashop3\.com|integration-assets\.prestashop3\.com|psxmarketing-cdn|segment\.com|ingest\.sentry\.io|billing-cdc|prestashop-accounts|fonts\.googleapis\.com|fonts\.gstatic\.com'
+forbidden='googleshopping-api\.psessentials\.net|api\.cloudsync\.prestashop\.com|api\.addons\.prestashop\.com|addons\.prestashop\.com|storage\.googleapis\.com/psessentials-documentation|assets\.prestashop3\.com|integration-assets\.prestashop3\.com|psxmarketing-cdn|segment\.com|ingest\.sentry\.io|billing-cdc|prestashop-accounts|fonts\.googleapis\.com|fonts\.gstatic\.com'
+forbidden_built_artifacts='\[GGL\] Understand CMP requirement|ps_eventbus|PrestaShop CloudSync|PrestaShop account|Billing information'
 
 scan_paths=(
   "$root/classes"
@@ -18,8 +19,13 @@ scan_paths=(
 
 failed=0
 
-if rg -n -i "$forbidden" "${scan_paths[@]}"; then
+if rg -n -o -i "$forbidden" "${scan_paths[@]}"; then
   printf 'runtime network contract failed\n' >&2
+  failed=1
+fi
+
+if rg -n -o -i "$forbidden_built_artifacts" "$root/views/js"; then
+  printf 'runtime branding artifact contract failed\n' >&2
   failed=1
 fi
 

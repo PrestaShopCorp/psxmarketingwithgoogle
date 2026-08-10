@@ -1,9 +1,5 @@
 <template>
   <div class="pt-2 tiny-lux-google-onboarding">
-    <div class="row">
-      <AlertCmp />
-    </div>
-
     <header class="mb-4">
       <h1 class="h2 mb-2">
         {{ $t('tinyLuxGoogle.title') }}
@@ -63,7 +59,6 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import AlertCmp from '@/components/commons/alert-cmp.vue';
 import GoogleAccountCard from '@/components/google-account/google-account-card.vue';
 import MerchantCenterAccountCard from '@/components/merchant-center-account/merchant-center-account-card.vue';
 import ProductFeedCard from '@/components/onboarding/product-feed-card.vue';
@@ -83,7 +78,6 @@ const emptyConnection = {
 export default defineComponent({
   name: 'OnboardingPage',
   components: {
-    AlertCmp,
     GoogleAccountCard,
     GoogleCredentialsForm,
     MerchantCenterAccountCard,
@@ -151,11 +145,14 @@ export default defineComponent({
   async created() {
     this.googleIsLoading = true;
     this.merchantIsLoading = true;
+    this.productFeedIsLoading = true;
     try {
       await this.$store.dispatch('accounts/WARMUP_STORE');
+      await this.$store.dispatch('productFeed/WARMUP_STORE');
     } finally {
       this.googleIsLoading = false;
       this.merchantIsLoading = false;
+      this.productFeedIsLoading = false;
     }
   },
 });

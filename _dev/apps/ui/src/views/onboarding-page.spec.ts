@@ -4,6 +4,33 @@ import config, {cloneStore, localVue} from '@/../tests/init';
 import OnboardingPage from '@/views/onboarding-page.vue';
 
 describe('onboarding-page Merchant selection', () => {
+  it('does not mount the legacy CMP promotion in Tiny Lux onboarding', () => {
+    const wrapper = shallowMount(OnboardingPage, {
+      ...config,
+      localVue,
+      store: new Vuex.Store(cloneStore()),
+    });
+
+    expect(wrapper.findComponent({name: 'AlertCMP'}).exists()).toBe(false);
+  });
+
+  it('warms accounts and product-feed state for a direct configuration reload', async () => {
+    const store = new Vuex.Store(cloneStore());
+    const dispatch = vi.spyOn(store, 'dispatch').mockResolvedValue(null);
+
+    shallowMount(OnboardingPage, {
+      ...config,
+      localVue,
+      store,
+    });
+    await new Promise((resolve) => { setTimeout(resolve, 0); });
+
+    expect(dispatch.mock.calls.slice(0, 2)).toEqual([
+      ['accounts/WARMUP_STORE'],
+      ['productFeed/WARMUP_STORE'],
+    ]);
+  });
+
   it('renders direct Tiny Lux onboarding without PrestaShop account or Billing gates', () => {
     const storeDefinition = cloneStore();
     storeDefinition.modules.accounts.state.googleAccount = {
@@ -18,7 +45,6 @@ describe('onboarding-page Merchant selection', () => {
       localVue,
       store: new Vuex.Store(storeDefinition),
       stubs: {
-        AlertCmp: true,
         GoogleCredentialsForm: true,
         MerchantCenterAccountCard: true,
         ProductFeedCard: true,

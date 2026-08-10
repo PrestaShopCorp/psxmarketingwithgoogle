@@ -5,7 +5,6 @@
       "campaign": "Campaigns",
       "configuration": "Configure",
       "catalog": "Product catalog",
-      "billing": "Subscription",
       "help": "Help"
     },
     "errorsMessages": {
@@ -14,10 +13,6 @@
     "versionDoesNotExist": "It seems that the module's version can not be retrieved. It's on our side please try again.",
     "moduleNeedActivation": "Marketing with Google is disabled, you will not be able to use any of it's features until you enable your module.",
     "moduleUpdateNeeded": {
-      "ps_eventbus": {
-        "title": "A newer version of PrestaShop CloudSync is requested",
-        "paragraph": "The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\n You may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync."
-      },
       "psxmarketingwithgoogle": {
         "title": "A newer version of PrestaShop Marketing With Google is available",
         "paragraph": "It offers an exciting feature that will take your product usage to the next level. | It offers exciting features that will take your product usage to the next level.",
@@ -103,22 +98,7 @@
     }
   },
   "onboarding": {
-    "cmpAlert": {
-      "title": "GDPR updates",
-      "paragraph": "Starting March 2024, businesses advertising to users in the European Economic Area (EEA) must create a strong framework to collect and communicate end-users’ consent choices via consent banners integrated with Google’s Consent Mode. To build a strong foundation for measuring your ads you must set up a cookie banner through a supported, dedicated Consent Management Platform. If you do not already have one, we recommend that you use the following consent management platform, which is compliant with the new regulations: {link}",
-      "moduleGDPR": "Cookies GDPR Law (Blocker) + Google Consent Mode V2"
-    },
     "sectionTitle": {
-      "psAccount": "Link your shop to your PrestaShop account",
-      "psbilling": {
-        "title": "Billing information",
-        "subTitle": "Access and manage your subscription and related payment method.",
-        "alertNoSynchro": "Your catalog synchronization with Google Merchant Center is paused because PrestaShop Marketing now requires a €14.99 excl. tax/month subscription. "
-      },
-      "pscloudsync": {
-        "title": "Allow data sharing",
-        "subTitle": "Help us enhance your experience and improve our service by giving consent to securely share relevant data with us."
-      },
       "freeListing": {
         "title": "Reach more people on Google with free listings",
         "subtitle": "Free listings give you access to millions of shoppers searching for products similar to yours. Display your products for free in organically ranked listings on the Shopping tab when you connect your Google account to Google Merchant Center."
@@ -137,12 +117,6 @@
     "tips": "After you are done with the first shop, you can configure the others by selecting them one by one in the shop selector, in the horizontal menu",
     "configure": "Configure",
     "group": "Shop group"
-  },
-  "billingFacade": {
-    "title": "Payment details",
-    "nextPayment": "Your subscription is active, next billing on {date}",
-    "willEnd": "Your subscription will end on {date}.",
-    "managePayment": "Manage payments"
   },
   "googleAccountCard": {
     "title": "Google account",
@@ -567,10 +541,6 @@
       "syncScheduledNow" : "Today, right after I save and export"
     }
   },
-  "billing": {
-    "planTitle": "Plan & billing information",
-    "invoicesTitle": "Invoices"
-  },
   "freeListingCard": {
     "title": "Show your products with free listings",
     "intro": "Showcase your product for free in organically-ranked listing on Shopping tab.",
@@ -938,7 +908,6 @@
     "title": "Congratulations, you're all set !",
     "text": "You finished all the required steps to get the most out of **Marketing with Google**",
     "cta": "Go to campaign creation",
-    "firstStep": "Link your store to a PrestaShop account",
     "secondStep": "Sign in or create your Google Account",
     "thirdStep": "Sign in or create your Google Merchant Center account",
     "fourthStep": "Export and synchronize your product catalog",

@@ -13,12 +13,12 @@
       {{ job.pending }} {{ $t('tinyLuxGoogle.pending') }}
     </p>
     <ul
-      v-if="job.errors.length"
+      v-if="jobErrors.length"
       class="list-unstyled mb-3"
       data-test="sync-errors"
     >
       <li
-        v-for="error in job.errors"
+        v-for="error in jobErrors"
         :key="`${error.offerKey}-${error.code}-${error.field}`"
         class="alert alert-warning py-2 px-3 mb-2"
       >
@@ -41,7 +41,7 @@
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
-import {SyncJob} from '@/store/modules/product-feed/state';
+import {SyncJob, SyncJobError} from '@/store/modules/product-feed/state';
 
 export default defineComponent({
   name: 'SyncJobStatus',
@@ -52,6 +52,9 @@ export default defineComponent({
     },
   },
   computed: {
+    jobErrors(): SyncJobError[] {
+      return Array.isArray(this.job.errors) ? this.job.errors : [];
+    },
     canRetry(): boolean {
       return this.job.failed > 0 && !['pending', 'running'].includes(this.job.status);
     },

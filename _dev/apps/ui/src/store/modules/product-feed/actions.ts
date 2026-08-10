@@ -18,12 +18,17 @@ import debounce from '@/utils/Debounce';
 import ActionsTypes from './actions-types';
 import GetterTypes from './getters-types';
 import MutationsTypes from './mutations-types';
-import type {ProductFeedSettings, State} from './state';
+import type {ProductFeedSettings, State, SyncJob} from './state';
 
 type Context = ActionContext<State, FullState>;
 
 const SAVED_SETTINGS_KEY = 'tinyLuxGoogleProductFeedSettings';
 const SAVED_MAPPING_KEY = 'tinyLuxGoogleAttributeMapping';
+
+const normalizeSyncJob = (job: Omit<SyncJob, 'errors'> & Partial<Pick<SyncJob, 'errors'>>): SyncJob => ({
+  ...job,
+  errors: Array.isArray(job.errors) ? job.errors : [],
+});
 
 const readLocalJson = (key: string): unknown => {
   const value = localStorage.getItem(key);
@@ -90,9 +95,10 @@ export default {
   },
 
   async [ActionsTypes.RUN_SYNC_JOB]({commit}: Context, payload: {jobId: number}) {
-    const job = await (await fetchOnboarding('POST', 'sync/jobs/run', {
+    const response = await (await fetchOnboarding('POST', 'sync/jobs/run', {
       body: {jobId: payload.jobId, limit: 25},
     })).json();
+    const job = normalizeSyncJob(response);
 
     commit(MutationsTypes.SET_SYNC_JOB, job);
     return job;
@@ -120,6 +126,12 @@ export default {
       return;
     }
     state.warmedUp = RequestState.PENDING;
+
+    try {
+      await dispatch(ActionsTypes.GET_PRODUCT_FILTER_SETTINGS);
+    } catch (error) {
+      // Keep the retained configuration usable with its safe local defaults.
+    }
 
     const storedJobId = localStorage.getItem('tinyLuxGoogleSyncJobId');
 

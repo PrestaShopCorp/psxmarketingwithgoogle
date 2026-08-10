@@ -55,4 +55,24 @@ describe('sync-job-status.vue', () => {
     expect(wrapper.text()).toContain('4 of 10 products synchronized');
     expect(wrapper.find('[data-test="retry-failed"]').exists()).toBe(false);
   });
+
+  it('renders a counts-only run response without requiring an error list', () => {
+    const wrapper = mount(SyncJobStatus, {
+      ...config,
+      propsData: {
+        job: {
+          jobId: 11,
+          status: 'running',
+          total: 10,
+          succeeded: 4,
+          failed: 1,
+          skipped: 0,
+          pending: 5,
+        },
+      },
+    });
+
+    expect(wrapper.text()).toContain('4 of 10 products synchronized');
+    expect(wrapper.find('[data-test="sync-errors"]').exists()).toBe(false);
+  });
 });

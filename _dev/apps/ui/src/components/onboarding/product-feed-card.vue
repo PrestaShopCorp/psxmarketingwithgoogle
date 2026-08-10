@@ -231,6 +231,15 @@ export default defineComponent({
       }
     },
   },
+  watch: {
+    syncJob(job: SyncJob|null) {
+      if (this.isActive(job)) {
+        this.scheduleNextPoll();
+        return;
+      }
+      this.stopPolling();
+    },
+  },
   mounted() {
     if (this.jobIsActive) {
       this.scheduleNextPoll();

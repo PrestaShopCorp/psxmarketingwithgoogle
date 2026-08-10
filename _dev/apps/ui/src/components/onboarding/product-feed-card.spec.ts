@@ -136,6 +136,80 @@ describe('product-feed-card.vue local synchronization', () => {
     }
   });
 
+  it('starts one polling loop when warmup restores an active job after mount', async () => {
+    vi.useFakeTimers();
+    const storeDefinition = cloneStore();
+    storeDefinition.modules.accounts.state.googleAccount.dataSource = 'accounts/123/dataSources/456';
+    const store = new Vuex.Store(storeDefinition);
+    const running = {
+      jobId: 92,
+      status: 'running',
+      total: 10,
+      succeeded: 4,
+      failed: 0,
+      skipped: 0,
+      pending: 6,
+      errors: [],
+    };
+    const completed = {
+      ...running,
+      status: 'completed',
+      succeeded: 10,
+      pending: 0,
+    };
+    const dispatch = vi.spyOn(store, 'dispatch').mockResolvedValue(completed);
+    const wrapper = shallowMount(ProductFeedCard, {
+      ...config,
+      localVue,
+      store,
+      propsData: {isEnabled: true, loading: false},
+    });
+
+    try {
+      store.commit('productFeed/SET_SYNC_JOB', running);
+      await wrapper.vm.$nextTick();
+      await vi.advanceTimersByTimeAsync(1500);
+
+      expect(dispatch).toHaveBeenCalledTimes(1);
+      expect(dispatch).toHaveBeenCalledWith('productFeed/GET_SYNC_JOB_STATUS', {jobId: 92});
+    } finally {
+      wrapper.destroy();
+      vi.useRealTimers();
+    }
+  });
+
+  it('does not poll when warmup restores a terminal job after mount', async () => {
+    vi.useFakeTimers();
+    const store = new Vuex.Store(cloneStore());
+    const dispatch = vi.spyOn(store, 'dispatch').mockResolvedValue(null);
+    const wrapper = shallowMount(ProductFeedCard, {
+      ...config,
+      localVue,
+      store,
+      propsData: {isEnabled: true, loading: false},
+    });
+
+    try {
+      store.commit('productFeed/SET_SYNC_JOB', {
+        jobId: 93,
+        status: 'completed',
+        total: 10,
+        succeeded: 10,
+        failed: 0,
+        skipped: 0,
+        pending: 0,
+        errors: [],
+      });
+      await wrapper.vm.$nextTick();
+      await vi.advanceTimersByTimeAsync(5000);
+
+      expect(dispatch).not.toHaveBeenCalled();
+    } finally {
+      wrapper.destroy();
+      vi.useRealTimers();
+    }
+  });
+
   it('renders a generic local operation failure without leaking the thrown value', async () => {
     const store = new Vuex.Store(cloneStore());
     vi.spyOn(store, 'dispatch').mockRejectedValue(new Error('secret-upstream-payload'));

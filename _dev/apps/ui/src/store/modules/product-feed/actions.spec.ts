@@ -390,7 +390,7 @@ describe('createProductFeedApiPayload', () => {
 });
 
 describe('durable local synchronization actions', () => {
-  const job = {
+  const countsOnlyRun = {
     jobId: 91,
     status: 'running',
     total: 10,
@@ -398,6 +398,9 @@ describe('durable local synchronization actions', () => {
     failed: 1,
     skipped: 0,
     pending: 5,
+  };
+  const job = {
+    ...countsOnlyRun,
     errors: [],
   };
 
@@ -459,22 +462,24 @@ describe('durable local synchronization actions', () => {
     );
   });
 
-  it('warms up only the persisted durable job through the local status route', async () => {
+  it('restores authoritative filters and the persisted durable job on configuration reload', async () => {
     localStorage.setItem('tinyLuxGoogleSyncJobId', '91');
     const dispatch = vi.fn().mockResolvedValue(job);
     const state = {warmedUp: RequestState.IDLE};
 
     await actions[ActionsTypes.WARMUP_STORE]({dispatch, state, getters: {}});
 
-    expect(dispatch).toHaveBeenCalledTimes(1);
-    expect(dispatch).toHaveBeenCalledWith(ActionsTypes.GET_SYNC_JOB_STATUS, {jobId: 91});
+    expect(dispatch.mock.calls).toEqual([
+      [ActionsTypes.GET_PRODUCT_FILTER_SETTINGS],
+      [ActionsTypes.GET_SYNC_JOB_STATUS, {jobId: 91}],
+    ]);
     expect(state.warmedUp).toBe(RequestState.SUCCESS);
   });
 
-  it('creates and runs a bounded local synchronization job', async () => {
+  it('normalizes the exact counts-only run response for safe rendering', async () => {
     fetchMock.mockResponses(
       [JSON.stringify({jobId: 91}), {status: 200}],
-      [JSON.stringify(job), {status: 200}],
+      [JSON.stringify(countsOnlyRun), {status: 200}],
     );
     const commit = vi.fn();
     const dispatch = vi.fn(async (action, payload) => (
@@ -535,7 +540,7 @@ describe('durable local synchronization actions', () => {
   it('retries only failed products and resumes the same durable job', async () => {
     fetchMock.mockResponses(
       [JSON.stringify({jobId: 91}), {status: 200}],
-      [JSON.stringify(job), {status: 200}],
+      [JSON.stringify(countsOnlyRun), {status: 200}],
     );
     const commit = vi.fn();
     const dispatch = vi.fn(async (action, payload) => (
@@ -558,5 +563,6 @@ describe('durable local synchronization actions', () => {
       path: 'sync/jobs/run',
       body: {jobId: 91, limit: 25},
     });
+    expect(commit).toHaveBeenLastCalledWith(MutationsTypes.SET_SYNC_JOB, job);
   });
 });
