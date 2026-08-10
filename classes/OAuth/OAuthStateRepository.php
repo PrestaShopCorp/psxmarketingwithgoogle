@@ -10,6 +10,7 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\OAuth;
 use DateTimeImmutable;
 use DateTimeZone;
 use Db;
+use InvalidArgumentException;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use RuntimeException;
 use UnexpectedValueException;
@@ -26,6 +27,9 @@ final class OAuthStateRepository
 
     public function issue(int $shopId, int $employeeId, DateTimeImmutable $expiresAt): string
     {
+        $this->assertPositiveId($shopId, 'Shop');
+        $this->assertPositiveId($employeeId, 'Employee');
+
         $rawState = rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-_'), '=');
         $stateHash = hash('sha256', $rawState);
         $expiresAtUtc = $expiresAt->setTimezone(new DateTimeZone('UTC'));
@@ -50,6 +54,8 @@ final class OAuthStateRepository
 
     public function consume(string $rawState, int $shopId): array
     {
+        $this->assertPositiveId($shopId, 'Shop');
+
         $stateHash = hash('sha256', $rawState);
         $table = _DB_PREFIX_ . Config::OAUTH_STATE_TABLE;
         $identity = "state_hash = '" . pSQL($stateHash) . "' AND id_shop = " . (int) $shopId;
@@ -80,5 +86,12 @@ final class OAuthStateRepository
         $row['id_employee'] = (int) $row['id_employee'];
 
         return $row;
+    }
+
+    private function assertPositiveId(int $id, string $name): void
+    {
+        if (0 >= $id) {
+            throw new InvalidArgumentException($name . ' ID must be positive.');
+        }
     }
 }

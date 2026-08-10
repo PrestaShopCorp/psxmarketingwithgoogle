@@ -12,9 +12,16 @@ use InvalidArgumentException;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\Module\PsxMarketingWithGoogle\Security\SecretBox;
 use RuntimeException;
+use Throwable;
 
 final class GoogleCredentialRepository
 {
+    private const REQUIRED_FIELDS = [
+        'client_id',
+        'client_secret',
+        'cron_token',
+    ];
+
     private const OPTIONAL_FIELDS = [
         'refresh_token',
         'google_email',
@@ -41,10 +48,13 @@ final class GoogleCredentialRepository
      * Missing optional fields retain their existing value. A new record gets a
      * generated high-entropy cron token when one is not supplied.
      *
-     * @param array<string, string|null> $connection
+     * @param array<string, mixed> $connection
      */
     public function save(int $shopId, array $connection): void
     {
+        $this->assertPositiveShopId($shopId);
+        $this->assertSuppliedRequiredFields($connection);
+
         $existing = $this->findEncrypted($shopId);
         if (false === $existing) {
             $this->assertRequiredString($connection, 'client_id');
@@ -82,6 +92,8 @@ final class GoogleCredentialRepository
      */
     public function find(int $shopId): ?array
     {
+        $this->assertPositiveShopId($shopId);
+
         $row = $this->findEncrypted($shopId);
         if (false === $row) {
             return null;
@@ -97,6 +109,8 @@ final class GoogleCredentialRepository
 
     public function delete(int $shopId): void
     {
+        $this->assertPositiveShopId($shopId);
+
         if (!$this->db->delete(Config::CONNECTION_TABLE, 'id_shop = ' . (int) $shopId)) {
             throw new RuntimeException('Unable to delete the Google connection.');
         }
@@ -109,22 +123,54 @@ final class GoogleCredentialRepository
     {
         $table = _DB_PREFIX_ . Config::CONNECTION_TABLE;
 
-        return $this->db->getRow(
-            'SELECT id_shop, client_id, client_secret, refresh_token, google_email,'
-            . ' merchant_account, data_source, cron_token, created_at, updated_at'
-            . ' FROM `' . bqSQL($table) . '`'
-            . ' WHERE id_shop = ' . (int) $shopId
-        );
+        try {
+            $row = $this->db->getRow(
+                'SELECT id_shop, client_id, client_secret, refresh_token, google_email,'
+                . ' merchant_account, data_source, cron_token, created_at, updated_at'
+                . ' FROM `' . bqSQL($table) . '`'
+                . ' WHERE id_shop = ' . (int) $shopId
+            );
+        } catch (Throwable $exception) {
+            unset($exception);
+
+            throw new RuntimeException('Unable to read the Google connection.');
+        }
+
+        if (false === $row) {
+            try {
+                $hasDatabaseError = 0 !== (int) $this->db->getNumberError()
+                    || '' !== trim((string) $this->db->getMsgError());
+            } catch (Throwable $exception) {
+                unset($exception);
+
+                throw new RuntimeException('Unable to read the Google connection.');
+            }
+
+            if ($hasDatabaseError) {
+                throw new RuntimeException('Unable to read the Google connection.');
+            }
+
+            return false;
+        }
+
+        if (!is_array($row)) {
+            throw new RuntimeException('Unable to read the Google connection.');
+        }
+
+        return $row;
     }
 
     /**
-     * @param array<string, string|null> $connection
+     * @param array<string, mixed> $connection
      * @param array<string, mixed>|false $existing
      */
     private function plainValue(array $connection, $existing, string $field): ?string
     {
         if (array_key_exists($field, $connection)) {
             $value = $connection[$field];
+            if (null !== $value && !is_string($value)) {
+                throw new InvalidArgumentException(sprintf('Connection field "%s" must be a string or null.', $field));
+            }
 
             return null === $value ? null : pSQL($value);
         }
@@ -133,25 +179,49 @@ final class GoogleCredentialRepository
     }
 
     /**
-     * @param array<string, string|null> $connection
+     * @param array<string, mixed> $connection
      * @param array<string, mixed>|false $existing
      */
     private function encryptedValue(array $connection, $existing, string $field): ?string
     {
         if (array_key_exists($field, $connection)) {
-            return null === $connection[$field] ? null : $this->secretBox->encrypt($connection[$field]);
+            $value = $connection[$field];
+            if (null !== $value && !is_string($value)) {
+                throw new InvalidArgumentException(sprintf('Connection field "%s" must be a string or null.', $field));
+            }
+
+            return null === $value ? null : $this->secretBox->encrypt($value);
         }
 
         return false === $existing ? null : $existing[$field];
     }
 
     /**
-     * @param array<string, string|null> $connection
+     * @param array<string, mixed> $connection
      */
     private function assertRequiredString(array $connection, string $field): void
     {
-        if (!isset($connection[$field]) || '' === trim($connection[$field])) {
+        if (!isset($connection[$field]) || !is_string($connection[$field]) || '' === trim($connection[$field])) {
             throw new InvalidArgumentException(sprintf('Connection field "%s" is required.', $field));
+        }
+    }
+
+    /**
+     * @param array<string, mixed> $connection
+     */
+    private function assertSuppliedRequiredFields(array $connection): void
+    {
+        foreach (self::REQUIRED_FIELDS as $field) {
+            if (array_key_exists($field, $connection)) {
+                $this->assertRequiredString($connection, $field);
+            }
+        }
+    }
+
+    private function assertPositiveShopId(int $shopId): void
+    {
+        if (0 >= $shopId) {
+            throw new InvalidArgumentException('Shop ID must be positive.');
         }
     }
 }

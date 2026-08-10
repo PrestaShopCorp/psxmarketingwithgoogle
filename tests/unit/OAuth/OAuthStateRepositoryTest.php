@@ -4,6 +4,7 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\Tests\Unit\OAuth;
 
 use DateTimeImmutable;
 use Db;
+use InvalidArgumentException;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use PrestaShop\Module\PsxMarketingWithGoogle\OAuth\OAuthStateRepository;
@@ -23,19 +24,25 @@ class OAuthStateRepositoryTest extends TestCase
     /** @var OAuthStateRepository */
     private $repository;
 
+    /** @var int */
+    private $databaseCalls = 0;
+
     protected function setUp(): void
     {
         $this->rows = [];
         $this->affectedRows = 0;
+        $this->databaseCalls = 0;
         $this->db = $this->createMock(Db::class);
 
         $this->db->method('insert')->willReturnCallback(function (string $table, array $row): bool {
+            ++$this->databaseCalls;
             self::assertSame('psxmarketingwithgoogle_oauth_state', $table);
             $this->rows[$row['state_hash']] = $row;
 
             return true;
         });
         $this->db->method('getRow')->willReturnCallback(function ($query) {
+            ++$this->databaseCalls;
             [$stateHash, $shopId] = $this->stateIdentityFromQuery((string) $query);
             if (!isset($this->rows[$stateHash]) || (int) $this->rows[$stateHash]['id_shop'] !== $shopId) {
                 return false;
@@ -44,6 +51,7 @@ class OAuthStateRepositoryTest extends TestCase
             return $this->rows[$stateHash];
         });
         $this->db->method('execute')->willReturnCallback(function ($query): bool {
+            ++$this->databaseCalls;
             $query = (string) $query;
             self::assertStringContainsString('consumed_at IS NULL', $query);
             self::assertStringContainsString('expires_at >= UTC_TIMESTAMP()', $query);
@@ -113,6 +121,58 @@ class OAuthStateRepositoryTest extends TestCase
         } catch (UnexpectedValueException $exception) {
             self::assertSame(7, $this->repository->consume($rawState, 1)['id_employee']);
         }
+    }
+
+    /**
+     * @dataProvider invalidIssueIdentityProvider
+     */
+    public function testIssueRejectsNonPositiveShopOrEmployeeBeforeDatabaseAccess(
+        int $shopId,
+        int $employeeId
+    ): void {
+        try {
+            $this->repository->issue($shopId, $employeeId, new DateTimeImmutable('+5 minutes'));
+            self::fail('OAuth state issue requires positive shop and employee IDs.');
+        } catch (InvalidArgumentException $exception) {
+            self::assertSame([], $this->rows);
+            self::assertSame(0, $this->databaseCalls);
+        }
+    }
+
+    public function invalidIssueIdentityProvider(): array
+    {
+        return [
+            'zero shop' => [0, 7],
+            'negative shop' => [-1, 7],
+            'zero employee' => [1, 0],
+            'negative employee' => [1, -1],
+        ];
+    }
+
+    /**
+     * @dataProvider invalidShopIdProvider
+     */
+    public function testConsumeRejectsNonPositiveShopBeforeDatabaseAccess(int $shopId): void
+    {
+        $rawState = $this->repository->issue(1, 7, new DateTimeImmutable('+5 minutes'));
+        $storedBefore = $this->rows;
+        $this->databaseCalls = 0;
+
+        try {
+            $this->repository->consume($rawState, $shopId);
+            self::fail('OAuth state consume requires a positive shop ID.');
+        } catch (InvalidArgumentException $exception) {
+            self::assertSame($storedBefore, $this->rows);
+            self::assertSame(0, $this->databaseCalls);
+        }
+    }
+
+    public function invalidShopIdProvider(): array
+    {
+        return [
+            'zero shop' => [0],
+            'negative shop' => [-1],
+        ];
     }
 
     /**
