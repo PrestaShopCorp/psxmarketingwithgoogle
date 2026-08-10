@@ -12,6 +12,9 @@ class AdminTinyLuxGoogleApiController extends ModuleAdminController
 {
     private const MAX_REQUEST_BYTES = 65536;
 
+    /** @var bool */
+    private $requestAuthorized = false;
+
     /** @var PsxMarketingWithGoogle */
     public $module;
 
@@ -24,24 +27,82 @@ class AdminTinyLuxGoogleApiController extends ModuleAdminController
         $this->display_footer = false;
     }
 
-    /**
-     * Defer the framework token result to the JSON handler so failures remain JSON.
-     * The handler calls the inherited checkToken() before reading the request body.
-     */
     public function checkAccess()
     {
+        $this->requestAuthorized = false;
+        if (!$this->hasAuthenticatedEmployee()) {
+            $this->emitJsonAndTerminate($this->error(401, 'unauthorized'));
+
+            return false;
+        }
+        if (!$this->checkToken() || !$this->viewAccess()) {
+            $this->emitJsonAndTerminate($this->error(403, 'forbidden'));
+
+            return false;
+        }
+
+        $this->requestAuthorized = true;
+
         return true;
+    }
+
+    /**
+     * This JSON-only controller dispatches solely through its explicit route table.
+     * Never allow AdminController to invoke ajaxProcess<Action>() from request data.
+     */
+    public function postProcess()
+    {
     }
 
     public function displayAjax()
     {
-        $rawBody = Tools::file_get_contents('php://input');
+        if (!$this->requestAuthorized) {
+            $this->emitJsonAndTerminate($this->error(401, 'unauthorized'));
+
+            return;
+        }
+
+        $rawBody = $this->readRequestBody(self::MAX_REQUEST_BYTES + 1);
         $response = $this->handleJsonRequest(
             isset($_SERVER['REQUEST_METHOD']) && is_string($_SERVER['REQUEST_METHOD'])
                 ? $_SERVER['REQUEST_METHOD']
                 : '',
-            is_string($rawBody) ? $rawBody : ''
+            $rawBody
         );
+
+        $this->emitJsonAndTerminate($response);
+    }
+
+    protected function readRequestBody(int $maximumBytes): string
+    {
+        $stream = @fopen('php://input', 'rb');
+        if (false === $stream) {
+            return '';
+        }
+
+        $body = '';
+        try {
+            while (!feof($stream) && strlen($body) < $maximumBytes) {
+                $remaining = $maximumBytes - strlen($body);
+                $chunk = fread($stream, min(8192, $remaining));
+                if (false === $chunk || '' === $chunk) {
+                    break;
+                }
+                $body .= $chunk;
+            }
+        } catch (Throwable $exception) {
+            unset($exception);
+
+            return '';
+        } finally {
+            fclose($stream);
+        }
+
+        return $body;
+    }
+
+    protected function emitJsonAndTerminate(Response $response): void
+    {
         http_response_code($response->getStatusCode());
         foreach ($response->getHeaders() as $name => $value) {
             header($name . ': ' . $value);
@@ -53,12 +114,6 @@ class AdminTinyLuxGoogleApiController extends ModuleAdminController
 
     public function handleJsonRequest(string $httpMethod, string $rawBody): Response
     {
-        if (!$this->hasAuthenticatedEmployee()) {
-            return $this->error(401, 'unauthorized');
-        }
-        if (!$this->checkToken() || !$this->viewAccess()) {
-            return $this->error(403, 'forbidden');
-        }
         if ('POST' !== $httpMethod) {
             return $this->error(405, 'method_not_allowed');
         }

@@ -88,6 +88,25 @@ final class GoogleCredentialRepository
     }
 
     /**
+     * Replace the OAuth client and invalidate all Google-account selections.
+     *
+     * The existing encrypted cron token is intentionally omitted so save()
+     * retains its exact ciphertext in the same ON DUPLICATE KEY write. A first
+     * import still receives save()'s generated high-entropy cron token.
+     */
+    public function replaceClientCredentials(int $shopId, string $clientId, string $clientSecret): void
+    {
+        $this->save($shopId, [
+            'client_id' => $clientId,
+            'client_secret' => $clientSecret,
+            'refresh_token' => null,
+            'google_email' => null,
+            'merchant_account' => null,
+            'data_source' => null,
+        ]);
+    }
+
+    /**
      * @return array<string, mixed>|null
      */
     public function find(int $shopId): ?array

@@ -72,11 +72,11 @@ export default defineComponent({
     return {
       error: '',
       loading: false,
+      readGeneration: 0,
     };
   },
   methods: {
     importCredentials(event: Event) {
-      this.error = '';
       const input = event.target as HTMLInputElement;
       const file = input.files?.[0];
 
@@ -85,11 +85,23 @@ export default defineComponent({
         return;
       }
 
+      const generation = this.readGeneration + 1;
+      this.readGeneration = generation;
+      this.loading = true;
+      this.error = '';
       const reader = new FileReader();
       reader.onerror = () => {
+        if (generation !== this.readGeneration) {
+          return;
+        }
         this.error = 'The Google OAuth web client file could not be read.';
+        this.loading = false;
       };
       reader.onload = async () => {
+        if (generation !== this.readGeneration) {
+          return;
+        }
+
         let credential: {web: WebCredential};
         try {
           const parsed = JSON.parse(String(reader.result));
@@ -99,21 +111,30 @@ export default defineComponent({
           }
           credential = parsed;
         } catch (error) {
-          this.error = 'Select a valid Google OAuth web client JSON file.';
+          if (generation === this.readGeneration) {
+            this.error = 'Select a valid Google OAuth web client JSON file.';
+            this.loading = false;
+          }
           return;
         }
 
-        this.loading = true;
         try {
           const response = await fetchOnboarding('POST', 'settings/credentials', {
             body: credential as unknown as {[key: string]: unknown},
           });
           const configuration = await response.json() as SafeGoogleConfiguration;
-          this.$emit('configured', configuration);
+
+          if (generation === this.readGeneration) {
+            this.$emit('configured', configuration);
+          }
         } catch (error) {
-          this.error = 'The Google OAuth web client could not be imported.';
+          if (generation === this.readGeneration) {
+            this.error = 'The Google OAuth web client could not be imported.';
+          }
         } finally {
-          this.loading = false;
+          if (generation === this.readGeneration) {
+            this.loading = false;
+          }
         }
       };
       reader.readAsText(file);

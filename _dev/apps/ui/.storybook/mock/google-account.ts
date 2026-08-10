@@ -17,13 +17,12 @@ export const googleAccountFailedToRetrieveAuthenticationUrl: GoogleAccountContex
 
 export const googleAccountFailedToRetrieveToken: GoogleAccountContext = {
   ...googleAccountNotConnected,
-  access_token: new Error(),
 };
 
 export const googleAccountConnected: GoogleAccountContext = {
   ...googleAccountNotConnected,
-  access_token: "wololo",
-  expiry_date: 999999999999999,
+  connected: true,
+  googleEmail: "v.godard@maisonroyer.com",
   details: {
     email: "v.godard@maisonroyer.com",
     picture: "//source.unsplash.com/bul_3zwYI6E/38x38",

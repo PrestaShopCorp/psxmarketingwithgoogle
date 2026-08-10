@@ -69,11 +69,11 @@ export interface GoogleAccount {
   mcaSelectionOptions: GoogleMerchantAccount[] | null,
 }
 
-export interface GoogleAccountToken {
-  // eslint-disable-next-line camelcase
-  access_token: string|Error,
-  // eslint-disable-next-line camelcase
-  expiry_date: number,
+export interface GoogleConnectionStatus {
+  connected: boolean,
+  googleEmail: string|null,
+  merchantAccount: string|null,
+  dataSource: string|null,
 }
 
 export interface SuspendedStatus {
@@ -82,7 +82,7 @@ export interface SuspendedStatus {
 }
 
 export type GoogleAccountContext = GoogleAccount
-& GoogleAccountToken & {
+& GoogleConnectionStatus & {
   authenticationUrl: string|Error,
   connectedOnce: boolean,
   missingTokenScopes: Array<string>,
@@ -144,8 +144,10 @@ export const state: State = {
   shopIdPsAccounts: '',
   tokenPsAccounts: '',
   googleAccount: {
-    access_token: '',
-    expiry_date: 0,
+    connected: false,
+    googleEmail: null,
+    merchantAccount: null,
+    dataSource: null,
     details: {},
     mcaSelectionOptions: null,
     authenticationUrl: '',

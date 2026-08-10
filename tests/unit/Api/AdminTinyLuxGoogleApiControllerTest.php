@@ -9,45 +9,90 @@ require_once __DIR__ . '/../../../controllers/admin/AdminTinyLuxGoogleApiControl
 
 class AdminTinyLuxGoogleApiControllerTest extends TestCase
 {
-    public function testUnauthenticatedEmployeeIsRejectedBeforeTokenBodyOrDispatch(): void
+    public function testUnauthenticatedEmployeeIsTerminatedBeforeTokenBodyOrDispatch(): void
     {
         $controller = new TestableTinyLuxGoogleApiController(false, true, true);
-        $secretPayload = '{"method":"POST","path":"settings/credentials","body":{"secret":"raw-secret-value"}}';
+        $controller->rawBody = '{"method":"POST","path":"settings/credentials","body":{"secret":"raw-secret-value"}}';
 
-        $response = $controller->handleJsonRequest('POST', $secretPayload);
+        $response = $this->runAndCaptureResponse($controller);
 
         self::assertSame(401, $response->getStatusCode());
         self::assertSame(['code' => 'unauthorized'], $this->json($response));
         self::assertSame(0, $controller->tokenChecks);
         self::assertSame(0, $controller->viewChecks);
+        self::assertSame(0, $controller->bodyReads);
         self::assertSame(0, $controller->dispatches);
         self::assertStringNotContainsString('raw-secret-value', $response->getBody());
     }
 
-    public function testInvalidAdminTokenIsRejectedBeforeBodyParsingOrDispatch(): void
+    public function testInvalidAdminTokenIsTerminatedBeforeBodyParsingOrDispatch(): void
     {
         $controller = new TestableTinyLuxGoogleApiController(true, false, true);
+        $controller->rawBody = '{malformed-secret-payload';
 
-        $response = $controller->handleJsonRequest('POST', '{malformed-secret-payload');
+        $response = $this->runAndCaptureResponse($controller);
 
         self::assertSame(403, $response->getStatusCode());
         self::assertSame(['code' => 'forbidden'], $this->json($response));
         self::assertSame(1, $controller->tokenChecks);
         self::assertSame(0, $controller->viewChecks);
+        self::assertSame(0, $controller->bodyReads);
         self::assertSame(0, $controller->dispatches);
         self::assertStringNotContainsString('malformed-secret-payload', $response->getBody());
     }
 
-    public function testProfileWithoutModuleViewPermissionIsRejectedBeforeBodyParsingOrDispatch(): void
+    public function testProfileWithoutModuleViewPermissionIsTerminatedBeforeBodyParsingOrDispatch(): void
     {
         $controller = new TestableTinyLuxGoogleApiController(true, true, false);
+        $controller->rawBody = '{malformed-secret-payload';
 
-        $response = $controller->handleJsonRequest('POST', '{malformed-secret-payload');
+        $response = $this->runAndCaptureResponse($controller);
 
         self::assertSame(403, $response->getStatusCode());
         self::assertSame(['code' => 'forbidden'], $this->json($response));
         self::assertSame(1, $controller->tokenChecks);
         self::assertSame(1, $controller->viewChecks);
+        self::assertSame(0, $controller->bodyReads);
+        self::assertSame(0, $controller->dispatches);
+    }
+
+    public function testDirectDisplayInvocationCannotBypassTheLifecycleAuthorizationGate(): void
+    {
+        $controller = new TestableTinyLuxGoogleApiController(true, true, true);
+        $controller->rawBody = '{"method":"GET","path":"oauth","body":null}';
+
+        $response = $this->displayAndCaptureResponse($controller);
+
+        self::assertSame(401, $response->getStatusCode());
+        self::assertSame(['code' => 'unauthorized'], $this->json($response));
+        self::assertSame(0, $controller->tokenChecks);
+        self::assertSame(0, $controller->viewChecks);
+        self::assertSame(0, $controller->bodyReads);
+        self::assertSame(0, $controller->dispatches);
+    }
+
+    public function testPostProcessIsOwnedByTheJsonControllerAndNeverDispatchesAnActionMethod(): void
+    {
+        $controller = new TestableTinyLuxGoogleApiController(true, true, true);
+        $method = new \ReflectionMethod(\AdminTinyLuxGoogleApiController::class, 'postProcess');
+
+        $controller->postProcess();
+
+        self::assertSame(\AdminTinyLuxGoogleApiController::class, $method->getDeclaringClass()->getName());
+        self::assertSame(0, $controller->dynamicActionCalls);
+    }
+
+    public function testAuthorizedOversizedEntryPointReadsAtMostLimitPlusOneAndDoesNotDispatch(): void
+    {
+        $controller = new TestableTinyLuxGoogleApiController(true, true, true);
+        $controller->rawBody = str_repeat('x', 65537);
+
+        $response = $this->runAndCaptureResponse($controller);
+
+        self::assertSame(413, $response->getStatusCode());
+        self::assertSame(['code' => 'request_too_large'], $this->json($response));
+        self::assertSame(1, $controller->bodyReads);
+        self::assertSame(65537, $controller->requestedBodyLimit);
         self::assertSame(0, $controller->dispatches);
     }
 
@@ -103,6 +148,49 @@ class AdminTinyLuxGoogleApiControllerTest extends TestCase
         self::assertSame(['web' => ['client_id' => 'id']], $controller->dispatchedBody);
     }
 
+    public function testAuthorizedLifecycleDispatchesAfterAllGatesAndOneBoundedBodyRead(): void
+    {
+        $controller = new TestableTinyLuxGoogleApiController(true, true, true);
+        $controller->rawBody = '{"method":"GET","path":"oauth","body":null}';
+
+        $response = $this->runAndCaptureResponse($controller);
+
+        self::assertSame(200, $response->getStatusCode());
+        self::assertSame(1, $controller->tokenChecks);
+        self::assertSame(1, $controller->viewChecks);
+        self::assertSame(1, $controller->bodyReads);
+        self::assertSame(65537, $controller->requestedBodyLimit);
+        self::assertSame(1, $controller->dispatches);
+    }
+
+    private function runAndCaptureResponse(TestableTinyLuxGoogleApiController $controller): Response
+    {
+        try {
+            $controller->runJsonLifecycle();
+            self::fail('The JSON entry point must terminate after emitting its response.');
+        } catch (JsonResponseTerminated $exception) {
+            unset($exception);
+        }
+
+        self::assertInstanceOf(Response::class, $controller->terminatedResponse);
+
+        return $controller->terminatedResponse;
+    }
+
+    private function displayAndCaptureResponse(TestableTinyLuxGoogleApiController $controller): Response
+    {
+        try {
+            $controller->displayAjax();
+            self::fail('The JSON entry point must terminate after emitting its response.');
+        } catch (JsonResponseTerminated $exception) {
+            unset($exception);
+        }
+
+        self::assertInstanceOf(Response::class, $controller->terminatedResponse);
+
+        return $controller->terminatedResponse;
+    }
+
     /** @return array<string, mixed> */
     private function json(Response $response): array
     {
@@ -133,6 +221,21 @@ class TestableTinyLuxGoogleApiController extends \AdminTinyLuxGoogleApiControlle
     /** @var int */
     public $dispatches = 0;
 
+    /** @var int */
+    public $bodyReads = 0;
+
+    /** @var int */
+    public $requestedBodyLimit = 0;
+
+    /** @var int */
+    public $dynamicActionCalls = 0;
+
+    /** @var string */
+    public $rawBody = '';
+
+    /** @var Response|null */
+    public $terminatedResponse;
+
     /** @var string */
     public $dispatchedMethod = '';
 
@@ -147,6 +250,7 @@ class TestableTinyLuxGoogleApiController extends \AdminTinyLuxGoogleApiControlle
         $this->employeeAuthenticated = $employeeAuthenticated;
         $this->validToken = $validToken;
         $this->viewAllowed = $viewAllowed;
+        $_SERVER['REQUEST_METHOD'] = 'POST';
     }
 
     protected function hasAuthenticatedEmployee(): bool
@@ -169,6 +273,36 @@ class TestableTinyLuxGoogleApiController extends \AdminTinyLuxGoogleApiControlle
         return $this->viewAllowed;
     }
 
+    public function runJsonLifecycle(): void
+    {
+        if (!$this->checkAccess()) {
+            return;
+        }
+
+        $this->postProcess();
+        $this->displayAjax();
+    }
+
+    public function ajaxProcessCredentials(): void
+    {
+        ++$this->dynamicActionCalls;
+    }
+
+    protected function readRequestBody(int $maximumBytes): string
+    {
+        ++$this->bodyReads;
+        $this->requestedBodyLimit = $maximumBytes;
+
+        return substr($this->rawBody, 0, $maximumBytes);
+    }
+
+    protected function emitJsonAndTerminate(Response $response): void
+    {
+        $this->terminatedResponse = $response;
+
+        throw new JsonResponseTerminated();
+    }
+
     protected function dispatchApi(string $method, string $path, array $body): Response
     {
         ++$this->dispatches;
@@ -178,4 +312,8 @@ class TestableTinyLuxGoogleApiController extends \AdminTinyLuxGoogleApiControlle
 
         return new Response(200, '{"ok":true}', ['Content-Type' => 'application/json']);
     }
+}
+
+final class JsonResponseTerminated extends \RuntimeException
+{
 }

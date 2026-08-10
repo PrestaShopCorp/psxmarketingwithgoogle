@@ -116,10 +116,7 @@ final class LocalGoogleApi
             return $this->error(422, 'invalid_web_client');
         }
 
-        $this->credentials->save($shopId, [
-            'client_id' => $clientId,
-            'client_secret' => $clientSecret,
-        ]);
+        $this->credentials->replaceClientCredentials($shopId, $clientId, $clientSecret);
 
         return $this->json(200, [
             'configured' => true,

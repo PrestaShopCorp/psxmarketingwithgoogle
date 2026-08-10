@@ -2,34 +2,34 @@ import MutationsTypes from './mutations-types';
 import {
   State as LocalState,
   GoogleMerchantAccount,
-  GoogleAccount,
-  GoogleAccountToken,
+  GoogleConnectionStatus,
   MerchantCenterAccountContext, WebsiteClaimErrorReason,
   ShopInformations,
 } from './state';
 
 export default {
   /** Google Account mutations */
-  [MutationsTypes.SET_GOOGLE_ACCOUNT](state: LocalState, response: GoogleAccount) {
+  [MutationsTypes.SET_GOOGLE_ACCOUNT](state: LocalState, response: GoogleConnectionStatus|null) {
+    const connection = response || {
+      connected: false,
+      googleEmail: null,
+      merchantAccount: null,
+      dataSource: null,
+    };
     state.googleAccount = {
       ...state.googleAccount,
-      ...response,
+      ...connection,
+      details: {
+        ...state.googleAccount.details,
+        email: connection.googleEmail,
+      },
     };
   },
-  [MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN](
-    state: LocalState,
-    payload: GoogleAccountToken|Error,
-  ) {
-    if (payload instanceof Error) {
-      state.googleAccount.access_token = payload;
-      return;
-    }
-    state.googleAccount.access_token = payload.access_token;
-    state.googleAccount.expiry_date = payload.expiry_date;
-  },
   [MutationsTypes.REMOVE_GOOGLE_ACCOUNT](state: LocalState) {
-    state.googleAccount.access_token = '';
-    state.googleAccount.expiry_date = 0;
+    state.googleAccount.connected = false;
+    state.googleAccount.googleEmail = null;
+    state.googleAccount.merchantAccount = null;
+    state.googleAccount.dataSource = null;
     state.googleAccount.details = {};
   },
   [MutationsTypes.SET_GOOGLE_AUTHENTICATION_URL](state: LocalState, url: string|Error) {

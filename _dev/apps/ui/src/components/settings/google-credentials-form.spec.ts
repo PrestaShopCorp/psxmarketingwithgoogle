@@ -108,4 +108,76 @@ describe('google-credentials-form.vue', () => {
     expect(wrapper.text()).toContain(redirectUri);
     expect(wrapper.find('input[type="file"]').exists()).toBe(true);
   });
+
+  it('allows only the latest accepted deferred read to submit or update state', async () => {
+    const nativeFileReader = globalThis.FileReader;
+    const readers: DeferredFileReader[] = [];
+    class DeferredFileReader {
+      result: string|null = null;
+
+      onload: null|(() => unknown) = null;
+
+      onerror: null|(() => unknown) = null;
+
+      constructor() {
+        readers.push(this);
+      }
+
+      readAsText() {
+        // Completion is controlled by the test so reads can finish out of order.
+        this.result = null;
+      }
+
+      async complete(contents: string) {
+        this.result = contents;
+        await this.onload?.();
+      }
+    }
+    vi.stubGlobal('FileReader', DeferredFileReader);
+    fetchMock.mockResponse(JSON.stringify({
+      configured: true,
+      clientIdSuffix: 'LATEST78',
+      redirectUri,
+    }));
+    const wrapper = mount(GoogleCredentialsForm, {
+      propsData: {connection: {configured: false, clientIdSuffix: '', redirectUri}},
+      stubs: {BAlert: true},
+    });
+    const firstFile = new File(['first'], 'first.json', {type: 'application/json'});
+    const latestFile = new File(['latest'], 'latest.json', {type: 'application/json'});
+
+    try {
+      wrapper.vm.importCredentials({target: {files: [firstFile]}} as unknown as Event);
+      expect(wrapper.vm.loading).toBe(true);
+      wrapper.vm.importCredentials({target: {files: [latestFile]}} as unknown as Event);
+      expect(wrapper.vm.loading).toBe(true);
+      expect(readers).toHaveLength(2);
+
+      await readers[1].complete(JSON.stringify({
+        web: {
+          client_id: 'latest-client-id-LATEST78',
+          client_secret: 'latest-secret-never-rendered',
+          redirect_uris: [redirectUri],
+        },
+      }));
+      await wrapper.vm.$nextTick();
+      await readers[0].complete('{"stale-secret":"must-be-inert"');
+      await wrapper.vm.$nextTick();
+
+      expect(fetchMock).toHaveBeenCalledTimes(1);
+      expect(String(fetchMock.mock.calls[0][1]?.body)).toContain('latest-client-id-LATEST78');
+      expect(String(fetchMock.mock.calls[0][1]?.body)).not.toContain('stale-secret');
+      expect(wrapper.emitted('configured')).toEqual([[{
+        configured: true,
+        clientIdSuffix: 'LATEST78',
+        redirectUri,
+      }]]);
+      expect(wrapper.vm.loading).toBe(false);
+      expect(wrapper.vm.error).toBe('');
+      expect(wrapper.text()).not.toContain('latest-secret-never-rendered');
+      expect(wrapper.text()).not.toContain('stale-secret');
+    } finally {
+      vi.stubGlobal('FileReader', nativeFileReader);
+    }
+  });
 });

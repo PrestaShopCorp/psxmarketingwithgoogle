@@ -25,11 +25,7 @@ export default {
 
   /* Google Account */
   [GetterTypes.GET_GOOGLE_ACCOUNT_IS_ONBOARDED](state: LocalState): boolean {
-    return typeof state.googleAccount.access_token === 'string'
-      && !!state.googleAccount.access_token.length;
-  },
-  [GetterTypes.GET_GOOGLE_ACCOUNT_TOKEN](state: LocalState) : String|Error {
-    return state.googleAccount.access_token;
+    return state.googleAccount.connected;
   },
   [GetterTypes.GET_GOOGLE_ACCOUNT](state: LocalState) : GoogleAccountContext {
     return state.googleAccount;

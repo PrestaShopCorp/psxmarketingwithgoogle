@@ -167,6 +167,52 @@ class GoogleCredentialRepositoryTest extends TestCase
         self::assertSame('new-owner@example.com', $this->repository->find(1)['google_email']);
     }
 
+    public function testReplacingClientCredentialsAtomicallyDisconnectsGoogleAndPreservesOnlyCronToken(): void
+    {
+        $this->repository->save(1, [
+            'client_id' => 'old-client-id',
+            'client_secret' => 'old-client-secret',
+            'refresh_token' => 'old-refresh-token',
+            'google_email' => 'old-owner@example.com',
+            'merchant_account' => 'merchant-123',
+            'data_source' => 'accounts/123/dataSources/456',
+            'cron_token' => 'stable-cron-token',
+        ]);
+        $before = $this->rows[1];
+        $this->resetDatabaseCalls();
+
+        $this->repository->replaceClientCredentials(1, 'new-client-id', 'new-client-secret');
+
+        $after = $this->rows[1];
+        self::assertSame(1, $this->readCalls);
+        self::assertSame(1, $this->writeCalls);
+        self::assertSame(0, $this->deleteCalls);
+        self::assertSame($before['cron_token'], $after['cron_token']);
+        self::assertNotSame($before['client_secret'], $after['client_secret']);
+        self::assertNull($after['refresh_token']);
+        self::assertNull($after['google_email']);
+        self::assertNull($after['merchant_account']);
+        self::assertNull($after['data_source']);
+        self::assertStringNotContainsString('new-client-secret', json_encode($after));
+        self::assertSame([
+            'client_id' => 'new-client-id',
+            'client_secret' => 'new-client-secret',
+            'refresh_token' => null,
+            'google_email' => null,
+            'merchant_account' => null,
+            'data_source' => null,
+            'cron_token' => 'stable-cron-token',
+        ], array_intersect_key($this->repository->find(1), array_flip([
+            'client_id',
+            'client_secret',
+            'refresh_token',
+            'google_email',
+            'merchant_account',
+            'data_source',
+            'cron_token',
+        ])));
+    }
+
     public function testInitialSaveGeneratesAnEncryptedHighEntropyCronToken(): void
     {
         $this->repository->save(1, [

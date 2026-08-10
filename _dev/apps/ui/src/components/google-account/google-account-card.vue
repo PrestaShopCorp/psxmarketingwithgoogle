@@ -36,7 +36,7 @@
             {{ $t('badge.connected') }}
           </b-badge>
           <div
-            v-if="!accessToken"
+            v-if="!isConnected"
             class="flex-grow-1 d-flex-md flex-md-grow-1 flex-shrink-0 text-right"
           >
             <b-button
@@ -106,7 +106,7 @@
         ml-2 ps_gs-onboardingcard__content"
         >
           <div
-            v-if="isEnabled && !accessToken"
+            v-if="isEnabled && !isConnected"
           >
             <p
               class="mb-0"
@@ -128,7 +128,7 @@
             </b-alert>
           </div>
           <div
-            v-else-if="accessToken"
+            v-else-if="isConnected"
             class="d-flex align-items-center pr-3"
           >
             <a
@@ -142,7 +142,7 @@
           </div>
         </div>
         <b-alert
-          v-if="!error && accessToken && missingTokenScopes"
+          v-if="!error && isConnected && missingTokenScopes"
           show
           variant="warning"
           class="mb-0 mt-3"
@@ -244,11 +244,8 @@ export default defineComponent({
     window.removeEventListener('message', this.popupMessageListener);
   },
   computed: {
-    accessToken() {
-      return this.user && this.user.access_token
-        && typeof this.user.access_token === 'string'
-        ? this.user.access_token
-        : null;
+    isConnected() {
+      return Boolean(this.user?.connected);
     },
     authenticationUrl() {
       return this.user && this.user.authenticationUrl
@@ -262,13 +259,6 @@ export default defineComponent({
         && this.user.authenticationUrl instanceof Error
       ) {
         return 'CantConnect';
-      }
-
-      if (this.user
-        && this.user.access_token
-        && this.user.access_token instanceof Error
-      ) {
-        return 'TokenMissing';
       }
 
       return null;

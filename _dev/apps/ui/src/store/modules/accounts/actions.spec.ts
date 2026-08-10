@@ -67,6 +67,58 @@ describe('Action SAVE_SELECTED_GOOGLE_MERCHANT_ACCOUNT', () => {
   });
 });
 
+describe('Action REQUEST_GOOGLE_ACCOUNT_DETAILS', () => {
+  it('consumes the local connection status without requesting an unsupported merchant route', async () => {
+    const connection = {
+      connected: true,
+      googleEmail: 'owner@example.com',
+      merchantAccount: null,
+      dataSource: null,
+    };
+    fetchMock.mockResponse(JSON.stringify(connection));
+
+    const result = await actions[ActionsTypes.REQUEST_GOOGLE_ACCOUNT_DETAILS]({
+      commit,
+      dispatch,
+    });
+
+    expect(result).toEqual(connection);
+    expect(commit).toHaveBeenCalledTimes(1);
+    expect(commit).toHaveBeenCalledWith(MutationsTypes.SET_GOOGLE_ACCOUNT, connection);
+    expect(dispatch).not.toHaveBeenCalledWith(ActionsTypes.REQUEST_GMC_LIST);
+    expect(dispatch).not.toHaveBeenCalledWith(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(JSON.parse(String(fetchMock.mock.calls[0][1]?.body))).toEqual({
+      method: 'GET',
+      path: 'oauth',
+      body: null,
+    });
+  });
+
+  it('keeps the account disconnected and requests an authorization URL locally', async () => {
+    const connection = {
+      connected: false,
+      googleEmail: null,
+      merchantAccount: null,
+      dataSource: null,
+    };
+    fetchMock.mockResponse(JSON.stringify(connection));
+
+    const result = await actions[ActionsTypes.REQUEST_GOOGLE_ACCOUNT_DETAILS]({
+      commit,
+      dispatch,
+    });
+
+    expect(result).toEqual(connection);
+    expect(commit).toHaveBeenCalledTimes(1);
+    expect(commit).toHaveBeenCalledWith(MutationsTypes.SET_GOOGLE_ACCOUNT, connection);
+    expect(dispatch).toHaveBeenCalledTimes(1);
+    expect(dispatch).toHaveBeenCalledWith(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
+    expect(dispatch).not.toHaveBeenCalledWith(ActionsTypes.REQUEST_GMC_LIST);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+});
+
 describe('Action TRIGGER_WEBSITE_VERIFICATION_AND_CLAIMING_PROCESS', () => {
   it('short-circuits to the PendingUserInvitation override and skips claiming reads while the invite is unaccepted', async () => {
     const state = {googleMerchantAccount: {pendingUserInvitation: true}};

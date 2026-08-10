@@ -1,6 +1,10 @@
 import {ActionContext} from 'vuex';
 import {fetchOnboarding, fetchShop, HttpClientError} from 'mktg-with-google-common';
-import {GoogleMerchantAccount, WebsiteClaimErrorReason} from '@/store/modules/accounts/state';
+import {
+  GoogleConnectionStatus,
+  GoogleMerchantAccount,
+  WebsiteClaimErrorReason,
+} from '@/store/modules/accounts/state';
 import MutationsTypes from './mutations-types';
 import MutationsTypesProductFeed from '../product-feed/mutations-types';
 import MutationsTypesGoogleAds from '../google-ads/mutations-types';
@@ -148,31 +152,22 @@ export default {
     commit, dispatch,
   }: Context) {
     try {
-      const json = await (await fetchOnboarding('GET', 'oauth')).json();
+      const connection = (await (await fetchOnboarding('GET', 'oauth')).json()) as GoogleConnectionStatus;
 
-      commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, json);
-      commit(MutationsTypes.SET_GOOGLE_ACCOUNT, json);
-      if (json.account_id) {
-        commit(MutationsTypes.SAVE_GMC, {
-          id: json.account_id,
-        });
+      commit(MutationsTypes.SET_GOOGLE_ACCOUNT, connection);
+      if (!connection.connected) {
+        dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
       }
-      if (json.google_ads_account_id) {
-        commit(`googleAds/${MutationsTypesGoogleAds.SET_GOOGLE_ADS_ACCOUNT_ID}`, json.google_ads_account_id, {root: true},
-        );
-      }
-      // If GMC is already linked, must start by requesting GMC list, then look after the link GMC.
-      // Also needed if we didn't have linked the accounts yet, as the marchant has to pick one.
-      dispatch(ActionsTypes.REQUEST_GMC_LIST);
-      return json;
+
+      return connection;
     } catch (error) {
       dispatch(ActionsTypes.REQUEST_ROUTE_TO_GOOGLE_AUTH);
+      commit(MutationsTypes.SET_GOOGLE_ACCOUNT, null);
       if (error instanceof HttpClientError && (error.code === 404 || error.code === 412)) {
         // This is likely caused by a missing Google account, so let's retrieve the URL
         return null;
       }
       console.error(`Could not request google account details: ${(<any>error)?.message}`);
-      commit(MutationsTypes.SAVE_GOOGLE_ACCOUNT_TOKEN, error);
     }
     return null;
   },

@@ -101,6 +101,49 @@ class LocalGoogleApiTest extends TestCase
         self::assertSame($secret, $this->credentials->find(1)['client_secret']);
     }
 
+    public function testCredentialReplacementPreservesCronAndClearsEveryGoogleConnectionField(): void
+    {
+        $this->credentials->save(1, [
+            'client_id' => 'old-client-id',
+            'client_secret' => 'old-client-secret',
+            'refresh_token' => 'old-refresh-token',
+            'google_email' => 'old-owner@example.com',
+            'merchant_account' => 'merchant-123',
+            'data_source' => 'accounts/123/dataSources/456',
+            'cron_token' => 'stable-cron-token',
+        ]);
+        $encryptedCron = $this->credentialRows[1]['cron_token'];
+        $newSecret = 'new-client-secret-never-returned';
+
+        $response = $this->api->dispatch('POST', 'settings/credentials', [
+            'web' => [
+                'client_id' => 'new-client-id-12345678',
+                'client_secret' => $newSecret,
+                'redirect_uris' => [self::PRODUCTION_REDIRECT_URI],
+            ],
+        ]);
+
+        self::assertSame(200, $response->getStatusCode());
+        self::assertSame([
+            'configured' => true,
+            'clientIdSuffix' => '12345678',
+            'redirectUri' => self::PRODUCTION_REDIRECT_URI,
+        ], $this->json($response));
+        self::assertSame($encryptedCron, $this->credentialRows[1]['cron_token']);
+        self::assertNull($this->credentialRows[1]['refresh_token']);
+        self::assertNull($this->credentialRows[1]['google_email']);
+        self::assertNull($this->credentialRows[1]['merchant_account']);
+        self::assertNull($this->credentialRows[1]['data_source']);
+        self::assertStringNotContainsString($newSecret, $response->getBody());
+        self::assertStringNotContainsString($newSecret, json_encode($this->credentialRows));
+        self::assertSame([
+            'connected' => false,
+            'googleEmail' => null,
+            'merchantAccount' => null,
+            'dataSource' => null,
+        ], $this->json($this->api->dispatch('GET', 'oauth')));
+    }
+
     /**
      * @dataProvider invalidCredentialProvider
      *
