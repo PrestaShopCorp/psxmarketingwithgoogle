@@ -214,6 +214,18 @@ class PsxMarketingWithGoogle extends Module
         return $this->getService(RemarketingHookHandler::class)->handleHook(__FUNCTION__, $params);
     }
 
+    public function hookModuleRoutes()
+    {
+        return [
+            'module-tlgoogleshopping-oauth' => [
+                'controller' => 'oauth',
+                'rule' => 'module/tlgoogleshopping/oauth',
+                'keywords' => [],
+                'params' => ['fc' => 'module', 'module' => $this->name],
+            ],
+        ];
+    }
+
     /**
      * return __FILE__
      *

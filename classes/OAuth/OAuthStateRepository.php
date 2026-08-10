@@ -88,6 +88,37 @@ final class OAuthStateRepository
         return $row;
     }
 
+    /**
+     * Resolve only the pending shop and employee context for a hashed state.
+     * The caller must still invoke consume(); that atomic shop-bound update is
+     * the authority and race gate.
+     *
+     * @return array{id_shop: int, id_employee: int}
+     */
+    public function findPendingContext(string $rawState): array
+    {
+        $stateHash = hash('sha256', $rawState);
+        $table = _DB_PREFIX_ . Config::OAUTH_STATE_TABLE;
+        $row = $this->db->getRow(
+            'SELECT id_shop, id_employee'
+            . ' FROM `' . bqSQL($table) . '`'
+            . " WHERE state_hash = '" . pSQL($stateHash) . "'"
+            . ' AND consumed_at IS NULL'
+            . ' AND expires_at >= UTC_TIMESTAMP()'
+        );
+        if (!is_array($row)) {
+            throw new UnexpectedValueException('OAuth state is invalid or expired.');
+        }
+
+        $shopId = (int) ($row['id_shop'] ?? 0);
+        $employeeId = (int) ($row['id_employee'] ?? 0);
+        if (0 >= $shopId || 0 >= $employeeId) {
+            throw new UnexpectedValueException('OAuth state context is invalid.');
+        }
+
+        return ['id_shop' => $shopId, 'id_employee' => $employeeId];
+    }
+
     private function assertPositiveId(int $id, string $name): void
     {
         if (0 >= $id) {

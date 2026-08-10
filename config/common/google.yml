@@ -1,4 +1,14 @@
 services:
+  PrestaShop\Module\PsxMarketingWithGoogle\Google\GoogleTransportInterface:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\Google\CurlGoogleTransport
+    public: false
+
+  PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthClient:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthClient
+    public: false
+    arguments:
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Google\GoogleTransportInterface'
+
   PrestaShop\Module\PsxMarketingWithGoogle\Security\SecretBox:
     class: PrestaShop\Module\PsxMarketingWithGoogle\Security\SecretBox
     public: true
@@ -15,3 +25,18 @@ services:
     arguments:
       - '@psxmarketingwithgoogle.db'
       - '@PrestaShop\Module\PsxMarketingWithGoogle\Security\SecretBox'
+
+  PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleConnectionService:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleConnectionService
+    public: true
+    arguments:
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\OAuthStateRepository'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleCredentialRepository'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthClient'
+
+  PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthCallback:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleOAuthCallback
+    public: true
+    arguments:
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\OAuthStateRepository'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\OAuth\GoogleConnectionService'
