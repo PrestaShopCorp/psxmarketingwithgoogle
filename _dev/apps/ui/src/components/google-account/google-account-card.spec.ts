@@ -93,4 +93,54 @@ describe('google-account-card.vue', () => {
     // Check if account email is visible, the email is defined in the mock
     expect(wrapper.find('a').text()).toBe('v.godard@maisonroyer.com');
   });
+
+  it('fully reloads after a connected account completes the OAuth popup callback', () => {
+    const store = new Vuex.Store(cloneStore());
+    const dispatch = vi.spyOn(store, 'dispatch').mockResolvedValue(null);
+    const wrapper = (mount as any)(GoogleAccountCard, {
+      ...config,
+      mocks: {
+        $router: mockRouter,
+      },
+      store,
+      propsData: Connected.args,
+      stubs: {
+        VueShowdown: true,
+      },
+    });
+
+    wrapper.vm.popupMessageListener({data: '?from=SVC&message=ok&status=success'});
+
+    expect(mockRouter.go).toHaveBeenCalledTimes(1);
+    expect(dispatch).not.toHaveBeenCalled();
+  });
+
+  it('refreshes account details without reloading after a disconnected OAuth popup callback', async () => {
+    const store = new Vuex.Store(cloneStore());
+    const dispatch = vi.spyOn(store, 'dispatch').mockResolvedValue({
+      connected: true,
+      googleEmail: 'owner@example.com',
+      merchantAccount: null,
+      dataSource: null,
+    });
+    const wrapper = (mount as any)(GoogleAccountCard, {
+      ...config,
+      mocks: {
+        $router: mockRouter,
+      },
+      store,
+      propsData: NotConnected.args,
+      stubs: {
+        VueShowdown: true,
+      },
+    });
+
+    wrapper.vm.popupMessageListener({data: '?from=SVC&message=ok&status=success'});
+    await new Promise((resolve) => { setTimeout(resolve, 0); });
+
+    expect(mockRouter.go).not.toHaveBeenCalled();
+    expect(dispatch).toHaveBeenCalledTimes(1);
+    expect(dispatch).toHaveBeenCalledWith('accounts/REQUEST_GOOGLE_ACCOUNT_DETAILS');
+    expect(wrapper.emitted('connectGoogleAccount')).toHaveLength(1);
+  });
 });

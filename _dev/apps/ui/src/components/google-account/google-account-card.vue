@@ -353,8 +353,8 @@ export default defineComponent({
 
       if (paramsFound.from === 'SVC' && paramsFound.message === 'ok') {
         this.$store.commit(`accounts/${MutationsTypes.SET_GOOGLE_AUTHENTICATION_RESPONSE}`, paramsFound);
-        // Having a access token means we replace a previously onboarded account
-        if (this.accessToken) {
+        // A connected account means the callback replaces a previous onboarding.
+        if (this.isConnected) {
           // TODO: could be improved to avoid full reload.
           //  Need to this.refreshAccount(true) AND refresh GMC details too !
           this.refresh();
