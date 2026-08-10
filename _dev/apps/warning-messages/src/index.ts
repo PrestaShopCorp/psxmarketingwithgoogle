@@ -20,12 +20,19 @@ initOnboardingClient({
   apiUrl: window.psxMktgWithGoogleApiUrl,
 });
 
-document.addEventListener('DOMContentLoaded', async () => {
+export const loadWarningMessages = async (): Promise<void> => {
+  try {
+    const messagesToDisplay = await getListOfWarnings(fetchOnboarding);
 
-  const messagesToDisplay = await getListOfWarnings(fetchOnboarding);
+    buildWarningMessages(messagesToDisplay, {
+      isoCode: (new Intl.Locale(window.i18nSettings.languageLocale)).language,
+      link: window.psxMktgWithGoogleAdminUrl,
+    }).attachBefore(document.getElementById('dashboard'));
+  } catch {
+    // Warning messages must never break the Back Office dashboard.
+  }
+};
 
-  buildWarningMessages(messagesToDisplay, {
-    isoCode: (new Intl.Locale(window.i18nSettings.languageLocale)).language,
-    link: window.psxMktgWithGoogleAdminUrl,
-  }).attachBefore(document.getElementById('dashboard'));
+document.addEventListener('DOMContentLoaded', () => {
+  loadWarningMessages();
 });

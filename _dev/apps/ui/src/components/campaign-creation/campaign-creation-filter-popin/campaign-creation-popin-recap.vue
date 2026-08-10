@@ -108,7 +108,6 @@
 import {defineComponent} from 'vue';
 import CampaignStatus, {CampaignTypes} from '@/enums/reporting/CampaignStatus';
 import PsModal from '@/components/commons/ps-modal.vue';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import compareYears from '@/utils/CompareYears';
 import {changeCountryNameToCode} from '@/utils/Countries';
 
@@ -166,15 +165,6 @@ export default defineComponent({
       this.$refs.modal.hide();
     },
     ok() {
-      if (!this.editionMode) {
-        this.$segment.track('[GGL] Create SSC Validation Step', {
-          module: 'psxmarketingwithgoogle',
-          remarketing_conversion_value:
-            this.$store.state.campaigns.trackingFeature.basic,
-          params: SegmentGenericParams,
-        });
-      }
-
       this.isValidating = true;
       const campaignPayload = {
         // Send default status
@@ -201,10 +191,6 @@ export default defineComponent({
             name: 'campaign',
           });
           this.$emit('openPopinSSCCreated');
-          this.$segment.track(`[GGL] Campaign ${this.edition ? 'updated' : 'created'}`, {
-            module: 'psxmarketingwithgoogle',
-            params: SegmentGenericParams,
-          });
         })
         .catch(() => {
           this.$emit('displayErrorApiWhenSavingSSC');

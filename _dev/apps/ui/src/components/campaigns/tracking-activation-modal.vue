@@ -36,7 +36,6 @@
 import {defineComponent} from 'vue';
 import PsModal from '@/components/commons/ps-modal.vue';
 import googleUrl from '@/assets/json/googleUrl.json';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default defineComponent({
   name: 'TrackingActivationModal',
@@ -60,12 +59,6 @@ export default defineComponent({
       this.processing = true;
       bvModalEvt.preventDefault();
 
-      this.$segment.track('[GGL] Create SSC Remarketing Conversion Step', {
-        module: 'psxmarketingwithgoogle',
-        remarketing_tab_value: true,
-        conversion_tracking_value: true,
-        params: SegmentGenericParams,
-      });
       await this.$store.dispatch(
         'campaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', true,
       );

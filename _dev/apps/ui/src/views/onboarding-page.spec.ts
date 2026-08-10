@@ -31,6 +31,23 @@ describe('onboarding-page Merchant selection', () => {
     ]);
   });
 
+  it('does not dispatch Google Ads or campaign actions during onboarding warmup', async () => {
+    const store = new Vuex.Store(cloneStore());
+    const dispatch = vi.spyOn(store, 'dispatch').mockResolvedValue(null);
+
+    shallowMount(OnboardingPage, {
+      ...config,
+      localVue,
+      store,
+    });
+    await new Promise((resolve) => { setTimeout(resolve, 0); });
+
+    const actionNames = dispatch.mock.calls.map(([actionName]) => actionName);
+    expect(actionNames.filter((actionName) => (
+      actionName.startsWith('googleAds/') || actionName.startsWith('campaigns/')
+    ))).toEqual([]);
+  });
+
   it('renders direct Tiny Lux onboarding without PrestaShop account or Billing gates', () => {
     const storeDefinition = cloneStore();
     storeDefinition.modules.accounts.state.googleAccount = {

@@ -58,7 +58,6 @@
 </template>
 
 <script>
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'CampaignCard',
@@ -78,11 +77,6 @@ export default {
   },
   methods: {
     openPopinActivateTracking() {
-      this.$segment.track('[GGL] Create SSC Config tab', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-      });
-
       this.$emit('openPopin');
     },
   },

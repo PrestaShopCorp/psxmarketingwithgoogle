@@ -5,7 +5,6 @@
       "campaign": "Campaniile",
       "configuration": "Configurare",
       "catalog": "Catalog de produse",
-      "billing": "Abonare",
       "help": "Ajutor"
     },
     "errorsMessages": {
@@ -14,10 +13,6 @@
     "versionDoesNotExist": "Se pare că versiunea modulului nu poate fi recuperată. Problema este la noi, te rugăm să încerci din nou.",
     "moduleNeedActivation": "Marketingul cu Google este dezactivat, nu vei putea utiliza niciuna dintre funcțiile sale până când nu activezi modulul.",
     "moduleUpdateNeeded": {
-      "ps_eventbus": {
-        "title": "A newer version of PrestaShop CloudSync is requested",
-        "paragraph": "The version of the module PrestaShop CloudSync running on this shop is older than the minimum required .\n\n You may use PrestaShop Marketing with Google but some features (i.e product synchronization) won't be available until you upgrade PrestaShop CloudSync."
-      },
       "psxmarketingwithgoogle": {
         "title": "A newer version of PrestaShop Marketing With Google is available",
         "paragraph": "It offers an exciting feature that will take your product usage to the next level. | It offers exciting features that will take your product usage to the next level.",
@@ -77,22 +72,7 @@
     }
   },
   "onboarding": {
-    "cmpAlert": {
-      "title": "GDPR updates",
-      "paragraph": "Starting March 2024, businesses advertising to users in the European Economic Area (EEA) must create a strong framework to collect and communicate end-users’ consent choices via consent banners integrated with Google’s Consent Mode. To build a strong foundation for measuring your ads you must set up a cookie banner through a supported, dedicated Consent Management Platform. If you do not already have one, we recommend that you use the following consent management platform, which is compliant with the new regulations: {link}",
-      "moduleGDPR": "Cookies GDPR Law (Blocker) + Google Consent Mode V2"
-    },
     "sectionTitle": {
-      "psAccount": "Conectează-ți magazinul la contul tău PrestaShop",
-      "psbilling": {
-        "title": "Informații privind facturarea",
-        "subTitle": "Accesează și gestionează abonamentul și metoda de plată aferentă.",
-        "alertNoSynchro": "Your catalog synchronization with Google Merchant Center is paused because PrestaShop Marketing now requires a €14.99 excl. tax/month subscription. "
-      },
-      "pscloudsync": {
-        "title": "Permite partajarea datelor",
-        "subTitle": "Ajută-ne să îmbunătățim experiența ta și serviciile noastre, acordându-ne consimțământul pentru a partaja în siguranță date relevante cu noi."
-      },
       "freeListing": {
         "title": "Ajungi la mai mulți oameni pe Google cu listări gratuite",
         "subtitle": "Listările gratuite îți oferă acces la milioane de cumpărători care caută produse similare cu ale tale. Afișează-ți gratuit produsele în listele SEO din fila Shopping atunci când îți conectezi contul Google la Google Merchant Center."
@@ -111,12 +91,6 @@
     "tips": "După ce ai terminat cu primul magazin, le poți configura pe celelalte selectându-le unul câte unul în selectorul magazinelor, în meniul orizontal",
     "configure": "Configurare",
     "group": "Grup de magazine"
-  },
-  "billingFacade": {
-    "title": "Detaliile plății",
-    "nextPayment": "Abonamentul tău este activ, următoarea facturare este pe {date}",
-    "willEnd": "Abonamentul tău se va încheia la {date}.",
-    "managePayment": "Gestionează plățile"
   },
   "googleAccountCard": {
     "title": "Cont Google",
@@ -541,10 +515,6 @@
       "syncScheduledNow": "Astăzi, imediat după ce salvez și export"
     }
   },
-  "billing": {
-    "planTitle": "Informații despre plan și facturare",
-    "invoicesTitle": "Facturi"
-  },
   "freeListingCard": {
     "title": "Afișează-ți produsele cu listări gratuite",
     "intro": "Prezintă-ți gratuit produsul în lista SEO din fila Shopping.",
@@ -910,7 +880,6 @@
     "title": "Felicitări, ai terminat!",
     "text": "Ai finalizat toți pașii necesari pentru a profita la maximum de **Marketing cu Google**",
     "cta": "Accesează crearea campaniei",
-    "firstStep": "Conectează-ți magazinul la un cont PrestaShop",
     "secondStep": "Conectează-te sau creează-ți un Cont Google",
     "thirdStep": "Conectează-te sau creează-ți un cont Google Merchant Center",
     "fourthStep": "Exportă și sincronizează catalogul de produse",

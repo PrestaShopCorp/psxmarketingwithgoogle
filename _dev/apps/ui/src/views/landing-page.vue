@@ -2,7 +2,7 @@
   <div class="container-md">
     <b-card no-body>
       <div class="ps_gs-landingpage">
-        <LandingPageHeader @hideLandingPage="hideLandingPage('header')" />
+        <LandingPageHeader @hideLandingPage="hideLandingPage" />
         <hr>
         <LandingPageContent
           :svg-image="false"
@@ -65,7 +65,7 @@
           >
         </LandingPageContent>
         <hr>
-        <LandingPageFooter @hideLandingPage="hideLandingPage('footer')" />
+        <LandingPageFooter @hideLandingPage="hideLandingPage" />
       </div>
     </b-card>
   </div>
@@ -77,7 +77,6 @@ import googleUrl from '@/assets/json/googleUrl.json';
 import LandingPageHeader from '@/components/landing-page/landing-page-header';
 import LandingPageContent from '@/components/landing-page/landing-page-content';
 import LandingPageFooter from '@/components/landing-page/landing-page-footer';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {getPathToAdsPromotionImage} from '@/utils/ImageFromCurrency';
 import {searchPrice} from '@/utils/PriceFromCurrency';
 
@@ -89,13 +88,9 @@ export default {
     LandingPageFooter,
   },
   methods: {
-    hideLandingPage(where) {
+    hideLandingPage() {
       this.$router.push({
         name: 'configuration',
-      });
-      this.$segment.track(`[GGL] Start Configuration - ${where} clicked`, {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
       });
     },
   },

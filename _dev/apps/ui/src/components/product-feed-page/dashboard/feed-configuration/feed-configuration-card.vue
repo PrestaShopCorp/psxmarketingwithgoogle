@@ -18,14 +18,12 @@
           :to="{ name: 'product-feed-settings',
                  params: { step: ProductFeedSettingsPages.SHIPPING_SETTINGS}}"
           class="external_link-no_icon"
-          @click="targetCountryClicked"
         >
           {{ $t('productFeedPage.dashboardPage.productFeedConfiguration.alerts.productFeedCta') }}
         </router-link>
         <b-link
           target="_blank"
           :href="$store.getters['app/GET_LANGUAGES_URL']"
-          @click="languageClicked"
         >
           {{ $t('productFeedPage.dashboardPage.productFeedConfiguration.alerts.boSettingsCta') }}
         </b-link>
@@ -49,14 +47,12 @@
           :to="{ name: 'product-feed-settings',
                  params: { step: ProductFeedSettingsPages.SHIPPING_SETTINGS}}"
           class="external_link-no_icon"
-          @click="targetCountryClicked"
         >
           {{ $t('productFeedPage.dashboardPage.productFeedConfiguration.alerts.productFeedCta') }}
         </router-link>
         <b-link
           target="_blank"
           :href="$store.getters['app/GET_CURRENCIES_URL']"
-          @click="languageClicked"
         >
           {{ $t('productFeedPage.dashboardPage.productFeedConfiguration.alerts.boSettingsCta') }}
         </b-link>
@@ -125,7 +121,6 @@
                     :to="{ name: 'product-feed-settings',
                            params: { step: ProductFeedSettingsPages.SHIPPING_SETTINGS}}"
                     class="stretched-link external_link-no_icon"
-                    @click="targetCountryClicked"
                   />
                 </b-card>
               </div>
@@ -166,7 +161,6 @@
                     target="_blank"
                     :href="$store.getters['app/GET_LANGUAGES_URL']"
                     class="stretched-link external_link-no_icon"
-                    @click="languageClicked"
                   />
                 </b-card>
               </div>
@@ -185,7 +179,6 @@ import {IncrementalSyncContext} from './feed-configuration';
 import {timeConverterToDate, timeConverterToHour} from '@/utils/Dates';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import {changeCountryCodeToName, getCurrencyFromCountry} from '@/utils/Countries';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default defineComponent({
   props: {
@@ -243,32 +236,6 @@ export default defineComponent({
         .filter((countryDetails) => !countryDetails.currencyIsFound)
         .map((countryDetails) => countryDetails.countryName),
       )];
-    },
-  },
-  methods: {
-    targetCountryClicked(): void {
-      this.$segment.track('[GGL] Edit target countries from Product Feed Tab', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-      });
-    },
-    languageClicked(): void {
-      this.$segment.track('[GGL] Edit languages from Product Feed Tab', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-      });
-    },
-  },
-  watch: {
-    loading(newVal, oldVal) {
-      if (oldVal === true && newVal === false) {
-        this.$segment.track('[GGL] Product feed compatibility loaded', {
-          module: 'psxmarketingwithgoogle',
-          ggl_sync_has_currencies_issues: !!this.targetCountriesInError.length,
-          ggl_sync_has_languages_issues: !this.languages.length,
-          params: SegmentGenericParams,
-        });
-      }
     },
   },
 });

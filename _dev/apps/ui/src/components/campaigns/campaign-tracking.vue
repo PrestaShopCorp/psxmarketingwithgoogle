@@ -79,7 +79,6 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default defineComponent({
   name: 'CampaignCardTracking',
@@ -95,11 +94,6 @@ export default defineComponent({
         return this.$store.getters['campaigns/GET_REMARKETING_TRACKING_TAG_IS_SET'];
       },
       set(value) {
-        this.$segment.track('[GGL] Disable Google SSC', {
-          module: 'psxmarketingwithgoogle',
-          smart_shopping_campaign_activation_value: value,
-          params: SegmentGenericParams,
-        });
         this.$store.dispatch(
           'campaigns/SAVE_STATUS_REMARKETING_TRACKING_TAG', value,
         ).then(() => {
@@ -141,8 +135,6 @@ export default defineComponent({
     conversionActions() {
       return this.$store.getters['campaigns/GET_REMARKETING_CONVERSION_ACTIONS_ASSOCIATED'];
     },
-  },
-  methods: {
   },
 });
 </script>

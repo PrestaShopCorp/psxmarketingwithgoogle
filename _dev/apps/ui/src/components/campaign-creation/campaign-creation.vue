@@ -472,7 +472,6 @@ import {
   returnCountProducts,
 
 } from '@/utils/SSCFilters';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import googleUrl from '@/assets/json/googleUrl.json';
 import {formatPrice} from '@/utils/Price';
 import {RecommendedBudget} from '@/utils/CampaignsBudget';
@@ -717,10 +716,6 @@ export default defineComponent({
       });
     },
     openPopinRecap() {
-      this.$segment.track('[GGL] Create SSC Settings Step', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-      });
       this.$bvModal.show(
         this.$refs.CampaignCreationPopinRecap.$refs.modal.id,
       );

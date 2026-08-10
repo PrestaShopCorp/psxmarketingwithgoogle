@@ -7,7 +7,6 @@
   >
     <div>
       <VueShowdown
-        id="clickedSegment"
         tag="p"
         :class="!!gAdsAccountAlert.link && 'd-inline'"
         :markdown="gAdsAccountAlert.text"
@@ -18,7 +17,6 @@
         class="text-muted"
         :href="gAdsAccountAlert.link.url"
         target="_blank"
-        @click="segmentClicked"
       >
         {{ gAdsAccountAlert.link.label }}
       </b-link>
@@ -46,7 +44,6 @@ import googleUrl from '@/assets/json/googleUrl.json';
 import {
   GoogleAdsErrorReason,
 } from '../../store/modules/google-ads/state';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'GoogleAdsAccountAlert',
@@ -90,31 +87,11 @@ export default {
     onClickAlert() {
       if (this.gAdsAccountAlert.button.type === 'refresh') {
         this.refresh();
-        this.$segment.track('[GGL] Create GAds Account Refresh Billing Settings Step', {
-          module: 'psxmarketingwithgoogle',
-          params: SegmentGenericParams,
-
-        });
       } else if (this.gAdsAccountAlert.button.type === 'link') {
         this.changeError('billing');
-        this.$segment.track('[GGL] Create GAds - Step 5 Billing Settings Step', {
-          module: 'psxmarketingwithgoogle',
-          params: SegmentGenericParams,
-        });
       } else if (this.gAdsAccountAlert.button.type === 'invitationLink') {
         this.changeError('link');
-        this.$segment.track('[GGL] Create GAds - Step 4 Accept invitation', {
-          module: 'psxmarketingwithgoogle',
-          params: SegmentGenericParams,
-        });
       }
-    },
-    segmentClicked() {
-      this.$segment.track('[GGL] Reactivate GAds Account Canceled', {
-        module: 'psxmarketingwithgoogle',
-        error: this.error,
-        params: SegmentGenericParams,
-      });
     },
   },
   computed: {

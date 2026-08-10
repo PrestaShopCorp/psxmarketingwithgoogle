@@ -42,7 +42,6 @@ import {defineComponent} from 'vue';
 import StatusCardComponent, {StatusCardParameters} from '../status-card.vue';
 import {getMerchantCenterWebsiteUrls} from '@/components/merchant-center-account/merchant-center-account-links';
 import {ProductFeedValidationSummary} from '@/store/modules/product-feed/state';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default defineComponent({
   components: {
@@ -140,18 +139,6 @@ export default defineComponent({
           to: {name: 'product-feed-status'},
         },
       }];
-    },
-  },
-  watch: {
-    loading(newVal, oldVal) {
-      if (oldVal === true && newVal === false) {
-        this.$segment.track('[GGL] Submitted products status loaded', {
-          module: 'psxmarketingwithgoogle',
-          ggl_user_has_approved_products_on_gmc: !!this.validationSummary.activeProducts,
-          ggl_user_has_disapproved_products_on_gmc: !!this.validationSummary.disapprovedProducts,
-          params: SegmentGenericParams,
-        });
-      }
     },
   },
 });

@@ -60,7 +60,7 @@ describe("Warning Messages Generator", () => {
             <div class="alert alert-warning">
                 <button type="button" class="close" data-dismiss="alert">×</button>
                 <div class="alert-text">
-                    <a href="#" target="_blank">PS Marketing with Google</a> is not configured. You are missing out on a lot of opportunities and visibility. It is highly recommended that you configure your synchronisation settings to maximise your benefits and enhance your online presence. Take action now to avoid missing out on valuable opportunities! <a href="#" target="_blank">Start the configuration</a>
+                    <a href="#" target="_blank">Tiny Lux Google</a> is not configured. You are missing out on a lot of opportunities and visibility. It is highly recommended that you configure your synchronisation settings to maximise your benefits and enhance your online presence. Take action now to avoid missing out on valuable opportunities! <a href="#" target="_blank">Start the configuration</a>
                 </div>
             </div>
 `;
@@ -68,7 +68,7 @@ describe("Warning Messages Generator", () => {
             <div class="alert alert-warning">
                 <button type="button" class="close" data-dismiss="alert">×</button>
                 <div class="alert-text">
-                    It appears that you have not finalised your configuration with <a href="#" target="_blank">PS Marketing with Google</a>. This may result in limited functionality and missed opportunities. To ensure that you are fully set up and able to take advantage of all available features, please complete the configuration process as soon as possible. <a href="#" target="_blank">Finalise the configuration</a>
+                    It appears that you have not finalised your configuration with <a href="#" target="_blank">Tiny Lux Google</a>. This may result in limited functionality and missed opportunities. To ensure that you are fully set up and able to take advantage of all available features, please complete the configuration process as soon as possible. <a href="#" target="_blank">Finalise the configuration</a>
                 </div>
             </div>
 `;

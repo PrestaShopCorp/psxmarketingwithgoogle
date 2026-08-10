@@ -53,7 +53,6 @@
 
 <script>
 import PsModal from './ps-modal.vue';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default {
   name: 'PopinModuleConfigured',
@@ -77,11 +76,6 @@ export default {
       this.$refs.modal.hide();
     },
     openPopinRemarketingTag() {
-      this.$segment.track('[GGL] Click on Go to campaign creation - popin', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-      });
-
       this.$refs.modal.hide();
       this.$emit('openPopinRemarketingTag');
     },

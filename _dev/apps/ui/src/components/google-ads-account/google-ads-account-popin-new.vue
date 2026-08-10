@@ -204,7 +204,6 @@ import googleUrl from '@/assets/json/googleUrl.json';
 import countriesSelectionOptions from '../../assets/json/countries.json';
 import PsModal from '@/components/commons/ps-modal.vue';
 import SelectCountry from '../commons/select-country.vue';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {GoogleAccountContext} from '@/store/modules/accounts/state';
 import BannerAds from '../commons/banner-ads.vue';
 
@@ -231,11 +230,6 @@ export default defineComponent({
   methods: {
     ok() {
       this.isCreating = true;
-      this.$segment.track('[GGL] Create GAds - New Google ads account created', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-
-      });
       this.$store.dispatch('googleAds/SAVE_NEW_GOOGLE_ADS_ACCOUNT', this.newAccountInfos)
         .finally(() => {
           this.isCreating = false;

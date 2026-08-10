@@ -57,7 +57,6 @@ import BannerCampaigns from '@/components/commons/banner-campaigns.vue';
 import CampaignTableList from '@/components/campaign/campaign-table-list.vue';
 import KeyMetricsBlock from '@/components/campaign/reporting/key-metrics/key-metrics-block.vue';
 import KeyMetricsControls from '@/components/campaign/reporting/key-metrics/key-metrics-controls.vue';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import AlertSignGadsTos from '@/components/enhanced-conversions/alert-sign-gads-tos.vue';
 import AlertCmp from '@/components/commons/alert-cmp.vue';
 
@@ -99,10 +98,6 @@ export default defineComponent({
       await this.$store.dispatch('campaigns/WARMUP_STORE');
     },
     onClickToCreateCampaign(): void {
-      this.$segment.track('[GGL] Click on Create your first campaign - Campaign tab', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-      });
       // Prevent popin for opening if tracking is a campaign exists
       if (this.remarketingTagIsSet) {
         this.$router.push({

@@ -37,7 +37,6 @@
 </template>
 
 <script>
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
 import GettersTypes from '@/store/modules/google-ads/getters-types';
 
@@ -51,15 +50,8 @@ export default {
     };
   },
   methods: {
-    sendEvent() {
-      this.$segment.track('[GGL] Understand CMP requirement', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-      });
-    },
     onClick() {
       localStorage.setItem(localStorageSave, '1');
-      this.sendEvent();
       this.display = false;
     },
   },

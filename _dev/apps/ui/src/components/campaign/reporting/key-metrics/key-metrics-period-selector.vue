@@ -36,7 +36,6 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import ReportingPeriod from '@/enums/reporting/ReportingPeriod';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default defineComponent({
   name: 'KeyMetricsPeriodSelector',
@@ -75,11 +74,6 @@ export default defineComponent({
       },
       set(period: ReportingPeriod): void {
         this.$store.dispatch('campaigns/CHANGE_REPORTING_DATES', period);
-        this.$segment.track('[GGL] Reporting - Change period', {
-          module: 'psxmarketingwithgoogle',
-          params: SegmentGenericParams,
-          period,
-        });
       },
     },
   },

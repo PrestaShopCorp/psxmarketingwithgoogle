@@ -143,7 +143,6 @@ import TableNoData from '@/components/commons/table-no-data.vue';
 import PopinProductIssues from '@/components/product-feed-page/disapproved-products-page/popin-product-issues.vue';
 import {ProductInfos} from '@/store/modules/product-feed/state';
 import {ProductIdentifier} from './types';
-import {initReplay} from '@/utils/Sentry';
 import ProductsStatusType from '@/enums/product-feed/products-status-type';
 
 export default defineComponent({
@@ -233,15 +232,6 @@ export default defineComponent({
       this.getItems();
     } else {
       this.loadingStatus = RequestState.SUCCESS;
-    }
-  },
-  beforeCreate() {
-    // We want to check the behavior of user with many disapproved products.
-    // Cannot use mapGetters as the component is not loaded yet in this method.
-    if (this.$store.getters[`productFeed/${GettersTypesProductFeed.GET_PRODUCT_FEED_VALIDATION_SUMMARY}`]
-      .disapprovedProducts > 100
-    ) {
-      initReplay();
     }
   },
   beforeDestroy() {

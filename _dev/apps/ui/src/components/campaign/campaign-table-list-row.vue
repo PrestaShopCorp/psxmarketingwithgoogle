@@ -101,7 +101,6 @@ import compareYears from '@/utils/CompareYears';
 import {CampaignPerformanceObject, CampaignStatusPayload} from '@/store/modules/campaigns/state';
 import {timeConverterToDate} from '@/utils/Dates';
 import {formatPrice} from '../../utils/Price';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import AlertLowBudget from './alert-low-budget.vue';
 
 export default defineComponent({
@@ -157,10 +156,6 @@ export default defineComponent({
           id: this.campaign.id,
         },
       });
-      this.$segment.track('[GGL] Campaigns list - Click on edit button', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-      });
     },
     pauseCampaign() {
       this.updateCampaignStatus(CampaignStatusToggle.PAUSED);
@@ -173,11 +168,6 @@ export default defineComponent({
         id: this.campaign.id,
         status: newStatus,
       } as CampaignStatusPayload);
-      this.$segment.track('[GGL] Campaigns list - Update status of campaign', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-        newStatus,
-      });
     },
   },
   googleUrl,

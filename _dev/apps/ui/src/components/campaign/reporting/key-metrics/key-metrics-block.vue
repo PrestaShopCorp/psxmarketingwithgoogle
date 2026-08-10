@@ -126,7 +126,6 @@ import googleUrl from '@/assets/json/googleUrl.json';
 import NotConfiguredCard from '@/components/commons/not-configured-card.vue';
 import {DailyResultColor, DailyResultTypes, Kpis} from '@/store/modules/campaigns/state';
 import KpiType from '@/enums/reporting/KpiType';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 
 export default defineComponent({
   name: 'KeyMetricsBlock',
@@ -182,12 +181,6 @@ export default defineComponent({
       ).find((color: string) => this.dailyResultTypesSelected[color] === kpi);
     },
     toggleKpi(type: KpiType, newValueIsActive: boolean): void {
-      this.$segment.track('[GGL] Reporting - Toggle KPI highlighted', {
-        module: 'psxmarketingwithgoogle',
-        params: SegmentGenericParams,
-        type,
-        newValueIsActive,
-      });
       if (!newValueIsActive) {
         this.$store.dispatch('campaigns/REMOVE_REPORTING_DAILY_RESULTS_TYPE', type);
         return;

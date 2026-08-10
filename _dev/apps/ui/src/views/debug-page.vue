@@ -87,37 +87,6 @@
 
     <b-card
       no-body
-      class="ps_gs-onboardingcard px-0 col-5 mb-3"
-    >
-      <b-card-header>
-        Actions
-      </b-card-header>
-      <b-card-body
-        body-class="p-3"
-      >
-        <b-button
-          class="mt-3 mr-3 d-block"
-          variant="outline-danger"
-          size="sm"
-          @click="throwErrorForSentry"
-        >
-          Throw Error test for Sentry
-        </b-button>
-
-        <b-button
-          class="mt-3 mr-3 d-block"
-          variant="outline-danger"
-          size="sm"
-          @click="startReplayOnSentry"
-          :disabled="!psxMktgWithGoogleOnProductionEnvironment"
-        >
-          🎥 Start Replay recording on Sentry
-        </b-button>
-      </b-card-body>
-    </b-card>
-
-    <b-card
-      no-body
       class="ps_gs-onboardingcard px-0 col-12 mb-3"
     >
       <b-card-header>
@@ -225,7 +194,6 @@ import {mapGetters, mapState} from 'vuex';
 import GettersTypes from '@/store/modules/campaigns/getters-types';
 import GettersTypesApp from '@/store/modules/app/getters-types';
 import GettersTypesAccounts from '@/store/modules/accounts/getters-types';
-import {initReplay} from '@/utils/Sentry';
 
 export default defineComponent({
   data() {
@@ -315,12 +283,6 @@ export default defineComponent({
       } finally {
         this.sync.loading = false;
       }
-    },
-    throwErrorForSentry() {
-      throw new Error('Test error for sentry');
-    },
-    async startReplayOnSentry() {
-      await initReplay();
     },
   },
   mounted() {
