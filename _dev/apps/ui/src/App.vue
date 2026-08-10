@@ -48,13 +48,6 @@
         />
       </div>
       <notification-panel />
-      <AlertModuleUpdate
-        v-if="modulePsEventbusNeedUpgrade"
-        module-name="ps_eventbus"
-        :class-alert="
-          currentlyConfigurationPage ? 'container' :
-          currentlyOnLandingPage ? 'container-md' : undefined"
-      />
       <router-view />
       <div
         class="mt-4 container-md"
@@ -87,12 +80,9 @@ import {initShopClient} from 'mktg-with-google-common/api/shopClient';
 import AppMenu from '@/components/menu/app-menu.vue';
 import MenuItem from '@/components/menu/menu-item.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
-import AlertModuleUpdate from '@/components/commons/alert-update-module.vue';
 import googleUrl from '@/assets/json/googleUrl.json';
 import PopinUserNotConnectedToBo from '@/components/commons/user-not-connected-to-bo-popin.vue';
 import NotificationPanel from '@/components/enhanced-conversions/notification-panel.vue';
-import AppGettersTypes from '@/store/modules/app/getters-types';
-import ActionsTypes from '@/store/modules/app/actions-types';
 
 let resizeEventTimer;
 
@@ -100,15 +90,8 @@ export default {
   components: {
     AppMenu,
     MenuItem,
-    AlertModuleUpdate,
     NotificationPanel,
     PopinUserNotConnectedToBo,
-  },
-  data() {
-    return {
-      countdown: 15,
-      modulePsEventbusNeedUpgrade: false,
-    };
   },
   computed: {
     shopId() {
@@ -119,9 +102,6 @@ export default {
     },
     currentlyOnLandingPage() {
       return this.$route.name === 'landing-page';
-    },
-    currentlyConfigurationPage() {
-      return this.$route.name === 'configuration';
     },
     backOfficeUserIsLoggedIn() {
       return this.$store.state.app.backOfficeUserIsLoggedIn;
@@ -134,7 +114,6 @@ export default {
         this.$store.commit('app/SAVE_USER_IS_LOGGED_OUT');
       },
     });
-    this.checkModulePsEventbusNeedUpgrade();
   },
   mounted() {
     this.$root.identifySegment();
@@ -177,11 +156,6 @@ export default {
         },
         params: SegmentGenericParams,
       });
-    },
-    async checkModulePsEventbusNeedUpgrade() {
-      const res = await this.$store.dispatch(`app/${ActionsTypes.GET_MODULES_VERSIONS}`, 'ps_eventbus');
-
-      this.modulePsEventbusNeedUpgrade = await this.$store.getters[`app/${AppGettersTypes.GET_MODULE_NEED_UPGRADE}`]('ps_eventbus', res.version);
     },
   },
   watch: {

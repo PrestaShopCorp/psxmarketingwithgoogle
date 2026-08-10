@@ -20,14 +20,10 @@
 import MutationsTypes from './mutations-types';
 import {
   State as LocalState,
-  HelpInformations,
   DebugData,
 } from './state';
 
 export default {
-  [MutationsTypes.SAVE_DOC_AND_FAQ](state: LocalState, response: HelpInformations) {
-    state.psxMktgWithGoogleDocumentAndFaq = response;
-  },
   [MutationsTypes.SAVE_DEBUG_DATA](state: LocalState, response: DebugData) {
     state.debugData = response;
   },

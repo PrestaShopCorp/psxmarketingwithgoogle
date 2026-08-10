@@ -21,8 +21,6 @@
     id="help"
   >
     <card-faq
-      :informations="helpInformations"
-      :loading="loading"
       class="my-3"
     />
   </div>
@@ -30,36 +28,11 @@
 
 <script>
 import {defineComponent} from 'vue';
-import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import CardFaq from '../components/help/card-faq.vue';
 
 export default defineComponent({
   components: {
     CardFaq,
-  },
-  data() {
-    return {
-      loading: true,
-    };
-  },
-  created() {
-    this.fetchHelpInformations();
-    this.$segment.track('[GGL] View Help tab', {
-      module: 'psxmarketingwithgoogle',
-      params: SegmentGenericParams,
-    });
-  },
-  computed: {
-    helpInformations() {
-      return this.$store.getters['app/GET_DOC_AND_FAQ'];
-    },
-  },
-  methods: {
-    fetchHelpInformations() {
-      this.$store.dispatch('app/REQUEST_DOC_AND_FAQ').then(() => {
-        this.loading = false;
-      });
-    },
   },
 });
 </script>

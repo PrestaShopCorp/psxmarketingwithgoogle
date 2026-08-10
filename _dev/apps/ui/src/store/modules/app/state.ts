@@ -27,7 +27,6 @@ export interface State {
   psxMktgWithGoogleLanguages: string[];
   psxMktgWithGoogleShopCurrency: ShopCurrency;
   psxMtgWithGoogleDefaultShopCountry: string | null;
-  psxMktgWithGoogleDocumentAndFaq: HelpInformations;
   psVersion: string;
   phpVersion: string;
   psxMktgWithGoogleModuleVersion: string;
@@ -43,7 +42,6 @@ export interface State {
   psxMktgWithGoogleOnProductionEnvironment: boolean;
   debugData: DebugData;
   adBlockerExists: boolean;
-  cloudsyncVersionNeeded: string;
   psxMktgWithGoogleModuleVersionNeeded: string;
   psxMktgWithGoogleModuleIsEnabled: boolean;
   psxMktgWithGoogleEnableLink: string;
@@ -55,12 +53,6 @@ export interface State {
 
 export interface ShopCurrency {
   isoCode: string;
-}
-
-export interface HelpInformations {
-  faq: object;
-  doc: string;
-  contactUs: string;
 }
 
 export interface DebugData {
@@ -81,11 +73,6 @@ export const state: State = {
   psxMktgWithGoogleShopCurrency: {
     isoCode: '',
   },
-  psxMktgWithGoogleDocumentAndFaq: {
-    faq: {},
-    doc: '',
-    contactUs: '',
-  },
   psVersion: '',
   phpVersion: '',
   psxMktgWithGoogleMaintenanceSettingsUrl: '',
@@ -103,7 +90,6 @@ export const state: State = {
   },
   adBlockerExists: false,
   psxMktgWithGoogleModuleVersion: '',
-  cloudsyncVersionNeeded: import.meta.env.VITE_MIN_VERSION_NEEDED_CLOUD_SYNC || '',
   psxMktgWithGoogleModuleVersionNeeded: import.meta.env.VITE_MIN_VERSION_NEEDED_MKTG_GOOGLE || '',
   psxMktgWithGoogleModuleIsEnabled: true,
   psxMktgWithGoogleEnableLink: '',

@@ -23,7 +23,6 @@ use PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter;
 use PrestaShop\Module\PsxMarketingWithGoogle\Config\Config;
 use PrestaShop\Module\PsxMarketingWithGoogle\Conversion\EnhancedConversionToggle;
 use PrestaShop\Module\PsxMarketingWithGoogle\Handler\ErrorHandler;
-use PrestaShop\Module\PsxMarketingWithGoogle\Http\HttpClient;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\ProductEnumerator;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\OptionsProviderInterface;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Options\Resolver;
@@ -109,9 +108,6 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
                 break;
             case 'setWebsiteRequirementStatus':
                 $this->setWebsiteRequirementStatus($inputs);
-                break;
-            case 'retrieveFaq':
-                $this->retrieveFaq();
                 break;
             case 'getShopConfigurationForAds':
                 $this->getShopConfigurationForAds();
@@ -562,51 +558,6 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
         );
     }
 
-    /**
-     * Retrieve the faq
-     */
-    public function retrieveFaq()
-    {
-        $faq = [
-            'categories' => [],
-        ];
-
-        $request = new HttpClient('https://api.addons.prestashop.com');
-        $result = $request->get('/request/faq/' . $this->module->module_key . '/' . _PS_VERSION_ . '/' . $this->context->language->iso_code, []);
-
-        if ($result->getStatusCode() === 200) {
-            $faq['categories'] = json_decode($result->getBody(), true);
-        }
-
-        $this->render(
-            json_encode(
-                [
-                    'faq' => $faq['categories'],
-                    'doc' => $this->getUserDocumentation(),
-                    'contactUs' => 'support-google@prestashop.com',
-                ]
-            ),
-            200
-        );
-    }
-
-    /**
-     * Get the documentation url depending on the current language
-     *
-     * @return string
-     */
-    private function getUserDocumentation()
-    {
-        $isoCode = $this->context->language->iso_code;
-        $baseUrl = 'https://storage.googleapis.com/psessentials-documentation/' . $this->module->name;
-
-        if (!$this->checkFileExist($baseUrl . '/user_guide_' . $isoCode . '.pdf')) {
-            $isoCode = 'en';
-        }
-
-        return $baseUrl . '/user_guide_' . $isoCode . '.pdf';
-    }
-
     private function registerHook(array $inputs)
     {
         if (!isset($inputs['hookName'])) {
@@ -622,25 +573,6 @@ class AdminAjaxPsxMktgWithGoogleController extends ModuleAdminController
             ]),
             200
         );
-    }
-
-    /**
-     * Use cUrl to get HTTP headers and detect any HTTP 404
-     *
-     * @param string $docUrl
-     *
-     * @return bool
-     */
-    private function checkFileExist($docUrl)
-    {
-        $ch = curl_init($docUrl);
-
-        curl_setopt($ch, CURLOPT_NOBODY, true);
-        curl_exec($ch);
-        $retcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
-
-        return $retcode < 400;
     }
 
     /**

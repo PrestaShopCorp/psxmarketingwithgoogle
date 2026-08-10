@@ -18,7 +18,7 @@
  */
 import semver from 'semver';
 import GettersTypes from './getters-types';
-import {State as LocalState, HelpInformations, DebugData} from './state';
+import {State as LocalState, DebugData} from './state';
 import countriesSelectionOptions from '../../../assets/json/countries.json';
 import symbols from '@/assets/json/symbols.json';
 import prestashopUrls from '@/assets/json/prestashopUrl.json';
@@ -35,9 +35,6 @@ export default {
   },
   [GettersTypes.GET_SHOP_CURRENCIES](state: LocalState): string[] {
     return state.psxMktgWithGoogleActiveCurrencies;
-  },
-  [GettersTypes.GET_DOC_AND_FAQ](state: LocalState): HelpInformations {
-    return state.psxMktgWithGoogleDocumentAndFaq;
   },
   [GettersTypes.GET_SUPPORT_URL](
     state: LocalState, getters, rootState, rootGetters,
@@ -118,7 +115,7 @@ export default {
   [GettersTypes.GET_MODULE_NEED_UPGRADE]: (
     state: LocalState,
   ) => (
-    moduleName: 'psxmarketingwithgoogle' | 'ps_eventbus',
+    moduleName: 'psxmarketingwithgoogle',
     currentVesion?: string,
     versionNeeded?: string,
   ) => {
@@ -127,8 +124,6 @@ export default {
         versionNeeded ?? state.psxMktgWithGoogleModuleVersion,
         currentVesion ?? state.psxMktgWithGoogleModuleVersionNeeded,
       );
-    } if (moduleName === 'ps_eventbus' && currentVesion) {
-      return !semver.gte(currentVesion, state.cloudsyncVersionNeeded);
     }
     throw new Error('Module name not found or the current version is missing');
   },

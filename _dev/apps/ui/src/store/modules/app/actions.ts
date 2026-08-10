@@ -27,16 +27,6 @@ import {State} from './state';
 type Context = ActionContext<State, FullState>;
 
 export default {
-  async [ActionsTypes.REQUEST_DOC_AND_FAQ]({commit}: Context) {
-    try {
-      commit(MutationsTypes.SAVE_DOC_AND_FAQ,
-        await fetchShop('retrieveFaq'),
-      );
-    } catch (error) {
-      console.error(error);
-    }
-  },
-
   async [ActionsTypes.REQUEST_DEBUG_DATA]({commit}: Context) {
     try {
       commit(MutationsTypes.SAVE_DEBUG_DATA,

@@ -43,14 +43,7 @@ export default defineComponent({
       return googleUrl.googleAdsEnhancedCoversionSettings;
     },
     linkToInstructions(): string {
-      let locale = this.$i18n.locale.toLowerCase();
-      const allowedLocales = ['en', 'fr'];
-
-      if (allowedLocales.includes(locale)) {
-        locale = 'en';
-      }
-
-      return `https://storage.googleapis.com/psessentials-documentation/psxmarketingwithgoogle/enhanced_conversion_how_to_${locale}.pdf`;
+      return `${window.psxMktgWithGoogleAdminUrl}#/help`;
     },
   },
   methods: {
