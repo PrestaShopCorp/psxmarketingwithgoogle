@@ -63,6 +63,18 @@ class ProductEnumerator
         );
     }
 
+    /**
+     * @return array<int, array{id_product: int|string, id_product_attribute: int|string}>
+     */
+    public function listProductOffersMatchingFilters(array $filters, array $paginationParams): array
+    {
+        $this->filterValidator->validate($filters);
+
+        return $this->execute(
+            $this->queryBuilder->buildQueryToListOffers($filters, $paginationParams)
+        );
+    }
+
     protected function execute(DbQuery $query): array
     {
         return Db::getInstance()->executeS($query);

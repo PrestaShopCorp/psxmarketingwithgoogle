@@ -5,112 +5,90 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\Tests\Unit\ProductSync;
 use InvalidArgumentException;
 use LogicException;
 use PHPUnit\Framework\TestCase;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\AttributeType;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\Condition;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\ProductEnumerator;
+use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogFilterSettingsInterface;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogProduct;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogProductProviderInterface;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogProductSource;
-use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\MerchantProductMapper;
 use PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\ProductValidationException;
 
 class CatalogProductSourceTest extends TestCase
 {
-    public function testReturnsProductsWithoutCombinationsAsAttributeZeroAndEveryActiveVariant(): void
+    public function testHydratesTheAlreadyFlattenedOfferPageInCanonicalOrder(): void
     {
-        $enumerator = new RecordingProductEnumerator([10, 20, 30]);
-        $provider = new RecordingCatalogProvider([
-            10 => ['all' => [], 'active' => []],
-            20 => ['all' => [3, 8, 13], 'active' => [3, 13]],
-            30 => ['all' => [2], 'active' => []],
-        ]);
+        $enumerator = new RecordingProductOfferEnumerator([[10, 0], [20, 3], [20, 13]]);
+        $provider = new RecordingCatalogProvider();
         $source = $this->source($enumerator, $provider);
 
         $products = $source->page(1, 2, 0, 10);
 
         self::assertSame(['10-0', '20-3', '20-13'], $this->offerIds($products));
         self::assertSame([[10, 0], [20, 3], [20, 13]], $provider->hydrations);
+        self::assertSame([], $provider->combinationCalls);
+        self::assertSame(0, $enumerator->legacyCalls);
     }
 
-    public function testPaginatesTheFlattenedOfferStreamAcrossParentBoundariesWithoutGaps(): void
+    public function testSequentialPagesUseOneDirectQueryEachWithoutPrefixRescans(): void
     {
-        $enumerator = new RecordingProductEnumerator([10, 20, 30]);
-        $provider = new RecordingCatalogProvider([
-            10 => ['all' => [], 'active' => []],
-            20 => ['all' => [4, 7, 9], 'active' => [4, 7, 9]],
-            30 => ['all' => [], 'active' => []],
+        $enumerator = new RecordingProductOfferEnumerator([
+            [10, 0], [20, 4], [20, 7], [20, 9], [30, 0],
         ]);
-        $source = $this->source($enumerator, $provider);
+        $source = $this->source($enumerator, new RecordingCatalogProvider());
 
         self::assertSame(['10-0', '20-4'], $this->offerIds($source->page(1, 2, 0, 2)));
         self::assertSame(['20-7', '20-9'], $this->offerIds($source->page(1, 2, 2, 2)));
         self::assertSame(['30-0'], $this->offerIds($source->page(1, 2, 4, 2)));
+        self::assertSame([0, 2, 4], array_column(array_column($enumerator->calls, 'pagination'), 'offset'));
+        self::assertSame([2, 2, 2], array_column(array_column($enumerator->calls, 'pagination'), 'limit'));
+        self::assertSame(3, count($enumerator->calls));
+        self::assertSame(0, $enumerator->legacyCalls);
     }
 
-    public function testSlicesAProductWithMoreCombinationsThanTheLimitWithoutMaterializingThemAll(): void
-    {
-        $enumerator = new RecordingProductEnumerator([42]);
-        $provider = new RecordingCatalogProvider([
-            42 => ['all' => range(1, 100), 'active' => range(1, 100)],
-        ]);
-        $source = $this->source($enumerator, $provider);
-
-        self::assertSame(['42-41', '42-42', '42-43'], $this->offerIds($source->page(1, 2, 40, 3)));
-        self::assertSame([[42, 1, 2, 40, 3]], $provider->combinationPageCalls);
-        self::assertLessThanOrEqual(3, count($provider->hydrations));
-        foreach ($enumerator->calls as $call) {
-            self::assertSame(1, $call['pagination']['limit']);
-            self::assertSame('id_product', $call['pagination']['orderBy']);
-            self::assertSame('ASC', $call['pagination']['orderWay']);
-        }
-    }
-
-    public function testPassesExistingFiltersToEveryBoundedParentEnumeration(): void
+    public function testReadsPersistedFiltersForTheExplicitShopOnEveryPage(): void
     {
         $filters = [[
-            'attribute' => 'product_id',
-            'condition' => 'is',
-            'value' => [['id' => 42, 'value' => '42']],
+            'attribute' => AttributeType::PRODUCT_ID,
+            'condition' => Condition::IS,
+            'value' => [42],
         ]];
-        $enumerator = new RecordingProductEnumerator([42]);
-        $provider = new RecordingCatalogProvider([42 => ['all' => [], 'active' => []]]);
-        $source = new CatalogProductSource(
-            $enumerator,
-            $provider,
-            new MerchantProductMapper(),
-            $filters
-        );
+        $settings = new RecordingCatalogFilterSettings([1 => $filters]);
+        $enumerator = new RecordingProductOfferEnumerator([[42, 0]]);
+        $source = $this->source($enumerator, new RecordingCatalogProvider(), $settings);
 
         self::assertSame(['42-0'], $this->offerIds($source->page(1, 2, 0, 1)));
+        self::assertSame([1], $settings->readShopIds);
         self::assertSame($filters, $enumerator->calls[0]['filters']);
     }
 
-    public function testAssertsTrustedContextBeforeReadingAnyCatalogData(): void
+    public function testLeavesMerchantFieldValidationToPerItemMapping(): void
     {
-        $enumerator = new RecordingProductEnumerator([42]);
-        $provider = new RecordingCatalogProvider([42 => ['all' => [], 'active' => []]], 1, 2);
-        $source = $this->source($enumerator, $provider);
+        $enumerator = new RecordingProductOfferEnumerator([[42, 0]]);
+        $invalidMerchantProduct = RecordingCatalogProvider::catalogProduct(
+            42,
+            0,
+            'https://thetinylux.com/products/42',
+            'https://thetinylux.com/img/42.jpg',
+            '',
+            'not-a-decimal'
+        );
+        $provider = new RecordingCatalogProvider(static function () use ($invalidMerchantProduct): CatalogProduct {
+            return $invalidMerchantProduct;
+        });
 
-        try {
-            $source->page(9, 2, 0, 1);
-            self::fail('Mismatched shop context must be rejected.');
-        } catch (InvalidArgumentException $exception) {
-            self::assertSame([], $enumerator->calls);
-            self::assertSame([], $provider->countCalls);
-            self::assertSame([], $provider->hydrations);
-        }
+        self::assertSame(
+            [$invalidMerchantProduct],
+            $this->source($enumerator, $provider)->page(1, 2, 0, 1)
+        );
     }
 
     public function testRejectsRelativeOrMissingCanonicalUrlsReturnedByTheProvider(): void
     {
-        $enumerator = new RecordingProductEnumerator([42]);
-        $provider = new RecordingCatalogProvider(
-            [42 => ['all' => [], 'active' => []]],
-            1,
-            2,
-            static function (int $productId, int $attributeId): CatalogProduct {
-                return RecordingCatalogProvider::catalogProduct($productId, $attributeId, '/relative-link', '');
-            }
-        );
-        $source = $this->source($enumerator, $provider);
+        $provider = new RecordingCatalogProvider(static function (int $productId, int $attributeId): CatalogProduct {
+            return RecordingCatalogProvider::catalogProduct($productId, $attributeId, '/relative-link', '');
+        });
+        $source = $this->source(new RecordingProductOfferEnumerator([[42, 0]]), $provider);
 
         try {
             $source->page(1, 2, 0, 1);
@@ -121,34 +99,34 @@ class CatalogProductSourceTest extends TestCase
         }
     }
 
-    public function testRejectsDuplicateOrNonAdvancingParentIdsInsteadOfLooping(): void
+    public function testRejectsDuplicateOrNonAdvancingFlattenedOfferReferences(): void
     {
-        $enumerator = new RepeatingProductEnumerator(42);
-        $provider = new RecordingCatalogProvider([42 => ['all' => [], 'active' => []]]);
-        $source = $this->source($enumerator, $provider);
-
-        $this->expectException(LogicException::class);
-        $this->expectExceptionMessage('Product enumeration did not advance.');
-
-        $source->page(1, 2, 1, 1);
-    }
-
-    public function testStopsAtTheConfiguredParentScanBoundWhenNoOffersCanAdvanceThePage(): void
-    {
-        $enumerator = new EndlessProductEnumerator();
-        $provider = new EmptyCombinationCatalogProvider();
-        $source = new CatalogProductSource(
-            $enumerator,
-            $provider,
-            new MerchantProductMapper(),
-            [],
-            3
+        $source = $this->source(
+            new RecordingProductOfferEnumerator([[42, 7], [42, 7]]),
+            new RecordingCatalogProvider()
         );
 
         $this->expectException(LogicException::class);
-        $this->expectExceptionMessage('Product enumeration exceeded its scan bound.');
+        $this->expectExceptionMessage('Offer enumeration did not advance.');
 
-        $source->page(1, 2, 0, 1);
+        $source->page(1, 2, 0, 2);
+    }
+
+    public function testAssertsTrustedContextBeforeReadingFiltersOrCatalogData(): void
+    {
+        $settings = new RecordingCatalogFilterSettings([]);
+        $enumerator = new RecordingProductOfferEnumerator([[42, 0]]);
+        $provider = new RecordingCatalogProvider(null, 1, 2);
+        $source = $this->source($enumerator, $provider, $settings);
+
+        try {
+            $source->page(9, 2, 0, 1);
+            self::fail('Mismatched shop context must be rejected.');
+        } catch (InvalidArgumentException $exception) {
+            self::assertSame([], $settings->readShopIds);
+            self::assertSame([], $enumerator->calls);
+            self::assertSame([], $provider->hydrations);
+        }
     }
 
     /**
@@ -156,10 +134,7 @@ class CatalogProductSourceTest extends TestCase
      */
     public function testValidatesPageArguments(int $shopId, int $languageId, int $offset, int $limit): void
     {
-        $source = $this->source(
-            new RecordingProductEnumerator([]),
-            new RecordingCatalogProvider([], 1, 2)
-        );
+        $source = $this->source(new RecordingProductOfferEnumerator([]), new RecordingCatalogProvider());
 
         $this->expectException(InvalidArgumentException::class);
 
@@ -179,16 +154,17 @@ class CatalogProductSourceTest extends TestCase
 
     private function source(
         ProductEnumerator $enumerator,
-        CatalogProductProviderInterface $provider
+        CatalogProductProviderInterface $provider,
+        ?RecordingCatalogFilterSettings $settings = null
     ): CatalogProductSource {
-        return new CatalogProductSource($enumerator, $provider, new MerchantProductMapper());
+        return new CatalogProductSource(
+            $enumerator,
+            $provider,
+            $settings ?? new RecordingCatalogFilterSettings([])
+        );
     }
 
-    /**
-     * @param CatalogProduct[] $products
-     *
-     * @return string[]
-     */
+    /** @param CatalogProduct[] $products */
     private function offerIds(array $products): array
     {
         return array_map(static function (CatalogProduct $product): string {
@@ -197,93 +173,76 @@ class CatalogProductSourceTest extends TestCase
     }
 }
 
-class RecordingProductEnumerator extends ProductEnumerator
+class RecordingCatalogFilterSettings implements CatalogFilterSettingsInterface
 {
+    /** @var array<int, array<int, array<string, mixed>>> */
+    private $filtersByShop;
+
     /** @var int[] */
-    private $productIds;
+    public $readShopIds = [];
+
+    public function __construct(array $filtersByShop)
+    {
+        $this->filtersByShop = $filtersByShop;
+    }
+
+    public function filtersForShop(int $shopId): array
+    {
+        $this->readShopIds[] = $shopId;
+
+        return $this->filtersByShop[$shopId] ?? [];
+    }
+
+    public function replaceForShop(int $shopId, array $filters): void
+    {
+        $this->filtersByShop[$shopId] = $filters;
+    }
+}
+
+class RecordingProductOfferEnumerator extends ProductEnumerator
+{
+    /** @var array<int, array{0: int, 1: int}> */
+    private $offers;
 
     /** @var array<int, array{filters: array, pagination: array}> */
     public $calls = [];
 
-    /** @param int[] $productIds */
-    public function __construct(array $productIds)
+    /** @var int */
+    public $legacyCalls = 0;
+
+    public function __construct(array $offers)
     {
-        $this->productIds = $productIds;
+        $this->offers = $offers;
     }
 
-    public function listProductsMatchingFilters(array $filters, array $paginationParams): array
+    public function listProductOffersMatchingFilters(array $filters, array $paginationParams): array
     {
         $this->calls[] = ['filters' => $filters, 'pagination' => $paginationParams];
-        $rows = array_slice(
-            $this->productIds,
-            $paginationParams['offset'],
-            $paginationParams['limit']
-        );
 
-        return array_map(static function (int $productId): array {
-            return ['id_product' => $productId];
-        }, $rows);
-    }
-
-    public function countProductsMatchingFilters(array $filters): int
-    {
-        unset($filters);
-
-        return count($this->productIds);
-    }
-}
-
-class RepeatingProductEnumerator extends ProductEnumerator
-{
-    /** @var int */
-    private $productId;
-
-    public function __construct(int $productId)
-    {
-        $this->productId = $productId;
+        return array_map(static function (array $offer): array {
+            return ['id_product' => $offer[0], 'id_product_attribute' => $offer[1]];
+        }, array_slice($this->offers, $paginationParams['offset'], $paginationParams['limit']));
     }
 
     public function listProductsMatchingFilters(array $filters, array $paginationParams): array
     {
         unset($filters, $paginationParams);
+        ++$this->legacyCalls;
 
-        return [['id_product' => $this->productId]];
+        return [];
     }
 
     public function countProductsMatchingFilters(array $filters): int
     {
         unset($filters);
+        ++$this->legacyCalls;
 
-        return 2;
-    }
-}
-
-class EndlessProductEnumerator extends ProductEnumerator
-{
-    public function __construct()
-    {
-    }
-
-    public function listProductsMatchingFilters(array $filters, array $paginationParams): array
-    {
-        unset($filters);
-
-        return [['id_product' => $paginationParams['offset'] + 1]];
-    }
-
-    public function countProductsMatchingFilters(array $filters): int
-    {
-        unset($filters);
-
-        return 10;
+        return 0;
     }
 }
 
 class RecordingCatalogProvider implements CatalogProductProviderInterface
 {
-    /** @var array<int, array{all: int[], active: int[]}> */
-    protected $combinations;
-
     /** @var int */
     private $shopId;
 
@@ -293,25 +252,17 @@ class RecordingCatalogProvider implements CatalogProductProviderInterface
     /** @var callable|null */
     private $factory;
 
-    /** @var array<int, int> */
-    public $countCalls = [];
-
-    /** @var array<int, array{0: int, 1: int, 2: int, 3: int, 4: int}> */
-    public $combinationPageCalls = [];
-
     /** @var array<int, array{0: int, 1: int}> */
     public $hydrations = [];
 
-    /**
-     * @param array<int, array{all: int[], active: int[]}> $combinations
-     * @param callable|null $factory
-     */
-    public function __construct(array $combinations, int $shopId = 1, int $languageId = 2, $factory = null)
+    /** @var array<int, int> */
+    public $combinationCalls = [];
+
+    public function __construct($factory = null, int $shopId = 1, int $languageId = 2)
     {
-        $this->combinations = $combinations;
+        $this->factory = $factory;
         $this->shopId = $shopId;
         $this->languageId = $languageId;
-        $this->factory = $factory;
     }
 
     public function assertContext(int $shopId, int $languageId): void
@@ -323,10 +274,10 @@ class RecordingCatalogProvider implements CatalogProductProviderInterface
 
     public function combinationCounts(int $productId, int $shopId): array
     {
-        $this->countCalls[] = $productId;
-        $combination = $this->combinations[$productId] ?? ['all' => [], 'active' => []];
+        unset($shopId);
+        $this->combinationCalls[] = $productId;
 
-        return ['total' => count($combination['all']), 'active' => count($combination['active'])];
+        return ['total' => 0, 'active' => 0];
     }
 
     public function activeCombinationIds(
@@ -336,13 +287,15 @@ class RecordingCatalogProvider implements CatalogProductProviderInterface
         int $offset,
         int $limit
     ): array {
-        $this->combinationPageCalls[] = [$productId, $shopId, $languageId, $offset, $limit];
+        unset($productId, $shopId, $languageId, $offset, $limit);
+        ++$this->combinationCalls;
 
-        return array_slice($this->combinations[$productId]['active'], $offset, $limit);
+        return [];
     }
 
     public function product(int $productId, int $attributeId, int $shopId, int $languageId): CatalogProduct
     {
+        unset($shopId, $languageId);
         $this->hydrations[] = [$productId, $attributeId];
         if (null !== $this->factory) {
             return ($this->factory)($productId, $attributeId);
@@ -360,35 +313,22 @@ class RecordingCatalogProvider implements CatalogProductProviderInterface
         int $productId,
         int $attributeId,
         string $link,
-        string $imageLink
+        string $imageLink,
+        string $title = 'Silk Lamp',
+        string $price = '449.99'
     ): CatalogProduct {
         return new CatalogProduct(
             $productId . '-' . $attributeId,
-            'Silk Lamp',
+            $title,
             'Hand-finished lamp',
             $link,
             $imageLink,
             true,
-            '449.99',
+            $price,
             'EUR',
             null,
             null,
             null
         );
-    }
-}
-
-class EmptyCombinationCatalogProvider extends RecordingCatalogProvider
-{
-    public function __construct()
-    {
-        parent::__construct([]);
-    }
-
-    public function combinationCounts(int $productId, int $shopId): array
-    {
-        unset($productId, $shopId);
-
-        return ['total' => 1, 'active' => 0];
     }
 }

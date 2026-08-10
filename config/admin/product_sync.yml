@@ -3,8 +3,20 @@ services:
     class: PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\MerchantProductMapper
     public: true
 
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\DetachedCatalogContextFactory:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\DetachedCatalogContextFactory
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\LegacyPrestaShopProductCoreAdapter:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\LegacyPrestaShopProductCoreAdapter
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\PrestaShopProductCoreAdapterInterface:
+    alias: PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\LegacyPrestaShopProductCoreAdapter
+
   PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\LegacyPrestaShopProductRuntime:
     class: PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\LegacyPrestaShopProductRuntime
+    arguments:
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\DetachedCatalogContextFactory'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\PrestaShopProductCoreAdapterInterface'
 
   PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\PrestaShopProductRuntimeInterface:
     alias: PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\LegacyPrestaShopProductRuntime
@@ -25,10 +37,19 @@ services:
   PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogProductProviderInterface:
     alias: PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\PrestaShopCatalogProductProvider
 
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\ConfigurationCatalogFilterSettings:
+    class: PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\ConfigurationCatalogFilterSettings
+    arguments:
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\FilterValidator'
+
+  PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogFilterSettingsInterface:
+    alias: PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\ConfigurationCatalogFilterSettings
+
   PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogProductSource:
     class: PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogProductSource
     public: true
     arguments:
       - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\ProductEnumerator'
       - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogProductProviderInterface'
-      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\MerchantProductMapper'
+      - '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogFilterSettingsInterface'

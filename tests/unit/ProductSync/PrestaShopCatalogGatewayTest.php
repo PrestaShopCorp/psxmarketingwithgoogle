@@ -30,6 +30,54 @@ class PrestaShopCatalogGatewayTest extends TestCase
         self::assertEquals($snapshot, $context);
     }
 
+    public function testPreservesAValidatedShopDomainPortInTheTrustedBaseUrl(): void
+    {
+        $context = GatewayContextFactory::context();
+        $context->shop->domain_ssl = 'localhost:8080';
+        $gateway = new PrestaShopCatalogGateway(
+            $context,
+            new GatewayLinkFake(),
+            new GatewayDatabaseFake(),
+            new GatewayProductRuntimeFake(),
+            'ps_'
+        );
+
+        self::assertSame('https://localhost:8080/base/virtual/', $gateway->context()['trustedBaseUrl']);
+    }
+
+    /**
+     * @dataProvider unsafeShopAuthorityProvider
+     */
+    public function testRejectsUnsafeShopDomainAuthorities(string $authority): void
+    {
+        $context = GatewayContextFactory::context();
+        $context->shop->domain_ssl = $authority;
+        $gateway = new PrestaShopCatalogGateway(
+            $context,
+            new GatewayLinkFake(),
+            new GatewayDatabaseFake(),
+            new GatewayProductRuntimeFake(),
+            'ps_'
+        );
+
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Active PrestaShop catalog context is invalid.');
+
+        $gateway->context();
+    }
+
+    public function unsafeShopAuthorityProvider(): array
+    {
+        return [
+            'zero port' => ['localhost:0'],
+            'port above range' => ['localhost:65536'],
+            'credentials' => ['user:secret@localhost:8080'],
+            'path' => ['localhost:8080/admin'],
+            'scheme' => ['https://localhost:8080'],
+            'control' => ["localhost:8080\ntrusted.example"],
+        ];
+    }
+
     public function testCountsOnlyShopAssociatedCombinationsOfAnActiveProduct(): void
     {
         $database = new GatewayDatabaseFake();
@@ -108,6 +156,7 @@ class PrestaShopCatalogGatewayTest extends TestCase
         self::assertSame(['silk-lamp', 77, 'large_default'], $link->imageLinkArguments);
         self::assertSame([[42, 7]], $runtime->priceCalls);
         self::assertSame([[42, 7, 1]], $runtime->quantityCalls);
+        self::assertSame([5], $runtime->manufacturerCalls);
         self::assertStringContainsString('pai.`id_product_attribute` = 7', $database->valueSql);
         self::assertStringContainsString('image_shop.`id_shop` = 1', $database->valueSql);
     }
@@ -220,6 +269,9 @@ class GatewayProductRuntimeFake implements PrestaShopProductRuntimeInterface
     /** @var array<int, array{0: int, 1: int, 2: int}> */
     public $quantityCalls = [];
 
+    /** @var int[] */
+    public $manufacturerCalls = [];
+
     public function __construct()
     {
         $this->product = new \stdClass();
@@ -231,7 +283,7 @@ class GatewayProductRuntimeFake implements PrestaShopProductRuntimeInterface
         $this->product->ean13 = '5060123456789';
         $this->product->upc = '';
         $this->product->mpn = 'PRODUCT-MPN';
-        $this->product->manufacturer_name = 'Tiny Lux';
+        $this->product->id_manufacturer = 5;
 
         $this->combination = new \stdClass();
         $this->combination->id = 7;
@@ -275,5 +327,12 @@ class GatewayProductRuntimeFake implements PrestaShopProductRuntimeInterface
         unset($productId, $context);
 
         return 66;
+    }
+
+    public function manufacturerName(int $manufacturerId): ?string
+    {
+        $this->manufacturerCalls[] = $manufacturerId;
+
+        return 'Tiny Lux';
     }
 }

@@ -7,6 +7,17 @@ use Symfony\Component\Yaml\Yaml;
 
 class ProductSyncServiceConfigurationTest extends TestCase
 {
+    public function testServiceFileDeclaresExplicitRuntimeAndFilterDependencies(): void
+    {
+        $content = file_get_contents(dirname(__DIR__, 3) . '/config/admin/product_sync.yml');
+        self::assertIsString($content);
+        self::assertStringContainsString('DetachedCatalogContextFactory:', $content);
+        self::assertStringContainsString('LegacyPrestaShopProductCoreAdapter:', $content);
+        self::assertStringContainsString('PrestaShopProductCoreAdapterInterface:', $content);
+        self::assertStringContainsString('ConfigurationCatalogFilterSettings:', $content);
+        self::assertStringContainsString('CatalogFilterSettingsInterface:', $content);
+    }
+
     public function testAdminImportsTheParsedProductSyncServiceGraph(): void
     {
         if (!class_exists(Yaml::class)) {
@@ -23,6 +34,14 @@ class ProductSyncServiceConfigurationTest extends TestCase
 
         $services = $productSync['services'];
         self::assertSame([
+            '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\DetachedCatalogContextFactory',
+            '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\PrestaShopProductCoreAdapterInterface',
+        ], $services['PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\LegacyPrestaShopProductRuntime']['arguments']);
+        self::assertSame(
+            'PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\LegacyPrestaShopProductCoreAdapter',
+            $services['PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\PrestaShopProductCoreAdapterInterface']['alias']
+        );
+        self::assertSame([
             '@psxmarketingwithgoogle.context',
             '@psxmarketingwithgoogle.link',
             '@psxmarketingwithgoogle.db',
@@ -33,9 +52,17 @@ class ProductSyncServiceConfigurationTest extends TestCase
             $services['PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogProductProviderInterface']['alias']
         );
         self::assertSame([
+            '@PrestaShop\Module\PsxMarketingWithGoogle\Adapter\ConfigurationAdapter',
+            '@PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\FilterValidator',
+        ], $services['PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\ConfigurationCatalogFilterSettings']['arguments']);
+        self::assertSame(
+            'PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\ConfigurationCatalogFilterSettings',
+            $services['PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogFilterSettingsInterface']['alias']
+        );
+        self::assertSame([
             '@PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\ProductEnumerator',
             '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogProductProviderInterface',
-            '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\MerchantProductMapper',
+            '@PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogFilterSettingsInterface',
         ], $services['PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogProductSource']['arguments']);
         self::assertTrue($services['PrestaShop\Module\PsxMarketingWithGoogle\ProductSync\CatalogProductSource']['public']);
     }

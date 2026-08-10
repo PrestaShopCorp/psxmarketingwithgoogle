@@ -88,6 +88,31 @@ class QueryBuilder
         return $query;
     }
 
+    /**
+     * Build the canonical flattened offer stream used by catalog synchronization.
+     *
+     * Products without combinations are represented by attribute ID zero. Products
+     * with combinations produce one row per shop-scoped product attribute.
+     */
+    public function buildQueryToListOffers(array $filters, array $paginationParams): DbQuery
+    {
+        $this->validatePagination($paginationParams);
+
+        $query = $this->buildCommonQuery($filters);
+        $query->leftJoin(
+            'product_attribute_shop',
+            'sync_pas',
+            'sync_pas.id_product = p.id_product AND sync_pas.id_shop = ' . (int) $this->shopId
+        );
+        $query->select(
+            'DISTINCT p.id_product, COALESCE(sync_pas.id_product_attribute, 0) AS id_product_attribute'
+        );
+        $query->orderBy('p.id_product ASC, id_product_attribute ASC');
+        $query->limit($paginationParams['limit'], $paginationParams['offset']);
+
+        return $query;
+    }
+
     private function validatePagination(array $paginationParams): void
     {
         $keys = array_keys($paginationParams);

@@ -9,51 +9,53 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\ProductSync;
 
 final class LegacyPrestaShopProductRuntime implements PrestaShopProductRuntimeInterface
 {
+    /** @var DetachedCatalogContextFactory */
+    private $contextFactory;
+
+    /** @var PrestaShopProductCoreAdapterInterface */
+    private $core;
+
+    public function __construct(
+        DetachedCatalogContextFactory $contextFactory,
+        PrestaShopProductCoreAdapterInterface $core
+    ) {
+        $this->contextFactory = $contextFactory;
+        $this->core = $core;
+    }
+
     public function product(int $productId, int $languageId, int $shopId, $context)
     {
-        return new \Product($productId, true, $languageId, $shopId, $context);
+        return $this->core->product($productId, false, $languageId, $shopId, $context);
     }
 
     public function combination(int $attributeId, int $languageId, int $shopId)
     {
-        return new \Combination($attributeId, $languageId, $shopId);
+        return $this->core->combination($attributeId, $languageId, $shopId);
     }
 
     public function price(int $productId, int $attributeId, $context): ?float
     {
-        $specificPrice = null;
+        $detachedContext = $this->contextFactory->create($context);
 
-        return \Product::getPriceStatic(
-            $productId,
-            true,
-            0 === $attributeId ? null : $attributeId,
-            6,
-            null,
-            false,
-            true,
-            1,
-            false,
-            null,
-            null,
-            null,
-            $specificPrice,
-            true,
-            true,
-            $context
-        );
+        return $this->core->price($productId, $attributeId, $detachedContext);
     }
 
     public function quantity(int $productId, int $attributeId, int $shopId): int
     {
-        return (int) \StockAvailable::getQuantityAvailableByProduct($productId, $attributeId, $shopId);
+        return $this->core->quantity($productId, $attributeId, $shopId);
     }
 
     public function coverImageId(int $productId, $context): ?int
     {
-        $cover = \Product::getCover($productId, $context);
+        return $this->core->coverImageId($productId, $context);
+    }
 
-        return is_array($cover) && isset($cover['id_image']) && 0 < (int) $cover['id_image']
-            ? (int) $cover['id_image']
-            : null;
+    public function manufacturerName(int $manufacturerId): ?string
+    {
+        if (0 >= $manufacturerId) {
+            return null;
+        }
+
+        return $this->core->manufacturerName($manufacturerId);
     }
 }

@@ -67,6 +67,33 @@ class MerchantProductMapperTest extends TestCase
         self::assertSame('OUT_OF_STOCK', $attributes['availability']);
     }
 
+    public function testPreservesWordBoundariesBetweenHtmlBlocksBeforeTruncation(): void
+    {
+        $mapped = $this->mapper->map($this->product([
+            'description' => '<p>First</p><p>Second</p><div>Third</div>',
+        ]), 'en', 'GB');
+
+        self::assertSame('First Second Third', $mapped['productAttributes']['description']);
+    }
+
+    public function testAcceptsMerchantV1MaximumTitleAndUrlLengthsInUnicodeCharacters(): void
+    {
+        $urlPrefix = 'https://example.com/';
+        $link = $urlPrefix . str_repeat("\u{00E9}", 2000 - mb_strlen($urlPrefix, 'UTF-8'));
+        $feedLabel = str_repeat('A', 17) . '_GB';
+
+        $mapped = $this->mapper->map($this->product([
+            'title' => str_repeat("\u{706F}", 150),
+            'link' => $link,
+            'imageLink' => $link,
+        ]), 'en', $feedLabel);
+
+        self::assertSame(150, mb_strlen($mapped['productAttributes']['title'], 'UTF-8'));
+        self::assertSame(2000, mb_strlen($mapped['productAttributes']['link'], 'UTF-8'));
+        self::assertSame(2000, mb_strlen($mapped['productAttributes']['imageLink'], 'UTF-8'));
+        self::assertSame($feedLabel, $mapped['feedLabel']);
+    }
+
     public function testTruncatesDescriptionToFiveThousandUnicodeCharacters(): void
     {
         $description = str_repeat("\u{1F4A1}", 5000) . "\u{1F6AB}";
@@ -116,8 +143,18 @@ class MerchantProductMapperTest extends TestCase
             'leading zeros' => ['000001.000001', '1000001'],
             'one cent' => ['0.01', '10000'],
             'six decimals' => ['12.345678', '12345678'],
-            'large exact value' => ['123456789012345678.123456', '123456789012345678123456'],
+            'signed int64 maximum' => ['9223372036854.775807', '9223372036854775807'],
         ];
+    }
+
+    public function testRejectsMicrosAboveSignedInt64Maximum(): void
+    {
+        try {
+            $this->mapper->map($this->product(['price' => '9223372036854.775808']), 'en', 'GB');
+            self::fail('An amount above the Merchant API int64 maximum must be rejected.');
+        } catch (ProductValidationException $exception) {
+            self::assertSame([['field' => 'price', 'code' => 'out_of_range']], $exception->errors());
+        }
     }
 
     /**
@@ -176,14 +213,20 @@ class MerchantProductMapperTest extends TestCase
             'unsafe offer ID' => [['offerId' => '42/7'], 'en', 'GB', 'offerId', 'invalid_format'],
             'overlong offer ID' => [['offerId' => str_repeat('1', 51)], 'en', 'GB', 'offerId', 'invalid_format'],
             'empty title after normalization' => [['title' => '<b> </b>'], 'en', 'GB', 'title', 'required'],
+            'title over 150 Unicode characters' => [['title' => str_repeat("\u{706F}", 151)], 'en', 'GB', 'title', 'too_long'],
             'empty description after normalization' => [['description' => '<p> </p>'], 'en', 'GB', 'description', 'required'],
             'relative product URL' => [['link' => '/products/lamp'], 'en', 'GB', 'link', 'invalid_url'],
+            'product URL over 2000 Unicode characters' => [['link' => 'https://example.com/' . str_repeat('a', 1981)], 'en', 'GB', 'link', 'invalid_url'],
+            'image URL over 2000 Unicode characters' => [['imageLink' => 'https://example.com/' . str_repeat('a', 1981)], 'en', 'GB', 'imageLink', 'invalid_url'],
             'URL credentials' => [['link' => 'https://user:secret@evil.example/lamp'], 'en', 'GB', 'link', 'invalid_url'],
             'URL control character' => [['link' => "https://evil.example/lamp\nnext"], 'en', 'GB', 'link', 'invalid_url'],
             'non-http image URL' => [['imageLink' => 'ftp://evil.example/lamp.jpg'], 'en', 'GB', 'imageLink', 'invalid_url'],
             'lowercase currency' => [['currency' => 'eur'], 'en', 'GB', 'currencyCode', 'invalid_format'],
-            'invalid language' => [[], 'EN_us', 'GB', 'contentLanguage', 'invalid_format'],
+            'three-letter language' => [[], 'eng', 'GB', 'contentLanguage', 'invalid_format'],
+            'regional language' => [[], 'en-GB', 'GB', 'contentLanguage', 'invalid_format'],
+            'uppercase language' => [[], 'EN', 'GB', 'contentLanguage', 'invalid_format'],
             'invalid feed label' => [[], 'en', 'gb', 'feedLabel', 'invalid_format'],
+            'feed label over 20 characters' => [[], 'en', str_repeat('A', 21), 'feedLabel', 'invalid_format'],
         ];
     }
 

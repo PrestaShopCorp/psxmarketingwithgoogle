@@ -73,8 +73,8 @@ final class PrestaShopCatalogGateway implements PrestaShopCatalogGatewayInterfac
         )) {
             throw new InvalidArgumentException('Active PrestaShop catalog context is invalid.');
         }
-        $domain = strtolower(trim((string) $this->context->shop->domain_ssl));
-        if (!$this->validDomain($domain)) {
+        $authority = $this->normalizedShopAuthority((string) $this->context->shop->domain_ssl);
+        if (null === $authority) {
             throw new InvalidArgumentException('Active PrestaShop catalog context is invalid.');
         }
         $basePath = '/' . trim(
@@ -89,7 +89,7 @@ final class PrestaShopCatalogGateway implements PrestaShopCatalogGatewayInterfac
         return [
             'shopId' => (int) $this->context->shop->id,
             'languageId' => (int) $this->context->language->id,
-            'trustedBaseUrl' => 'https://' . $domain . $basePath,
+            'trustedBaseUrl' => 'https://' . $authority . $basePath,
             'trustedMediaHosts' => $this->configuredMediaHosts(),
         ];
     }
@@ -202,6 +202,7 @@ final class PrestaShopCatalogGateway implements PrestaShopCatalogGatewayInterfac
                 null === $combination ? null : $combination->mpn,
                 $product->mpn,
             ]);
+            $brand = $this->runtime->manufacturerName((int) ($product->id_manufacturer ?? 0));
 
             return [
                 'title' => $this->localized($product->name, $languageId),
@@ -211,7 +212,7 @@ final class PrestaShopCatalogGateway implements PrestaShopCatalogGatewayInterfac
                 'inStock' => 0 < $this->runtime->quantity($productId, $attributeId, $shopId),
                 'price' => null === $price ? '' : $this->decimalPrice((float) $price),
                 'currency' => (string) $this->context->currency->iso_code,
-                'brand' => $this->nullableString($product->manufacturer_name ?? null),
+                'brand' => $this->nullableString($brand),
                 'gtin' => $gtin,
                 'mpn' => $mpn,
             ];
@@ -323,5 +324,44 @@ final class PrestaShopCatalogGateway implements PrestaShopCatalogGatewayInterfac
     private function validDomain(string $domain): bool
     {
         return 1 === preg_match('/^(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)(?:\.(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?))*$/D', $domain);
+    }
+
+    private function normalizedShopAuthority(string $authority): ?string
+    {
+        if ('' === $authority
+            || 1 === preg_match('/[\x00-\x20\x7F]/', $authority)
+            || false !== strpos($authority, '\\')
+        ) {
+            return null;
+        }
+        $parts = parse_url('https://' . $authority);
+        if (!is_array($parts)
+            || !isset($parts['host'])
+            || isset($parts['user'])
+            || isset($parts['pass'])
+            || isset($parts['path'])
+            || isset($parts['query'])
+            || isset($parts['fragment'])
+        ) {
+            return null;
+        }
+        $host = strtolower($parts['host']);
+        $unwrappedHost = '[' === ($host[0] ?? '') && ']' === substr($host, -1)
+            ? substr($host, 1, -1)
+            : $host;
+        if (!$this->validDomain($host) && false === filter_var($unwrappedHost, FILTER_VALIDATE_IP)) {
+            return null;
+        }
+        if (isset($parts['port']) && !$this->validPort($parts['port'])) {
+            return null;
+        }
+
+        return $host . (isset($parts['port']) ? ':' . $parts['port'] : '');
+    }
+
+    /** @param mixed $port */
+    private function validPort($port): bool
+    {
+        return is_int($port) && 0 < $port && 65535 >= $port;
     }
 }

@@ -14,7 +14,7 @@ use PrestaShop\Module\PsxMarketingWithGoogle\ProductFilter\FilterApplication\Pro
 final class CatalogProductSource
 {
     private const MAX_PAGE_SIZE = 250;
-    private const DEFAULT_MAX_PARENT_SCANS = 1000000;
+    private const URL_MAX_CHARACTERS = 2000;
 
     /** @var ProductEnumerator */
     private $productEnumerator;
@@ -22,33 +22,17 @@ final class CatalogProductSource
     /** @var CatalogProductProviderInterface */
     private $provider;
 
-    /** @var MerchantProductMapper */
-    private $mapper;
+    /** @var CatalogFilterSettingsInterface */
+    private $filterSettings;
 
-    /** @var array<int, array<string, mixed>> */
-    private $filters;
-
-    /** @var int */
-    private $maxParentScans;
-
-    /**
-     * @param array<int, array<string, mixed>> $filters
-     */
     public function __construct(
         ProductEnumerator $productEnumerator,
         CatalogProductProviderInterface $provider,
-        MerchantProductMapper $mapper,
-        array $filters = [],
-        int $maxParentScans = self::DEFAULT_MAX_PARENT_SCANS
+        CatalogFilterSettingsInterface $filterSettings
     ) {
-        if (0 >= $maxParentScans) {
-            throw new InvalidArgumentException('Parent scan bound must be positive.');
-        }
         $this->productEnumerator = $productEnumerator;
         $this->provider = $provider;
-        $this->mapper = $mapper;
-        $this->filters = $filters;
-        $this->maxParentScans = $maxParentScans;
+        $this->filterSettings = $filterSettings;
     }
 
     /** @return CatalogProduct[] */
@@ -57,79 +41,37 @@ final class CatalogProductSource
         $this->validatePage($shopId, $languageId, $offset, $limit);
         $this->provider->assertContext($shopId, $languageId);
 
-        $eligibleCount = $this->productEnumerator->countProductsMatchingFilters($this->filters);
-        if (0 > $eligibleCount) {
-            throw new LogicException('Product enumeration returned an invalid count.');
+        $filters = $this->filterSettings->filtersForShop($shopId);
+        $rows = $this->productEnumerator->listProductOffersMatchingFilters($filters, [
+            'offset' => $offset,
+            'limit' => $limit,
+            'orderBy' => 'id_product',
+            'orderWay' => 'ASC',
+        ]);
+        if (count($rows) > $limit) {
+            throw new LogicException('Offer enumeration returned an oversized page.');
         }
 
         $products = [];
-        $parentOffset = 0;
-        $remainingOffset = $offset;
         $previousProductId = 0;
-        while ($parentOffset < $eligibleCount && count($products) < $limit) {
-            if ($parentOffset >= $this->maxParentScans) {
-                throw new LogicException('Product enumeration exceeded its scan bound.');
-            }
-            $rows = $this->productEnumerator->listProductsMatchingFilters($this->filters, [
-                'offset' => $parentOffset,
-                'limit' => 1,
-                'orderBy' => 'id_product',
-                'orderWay' => 'ASC',
-            ]);
-            if (1 !== count($rows)) {
-                throw new LogicException('Product enumeration returned an incomplete bounded page.');
-            }
-            ++$parentOffset;
-
-            $productId = $this->productId($rows[0]);
-            if ($productId <= $previousProductId) {
-                throw new LogicException('Product enumeration did not advance.');
+        $previousAttributeId = -1;
+        foreach ($rows as $row) {
+            $productId = $this->positiveId($row, 'id_product');
+            $attributeId = $this->nonNegativeId($row, 'id_product_attribute');
+            if ($productId < $previousProductId
+                || ($productId === $previousProductId && $attributeId <= $previousAttributeId)
+            ) {
+                throw new LogicException('Offer enumeration did not advance.');
             }
             $previousProductId = $productId;
+            $previousAttributeId = $attributeId;
 
-            $counts = $this->provider->combinationCounts($productId, $shopId);
-            $this->validateCombinationCounts($counts);
-            $offerCount = 0 === $counts['total'] ? 1 : $counts['active'];
-            if (0 === $offerCount) {
-                continue;
+            $product = $this->provider->product($productId, $attributeId, $shopId, $languageId);
+            if ($productId . '-' . $attributeId !== $product->offerId()) {
+                throw new LogicException('Catalog provider returned an unstable offer identity.');
             }
-            if ($remainingOffset >= $offerCount) {
-                $remainingOffset -= $offerCount;
-
-                continue;
-            }
-
-            $remainingLimit = $limit - count($products);
-            if (0 === $counts['total']) {
-                $attributeIds = [0];
-            } else {
-                $requested = min($remainingLimit, $offerCount - $remainingOffset);
-                $attributeIds = $this->provider->activeCombinationIds(
-                    $productId,
-                    $shopId,
-                    $languageId,
-                    $remainingOffset,
-                    $requested
-                );
-                $this->validateCombinationPage($attributeIds, $requested);
-            }
-            $remainingOffset = 0;
-
-            foreach ($attributeIds as $attributeId) {
-                $product = $this->provider->product($productId, $attributeId, $shopId, $languageId);
-                if ($productId . '-' . $attributeId !== $product->offerId()) {
-                    throw new LogicException('Catalog provider returned an unstable offer identity.');
-                }
-                $this->mapper->validate($product);
-                $products[] = $product;
-            }
-        }
-
-        if ($parentOffset >= $this->maxParentScans
-            && $parentOffset < $eligibleCount
-            && count($products) < $limit
-        ) {
-            throw new LogicException('Product enumeration exceeded its scan bound.');
+            $this->assertCatalogUrls($product);
+            $products[] = $product;
         }
 
         return $products;
@@ -143,45 +85,84 @@ final class CatalogProductSource
     }
 
     /** @param array<string, mixed> $row */
-    private function productId(array $row): int
+    private function positiveId(array $row, string $field): int
     {
-        $raw = $row['id_product'] ?? null;
-        if ((!is_int($raw) && (!is_string($raw) || 1 !== preg_match('/^[0-9]+$/D', $raw)))
-            || 0 >= (int) $raw
-        ) {
-            throw new LogicException('Product enumeration returned an invalid product ID.');
+        $value = $this->integerId($row[$field] ?? null);
+        if (null === $value || 0 >= $value) {
+            throw new LogicException('Offer enumeration returned an invalid product ID.');
         }
 
-        return (int) $raw;
+        return $value;
     }
 
-    /** @param array<string, mixed> $counts */
-    private function validateCombinationCounts(array $counts): void
+    /** @param array<string, mixed> $row */
+    private function nonNegativeId(array $row, string $field): int
     {
-        if (!isset($counts['total'], $counts['active'])
-            || !is_int($counts['total'])
-            || !is_int($counts['active'])
-            || 0 > $counts['total']
-            || 0 > $counts['active']
-            || $counts['active'] > $counts['total']
-            || (0 === $counts['total'] && 0 !== $counts['active'])
+        $value = $this->integerId($row[$field] ?? null);
+        if (null === $value || 0 > $value) {
+            throw new LogicException('Offer enumeration returned an invalid product attribute ID.');
+        }
+
+        return $value;
+    }
+
+    /** @param mixed $raw */
+    private function integerId($raw): ?int
+    {
+        if (is_int($raw)) {
+            return $raw;
+        }
+        if (!is_string($raw) || 1 !== preg_match('/^(?:0|[1-9][0-9]*)$/D', $raw)) {
+            return null;
+        }
+        $normalized = ltrim($raw, '0');
+        $normalized = '' === $normalized ? '0' : $normalized;
+        $max = (string) PHP_INT_MAX;
+        if (strlen($normalized) > strlen($max)
+            || (strlen($normalized) === strlen($max) && strcmp($normalized, $max) > 0)
         ) {
-            throw new LogicException('Catalog provider returned invalid combination counts.');
+            return null;
+        }
+
+        return (int) $normalized;
+    }
+
+    private function assertCatalogUrls(CatalogProduct $product): void
+    {
+        $errors = [];
+        $this->validateUrl('link', $product->link(), $errors);
+        $this->validateUrl('imageLink', $product->imageLink(), $errors);
+        if ([] !== $errors) {
+            throw new ProductValidationException($errors);
         }
     }
 
-    /** @param mixed[] $attributeIds */
-    private function validateCombinationPage(array $attributeIds, int $requested): void
+    /** @param array<int, array{field: string, code: string}> $errors */
+    private function validateUrl(string $field, string $url, array &$errors): void
     {
-        if ($requested !== count($attributeIds)) {
-            throw new LogicException('Catalog provider returned an incomplete combination page.');
+        if ('' === trim($url)) {
+            $errors[] = ['field' => $field, 'code' => 'required'];
+
+            return;
         }
-        $previous = 0;
-        foreach ($attributeIds as $attributeId) {
-            if (!is_int($attributeId) || 0 >= $attributeId || $attributeId <= $previous) {
-                throw new LogicException('Catalog provider returned invalid combination IDs.');
-            }
-            $previous = $attributeId;
+        if (self::URL_MAX_CHARACTERS < mb_strlen($url, 'UTF-8')
+            || 1 === preg_match('/[\x00-\x1F\x7F]/', $url)
+            || 1 === preg_match('/\s/u', $url)
+            || false !== strpos($url, '\\')
+        ) {
+            $errors[] = ['field' => $field, 'code' => 'invalid_url'];
+
+            return;
+        }
+        $parts = parse_url($url);
+        if (!is_array($parts)
+            || !isset($parts['scheme'], $parts['host'])
+            || !in_array(strtolower($parts['scheme']), ['http', 'https'], true)
+            || '' === $parts['host']
+            || isset($parts['user'])
+            || isset($parts['pass'])
+        ) {
+            $errors[] = ['field' => $field, 'code' => 'invalid_url'];
         }
     }
 }

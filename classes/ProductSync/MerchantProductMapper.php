@@ -9,21 +9,21 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\ProductSync;
 
 final class MerchantProductMapper
 {
+    private const TITLE_MAX_CHARACTERS = 150;
     private const DESCRIPTION_MAX_CHARACTERS = 5000;
     private const OPTIONAL_TEXT_MAX_CHARACTERS = 70;
-    private const URL_MAX_BYTES = 2048;
+    private const URL_MAX_CHARACTERS = 2000;
+    private const MAX_AMOUNT_MICROS = '9223372036854775807';
 
     /** @return array<string, mixed> */
     public function map(CatalogProduct $product, string $contentLanguage, string $feedLabel): array
     {
         $normalized = $this->validate($product);
         $errors = [];
-        if (35 < strlen($contentLanguage)
-            || 1 !== preg_match('/^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8}){0,3}$/D', $contentLanguage)
-        ) {
+        if (1 !== preg_match('/^[a-z]{2}$/D', $contentLanguage)) {
             $errors[] = ['field' => 'contentLanguage', 'code' => 'invalid_format'];
         }
-        if (1 !== preg_match('/^[A-Z0-9-]{1,20}$/D', $feedLabel)) {
+        if (1 !== preg_match('/^[A-Z0-9_-]{1,20}$/D', $feedLabel)) {
             $errors[] = ['field' => 'feedLabel', 'code' => 'invalid_format'];
         }
         if ([] !== $errors) {
@@ -82,6 +82,8 @@ final class MerchantProductMapper
         }
         if ('' === $title) {
             $errors[] = ['field' => 'title', 'code' => 'required'];
+        } elseif (self::TITLE_MAX_CHARACTERS < $this->length($title)) {
+            $errors[] = ['field' => 'title', 'code' => 'too_long'];
         }
         if ('' === $description) {
             $errors[] = ['field' => 'description', 'code' => 'required'];
@@ -95,6 +97,9 @@ final class MerchantProductMapper
         } else {
             $fraction = str_pad($matches[2] ?? '', 6, '0');
             $amountMicros = ltrim($matches[1] . $fraction, '0') ?: '0';
+            if ($this->isGreaterThan($amountMicros, self::MAX_AMOUNT_MICROS)) {
+                $errors[] = ['field' => 'price', 'code' => 'out_of_range'];
+            }
         }
         if (1 !== preg_match('/^[A-Z]{3}$/D', $product->currency())) {
             $errors[] = ['field' => 'currencyCode', 'code' => 'invalid_format'];
@@ -141,9 +146,10 @@ final class MerchantProductMapper
 
             return;
         }
-        if (self::URL_MAX_BYTES < strlen($url)
+        if (self::URL_MAX_CHARACTERS < $this->length($url)
             || $this->containsControl($url)
-            || false === filter_var($url, FILTER_VALIDATE_URL)
+            || 1 === preg_match('/\s/u', $url)
+            || false !== strpos($url, '\\')
         ) {
             $errors[] = ['field' => $field, 'code' => 'invalid_url'];
 
@@ -155,6 +161,7 @@ final class MerchantProductMapper
             || !in_array(strtolower($parts['scheme']), ['http', 'https'], true)
             || isset($parts['user'])
             || isset($parts['pass'])
+            || '' === $parts['host']
         ) {
             $errors[] = ['field' => $field, 'code' => 'invalid_url'];
         }
@@ -167,6 +174,14 @@ final class MerchantProductMapper
 
     private function normalizeText(string $text): string
     {
+        $withBlockBoundaries = preg_replace(
+            '~</?(?:address|article|aside|blockquote|br|div|dl|dt|dd|fieldset|figcaption|figure|footer|form|h[1-6]|header|hr|li|main|nav|ol|p|pre|section|table|tbody|td|tfoot|th|thead|tr|ul)\b[^>]*>~iu',
+            ' ',
+            $text
+        );
+        if (is_string($withBlockBoundaries)) {
+            $text = $withBlockBoundaries;
+        }
         $text = html_entity_decode(strip_tags($text), ENT_QUOTES | ENT_HTML5, 'UTF-8');
         $normalized = preg_replace('/\s+/u', ' ', $text);
 
@@ -190,5 +205,14 @@ final class MerchantProductMapper
     private function containsControl(string $value): bool
     {
         return 1 === preg_match('/[\x00-\x1F\x7F]/', $value);
+    }
+
+    private function isGreaterThan(string $left, string $right): bool
+    {
+        $leftLength = strlen($left);
+        $rightLength = strlen($right);
+
+        return $leftLength > $rightLength
+            || ($leftLength === $rightLength && strcmp($left, $right) > 0);
     }
 }

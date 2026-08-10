@@ -5,35 +5,54 @@ namespace {
         class DbQuery
         {
             /** @var string[] */
-            public $orders = [];
+            private $selects = [];
+
+            /** @var string[] */
+            private $from = [];
+
+            /** @var string[] */
+            private $joins = [];
+
+            /** @var string[] */
+            private $where = [];
+
+            /** @var string[] */
+            private $orders = [];
 
             /** @var array{limit: int, offset: int}|null */
             public $pagination;
 
             public function from($table, $alias = null)
             {
-                unset($table, $alias);
+                $this->from[] = trim($table . ' ' . $alias);
 
                 return $this;
             }
 
             public function innerJoin($table, $alias = null, $on = null)
             {
-                unset($table, $alias, $on);
+                $this->joins[] = 'INNER JOIN ' . trim($table . ' ' . $alias) . ' ON ' . $on;
+
+                return $this;
+            }
+
+            public function leftJoin($table, $alias = null, $on = null)
+            {
+                $this->joins[] = 'LEFT JOIN ' . trim($table . ' ' . $alias) . ' ON ' . $on;
 
                 return $this;
             }
 
             public function where($restriction)
             {
-                unset($restriction);
+                $this->where[] = $restriction;
 
                 return $this;
             }
 
             public function select($fields)
             {
-                unset($fields);
+                $this->selects[] = $fields;
 
                 return $this;
             }
@@ -50,6 +69,26 @@ namespace {
                 $this->pagination = ['limit' => $limit, 'offset' => $offset];
 
                 return $this;
+            }
+
+            public function __toString()
+            {
+                $sql = 'SELECT ' . implode(', ', $this->selects)
+                    . ' FROM ' . implode(', ', $this->from);
+                if ([] !== $this->joins) {
+                    $sql .= ' ' . implode(' ', $this->joins);
+                }
+                if ([] !== $this->where) {
+                    $sql .= ' WHERE ' . implode(' AND ', $this->where);
+                }
+                if ([] !== $this->orders) {
+                    $sql .= ' ORDER BY ' . implode(', ', $this->orders);
+                }
+                if (null !== $this->pagination) {
+                    $sql .= ' LIMIT ' . $this->pagination['offset'] . ', ' . $this->pagination['limit'];
+                }
+
+                return $sql;
             }
         }
     }
@@ -71,7 +110,7 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\Tests\Unit\ProductSync {
 
     class ProductEnumeratorPaginationTest extends TestCase
     {
-        public function testEnumeratorForwardsTheStrictPaginationEnvelopeToTheQueryBuilder(): void
+        public function testEnumeratorExecutesRenderedFlattenedOfferSql(): void
         {
             $pagination = [
                 'offset' => 40,
@@ -79,27 +118,45 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\Tests\Unit\ProductSync {
                 'orderBy' => 'id_product',
                 'orderWay' => 'ASC',
             ];
-            $queryBuilder = new PaginationRecordingQueryBuilder();
-            $enumerator = new InMemoryProductEnumerator(new FilterValidator(), $queryBuilder);
+            $enumerator = new InMemoryProductEnumerator(new FilterValidator(), $this->queryBuilder());
 
             self::assertSame(
-                [['id_product' => 42]],
-                $enumerator->listProductsMatchingFilters([], $pagination)
+                [['id_product' => 42, 'id_product_attribute' => 7]],
+                $enumerator->listProductOffersMatchingFilters([], $pagination)
             );
-            self::assertSame($pagination, $queryBuilder->pagination);
+            self::assertStringContainsString('LIMIT 40, 3', $enumerator->executedSql);
         }
 
-        public function testQueryBuilderCarriesDeterministicOrderAndLimitOffsetIntoSqlQuery(): void
+        public function testQueryBuilderRendersFlattenedOfferJoinDeterministicOrderAndLimitOffset(): void
         {
-            $query = $this->queryBuilder()->buildQueryToList([], [
+            $query = $this->queryBuilder()->buildQueryToListOffers([], [
                 'offset' => 40,
                 'limit' => 3,
                 'orderBy' => 'id_product',
                 'orderWay' => 'ASC',
             ]);
 
-            self::assertSame(['p.id_product ASC'], $query->orders);
-            self::assertSame(['limit' => 3, 'offset' => 40], $query->pagination);
+            $sql = (string) $query;
+
+            self::assertStringContainsString('DISTINCT p.id_product', $sql);
+            self::assertStringContainsString(
+                'COALESCE(sync_pas.id_product_attribute, 0) AS id_product_attribute',
+                $sql
+            );
+            self::assertRegExp(
+                '/LEFT JOIN\s+`?[^`\s]*product_attribute_shop`?\s+`?sync_pas`?\s+ON/i',
+                $sql
+            );
+            self::assertRegExp(
+                '/`?sync_pas`?\.`?id_product`?\s*=\s*`?p`?\.`?id_product`?/i',
+                $sql
+            );
+            self::assertRegExp('/`?sync_pas`?\.`?id_shop`?\s*=\s*1/i', $sql);
+            self::assertRegExp(
+                '/ORDER BY\s+`?p`?\.`?id_product`?\s+ASC,\s*`?id_product_attribute`?\s+ASC/i',
+                $sql
+            );
+            self::assertStringContainsString('LIMIT 40, 3', $sql);
         }
 
         /**
@@ -111,7 +168,7 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\Tests\Unit\ProductSync {
         {
             $this->expectException(InvalidArgumentException::class);
 
-            $this->queryBuilder()->buildQueryToList([], $pagination);
+            $this->queryBuilder()->buildQueryToListOffers([], $pagination);
         }
 
         public function invalidPaginationProvider(): array
@@ -153,31 +210,16 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\Tests\Unit\ProductSync {
         }
     }
 
-    class PaginationRecordingQueryBuilder extends QueryBuilder
-    {
-        /** @var array<string, mixed>|null */
-        public $pagination;
-
-        public function __construct()
-        {
-        }
-
-        public function buildQueryToList(array $filters, array $paginationParams = []): DbQuery
-        {
-            unset($filters);
-            $this->pagination = $paginationParams;
-
-            return new DbQuery();
-        }
-    }
-
     class InMemoryProductEnumerator extends ProductEnumerator
     {
+        /** @var string */
+        public $executedSql = '';
+
         protected function execute(DbQuery $query): array
         {
-            unset($query);
+            $this->executedSql = (string) $query;
 
-            return [['id_product' => 42]];
+            return [['id_product' => 42, 'id_product_attribute' => 7]];
         }
     }
 }

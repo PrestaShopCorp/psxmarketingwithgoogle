@@ -7,10 +7,10 @@
 
 namespace PrestaShop\Module\PsxMarketingWithGoogle\ProductSync;
 
-interface PrestaShopProductRuntimeInterface
+interface PrestaShopProductCoreAdapterInterface
 {
     /** @return object */
-    public function product(int $productId, int $languageId, int $shopId, $context);
+    public function product(int $productId, bool $full, int $languageId, int $shopId, $context);
 
     /** @return object */
     public function combination(int $attributeId, int $languageId, int $shopId);
