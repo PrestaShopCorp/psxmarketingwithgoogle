@@ -47,6 +47,52 @@ function upgrade_module_2_0_0($module)
         return false;
     }
 
+    $invalidSnapshot = "(j.merchant_account NOT REGEXP '^[0-9]{1,20}$'"
+        . " OR j.data_source NOT REGEXP '^accounts/[0-9]{1,20}/dataSources/[0-9]{1,20}$'"
+        . " OR SUBSTRING_INDEX(SUBSTRING_INDEX(j.data_source, '/', 2), '/', -1) <> j.merchant_account"
+        . ' OR j.id_lang = 0'
+        . " OR j.content_language NOT REGEXP '^[a-z]{2}$'"
+        . " OR j.feed_label NOT REGEXP '^[A-Z0-9_-]{1,20}$'"
+        . ' OR j.full_sync <> 1)';
+
+    if (!$db->execute(
+        'UPDATE `' . bqSQL($itemTable) . '` i'
+        . ' INNER JOIN `' . bqSQL($jobTable) . '` j ON j.id_job = i.id_job'
+        . " SET i.status = 'failed', i.claim_token = NULL, i.next_attempt_at = NULL,"
+        . " i.error_code = 'legacy_snapshot_invalid', i.error_field = NULL,"
+        . " i.error_message = 'Synchronization stopped because the saved routing snapshot is invalid.',"
+        . ' i.updated_at = UTC_TIMESTAMP()'
+        . " WHERE j.status IN ('pending', 'running')"
+        . ' AND ' . $invalidSnapshot
+        . " AND i.status IN ('pending', 'running')"
+    )) {
+        return false;
+    }
+
+    if (!$db->execute(
+        'UPDATE `' . bqSQL($jobTable) . '` j'
+        . ' LEFT JOIN ('
+        . ' SELECT id_job, COUNT(*) AS total,'
+        . " COALESCE(SUM(status = 'success'), 0) AS succeeded,"
+        . " COALESCE(SUM(status = 'failed'), 0) AS failed,"
+        . " COALESCE(SUM(status = 'skipped'), 0) AS skipped"
+        . ' FROM `' . bqSQL($itemTable) . '` GROUP BY id_job'
+        . ' ) counts ON counts.id_job = j.id_job'
+        . ' SET j.total = COALESCE(counts.total, 0),'
+        . ' j.succeeded = COALESCE(counts.succeeded, 0),'
+        . ' j.failed = COALESCE(counts.failed, 0),'
+        . ' j.skipped = COALESCE(counts.skipped, 0),'
+        . ' j.status = CASE'
+        . " WHEN COALESCE(counts.failed, 0) = 0 THEN 'completed'"
+        . " WHEN counts.failed = counts.total - counts.skipped THEN 'failed'"
+        . " ELSE 'partial' END,"
+        . ' j.finished_at = COALESCE(j.finished_at, UTC_TIMESTAMP())'
+        . " WHERE j.status IN ('pending', 'running')"
+        . ' AND ' . $invalidSnapshot
+    )) {
+        return false;
+    }
+
     $indexes = [
         [$jobTable, 'idx_psxmg_sync_job_oldest', '(`id_shop`, `status`, `created_at`, `id_job`)'],
         [$itemTable, 'idx_psxmg_sync_item_eligible', '(`id_job`, `status`, `next_attempt_at`, `id_item`)'],

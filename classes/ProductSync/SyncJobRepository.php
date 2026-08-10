@@ -119,7 +119,6 @@ final class SyncJobRepository implements SyncJobStoreInterface
             throw new InvalidArgumentException('Claim limit must be positive.');
         }
         $limit = min(25, $limit);
-        $this->assertOwnedJob($shopId, $jobId);
 
         $claimToken = bin2hex(random_bytes(16));
         $itemTable = $this->table(Config::SYNC_ITEM_TABLE);
@@ -128,12 +127,14 @@ final class SyncJobRepository implements SyncJobStoreInterface
         }
 
         try {
+            $this->lockOwnedJob($shopId, $jobId);
             $claimed = $this->db->execute(
                 'UPDATE `' . $itemTable . '`'
                 . " SET status = 'running', attempts = attempts + 1,"
                 . " claim_token = '" . $claimToken . "', updated_at = UTC_TIMESTAMP()"
                 . ' WHERE id_job = ' . $jobId
                 . " AND status = 'pending'"
+                . ' AND attempts < 3'
                 . ' AND next_attempt_at <= UTC_TIMESTAMP()'
                 . ' ORDER BY id_item ASC LIMIT ' . $limit
             );
@@ -200,33 +201,46 @@ final class SyncJobRepository implements SyncJobStoreInterface
         $this->assertPositiveId($shopId, 'Shop');
         $this->assertPositiveId($jobId, 'Job');
         $this->assertPositiveId($itemId, 'Item');
-        $this->assertOwnedJob($shopId, $jobId);
 
         $errorCode = $this->sanitizeErrorCode($errorCode);
         $errorField = $this->sanitizeOperatorText($errorField, 191);
         $errorMessage = $this->sanitizeErrorMessage($errorMessage);
 
         $retryCondition = $retryable ? 'attempts < 3' : '0 = 1';
-        $updated = $this->db->execute(
-            'UPDATE `' . $this->table(Config::SYNC_ITEM_TABLE) . '`'
-            . ' SET status = CASE WHEN ' . $retryCondition . " THEN 'pending' ELSE 'failed' END,"
-            . ' next_attempt_at = CASE WHEN ' . $retryCondition
-            . ' THEN TIMESTAMPADD(SECOND, LEAST(3600, 60 * POW(2, GREATEST(attempts - 1, 0))), UTC_TIMESTAMP())'
-            . ' ELSE NULL END,'
-            . ' claim_token = NULL,'
-            . " error_code = '" . $this->escape($errorCode) . "',"
-            . ' error_field = ' . $this->nullableString($errorField) . ','
-            . " error_message = '" . $this->escape($errorMessage) . "',"
-            . ' updated_at = UTC_TIMESTAMP()'
-            . ' WHERE id_item = ' . $itemId
-            . ' AND id_job = ' . $jobId
-            . " AND status = 'running'"
-        );
-        if (!$updated) {
-            throw new RuntimeException('Unable to record the sync item failure.');
+        if (!$this->db->execute('START TRANSACTION')) {
+            throw new RuntimeException('Unable to start the sync item failure transaction.');
         }
-        if (1 !== (int) $this->db->Affected_Rows()) {
-            throw new UnexpectedValueException('Running sync item does not exist for this job.');
+
+        try {
+            $this->lockOwnedJob($shopId, $jobId);
+            $updated = $this->db->execute(
+                'UPDATE `' . $this->table(Config::SYNC_ITEM_TABLE) . '`'
+                . ' SET status = CASE WHEN ' . $retryCondition . " THEN 'pending' ELSE 'failed' END,"
+                . ' next_attempt_at = CASE WHEN ' . $retryCondition
+                . ' THEN TIMESTAMPADD(SECOND, LEAST(3600, 60 * POW(2, GREATEST(attempts - 1, 0))), UTC_TIMESTAMP())'
+                . ' ELSE NULL END,'
+                . ' claim_token = NULL,'
+                . " error_code = '" . $this->escape($errorCode) . "',"
+                . ' error_field = ' . $this->nullableString($errorField) . ','
+                . " error_message = '" . $this->escape($errorMessage) . "',"
+                . ' updated_at = UTC_TIMESTAMP()'
+                . ' WHERE id_item = ' . $itemId
+                . ' AND id_job = ' . $jobId
+                . " AND status = 'running'"
+            );
+            if (!$updated) {
+                throw new RuntimeException('Unable to record the sync item failure.');
+            }
+            if (1 !== (int) $this->db->Affected_Rows()) {
+                throw new UnexpectedValueException('Running sync item does not exist for this job.');
+            }
+            if (!$this->db->execute('COMMIT')) {
+                throw new RuntimeException('Unable to commit the sync item failure transaction.');
+            }
+        } catch (Throwable $exception) {
+            $this->db->execute('ROLLBACK');
+
+            throw $exception;
         }
     }
 
@@ -244,13 +258,13 @@ final class SyncJobRepository implements SyncJobStoreInterface
     {
         $this->assertPositiveId($shopId, 'Shop');
         $this->assertPositiveId($jobId, 'Job');
-        $this->assertOwnedJob($shopId, $jobId);
 
         if (!$this->db->execute('START TRANSACTION')) {
             throw new RuntimeException('Unable to start the failed-item retry transaction.');
         }
 
         try {
+            $this->lockOwnedJob($shopId, $jobId);
             $reset = $this->db->execute(
                 'UPDATE `' . $this->table(Config::SYNC_ITEM_TABLE) . '`'
                 . " SET status = 'pending', attempts = 0, next_attempt_at = UTC_TIMESTAMP(),"
@@ -294,62 +308,74 @@ final class SyncJobRepository implements SyncJobStoreInterface
     {
         $this->assertPositiveId($shopId, 'Shop');
         $this->assertPositiveId($jobId, 'Job');
-        $this->assertOwnedJob($shopId, $jobId);
-
-        $counts = $this->db->getRow(
-            'SELECT COUNT(*) AS total,'
-            . " COALESCE(SUM(status = 'success'), 0) AS succeeded,"
-            . " COALESCE(SUM(status = 'failed'), 0) AS failed,"
-            . " COALESCE(SUM(status = 'skipped'), 0) AS skipped,"
-            . " COALESCE(SUM(status = 'running'), 0) AS running"
-            . ' FROM `' . $this->table(Config::SYNC_ITEM_TABLE) . '`'
-            . ' WHERE id_job = ' . $jobId
-        );
-        if (!is_array($counts)) {
-            throw new RuntimeException('Unable to recount the sync job.');
+        if (!$this->db->execute('START TRANSACTION')) {
+            throw new RuntimeException('Unable to start the sync job recount transaction.');
         }
 
-        foreach (['total', 'succeeded', 'failed', 'skipped', 'running'] as $field) {
-            if (!array_key_exists($field, $counts) || !is_numeric($counts[$field])) {
+        try {
+            $this->lockOwnedJob($shopId, $jobId);
+            $counts = $this->db->getRow(
+                'SELECT COUNT(*) AS total,'
+                . " COALESCE(SUM(status = 'success'), 0) AS succeeded,"
+                . " COALESCE(SUM(status = 'failed'), 0) AS failed,"
+                . " COALESCE(SUM(status = 'skipped'), 0) AS skipped,"
+                . " COALESCE(SUM(status = 'running'), 0) AS running"
+                . ' FROM `' . $this->table(Config::SYNC_ITEM_TABLE) . '`'
+                . ' WHERE id_job = ' . $jobId
+            );
+            if (!is_array($counts)) {
                 throw new RuntimeException('Unable to recount the sync job.');
             }
-            $counts[$field] = (int) $counts[$field];
-        }
 
-        $pending = $counts['total'] - $counts['succeeded'] - $counts['failed'] - $counts['skipped'];
-        if (0 > $pending) {
-            throw new RuntimeException('Sync job counts are invalid.');
-        }
+            foreach (['total', 'succeeded', 'failed', 'skipped', 'running'] as $field) {
+                if (!array_key_exists($field, $counts) || !is_numeric($counts[$field])) {
+                    throw new RuntimeException('Unable to recount the sync job.');
+                }
+                $counts[$field] = (int) $counts[$field];
+            }
 
-        if (0 < $pending) {
-            $status = 0 < $counts['running'] ? 'running' : 'pending';
-        } elseif (0 === $counts['failed']) {
-            $status = 'completed';
-        } elseif ($counts['failed'] === $counts['total'] - $counts['skipped']) {
-            $status = 'failed';
-        } else {
-            $status = 'partial';
-        }
+            $pending = $counts['total'] - $counts['succeeded'] - $counts['failed'] - $counts['skipped'];
+            if (0 > $pending) {
+                throw new RuntimeException('Sync job counts are invalid.');
+            }
 
-        $timestamps = 'finished_at = NULL';
-        if ('running' === $status) {
-            $timestamps = 'started_at = COALESCE(started_at, UTC_TIMESTAMP()), finished_at = NULL';
-        } elseif (in_array($status, ['completed', 'partial', 'failed'], true)) {
-            $timestamps = 'finished_at = COALESCE(finished_at, UTC_TIMESTAMP())';
-        }
+            if (0 < $pending) {
+                $status = 0 < $counts['running'] ? 'running' : 'pending';
+            } elseif (0 === $counts['failed']) {
+                $status = 'completed';
+            } elseif ($counts['failed'] === $counts['total'] - $counts['skipped']) {
+                $status = 'failed';
+            } else {
+                $status = 'partial';
+            }
 
-        $updated = $this->db->execute(
-            'UPDATE `' . $this->table(Config::SYNC_JOB_TABLE) . '`'
-            . ' SET total = ' . $counts['total']
-            . ', succeeded = ' . $counts['succeeded']
-            . ', failed = ' . $counts['failed']
-            . ', skipped = ' . $counts['skipped']
-            . ", status = '" . $status . "', " . $timestamps
-            . ' WHERE id_job = ' . $jobId
-            . ' AND id_shop = ' . $shopId
-        );
-        if (!$updated) {
-            throw new RuntimeException('Unable to update the sync job counts.');
+            $timestamps = 'finished_at = NULL';
+            if ('running' === $status) {
+                $timestamps = 'started_at = COALESCE(started_at, UTC_TIMESTAMP()), finished_at = NULL';
+            } elseif (in_array($status, ['completed', 'partial', 'failed'], true)) {
+                $timestamps = 'finished_at = COALESCE(finished_at, UTC_TIMESTAMP())';
+            }
+
+            $updated = $this->db->execute(
+                'UPDATE `' . $this->table(Config::SYNC_JOB_TABLE) . '`'
+                . ' SET total = ' . $counts['total']
+                . ', succeeded = ' . $counts['succeeded']
+                . ', failed = ' . $counts['failed']
+                . ', skipped = ' . $counts['skipped']
+                . ", status = '" . $status . "', " . $timestamps
+                . ' WHERE id_job = ' . $jobId
+                . ' AND id_shop = ' . $shopId
+            );
+            if (!$updated) {
+                throw new RuntimeException('Unable to update the sync job counts.');
+            }
+            if (!$this->db->execute('COMMIT')) {
+                throw new RuntimeException('Unable to commit the sync job recount transaction.');
+            }
+        } catch (Throwable $exception) {
+            $this->db->execute('ROLLBACK');
+
+            throw $exception;
         }
 
         return [
@@ -370,21 +396,40 @@ final class SyncJobRepository implements SyncJobStoreInterface
         if (60 > $ageSeconds || 86400 < $ageSeconds) {
             throw new InvalidArgumentException('Stale age must be between 60 and 86400 seconds.');
         }
-        $this->assertOwnedJob($shopId, $jobId);
-
-        $recovered = $this->db->execute(
-            'UPDATE `' . $this->table(Config::SYNC_ITEM_TABLE) . '`'
-            . " SET status = 'pending', claim_token = NULL, next_attempt_at = UTC_TIMESTAMP(),"
-            . ' updated_at = UTC_TIMESTAMP()'
-            . ' WHERE id_job = ' . $jobId
-            . " AND status = 'running'"
-            . ' AND updated_at < TIMESTAMPADD(SECOND, -' . $ageSeconds . ', UTC_TIMESTAMP())'
-        );
-        if (!$recovered) {
-            throw new RuntimeException('Unable to recover stale sync items.');
+        if (!$this->db->execute('START TRANSACTION')) {
+            throw new RuntimeException('Unable to start the stale-item recovery transaction.');
         }
 
-        return (int) $this->db->Affected_Rows();
+        try {
+            $this->lockOwnedJob($shopId, $jobId);
+            $recovered = $this->db->execute(
+                'UPDATE `' . $this->table(Config::SYNC_ITEM_TABLE) . '`'
+                . " SET status = CASE WHEN attempts < 3 THEN 'pending' ELSE 'failed' END,"
+                . ' claim_token = NULL,'
+                . ' next_attempt_at = CASE WHEN attempts < 3 THEN UTC_TIMESTAMP() ELSE NULL END,'
+                . " error_code = CASE WHEN attempts < 3 THEN error_code ELSE 'stale_attempt_limit' END,"
+                . ' error_field = CASE WHEN attempts < 3 THEN error_field ELSE NULL END,'
+                . ' error_message = CASE WHEN attempts < 3 THEN error_message'
+                . " ELSE 'Synchronization stopped after repeated stale worker attempts.' END,"
+                . ' updated_at = UTC_TIMESTAMP()'
+                . ' WHERE id_job = ' . $jobId
+                . " AND status = 'running'"
+                . ' AND updated_at < TIMESTAMPADD(SECOND, -' . $ageSeconds . ', UTC_TIMESTAMP())'
+            );
+            if (!$recovered) {
+                throw new RuntimeException('Unable to recover stale sync items.');
+            }
+            $recoveredCount = (int) $this->db->Affected_Rows();
+            if (!$this->db->execute('COMMIT')) {
+                throw new RuntimeException('Unable to commit the stale-item recovery transaction.');
+            }
+        } catch (Throwable $exception) {
+            $this->db->execute('ROLLBACK');
+
+            throw $exception;
+        }
+
+        return $recoveredCount;
     }
 
     /**
@@ -502,10 +547,35 @@ final class SyncJobRepository implements SyncJobStoreInterface
             }
             $row[$field] = (int) $row[$field];
         }
-        if (!array_key_exists('full_sync', $row)) {
+        if (0 >= $row['id_job']
+            || 0 >= $row['id_shop']
+            || 0 >= $row['id_lang']
+            || 4294967295 < $row['id_lang']
+            || 0 > $row['total']
+            || 0 > $row['succeeded']
+            || 0 > $row['failed']
+            || 0 > $row['skipped']
+            || $row['total'] < $row['succeeded'] + $row['failed'] + $row['skipped']
+            || !isset($row['merchant_account'], $row['data_source'], $row['content_language'], $row['feed_label'], $row['status'])
+            || !is_string($row['merchant_account'])
+            || 1 !== preg_match('/^[0-9]{1,20}$/D', $row['merchant_account'])
+            || !is_string($row['data_source'])
+            || 1 !== preg_match(
+                '#^accounts/' . preg_quote($row['merchant_account'], '#') . '/dataSources/[0-9]{1,20}$#D',
+                $row['data_source']
+            )
+            || !is_string($row['content_language'])
+            || 1 !== preg_match('/^[a-z]{2}$/D', $row['content_language'])
+            || !is_string($row['feed_label'])
+            || 1 !== preg_match('/^[A-Z0-9_-]{1,20}$/D', $row['feed_label'])
+            || !is_string($row['status'])
+            || !in_array($row['status'], ['pending', 'running', 'completed', 'partial', 'failed'], true)
+            || !array_key_exists('full_sync', $row)
+            || !in_array($row['full_sync'], [1, '1'], true)
+        ) {
             throw new RuntimeException('Unable to read the sync job.');
         }
-        $row['full_sync'] = (bool) $row['full_sync'];
+        $row['full_sync'] = true;
 
         return $row;
     }
@@ -515,21 +585,33 @@ final class SyncJobRepository implements SyncJobStoreInterface
         $this->assertPositiveId($shopId, 'Shop');
         $this->assertPositiveId($jobId, 'Job');
         $this->assertPositiveId($itemId, 'Item');
-        $this->assertOwnedJob($shopId, $jobId);
-
-        $updated = $this->db->execute(
-            'UPDATE `' . $this->table(Config::SYNC_ITEM_TABLE) . '`'
-            . " SET status = '" . $status . "', claim_token = NULL, next_attempt_at = NULL,"
-            . ' error_code = NULL, error_field = NULL, error_message = NULL, updated_at = UTC_TIMESTAMP()'
-            . ' WHERE id_item = ' . $itemId
-            . ' AND id_job = ' . $jobId
-            . " AND status = 'running'"
-        );
-        if (!$updated) {
-            throw new RuntimeException('Unable to record the sync item outcome.');
+        if (!$this->db->execute('START TRANSACTION')) {
+            throw new RuntimeException('Unable to start the sync item outcome transaction.');
         }
-        if (1 !== (int) $this->db->Affected_Rows()) {
-            throw new UnexpectedValueException('Running sync item does not exist for this job.');
+
+        try {
+            $this->lockOwnedJob($shopId, $jobId);
+            $updated = $this->db->execute(
+                'UPDATE `' . $this->table(Config::SYNC_ITEM_TABLE) . '`'
+                . " SET status = '" . $status . "', claim_token = NULL, next_attempt_at = NULL,"
+                . ' error_code = NULL, error_field = NULL, error_message = NULL, updated_at = UTC_TIMESTAMP()'
+                . ' WHERE id_item = ' . $itemId
+                . ' AND id_job = ' . $jobId
+                . " AND status = 'running'"
+            );
+            if (!$updated) {
+                throw new RuntimeException('Unable to record the sync item outcome.');
+            }
+            if (1 !== (int) $this->db->Affected_Rows()) {
+                throw new UnexpectedValueException('Running sync item does not exist for this job.');
+            }
+            if (!$this->db->execute('COMMIT')) {
+                throw new RuntimeException('Unable to commit the sync item outcome transaction.');
+            }
+        } catch (Throwable $exception) {
+            $this->db->execute('ROLLBACK');
+
+            throw $exception;
         }
     }
 
@@ -625,6 +707,34 @@ final class SyncJobRepository implements SyncJobStoreInterface
         }
         if ($shopId !== (int) $owner) {
             throw new UnexpectedValueException('Sync job does not exist for this shop.');
+        }
+    }
+
+    private function lockOwnedJob(int $shopId, int $jobId): void
+    {
+        $rows = $this->db->executeS(
+            'SELECT id_job FROM `' . $this->table(Config::SYNC_JOB_TABLE) . '`'
+            . ' WHERE id_job = ' . $jobId
+            . ' AND id_shop = ' . $shopId
+            . ' FOR UPDATE'
+        );
+        if (!is_array($rows)) {
+            throw new RuntimeException('Unable to lock the sync job.');
+        }
+        if (1 !== count($rows)) {
+            if ($this->hasDatabaseError()) {
+                throw new RuntimeException('Unable to lock the sync job.');
+            }
+
+            throw new UnexpectedValueException('Sync job does not exist for this shop.');
+        }
+        $row = $rows[0];
+        if (!is_array($row)
+            || !array_key_exists('id_job', $row)
+            || !is_numeric($row['id_job'])
+            || $jobId !== (int) $row['id_job']
+        ) {
+            throw new RuntimeException('Unable to lock the sync job.');
         }
     }
 

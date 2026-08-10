@@ -274,6 +274,38 @@ final class SyncJobRepositoryTest extends TestCase
         self::assertSame('pending', $database->itemRows[2]['status']);
     }
 
+    public function testStaleRecoveryRetriesAttemptTwoButTerminalizesAttemptThreeAndClaimDefendsTheCeiling(): void
+    {
+        $database = new SyncJobDatabaseFake();
+        $database->seedJob(41, 7);
+        foreach ([1, 2, 3] as $itemId) {
+            $database->seedItem($itemId, 41, sprintf('%d-0', $itemId));
+        }
+        $database->setItemStateAndAge(0, 'running', 901);
+        $database->itemRows[0]['attempts'] = 2;
+        $database->setItemStateAndAge(1, 'running', 901);
+        $database->itemRows[1]['attempts'] = 3;
+        $database->itemRows[2]['attempts'] = 3;
+        $repository = new SyncJobRepository($database, '');
+
+        self::assertSame(2, $repository->recoverStale(7, 41, 900));
+        self::assertSame('pending', $database->itemRows[0]['status']);
+        self::assertSame(2, $database->itemRows[0]['attempts']);
+        self::assertSame('failed', $database->itemRows[1]['status']);
+        self::assertSame('stale_attempt_limit', $database->itemRows[1]['error_code']);
+        self::assertSame(
+            'Synchronization stopped after repeated stale worker attempts.',
+            $database->itemRows[1]['error_message']
+        );
+
+        $claimed = $repository->claimPending(7, 41, 25);
+        self::assertSame([1], array_column($claimed, 'id_item'));
+        self::assertSame(3, $database->itemRows[0]['attempts']);
+        self::assertSame('failed', $database->itemRows[1]['status']);
+        self::assertSame('pending', $database->itemRows[2]['status']);
+        self::assertSame(3, $database->itemRows[2]['attempts']);
+    }
+
     public function testFindOldestActiveJobIsShopScopedAndOrdersByCreationThenId(): void
     {
         if (!method_exists(SyncJobRepository::class, 'findOldestActiveJob')) {
@@ -291,6 +323,18 @@ final class SyncJobRepositoryTest extends TestCase
         self::assertSame(40, $repository->findOldestActiveJob(7)['id_job']);
         self::assertSame(11, $repository->findOldestActiveJob(8)['id_job']);
         self::assertNull($repository->findOldestActiveJob(9));
+    }
+
+    public function testPersistedJobSnapshotIsValidatedBeforeItCanBeReturned(): void
+    {
+        $database = new SyncJobDatabaseFake();
+        $database->seedJob(41, 7, 'pending');
+        $database->jobRows[0]['data_source'] = 'accounts/999/dataSources/42';
+        $repository = new SyncJobRepository($database, '');
+
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Unable to read the sync job.');
+        $repository->findOldestActiveJob(7);
     }
 
     public function testFindJobReturnsTheOwnedDurableRoutingSnapshot(): void
@@ -399,6 +443,62 @@ final class SyncJobRepositoryTest extends TestCase
         self::assertNull($database->itemRows[1]['next_attempt_at']);
     }
 
+    public function testEveryJobMutationAndRecountLocksTheOwnedJobInsideItsTransaction(): void
+    {
+        $database = new SyncJobDatabaseFake();
+        $database->seedJob(41, 7);
+        $database->seedItem(1, 41, '1-0');
+        $repository = new SyncJobRepository($database, '');
+        $this->assertSerializedJobOperation($database, static function () use ($repository): void {
+            $repository->claimPending(7, 41);
+        });
+
+        $database = new SyncJobDatabaseFake();
+        $database->seedJob(41, 7);
+        $database->seedItem(1, 41, '1-0');
+        $database->itemRows[0]['status'] = 'running';
+        $database->itemRows[0]['attempts'] = 1;
+        $repository = new SyncJobRepository($database, '');
+        $this->assertSerializedJobOperation($database, static function () use ($repository): void {
+            $repository->recordFailure(7, 41, 1, false, 'failed', null, 'Failed safely.');
+        });
+
+        $database = new SyncJobDatabaseFake();
+        $database->seedJob(41, 7);
+        $database->seedItem(1, 41, '1-0');
+        $database->itemRows[0]['status'] = 'running';
+        $repository = new SyncJobRepository($database, '');
+        $this->assertSerializedJobOperation($database, static function () use ($repository): void {
+            $repository->recordSuccess(7, 41, 1);
+        });
+
+        $database = new SyncJobDatabaseFake();
+        $database->seedJob(41, 7);
+        $database->seedItem(1, 41, '1-0');
+        $database->itemRows[0]['status'] = 'failed';
+        $repository = new SyncJobRepository($database, '');
+        $this->assertSerializedJobOperation($database, static function () use ($repository): void {
+            $repository->retryFailed(7, 41);
+        });
+
+        $database = new SyncJobDatabaseFake();
+        $database->seedJob(41, 7);
+        $database->seedItem(1, 41, '1-0');
+        $database->setItemStateAndAge(0, 'running', 901);
+        $repository = new SyncJobRepository($database, '');
+        $this->assertSerializedJobOperation($database, static function () use ($repository): void {
+            $repository->recoverStale(7, 41, 900);
+        });
+
+        $database = new SyncJobDatabaseFake();
+        $database->seedJob(41, 7);
+        $database->seedItem(1, 41, '1-0');
+        $repository = new SyncJobRepository($database, '');
+        $this->assertSerializedJobOperation($database, static function () use ($repository): void {
+            $repository->recount(7, 41);
+        });
+    }
+
     public function testCreateJobWithNoOffersIsImmediatelyCompleted(): void
     {
         $database = new SyncJobDatabaseFake();
@@ -454,6 +554,28 @@ final class SyncJobRepositoryTest extends TestCase
             'non-string offer key' => [$valid, [10]],
         ];
     }
+
+    private function assertSerializedJobOperation(SyncJobDatabaseFake $database, callable $operation): void
+    {
+        $database->events = [];
+        $operation();
+
+        $start = array_search('execute:START TRANSACTION', $database->events, true);
+        $commit = array_search('execute:COMMIT', $database->events, true);
+        $lock = false;
+        foreach ($database->events as $index => $event) {
+            if (0 === strpos($event, 'read:') && false !== strpos($event, 'FOR UPDATE')) {
+                $lock = $index;
+                break;
+            }
+        }
+
+        self::assertIsInt($start);
+        self::assertIsInt($lock);
+        self::assertIsInt($commit);
+        self::assertLessThan($lock, $start);
+        self::assertLessThan($commit, $lock);
+    }
 }
 
 final class SyncJobDatabaseFake
@@ -466,6 +588,9 @@ final class SyncJobDatabaseFake
 
     /** @var string[] */
     public $transactionStatements = [];
+
+    /** @var string[] */
+    public $events = [];
 
     /** @var int */
     private $insertId = 41;
@@ -503,6 +628,7 @@ final class SyncJobDatabaseFake
 
     public function execute(string $statement): bool
     {
+        $this->events[] = 'execute:' . $statement;
         $this->transactionStatements[] = $statement;
         $this->affectedRows = 0;
 
@@ -515,7 +641,10 @@ final class SyncJobDatabaseFake
                 if (0 === $remaining) {
                     break;
                 }
-                if ((int) $jobMatch[1] !== $row['id_job'] || 'pending' !== $row['status'] || $row['eligible_at'] > $this->clock) {
+                if ((int) $jobMatch[1] !== $row['id_job']
+                    || 'pending' !== $row['status']
+                    || 3 <= $row['attempts']
+                    || $row['eligible_at'] > $this->clock) {
                     continue;
                 }
 
@@ -557,10 +686,18 @@ final class SyncJobDatabaseFake
                     continue;
                 }
 
-                $row['status'] = 'pending';
                 $row['claim_token'] = null;
-                $row['eligible_at'] = $this->clock;
-                $row['next_attempt_at'] = 'eligible-now';
+                if (3 > $row['attempts']) {
+                    $row['status'] = 'pending';
+                    $row['eligible_at'] = $this->clock;
+                    $row['next_attempt_at'] = 'eligible-now';
+                } else {
+                    $row['status'] = 'failed';
+                    $row['next_attempt_at'] = null;
+                    $row['error_code'] = 'stale_attempt_limit';
+                    $row['error_field'] = null;
+                    $row['error_message'] = 'Synchronization stopped after repeated stale worker attempts.';
+                }
                 $row['updated_epoch'] = $this->clock;
                 ++$this->affectedRows;
             }
@@ -671,6 +808,7 @@ final class SyncJobDatabaseFake
      */
     public function getValue(string $statement)
     {
+        $this->events[] = 'read:' . $statement;
         preg_match('/WHERE id_job = ([0-9]+)/', $statement, $jobMatch);
         foreach ($this->jobRows as $row) {
             if ((int) $jobMatch[1] === ($row['id_job'] ?? null)) {
@@ -686,6 +824,19 @@ final class SyncJobDatabaseFake
      */
     public function executeS(string $statement): array
     {
+        $this->events[] = 'read:' . $statement;
+        if (false !== strpos($statement, 'FOR UPDATE')) {
+            preg_match('/WHERE id_job = ([0-9]+)/', $statement, $jobMatch);
+            preg_match('/AND id_shop = ([0-9]+)/', $statement, $shopMatch);
+
+            return array_values(array_map(static function (array $row): array {
+                return ['id_job' => $row['id_job']];
+            }, array_filter($this->jobRows, static function (array $row) use ($jobMatch, $shopMatch): bool {
+                return (int) $jobMatch[1] === ($row['id_job'] ?? null)
+                    && (int) $shopMatch[1] === $row['id_shop'];
+            })));
+        }
+
         if (false !== strpos($statement, 'error_code IS NOT NULL')) {
             preg_match('/WHERE id_job = ([0-9]+)/', $statement, $jobMatch);
             preg_match('/LIMIT ([0-9]+)/', $statement, $limitMatch);
@@ -716,6 +867,7 @@ final class SyncJobDatabaseFake
      */
     public function getRow(string $statement)
     {
+        $this->events[] = 'read:' . $statement;
         if (false !== strpos($statement, 'ORDER BY created_at ASC')) {
             preg_match('/WHERE id_shop = ([0-9]+)/', $statement, $shopMatch);
             $matches = array_values(array_filter($this->jobRows, static function (array $row) use ($shopMatch): bool {

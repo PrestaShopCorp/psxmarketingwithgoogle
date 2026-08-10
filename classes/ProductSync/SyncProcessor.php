@@ -59,7 +59,7 @@ final class SyncProcessor
         if (!$full) {
             throw new InvalidArgumentException('Incremental product synchronization is not available.');
         }
-        $connection = $this->connection($shopId);
+        $connection = $this->creationConnection($shopId);
         $accessToken = $this->connections->accessToken($shopId);
         $selected = null;
         foreach ($this->merchant->listDataSources($accessToken, $connection['merchantAccount']) as $dataSource) {
@@ -105,7 +105,7 @@ final class SyncProcessor
             throw new InvalidArgumentException('Batch limit must be positive.');
         }
         $job = $this->jobs->findJob($shopId, $jobId);
-        $connection = $this->connection($shopId);
+        $connection = $this->runtimeConnection($shopId);
         if ($job['merchant_account'] !== $connection['merchantAccount']) {
             throw new GoogleApiException('The selected Merchant account changed after this job was created.', false, 409, 'merchant_account_changed');
         }
@@ -234,7 +234,7 @@ final class SyncProcessor
     }
 
     /** @return array{connected: bool, merchantAccount: string, dataSource: string} */
-    private function connection(int $shopId): array
+    private function creationConnection(int $shopId): array
     {
         $connection = $this->connections->status($shopId);
         if (true !== $connection['connected']
@@ -253,6 +253,23 @@ final class SyncProcessor
             'connected' => true,
             'merchantAccount' => $connection['merchantAccount'],
             'dataSource' => $connection['dataSource'],
+        ];
+    }
+
+    /** @return array{connected: bool, merchantAccount: string} */
+    private function runtimeConnection(int $shopId): array
+    {
+        $connection = $this->connections->status($shopId);
+        if (true !== $connection['connected']
+            || !is_string($connection['merchantAccount'])
+            || 1 !== preg_match('/^[0-9]{1,20}$/D', $connection['merchantAccount'])
+        ) {
+            throw new GoogleApiException('A connected Google user and Merchant account are required.', false, 409, 'merchant_connection_required');
+        }
+
+        return [
+            'connected' => true,
+            'merchantAccount' => $connection['merchantAccount'],
         ];
     }
 

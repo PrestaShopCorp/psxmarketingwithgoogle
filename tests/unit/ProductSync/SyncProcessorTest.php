@@ -200,6 +200,30 @@ class SyncProcessorTest extends TestCase
         self::assertSame(['en', 'en'], array_column(array_column($merchant->insertRequests, 'payload'), 'contentLanguage'));
     }
 
+    public function testExistingJobRunsFromSnapshotAfterCurrentDataSourceSelectionIsCleared(): void
+    {
+        $jobs = new ProcessorMemoryJobStore();
+        $connections = new ProcessorMemoryConnection();
+        $merchant = new ProcessorMemoryMerchant();
+        $processor = new SyncProcessor(
+            $jobs,
+            new ProcessorMemoryCatalog(['10-0']),
+            $connections,
+            $merchant,
+            new MerchantProductMapper(),
+            self::context(1, 2)
+        );
+        $jobId = $processor->create(1, true);
+        $connections->dataSource = null;
+
+        $status = $processor->runBatch($jobId);
+
+        self::assertSame('completed', $status['status']);
+        self::assertSame(['10-0'], $merchant->insertedOfferIds);
+        self::assertSame('123', $merchant->insertRequests[0]['accountId']);
+        self::assertSame('accounts/123/dataSources/456', $merchant->insertRequests[0]['dataSourceName']);
+    }
+
     public function testChangedMerchantAccountFailsBeforeClaimOrTransport(): void
     {
         $jobs = new ProcessorMemoryJobStore();
@@ -593,7 +617,7 @@ final class ProcessorMemoryConnection implements GoogleConnectionProviderInterfa
     /** @var string */
     public $merchantAccount = '123';
 
-    /** @var string */
+    /** @var string|null */
     public $dataSource = 'accounts/123/dataSources/456';
 
     /** @return array<string, mixed> */
