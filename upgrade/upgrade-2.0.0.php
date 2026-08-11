@@ -18,6 +18,13 @@ function upgrade_module_2_0_0($module)
         return false;
     }
 
+    if (!psxmgUpgrade200RegisterHooks(
+        $module,
+        PrestaShop\Module\PsxMarketingWithGoogle\Config\Config::HOOK_LIST
+    )) {
+        return false;
+    }
+
     if (!(bool) include dirname(__DIR__) . '/sql/install.php') {
         return false;
     }
@@ -109,6 +116,21 @@ function upgrade_module_2_0_0($module)
             && !$db->execute(
                 'ALTER TABLE `' . bqSQL($index[0]) . '` ADD INDEX `' . bqSQL($index[1]) . '` ' . $index[2]
             )) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function psxmgUpgrade200RegisterHooks($module, array $hooks)
+{
+    foreach ($hooks as $hook) {
+        if ($module->isRegisteredInHook($hook)) {
+            continue;
+        }
+
+        if (!$module->registerHook($hook)) {
             return false;
         }
     }
