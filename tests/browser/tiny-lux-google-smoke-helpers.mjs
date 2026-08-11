@@ -33,6 +33,63 @@ export function requestedHostIsForbidden(
   return !allowedHosts.has(host) && forbiddenPattern.test(host);
 }
 
+export function moduleRequestIsForbidden(
+  requestUrl,
+  frameUrl,
+  allowedHosts,
+  {
+    resourceType = '',
+    preExistingExternalFrameHosts = new Set(),
+    forbiddenPattern = FORBIDDEN_SERVICE_HOST,
+  } = {},
+) {
+  if (!requestedHostIsForbidden(requestUrl, allowedHosts, forbiddenPattern)) {
+    return false;
+  }
+
+  let frameIsUnattributed = !frameUrl;
+  if (frameUrl) {
+    try {
+      const parsedFrame = new URL(frameUrl);
+      frameIsUnattributed = parsedFrame.protocol === 'about:'
+        && parsedFrame.pathname === 'blank';
+    } catch {
+      // Malformed frame URLs are not exceptions.
+    }
+  }
+
+  try {
+    const requestHost = new URL(requestUrl).host.toLowerCase();
+    if ((resourceType === 'document' || frameIsUnattributed)
+      && preExistingExternalFrameHosts.has(requestHost)) {
+      return false;
+    }
+  } catch {
+    return true;
+  }
+
+  if (!frameUrl) {
+    return true;
+  }
+
+  return requestBelongsToModule(frameUrl, allowedHosts);
+}
+
+export function requestBelongsToModule(frameUrl, allowedHosts) {
+  if (!frameUrl) {
+    return true;
+  }
+
+  try {
+    const frame = new URL(frameUrl);
+    return /^https?:$/.test(frame.protocol)
+      ? allowedHosts.has(frame.host.toLowerCase())
+      : true;
+  } catch {
+    return true;
+  }
+}
+
 export function assertAllowedShopUrl(actualUrl, allowedHosts, label) {
   const parsed = new URL(actualUrl);
   if (!/^https?:$/.test(parsed.protocol)) {

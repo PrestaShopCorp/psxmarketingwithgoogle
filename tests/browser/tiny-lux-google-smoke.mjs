@@ -6,7 +6,8 @@ import process from 'node:process';
 import {
   allowedShopHosts,
   assertAllowedShopUrl,
-  requestedHostIsForbidden,
+  moduleRequestIsForbidden,
+  requestBelongsToModule,
 } from './tiny-lux-google-smoke-helpers.mjs';
 
 const require = createRequire(import.meta.url);
@@ -135,6 +136,8 @@ async function main() {
   const browserErrors = [];
   const failedRequests = [];
   const forbiddenHosts = new Set();
+  const forbiddenRequestDetails = new Set();
+  const preExistingExternalFrameHosts = new Set();
   const localApiResponses = [];
   const observedPages = new WeakSet();
 
@@ -156,6 +159,15 @@ async function main() {
   observePage(page);
 
   context.on('requestfailed', (request) => {
+    let frameUrl = null;
+    try {
+      frameUrl = request.frame().url();
+    } catch {
+      // Service-worker and browser requests are intentionally evaluated fail-closed.
+    }
+    if (!requestBelongsToModule(frameUrl, allowedHosts)) {
+      return;
+    }
     let hostname = 'invalid-host';
     try {
       hostname = new URL(request.url()).host;
@@ -167,8 +179,26 @@ async function main() {
   context.on('request', (request) => {
     try {
       const hostname = new URL(request.url()).host;
-      if (requestedHostIsForbidden(request.url(), allowedHosts)) {
+      let frameUrl = null;
+      try {
+        frameUrl = request.frame().url();
+      } catch {
+        // Service-worker and browser requests are intentionally evaluated fail-closed.
+      }
+      if (moduleRequestIsForbidden(request.url(), frameUrl, allowedHosts, {
+        resourceType: request.resourceType(),
+        preExistingExternalFrameHosts,
+      })) {
         forbiddenHosts.add(hostname.toLowerCase());
+        let frameHost = 'none';
+        try {
+          frameHost = new URL(frameUrl).host.toLowerCase() || 'none';
+        } catch {
+          // Keep the safe placeholder.
+        }
+        forbiddenRequestDetails.add(
+          `${hostname.toLowerCase()} [${request.resourceType()}; frame=${frameHost}]`,
+        );
       }
     } catch {
       forbiddenHosts.add('invalid-host');
@@ -190,9 +220,22 @@ async function main() {
 
   try {
     const moduleRoot = await openModule(page, adminUrl, () => {
+      preExistingExternalFrameHosts.clear();
+      for (const frame of page.frames()) {
+        try {
+          const frameUrl = new URL(frame.url());
+          if (/^https?:$/.test(frameUrl.protocol)
+            && !allowedHosts.has(frameUrl.host.toLowerCase())) {
+            preExistingExternalFrameHosts.add(frameUrl.host.toLowerCase());
+          }
+        } catch {
+          // Empty and non-HTTP frame URLs are not external host exceptions.
+        }
+      }
       browserErrors.length = 0;
       failedRequests.length = 0;
       forbiddenHosts.clear();
+      forbiddenRequestDetails.clear();
       localApiResponses.length = 0;
     });
     await moduleRoot.waitFor({ state: 'visible' });
@@ -257,8 +300,16 @@ async function main() {
     assert.equal(storefrontResponse.status(), 200, 'Storefront did not return HTTP 200');
     assertAllowedShopUrl(storefrontPage.url(), allowedHosts, 'Storefront');
 
-    assert.deepEqual([...forbiddenHosts], [], 'A forbidden runtime hostname was requested');
-    assert.deepEqual(failedRequests, [], 'One or more browser requests failed');
+    assert.deepEqual(
+      [...forbiddenHosts],
+      [],
+      `A forbidden runtime hostname was requested: ${[...forbiddenRequestDetails].join(', ')}`,
+    );
+    assert.deepEqual(
+      failedRequests,
+      [],
+      `One or more browser requests failed: ${failedRequests.join(', ')}`,
+    );
     assert.deepEqual(browserErrors, [], 'The module emitted browser errors');
   } finally {
     await context.close();

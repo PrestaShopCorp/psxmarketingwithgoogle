@@ -68,3 +68,106 @@ test('malformed request URLs fail closed', () => {
 
   assert.equal(helpers.requestedHostIsForbidden('not a URL', allowed), true);
 });
+
+test('forbidden descendant traffic from an external back-office frame is outside module scope', () => {
+  assert.equal(importFailure, null, 'smoke host-policy helpers must be importable');
+  const allowed = helpers.allowedShopHosts(
+    new URL('https://admin.shop.example/admin'),
+    new URL('https://store.shop.example/'),
+  );
+
+  assert.equal(
+    helpers.moduleRequestIsForbidden(
+      'https://in.eu2.segmentapis.com/v1/p',
+      'https://mbo.prestashop.com/',
+      allowed,
+    ),
+    false,
+  );
+  assert.equal(
+    helpers.moduleRequestIsForbidden(
+      'https://in.eu2.segmentapis.com/v1/p',
+      'https://admin.shop.example/admin/module',
+      allowed,
+    ),
+    true,
+  );
+  assert.equal(
+    helpers.moduleRequestIsForbidden(
+      'https://in.eu2.segmentapis.com/v1/p',
+      null,
+      allowed,
+    ),
+    true,
+  );
+});
+
+test('only a pre-existing external back-office frame document reload is outside module scope', () => {
+  assert.equal(importFailure, null, 'smoke host-policy helpers must be importable');
+  const allowed = helpers.allowedShopHosts(
+    new URL('https://admin.shop.example/admin'),
+    new URL('https://store.shop.example/'),
+  );
+  const preExistingExternalFrameHosts = new Set(['mbo.prestashop.com']);
+
+  assert.equal(
+    helpers.moduleRequestIsForbidden(
+      'https://mbo.prestashop.com/',
+      'https://admin.shop.example/admin/module',
+      allowed,
+      { resourceType: 'document', preExistingExternalFrameHosts },
+    ),
+    false,
+  );
+  assert.equal(
+    helpers.moduleRequestIsForbidden(
+      'https://mbo.prestashop.com/api/collect',
+      'https://admin.shop.example/admin/module',
+      allowed,
+      { resourceType: 'fetch', preExistingExternalFrameHosts },
+    ),
+    true,
+  );
+  assert.equal(
+    helpers.moduleRequestIsForbidden(
+      'https://mbo.prestashop.com/runtime.js',
+      null,
+      allowed,
+      { resourceType: 'script', preExistingExternalFrameHosts },
+    ),
+    false,
+  );
+  assert.equal(
+    helpers.moduleRequestIsForbidden(
+      'https://mbo.prestashop.com/runtime.js',
+      'about:blank',
+      allowed,
+      { resourceType: 'script', preExistingExternalFrameHosts },
+    ),
+    false,
+  );
+});
+
+test('request scope excludes descendant traffic owned by an external frame', () => {
+  assert.equal(importFailure, null, 'smoke host-policy helpers must be importable');
+  const allowed = helpers.allowedShopHosts(
+    new URL('https://admin.shop.example/admin'),
+    new URL('https://store.shop.example/'),
+  );
+
+  assert.equal(
+    helpers.requestBelongsToModule(
+      'https://mbo.prestashop.com/',
+      allowed,
+    ),
+    false,
+  );
+  assert.equal(
+    helpers.requestBelongsToModule(
+      'https://admin.shop.example/admin/module',
+      allowed,
+    ),
+    true,
+  );
+  assert.equal(helpers.requestBelongsToModule(null, allowed), true);
+});
