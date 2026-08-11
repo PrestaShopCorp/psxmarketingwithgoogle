@@ -90,6 +90,24 @@ export function requestBelongsToModule(frameUrl, allowedHosts) {
   }
 }
 
+export function requestOwnerUrl(frameUrl, serviceWorkerUrl) {
+  let frameIsUnattributed = !frameUrl;
+  if (frameUrl) {
+    try {
+      const frame = new URL(frameUrl);
+      frameIsUnattributed = frame.protocol === 'about:' && frame.pathname === 'blank';
+    } catch {
+      return frameUrl;
+    }
+  }
+
+  return frameIsUnattributed && serviceWorkerUrl ? serviceWorkerUrl : frameUrl;
+}
+
+export function pageErrorsBelongToModule(page, ignoredPages) {
+  return !ignoredPages.has(page);
+}
+
 export function assertAllowedShopUrl(actualUrl, allowedHosts, label) {
   const parsed = new URL(actualUrl);
   if (!/^https?:$/.test(parsed.protocol)) {

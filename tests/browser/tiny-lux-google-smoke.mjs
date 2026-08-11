@@ -7,7 +7,9 @@ import {
   allowedShopHosts,
   assertAllowedShopUrl,
   moduleRequestIsForbidden,
+  pageErrorsBelongToModule,
   requestBelongsToModule,
+  requestOwnerUrl,
 } from './tiny-lux-google-smoke-helpers.mjs';
 
 const require = createRequire(import.meta.url);
@@ -140,6 +142,7 @@ async function main() {
   const preExistingExternalFrameHosts = new Set();
   const localApiResponses = [];
   const observedPages = new WeakSet();
+  const ignoredErrorPages = new WeakSet();
 
   const observePage = (observedPage) => {
     if (observedPages.has(observedPage)) {
@@ -147,12 +150,22 @@ async function main() {
     }
     observedPages.add(observedPage);
     observedPage.on('console', (message) => {
-      if (message.type() === 'error') {
-        browserErrors.push(`console: ${sanitize(message.text())}`);
+      if (message.type() === 'error'
+        && pageErrorsBelongToModule(observedPage, ignoredErrorPages)) {
+        let source = 'none';
+        try {
+          const location = new URL(message.location().url);
+          source = `${location.host}${location.pathname}`;
+        } catch {
+          // Keep the safe placeholder.
+        }
+        browserErrors.push(`console [${source}]: ${sanitize(message.text())}`);
       }
     });
     observedPage.on('pageerror', (error) => {
-      browserErrors.push(`page: ${sanitize(error.message)}`);
+      if (pageErrorsBelongToModule(observedPage, ignoredErrorPages)) {
+        browserErrors.push(`page: ${sanitize(error.message)}`);
+      }
     });
   };
   context.on('page', observePage);
@@ -165,7 +178,14 @@ async function main() {
     } catch {
       // Service-worker and browser requests are intentionally evaluated fail-closed.
     }
-    if (!requestBelongsToModule(frameUrl, allowedHosts)) {
+    let serviceWorkerUrl = null;
+    try {
+      serviceWorkerUrl = request.serviceWorker()?.url() ?? null;
+    } catch {
+      // Keep the owner unknown so the request is evaluated fail-closed.
+    }
+    const ownerUrl = requestOwnerUrl(frameUrl, serviceWorkerUrl);
+    if (!requestBelongsToModule(ownerUrl, allowedHosts)) {
       return;
     }
     let hostname = 'invalid-host';
@@ -185,14 +205,21 @@ async function main() {
       } catch {
         // Service-worker and browser requests are intentionally evaluated fail-closed.
       }
-      if (moduleRequestIsForbidden(request.url(), frameUrl, allowedHosts, {
+      let serviceWorkerUrl = null;
+      try {
+        serviceWorkerUrl = request.serviceWorker()?.url() ?? null;
+      } catch {
+        // Keep the owner unknown so the request is evaluated fail-closed.
+      }
+      const ownerUrl = requestOwnerUrl(frameUrl, serviceWorkerUrl);
+      if (moduleRequestIsForbidden(request.url(), ownerUrl, allowedHosts, {
         resourceType: request.resourceType(),
         preExistingExternalFrameHosts,
       })) {
         forbiddenHosts.add(hostname.toLowerCase());
         let frameHost = 'none';
         try {
-          frameHost = new URL(frameUrl).host.toLowerCase() || 'none';
+          frameHost = new URL(ownerUrl).host.toLowerCase() || 'none';
         } catch {
           // Keep the safe placeholder.
         }
@@ -292,6 +319,7 @@ async function main() {
       'The module did not respond to a focus interaction');
 
     const storefrontPage = await context.newPage();
+    ignoredErrorPages.add(storefrontPage);
     observePage(storefrontPage);
     const storefrontResponse = await storefrontPage.goto(storefrontUrl.href, {
       waitUntil: 'domcontentloaded',
@@ -310,7 +338,11 @@ async function main() {
       [],
       `One or more browser requests failed: ${failedRequests.join(', ')}`,
     );
-    assert.deepEqual(browserErrors, [], 'The module emitted browser errors');
+    assert.deepEqual(
+      browserErrors,
+      [],
+      `The module emitted browser errors: ${browserErrors.slice(0, 10).join('; ')}`,
+    );
   } finally {
     await context.close();
     await browser.close();

@@ -171,3 +171,33 @@ test('request scope excludes descendant traffic owned by an external frame', () 
   );
   assert.equal(helpers.requestBelongsToModule(null, allowed), true);
 });
+
+test('service worker URL owns requests that have no attributable page frame', () => {
+  assert.equal(importFailure, null, 'smoke host-policy helpers must be importable');
+
+  assert.equal(
+    helpers.requestOwnerUrl('about:blank', 'https://mbo.prestashop.com/service-worker.js'),
+    'https://mbo.prestashop.com/service-worker.js',
+  );
+  assert.equal(
+    helpers.requestOwnerUrl(null, 'https://mbo.prestashop.com/service-worker.js'),
+    'https://mbo.prestashop.com/service-worker.js',
+  );
+  assert.equal(
+    helpers.requestOwnerUrl(
+      'https://admin.shop.example/admin/module',
+      'https://mbo.prestashop.com/service-worker.js',
+    ),
+    'https://admin.shop.example/admin/module',
+  );
+});
+
+test('explicit storefront page errors are outside the module error scope', () => {
+  assert.equal(importFailure, null, 'smoke host-policy helpers must be importable');
+  const adminPage = {};
+  const storefrontPage = {};
+  const ignoredPages = new WeakSet([storefrontPage]);
+
+  assert.equal(helpers.pageErrorsBelongToModule(adminPage, ignoredPages), true);
+  assert.equal(helpers.pageErrorsBelongToModule(storefrontPage, ignoredPages), false);
+});
