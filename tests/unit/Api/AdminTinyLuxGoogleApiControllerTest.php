@@ -70,9 +70,9 @@ class AdminTinyLuxGoogleApiControllerTest extends TestCase
         self::assertSame(0, $controller->dispatches);
     }
 
-    public function testDirectDisplayInvocationCannotBypassTheLifecycleAuthorizationGate(): void
+    public function testDirectDisplayInvocationCannotBypassTheAuthorizationGate(): void
     {
-        $controller = new TestableTinyLuxGoogleApiController(true, true, true);
+        $controller = new TestableTinyLuxGoogleApiController(false, true, true);
         $controller->rawBody = '{"method":"GET","path":"oauth","body":null}';
 
         $response = $this->displayAndCaptureResponse($controller);
@@ -83,6 +83,20 @@ class AdminTinyLuxGoogleApiControllerTest extends TestCase
         self::assertSame(0, $controller->viewChecks);
         self::assertSame(0, $controller->bodyReads);
         self::assertSame(0, $controller->dispatches);
+    }
+
+    public function testPrestaShopNineDirectAjaxExecutionRunsAllAuthorizationGates(): void
+    {
+        $controller = new TestableTinyLuxGoogleApiController(true, true, true);
+        $controller->rawBody = '{"method":"GET","path":"oauth","body":null}';
+
+        $response = $this->displayAndCaptureResponse($controller);
+
+        self::assertSame(200, $response->getStatusCode());
+        self::assertSame(1, $controller->tokenChecks);
+        self::assertSame(1, $controller->viewChecks);
+        self::assertSame(1, $controller->bodyReads);
+        self::assertSame(1, $controller->dispatches);
     }
 
     public function testPostProcessIsOwnedByTheJsonControllerAndNeverDispatchesAnActionMethod(): void

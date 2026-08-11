@@ -56,6 +56,12 @@ class AdminTinyLuxGoogleApiController extends ModuleAdminController
 
     public function displayAjax()
     {
+        // PrestaShop 9's Symfony legacy bridge invokes displayAjax() directly
+        // without Controller::run(), so enforce the same authorization gate
+        // here as well as in the classic dispatcher lifecycle.
+        if (!$this->requestAuthorized && !$this->checkAccess()) {
+            return;
+        }
         if (!$this->requestAuthorized) {
             $this->emitJsonAndTerminate($this->error(401, 'unauthorized'));
 
