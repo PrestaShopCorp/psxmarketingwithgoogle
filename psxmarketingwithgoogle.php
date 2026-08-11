@@ -217,6 +217,23 @@ class PsxMarketingWithGoogle extends Module
     public function hookModuleRoutes()
     {
         return [
+            // PrestaShop registers this catch-all before custom module routes.
+            // Exclude only our public alias so the exact routes below can win.
+            'module' => [
+                'controller' => null,
+                'rule' => 'module/{module}{/:controller}',
+                'keywords' => [
+                    'module' => [
+                        'regexp' => '(?!tlgoogleshopping(?:/|$))[_a-zA-Z0-9_-]+',
+                        'param' => 'module',
+                    ],
+                    'controller' => [
+                        'regexp' => '[_a-zA-Z0-9_-]+',
+                        'param' => 'controller',
+                    ],
+                ],
+                'params' => ['fc' => 'module'],
+            ],
             'module-tlgoogleshopping-oauth' => [
                 'controller' => 'oauth',
                 'rule' => 'module/tlgoogleshopping/oauth',

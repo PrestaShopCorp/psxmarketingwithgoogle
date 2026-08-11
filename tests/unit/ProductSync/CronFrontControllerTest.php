@@ -44,6 +44,21 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\Tests\Unit\ProductSync {
             $module->name = 'psxmarketingwithgoogle';
 
             self::assertSame([
+                'module' => [
+                    'controller' => null,
+                    'rule' => 'module/{module}{/:controller}',
+                    'keywords' => [
+                        'module' => [
+                            'regexp' => '(?!tlgoogleshopping(?:/|$))[_a-zA-Z0-9_-]+',
+                            'param' => 'module',
+                        ],
+                        'controller' => [
+                            'regexp' => '[_a-zA-Z0-9_-]+',
+                            'param' => 'controller',
+                        ],
+                    ],
+                    'params' => ['fc' => 'module'],
+                ],
                 'module-tlgoogleshopping-oauth' => [
                     'controller' => 'oauth',
                     'rule' => 'module/tlgoogleshopping/oauth',
@@ -57,6 +72,22 @@ namespace PrestaShop\Module\PsxMarketingWithGoogle\Tests\Unit\ProductSync {
                     'params' => ['fc' => 'module', 'module' => 'psxmarketingwithgoogle'],
                 ],
             ], $module->hookModuleRoutes());
+        }
+
+        public function testCoreModuleCatchAllLeavesTinyLuxAliasForTheExactCustomRoute(): void
+        {
+            $reflection = new \ReflectionClass(\PsxMarketingWithGoogle::class);
+            /** @var \PsxMarketingWithGoogle $module */
+            $module = $reflection->newInstanceWithoutConstructor();
+            $module->name = 'psxmarketingwithgoogle';
+
+            $routes = $module->hookModuleRoutes();
+            self::assertArrayHasKey('module', $routes);
+            $modulePattern = '#^' . $routes['module']['keywords']['module']['regexp'] . '$#D';
+
+            self::assertSame(0, preg_match($modulePattern, 'tlgoogleshopping'));
+            self::assertSame(1, preg_match($modulePattern, 'psxmarketingwithgoogle'));
+            self::assertSame(1, preg_match($modulePattern, 'ps_emailalerts'));
         }
 
         public function testControllerConventionAndPublicHandlerReturnResponseBeforeEmission(): void

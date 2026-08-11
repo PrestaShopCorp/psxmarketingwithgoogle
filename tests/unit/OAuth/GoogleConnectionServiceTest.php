@@ -297,6 +297,21 @@ class GoogleConnectionServiceTest extends TestCase
         $module->name = 'psxmarketingwithgoogle';
 
         self::assertSame([
+            'module' => [
+                'controller' => null,
+                'rule' => 'module/{module}{/:controller}',
+                'keywords' => [
+                    'module' => [
+                        'regexp' => '(?!tlgoogleshopping(?:/|$))[_a-zA-Z0-9_-]+',
+                        'param' => 'module',
+                    ],
+                    'controller' => [
+                        'regexp' => '[_a-zA-Z0-9_-]+',
+                        'param' => 'controller',
+                    ],
+                ],
+                'params' => ['fc' => 'module'],
+            ],
             'module-tlgoogleshopping-oauth' => [
                 'controller' => 'oauth',
                 'rule' => 'module/tlgoogleshopping/oauth',

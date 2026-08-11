@@ -32,9 +32,14 @@ class PsxmarketingwithgoogleOauthModuleFrontController extends ModuleFrontContro
         /** @var GoogleOAuthCallback $callback */
         $callback = $module->getService(GoogleOAuthCallback::class);
         $backOfficeUrl = $this->context->link->getAdminLink('AdminPsxMktgWithGoogleModule');
-        Tools::redirectAdmin($callback->handle(
+        $this->redirectToBackOffice($callback->handle(
             $query,
             $backOfficeUrl
         ));
+    }
+
+    protected function redirectToBackOffice(string $url): void
+    {
+        Tools::redirect($url);
     }
 }
