@@ -171,7 +171,7 @@ async function locatorIsVisible(locator) {
   return locator.isVisible().catch(() => false);
 }
 
-export async function loginIfNeeded(page, email, password) {
+export async function loginIfNeeded(page, email, password, beforeSubmit = () => {}) {
   const emailInput = page.locator('input[type="email"], #email').first();
   const passwordInput = page.locator('input[type="password"], #passwd').first();
   if (!(await locatorIsVisible(emailInput)) || !(await locatorIsVisible(passwordInput))) {
@@ -186,6 +186,7 @@ export async function loginIfNeeded(page, email, password) {
   if (!(await locatorIsVisible(submit))) {
     throw new Error('Back Office login submit control is missing');
   }
+  beforeSubmit();
   await submit.click();
   await emailInput.waitFor({ state: 'hidden', timeout: 15000 });
   await page.waitForLoadState('domcontentloaded');
@@ -204,6 +205,18 @@ function assertAdminNavigationResponse(response, phase) {
   }
 }
 
+function isIntendedAdminModuleLanding(actualUrl, adminUrl) {
+  try {
+    const actual = new URL(actualUrl);
+
+    return actual.origin === adminUrl.origin
+      && actual.pathname === adminUrl.pathname
+      && actual.searchParams.get('controller') === 'AdminPsxMktgWithGoogleModule';
+  } catch {
+    return false;
+  }
+}
+
 export async function navigateToAdminModule(
   page,
   adminUrl,
@@ -214,8 +227,13 @@ export async function navigateToAdminModule(
   const initialResponse = await page.goto(adminUrl.href, { waitUntil: 'domcontentloaded' });
   assertAdminNavigationResponse(initialResponse, 'initial');
 
-  const submitted = await loginIfNeeded(page, email, password);
-  if (submitted) {
+  const submitted = await loginIfNeeded(
+    page,
+    email,
+    password,
+    beforeModuleNavigation,
+  );
+  if (submitted && !isIntendedAdminModuleLanding(page.url(), adminUrl)) {
     beforeModuleNavigation();
     const postLoginResponse = await page.goto(adminUrl.href, { waitUntil: 'domcontentloaded' });
     assertAdminNavigationResponse(postLoginResponse, 'post-login');

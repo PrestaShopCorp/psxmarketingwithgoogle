@@ -400,11 +400,74 @@ test('Back Office login reports when no login form was submitted', async () => {
   );
 });
 
-test('admin navigation revisits the exact supplied module URL after submitting login', async () => {
+test('tokenized intended module landing is retained after login without a second navigation', async () => {
+  assert.equal(importFailure, null, 'smoke host-policy helpers must be importable');
+  const adminUrl = new URL(
+    'https://admin.shop.example/admin/?controller=AdminPsxMktgWithGoogleModule',
+  );
+
+  for (const tokenKey of ['token', '_token']) {
+    const events = [];
+    let currentUrl = 'https://admin.shop.example/admin/login';
+    const emailInput = {
+      first() { return this; },
+      async isVisible() { return true; },
+      async fill(value) { events.push(`email:${value}`); },
+      async waitFor(options) { events.push(`wait:${options.state}:${options.timeout}`); },
+    };
+    const passwordInput = {
+      first() { return this; },
+      async isVisible() { return true; },
+      async fill(value) { events.push(`password:${value}`); },
+    };
+    const submit = {
+      first() { return this; },
+      async isVisible() { return true; },
+      async click() {
+        events.push('submit');
+        currentUrl = `${adminUrl.href}&${tokenKey}=opaque`;
+      },
+    };
+    const page = {
+      async goto(url, options) {
+        events.push(`goto:${url}:${options.waitUntil}`);
+        return { status() { return 200; } };
+      },
+      url() { return currentUrl; },
+      locator(selector) {
+        if (selector.includes('type="email"')) return emailInput;
+        if (selector.includes('type="password"')) return passwordInput;
+        return submit;
+      },
+      async waitForLoadState(state) { events.push(`load:${state}`); },
+    };
+
+    const submitted = await helpers.navigateToAdminModule(
+      page,
+      adminUrl,
+      'admin@example.test',
+      'test-password',
+      () => events.push('before-module-navigation'),
+    );
+
+    assert.equal(submitted, true);
+    assert.deepEqual(events, [
+      `goto:${adminUrl.href}:domcontentloaded`,
+      'email:admin@example.test',
+      'password:test-password',
+      'before-module-navigation',
+      'submit',
+      'wait:hidden:15000',
+      'load:domcontentloaded',
+    ]);
+  }
+});
+
+test('dashboard landing revisits the exact supplied module URL after submitting login', async () => {
   assert.equal(importFailure, null, 'smoke host-policy helpers must be importable');
   const events = [];
   const adminUrl = new URL(
-    'https://admin.shop.example/admin/index.php?controller=AdminPsxMktgWithGoogleModule&token=opaque',
+    'https://admin.shop.example/admin/?controller=AdminPsxMktgWithGoogleModule',
   );
   const emailInput = {
     first() { return this; },
@@ -427,6 +490,7 @@ test('admin navigation revisits the exact supplied module URL after submitting l
       events.push(`goto:${url}:${options.waitUntil}`);
       return { status() { return 200; } };
     },
+    url() { return 'https://admin.shop.example/admin/dashboard'; },
     locator(selector) {
       if (selector.includes('type="email"')) return emailInput;
       if (selector.includes('type="password"')) return passwordInput;
@@ -448,6 +512,7 @@ test('admin navigation revisits the exact supplied module URL after submitting l
     `goto:${adminUrl.href}:domcontentloaded`,
     'email:admin@example.test',
     'password:test-password',
+    'before-module-navigation',
     'submit',
     'wait:hidden:15000',
     'load:domcontentloaded',
@@ -523,6 +588,7 @@ test('post-login admin navigation rejects null and access-error responses before
         if (navigationCount === 1) return { status() { return 200; } };
         return status === null ? null : { status() { return status; } };
       },
+      url() { return 'https://admin.shop.example/admin/dashboard'; },
       locator(selector) {
         if (selector.includes('type="email"')) return emailInput;
         if (selector.includes('type="password"')) return passwordInput;
