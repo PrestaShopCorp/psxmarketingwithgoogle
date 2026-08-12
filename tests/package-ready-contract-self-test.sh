@@ -3,7 +3,7 @@ set -euo pipefail
 
 root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)
 contract="$root/tests/package-ready-contract.sh"
-base_archive=${1:-"$root/dist/psxmarketingwithgoogle-v2.0.0-tinylux.zip"}
+base_archive=${1:-"$root/dist/psxmarketingwithgoogle-v2.0.1-tinylux.zip"}
 tmpdir=$(mktemp -d)
 failures=0
 trap 'rm -rf "$tmpdir"' EXIT
@@ -19,6 +19,25 @@ expect_rejection() {
 
   if "$@" >/dev/null 2>&1; then
     printf 'contract self-test RED: accepted %s\n' "$label" >&2
+    failures=$((failures + 1))
+  else
+    printf 'contract self-test rejected: %s\n' "$label"
+  fi
+}
+
+expect_rejection_matching() {
+  local label=$1
+  local expected=$2
+  shift 2
+  local output
+
+  if output=$("$@" 2>&1); then
+    printf 'contract self-test RED: accepted %s\n' "$label" >&2
+    failures=$((failures + 1))
+  elif [[ "$output" != *"$expected"* ]]; then
+    printf 'contract self-test RED: rejected %s for the wrong reason\n' "$label" >&2
+    printf 'expected rejection to contain: %s\n' "$expected" >&2
+    printf 'actual rejection: %s\n' "$output" >&2
     failures=$((failures + 1))
   else
     printf 'contract self-test rejected: %s\n' "$label"
@@ -70,6 +89,12 @@ def rewrite(name, *, replacement=None, added=None):
             outgoing.writestr(entry_name, body)
 
 
+def replace_once(body, old, new):
+    if body.count(old) != 1:
+        raise ValueError(f"fixture source must contain exactly one {old!r}")
+    return body.replace(old, new, 1)
+
+
 rewrite(
     "normalized-collision",
     added=(f"{module}/views/JS/app.js", b"collision"),
@@ -96,6 +121,13 @@ rewrite(
             b"$this->name = 'psxmarketingwithgoogle';",
             b"$this->name = 'wrongmodule';",
         ),
+    ),
+)
+rewrite(
+    "wrong-minimum-prestashop-version",
+    replacement=(
+        f"{module}/psxmarketingwithgoogle.php",
+        lambda body: replace_once(body, b"8.2.7", b"9.0.0"),
     ),
 )
 rewrite(
@@ -179,6 +211,10 @@ expect_rejection 'wrong config.xml module identity' \
   "$contract" "$tmpdir/wrong-config-identity.zip"
 expect_rejection 'wrong main PHP module identity' \
   "$contract" "$tmpdir/wrong-main-identity.zip"
+expect_rejection_matching \
+  'wrong minimum PrestaShop version' \
+  'main module minimum PrestaShop version is not 8.2.7' \
+  "$contract" "$tmpdir/wrong-minimum-prestashop-version.zip"
 expect_rejection 'plaintext JSON token value' \
   "$contract" "$tmpdir/plaintext-token.zip"
 expect_rejection 'plaintext unquoted cron token value' \

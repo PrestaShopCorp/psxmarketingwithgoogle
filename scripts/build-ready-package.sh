@@ -3,7 +3,7 @@ set -euo pipefail
 
 root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)
 module=psxmarketingwithgoogle
-release_label=2.0.0-tinylux
+release_label=2.0.1-tinylux
 output=${1:-"$root/dist/$module-v$release_label.zip"}
 node_image='node@sha256:2cf067cfed83d5ea958367df9f966191a942351a2df77d6f0193e162b5febfc0'
 composer_image='composer@sha256:b09bccd91a78fe8a9ab4b33d707b862e8fe54fec17782e32683ad2a69c46867d'
@@ -82,7 +82,7 @@ docker run --rm \
   --user "$(id -u):$(id -g)" \
   --entrypoint /bin/sh \
   -e COMPOSER_CACHE_DIR=/composer-cache \
-  -e COMPOSER_ROOT_VERSION=2.0.0 \
+  -e COMPOSER_ROOT_VERSION=2.0.1 \
   -v "$stage/$module:/workspace" \
   -v "$composer_cache_dir:/composer-cache" \
   -w /workspace \
@@ -171,7 +171,8 @@ for required in \
   controllers/admin/AdminTinyLuxGoogleApiController.php \
   controllers/front/oauth.php \
   controllers/front/cron.php \
-  upgrade/upgrade-2.0.0.php
+  upgrade/upgrade-2.0.0.php \
+  upgrade/upgrade-2.0.1.php
 do
   [[ -f "$stage/$module/$required" ]] || fail "staging runtime file is missing: $required"
 done

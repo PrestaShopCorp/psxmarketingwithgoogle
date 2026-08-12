@@ -3,7 +3,8 @@ set -euo pipefail
 
 archive=${1:?usage: tests/package-ready-contract.sh path/to/archive.zip}
 module=psxmarketingwithgoogle
-expected_version=2.0.0
+expected_version=2.0.1
+expected_min_ps_version=8.2.7
 
 fail() {
   printf 'package contract failed: %s\n' "$1" >&2
@@ -40,7 +41,7 @@ done
 tmpdir=$(mktemp -d)
 trap 'rm -rf "$tmpdir"' EXIT
 
-if ! python3 - "$archive" "$tmpdir" "$module" "$expected_version" <<'PY'
+if ! python3 - "$archive" "$tmpdir" "$module" "$expected_version" "$expected_min_ps_version" <<'PY'
 import pathlib
 import re
 import stat
@@ -53,6 +54,7 @@ archive = pathlib.Path(sys.argv[1])
 destination = pathlib.Path(sys.argv[2])
 module = sys.argv[3]
 expected_version = sys.argv[4]
+expected_min_ps_version = sys.argv[5]
 
 
 def reject(message):
@@ -81,6 +83,7 @@ required = {
     f"{module}/sql/install.php",
     f"{module}/sql/uninstall.php",
     f"{module}/upgrade/upgrade-2.0.0.php",
+    f"{module}/upgrade/upgrade-2.0.1.php",
 }
 root_directories = {
     "_dev", "scripts", "dist", "attachments", "node_modules", ".superpowers", "e2e-env",
@@ -254,9 +257,20 @@ try:
         if main_versions != [expected_version]:
             reject(f"main module version is not exactly {expected_version}")
 
+        minimum_versions = [match[1] for match in re.findall(
+            r"\$this->ps_versions_compliancy\s*=\s*\[\s*['\"]min['\"]\s*=>\s*(['\"])([^'\"]+)\1",
+            main_php,
+        )]
+        if minimum_versions != [expected_min_ps_version]:
+            reject(f"main module minimum PrestaShop version is not {expected_min_ps_version}")
+
         upgrade_php = payloads[f"{module}/upgrade/upgrade-2.0.0.php"].decode("utf-8")
         if "installTabs()" not in upgrade_php or "unset($module)" in upgrade_php:
             reject("2.0.0 upgrade does not register newly introduced admin controllers")
+
+        upgrade_201_php = payloads[f"{module}/upgrade/upgrade-2.0.1.php"].decode("utf-8")
+        if "installTabs()" not in upgrade_201_php or "Config::HOOK_LIST" not in upgrade_201_php:
+            reject("2.0.1 upgrade does not restore required tabs and hooks")
 
         ui_javascript = payloads[f"{module}/views/js/psxmarketingwithgoogle-ui.js"]
         if re.search(br'''url\((?:["']?)\.\./woff2/''', ui_javascript):
