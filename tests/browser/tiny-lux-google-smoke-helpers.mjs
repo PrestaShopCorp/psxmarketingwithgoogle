@@ -175,7 +175,7 @@ export async function loginIfNeeded(page, email, password) {
   const emailInput = page.locator('input[type="email"], #email').first();
   const passwordInput = page.locator('input[type="password"], #passwd').first();
   if (!(await locatorIsVisible(emailInput)) || !(await locatorIsVisible(passwordInput))) {
-    return;
+    return false;
   }
 
   await emailInput.fill(email);
@@ -189,6 +189,39 @@ export async function loginIfNeeded(page, email, password) {
   await submit.click();
   await emailInput.waitFor({ state: 'hidden', timeout: 15000 });
   await page.waitForLoadState('domcontentloaded');
+
+  return true;
+}
+
+function assertAdminNavigationResponse(response, phase) {
+  if (null === response) {
+    throw new Error(`Back Office ${phase} navigation returned no HTTP response`);
+  }
+
+  const status = response.status();
+  if ([401, 403, 404].includes(status)) {
+    throw new Error(`Back Office ${phase} navigation returned HTTP ${status}`);
+  }
+}
+
+export async function navigateToAdminModule(
+  page,
+  adminUrl,
+  email,
+  password,
+  beforeModuleNavigation,
+) {
+  const initialResponse = await page.goto(adminUrl.href, { waitUntil: 'domcontentloaded' });
+  assertAdminNavigationResponse(initialResponse, 'initial');
+
+  const submitted = await loginIfNeeded(page, email, password);
+  if (submitted) {
+    beforeModuleNavigation();
+    const postLoginResponse = await page.goto(adminUrl.href, { waitUntil: 'domcontentloaded' });
+    assertAdminNavigationResponse(postLoginResponse, 'post-login');
+  }
+
+  return submitted;
 }
 
 export function assertAllowedShopUrl(actualUrl, allowedHosts, label) {

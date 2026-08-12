@@ -355,8 +355,12 @@ test('Back Office login waits for the asynchronous PrestaShop login form to disa
   };
 
   let completed = false;
+  let submitted = null;
   const login = helpers.loginIfNeeded(page, 'admin@example.test', 'test-password')
-    .then(() => { completed = true; });
+    .then((result) => {
+      submitted = result;
+      completed = true;
+    });
   await new Promise((resolve) => setImmediate(resolve));
 
   assert.deepEqual(events, [
@@ -370,6 +374,7 @@ test('Back Office login waits for the asynchronous PrestaShop login form to disa
   finishLogin();
   await login;
   assert.equal(completed, true);
+  assert.equal(submitted, true);
   assert.deepEqual(events, [
     'email:admin@example.test',
     'password:test-password',
@@ -377,4 +382,165 @@ test('Back Office login waits for the asynchronous PrestaShop login form to disa
     'wait:hidden:15000',
     'load:domcontentloaded',
   ]);
+});
+
+test('Back Office login reports when no login form was submitted', async () => {
+  assert.equal(importFailure, null, 'smoke host-policy helpers must be importable');
+  const hiddenInput = {
+    first() { return this; },
+    async isVisible() { return false; },
+  };
+  const page = {
+    locator() { return hiddenInput; },
+  };
+
+  assert.equal(
+    await helpers.loginIfNeeded(page, 'admin@example.test', 'test-password'),
+    false,
+  );
+});
+
+test('admin navigation revisits the exact supplied module URL after submitting login', async () => {
+  assert.equal(importFailure, null, 'smoke host-policy helpers must be importable');
+  const events = [];
+  const adminUrl = new URL(
+    'https://admin.shop.example/admin/index.php?controller=AdminPsxMktgWithGoogleModule&token=opaque',
+  );
+  const emailInput = {
+    first() { return this; },
+    async isVisible() { return true; },
+    async fill(value) { events.push(`email:${value}`); },
+    async waitFor(options) { events.push(`wait:${options.state}:${options.timeout}`); },
+  };
+  const passwordInput = {
+    first() { return this; },
+    async isVisible() { return true; },
+    async fill(value) { events.push(`password:${value}`); },
+  };
+  const submit = {
+    first() { return this; },
+    async isVisible() { return true; },
+    async click() { events.push('submit'); },
+  };
+  const page = {
+    async goto(url, options) {
+      events.push(`goto:${url}:${options.waitUntil}`);
+      return { status() { return 200; } };
+    },
+    locator(selector) {
+      if (selector.includes('type="email"')) return emailInput;
+      if (selector.includes('type="password"')) return passwordInput;
+      return submit;
+    },
+    async waitForLoadState(state) { events.push(`load:${state}`); },
+  };
+
+  const submitted = await helpers.navigateToAdminModule(
+    page,
+    adminUrl,
+    'admin@example.test',
+    'test-password',
+    () => events.push('before-module-navigation'),
+  );
+
+  assert.equal(submitted, true);
+  assert.deepEqual(events, [
+    `goto:${adminUrl.href}:domcontentloaded`,
+    'email:admin@example.test',
+    'password:test-password',
+    'submit',
+    'wait:hidden:15000',
+    'load:domcontentloaded',
+    'before-module-navigation',
+    `goto:${adminUrl.href}:domcontentloaded`,
+  ]);
+});
+
+test('initial admin navigation rejects null and access-error responses before login inspection', async () => {
+  assert.equal(importFailure, null, 'smoke host-policy helpers must be importable');
+  const adminUrl = new URL('https://admin.shop.example/admin/module');
+  const cases = [
+    [null, 'Back Office initial navigation returned no HTTP response'],
+    [401, 'Back Office initial navigation returned HTTP 401'],
+    [403, 'Back Office initial navigation returned HTTP 403'],
+    [404, 'Back Office initial navigation returned HTTP 404'],
+  ];
+
+  for (const [status, expectedMessage] of cases) {
+    const page = {
+      async goto() {
+        return status === null ? null : { status() { return status; } };
+      },
+      locator() {
+        throw new Error('login inspection must not run after failed initial navigation');
+      },
+    };
+
+    await assert.rejects(
+      () => helpers.navigateToAdminModule(
+        page,
+        adminUrl,
+        'admin@example.test',
+        'test-password',
+        () => {},
+      ),
+      { message: expectedMessage },
+    );
+  }
+});
+
+test('post-login admin navigation rejects null and access-error responses before shell inspection', async () => {
+  assert.equal(importFailure, null, 'smoke host-policy helpers must be importable');
+  const adminUrl = new URL('https://admin.shop.example/admin/module');
+  const cases = [
+    [null, 'Back Office post-login navigation returned no HTTP response'],
+    [401, 'Back Office post-login navigation returned HTTP 401'],
+    [403, 'Back Office post-login navigation returned HTTP 403'],
+    [404, 'Back Office post-login navigation returned HTTP 404'],
+  ];
+
+  for (const [status, expectedMessage] of cases) {
+    let navigationCount = 0;
+    const emailInput = {
+      first() { return this; },
+      async isVisible() { return true; },
+      async fill() {},
+      async waitFor() {},
+    };
+    const passwordInput = {
+      first() { return this; },
+      async isVisible() { return true; },
+      async fill() {},
+    };
+    const submit = {
+      first() { return this; },
+      async isVisible() { return true; },
+      async click() {},
+    };
+    const page = {
+      async goto() {
+        navigationCount += 1;
+        if (navigationCount === 1) return { status() { return 200; } };
+        return status === null ? null : { status() { return status; } };
+      },
+      locator(selector) {
+        if (selector.includes('type="email"')) return emailInput;
+        if (selector.includes('type="password"')) return passwordInput;
+        return submit;
+      },
+      async waitForLoadState() {},
+    };
+
+    await assert.rejects(
+      () => helpers.navigateToAdminModule(
+        page,
+        adminUrl,
+        'admin@example.test',
+        'test-password',
+        () => {},
+      ),
+      { message: expectedMessage },
+    );
+    assert.equal(navigationCount, 2);
+  }
 });

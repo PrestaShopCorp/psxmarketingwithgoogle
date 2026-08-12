@@ -8,8 +8,8 @@ import {
   assertAllowedShopUrl,
   localApiControllerTarget,
   localApiResponseIsExpected,
-  loginIfNeeded,
   moduleRequestIsForbidden,
+  navigateToAdminModule,
   pageErrorsBelongToModule,
   requestBelongsToModule,
   requestOwnerUrl,
@@ -73,11 +73,12 @@ function visible(locator) {
 }
 
 async function openModule(page, adminUrl, beforeModuleNavigation) {
-  await page.goto(adminUrl.href, { waitUntil: 'domcontentloaded' });
-  await loginIfNeeded(
+  await navigateToAdminModule(
     page,
+    adminUrl,
     env('TINY_LUX_ADMIN_EMAIL'),
     env('TINY_LUX_ADMIN_PASSWORD'),
+    beforeModuleNavigation,
   );
 
   const moduleRoot = page.locator('#psxMktgWithGoogleApp');
