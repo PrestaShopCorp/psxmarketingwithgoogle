@@ -6,10 +6,14 @@ import process from 'node:process';
 import {
   allowedShopHosts,
   assertAllowedShopUrl,
+  localApiControllerTarget,
+  localApiResponseIsExpected,
+  loginIfNeeded,
   moduleRequestIsForbidden,
   pageErrorsBelongToModule,
   requestBelongsToModule,
   requestOwnerUrl,
+  unexpectedBrowserErrors,
 } from './tiny-lux-google-smoke-helpers.mjs';
 
 const require = createRequire(import.meta.url);
@@ -68,23 +72,6 @@ function visible(locator) {
   return locator.isVisible().catch(() => false);
 }
 
-async function loginIfNeeded(page, email, password) {
-  const emailInput = page.locator('input[type="email"], #email').first();
-  const passwordInput = page.locator('input[type="password"], #passwd').first();
-  if (!(await visible(emailInput)) || !(await visible(passwordInput))) {
-    return;
-  }
-
-  await emailInput.fill(email);
-  await passwordInput.fill(password);
-  const submit = page.locator(
-    'button[type="submit"], #submit_login, input[type="submit"]',
-  ).first();
-  assert.equal(await visible(submit), true, 'Back Office login submit control is missing');
-  await submit.click();
-  await page.waitForLoadState('domcontentloaded');
-}
-
 async function openModule(page, adminUrl, beforeModuleNavigation) {
   await page.goto(adminUrl.href, { waitUntil: 'domcontentloaded' });
   await loginIfNeeded(
@@ -140,7 +127,7 @@ async function main() {
   const forbiddenHosts = new Set();
   const forbiddenRequestDetails = new Set();
   const preExistingExternalFrameHosts = new Set();
-  const localApiResponses = [];
+  const localApiResponseTasks = [];
   const observedPages = new WeakSet();
   const ignoredErrorPages = new WeakSet();
 
@@ -159,12 +146,24 @@ async function main() {
         } catch {
           // Keep the safe placeholder.
         }
-        browserErrors.push(`console [${source}]: ${sanitize(message.text())}`);
+        const messageText = sanitize(message.text());
+        browserErrors.push({
+          kind: 'console',
+          message: messageText,
+          localApiTarget: localApiControllerTarget(message.location().url),
+          detail: `console [${source}]: ${messageText}`,
+        });
       }
     });
     observedPage.on('pageerror', (error) => {
       if (pageErrorsBelongToModule(observedPage, ignoredErrorPages)) {
-        browserErrors.push(`page: ${sanitize(error.message)}`);
+        const messageText = sanitize(error.message);
+        browserErrors.push({
+          kind: 'page',
+          message: messageText,
+          localApiTarget: null,
+          detail: `page: ${messageText}`,
+        });
       }
     });
   };
@@ -235,10 +234,36 @@ async function main() {
     try {
       const responseUrl = new URL(response.url());
       if (responseUrl.searchParams.get('controller') === 'AdminTinyLuxGoogleApi') {
-        localApiResponses.push({
-          status: response.status(),
-          contentType: response.headers()['content-type'] ?? '',
-        });
+        localApiResponseTasks.push((async () => {
+          let internalMethod = '';
+          let internalPath = '';
+          try {
+            const envelope = response.request().postDataJSON();
+            internalMethod = typeof envelope?.method === 'string' ? envelope.method : '';
+            internalPath = typeof envelope?.path === 'string' ? envelope.path : '';
+          } catch {
+            // Invalid or missing envelopes fail the response contract below.
+          }
+
+          let responseCode = '';
+          try {
+            const body = await response.json();
+            if (typeof body?.code === 'string' && /^[a-z0-9_]{1,64}$/.test(body.code)) {
+              responseCode = body.code;
+            }
+          } catch {
+            // Non-JSON responses fail the response contract below.
+          }
+
+          return {
+            internalMethod,
+            internalPath,
+            status: response.status(),
+            contentType: response.headers()['content-type'] ?? '',
+            responseCode,
+            localApiTarget: localApiControllerTarget(response.url()),
+          };
+        })());
       }
     } catch {
       // Invalid response URLs are already handled by the request host policy.
@@ -263,7 +288,7 @@ async function main() {
       failedRequests.length = 0;
       forbiddenHosts.clear();
       forbiddenRequestDetails.clear();
-      localApiResponses.length = 0;
+      localApiResponseTasks.length = 0;
     });
     await moduleRoot.waitFor({ state: 'visible' });
     await moduleRoot.getByText('Developer token required', { exact: false }).first().waitFor({
@@ -284,15 +309,12 @@ async function main() {
     assert.doesNotMatch(moduleText, /PrestaShop/i);
     assert.doesNotMatch(moduleText, /Billing information/i);
     assert.doesNotMatch(moduleText, /CloudSync/i);
+    const localApiResponses = await Promise.all(localApiResponseTasks);
     assert.ok(localApiResponses.length > 0, 'Tiny Lux Google made no local API requests');
     assert.equal(
-      localApiResponses.every((response) =>
-        response.status >= 200
-        && response.status < 300
-        && /application\/json/i.test(response.contentType)
-      ),
+      localApiResponses.every(localApiResponseIsExpected),
       true,
-      'Tiny Lux Google local API did not return successful JSON responses',
+      'Tiny Lux Google local API returned an unexpected response',
     );
 
     const overlaySelectors = [
@@ -338,10 +360,11 @@ async function main() {
       [],
       `One or more browser requests failed: ${failedRequests.join(', ')}`,
     );
+    const unhandledBrowserErrors = unexpectedBrowserErrors(browserErrors, localApiResponses);
     assert.deepEqual(
-      browserErrors,
+      unhandledBrowserErrors,
       [],
-      `The module emitted browser errors: ${browserErrors.slice(0, 10).join('; ')}`,
+      `The module emitted browser errors: ${unhandledBrowserErrors.slice(0, 10).join('; ')}`,
     );
   } finally {
     await context.close();

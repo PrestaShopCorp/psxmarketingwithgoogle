@@ -201,3 +201,180 @@ test('explicit storefront page errors are outside the module error scope', () =>
   assert.equal(helpers.pageErrorsBelongToModule(adminPage, ignoredPages), true);
   assert.equal(helpers.pageErrorsBelongToModule(storefrontPage, ignoredPages), false);
 });
+
+test('local API response contract accepts JSON 2xx and the exact unconfigured OAuth response', () => {
+  assert.equal(importFailure, null, 'smoke host-policy helpers must be importable');
+
+  assert.equal(helpers.localApiResponseIsExpected({
+    internalMethod: 'GET',
+    internalPath: 'settings/status',
+    status: 200,
+    contentType: 'application/json; charset=utf-8',
+    responseCode: '',
+  }), true);
+  assert.equal(helpers.localApiResponseIsExpected({
+    internalMethod: 'GET',
+    internalPath: 'oauth/authorized-url',
+    status: 412,
+    contentType: 'application/json; charset=utf-8',
+    responseCode: 'google_not_configured',
+  }), true);
+});
+
+test('local API response contract rejects every other non-2xx response', () => {
+  assert.equal(importFailure, null, 'smoke host-policy helpers must be importable');
+  const invalidResponses = [
+    {
+      internalMethod: 'POST',
+      internalPath: 'oauth/authorized-url',
+      status: 412,
+      contentType: 'application/json',
+      responseCode: 'google_not_configured',
+    },
+    {
+      internalMethod: 'GET',
+      internalPath: 'oauth',
+      status: 412,
+      contentType: 'application/json',
+      responseCode: 'google_not_configured',
+    },
+    {
+      internalMethod: 'GET',
+      internalPath: 'oauth/authorized-url',
+      status: 412,
+      contentType: 'text/html',
+      responseCode: 'google_not_configured',
+    },
+    {
+      internalMethod: 'GET',
+      internalPath: 'oauth/authorized-url',
+      status: 412,
+      contentType: 'application/json',
+      responseCode: 'internal_error',
+    },
+    {
+      internalMethod: 'GET',
+      internalPath: 'oauth/authorized-url',
+      status: 500,
+      contentType: 'application/json',
+      responseCode: 'google_not_configured',
+    },
+  ];
+
+  for (const response of invalidResponses) {
+    assert.equal(helpers.localApiResponseIsExpected(response), false);
+  }
+});
+
+test('only the correlated Chromium diagnostic for an expected OAuth 412 is suppressed', () => {
+  assert.equal(importFailure, null, 'smoke host-policy helpers must be importable');
+  const localApiTarget = 'https://admin.shop.example/admin/index.php?controller=AdminTinyLuxGoogleApi';
+  const chromiumDiagnostic = 'Failed to load resource: the server responded with a status of 412 (Precondition Failed)';
+  const expectedResponse = {
+    internalMethod: 'GET',
+    internalPath: 'oauth/authorized-url',
+    status: 412,
+    contentType: 'application/json; charset=utf-8',
+    responseCode: 'google_not_configured',
+    localApiTarget,
+  };
+  const errors = [
+    {
+      kind: 'console',
+      message: chromiumDiagnostic,
+      localApiTarget,
+      detail: 'expected Chromium diagnostic',
+    },
+    {
+      kind: 'console',
+      message: chromiumDiagnostic,
+      localApiTarget,
+      detail: 'duplicate Chromium diagnostic',
+    },
+    {
+      kind: 'console',
+      message: chromiumDiagnostic,
+      localApiTarget: null,
+      detail: 'application console error',
+    },
+    {
+      kind: 'page',
+      message: chromiumDiagnostic,
+      localApiTarget,
+      detail: 'application page error',
+    },
+  ];
+
+  assert.deepEqual(
+    helpers.unexpectedBrowserErrors(errors, [expectedResponse]),
+    [
+      'duplicate Chromium diagnostic',
+      'application console error',
+      'application page error',
+    ],
+  );
+  assert.deepEqual(
+    helpers.unexpectedBrowserErrors([errors[0]], [{
+      ...expectedResponse,
+      responseCode: 'internal_error',
+    }]),
+    ['expected Chromium diagnostic'],
+  );
+});
+
+test('Back Office login waits for the asynchronous PrestaShop login form to disappear', async () => {
+  assert.equal(importFailure, null, 'smoke host-policy helpers must be importable');
+  const events = [];
+  let finishLogin;
+  const emailInput = {
+    first() { return this; },
+    async isVisible() { return true; },
+    async fill(value) { events.push(`email:${value}`); },
+    waitFor(options) {
+      events.push(`wait:${options.state}:${options.timeout}`);
+      return new Promise((resolve) => { finishLogin = resolve; });
+    },
+  };
+  const passwordInput = {
+    first() { return this; },
+    async isVisible() { return true; },
+    async fill(value) { events.push(`password:${value}`); },
+  };
+  const submit = {
+    first() { return this; },
+    async isVisible() { return true; },
+    async click() { events.push('submit'); },
+  };
+  const page = {
+    locator(selector) {
+      if (selector.includes('type="email"')) return emailInput;
+      if (selector.includes('type="password"')) return passwordInput;
+      return submit;
+    },
+    async waitForLoadState(state) { events.push(`load:${state}`); },
+  };
+
+  let completed = false;
+  const login = helpers.loginIfNeeded(page, 'admin@example.test', 'test-password')
+    .then(() => { completed = true; });
+  await new Promise((resolve) => setImmediate(resolve));
+
+  assert.deepEqual(events, [
+    'email:admin@example.test',
+    'password:test-password',
+    'submit',
+    'wait:hidden:15000',
+  ]);
+  assert.equal(completed, false);
+
+  finishLogin();
+  await login;
+  assert.equal(completed, true);
+  assert.deepEqual(events, [
+    'email:admin@example.test',
+    'password:test-password',
+    'submit',
+    'wait:hidden:15000',
+    'load:domcontentloaded',
+  ]);
+});
