@@ -2,7 +2,7 @@
 <module>
     <name>psxmarketingwithgoogle</name>
     <displayName><![CDATA[Tiny Lux Google]]></displayName>
-    <version><![CDATA[2.0.0]]></version>
+    <version><![CDATA[2.0.1]]></version>
     <description><![CDATA[Connect Tiny Lux directly to Google Merchant Center and synchronize your catalog.]]></description>
     <author><![CDATA[Tiny Lux]]></author>
     <tab><![CDATA[advertising_marketing]]></tab>

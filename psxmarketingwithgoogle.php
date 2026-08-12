@@ -70,7 +70,7 @@ class PsxMarketingWithGoogle extends Module
     {
         $this->name = 'psxmarketingwithgoogle';
         $this->tab = 'advertising_marketing';
-        $this->version = '2.0.0';
+        $this->version = '2.0.1';
         $this->author = 'Tiny Lux';
         $this->need_instance = 0;
         $this->controllerAdmin = 'AdminAjaxPsxMktgWithGoogle';
@@ -85,7 +85,7 @@ class PsxMarketingWithGoogle extends Module
         $this->js_path = $this->_path . 'views/js/';
         $this->docs_path = $this->_path . 'docs/';
         $this->confirmUninstall = $this->l('Are you sure you want to uninstall this module?');
-        $this->ps_versions_compliancy = ['min' => '9.0.0', 'max' => _PS_VERSION_];
+        $this->ps_versions_compliancy = ['min' => '8.2.7', 'max' => _PS_VERSION_];
 
         // If PHP is not compliant, we will not load composer and the autoloader
         if (!$this->isPhpVersionCompliant()) {
