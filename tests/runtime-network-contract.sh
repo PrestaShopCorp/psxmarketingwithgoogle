@@ -78,47 +78,68 @@ warning_branding_paths+=("$root/views/js/fetchWarningMessage.js")
 
 failed=0
 
-if rg --no-ignore -n -o -i "$forbidden" "${scan_paths[@]}"; then
-  printf 'runtime network contract failed\n' >&2
-  failed=1
-fi
+scan_forbidden() {
+  local failure_message=$1
+  local status
+  shift
 
-if rg --no-ignore -n -o -i "$forbidden_built_artifacts" "${built_asset_paths[@]}"; then
-  printf 'runtime branding artifact contract failed\n' >&2
-  failed=1
-fi
+  if rg "$@"; then
+    status=0
+  else
+    status=$?
+  fi
 
-if rg --no-ignore -n -o -i "$forbidden_runtime_dependencies|$forbidden" "${runtime_source_paths[@]}" \
-  --glob '!**/*.spec.ts' --glob '!**/*.stories.ts'; then
-  printf 'runtime dependency source contract failed\n' >&2
-  failed=1
-fi
+  case "$status" in
+    0)
+      printf '%s\n' "$failure_message" >&2
+      failed=1
+      ;;
+    1)
+      ;;
+    *)
+      printf '%s: scan could not be completed (rg exit %s)\n' \
+        "$failure_message" "$status" >&2
+      failed=1
+      ;;
+  esac
+}
 
-if rg --no-ignore -n -o "$forbidden_telemetry_consumers" "${telemetry_source_paths[@]}" \
-  --glob '!**/*.spec.ts' --glob '!**/*.stories.ts'; then
-  printf 'runtime telemetry source contract failed\n' >&2
-  failed=1
-fi
+scan_forbidden \
+  'runtime network contract failed' \
+  --no-ignore -n -o -i "$forbidden" "${scan_paths[@]}"
 
-if rg --no-ignore -n -o -i "$forbidden_runtime_dependencies" "${dependency_paths[@]}"; then
-  printf 'runtime dependency manifest/lock contract failed\n' >&2
-  failed=1
-fi
+scan_forbidden \
+  'runtime branding artifact contract failed' \
+  --no-ignore -n -o -i "$forbidden_built_artifacts" "${built_asset_paths[@]}"
 
-if rg --no-ignore -n -o -i "$forbidden_runtime_dependencies|$forbidden" "${built_asset_paths[@]}"; then
-  printf 'runtime dependency built-asset contract failed\n' >&2
-  failed=1
-fi
+scan_forbidden \
+  'runtime dependency source contract failed' \
+  --no-ignore -n -o -i "$forbidden_runtime_dependencies|$forbidden" \
+  "${runtime_source_paths[@]}" \
+  --glob '!**/*.spec.ts' --glob '!**/*.stories.ts'
 
-if rg --no-ignore -n -o "$forbidden_telemetry_consumers" "${built_asset_paths[@]}"; then
-  printf 'runtime telemetry built-asset contract failed\n' >&2
-  failed=1
-fi
+scan_forbidden \
+  'runtime telemetry source contract failed' \
+  --no-ignore -n -o "$forbidden_telemetry_consumers" \
+  "${telemetry_source_paths[@]}" \
+  --glob '!**/*.spec.ts' --glob '!**/*.stories.ts'
 
-if rg --no-ignore -n -o "$forbidden_warning_branding" "${warning_branding_paths[@]}"; then
-  printf 'runtime warning branding contract failed\n' >&2
-  failed=1
-fi
+scan_forbidden \
+  'runtime dependency manifest/lock contract failed' \
+  --no-ignore -n -o -i "$forbidden_runtime_dependencies" "${dependency_paths[@]}"
+
+scan_forbidden \
+  'runtime dependency built-asset contract failed' \
+  --no-ignore -n -o -i "$forbidden_runtime_dependencies|$forbidden" \
+  "${built_asset_paths[@]}"
+
+scan_forbidden \
+  'runtime telemetry built-asset contract failed' \
+  --no-ignore -n -o "$forbidden_telemetry_consumers" "${built_asset_paths[@]}"
+
+scan_forbidden \
+  'runtime warning branding contract failed' \
+  --no-ignore -n -o "$forbidden_warning_branding" "${warning_branding_paths[@]}"
 
 eventbus_bootstrap='ps_eventbus|checkModulePsEventbusNeedUpgrade|modulePsEventbusNeedUpgrade|cloudsyncVersionNeeded|VITE_MIN_VERSION_NEEDED_CLOUD_SYNC'
 eventbus_paths=(
@@ -127,10 +148,9 @@ eventbus_paths=(
   "$root/_dev/apps/ui/src/store/modules/app/state.ts"
 )
 
-if rg -n "$eventbus_bootstrap" "${eventbus_paths[@]}"; then
-  printf 'runtime Eventbus bootstrap contract failed\n' >&2
-  failed=1
-fi
+scan_forbidden \
+  'runtime Eventbus bootstrap contract failed' \
+  -n "$eventbus_bootstrap" "${eventbus_paths[@]}"
 
 if ((failed)); then
   exit 1

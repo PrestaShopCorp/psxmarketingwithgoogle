@@ -196,8 +196,8 @@ If migration or verification fails:
 5. enable the previous stable module and verify the storefront and Back Office.
 
 Do not delete the shared shop database volume or unrelated shop data. Preserve
-the failed 2.0.1 database backup for diagnosis, but never place its encrypted
-or plaintext credential material in source control or a support attachment.
+the protected pre-upgrade database backup for diagnosis, but never place its
+encrypted or plaintext credential material in source control or a support attachment.
 
 ## License
 
