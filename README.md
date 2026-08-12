@@ -1,18 +1,18 @@
 ![Tiny Lux Google](views/img/google-icon.svg)
 
-# Tiny Lux Google 2.0.0
+# Tiny Lux Google 2.0.1
 
 Tiny Lux Google is an in-place fork of the `psxmarketingwithgoogle` module. It
 connects a shop directly to Google OAuth, Merchant Center, and Merchant API v1.
 It does not use a PrestaShop Account, Billing, CloudSync, EventBus, Segment, or
 Sentry service.
 
-Google Ads is deliberately unavailable in 2.0.0. The Back Office shows
+Google Ads is deliberately unavailable in 2.0.1. The Back Office shows
 **Developer token required** and makes no Google Ads API request.
 
 ## Requirements
 
-- PrestaShop 9.1.4 (PHP 8.1 or newer).
+- PrestaShop 8.2.7 or PrestaShop 9.x (PHP 8.1 or newer).
 - An HTTPS shop URL that Google can reach.
 - A Google Cloud OAuth 2.0 **Web application** client.
 - Merchant API enabled in that Google Cloud project.
@@ -22,11 +22,11 @@ Google Ads is deliberately unavailable in 2.0.0. The Back Office shows
 
 ## Install or upgrade
 
-The technical module name remains `psxmarketingwithgoogle`, so 2.0.0 upgrades
+The technical module name remains `psxmarketingwithgoogle`, so 2.0.1 upgrades
 the existing module in place.
 
 For a fresh installation, upload
-`psxmarketingwithgoogle-v2.0.0-tinylux.zip` in the Back Office module manager,
+`psxmarketingwithgoogle-v2.0.1-tinylux.zip` in the Back Office module manager,
 then install and enable **Tiny Lux Google**.
 
 Before upgrading an existing installation:
@@ -34,9 +34,9 @@ Before upgrading an existing installation:
 1. Back up the current module directory, database, and module configuration.
 2. Disable `psxmarketingwithgoogle`.
 3. Replace its directory with the single `psxmarketingwithgoogle/` directory
-   extracted from the 2.0.0 archive.
+   extracted from the 2.0.1 archive.
 4. Run the module upgrade and clear the application cache.
-5. Enable the module and confirm that its version is `2.0.0`.
+5. Enable the module and confirm that its version is `2.0.1`.
 
 For a console-managed shop, steps 4 and 5 are:
 
@@ -49,6 +49,10 @@ php bin/console prestashop:module enable psxmarketingwithgoogle --no-interaction
 The 2.0.0 migration creates encrypted connection/state storage and durable sync
 job/item tables. Do not delete the existing catalog configuration during an
 upgrade.
+
+Upgrading from 2.0.0 to 2.0.1 is non-destructive. It restores missing Back
+Office tabs and hook registrations without changing encrypted Google
+configuration.
 
 ## Configure Google OAuth callbacks
 
@@ -148,9 +152,9 @@ python@sha256:519591d6871b7bc437060736b9f7456b8731f1499a57e22e6c285135ae657bf7
 
 ```bash
 scripts/build-ready-package.sh
-tests/package-ready-contract.sh dist/psxmarketingwithgoogle-v2.0.0-tinylux.zip
-tests/package-ready-contract-self-test.sh dist/psxmarketingwithgoogle-v2.0.0-tinylux.zip
-sha256sum -c dist/psxmarketingwithgoogle-v2.0.0-tinylux.zip.sha256
+tests/package-ready-contract.sh dist/psxmarketingwithgoogle-v2.0.1-tinylux.zip
+tests/package-ready-contract-self-test.sh dist/psxmarketingwithgoogle-v2.0.1-tinylux.zip
+sha256sum -c dist/psxmarketingwithgoogle-v2.0.1-tinylux.zip.sha256
 tests/runtime-network-contract.sh
 node tests/browser/tiny-lux-google-smoke.test.mjs
 ```
@@ -185,14 +189,14 @@ current workspace.
 
 If migration or verification fails:
 
-1. disable the 2.0.0 module;
+1. disable the 2.0.1 module;
 2. restore the backed-up module directory;
 3. restore the pre-upgrade module configuration and affected module tables;
 4. clear the application cache; and
 5. enable the previous stable module and verify the storefront and Back Office.
 
 Do not delete the shared shop database volume or unrelated shop data. Preserve
-the failed 2.0.0 database backup for diagnosis, but never place its encrypted
+the failed 2.0.1 database backup for diagnosis, but never place its encrypted
 or plaintext credential material in source control or a support attachment.
 
 ## License
