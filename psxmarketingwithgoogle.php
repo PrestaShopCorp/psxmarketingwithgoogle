@@ -77,7 +77,7 @@ class PsxMarketingWithGoogle extends Module
         $this->version = '1.76.0';
         $this->author = 'PrestaShop';
         $this->need_instance = 0;
-        $this->module_key = '16b273e77e02c0cc36cd006463951593';
+        $this->module_key = 'd51c663a86dc0b8a65a640d36712d52e';
         $this->controllerAdmin = 'AdminAjaxPsxMktgWithGoogle';
         $this->bootstrap = false;
 
