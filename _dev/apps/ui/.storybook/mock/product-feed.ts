@@ -2,6 +2,7 @@ import attributesToMap from "@/store/modules/product-feed/attributes-to-map.json
 import { RateType } from "@/enums/product-feed/rate";
 import {
   State,
+  ApiErrorReasonCode,
   AttributesTypes,
   ProductStatus,
   ProductVerificationIssue,
@@ -359,6 +360,14 @@ export const productFeedStatusSyncFailed: State = {
 export const productFeedErrorAPI: State = {
   ...productFeed,
   errorAPI: true,
+};
+
+export const productFeedErrorAPIDuplicateCarrierName: State = {
+  ...productFeedErrorAPI,
+  errorAPIReason: {
+    code: ApiErrorReasonCode.DUPLICATE_SHIPPING_SERVICE_NAME,
+    duplicates: ['My carrier GB', 'Express FR'],
+  },
 };
 
 export const productFeedSyncSummaryInProgress: State = {

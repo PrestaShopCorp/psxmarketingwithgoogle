@@ -100,7 +100,14 @@
             variant="warning"
             show
           >
+            <p
+              v-if="duplicateCarrierNameAlert"
+              class="mb-0"
+            >
+              {{ duplicateCarrierNameAlert }}
+            </p>
             <VueShowdown
+              v-else
               :markdown="$t('productFeedCard.alertErrorApi')"
             />
             <div
@@ -164,6 +171,8 @@ import googleUrl from '@/assets/json/googleUrl.json';
 import ProductFeedStepper from '@/components/product-feed/product-feed-stepper.vue';
 import ProductFeedSummary from '@/components/onboarding/product-feed-summary.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
+import {ShippingSetupOption} from '@/enums/product-feed/shipping';
+import {ApiErrorReasonCode} from '@/store/modules/product-feed/state';
 
 export default defineComponent({
   name: 'ProductFeedCard',
@@ -238,6 +247,19 @@ export default defineComponent({
     },
     isErrorApi() {
       return this.$store.state.productFeed.errorAPI;
+    },
+    duplicateCarrierNameAlert(): string|null {
+      const reason = this.$store.state.productFeed.errorAPIReason;
+
+      if (reason?.code !== ApiErrorReasonCode.DUPLICATE_SHIPPING_SERVICE_NAME) {
+        return null;
+      }
+      const {shippingSetup} = this.$store.state.productFeed.settings;
+      const key = shippingSetup === ShippingSetupOption.ESTIMATE
+        ? 'productFeedCard.alertDuplicateEstimatedCarrierName'
+        : 'productFeedCard.alertDuplicateCarrierName';
+
+      return this.$t(key, {duplicates: reason.duplicates.join(', ')}).toString();
     },
   },
   methods: {

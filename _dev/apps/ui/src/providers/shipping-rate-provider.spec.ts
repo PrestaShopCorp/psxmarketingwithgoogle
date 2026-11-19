@@ -8,6 +8,7 @@ import {
   CustomCarrier,
   toApi,
   fromApi,
+  findDuplicateEstimateCarrierNames,
 } from './shipping-rate-provider';
 
 const carrier: CustomCarrier = {
@@ -342,5 +343,22 @@ describe('Product Feed / Step 2 Option 1 / Estimate Shipping', () => {
     const transform = fromApi([]);
 
     expect(transform).toEqual([]);
+  });
+});
+
+describe('Product Feed / Step 2 / findDuplicateEstimateCarrierNames()', () => {
+  it('finds estimated carriers with the same name for one country', () => {
+    expect(findDuplicateEstimateCarrierNames([
+      {...carrier, carrierName: 'Standard', countries: ['FR', 'GB']},
+      {...carrier, carrierName: 'Standard', countries: ['GB']},
+      {...carrier, carrierName: 'Express', countries: ['GB']},
+    ])).toEqual(['Standard GB']);
+  });
+
+  it('allows the same name in different countries', () => {
+    expect(findDuplicateEstimateCarrierNames([
+      {...carrier, carrierName: 'Standard', countries: ['FR']},
+      {...carrier, carrierName: 'Standard', countries: ['GB']},
+    ])).toEqual([]);
   });
 });

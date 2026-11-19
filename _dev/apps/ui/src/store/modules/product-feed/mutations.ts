@@ -24,6 +24,7 @@ import {
 } from '../../../utils/AttributeMapping';
 import {
   State as LocalState,
+  ApiErrorReason,
   ProductInfos,
   ProductFeedValidationSummary,
   ProductStatus,
@@ -87,6 +88,10 @@ export default {
   [MutationsTypes.API_ERROR](state: LocalState, payload: boolean,
   ) {
     state.errorAPI = payload;
+  },
+  [MutationsTypes.API_ERROR_REASON](state: LocalState, payload: ApiErrorReason|null,
+  ) {
+    state.errorAPIReason = payload;
   },
   [MutationsTypes.REMOVE_PRODUCT_FEED](state: LocalState,
   ) {

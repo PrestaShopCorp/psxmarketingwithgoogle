@@ -1,7 +1,7 @@
 import {shippingPhpExport} from '@/../.storybook/mock/shipping-settings';
 import DeliveryType from '@/enums/product-feed/delivery-type';
 import {
-  getEnabledCarriers, Carrier, validateDeliveryDetail,
+  getEnabledCarriers, Carrier, validateDeliveryDetail, findDuplicateCarrierNames,
 } from './shipping-settings-provider';
 import {shippingBugExport} from '@/../.storybook/mock/shipping-settings-bug';
 
@@ -223,5 +223,34 @@ describe('Shipping Settings Provider - validateDeliveryDetail()', () => {
     });
 
     expect(result).toBe(false);
+  });
+});
+
+describe('Shipping Settings Provider - findDuplicateCarrierNames()', () => {
+  const row = (carrierId: string, name: string, country: string, enabledCarrier = true) => ({
+    carrierId, name, country, enabledCarrier,
+  });
+
+  it('finds two different enabled carriers with the same name for one country', () => {
+    expect(findDuplicateCarrierNames([
+      row('2', 'My carrier', 'GB'),
+      row('6', 'My carrier', 'GB'),
+      row('3', 'My cheap carrier', 'GB'),
+    ])).toEqual(['My carrier GB']);
+  });
+
+  it('ignores versions of the same carrier', () => {
+    expect(findDuplicateCarrierNames([
+      row('2', 'My carrier', 'GB'),
+      row('2', 'My carrier', 'GB'),
+    ])).toEqual([]);
+  });
+
+  it('ignores disabled carriers and other countries', () => {
+    expect(findDuplicateCarrierNames([
+      row('2', 'My carrier', 'GB'),
+      row('6', 'My carrier', 'GB', false),
+      row('7', 'My carrier', 'FR'),
+    ])).toEqual([]);
   });
 });

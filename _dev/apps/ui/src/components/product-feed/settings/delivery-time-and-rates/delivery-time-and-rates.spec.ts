@@ -368,5 +368,78 @@ describe('delivery-time-and-rates.vue', () => {
 
       expect(wrapper.vm.validateForm()).toBeTruthy();
     });
+
+    describe('when two different carriers have the same name for one country', () => {
+      const clashingCarriers = () => [
+        ...store.modules.productFeed.state.settings.deliveryDetails,
+        {
+          ...store.modules.productFeed.state.settings.deliveryDetails
+            .find((c) => c.carrierId === '11'),
+          carrierId: '42',
+        },
+      ];
+
+      it('warns the merchant and names the carrier', async () => {
+        const wrapper = buildWrapper();
+        await wrapper.setData({carriers: clashingCarriers()});
+
+        const alert = wrapper.find('[data-test-id="duplicate-carrier-names-alert"]');
+        expect(alert.exists()).toBeTruthy();
+        expect(alert.text()).toContain('My carrier FR');
+      });
+
+      it('forbids to continue', async () => {
+        const wrapper = buildWrapper();
+        await wrapper.setData({carriers: clashingCarriers()});
+
+        expect(wrapper.vm.validateForm()).toBeFalsy();
+      });
+
+      it('allows to continue once one of them is turned off', async () => {
+        const wrapper = buildWrapper();
+        const carriers = clashingCarriers();
+        carriers[carriers.length - 1].enabledCarrier = false;
+        await wrapper.setData({carriers});
+
+        expect(wrapper.find('[data-test-id="duplicate-carrier-names-alert"]').exists()).toBeFalsy();
+        expect(wrapper.vm.validateForm()).toBeTruthy();
+      });
+    });
+
+    it('shows no duplicate warning for unique carriers', () => {
+      const wrapper = buildWrapper();
+
+      expect(wrapper.find('[data-test-id="duplicate-carrier-names-alert"]').exists()).toBeFalsy();
+    });
+  });
+
+  describe('Estimating carriers - duplicate names', () => {
+    it('warns and forbids to continue when two estimated carriers share a name for one country', async () => {
+      const store = cloneStore();
+      store.modules.productFeed.state = cloneDeep(productFeed);
+      store.modules.productFeed.state.settings.shippingSetup = ShippingSetupOption.ESTIMATE;
+      store.modules.productFeed.actions.GET_SAVED_ADDITIONAL_SHIPPING_SETTINGS = vi
+        .fn().mockImplementation(() => {});
+      const wrapper = mount(DeliveryTimeAndRatesVue, {
+        ...config,
+        localVue,
+        store: new Vuex.Store(store),
+      });
+      const base = createCustomCarriersTemplate(RateType.RATE_PER_COUNTRY, ['FR'], 'EUR')[0];
+      await wrapper.setData({
+        countries: ['FR'],
+        rateChosen: RateType.RATE_PER_COUNTRY,
+        estimateCarriers: [
+          {...base, carrierName: 'Standard'},
+          {...base, carrierName: 'Standard'},
+        ],
+      });
+
+      const alert = wrapper.find('[data-test-id="duplicate-carrier-names-alert"]');
+      expect(alert.exists()).toBeTruthy();
+      expect(alert.text()).toContain('estimated carriers');
+      expect(alert.text()).toContain('Standard FR');
+      expect(wrapper.vm.validateForm()).toBeFalsy();
+    });
   });
 });

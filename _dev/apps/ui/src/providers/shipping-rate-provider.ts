@@ -181,3 +181,25 @@ export function fromApi(customerCarriers: CustomCarrier[]): CustomCarrier[] {
 
   return fromApiFormat;
 }
+
+/**
+ * Google needs a unique shipping service name per country.
+ * Returns "<name> <country>" for every name used by two estimated carriers in one country.
+ */
+export function findDuplicateEstimateCarrierNames(carriers: CustomCarrier[]): string[] {
+  const seen = new Set<string>();
+  const duplicates = new Set<string>();
+
+  carriers.forEach((carrier) => {
+    [...new Set(carrier.countries)].forEach((country) => {
+      const serviceName = `${carrier.carrierName} ${country}`;
+
+      if (seen.has(serviceName)) {
+        duplicates.add(serviceName);
+      }
+      seen.add(serviceName);
+    });
+  });
+
+  return [...duplicates];
+}

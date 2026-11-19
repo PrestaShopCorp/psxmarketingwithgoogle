@@ -20,6 +20,7 @@ import MutationsTypes from './mutations-types';
 import type {
   ProductFeedSettings, ProductVerificationIssue, ProductVerificationIssueProduct, State,
 } from './state';
+import {ApiErrorReasonCode} from './state';
 import GetterTypes from '@/store/modules/product-feed/getters-types';
 import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
 import ProductFeedCountStatus from '@/enums/product-feed/product-feed-count-status';
@@ -189,6 +190,7 @@ export default {
     state, rootState, getters, commit,
   }: Context) {
     commit(MutationsTypes.API_ERROR, false);
+    commit(MutationsTypes.API_ERROR_REASON, null);
 
     const productFeedSettings: ProductFeedSettings = {
       ...state.settings,
@@ -242,7 +244,23 @@ export default {
       await fetchOnboarding(
         'POST',
         'incremental-sync/settings',
-        {body: newSettings},
+        {
+          body: newSettings,
+          onResponse: async (response: Response) => {
+            if (!response.ok) {
+              const body = await response.json().catch(() => null);
+
+              if (body?.code === ApiErrorReasonCode.DUPLICATE_SHIPPING_SERVICE_NAME) {
+                commit(MutationsTypes.API_ERROR_REASON, {
+                  code: body.code,
+                  duplicates: Array.isArray(body.duplicates) ? body.duplicates : [],
+                });
+              }
+              throw new HttpClientError(response.statusText, response.status);
+            }
+            return response;
+          },
+        },
       );
       await fetchOnboarding(
         'POST',

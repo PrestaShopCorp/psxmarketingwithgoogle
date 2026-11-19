@@ -244,3 +244,26 @@ export function validateEachCountryHasAtLeastOneCarrier(
       && deliveryDetail.enabledCarrier,
   ));
 }
+
+/**
+ * Google needs a unique shipping service name per country.
+ * Returns "<name> <country>" for every name used by two different enabled carriers
+ * in one country. Versions of one carrier share a carrierId and do not clash.
+ */
+export function findDuplicateCarrierNames(deliveryDetails: DeliveryDetail[]): string[] {
+  const carrierIdsByServiceName = new Map<string, Set<string>>();
+
+  deliveryDetails
+    .filter((deliveryDetail) => deliveryDetail.enabledCarrier)
+    .forEach((deliveryDetail) => {
+      const serviceName = `${deliveryDetail.name} ${deliveryDetail.country}`;
+      const carrierIds = carrierIdsByServiceName.get(serviceName) || new Set<string>();
+
+      carrierIds.add(String(deliveryDetail.carrierId));
+      carrierIdsByServiceName.set(serviceName, carrierIds);
+    });
+
+  return [...carrierIdsByServiceName.entries()]
+    .filter(([, carrierIds]) => carrierIds.size > 1)
+    .map(([serviceName]) => serviceName);
+}
