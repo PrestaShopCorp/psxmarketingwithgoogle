@@ -76,6 +76,7 @@ import {validateCarrier, createCustomCarriersTemplate, findDuplicateEstimateCarr
 import {
   DeliveryDetail,
   findDuplicateCarrierNames,
+  getLatestShopCarriers,
   validateDeliveryDetail,
   validateEachCountryHasAtLeastOneCarrier,
 } from '@/providers/shipping-settings-provider';
@@ -161,17 +162,19 @@ export default Vue.extend({
         return findDuplicateEstimateCarrierNames(this.estimateCarriersToConfigure);
       }
       if (this.getShippingValueSetup === ShippingSetupOption.IMPORT) {
-        return findDuplicateCarrierNames(
-          this.carriersToConfigure,
-          this.$store.state.productFeed.settings.shippingSettings,
-        );
+        return findDuplicateCarrierNames(this.carriersToConfigure, this.latestShopCarriers);
       }
       return [];
     },
+    latestShopCarriers() {
+      return getLatestShopCarriers(this.$store.state.productFeed.settings.shippingSettings);
+    },
     duplicateCarrierNamesMessage(): string {
-      return this.getShippingValueSetup === ShippingSetupOption.ESTIMATE
-        ? this.$t('productFeedSettings.deliveryTimeAndRates.duplicateEstimatedCarrierNames').toString()
-        : this.$t('productFeedSettings.deliveryTimeAndRates.duplicateCarrierNames').toString();
+      const key = this.getShippingValueSetup === ShippingSetupOption.ESTIMATE
+        ? 'productFeedSettings.deliveryTimeAndRates.duplicateEstimatedCarrierNames'
+        : 'productFeedSettings.deliveryTimeAndRates.duplicateCarrierNames';
+
+      return this.$t(key).toString();
     },
     selectedCountries(): string[] {
       return this.countries || getDataFromLocalStorage('productFeed-targetCountries') || this.countriesFromStore || [];

@@ -1,9 +1,7 @@
-export default class DuplicateShippingServiceNameError extends Error {
-  constructor(message: string, public code: number, public duplicates: string[]) {
-    super(message);
-    this.name = this.constructor.name;
-    this.message = message;
-    this.code = code;
-    this.duplicates = duplicates;
+import {HttpClientError} from 'mktg-with-google-common';
+
+export default class DuplicateShippingServiceNameError extends HttpClientError {
+  constructor(message: string, code: number, public duplicates: string[]) {
+    super(message, code);
   }
 }

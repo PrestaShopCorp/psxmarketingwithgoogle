@@ -2,6 +2,7 @@ import {shippingPhpExport} from '@/../.storybook/mock/shipping-settings';
 import DeliveryType from '@/enums/product-feed/delivery-type';
 import {
   getEnabledCarriers, Carrier, validateDeliveryDetail, findDuplicateCarrierNames,
+  getLatestShopCarriers,
   DeliveryDetail, ShopShippingInterface, ShopShippingCollectionType,
 } from './shipping-settings-provider';
 import {shippingBugExport} from '@/../.storybook/mock/shipping-settings-bug';
@@ -277,14 +278,14 @@ describe('Shipping Settings Provider - findDuplicateCarrierNames()', () => {
       row('2', 'My carrier', 'GB'),
       row('6', 'My carrier', 'GB'),
       row('3', 'My cheap carrier', 'GB'),
-    ], shop)).toEqual(['My carrier GB']);
+    ], getLatestShopCarriers(shop))).toEqual(['My carrier GB']);
   });
 
   it('ignores versions of the same carrier', () => {
     expect(findDuplicateCarrierNames([
       row('2', 'My carrier', 'GB'),
       row('2', 'My carrier', 'GB'),
-    ], shop)).toEqual([]);
+    ], getLatestShopCarriers(shop))).toEqual([]);
   });
 
   it('ignores disabled carriers and other countries', () => {
@@ -292,7 +293,7 @@ describe('Shipping Settings Provider - findDuplicateCarrierNames()', () => {
       row('2', 'My carrier', 'GB'),
       row('6', 'My carrier', 'GB', {enabledCarrier: false}),
       row('3', 'My carrier', 'FR'),
-    ], shop)).toEqual([]);
+    ], getLatestShopCarriers(shop))).toEqual([]);
   });
 
   it('ignores carriers Google would not receive', () => {
@@ -304,26 +305,26 @@ describe('Shipping Settings Provider - findDuplicateCarrierNames()', () => {
     expect(findDuplicateCarrierNames([
       row('2', 'My carrier', 'GB'),
       row('6', 'My carrier', 'GB'),
-    ], shopWithoutCurrency)).toEqual([]);
+    ], getLatestShopCarriers(shopWithoutCurrency))).toEqual([]);
     expect(findDuplicateCarrierNames([
       row('2', 'My carrier', 'GB'),
       row('6', 'My carrier', 'GB', {maxTransitTimeInDays: undefined}),
-    ], shop)).toEqual([]);
+    ], getLatestShopCarriers(shop))).toEqual([]);
     expect(findDuplicateCarrierNames([
       row('2', 'My carrier', 'GB'),
       row('6', 'My carrier', 'GB', {deliveryType: DeliveryType.PICKUP}),
-    ], shop)).toEqual([]);
+    ], getLatestShopCarriers(shop))).toEqual([]);
     expect(findDuplicateCarrierNames([
       row('2', 'My carrier', 'GB'),
       row('99', 'My carrier', 'GB'),
-    ], shop)).toEqual([]);
+    ], getLatestShopCarriers(shop))).toEqual([]);
   });
 
   it('uses the shop carrier name when the row has none', () => {
     expect(findDuplicateCarrierNames([
       row('2', undefined, 'GB'),
       row('6', 'My carrier', 'GB'),
-    ], shop)).toEqual(['My carrier GB']);
+    ], getLatestShopCarriers(shop))).toEqual(['My carrier GB']);
   });
 
   it('skips carriers without any name', () => {
@@ -335,6 +336,6 @@ describe('Shipping Settings Provider - findDuplicateCarrierNames()', () => {
     expect(findDuplicateCarrierNames([
       row('2', undefined, 'GB'),
       row('6', undefined, 'GB'),
-    ], nameless)).toEqual([]);
+    ], getLatestShopCarriers(nameless))).toEqual([]);
   });
 });

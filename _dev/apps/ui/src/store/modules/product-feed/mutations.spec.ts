@@ -599,4 +599,16 @@ describe('Product Feed mutations', () => {
       ],
     });
   });
+
+  describe('API_ERROR', () => {
+    it('clears the clashing carrier names', () => {
+      const localState: State = cloneDeep(originalState);
+      localState.duplicateShippingServiceNames = ['My carrier GB'];
+
+      mutations.API_ERROR(localState, true);
+
+      expect(localState.errorAPI).toBe(true);
+      expect(localState.duplicateShippingServiceNames).toEqual([]);
+    });
+  });
 });

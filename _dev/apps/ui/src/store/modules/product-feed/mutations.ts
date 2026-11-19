@@ -87,6 +87,7 @@ export default {
   [MutationsTypes.API_ERROR](state: LocalState, payload: boolean,
   ) {
     state.errorAPI = payload;
+    state.duplicateShippingServiceNames = [];
   },
   [MutationsTypes.SET_DUPLICATE_SHIPPING_SERVICE_NAMES](state: LocalState, payload: string[],
   ) {
