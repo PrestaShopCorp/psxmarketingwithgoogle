@@ -180,7 +180,6 @@ export default {
         console.log('Incremental-Sync settings not found: ask user to configure it');
       } else {
         console.error(`HttpClientError: ${error}`);
-        // This error is not about carrier names, so the card must show the generic text.
         commit(MutationsTypes.SET_DUPLICATE_SHIPPING_SERVICE_NAMES, []);
         commit(MutationsTypes.API_ERROR, true);
       }

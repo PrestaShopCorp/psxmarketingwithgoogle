@@ -251,10 +251,6 @@ export type ShippingServiceEntry = {
   ownerId: string;
 };
 
-/**
- * Google needs a unique shipping service name ("<name> <country>") per country.
- * Returns every service name used by more than one owner.
- */
 export function findDuplicateServiceNames(entries: ShippingServiceEntry[]): string[] {
   const ownersByServiceName = new Map<string, Set<string>>();
 
@@ -271,11 +267,6 @@ export function findDuplicateServiceNames(entries: ShippingServiceEntry[]): stri
     .map(([serviceName]) => serviceName);
 }
 
-/**
- * Checks only the carriers the API sends to Google: enabled and fully configured delivery
- * carriers whose latest shop version has a currency. Versions of one carrier share a
- * carrierId and do not clash. The name falls back to the shop carrier name, as on the API.
- */
 export function findDuplicateCarrierNames(
   deliveryDetails: DeliveryDetail[],
   shopShippingSettings: ShopShippingInterface[],

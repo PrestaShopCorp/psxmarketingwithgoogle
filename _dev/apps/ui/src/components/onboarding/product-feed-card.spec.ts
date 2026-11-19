@@ -211,7 +211,6 @@ describe('product-feed-card.vue', () => {
         },
         ...config,
         mocks: {
-          // The shared mock ignores named params; interpolate them here.
           $t: (key, params = {}) => Object.entries(params).reduce(
             (text, [name, value]) => text.replace(`{${name}}`, value),
             config.config.mocks.$t(key),

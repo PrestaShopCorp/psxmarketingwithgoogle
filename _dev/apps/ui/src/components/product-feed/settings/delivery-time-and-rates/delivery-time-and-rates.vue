@@ -230,7 +230,6 @@ export default Vue.extend({
         return false;
       }
 
-      // Validation - Google needs a unique carrier name per country
       if (this.duplicateCarrierNames.length) {
         return false;
       }
