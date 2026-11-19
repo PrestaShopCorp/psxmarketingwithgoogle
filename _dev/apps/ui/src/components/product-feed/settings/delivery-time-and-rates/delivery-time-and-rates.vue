@@ -161,7 +161,10 @@ export default Vue.extend({
         return findDuplicateEstimateCarrierNames(this.estimateCarriersToConfigure);
       }
       if (this.getShippingValueSetup === ShippingSetupOption.IMPORT) {
-        return findDuplicateCarrierNames(this.carriersToConfigure);
+        return findDuplicateCarrierNames(
+          this.carriersToConfigure,
+          this.$store.state.productFeed.settings.shippingSettings,
+        );
       }
       return [];
     },

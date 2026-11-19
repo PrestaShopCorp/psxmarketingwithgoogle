@@ -449,6 +449,23 @@ describe('Product Feed actions', () => {
     });
   });
 
+  describe(ActionsTypes.GET_PRODUCT_FEED_SETTINGS, () => {
+    it('clears the clashing carrier names when loading the settings fails', async () => {
+      fetchMock.resetMocks();
+      vi.spyOn(console, 'error').mockImplementation(() => {});
+      fetchMock.mockResponseOnce('Internal Server Error', {status: 500, statusText: 'Internal Server Error'});
+      const commit = vi.fn();
+
+      await actions[ActionsTypes.GET_PRODUCT_FEED_SETTINGS]({
+        commit,
+        rootGetters: {'app/GET_CURRENT_LANGUAGE': 'en'},
+      });
+
+      expect(commit).toHaveBeenCalledWith('SET_DUPLICATE_SHIPPING_SERVICE_NAMES', []);
+      expect(commit).toHaveBeenLastCalledWith('API_ERROR', true);
+    });
+  });
+
   describe(ActionsTypes.SEND_PRODUCT_FEED_SETTINGS, () => {
     const context = (commit) => ({
       state: cloneDeep(productFeedIsConfigured),

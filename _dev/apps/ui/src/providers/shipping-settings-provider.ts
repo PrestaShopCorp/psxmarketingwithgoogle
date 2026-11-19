@@ -272,14 +272,39 @@ export function findDuplicateServiceNames(entries: ShippingServiceEntry[]): stri
 }
 
 /**
- * Enabled carriers only. Versions of one carrier share a carrierId and do not clash.
+ * Checks only the carriers the API sends to Google: enabled and fully configured delivery
+ * carriers whose latest shop version has a currency. Versions of one carrier share a
+ * carrierId and do not clash. The name falls back to the shop carrier name, as on the API.
  */
-export function findDuplicateCarrierNames(deliveryDetails: DeliveryDetail[]): string[] {
+export function findDuplicateCarrierNames(
+  deliveryDetails: DeliveryDetail[],
+  shopShippingSettings: ShopShippingInterface[],
+): string[] {
+  const latestShopCarriers = new Map<string, ShopShippingCarrierPropertiesInterface>();
+
+  shopShippingSettings
+    .filter((setting) => setting.collection === ShopShippingCollectionType.CARRIERS
+      && !(setting.properties as ShopShippingCarrierPropertiesInterface).deleted)
+    .forEach((setting) => {
+      const carrier = setting.properties as ShopShippingCarrierPropertiesInterface;
+      const known = latestShopCarriers.get(String(carrier.id_reference));
+
+      if (!known || Number(carrier.id_carrier) > Number(known.id_carrier)) {
+        latestShopCarriers.set(String(carrier.id_reference), carrier);
+      }
+    });
+
   return findDuplicateServiceNames(deliveryDetails
-    .filter((deliveryDetail) => deliveryDetail.enabledCarrier)
+    .filter((deliveryDetail) => deliveryDetail.enabledCarrier
+      && deliveryDetail.deliveryType === DeliveryType.DELIVERY
+      && validateDeliveryDetail(deliveryDetail)
+      && !!latestShopCarriers.get(String(deliveryDetail.carrierId))?.currency)
     .map((deliveryDetail) => ({
-      name: deliveryDetail.name || '',
+      name: deliveryDetail.name
+        || latestShopCarriers.get(String(deliveryDetail.carrierId))?.name
+        || '',
       country: deliveryDetail.country,
       ownerId: String(deliveryDetail.carrierId),
-    })));
+    }))
+    .filter((entry) => entry.name !== ''));
 }

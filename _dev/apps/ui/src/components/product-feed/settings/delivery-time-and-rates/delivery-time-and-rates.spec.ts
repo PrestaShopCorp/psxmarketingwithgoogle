@@ -370,6 +370,28 @@ describe('delivery-time-and-rates.vue', () => {
     });
 
     describe('when two different carriers have the same name for one country', () => {
+      beforeEach(() => {
+        const shopCarrier = (idReference: string) => ({
+          collection: 'carriers',
+          id: idReference,
+          properties: {
+            id_carrier: idReference,
+            id_reference: idReference,
+            name: 'My carrier',
+            active: true,
+            deleted: false,
+            delay: '',
+            country_ids: 'FR',
+            currency: 'EUR',
+          },
+        });
+        store.modules.productFeed.state.settings.shippingSettings = [
+          ...store.modules.productFeed.state.settings.shippingSettings,
+          shopCarrier('11'),
+          shopCarrier('42'),
+        ];
+      });
+
       const clashingCarriers = () => [
         ...store.modules.productFeed.state.settings.deliveryDetails,
         {
