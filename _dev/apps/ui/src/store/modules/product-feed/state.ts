@@ -140,6 +140,7 @@ export interface State {
   warmedUp: RequestState,
   isSyncSummaryLoadingInProgress: boolean;
   errorAPI: boolean;
+  duplicateShippingServiceNames: string[];
   isConfigured: boolean;
   isConfiguredOnce: boolean;
   totalProducts: number;
@@ -217,6 +218,7 @@ export const state: State = {
   warmedUp: RequestState.IDLE,
   isSyncSummaryLoadingInProgress: false,
   errorAPI: false,
+  duplicateShippingServiceNames: [],
   isConfigured: false,
   isConfiguredOnce: false,
   totalProducts: 0,

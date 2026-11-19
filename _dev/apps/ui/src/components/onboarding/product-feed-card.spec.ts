@@ -9,6 +9,7 @@ import ProductFeedCard from '@/components/onboarding/product-feed-card.vue';
 import ProductFeedStepper from '@/components/product-feed/product-feed-stepper.vue';
 import ProductFeedSettingsPages from '@/enums/product-feed/product-feed-settings-pages';
 import ProductFeedSummary from '@/components/onboarding/product-feed-summary.vue';
+import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 
 import {
   productFeed,
@@ -17,6 +18,7 @@ import {
   productFeedMissingFields,
   productFeedStatusSyncFailed,
   productFeedErrorAPI,
+  productFeedErrorAPIDuplicateCarrierName,
 } from '../../../.storybook/mock/product-feed';
 
 describe('product-feed-card.vue', () => {
@@ -189,5 +191,53 @@ describe('product-feed-card.vue', () => {
     expect(wrapper.find('b-button').text()).toEqual('Start your configuration');
     expect(wrapper.findComponent(BAlert).exists()).toBeTruthy();
     expect(wrapper.findComponent(BAlert).find('b-button').text()).toEqual('Refresh page');
+  });
+
+  describe('when two carriers have the same name for one country', () => {
+    const mountWithShippingSetup = (shippingSetup) => {
+      const store = cloneStore();
+      store.modules.productFeed.state = {
+        ...store.modules.productFeed.state,
+        ...productFeedErrorAPIDuplicateCarrierName,
+        settings: {
+          ...productFeedErrorAPIDuplicateCarrierName.settings,
+          shippingSetup,
+        },
+      };
+      return shallowMount(ProductFeedCard, {
+        propsData: {
+          isEnabled: true,
+          loading: false,
+        },
+        ...config,
+        mocks: {
+          $t: (key, params = {}) => Object.entries(params).reduce(
+            (text, [name, value]) => text.replace(`{${name}}`, value),
+            config.config.mocks.$t(key),
+          ),
+        },
+        stubs: {
+          VueShowdown: true,
+          BAlert,
+        },
+        store: new Vuex.Store(store),
+      });
+    };
+
+    it('names the carriers instead of showing the generic error', () => {
+      const wrapper = mountWithShippingSetup(ShippingSetupOption.IMPORT);
+      const alert = wrapper.findComponent(BAlert);
+
+      expect(alert.text()).toContain('Two of your carriers have the same name for the same country: My carrier GB, Express FR.');
+      expect(alert.text()).toContain('Shipping > Carriers');
+      expect(alert.findComponent(VueShowdown.VueShowdown).exists()).toBeFalsy();
+      expect(alert.find('b-button').text()).toEqual('Refresh page');
+    });
+
+    it('points to the delivery step for estimated carriers', () => {
+      const wrapper = mountWithShippingSetup(ShippingSetupOption.ESTIMATE);
+
+      expect(wrapper.findComponent(BAlert).text()).toContain('Two of your estimated carriers have the same name for the same country: My carrier GB, Express FR.');
+    });
   });
 });

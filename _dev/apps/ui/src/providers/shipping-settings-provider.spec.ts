@@ -1,7 +1,9 @@
 import {shippingPhpExport} from '@/../.storybook/mock/shipping-settings';
 import DeliveryType from '@/enums/product-feed/delivery-type';
 import {
-  getEnabledCarriers, Carrier, validateDeliveryDetail,
+  getEnabledCarriers, Carrier, validateDeliveryDetail, findDuplicateCarrierNames,
+  getLatestShopCarriers,
+  DeliveryDetail, ShopShippingInterface, ShopShippingCollectionType,
 } from './shipping-settings-provider';
 import {shippingBugExport} from '@/../.storybook/mock/shipping-settings-bug';
 
@@ -223,5 +225,117 @@ describe('Shipping Settings Provider - validateDeliveryDetail()', () => {
     });
 
     expect(result).toBe(false);
+  });
+});
+
+describe('Shipping Settings Provider - findDuplicateCarrierNames()', () => {
+  const shopCarrier = (
+    idCarrier: string,
+    idReference: string,
+    name: string,
+    extra: Record<string, unknown> = {},
+  ): ShopShippingInterface => ({
+    collection: ShopShippingCollectionType.CARRIERS,
+    id: idReference,
+    properties: {
+      id_carrier: idCarrier,
+      id_reference: idReference,
+      name,
+      active: true,
+      deleted: false,
+      delay: '',
+      country_ids: 'GB,FR',
+      currency: 'GBP',
+      ...extra,
+    },
+  });
+  const shop = [
+    shopCarrier('2', '2', 'My carrier'),
+    shopCarrier('5', '2', 'My carrier'),
+    shopCarrier('6', '6', 'My carrier'),
+    shopCarrier('3', '3', 'My cheap carrier'),
+  ];
+  const row = (
+    carrierId: string,
+    name: string|undefined,
+    country: string,
+    extra: Partial<DeliveryDetail> = {},
+  ): DeliveryDetail => ({
+    carrierId,
+    name,
+    country,
+    enabledCarrier: true,
+    deliveryType: DeliveryType.DELIVERY,
+    minHandlingTimeInDays: 0,
+    maxHandlingTimeInDays: 0,
+    minTransitTimeInDays: 1,
+    maxTransitTimeInDays: 3,
+    ...extra,
+  });
+
+  it('finds two different carriers with the same name for one country', () => {
+    expect(findDuplicateCarrierNames([
+      row('2', 'My carrier', 'GB'),
+      row('6', 'My carrier', 'GB'),
+      row('3', 'My cheap carrier', 'GB'),
+    ], getLatestShopCarriers(shop))).toEqual(['My carrier GB']);
+  });
+
+  it('ignores versions of the same carrier', () => {
+    expect(findDuplicateCarrierNames([
+      row('2', 'My carrier', 'GB'),
+      row('2', 'My carrier', 'GB'),
+    ], getLatestShopCarriers(shop))).toEqual([]);
+  });
+
+  it('ignores disabled carriers and other countries', () => {
+    expect(findDuplicateCarrierNames([
+      row('2', 'My carrier', 'GB'),
+      row('6', 'My carrier', 'GB', {enabledCarrier: false}),
+      row('3', 'My carrier', 'FR'),
+    ], getLatestShopCarriers(shop))).toEqual([]);
+  });
+
+  it('ignores carriers Google would not receive', () => {
+    const shopWithoutCurrency = [
+      shopCarrier('2', '2', 'My carrier'),
+      shopCarrier('6', '6', 'My carrier', {currency: undefined}),
+    ];
+
+    expect(findDuplicateCarrierNames([
+      row('2', 'My carrier', 'GB'),
+      row('6', 'My carrier', 'GB'),
+    ], getLatestShopCarriers(shopWithoutCurrency))).toEqual([]);
+    expect(findDuplicateCarrierNames([
+      row('2', 'My carrier', 'GB'),
+      row('6', 'My carrier', 'GB', {maxTransitTimeInDays: undefined}),
+    ], getLatestShopCarriers(shop))).toEqual([]);
+    expect(findDuplicateCarrierNames([
+      row('2', 'My carrier', 'GB'),
+      row('6', 'My carrier', 'GB', {deliveryType: DeliveryType.PICKUP}),
+    ], getLatestShopCarriers(shop))).toEqual([]);
+    expect(findDuplicateCarrierNames([
+      row('2', 'My carrier', 'GB'),
+      row('99', 'My carrier', 'GB'),
+    ], getLatestShopCarriers(shop))).toEqual([]);
+  });
+
+  it('uses the shop carrier name when the row has none', () => {
+    expect(findDuplicateCarrierNames([
+      row('2', undefined, 'GB'),
+      row('6', 'My carrier', 'GB'),
+    ], getLatestShopCarriers(shop))).toEqual(['My carrier GB']);
+  });
+
+  it('skips carriers without any name', () => {
+    const nameless = [
+      shopCarrier('2', '2', ''),
+      shopCarrier('6', '6', ''),
+    ];
+
+    expect(findDuplicateCarrierNames([
+      row('2', undefined, 'GB'),
+      row('6', undefined, 'GB'),
+    ], getLatestShopCarriers(nameless))).toEqual([]);
   });
 });

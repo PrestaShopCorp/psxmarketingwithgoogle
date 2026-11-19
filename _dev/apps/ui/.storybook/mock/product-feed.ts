@@ -361,6 +361,11 @@ export const productFeedErrorAPI: State = {
   errorAPI: true,
 };
 
+export const productFeedErrorAPIDuplicateCarrierName: State = {
+  ...productFeedErrorAPI,
+  duplicateShippingServiceNames: ['My carrier GB', 'Express FR'],
+};
+
 export const productFeedSyncSummaryInProgress: State = {
   ...productFeed,
   isConfigured: true,

@@ -120,11 +120,16 @@ export type DeliveryDetail = {
 /**
  * Filters on active carriers, then clone them as many time as they have assigned countries
  */
+export function isActiveShopCarrier(setting: ShopShippingInterface): boolean {
+  const properties = setting.properties as ShopShippingCarrierPropertiesInterface;
+
+  return setting.collection === ShopShippingCollectionType.CARRIERS
+    && properties.active === true
+    && properties.deleted === false;
+}
+
 export function getEnabledCarriers(source: ShopShippingInterface[]): Carrier[] {
-  return source.filter((carrier) => carrier.collection === ShopShippingCollectionType.CARRIERS
-        && (carrier.properties as ShopShippingCarrierPropertiesInterface).active === true
-        && (carrier.properties as ShopShippingCarrierPropertiesInterface).deleted === false,
-  ).flatMap((carrier) => {
+  return source.filter(isActiveShopCarrier).flatMap((carrier) => {
     const properties = carrier.properties as ShopShippingCarrierPropertiesInterface;
 
     // Countries may be duplicated on shops, and their iso code are not unique.
@@ -243,4 +248,64 @@ export function validateEachCountryHasAtLeastOneCarrier(
     (deliveryDetail: DeliveryDetail) => deliveryDetail.country === country
       && deliveryDetail.enabledCarrier,
   ));
+}
+
+export type ShippingServiceEntry = {
+  name: string;
+  country: string;
+  ownerId: string;
+};
+
+export function findDuplicateServiceNames(entries: ShippingServiceEntry[]): string[] {
+  const ownersByServiceName = new Map<string, Set<string>>();
+
+  entries.forEach(({name, country, ownerId}) => {
+    const serviceName = `${name} ${country}`;
+    const owners = ownersByServiceName.get(serviceName) || new Set<string>();
+
+    owners.add(ownerId);
+    ownersByServiceName.set(serviceName, owners);
+  });
+
+  return [...ownersByServiceName.entries()]
+    .filter(([, owners]) => owners.size > 1)
+    .map(([serviceName]) => serviceName);
+}
+
+export function getLatestShopCarriers(
+  shopShippingSettings: ShopShippingInterface[],
+): Map<string, ShopShippingCarrierPropertiesInterface> {
+  const latestShopCarriers = new Map<string, ShopShippingCarrierPropertiesInterface>();
+
+  shopShippingSettings.filter(isActiveShopCarrier).forEach((setting) => {
+    const carrier = setting.properties as ShopShippingCarrierPropertiesInterface;
+    const known = latestShopCarriers.get(carrier.id_reference);
+
+    if (!known || Number(carrier.id_carrier) > Number(known.id_carrier)) {
+      latestShopCarriers.set(carrier.id_reference, carrier);
+    }
+  });
+
+  return latestShopCarriers;
+}
+
+export function getSendableDeliveryDetails(deliveryDetails: DeliveryDetail[]): DeliveryDetail[] {
+  return deliveryDetails.filter(
+    (deliveryDetail) => deliveryDetail.enabledCarrier && validateDeliveryDetail(deliveryDetail),
+  );
+}
+
+export function findDuplicateCarrierNames(
+  deliveryDetails: DeliveryDetail[],
+  latestShopCarriers: Map<string, ShopShippingCarrierPropertiesInterface>,
+): string[] {
+  return findDuplicateServiceNames(getSendableDeliveryDetails(deliveryDetails)
+    .flatMap((deliveryDetail) => {
+      const shopCarrier = latestShopCarriers.get(deliveryDetail.carrierId);
+      const name = deliveryDetail.name || shopCarrier?.name;
+
+      return deliveryDetail.deliveryType === DeliveryType.DELIVERY && shopCarrier?.currency && name
+        ? [{name, country: deliveryDetail.country, ownerId: deliveryDetail.carrierId}]
+        : [];
+    }));
 }

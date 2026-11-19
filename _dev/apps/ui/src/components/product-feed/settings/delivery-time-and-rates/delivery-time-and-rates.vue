@@ -33,6 +33,25 @@
       @refresh="refreshComponent"
     />
 
+    <b-alert
+      v-if="duplicateCarrierNames.length"
+      data-test-id="duplicate-carrier-names-alert"
+      variant="warning"
+      show
+    >
+      <p class="mb-1">
+        {{ duplicateCarrierNamesMessage }}
+      </p>
+      <ul class="mb-0">
+        <li
+          v-for="serviceName in duplicateCarrierNames"
+          :key="serviceName"
+        >
+          {{ serviceName }}
+        </li>
+      </ul>
+    </b-alert>
+
     <actions-buttons
       :next-step="nextStep"
       :previous-step="previousStep"
@@ -53,8 +72,14 @@ import TargetCountries from '@/components/product-feed/settings/delivery-time-an
 import ShippingSettings from '@/components/product-feed/settings/delivery-time-and-rates/import-method/shipping-settings.vue';
 import {RateType} from '@/enums/product-feed/rate';
 import {OfferType} from '@/enums/product-feed/offer';
-import {validateCarrier, createCustomCarriersTemplate} from '@/providers/shipping-rate-provider';
-import {DeliveryDetail, validateDeliveryDetail, validateEachCountryHasAtLeastOneCarrier} from '@/providers/shipping-settings-provider';
+import {validateCarrier, createCustomCarriersTemplate, findDuplicateEstimateCarrierNames} from '@/providers/shipping-rate-provider';
+import {
+  DeliveryDetail,
+  findDuplicateCarrierNames,
+  getLatestShopCarriers,
+  validateDeliveryDetail,
+  validateEachCountryHasAtLeastOneCarrier,
+} from '@/providers/shipping-settings-provider';
 import CustomRate from '@/components/product-feed/settings/delivery-time-and-rates/estimate-method/custom-rate.vue';
 import CountriesFormList from './estimate-method/countries-form-list.vue';
 import {getDataFromLocalStorage} from '@/utils/LocalStorage';
@@ -132,6 +157,25 @@ export default Vue.extend({
     countriesFromStore(): string[] {
       return this.$store.getters['productFeed/GET_TARGET_COUNTRIES'];
     },
+    duplicateCarrierNames(): string[] {
+      if (this.getShippingValueSetup === ShippingSetupOption.ESTIMATE) {
+        return findDuplicateEstimateCarrierNames(this.estimateCarriersToConfigure);
+      }
+      if (this.getShippingValueSetup === ShippingSetupOption.IMPORT) {
+        return findDuplicateCarrierNames(this.carriersToConfigure, this.latestShopCarriers);
+      }
+      return [];
+    },
+    latestShopCarriers() {
+      return getLatestShopCarriers(this.$store.state.productFeed.settings.shippingSettings);
+    },
+    duplicateCarrierNamesMessage(): string {
+      const key = this.getShippingValueSetup === ShippingSetupOption.ESTIMATE
+        ? 'productFeedSettings.deliveryTimeAndRates.duplicateEstimatedCarrierNames'
+        : 'productFeedSettings.deliveryTimeAndRates.duplicateCarrierNames';
+
+      return this.$t(key).toString();
+    },
     selectedCountries(): string[] {
       return this.countries || getDataFromLocalStorage('productFeed-targetCountries') || this.countriesFromStore || [];
     },
@@ -186,6 +230,10 @@ export default Vue.extend({
 
       // Validation - Target countries
       if (!this.selectedCountries.length) {
+        return false;
+      }
+
+      if (this.duplicateCarrierNames.length) {
         return false;
       }
 

@@ -1,6 +1,7 @@
 import {OfferType} from '@/enums/product-feed/offer';
 import {RateType} from '@/enums/product-feed/rate';
 import store from '@/store';
+import {findDuplicateServiceNames} from '@/providers/shipping-settings-provider';
 
 export type freeShippingOverAmount = {
   shippingCost: number|null;
@@ -180,4 +181,14 @@ export function fromApi(customerCarriers: CustomCarrier[]): CustomCarrier[] {
   });
 
   return fromApiFormat;
+}
+
+export function findDuplicateEstimateCarrierNames(carriers: CustomCarrier[]): string[] {
+  return findDuplicateServiceNames(carriers.flatMap(
+    (carrier, index) => carrier.countries.map((country) => ({
+      name: carrier.carrierName,
+      country,
+      ownerId: String(index),
+    })),
+  ));
 }
