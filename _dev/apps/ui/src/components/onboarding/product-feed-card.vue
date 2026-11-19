@@ -172,7 +172,6 @@ import ProductFeedStepper from '@/components/product-feed/product-feed-stepper.v
 import ProductFeedSummary from '@/components/onboarding/product-feed-summary.vue';
 import SegmentGenericParams from '@/utils/SegmentGenericParams';
 import {ShippingSetupOption} from '@/enums/product-feed/shipping';
-import {ApiErrorReasonCode} from '@/store/modules/product-feed/state';
 
 export default defineComponent({
   name: 'ProductFeedCard',
@@ -249,9 +248,9 @@ export default defineComponent({
       return this.$store.state.productFeed.errorAPI;
     },
     duplicateCarrierNameAlert(): string|null {
-      const reason = this.$store.state.productFeed.errorAPIReason;
+      const duplicates: string[] = this.$store.state.productFeed.duplicateShippingServiceNames;
 
-      if (reason?.code !== ApiErrorReasonCode.DUPLICATE_SHIPPING_SERVICE_NAME) {
+      if (!duplicates.length) {
         return null;
       }
       const {shippingSetup} = this.$store.state.productFeed.settings;
@@ -259,7 +258,7 @@ export default defineComponent({
         ? 'productFeedCard.alertDuplicateEstimatedCarrierName'
         : 'productFeedCard.alertDuplicateCarrierName';
 
-      return this.$t(key, {duplicates: reason.duplicates.join(', ')}).toString();
+      return this.$t(key, {duplicates: duplicates.join(', ')}).toString();
     },
   },
   methods: {

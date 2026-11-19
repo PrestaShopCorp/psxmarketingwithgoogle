@@ -20,7 +20,7 @@ import MutationsTypes from './mutations-types';
 import type {
   ProductFeedSettings, ProductVerificationIssue, ProductVerificationIssueProduct, State,
 } from './state';
-import {ApiErrorReasonCode} from './state';
+import DuplicateShippingServiceNameError from '@/utils/DuplicateShippingServiceNameError';
 import GetterTypes from '@/store/modules/product-feed/getters-types';
 import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
 import ProductFeedCountStatus from '@/enums/product-feed/product-feed-count-status';
@@ -190,7 +190,7 @@ export default {
     state, rootState, getters, commit,
   }: Context) {
     commit(MutationsTypes.API_ERROR, false);
-    commit(MutationsTypes.API_ERROR_REASON, null);
+    commit(MutationsTypes.SET_DUPLICATE_SHIPPING_SERVICE_NAMES, []);
 
     const productFeedSettings: ProductFeedSettings = {
       ...state.settings,
@@ -250,11 +250,12 @@ export default {
             if (!response.ok) {
               const body = await response.json().catch(() => null);
 
-              if (body?.code === ApiErrorReasonCode.DUPLICATE_SHIPPING_SERVICE_NAME) {
-                commit(MutationsTypes.API_ERROR_REASON, {
-                  code: body.code,
-                  duplicates: Array.isArray(body.duplicates) ? body.duplicates : [],
-                });
+              if (body?.code === 'DUPLICATE_SHIPPING_SERVICE_NAME') {
+                throw new DuplicateShippingServiceNameError(
+                  response.statusText,
+                  response.status,
+                  Array.isArray(body.duplicates) ? body.duplicates : [],
+                );
               }
               throw new HttpClientError(response.statusText, response.status);
             }
@@ -295,6 +296,9 @@ export default {
       });
       commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, newSettings.attributeMapping);
     } catch (error) {
+      if (error instanceof DuplicateShippingServiceNameError) {
+        commit(MutationsTypes.SET_DUPLICATE_SHIPPING_SERVICE_NAMES, error.duplicates);
+      }
       commit(MutationsTypes.API_ERROR, true);
       console.error(error);
     }

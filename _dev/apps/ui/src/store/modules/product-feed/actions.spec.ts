@@ -480,10 +480,7 @@ describe('Product Feed actions', () => {
 
       await actions[ActionsTypes.SEND_PRODUCT_FEED_SETTINGS](context(commit));
 
-      expect(commit).toHaveBeenCalledWith('API_ERROR_REASON', {
-        code: 'DUPLICATE_SHIPPING_SERVICE_NAME',
-        duplicates: ['My carrier GB'],
-      });
+      expect(commit).toHaveBeenCalledWith('SET_DUPLICATE_SHIPPING_SERVICE_NAMES', ['My carrier GB']);
       expect(commit).toHaveBeenLastCalledWith('API_ERROR', true);
       expect(commit).not.toHaveBeenCalledWith('TOGGLE_CONFIGURATION_FINISHED', true);
       expect(fetchMock).toHaveBeenCalledTimes(1);
@@ -495,8 +492,8 @@ describe('Product Feed actions', () => {
 
       await actions[ActionsTypes.SEND_PRODUCT_FEED_SETTINGS](context(commit));
 
-      const reasons = commit.mock.calls.filter(([type]) => type === 'API_ERROR_REASON');
-      expect(reasons).toEqual([['API_ERROR_REASON', null]]);
+      const reasons = commit.mock.calls.filter(([type]) => type === 'SET_DUPLICATE_SHIPPING_SERVICE_NAMES');
+      expect(reasons).toEqual([['SET_DUPLICATE_SHIPPING_SERVICE_NAMES', []]]);
       expect(commit).toHaveBeenLastCalledWith('API_ERROR', true);
     });
 
@@ -507,7 +504,7 @@ describe('Product Feed actions', () => {
       await actions[ActionsTypes.SEND_PRODUCT_FEED_SETTINGS](context(commit));
 
       expect(commit).toHaveBeenNthCalledWith(1, 'API_ERROR', false);
-      expect(commit).toHaveBeenNthCalledWith(2, 'API_ERROR_REASON', null);
+      expect(commit).toHaveBeenNthCalledWith(2, 'SET_DUPLICATE_SHIPPING_SERVICE_NAMES', []);
       expect(commit).toHaveBeenCalledWith('TOGGLE_CONFIGURATION_FINISHED', true);
     });
   });

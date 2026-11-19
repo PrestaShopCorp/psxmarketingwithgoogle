@@ -245,25 +245,41 @@ export function validateEachCountryHasAtLeastOneCarrier(
   ));
 }
 
+export type ShippingServiceEntry = {
+  name: string;
+  country: string;
+  ownerId: string;
+};
+
 /**
- * Google needs a unique shipping service name per country.
- * Returns "<name> <country>" for every name used by two different enabled carriers
- * in one country. Versions of one carrier share a carrierId and do not clash.
+ * Google needs a unique shipping service name ("<name> <country>") per country.
+ * Returns every service name used by more than one owner.
+ */
+export function findDuplicateServiceNames(entries: ShippingServiceEntry[]): string[] {
+  const ownersByServiceName = new Map<string, Set<string>>();
+
+  entries.forEach(({name, country, ownerId}) => {
+    const serviceName = `${name} ${country}`;
+    const owners = ownersByServiceName.get(serviceName) || new Set<string>();
+
+    owners.add(ownerId);
+    ownersByServiceName.set(serviceName, owners);
+  });
+
+  return [...ownersByServiceName.entries()]
+    .filter(([, owners]) => owners.size > 1)
+    .map(([serviceName]) => serviceName);
+}
+
+/**
+ * Enabled carriers only. Versions of one carrier share a carrierId and do not clash.
  */
 export function findDuplicateCarrierNames(deliveryDetails: DeliveryDetail[]): string[] {
-  const carrierIdsByServiceName = new Map<string, Set<string>>();
-
-  deliveryDetails
+  return findDuplicateServiceNames(deliveryDetails
     .filter((deliveryDetail) => deliveryDetail.enabledCarrier)
-    .forEach((deliveryDetail) => {
-      const serviceName = `${deliveryDetail.name} ${deliveryDetail.country}`;
-      const carrierIds = carrierIdsByServiceName.get(serviceName) || new Set<string>();
-
-      carrierIds.add(String(deliveryDetail.carrierId));
-      carrierIdsByServiceName.set(serviceName, carrierIds);
-    });
-
-  return [...carrierIdsByServiceName.entries()]
-    .filter(([, carrierIds]) => carrierIds.size > 1)
-    .map(([serviceName]) => serviceName);
+    .map((deliveryDetail) => ({
+      name: deliveryDetail.name || '',
+      country: deliveryDetail.country,
+      ownerId: String(deliveryDetail.carrierId),
+    })));
 }

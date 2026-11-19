@@ -136,20 +136,11 @@ export interface ProductCount {
   abortController: AbortController | null,
 }
 
-export enum ApiErrorReasonCode {
-  DUPLICATE_SHIPPING_SERVICE_NAME = 'DUPLICATE_SHIPPING_SERVICE_NAME',
-}
-
-export interface ApiErrorReason {
-  code: ApiErrorReasonCode,
-  duplicates: string[],
-}
-
 export interface State {
   warmedUp: RequestState,
   isSyncSummaryLoadingInProgress: boolean;
   errorAPI: boolean;
-  errorAPIReason: ApiErrorReason|null;
+  duplicateShippingServiceNames: string[];
   isConfigured: boolean;
   isConfiguredOnce: boolean;
   totalProducts: number;
@@ -227,7 +218,7 @@ export const state: State = {
   warmedUp: RequestState.IDLE,
   isSyncSummaryLoadingInProgress: false,
   errorAPI: false,
-  errorAPIReason: null,
+  duplicateShippingServiceNames: [],
   isConfigured: false,
   isConfiguredOnce: false,
   totalProducts: 0,

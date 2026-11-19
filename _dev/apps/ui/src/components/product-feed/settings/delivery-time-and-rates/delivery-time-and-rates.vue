@@ -40,9 +40,7 @@
       show
     >
       <p class="mb-1">
-        {{ getShippingValueSetup === ShippingSetupOption.ESTIMATE
-          ? $t('productFeedSettings.deliveryTimeAndRates.duplicateEstimatedCarrierNames')
-          : $t('productFeedSettings.deliveryTimeAndRates.duplicateCarrierNames') }}
+        {{ duplicateCarrierNamesMessage }}
       </p>
       <ul class="mb-0">
         <li
@@ -160,12 +158,17 @@ export default Vue.extend({
     },
     duplicateCarrierNames(): string[] {
       if (this.getShippingValueSetup === ShippingSetupOption.ESTIMATE) {
-        return findDuplicateEstimateCarrierNames(this.estimateCarriersToConfigure || []);
+        return findDuplicateEstimateCarrierNames(this.estimateCarriersToConfigure);
       }
       if (this.getShippingValueSetup === ShippingSetupOption.IMPORT) {
-        return findDuplicateCarrierNames(this.carriersToConfigure || []);
+        return findDuplicateCarrierNames(this.carriersToConfigure);
       }
       return [];
+    },
+    duplicateCarrierNamesMessage(): string {
+      return this.getShippingValueSetup === ShippingSetupOption.ESTIMATE
+        ? this.$t('productFeedSettings.deliveryTimeAndRates.duplicateEstimatedCarrierNames').toString()
+        : this.$t('productFeedSettings.deliveryTimeAndRates.duplicateCarrierNames').toString();
     },
     selectedCountries(): string[] {
       return this.countries || getDataFromLocalStorage('productFeed-targetCountries') || this.countriesFromStore || [];
