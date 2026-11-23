@@ -9,6 +9,7 @@ import ActionsTypes from '@/store/modules/product-feed/actions-types';
 import actions from '@/store/modules/product-feed/actions';
 import {ProductStatus} from './state';
 import {formatMappingToApi} from '@/utils/AttributeMapping';
+import {productFeedIsConfigured} from '@/../.storybook/mock/product-feed';
 
 const allDetailsFromState = {
   autoImportTaxSettings: false,
@@ -387,14 +388,14 @@ describe('createProductFeedApiPayload', () => {
 });
 
 describe('Product Feed actions', () => {
-  describe(ActionsTypes.REQUEST_REPORTING_PRODUCTS_BY_STATUS_LIST, () => {
-    const fetchMock = createFetchMock(vi);
-    fetchMock.enableMocks();
-    initOnboardingClient({
-      apiUrl: 'http://perdu.com',
-      token: 'token',
-    });
+  const fetchMock = createFetchMock(vi);
+  fetchMock.enableMocks();
+  initOnboardingClient({
+    apiUrl: 'http://perdu.com',
+    token: 'token',
+  });
 
+  describe(ActionsTypes.REQUEST_REPORTING_PRODUCTS_BY_STATUS_LIST, () => {
     it('loads & returns the disapproved products', async () => {
       fetchMock.resetMocks();
       fetchMock.mockResponse(JSON.stringify({...productValidationListMock}));
@@ -445,6 +446,65 @@ describe('Product Feed actions', () => {
 
       expect(commit).toHaveBeenCalledTimes(6);
       expect(result).toEqual(productValidationListMock.results);
+    });
+  });
+
+  describe(ActionsTypes.SEND_PRODUCT_FEED_SETTINGS, () => {
+    const context = (commit) => ({
+      state: cloneDeep(productFeedIsConfigured),
+      rootState: {
+        app: {
+          psxMktgWithGoogleShopCurrency: {isoCode: 'EUR'},
+          psxMktgWithGoogleLanguages: ['en'],
+        },
+      },
+      getters: {
+        GET_PRODUCT_CATEGORIES_SELECTED: [],
+      },
+      commit,
+    });
+
+    beforeEach(() => {
+      fetchMock.resetMocks();
+      vi.spyOn(console, 'error').mockImplementation(() => {});
+    });
+
+    it('stores the reason when two carriers have the same name for one country', async () => {
+      fetchMock.mockResponseOnce(JSON.stringify({
+        statusCode: 400,
+        code: 'DUPLICATE_SHIPPING_SERVICE_NAME',
+        message: 'Two of your carriers have the same name for the same country.',
+        duplicates: ['My carrier GB'],
+      }), {status: 400, statusText: 'Bad Request'});
+      const commit = vi.fn();
+
+      await actions[ActionsTypes.SEND_PRODUCT_FEED_SETTINGS](context(commit));
+
+      expect(commit).toHaveBeenCalledWith('API_ERROR', true);
+      expect(commit).toHaveBeenLastCalledWith('SET_DUPLICATE_SHIPPING_SERVICE_NAMES', ['My carrier GB']);
+      expect(commit).not.toHaveBeenCalledWith('TOGGLE_CONFIGURATION_FINISHED', true);
+      expect(fetchMock).toHaveBeenCalledTimes(1);
+    });
+
+    it('stores no reason for other API errors', async () => {
+      fetchMock.mockResponseOnce('Internal Server Error', {status: 500, statusText: 'Internal Server Error'});
+      const commit = vi.fn();
+
+      await actions[ActionsTypes.SEND_PRODUCT_FEED_SETTINGS](context(commit));
+
+      const reasons = commit.mock.calls.filter(([type]) => type === 'SET_DUPLICATE_SHIPPING_SERVICE_NAMES');
+      expect(reasons).toEqual([]);
+      expect(commit).toHaveBeenLastCalledWith('API_ERROR', true);
+    });
+
+    it('clears the previous reason when saving again', async () => {
+      fetchMock.mockResponse(JSON.stringify({}));
+      const commit = vi.fn();
+
+      await actions[ActionsTypes.SEND_PRODUCT_FEED_SETTINGS](context(commit));
+
+      expect(commit).toHaveBeenNthCalledWith(1, 'API_ERROR', false);
+      expect(commit).toHaveBeenCalledWith('TOGGLE_CONFIGURATION_FINISHED', true);
     });
   });
 });

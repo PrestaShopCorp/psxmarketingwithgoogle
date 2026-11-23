@@ -245,7 +245,9 @@
     "productsWithProblems": "Products with problems",
     "alertGoogleIsReviewingProducts": "Your products are being reviewed  \n It might take 3-5 days to review your products. Once approved, they will be available for free listings and ads.",
     "missingInformation": "Missing information",
-    "alertErrorApi": "You can't send your products data to Google right now. Try again later."
+    "alertErrorApi": "You can't send your products data to Google right now. Try again later.",
+    "alertDuplicateCarrierName": "Two of your carriers have the same name for the same country: {duplicates}. Google needs a unique name for each one. Rename one in Shipping > Carriers, then refresh this page and save your product feed settings again.",
+    "alertDuplicateEstimatedCarrierName": "Two of your estimated carriers have the same name for the same country: {duplicates}. Google needs a unique name for each one. Rename one in the delivery step of your product feed settings and save again."
   },
   "productFeedSettings": {
     "breadcrumb1": "Product feed",
@@ -368,6 +370,8 @@
       "handlingTimeTooltip": "Enter how long it takes you to prepare an order until it’s picked up by the carrier in working days.",
       "transitTimeTooltip": "Enter how long it takes for your order to be shipped to the customer once it leaves your facility.",
       "shippingInformationTitle": "Shipping rates & transit time",
+      "duplicateCarrierNames": "Two of your carriers have the same name for the same country. Google needs a unique name for each one. Rename one in Shipping > Carriers, or turn one of them off here:",
+      "duplicateEstimatedCarrierNames": "Two of your estimated carriers have the same name for the same country. Google needs a unique name for each one. Rename one of them below:",
       "shippingInformationIntro": "Rates from enabled carriers will be displayed to customers who are browsing your products on Google.",
       "shippingTableNotice": "Google cannot support carrier with pick up in store delivery type, please make sure you disable them or switch to another method.",
       "shippingSwitchCarrier": "Switch to enable / desable carrier",

@@ -7,8 +7,10 @@ import {ShippingSetupOption} from '@/enums/product-feed/shipping';
 import {fromApi, toApi} from '@/providers/shipping-rate-provider';
 import {
   type DeliveryDetail,
-  type ShopShippingInterface, getEnabledCarriers,
-  mergeShippingDetailsSourcesForProductFeedConfiguration, validateDeliveryDetail,
+  type ShopShippingInterface,
+  getEnabledCarriers,
+  mergeShippingDetailsSourcesForProductFeedConfiguration,
+  getSendableDeliveryDetails,
 } from '@/providers/shipping-settings-provider';
 import appGetters from '@/store/modules/app/getters-types';
 import {type FullState, RequestState} from '@/store/types';
@@ -20,6 +22,7 @@ import MutationsTypes from './mutations-types';
 import type {
   ProductFeedSettings, ProductVerificationIssue, ProductVerificationIssueProduct, State,
 } from './state';
+import DuplicateShippingServiceNameError from '@/utils/DuplicateShippingServiceNameError';
 import GetterTypes from '@/store/modules/product-feed/getters-types';
 import ProductFilterMethodsSynch from '@/enums/product-feed/product-filter-methods-synch';
 import ProductFeedCountStatus from '@/enums/product-feed/product-feed-count-status';
@@ -202,8 +205,8 @@ export default {
     // Delivery times & rates - Common
     const targetCountries = getDataFromLocalStorage('productFeed-targetCountries') || productFeedSettings.targetCountries;
     // Delivery times & rates - Import method
-    const deliveryFiltered: DeliveryDetail[] = (getDataFromLocalStorage('productFeed-deliveryDetails') || productFeedSettings.deliveryDetails).filter(
-      (e: DeliveryDetail) => e.enabledCarrier && validateDeliveryDetail(e),
+    const deliveryFiltered: DeliveryDetail[] = getSendableDeliveryDetails(
+      getDataFromLocalStorage('productFeed-deliveryDetails') || productFeedSettings.deliveryDetails,
     );
     const shippingSettingsFromShop: ShopShippingInterface[] = productFeedSettings.shippingSettings
       .filter(
@@ -242,7 +245,24 @@ export default {
       await fetchOnboarding(
         'POST',
         'incremental-sync/settings',
-        {body: newSettings},
+        {
+          body: newSettings,
+          onResponse: async (response: Response) => {
+            if (!response.ok) {
+              const body = await response.json().catch(() => null);
+
+              if (body?.code === 'DUPLICATE_SHIPPING_SERVICE_NAME') {
+                throw new DuplicateShippingServiceNameError(
+                  response.statusText,
+                  response.status,
+                  Array.isArray(body.duplicates) ? body.duplicates : [],
+                );
+              }
+              throw new HttpClientError(response.statusText, response.status);
+            }
+            return response;
+          },
+        },
       );
       await fetchOnboarding(
         'POST',
@@ -278,6 +298,9 @@ export default {
       commit(MutationsTypes.SET_ATTRIBUTES_MAPPED, newSettings.attributeMapping);
     } catch (error) {
       commit(MutationsTypes.API_ERROR, true);
+      if (error instanceof DuplicateShippingServiceNameError) {
+        commit(MutationsTypes.SET_DUPLICATE_SHIPPING_SERVICE_NAMES, error.duplicates);
+      }
       console.error(error);
     }
   },
